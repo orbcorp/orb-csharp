@@ -1,0 +1,502 @@
+using CodeAnalysis = System.Diagnostics.CodeAnalysis;
+using Generic = System.Collections.Generic;
+using InvoiceLineItemCreateResponseProperties = Orb.Models.InvoiceLineItems.InvoiceLineItemCreateResponseProperties;
+using Json = System.Text.Json;
+using Models = Orb.Models;
+using Orb = Orb;
+using Serialization = System.Text.Json.Serialization;
+using System = System;
+
+namespace Orb.Models.InvoiceLineItems;
+
+[Serialization::JsonConverter(typeof(Orb::ModelConverter<InvoiceLineItemCreateResponse>))]
+public sealed record class InvoiceLineItemCreateResponse
+    : Orb::ModelBase,
+        Orb::IFromRaw<InvoiceLineItemCreateResponse>
+{
+    /// <summary>
+    /// A unique ID for this line item.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
+
+            return Json::JsonSerializer.Deserialize<string>(element)
+                ?? throw new System::ArgumentNullException("id");
+        }
+        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// The line amount after any adjustments and before overage conversion, credits
+    /// and partial invoicing.
+    /// </summary>
+    public required string AdjustedSubtotal
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("adjusted_subtotal", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "adjusted_subtotal",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<string>(element)
+                ?? throw new System::ArgumentNullException("adjusted_subtotal");
+        }
+        set
+        {
+            this.Properties["adjusted_subtotal"] = Json::JsonSerializer.SerializeToElement(value);
+        }
+    }
+
+    /// <summary>
+    /// All adjustments applied to the line item in the order they were applied based
+    /// on invoice calculations (ie. usage discounts -> amount discounts -> percentage
+    /// discounts -> minimums -> maximums).
+    /// </summary>
+    public required Generic::List<InvoiceLineItemCreateResponseProperties::Adjustment> Adjustments
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("adjustments", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "adjustments",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<Generic::List<InvoiceLineItemCreateResponseProperties::Adjustment>>(
+                    element
+                ) ?? throw new System::ArgumentNullException("adjustments");
+        }
+        set { this.Properties["adjustments"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// The final amount for a line item after all adjustments and pre paid credits
+    /// have been applied.
+    /// </summary>
+    public required string Amount
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("amount", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "amount",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<string>(element)
+                ?? throw new System::ArgumentNullException("amount");
+        }
+        set { this.Properties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// The number of prepaid credits applied.
+    /// </summary>
+    public required string CreditsApplied
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("credits_applied", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "credits_applied",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<string>(element)
+                ?? throw new System::ArgumentNullException("credits_applied");
+        }
+        set { this.Properties["credits_applied"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// This field is deprecated in favor of `adjustments`
+    /// </summary>
+    public required Models::Discount? Discount
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("discount", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "discount",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<Models::Discount?>(element);
+        }
+        set { this.Properties["discount"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// The end date of the range of time applied for this line item's price.
+    /// </summary>
+    public required System::DateTime EndDate
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("end_date", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "end_date",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+        }
+        set { this.Properties["end_date"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// An additional filter that was used to calculate the usage for this line item.
+    /// </summary>
+    public required string? Filter
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("filter", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "filter",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<string?>(element);
+        }
+        set { this.Properties["filter"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// [DEPRECATED] For configured prices that are split by a grouping key, this will
+    /// be populated with the key and a value. The `amount` and `subtotal` will be
+    /// the values for this particular grouping.
+    /// </summary>
+    public required string? Grouping
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("grouping", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "grouping",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<string?>(element);
+        }
+        set { this.Properties["grouping"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// This field is deprecated in favor of `adjustments`.
+    /// </summary>
+    public required Models::Maximum? Maximum
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("maximum", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "maximum",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<Models::Maximum?>(element);
+        }
+        set { this.Properties["maximum"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// This field is deprecated in favor of `adjustments`.
+    /// </summary>
+    public required string? MaximumAmount
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("maximum_amount", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "maximum_amount",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<string?>(element);
+        }
+        set { this.Properties["maximum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// This field is deprecated in favor of `adjustments`.
+    /// </summary>
+    public required Models::Minimum? Minimum
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("minimum", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "minimum",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<Models::Minimum?>(element);
+        }
+        set { this.Properties["minimum"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// This field is deprecated in favor of `adjustments`.
+    /// </summary>
+    public required string? MinimumAmount
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("minimum_amount", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "minimum_amount",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<string?>(element);
+        }
+        set { this.Properties["minimum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// The name of the price associated with this line item.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("name", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
+
+            return Json::JsonSerializer.Deserialize<string>(element)
+                ?? throw new System::ArgumentNullException("name");
+        }
+        set { this.Properties["name"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// Any amount applied from a partial invoice
+    /// </summary>
+    public required string PartiallyInvoicedAmount
+    {
+        get
+        {
+            if (
+                !this.Properties.TryGetValue(
+                    "partially_invoiced_amount",
+                    out Json::JsonElement element
+                )
+            )
+                throw new System::ArgumentOutOfRangeException(
+                    "partially_invoiced_amount",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<string>(element)
+                ?? throw new System::ArgumentNullException("partially_invoiced_amount");
+        }
+        set
+        {
+            this.Properties["partially_invoiced_amount"] = Json::JsonSerializer.SerializeToElement(
+                value
+            );
+        }
+    }
+
+    /// <summary>
+    /// The Price resource represents a price that can be billed on a subscription,
+    /// resulting in a charge on an invoice in the form of an invoice line item. Prices
+    /// take a quantity and determine an amount to bill.
+    ///
+    /// Orb supports a few different pricing models out of the box. Each of these models
+    /// is serialized differently in a given Price object. The model_type field determines
+    /// the key for the configuration object that is present.
+    ///
+    /// For more on the types of prices, see [the core concepts documentation](/core-concepts#plan-and-price)
+    /// </summary>
+    public required Models::Price Price
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("price", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException("price", "Missing required argument");
+
+            return Json::JsonSerializer.Deserialize<Models::Price>(element)
+                ?? throw new System::ArgumentNullException("price");
+        }
+        set { this.Properties["price"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// Either the fixed fee quantity or the usage during the service period.
+    /// </summary>
+    public required double Quantity
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("quantity", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "quantity",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<double>(element);
+        }
+        set { this.Properties["quantity"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// The start date of the range of time applied for this line item's price.
+    /// </summary>
+    public required System::DateTime StartDate
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("start_date", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "start_date",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+        }
+        set { this.Properties["start_date"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// For complex pricing structures, the line item can be broken down further in `sub_line_items`.
+    /// </summary>
+    public required Generic::List<InvoiceLineItemCreateResponseProperties::SubLineItem> SubLineItems
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("sub_line_items", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "sub_line_items",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<Generic::List<InvoiceLineItemCreateResponseProperties::SubLineItem>>(
+                    element
+                ) ?? throw new System::ArgumentNullException("sub_line_items");
+        }
+        set { this.Properties["sub_line_items"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// The line amount before before any adjustments.
+    /// </summary>
+    public required string Subtotal
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("subtotal", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "subtotal",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<string>(element)
+                ?? throw new System::ArgumentNullException("subtotal");
+        }
+        set { this.Properties["subtotal"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// An array of tax rates and their incurred tax amounts. Empty if no tax integration
+    /// is configured.
+    /// </summary>
+    public required Generic::List<Models::TaxAmount> TaxAmounts
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("tax_amounts", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "tax_amounts",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<Generic::List<Models::TaxAmount>>(element)
+                ?? throw new System::ArgumentNullException("tax_amounts");
+        }
+        set { this.Properties["tax_amounts"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// A list of customer ids that were used to calculate the usage for this line item.
+    /// </summary>
+    public required Generic::List<string>? UsageCustomerIDs
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("usage_customer_ids", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "usage_customer_ids",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<Generic::List<string>?>(element);
+        }
+        set
+        {
+            this.Properties["usage_customer_ids"] = Json::JsonSerializer.SerializeToElement(value);
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.AdjustedSubtotal;
+        foreach (var item in this.Adjustments)
+        {
+            item.Validate();
+        }
+        _ = this.Amount;
+        _ = this.CreditsApplied;
+        this.Discount?.Validate();
+        _ = this.EndDate;
+        _ = this.Filter;
+        _ = this.Grouping;
+        this.Maximum?.Validate();
+        _ = this.MaximumAmount;
+        this.Minimum?.Validate();
+        _ = this.MinimumAmount;
+        _ = this.Name;
+        _ = this.PartiallyInvoicedAmount;
+        this.Price.Validate();
+        _ = this.Quantity;
+        _ = this.StartDate;
+        foreach (var item in this.SubLineItems)
+        {
+            item.Validate();
+        }
+        _ = this.Subtotal;
+        foreach (var item in this.TaxAmounts)
+        {
+            item.Validate();
+        }
+        foreach (var item in this.UsageCustomerIDs ?? [])
+        {
+            _ = item;
+        }
+    }
+
+    public InvoiceLineItemCreateResponse() { }
+
+#pragma warning disable CS8618
+    [CodeAnalysis::SetsRequiredMembers]
+    InvoiceLineItemCreateResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static InvoiceLineItemCreateResponse FromRawUnchecked(
+        Generic::Dictionary<string, Json::JsonElement> properties
+    )
+    {
+        return new(properties);
+    }
+}
