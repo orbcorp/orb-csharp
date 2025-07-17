@@ -1,0 +1,42 @@
+using Http = System.Net.Http;
+using Orb = Orb;
+using System = System;
+
+namespace Orb.Models.Customers;
+
+/// <summary>
+/// This performs a deletion of this customer, its subscriptions, and its invoices,
+/// provided the customer does not have any issued invoices. Customers with issued
+/// invoices cannot be deleted. This operation is irreversible. Note that this is
+/// a _soft_ deletion, but the data will be inaccessible through the API and Orb dashboard.
+///
+/// For a hard-deletion, please reach out to the Orb team directly.
+///
+/// **Note**: This operation happens asynchronously and can be expected to take a
+/// few minutes to propagate to related resources. However, querying for the customer
+/// on subsequent GET requests while deletion is in process will reflect its deletion.
+/// </summary>
+public sealed record class CustomerDeleteParams : Orb::ParamsBase
+{
+    public required string CustomerID;
+
+    public override System::Uri Url(Orb::IOrbClient client)
+    {
+        return new System::UriBuilder(
+            client.BaseUrl.ToString().TrimEnd('/')
+                + string.Format("/customers/{0}", this.CustomerID)
+        )
+        {
+            Query = this.QueryString(client),
+        }.Uri;
+    }
+
+    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    {
+        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        foreach (var item in this.HeaderProperties)
+        {
+            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+        }
+    }
+}

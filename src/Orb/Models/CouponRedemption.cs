@@ -1,0 +1,82 @@
+using CodeAnalysis = System.Diagnostics.CodeAnalysis;
+using Generic = System.Collections.Generic;
+using Json = System.Text.Json;
+using Orb = Orb;
+using Serialization = System.Text.Json.Serialization;
+using System = System;
+
+namespace Orb.Models;
+
+[Serialization::JsonConverter(typeof(Orb::ModelConverter<CouponRedemption>))]
+public sealed record class CouponRedemption : Orb::ModelBase, Orb::IFromRaw<CouponRedemption>
+{
+    public required string CouponID
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("coupon_id", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "coupon_id",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<string>(element)
+                ?? throw new System::ArgumentNullException("coupon_id");
+        }
+        set { this.Properties["coupon_id"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    public required System::DateTime? EndDate
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("end_date", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "end_date",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+        }
+        set { this.Properties["end_date"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    public required System::DateTime StartDate
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("start_date", out Json::JsonElement element))
+                throw new System::ArgumentOutOfRangeException(
+                    "start_date",
+                    "Missing required argument"
+                );
+
+            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+        }
+        set { this.Properties["start_date"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    public override void Validate()
+    {
+        _ = this.CouponID;
+        _ = this.EndDate;
+        _ = this.StartDate;
+    }
+
+    public CouponRedemption() { }
+
+#pragma warning disable CS8618
+    [CodeAnalysis::SetsRequiredMembers]
+    CouponRedemption(Generic::Dictionary<string, Json::JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static CouponRedemption FromRawUnchecked(
+        Generic::Dictionary<string, Json::JsonElement> properties
+    )
+    {
+        return new(properties);
+    }
+}

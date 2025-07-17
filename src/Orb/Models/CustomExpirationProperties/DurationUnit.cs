@@ -1,0 +1,44 @@
+using Orb = Orb;
+using Serialization = System.Text.Json.Serialization;
+using System = System;
+
+namespace Orb.Models.CustomExpirationProperties;
+
+[Serialization::JsonConverter(typeof(Orb::EnumConverter<DurationUnit, string>))]
+public sealed record class DurationUnit(string value) : Orb::IEnum<DurationUnit, string>
+{
+    public static readonly DurationUnit Day = new("day");
+
+    public static readonly DurationUnit Month = new("month");
+
+    readonly string _value = value;
+
+    public enum Value
+    {
+        Day,
+        Month,
+    }
+
+    public Value Known() =>
+        _value switch
+        {
+            "day" => Value.Day,
+            "month" => Value.Month,
+            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+        };
+
+    public string Raw()
+    {
+        return _value;
+    }
+
+    public void Validate()
+    {
+        Known();
+    }
+
+    public static DurationUnit FromRaw(string value)
+    {
+        return new(value);
+    }
+}
