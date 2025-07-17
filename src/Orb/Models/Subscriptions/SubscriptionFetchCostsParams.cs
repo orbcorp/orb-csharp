@@ -22,7 +22,7 @@ public sealed record class SubscriptionFetchCostsParams : Orb::ParamsBase
     public required string SubscriptionID;
 
     /// <summary>
-    /// The currency or custom pricing unit to use.
+    /// The currency to use.
     /// </summary>
     public string? Currency
     {
