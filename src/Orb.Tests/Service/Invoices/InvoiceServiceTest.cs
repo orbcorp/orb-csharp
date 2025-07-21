@@ -34,7 +34,6 @@ public class InvoiceServiceTest : Tests::TestBase
                         UnitConfig = new Models::UnitConfig() { UnitAmount = "unit_amount" },
                     },
                 ],
-                NetTerms = 0,
                 CustomerID = "4khy3nwzktxv7",
                 Discount = Models::Discount.Create(
                     new Models::PercentageDiscount()
@@ -57,6 +56,7 @@ public class InvoiceServiceTest : Tests::TestBase
                 ExternalCustomerID = "external-customer-id",
                 Memo = "An optional memo for my invoice.",
                 Metadata = new() { { "foo", "string" } },
+                NetTerms = 0,
                 WillAutoIssue = false,
             }
         );

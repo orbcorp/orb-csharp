@@ -76,27 +76,6 @@ public sealed record class InvoiceCreateParams : Orb::ParamsBase
     }
 
     /// <summary>
-    /// Determines the difference between the invoice issue date for subscription invoices
-    /// as the date that they are due. A value of '0' here represents that the invoice
-    /// is due on issue, whereas a value of 30 represents that the customer has 30 days
-    /// to pay the invoice.
-    /// </summary>
-    public required long NetTerms
-    {
-        get
-        {
-            if (!this.BodyProperties.TryGetValue("net_terms", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "net_terms",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<long>(element);
-        }
-        set { this.BodyProperties["net_terms"] = Json::JsonSerializer.SerializeToElement(value); }
-    }
-
-    /// <summary>
     /// The id of the `Customer` to create this invoice for. One of `customer_id` and
     /// `external_customer_id` are required.
     /// </summary>
@@ -183,6 +162,24 @@ public sealed record class InvoiceCreateParams : Orb::ParamsBase
             return Json::JsonSerializer.Deserialize<Generic::Dictionary<string, string?>?>(element);
         }
         set { this.BodyProperties["metadata"] = Json::JsonSerializer.SerializeToElement(value); }
+    }
+
+    /// <summary>
+    /// Determines the difference between the invoice issue date for subscription invoices
+    /// as the date that they are due. A value of '0' here represents that the invoice
+    /// is due on issue, whereas a value of 30 represents that the customer has 30 days
+    /// to pay the invoice.
+    /// </summary>
+    public long? NetTerms
+    {
+        get
+        {
+            if (!this.BodyProperties.TryGetValue("net_terms", out Json::JsonElement element))
+                return null;
+
+            return Json::JsonSerializer.Deserialize<long?>(element);
+        }
+        set { this.BodyProperties["net_terms"] = Json::JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
