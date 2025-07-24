@@ -1,5 +1,10 @@
 # Orb C# API Library
 
+> [!NOTE]
+> The Orb C# API Library is currently in alpha.
+>
+> There may be frequent breaking changes.
+
 The Orb C# SDK provides convenient access to the [Orb REST API](https://docs.withorb.com/reference/api-reference) from applications written in C#.
 
 The REST API documentation can be found on [docs.withorb.com](https://docs.withorb.com/reference/api-reference).
