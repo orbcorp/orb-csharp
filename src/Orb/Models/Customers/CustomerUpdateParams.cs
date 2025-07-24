@@ -147,8 +147,10 @@ public sealed record class CustomerUpdateParams : Orb::ParamsBase
     }
 
     /// <summary>
-    /// The external customer ID. This can only be set if empty and the customer has
-    /// no past or current subscriptions.
+    /// The external customer ID. This can only be set if the customer has no existing
+    /// external customer ID. Since this action may change usage quantities for all
+    /// existing subscriptions, it is disallowed if the customer has issued invoices
+    /// with usage line items and subject to the same restrictions as backdated subscription creation.
     /// </summary>
     public string? ExternalCustomerID
     {

@@ -107,7 +107,7 @@ public sealed record class CostListParams : Orb::ParamsBase
     public required string CustomerID;
 
     /// <summary>
-    /// The currency to use.
+    /// The currency or custom pricing unit to use.
     /// </summary>
     public string? Currency
     {

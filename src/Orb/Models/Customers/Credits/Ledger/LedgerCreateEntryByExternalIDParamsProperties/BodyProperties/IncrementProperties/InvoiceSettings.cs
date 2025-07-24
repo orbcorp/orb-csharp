@@ -40,7 +40,7 @@ public sealed record class InvoiceSettings : Orb::ModelBase, Orb::IFromRaw<Invoi
     /// date for the invoice. If you intend the invoice to be due on issue, set this
     /// to 0.
     /// </summary>
-    public required long NetTerms
+    public required long? NetTerms
     {
         get
         {
@@ -50,7 +50,7 @@ public sealed record class InvoiceSettings : Orb::ModelBase, Orb::IFromRaw<Invoi
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<long>(element);
+            return Json::JsonSerializer.Deserialize<long?>(element);
         }
         set { this.Properties["net_terms"] = Json::JsonSerializer.SerializeToElement(value); }
     }
