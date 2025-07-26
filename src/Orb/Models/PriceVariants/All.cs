@@ -522,3 +522,28 @@ public sealed record class CumulativeGroupedBulk(PriceProperties::CumulativeGrou
         this.Value.Validate();
     }
 }
+
+[Serialization::JsonConverter(
+    typeof(Orb::VariantConverter<
+        GroupedWithMinMaxThresholds,
+        PriceProperties::GroupedWithMinMaxThresholds
+    >)
+)]
+public sealed record class GroupedWithMinMaxThresholds(
+    PriceProperties::GroupedWithMinMaxThresholds Value
+)
+    : Models::Price,
+        Orb::IVariant<GroupedWithMinMaxThresholds, PriceProperties::GroupedWithMinMaxThresholds>
+{
+    public static GroupedWithMinMaxThresholds From(
+        PriceProperties::GroupedWithMinMaxThresholds value
+    )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
