@@ -35,6 +35,20 @@ public class DimensionalPriceGroupServiceTest : Tests::TestBase
     }
 
     [Fact]
+    public async Tasks::Task Update_Works()
+    {
+        var dimensionalPriceGroup = await this.client.DimensionalPriceGroups.Update(
+            new DimensionalPriceGroups::DimensionalPriceGroupUpdateParams()
+            {
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                Metadata = new() { { "foo", "string" } },
+            }
+        );
+        dimensionalPriceGroup.Validate();
+    }
+
+    [Fact]
     public async Tasks::Task List_Works()
     {
         var page = await this.client.DimensionalPriceGroups.List(

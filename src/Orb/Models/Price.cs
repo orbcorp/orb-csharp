@@ -114,5 +114,9 @@ public abstract record class Price
         PriceProperties::CumulativeGroupedBulk value
     ) => new(value);
 
+    public static PriceVariants::GroupedWithMinMaxThresholds Create(
+        PriceProperties::GroupedWithMinMaxThresholds value
+    ) => new(value);
+
     public abstract void Validate();
 }

@@ -69,6 +69,29 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
             ) ?? throw new System::NullReferenceException();
     }
 
+    public async Tasks::Task<DimensionalPriceGroups::DimensionalPriceGroup> Update(
+        DimensionalPriceGroups::DimensionalPriceGroupUpdateParams @params
+    )
+    {
+        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Put, @params.Url(this._client))
+        {
+            Content = @params.BodyContent(),
+        };
+        @params.AddHeadersToRequest(webRequest, this._client);
+        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        try
+        {
+            response.EnsureSuccessStatusCode();
+        }
+        catch (Http::HttpRequestException e)
+        {
+            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+        }
+        return Json::JsonSerializer.Deserialize<DimensionalPriceGroups::DimensionalPriceGroup>(
+                await response.Content.ReadAsStringAsync()
+            ) ?? throw new System::NullReferenceException();
+    }
+
     public async Tasks::Task<DimensionalPriceGroups::DimensionalPriceGroups> List(
         DimensionalPriceGroups::DimensionalPriceGroupListParams @params
     )
