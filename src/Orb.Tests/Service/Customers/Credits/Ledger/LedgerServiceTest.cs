@@ -50,7 +50,6 @@ public class LedgerServiceTest : Tests::TestBase
                     new BodyProperties::Increment()
                     {
                         Amount = 0,
-                        EntryType = IncrementProperties::EntryType.Increment,
                         Currency = "currency",
                         Description = "description",
                         EffectiveDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
@@ -85,7 +84,6 @@ public class LedgerServiceTest : Tests::TestBase
                     new BodyProperties1::Increment()
                     {
                         Amount = 0,
-                        EntryType = IncrementProperties1::EntryType.Increment,
                         Currency = "currency",
                         Description = "description",
                         EffectiveDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),

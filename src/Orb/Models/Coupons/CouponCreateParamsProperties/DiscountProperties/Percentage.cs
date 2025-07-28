@@ -2,7 +2,6 @@ using CodeAnalysis = System.Diagnostics.CodeAnalysis;
 using Generic = System.Collections.Generic;
 using Json = System.Text.Json;
 using Orb = Orb;
-using PercentageProperties = Orb.Models.Coupons.CouponCreateParamsProperties.DiscountProperties.PercentageProperties;
 using Serialization = System.Text.Json.Serialization;
 using System = System;
 
@@ -11,7 +10,7 @@ namespace Orb.Models.Coupons.CouponCreateParamsProperties.DiscountProperties;
 [Serialization::JsonConverter(typeof(Orb::ModelConverter<Percentage>))]
 public sealed record class Percentage : Orb::ModelBase, Orb::IFromRaw<Percentage>
 {
-    public required PercentageProperties::DiscountType DiscountType
+    public Json::JsonElement DiscountType
     {
         get
         {
@@ -21,8 +20,7 @@ public sealed record class Percentage : Orb::ModelBase, Orb::IFromRaw<Percentage
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<PercentageProperties::DiscountType>(element)
-                ?? throw new System::ArgumentNullException("discount_type");
+            return Json::JsonSerializer.Deserialize<Json::JsonElement>(element);
         }
         set { this.Properties["discount_type"] = Json::JsonSerializer.SerializeToElement(value); }
     }
@@ -47,11 +45,21 @@ public sealed record class Percentage : Orb::ModelBase, Orb::IFromRaw<Percentage
 
     public override void Validate()
     {
-        this.DiscountType.Validate();
+        if (
+            !this.DiscountType.Equals(
+                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"percentage\"")
+            )
+        )
+        {
+            throw new System::Exception();
+        }
         _ = this.PercentageDiscount;
     }
 
-    public Percentage() { }
+    public Percentage()
+    {
+        this.DiscountType = Json::JsonSerializer.Deserialize<Json::JsonElement>("\"percentage\"");
+    }
 
 #pragma warning disable CS8618
     [CodeAnalysis::SetsRequiredMembers]

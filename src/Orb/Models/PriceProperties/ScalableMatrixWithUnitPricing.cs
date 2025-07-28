@@ -347,7 +347,7 @@ public sealed record class ScalableMatrixWithUnitPricing
         set { this.Properties["minimum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
     }
 
-    public required ScalableMatrixWithUnitPricingProperties::ModelType ModelType
+    public Json::JsonElement ModelType
     {
         get
         {
@@ -357,9 +357,7 @@ public sealed record class ScalableMatrixWithUnitPricing
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingProperties::ModelType>(
-                    element
-                ) ?? throw new System::ArgumentNullException("model_type");
+            return Json::JsonSerializer.Deserialize<Json::JsonElement>(element);
         }
         set { this.Properties["model_type"] = Json::JsonSerializer.SerializeToElement(value); }
     }
@@ -513,7 +511,16 @@ public sealed record class ScalableMatrixWithUnitPricing
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        this.ModelType.Validate();
+        if (
+            !this.ModelType.Equals(
+                Json::JsonSerializer.Deserialize<Json::JsonElement>(
+                    "\"scalable_matrix_with_unit_pricing\""
+                )
+            )
+        )
+        {
+            throw new System::Exception();
+        }
         _ = this.Name;
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();
@@ -525,7 +532,12 @@ public sealed record class ScalableMatrixWithUnitPricing
         this.DimensionalPriceConfiguration?.Validate();
     }
 
-    public ScalableMatrixWithUnitPricing() { }
+    public ScalableMatrixWithUnitPricing()
+    {
+        this.ModelType = Json::JsonSerializer.Deserialize<Json::JsonElement>(
+            "\"scalable_matrix_with_unit_pricing\""
+        );
+    }
 
 #pragma warning disable CS8618
     [CodeAnalysis::SetsRequiredMembers]

@@ -4,14 +4,13 @@ using Json = System.Text.Json;
 using Orb = Orb;
 using Serialization = System.Text.Json.Serialization;
 using System = System;
-using UsageProperties = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.DiscountProperties.UsageProperties;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.DiscountProperties;
 
 [Serialization::JsonConverter(typeof(Orb::ModelConverter<Usage>))]
 public sealed record class Usage : Orb::ModelBase, Orb::IFromRaw<Usage>
 {
-    public required UsageProperties::DiscountType DiscountType
+    public Json::JsonElement DiscountType
     {
         get
         {
@@ -21,8 +20,7 @@ public sealed record class Usage : Orb::ModelBase, Orb::IFromRaw<Usage>
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<UsageProperties::DiscountType>(element)
-                ?? throw new System::ArgumentNullException("discount_type");
+            return Json::JsonSerializer.Deserialize<Json::JsonElement>(element);
         }
         set { this.Properties["discount_type"] = Json::JsonSerializer.SerializeToElement(value); }
     }
@@ -48,11 +46,21 @@ public sealed record class Usage : Orb::ModelBase, Orb::IFromRaw<Usage>
 
     public override void Validate()
     {
-        this.DiscountType.Validate();
+        if (
+            !this.DiscountType.Equals(
+                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"usage\"")
+            )
+        )
+        {
+            throw new System::Exception();
+        }
         _ = this.UsageDiscount;
     }
 
-    public Usage() { }
+    public Usage()
+    {
+        this.DiscountType = Json::JsonSerializer.Deserialize<Json::JsonElement>("\"usage\"");
+    }
 
 #pragma warning disable CS8618
     [CodeAnalysis::SetsRequiredMembers]

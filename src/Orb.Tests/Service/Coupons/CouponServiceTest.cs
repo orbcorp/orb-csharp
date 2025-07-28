@@ -1,7 +1,6 @@
 using CouponCreateParamsProperties = Orb.Models.Coupons.CouponCreateParamsProperties;
 using Coupons = Orb.Models.Coupons;
 using DiscountProperties = Orb.Models.Coupons.CouponCreateParamsProperties.DiscountProperties;
-using PercentageProperties = Orb.Models.Coupons.CouponCreateParamsProperties.DiscountProperties.PercentageProperties;
 using Tasks = System.Threading.Tasks;
 using Tests = Orb.Tests;
 
@@ -16,11 +15,7 @@ public class CouponServiceTest : Tests::TestBase
             new Coupons::CouponCreateParams()
             {
                 Discount = CouponCreateParamsProperties::Discount.Create(
-                    new DiscountProperties::Percentage()
-                    {
-                        DiscountType = PercentageProperties::DiscountType.Percentage,
-                        PercentageDiscount = 0,
-                    }
+                    new DiscountProperties::Percentage() { PercentageDiscount = 0 }
                 ),
                 RedemptionCode = "HALFOFF",
                 DurationInMonths = 12,

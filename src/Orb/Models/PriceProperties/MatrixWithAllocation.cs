@@ -372,7 +372,7 @@ public sealed record class MatrixWithAllocation
         set { this.Properties["minimum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
     }
 
-    public required MatrixWithAllocationProperties::ModelType ModelType
+    public Json::JsonElement ModelType
     {
         get
         {
@@ -382,9 +382,7 @@ public sealed record class MatrixWithAllocation
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<MatrixWithAllocationProperties::ModelType>(
-                    element
-                ) ?? throw new System::ArgumentNullException("model_type");
+            return Json::JsonSerializer.Deserialize<Json::JsonElement>(element);
         }
         set { this.Properties["model_type"] = Json::JsonSerializer.SerializeToElement(value); }
     }
@@ -507,7 +505,14 @@ public sealed record class MatrixWithAllocation
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        this.ModelType.Validate();
+        if (
+            !this.ModelType.Equals(
+                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"matrix_with_allocation\"")
+            )
+        )
+        {
+            throw new System::Exception();
+        }
         _ = this.Name;
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();
@@ -515,7 +520,12 @@ public sealed record class MatrixWithAllocation
         this.DimensionalPriceConfiguration?.Validate();
     }
 
-    public MatrixWithAllocation() { }
+    public MatrixWithAllocation()
+    {
+        this.ModelType = Json::JsonSerializer.Deserialize<Json::JsonElement>(
+            "\"matrix_with_allocation\""
+        );
+    }
 
 #pragma warning disable CS8618
     [CodeAnalysis::SetsRequiredMembers]

@@ -373,7 +373,7 @@ public sealed record class MatrixWithDisplayName
         set { this.Properties["minimum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
     }
 
-    public required MatrixWithDisplayNameProperties::ModelType ModelType
+    public Json::JsonElement ModelType
     {
         get
         {
@@ -383,9 +383,7 @@ public sealed record class MatrixWithDisplayName
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<MatrixWithDisplayNameProperties::ModelType>(
-                    element
-                ) ?? throw new System::ArgumentNullException("model_type");
+            return Json::JsonSerializer.Deserialize<Json::JsonElement>(element);
         }
         set { this.Properties["model_type"] = Json::JsonSerializer.SerializeToElement(value); }
     }
@@ -511,7 +509,14 @@ public sealed record class MatrixWithDisplayName
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        this.ModelType.Validate();
+        if (
+            !this.ModelType.Equals(
+                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"matrix_with_display_name\"")
+            )
+        )
+        {
+            throw new System::Exception();
+        }
         _ = this.Name;
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();
@@ -519,7 +524,12 @@ public sealed record class MatrixWithDisplayName
         this.DimensionalPriceConfiguration?.Validate();
     }
 
-    public MatrixWithDisplayName() { }
+    public MatrixWithDisplayName()
+    {
+        this.ModelType = Json::JsonSerializer.Deserialize<Json::JsonElement>(
+            "\"matrix_with_display_name\""
+        );
+    }
 
 #pragma warning disable CS8618
     [CodeAnalysis::SetsRequiredMembers]
