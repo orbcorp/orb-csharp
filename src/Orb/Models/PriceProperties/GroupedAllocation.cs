@@ -371,7 +371,7 @@ public sealed record class GroupedAllocation : Orb::ModelBase, Orb::IFromRaw<Gro
         set { this.Properties["minimum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
     }
 
-    public required GroupedAllocationProperties::ModelType ModelType
+    public Json::JsonElement ModelType
     {
         get
         {
@@ -381,8 +381,7 @@ public sealed record class GroupedAllocation : Orb::ModelBase, Orb::IFromRaw<Gro
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<GroupedAllocationProperties::ModelType>(element)
-                ?? throw new System::ArgumentNullException("model_type");
+            return Json::JsonSerializer.Deserialize<Json::JsonElement>(element);
         }
         set { this.Properties["model_type"] = Json::JsonSerializer.SerializeToElement(value); }
     }
@@ -507,7 +506,14 @@ public sealed record class GroupedAllocation : Orb::ModelBase, Orb::IFromRaw<Gro
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        this.ModelType.Validate();
+        if (
+            !this.ModelType.Equals(
+                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"grouped_allocation\"")
+            )
+        )
+        {
+            throw new System::Exception();
+        }
         _ = this.Name;
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();
@@ -515,7 +521,12 @@ public sealed record class GroupedAllocation : Orb::ModelBase, Orb::IFromRaw<Gro
         this.DimensionalPriceConfiguration?.Validate();
     }
 
-    public GroupedAllocation() { }
+    public GroupedAllocation()
+    {
+        this.ModelType = Json::JsonSerializer.Deserialize<Json::JsonElement>(
+            "\"grouped_allocation\""
+        );
+    }
 
 #pragma warning disable CS8618
     [CodeAnalysis::SetsRequiredMembers]

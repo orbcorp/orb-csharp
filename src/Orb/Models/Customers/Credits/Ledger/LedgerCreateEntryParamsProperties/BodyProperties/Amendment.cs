@@ -1,4 +1,3 @@
-using AmendmentProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.AmendmentProperties;
 using CodeAnalysis = System.Diagnostics.CodeAnalysis;
 using Generic = System.Collections.Generic;
 using Json = System.Text.Json;
@@ -49,7 +48,7 @@ public sealed record class Amendment : Orb::ModelBase, Orb::IFromRaw<Amendment>
         set { this.Properties["block_id"] = Json::JsonSerializer.SerializeToElement(value); }
     }
 
-    public required AmendmentProperties::EntryType EntryType
+    public Json::JsonElement EntryType
     {
         get
         {
@@ -59,8 +58,7 @@ public sealed record class Amendment : Orb::ModelBase, Orb::IFromRaw<Amendment>
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<AmendmentProperties::EntryType>(element)
-                ?? throw new System::ArgumentNullException("entry_type");
+            return Json::JsonSerializer.Deserialize<Json::JsonElement>(element);
         }
         set { this.Properties["entry_type"] = Json::JsonSerializer.SerializeToElement(value); }
     }
@@ -119,7 +117,14 @@ public sealed record class Amendment : Orb::ModelBase, Orb::IFromRaw<Amendment>
     {
         _ = this.Amount;
         _ = this.BlockID;
-        this.EntryType.Validate();
+        if (
+            !this.EntryType.Equals(
+                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"amendment\"")
+            )
+        )
+        {
+            throw new System::Exception();
+        }
         _ = this.Currency;
         _ = this.Description;
         if (this.Metadata != null)
@@ -131,7 +136,10 @@ public sealed record class Amendment : Orb::ModelBase, Orb::IFromRaw<Amendment>
         }
     }
 
-    public Amendment() { }
+    public Amendment()
+    {
+        this.EntryType = Json::JsonSerializer.Deserialize<Json::JsonElement>("\"amendment\"");
+    }
 
 #pragma warning disable CS8618
     [CodeAnalysis::SetsRequiredMembers]

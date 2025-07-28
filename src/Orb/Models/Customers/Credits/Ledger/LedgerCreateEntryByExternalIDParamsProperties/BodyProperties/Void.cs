@@ -49,7 +49,7 @@ public sealed record class Void : Orb::ModelBase, Orb::IFromRaw<Void>
         set { this.Properties["block_id"] = Json::JsonSerializer.SerializeToElement(value); }
     }
 
-    public required VoidProperties::EntryType EntryType
+    public Json::JsonElement EntryType
     {
         get
         {
@@ -59,8 +59,7 @@ public sealed record class Void : Orb::ModelBase, Orb::IFromRaw<Void>
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<VoidProperties::EntryType>(element)
-                ?? throw new System::ArgumentNullException("entry_type");
+            return Json::JsonSerializer.Deserialize<Json::JsonElement>(element);
         }
         set { this.Properties["entry_type"] = Json::JsonSerializer.SerializeToElement(value); }
     }
@@ -134,7 +133,10 @@ public sealed record class Void : Orb::ModelBase, Orb::IFromRaw<Void>
     {
         _ = this.Amount;
         _ = this.BlockID;
-        this.EntryType.Validate();
+        if (!this.EntryType.Equals(Json::JsonSerializer.Deserialize<Json::JsonElement>("\"void\"")))
+        {
+            throw new System::Exception();
+        }
         _ = this.Currency;
         _ = this.Description;
         if (this.Metadata != null)
@@ -147,7 +149,10 @@ public sealed record class Void : Orb::ModelBase, Orb::IFromRaw<Void>
         this.VoidReason?.Validate();
     }
 
-    public Void() { }
+    public Void()
+    {
+        this.EntryType = Json::JsonSerializer.Deserialize<Json::JsonElement>("\"void\"");
+    }
 
 #pragma warning disable CS8618
     [CodeAnalysis::SetsRequiredMembers]

@@ -1,5 +1,4 @@
 using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using ExpirationChangeProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.ExpirationChangeProperties;
 using Generic = System.Collections.Generic;
 using Json = System.Text.Json;
 using Orb = Orb;
@@ -11,7 +10,7 @@ namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParam
 [Serialization::JsonConverter(typeof(Orb::ModelConverter<ExpirationChange>))]
 public sealed record class ExpirationChange : Orb::ModelBase, Orb::IFromRaw<ExpirationChange>
 {
-    public required ExpirationChangeProperties::EntryType EntryType
+    public Json::JsonElement EntryType
     {
         get
         {
@@ -21,8 +20,7 @@ public sealed record class ExpirationChange : Orb::ModelBase, Orb::IFromRaw<Expi
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<ExpirationChangeProperties::EntryType>(element)
-                ?? throw new System::ArgumentNullException("entry_type");
+            return Json::JsonSerializer.Deserialize<Json::JsonElement>(element);
         }
         set { this.Properties["entry_type"] = Json::JsonSerializer.SerializeToElement(value); }
     }
@@ -148,7 +146,14 @@ public sealed record class ExpirationChange : Orb::ModelBase, Orb::IFromRaw<Expi
 
     public override void Validate()
     {
-        this.EntryType.Validate();
+        if (
+            !this.EntryType.Equals(
+                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"expiration_change\"")
+            )
+        )
+        {
+            throw new System::Exception();
+        }
         _ = this.TargetExpiryDate;
         _ = this.Amount;
         _ = this.BlockID;
@@ -164,7 +169,12 @@ public sealed record class ExpirationChange : Orb::ModelBase, Orb::IFromRaw<Expi
         }
     }
 
-    public ExpirationChange() { }
+    public ExpirationChange()
+    {
+        this.EntryType = Json::JsonSerializer.Deserialize<Json::JsonElement>(
+            "\"expiration_change\""
+        );
+    }
 
 #pragma warning disable CS8618
     [CodeAnalysis::SetsRequiredMembers]

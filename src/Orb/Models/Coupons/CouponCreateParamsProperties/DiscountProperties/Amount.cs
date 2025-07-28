@@ -1,4 +1,3 @@
-using AmountProperties = Orb.Models.Coupons.CouponCreateParamsProperties.DiscountProperties.AmountProperties;
 using CodeAnalysis = System.Diagnostics.CodeAnalysis;
 using Generic = System.Collections.Generic;
 using Json = System.Text.Json;
@@ -27,7 +26,7 @@ public sealed record class Amount : Orb::ModelBase, Orb::IFromRaw<Amount>
         set { this.Properties["amount_discount"] = Json::JsonSerializer.SerializeToElement(value); }
     }
 
-    public required AmountProperties::DiscountType DiscountType
+    public Json::JsonElement DiscountType
     {
         get
         {
@@ -37,8 +36,7 @@ public sealed record class Amount : Orb::ModelBase, Orb::IFromRaw<Amount>
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<AmountProperties::DiscountType>(element)
-                ?? throw new System::ArgumentNullException("discount_type");
+            return Json::JsonSerializer.Deserialize<Json::JsonElement>(element);
         }
         set { this.Properties["discount_type"] = Json::JsonSerializer.SerializeToElement(value); }
     }
@@ -46,10 +44,20 @@ public sealed record class Amount : Orb::ModelBase, Orb::IFromRaw<Amount>
     public override void Validate()
     {
         _ = this.AmountDiscount;
-        this.DiscountType.Validate();
+        if (
+            !this.DiscountType.Equals(
+                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"amount\"")
+            )
+        )
+        {
+            throw new System::Exception();
+        }
     }
 
-    public Amount() { }
+    public Amount()
+    {
+        this.DiscountType = Json::JsonSerializer.Deserialize<Json::JsonElement>("\"amount\"");
+    }
 
 #pragma warning disable CS8618
     [CodeAnalysis::SetsRequiredMembers]

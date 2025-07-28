@@ -373,7 +373,7 @@ public sealed record class CumulativeGroupedBulk
         set { this.Properties["minimum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
     }
 
-    public required CumulativeGroupedBulkProperties::ModelType ModelType
+    public Json::JsonElement ModelType
     {
         get
         {
@@ -383,9 +383,7 @@ public sealed record class CumulativeGroupedBulk
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<CumulativeGroupedBulkProperties::ModelType>(
-                    element
-                ) ?? throw new System::ArgumentNullException("model_type");
+            return Json::JsonSerializer.Deserialize<Json::JsonElement>(element);
         }
         set { this.Properties["model_type"] = Json::JsonSerializer.SerializeToElement(value); }
     }
@@ -511,7 +509,14 @@ public sealed record class CumulativeGroupedBulk
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        this.ModelType.Validate();
+        if (
+            !this.ModelType.Equals(
+                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"cumulative_grouped_bulk\"")
+            )
+        )
+        {
+            throw new System::Exception();
+        }
         _ = this.Name;
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();
@@ -519,7 +524,12 @@ public sealed record class CumulativeGroupedBulk
         this.DimensionalPriceConfiguration?.Validate();
     }
 
-    public CumulativeGroupedBulk() { }
+    public CumulativeGroupedBulk()
+    {
+        this.ModelType = Json::JsonSerializer.Deserialize<Json::JsonElement>(
+            "\"cumulative_grouped_bulk\""
+        );
+    }
 
 #pragma warning disable CS8618
     [CodeAnalysis::SetsRequiredMembers]

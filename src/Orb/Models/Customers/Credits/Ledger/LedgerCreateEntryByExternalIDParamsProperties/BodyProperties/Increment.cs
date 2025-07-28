@@ -30,7 +30,7 @@ public sealed record class Increment : Orb::ModelBase, Orb::IFromRaw<Increment>
         set { this.Properties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
     }
 
-    public required IncrementProperties::EntryType EntryType
+    public Json::JsonElement EntryType
     {
         get
         {
@@ -40,8 +40,7 @@ public sealed record class Increment : Orb::ModelBase, Orb::IFromRaw<Increment>
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<IncrementProperties::EntryType>(element)
-                ?? throw new System::ArgumentNullException("entry_type");
+            return Json::JsonSerializer.Deserialize<Json::JsonElement>(element);
         }
         set { this.Properties["entry_type"] = Json::JsonSerializer.SerializeToElement(value); }
     }
@@ -169,7 +168,14 @@ public sealed record class Increment : Orb::ModelBase, Orb::IFromRaw<Increment>
     public override void Validate()
     {
         _ = this.Amount;
-        this.EntryType.Validate();
+        if (
+            !this.EntryType.Equals(
+                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"increment\"")
+            )
+        )
+        {
+            throw new System::Exception();
+        }
         _ = this.Currency;
         _ = this.Description;
         _ = this.EffectiveDate;
@@ -185,7 +191,10 @@ public sealed record class Increment : Orb::ModelBase, Orb::IFromRaw<Increment>
         _ = this.PerUnitCostBasis;
     }
 
-    public Increment() { }
+    public Increment()
+    {
+        this.EntryType = Json::JsonSerializer.Deserialize<Json::JsonElement>("\"increment\"");
+    }
 
 #pragma warning disable CS8618
     [CodeAnalysis::SetsRequiredMembers]

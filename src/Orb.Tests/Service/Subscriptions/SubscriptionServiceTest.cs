@@ -4,7 +4,6 @@ using AddAdjustmentProperties2 = Orb.Models.Subscriptions.SubscriptionSchedulePl
 using AddPriceProperties = Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties;
 using AddPriceProperties1 = Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.AddPriceProperties;
 using AddProperties = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties;
-using AmountProperties = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.DiscountProperties.AmountProperties;
 using CustomExpirationProperties = Orb.Models.CustomExpirationProperties;
 using DiscountOverrideProperties = Orb.Models.Subscriptions.DiscountOverrideProperties;
 using DiscountProperties = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.DiscountProperties;
@@ -493,11 +492,7 @@ public class SubscriptionServiceTest : Tests::TestBase
                         Discounts =
                         [
                             AddProperties::Discount.Create(
-                                new DiscountProperties::Amount()
-                                {
-                                    AmountDiscount = 0,
-                                    DiscountType = AmountProperties::DiscountType.Amount,
-                                }
+                                new DiscountProperties::Amount() { AmountDiscount = 0 }
                             ),
                         ],
                         EndDate = AddProperties::EndDate.Create(

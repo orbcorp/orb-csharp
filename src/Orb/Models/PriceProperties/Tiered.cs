@@ -344,7 +344,7 @@ public sealed record class Tiered : Orb::ModelBase, Orb::IFromRaw<Tiered>
         set { this.Properties["minimum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
     }
 
-    public required TieredProperties::ModelType ModelType
+    public Json::JsonElement ModelType
     {
         get
         {
@@ -354,8 +354,7 @@ public sealed record class Tiered : Orb::ModelBase, Orb::IFromRaw<Tiered>
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<TieredProperties::ModelType>(element)
-                ?? throw new System::ArgumentNullException("model_type");
+            return Json::JsonSerializer.Deserialize<Json::JsonElement>(element);
         }
         set { this.Properties["model_type"] = Json::JsonSerializer.SerializeToElement(value); }
     }
@@ -492,7 +491,14 @@ public sealed record class Tiered : Orb::ModelBase, Orb::IFromRaw<Tiered>
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        this.ModelType.Validate();
+        if (
+            !this.ModelType.Equals(
+                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"tiered\"")
+            )
+        )
+        {
+            throw new System::Exception();
+        }
         _ = this.Name;
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();
@@ -501,7 +507,10 @@ public sealed record class Tiered : Orb::ModelBase, Orb::IFromRaw<Tiered>
         this.DimensionalPriceConfiguration?.Validate();
     }
 
-    public Tiered() { }
+    public Tiered()
+    {
+        this.ModelType = Json::JsonSerializer.Deserialize<Json::JsonElement>("\"tiered\"");
+    }
 
 #pragma warning disable CS8618
     [CodeAnalysis::SetsRequiredMembers]

@@ -373,7 +373,7 @@ public sealed record class GroupedWithMeteredMinimum
         set { this.Properties["minimum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
     }
 
-    public required GroupedWithMeteredMinimumProperties::ModelType ModelType
+    public Json::JsonElement ModelType
     {
         get
         {
@@ -383,9 +383,7 @@ public sealed record class GroupedWithMeteredMinimum
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<GroupedWithMeteredMinimumProperties::ModelType>(
-                    element
-                ) ?? throw new System::ArgumentNullException("model_type");
+            return Json::JsonSerializer.Deserialize<Json::JsonElement>(element);
         }
         set { this.Properties["model_type"] = Json::JsonSerializer.SerializeToElement(value); }
     }
@@ -511,7 +509,16 @@ public sealed record class GroupedWithMeteredMinimum
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        this.ModelType.Validate();
+        if (
+            !this.ModelType.Equals(
+                Json::JsonSerializer.Deserialize<Json::JsonElement>(
+                    "\"grouped_with_metered_minimum\""
+                )
+            )
+        )
+        {
+            throw new System::Exception();
+        }
         _ = this.Name;
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();
@@ -519,7 +526,12 @@ public sealed record class GroupedWithMeteredMinimum
         this.DimensionalPriceConfiguration?.Validate();
     }
 
-    public GroupedWithMeteredMinimum() { }
+    public GroupedWithMeteredMinimum()
+    {
+        this.ModelType = Json::JsonSerializer.Deserialize<Json::JsonElement>(
+            "\"grouped_with_metered_minimum\""
+        );
+    }
 
 #pragma warning disable CS8618
     [CodeAnalysis::SetsRequiredMembers]

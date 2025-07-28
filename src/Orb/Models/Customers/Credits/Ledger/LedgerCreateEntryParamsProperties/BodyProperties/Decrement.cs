@@ -1,5 +1,4 @@
 using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using DecrementProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.DecrementProperties;
 using Generic = System.Collections.Generic;
 using Json = System.Text.Json;
 using Orb = Orb;
@@ -30,7 +29,7 @@ public sealed record class Decrement : Orb::ModelBase, Orb::IFromRaw<Decrement>
         set { this.Properties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
     }
 
-    public required DecrementProperties::EntryType EntryType
+    public Json::JsonElement EntryType
     {
         get
         {
@@ -40,8 +39,7 @@ public sealed record class Decrement : Orb::ModelBase, Orb::IFromRaw<Decrement>
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<DecrementProperties::EntryType>(element)
-                ?? throw new System::ArgumentNullException("entry_type");
+            return Json::JsonSerializer.Deserialize<Json::JsonElement>(element);
         }
         set { this.Properties["entry_type"] = Json::JsonSerializer.SerializeToElement(value); }
     }
@@ -99,7 +97,14 @@ public sealed record class Decrement : Orb::ModelBase, Orb::IFromRaw<Decrement>
     public override void Validate()
     {
         _ = this.Amount;
-        this.EntryType.Validate();
+        if (
+            !this.EntryType.Equals(
+                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"decrement\"")
+            )
+        )
+        {
+            throw new System::Exception();
+        }
         _ = this.Currency;
         _ = this.Description;
         if (this.Metadata != null)
@@ -111,7 +116,10 @@ public sealed record class Decrement : Orb::ModelBase, Orb::IFromRaw<Decrement>
         }
     }
 
-    public Decrement() { }
+    public Decrement()
+    {
+        this.EntryType = Json::JsonSerializer.Deserialize<Json::JsonElement>("\"decrement\"");
+    }
 
 #pragma warning disable CS8618
     [CodeAnalysis::SetsRequiredMembers]
