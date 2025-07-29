@@ -133,10 +133,6 @@ public sealed record class Void : Orb::ModelBase, Orb::IFromRaw<Void>
     {
         _ = this.Amount;
         _ = this.BlockID;
-        if (!this.EntryType.Equals(Json::JsonSerializer.Deserialize<Json::JsonElement>("\"void\"")))
-        {
-            throw new System::Exception();
-        }
         _ = this.Currency;
         _ = this.Description;
         if (this.Metadata != null)

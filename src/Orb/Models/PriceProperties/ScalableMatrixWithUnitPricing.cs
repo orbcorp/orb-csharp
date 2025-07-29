@@ -511,16 +511,6 @@ public sealed record class ScalableMatrixWithUnitPricing
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        if (
-            !this.ModelType.Equals(
-                Json::JsonSerializer.Deserialize<Json::JsonElement>(
-                    "\"scalable_matrix_with_unit_pricing\""
-                )
-            )
-        )
-        {
-            throw new System::Exception();
-        }
         _ = this.Name;
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();

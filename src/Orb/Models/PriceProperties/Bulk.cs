@@ -490,10 +490,6 @@ public sealed record class Bulk : Orb::ModelBase, Orb::IFromRaw<Bulk>
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        if (!this.ModelType.Equals(Json::JsonSerializer.Deserialize<Json::JsonElement>("\"bulk\"")))
-        {
-            throw new System::Exception();
-        }
         _ = this.Name;
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();

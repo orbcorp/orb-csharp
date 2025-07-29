@@ -13,19 +13,20 @@ public abstract record class Adjustment
 {
     internal Adjustment() { }
 
-    public static AdjustmentVariants::NewPercentageDiscount Create(
-        Models::NewPercentageDiscount value
-    ) => new(value);
+    public static implicit operator Adjustment(Models::NewPercentageDiscount value) =>
+        new AdjustmentVariants::NewPercentageDiscount(value);
 
-    public static AdjustmentVariants::NewUsageDiscount Create(Models::NewUsageDiscount value) =>
-        new(value);
+    public static implicit operator Adjustment(Models::NewUsageDiscount value) =>
+        new AdjustmentVariants::NewUsageDiscount(value);
 
-    public static AdjustmentVariants::NewAmountDiscount Create(Models::NewAmountDiscount value) =>
-        new(value);
+    public static implicit operator Adjustment(Models::NewAmountDiscount value) =>
+        new AdjustmentVariants::NewAmountDiscount(value);
 
-    public static AdjustmentVariants::NewMinimum Create(Models::NewMinimum value) => new(value);
+    public static implicit operator Adjustment(Models::NewMinimum value) =>
+        new AdjustmentVariants::NewMinimum(value);
 
-    public static AdjustmentVariants::NewMaximum Create(Models::NewMaximum value) => new(value);
+    public static implicit operator Adjustment(Models::NewMaximum value) =>
+        new AdjustmentVariants::NewMaximum(value);
 
     public abstract void Validate();
 }

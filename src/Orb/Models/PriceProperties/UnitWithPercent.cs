@@ -502,14 +502,6 @@ public sealed record class UnitWithPercent : Orb::ModelBase, Orb::IFromRaw<UnitW
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        if (
-            !this.ModelType.Equals(
-                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"unit_with_percent\"")
-            )
-        )
-        {
-            throw new System::Exception();
-        }
         _ = this.Name;
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();

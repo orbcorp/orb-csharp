@@ -21,102 +21,92 @@ public abstract record class Price
 {
     internal Price() { }
 
-    public static PriceVariants::Unit Create(PriceProperties::Unit value) => new(value);
+    public static implicit operator Price(PriceProperties::Unit value) =>
+        new PriceVariants::Unit(value);
 
-    public static PriceVariants::Package Create(PriceProperties::Package value) => new(value);
+    public static implicit operator Price(PriceProperties::Package value) =>
+        new PriceVariants::Package(value);
 
-    public static PriceVariants::Matrix Create(PriceProperties::Matrix value) => new(value);
+    public static implicit operator Price(PriceProperties::Matrix value) =>
+        new PriceVariants::Matrix(value);
 
-    public static PriceVariants::Tiered Create(PriceProperties::Tiered value) => new(value);
+    public static implicit operator Price(PriceProperties::Tiered value) =>
+        new PriceVariants::Tiered(value);
 
-    public static PriceVariants::TieredBPS Create(PriceProperties::TieredBPS value) => new(value);
+    public static implicit operator Price(PriceProperties::TieredBPS value) =>
+        new PriceVariants::TieredBPS(value);
 
-    public static PriceVariants::BPS Create(PriceProperties::BPS value) => new(value);
+    public static implicit operator Price(PriceProperties::BPS value) =>
+        new PriceVariants::BPS(value);
 
-    public static PriceVariants::BulkBPS Create(PriceProperties::BulkBPS value) => new(value);
+    public static implicit operator Price(PriceProperties::BulkBPS value) =>
+        new PriceVariants::BulkBPS(value);
 
-    public static PriceVariants::Bulk Create(PriceProperties::Bulk value) => new(value);
+    public static implicit operator Price(PriceProperties::Bulk value) =>
+        new PriceVariants::Bulk(value);
 
-    public static PriceVariants::ThresholdTotalAmount Create(
-        PriceProperties::ThresholdTotalAmount value
-    ) => new(value);
+    public static implicit operator Price(PriceProperties::ThresholdTotalAmount value) =>
+        new PriceVariants::ThresholdTotalAmount(value);
 
-    public static PriceVariants::TieredPackage Create(PriceProperties::TieredPackage value) =>
-        new(value);
+    public static implicit operator Price(PriceProperties::TieredPackage value) =>
+        new PriceVariants::TieredPackage(value);
 
-    public static PriceVariants::GroupedTiered Create(PriceProperties::GroupedTiered value) =>
-        new(value);
+    public static implicit operator Price(PriceProperties::GroupedTiered value) =>
+        new PriceVariants::GroupedTiered(value);
 
-    public static PriceVariants::TieredWithMinimum Create(
-        PriceProperties::TieredWithMinimum value
-    ) => new(value);
+    public static implicit operator Price(PriceProperties::TieredWithMinimum value) =>
+        new PriceVariants::TieredWithMinimum(value);
 
-    public static PriceVariants::TieredPackageWithMinimum Create(
-        PriceProperties::TieredPackageWithMinimum value
-    ) => new(value);
+    public static implicit operator Price(PriceProperties::TieredPackageWithMinimum value) =>
+        new PriceVariants::TieredPackageWithMinimum(value);
 
-    public static PriceVariants::PackageWithAllocation Create(
-        PriceProperties::PackageWithAllocation value
-    ) => new(value);
+    public static implicit operator Price(PriceProperties::PackageWithAllocation value) =>
+        new PriceVariants::PackageWithAllocation(value);
 
-    public static PriceVariants::UnitWithPercent Create(PriceProperties::UnitWithPercent value) =>
-        new(value);
+    public static implicit operator Price(PriceProperties::UnitWithPercent value) =>
+        new PriceVariants::UnitWithPercent(value);
 
-    public static PriceVariants::MatrixWithAllocation Create(
-        PriceProperties::MatrixWithAllocation value
-    ) => new(value);
+    public static implicit operator Price(PriceProperties::MatrixWithAllocation value) =>
+        new PriceVariants::MatrixWithAllocation(value);
 
-    public static PriceVariants::TieredWithProration Create(
-        PriceProperties::TieredWithProration value
-    ) => new(value);
+    public static implicit operator Price(PriceProperties::TieredWithProration value) =>
+        new PriceVariants::TieredWithProration(value);
 
-    public static PriceVariants::UnitWithProration Create(
-        PriceProperties::UnitWithProration value
-    ) => new(value);
+    public static implicit operator Price(PriceProperties::UnitWithProration value) =>
+        new PriceVariants::UnitWithProration(value);
 
-    public static PriceVariants::GroupedAllocation Create(
-        PriceProperties::GroupedAllocation value
-    ) => new(value);
+    public static implicit operator Price(PriceProperties::GroupedAllocation value) =>
+        new PriceVariants::GroupedAllocation(value);
 
-    public static PriceVariants::GroupedWithProratedMinimum Create(
-        PriceProperties::GroupedWithProratedMinimum value
-    ) => new(value);
+    public static implicit operator Price(PriceProperties::GroupedWithProratedMinimum value) =>
+        new PriceVariants::GroupedWithProratedMinimum(value);
 
-    public static PriceVariants::GroupedWithMeteredMinimum Create(
-        PriceProperties::GroupedWithMeteredMinimum value
-    ) => new(value);
+    public static implicit operator Price(PriceProperties::GroupedWithMeteredMinimum value) =>
+        new PriceVariants::GroupedWithMeteredMinimum(value);
 
-    public static PriceVariants::MatrixWithDisplayName Create(
-        PriceProperties::MatrixWithDisplayName value
-    ) => new(value);
+    public static implicit operator Price(PriceProperties::MatrixWithDisplayName value) =>
+        new PriceVariants::MatrixWithDisplayName(value);
 
-    public static PriceVariants::BulkWithProration Create(
-        PriceProperties::BulkWithProration value
-    ) => new(value);
+    public static implicit operator Price(PriceProperties::BulkWithProration value) =>
+        new PriceVariants::BulkWithProration(value);
 
-    public static PriceVariants::GroupedTieredPackage Create(
-        PriceProperties::GroupedTieredPackage value
-    ) => new(value);
+    public static implicit operator Price(PriceProperties::GroupedTieredPackage value) =>
+        new PriceVariants::GroupedTieredPackage(value);
 
-    public static PriceVariants::MaxGroupTieredPackage Create(
-        PriceProperties::MaxGroupTieredPackage value
-    ) => new(value);
+    public static implicit operator Price(PriceProperties::MaxGroupTieredPackage value) =>
+        new PriceVariants::MaxGroupTieredPackage(value);
 
-    public static PriceVariants::ScalableMatrixWithUnitPricing Create(
-        PriceProperties::ScalableMatrixWithUnitPricing value
-    ) => new(value);
+    public static implicit operator Price(PriceProperties::ScalableMatrixWithUnitPricing value) =>
+        new PriceVariants::ScalableMatrixWithUnitPricing(value);
 
-    public static PriceVariants::ScalableMatrixWithTieredPricing Create(
-        PriceProperties::ScalableMatrixWithTieredPricing value
-    ) => new(value);
+    public static implicit operator Price(PriceProperties::ScalableMatrixWithTieredPricing value) =>
+        new PriceVariants::ScalableMatrixWithTieredPricing(value);
 
-    public static PriceVariants::CumulativeGroupedBulk Create(
-        PriceProperties::CumulativeGroupedBulk value
-    ) => new(value);
+    public static implicit operator Price(PriceProperties::CumulativeGroupedBulk value) =>
+        new PriceVariants::CumulativeGroupedBulk(value);
 
-    public static PriceVariants::GroupedWithMinMaxThresholds Create(
-        PriceProperties::GroupedWithMinMaxThresholds value
-    ) => new(value);
+    public static implicit operator Price(PriceProperties::GroupedWithMinMaxThresholds value) =>
+        new PriceVariants::GroupedWithMinMaxThresholds(value);
 
     public abstract void Validate();
 }

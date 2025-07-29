@@ -10,10 +10,11 @@ public abstract record class Discount
 {
     internal Discount() { }
 
-    public static DiscountVariants::Percentage Create(DiscountProperties::Percentage value) =>
-        new(value);
+    public static implicit operator Discount(DiscountProperties::Percentage value) =>
+        new DiscountVariants::Percentage(value);
 
-    public static DiscountVariants::Amount Create(DiscountProperties::Amount value) => new(value);
+    public static implicit operator Discount(DiscountProperties::Amount value) =>
+        new DiscountVariants::Amount(value);
 
     public abstract void Validate();
 }

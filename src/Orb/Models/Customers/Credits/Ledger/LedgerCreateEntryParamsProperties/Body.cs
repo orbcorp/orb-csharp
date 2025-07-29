@@ -10,16 +10,20 @@ public abstract record class Body
 {
     internal Body() { }
 
-    public static BodyVariants::Increment Create(BodyProperties::Increment value) => new(value);
+    public static implicit operator Body(BodyProperties::Increment value) =>
+        new BodyVariants::Increment(value);
 
-    public static BodyVariants::Decrement Create(BodyProperties::Decrement value) => new(value);
+    public static implicit operator Body(BodyProperties::Decrement value) =>
+        new BodyVariants::Decrement(value);
 
-    public static BodyVariants::ExpirationChange Create(BodyProperties::ExpirationChange value) =>
-        new(value);
+    public static implicit operator Body(BodyProperties::ExpirationChange value) =>
+        new BodyVariants::ExpirationChange(value);
 
-    public static BodyVariants::Void Create(BodyProperties::Void value) => new(value);
+    public static implicit operator Body(BodyProperties::Void value) =>
+        new BodyVariants::Void(value);
 
-    public static BodyVariants::Amendment Create(BodyProperties::Amendment value) => new(value);
+    public static implicit operator Body(BodyProperties::Amendment value) =>
+        new BodyVariants::Amendment(value);
 
     public abstract void Validate();
 }

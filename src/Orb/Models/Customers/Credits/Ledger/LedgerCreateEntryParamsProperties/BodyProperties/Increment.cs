@@ -168,14 +168,6 @@ public sealed record class Increment : Orb::ModelBase, Orb::IFromRaw<Increment>
     public override void Validate()
     {
         _ = this.Amount;
-        if (
-            !this.EntryType.Equals(
-                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"increment\"")
-            )
-        )
-        {
-            throw new System::Exception();
-        }
         _ = this.Currency;
         _ = this.Description;
         _ = this.EffectiveDate;

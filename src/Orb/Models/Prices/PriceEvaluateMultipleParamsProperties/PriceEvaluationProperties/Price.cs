@@ -14,114 +14,93 @@ public abstract record class Price
 {
     internal Price() { }
 
-    public static PriceVariants::NewFloatingUnitPrice Create(Models::NewFloatingUnitPrice value) =>
-        new(value);
+    public static implicit operator Price(Models::NewFloatingUnitPrice value) =>
+        new PriceVariants::NewFloatingUnitPrice(value);
 
-    public static PriceVariants::NewFloatingPackagePrice Create(
-        Models::NewFloatingPackagePrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingPackagePrice value) =>
+        new PriceVariants::NewFloatingPackagePrice(value);
 
-    public static PriceVariants::NewFloatingMatrixPrice Create(
-        Models::NewFloatingMatrixPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingMatrixPrice value) =>
+        new PriceVariants::NewFloatingMatrixPrice(value);
 
-    public static PriceVariants::NewFloatingMatrixWithAllocationPrice Create(
-        Models::NewFloatingMatrixWithAllocationPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingMatrixWithAllocationPrice value) =>
+        new PriceVariants::NewFloatingMatrixWithAllocationPrice(value);
 
-    public static PriceVariants::NewFloatingTieredPrice Create(
-        Models::NewFloatingTieredPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingTieredPrice value) =>
+        new PriceVariants::NewFloatingTieredPrice(value);
 
-    public static PriceVariants::NewFloatingTieredBPSPrice Create(
-        Models::NewFloatingTieredBPSPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingTieredBPSPrice value) =>
+        new PriceVariants::NewFloatingTieredBPSPrice(value);
 
-    public static PriceVariants::NewFloatingBPSPrice Create(Models::NewFloatingBPSPrice value) =>
-        new(value);
+    public static implicit operator Price(Models::NewFloatingBPSPrice value) =>
+        new PriceVariants::NewFloatingBPSPrice(value);
 
-    public static PriceVariants::NewFloatingBulkBPSPrice Create(
-        Models::NewFloatingBulkBPSPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingBulkBPSPrice value) =>
+        new PriceVariants::NewFloatingBulkBPSPrice(value);
 
-    public static PriceVariants::NewFloatingBulkPrice Create(Models::NewFloatingBulkPrice value) =>
-        new(value);
+    public static implicit operator Price(Models::NewFloatingBulkPrice value) =>
+        new PriceVariants::NewFloatingBulkPrice(value);
 
-    public static PriceVariants::NewFloatingThresholdTotalAmountPrice Create(
-        Models::NewFloatingThresholdTotalAmountPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingThresholdTotalAmountPrice value) =>
+        new PriceVariants::NewFloatingThresholdTotalAmountPrice(value);
 
-    public static PriceVariants::NewFloatingTieredPackagePrice Create(
-        Models::NewFloatingTieredPackagePrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingTieredPackagePrice value) =>
+        new PriceVariants::NewFloatingTieredPackagePrice(value);
 
-    public static PriceVariants::NewFloatingGroupedTieredPrice Create(
-        Models::NewFloatingGroupedTieredPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingGroupedTieredPrice value) =>
+        new PriceVariants::NewFloatingGroupedTieredPrice(value);
 
-    public static PriceVariants::NewFloatingMaxGroupTieredPackagePrice Create(
-        Models::NewFloatingMaxGroupTieredPackagePrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingMaxGroupTieredPackagePrice value) =>
+        new PriceVariants::NewFloatingMaxGroupTieredPackagePrice(value);
 
-    public static PriceVariants::NewFloatingTieredWithMinimumPrice Create(
-        Models::NewFloatingTieredWithMinimumPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingTieredWithMinimumPrice value) =>
+        new PriceVariants::NewFloatingTieredWithMinimumPrice(value);
 
-    public static PriceVariants::NewFloatingPackageWithAllocationPrice Create(
-        Models::NewFloatingPackageWithAllocationPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingPackageWithAllocationPrice value) =>
+        new PriceVariants::NewFloatingPackageWithAllocationPrice(value);
 
-    public static PriceVariants::NewFloatingTieredPackageWithMinimumPrice Create(
-        Models::NewFloatingTieredPackageWithMinimumPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingTieredPackageWithMinimumPrice value) =>
+        new PriceVariants::NewFloatingTieredPackageWithMinimumPrice(value);
 
-    public static PriceVariants::NewFloatingUnitWithPercentPrice Create(
-        Models::NewFloatingUnitWithPercentPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingUnitWithPercentPrice value) =>
+        new PriceVariants::NewFloatingUnitWithPercentPrice(value);
 
-    public static PriceVariants::NewFloatingTieredWithProrationPrice Create(
-        Models::NewFloatingTieredWithProrationPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingTieredWithProrationPrice value) =>
+        new PriceVariants::NewFloatingTieredWithProrationPrice(value);
 
-    public static PriceVariants::NewFloatingUnitWithProrationPrice Create(
-        Models::NewFloatingUnitWithProrationPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingUnitWithProrationPrice value) =>
+        new PriceVariants::NewFloatingUnitWithProrationPrice(value);
 
-    public static PriceVariants::NewFloatingGroupedAllocationPrice Create(
-        Models::NewFloatingGroupedAllocationPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingGroupedAllocationPrice value) =>
+        new PriceVariants::NewFloatingGroupedAllocationPrice(value);
 
-    public static PriceVariants::NewFloatingGroupedWithProratedMinimumPrice Create(
+    public static implicit operator Price(
         Models::NewFloatingGroupedWithProratedMinimumPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewFloatingGroupedWithProratedMinimumPrice(value);
 
-    public static PriceVariants::NewFloatingGroupedWithMeteredMinimumPrice Create(
+    public static implicit operator Price(
         Models::NewFloatingGroupedWithMeteredMinimumPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewFloatingGroupedWithMeteredMinimumPrice(value);
 
-    public static PriceVariants::NewFloatingMatrixWithDisplayNamePrice Create(
-        Models::NewFloatingMatrixWithDisplayNamePrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingMatrixWithDisplayNamePrice value) =>
+        new PriceVariants::NewFloatingMatrixWithDisplayNamePrice(value);
 
-    public static PriceVariants::NewFloatingBulkWithProrationPrice Create(
-        Models::NewFloatingBulkWithProrationPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingBulkWithProrationPrice value) =>
+        new PriceVariants::NewFloatingBulkWithProrationPrice(value);
 
-    public static PriceVariants::NewFloatingGroupedTieredPackagePrice Create(
-        Models::NewFloatingGroupedTieredPackagePrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingGroupedTieredPackagePrice value) =>
+        new PriceVariants::NewFloatingGroupedTieredPackagePrice(value);
 
-    public static PriceVariants::NewFloatingScalableMatrixWithUnitPricingPrice Create(
+    public static implicit operator Price(
         Models::NewFloatingScalableMatrixWithUnitPricingPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewFloatingScalableMatrixWithUnitPricingPrice(value);
 
-    public static PriceVariants::NewFloatingScalableMatrixWithTieredPricingPrice Create(
+    public static implicit operator Price(
         Models::NewFloatingScalableMatrixWithTieredPricingPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewFloatingScalableMatrixWithTieredPricingPrice(value);
 
-    public static PriceVariants::NewFloatingCumulativeGroupedBulkPrice Create(
-        Models::NewFloatingCumulativeGroupedBulkPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewFloatingCumulativeGroupedBulkPrice value) =>
+        new PriceVariants::NewFloatingCumulativeGroupedBulkPrice(value);
 
     public abstract void Validate();
 }

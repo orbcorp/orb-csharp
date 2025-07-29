@@ -2,11 +2,7 @@ using BodyProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryPara
 using BodyProperties1 = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties;
 using IncrementProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.IncrementProperties;
 using IncrementProperties1 = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.IncrementProperties;
-using InvoiceSettingsProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.IncrementProperties.InvoiceSettingsProperties;
-using InvoiceSettingsProperties1 = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.IncrementProperties.InvoiceSettingsProperties;
 using Ledger = Orb.Models.Customers.Credits.Ledger;
-using LedgerCreateEntryByExternalIDParamsProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties;
-using LedgerCreateEntryParamsProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties;
 using LedgerListByExternalIDParamsProperties = Orb.Models.Customers.Credits.Ledger.LedgerListByExternalIDParamsProperties;
 using LedgerListParamsProperties = Orb.Models.Customers.Credits.Ledger.LedgerListParamsProperties;
 using System = System;
@@ -46,28 +42,24 @@ public class LedgerServiceTest : Tests::TestBase
             new Ledger::LedgerCreateEntryParams()
             {
                 CustomerID = "customer_id",
-                Body = LedgerCreateEntryParamsProperties::Body.Create(
-                    new BodyProperties::Increment()
+                Body = new BodyProperties::Increment()
+                {
+                    Amount = 0,
+                    Currency = "currency",
+                    Description = "description",
+                    EffectiveDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                    ExpiryDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                    InvoiceSettings = new IncrementProperties::InvoiceSettings()
                     {
-                        Amount = 0,
-                        Currency = "currency",
-                        Description = "description",
-                        EffectiveDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                        ExpiryDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                        InvoiceSettings = new IncrementProperties::InvoiceSettings()
-                        {
-                            AutoCollection = true,
-                            NetTerms = 0,
-                            InvoiceDate = InvoiceSettingsProperties::InvoiceDate.Create(
-                                System::DateOnly.Parse("2019-12-27")
-                            ),
-                            Memo = "memo",
-                            RequireSuccessfulPayment = true,
-                        },
-                        Metadata = new() { { "foo", "string" } },
-                        PerUnitCostBasis = "per_unit_cost_basis",
-                    }
-                ),
+                        AutoCollection = true,
+                        NetTerms = 0,
+                        InvoiceDate = System::DateOnly.Parse("2019-12-27"),
+                        Memo = "memo",
+                        RequireSuccessfulPayment = true,
+                    },
+                    Metadata = new() { { "foo", "string" } },
+                    PerUnitCostBasis = "per_unit_cost_basis",
+                },
             }
         );
         response.Validate();
@@ -80,28 +72,24 @@ public class LedgerServiceTest : Tests::TestBase
             new Ledger::LedgerCreateEntryByExternalIDParams()
             {
                 ExternalCustomerID = "external_customer_id",
-                Body = LedgerCreateEntryByExternalIDParamsProperties::Body.Create(
-                    new BodyProperties1::Increment()
+                Body = new BodyProperties1::Increment()
+                {
+                    Amount = 0,
+                    Currency = "currency",
+                    Description = "description",
+                    EffectiveDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                    ExpiryDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                    InvoiceSettings = new IncrementProperties1::InvoiceSettings()
                     {
-                        Amount = 0,
-                        Currency = "currency",
-                        Description = "description",
-                        EffectiveDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                        ExpiryDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                        InvoiceSettings = new IncrementProperties1::InvoiceSettings()
-                        {
-                            AutoCollection = true,
-                            NetTerms = 0,
-                            InvoiceDate = InvoiceSettingsProperties1::InvoiceDate.Create(
-                                System::DateOnly.Parse("2019-12-27")
-                            ),
-                            Memo = "memo",
-                            RequireSuccessfulPayment = true,
-                        },
-                        Metadata = new() { { "foo", "string" } },
-                        PerUnitCostBasis = "per_unit_cost_basis",
-                    }
-                ),
+                        AutoCollection = true,
+                        NetTerms = 0,
+                        InvoiceDate = System::DateOnly.Parse("2019-12-27"),
+                        Memo = "memo",
+                        RequireSuccessfulPayment = true,
+                    },
+                    Metadata = new() { { "foo", "string" } },
+                    PerUnitCostBasis = "per_unit_cost_basis",
+                },
             }
         );
         response.Validate();

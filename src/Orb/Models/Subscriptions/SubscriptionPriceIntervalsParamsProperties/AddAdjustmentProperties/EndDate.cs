@@ -17,11 +17,11 @@ public abstract record class EndDate
 {
     internal EndDate() { }
 
-    public static EndDateVariants::DateTime Create(System::DateTime value) => new(value);
+    public static implicit operator EndDate(System::DateTime value) =>
+        new EndDateVariants::DateTime(value);
 
-    public static EndDateVariants::BillingCycleRelativeDate Create(
-        Models::BillingCycleRelativeDate value
-    ) => new(value);
+    public static implicit operator EndDate(Models::BillingCycleRelativeDate value) =>
+        new EndDateVariants::BillingCycleRelativeDate(value);
 
     public abstract void Validate();
 }

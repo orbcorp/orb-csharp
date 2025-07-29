@@ -505,14 +505,6 @@ public sealed record class PackageWithAllocation
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        if (
-            !this.ModelType.Equals(
-                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"package_with_allocation\"")
-            )
-        )
-        {
-            throw new System::Exception();
-        }
         _ = this.Name;
         foreach (var item in this.PackageWithAllocationConfig.Values)
         {

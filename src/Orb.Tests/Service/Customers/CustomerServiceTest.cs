@@ -68,14 +68,12 @@ public class CustomerServiceTest : Tests::TestBase
                     PostalCode = "postal_code",
                     State = "state",
                 },
-                TaxConfiguration = CustomerCreateParamsProperties::TaxConfiguration.Create(
-                    new Customers::NewAvalaraTaxConfiguration()
-                    {
-                        TaxExempt = true,
-                        TaxProvider = NewAvalaraTaxConfigurationProperties::TaxProvider.Avalara,
-                        TaxExemptionCode = "tax_exemption_code",
-                    }
-                ),
+                TaxConfiguration = new Customers::NewAvalaraTaxConfiguration()
+                {
+                    TaxExempt = true,
+                    TaxProvider = NewAvalaraTaxConfigurationProperties::TaxProvider.Avalara,
+                    TaxExemptionCode = "tax_exemption_code",
+                },
                 TaxID = new Models::CustomerTaxID()
                 {
                     Country = CustomerTaxIDProperties::Country.Ad,
@@ -144,14 +142,12 @@ public class CustomerServiceTest : Tests::TestBase
                     PostalCode = "postal_code",
                     State = "state",
                 },
-                TaxConfiguration = CustomerUpdateParamsProperties::TaxConfiguration.Create(
-                    new Customers::NewAvalaraTaxConfiguration()
-                    {
-                        TaxExempt = true,
-                        TaxProvider = NewAvalaraTaxConfigurationProperties::TaxProvider.Avalara,
-                        TaxExemptionCode = "tax_exemption_code",
-                    }
-                ),
+                TaxConfiguration = new Customers::NewAvalaraTaxConfiguration()
+                {
+                    TaxExempt = true,
+                    TaxProvider = NewAvalaraTaxConfigurationProperties::TaxProvider.Avalara,
+                    TaxExemptionCode = "tax_exemption_code",
+                },
                 TaxID = new Models::CustomerTaxID()
                 {
                     Country = CustomerTaxIDProperties::Country.Ad,
@@ -288,15 +284,12 @@ public class CustomerServiceTest : Tests::TestBase
                     PostalCode = "postal_code",
                     State = "state",
                 },
-                TaxConfiguration =
-                    CustomerUpdateByExternalIDParamsProperties::TaxConfiguration.Create(
-                        new Customers::NewAvalaraTaxConfiguration()
-                        {
-                            TaxExempt = true,
-                            TaxProvider = NewAvalaraTaxConfigurationProperties::TaxProvider.Avalara,
-                            TaxExemptionCode = "tax_exemption_code",
-                        }
-                    ),
+                TaxConfiguration = new Customers::NewAvalaraTaxConfiguration()
+                {
+                    TaxExempt = true,
+                    TaxProvider = NewAvalaraTaxConfigurationProperties::TaxProvider.Avalara,
+                    TaxExemptionCode = "tax_exemption_code",
+                },
                 TaxID = new Models::CustomerTaxID()
                 {
                     Country = CustomerTaxIDProperties::Country.Ad,

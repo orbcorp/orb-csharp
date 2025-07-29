@@ -10,13 +10,12 @@ public abstract record class ConversionRateConfig
 {
     internal ConversionRateConfig() { }
 
-    public static ConversionRateConfigVariants::UnitConversionRateConfig Create(
-        Models::UnitConversionRateConfig value
-    ) => new(value);
+    public static implicit operator ConversionRateConfig(Models::UnitConversionRateConfig value) =>
+        new ConversionRateConfigVariants::UnitConversionRateConfig(value);
 
-    public static ConversionRateConfigVariants::TieredConversionRateConfig Create(
+    public static implicit operator ConversionRateConfig(
         Models::TieredConversionRateConfig value
-    ) => new(value);
+    ) => new ConversionRateConfigVariants::TieredConversionRateConfig(value);
 
     public abstract void Validate();
 }

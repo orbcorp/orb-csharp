@@ -117,14 +117,6 @@ public sealed record class Amendment : Orb::ModelBase, Orb::IFromRaw<Amendment>
     {
         _ = this.Amount;
         _ = this.BlockID;
-        if (
-            !this.EntryType.Equals(
-                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"amendment\"")
-            )
-        )
-        {
-            throw new System::Exception();
-        }
         _ = this.Currency;
         _ = this.Description;
         if (this.Metadata != null)

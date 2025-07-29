@@ -10,13 +10,13 @@ public abstract record class SubscriptionUsage
 {
     internal SubscriptionUsage() { }
 
-    public static SubscriptionUsageVariants::UngroupedSubscriptionUsage Create(
+    public static implicit operator SubscriptionUsage(
         SubscriptionUsageProperties::UngroupedSubscriptionUsage value
-    ) => new(value);
+    ) => new SubscriptionUsageVariants::UngroupedSubscriptionUsage(value);
 
-    public static SubscriptionUsageVariants::GroupedSubscriptionUsage Create(
+    public static implicit operator SubscriptionUsage(
         SubscriptionUsageProperties::GroupedSubscriptionUsage value
-    ) => new(value);
+    ) => new SubscriptionUsageVariants::GroupedSubscriptionUsage(value);
 
     public abstract void Validate();
 }

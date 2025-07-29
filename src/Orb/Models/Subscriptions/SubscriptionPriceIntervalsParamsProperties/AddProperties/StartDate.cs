@@ -15,11 +15,11 @@ public abstract record class StartDate
 {
     internal StartDate() { }
 
-    public static StartDateVariants::DateTime Create(System::DateTime value) => new(value);
+    public static implicit operator StartDate(System::DateTime value) =>
+        new StartDateVariants::DateTime(value);
 
-    public static StartDateVariants::BillingCycleRelativeDate Create(
-        Models::BillingCycleRelativeDate value
-    ) => new(value);
+    public static implicit operator StartDate(Models::BillingCycleRelativeDate value) =>
+        new StartDateVariants::BillingCycleRelativeDate(value);
 
     public abstract void Validate();
 }

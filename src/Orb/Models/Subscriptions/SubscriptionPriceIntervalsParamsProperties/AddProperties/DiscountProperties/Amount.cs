@@ -46,14 +46,6 @@ public sealed record class Amount : Orb::ModelBase, Orb::IFromRaw<Amount>
     public override void Validate()
     {
         _ = this.AmountDiscount;
-        if (
-            !this.DiscountType.Equals(
-                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"amount\"")
-            )
-        )
-        {
-            throw new System::Exception();
-        }
     }
 
     public Amount()

@@ -1,4 +1,3 @@
-using AdjustmentProperties = Orb.Models.Plans.PlanCreateParamsProperties.AdjustmentProperties;
 using CustomExpirationProperties = Orb.Models.CustomExpirationProperties;
 using Models = Orb.Models;
 using NewAllocationPriceProperties = Orb.Models.NewAllocationPriceProperties;
@@ -9,7 +8,6 @@ using PlanCreateParamsProperties = Orb.Models.Plans.PlanCreateParamsProperties;
 using PlanListParamsProperties = Orb.Models.Plans.PlanListParamsProperties;
 using PlanPhaseProperties = Orb.Models.Plans.PlanCreateParamsProperties.PlanPhaseProperties;
 using Plans = Orb.Models.Plans;
-using PriceProperties = Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties;
 using System = System;
 using Tasks = System.Threading.Tasks;
 using Tests = Orb.Tests;
@@ -45,92 +43,79 @@ public class PlanServiceTest : Tests::TestBase
                             ExpiresAtEndOfCadence = true,
                         },
                         PlanPhaseOrder = 0,
-                        Price1 = PriceProperties::Price.Create(
-                            new Models::NewPlanUnitPrice()
+                        Price1 = new Models::NewPlanUnitPrice()
+                        {
+                            Cadence = NewPlanUnitPriceProperties::Cadence.Annual,
+                            ItemID = "item_id",
+                            ModelType = NewPlanUnitPriceProperties::ModelType.Unit,
+                            Name = "Annual fee",
+                            UnitConfig = new Models::UnitConfig() { UnitAmount = "unit_amount" },
+                            BillableMetricID = "billable_metric_id",
+                            BilledInAdvance = true,
+                            BillingCycleConfiguration = new Models::NewBillingCycleConfiguration()
                             {
-                                Cadence = NewPlanUnitPriceProperties::Cadence.Annual,
-                                ItemID = "item_id",
-                                ModelType = NewPlanUnitPriceProperties::ModelType.Unit,
-                                Name = "Annual fee",
-                                UnitConfig = new Models::UnitConfig()
+                                Duration = 0,
+                                DurationUnit =
+                                    NewBillingCycleConfigurationProperties::DurationUnit.Day,
+                            },
+                            ConversionRate = 0,
+                            ConversionRateConfig = new Models::UnitConversionRateConfig()
+                            {
+                                ConversionRateType =
+                                    UnitConversionRateConfigProperties::ConversionRateType.Unit,
+                                UnitConfig = new Models::ConversionRateUnitConfig()
                                 {
                                     UnitAmount = "unit_amount",
                                 },
-                                BillableMetricID = "billable_metric_id",
-                                BilledInAdvance = true,
-                                BillingCycleConfiguration =
-                                    new Models::NewBillingCycleConfiguration()
-                                    {
-                                        Duration = 0,
-                                        DurationUnit =
-                                            NewBillingCycleConfigurationProperties::DurationUnit.Day,
-                                    },
-                                ConversionRate = 0,
-                                ConversionRateConfig =
-                                    NewPlanUnitPriceProperties::ConversionRateConfig.Create(
-                                        new Models::UnitConversionRateConfig()
-                                        {
-                                            ConversionRateType =
-                                                UnitConversionRateConfigProperties::ConversionRateType.Unit,
-                                            UnitConfig = new Models::ConversionRateUnitConfig()
-                                            {
-                                                UnitAmount = "unit_amount",
-                                            },
-                                        }
-                                    ),
-                                Currency = "currency",
-                                DimensionalPriceConfiguration =
-                                    new Models::NewDimensionalPriceConfiguration()
-                                    {
-                                        DimensionValues = ["string"],
-                                        DimensionalPriceGroupID = "dimensional_price_group_id",
-                                        ExternalDimensionalPriceGroupID =
-                                            "external_dimensional_price_group_id",
-                                    },
-                                ExternalPriceID = "external_price_id",
-                                FixedPriceQuantity = 0,
-                                InvoiceGroupingKey = "x",
-                                InvoicingCycleConfiguration =
-                                    new Models::NewBillingCycleConfiguration()
-                                    {
-                                        Duration = 0,
-                                        DurationUnit =
-                                            NewBillingCycleConfigurationProperties::DurationUnit.Day,
-                                    },
-                                Metadata = new() { { "foo", "string" } },
-                                ReferenceID = "reference_id",
-                            }
-                        ),
+                            },
+                            Currency = "currency",
+                            DimensionalPriceConfiguration =
+                                new Models::NewDimensionalPriceConfiguration()
+                                {
+                                    DimensionValues = ["string"],
+                                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                                    ExternalDimensionalPriceGroupID =
+                                        "external_dimensional_price_group_id",
+                                },
+                            ExternalPriceID = "external_price_id",
+                            FixedPriceQuantity = 0,
+                            InvoiceGroupingKey = "x",
+                            InvoicingCycleConfiguration = new Models::NewBillingCycleConfiguration()
+                            {
+                                Duration = 0,
+                                DurationUnit =
+                                    NewBillingCycleConfigurationProperties::DurationUnit.Day,
+                            },
+                            Metadata = new() { { "foo", "string" } },
+                            ReferenceID = "reference_id",
+                        },
                     },
                 ],
                 Adjustments =
                 [
                     new PlanCreateParamsProperties::Adjustment()
                     {
-                        Adjustment1 = AdjustmentProperties::Adjustment.Create(
-                            new Models::NewPercentageDiscount()
-                            {
-                                AdjustmentType =
-                                    NewPercentageDiscountProperties::AdjustmentType.PercentageDiscount,
-                                PercentageDiscount = 0,
-                                AppliesToAll = NewPercentageDiscountProperties::AppliesToAll.True,
-                                AppliesToItemIDs = ["item_1", "item_2"],
-                                AppliesToPriceIDs = ["price_1", "price_2"],
-                                Currency = "currency",
-                                Filters =
-                                [
-                                    new Models::TransformPriceFilter()
-                                    {
-                                        Field = TransformPriceFilterProperties::Field.PriceID,
-                                        Operator =
-                                            TransformPriceFilterProperties::Operator.Includes,
-                                        Values = ["string"],
-                                    },
-                                ],
-                                IsInvoiceLevel = true,
-                                PriceType = NewPercentageDiscountProperties::PriceType.Usage,
-                            }
-                        ),
+                        Adjustment1 = new Models::NewPercentageDiscount()
+                        {
+                            AdjustmentType =
+                                NewPercentageDiscountProperties::AdjustmentType.PercentageDiscount,
+                            PercentageDiscount = 0,
+                            AppliesToAll = NewPercentageDiscountProperties::AppliesToAll.True,
+                            AppliesToItemIDs = ["item_1", "item_2"],
+                            AppliesToPriceIDs = ["price_1", "price_2"],
+                            Currency = "currency",
+                            Filters =
+                            [
+                                new Models::TransformPriceFilter()
+                                {
+                                    Field = TransformPriceFilterProperties::Field.PriceID,
+                                    Operator = TransformPriceFilterProperties::Operator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
+                            IsInvoiceLevel = true,
+                            PriceType = NewPercentageDiscountProperties::PriceType.Usage,
+                        },
                         PlanPhaseOrder = 0,
                     },
                 ],

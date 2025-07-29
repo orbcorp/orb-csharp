@@ -10,25 +10,21 @@ public abstract record class Adjustment
 {
     internal Adjustment() { }
 
-    public static AdjustmentVariants::PlanPhaseUsageDiscountAdjustment Create(
-        Models::PlanPhaseUsageDiscountAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(Models::PlanPhaseUsageDiscountAdjustment value) =>
+        new AdjustmentVariants::PlanPhaseUsageDiscountAdjustment(value);
 
-    public static AdjustmentVariants::PlanPhaseAmountDiscountAdjustment Create(
-        Models::PlanPhaseAmountDiscountAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(Models::PlanPhaseAmountDiscountAdjustment value) =>
+        new AdjustmentVariants::PlanPhaseAmountDiscountAdjustment(value);
 
-    public static AdjustmentVariants::PlanPhasePercentageDiscountAdjustment Create(
+    public static implicit operator Adjustment(
         Models::PlanPhasePercentageDiscountAdjustment value
-    ) => new(value);
+    ) => new AdjustmentVariants::PlanPhasePercentageDiscountAdjustment(value);
 
-    public static AdjustmentVariants::PlanPhaseMinimumAdjustment Create(
-        Models::PlanPhaseMinimumAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(Models::PlanPhaseMinimumAdjustment value) =>
+        new AdjustmentVariants::PlanPhaseMinimumAdjustment(value);
 
-    public static AdjustmentVariants::PlanPhaseMaximumAdjustment Create(
-        Models::PlanPhaseMaximumAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(Models::PlanPhaseMaximumAdjustment value) =>
+        new AdjustmentVariants::PlanPhaseMaximumAdjustment(value);
 
     public abstract void Validate();
 }

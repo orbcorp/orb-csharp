@@ -9,11 +9,14 @@ public abstract record class GroupingValue
 {
     internal GroupingValue() { }
 
-    public static GroupingValueVariants::UnionMember0 Create(string value) => new(value);
+    public static implicit operator GroupingValue(string value) =>
+        new GroupingValueVariants::UnionMember0(value);
 
-    public static GroupingValueVariants::UnionMember1 Create(double value) => new(value);
+    public static implicit operator GroupingValue(double value) =>
+        new GroupingValueVariants::UnionMember1(value);
 
-    public static GroupingValueVariants::UnionMember2 Create(bool value) => new(value);
+    public static implicit operator GroupingValue(bool value) =>
+        new GroupingValueVariants::UnionMember2(value);
 
     public abstract void Validate();
 }

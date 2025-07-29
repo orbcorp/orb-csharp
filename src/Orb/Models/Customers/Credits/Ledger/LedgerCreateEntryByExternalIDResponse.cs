@@ -13,33 +13,32 @@ public abstract record class LedgerCreateEntryByExternalIDResponse
 {
     internal LedgerCreateEntryByExternalIDResponse() { }
 
-    public static LedgerCreateEntryByExternalIDResponseVariants::IncrementLedgerEntry Create(
+    public static implicit operator LedgerCreateEntryByExternalIDResponse(
         IncrementLedgerEntry value
-    ) => new(value);
+    ) => new LedgerCreateEntryByExternalIDResponseVariants::IncrementLedgerEntry(value);
 
-    public static LedgerCreateEntryByExternalIDResponseVariants::DecrementLedgerEntry Create(
+    public static implicit operator LedgerCreateEntryByExternalIDResponse(
         DecrementLedgerEntry value
-    ) => new(value);
+    ) => new LedgerCreateEntryByExternalIDResponseVariants::DecrementLedgerEntry(value);
 
-    public static LedgerCreateEntryByExternalIDResponseVariants::ExpirationChangeLedgerEntry Create(
+    public static implicit operator LedgerCreateEntryByExternalIDResponse(
         ExpirationChangeLedgerEntry value
-    ) => new(value);
+    ) => new LedgerCreateEntryByExternalIDResponseVariants::ExpirationChangeLedgerEntry(value);
 
-    public static LedgerCreateEntryByExternalIDResponseVariants::CreditBlockExpiryLedgerEntry Create(
+    public static implicit operator LedgerCreateEntryByExternalIDResponse(
         CreditBlockExpiryLedgerEntry value
-    ) => new(value);
+    ) => new LedgerCreateEntryByExternalIDResponseVariants::CreditBlockExpiryLedgerEntry(value);
 
-    public static LedgerCreateEntryByExternalIDResponseVariants::VoidLedgerEntry Create(
-        VoidLedgerEntry value
-    ) => new(value);
+    public static implicit operator LedgerCreateEntryByExternalIDResponse(VoidLedgerEntry value) =>
+        new LedgerCreateEntryByExternalIDResponseVariants::VoidLedgerEntry(value);
 
-    public static LedgerCreateEntryByExternalIDResponseVariants::VoidInitiatedLedgerEntry Create(
+    public static implicit operator LedgerCreateEntryByExternalIDResponse(
         VoidInitiatedLedgerEntry value
-    ) => new(value);
+    ) => new LedgerCreateEntryByExternalIDResponseVariants::VoidInitiatedLedgerEntry(value);
 
-    public static LedgerCreateEntryByExternalIDResponseVariants::AmendmentLedgerEntry Create(
+    public static implicit operator LedgerCreateEntryByExternalIDResponse(
         AmendmentLedgerEntry value
-    ) => new(value);
+    ) => new LedgerCreateEntryByExternalIDResponseVariants::AmendmentLedgerEntry(value);
 
     public abstract void Validate();
 }

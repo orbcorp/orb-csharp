@@ -9,14 +9,17 @@ public abstract record class Discount
 {
     internal Discount() { }
 
-    public static DiscountVariants::PercentageDiscount Create(PercentageDiscount value) =>
-        new(value);
+    public static implicit operator Discount(PercentageDiscount value) =>
+        new DiscountVariants::PercentageDiscount(value);
 
-    public static DiscountVariants::TrialDiscount Create(TrialDiscount value) => new(value);
+    public static implicit operator Discount(TrialDiscount value) =>
+        new DiscountVariants::TrialDiscount(value);
 
-    public static DiscountVariants::UsageDiscount Create(UsageDiscount value) => new(value);
+    public static implicit operator Discount(UsageDiscount value) =>
+        new DiscountVariants::UsageDiscount(value);
 
-    public static DiscountVariants::AmountDiscount Create(AmountDiscount value) => new(value);
+    public static implicit operator Discount(AmountDiscount value) =>
+        new DiscountVariants::AmountDiscount(value);
 
     public abstract void Validate();
 }

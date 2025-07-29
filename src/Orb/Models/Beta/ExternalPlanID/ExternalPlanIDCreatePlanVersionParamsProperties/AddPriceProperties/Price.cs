@@ -13,110 +13,91 @@ public abstract record class Price
 {
     internal Price() { }
 
-    public static PriceVariants::NewPlanUnitPrice Create(Models::NewPlanUnitPrice value) =>
-        new(value);
+    public static implicit operator Price(Models::NewPlanUnitPrice value) =>
+        new PriceVariants::NewPlanUnitPrice(value);
 
-    public static PriceVariants::NewPlanPackagePrice Create(Models::NewPlanPackagePrice value) =>
-        new(value);
+    public static implicit operator Price(Models::NewPlanPackagePrice value) =>
+        new PriceVariants::NewPlanPackagePrice(value);
 
-    public static PriceVariants::NewPlanMatrixPrice Create(Models::NewPlanMatrixPrice value) =>
-        new(value);
+    public static implicit operator Price(Models::NewPlanMatrixPrice value) =>
+        new PriceVariants::NewPlanMatrixPrice(value);
 
-    public static PriceVariants::NewPlanTieredPrice Create(Models::NewPlanTieredPrice value) =>
-        new(value);
+    public static implicit operator Price(Models::NewPlanTieredPrice value) =>
+        new PriceVariants::NewPlanTieredPrice(value);
 
-    public static PriceVariants::NewPlanTieredBPSPrice Create(
-        Models::NewPlanTieredBPSPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewPlanTieredBPSPrice value) =>
+        new PriceVariants::NewPlanTieredBPSPrice(value);
 
-    public static PriceVariants::NewPlanBPSPrice Create(Models::NewPlanBPSPrice value) =>
-        new(value);
+    public static implicit operator Price(Models::NewPlanBPSPrice value) =>
+        new PriceVariants::NewPlanBPSPrice(value);
 
-    public static PriceVariants::NewPlanBulkBPSPrice Create(Models::NewPlanBulkBPSPrice value) =>
-        new(value);
+    public static implicit operator Price(Models::NewPlanBulkBPSPrice value) =>
+        new PriceVariants::NewPlanBulkBPSPrice(value);
 
-    public static PriceVariants::NewPlanBulkPrice Create(Models::NewPlanBulkPrice value) =>
-        new(value);
+    public static implicit operator Price(Models::NewPlanBulkPrice value) =>
+        new PriceVariants::NewPlanBulkPrice(value);
 
-    public static PriceVariants::NewPlanThresholdTotalAmountPrice Create(
-        Models::NewPlanThresholdTotalAmountPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewPlanThresholdTotalAmountPrice value) =>
+        new PriceVariants::NewPlanThresholdTotalAmountPrice(value);
 
-    public static PriceVariants::NewPlanTieredPackagePrice Create(
-        Models::NewPlanTieredPackagePrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewPlanTieredPackagePrice value) =>
+        new PriceVariants::NewPlanTieredPackagePrice(value);
 
-    public static PriceVariants::NewPlanTieredWithMinimumPrice Create(
-        Models::NewPlanTieredWithMinimumPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewPlanTieredWithMinimumPrice value) =>
+        new PriceVariants::NewPlanTieredWithMinimumPrice(value);
 
-    public static PriceVariants::NewPlanUnitWithPercentPrice Create(
-        Models::NewPlanUnitWithPercentPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewPlanUnitWithPercentPrice value) =>
+        new PriceVariants::NewPlanUnitWithPercentPrice(value);
 
-    public static PriceVariants::NewPlanPackageWithAllocationPrice Create(
-        Models::NewPlanPackageWithAllocationPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewPlanPackageWithAllocationPrice value) =>
+        new PriceVariants::NewPlanPackageWithAllocationPrice(value);
 
-    public static PriceVariants::NewPlanTierWithProrationPrice Create(
-        Models::NewPlanTierWithProrationPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewPlanTierWithProrationPrice value) =>
+        new PriceVariants::NewPlanTierWithProrationPrice(value);
 
-    public static PriceVariants::NewPlanUnitWithProrationPrice Create(
-        Models::NewPlanUnitWithProrationPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewPlanUnitWithProrationPrice value) =>
+        new PriceVariants::NewPlanUnitWithProrationPrice(value);
 
-    public static PriceVariants::NewPlanGroupedAllocationPrice Create(
-        Models::NewPlanGroupedAllocationPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewPlanGroupedAllocationPrice value) =>
+        new PriceVariants::NewPlanGroupedAllocationPrice(value);
 
-    public static PriceVariants::NewPlanGroupedWithProratedMinimumPrice Create(
-        Models::NewPlanGroupedWithProratedMinimumPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewPlanGroupedWithProratedMinimumPrice value) =>
+        new PriceVariants::NewPlanGroupedWithProratedMinimumPrice(value);
 
-    public static PriceVariants::NewPlanGroupedWithMeteredMinimumPrice Create(
-        Models::NewPlanGroupedWithMeteredMinimumPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewPlanGroupedWithMeteredMinimumPrice value) =>
+        new PriceVariants::NewPlanGroupedWithMeteredMinimumPrice(value);
 
-    public static PriceVariants::NewPlanMatrixWithDisplayNamePrice Create(
-        Models::NewPlanMatrixWithDisplayNamePrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewPlanMatrixWithDisplayNamePrice value) =>
+        new PriceVariants::NewPlanMatrixWithDisplayNamePrice(value);
 
-    public static PriceVariants::NewPlanBulkWithProrationPrice Create(
-        Models::NewPlanBulkWithProrationPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewPlanBulkWithProrationPrice value) =>
+        new PriceVariants::NewPlanBulkWithProrationPrice(value);
 
-    public static PriceVariants::NewPlanGroupedTieredPackagePrice Create(
-        Models::NewPlanGroupedTieredPackagePrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewPlanGroupedTieredPackagePrice value) =>
+        new PriceVariants::NewPlanGroupedTieredPackagePrice(value);
 
-    public static PriceVariants::NewPlanMaxGroupTieredPackagePrice Create(
-        Models::NewPlanMaxGroupTieredPackagePrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewPlanMaxGroupTieredPackagePrice value) =>
+        new PriceVariants::NewPlanMaxGroupTieredPackagePrice(value);
 
-    public static PriceVariants::NewPlanScalableMatrixWithUnitPricingPrice Create(
+    public static implicit operator Price(
         Models::NewPlanScalableMatrixWithUnitPricingPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewPlanScalableMatrixWithUnitPricingPrice(value);
 
-    public static PriceVariants::NewPlanScalableMatrixWithTieredPricingPrice Create(
+    public static implicit operator Price(
         Models::NewPlanScalableMatrixWithTieredPricingPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewPlanScalableMatrixWithTieredPricingPrice(value);
 
-    public static PriceVariants::NewPlanCumulativeGroupedBulkPrice Create(
-        Models::NewPlanCumulativeGroupedBulkPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewPlanCumulativeGroupedBulkPrice value) =>
+        new PriceVariants::NewPlanCumulativeGroupedBulkPrice(value);
 
-    public static PriceVariants::NewPlanTieredPackageWithMinimumPrice Create(
-        Models::NewPlanTieredPackageWithMinimumPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewPlanTieredPackageWithMinimumPrice value) =>
+        new PriceVariants::NewPlanTieredPackageWithMinimumPrice(value);
 
-    public static PriceVariants::NewPlanMatrixWithAllocationPrice Create(
-        Models::NewPlanMatrixWithAllocationPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewPlanMatrixWithAllocationPrice value) =>
+        new PriceVariants::NewPlanMatrixWithAllocationPrice(value);
 
-    public static PriceVariants::NewPlanGroupedTieredPrice Create(
-        Models::NewPlanGroupedTieredPrice value
-    ) => new(value);
+    public static implicit operator Price(Models::NewPlanGroupedTieredPrice value) =>
+        new PriceVariants::NewPlanGroupedTieredPrice(value);
 
     public abstract void Validate();
 }

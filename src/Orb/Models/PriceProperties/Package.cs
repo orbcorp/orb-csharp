@@ -491,14 +491,6 @@ public sealed record class Package : Orb::ModelBase, Orb::IFromRaw<Package>
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        if (
-            !this.ModelType.Equals(
-                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"package\"")
-            )
-        )
-        {
-            throw new System::Exception();
-        }
         _ = this.Name;
         this.PackageConfig.Validate();
         _ = this.PlanPhaseOrder;
