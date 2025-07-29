@@ -512,16 +512,6 @@ public sealed record class GroupedWithMinMaxThresholds
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        if (
-            !this.ModelType.Equals(
-                Json::JsonSerializer.Deserialize<Json::JsonElement>(
-                    "\"grouped_with_min_max_thresholds\""
-                )
-            )
-        )
-        {
-            throw new System::Exception();
-        }
         _ = this.Name;
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();

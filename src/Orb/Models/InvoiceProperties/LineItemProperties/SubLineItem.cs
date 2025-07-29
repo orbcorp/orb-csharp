@@ -10,14 +10,14 @@ public abstract record class SubLineItem
 {
     internal SubLineItem() { }
 
-    public static SubLineItemVariants::MatrixSubLineItem Create(Models::MatrixSubLineItem value) =>
-        new(value);
+    public static implicit operator SubLineItem(Models::MatrixSubLineItem value) =>
+        new SubLineItemVariants::MatrixSubLineItem(value);
 
-    public static SubLineItemVariants::TierSubLineItem Create(Models::TierSubLineItem value) =>
-        new(value);
+    public static implicit operator SubLineItem(Models::TierSubLineItem value) =>
+        new SubLineItemVariants::TierSubLineItem(value);
 
-    public static SubLineItemVariants::OtherSubLineItem Create(Models::OtherSubLineItem value) =>
-        new(value);
+    public static implicit operator SubLineItem(Models::OtherSubLineItem value) =>
+        new SubLineItemVariants::OtherSubLineItem(value);
 
     public abstract void Validate();
 }

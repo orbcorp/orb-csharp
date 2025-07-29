@@ -35,24 +35,22 @@ public class InvoiceServiceTest : Tests::TestBase
                     },
                 ],
                 CustomerID = "4khy3nwzktxv7",
-                Discount = Models::Discount.Create(
-                    new Models::PercentageDiscount()
-                    {
-                        DiscountType = PercentageDiscountProperties::DiscountType.Percentage,
-                        PercentageDiscount1 = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
-                        Filters =
-                        [
-                            new Models::TransformPriceFilter()
-                            {
-                                Field = TransformPriceFilterProperties::Field.PriceID,
-                                Operator = TransformPriceFilterProperties::Operator.Includes,
-                                Values = ["string"],
-                            },
-                        ],
-                        Reason = "reason",
-                    }
-                ),
+                Discount = new Models::PercentageDiscount()
+                {
+                    DiscountType = PercentageDiscountProperties::DiscountType.Percentage,
+                    PercentageDiscount1 = 0.15,
+                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    Filters =
+                    [
+                        new Models::TransformPriceFilter()
+                        {
+                            Field = TransformPriceFilterProperties::Field.PriceID,
+                            Operator = TransformPriceFilterProperties::Operator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    Reason = "reason",
+                },
                 ExternalCustomerID = "external-customer-id",
                 Memo = "An optional memo for my invoice.",
                 Metadata = new() { { "foo", "string" } },

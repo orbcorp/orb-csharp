@@ -510,16 +510,6 @@ public sealed record class GroupedWithProratedMinimum
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        if (
-            !this.ModelType.Equals(
-                Json::JsonSerializer.Deserialize<Json::JsonElement>(
-                    "\"grouped_with_prorated_minimum\""
-                )
-            )
-        )
-        {
-            throw new System::Exception();
-        }
         _ = this.Name;
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();

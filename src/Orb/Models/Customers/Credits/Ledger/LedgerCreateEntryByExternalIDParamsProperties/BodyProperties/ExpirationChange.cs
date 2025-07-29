@@ -146,14 +146,6 @@ public sealed record class ExpirationChange : Orb::ModelBase, Orb::IFromRaw<Expi
 
     public override void Validate()
     {
-        if (
-            !this.EntryType.Equals(
-                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"expiration_change\"")
-            )
-        )
-        {
-            throw new System::Exception();
-        }
         _ = this.TargetExpiryDate;
         _ = this.Amount;
         _ = this.BlockID;

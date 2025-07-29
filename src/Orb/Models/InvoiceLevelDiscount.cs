@@ -9,15 +9,14 @@ public abstract record class InvoiceLevelDiscount
 {
     internal InvoiceLevelDiscount() { }
 
-    public static InvoiceLevelDiscountVariants::PercentageDiscount Create(
-        PercentageDiscount value
-    ) => new(value);
+    public static implicit operator InvoiceLevelDiscount(PercentageDiscount value) =>
+        new InvoiceLevelDiscountVariants::PercentageDiscount(value);
 
-    public static InvoiceLevelDiscountVariants::AmountDiscount Create(AmountDiscount value) =>
-        new(value);
+    public static implicit operator InvoiceLevelDiscount(AmountDiscount value) =>
+        new InvoiceLevelDiscountVariants::AmountDiscount(value);
 
-    public static InvoiceLevelDiscountVariants::TrialDiscount Create(TrialDiscount value) =>
-        new(value);
+    public static implicit operator InvoiceLevelDiscount(TrialDiscount value) =>
+        new InvoiceLevelDiscountVariants::TrialDiscount(value);
 
     public abstract void Validate();
 }

@@ -10,17 +10,14 @@ public abstract record class DiscountInterval
 {
     internal DiscountInterval() { }
 
-    public static DiscountIntervalVariants::AmountDiscountInterval Create(
-        Models::AmountDiscountInterval value
-    ) => new(value);
+    public static implicit operator DiscountInterval(Models::AmountDiscountInterval value) =>
+        new DiscountIntervalVariants::AmountDiscountInterval(value);
 
-    public static DiscountIntervalVariants::PercentageDiscountInterval Create(
-        Models::PercentageDiscountInterval value
-    ) => new(value);
+    public static implicit operator DiscountInterval(Models::PercentageDiscountInterval value) =>
+        new DiscountIntervalVariants::PercentageDiscountInterval(value);
 
-    public static DiscountIntervalVariants::UsageDiscountInterval Create(
-        Models::UsageDiscountInterval value
-    ) => new(value);
+    public static implicit operator DiscountInterval(Models::UsageDiscountInterval value) =>
+        new DiscountIntervalVariants::UsageDiscountInterval(value);
 
     public abstract void Validate();
 }

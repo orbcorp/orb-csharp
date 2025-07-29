@@ -505,14 +505,6 @@ public sealed record class ThresholdTotalAmount
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        if (
-            !this.ModelType.Equals(
-                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"threshold_total_amount\"")
-            )
-        )
-        {
-            throw new System::Exception();
-        }
         _ = this.Name;
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();

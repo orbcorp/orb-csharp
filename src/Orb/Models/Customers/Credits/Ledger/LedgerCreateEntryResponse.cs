@@ -13,33 +13,26 @@ public abstract record class LedgerCreateEntryResponse
 {
     internal LedgerCreateEntryResponse() { }
 
-    public static LedgerCreateEntryResponseVariants::IncrementLedgerEntry Create(
-        IncrementLedgerEntry value
-    ) => new(value);
+    public static implicit operator LedgerCreateEntryResponse(IncrementLedgerEntry value) =>
+        new LedgerCreateEntryResponseVariants::IncrementLedgerEntry(value);
 
-    public static LedgerCreateEntryResponseVariants::DecrementLedgerEntry Create(
-        DecrementLedgerEntry value
-    ) => new(value);
+    public static implicit operator LedgerCreateEntryResponse(DecrementLedgerEntry value) =>
+        new LedgerCreateEntryResponseVariants::DecrementLedgerEntry(value);
 
-    public static LedgerCreateEntryResponseVariants::ExpirationChangeLedgerEntry Create(
-        ExpirationChangeLedgerEntry value
-    ) => new(value);
+    public static implicit operator LedgerCreateEntryResponse(ExpirationChangeLedgerEntry value) =>
+        new LedgerCreateEntryResponseVariants::ExpirationChangeLedgerEntry(value);
 
-    public static LedgerCreateEntryResponseVariants::CreditBlockExpiryLedgerEntry Create(
-        CreditBlockExpiryLedgerEntry value
-    ) => new(value);
+    public static implicit operator LedgerCreateEntryResponse(CreditBlockExpiryLedgerEntry value) =>
+        new LedgerCreateEntryResponseVariants::CreditBlockExpiryLedgerEntry(value);
 
-    public static LedgerCreateEntryResponseVariants::VoidLedgerEntry Create(
-        VoidLedgerEntry value
-    ) => new(value);
+    public static implicit operator LedgerCreateEntryResponse(VoidLedgerEntry value) =>
+        new LedgerCreateEntryResponseVariants::VoidLedgerEntry(value);
 
-    public static LedgerCreateEntryResponseVariants::VoidInitiatedLedgerEntry Create(
-        VoidInitiatedLedgerEntry value
-    ) => new(value);
+    public static implicit operator LedgerCreateEntryResponse(VoidInitiatedLedgerEntry value) =>
+        new LedgerCreateEntryResponseVariants::VoidInitiatedLedgerEntry(value);
 
-    public static LedgerCreateEntryResponseVariants::AmendmentLedgerEntry Create(
-        AmendmentLedgerEntry value
-    ) => new(value);
+    public static implicit operator LedgerCreateEntryResponse(AmendmentLedgerEntry value) =>
+        new LedgerCreateEntryResponseVariants::AmendmentLedgerEntry(value);
 
     public abstract void Validate();
 }

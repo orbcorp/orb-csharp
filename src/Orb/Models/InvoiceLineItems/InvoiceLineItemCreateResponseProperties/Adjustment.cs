@@ -10,25 +10,21 @@ public abstract record class Adjustment
 {
     internal Adjustment() { }
 
-    public static AdjustmentVariants::MonetaryUsageDiscountAdjustment Create(
-        Models::MonetaryUsageDiscountAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(Models::MonetaryUsageDiscountAdjustment value) =>
+        new AdjustmentVariants::MonetaryUsageDiscountAdjustment(value);
 
-    public static AdjustmentVariants::MonetaryAmountDiscountAdjustment Create(
-        Models::MonetaryAmountDiscountAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(Models::MonetaryAmountDiscountAdjustment value) =>
+        new AdjustmentVariants::MonetaryAmountDiscountAdjustment(value);
 
-    public static AdjustmentVariants::MonetaryPercentageDiscountAdjustment Create(
+    public static implicit operator Adjustment(
         Models::MonetaryPercentageDiscountAdjustment value
-    ) => new(value);
+    ) => new AdjustmentVariants::MonetaryPercentageDiscountAdjustment(value);
 
-    public static AdjustmentVariants::MonetaryMinimumAdjustment Create(
-        Models::MonetaryMinimumAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(Models::MonetaryMinimumAdjustment value) =>
+        new AdjustmentVariants::MonetaryMinimumAdjustment(value);
 
-    public static AdjustmentVariants::MonetaryMaximumAdjustment Create(
-        Models::MonetaryMaximumAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(Models::MonetaryMaximumAdjustment value) =>
+        new AdjustmentVariants::MonetaryMaximumAdjustment(value);
 
     public abstract void Validate();
 }

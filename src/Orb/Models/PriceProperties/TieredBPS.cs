@@ -494,14 +494,6 @@ public sealed record class TieredBPS : Orb::ModelBase, Orb::IFromRaw<TieredBPS>
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        if (
-            !this.ModelType.Equals(
-                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"tiered_bps\"")
-            )
-        )
-        {
-            throw new System::Exception();
-        }
         _ = this.Name;
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();

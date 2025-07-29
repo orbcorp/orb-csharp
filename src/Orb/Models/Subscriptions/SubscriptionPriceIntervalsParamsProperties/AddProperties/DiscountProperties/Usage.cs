@@ -46,14 +46,6 @@ public sealed record class Usage : Orb::ModelBase, Orb::IFromRaw<Usage>
 
     public override void Validate()
     {
-        if (
-            !this.DiscountType.Equals(
-                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"usage\"")
-            )
-        )
-        {
-            throw new System::Exception();
-        }
         _ = this.UsageDiscount;
     }
 

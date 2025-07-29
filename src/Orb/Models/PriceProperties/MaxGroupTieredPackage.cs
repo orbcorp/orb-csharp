@@ -509,14 +509,6 @@ public sealed record class MaxGroupTieredPackage
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        if (
-            !this.ModelType.Equals(
-                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"max_group_tiered_package\"")
-            )
-        )
-        {
-            throw new System::Exception();
-        }
         _ = this.Name;
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();

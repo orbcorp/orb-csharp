@@ -13,117 +13,107 @@ public abstract record class Price
 {
     internal Price() { }
 
-    public static PriceVariants::NewSubscriptionUnitPrice Create(
-        Subscriptions::NewSubscriptionUnitPrice value
-    ) => new(value);
+    public static implicit operator Price(Subscriptions::NewSubscriptionUnitPrice value) =>
+        new PriceVariants::NewSubscriptionUnitPrice(value);
 
-    public static PriceVariants::NewSubscriptionPackagePrice Create(
-        Subscriptions::NewSubscriptionPackagePrice value
-    ) => new(value);
+    public static implicit operator Price(Subscriptions::NewSubscriptionPackagePrice value) =>
+        new PriceVariants::NewSubscriptionPackagePrice(value);
 
-    public static PriceVariants::NewSubscriptionMatrixPrice Create(
-        Subscriptions::NewSubscriptionMatrixPrice value
-    ) => new(value);
+    public static implicit operator Price(Subscriptions::NewSubscriptionMatrixPrice value) =>
+        new PriceVariants::NewSubscriptionMatrixPrice(value);
 
-    public static PriceVariants::NewSubscriptionTieredPrice Create(
-        Subscriptions::NewSubscriptionTieredPrice value
-    ) => new(value);
+    public static implicit operator Price(Subscriptions::NewSubscriptionTieredPrice value) =>
+        new PriceVariants::NewSubscriptionTieredPrice(value);
 
-    public static PriceVariants::NewSubscriptionTieredBPSPrice Create(
-        Subscriptions::NewSubscriptionTieredBPSPrice value
-    ) => new(value);
+    public static implicit operator Price(Subscriptions::NewSubscriptionTieredBPSPrice value) =>
+        new PriceVariants::NewSubscriptionTieredBPSPrice(value);
 
-    public static PriceVariants::NewSubscriptionBPSPrice Create(
-        Subscriptions::NewSubscriptionBPSPrice value
-    ) => new(value);
+    public static implicit operator Price(Subscriptions::NewSubscriptionBPSPrice value) =>
+        new PriceVariants::NewSubscriptionBPSPrice(value);
 
-    public static PriceVariants::NewSubscriptionBulkBPSPrice Create(
-        Subscriptions::NewSubscriptionBulkBPSPrice value
-    ) => new(value);
+    public static implicit operator Price(Subscriptions::NewSubscriptionBulkBPSPrice value) =>
+        new PriceVariants::NewSubscriptionBulkBPSPrice(value);
 
-    public static PriceVariants::NewSubscriptionBulkPrice Create(
-        Subscriptions::NewSubscriptionBulkPrice value
-    ) => new(value);
+    public static implicit operator Price(Subscriptions::NewSubscriptionBulkPrice value) =>
+        new PriceVariants::NewSubscriptionBulkPrice(value);
 
-    public static PriceVariants::NewSubscriptionThresholdTotalAmountPrice Create(
+    public static implicit operator Price(
         Subscriptions::NewSubscriptionThresholdTotalAmountPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewSubscriptionThresholdTotalAmountPrice(value);
 
-    public static PriceVariants::NewSubscriptionTieredPackagePrice Create(
-        Subscriptions::NewSubscriptionTieredPackagePrice value
-    ) => new(value);
+    public static implicit operator Price(Subscriptions::NewSubscriptionTieredPackagePrice value) =>
+        new PriceVariants::NewSubscriptionTieredPackagePrice(value);
 
-    public static PriceVariants::NewSubscriptionTieredWithMinimumPrice Create(
+    public static implicit operator Price(
         Subscriptions::NewSubscriptionTieredWithMinimumPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewSubscriptionTieredWithMinimumPrice(value);
 
-    public static PriceVariants::NewSubscriptionUnitWithPercentPrice Create(
+    public static implicit operator Price(
         Subscriptions::NewSubscriptionUnitWithPercentPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewSubscriptionUnitWithPercentPrice(value);
 
-    public static PriceVariants::NewSubscriptionPackageWithAllocationPrice Create(
+    public static implicit operator Price(
         Subscriptions::NewSubscriptionPackageWithAllocationPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewSubscriptionPackageWithAllocationPrice(value);
 
-    public static PriceVariants::NewSubscriptionTierWithProrationPrice Create(
+    public static implicit operator Price(
         Subscriptions::NewSubscriptionTierWithProrationPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewSubscriptionTierWithProrationPrice(value);
 
-    public static PriceVariants::NewSubscriptionUnitWithProrationPrice Create(
+    public static implicit operator Price(
         Subscriptions::NewSubscriptionUnitWithProrationPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewSubscriptionUnitWithProrationPrice(value);
 
-    public static PriceVariants::NewSubscriptionGroupedAllocationPrice Create(
+    public static implicit operator Price(
         Subscriptions::NewSubscriptionGroupedAllocationPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewSubscriptionGroupedAllocationPrice(value);
 
-    public static PriceVariants::NewSubscriptionGroupedWithProratedMinimumPrice Create(
+    public static implicit operator Price(
         Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewSubscriptionGroupedWithProratedMinimumPrice(value);
 
-    public static PriceVariants::NewSubscriptionBulkWithProrationPrice Create(
+    public static implicit operator Price(
         Subscriptions::NewSubscriptionBulkWithProrationPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewSubscriptionBulkWithProrationPrice(value);
 
-    public static PriceVariants::NewSubscriptionScalableMatrixWithUnitPricingPrice Create(
+    public static implicit operator Price(
         Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewSubscriptionScalableMatrixWithUnitPricingPrice(value);
 
-    public static PriceVariants::NewSubscriptionScalableMatrixWithTieredPricingPrice Create(
+    public static implicit operator Price(
         Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewSubscriptionScalableMatrixWithTieredPricingPrice(value);
 
-    public static PriceVariants::NewSubscriptionCumulativeGroupedBulkPrice Create(
+    public static implicit operator Price(
         Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewSubscriptionCumulativeGroupedBulkPrice(value);
 
-    public static PriceVariants::NewSubscriptionMaxGroupTieredPackagePrice Create(
+    public static implicit operator Price(
         Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice value
-    ) => new(value);
+    ) => new PriceVariants::NewSubscriptionMaxGroupTieredPackagePrice(value);
 
-    public static PriceVariants::NewSubscriptionGroupedWithMeteredMinimumPrice Create(
+    public static implicit operator Price(
         Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewSubscriptionGroupedWithMeteredMinimumPrice(value);
 
-    public static PriceVariants::NewSubscriptionMatrixWithDisplayNamePrice Create(
+    public static implicit operator Price(
         Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice value
-    ) => new(value);
+    ) => new PriceVariants::NewSubscriptionMatrixWithDisplayNamePrice(value);
 
-    public static PriceVariants::NewSubscriptionGroupedTieredPackagePrice Create(
+    public static implicit operator Price(
         Subscriptions::NewSubscriptionGroupedTieredPackagePrice value
-    ) => new(value);
+    ) => new PriceVariants::NewSubscriptionGroupedTieredPackagePrice(value);
 
-    public static PriceVariants::NewSubscriptionMatrixWithAllocationPrice Create(
+    public static implicit operator Price(
         Subscriptions::NewSubscriptionMatrixWithAllocationPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewSubscriptionMatrixWithAllocationPrice(value);
 
-    public static PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice Create(
+    public static implicit operator Price(
         Subscriptions::NewSubscriptionTieredPackageWithMinimumPrice value
-    ) => new(value);
+    ) => new PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice(value);
 
-    public static PriceVariants::NewSubscriptionGroupedTieredPrice Create(
-        Subscriptions::NewSubscriptionGroupedTieredPrice value
-    ) => new(value);
+    public static implicit operator Price(Subscriptions::NewSubscriptionGroupedTieredPrice value) =>
+        new PriceVariants::NewSubscriptionGroupedTieredPrice(value);
 
     public abstract void Validate();
 }

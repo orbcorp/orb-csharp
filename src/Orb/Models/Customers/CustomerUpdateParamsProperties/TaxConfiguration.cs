@@ -10,17 +10,14 @@ public abstract record class TaxConfiguration
 {
     internal TaxConfiguration() { }
 
-    public static TaxConfigurationVariants::NewAvalaraTaxConfiguration Create(
-        Customers::NewAvalaraTaxConfiguration value
-    ) => new(value);
+    public static implicit operator TaxConfiguration(Customers::NewAvalaraTaxConfiguration value) =>
+        new TaxConfigurationVariants::NewAvalaraTaxConfiguration(value);
 
-    public static TaxConfigurationVariants::NewTaxJarConfiguration Create(
-        Customers::NewTaxJarConfiguration value
-    ) => new(value);
+    public static implicit operator TaxConfiguration(Customers::NewTaxJarConfiguration value) =>
+        new TaxConfigurationVariants::NewTaxJarConfiguration(value);
 
-    public static TaxConfigurationVariants::NewSphereConfiguration Create(
-        Customers::NewSphereConfiguration value
-    ) => new(value);
+    public static implicit operator TaxConfiguration(Customers::NewSphereConfiguration value) =>
+        new TaxConfigurationVariants::NewSphereConfiguration(value);
 
     public abstract void Validate();
 }

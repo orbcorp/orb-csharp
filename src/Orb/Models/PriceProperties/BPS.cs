@@ -490,10 +490,6 @@ public sealed record class BPS : Orb::ModelBase, Orb::IFromRaw<BPS>
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        if (!this.ModelType.Equals(Json::JsonSerializer.Deserialize<Json::JsonElement>("\"bps\"")))
-        {
-            throw new System::Exception();
-        }
         _ = this.Name;
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();

@@ -14,28 +14,26 @@ public abstract record class Data
 {
     internal Data() { }
 
-    public static DataVariants::IncrementLedgerEntry Create(Ledger::IncrementLedgerEntry value) =>
-        new(value);
+    public static implicit operator Data(Ledger::IncrementLedgerEntry value) =>
+        new DataVariants::IncrementLedgerEntry(value);
 
-    public static DataVariants::DecrementLedgerEntry Create(Ledger::DecrementLedgerEntry value) =>
-        new(value);
+    public static implicit operator Data(Ledger::DecrementLedgerEntry value) =>
+        new DataVariants::DecrementLedgerEntry(value);
 
-    public static DataVariants::ExpirationChangeLedgerEntry Create(
-        Ledger::ExpirationChangeLedgerEntry value
-    ) => new(value);
+    public static implicit operator Data(Ledger::ExpirationChangeLedgerEntry value) =>
+        new DataVariants::ExpirationChangeLedgerEntry(value);
 
-    public static DataVariants::CreditBlockExpiryLedgerEntry Create(
-        Ledger::CreditBlockExpiryLedgerEntry value
-    ) => new(value);
+    public static implicit operator Data(Ledger::CreditBlockExpiryLedgerEntry value) =>
+        new DataVariants::CreditBlockExpiryLedgerEntry(value);
 
-    public static DataVariants::VoidLedgerEntry Create(Ledger::VoidLedgerEntry value) => new(value);
+    public static implicit operator Data(Ledger::VoidLedgerEntry value) =>
+        new DataVariants::VoidLedgerEntry(value);
 
-    public static DataVariants::VoidInitiatedLedgerEntry Create(
-        Ledger::VoidInitiatedLedgerEntry value
-    ) => new(value);
+    public static implicit operator Data(Ledger::VoidInitiatedLedgerEntry value) =>
+        new DataVariants::VoidInitiatedLedgerEntry(value);
 
-    public static DataVariants::AmendmentLedgerEntry Create(Ledger::AmendmentLedgerEntry value) =>
-        new(value);
+    public static implicit operator Data(Ledger::AmendmentLedgerEntry value) =>
+        new DataVariants::AmendmentLedgerEntry(value);
 
     public abstract void Validate();
 }

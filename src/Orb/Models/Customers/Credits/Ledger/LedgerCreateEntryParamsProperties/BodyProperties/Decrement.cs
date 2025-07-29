@@ -97,14 +97,6 @@ public sealed record class Decrement : Orb::ModelBase, Orb::IFromRaw<Decrement>
     public override void Validate()
     {
         _ = this.Amount;
-        if (
-            !this.EntryType.Equals(
-                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"decrement\"")
-            )
-        )
-        {
-            throw new System::Exception();
-        }
         _ = this.Currency;
         _ = this.Description;
         if (this.Metadata != null)

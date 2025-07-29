@@ -45,14 +45,6 @@ public sealed record class Percentage : Orb::ModelBase, Orb::IFromRaw<Percentage
 
     public override void Validate()
     {
-        if (
-            !this.DiscountType.Equals(
-                Json::JsonSerializer.Deserialize<Json::JsonElement>("\"percentage\"")
-            )
-        )
-        {
-            throw new System::Exception();
-        }
         _ = this.PercentageDiscount;
     }
 

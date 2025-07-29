@@ -15,9 +15,11 @@ public abstract record class InvoiceDate
 {
     internal InvoiceDate() { }
 
-    public static InvoiceDateVariants::Date Create(System::DateOnly value) => new(value);
+    public static implicit operator InvoiceDate(System::DateOnly value) =>
+        new InvoiceDateVariants::Date(value);
 
-    public static InvoiceDateVariants::DateTime Create(System::DateTime value) => new(value);
+    public static implicit operator InvoiceDate(System::DateTime value) =>
+        new InvoiceDateVariants::DateTime(value);
 
     public abstract void Validate();
 }
