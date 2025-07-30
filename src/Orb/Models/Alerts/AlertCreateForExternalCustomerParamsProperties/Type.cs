@@ -1,5 +1,4 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Alerts.AlertCreateForExternalCustomerParamsProperties;
@@ -7,8 +6,8 @@ namespace Orb.Models.Alerts.AlertCreateForExternalCustomerParamsProperties;
 /// <summary>
 /// The type of alert to create. This must be a valid alert type.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<Type, string>))]
-public sealed record class Type(string value) : Orb::IEnum<Type, string>
+[JsonConverter(typeof(EnumConverter<Type, string>))]
+public sealed record class Type(string value) : IEnum<Type, string>
 {
     public static readonly Type CreditBalanceDepleted = new("credit_balance_depleted");
 

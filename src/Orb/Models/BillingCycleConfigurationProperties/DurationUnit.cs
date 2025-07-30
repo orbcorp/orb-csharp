@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.BillingCycleConfigurationProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<DurationUnit, string>))]
-public sealed record class DurationUnit(string value) : Orb::IEnum<DurationUnit, string>
+[JsonConverter(typeof(EnumConverter<DurationUnit, string>))]
+public sealed record class DurationUnit(string value) : IEnum<DurationUnit, string>
 {
     public static readonly DurationUnit Day = new("day");
 
@@ -24,7 +23,7 @@ public sealed record class DurationUnit(string value) : Orb::IEnum<DurationUnit,
         {
             "day" => Value.Day,
             "month" => Value.Month,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

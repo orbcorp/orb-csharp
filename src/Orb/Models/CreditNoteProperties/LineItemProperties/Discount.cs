@@ -1,122 +1,110 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using DiscountProperties = Orb.Models.CreditNoteProperties.LineItemProperties.DiscountProperties;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.CreditNoteProperties.LineItemProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<Discount>))]
-public sealed record class Discount : Orb::ModelBase, Orb::IFromRaw<Discount>
+[JsonConverter(typeof(ModelConverter<Discount>))]
+public sealed record class Discount : ModelBase, IFromRaw<Discount>
 {
     public required string ID
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
+                throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("id");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string AmountApplied
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount_applied", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("amount_applied", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "amount_applied",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("amount_applied");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("amount_applied");
         }
-        set { this.Properties["amount_applied"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["amount_applied"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public required Generic::List<string> AppliesToPriceIDs
+    public required List<string> AppliesToPriceIDs
     {
         get
         {
-            if (!this.Properties.TryGetValue("applies_to_price_ids", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("applies_to_price_ids", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "applies_to_price_ids",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<string>>(element)
-                ?? throw new System::ArgumentNullException("applies_to_price_ids");
+            return JsonSerializer.Deserialize<List<string>>(element)
+                ?? throw new ArgumentNullException("applies_to_price_ids");
         }
-        set
-        {
-            this.Properties["applies_to_price_ids"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required DiscountProperties::DiscountType DiscountType
     {
         get
         {
-            if (!this.Properties.TryGetValue("discount_type", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "discount_type",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("discount_type", out JsonElement element))
+                throw new ArgumentOutOfRangeException("discount_type", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<DiscountProperties::DiscountType>(element)
-                ?? throw new System::ArgumentNullException("discount_type");
+            return JsonSerializer.Deserialize<DiscountProperties::DiscountType>(element)
+                ?? throw new ArgumentNullException("discount_type");
         }
-        set { this.Properties["discount_type"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["discount_type"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required double PercentageDiscount
     {
         get
         {
-            if (!this.Properties.TryGetValue("percentage_discount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("percentage_discount", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "percentage_discount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element);
         }
-        set
-        {
-            this.Properties["percentage_discount"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["percentage_discount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public string? AmountDiscount
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount_discount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("amount_discount", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["amount_discount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["amount_discount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public string? Reason
     {
         get
         {
-            if (!this.Properties.TryGetValue("reason", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("reason", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["reason"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["reason"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -136,16 +124,14 @@ public sealed record class Discount : Orb::ModelBase, Orb::IFromRaw<Discount>
     public Discount() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    Discount(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    Discount(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static Discount FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static Discount FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

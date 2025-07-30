@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.NewPlanGroupedTieredPackagePriceProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<ModelType, string>))]
-public sealed record class ModelType(string value) : Orb::IEnum<ModelType, string>
+[JsonConverter(typeof(EnumConverter<ModelType, string>))]
+public sealed record class ModelType(string value) : IEnum<ModelType, string>
 {
     public static readonly ModelType GroupedTieredPackage = new("grouped_tiered_package");
 
@@ -20,7 +19,7 @@ public sealed record class ModelType(string value) : Orb::IEnum<ModelType, strin
         _value switch
         {
             "grouped_tiered_package" => Value.GroupedTieredPackage,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

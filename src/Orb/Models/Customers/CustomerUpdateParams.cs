@@ -1,11 +1,9 @@
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using CustomerUpdateParamsProperties = Orb.Models.Customers.CustomerUpdateParamsProperties;
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Models = Orb.Models;
-using Orb = Orb;
 using System = System;
-using Text = System.Text;
 
 namespace Orb.Models.Customers;
 
@@ -15,9 +13,9 @@ namespace Orb.Models.Customers;
 /// `billing_address`, and `additional_emails` of an existing customer. Other fields
 /// on a customer are currently immutable.
 /// </summary>
-public sealed record class CustomerUpdateParams : Orb::ParamsBase
+public sealed record class CustomerUpdateParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     public required string CustomerID;
 
@@ -28,17 +26,17 @@ public sealed record class CustomerUpdateParams : Orb::ParamsBase
             if (
                 !this.BodyProperties.TryGetValue(
                     "accounting_sync_configuration",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
                 return null;
 
-            return Json::JsonSerializer.Deserialize<NewAccountingSyncConfiguration?>(element);
+            return JsonSerializer.Deserialize<NewAccountingSyncConfiguration?>(element);
         }
         set
         {
             this.BodyProperties["accounting_sync_configuration"] =
-                Json::JsonSerializer.SerializeToElement(value);
+                JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -46,23 +44,16 @@ public sealed record class CustomerUpdateParams : Orb::ParamsBase
     /// Additional email addresses for this customer. If populated, these email addresses
     /// will be CC'd for customer communications.
     /// </summary>
-    public Generic::List<string>? AdditionalEmails
+    public List<string>? AdditionalEmails
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue("additional_emails", out Json::JsonElement element)
-            )
+            if (!this.BodyProperties.TryGetValue("additional_emails", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<string>?>(element);
+            return JsonSerializer.Deserialize<List<string>?>(element);
         }
-        set
-        {
-            this.BodyProperties["additional_emails"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.BodyProperties["additional_emails"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -74,30 +65,24 @@ public sealed record class CustomerUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("auto_collection", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("auto_collection", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element);
         }
-        set
-        {
-            this.BodyProperties["auto_collection"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["auto_collection"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public AddressInput? BillingAddress
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("billing_address", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("billing_address", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<AddressInput?>(element);
+            return JsonSerializer.Deserialize<AddressInput?>(element);
         }
-        set
-        {
-            this.BodyProperties["billing_address"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["billing_address"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -108,12 +93,12 @@ public sealed record class CustomerUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("currency", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("currency", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.BodyProperties["currency"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -123,27 +108,24 @@ public sealed record class CustomerUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("email", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("email", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.BodyProperties["email"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["email"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public bool? EmailDelivery
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("email_delivery", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("email_delivery", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element);
         }
-        set
-        {
-            this.BodyProperties["email_delivery"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["email_delivery"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -156,21 +138,14 @@ public sealed record class CustomerUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "external_customer_id",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
         set
         {
-            this.BodyProperties["external_customer_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -181,12 +156,12 @@ public sealed record class CustomerUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("hierarchy", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("hierarchy", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<CustomerHierarchyConfig?>(element);
+            return JsonSerializer.Deserialize<CustomerHierarchyConfig?>(element);
         }
-        set { this.BodyProperties["hierarchy"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["hierarchy"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -194,16 +169,16 @@ public sealed record class CustomerUpdateParams : Orb::ParamsBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Generic::Dictionary<string, string?>? Metadata
+    public Dictionary<string, string?>? Metadata
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("metadata", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::Dictionary<string, string?>?>(element);
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(element);
         }
-        set { this.BodyProperties["metadata"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -213,12 +188,12 @@ public sealed record class CustomerUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("name", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("name", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.BodyProperties["name"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["name"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -232,19 +207,14 @@ public sealed record class CustomerUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("payment_provider", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("payment_provider", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<CustomerUpdateParamsProperties::PaymentProvider?>(
+            return JsonSerializer.Deserialize<CustomerUpdateParamsProperties::PaymentProvider?>(
                 element
             );
         }
-        set
-        {
-            this.BodyProperties["payment_provider"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.BodyProperties["payment_provider"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -255,21 +225,14 @@ public sealed record class CustomerUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "payment_provider_id",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("payment_provider_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
         set
         {
-            this.BodyProperties["payment_provider_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["payment_provider_id"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -278,19 +241,17 @@ public sealed record class CustomerUpdateParams : Orb::ParamsBase
         get
         {
             if (
-                !this.BodyProperties.TryGetValue(
-                    "reporting_configuration",
-                    out Json::JsonElement element
-                )
+                !this.BodyProperties.TryGetValue("reporting_configuration", out JsonElement element)
             )
                 return null;
 
-            return Json::JsonSerializer.Deserialize<NewReportingConfiguration?>(element);
+            return JsonSerializer.Deserialize<NewReportingConfiguration?>(element);
         }
         set
         {
-            this.BodyProperties["reporting_configuration"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["reporting_configuration"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
@@ -298,38 +259,26 @@ public sealed record class CustomerUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("shipping_address", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("shipping_address", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<AddressInput?>(element);
+            return JsonSerializer.Deserialize<AddressInput?>(element);
         }
-        set
-        {
-            this.BodyProperties["shipping_address"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.BodyProperties["shipping_address"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public CustomerUpdateParamsProperties::TaxConfiguration? TaxConfiguration
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue("tax_configuration", out Json::JsonElement element)
-            )
+            if (!this.BodyProperties.TryGetValue("tax_configuration", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<CustomerUpdateParamsProperties::TaxConfiguration?>(
+            return JsonSerializer.Deserialize<CustomerUpdateParamsProperties::TaxConfiguration?>(
                 element
             );
         }
-        set
-        {
-            this.BodyProperties["tax_configuration"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.BodyProperties["tax_configuration"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -435,19 +384,19 @@ public sealed record class CustomerUpdateParams : Orb::ParamsBase
     /// Zambia | `zm_tin` | Zambia Tax Identification Number | | Zimbabwe | `zw_tin`
     /// | Zimbabwe Tax Identification Number |
     /// </summary>
-    public Models::CustomerTaxID? TaxID
+    public CustomerTaxID? TaxID
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("tax_id", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("tax_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Models::CustomerTaxID?>(element);
+            return JsonSerializer.Deserialize<CustomerTaxID?>(element);
         }
-        set { this.BodyProperties["tax_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["tax_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
@@ -458,21 +407,21 @@ public sealed record class CustomerUpdateParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

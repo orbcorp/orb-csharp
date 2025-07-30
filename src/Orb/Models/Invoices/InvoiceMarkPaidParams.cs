@@ -1,9 +1,8 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using System = System;
-using Text = System.Text;
 
 namespace Orb.Models.Invoices;
 
@@ -11,9 +10,9 @@ namespace Orb.Models.Invoices;
 /// This endpoint allows an invoice's status to be set the `paid` status. This can
 /// only be done to invoices that are in the `issued` status.
 /// </summary>
-public sealed record class InvoiceMarkPaidParams : Orb::ParamsBase
+public sealed record class InvoiceMarkPaidParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     public required string InvoiceID;
 
@@ -24,24 +23,17 @@ public sealed record class InvoiceMarkPaidParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "payment_received_date",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("payment_received_date", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "payment_received_date",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateOnly>(element);
+            return JsonSerializer.Deserialize<System::DateOnly>(element);
         }
         set
         {
-            this.BodyProperties["payment_received_date"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["payment_received_date"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -52,12 +44,12 @@ public sealed record class InvoiceMarkPaidParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("external_id", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("external_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.BodyProperties["external_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["external_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -67,15 +59,15 @@ public sealed record class InvoiceMarkPaidParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("notes", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("notes", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.BodyProperties["notes"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["notes"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
@@ -86,21 +78,21 @@ public sealed record class InvoiceMarkPaidParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

@@ -1,101 +1,96 @@
+using System.Text.Json.Serialization;
 using BodyVariants = Orb.Models.Prices.PriceCreateParamsProperties.BodyVariants;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 
 namespace Orb.Models.Prices.PriceCreateParamsProperties;
 
-[Serialization::JsonConverter(typeof(Orb::UnionConverter<Body>))]
+[JsonConverter(typeof(UnionConverter<Body>))]
 public abstract record class Body
 {
     internal Body() { }
 
-    public static implicit operator Body(Models::NewFloatingUnitPrice value) =>
-        new BodyVariants::NewFloatingUnitPrice(value);
+    public static implicit operator Body(NewFloatingUnitPrice value) =>
+        new BodyVariants::NewFloatingUnitPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingPackagePrice value) =>
-        new BodyVariants::NewFloatingPackagePrice(value);
+    public static implicit operator Body(NewFloatingPackagePrice value) =>
+        new BodyVariants::NewFloatingPackagePriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingMatrixPrice value) =>
-        new BodyVariants::NewFloatingMatrixPrice(value);
+    public static implicit operator Body(NewFloatingMatrixPrice value) =>
+        new BodyVariants::NewFloatingMatrixPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingMatrixWithAllocationPrice value) =>
-        new BodyVariants::NewFloatingMatrixWithAllocationPrice(value);
+    public static implicit operator Body(NewFloatingMatrixWithAllocationPrice value) =>
+        new BodyVariants::NewFloatingMatrixWithAllocationPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingTieredPrice value) =>
-        new BodyVariants::NewFloatingTieredPrice(value);
+    public static implicit operator Body(NewFloatingTieredPrice value) =>
+        new BodyVariants::NewFloatingTieredPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingTieredBPSPrice value) =>
-        new BodyVariants::NewFloatingTieredBPSPrice(value);
+    public static implicit operator Body(NewFloatingTieredBPSPrice value) =>
+        new BodyVariants::NewFloatingTieredBPSPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingBPSPrice value) =>
-        new BodyVariants::NewFloatingBPSPrice(value);
+    public static implicit operator Body(NewFloatingBPSPrice value) =>
+        new BodyVariants::NewFloatingBPSPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingBulkBPSPrice value) =>
-        new BodyVariants::NewFloatingBulkBPSPrice(value);
+    public static implicit operator Body(NewFloatingBulkBPSPrice value) =>
+        new BodyVariants::NewFloatingBulkBPSPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingBulkPrice value) =>
-        new BodyVariants::NewFloatingBulkPrice(value);
+    public static implicit operator Body(NewFloatingBulkPrice value) =>
+        new BodyVariants::NewFloatingBulkPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingThresholdTotalAmountPrice value) =>
-        new BodyVariants::NewFloatingThresholdTotalAmountPrice(value);
+    public static implicit operator Body(NewFloatingThresholdTotalAmountPrice value) =>
+        new BodyVariants::NewFloatingThresholdTotalAmountPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingTieredPackagePrice value) =>
-        new BodyVariants::NewFloatingTieredPackagePrice(value);
+    public static implicit operator Body(NewFloatingTieredPackagePrice value) =>
+        new BodyVariants::NewFloatingTieredPackagePriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingGroupedTieredPrice value) =>
-        new BodyVariants::NewFloatingGroupedTieredPrice(value);
+    public static implicit operator Body(NewFloatingGroupedTieredPrice value) =>
+        new BodyVariants::NewFloatingGroupedTieredPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingMaxGroupTieredPackagePrice value) =>
-        new BodyVariants::NewFloatingMaxGroupTieredPackagePrice(value);
+    public static implicit operator Body(NewFloatingMaxGroupTieredPackagePrice value) =>
+        new BodyVariants::NewFloatingMaxGroupTieredPackagePriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingTieredWithMinimumPrice value) =>
-        new BodyVariants::NewFloatingTieredWithMinimumPrice(value);
+    public static implicit operator Body(NewFloatingTieredWithMinimumPrice value) =>
+        new BodyVariants::NewFloatingTieredWithMinimumPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingPackageWithAllocationPrice value) =>
-        new BodyVariants::NewFloatingPackageWithAllocationPrice(value);
+    public static implicit operator Body(NewFloatingPackageWithAllocationPrice value) =>
+        new BodyVariants::NewFloatingPackageWithAllocationPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingTieredPackageWithMinimumPrice value) =>
-        new BodyVariants::NewFloatingTieredPackageWithMinimumPrice(value);
+    public static implicit operator Body(NewFloatingTieredPackageWithMinimumPrice value) =>
+        new BodyVariants::NewFloatingTieredPackageWithMinimumPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingUnitWithPercentPrice value) =>
-        new BodyVariants::NewFloatingUnitWithPercentPrice(value);
+    public static implicit operator Body(NewFloatingUnitWithPercentPrice value) =>
+        new BodyVariants::NewFloatingUnitWithPercentPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingTieredWithProrationPrice value) =>
-        new BodyVariants::NewFloatingTieredWithProrationPrice(value);
+    public static implicit operator Body(NewFloatingTieredWithProrationPrice value) =>
+        new BodyVariants::NewFloatingTieredWithProrationPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingUnitWithProrationPrice value) =>
-        new BodyVariants::NewFloatingUnitWithProrationPrice(value);
+    public static implicit operator Body(NewFloatingUnitWithProrationPrice value) =>
+        new BodyVariants::NewFloatingUnitWithProrationPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingGroupedAllocationPrice value) =>
-        new BodyVariants::NewFloatingGroupedAllocationPrice(value);
+    public static implicit operator Body(NewFloatingGroupedAllocationPrice value) =>
+        new BodyVariants::NewFloatingGroupedAllocationPriceVariant(value);
 
-    public static implicit operator Body(
-        Models::NewFloatingGroupedWithProratedMinimumPrice value
-    ) => new BodyVariants::NewFloatingGroupedWithProratedMinimumPrice(value);
+    public static implicit operator Body(NewFloatingGroupedWithProratedMinimumPrice value) =>
+        new BodyVariants::NewFloatingGroupedWithProratedMinimumPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingGroupedWithMeteredMinimumPrice value) =>
-        new BodyVariants::NewFloatingGroupedWithMeteredMinimumPrice(value);
+    public static implicit operator Body(NewFloatingGroupedWithMeteredMinimumPrice value) =>
+        new BodyVariants::NewFloatingGroupedWithMeteredMinimumPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingMatrixWithDisplayNamePrice value) =>
-        new BodyVariants::NewFloatingMatrixWithDisplayNamePrice(value);
+    public static implicit operator Body(NewFloatingMatrixWithDisplayNamePrice value) =>
+        new BodyVariants::NewFloatingMatrixWithDisplayNamePriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingBulkWithProrationPrice value) =>
-        new BodyVariants::NewFloatingBulkWithProrationPrice(value);
+    public static implicit operator Body(NewFloatingBulkWithProrationPrice value) =>
+        new BodyVariants::NewFloatingBulkWithProrationPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingGroupedTieredPackagePrice value) =>
-        new BodyVariants::NewFloatingGroupedTieredPackagePrice(value);
+    public static implicit operator Body(NewFloatingGroupedTieredPackagePrice value) =>
+        new BodyVariants::NewFloatingGroupedTieredPackagePriceVariant(value);
 
-    public static implicit operator Body(
-        Models::NewFloatingScalableMatrixWithUnitPricingPrice value
-    ) => new BodyVariants::NewFloatingScalableMatrixWithUnitPricingPrice(value);
+    public static implicit operator Body(NewFloatingScalableMatrixWithUnitPricingPrice value) =>
+        new BodyVariants::NewFloatingScalableMatrixWithUnitPricingPriceVariant(value);
 
-    public static implicit operator Body(
-        Models::NewFloatingScalableMatrixWithTieredPricingPrice value
-    ) => new BodyVariants::NewFloatingScalableMatrixWithTieredPricingPrice(value);
+    public static implicit operator Body(NewFloatingScalableMatrixWithTieredPricingPrice value) =>
+        new BodyVariants::NewFloatingScalableMatrixWithTieredPricingPriceVariant(value);
 
-    public static implicit operator Body(Models::NewFloatingCumulativeGroupedBulkPrice value) =>
-        new BodyVariants::NewFloatingCumulativeGroupedBulkPrice(value);
+    public static implicit operator Body(NewFloatingCumulativeGroupedBulkPrice value) =>
+        new BodyVariants::NewFloatingCumulativeGroupedBulkPriceVariant(value);
 
     public abstract void Validate();
 }

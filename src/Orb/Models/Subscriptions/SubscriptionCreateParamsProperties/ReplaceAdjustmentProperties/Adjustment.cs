@@ -1,32 +1,30 @@
+using System.Text.Json.Serialization;
 using AdjustmentVariants = Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplaceAdjustmentProperties.AdjustmentVariants;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplaceAdjustmentProperties;
 
 /// <summary>
 /// The definition of a new adjustment to create and add to the subscription.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::UnionConverter<Adjustment>))]
+[JsonConverter(typeof(UnionConverter<Adjustment>))]
 public abstract record class Adjustment
 {
     internal Adjustment() { }
 
-    public static implicit operator Adjustment(Models::NewPercentageDiscount value) =>
-        new AdjustmentVariants::NewPercentageDiscount(value);
+    public static implicit operator Adjustment(NewPercentageDiscount value) =>
+        new AdjustmentVariants::NewPercentageDiscountVariant(value);
 
-    public static implicit operator Adjustment(Models::NewUsageDiscount value) =>
-        new AdjustmentVariants::NewUsageDiscount(value);
+    public static implicit operator Adjustment(NewUsageDiscount value) =>
+        new AdjustmentVariants::NewUsageDiscountVariant(value);
 
-    public static implicit operator Adjustment(Models::NewAmountDiscount value) =>
-        new AdjustmentVariants::NewAmountDiscount(value);
+    public static implicit operator Adjustment(NewAmountDiscount value) =>
+        new AdjustmentVariants::NewAmountDiscountVariant(value);
 
-    public static implicit operator Adjustment(Models::NewMinimum value) =>
-        new AdjustmentVariants::NewMinimum(value);
+    public static implicit operator Adjustment(NewMinimum value) =>
+        new AdjustmentVariants::NewMinimumVariant(value);
 
-    public static implicit operator Adjustment(Models::NewMaximum value) =>
-        new AdjustmentVariants::NewMaximum(value);
+    public static implicit operator Adjustment(NewMaximum value) =>
+        new AdjustmentVariants::NewMaximumVariant(value);
 
     public abstract void Validate();
 }

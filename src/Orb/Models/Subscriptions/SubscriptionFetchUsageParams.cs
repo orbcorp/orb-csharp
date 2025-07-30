@@ -1,6 +1,5 @@
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Net.Http;
+using System.Text.Json;
 using SubscriptionFetchUsageParamsProperties = Orb.Models.Subscriptions.SubscriptionFetchUsageParamsProperties;
 using System = System;
 
@@ -134,7 +133,7 @@ namespace Orb.Models.Subscriptions;
 /// - `first_dimension_key`: `region` - `first_dimension_value`: `us-east-1` - `second_dimension_key`:
 /// `provider` - `second_dimension_value`: `aws`
 /// </summary>
-public sealed record class SubscriptionFetchUsageParams : Orb::ParamsBase
+public sealed record class SubscriptionFetchUsageParams : ParamsBase
 {
     public required string SubscriptionID;
 
@@ -147,21 +146,14 @@ public sealed record class SubscriptionFetchUsageParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.QueryProperties.TryGetValue(
-                    "billable_metric_id",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.QueryProperties.TryGetValue("billable_metric_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
         set
         {
-            this.QueryProperties["billable_metric_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.QueryProperties["billable_metric_id"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -169,21 +161,14 @@ public sealed record class SubscriptionFetchUsageParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.QueryProperties.TryGetValue(
-                    "first_dimension_key",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.QueryProperties.TryGetValue("first_dimension_key", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
         set
         {
-            this.QueryProperties["first_dimension_key"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.QueryProperties["first_dimension_key"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -191,19 +176,14 @@ public sealed record class SubscriptionFetchUsageParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.QueryProperties.TryGetValue(
-                    "first_dimension_value",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.QueryProperties.TryGetValue("first_dimension_value", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
         set
         {
-            this.QueryProperties["first_dimension_value"] = Json::JsonSerializer.SerializeToElement(
+            this.QueryProperties["first_dimension_value"] = JsonSerializer.SerializeToElement(
                 value
             );
         }
@@ -216,17 +196,14 @@ public sealed record class SubscriptionFetchUsageParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("granularity", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("granularity", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<SubscriptionFetchUsageParamsProperties::Granularity?>(
+            return JsonSerializer.Deserialize<SubscriptionFetchUsageParamsProperties::Granularity?>(
                 element
             );
         }
-        set
-        {
-            this.QueryProperties["granularity"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.QueryProperties["granularity"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -236,33 +213,26 @@ public sealed record class SubscriptionFetchUsageParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("group_by", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("group_by", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.QueryProperties["group_by"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["group_by"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public string? SecondDimensionKey
     {
         get
         {
-            if (
-                !this.QueryProperties.TryGetValue(
-                    "second_dimension_key",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.QueryProperties.TryGetValue("second_dimension_key", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
         set
         {
-            this.QueryProperties["second_dimension_key"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.QueryProperties["second_dimension_key"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -271,19 +241,17 @@ public sealed record class SubscriptionFetchUsageParams : Orb::ParamsBase
         get
         {
             if (
-                !this.QueryProperties.TryGetValue(
-                    "second_dimension_value",
-                    out Json::JsonElement element
-                )
+                !this.QueryProperties.TryGetValue("second_dimension_value", out JsonElement element)
             )
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
         set
         {
-            this.QueryProperties["second_dimension_value"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.QueryProperties["second_dimension_value"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
@@ -294,15 +262,12 @@ public sealed record class SubscriptionFetchUsageParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("timeframe_end", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("timeframe_end", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
-        set
-        {
-            this.QueryProperties["timeframe_end"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.QueryProperties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -312,17 +277,12 @@ public sealed record class SubscriptionFetchUsageParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("timeframe_start", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("timeframe_start", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
-        set
-        {
-            this.QueryProperties["timeframe_start"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.QueryProperties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -334,17 +294,17 @@ public sealed record class SubscriptionFetchUsageParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("view_mode", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("view_mode", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<SubscriptionFetchUsageParamsProperties::ViewMode?>(
+            return JsonSerializer.Deserialize<SubscriptionFetchUsageParamsProperties::ViewMode?>(
                 element
             );
         }
-        set { this.QueryProperties["view_mode"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["view_mode"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
@@ -355,12 +315,12 @@ public sealed record class SubscriptionFetchUsageParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

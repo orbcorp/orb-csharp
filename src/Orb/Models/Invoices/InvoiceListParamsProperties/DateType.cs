@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Invoices.InvoiceListParamsProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<DateType, string>))]
-public sealed record class DateType(string value) : Orb::IEnum<DateType, string>
+[JsonConverter(typeof(EnumConverter<DateType, string>))]
+public sealed record class DateType(string value) : IEnum<DateType, string>
 {
     public static readonly DateType DueDate = new("due_date");
 
@@ -24,7 +23,7 @@ public sealed record class DateType(string value) : Orb::IEnum<DateType, string>
         {
             "due_date" => Value.DueDate,
             "invoice_date" => Value.InvoiceDate,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

@@ -1,11 +1,10 @@
+using System.Text.Json.Serialization;
 using BodyProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties;
 using BodyVariants = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyVariants;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties;
 
-[Serialization::JsonConverter(typeof(Orb::UnionConverter<Body>))]
+[JsonConverter(typeof(UnionConverter<Body>))]
 public abstract record class Body
 {
     internal Body() { }

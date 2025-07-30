@@ -1,39 +1,38 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.CreditNoteProperties.MaximumAmountAdjustmentProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<AppliesToPrice>))]
-public sealed record class AppliesToPrice : Orb::ModelBase, Orb::IFromRaw<AppliesToPrice>
+[JsonConverter(typeof(ModelConverter<AppliesToPrice>))]
+public sealed record class AppliesToPrice : ModelBase, IFromRaw<AppliesToPrice>
 {
     public required string ID
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
+                throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("id");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string Name
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
+            if (!this.Properties.TryGetValue("name", out JsonElement element))
+                throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("name");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("name");
         }
-        set { this.Properties["name"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -45,16 +44,14 @@ public sealed record class AppliesToPrice : Orb::ModelBase, Orb::IFromRaw<Applie
     public AppliesToPrice() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    AppliesToPrice(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    AppliesToPrice(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static AppliesToPrice FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static AppliesToPrice FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

@@ -1,6 +1,5 @@
-using Http = System.Net.Http;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Net.Http;
 
 namespace Orb.Models.Events.Backfills;
 
@@ -13,13 +12,13 @@ namespace Orb.Models.Events.Backfills;
 /// If a backfill is reverted before its closed, no usage will be updated as a result
 /// of the backfill and it will immediately transition to `reverted`.
 /// </summary>
-public sealed record class BackfillRevertParams : Orb::ParamsBase
+public sealed record class BackfillRevertParams : ParamsBase
 {
     public required string BackfillID;
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/events/backfills/{0}/revert", this.BackfillID)
         )
@@ -28,12 +27,12 @@ public sealed record class BackfillRevertParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

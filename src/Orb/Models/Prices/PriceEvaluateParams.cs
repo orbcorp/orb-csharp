@@ -1,9 +1,8 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using System = System;
-using Text = System.Text;
 
 namespace Orb.Models.Prices;
 
@@ -32,9 +31,9 @@ namespace Orb.Models.Prices;
 /// endpoint rather than a GET endpoint because it employs a JSON body rather than
 /// query parameters.
 /// </summary>
-public sealed record class PriceEvaluateParams : Orb::ParamsBase
+public sealed record class PriceEvaluateParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     public required string PriceID;
 
@@ -45,18 +44,15 @@ public sealed record class PriceEvaluateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("timeframe_end", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("timeframe_end", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "timeframe_end",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(element);
         }
-        set
-        {
-            this.BodyProperties["timeframe_end"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -66,18 +62,15 @@ public sealed record class PriceEvaluateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("timeframe_start", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("timeframe_start", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "timeframe_start",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(element);
         }
-        set
-        {
-            this.BodyProperties["timeframe_start"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -87,12 +80,12 @@ public sealed record class PriceEvaluateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("customer_id", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("customer_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.BodyProperties["customer_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -102,21 +95,14 @@ public sealed record class PriceEvaluateParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "external_customer_id",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
         set
         {
-            this.BodyProperties["external_customer_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -128,34 +114,31 @@ public sealed record class PriceEvaluateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("filter", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("filter", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.BodyProperties["filter"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["filter"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// Properties (or [computed properties](/extensibility/advanced-metrics#computed-properties))
     /// used to group the underlying billable metric
     /// </summary>
-    public Generic::List<string>? GroupingKeys
+    public List<string>? GroupingKeys
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("grouping_keys", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("grouping_keys", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<string>?>(element);
+            return JsonSerializer.Deserialize<List<string>?>(element);
         }
-        set
-        {
-            this.BodyProperties["grouping_keys"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["grouping_keys"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
@@ -166,21 +149,21 @@ public sealed record class PriceEvaluateParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

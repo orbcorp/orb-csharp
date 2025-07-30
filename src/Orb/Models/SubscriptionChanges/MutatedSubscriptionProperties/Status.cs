@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.SubscriptionChanges.MutatedSubscriptionProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<Status, string>))]
-public sealed record class Status(string value) : Orb::IEnum<Status, string>
+[JsonConverter(typeof(EnumConverter<Status, string>))]
+public sealed record class Status(string value) : IEnum<Status, string>
 {
     public static readonly Status Active = new("active");
 
@@ -28,7 +27,7 @@ public sealed record class Status(string value) : Orb::IEnum<Status, string>
             "active" => Value.Active,
             "ended" => Value.Ended,
             "upcoming" => Value.Upcoming,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

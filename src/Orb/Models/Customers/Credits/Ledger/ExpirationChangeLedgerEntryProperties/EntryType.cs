@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.Credits.Ledger.ExpirationChangeLedgerEntryProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<EntryType, string>))]
-public sealed record class EntryType(string value) : Orb::IEnum<EntryType, string>
+[JsonConverter(typeof(EnumConverter<EntryType, string>))]
+public sealed record class EntryType(string value) : IEnum<EntryType, string>
 {
     public static readonly EntryType ExpirationChange = new("expiration_change");
 
@@ -20,7 +19,7 @@ public sealed record class EntryType(string value) : Orb::IEnum<EntryType, strin
         _value switch
         {
             "expiration_change" => Value.ExpirationChange,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

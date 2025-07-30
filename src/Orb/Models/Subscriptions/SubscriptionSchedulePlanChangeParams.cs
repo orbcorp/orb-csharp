@@ -1,11 +1,10 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using Models = Orb.Models;
-using Orb = Orb;
 using SubscriptionSchedulePlanChangeParamsProperties = Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties;
 using System = System;
-using Text = System.Text;
 
 namespace Orb.Models.Subscriptions;
 
@@ -167,9 +166,9 @@ namespace Orb.Models.Subscriptions;
 /// in any fixed fees when making a plan change, adjusting the customer balance as
 /// needed. For details on this behavior, see [Modifying subscriptions](/product-catalog/modifying-subscriptions#prorations-for-in-advance-fees).
 /// </summary>
-public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBase
+public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     public required string SubscriptionID;
 
@@ -177,59 +176,53 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("change_option", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("change_option", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "change_option",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsProperties::ChangeOption>(
+            return JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsProperties::ChangeOption>(
                     element
                 ) ?? throw new System::ArgumentNullException("change_option");
         }
-        set
-        {
-            this.BodyProperties["change_option"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["change_option"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// Additional adjustments to be added to the subscription. (Only available for
     /// accounts that have migrated off of legacy subscription overrides)
     /// </summary>
-    public Generic::List<SubscriptionSchedulePlanChangeParamsProperties::AddAdjustment>? AddAdjustments
+    public List<SubscriptionSchedulePlanChangeParamsProperties::AddAdjustment>? AddAdjustments
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("add_adjustments", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("add_adjustments", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<SubscriptionSchedulePlanChangeParamsProperties::AddAdjustment>?>(
+            return JsonSerializer.Deserialize<List<SubscriptionSchedulePlanChangeParamsProperties::AddAdjustment>?>(
                 element
             );
         }
-        set
-        {
-            this.BodyProperties["add_adjustments"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["add_adjustments"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// Additional prices to be added to the subscription. (Only available for accounts
     /// that have migrated off of legacy subscription overrides)
     /// </summary>
-    public Generic::List<SubscriptionSchedulePlanChangeParamsProperties::AddPrice>? AddPrices
+    public List<SubscriptionSchedulePlanChangeParamsProperties::AddPrice>? AddPrices
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("add_prices", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("add_prices", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<SubscriptionSchedulePlanChangeParamsProperties::AddPrice>?>(
+            return JsonSerializer.Deserialize<List<SubscriptionSchedulePlanChangeParamsProperties::AddPrice>?>(
                 element
             );
         }
-        set { this.BodyProperties["add_prices"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["add_prices"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -243,17 +236,17 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
             if (
                 !this.BodyProperties.TryGetValue(
                     "align_billing_with_plan_change_date",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
                 return null;
 
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element);
         }
         set
         {
             this.BodyProperties["align_billing_with_plan_change_date"] =
-                Json::JsonSerializer.SerializeToElement(value);
+                JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -266,15 +259,12 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("auto_collection", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("auto_collection", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element);
         }
-        set
-        {
-            this.BodyProperties["auto_collection"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["auto_collection"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -287,21 +277,19 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
         get
         {
             if (
-                !this.BodyProperties.TryGetValue(
-                    "billing_cycle_alignment",
-                    out Json::JsonElement element
-                )
+                !this.BodyProperties.TryGetValue("billing_cycle_alignment", out JsonElement element)
             )
                 return null;
 
-            return Json::JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsProperties::BillingCycleAlignment?>(
+            return JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsProperties::BillingCycleAlignment?>(
                 element
             );
         }
         set
         {
-            this.BodyProperties["billing_cycle_alignment"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["billing_cycle_alignment"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
@@ -312,19 +300,17 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
             if (
                 !this.BodyProperties.TryGetValue(
                     "billing_cycle_anchor_configuration",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Models::BillingCycleAnchorConfiguration?>(
-                element
-            );
+            return JsonSerializer.Deserialize<Models::BillingCycleAnchorConfiguration?>(element);
         }
         set
         {
             this.BodyProperties["billing_cycle_anchor_configuration"] =
-                Json::JsonSerializer.SerializeToElement(value);
+                JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -337,12 +323,12 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("change_date", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("change_date", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
-        set { this.BodyProperties["change_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["change_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -354,19 +340,14 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "coupon_redemption_code",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("coupon_redemption_code", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
         set
         {
-            this.BodyProperties["coupon_redemption_code"] = Json::JsonSerializer.SerializeToElement(
+            this.BodyProperties["coupon_redemption_code"] = JsonSerializer.SerializeToElement(
                 value
             );
         }
@@ -376,21 +357,14 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "credits_overage_rate",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("credits_overage_rate", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element);
         }
         set
         {
-            this.BodyProperties["credits_overage_rate"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["credits_overage_rate"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -402,21 +376,14 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "default_invoice_memo",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("default_invoice_memo", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
         set
         {
-            this.BodyProperties["default_invoice_memo"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["default_invoice_memo"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -428,17 +395,12 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("external_plan_id", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("external_plan_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set
-        {
-            this.BodyProperties["external_plan_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.BodyProperties["external_plan_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -450,12 +412,12 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("filter", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("filter", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.BodyProperties["filter"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["filter"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -465,21 +427,14 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "initial_phase_order",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("initial_phase_order", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
         set
         {
-            this.BodyProperties["initial_phase_order"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["initial_phase_order"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -492,21 +447,14 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "invoicing_threshold",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("invoicing_threshold", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
         set
         {
-            this.BodyProperties["invoicing_threshold"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["invoicing_threshold"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -519,12 +467,12 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("net_terms", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("net_terms", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set { this.BodyProperties["net_terms"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["net_terms"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public double? PerCreditOverageAmount
@@ -534,17 +482,18 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
             if (
                 !this.BodyProperties.TryGetValue(
                     "per_credit_overage_amount",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
                 return null;
 
-            return Json::JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element);
         }
         set
         {
-            this.BodyProperties["per_credit_overage_amount"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["per_credit_overage_amount"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
@@ -556,12 +505,12 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("plan_id", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("plan_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.BodyProperties["plan_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["plan_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -572,67 +521,50 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "plan_version_number",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("plan_version_number", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
         set
         {
-            this.BodyProperties["plan_version_number"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["plan_version_number"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
     /// <summary>
     /// Optionally provide a list of overrides for prices on the plan
     /// </summary>
-    public Generic::List<Json::JsonElement>? PriceOverrides
+    public List<JsonElement>? PriceOverrides
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("price_overrides", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("price_overrides", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<Json::JsonElement>?>(element);
+            return JsonSerializer.Deserialize<List<JsonElement>?>(element);
         }
-        set
-        {
-            this.BodyProperties["price_overrides"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["price_overrides"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// Plan adjustments to be removed from the subscription. (Only available for accounts
     /// that have migrated off of legacy subscription overrides)
     /// </summary>
-    public Generic::List<SubscriptionSchedulePlanChangeParamsProperties::RemoveAdjustment>? RemoveAdjustments
+    public List<SubscriptionSchedulePlanChangeParamsProperties::RemoveAdjustment>? RemoveAdjustments
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "remove_adjustments",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("remove_adjustments", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<SubscriptionSchedulePlanChangeParamsProperties::RemoveAdjustment>?>(
+            return JsonSerializer.Deserialize<List<SubscriptionSchedulePlanChangeParamsProperties::RemoveAdjustment>?>(
                 element
             );
         }
         set
         {
-            this.BodyProperties["remove_adjustments"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["remove_adjustments"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -640,48 +572,38 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
     /// Plan prices to be removed from the subscription. (Only available for accounts
     /// that have migrated off of legacy subscription overrides)
     /// </summary>
-    public Generic::List<SubscriptionSchedulePlanChangeParamsProperties::RemovePrice>? RemovePrices
+    public List<SubscriptionSchedulePlanChangeParamsProperties::RemovePrice>? RemovePrices
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("remove_prices", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("remove_prices", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<SubscriptionSchedulePlanChangeParamsProperties::RemovePrice>?>(
+            return JsonSerializer.Deserialize<List<SubscriptionSchedulePlanChangeParamsProperties::RemovePrice>?>(
                 element
             );
         }
-        set
-        {
-            this.BodyProperties["remove_prices"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["remove_prices"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// Plan adjustments to be replaced with additional adjustments on the subscription.
     /// (Only available for accounts that have migrated off of legacy subscription overrides)
     /// </summary>
-    public Generic::List<SubscriptionSchedulePlanChangeParamsProperties::ReplaceAdjustment>? ReplaceAdjustments
+    public List<SubscriptionSchedulePlanChangeParamsProperties::ReplaceAdjustment>? ReplaceAdjustments
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "replace_adjustments",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("replace_adjustments", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<SubscriptionSchedulePlanChangeParamsProperties::ReplaceAdjustment>?>(
+            return JsonSerializer.Deserialize<List<SubscriptionSchedulePlanChangeParamsProperties::ReplaceAdjustment>?>(
                 element
             );
         }
         set
         {
-            this.BodyProperties["replace_adjustments"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["replace_adjustments"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -689,21 +611,18 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
     /// Plan prices to be replaced with additional prices on the subscription. (Only
     /// available for accounts that have migrated off of legacy subscription overrides)
     /// </summary>
-    public Generic::List<SubscriptionSchedulePlanChangeParamsProperties::ReplacePrice>? ReplacePrices
+    public List<SubscriptionSchedulePlanChangeParamsProperties::ReplacePrice>? ReplacePrices
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("replace_prices", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("replace_prices", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<SubscriptionSchedulePlanChangeParamsProperties::ReplacePrice>?>(
+            return JsonSerializer.Deserialize<List<SubscriptionSchedulePlanChangeParamsProperties::ReplacePrice>?>(
                 element
             );
         }
-        set
-        {
-            this.BodyProperties["replace_prices"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["replace_prices"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -715,21 +634,14 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "trial_duration_days",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("trial_duration_days", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
         set
         {
-            this.BodyProperties["trial_duration_days"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["trial_duration_days"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -741,29 +653,22 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
     /// usage_customer_ids must be either the customer for this subscription itself,
     /// or any of that customer's children.
     /// </summary>
-    public Generic::List<string>? UsageCustomerIDs
+    public List<string>? UsageCustomerIDs
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "usage_customer_ids",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("usage_customer_ids", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<string>?>(element);
+            return JsonSerializer.Deserialize<List<string>?>(element);
         }
         set
         {
-            this.BodyProperties["usage_customer_ids"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["usage_customer_ids"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
@@ -774,21 +679,21 @@ public sealed record class SubscriptionSchedulePlanChangeParams : Orb::ParamsBas
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

@@ -1,17 +1,13 @@
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.InvoiceLevelDiscountVariants;
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<PercentageDiscount, Models::PercentageDiscount>)
-)]
-public sealed record class PercentageDiscount(Models::PercentageDiscount Value)
-    : Models::InvoiceLevelDiscount,
-        Orb::IVariant<PercentageDiscount, Models::PercentageDiscount>
+[JsonConverter(typeof(VariantConverter<PercentageDiscountVariant, PercentageDiscount>))]
+public sealed record class PercentageDiscountVariant(PercentageDiscount Value)
+    : InvoiceLevelDiscount,
+        IVariant<PercentageDiscountVariant, PercentageDiscount>
 {
-    public static PercentageDiscount From(Models::PercentageDiscount value)
+    public static PercentageDiscountVariant From(PercentageDiscount value)
     {
         return new(value);
     }
@@ -22,14 +18,12 @@ public sealed record class PercentageDiscount(Models::PercentageDiscount Value)
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<AmountDiscount, Models::AmountDiscount>)
-)]
-public sealed record class AmountDiscount(Models::AmountDiscount Value)
-    : Models::InvoiceLevelDiscount,
-        Orb::IVariant<AmountDiscount, Models::AmountDiscount>
+[JsonConverter(typeof(VariantConverter<AmountDiscountVariant, AmountDiscount>))]
+public sealed record class AmountDiscountVariant(AmountDiscount Value)
+    : InvoiceLevelDiscount,
+        IVariant<AmountDiscountVariant, AmountDiscount>
 {
-    public static AmountDiscount From(Models::AmountDiscount value)
+    public static AmountDiscountVariant From(AmountDiscount value)
     {
         return new(value);
     }
@@ -40,12 +34,12 @@ public sealed record class AmountDiscount(Models::AmountDiscount Value)
     }
 }
 
-[Serialization::JsonConverter(typeof(Orb::VariantConverter<TrialDiscount, Models::TrialDiscount>))]
-public sealed record class TrialDiscount(Models::TrialDiscount Value)
-    : Models::InvoiceLevelDiscount,
-        Orb::IVariant<TrialDiscount, Models::TrialDiscount>
+[JsonConverter(typeof(VariantConverter<TrialDiscountVariant, TrialDiscount>))]
+public sealed record class TrialDiscountVariant(TrialDiscount Value)
+    : InvoiceLevelDiscount,
+        IVariant<TrialDiscountVariant, TrialDiscount>
 {
-    public static TrialDiscount From(Models::TrialDiscount value)
+    public static TrialDiscountVariant From(TrialDiscount value)
     {
         return new(value);
     }

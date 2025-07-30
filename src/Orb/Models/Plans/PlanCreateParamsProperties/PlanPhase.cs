@@ -1,15 +1,14 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using PlanPhaseProperties = Orb.Models.Plans.PlanCreateParamsProperties.PlanPhaseProperties;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Plans.PlanCreateParamsProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<PlanPhase>))]
-public sealed record class PlanPhase : Orb::ModelBase, Orb::IFromRaw<PlanPhase>
+[JsonConverter(typeof(ModelConverter<PlanPhase>))]
+public sealed record class PlanPhase : ModelBase, IFromRaw<PlanPhase>
 {
     /// <summary>
     /// Determines the ordering of the phase in a plan's lifecycle. 1 = first phase.
@@ -18,12 +17,12 @@ public sealed record class PlanPhase : Orb::ModelBase, Orb::IFromRaw<PlanPhase>
     {
         get
         {
-            if (!this.Properties.TryGetValue("order", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("order", "Missing required argument");
+            if (!this.Properties.TryGetValue("order", out JsonElement element))
+                throw new ArgumentOutOfRangeException("order", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element);
         }
-        set { this.Properties["order"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["order"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -36,17 +35,17 @@ public sealed record class PlanPhase : Orb::ModelBase, Orb::IFromRaw<PlanPhase>
             if (
                 !this.Properties.TryGetValue(
                     "align_billing_with_phase_start_date",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
                 return null;
 
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element);
         }
         set
         {
             this.Properties["align_billing_with_phase_start_date"] =
-                Json::JsonSerializer.SerializeToElement(value);
+                JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -58,24 +57,24 @@ public sealed record class PlanPhase : Orb::ModelBase, Orb::IFromRaw<PlanPhase>
     {
         get
         {
-            if (!this.Properties.TryGetValue("duration", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("duration", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set { this.Properties["duration"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["duration"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public PlanPhaseProperties::DurationUnit? DurationUnit
     {
         get
         {
-            if (!this.Properties.TryGetValue("duration_unit", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("duration_unit", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<PlanPhaseProperties::DurationUnit?>(element);
+            return JsonSerializer.Deserialize<PlanPhaseProperties::DurationUnit?>(element);
         }
-        set { this.Properties["duration_unit"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["duration_unit"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -89,16 +88,14 @@ public sealed record class PlanPhase : Orb::ModelBase, Orb::IFromRaw<PlanPhase>
     public PlanPhase() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    PlanPhase(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    PlanPhase(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static PlanPhase FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static PlanPhase FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

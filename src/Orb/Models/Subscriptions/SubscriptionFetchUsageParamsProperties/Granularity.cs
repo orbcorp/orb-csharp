@@ -1,14 +1,13 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionFetchUsageParamsProperties;
 
 /// <summary>
 /// This determines the windowing of usage reporting.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<Granularity, string>))]
-public sealed record class Granularity(string value) : Orb::IEnum<Granularity, string>
+[JsonConverter(typeof(EnumConverter<Granularity, string>))]
+public sealed record class Granularity(string value) : IEnum<Granularity, string>
 {
     public static readonly Granularity Day = new("day");
 
@@ -23,7 +22,7 @@ public sealed record class Granularity(string value) : Orb::IEnum<Granularity, s
         _value switch
         {
             "day" => Value.Day,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

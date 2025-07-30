@@ -1,9 +1,8 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
-using Text = System.Text;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 
 namespace Orb.Models.Events;
 
@@ -45,9 +44,9 @@ namespace Orb.Models.Events;
 /// for a single customer in a 100 day period. For higher volume   updates, consider
 /// using the [event backfill](create-backfill) endpoint.
 /// </summary>
-public sealed record class EventUpdateParams : Orb::ParamsBase
+public sealed record class EventUpdateParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     public required string EventID;
 
@@ -58,37 +57,30 @@ public sealed record class EventUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("event_name", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "event_name",
-                    "Missing required argument"
-                );
+            if (!this.BodyProperties.TryGetValue("event_name", out JsonElement element))
+                throw new ArgumentOutOfRangeException("event_name", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("event_name");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("event_name");
         }
-        set { this.BodyProperties["event_name"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["event_name"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// A dictionary of custom properties. Values in this dictionary must be numeric,
     /// boolean, or strings. Nested dictionaries are disallowed.
     /// </summary>
-    public required Generic::Dictionary<string, Json::JsonElement> Properties
+    public required Dictionary<string, JsonElement> Properties
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("properties", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "properties",
-                    "Missing required argument"
-                );
+            if (!this.BodyProperties.TryGetValue("properties", out JsonElement element))
+                throw new ArgumentOutOfRangeException("properties", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Generic::Dictionary<string, Json::JsonElement>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("properties");
+            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(element)
+                ?? throw new ArgumentNullException("properties");
         }
-        set { this.BodyProperties["properties"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["properties"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -96,19 +88,16 @@ public sealed record class EventUpdateParams : Orb::ParamsBase
     /// the time that usage was recorded, and is particularly important to attribute
     /// usage to a given billing period.
     /// </summary>
-    public required System::DateTime Timestamp
+    public required DateTime Timestamp
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("timestamp", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "timestamp",
-                    "Missing required argument"
-                );
+            if (!this.BodyProperties.TryGetValue("timestamp", out JsonElement element))
+                throw new ArgumentOutOfRangeException("timestamp", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element);
         }
-        set { this.BodyProperties["timestamp"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["timestamp"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -118,12 +107,12 @@ public sealed record class EventUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("customer_id", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("customer_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.BodyProperties["customer_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -133,27 +122,20 @@ public sealed record class EventUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "external_customer_id",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
         set
         {
-            this.BodyProperties["external_customer_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/') + string.Format("/events/{0}", this.EventID)
         )
         {
@@ -161,21 +143,21 @@ public sealed record class EventUpdateParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

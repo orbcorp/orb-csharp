@@ -1,14 +1,13 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.NewMinimumProperties;
 
 /// <summary>
 /// If set, only prices of the specified type will have the adjustment applied.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<PriceType, string>))]
-public sealed record class PriceType(string value) : Orb::IEnum<PriceType, string>
+[JsonConverter(typeof(EnumConverter<PriceType, string>))]
+public sealed record class PriceType(string value) : IEnum<PriceType, string>
 {
     public static readonly PriceType Usage = new("usage");
 
@@ -39,7 +38,7 @@ public sealed record class PriceType(string value) : Orb::IEnum<PriceType, strin
             "fixed_in_arrears" => Value.FixedInArrears,
             "fixed" => Value.Fixed,
             "in_arrears" => Value.InArrears,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

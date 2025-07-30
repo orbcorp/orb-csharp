@@ -1,8 +1,8 @@
+using System.Threading.Tasks;
+using Orb.Models.Customers;
 using BalanceTransactions = Orb.Service.Customers.BalanceTransactions;
 using Costs = Orb.Service.Customers.Costs;
 using Credits = Orb.Service.Customers.Credits;
-using Customers = Orb.Models.Customers;
-using Tasks = System.Threading.Tasks;
 
 namespace Orb.Service.Customers;
 
@@ -25,7 +25,7 @@ public interface ICustomerService
     /// can be configured by setting   `external_customer_id` * [Timezone localization](/essentials/timezones)
     /// can be configured on a per-customer basis by   setting the `timezone` parameter
     /// </summary>
-    Tasks::Task<Customers::Customer> Create(Customers::CustomerCreateParams @params);
+    Task<Customer> Create(CustomerCreateParams @params);
 
     /// <summary>
     /// This endpoint can be used to update the `payment_provider`, `payment_provider_id`,
@@ -33,7 +33,7 @@ public interface ICustomerService
     /// `shipping_address`, `billing_address`, and `additional_emails` of an existing
     /// customer. Other fields on a customer are currently immutable.
     /// </summary>
-    Tasks::Task<Customers::Customer> Update(Customers::CustomerUpdateParams @params);
+    Task<Customer> Update(CustomerUpdateParams @params);
 
     /// <summary>
     /// This endpoint returns a list of all customers for an account. The list of customers
@@ -42,7 +42,7 @@ public interface ICustomerService
     ///
     /// See [Customer](/core-concepts##customer) for an overview of the customer model.
     /// </summary>
-    Tasks::Task<Customers::CustomerListPageResponse> List(Customers::CustomerListParams @params);
+    Task<CustomerListPageResponse> List(CustomerListParams @params);
 
     /// <summary>
     /// This performs a deletion of this customer, its subscriptions, and its invoices,
@@ -58,7 +58,7 @@ public interface ICustomerService
     /// customer on subsequent GET requests while deletion is in process will reflect
     /// its deletion.
     /// </summary>
-    Tasks::Task Delete(Customers::CustomerDeleteParams @params);
+    Task Delete(CustomerDeleteParams @params);
 
     /// <summary>
     /// This endpoint is used to fetch customer details given an identifier. If the
@@ -68,7 +68,7 @@ public interface ICustomerService
     /// See the [Customer resource](/core-concepts#customer) for a full discussion of
     /// the Customer model.
     /// </summary>
-    Tasks::Task<Customers::Customer> Fetch(Customers::CustomerFetchParams @params);
+    Task<Customer> Fetch(CustomerFetchParams @params);
 
     /// <summary>
     /// This endpoint is used to fetch customer details given an `external_customer_id`
@@ -76,9 +76,7 @@ public interface ICustomerService
     ///
     /// Note that the resource and semantics of this endpoint exactly mirror [Get Customer](fetch-customer).
     /// </summary>
-    Tasks::Task<Customers::Customer> FetchByExternalID(
-        Customers::CustomerFetchByExternalIDParams @params
-    );
+    Task<Customer> FetchByExternalID(CustomerFetchByExternalIDParams @params);
 
     /// <summary>
     /// Sync Orb's payment methods for the customer with their gateway.
@@ -88,9 +86,7 @@ public interface ICustomerService
     ///
     /// **Note**: This functionality is currently only available for Stripe.
     /// </summary>
-    Tasks::Task SyncPaymentMethodsFromGateway(
-        Customers::CustomerSyncPaymentMethodsFromGatewayParams @params
-    );
+    Task SyncPaymentMethodsFromGateway(CustomerSyncPaymentMethodsFromGatewayParams @params);
 
     /// <summary>
     /// Sync Orb's payment methods for the customer with their gateway.
@@ -100,8 +96,8 @@ public interface ICustomerService
     ///
     /// **Note**: This functionality is currently only available for Stripe.
     /// </summary>
-    Tasks::Task SyncPaymentMethodsFromGatewayByExternalCustomerID(
-        Customers::CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams @params
+    Task SyncPaymentMethodsFromGatewayByExternalCustomerID(
+        CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams @params
     );
 
     /// <summary>
@@ -109,7 +105,5 @@ public interface ICustomerService
     /// (see [Customer ID Aliases](/events-and-metrics/customer-aliases)). Note that
     /// the resource and semantics of this endpoint exactly mirror [Update Customer](update-customer).
     /// </summary>
-    Tasks::Task<Customers::Customer> UpdateByExternalID(
-        Customers::CustomerUpdateByExternalIDParams @params
-    );
+    Task<Customer> UpdateByExternalID(CustomerUpdateByExternalIDParams @params);
 }

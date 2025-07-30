@@ -1,13 +1,12 @@
-using ExternalConnectionProperties = Orb.Models.Items.ItemUpdateParamsProperties.ExternalConnectionProperties;
-using Tasks = System.Threading.Tasks;
-using Tests = Orb.Tests;
+using System.Threading.Tasks;
+using Orb.Models.Items.ItemUpdateParamsProperties.ExternalConnectionProperties;
 
 namespace Orb.Tests.Service.Items;
 
-public class ItemServiceTest : Tests::TestBase
+public class ItemServiceTest : TestBase
 {
     [Fact]
-    public async Tasks::Task Create_Works()
+    public async Task Create_Works()
     {
         var item = await this.client.Items.Create(
             new()
@@ -20,7 +19,7 @@ public class ItemServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task Update_Works()
+    public async Task Update_Works()
     {
         var item = await this.client.Items.Update(
             new()
@@ -30,8 +29,7 @@ public class ItemServiceTest : Tests::TestBase
                 [
                     new()
                     {
-                        ExternalConnectionName =
-                            ExternalConnectionProperties::ExternalConnectionName.Stripe,
+                        ExternalConnectionName = ExternalConnectionName.Stripe,
                         ExternalEntityID = "external_entity_id",
                     },
                 ],
@@ -43,21 +41,21 @@ public class ItemServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task List_Works()
+    public async Task List_Works()
     {
         var page = await this.client.Items.List(new() { Cursor = "cursor", Limit = 1 });
         page.Validate();
     }
 
     [Fact]
-    public async Tasks::Task Archive_Works()
+    public async Task Archive_Works()
     {
         var item = await this.client.Items.Archive(new() { ItemID = "item_id" });
         item.Validate();
     }
 
     [Fact]
-    public async Tasks::Task Fetch_Works()
+    public async Task Fetch_Works()
     {
         var item = await this.client.Items.Fetch(new() { ItemID = "item_id" });
         item.Validate();

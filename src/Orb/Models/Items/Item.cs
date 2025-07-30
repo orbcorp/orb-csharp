@@ -1,10 +1,9 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using ItemProperties = Orb.Models.Items.ItemProperties;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Items;
 
@@ -13,57 +12,48 @@ namespace Orb.Models.Items;
 /// with all line items, billable metrics, and prices and are used for defining external
 /// sync behavior for invoices and tax calculation purposes.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<Item>))]
-public sealed record class Item : Orb::ModelBase, Orb::IFromRaw<Item>
+[JsonConverter(typeof(ModelConverter<Item>))]
+public sealed record class Item : ModelBase, IFromRaw<Item>
 {
     public required string ID
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
+                throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("id");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public required System::DateTime CreatedAt
+    public required DateTime CreatedAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("created_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "created_at",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("created_at", out JsonElement element))
+                throw new ArgumentOutOfRangeException("created_at", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element);
         }
-        set { this.Properties["created_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public required Generic::List<ItemProperties::ExternalConnection> ExternalConnections
+    public required List<ItemProperties::ExternalConnection> ExternalConnections
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_connections", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("external_connections", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "external_connections",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<ItemProperties::ExternalConnection>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("external_connections");
+            return JsonSerializer.Deserialize<List<ItemProperties::ExternalConnection>>(element)
+                ?? throw new ArgumentNullException("external_connections");
         }
-        set
-        {
-            this.Properties["external_connections"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.Properties["external_connections"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -72,33 +62,30 @@ public sealed record class Item : Orb::ModelBase, Orb::IFromRaw<Item>
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Generic::Dictionary<string, string> Metadata
+    public required Dictionary<string, string> Metadata
     {
         get
         {
-            if (!this.Properties.TryGetValue("metadata", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "metadata",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("metadata", out JsonElement element))
+                throw new ArgumentOutOfRangeException("metadata", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Generic::Dictionary<string, string>>(element)
-                ?? throw new System::ArgumentNullException("metadata");
+            return JsonSerializer.Deserialize<Dictionary<string, string>>(element)
+                ?? throw new ArgumentNullException("metadata");
         }
-        set { this.Properties["metadata"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string Name
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
+            if (!this.Properties.TryGetValue("name", out JsonElement element))
+                throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("name");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("name");
         }
-        set { this.Properties["name"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -119,14 +106,14 @@ public sealed record class Item : Orb::ModelBase, Orb::IFromRaw<Item>
     public Item() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    Item(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    Item(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static Item FromRawUnchecked(Generic::Dictionary<string, Json::JsonElement> properties)
+    public static Item FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

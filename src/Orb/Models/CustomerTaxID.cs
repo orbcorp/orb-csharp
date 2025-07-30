@@ -1,9 +1,8 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using CustomerTaxIDProperties = Orb.Models.CustomerTaxIDProperties;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
@@ -108,49 +107,49 @@ namespace Orb.Models;
 /// | Zambia Tax Identification Number | | Zimbabwe | `zw_tin` | Zimbabwe Tax Identification
 /// Number |
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<CustomerTaxID>))]
-public sealed record class CustomerTaxID : Orb::ModelBase, Orb::IFromRaw<CustomerTaxID>
+[JsonConverter(typeof(ModelConverter<CustomerTaxID>))]
+public sealed record class CustomerTaxID : ModelBase, IFromRaw<CustomerTaxID>
 {
     public required CustomerTaxIDProperties::Country Country
     {
         get
         {
-            if (!this.Properties.TryGetValue("country", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("country", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "country",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<CustomerTaxIDProperties::Country>(element)
+            return JsonSerializer.Deserialize<CustomerTaxIDProperties::Country>(element)
                 ?? throw new System::ArgumentNullException("country");
         }
-        set { this.Properties["country"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["country"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required CustomerTaxIDProperties::Type Type
     {
         get
         {
-            if (!this.Properties.TryGetValue("type", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<CustomerTaxIDProperties::Type>(element)
+            return JsonSerializer.Deserialize<CustomerTaxIDProperties::Type>(element)
                 ?? throw new System::ArgumentNullException("type");
         }
-        set { this.Properties["type"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["type"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string Value
     {
         get
         {
-            if (!this.Properties.TryGetValue("value", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("value", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("value", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("value");
         }
-        set { this.Properties["value"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["value"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -163,16 +162,14 @@ public sealed record class CustomerTaxID : Orb::ModelBase, Orb::IFromRaw<Custome
     public CustomerTaxID() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    CustomerTaxID(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    CustomerTaxID(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static CustomerTaxID FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static CustomerTaxID FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

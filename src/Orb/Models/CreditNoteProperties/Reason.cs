@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.CreditNoteProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<Reason, string>))]
-public sealed record class Reason(string value) : Orb::IEnum<Reason, string>
+[JsonConverter(typeof(EnumConverter<Reason, string>))]
+public sealed record class Reason(string value) : IEnum<Reason, string>
 {
     public static readonly Reason Duplicate = new("Duplicate");
 

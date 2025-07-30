@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.CustomerProperties.AccountingSyncConfigurationProperties.AccountingProviderProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<ProviderType, string>))]
-public sealed record class ProviderType(string value) : Orb::IEnum<ProviderType, string>
+[JsonConverter(typeof(EnumConverter<ProviderType, string>))]
+public sealed record class ProviderType(string value) : IEnum<ProviderType, string>
 {
     public static readonly ProviderType Quickbooks = new("quickbooks");
 
@@ -24,7 +23,7 @@ public sealed record class ProviderType(string value) : Orb::IEnum<ProviderType,
         {
             "quickbooks" => Value.Quickbooks,
             "netsuite" => Value.Netsuite,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

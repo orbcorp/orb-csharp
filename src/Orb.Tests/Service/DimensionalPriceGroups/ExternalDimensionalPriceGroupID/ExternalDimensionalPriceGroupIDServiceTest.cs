@@ -1,12 +1,11 @@
-using Tasks = System.Threading.Tasks;
-using Tests = Orb.Tests;
+using System.Threading.Tasks;
 
 namespace Orb.Tests.Service.DimensionalPriceGroups.ExternalDimensionalPriceGroupID;
 
-public class ExternalDimensionalPriceGroupIDServiceTest : Tests::TestBase
+public class ExternalDimensionalPriceGroupIDServiceTest : TestBase
 {
     [Fact]
-    public async Tasks::Task Retrieve_Works()
+    public async Task Retrieve_Works()
     {
         var dimensionalPriceGroup =
             await this.client.DimensionalPriceGroups.ExternalDimensionalPriceGroupID.Retrieve(
@@ -16,7 +15,7 @@ public class ExternalDimensionalPriceGroupIDServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task Update_Works()
+    public async Task Update_Works()
     {
         var dimensionalPriceGroup =
             await this.client.DimensionalPriceGroups.ExternalDimensionalPriceGroupID.Update(

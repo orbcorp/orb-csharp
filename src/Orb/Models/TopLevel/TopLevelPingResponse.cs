@@ -1,31 +1,25 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.TopLevel;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<TopLevelPingResponse>))]
-public sealed record class TopLevelPingResponse
-    : Orb::ModelBase,
-        Orb::IFromRaw<TopLevelPingResponse>
+[JsonConverter(typeof(ModelConverter<TopLevelPingResponse>))]
+public sealed record class TopLevelPingResponse : ModelBase, IFromRaw<TopLevelPingResponse>
 {
     public required string Response
     {
         get
         {
-            if (!this.Properties.TryGetValue("response", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "response",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("response", out JsonElement element))
+                throw new ArgumentOutOfRangeException("response", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("response");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("response");
         }
-        set { this.Properties["response"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["response"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -36,16 +30,14 @@ public sealed record class TopLevelPingResponse
     public TopLevelPingResponse() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    TopLevelPingResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    TopLevelPingResponse(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static TopLevelPingResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static TopLevelPingResponse FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

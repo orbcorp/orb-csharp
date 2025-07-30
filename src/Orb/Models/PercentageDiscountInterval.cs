@@ -1,29 +1,28 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using PercentageDiscountIntervalProperties = Orb.Models.PercentageDiscountIntervalProperties;
-using Serialization = System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<PercentageDiscountInterval>))]
+[JsonConverter(typeof(ModelConverter<PercentageDiscountInterval>))]
 public sealed record class PercentageDiscountInterval
-    : Orb::ModelBase,
-        Orb::IFromRaw<PercentageDiscountInterval>
+    : ModelBase,
+        IFromRaw<PercentageDiscountInterval>
 {
     /// <summary>
     /// The price interval ids that this discount interval applies to.
     /// </summary>
-    public required Generic::List<string> AppliesToPriceIntervalIDs
+    public required List<string> AppliesToPriceIntervalIDs
     {
         get
         {
             if (
                 !this.Properties.TryGetValue(
                     "applies_to_price_interval_ids",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
                 throw new System::ArgumentOutOfRangeException(
@@ -31,13 +30,14 @@ public sealed record class PercentageDiscountInterval
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<string>>(element)
+            return JsonSerializer.Deserialize<List<string>>(element)
                 ?? throw new System::ArgumentNullException("applies_to_price_interval_ids");
         }
         set
         {
-            this.Properties["applies_to_price_interval_ids"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.Properties["applies_to_price_interval_ids"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
@@ -45,17 +45,17 @@ public sealed record class PercentageDiscountInterval
     {
         get
         {
-            if (!this.Properties.TryGetValue("discount_type", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("discount_type", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "discount_type",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<PercentageDiscountIntervalProperties::DiscountType>(
+            return JsonSerializer.Deserialize<PercentageDiscountIntervalProperties::DiscountType>(
                     element
                 ) ?? throw new System::ArgumentNullException("discount_type");
         }
-        set { this.Properties["discount_type"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["discount_type"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -65,34 +65,34 @@ public sealed record class PercentageDiscountInterval
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("end_date", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "end_date",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
-        set { this.Properties["end_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The filters that determine which prices this discount interval applies to.
     /// </summary>
-    public required Generic::List<TransformPriceFilter> Filters
+    public required List<TransformPriceFilter> Filters
     {
         get
         {
-            if (!this.Properties.TryGetValue("filters", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("filters", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "filters",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<TransformPriceFilter>>(element)
+            return JsonSerializer.Deserialize<List<TransformPriceFilter>>(element)
                 ?? throw new System::ArgumentNullException("filters");
         }
-        set { this.Properties["filters"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["filters"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -103,18 +103,15 @@ public sealed record class PercentageDiscountInterval
     {
         get
         {
-            if (!this.Properties.TryGetValue("percentage_discount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("percentage_discount", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "percentage_discount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element);
         }
-        set
-        {
-            this.Properties["percentage_discount"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["percentage_discount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -124,15 +121,15 @@ public sealed record class PercentageDiscountInterval
     {
         get
         {
-            if (!this.Properties.TryGetValue("start_date", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("start_date", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "start_date",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(element);
         }
-        set { this.Properties["start_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -154,15 +151,15 @@ public sealed record class PercentageDiscountInterval
     public PercentageDiscountInterval() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    PercentageDiscountInterval(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    PercentageDiscountInterval(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
     public static PercentageDiscountInterval FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        Dictionary<string, JsonElement> properties
     )
     {
         return new(properties);

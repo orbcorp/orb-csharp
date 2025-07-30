@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Customers.BalanceTransactions.BalanceTransactionListPageResponseProperties.DataProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<Action, string>))]
-public sealed record class Action(string value) : Orb::IEnum<Action, string>
+[JsonConverter(typeof(EnumConverter<Action, string>))]
+public sealed record class Action(string value) : IEnum<Action, string>
 {
     public static readonly Action AppliedToInvoice = new("applied_to_invoice");
 

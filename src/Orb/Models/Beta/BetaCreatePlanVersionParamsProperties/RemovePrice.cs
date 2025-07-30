@@ -1,14 +1,13 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Beta.BetaCreatePlanVersionParamsProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<RemovePrice>))]
-public sealed record class RemovePrice : Orb::ModelBase, Orb::IFromRaw<RemovePrice>
+[JsonConverter(typeof(ModelConverter<RemovePrice>))]
+public sealed record class RemovePrice : ModelBase, IFromRaw<RemovePrice>
 {
     /// <summary>
     /// The id of the price to remove from the plan.
@@ -17,16 +16,13 @@ public sealed record class RemovePrice : Orb::ModelBase, Orb::IFromRaw<RemovePri
     {
         get
         {
-            if (!this.Properties.TryGetValue("price_id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "price_id",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("price_id", out JsonElement element))
+                throw new ArgumentOutOfRangeException("price_id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("price_id");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("price_id");
         }
-        set { this.Properties["price_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["price_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -36,15 +32,12 @@ public sealed record class RemovePrice : Orb::ModelBase, Orb::IFromRaw<RemovePri
     {
         get
         {
-            if (!this.Properties.TryGetValue("plan_phase_order", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("plan_phase_order", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set
-        {
-            this.Properties["plan_phase_order"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -56,16 +49,14 @@ public sealed record class RemovePrice : Orb::ModelBase, Orb::IFromRaw<RemovePri
     public RemovePrice() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    RemovePrice(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    RemovePrice(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static RemovePrice FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static RemovePrice FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

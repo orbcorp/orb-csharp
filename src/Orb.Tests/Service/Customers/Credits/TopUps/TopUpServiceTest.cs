@@ -1,15 +1,14 @@
-using System = System;
-using Tasks = System.Threading.Tasks;
-using Tests = Orb.Tests;
+using System;
+using System.Threading.Tasks;
+using Orb.Models.Customers.Credits.TopUps.TopUpCreateParamsProperties;
 using TopUpCreateByExternalIDParamsProperties = Orb.Models.Customers.Credits.TopUps.TopUpCreateByExternalIDParamsProperties;
-using TopUpCreateParamsProperties = Orb.Models.Customers.Credits.TopUps.TopUpCreateParamsProperties;
 
 namespace Orb.Tests.Service.Customers.Credits.TopUps;
 
-public class TopUpServiceTest : Tests::TestBase
+public class TopUpServiceTest : TestBase
 {
     [Fact]
-    public async Tasks::Task Create_Works()
+    public async Task Create_Works()
     {
         var topUp = await this.client.Customers.Credits.TopUps.Create(
             new()
@@ -26,16 +25,16 @@ public class TopUpServiceTest : Tests::TestBase
                 },
                 PerUnitCostBasis = "per_unit_cost_basis",
                 Threshold = "threshold",
-                ActiveFrom = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                ActiveFrom = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                 ExpiresAfter = 0,
-                ExpiresAfterUnit = TopUpCreateParamsProperties::ExpiresAfterUnit.Day,
+                ExpiresAfterUnit = ExpiresAfterUnit.Day,
             }
         );
         topUp.Validate();
     }
 
     [Fact]
-    public async Tasks::Task List_Works()
+    public async Task List_Works()
     {
         var page = await this.client.Customers.Credits.TopUps.List(
             new()
@@ -49,7 +48,7 @@ public class TopUpServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task Delete_Works()
+    public async Task Delete_Works()
     {
         await this.client.Customers.Credits.TopUps.Delete(
             new() { CustomerID = "customer_id", TopUpID = "top_up_id" }
@@ -57,7 +56,7 @@ public class TopUpServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task CreateByExternalID_Works()
+    public async Task CreateByExternalID_Works()
     {
         var response = await this.client.Customers.Credits.TopUps.CreateByExternalID(
             new()
@@ -74,7 +73,7 @@ public class TopUpServiceTest : Tests::TestBase
                 },
                 PerUnitCostBasis = "per_unit_cost_basis",
                 Threshold = "threshold",
-                ActiveFrom = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                ActiveFrom = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                 ExpiresAfter = 0,
                 ExpiresAfterUnit = TopUpCreateByExternalIDParamsProperties::ExpiresAfterUnit.Day,
             }
@@ -83,7 +82,7 @@ public class TopUpServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task DeleteByExternalID_Works()
+    public async Task DeleteByExternalID_Works()
     {
         await this.client.Customers.Credits.TopUps.DeleteByExternalID(
             new() { ExternalCustomerID = "external_customer_id", TopUpID = "top_up_id" }
@@ -91,7 +90,7 @@ public class TopUpServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task ListByExternalID_Works()
+    public async Task ListByExternalID_Works()
     {
         var page = await this.client.Customers.Credits.TopUps.ListByExternalID(
             new()

@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.Credits.Ledger.ExpirationChangeLedgerEntryProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<EntryStatus, string>))]
-public sealed record class EntryStatus(string value) : Orb::IEnum<EntryStatus, string>
+[JsonConverter(typeof(EnumConverter<EntryStatus, string>))]
+public sealed record class EntryStatus(string value) : IEnum<EntryStatus, string>
 {
     public static readonly EntryStatus Committed = new("committed");
 
@@ -24,7 +23,7 @@ public sealed record class EntryStatus(string value) : Orb::IEnum<EntryStatus, s
         {
             "committed" => Value.Committed,
             "pending" => Value.Pending,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

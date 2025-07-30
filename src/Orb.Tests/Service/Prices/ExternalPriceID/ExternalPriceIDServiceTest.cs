@@ -1,12 +1,11 @@
-using Tasks = System.Threading.Tasks;
-using Tests = Orb.Tests;
+using System.Threading.Tasks;
 
 namespace Orb.Tests.Service.Prices.ExternalPriceID;
 
-public class ExternalPriceIDServiceTest : Tests::TestBase
+public class ExternalPriceIDServiceTest : TestBase
 {
     [Fact]
-    public async Tasks::Task Update_Works()
+    public async Task Update_Works()
     {
         var price = await this.client.Prices.ExternalPriceID.Update(
             new()
@@ -19,7 +18,7 @@ public class ExternalPriceIDServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task Fetch_Works()
+    public async Task Fetch_Works()
     {
         var price = await this.client.Prices.ExternalPriceID.Fetch(
             new() { ExternalPriceID = "external_price_id" }

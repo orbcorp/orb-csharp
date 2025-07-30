@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Customers.BalanceTransactions.BalanceTransactionListPageResponseProperties.DataProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<Type, string>))]
-public sealed record class Type(string value) : Orb::IEnum<Type, string>
+[JsonConverter(typeof(EnumConverter<Type, string>))]
+public sealed record class Type(string value) : IEnum<Type, string>
 {
     public static readonly Type Increment = new("increment");
 

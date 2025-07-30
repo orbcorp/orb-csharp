@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.CustomerTaxIDProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<Country, string>))]
-public sealed record class Country(string value) : Orb::IEnum<Country, string>
+[JsonConverter(typeof(EnumConverter<Country, string>))]
+public sealed record class Country(string value) : IEnum<Country, string>
 {
     public static readonly Country Ad = new("AD");
 

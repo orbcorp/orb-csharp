@@ -1,5 +1,5 @@
-using Tasks = System.Threading.Tasks;
-using TopUps = Orb.Models.Customers.Credits.TopUps;
+using System.Threading.Tasks;
+using Orb.Models.Customers.Credits.TopUps;
 
 namespace Orb.Service.Customers.Credits.TopUps;
 
@@ -13,18 +13,18 @@ public interface ITopUpService
     /// If a top-up already exists for this customer in the same currency, the existing
     /// top-up will be replaced.
     /// </summary>
-    Tasks::Task<TopUps::TopUpCreateResponse> Create(TopUps::TopUpCreateParams @params);
+    Task<TopUpCreateResponse> Create(TopUpCreateParams @params);
 
     /// <summary>
     /// List top-ups
     /// </summary>
-    Tasks::Task<TopUps::TopUpListPageResponse> List(TopUps::TopUpListParams @params);
+    Task<TopUpListPageResponse> List(TopUpListParams @params);
 
     /// <summary>
     /// This deactivates the top-up and voids any invoices associated with pending
     /// credit blocks purchased through the top-up.
     /// </summary>
-    Tasks::Task Delete(TopUps::TopUpDeleteParams @params);
+    Task Delete(TopUpDeleteParams @params);
 
     /// <summary>
     /// This endpoint allows you to create a new top-up for a specified customer's
@@ -34,20 +34,16 @@ public interface ITopUpService
     /// If a top-up already exists for this customer in the same currency, the existing
     /// top-up will be replaced.
     /// </summary>
-    Tasks::Task<TopUps::TopUpCreateByExternalIDResponse> CreateByExternalID(
-        TopUps::TopUpCreateByExternalIDParams @params
-    );
+    Task<TopUpCreateByExternalIDResponse> CreateByExternalID(TopUpCreateByExternalIDParams @params);
 
     /// <summary>
     /// This deactivates the top-up and voids any invoices associated with pending
     /// credit blocks purchased through the top-up.
     /// </summary>
-    Tasks::Task DeleteByExternalID(TopUps::TopUpDeleteByExternalIDParams @params);
+    Task DeleteByExternalID(TopUpDeleteByExternalIDParams @params);
 
     /// <summary>
     /// List top-ups by external ID
     /// </summary>
-    Tasks::Task<TopUps::TopUpListByExternalIDPageResponse> ListByExternalID(
-        TopUps::TopUpListByExternalIDParams @params
-    );
+    Task<TopUpListByExternalIDPageResponse> ListByExternalID(TopUpListByExternalIDParams @params);
 }

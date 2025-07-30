@@ -1,30 +1,29 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using PriceEvaluatePreviewEventsResponseProperties = Orb.Models.Prices.PriceEvaluatePreviewEventsResponseProperties;
-using Serialization = System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Prices;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<PriceEvaluatePreviewEventsResponse>))]
+[JsonConverter(typeof(ModelConverter<PriceEvaluatePreviewEventsResponse>))]
 public sealed record class PriceEvaluatePreviewEventsResponse
-    : Orb::ModelBase,
-        Orb::IFromRaw<PriceEvaluatePreviewEventsResponse>
+    : ModelBase,
+        IFromRaw<PriceEvaluatePreviewEventsResponse>
 {
-    public required Generic::List<PriceEvaluatePreviewEventsResponseProperties::Data> Data
+    public required List<PriceEvaluatePreviewEventsResponseProperties::Data> Data
     {
         get
         {
-            if (!this.Properties.TryGetValue("data", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("data", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Generic::List<PriceEvaluatePreviewEventsResponseProperties::Data>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("data");
+            return JsonSerializer.Deserialize<
+                    List<PriceEvaluatePreviewEventsResponseProperties::Data>
+                >(element) ?? throw new System::ArgumentNullException("data");
         }
-        set { this.Properties["data"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -38,15 +37,15 @@ public sealed record class PriceEvaluatePreviewEventsResponse
     public PriceEvaluatePreviewEventsResponse() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    PriceEvaluatePreviewEventsResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    PriceEvaluatePreviewEventsResponse(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
     public static PriceEvaluatePreviewEventsResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        Dictionary<string, JsonElement> properties
     )
     {
         return new(properties);

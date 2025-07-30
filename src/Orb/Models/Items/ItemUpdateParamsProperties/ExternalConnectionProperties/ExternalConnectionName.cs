@@ -1,12 +1,11 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Items.ItemUpdateParamsProperties.ExternalConnectionProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<ExternalConnectionName, string>))]
+[JsonConverter(typeof(EnumConverter<ExternalConnectionName, string>))]
 public sealed record class ExternalConnectionName(string value)
-    : Orb::IEnum<ExternalConnectionName, string>
+    : IEnum<ExternalConnectionName, string>
 {
     public static readonly ExternalConnectionName Stripe = new("stripe");
 
@@ -45,7 +44,7 @@ public sealed record class ExternalConnectionName(string value)
             "taxjar" => Value.Taxjar,
             "avalara" => Value.Avalara,
             "anrok" => Value.Anrok,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

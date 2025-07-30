@@ -1,15 +1,14 @@
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using AddAdjustmentProperties = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddAdjustmentProperties;
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<AddAdjustment>))]
-public sealed record class AddAdjustment : Orb::ModelBase, Orb::IFromRaw<AddAdjustment>
+[JsonConverter(typeof(ModelConverter<AddAdjustment>))]
+public sealed record class AddAdjustment : ModelBase, IFromRaw<AddAdjustment>
 {
     /// <summary>
     /// The definition of a new adjustment to create and add to the subscription.
@@ -18,16 +17,16 @@ public sealed record class AddAdjustment : Orb::ModelBase, Orb::IFromRaw<AddAdju
     {
         get
         {
-            if (!this.Properties.TryGetValue("adjustment", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("adjustment", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "adjustment",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<AddAdjustmentProperties::Adjustment>(element)
+            return JsonSerializer.Deserialize<AddAdjustmentProperties::Adjustment>(element)
                 ?? throw new System::ArgumentNullException("adjustment");
         }
-        set { this.Properties["adjustment"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["adjustment"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -40,16 +39,16 @@ public sealed record class AddAdjustment : Orb::ModelBase, Orb::IFromRaw<AddAdju
     {
         get
         {
-            if (!this.Properties.TryGetValue("start_date", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("start_date", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "start_date",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<AddAdjustmentProperties::StartDate>(element)
+            return JsonSerializer.Deserialize<AddAdjustmentProperties::StartDate>(element)
                 ?? throw new System::ArgumentNullException("start_date");
         }
-        set { this.Properties["start_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -62,12 +61,12 @@ public sealed record class AddAdjustment : Orb::ModelBase, Orb::IFromRaw<AddAdju
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<AddAdjustmentProperties::EndDate?>(element);
+            return JsonSerializer.Deserialize<AddAdjustmentProperties::EndDate?>(element);
         }
-        set { this.Properties["end_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -80,16 +79,14 @@ public sealed record class AddAdjustment : Orb::ModelBase, Orb::IFromRaw<AddAdju
     public AddAdjustment() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    AddAdjustment(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    AddAdjustment(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static AddAdjustment FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static AddAdjustment FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

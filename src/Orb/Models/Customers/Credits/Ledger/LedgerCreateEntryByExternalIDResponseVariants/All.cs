@@ -1,17 +1,13 @@
-using Ledger = Orb.Models.Customers.Credits.Ledger;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDResponseVariants;
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<IncrementLedgerEntry, Ledger::IncrementLedgerEntry>)
-)]
-public sealed record class IncrementLedgerEntry(Ledger::IncrementLedgerEntry Value)
-    : Ledger::LedgerCreateEntryByExternalIDResponse,
-        Orb::IVariant<IncrementLedgerEntry, Ledger::IncrementLedgerEntry>
+[JsonConverter(typeof(VariantConverter<IncrementLedgerEntryVariant, IncrementLedgerEntry>))]
+public sealed record class IncrementLedgerEntryVariant(IncrementLedgerEntry Value)
+    : LedgerCreateEntryByExternalIDResponse,
+        IVariant<IncrementLedgerEntryVariant, IncrementLedgerEntry>
 {
-    public static IncrementLedgerEntry From(Ledger::IncrementLedgerEntry value)
+    public static IncrementLedgerEntryVariant From(IncrementLedgerEntry value)
     {
         return new(value);
     }
@@ -22,14 +18,12 @@ public sealed record class IncrementLedgerEntry(Ledger::IncrementLedgerEntry Val
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<DecrementLedgerEntry, Ledger::DecrementLedgerEntry>)
-)]
-public sealed record class DecrementLedgerEntry(Ledger::DecrementLedgerEntry Value)
-    : Ledger::LedgerCreateEntryByExternalIDResponse,
-        Orb::IVariant<DecrementLedgerEntry, Ledger::DecrementLedgerEntry>
+[JsonConverter(typeof(VariantConverter<DecrementLedgerEntryVariant, DecrementLedgerEntry>))]
+public sealed record class DecrementLedgerEntryVariant(DecrementLedgerEntry Value)
+    : LedgerCreateEntryByExternalIDResponse,
+        IVariant<DecrementLedgerEntryVariant, DecrementLedgerEntry>
 {
-    public static DecrementLedgerEntry From(Ledger::DecrementLedgerEntry value)
+    public static DecrementLedgerEntryVariant From(DecrementLedgerEntry value)
     {
         return new(value);
     }
@@ -40,14 +34,14 @@ public sealed record class DecrementLedgerEntry(Ledger::DecrementLedgerEntry Val
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<ExpirationChangeLedgerEntry, Ledger::ExpirationChangeLedgerEntry>)
+[JsonConverter(
+    typeof(VariantConverter<ExpirationChangeLedgerEntryVariant, ExpirationChangeLedgerEntry>)
 )]
-public sealed record class ExpirationChangeLedgerEntry(Ledger::ExpirationChangeLedgerEntry Value)
-    : Ledger::LedgerCreateEntryByExternalIDResponse,
-        Orb::IVariant<ExpirationChangeLedgerEntry, Ledger::ExpirationChangeLedgerEntry>
+public sealed record class ExpirationChangeLedgerEntryVariant(ExpirationChangeLedgerEntry Value)
+    : LedgerCreateEntryByExternalIDResponse,
+        IVariant<ExpirationChangeLedgerEntryVariant, ExpirationChangeLedgerEntry>
 {
-    public static ExpirationChangeLedgerEntry From(Ledger::ExpirationChangeLedgerEntry value)
+    public static ExpirationChangeLedgerEntryVariant From(ExpirationChangeLedgerEntry value)
     {
         return new(value);
     }
@@ -58,17 +52,14 @@ public sealed record class ExpirationChangeLedgerEntry(Ledger::ExpirationChangeL
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        CreditBlockExpiryLedgerEntry,
-        Ledger::CreditBlockExpiryLedgerEntry
-    >)
+[JsonConverter(
+    typeof(VariantConverter<CreditBlockExpiryLedgerEntryVariant, CreditBlockExpiryLedgerEntry>)
 )]
-public sealed record class CreditBlockExpiryLedgerEntry(Ledger::CreditBlockExpiryLedgerEntry Value)
-    : Ledger::LedgerCreateEntryByExternalIDResponse,
-        Orb::IVariant<CreditBlockExpiryLedgerEntry, Ledger::CreditBlockExpiryLedgerEntry>
+public sealed record class CreditBlockExpiryLedgerEntryVariant(CreditBlockExpiryLedgerEntry Value)
+    : LedgerCreateEntryByExternalIDResponse,
+        IVariant<CreditBlockExpiryLedgerEntryVariant, CreditBlockExpiryLedgerEntry>
 {
-    public static CreditBlockExpiryLedgerEntry From(Ledger::CreditBlockExpiryLedgerEntry value)
+    public static CreditBlockExpiryLedgerEntryVariant From(CreditBlockExpiryLedgerEntry value)
     {
         return new(value);
     }
@@ -79,14 +70,12 @@ public sealed record class CreditBlockExpiryLedgerEntry(Ledger::CreditBlockExpir
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<VoidLedgerEntry, Ledger::VoidLedgerEntry>)
-)]
-public sealed record class VoidLedgerEntry(Ledger::VoidLedgerEntry Value)
-    : Ledger::LedgerCreateEntryByExternalIDResponse,
-        Orb::IVariant<VoidLedgerEntry, Ledger::VoidLedgerEntry>
+[JsonConverter(typeof(VariantConverter<VoidLedgerEntryVariant, VoidLedgerEntry>))]
+public sealed record class VoidLedgerEntryVariant(VoidLedgerEntry Value)
+    : LedgerCreateEntryByExternalIDResponse,
+        IVariant<VoidLedgerEntryVariant, VoidLedgerEntry>
 {
-    public static VoidLedgerEntry From(Ledger::VoidLedgerEntry value)
+    public static VoidLedgerEntryVariant From(VoidLedgerEntry value)
     {
         return new(value);
     }
@@ -97,14 +86,12 @@ public sealed record class VoidLedgerEntry(Ledger::VoidLedgerEntry Value)
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<VoidInitiatedLedgerEntry, Ledger::VoidInitiatedLedgerEntry>)
-)]
-public sealed record class VoidInitiatedLedgerEntry(Ledger::VoidInitiatedLedgerEntry Value)
-    : Ledger::LedgerCreateEntryByExternalIDResponse,
-        Orb::IVariant<VoidInitiatedLedgerEntry, Ledger::VoidInitiatedLedgerEntry>
+[JsonConverter(typeof(VariantConverter<VoidInitiatedLedgerEntryVariant, VoidInitiatedLedgerEntry>))]
+public sealed record class VoidInitiatedLedgerEntryVariant(VoidInitiatedLedgerEntry Value)
+    : LedgerCreateEntryByExternalIDResponse,
+        IVariant<VoidInitiatedLedgerEntryVariant, VoidInitiatedLedgerEntry>
 {
-    public static VoidInitiatedLedgerEntry From(Ledger::VoidInitiatedLedgerEntry value)
+    public static VoidInitiatedLedgerEntryVariant From(VoidInitiatedLedgerEntry value)
     {
         return new(value);
     }
@@ -115,14 +102,12 @@ public sealed record class VoidInitiatedLedgerEntry(Ledger::VoidInitiatedLedgerE
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<AmendmentLedgerEntry, Ledger::AmendmentLedgerEntry>)
-)]
-public sealed record class AmendmentLedgerEntry(Ledger::AmendmentLedgerEntry Value)
-    : Ledger::LedgerCreateEntryByExternalIDResponse,
-        Orb::IVariant<AmendmentLedgerEntry, Ledger::AmendmentLedgerEntry>
+[JsonConverter(typeof(VariantConverter<AmendmentLedgerEntryVariant, AmendmentLedgerEntry>))]
+public sealed record class AmendmentLedgerEntryVariant(AmendmentLedgerEntry Value)
+    : LedgerCreateEntryByExternalIDResponse,
+        IVariant<AmendmentLedgerEntryVariant, AmendmentLedgerEntry>
 {
-    public static AmendmentLedgerEntry From(Ledger::AmendmentLedgerEntry value)
+    public static AmendmentLedgerEntryVariant From(AmendmentLedgerEntry value)
     {
         return new(value);
     }

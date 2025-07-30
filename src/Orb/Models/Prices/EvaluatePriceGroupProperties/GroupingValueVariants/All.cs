@@ -1,13 +1,9 @@
-using EvaluatePriceGroupProperties = Orb.Models.Prices.EvaluatePriceGroupProperties;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Prices.EvaluatePriceGroupProperties.GroupingValueVariants;
 
-[Serialization::JsonConverter(typeof(Orb::VariantConverter<String, string>))]
-public sealed record class String(string Value)
-    : EvaluatePriceGroupProperties::GroupingValue,
-        Orb::IVariant<String, string>
+[JsonConverter(typeof(VariantConverter<String, string>))]
+public sealed record class String(string Value) : GroupingValue, IVariant<String, string>
 {
     public static String From(string value)
     {
@@ -17,10 +13,8 @@ public sealed record class String(string Value)
     public override void Validate() { }
 }
 
-[Serialization::JsonConverter(typeof(Orb::VariantConverter<Double, double>))]
-public sealed record class Double(double Value)
-    : EvaluatePriceGroupProperties::GroupingValue,
-        Orb::IVariant<Double, double>
+[JsonConverter(typeof(VariantConverter<Double, double>))]
+public sealed record class Double(double Value) : GroupingValue, IVariant<Double, double>
 {
     public static Double From(double value)
     {
@@ -30,10 +24,8 @@ public sealed record class Double(double Value)
     public override void Validate() { }
 }
 
-[Serialization::JsonConverter(typeof(Orb::VariantConverter<Bool, bool>))]
-public sealed record class Bool(bool Value)
-    : EvaluatePriceGroupProperties::GroupingValue,
-        Orb::IVariant<Bool, bool>
+[JsonConverter(typeof(VariantConverter<Bool, bool>))]
+public sealed record class Bool(bool Value) : GroupingValue, IVariant<Bool, bool>
 {
     public static Bool From(bool value)
     {

@@ -1,6 +1,5 @@
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Net.Http;
+using System.Text.Json;
 using System = System;
 
 namespace Orb.Models.Subscriptions;
@@ -10,7 +9,7 @@ namespace Orb.Models.Subscriptions;
 /// associated with a subscription along with their start and end dates. This list
 /// contains the subscription's initial plan along with past and future plan changes.
 /// </summary>
-public sealed record class SubscriptionFetchScheduleParams : Orb::ParamsBase
+public sealed record class SubscriptionFetchScheduleParams : ParamsBase
 {
     public required string SubscriptionID;
 
@@ -22,12 +21,12 @@ public sealed record class SubscriptionFetchScheduleParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("cursor", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("cursor", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.QueryProperties["cursor"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -37,79 +36,63 @@ public sealed record class SubscriptionFetchScheduleParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("limit", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("limit", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set { this.QueryProperties["limit"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public System::DateTime? StartDateGt
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("start_date[gt]", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("start_date[gt]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
-        set
-        {
-            this.QueryProperties["start_date[gt]"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.QueryProperties["start_date[gt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public System::DateTime? StartDateGte
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("start_date[gte]", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("start_date[gte]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
-        set
-        {
-            this.QueryProperties["start_date[gte]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.QueryProperties["start_date[gte]"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public System::DateTime? StartDateLt
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("start_date[lt]", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("start_date[lt]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
-        set
-        {
-            this.QueryProperties["start_date[lt]"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.QueryProperties["start_date[lt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public System::DateTime? StartDateLte
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("start_date[lte]", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("start_date[lte]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
-        set
-        {
-            this.QueryProperties["start_date[lte]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.QueryProperties["start_date[lte]"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
@@ -120,12 +103,12 @@ public sealed record class SubscriptionFetchScheduleParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

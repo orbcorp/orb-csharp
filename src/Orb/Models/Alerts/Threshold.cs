@@ -1,8 +1,7 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Alerts;
@@ -10,8 +9,8 @@ namespace Orb.Models.Alerts;
 /// <summary>
 /// Thresholds are used to define the conditions under which an alert will be triggered.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<Threshold>))]
-public sealed record class Threshold : Orb::ModelBase, Orb::IFromRaw<Threshold>
+[JsonConverter(typeof(ModelConverter<Threshold>))]
+public sealed record class Threshold : ModelBase, IFromRaw<Threshold>
 {
     /// <summary>
     /// The value at which an alert will fire. For credit balance alerts, the alert
@@ -22,12 +21,12 @@ public sealed record class Threshold : Orb::ModelBase, Orb::IFromRaw<Threshold>
     {
         get
         {
-            if (!this.Properties.TryGetValue("value", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("value", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("value", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element);
         }
-        set { this.Properties["value"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["value"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -38,16 +37,14 @@ public sealed record class Threshold : Orb::ModelBase, Orb::IFromRaw<Threshold>
     public Threshold() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    Threshold(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    Threshold(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static Threshold FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static Threshold FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

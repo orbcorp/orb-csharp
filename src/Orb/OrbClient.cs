@@ -3,7 +3,6 @@ using Beta = Orb.Service.Beta;
 using Coupons = Orb.Service.Coupons;
 using CreditNotes = Orb.Service.CreditNotes;
 using Customers = Orb.Service.Customers;
-using DimensionalPriceGroups = Orb.Service.DimensionalPriceGroups;
 using Events = Orb.Service.Events;
 using Http = System.Net.Http;
 using InvoiceLineItems = Orb.Service.InvoiceLineItems;
@@ -13,7 +12,6 @@ using Metrics = Orb.Service.Metrics;
 using Plans = Orb.Service.Plans;
 using Prices = Orb.Service.Prices;
 using SubscriptionChanges = Orb.Service.SubscriptionChanges;
-using Subscriptions = Orb.Service.Subscriptions;
 using System = System;
 using TopLevel = Orb.Service.TopLevel;
 
@@ -117,8 +115,8 @@ public sealed class OrbClient : IOrbClient
         get { return _prices.Value; }
     }
 
-    readonly System::Lazy<Subscriptions::ISubscriptionService> _subscriptions;
-    public Subscriptions::ISubscriptionService Subscriptions
+    readonly System::Lazy<global::Orb.Service.Subscriptions.ISubscriptionService> _subscriptions;
+    public global::Orb.Service.Subscriptions.ISubscriptionService Subscriptions
     {
         get { return _subscriptions.Value; }
     }
@@ -129,8 +127,8 @@ public sealed class OrbClient : IOrbClient
         get { return _alerts.Value; }
     }
 
-    readonly System::Lazy<DimensionalPriceGroups::IDimensionalPriceGroupService> _dimensionalPriceGroups;
-    public DimensionalPriceGroups::IDimensionalPriceGroupService DimensionalPriceGroups
+    readonly System::Lazy<global::Orb.Service.DimensionalPriceGroups.IDimensionalPriceGroupService> _dimensionalPriceGroups;
+    public global::Orb.Service.DimensionalPriceGroups.IDimensionalPriceGroupService DimensionalPriceGroups
     {
         get { return _dimensionalPriceGroups.Value; }
     }
@@ -155,10 +153,10 @@ public sealed class OrbClient : IOrbClient
         _metrics = new(() => new Metrics::MetricService(this));
         _plans = new(() => new Plans::PlanService(this));
         _prices = new(() => new Prices::PriceService(this));
-        _subscriptions = new(() => new Subscriptions::SubscriptionService(this));
+        _subscriptions = new(() => new global::Orb.Service.Subscriptions.SubscriptionService(this));
         _alerts = new(() => new Alerts::AlertService(this));
         _dimensionalPriceGroups = new(() =>
-            new DimensionalPriceGroups::DimensionalPriceGroupService(this)
+            new global::Orb.Service.DimensionalPriceGroups.DimensionalPriceGroupService(this)
         );
         _subscriptionChanges = new(() => new SubscriptionChanges::SubscriptionChangeService(this));
     }

@@ -1,8 +1,7 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Alerts.AlertProperties;
@@ -10,8 +9,8 @@ namespace Orb.Models.Alerts.AlertProperties;
 /// <summary>
 /// Alert status is used to determine if an alert is currently in-alert or not.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<BalanceAlertStatus>))]
-public sealed record class BalanceAlertStatus : Orb::ModelBase, Orb::IFromRaw<BalanceAlertStatus>
+[JsonConverter(typeof(ModelConverter<BalanceAlertStatus>))]
+public sealed record class BalanceAlertStatus : ModelBase, IFromRaw<BalanceAlertStatus>
 {
     /// <summary>
     /// Whether the alert is currently in-alert or not.
@@ -20,15 +19,15 @@ public sealed record class BalanceAlertStatus : Orb::ModelBase, Orb::IFromRaw<Ba
     {
         get
         {
-            if (!this.Properties.TryGetValue("in_alert", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("in_alert", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "in_alert",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element);
         }
-        set { this.Properties["in_alert"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["in_alert"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -38,15 +37,15 @@ public sealed record class BalanceAlertStatus : Orb::ModelBase, Orb::IFromRaw<Ba
     {
         get
         {
-            if (!this.Properties.TryGetValue("threshold_value", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("threshold_value", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "threshold_value",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element);
         }
-        set { this.Properties["threshold_value"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["threshold_value"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -58,16 +57,14 @@ public sealed record class BalanceAlertStatus : Orb::ModelBase, Orb::IFromRaw<Ba
     public BalanceAlertStatus() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    BalanceAlertStatus(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    BalanceAlertStatus(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static BalanceAlertStatus FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static BalanceAlertStatus FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

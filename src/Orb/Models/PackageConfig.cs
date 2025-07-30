@@ -1,14 +1,13 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<PackageConfig>))]
-public sealed record class PackageConfig : Orb::ModelBase, Orb::IFromRaw<PackageConfig>
+[JsonConverter(typeof(ModelConverter<PackageConfig>))]
+public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
 {
     /// <summary>
     /// A currency amount to rate usage by
@@ -17,16 +16,16 @@ public sealed record class PackageConfig : Orb::ModelBase, Orb::IFromRaw<Package
     {
         get
         {
-            if (!this.Properties.TryGetValue("package_amount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("package_amount", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "package_amount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("package_amount");
         }
-        set { this.Properties["package_amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["package_amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -37,15 +36,15 @@ public sealed record class PackageConfig : Orb::ModelBase, Orb::IFromRaw<Package
     {
         get
         {
-            if (!this.Properties.TryGetValue("package_size", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("package_size", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "package_size",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element);
         }
-        set { this.Properties["package_size"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["package_size"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -57,16 +56,14 @@ public sealed record class PackageConfig : Orb::ModelBase, Orb::IFromRaw<Package
     public PackageConfig() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    PackageConfig(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    PackageConfig(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static PackageConfig FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static PackageConfig FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

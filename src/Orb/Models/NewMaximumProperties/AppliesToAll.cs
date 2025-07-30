@@ -1,14 +1,13 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.NewMaximumProperties;
 
 /// <summary>
 /// If set, the adjustment will apply to every price on the subscription.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<AppliesToAll, bool>))]
-public sealed record class AppliesToAll(bool value) : Orb::IEnum<AppliesToAll, bool>
+[JsonConverter(typeof(EnumConverter<AppliesToAll, bool>))]
+public sealed record class AppliesToAll(bool value) : IEnum<AppliesToAll, bool>
 {
     public static readonly AppliesToAll True = new(true);
 
@@ -23,7 +22,7 @@ public sealed record class AppliesToAll(bool value) : Orb::IEnum<AppliesToAll, b
         _value switch
         {
             true => Value.True,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public bool Raw()

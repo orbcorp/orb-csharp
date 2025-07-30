@@ -1,12 +1,11 @@
-using Tasks = System.Threading.Tasks;
-using Tests = Orb.Tests;
+using System.Threading.Tasks;
 
 namespace Orb.Tests.Service.DimensionalPriceGroups;
 
-public class DimensionalPriceGroupServiceTest : Tests::TestBase
+public class DimensionalPriceGroupServiceTest : TestBase
 {
     [Fact]
-    public async Tasks::Task Create_Works()
+    public async Task Create_Works()
     {
         var dimensionalPriceGroup = await this.client.DimensionalPriceGroups.Create(
             new()
@@ -22,7 +21,7 @@ public class DimensionalPriceGroupServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task Retrieve_Works()
+    public async Task Retrieve_Works()
     {
         var dimensionalPriceGroup = await this.client.DimensionalPriceGroups.Retrieve(
             new() { DimensionalPriceGroupID = "dimensional_price_group_id" }
@@ -31,7 +30,7 @@ public class DimensionalPriceGroupServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task Update_Works()
+    public async Task Update_Works()
     {
         var dimensionalPriceGroup = await this.client.DimensionalPriceGroups.Update(
             new()
@@ -45,7 +44,7 @@ public class DimensionalPriceGroupServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task List_Works()
+    public async Task List_Works()
     {
         var page = await this.client.DimensionalPriceGroups.List(
             new() { Cursor = "cursor", Limit = 1 }

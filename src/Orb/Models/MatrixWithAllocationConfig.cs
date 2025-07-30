@@ -1,16 +1,15 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<MatrixWithAllocationConfig>))]
+[JsonConverter(typeof(ModelConverter<MatrixWithAllocationConfig>))]
 public sealed record class MatrixWithAllocationConfig
-    : Orb::ModelBase,
-        Orb::IFromRaw<MatrixWithAllocationConfig>
+    : ModelBase,
+        IFromRaw<MatrixWithAllocationConfig>
 {
     /// <summary>
     /// Allocation to be used to calculate the price
@@ -19,15 +18,15 @@ public sealed record class MatrixWithAllocationConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("allocation", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("allocation", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "allocation",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element);
         }
-        set { this.Properties["allocation"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["allocation"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -37,57 +36,54 @@ public sealed record class MatrixWithAllocationConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("default_unit_amount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("default_unit_amount", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "default_unit_amount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("default_unit_amount");
         }
-        set
-        {
-            this.Properties["default_unit_amount"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["default_unit_amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// One or two event property values to evaluate matrix groups by
     /// </summary>
-    public required Generic::List<string?> Dimensions
+    public required List<string?> Dimensions
     {
         get
         {
-            if (!this.Properties.TryGetValue("dimensions", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("dimensions", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "dimensions",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<string?>>(element)
+            return JsonSerializer.Deserialize<List<string?>>(element)
                 ?? throw new System::ArgumentNullException("dimensions");
         }
-        set { this.Properties["dimensions"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["dimensions"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// Matrix values for specified matrix grouping keys
     /// </summary>
-    public required Generic::List<MatrixValue> MatrixValues
+    public required List<MatrixValue> MatrixValues
     {
         get
         {
-            if (!this.Properties.TryGetValue("matrix_values", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("matrix_values", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "matrix_values",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<MatrixValue>>(element)
+            return JsonSerializer.Deserialize<List<MatrixValue>>(element)
                 ?? throw new System::ArgumentNullException("matrix_values");
         }
-        set { this.Properties["matrix_values"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["matrix_values"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -107,15 +103,15 @@ public sealed record class MatrixWithAllocationConfig
     public MatrixWithAllocationConfig() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    MatrixWithAllocationConfig(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    MatrixWithAllocationConfig(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
     public static MatrixWithAllocationConfig FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        Dictionary<string, JsonElement> properties
     )
     {
         return new(properties);

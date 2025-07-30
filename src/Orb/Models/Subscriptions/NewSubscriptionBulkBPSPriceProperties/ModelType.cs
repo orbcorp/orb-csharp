@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.NewSubscriptionBulkBPSPriceProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<ModelType, string>))]
-public sealed record class ModelType(string value) : Orb::IEnum<ModelType, string>
+[JsonConverter(typeof(EnumConverter<ModelType, string>))]
+public sealed record class ModelType(string value) : IEnum<ModelType, string>
 {
     public static readonly ModelType BulkBPS = new("bulk_bps");
 
@@ -20,7 +19,7 @@ public sealed record class ModelType(string value) : Orb::IEnum<ModelType, strin
         _value switch
         {
             "bulk_bps" => Value.BulkBPS,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

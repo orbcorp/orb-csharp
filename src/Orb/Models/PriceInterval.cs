@@ -1,8 +1,7 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
@@ -11,20 +10,20 @@ namespace Orb.Models;
 /// The Price Interval resource represents a period of time for which a price will
 /// bill on a subscription. A subscription’s price intervals define its billing behavior.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<PriceInterval>))]
-public sealed record class PriceInterval : Orb::ModelBase, Orb::IFromRaw<PriceInterval>
+[JsonConverter(typeof(ModelConverter<PriceInterval>))]
+public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
 {
     public required string ID
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -34,18 +33,15 @@ public sealed record class PriceInterval : Orb::ModelBase, Orb::IFromRaw<PriceIn
     {
         get
         {
-            if (!this.Properties.TryGetValue("billing_cycle_day", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("billing_cycle_day", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "billing_cycle_day",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element);
         }
-        set
-        {
-            this.Properties["billing_cycle_day"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["billing_cycle_day"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -60,7 +56,7 @@ public sealed record class PriceInterval : Orb::ModelBase, Orb::IFromRaw<PriceIn
             if (
                 !this.Properties.TryGetValue(
                     "current_billing_period_end_date",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
                 throw new System::ArgumentOutOfRangeException(
@@ -68,12 +64,13 @@ public sealed record class PriceInterval : Orb::ModelBase, Orb::IFromRaw<PriceIn
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
         set
         {
-            this.Properties["current_billing_period_end_date"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.Properties["current_billing_period_end_date"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
@@ -89,7 +86,7 @@ public sealed record class PriceInterval : Orb::ModelBase, Orb::IFromRaw<PriceIn
             if (
                 !this.Properties.TryGetValue(
                     "current_billing_period_start_date",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
                 throw new System::ArgumentOutOfRangeException(
@@ -97,12 +94,12 @@ public sealed record class PriceInterval : Orb::ModelBase, Orb::IFromRaw<PriceIn
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
         set
         {
             this.Properties["current_billing_period_start_date"] =
-                Json::JsonSerializer.SerializeToElement(value);
+                JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -114,15 +111,15 @@ public sealed record class PriceInterval : Orb::ModelBase, Orb::IFromRaw<PriceIn
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("end_date", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "end_date",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
-        set { this.Properties["end_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -132,29 +129,29 @@ public sealed record class PriceInterval : Orb::ModelBase, Orb::IFromRaw<PriceIn
     {
         get
         {
-            if (!this.Properties.TryGetValue("filter", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("filter", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "filter",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["filter"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["filter"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The fixed fee quantity transitions for this price interval. This is only relevant
     /// for fixed fees.
     /// </summary>
-    public required Generic::List<FixedFeeQuantityTransition>? FixedFeeQuantityTransitions
+    public required List<FixedFeeQuantityTransition>? FixedFeeQuantityTransitions
     {
         get
         {
             if (
                 !this.Properties.TryGetValue(
                     "fixed_fee_quantity_transitions",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
                 throw new System::ArgumentOutOfRangeException(
@@ -162,14 +159,13 @@ public sealed record class PriceInterval : Orb::ModelBase, Orb::IFromRaw<PriceIn
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<FixedFeeQuantityTransition>?>(
-                element
-            );
+            return JsonSerializer.Deserialize<List<FixedFeeQuantityTransition>?>(element);
         }
         set
         {
-            this.Properties["fixed_fee_quantity_transitions"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.Properties["fixed_fee_quantity_transitions"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
@@ -188,13 +184,13 @@ public sealed record class PriceInterval : Orb::ModelBase, Orb::IFromRaw<PriceIn
     {
         get
         {
-            if (!this.Properties.TryGetValue("price", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("price", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("price", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Price>(element)
+            return JsonSerializer.Deserialize<Price>(element)
                 ?? throw new System::ArgumentNullException("price");
         }
-        set { this.Properties["price"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["price"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -205,37 +201,34 @@ public sealed record class PriceInterval : Orb::ModelBase, Orb::IFromRaw<PriceIn
     {
         get
         {
-            if (!this.Properties.TryGetValue("start_date", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("start_date", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "start_date",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(element);
         }
-        set { this.Properties["start_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// A list of customer IDs whose usage events will be aggregated and billed under
     /// this price interval.
     /// </summary>
-    public required Generic::List<string>? UsageCustomerIDs
+    public required List<string>? UsageCustomerIDs
     {
         get
         {
-            if (!this.Properties.TryGetValue("usage_customer_ids", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("usage_customer_ids", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "usage_customer_ids",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<string>?>(element);
+            return JsonSerializer.Deserialize<List<string>?>(element);
         }
-        set
-        {
-            this.Properties["usage_customer_ids"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["usage_customer_ids"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -261,16 +254,14 @@ public sealed record class PriceInterval : Orb::ModelBase, Orb::IFromRaw<PriceIn
     public PriceInterval() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    PriceInterval(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    PriceInterval(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static PriceInterval FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static PriceInterval FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionUpdateTrialParamsProperties.TrialEndDateProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<UnionMember1, string>))]
-public sealed record class UnionMember1(string value) : Orb::IEnum<UnionMember1, string>
+[JsonConverter(typeof(EnumConverter<UnionMember1, string>))]
+public sealed record class UnionMember1(string value) : IEnum<UnionMember1, string>
 {
     public static readonly UnionMember1 Immediate = new("immediate");
 
@@ -20,7 +19,7 @@ public sealed record class UnionMember1(string value) : Orb::IEnum<UnionMember1,
         _value switch
         {
             "immediate" => Value.Immediate,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

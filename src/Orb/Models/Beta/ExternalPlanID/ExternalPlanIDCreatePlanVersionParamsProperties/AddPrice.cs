@@ -1,32 +1,27 @@
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using AddPriceProperties = Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties.AddPriceProperties;
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 
 namespace Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<AddPrice>))]
-public sealed record class AddPrice : Orb::ModelBase, Orb::IFromRaw<AddPrice>
+[JsonConverter(typeof(ModelConverter<AddPrice>))]
+public sealed record class AddPrice : ModelBase, IFromRaw<AddPrice>
 {
     /// <summary>
     /// The allocation price to add to the plan.
     /// </summary>
-    public Models::NewAllocationPrice? AllocationPrice
+    public NewAllocationPrice? AllocationPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("allocation_price", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("allocation_price", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Models::NewAllocationPrice?>(element);
+            return JsonSerializer.Deserialize<NewAllocationPrice?>(element);
         }
-        set
-        {
-            this.Properties["allocation_price"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["allocation_price"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -36,30 +31,27 @@ public sealed record class AddPrice : Orb::ModelBase, Orb::IFromRaw<AddPrice>
     {
         get
         {
-            if (!this.Properties.TryGetValue("plan_phase_order", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("plan_phase_order", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set
-        {
-            this.Properties["plan_phase_order"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The price to add to the plan
     /// </summary>
-    public AddPriceProperties::Price? Price
+    public AddPriceProperties::Price1? Price
     {
         get
         {
-            if (!this.Properties.TryGetValue("price", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("price", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<AddPriceProperties::Price?>(element);
+            return JsonSerializer.Deserialize<AddPriceProperties::Price1?>(element);
         }
-        set { this.Properties["price"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["price"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -72,16 +64,14 @@ public sealed record class AddPrice : Orb::ModelBase, Orb::IFromRaw<AddPrice>
     public AddPrice() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    AddPrice(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    AddPrice(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static AddPrice FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static AddPrice FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

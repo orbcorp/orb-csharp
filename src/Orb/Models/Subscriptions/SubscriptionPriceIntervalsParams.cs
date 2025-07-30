@@ -1,10 +1,9 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using SubscriptionPriceIntervalsParamsProperties = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties;
 using System = System;
-using Text = System.Text;
 
 namespace Orb.Models.Subscriptions;
 
@@ -77,47 +76,44 @@ namespace Orb.Models.Subscriptions;
 /// of transitions can be retrieved using the `fixed_fee_quantity_transitions` property
 /// on a subscription’s serialized price intervals.
 /// </summary>
-public sealed record class SubscriptionPriceIntervalsParams : Orb::ParamsBase
+public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     public required string SubscriptionID;
 
     /// <summary>
     /// A list of price intervals to add to the subscription.
     /// </summary>
-    public Generic::List<SubscriptionPriceIntervalsParamsProperties::Add>? Add
+    public List<SubscriptionPriceIntervalsParamsProperties::Add>? Add
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("add", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("add", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<SubscriptionPriceIntervalsParamsProperties::Add>?>(
+            return JsonSerializer.Deserialize<List<SubscriptionPriceIntervalsParamsProperties::Add>?>(
                 element
             );
         }
-        set { this.BodyProperties["add"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["add"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// A list of adjustments to add to the subscription.
     /// </summary>
-    public Generic::List<SubscriptionPriceIntervalsParamsProperties::AddAdjustment>? AddAdjustments
+    public List<SubscriptionPriceIntervalsParamsProperties::AddAdjustment>? AddAdjustments
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("add_adjustments", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("add_adjustments", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<SubscriptionPriceIntervalsParamsProperties::AddAdjustment>?>(
+            return JsonSerializer.Deserialize<List<SubscriptionPriceIntervalsParamsProperties::AddAdjustment>?>(
                 element
             );
         }
-        set
-        {
-            this.BodyProperties["add_adjustments"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["add_adjustments"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -132,60 +128,56 @@ public sealed record class SubscriptionPriceIntervalsParams : Orb::ParamsBase
             if (
                 !this.BodyProperties.TryGetValue(
                     "allow_invoice_credit_or_void",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
                 return null;
 
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element);
         }
         set
         {
-            this.BodyProperties["allow_invoice_credit_or_void"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["allow_invoice_credit_or_void"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
     /// <summary>
     /// A list of price intervals to edit on the subscription.
     /// </summary>
-    public Generic::List<SubscriptionPriceIntervalsParamsProperties::Edit>? Edit
+    public List<SubscriptionPriceIntervalsParamsProperties::Edit>? Edit
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("edit", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("edit", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<SubscriptionPriceIntervalsParamsProperties::Edit>?>(
+            return JsonSerializer.Deserialize<List<SubscriptionPriceIntervalsParamsProperties::Edit>?>(
                 element
             );
         }
-        set { this.BodyProperties["edit"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["edit"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// A list of adjustments to edit on the subscription.
     /// </summary>
-    public Generic::List<SubscriptionPriceIntervalsParamsProperties::EditAdjustment>? EditAdjustments
+    public List<SubscriptionPriceIntervalsParamsProperties::EditAdjustment>? EditAdjustments
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("edit_adjustments", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("edit_adjustments", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<SubscriptionPriceIntervalsParamsProperties::EditAdjustment>?>(
+            return JsonSerializer.Deserialize<List<SubscriptionPriceIntervalsParamsProperties::EditAdjustment>?>(
                 element
             );
         }
-        set
-        {
-            this.BodyProperties["edit_adjustments"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.BodyProperties["edit_adjustments"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
@@ -196,21 +188,21 @@ public sealed record class SubscriptionPriceIntervalsParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

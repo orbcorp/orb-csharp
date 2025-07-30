@@ -1,6 +1,6 @@
-using CreditNotes = Orb.Models.CreditNotes;
-using Models = Orb.Models;
-using Tasks = System.Threading.Tasks;
+using System.Threading.Tasks;
+using Orb.Models;
+using Orb.Models.CreditNotes;
 
 namespace Orb.Service.CreditNotes;
 
@@ -33,20 +33,18 @@ public interface ICreditNoteService
     /// both the start date and end date completely (from start of start_date to end
     /// of end_date).
     /// </summary>
-    Tasks::Task<Models::CreditNote> Create(CreditNotes::CreditNoteCreateParams @params);
+    Task<CreditNote> Create(CreditNoteCreateParams @params);
 
     /// <summary>
     /// Get a paginated list of CreditNotes. Users can also filter by customer_id, subscription_id,
     /// or external_customer_id. The credit notes will be returned in reverse chronological
     /// order by `creation_time`.
     /// </summary>
-    Tasks::Task<CreditNotes::CreditNoteListPageResponse> List(
-        CreditNotes::CreditNoteListParams @params
-    );
+    Task<CreditNoteListPageResponse> List(CreditNoteListParams @params);
 
     /// <summary>
     /// This endpoint is used to fetch a single [`Credit Note`](/invoicing/credit-notes)
     /// given an identifier.
     /// </summary>
-    Tasks::Task<Models::CreditNote> Fetch(CreditNotes::CreditNoteFetchParams @params);
+    Task<CreditNote> Fetch(CreditNoteFetchParams @params);
 }

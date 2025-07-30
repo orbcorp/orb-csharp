@@ -1,14 +1,13 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.VoidProperties;
 
 /// <summary>
 /// Can only be specified when `entry_type=void`. The reason for the void.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<VoidReason, string>))]
-public sealed record class VoidReason(string value) : Orb::IEnum<VoidReason, string>
+[JsonConverter(typeof(EnumConverter<VoidReason, string>))]
+public sealed record class VoidReason(string value) : IEnum<VoidReason, string>
 {
     public static readonly VoidReason Refund = new("refund");
 
@@ -23,7 +22,7 @@ public sealed record class VoidReason(string value) : Orb::IEnum<VoidReason, str
         _value switch
         {
             "refund" => Value.Refund,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

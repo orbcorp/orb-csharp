@@ -1,23 +1,22 @@
+using System;
+using System.Threading.Tasks;
 using AlertCreateForCustomerParamsProperties = Orb.Models.Alerts.AlertCreateForCustomerParamsProperties;
 using AlertCreateForExternalCustomerParamsProperties = Orb.Models.Alerts.AlertCreateForExternalCustomerParamsProperties;
 using AlertCreateForSubscriptionParamsProperties = Orb.Models.Alerts.AlertCreateForSubscriptionParamsProperties;
-using System = System;
-using Tasks = System.Threading.Tasks;
-using Tests = Orb.Tests;
 
 namespace Orb.Tests.Service.Alerts;
 
-public class AlertServiceTest : Tests::TestBase
+public class AlertServiceTest : TestBase
 {
     [Fact]
-    public async Tasks::Task Retrieve_Works()
+    public async Task Retrieve_Works()
     {
         var alert = await this.client.Alerts.Retrieve(new() { AlertID = "alert_id" });
         alert.Validate();
     }
 
     [Fact]
-    public async Tasks::Task Update_Works()
+    public async Task Update_Works()
     {
         var alert = await this.client.Alerts.Update(
             new()
@@ -30,15 +29,15 @@ public class AlertServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task List_Works()
+    public async Task List_Works()
     {
         var page = await this.client.Alerts.List(
             new()
             {
-                CreatedAtGt = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtGte = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtLt = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtLte = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtGt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtGte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtLt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtLte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                 Cursor = "cursor",
                 CustomerID = "customer_id",
                 ExternalCustomerID = "external_customer_id",
@@ -50,7 +49,7 @@ public class AlertServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task CreateForCustomer_Works()
+    public async Task CreateForCustomer_Works()
     {
         var alert = await this.client.Alerts.CreateForCustomer(
             new()
@@ -65,7 +64,7 @@ public class AlertServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task CreateForExternalCustomer_Works()
+    public async Task CreateForExternalCustomer_Works()
     {
         var alert = await this.client.Alerts.CreateForExternalCustomer(
             new()
@@ -80,7 +79,7 @@ public class AlertServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task CreateForSubscription_Works()
+    public async Task CreateForSubscription_Works()
     {
         var alert = await this.client.Alerts.CreateForSubscription(
             new()
@@ -95,7 +94,7 @@ public class AlertServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task Disable_Works()
+    public async Task Disable_Works()
     {
         var alert = await this.client.Alerts.Disable(
             new()
@@ -108,7 +107,7 @@ public class AlertServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task Enable_Works()
+    public async Task Enable_Works()
     {
         var alert = await this.client.Alerts.Enable(
             new()

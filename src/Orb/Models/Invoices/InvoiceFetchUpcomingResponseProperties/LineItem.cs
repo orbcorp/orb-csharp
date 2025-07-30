@@ -1,16 +1,15 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using LineItemProperties = Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.LineItemProperties;
 using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<LineItem>))]
-public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
+[JsonConverter(typeof(ModelConverter<LineItem>))]
+public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
 {
     /// <summary>
     /// A unique ID for this line item.
@@ -19,13 +18,13 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -36,19 +35,16 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     {
         get
         {
-            if (!this.Properties.TryGetValue("adjusted_subtotal", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("adjusted_subtotal", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "adjusted_subtotal",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("adjusted_subtotal");
         }
-        set
-        {
-            this.Properties["adjusted_subtotal"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["adjusted_subtotal"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -56,21 +52,20 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     /// on invoice calculations (ie. usage discounts -> amount discounts -> percentage
     /// discounts -> minimums -> maximums).
     /// </summary>
-    public required Generic::List<LineItemProperties::Adjustment> Adjustments
+    public required List<LineItemProperties::Adjustment> Adjustments
     {
         get
         {
-            if (!this.Properties.TryGetValue("adjustments", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("adjustments", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "adjustments",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<LineItemProperties::Adjustment>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("adjustments");
+            return JsonSerializer.Deserialize<List<LineItemProperties::Adjustment>>(element)
+                ?? throw new System::ArgumentNullException("adjustments");
         }
-        set { this.Properties["adjustments"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["adjustments"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -81,16 +76,16 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("amount", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "amount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("amount");
         }
-        set { this.Properties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -100,34 +95,34 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     {
         get
         {
-            if (!this.Properties.TryGetValue("credits_applied", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("credits_applied", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "credits_applied",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("credits_applied");
         }
-        set { this.Properties["credits_applied"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["credits_applied"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// This field is deprecated in favor of `adjustments`
     /// </summary>
-    public required Models::Discount? Discount
+    public required Models::Discount2? Discount
     {
         get
         {
-            if (!this.Properties.TryGetValue("discount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("discount", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "discount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Models::Discount?>(element);
+            return JsonSerializer.Deserialize<Models::Discount2?>(element);
         }
-        set { this.Properties["discount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["discount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -137,15 +132,15 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("end_date", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "end_date",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(element);
         }
-        set { this.Properties["end_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -155,15 +150,15 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     {
         get
         {
-            if (!this.Properties.TryGetValue("filter", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("filter", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "filter",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["filter"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["filter"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -175,15 +170,15 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     {
         get
         {
-            if (!this.Properties.TryGetValue("grouping", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("grouping", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "grouping",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["grouping"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["grouping"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -193,15 +188,15 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     {
         get
         {
-            if (!this.Properties.TryGetValue("maximum", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("maximum", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "maximum",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Models::Maximum?>(element);
+            return JsonSerializer.Deserialize<Models::Maximum?>(element);
         }
-        set { this.Properties["maximum"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["maximum"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -211,15 +206,15 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     {
         get
         {
-            if (!this.Properties.TryGetValue("maximum_amount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("maximum_amount", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "maximum_amount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["maximum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -229,15 +224,15 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     {
         get
         {
-            if (!this.Properties.TryGetValue("minimum", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("minimum", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "minimum",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Models::Minimum?>(element);
+            return JsonSerializer.Deserialize<Models::Minimum?>(element);
         }
-        set { this.Properties["minimum"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["minimum"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -247,15 +242,15 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     {
         get
         {
-            if (!this.Properties.TryGetValue("minimum_amount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("minimum_amount", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "minimum_amount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["minimum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -265,13 +260,13 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("name");
         }
-        set { this.Properties["name"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -281,25 +276,18 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "partially_invoiced_amount",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.Properties.TryGetValue("partially_invoiced_amount", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "partially_invoiced_amount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("partially_invoiced_amount");
         }
         set
         {
-            this.Properties["partially_invoiced_amount"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.Properties["partially_invoiced_amount"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -318,13 +306,13 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     {
         get
         {
-            if (!this.Properties.TryGetValue("price", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("price", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("price", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Models::Price>(element)
+            return JsonSerializer.Deserialize<Models::Price>(element)
                 ?? throw new System::ArgumentNullException("price");
         }
-        set { this.Properties["price"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["price"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -334,15 +322,15 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     {
         get
         {
-            if (!this.Properties.TryGetValue("quantity", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("quantity", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "quantity",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element);
         }
-        set { this.Properties["quantity"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["quantity"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -352,35 +340,34 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     {
         get
         {
-            if (!this.Properties.TryGetValue("start_date", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("start_date", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "start_date",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(element);
         }
-        set { this.Properties["start_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// For complex pricing structures, the line item can be broken down further in `sub_line_items`.
     /// </summary>
-    public required Generic::List<LineItemProperties::SubLineItem> SubLineItems
+    public required List<LineItemProperties::SubLineItem> SubLineItems
     {
         get
         {
-            if (!this.Properties.TryGetValue("sub_line_items", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("sub_line_items", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "sub_line_items",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<LineItemProperties::SubLineItem>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("sub_line_items");
+            return JsonSerializer.Deserialize<List<LineItemProperties::SubLineItem>>(element)
+                ?? throw new System::ArgumentNullException("sub_line_items");
         }
-        set { this.Properties["sub_line_items"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["sub_line_items"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -390,57 +377,54 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     {
         get
         {
-            if (!this.Properties.TryGetValue("subtotal", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("subtotal", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "subtotal",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("subtotal");
         }
-        set { this.Properties["subtotal"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["subtotal"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// An array of tax rates and their incurred tax amounts. Empty if no tax integration
     /// is configured.
     /// </summary>
-    public required Generic::List<Models::TaxAmount> TaxAmounts
+    public required List<Models::TaxAmount> TaxAmounts
     {
         get
         {
-            if (!this.Properties.TryGetValue("tax_amounts", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("tax_amounts", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "tax_amounts",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<Models::TaxAmount>>(element)
+            return JsonSerializer.Deserialize<List<Models::TaxAmount>>(element)
                 ?? throw new System::ArgumentNullException("tax_amounts");
         }
-        set { this.Properties["tax_amounts"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["tax_amounts"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// A list of customer ids that were used to calculate the usage for this line item.
     /// </summary>
-    public required Generic::List<string>? UsageCustomerIDs
+    public required List<string>? UsageCustomerIDs
     {
         get
         {
-            if (!this.Properties.TryGetValue("usage_customer_ids", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("usage_customer_ids", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "usage_customer_ids",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<string>?>(element);
+            return JsonSerializer.Deserialize<List<string>?>(element);
         }
-        set
-        {
-            this.Properties["usage_customer_ids"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["usage_customer_ids"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -484,16 +468,14 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     public LineItem() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    LineItem(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    LineItem(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static LineItem FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static LineItem FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

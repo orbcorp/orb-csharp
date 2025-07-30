@@ -1,18 +1,13 @@
-using Models = Orb.Models;
-using NewSubscriptionGroupedAllocationPriceProperties = Orb.Models.Subscriptions.NewSubscriptionGroupedAllocationPriceProperties;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.NewSubscriptionGroupedAllocationPriceProperties.ConversionRateConfigVariants;
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<UnitConversionRateConfig, Models::UnitConversionRateConfig>)
-)]
-public sealed record class UnitConversionRateConfig(Models::UnitConversionRateConfig Value)
-    : NewSubscriptionGroupedAllocationPriceProperties::ConversionRateConfig,
-        Orb::IVariant<UnitConversionRateConfig, Models::UnitConversionRateConfig>
+[JsonConverter(typeof(VariantConverter<UnitConversionRateConfigVariant, UnitConversionRateConfig>))]
+public sealed record class UnitConversionRateConfigVariant(UnitConversionRateConfig Value)
+    : ConversionRateConfig,
+        IVariant<UnitConversionRateConfigVariant, UnitConversionRateConfig>
 {
-    public static UnitConversionRateConfig From(Models::UnitConversionRateConfig value)
+    public static UnitConversionRateConfigVariant From(UnitConversionRateConfig value)
     {
         return new(value);
     }
@@ -23,14 +18,14 @@ public sealed record class UnitConversionRateConfig(Models::UnitConversionRateCo
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<TieredConversionRateConfig, Models::TieredConversionRateConfig>)
+[JsonConverter(
+    typeof(VariantConverter<TieredConversionRateConfigVariant, TieredConversionRateConfig>)
 )]
-public sealed record class TieredConversionRateConfig(Models::TieredConversionRateConfig Value)
-    : NewSubscriptionGroupedAllocationPriceProperties::ConversionRateConfig,
-        Orb::IVariant<TieredConversionRateConfig, Models::TieredConversionRateConfig>
+public sealed record class TieredConversionRateConfigVariant(TieredConversionRateConfig Value)
+    : ConversionRateConfig,
+        IVariant<TieredConversionRateConfigVariant, TieredConversionRateConfig>
 {
-    public static TieredConversionRateConfig From(Models::TieredConversionRateConfig value)
+    public static TieredConversionRateConfigVariant From(TieredConversionRateConfig value)
     {
         return new(value);
     }

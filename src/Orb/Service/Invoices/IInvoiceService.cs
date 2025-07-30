@@ -1,6 +1,6 @@
-using Invoices = Orb.Models.Invoices;
-using Models = Orb.Models;
-using Tasks = System.Threading.Tasks;
+using System.Threading.Tasks;
+using Orb.Models;
+using Orb.Models.Invoices;
 
 namespace Orb.Service.Invoices;
 
@@ -9,7 +9,7 @@ public interface IInvoiceService
     /// <summary>
     /// This endpoint is used to create a one-off invoice for a customer.
     /// </summary>
-    Tasks::Task<Models::Invoice> Create(Invoices::InvoiceCreateParams @params);
+    Task<Invoice> Create(InvoiceCreateParams @params);
 
     /// <summary>
     /// This endpoint allows you to update the `metadata`, `net_terms`, and `due_date`
@@ -19,7 +19,7 @@ public interface IInvoiceService
     /// `metadata` can be modified regardless of invoice state. `net_terms` and `due_date`
     /// can only be modified if the invoice is in a `draft` state.
     /// </summary>
-    Tasks::Task<Models::Invoice> Update(Invoices::InvoiceUpdateParams @params);
+    Task<Invoice> Update(InvoiceUpdateParams @params);
 
     /// <summary>
     /// This endpoint returns a list of all [`Invoice`](/core-concepts#invoice)s for
@@ -35,21 +35,19 @@ public interface IInvoiceService
     /// for each draft invoice, which may not always be up-to-date since Orb regularly
     /// refreshes invoices asynchronously.
     /// </summary>
-    Tasks::Task<Invoices::InvoiceListPageResponse> List(Invoices::InvoiceListParams @params);
+    Task<InvoiceListPageResponse> List(InvoiceListParams @params);
 
     /// <summary>
     /// This endpoint is used to fetch an [`Invoice`](/core-concepts#invoice) given
     /// an identifier.
     /// </summary>
-    Tasks::Task<Models::Invoice> Fetch(Invoices::InvoiceFetchParams @params);
+    Task<Invoice> Fetch(InvoiceFetchParams @params);
 
     /// <summary>
     /// This endpoint can be used to fetch the upcoming [invoice](/core-concepts#invoice)
     /// for the current billing period given a subscription.
     /// </summary>
-    Tasks::Task<Invoices::InvoiceFetchUpcomingResponse> FetchUpcoming(
-        Invoices::InvoiceFetchUpcomingParams @params
-    );
+    Task<InvoiceFetchUpcomingResponse> FetchUpcoming(InvoiceFetchUpcomingParams @params);
 
     /// <summary>
     /// This endpoint allows an eligible invoice to be issued manually. This is only
@@ -58,19 +56,19 @@ public interface IInvoiceService
     /// possibly trigger side effects, some of which could be customer-visible (e.g.
     /// sending emails, auto-collecting payment, syncing the invoice to external providers, etc).
     /// </summary>
-    Tasks::Task<Models::Invoice> Issue(Invoices::InvoiceIssueParams @params);
+    Task<Invoice> Issue(InvoiceIssueParams @params);
 
     /// <summary>
     /// This endpoint allows an invoice's status to be set the `paid` status. This
     /// can only be done to invoices that are in the `issued` status.
     /// </summary>
-    Tasks::Task<Models::Invoice> MarkPaid(Invoices::InvoiceMarkPaidParams @params);
+    Task<Invoice> MarkPaid(InvoiceMarkPaidParams @params);
 
     /// <summary>
     /// This endpoint collects payment for an invoice using the customer's default
     /// payment method. This action can only be taken on invoices with status "issued".
     /// </summary>
-    Tasks::Task<Models::Invoice> Pay(Invoices::InvoicePayParams @params);
+    Task<Invoice> Pay(InvoicePayParams @params);
 
     /// <summary>
     /// This endpoint allows an invoice's status to be set the `void` status. This
@@ -85,5 +83,5 @@ public interface IInvoiceService
     /// yet paid, the credit block will be voided. If the invoice was created due to
     /// a top-up, the top-up will be disabled.
     /// </summary>
-    Tasks::Task<Models::Invoice> Void(Invoices::InvoiceVoidParams @params);
+    Task<Invoice> Void(InvoiceVoidParams @params);
 }

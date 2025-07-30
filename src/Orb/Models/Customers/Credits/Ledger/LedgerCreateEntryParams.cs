@@ -1,10 +1,9 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using LedgerCreateEntryParamsProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties;
-using Orb = Orb;
 using System = System;
-using Text = System.Text;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
@@ -89,9 +88,9 @@ namespace Orb.Models.Customers.Credits.Ledger;
 /// that was originally decremented from, and `amount` indicates how many credits
 /// to return to the customer, up to the block's initial balance.
 /// </summary>
-public sealed record class LedgerCreateEntryParams : Orb::ParamsBase
+public sealed record class LedgerCreateEntryParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     public required string CustomerID;
 
@@ -99,17 +98,16 @@ public sealed record class LedgerCreateEntryParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("body", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("body", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("body", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<LedgerCreateEntryParamsProperties::Body>(
-                    element
-                ) ?? throw new System::ArgumentNullException("body");
+            return JsonSerializer.Deserialize<LedgerCreateEntryParamsProperties::Body>(element)
+                ?? throw new System::ArgumentNullException("body");
         }
-        set { this.BodyProperties["body"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["body"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
@@ -120,21 +118,21 @@ public sealed record class LedgerCreateEntryParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

@@ -1,8 +1,7 @@
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System;
+using System.Net.Http;
+using System.Text.Json;
 using PlanListParamsProperties = Orb.Models.Plans.PlanListParamsProperties;
-using System = System;
 
 namespace Orb.Models.Plans;
 
@@ -12,70 +11,54 @@ namespace Orb.Models.Plans;
 /// recently created plan. The response also includes [`pagination_metadata`](/api-reference/pagination),
 /// which lets the caller retrieve the next page of results if they exist.
 /// </summary>
-public sealed record class PlanListParams : Orb::ParamsBase
+public sealed record class PlanListParams : ParamsBase
 {
-    public System::DateTime? CreatedAtGt
+    public DateTime? CreatedAtGt
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[gt]", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("created_at[gt]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element);
         }
-        set
-        {
-            this.QueryProperties["created_at[gt]"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.QueryProperties["created_at[gt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public System::DateTime? CreatedAtGte
+    public DateTime? CreatedAtGte
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[gte]", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("created_at[gte]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element);
         }
-        set
-        {
-            this.QueryProperties["created_at[gte]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.QueryProperties["created_at[gte]"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public System::DateTime? CreatedAtLt
+    public DateTime? CreatedAtLt
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[lt]", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("created_at[lt]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element);
         }
-        set
-        {
-            this.QueryProperties["created_at[lt]"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.QueryProperties["created_at[lt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public System::DateTime? CreatedAtLte
+    public DateTime? CreatedAtLte
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[lte]", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("created_at[lte]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element);
         }
-        set
-        {
-            this.QueryProperties["created_at[lte]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.QueryProperties["created_at[lte]"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -86,12 +69,12 @@ public sealed record class PlanListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("cursor", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("cursor", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.QueryProperties["cursor"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -101,12 +84,12 @@ public sealed record class PlanListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("limit", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("limit", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set { this.QueryProperties["limit"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -116,28 +99,28 @@ public sealed record class PlanListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("status", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("status", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<PlanListParamsProperties::Status?>(element);
+            return JsonSerializer.Deserialize<PlanListParamsProperties::Status?>(element);
         }
-        set { this.QueryProperties["status"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["status"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/plans")
+        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/plans")
         {
             Query = this.QueryString(client),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

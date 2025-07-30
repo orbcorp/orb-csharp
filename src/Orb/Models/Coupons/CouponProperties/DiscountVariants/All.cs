@@ -1,18 +1,13 @@
-using CouponProperties = Orb.Models.Coupons.CouponProperties;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Coupons.CouponProperties.DiscountVariants;
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<PercentageDiscount, Models::PercentageDiscount>)
-)]
-public sealed record class PercentageDiscount(Models::PercentageDiscount Value)
-    : CouponProperties::Discount,
-        Orb::IVariant<PercentageDiscount, Models::PercentageDiscount>
+[JsonConverter(typeof(VariantConverter<PercentageDiscountVariant, PercentageDiscount>))]
+public sealed record class PercentageDiscountVariant(PercentageDiscount Value)
+    : Discount,
+        IVariant<PercentageDiscountVariant, PercentageDiscount>
 {
-    public static PercentageDiscount From(Models::PercentageDiscount value)
+    public static PercentageDiscountVariant From(PercentageDiscount value)
     {
         return new(value);
     }
@@ -23,14 +18,12 @@ public sealed record class PercentageDiscount(Models::PercentageDiscount Value)
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<AmountDiscount, Models::AmountDiscount>)
-)]
-public sealed record class AmountDiscount(Models::AmountDiscount Value)
-    : CouponProperties::Discount,
-        Orb::IVariant<AmountDiscount, Models::AmountDiscount>
+[JsonConverter(typeof(VariantConverter<AmountDiscountVariant, AmountDiscount>))]
+public sealed record class AmountDiscountVariant(AmountDiscount Value)
+    : Discount,
+        IVariant<AmountDiscountVariant, AmountDiscount>
 {
-    public static AmountDiscount From(Models::AmountDiscount value)
+    public static AmountDiscountVariant From(AmountDiscount value)
     {
         return new(value);
     }

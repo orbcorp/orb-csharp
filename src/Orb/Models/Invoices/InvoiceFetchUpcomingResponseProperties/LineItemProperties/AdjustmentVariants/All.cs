@@ -1,24 +1,40 @@
-using LineItemProperties = Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.LineItemProperties;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.LineItemProperties.AdjustmentVariants;
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        MonetaryUsageDiscountAdjustment,
-        Models::MonetaryUsageDiscountAdjustment
+[JsonConverter(
+    typeof(VariantConverter<
+        MonetaryUsageDiscountAdjustmentVariant,
+        MonetaryUsageDiscountAdjustment
     >)
 )]
-public sealed record class MonetaryUsageDiscountAdjustment(
-    Models::MonetaryUsageDiscountAdjustment Value
-)
-    : LineItemProperties::Adjustment,
-        Orb::IVariant<MonetaryUsageDiscountAdjustment, Models::MonetaryUsageDiscountAdjustment>
+public sealed record class MonetaryUsageDiscountAdjustmentVariant(
+    MonetaryUsageDiscountAdjustment Value
+) : Adjustment, IVariant<MonetaryUsageDiscountAdjustmentVariant, MonetaryUsageDiscountAdjustment>
 {
-    public static MonetaryUsageDiscountAdjustment From(
-        Models::MonetaryUsageDiscountAdjustment value
+    public static MonetaryUsageDiscountAdjustmentVariant From(MonetaryUsageDiscountAdjustment value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+[JsonConverter(
+    typeof(VariantConverter<
+        MonetaryAmountDiscountAdjustmentVariant,
+        MonetaryAmountDiscountAdjustment
+    >)
+)]
+public sealed record class MonetaryAmountDiscountAdjustmentVariant(
+    MonetaryAmountDiscountAdjustment Value
+) : Adjustment, IVariant<MonetaryAmountDiscountAdjustmentVariant, MonetaryAmountDiscountAdjustment>
+{
+    public static MonetaryAmountDiscountAdjustmentVariant From(
+        MonetaryAmountDiscountAdjustment value
     )
     {
         return new(value);
@@ -30,20 +46,20 @@ public sealed record class MonetaryUsageDiscountAdjustment(
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        MonetaryAmountDiscountAdjustment,
-        Models::MonetaryAmountDiscountAdjustment
+[JsonConverter(
+    typeof(VariantConverter<
+        MonetaryPercentageDiscountAdjustmentVariant,
+        MonetaryPercentageDiscountAdjustment
     >)
 )]
-public sealed record class MonetaryAmountDiscountAdjustment(
-    Models::MonetaryAmountDiscountAdjustment Value
+public sealed record class MonetaryPercentageDiscountAdjustmentVariant(
+    MonetaryPercentageDiscountAdjustment Value
 )
-    : LineItemProperties::Adjustment,
-        Orb::IVariant<MonetaryAmountDiscountAdjustment, Models::MonetaryAmountDiscountAdjustment>
+    : Adjustment,
+        IVariant<MonetaryPercentageDiscountAdjustmentVariant, MonetaryPercentageDiscountAdjustment>
 {
-    public static MonetaryAmountDiscountAdjustment From(
-        Models::MonetaryAmountDiscountAdjustment value
+    public static MonetaryPercentageDiscountAdjustmentVariant From(
+        MonetaryPercentageDiscountAdjustment value
     )
     {
         return new(value);
@@ -55,24 +71,14 @@ public sealed record class MonetaryAmountDiscountAdjustment(
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        MonetaryPercentageDiscountAdjustment,
-        Models::MonetaryPercentageDiscountAdjustment
-    >)
+[JsonConverter(
+    typeof(VariantConverter<MonetaryMinimumAdjustmentVariant, MonetaryMinimumAdjustment>)
 )]
-public sealed record class MonetaryPercentageDiscountAdjustment(
-    Models::MonetaryPercentageDiscountAdjustment Value
-)
-    : LineItemProperties::Adjustment,
-        Orb::IVariant<
-            MonetaryPercentageDiscountAdjustment,
-            Models::MonetaryPercentageDiscountAdjustment
-        >
+public sealed record class MonetaryMinimumAdjustmentVariant(MonetaryMinimumAdjustment Value)
+    : Adjustment,
+        IVariant<MonetaryMinimumAdjustmentVariant, MonetaryMinimumAdjustment>
 {
-    public static MonetaryPercentageDiscountAdjustment From(
-        Models::MonetaryPercentageDiscountAdjustment value
-    )
+    public static MonetaryMinimumAdjustmentVariant From(MonetaryMinimumAdjustment value)
     {
         return new(value);
     }
@@ -83,32 +89,14 @@ public sealed record class MonetaryPercentageDiscountAdjustment(
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<MonetaryMinimumAdjustment, Models::MonetaryMinimumAdjustment>)
+[JsonConverter(
+    typeof(VariantConverter<MonetaryMaximumAdjustmentVariant, MonetaryMaximumAdjustment>)
 )]
-public sealed record class MonetaryMinimumAdjustment(Models::MonetaryMinimumAdjustment Value)
-    : LineItemProperties::Adjustment,
-        Orb::IVariant<MonetaryMinimumAdjustment, Models::MonetaryMinimumAdjustment>
+public sealed record class MonetaryMaximumAdjustmentVariant(MonetaryMaximumAdjustment Value)
+    : Adjustment,
+        IVariant<MonetaryMaximumAdjustmentVariant, MonetaryMaximumAdjustment>
 {
-    public static MonetaryMinimumAdjustment From(Models::MonetaryMinimumAdjustment value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<MonetaryMaximumAdjustment, Models::MonetaryMaximumAdjustment>)
-)]
-public sealed record class MonetaryMaximumAdjustment(Models::MonetaryMaximumAdjustment Value)
-    : LineItemProperties::Adjustment,
-        Orb::IVariant<MonetaryMaximumAdjustment, Models::MonetaryMaximumAdjustment>
-{
-    public static MonetaryMaximumAdjustment From(Models::MonetaryMaximumAdjustment value)
+    public static MonetaryMaximumAdjustmentVariant From(MonetaryMaximumAdjustment value)
     {
         return new(value);
     }

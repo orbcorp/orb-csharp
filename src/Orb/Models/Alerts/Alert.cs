@@ -1,10 +1,8 @@
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using AlertProperties = Orb.Models.Alerts.AlertProperties;
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Alerts;
@@ -15,8 +13,8 @@ namespace Orb.Models.Alerts;
 ///
 /// Alerts created through the API can be scoped to either customers or subscriptions.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<Alert>))]
-public sealed record class Alert : Orb::ModelBase, Orb::IFromRaw<Alert>
+[JsonConverter(typeof(ModelConverter<Alert>))]
+public sealed record class Alert : ModelBase, IFromRaw<Alert>
 {
     /// <summary>
     /// Also referred to as alert_id in this documentation.
@@ -25,13 +23,13 @@ public sealed record class Alert : Orb::ModelBase, Orb::IFromRaw<Alert>
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -41,15 +39,15 @@ public sealed record class Alert : Orb::ModelBase, Orb::IFromRaw<Alert>
     {
         get
         {
-            if (!this.Properties.TryGetValue("created_at", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("created_at", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "created_at",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(element);
         }
-        set { this.Properties["created_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -59,33 +57,33 @@ public sealed record class Alert : Orb::ModelBase, Orb::IFromRaw<Alert>
     {
         get
         {
-            if (!this.Properties.TryGetValue("currency", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("currency", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "currency",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["currency"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The customer the alert applies to.
     /// </summary>
-    public required Models::CustomerMinified? Customer
+    public required CustomerMinified? Customer
     {
         get
         {
-            if (!this.Properties.TryGetValue("customer", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("customer", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "customer",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Models::CustomerMinified?>(element);
+            return JsonSerializer.Deserialize<CustomerMinified?>(element);
         }
-        set { this.Properties["customer"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["customer"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -95,15 +93,15 @@ public sealed record class Alert : Orb::ModelBase, Orb::IFromRaw<Alert>
     {
         get
         {
-            if (!this.Properties.TryGetValue("enabled", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("enabled", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "enabled",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element);
         }
-        set { this.Properties["enabled"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["enabled"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -113,15 +111,15 @@ public sealed record class Alert : Orb::ModelBase, Orb::IFromRaw<Alert>
     {
         get
         {
-            if (!this.Properties.TryGetValue("metric", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("metric", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "metric",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<AlertProperties::Metric?>(element);
+            return JsonSerializer.Deserialize<AlertProperties::Metric?>(element);
         }
-        set { this.Properties["metric"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["metric"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -131,48 +129,48 @@ public sealed record class Alert : Orb::ModelBase, Orb::IFromRaw<Alert>
     {
         get
         {
-            if (!this.Properties.TryGetValue("plan", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("plan", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("plan", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<AlertProperties::Plan?>(element);
+            return JsonSerializer.Deserialize<AlertProperties::Plan?>(element);
         }
-        set { this.Properties["plan"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["plan"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The subscription the alert applies to.
     /// </summary>
-    public required Models::SubscriptionMinified? Subscription
+    public required SubscriptionMinified? Subscription
     {
         get
         {
-            if (!this.Properties.TryGetValue("subscription", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("subscription", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "subscription",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Models::SubscriptionMinified?>(element);
+            return JsonSerializer.Deserialize<SubscriptionMinified?>(element);
         }
-        set { this.Properties["subscription"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["subscription"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The thresholds that define the conditions under which the alert will be triggered.
     /// </summary>
-    public required Generic::List<Threshold>? Thresholds
+    public required List<Threshold>? Thresholds
     {
         get
         {
-            if (!this.Properties.TryGetValue("thresholds", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("thresholds", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "thresholds",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<Threshold>?>(element);
+            return JsonSerializer.Deserialize<List<Threshold>?>(element);
         }
-        set { this.Properties["thresholds"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["thresholds"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -182,35 +180,28 @@ public sealed record class Alert : Orb::ModelBase, Orb::IFromRaw<Alert>
     {
         get
         {
-            if (!this.Properties.TryGetValue("type", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<AlertProperties::Type>(element)
+            return JsonSerializer.Deserialize<AlertProperties::Type>(element)
                 ?? throw new System::ArgumentNullException("type");
         }
-        set { this.Properties["type"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["type"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The current status of the alert. This field is only present for credit balance alerts.
     /// </summary>
-    public Generic::List<AlertProperties::BalanceAlertStatus>? BalanceAlertStatus
+    public List<AlertProperties::BalanceAlertStatus>? BalanceAlertStatus
     {
         get
         {
-            if (!this.Properties.TryGetValue("balance_alert_status", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("balance_alert_status", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<AlertProperties::BalanceAlertStatus>?>(
-                element
-            );
+            return JsonSerializer.Deserialize<List<AlertProperties::BalanceAlertStatus>?>(element);
         }
-        set
-        {
-            this.Properties["balance_alert_status"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.Properties["balance_alert_status"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -237,14 +228,14 @@ public sealed record class Alert : Orb::ModelBase, Orb::IFromRaw<Alert>
     public Alert() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    Alert(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    Alert(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static Alert FromRawUnchecked(Generic::Dictionary<string, Json::JsonElement> properties)
+    public static Alert FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

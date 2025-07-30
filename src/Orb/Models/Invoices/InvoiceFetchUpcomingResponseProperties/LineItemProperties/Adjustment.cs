@@ -1,30 +1,27 @@
+using System.Text.Json.Serialization;
 using AdjustmentVariants = Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.LineItemProperties.AdjustmentVariants;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 
 namespace Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.LineItemProperties;
 
-[Serialization::JsonConverter(typeof(Orb::UnionConverter<Adjustment>))]
+[JsonConverter(typeof(UnionConverter<Adjustment>))]
 public abstract record class Adjustment
 {
     internal Adjustment() { }
 
-    public static implicit operator Adjustment(Models::MonetaryUsageDiscountAdjustment value) =>
-        new AdjustmentVariants::MonetaryUsageDiscountAdjustment(value);
+    public static implicit operator Adjustment(MonetaryUsageDiscountAdjustment value) =>
+        new AdjustmentVariants::MonetaryUsageDiscountAdjustmentVariant(value);
 
-    public static implicit operator Adjustment(Models::MonetaryAmountDiscountAdjustment value) =>
-        new AdjustmentVariants::MonetaryAmountDiscountAdjustment(value);
+    public static implicit operator Adjustment(MonetaryAmountDiscountAdjustment value) =>
+        new AdjustmentVariants::MonetaryAmountDiscountAdjustmentVariant(value);
 
-    public static implicit operator Adjustment(
-        Models::MonetaryPercentageDiscountAdjustment value
-    ) => new AdjustmentVariants::MonetaryPercentageDiscountAdjustment(value);
+    public static implicit operator Adjustment(MonetaryPercentageDiscountAdjustment value) =>
+        new AdjustmentVariants::MonetaryPercentageDiscountAdjustmentVariant(value);
 
-    public static implicit operator Adjustment(Models::MonetaryMinimumAdjustment value) =>
-        new AdjustmentVariants::MonetaryMinimumAdjustment(value);
+    public static implicit operator Adjustment(MonetaryMinimumAdjustment value) =>
+        new AdjustmentVariants::MonetaryMinimumAdjustmentVariant(value);
 
-    public static implicit operator Adjustment(Models::MonetaryMaximumAdjustment value) =>
-        new AdjustmentVariants::MonetaryMaximumAdjustment(value);
+    public static implicit operator Adjustment(MonetaryMaximumAdjustment value) =>
+        new AdjustmentVariants::MonetaryMaximumAdjustmentVariant(value);
 
     public abstract void Validate();
 }

@@ -1,15 +1,14 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using NewPlanTieredPriceProperties = Orb.Models.NewPlanTieredPriceProperties;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<NewPlanTieredPrice>))]
-public sealed record class NewPlanTieredPrice : Orb::ModelBase, Orb::IFromRaw<NewPlanTieredPrice>
+[JsonConverter(typeof(ModelConverter<NewPlanTieredPrice>))]
+public sealed record class NewPlanTieredPrice : ModelBase, IFromRaw<NewPlanTieredPrice>
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -18,16 +17,16 @@ public sealed record class NewPlanTieredPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     {
         get
         {
-            if (!this.Properties.TryGetValue("cadence", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("cadence", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "cadence",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<NewPlanTieredPriceProperties::Cadence>(element)
+            return JsonSerializer.Deserialize<NewPlanTieredPriceProperties::Cadence>(element)
                 ?? throw new System::ArgumentNullException("cadence");
         }
-        set { this.Properties["cadence"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["cadence"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -37,33 +36,32 @@ public sealed record class NewPlanTieredPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     {
         get
         {
-            if (!this.Properties.TryGetValue("item_id", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("item_id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "item_id",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("item_id");
         }
-        set { this.Properties["item_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["item_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required NewPlanTieredPriceProperties::ModelType ModelType
     {
         get
         {
-            if (!this.Properties.TryGetValue("model_type", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("model_type", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "model_type",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<NewPlanTieredPriceProperties::ModelType>(
-                    element
-                ) ?? throw new System::ArgumentNullException("model_type");
+            return JsonSerializer.Deserialize<NewPlanTieredPriceProperties::ModelType>(element)
+                ?? throw new System::ArgumentNullException("model_type");
         }
-        set { this.Properties["model_type"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["model_type"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -73,29 +71,29 @@ public sealed record class NewPlanTieredPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("name");
         }
-        set { this.Properties["name"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required TieredConfig TieredConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("tiered_config", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("tiered_config", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "tiered_config",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<TieredConfig>(element)
+            return JsonSerializer.Deserialize<TieredConfig>(element)
                 ?? throw new System::ArgumentNullException("tiered_config");
         }
-        set { this.Properties["tiered_config"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["tiered_config"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -105,15 +103,12 @@ public sealed record class NewPlanTieredPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     {
         get
         {
-            if (!this.Properties.TryGetValue("billable_metric_id", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("billable_metric_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set
-        {
-            this.Properties["billable_metric_id"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["billable_metric_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -124,15 +119,12 @@ public sealed record class NewPlanTieredPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     {
         get
         {
-            if (!this.Properties.TryGetValue("billed_in_advance", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("billed_in_advance", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element);
         }
-        set
-        {
-            this.Properties["billed_in_advance"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["billed_in_advance"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -143,19 +135,17 @@ public sealed record class NewPlanTieredPrice : Orb::ModelBase, Orb::IFromRaw<Ne
         get
         {
             if (
-                !this.Properties.TryGetValue(
-                    "billing_cycle_configuration",
-                    out Json::JsonElement element
-                )
+                !this.Properties.TryGetValue("billing_cycle_configuration", out JsonElement element)
             )
                 return null;
 
-            return Json::JsonSerializer.Deserialize<NewBillingCycleConfiguration?>(element);
+            return JsonSerializer.Deserialize<NewBillingCycleConfiguration?>(element);
         }
         set
         {
-            this.Properties["billing_cycle_configuration"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.Properties["billing_cycle_configuration"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
@@ -166,12 +156,12 @@ public sealed record class NewPlanTieredPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     {
         get
         {
-            if (!this.Properties.TryGetValue("conversion_rate", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("conversion_rate", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element);
         }
-        set { this.Properties["conversion_rate"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["conversion_rate"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -181,23 +171,16 @@ public sealed record class NewPlanTieredPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "conversion_rate_config",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.Properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<NewPlanTieredPriceProperties::ConversionRateConfig?>(
+            return JsonSerializer.Deserialize<NewPlanTieredPriceProperties::ConversionRateConfig?>(
                 element
             );
         }
         set
         {
-            this.Properties["conversion_rate_config"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.Properties["conversion_rate_config"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -209,12 +192,12 @@ public sealed record class NewPlanTieredPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     {
         get
         {
-            if (!this.Properties.TryGetValue("currency", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("currency", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["currency"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -227,17 +210,18 @@ public sealed record class NewPlanTieredPrice : Orb::ModelBase, Orb::IFromRaw<Ne
             if (
                 !this.Properties.TryGetValue(
                     "dimensional_price_configuration",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
                 return null;
 
-            return Json::JsonSerializer.Deserialize<NewDimensionalPriceConfiguration?>(element);
+            return JsonSerializer.Deserialize<NewDimensionalPriceConfiguration?>(element);
         }
         set
         {
-            this.Properties["dimensional_price_configuration"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.Properties["dimensional_price_configuration"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
@@ -248,15 +232,12 @@ public sealed record class NewPlanTieredPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_price_id", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("external_price_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set
-        {
-            this.Properties["external_price_id"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -266,17 +247,12 @@ public sealed record class NewPlanTieredPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     {
         get
         {
-            if (!this.Properties.TryGetValue("fixed_price_quantity", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("fixed_price_quantity", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element);
         }
-        set
-        {
-            this.Properties["fixed_price_quantity"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.Properties["fixed_price_quantity"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -286,17 +262,12 @@ public sealed record class NewPlanTieredPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     {
         get
         {
-            if (!this.Properties.TryGetValue("invoice_grouping_key", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("invoice_grouping_key", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set
-        {
-            this.Properties["invoice_grouping_key"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.Properties["invoice_grouping_key"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -310,17 +281,18 @@ public sealed record class NewPlanTieredPrice : Orb::ModelBase, Orb::IFromRaw<Ne
             if (
                 !this.Properties.TryGetValue(
                     "invoicing_cycle_configuration",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
                 return null;
 
-            return Json::JsonSerializer.Deserialize<NewBillingCycleConfiguration?>(element);
+            return JsonSerializer.Deserialize<NewBillingCycleConfiguration?>(element);
         }
         set
         {
-            this.Properties["invoicing_cycle_configuration"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.Properties["invoicing_cycle_configuration"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
@@ -329,16 +301,16 @@ public sealed record class NewPlanTieredPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Generic::Dictionary<string, string?>? Metadata
+    public Dictionary<string, string?>? Metadata
     {
         get
         {
-            if (!this.Properties.TryGetValue("metadata", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::Dictionary<string, string?>?>(element);
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(element);
         }
-        set { this.Properties["metadata"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -349,12 +321,12 @@ public sealed record class NewPlanTieredPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     {
         get
         {
-            if (!this.Properties.TryGetValue("reference_id", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("reference_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["reference_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["reference_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -388,16 +360,14 @@ public sealed record class NewPlanTieredPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     public NewPlanTieredPrice() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    NewPlanTieredPrice(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    NewPlanTieredPrice(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static NewPlanTieredPrice FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static NewPlanTieredPrice FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

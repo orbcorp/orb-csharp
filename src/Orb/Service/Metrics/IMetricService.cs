@@ -1,5 +1,5 @@
-using Metrics = Orb.Models.Metrics;
-using Tasks = System.Threading.Tasks;
+using System.Threading.Tasks;
+using Orb.Models.Metrics;
 
 namespace Orb.Service.Metrics;
 
@@ -10,25 +10,25 @@ public interface IMetricService
     /// SQL string. See [SQL support](/extensibility/advanced-metrics#sql-support)
     /// for a description of constructing SQL queries with examples.
     /// </summary>
-    Tasks::Task<Metrics::BillableMetric> Create(Metrics::MetricCreateParams @params);
+    Task<BillableMetric> Create(MetricCreateParams @params);
 
     /// <summary>
     /// This endpoint allows you to update the `metadata` property on a metric. If
     /// you pass `null` for the metadata value, it will clear any existing metadata
     /// for that invoice.
     /// </summary>
-    Tasks::Task<Metrics::BillableMetric> Update(Metrics::MetricUpdateParams @params);
+    Task<BillableMetric> Update(MetricUpdateParams @params);
 
     /// <summary>
     /// This endpoint is used to fetch [metric](/core-concepts##metric) details given
     /// a metric identifier. It returns information about the metrics including its
     /// name, description, and item.
     /// </summary>
-    Tasks::Task<Metrics::MetricListPageResponse> List(Metrics::MetricListParams @params);
+    Task<MetricListPageResponse> List(MetricListParams @params);
 
     /// <summary>
     /// This endpoint is used to list [metrics](/core-concepts#metric). It returns
     /// information about the metrics including its name, description, and item.
     /// </summary>
-    Tasks::Task<Metrics::BillableMetric> Fetch(Metrics::MetricFetchParams @params);
+    Task<BillableMetric> Fetch(MetricFetchParams @params);
 }

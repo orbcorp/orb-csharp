@@ -1,14 +1,12 @@
+using System.Text.Json.Serialization;
 using BodyProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties;
-using LedgerCreateEntryByExternalIDParamsProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyVariants;
 
-[Serialization::JsonConverter(typeof(Orb::VariantConverter<Increment, BodyProperties::Increment>))]
+[JsonConverter(typeof(VariantConverter<Increment, BodyProperties::Increment>))]
 public sealed record class Increment(BodyProperties::Increment Value)
-    : LedgerCreateEntryByExternalIDParamsProperties::Body,
-        Orb::IVariant<Increment, BodyProperties::Increment>
+    : Body,
+        IVariant<Increment, BodyProperties::Increment>
 {
     public static Increment From(BodyProperties::Increment value)
     {
@@ -21,10 +19,10 @@ public sealed record class Increment(BodyProperties::Increment Value)
     }
 }
 
-[Serialization::JsonConverter(typeof(Orb::VariantConverter<Decrement, BodyProperties::Decrement>))]
+[JsonConverter(typeof(VariantConverter<Decrement, BodyProperties::Decrement>))]
 public sealed record class Decrement(BodyProperties::Decrement Value)
-    : LedgerCreateEntryByExternalIDParamsProperties::Body,
-        Orb::IVariant<Decrement, BodyProperties::Decrement>
+    : Body,
+        IVariant<Decrement, BodyProperties::Decrement>
 {
     public static Decrement From(BodyProperties::Decrement value)
     {
@@ -37,12 +35,10 @@ public sealed record class Decrement(BodyProperties::Decrement Value)
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<ExpirationChange, BodyProperties::ExpirationChange>)
-)]
+[JsonConverter(typeof(VariantConverter<ExpirationChange, BodyProperties::ExpirationChange>))]
 public sealed record class ExpirationChange(BodyProperties::ExpirationChange Value)
-    : LedgerCreateEntryByExternalIDParamsProperties::Body,
-        Orb::IVariant<ExpirationChange, BodyProperties::ExpirationChange>
+    : Body,
+        IVariant<ExpirationChange, BodyProperties::ExpirationChange>
 {
     public static ExpirationChange From(BodyProperties::ExpirationChange value)
     {
@@ -55,10 +51,10 @@ public sealed record class ExpirationChange(BodyProperties::ExpirationChange Val
     }
 }
 
-[Serialization::JsonConverter(typeof(Orb::VariantConverter<Void, BodyProperties::Void>))]
+[JsonConverter(typeof(VariantConverter<Void, BodyProperties::Void>))]
 public sealed record class Void(BodyProperties::Void Value)
-    : LedgerCreateEntryByExternalIDParamsProperties::Body,
-        Orb::IVariant<Void, BodyProperties::Void>
+    : Body,
+        IVariant<Void, BodyProperties::Void>
 {
     public static Void From(BodyProperties::Void value)
     {
@@ -71,10 +67,10 @@ public sealed record class Void(BodyProperties::Void Value)
     }
 }
 
-[Serialization::JsonConverter(typeof(Orb::VariantConverter<Amendment, BodyProperties::Amendment>))]
+[JsonConverter(typeof(VariantConverter<Amendment, BodyProperties::Amendment>))]
 public sealed record class Amendment(BodyProperties::Amendment Value)
-    : LedgerCreateEntryByExternalIDParamsProperties::Body,
-        Orb::IVariant<Amendment, BodyProperties::Amendment>
+    : Body,
+        IVariant<Amendment, BodyProperties::Amendment>
 {
     public static Amendment From(BodyProperties::Amendment value)
     {

@@ -1,39 +1,38 @@
+using System;
+using System.Threading.Tasks;
+using Orb.Models.Customers.Costs.CostListParamsProperties;
 using CostListByExternalIDParamsProperties = Orb.Models.Customers.Costs.CostListByExternalIDParamsProperties;
-using CostListParamsProperties = Orb.Models.Customers.Costs.CostListParamsProperties;
-using System = System;
-using Tasks = System.Threading.Tasks;
-using Tests = Orb.Tests;
 
 namespace Orb.Tests.Service.Customers.Costs;
 
-public class CostServiceTest : Tests::TestBase
+public class CostServiceTest : TestBase
 {
     [Fact]
-    public async Tasks::Task List_Works()
+    public async Task List_Works()
     {
         var costs = await this.client.Customers.Costs.List(
             new()
             {
                 CustomerID = "customer_id",
                 Currency = "currency",
-                TimeframeEnd = System::DateTime.Parse("2022-03-01T05:00:00Z"),
-                TimeframeStart = System::DateTime.Parse("2022-02-01T05:00:00Z"),
-                ViewMode = CostListParamsProperties::ViewMode.Periodic,
+                TimeframeEnd = DateTime.Parse("2022-03-01T05:00:00Z"),
+                TimeframeStart = DateTime.Parse("2022-02-01T05:00:00Z"),
+                ViewMode = ViewMode.Periodic,
             }
         );
         costs.Validate();
     }
 
     [Fact]
-    public async Tasks::Task ListByExternalID_Works()
+    public async Task ListByExternalID_Works()
     {
         var response = await this.client.Customers.Costs.ListByExternalID(
             new()
             {
                 ExternalCustomerID = "external_customer_id",
                 Currency = "currency",
-                TimeframeEnd = System::DateTime.Parse("2022-03-01T05:00:00Z"),
-                TimeframeStart = System::DateTime.Parse("2022-02-01T05:00:00Z"),
+                TimeframeEnd = DateTime.Parse("2022-03-01T05:00:00Z"),
+                TimeframeStart = DateTime.Parse("2022-02-01T05:00:00Z"),
                 ViewMode = CostListByExternalIDParamsProperties::ViewMode.Periodic,
             }
         );

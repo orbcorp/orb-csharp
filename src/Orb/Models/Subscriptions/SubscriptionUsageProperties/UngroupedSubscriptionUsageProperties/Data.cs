@@ -1,59 +1,55 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using DataProperties = Orb.Models.Subscriptions.SubscriptionUsageProperties.UngroupedSubscriptionUsageProperties.DataProperties;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Subscriptions.SubscriptionUsageProperties.UngroupedSubscriptionUsageProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<Data>))]
-public sealed record class Data : Orb::ModelBase, Orb::IFromRaw<Data>
+[JsonConverter(typeof(ModelConverter<Data>))]
+public sealed record class Data : ModelBase, IFromRaw<Data>
 {
     public required DataProperties::BillableMetric BillableMetric
     {
         get
         {
-            if (!this.Properties.TryGetValue("billable_metric", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("billable_metric", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "billable_metric",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<DataProperties::BillableMetric>(element)
-                ?? throw new System::ArgumentNullException("billable_metric");
+            return JsonSerializer.Deserialize<DataProperties::BillableMetric>(element)
+                ?? throw new ArgumentNullException("billable_metric");
         }
-        set { this.Properties["billable_metric"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["billable_metric"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public required Generic::List<DataProperties::Usage> Usage
+    public required List<DataProperties::Usage> Usage
     {
         get
         {
-            if (!this.Properties.TryGetValue("usage", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("usage", "Missing required argument");
+            if (!this.Properties.TryGetValue("usage", out JsonElement element))
+                throw new ArgumentOutOfRangeException("usage", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Generic::List<DataProperties::Usage>>(element)
-                ?? throw new System::ArgumentNullException("usage");
+            return JsonSerializer.Deserialize<List<DataProperties::Usage>>(element)
+                ?? throw new ArgumentNullException("usage");
         }
-        set { this.Properties["usage"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["usage"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required DataProperties::ViewMode ViewMode
     {
         get
         {
-            if (!this.Properties.TryGetValue("view_mode", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "view_mode",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("view_mode", out JsonElement element))
+                throw new ArgumentOutOfRangeException("view_mode", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<DataProperties::ViewMode>(element)
-                ?? throw new System::ArgumentNullException("view_mode");
+            return JsonSerializer.Deserialize<DataProperties::ViewMode>(element)
+                ?? throw new ArgumentNullException("view_mode");
         }
-        set { this.Properties["view_mode"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["view_mode"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -69,14 +65,14 @@ public sealed record class Data : Orb::ModelBase, Orb::IFromRaw<Data>
     public Data() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    Data(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    Data(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static Data FromRawUnchecked(Generic::Dictionary<string, Json::JsonElement> properties)
+    public static Data FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

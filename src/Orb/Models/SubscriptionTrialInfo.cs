@@ -1,30 +1,27 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<SubscriptionTrialInfo>))]
-public sealed record class SubscriptionTrialInfo
-    : Orb::ModelBase,
-        Orb::IFromRaw<SubscriptionTrialInfo>
+[JsonConverter(typeof(ModelConverter<SubscriptionTrialInfo>))]
+public sealed record class SubscriptionTrialInfo : ModelBase, IFromRaw<SubscriptionTrialInfo>
 {
     public required System::DateTime? EndDate
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("end_date", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "end_date",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
-        set { this.Properties["end_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -35,16 +32,14 @@ public sealed record class SubscriptionTrialInfo
     public SubscriptionTrialInfo() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    SubscriptionTrialInfo(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    SubscriptionTrialInfo(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static SubscriptionTrialInfo FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static SubscriptionTrialInfo FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

@@ -1,19 +1,18 @@
-using Http = System.Net.Http;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Net.Http;
 
 namespace Orb.Models.Events.Backfills;
 
 /// <summary>
 /// This endpoint is used to fetch a backfill given an identifier.
 /// </summary>
-public sealed record class BackfillFetchParams : Orb::ParamsBase
+public sealed record class BackfillFetchParams : ParamsBase
 {
     public required string BackfillID;
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/events/backfills/{0}", this.BackfillID)
         )
@@ -22,12 +21,12 @@ public sealed record class BackfillFetchParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

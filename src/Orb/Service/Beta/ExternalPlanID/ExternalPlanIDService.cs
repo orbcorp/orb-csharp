@@ -1,86 +1,76 @@
-using Beta = Orb.Models.Beta;
-using ExternalPlanID = Orb.Models.Beta.ExternalPlanID;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Plans = Orb.Models.Plans;
-using System = System;
-using Tasks = System.Threading.Tasks;
+using System;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Orb.Models.Beta;
+using Orb.Models.Beta.ExternalPlanID;
+using Orb.Models.Plans;
 
 namespace Orb.Service.Beta.ExternalPlanID;
 
 public sealed class ExternalPlanIDService : IExternalPlanIDService
 {
-    readonly Orb::IOrbClient _client;
+    readonly IOrbClient _client;
 
-    public ExternalPlanIDService(Orb::IOrbClient client)
+    public ExternalPlanIDService(IOrbClient client)
     {
         _client = client;
     }
 
-    public async Tasks::Task<Beta::PlanVersion> CreatePlanVersion(
-        ExternalPlanID::ExternalPlanIDCreatePlanVersionParams @params
-    )
+    public async Task<PlanVersion> CreatePlanVersion(ExternalPlanIDCreatePlanVersionParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Beta::PlanVersion>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+        return JsonSerializer.Deserialize<PlanVersion>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Beta::PlanVersion> FetchPlanVersion(
-        ExternalPlanID::ExternalPlanIDFetchPlanVersionParams @params
-    )
+    public async Task<PlanVersion> FetchPlanVersion(ExternalPlanIDFetchPlanVersionParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Get, @params.Url(this._client));
+        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Beta::PlanVersion>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+        return JsonSerializer.Deserialize<PlanVersion>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Plans::Plan> SetDefaultPlanVersion(
-        ExternalPlanID::ExternalPlanIDSetDefaultPlanVersionParams @params
-    )
+    public async Task<Plan> SetDefaultPlanVersion(ExternalPlanIDSetDefaultPlanVersionParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Plans::Plan>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+        return JsonSerializer.Deserialize<Plan>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
     }
 }

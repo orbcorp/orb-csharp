@@ -1,6 +1,5 @@
-using Http = System.Net.Http;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Net.Http;
 
 namespace Orb.Models.Coupons;
 
@@ -8,13 +7,13 @@ namespace Orb.Models.Coupons;
 /// This endpoint retrieves a coupon by its ID. To fetch coupons by their redemption
 /// code, use the [List coupons](list-coupons) endpoint with the redemption_code parameter.
 /// </summary>
-public sealed record class CouponFetchParams : Orb::ParamsBase
+public sealed record class CouponFetchParams : ParamsBase
 {
     public required string CouponID;
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/') + string.Format("/coupons/{0}", this.CouponID)
         )
         {
@@ -22,12 +21,12 @@ public sealed record class CouponFetchParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

@@ -1,5 +1,5 @@
-using SubscriptionChanges = Orb.Models.SubscriptionChanges;
-using Tasks = System.Threading.Tasks;
+using System.Threading.Tasks;
+using Orb.Models.SubscriptionChanges;
 
 namespace Orb.Service.SubscriptionChanges;
 
@@ -14,25 +14,19 @@ public interface ISubscriptionChangeService
     /// endpoint](/api-reference/subscription/schedule-plan-change), ...). The subscription
     /// change will be referenced by the `pending_subscription_change` field in the response.
     /// </summary>
-    Tasks::Task<SubscriptionChanges::SubscriptionChangeRetrieveResponse> Retrieve(
-        SubscriptionChanges::SubscriptionChangeRetrieveParams @params
-    );
+    Task<SubscriptionChangeRetrieveResponse> Retrieve(SubscriptionChangeRetrieveParams @params);
 
     /// <summary>
     /// Apply a subscription change to perform the intended action. If a positive amount
     /// is passed with a request to this endpoint, any eligible invoices that were created
     /// will be issued immediately if they only contain in-advance fees.
     /// </summary>
-    Tasks::Task<SubscriptionChanges::SubscriptionChangeApplyResponse> Apply(
-        SubscriptionChanges::SubscriptionChangeApplyParams @params
-    );
+    Task<SubscriptionChangeApplyResponse> Apply(SubscriptionChangeApplyParams @params);
 
     /// <summary>
     /// Cancel a subscription change. The change can no longer be applied. A subscription
     /// can only have one "pending" change at a time - use this endpoint to cancel an
     /// existing change before creating a new one.
     /// </summary>
-    Tasks::Task<SubscriptionChanges::SubscriptionChangeCancelResponse> Cancel(
-        SubscriptionChanges::SubscriptionChangeCancelParams @params
-    );
+    Task<SubscriptionChangeCancelResponse> Cancel(SubscriptionChangeCancelParams @params);
 }

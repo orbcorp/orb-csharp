@@ -1,21 +1,18 @@
+using System.Text.Json.Serialization;
 using ConversionRateConfigVariants = Orb.Models.PriceProperties.MatrixWithDisplayNameProperties.ConversionRateConfigVariants;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 
 namespace Orb.Models.PriceProperties.MatrixWithDisplayNameProperties;
 
-[Serialization::JsonConverter(typeof(Orb::UnionConverter<ConversionRateConfig>))]
+[JsonConverter(typeof(UnionConverter<ConversionRateConfig>))]
 public abstract record class ConversionRateConfig
 {
     internal ConversionRateConfig() { }
 
-    public static implicit operator ConversionRateConfig(Models::UnitConversionRateConfig value) =>
-        new ConversionRateConfigVariants::UnitConversionRateConfig(value);
+    public static implicit operator ConversionRateConfig(UnitConversionRateConfig value) =>
+        new ConversionRateConfigVariants::UnitConversionRateConfigVariant(value);
 
-    public static implicit operator ConversionRateConfig(
-        Models::TieredConversionRateConfig value
-    ) => new ConversionRateConfigVariants::TieredConversionRateConfig(value);
+    public static implicit operator ConversionRateConfig(TieredConversionRateConfig value) =>
+        new ConversionRateConfigVariants::TieredConversionRateConfigVariant(value);
 
     public abstract void Validate();
 }

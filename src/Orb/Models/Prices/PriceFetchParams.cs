@@ -1,5 +1,4 @@
-using Http = System.Net.Http;
-using Orb = Orb;
+using System.Net.Http;
 using System = System;
 
 namespace Orb.Models.Prices;
@@ -7,11 +6,11 @@ namespace Orb.Models.Prices;
 /// <summary>
 /// This endpoint returns a price given an identifier.
 /// </summary>
-public sealed record class PriceFetchParams : Orb::ParamsBase
+public sealed record class PriceFetchParams : ParamsBase
 {
     public required string PriceID;
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/') + string.Format("/prices/{0}", this.PriceID)
@@ -21,12 +20,12 @@ public sealed record class PriceFetchParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

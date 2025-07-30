@@ -1,50 +1,46 @@
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using BalanceTransactionListPageResponseProperties = Orb.Models.Customers.BalanceTransactions.BalanceTransactionListPageResponseProperties;
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
 using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Customers.BalanceTransactions;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<BalanceTransactionListPageResponse>))]
+[JsonConverter(typeof(ModelConverter<BalanceTransactionListPageResponse>))]
 public sealed record class BalanceTransactionListPageResponse
-    : Orb::ModelBase,
-        Orb::IFromRaw<BalanceTransactionListPageResponse>
+    : ModelBase,
+        IFromRaw<BalanceTransactionListPageResponse>
 {
-    public required Generic::List<BalanceTransactionListPageResponseProperties::Data> Data
+    public required List<BalanceTransactionListPageResponseProperties::Data> Data
     {
         get
         {
-            if (!this.Properties.TryGetValue("data", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("data", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Generic::List<BalanceTransactionListPageResponseProperties::Data>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("data");
+            return JsonSerializer.Deserialize<
+                    List<BalanceTransactionListPageResponseProperties::Data>
+                >(element) ?? throw new System::ArgumentNullException("data");
         }
-        set { this.Properties["data"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required Models::PaginationMetadata PaginationMetadata
     {
         get
         {
-            if (!this.Properties.TryGetValue("pagination_metadata", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("pagination_metadata", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "pagination_metadata",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Models::PaginationMetadata>(element)
+            return JsonSerializer.Deserialize<Models::PaginationMetadata>(element)
                 ?? throw new System::ArgumentNullException("pagination_metadata");
         }
-        set
-        {
-            this.Properties["pagination_metadata"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -59,15 +55,15 @@ public sealed record class BalanceTransactionListPageResponse
     public BalanceTransactionListPageResponse() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    BalanceTransactionListPageResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    BalanceTransactionListPageResponse(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
     public static BalanceTransactionListPageResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        Dictionary<string, JsonElement> properties
     )
     {
         return new(properties);

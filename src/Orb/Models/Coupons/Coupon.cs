@@ -1,10 +1,9 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using CouponProperties = Orb.Models.Coupons.CouponProperties;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Coupons;
 
@@ -15,8 +14,8 @@ namespace Orb.Models.Coupons;
 /// The duration of a coupon determines how long it remains available for use by
 /// end users.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<Coupon>))]
-public sealed record class Coupon : Orb::ModelBase, Orb::IFromRaw<Coupon>
+[JsonConverter(typeof(ModelConverter<Coupon>))]
+public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
 {
     /// <summary>
     /// Also referred to as coupon_id in this documentation.
@@ -25,48 +24,42 @@ public sealed record class Coupon : Orb::ModelBase, Orb::IFromRaw<Coupon>
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
+                throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("id");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// An archived coupon can no longer be redeemed. Active coupons will have a value
     /// of null for `archived_at`; this field will be non-null for archived coupons.
     /// </summary>
-    public required System::DateTime? ArchivedAt
+    public required DateTime? ArchivedAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("archived_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "archived_at",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("archived_at", out JsonElement element))
+                throw new ArgumentOutOfRangeException("archived_at", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element);
         }
-        set { this.Properties["archived_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["archived_at"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required CouponProperties::Discount Discount
     {
         get
         {
-            if (!this.Properties.TryGetValue("discount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "discount",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("discount", out JsonElement element))
+                throw new ArgumentOutOfRangeException("discount", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<CouponProperties::Discount>(element)
-                ?? throw new System::ArgumentNullException("discount");
+            return JsonSerializer.Deserialize<CouponProperties::Discount>(element)
+                ?? throw new ArgumentNullException("discount");
         }
-        set { this.Properties["discount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["discount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -77,18 +70,15 @@ public sealed record class Coupon : Orb::ModelBase, Orb::IFromRaw<Coupon>
     {
         get
         {
-            if (!this.Properties.TryGetValue("duration_in_months", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("duration_in_months", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "duration_in_months",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set
-        {
-            this.Properties["duration_in_months"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["duration_in_months"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -99,15 +89,15 @@ public sealed record class Coupon : Orb::ModelBase, Orb::IFromRaw<Coupon>
     {
         get
         {
-            if (!this.Properties.TryGetValue("max_redemptions", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("max_redemptions", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "max_redemptions",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set { this.Properties["max_redemptions"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["max_redemptions"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -117,16 +107,16 @@ public sealed record class Coupon : Orb::ModelBase, Orb::IFromRaw<Coupon>
     {
         get
         {
-            if (!this.Properties.TryGetValue("redemption_code", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("redemption_code", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "redemption_code",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("redemption_code");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("redemption_code");
         }
-        set { this.Properties["redemption_code"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["redemption_code"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -136,15 +126,15 @@ public sealed record class Coupon : Orb::ModelBase, Orb::IFromRaw<Coupon>
     {
         get
         {
-            if (!this.Properties.TryGetValue("times_redeemed", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("times_redeemed", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "times_redeemed",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element);
         }
-        set { this.Properties["times_redeemed"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["times_redeemed"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -161,14 +151,14 @@ public sealed record class Coupon : Orb::ModelBase, Orb::IFromRaw<Coupon>
     public Coupon() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    Coupon(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    Coupon(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static Coupon FromRawUnchecked(Generic::Dictionary<string, Json::JsonElement> properties)
+    public static Coupon FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

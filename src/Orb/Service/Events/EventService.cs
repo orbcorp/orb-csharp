@@ -1,117 +1,114 @@
+using System;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Orb.Models.Events;
 using Backfills = Orb.Service.Events.Backfills;
-using Events = Orb.Models.Events;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
-using Tasks = System.Threading.Tasks;
 using Volume = Orb.Service.Events.Volume;
 
 namespace Orb.Service.Events;
 
 public sealed class EventService : IEventService
 {
-    readonly Orb::IOrbClient _client;
+    readonly IOrbClient _client;
 
-    public EventService(Orb::IOrbClient client)
+    public EventService(IOrbClient client)
     {
         _client = client;
         _backfills = new(() => new Backfills::BackfillService(client));
         _volume = new(() => new Volume::VolumeService(client));
     }
 
-    readonly System::Lazy<Backfills::IBackfillService> _backfills;
+    readonly Lazy<Backfills::IBackfillService> _backfills;
     public Backfills::IBackfillService Backfills
     {
         get { return _backfills.Value; }
     }
 
-    readonly System::Lazy<Volume::IVolumeService> _volume;
+    readonly Lazy<Volume::IVolumeService> _volume;
     public Volume::IVolumeService Volume
     {
         get { return _volume.Value; }
     }
 
-    public async Tasks::Task<Events::EventUpdateResponse> Update(Events::EventUpdateParams @params)
+    public async Task<EventUpdateResponse> Update(EventUpdateParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Put, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Put, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Events::EventUpdateResponse>(
+        return JsonSerializer.Deserialize<EventUpdateResponse>(
                 await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+            ) ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Events::EventDeprecateResponse> Deprecate(
-        Events::EventDeprecateParams @params
-    )
+    public async Task<EventDeprecateResponse> Deprecate(EventDeprecateParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Put, @params.Url(this._client));
+        HttpRequestMessage webRequest = new(HttpMethod.Put, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Events::EventDeprecateResponse>(
+        return JsonSerializer.Deserialize<EventDeprecateResponse>(
                 await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+            ) ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Events::EventIngestResponse> Ingest(Events::EventIngestParams @params)
+    public async Task<EventIngestResponse> Ingest(EventIngestParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Events::EventIngestResponse>(
+        return JsonSerializer.Deserialize<EventIngestResponse>(
                 await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+            ) ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Events::EventSearchResponse> Search(Events::EventSearchParams @params)
+    public async Task<EventSearchResponse> Search(EventSearchParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Events::EventSearchResponse>(
+        return JsonSerializer.Deserialize<EventSearchResponse>(
                 await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+            ) ?? throw new NullReferenceException();
     }
 }

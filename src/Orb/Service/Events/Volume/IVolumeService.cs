@@ -1,5 +1,5 @@
-using Tasks = System.Threading.Tasks;
-using Volume = Orb.Models.Events.Volume;
+using System.Threading.Tasks;
+using Orb.Models.Events.Volume;
 
 namespace Orb.Service.Events.Volume;
 
@@ -18,5 +18,5 @@ public interface IVolumeService
     /// is passed in for either start or end time, the response includes the hours
     /// the timestamp falls in.
     /// </summary>
-    Tasks::Task<Volume::EventVolumes> List(Volume::VolumeListParams @params);
+    Task<EventVolumes> List(VolumeListParams @params);
 }

@@ -1,15 +1,12 @@
-using EditProperties = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.EditProperties;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.EditProperties.StartDateVariants;
 
-[Serialization::JsonConverter(typeof(Orb::VariantConverter<DateTime, System::DateTime>))]
+[JsonConverter(typeof(VariantConverter<DateTime, System::DateTime>))]
 public sealed record class DateTime(System::DateTime Value)
-    : EditProperties::StartDate,
-        Orb::IVariant<DateTime, System::DateTime>
+    : StartDate,
+        IVariant<DateTime, System::DateTime>
 {
     public static DateTime From(System::DateTime value)
     {
@@ -19,14 +16,12 @@ public sealed record class DateTime(System::DateTime Value)
     public override void Validate() { }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<BillingCycleRelativeDate, Models::BillingCycleRelativeDate>)
-)]
-public sealed record class BillingCycleRelativeDate(Models::BillingCycleRelativeDate Value)
-    : EditProperties::StartDate,
-        Orb::IVariant<BillingCycleRelativeDate, Models::BillingCycleRelativeDate>
+[JsonConverter(typeof(VariantConverter<BillingCycleRelativeDateVariant, BillingCycleRelativeDate>))]
+public sealed record class BillingCycleRelativeDateVariant(BillingCycleRelativeDate Value)
+    : StartDate,
+        IVariant<BillingCycleRelativeDateVariant, BillingCycleRelativeDate>
 {
-    public static BillingCycleRelativeDate From(Models::BillingCycleRelativeDate value)
+    public static BillingCycleRelativeDateVariant From(BillingCycleRelativeDate value)
     {
         return new(value);
     }

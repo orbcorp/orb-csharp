@@ -1,40 +1,32 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using ExternalConnectionProperties = Orb.Models.Items.ItemUpdateParamsProperties.ExternalConnectionProperties;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Items.ItemUpdateParamsProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<ExternalConnection>))]
-public sealed record class ExternalConnection : Orb::ModelBase, Orb::IFromRaw<ExternalConnection>
+[JsonConverter(typeof(ModelConverter<ExternalConnection>))]
+public sealed record class ExternalConnection : ModelBase, IFromRaw<ExternalConnection>
 {
     public required ExternalConnectionProperties::ExternalConnectionName ExternalConnectionName
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "external_connection_name",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("external_connection_name", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "external_connection_name",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<ExternalConnectionProperties::ExternalConnectionName>(
+            return JsonSerializer.Deserialize<ExternalConnectionProperties::ExternalConnectionName>(
                     element
-                ) ?? throw new System::ArgumentNullException("external_connection_name");
+                ) ?? throw new ArgumentNullException("external_connection_name");
         }
         set
         {
-            this.Properties["external_connection_name"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.Properties["external_connection_name"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -42,19 +34,16 @@ public sealed record class ExternalConnection : Orb::ModelBase, Orb::IFromRaw<Ex
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_entity_id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("external_entity_id", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "external_entity_id",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("external_entity_id");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("external_entity_id");
         }
-        set
-        {
-            this.Properties["external_entity_id"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["external_entity_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -66,16 +55,14 @@ public sealed record class ExternalConnection : Orb::ModelBase, Orb::IFromRaw<Ex
     public ExternalConnection() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    ExternalConnection(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    ExternalConnection(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static ExternalConnection FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static ExternalConnection FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionRedeemCouponParamsProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<ChangeOption, string>))]
-public sealed record class ChangeOption(string value) : Orb::IEnum<ChangeOption, string>
+[JsonConverter(typeof(EnumConverter<ChangeOption, string>))]
+public sealed record class ChangeOption(string value) : IEnum<ChangeOption, string>
 {
     public static readonly ChangeOption RequestedDate = new("requested_date");
 
@@ -28,7 +27,7 @@ public sealed record class ChangeOption(string value) : Orb::IEnum<ChangeOption,
             "requested_date" => Value.RequestedDate,
             "end_of_subscription_term" => Value.EndOfSubscriptionTerm,
             "immediate" => Value.Immediate,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

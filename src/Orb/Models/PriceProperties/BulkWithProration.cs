@@ -1,43 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using BulkWithProrationProperties = Orb.Models.PriceProperties.BulkWithProrationProperties;
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
 using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.PriceProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<BulkWithProration>))]
-public sealed record class BulkWithProration : Orb::ModelBase, Orb::IFromRaw<BulkWithProration>
+[JsonConverter(typeof(ModelConverter<BulkWithProration>))]
+public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProration>
 {
     public required string ID
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
+                throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("id");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required Models::BillableMetricTiny? BillableMetric
     {
         get
         {
-            if (!this.Properties.TryGetValue("billable_metric", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("billable_metric", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "billable_metric",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Models::BillableMetricTiny?>(element);
+            return JsonSerializer.Deserialize<Models::BillableMetricTiny?>(element);
         }
-        set { this.Properties["billable_metric"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["billable_metric"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required Models::BillingCycleConfiguration BillingCycleConfiguration
@@ -45,48 +44,40 @@ public sealed record class BulkWithProration : Orb::ModelBase, Orb::IFromRaw<Bul
         get
         {
             if (
-                !this.Properties.TryGetValue(
-                    "billing_cycle_configuration",
-                    out Json::JsonElement element
-                )
+                !this.Properties.TryGetValue("billing_cycle_configuration", out JsonElement element)
             )
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "billing_cycle_configuration",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Models::BillingCycleConfiguration>(element)
-                ?? throw new System::ArgumentNullException("billing_cycle_configuration");
+            return JsonSerializer.Deserialize<Models::BillingCycleConfiguration>(element)
+                ?? throw new ArgumentNullException("billing_cycle_configuration");
         }
         set
         {
-            this.Properties["billing_cycle_configuration"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.Properties["billing_cycle_configuration"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
-    public required Generic::Dictionary<string, Json::JsonElement> BulkWithProrationConfig
+    public required Dictionary<string, JsonElement> BulkWithProrationConfig
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "bulk_with_proration_config",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("bulk_with_proration_config", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "bulk_with_proration_config",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::Dictionary<string, Json::JsonElement>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("bulk_with_proration_config");
+            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(element)
+                ?? throw new ArgumentNullException("bulk_with_proration_config");
         }
         set
         {
-            this.Properties["bulk_with_proration_config"] = Json::JsonSerializer.SerializeToElement(
+            this.Properties["bulk_with_proration_config"] = JsonSerializer.SerializeToElement(
                 value
             );
         }
@@ -96,160 +87,130 @@ public sealed record class BulkWithProration : Orb::ModelBase, Orb::IFromRaw<Bul
     {
         get
         {
-            if (!this.Properties.TryGetValue("cadence", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "cadence",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("cadence", out JsonElement element))
+                throw new ArgumentOutOfRangeException("cadence", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<BulkWithProrationProperties::Cadence>(element)
-                ?? throw new System::ArgumentNullException("cadence");
+            return JsonSerializer.Deserialize<BulkWithProrationProperties::Cadence>(element)
+                ?? throw new ArgumentNullException("cadence");
         }
-        set { this.Properties["cadence"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["cadence"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required double? ConversionRate
     {
         get
         {
-            if (!this.Properties.TryGetValue("conversion_rate", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("conversion_rate", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "conversion_rate",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element);
         }
-        set { this.Properties["conversion_rate"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["conversion_rate"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required BulkWithProrationProperties::ConversionRateConfig? ConversionRateConfig
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "conversion_rate_config",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("conversion_rate_config", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "conversion_rate_config",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<BulkWithProrationProperties::ConversionRateConfig?>(
+            return JsonSerializer.Deserialize<BulkWithProrationProperties::ConversionRateConfig?>(
                 element
             );
         }
         set
         {
-            this.Properties["conversion_rate_config"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.Properties["conversion_rate_config"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required DateTime CreatedAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("created_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "created_at",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("created_at", out JsonElement element))
+                throw new ArgumentOutOfRangeException("created_at", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element);
         }
-        set { this.Properties["created_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required Models::Allocation? CreditAllocation
     {
         get
         {
-            if (!this.Properties.TryGetValue("credit_allocation", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("credit_allocation", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "credit_allocation",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Models::Allocation?>(element);
+            return JsonSerializer.Deserialize<Models::Allocation?>(element);
         }
-        set
-        {
-            this.Properties["credit_allocation"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["credit_allocation"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string Currency
     {
         get
         {
-            if (!this.Properties.TryGetValue("currency", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "currency",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("currency", out JsonElement element))
+                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("currency");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("currency");
         }
-        set { this.Properties["currency"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public required Models::Discount? Discount
+    public required Models::Discount2? Discount
     {
         get
         {
-            if (!this.Properties.TryGetValue("discount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "discount",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("discount", out JsonElement element))
+                throw new ArgumentOutOfRangeException("discount", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Models::Discount?>(element);
+            return JsonSerializer.Deserialize<Models::Discount2?>(element);
         }
-        set { this.Properties["discount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["discount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string? ExternalPriceID
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_price_id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("external_price_id", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "external_price_id",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set
-        {
-            this.Properties["external_price_id"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required double? FixedPriceQuantity
     {
         get
         {
-            if (!this.Properties.TryGetValue("fixed_price_quantity", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("fixed_price_quantity", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "fixed_price_quantity",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element);
         }
-        set
-        {
-            this.Properties["fixed_price_quantity"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.Properties["fixed_price_quantity"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required Models::BillingCycleConfiguration? InvoicingCycleConfiguration
@@ -259,20 +220,21 @@ public sealed record class BulkWithProration : Orb::ModelBase, Orb::IFromRaw<Bul
             if (
                 !this.Properties.TryGetValue(
                     "invoicing_cycle_configuration",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "invoicing_cycle_configuration",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Models::BillingCycleConfiguration?>(element);
+            return JsonSerializer.Deserialize<Models::BillingCycleConfiguration?>(element);
         }
         set
         {
-            this.Properties["invoicing_cycle_configuration"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.Properties["invoicing_cycle_configuration"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
@@ -280,43 +242,40 @@ public sealed record class BulkWithProration : Orb::ModelBase, Orb::IFromRaw<Bul
     {
         get
         {
-            if (!this.Properties.TryGetValue("item", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("item", "Missing required argument");
+            if (!this.Properties.TryGetValue("item", out JsonElement element))
+                throw new ArgumentOutOfRangeException("item", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Models::ItemSlim>(element)
-                ?? throw new System::ArgumentNullException("item");
+            return JsonSerializer.Deserialize<Models::ItemSlim>(element)
+                ?? throw new ArgumentNullException("item");
         }
-        set { this.Properties["item"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["item"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required Models::Maximum? Maximum
     {
         get
         {
-            if (!this.Properties.TryGetValue("maximum", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "maximum",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("maximum", out JsonElement element))
+                throw new ArgumentOutOfRangeException("maximum", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Models::Maximum?>(element);
+            return JsonSerializer.Deserialize<Models::Maximum?>(element);
         }
-        set { this.Properties["maximum"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["maximum"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string? MaximumAmount
     {
         get
         {
-            if (!this.Properties.TryGetValue("maximum_amount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("maximum_amount", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "maximum_amount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["maximum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -325,112 +284,97 @@ public sealed record class BulkWithProration : Orb::ModelBase, Orb::IFromRaw<Bul
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Generic::Dictionary<string, string> Metadata
+    public required Dictionary<string, string> Metadata
     {
         get
         {
-            if (!this.Properties.TryGetValue("metadata", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "metadata",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("metadata", out JsonElement element))
+                throw new ArgumentOutOfRangeException("metadata", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Generic::Dictionary<string, string>>(element)
-                ?? throw new System::ArgumentNullException("metadata");
+            return JsonSerializer.Deserialize<Dictionary<string, string>>(element)
+                ?? throw new ArgumentNullException("metadata");
         }
-        set { this.Properties["metadata"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required Models::Minimum? Minimum
     {
         get
         {
-            if (!this.Properties.TryGetValue("minimum", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "minimum",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("minimum", out JsonElement element))
+                throw new ArgumentOutOfRangeException("minimum", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Models::Minimum?>(element);
+            return JsonSerializer.Deserialize<Models::Minimum?>(element);
         }
-        set { this.Properties["minimum"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["minimum"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string? MinimumAmount
     {
         get
         {
-            if (!this.Properties.TryGetValue("minimum_amount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("minimum_amount", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "minimum_amount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["minimum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public Json::JsonElement ModelType
+    public JsonElement ModelType
     {
         get
         {
-            if (!this.Properties.TryGetValue("model_type", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "model_type",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("model_type", out JsonElement element))
+                throw new ArgumentOutOfRangeException("model_type", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Json::JsonElement>(element);
+            return JsonSerializer.Deserialize<JsonElement>(element);
         }
-        set { this.Properties["model_type"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["model_type"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string Name
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
+            if (!this.Properties.TryGetValue("name", out JsonElement element))
+                throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("name");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("name");
         }
-        set { this.Properties["name"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required long? PlanPhaseOrder
     {
         get
         {
-            if (!this.Properties.TryGetValue("plan_phase_order", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("plan_phase_order", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "plan_phase_order",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set
-        {
-            this.Properties["plan_phase_order"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required BulkWithProrationProperties::PriceType PriceType
     {
         get
         {
-            if (!this.Properties.TryGetValue("price_type", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "price_type",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("price_type", out JsonElement element))
+                throw new ArgumentOutOfRangeException("price_type", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<BulkWithProrationProperties::PriceType>(element)
-                ?? throw new System::ArgumentNullException("price_type");
+            return JsonSerializer.Deserialize<BulkWithProrationProperties::PriceType>(element)
+                ?? throw new ArgumentNullException("price_type");
         }
-        set { this.Properties["price_type"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["price_type"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -441,18 +385,15 @@ public sealed record class BulkWithProration : Orb::ModelBase, Orb::IFromRaw<Bul
     {
         get
         {
-            if (!this.Properties.TryGetValue("replaces_price_id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("replaces_price_id", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "replaces_price_id",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set
-        {
-            this.Properties["replaces_price_id"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["replaces_price_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public Models::DimensionalPriceConfiguration? DimensionalPriceConfiguration
@@ -462,19 +403,18 @@ public sealed record class BulkWithProration : Orb::ModelBase, Orb::IFromRaw<Bul
             if (
                 !this.Properties.TryGetValue(
                     "dimensional_price_configuration",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Models::DimensionalPriceConfiguration?>(
-                element
-            );
+            return JsonSerializer.Deserialize<Models::DimensionalPriceConfiguration?>(element);
         }
         set
         {
-            this.Properties["dimensional_price_configuration"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.Properties["dimensional_price_configuration"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
@@ -515,22 +455,18 @@ public sealed record class BulkWithProration : Orb::ModelBase, Orb::IFromRaw<Bul
 
     public BulkWithProration()
     {
-        this.ModelType = Json::JsonSerializer.Deserialize<Json::JsonElement>(
-            "\"bulk_with_proration\""
-        );
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_proration\"");
     }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    BulkWithProration(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    BulkWithProration(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static BulkWithProration FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static BulkWithProration FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

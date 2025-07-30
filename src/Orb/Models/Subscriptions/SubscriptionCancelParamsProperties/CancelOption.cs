@@ -1,14 +1,13 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionCancelParamsProperties;
 
 /// <summary>
 /// Determines the timing of subscription cancellation
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<CancelOption, string>))]
-public sealed record class CancelOption(string value) : Orb::IEnum<CancelOption, string>
+[JsonConverter(typeof(EnumConverter<CancelOption, string>))]
+public sealed record class CancelOption(string value) : IEnum<CancelOption, string>
 {
     public static readonly CancelOption EndOfSubscriptionTerm = new("end_of_subscription_term");
 
@@ -31,7 +30,7 @@ public sealed record class CancelOption(string value) : Orb::IEnum<CancelOption,
             "end_of_subscription_term" => Value.EndOfSubscriptionTerm,
             "immediate" => Value.Immediate,
             "requested_date" => Value.RequestedDate,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

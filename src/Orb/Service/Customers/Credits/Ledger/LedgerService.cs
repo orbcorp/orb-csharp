@@ -1,102 +1,99 @@
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Ledger = Orb.Models.Customers.Credits.Ledger;
-using Orb = Orb;
-using System = System;
-using Tasks = System.Threading.Tasks;
+using System;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Orb.Models.Customers.Credits.Ledger;
 
 namespace Orb.Service.Customers.Credits.Ledger;
 
 public sealed class LedgerService : ILedgerService
 {
-    readonly Orb::IOrbClient _client;
+    readonly IOrbClient _client;
 
-    public LedgerService(Orb::IOrbClient client)
+    public LedgerService(IOrbClient client)
     {
         _client = client;
     }
 
-    public async Tasks::Task<Ledger::LedgerListPageResponse> List(Ledger::LedgerListParams @params)
+    public async Task<LedgerListPageResponse> List(LedgerListParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Get, @params.Url(this._client));
+        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Ledger::LedgerListPageResponse>(
+        return JsonSerializer.Deserialize<LedgerListPageResponse>(
                 await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+            ) ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Ledger::LedgerCreateEntryResponse> CreateEntry(
-        Ledger::LedgerCreateEntryParams @params
-    )
+    public async Task<LedgerCreateEntryResponse> CreateEntry(LedgerCreateEntryParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Ledger::LedgerCreateEntryResponse>(
+        return JsonSerializer.Deserialize<LedgerCreateEntryResponse>(
                 await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+            ) ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Ledger::LedgerCreateEntryByExternalIDResponse> CreateEntryByExternalID(
-        Ledger::LedgerCreateEntryByExternalIDParams @params
+    public async Task<LedgerCreateEntryByExternalIDResponse> CreateEntryByExternalID(
+        LedgerCreateEntryByExternalIDParams @params
     )
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Ledger::LedgerCreateEntryByExternalIDResponse>(
+        return JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDResponse>(
                 await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+            ) ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Ledger::LedgerListByExternalIDPageResponse> ListByExternalID(
-        Ledger::LedgerListByExternalIDParams @params
+    public async Task<LedgerListByExternalIDPageResponse> ListByExternalID(
+        LedgerListByExternalIDParams @params
     )
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Get, @params.Url(this._client));
+        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Ledger::LedgerListByExternalIDPageResponse>(
+        return JsonSerializer.Deserialize<LedgerListByExternalIDPageResponse>(
                 await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+            ) ?? throw new NullReferenceException();
     }
 }

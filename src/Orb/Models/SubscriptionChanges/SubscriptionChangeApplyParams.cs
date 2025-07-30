@@ -1,9 +1,8 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
-using Text = System.Text;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 
 namespace Orb.Models.SubscriptionChanges;
 
@@ -12,9 +11,9 @@ namespace Orb.Models.SubscriptionChanges;
 /// is passed with a request to this endpoint, any eligible invoices that were created
 /// will be issued immediately if they only contain in-advance fees.
 /// </summary>
-public sealed record class SubscriptionChangeApplyParams : Orb::ParamsBase
+public sealed record class SubscriptionChangeApplyParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     public required string SubscriptionChangeID;
 
@@ -25,12 +24,12 @@ public sealed record class SubscriptionChangeApplyParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("description", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("description", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.BodyProperties["description"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["description"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -43,23 +42,24 @@ public sealed record class SubscriptionChangeApplyParams : Orb::ParamsBase
             if (
                 !this.BodyProperties.TryGetValue(
                     "previously_collected_amount",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
         set
         {
-            this.BodyProperties["previously_collected_amount"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["previously_collected_amount"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscription_changes/{0}/apply", this.SubscriptionChangeID)
         )
@@ -68,21 +68,21 @@ public sealed record class SubscriptionChangeApplyParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

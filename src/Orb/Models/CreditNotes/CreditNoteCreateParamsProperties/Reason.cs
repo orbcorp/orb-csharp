@@ -1,14 +1,13 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.CreditNotes.CreditNoteCreateParamsProperties;
 
 /// <summary>
 /// An optional reason for the credit note.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<Reason, string>))]
-public sealed record class Reason(string value) : Orb::IEnum<Reason, string>
+[JsonConverter(typeof(EnumConverter<Reason, string>))]
+public sealed record class Reason(string value) : IEnum<Reason, string>
 {
     public static readonly Reason Duplicate = new("duplicate");
 
@@ -35,7 +34,7 @@ public sealed record class Reason(string value) : Orb::IEnum<Reason, string>
             "fraudulent" => Value.Fraudulent,
             "order_change" => Value.OrderChange,
             "product_unsatisfactory" => Value.ProductUnsatisfactory,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

@@ -1,14 +1,13 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Events.Backfills.BackfillFetchResponseProperties;
 
 /// <summary>
 /// The status of the backfill.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<Status, string>))]
-public sealed record class Status(string value) : Orb::IEnum<Status, string>
+[JsonConverter(typeof(EnumConverter<Status, string>))]
+public sealed record class Status(string value) : IEnum<Status, string>
 {
     public static readonly Status Pending = new("pending");
 
@@ -35,7 +34,7 @@ public sealed record class Status(string value) : Orb::IEnum<Status, string>
             "reflected" => Value.Reflected,
             "pending_revert" => Value.PendingRevert,
             "reverted" => Value.Reverted,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

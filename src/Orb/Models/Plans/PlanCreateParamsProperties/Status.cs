@@ -1,6 +1,5 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Plans.PlanCreateParamsProperties;
 
@@ -8,8 +7,8 @@ namespace Orb.Models.Plans.PlanCreateParamsProperties;
 /// The status of the plan to create (either active or draft). If not specified, this
 /// defaults to active.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<Status, string>))]
-public sealed record class Status(string value) : Orb::IEnum<Status, string>
+[JsonConverter(typeof(EnumConverter<Status, string>))]
+public sealed record class Status(string value) : IEnum<Status, string>
 {
     public static readonly Status Active = new("active");
 
@@ -28,7 +27,7 @@ public sealed record class Status(string value) : Orb::IEnum<Status, string>
         {
             "active" => Value.Active,
             "draft" => Value.Draft,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

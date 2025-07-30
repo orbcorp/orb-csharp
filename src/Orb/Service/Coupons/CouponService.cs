@@ -1,103 +1,97 @@
-using Coupons = Orb.Models.Coupons;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Orb.Models.Coupons;
 using Subscriptions = Orb.Service.Coupons.Subscriptions;
-using System = System;
-using Tasks = System.Threading.Tasks;
 
 namespace Orb.Service.Coupons;
 
 public sealed class CouponService : ICouponService
 {
-    readonly Orb::IOrbClient _client;
+    readonly IOrbClient _client;
 
-    public CouponService(Orb::IOrbClient client)
+    public CouponService(IOrbClient client)
     {
         _client = client;
         _subscriptions = new(() => new Subscriptions::SubscriptionService(client));
     }
 
-    readonly System::Lazy<Subscriptions::ISubscriptionService> _subscriptions;
+    readonly Lazy<Subscriptions::ISubscriptionService> _subscriptions;
     public Subscriptions::ISubscriptionService Subscriptions
     {
         get { return _subscriptions.Value; }
     }
 
-    public async Tasks::Task<Coupons::Coupon> Create(Coupons::CouponCreateParams @params)
+    public async Task<Coupon> Create(CouponCreateParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Coupons::Coupon>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+        return JsonSerializer.Deserialize<Coupon>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Coupons::CouponListPageResponse> List(
-        Coupons::CouponListParams @params
-    )
+    public async Task<CouponListPageResponse> List(CouponListParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Get, @params.Url(this._client));
+        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Coupons::CouponListPageResponse>(
+        return JsonSerializer.Deserialize<CouponListPageResponse>(
                 await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+            ) ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Coupons::Coupon> Archive(Coupons::CouponArchiveParams @params)
+    public async Task<Coupon> Archive(CouponArchiveParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client));
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Coupons::Coupon>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+        return JsonSerializer.Deserialize<Coupon>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Coupons::Coupon> Fetch(Coupons::CouponFetchParams @params)
+    public async Task<Coupon> Fetch(CouponFetchParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Get, @params.Url(this._client));
+        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Coupons::Coupon>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+        return JsonSerializer.Deserialize<Coupon>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
     }
 }

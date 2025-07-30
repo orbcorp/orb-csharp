@@ -1,10 +1,9 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using SubscriptionUpdateTrialParamsProperties = Orb.Models.Subscriptions.SubscriptionUpdateTrialParamsProperties;
 using System = System;
-using Text = System.Text;
 
 namespace Orb.Models.Subscriptions;
 
@@ -26,9 +25,9 @@ namespace Orb.Models.Subscriptions;
 /// (so, e.g., if a plan change is scheduled or an add-on price was added, that change
 /// will be pushed back by the same amount of time the trial is extended).
 /// </summary>
-public sealed record class SubscriptionUpdateTrialParams : Orb::ParamsBase
+public sealed record class SubscriptionUpdateTrialParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     public required string SubscriptionID;
 
@@ -40,20 +39,17 @@ public sealed record class SubscriptionUpdateTrialParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("trial_end_date", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("trial_end_date", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "trial_end_date",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<SubscriptionUpdateTrialParamsProperties::TrialEndDate>(
+            return JsonSerializer.Deserialize<SubscriptionUpdateTrialParamsProperties::TrialEndDate>(
                     element
                 ) ?? throw new System::ArgumentNullException("trial_end_date");
         }
-        set
-        {
-            this.BodyProperties["trial_end_date"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["trial_end_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -64,15 +60,15 @@ public sealed record class SubscriptionUpdateTrialParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("shift", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("shift", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element);
         }
-        set { this.BodyProperties["shift"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["shift"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
@@ -83,21 +79,21 @@ public sealed record class SubscriptionUpdateTrialParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

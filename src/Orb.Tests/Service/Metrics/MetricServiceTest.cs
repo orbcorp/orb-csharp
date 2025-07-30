@@ -1,13 +1,12 @@
-using System = System;
-using Tasks = System.Threading.Tasks;
-using Tests = Orb.Tests;
+using System;
+using System.Threading.Tasks;
 
 namespace Orb.Tests.Service.Metrics;
 
-public class MetricServiceTest : Tests::TestBase
+public class MetricServiceTest : TestBase
 {
     [Fact]
-    public async Tasks::Task Create_Works()
+    public async Task Create_Works()
     {
         var billableMetric = await this.client.Metrics.Create(
             new()
@@ -23,7 +22,7 @@ public class MetricServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task Update_Works()
+    public async Task Update_Works()
     {
         var billableMetric = await this.client.Metrics.Update(
             new()
@@ -36,15 +35,15 @@ public class MetricServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task List_Works()
+    public async Task List_Works()
     {
         var page = await this.client.Metrics.List(
             new()
             {
-                CreatedAtGt = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtGte = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtLt = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtLte = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtGt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtGte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtLt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtLte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                 Cursor = "cursor",
                 Limit = 1,
             }
@@ -53,7 +52,7 @@ public class MetricServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task Fetch_Works()
+    public async Task Fetch_Works()
     {
         var billableMetric = await this.client.Metrics.Fetch(new() { MetricID = "metric_id" });
         billableMetric.Validate();

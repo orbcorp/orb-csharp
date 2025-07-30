@@ -1,28 +1,26 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using EventVolumesProperties = Orb.Models.Events.Volume.EventVolumesProperties;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Events.Volume;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<EventVolumes>))]
-public sealed record class EventVolumes : Orb::ModelBase, Orb::IFromRaw<EventVolumes>
+[JsonConverter(typeof(ModelConverter<EventVolumes>))]
+public sealed record class EventVolumes : ModelBase, IFromRaw<EventVolumes>
 {
-    public required Generic::List<EventVolumesProperties::Data> Data
+    public required List<EventVolumesProperties::Data> Data
     {
         get
         {
-            if (!this.Properties.TryGetValue("data", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
+            if (!this.Properties.TryGetValue("data", out JsonElement element))
+                throw new ArgumentOutOfRangeException("data", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Generic::List<EventVolumesProperties::Data>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("data");
+            return JsonSerializer.Deserialize<List<EventVolumesProperties::Data>>(element)
+                ?? throw new ArgumentNullException("data");
         }
-        set { this.Properties["data"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -36,16 +34,14 @@ public sealed record class EventVolumes : Orb::ModelBase, Orb::IFromRaw<EventVol
     public EventVolumes() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    EventVolumes(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    EventVolumes(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static EventVolumes FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static EventVolumes FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

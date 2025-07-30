@@ -1,5 +1,5 @@
-using Backfills = Orb.Models.Events.Backfills;
-using Tasks = System.Threading.Tasks;
+using System.Threading.Tasks;
+using Orb.Models.Events.Backfills;
 
 namespace Orb.Service.Events.Backfills;
 
@@ -40,7 +40,7 @@ public interface IBackfillService
     /// The expressiveness of computed properties allows you to deprecate existing events
     /// based on both a period of time and specific property values.
     /// </summary>
-    Tasks::Task<Backfills::BackfillCreateResponse> Create(Backfills::BackfillCreateParams @params);
+    Task<BackfillCreateResponse> Create(BackfillCreateParams @params);
 
     /// <summary>
     /// This endpoint returns a list of all backfills in a list format.
@@ -50,7 +50,7 @@ public interface IBackfillService
     /// which lets the caller retrieve the next page of results if they exist. More
     /// information about pagination can be found in the [Pagination-metadata schema](pagination).
     /// </summary>
-    Tasks::Task<Backfills::BackfillListPageResponse> List(Backfills::BackfillListParams @params);
+    Task<BackfillListPageResponse> List(BackfillListParams @params);
 
     /// <summary>
     /// Closing a backfill makes the updated usage visible in Orb. Upon closing a backfill,
@@ -58,12 +58,12 @@ public interface IBackfillService
     /// graphs. Once all of the updates are complete, the backfill's status will transition
     /// to `reflected`.
     /// </summary>
-    Tasks::Task<Backfills::BackfillCloseResponse> Close(Backfills::BackfillCloseParams @params);
+    Task<BackfillCloseResponse> Close(BackfillCloseParams @params);
 
     /// <summary>
     /// This endpoint is used to fetch a backfill given an identifier.
     /// </summary>
-    Tasks::Task<Backfills::BackfillFetchResponse> Fetch(Backfills::BackfillFetchParams @params);
+    Task<BackfillFetchResponse> Fetch(BackfillFetchParams @params);
 
     /// <summary>
     /// Reverting a backfill undoes all the effects of closing the backfill. If the
@@ -74,5 +74,5 @@ public interface IBackfillService
     /// If a backfill is reverted before its closed, no usage will be updated as a
     /// result of the backfill and it will immediately transition to `reverted`.
     /// </summary>
-    Tasks::Task<Backfills::BackfillRevertResponse> Revert(Backfills::BackfillRevertParams @params);
+    Task<BackfillRevertResponse> Revert(BackfillRevertParams @params);
 }

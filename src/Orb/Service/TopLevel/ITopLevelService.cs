@@ -1,5 +1,5 @@
-using Tasks = System.Threading.Tasks;
-using TopLevel = Orb.Models.TopLevel;
+using System.Threading.Tasks;
+using Orb.Models.TopLevel;
 
 namespace Orb.Service.TopLevel;
 
@@ -13,5 +13,5 @@ public interface ITopLevelService
     ///
     /// This API does not have any side-effects or return any Orb resources.
     /// </summary>
-    Tasks::Task<TopLevel::TopLevelPingResponse> Ping(TopLevel::TopLevelPingParams @params);
+    Task<TopLevelPingResponse> Ping(TopLevelPingParams @params);
 }

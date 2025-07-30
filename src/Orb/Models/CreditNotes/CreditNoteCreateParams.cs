@@ -1,10 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using CreditNoteCreateParamsProperties = Orb.Models.CreditNotes.CreditNoteCreateParamsProperties;
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
-using Text = System.Text;
 
 namespace Orb.Models.CreditNotes;
 
@@ -35,25 +34,22 @@ namespace Orb.Models.CreditNotes;
 /// both the start date and end date completely (from start of start_date to end
 /// of end_date).
 /// </summary>
-public sealed record class CreditNoteCreateParams : Orb::ParamsBase
+public sealed record class CreditNoteCreateParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
-    public required Generic::List<CreditNoteCreateParamsProperties::LineItem> LineItems
+    public required List<CreditNoteCreateParamsProperties::LineItem> LineItems
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("line_items", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "line_items",
-                    "Missing required argument"
-                );
+            if (!this.BodyProperties.TryGetValue("line_items", out JsonElement element))
+                throw new ArgumentOutOfRangeException("line_items", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Generic::List<CreditNoteCreateParamsProperties::LineItem>>(
+            return JsonSerializer.Deserialize<List<CreditNoteCreateParamsProperties::LineItem>>(
                     element
-                ) ?? throw new System::ArgumentNullException("line_items");
+                ) ?? throw new ArgumentNullException("line_items");
         }
-        set { this.BodyProperties["line_items"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["line_items"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -63,17 +59,13 @@ public sealed record class CreditNoteCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("reason", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "reason",
-                    "Missing required argument"
-                );
+            if (!this.BodyProperties.TryGetValue("reason", out JsonElement element))
+                throw new ArgumentOutOfRangeException("reason", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<CreditNoteCreateParamsProperties::Reason>(
-                    element
-                ) ?? throw new System::ArgumentNullException("reason");
+            return JsonSerializer.Deserialize<CreditNoteCreateParamsProperties::Reason>(element)
+                ?? throw new ArgumentNullException("reason");
         }
-        set { this.BodyProperties["reason"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["reason"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -82,16 +74,16 @@ public sealed record class CreditNoteCreateParams : Orb::ParamsBase
     /// their own individual service periods specified. If not provided, line items
     /// will use their original invoice line item service periods. This date is inclusive.
     /// </summary>
-    public System::DateOnly? EndDate
+    public DateOnly? EndDate
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("end_date", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateOnly?>(element);
+            return JsonSerializer.Deserialize<DateOnly?>(element);
         }
-        set { this.BodyProperties["end_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -101,12 +93,12 @@ public sealed record class CreditNoteCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("memo", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("memo", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.BodyProperties["memo"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["memo"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -115,41 +107,41 @@ public sealed record class CreditNoteCreateParams : Orb::ParamsBase
     /// have their own individual service periods specified. If not provided, line items
     /// will use their original invoice line item service periods. This date is inclusive.
     /// </summary>
-    public System::DateOnly? StartDate
+    public DateOnly? StartDate
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("start_date", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("start_date", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateOnly?>(element);
+            return JsonSerializer.Deserialize<DateOnly?>(element);
         }
-        set { this.BodyProperties["start_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/credit_notes")
+        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/credit_notes")
         {
             Query = this.QueryString(client),
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

@@ -1,16 +1,14 @@
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using AddProperties = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties;
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<Add>))]
-public sealed record class Add : Orb::ModelBase, Orb::IFromRaw<Add>
+[JsonConverter(typeof(ModelConverter<Add>))]
+public sealed record class Add : ModelBase, IFromRaw<Add>
 {
     /// <summary>
     /// The start date of the price interval. This is the date that the price will
@@ -20,51 +18,46 @@ public sealed record class Add : Orb::ModelBase, Orb::IFromRaw<Add>
     {
         get
         {
-            if (!this.Properties.TryGetValue("start_date", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("start_date", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "start_date",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<AddProperties::StartDate>(element)
+            return JsonSerializer.Deserialize<AddProperties::StartDate>(element)
                 ?? throw new System::ArgumentNullException("start_date");
         }
-        set { this.Properties["start_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The definition of a new allocation price to create and add to the subscription.
     /// </summary>
-    public Models::NewAllocationPrice? AllocationPrice
+    public NewAllocationPrice? AllocationPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("allocation_price", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("allocation_price", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Models::NewAllocationPrice?>(element);
+            return JsonSerializer.Deserialize<NewAllocationPrice?>(element);
         }
-        set
-        {
-            this.Properties["allocation_price"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["allocation_price"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// A list of discounts to initialize on the price interval.
     /// </summary>
-    public Generic::List<AddProperties::Discount>? Discounts
+    public List<AddProperties::Discount>? Discounts
     {
         get
         {
-            if (!this.Properties.TryGetValue("discounts", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("discounts", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<AddProperties::Discount>?>(
-                element
-            );
+            return JsonSerializer.Deserialize<List<AddProperties::Discount>?>(element);
         }
-        set { this.Properties["discounts"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["discounts"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -75,12 +68,12 @@ public sealed record class Add : Orb::ModelBase, Orb::IFromRaw<Add>
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<AddProperties::EndDate?>(element);
+            return JsonSerializer.Deserialize<AddProperties::EndDate?>(element);
         }
-        set { this.Properties["end_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -90,15 +83,12 @@ public sealed record class Add : Orb::ModelBase, Orb::IFromRaw<Add>
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_price_id", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("external_price_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set
-        {
-            this.Properties["external_price_id"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -110,37 +100,38 @@ public sealed record class Add : Orb::ModelBase, Orb::IFromRaw<Add>
     {
         get
         {
-            if (!this.Properties.TryGetValue("filter", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("filter", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["filter"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["filter"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// A list of fixed fee quantity transitions to initialize on the price interval.
     /// </summary>
-    public Generic::List<AddProperties::FixedFeeQuantityTransition>? FixedFeeQuantityTransitions
+    public List<AddProperties::FixedFeeQuantityTransition1>? FixedFeeQuantityTransitions
     {
         get
         {
             if (
                 !this.Properties.TryGetValue(
                     "fixed_fee_quantity_transitions",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<AddProperties::FixedFeeQuantityTransition>?>(
+            return JsonSerializer.Deserialize<List<AddProperties::FixedFeeQuantityTransition1>?>(
                 element
             );
         }
         set
         {
-            this.Properties["fixed_fee_quantity_transitions"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.Properties["fixed_fee_quantity_transitions"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
@@ -151,12 +142,12 @@ public sealed record class Add : Orb::ModelBase, Orb::IFromRaw<Add>
     {
         get
         {
-            if (!this.Properties.TryGetValue("maximum_amount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("maximum_amount", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element);
         }
-        set { this.Properties["maximum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -166,27 +157,27 @@ public sealed record class Add : Orb::ModelBase, Orb::IFromRaw<Add>
     {
         get
         {
-            if (!this.Properties.TryGetValue("minimum_amount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("minimum_amount", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element);
         }
-        set { this.Properties["minimum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The definition of a new price to create and add to the subscription.
     /// </summary>
-    public AddProperties::Price? Price
+    public AddProperties::Price1? Price
     {
         get
         {
-            if (!this.Properties.TryGetValue("price", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("price", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<AddProperties::Price?>(element);
+            return JsonSerializer.Deserialize<AddProperties::Price1?>(element);
         }
-        set { this.Properties["price"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["price"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -196,12 +187,12 @@ public sealed record class Add : Orb::ModelBase, Orb::IFromRaw<Add>
     {
         get
         {
-            if (!this.Properties.TryGetValue("price_id", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("price_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["price_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["price_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -212,19 +203,16 @@ public sealed record class Add : Orb::ModelBase, Orb::IFromRaw<Add>
     /// usage_customer_ids must be either the customer for this subscription itself,
     /// or any of that customer's children.
     /// </summary>
-    public Generic::List<string>? UsageCustomerIDs
+    public List<string>? UsageCustomerIDs
     {
         get
         {
-            if (!this.Properties.TryGetValue("usage_customer_ids", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("usage_customer_ids", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<string>?>(element);
+            return JsonSerializer.Deserialize<List<string>?>(element);
         }
-        set
-        {
-            this.Properties["usage_customer_ids"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["usage_customer_ids"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -255,14 +243,14 @@ public sealed record class Add : Orb::ModelBase, Orb::IFromRaw<Add>
     public Add() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    Add(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    Add(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static Add FromRawUnchecked(Generic::Dictionary<string, Json::JsonElement> properties)
+    public static Add FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

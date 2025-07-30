@@ -1,5 +1,4 @@
-using Http = System.Net.Http;
-using Orb = Orb;
+using System.Net.Http;
 using System = System;
 
 namespace Orb.Models.Customers;
@@ -16,11 +15,11 @@ namespace Orb.Models.Customers;
 /// few minutes to propagate to related resources. However, querying for the customer
 /// on subsequent GET requests while deletion is in process will reflect its deletion.
 /// </summary>
-public sealed record class CustomerDeleteParams : Orb::ParamsBase
+public sealed record class CustomerDeleteParams : ParamsBase
 {
     public required string CustomerID;
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
@@ -31,12 +30,12 @@ public sealed record class CustomerDeleteParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

@@ -1,23 +1,21 @@
-using Customers = Orb.Models.Customers;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using TaxConfigurationVariants = Orb.Models.Customers.CustomerUpdateParamsProperties.TaxConfigurationVariants;
 
 namespace Orb.Models.Customers.CustomerUpdateParamsProperties;
 
-[Serialization::JsonConverter(typeof(Orb::UnionConverter<TaxConfiguration>))]
+[JsonConverter(typeof(UnionConverter<TaxConfiguration>))]
 public abstract record class TaxConfiguration
 {
     internal TaxConfiguration() { }
 
-    public static implicit operator TaxConfiguration(Customers::NewAvalaraTaxConfiguration value) =>
-        new TaxConfigurationVariants::NewAvalaraTaxConfiguration(value);
+    public static implicit operator TaxConfiguration(NewAvalaraTaxConfiguration value) =>
+        new TaxConfigurationVariants::NewAvalaraTaxConfigurationVariant(value);
 
-    public static implicit operator TaxConfiguration(Customers::NewTaxJarConfiguration value) =>
-        new TaxConfigurationVariants::NewTaxJarConfiguration(value);
+    public static implicit operator TaxConfiguration(NewTaxJarConfiguration value) =>
+        new TaxConfigurationVariants::NewTaxJarConfigurationVariant(value);
 
-    public static implicit operator TaxConfiguration(Customers::NewSphereConfiguration value) =>
-        new TaxConfigurationVariants::NewSphereConfiguration(value);
+    public static implicit operator TaxConfiguration(NewSphereConfiguration value) =>
+        new TaxConfigurationVariants::NewSphereConfigurationVariant(value);
 
     public abstract void Validate();
 }

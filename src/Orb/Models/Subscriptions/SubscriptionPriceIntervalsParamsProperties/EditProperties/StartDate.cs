@@ -1,6 +1,4 @@
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using StartDateVariants = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.EditProperties.StartDateVariants;
 using System = System;
 
@@ -10,7 +8,7 @@ namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.Ed
 /// The updated start date of this price interval. If not specified, the start date
 /// will not be updated.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::UnionConverter<StartDate>))]
+[JsonConverter(typeof(UnionConverter<StartDate>))]
 public abstract record class StartDate
 {
     internal StartDate() { }
@@ -18,8 +16,8 @@ public abstract record class StartDate
     public static implicit operator StartDate(System::DateTime value) =>
         new StartDateVariants::DateTime(value);
 
-    public static implicit operator StartDate(Models::BillingCycleRelativeDate value) =>
-        new StartDateVariants::BillingCycleRelativeDate(value);
+    public static implicit operator StartDate(BillingCycleRelativeDate value) =>
+        new StartDateVariants::BillingCycleRelativeDateVariant(value);
 
     public abstract void Validate();
 }

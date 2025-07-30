@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.TieredConversionRateConfigProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<ConversionRateType, string>))]
-public sealed record class ConversionRateType(string value) : Orb::IEnum<ConversionRateType, string>
+[JsonConverter(typeof(EnumConverter<ConversionRateType, string>))]
+public sealed record class ConversionRateType(string value) : IEnum<ConversionRateType, string>
 {
     public static readonly ConversionRateType Tiered = new("tiered");
 
@@ -20,7 +19,7 @@ public sealed record class ConversionRateType(string value) : Orb::IEnum<Convers
         _value switch
         {
             "tiered" => Value.Tiered,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

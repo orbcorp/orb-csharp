@@ -1,12 +1,11 @@
-using Tasks = System.Threading.Tasks;
-using Tests = Orb.Tests;
+using System.Threading.Tasks;
 
 namespace Orb.Tests.Service.Coupons.Subscriptions;
 
-public class SubscriptionServiceTest : Tests::TestBase
+public class SubscriptionServiceTest : TestBase
 {
     [Fact]
-    public async Tasks::Task List_Works()
+    public async Task List_Works()
     {
         var page = await this.client.Coupons.Subscriptions.List(
             new()

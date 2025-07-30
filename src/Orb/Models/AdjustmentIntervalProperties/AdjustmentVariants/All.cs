@@ -1,24 +1,19 @@
-using AdjustmentIntervalProperties = Orb.Models.AdjustmentIntervalProperties;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.AdjustmentIntervalProperties.AdjustmentVariants;
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        PlanPhaseUsageDiscountAdjustment,
-        Models::PlanPhaseUsageDiscountAdjustment
+[JsonConverter(
+    typeof(VariantConverter<
+        PlanPhaseUsageDiscountAdjustmentVariant,
+        PlanPhaseUsageDiscountAdjustment
     >)
 )]
-public sealed record class PlanPhaseUsageDiscountAdjustment(
-    Models::PlanPhaseUsageDiscountAdjustment Value
-)
-    : AdjustmentIntervalProperties::Adjustment,
-        Orb::IVariant<PlanPhaseUsageDiscountAdjustment, Models::PlanPhaseUsageDiscountAdjustment>
+public sealed record class PlanPhaseUsageDiscountAdjustmentVariant(
+    PlanPhaseUsageDiscountAdjustment Value
+) : Adjustment, IVariant<PlanPhaseUsageDiscountAdjustmentVariant, PlanPhaseUsageDiscountAdjustment>
 {
-    public static PlanPhaseUsageDiscountAdjustment From(
-        Models::PlanPhaseUsageDiscountAdjustment value
+    public static PlanPhaseUsageDiscountAdjustmentVariant From(
+        PlanPhaseUsageDiscountAdjustment value
     )
     {
         return new(value);
@@ -30,20 +25,20 @@ public sealed record class PlanPhaseUsageDiscountAdjustment(
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        PlanPhaseAmountDiscountAdjustment,
-        Models::PlanPhaseAmountDiscountAdjustment
+[JsonConverter(
+    typeof(VariantConverter<
+        PlanPhaseAmountDiscountAdjustmentVariant,
+        PlanPhaseAmountDiscountAdjustment
     >)
 )]
-public sealed record class PlanPhaseAmountDiscountAdjustment(
-    Models::PlanPhaseAmountDiscountAdjustment Value
+public sealed record class PlanPhaseAmountDiscountAdjustmentVariant(
+    PlanPhaseAmountDiscountAdjustment Value
 )
-    : AdjustmentIntervalProperties::Adjustment,
-        Orb::IVariant<PlanPhaseAmountDiscountAdjustment, Models::PlanPhaseAmountDiscountAdjustment>
+    : Adjustment,
+        IVariant<PlanPhaseAmountDiscountAdjustmentVariant, PlanPhaseAmountDiscountAdjustment>
 {
-    public static PlanPhaseAmountDiscountAdjustment From(
-        Models::PlanPhaseAmountDiscountAdjustment value
+    public static PlanPhaseAmountDiscountAdjustmentVariant From(
+        PlanPhaseAmountDiscountAdjustment value
     )
     {
         return new(value);
@@ -55,23 +50,23 @@ public sealed record class PlanPhaseAmountDiscountAdjustment(
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        PlanPhasePercentageDiscountAdjustment,
-        Models::PlanPhasePercentageDiscountAdjustment
+[JsonConverter(
+    typeof(VariantConverter<
+        PlanPhasePercentageDiscountAdjustmentVariant,
+        PlanPhasePercentageDiscountAdjustment
     >)
 )]
-public sealed record class PlanPhasePercentageDiscountAdjustment(
-    Models::PlanPhasePercentageDiscountAdjustment Value
+public sealed record class PlanPhasePercentageDiscountAdjustmentVariant(
+    PlanPhasePercentageDiscountAdjustment Value
 )
-    : AdjustmentIntervalProperties::Adjustment,
-        Orb::IVariant<
-            PlanPhasePercentageDiscountAdjustment,
-            Models::PlanPhasePercentageDiscountAdjustment
+    : Adjustment,
+        IVariant<
+            PlanPhasePercentageDiscountAdjustmentVariant,
+            PlanPhasePercentageDiscountAdjustment
         >
 {
-    public static PlanPhasePercentageDiscountAdjustment From(
-        Models::PlanPhasePercentageDiscountAdjustment value
+    public static PlanPhasePercentageDiscountAdjustmentVariant From(
+        PlanPhasePercentageDiscountAdjustment value
     )
     {
         return new(value);
@@ -83,14 +78,14 @@ public sealed record class PlanPhasePercentageDiscountAdjustment(
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<PlanPhaseMinimumAdjustment, Models::PlanPhaseMinimumAdjustment>)
+[JsonConverter(
+    typeof(VariantConverter<PlanPhaseMinimumAdjustmentVariant, PlanPhaseMinimumAdjustment>)
 )]
-public sealed record class PlanPhaseMinimumAdjustment(Models::PlanPhaseMinimumAdjustment Value)
-    : AdjustmentIntervalProperties::Adjustment,
-        Orb::IVariant<PlanPhaseMinimumAdjustment, Models::PlanPhaseMinimumAdjustment>
+public sealed record class PlanPhaseMinimumAdjustmentVariant(PlanPhaseMinimumAdjustment Value)
+    : Adjustment,
+        IVariant<PlanPhaseMinimumAdjustmentVariant, PlanPhaseMinimumAdjustment>
 {
-    public static PlanPhaseMinimumAdjustment From(Models::PlanPhaseMinimumAdjustment value)
+    public static PlanPhaseMinimumAdjustmentVariant From(PlanPhaseMinimumAdjustment value)
     {
         return new(value);
     }
@@ -101,14 +96,14 @@ public sealed record class PlanPhaseMinimumAdjustment(Models::PlanPhaseMinimumAd
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<PlanPhaseMaximumAdjustment, Models::PlanPhaseMaximumAdjustment>)
+[JsonConverter(
+    typeof(VariantConverter<PlanPhaseMaximumAdjustmentVariant, PlanPhaseMaximumAdjustment>)
 )]
-public sealed record class PlanPhaseMaximumAdjustment(Models::PlanPhaseMaximumAdjustment Value)
-    : AdjustmentIntervalProperties::Adjustment,
-        Orb::IVariant<PlanPhaseMaximumAdjustment, Models::PlanPhaseMaximumAdjustment>
+public sealed record class PlanPhaseMaximumAdjustmentVariant(PlanPhaseMaximumAdjustment Value)
+    : Adjustment,
+        IVariant<PlanPhaseMaximumAdjustmentVariant, PlanPhaseMaximumAdjustment>
 {
-    public static PlanPhaseMaximumAdjustment From(Models::PlanPhaseMaximumAdjustment value)
+    public static PlanPhaseMaximumAdjustmentVariant From(PlanPhaseMaximumAdjustment value)
     {
         return new(value);
     }

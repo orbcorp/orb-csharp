@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Plans.PlanProperties.TrialConfigProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<TrialPeriodUnit, string>))]
-public sealed record class TrialPeriodUnit(string value) : Orb::IEnum<TrialPeriodUnit, string>
+[JsonConverter(typeof(EnumConverter<TrialPeriodUnit, string>))]
+public sealed record class TrialPeriodUnit(string value) : IEnum<TrialPeriodUnit, string>
 {
     public static readonly TrialPeriodUnit Days = new("days");
 
@@ -20,7 +19,7 @@ public sealed record class TrialPeriodUnit(string value) : Orb::IEnum<TrialPerio
         _value switch
         {
             "days" => Value.Days,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

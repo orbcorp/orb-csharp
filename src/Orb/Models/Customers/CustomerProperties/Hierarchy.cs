@@ -1,49 +1,40 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.CustomerProperties;
 
 /// <summary>
 /// The hierarchical relationships for this customer.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<Hierarchy>))]
-public sealed record class Hierarchy : Orb::ModelBase, Orb::IFromRaw<Hierarchy>
+[JsonConverter(typeof(ModelConverter<Hierarchy>))]
+public sealed record class Hierarchy : ModelBase, IFromRaw<Hierarchy>
 {
-    public required Generic::List<Models::CustomerMinified> Children
+    public required List<CustomerMinified> Children
     {
         get
         {
-            if (!this.Properties.TryGetValue("children", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "children",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("children", out JsonElement element))
+                throw new ArgumentOutOfRangeException("children", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Generic::List<Models::CustomerMinified>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("children");
+            return JsonSerializer.Deserialize<List<CustomerMinified>>(element)
+                ?? throw new ArgumentNullException("children");
         }
-        set { this.Properties["children"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["children"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public required Models::CustomerMinified? Parent
+    public required CustomerMinified? Parent
     {
         get
         {
-            if (!this.Properties.TryGetValue("parent", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "parent",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("parent", out JsonElement element))
+                throw new ArgumentOutOfRangeException("parent", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Models::CustomerMinified?>(element);
+            return JsonSerializer.Deserialize<CustomerMinified?>(element);
         }
-        set { this.Properties["parent"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["parent"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -58,16 +49,14 @@ public sealed record class Hierarchy : Orb::ModelBase, Orb::IFromRaw<Hierarchy>
     public Hierarchy() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    Hierarchy(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    Hierarchy(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static Hierarchy FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static Hierarchy FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

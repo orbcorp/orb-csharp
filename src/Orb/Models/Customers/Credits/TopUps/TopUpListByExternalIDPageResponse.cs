@@ -1,50 +1,46 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
 using TopUpListByExternalIDPageResponseProperties = Orb.Models.Customers.Credits.TopUps.TopUpListByExternalIDPageResponseProperties;
 
 namespace Orb.Models.Customers.Credits.TopUps;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<TopUpListByExternalIDPageResponse>))]
+[JsonConverter(typeof(ModelConverter<TopUpListByExternalIDPageResponse>))]
 public sealed record class TopUpListByExternalIDPageResponse
-    : Orb::ModelBase,
-        Orb::IFromRaw<TopUpListByExternalIDPageResponse>
+    : ModelBase,
+        IFromRaw<TopUpListByExternalIDPageResponse>
 {
-    public required Generic::List<TopUpListByExternalIDPageResponseProperties::Data> Data
+    public required List<TopUpListByExternalIDPageResponseProperties::Data> Data
     {
         get
         {
-            if (!this.Properties.TryGetValue("data", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
+            if (!this.Properties.TryGetValue("data", out JsonElement element))
+                throw new ArgumentOutOfRangeException("data", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Generic::List<TopUpListByExternalIDPageResponseProperties::Data>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("data");
+            return JsonSerializer.Deserialize<
+                    List<TopUpListByExternalIDPageResponseProperties::Data>
+                >(element) ?? throw new ArgumentNullException("data");
         }
-        set { this.Properties["data"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required Models::PaginationMetadata PaginationMetadata
     {
         get
         {
-            if (!this.Properties.TryGetValue("pagination_metadata", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("pagination_metadata", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "pagination_metadata",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Models::PaginationMetadata>(element)
-                ?? throw new System::ArgumentNullException("pagination_metadata");
+            return JsonSerializer.Deserialize<Models::PaginationMetadata>(element)
+                ?? throw new ArgumentNullException("pagination_metadata");
         }
-        set
-        {
-            this.Properties["pagination_metadata"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -59,15 +55,15 @@ public sealed record class TopUpListByExternalIDPageResponse
     public TopUpListByExternalIDPageResponse() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    TopUpListByExternalIDPageResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    TopUpListByExternalIDPageResponse(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
     public static TopUpListByExternalIDPageResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        Dictionary<string, JsonElement> properties
     )
     {
         return new(properties);

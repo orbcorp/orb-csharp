@@ -1,9 +1,8 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
-using Text = System.Text;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 
 namespace Orb.Models.Metrics;
 
@@ -12,9 +11,9 @@ namespace Orb.Models.Metrics;
 /// string. See [SQL support](/extensibility/advanced-metrics#sql-support) for a
 /// description of constructing SQL queries with examples.
 /// </summary>
-public sealed record class MetricCreateParams : Orb::ParamsBase
+public sealed record class MetricCreateParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     /// <summary>
     /// A description of the metric.
@@ -23,15 +22,12 @@ public sealed record class MetricCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("description", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "description",
-                    "Missing required argument"
-                );
+            if (!this.BodyProperties.TryGetValue("description", out JsonElement element))
+                throw new ArgumentOutOfRangeException("description", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.BodyProperties["description"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["description"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -41,16 +37,13 @@ public sealed record class MetricCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("item_id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "item_id",
-                    "Missing required argument"
-                );
+            if (!this.BodyProperties.TryGetValue("item_id", out JsonElement element))
+                throw new ArgumentOutOfRangeException("item_id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("item_id");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("item_id");
         }
-        set { this.BodyProperties["item_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["item_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -60,13 +53,13 @@ public sealed record class MetricCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("name", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
+            if (!this.BodyProperties.TryGetValue("name", out JsonElement element))
+                throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("name");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("name");
         }
-        set { this.BodyProperties["name"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["name"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -76,13 +69,13 @@ public sealed record class MetricCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("sql", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("sql", "Missing required argument");
+            if (!this.BodyProperties.TryGetValue("sql", out JsonElement element))
+                throw new ArgumentOutOfRangeException("sql", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("sql");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("sql");
         }
-        set { this.BodyProperties["sql"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["sql"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -90,41 +83,41 @@ public sealed record class MetricCreateParams : Orb::ParamsBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Generic::Dictionary<string, string?>? Metadata
+    public Dictionary<string, string?>? Metadata
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("metadata", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::Dictionary<string, string?>?>(element);
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(element);
         }
-        set { this.BodyProperties["metadata"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/metrics")
+        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/metrics")
         {
             Query = this.QueryString(client),
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

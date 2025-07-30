@@ -1,81 +1,78 @@
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using SubscriptionChanges = Orb.Models.SubscriptionChanges;
-using System = System;
-using Tasks = System.Threading.Tasks;
+using System;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Orb.Models.SubscriptionChanges;
 
 namespace Orb.Service.SubscriptionChanges;
 
 public sealed class SubscriptionChangeService : ISubscriptionChangeService
 {
-    readonly Orb::IOrbClient _client;
+    readonly IOrbClient _client;
 
-    public SubscriptionChangeService(Orb::IOrbClient client)
+    public SubscriptionChangeService(IOrbClient client)
     {
         _client = client;
     }
 
-    public async Tasks::Task<SubscriptionChanges::SubscriptionChangeRetrieveResponse> Retrieve(
-        SubscriptionChanges::SubscriptionChangeRetrieveParams @params
+    public async Task<SubscriptionChangeRetrieveResponse> Retrieve(
+        SubscriptionChangeRetrieveParams @params
     )
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Get, @params.Url(this._client));
+        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<SubscriptionChanges::SubscriptionChangeRetrieveResponse>(
+        return JsonSerializer.Deserialize<SubscriptionChangeRetrieveResponse>(
                 await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+            ) ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<SubscriptionChanges::SubscriptionChangeApplyResponse> Apply(
-        SubscriptionChanges::SubscriptionChangeApplyParams @params
-    )
+    public async Task<SubscriptionChangeApplyResponse> Apply(SubscriptionChangeApplyParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<SubscriptionChanges::SubscriptionChangeApplyResponse>(
+        return JsonSerializer.Deserialize<SubscriptionChangeApplyResponse>(
                 await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+            ) ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<SubscriptionChanges::SubscriptionChangeCancelResponse> Cancel(
-        SubscriptionChanges::SubscriptionChangeCancelParams @params
+    public async Task<SubscriptionChangeCancelResponse> Cancel(
+        SubscriptionChangeCancelParams @params
     )
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client));
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<SubscriptionChanges::SubscriptionChangeCancelResponse>(
+        return JsonSerializer.Deserialize<SubscriptionChangeCancelResponse>(
                 await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+            ) ?? throw new NullReferenceException();
     }
 }

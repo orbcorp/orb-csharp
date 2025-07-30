@@ -1,6 +1,5 @@
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Net.Http;
+using System.Text.Json;
 using SubscriptionFetchCostsParamsProperties = Orb.Models.Subscriptions.SubscriptionFetchCostsParamsProperties;
 using System = System;
 
@@ -17,7 +16,7 @@ namespace Orb.Models.Subscriptions;
 /// to a specific subscription for the customer (e.g. to de-aggregate costs when a
 /// customer's subscription has started and stopped on the same day).
 /// </summary>
-public sealed record class SubscriptionFetchCostsParams : Orb::ParamsBase
+public sealed record class SubscriptionFetchCostsParams : ParamsBase
 {
     public required string SubscriptionID;
 
@@ -28,12 +27,12 @@ public sealed record class SubscriptionFetchCostsParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("currency", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("currency", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.QueryProperties["currency"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -43,15 +42,12 @@ public sealed record class SubscriptionFetchCostsParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("timeframe_end", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("timeframe_end", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
-        set
-        {
-            this.QueryProperties["timeframe_end"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.QueryProperties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -61,17 +57,12 @@ public sealed record class SubscriptionFetchCostsParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("timeframe_start", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("timeframe_start", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
-        set
-        {
-            this.QueryProperties["timeframe_start"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.QueryProperties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -83,17 +74,17 @@ public sealed record class SubscriptionFetchCostsParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("view_mode", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("view_mode", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<SubscriptionFetchCostsParamsProperties::ViewMode?>(
+            return JsonSerializer.Deserialize<SubscriptionFetchCostsParamsProperties::ViewMode?>(
                 element
             );
         }
-        set { this.QueryProperties["view_mode"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["view_mode"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
@@ -104,12 +95,12 @@ public sealed record class SubscriptionFetchCostsParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

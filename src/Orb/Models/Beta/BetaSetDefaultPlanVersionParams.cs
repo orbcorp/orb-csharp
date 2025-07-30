@@ -1,9 +1,8 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
-using Text = System.Text;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 
 namespace Orb.Models.Beta;
 
@@ -13,9 +12,9 @@ namespace Orb.Models.Beta;
 ///
 /// This endpoint allows setting the default version of a plan.
 /// </summary>
-public sealed record class BetaSetDefaultPlanVersionParams : Orb::ParamsBase
+public sealed record class BetaSetDefaultPlanVersionParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     public required string PlanID;
 
@@ -26,20 +25,17 @@ public sealed record class BetaSetDefaultPlanVersionParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("version", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "version",
-                    "Missing required argument"
-                );
+            if (!this.BodyProperties.TryGetValue("version", out JsonElement element))
+                throw new ArgumentOutOfRangeException("version", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element);
         }
-        set { this.BodyProperties["version"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["version"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/plans/{0}/set_default_version", this.PlanID)
         )
@@ -48,21 +44,21 @@ public sealed record class BetaSetDefaultPlanVersionParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

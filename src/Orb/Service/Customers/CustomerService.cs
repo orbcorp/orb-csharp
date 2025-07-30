@@ -1,20 +1,19 @@
+using System;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Orb.Models.Customers;
 using BalanceTransactions = Orb.Service.Customers.BalanceTransactions;
 using Costs = Orb.Service.Customers.Costs;
 using Credits = Orb.Service.Customers.Credits;
-using Customers = Orb.Models.Customers;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
-using Tasks = System.Threading.Tasks;
 
 namespace Orb.Service.Customers;
 
 public sealed class CustomerService : ICustomerService
 {
-    readonly Orb::IOrbClient _client;
+    readonly IOrbClient _client;
 
-    public CustomerService(Orb::IOrbClient client)
+    public CustomerService(IOrbClient client)
     {
         _client = client;
         _costs = new(() => new Costs::CostService(client));
@@ -23,196 +22,182 @@ public sealed class CustomerService : ICustomerService
         );
     }
 
-    readonly System::Lazy<Costs::ICostService> _costs;
+    readonly Lazy<Costs::ICostService> _costs;
     public Costs::ICostService Costs
     {
         get { return _costs.Value; }
     }
 
-    readonly System::Lazy<Credits::ICreditService> _credits;
+    readonly Lazy<Credits::ICreditService> _credits;
     public Credits::ICreditService Credits
     {
         get { return _credits.Value; }
     }
 
-    readonly System::Lazy<BalanceTransactions::IBalanceTransactionService> _balanceTransactions;
+    readonly Lazy<BalanceTransactions::IBalanceTransactionService> _balanceTransactions;
     public BalanceTransactions::IBalanceTransactionService BalanceTransactions
     {
         get { return _balanceTransactions.Value; }
     }
 
-    public async Tasks::Task<Customers::Customer> Create(Customers::CustomerCreateParams @params)
+    public async Task<Customer> Create(CustomerCreateParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Customers::Customer>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+        return JsonSerializer.Deserialize<Customer>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Customers::Customer> Update(Customers::CustomerUpdateParams @params)
+    public async Task<Customer> Update(CustomerUpdateParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Put, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Put, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Customers::Customer>(
+        return JsonSerializer.Deserialize<Customer>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
+    }
+
+    public async Task<CustomerListPageResponse> List(CustomerListParams @params)
+    {
+        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
+        @params.AddHeadersToRequest(webRequest, this._client);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        try
+        {
+            response.EnsureSuccessStatusCode();
+        }
+        catch (HttpRequestException e)
+        {
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+        }
+        return JsonSerializer.Deserialize<CustomerListPageResponse>(
                 await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+            ) ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Customers::CustomerListPageResponse> List(
-        Customers::CustomerListParams @params
+    public async Task Delete(CustomerDeleteParams @params)
+    {
+        HttpRequestMessage webRequest = new(HttpMethod.Delete, @params.Url(this._client));
+        @params.AddHeadersToRequest(webRequest, this._client);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        try
+        {
+            response.EnsureSuccessStatusCode();
+        }
+        catch (HttpRequestException e)
+        {
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+        }
+    }
+
+    public async Task<Customer> Fetch(CustomerFetchParams @params)
+    {
+        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
+        @params.AddHeadersToRequest(webRequest, this._client);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        try
+        {
+            response.EnsureSuccessStatusCode();
+        }
+        catch (HttpRequestException e)
+        {
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+        }
+        return JsonSerializer.Deserialize<Customer>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
+    }
+
+    public async Task<Customer> FetchByExternalID(CustomerFetchByExternalIDParams @params)
+    {
+        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
+        @params.AddHeadersToRequest(webRequest, this._client);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        try
+        {
+            response.EnsureSuccessStatusCode();
+        }
+        catch (HttpRequestException e)
+        {
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+        }
+        return JsonSerializer.Deserialize<Customer>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
+    }
+
+    public async Task SyncPaymentMethodsFromGateway(
+        CustomerSyncPaymentMethodsFromGatewayParams @params
     )
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Get, @params.Url(this._client));
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
-        }
-        return Json::JsonSerializer.Deserialize<Customers::CustomerListPageResponse>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
-    }
-
-    public async Tasks::Task Delete(Customers::CustomerDeleteParams @params)
-    {
-        Http::HttpRequestMessage webRequest = new(
-            Http::HttpMethod.Delete,
-            @params.Url(this._client)
-        );
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
-        {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (Http::HttpRequestException e)
-        {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
     }
 
-    public async Tasks::Task<Customers::Customer> Fetch(Customers::CustomerFetchParams @params)
-    {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Get, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
-        {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (Http::HttpRequestException e)
-        {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
-        }
-        return Json::JsonSerializer.Deserialize<Customers::Customer>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
-    }
-
-    public async Tasks::Task<Customers::Customer> FetchByExternalID(
-        Customers::CustomerFetchByExternalIDParams @params
+    public async Task SyncPaymentMethodsFromGatewayByExternalCustomerID(
+        CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams @params
     )
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Get, @params.Url(this._client));
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
-        }
-        return Json::JsonSerializer.Deserialize<Customers::Customer>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
-    }
-
-    public async Tasks::Task SyncPaymentMethodsFromGateway(
-        Customers::CustomerSyncPaymentMethodsFromGatewayParams @params
-    )
-    {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
-        {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (Http::HttpRequestException e)
-        {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
     }
 
-    public async Tasks::Task SyncPaymentMethodsFromGatewayByExternalCustomerID(
-        Customers::CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams @params
-    )
+    public async Task<Customer> UpdateByExternalID(CustomerUpdateByExternalIDParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
-        {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (Http::HttpRequestException e)
-        {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
-        }
-    }
-
-    public async Tasks::Task<Customers::Customer> UpdateByExternalID(
-        Customers::CustomerUpdateByExternalIDParams @params
-    )
-    {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Put, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Put, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Customers::Customer>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+        return JsonSerializer.Deserialize<Customer>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
     }
 }

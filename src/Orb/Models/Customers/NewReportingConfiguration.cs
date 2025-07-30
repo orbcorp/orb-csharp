@@ -1,30 +1,29 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Customers;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<NewReportingConfiguration>))]
+[JsonConverter(typeof(ModelConverter<NewReportingConfiguration>))]
 public sealed record class NewReportingConfiguration
-    : Orb::ModelBase,
-        Orb::IFromRaw<NewReportingConfiguration>
+    : ModelBase,
+        IFromRaw<NewReportingConfiguration>
 {
     public required bool Exempt
     {
         get
         {
-            if (!this.Properties.TryGetValue("exempt", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("exempt", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "exempt",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element);
         }
-        set { this.Properties["exempt"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["exempt"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -35,15 +34,15 @@ public sealed record class NewReportingConfiguration
     public NewReportingConfiguration() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    NewReportingConfiguration(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    NewReportingConfiguration(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
     public static NewReportingConfiguration FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        Dictionary<string, JsonElement> properties
     )
     {
         return new(properties);

@@ -1,10 +1,9 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using SubscriptionCancelParamsProperties = Orb.Models.Subscriptions.SubscriptionCancelParamsProperties;
 using System = System;
-using Text = System.Text;
 
 namespace Orb.Models.Subscriptions;
 
@@ -60,9 +59,9 @@ namespace Orb.Models.Subscriptions;
 /// recently issued invoice, Orb will void the intervening invoice and generate a
 /// new one based on the new dates for the subscription. See the section on [cancellation behaviors](/product-catalog/creating-subscriptions#cancellation-behaviors).
 /// </summary>
-public sealed record class SubscriptionCancelParams : Orb::ParamsBase
+public sealed record class SubscriptionCancelParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     public required string SubscriptionID;
 
@@ -73,20 +72,17 @@ public sealed record class SubscriptionCancelParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("cancel_option", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("cancel_option", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "cancel_option",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<SubscriptionCancelParamsProperties::CancelOption>(
+            return JsonSerializer.Deserialize<SubscriptionCancelParamsProperties::CancelOption>(
                     element
                 ) ?? throw new System::ArgumentNullException("cancel_option");
         }
-        set
-        {
-            this.BodyProperties["cancel_option"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["cancel_option"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -101,17 +97,18 @@ public sealed record class SubscriptionCancelParams : Orb::ParamsBase
             if (
                 !this.BodyProperties.TryGetValue(
                     "allow_invoice_credit_or_void",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
                 return null;
 
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element);
         }
         set
         {
-            this.BodyProperties["allow_invoice_credit_or_void"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["allow_invoice_credit_or_void"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
@@ -123,22 +120,15 @@ public sealed record class SubscriptionCancelParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue("cancellation_date", out Json::JsonElement element)
-            )
+            if (!this.BodyProperties.TryGetValue("cancellation_date", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
-        set
-        {
-            this.BodyProperties["cancellation_date"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.BodyProperties["cancellation_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
@@ -149,21 +139,21 @@ public sealed record class SubscriptionCancelParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

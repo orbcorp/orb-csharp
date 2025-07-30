@@ -1,6 +1,5 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionFetchCostsParamsProperties;
 
@@ -9,8 +8,8 @@ namespace Orb.Models.Subscriptions.SubscriptionFetchCostsParamsProperties;
 /// or incremental day-by-day costs. If your customer has minimums or discounts, it's
 /// strongly recommended that you use the default cumulative behavior.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<ViewMode, string>))]
-public sealed record class ViewMode(string value) : Orb::IEnum<ViewMode, string>
+[JsonConverter(typeof(EnumConverter<ViewMode, string>))]
+public sealed record class ViewMode(string value) : IEnum<ViewMode, string>
 {
     public static readonly ViewMode Periodic = new("periodic");
 
@@ -29,7 +28,7 @@ public sealed record class ViewMode(string value) : Orb::IEnum<ViewMode, string>
         {
             "periodic" => Value.Periodic,
             "cumulative" => Value.Cumulative,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

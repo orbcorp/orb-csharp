@@ -1,10 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using EventIngestParamsProperties = Orb.Models.Events.EventIngestParamsProperties;
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
-using Text = System.Text;
 
 namespace Orb.Models.Events;
 
@@ -172,25 +171,21 @@ namespace Orb.Models.Events;
 ///
 /// ```json {   "validation_failed": [] } ```
 /// </summary>
-public sealed record class EventIngestParams : Orb::ParamsBase
+public sealed record class EventIngestParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
-    public required Generic::List<EventIngestParamsProperties::Event> Events
+    public required List<EventIngestParamsProperties::Event> Events
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("events", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "events",
-                    "Missing required argument"
-                );
+            if (!this.BodyProperties.TryGetValue("events", out JsonElement element))
+                throw new ArgumentOutOfRangeException("events", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Generic::List<EventIngestParamsProperties::Event>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("events");
+            return JsonSerializer.Deserialize<List<EventIngestParamsProperties::Event>>(element)
+                ?? throw new ArgumentNullException("events");
         }
-        set { this.BodyProperties["events"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["events"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -201,15 +196,12 @@ public sealed record class EventIngestParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("backfill_id", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("backfill_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set
-        {
-            this.QueryProperties["backfill_id"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.QueryProperties["backfill_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -219,37 +211,37 @@ public sealed record class EventIngestParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("debug", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("debug", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element);
         }
-        set { this.QueryProperties["debug"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["debug"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/ingest")
+        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/ingest")
         {
             Query = this.QueryString(client),
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

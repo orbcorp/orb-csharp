@@ -1,9 +1,8 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
-using Text = System.Text;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 
 namespace Orb.Models.Events.Backfills;
 
@@ -41,31 +40,25 @@ namespace Orb.Models.Events.Backfills;
 /// of computed properties allows you to deprecate existing events based on both a
 /// period of time and specific property values.
 /// </summary>
-public sealed record class BackfillCreateParams : Orb::ParamsBase
+public sealed record class BackfillCreateParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     /// <summary>
     /// The (exclusive) end of the usage timeframe affected by this backfill. By default,
     /// Orb allows backfills up to 31 days in duration at a time. Reach out to discuss
     /// extending this limit and your use case.
     /// </summary>
-    public required System::DateTime TimeframeEnd
+    public required DateTime TimeframeEnd
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("timeframe_end", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "timeframe_end",
-                    "Missing required argument"
-                );
+            if (!this.BodyProperties.TryGetValue("timeframe_end", out JsonElement element))
+                throw new ArgumentOutOfRangeException("timeframe_end", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element);
         }
-        set
-        {
-            this.BodyProperties["timeframe_end"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -73,22 +66,19 @@ public sealed record class BackfillCreateParams : Orb::ParamsBase
     /// Orb allows backfills up to 31 days in duration at a time. Reach out to discuss
     /// extending this limit and your use case.
     /// </summary>
-    public required System::DateTime TimeframeStart
+    public required DateTime TimeframeStart
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("timeframe_start", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.BodyProperties.TryGetValue("timeframe_start", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "timeframe_start",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element);
         }
-        set
-        {
-            this.BodyProperties["timeframe_start"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -96,16 +86,16 @@ public sealed record class BackfillCreateParams : Orb::ParamsBase
     /// will automatically begin reflecting throughout Orb at the close time. If not
     /// specified, it will default to 1 day after the creation of the backfill.
     /// </summary>
-    public System::DateTime? CloseTime
+    public DateTime? CloseTime
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("close_time", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("close_time", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element);
         }
-        set { this.BodyProperties["close_time"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["close_time"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -116,12 +106,12 @@ public sealed record class BackfillCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("customer_id", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("customer_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.BodyProperties["customer_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -132,21 +122,14 @@ public sealed record class BackfillCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "deprecation_filter",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("deprecation_filter", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
         set
         {
-            this.BodyProperties["deprecation_filter"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["deprecation_filter"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -158,21 +141,14 @@ public sealed record class BackfillCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "external_customer_id",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
         set
         {
-            this.BodyProperties["external_customer_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -185,45 +161,43 @@ public sealed record class BackfillCreateParams : Orb::ParamsBase
         get
         {
             if (
-                !this.BodyProperties.TryGetValue(
-                    "replace_existing_events",
-                    out Json::JsonElement element
-                )
+                !this.BodyProperties.TryGetValue("replace_existing_events", out JsonElement element)
             )
                 return null;
 
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element);
         }
         set
         {
-            this.BodyProperties["replace_existing_events"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["replace_existing_events"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/events/backfills")
+        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/events/backfills")
         {
             Query = this.QueryString(client),
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

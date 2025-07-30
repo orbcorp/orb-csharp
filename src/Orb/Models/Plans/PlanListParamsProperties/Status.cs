@@ -1,14 +1,13 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Plans.PlanListParamsProperties;
 
 /// <summary>
 /// The plan status to filter to ('active', 'archived', or 'draft').
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<Status, string>))]
-public sealed record class Status(string value) : Orb::IEnum<Status, string>
+[JsonConverter(typeof(EnumConverter<Status, string>))]
+public sealed record class Status(string value) : IEnum<Status, string>
 {
     public static readonly Status Active = new("active");
 
@@ -31,7 +30,7 @@ public sealed record class Status(string value) : Orb::IEnum<Status, string>
             "active" => Value.Active,
             "archived" => Value.Archived,
             "draft" => Value.Draft,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

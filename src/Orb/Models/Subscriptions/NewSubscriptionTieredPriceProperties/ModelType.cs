@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.NewSubscriptionTieredPriceProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<ModelType, string>))]
-public sealed record class ModelType(string value) : Orb::IEnum<ModelType, string>
+[JsonConverter(typeof(EnumConverter<ModelType, string>))]
+public sealed record class ModelType(string value) : IEnum<ModelType, string>
 {
     public static readonly ModelType Tiered = new("tiered");
 
@@ -20,7 +19,7 @@ public sealed record class ModelType(string value) : Orb::IEnum<ModelType, strin
         _value switch
         {
             "tiered" => Value.Tiered,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

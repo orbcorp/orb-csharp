@@ -1,30 +1,29 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<BulkBPSConfig>))]
-public sealed record class BulkBPSConfig : Orb::ModelBase, Orb::IFromRaw<BulkBPSConfig>
+[JsonConverter(typeof(ModelConverter<BulkBPSConfig>))]
+public sealed record class BulkBPSConfig : ModelBase, IFromRaw<BulkBPSConfig>
 {
     /// <summary>
     /// Tiers for a bulk BPS pricing model where all usage is aggregated to a single
     /// tier based on total volume
     /// </summary>
-    public required Generic::List<BulkBPSTier> Tiers
+    public required List<BulkBPSTier> Tiers
     {
         get
         {
-            if (!this.Properties.TryGetValue("tiers", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("tiers", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("tiers", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Generic::List<BulkBPSTier>>(element)
+            return JsonSerializer.Deserialize<List<BulkBPSTier>>(element)
                 ?? throw new System::ArgumentNullException("tiers");
         }
-        set { this.Properties["tiers"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["tiers"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -38,16 +37,14 @@ public sealed record class BulkBPSConfig : Orb::ModelBase, Orb::IFromRaw<BulkBPS
     public BulkBPSConfig() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    BulkBPSConfig(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    BulkBPSConfig(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static BulkBPSConfig FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static BulkBPSConfig FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }
