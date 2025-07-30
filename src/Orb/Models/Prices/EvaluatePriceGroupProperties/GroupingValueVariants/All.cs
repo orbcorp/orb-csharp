@@ -4,12 +4,12 @@ using Serialization = System.Text.Json.Serialization;
 
 namespace Orb.Models.Prices.EvaluatePriceGroupProperties.GroupingValueVariants;
 
-[Serialization::JsonConverter(typeof(Orb::VariantConverter<UnionMember0, string>))]
-public sealed record class UnionMember0(string Value)
+[Serialization::JsonConverter(typeof(Orb::VariantConverter<String, string>))]
+public sealed record class String(string Value)
     : EvaluatePriceGroupProperties::GroupingValue,
-        Orb::IVariant<UnionMember0, string>
+        Orb::IVariant<String, string>
 {
-    public static UnionMember0 From(string value)
+    public static String From(string value)
     {
         return new(value);
     }
@@ -17,12 +17,12 @@ public sealed record class UnionMember0(string Value)
     public override void Validate() { }
 }
 
-[Serialization::JsonConverter(typeof(Orb::VariantConverter<UnionMember1, double>))]
-public sealed record class UnionMember1(double Value)
+[Serialization::JsonConverter(typeof(Orb::VariantConverter<Double, double>))]
+public sealed record class Double(double Value)
     : EvaluatePriceGroupProperties::GroupingValue,
-        Orb::IVariant<UnionMember1, double>
+        Orb::IVariant<Double, double>
 {
-    public static UnionMember1 From(double value)
+    public static Double From(double value)
     {
         return new(value);
     }
@@ -30,12 +30,12 @@ public sealed record class UnionMember1(double Value)
     public override void Validate() { }
 }
 
-[Serialization::JsonConverter(typeof(Orb::VariantConverter<UnionMember2, bool>))]
-public sealed record class UnionMember2(bool Value)
+[Serialization::JsonConverter(typeof(Orb::VariantConverter<Bool, bool>))]
+public sealed record class Bool(bool Value)
     : EvaluatePriceGroupProperties::GroupingValue,
-        Orb::IVariant<UnionMember2, bool>
+        Orb::IVariant<Bool, bool>
 {
-    public static UnionMember2 From(bool value)
+    public static Bool From(bool value)
     {
         return new(value);
     }
