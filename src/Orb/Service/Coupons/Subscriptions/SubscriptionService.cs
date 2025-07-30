@@ -1,8 +1,8 @@
 using Http = System.Net.Http;
 using Json = System.Text.Json;
 using Orb = Orb;
-using Subscriptions = Orb.Models.Subscriptions;
-using Subscriptions1 = Orb.Models.Coupons.Subscriptions;
+using Subscriptions = Orb.Models.Coupons.Subscriptions;
+using Subscriptions1 = Orb.Models.Subscriptions;
 using System = System;
 using Tasks = System.Threading.Tasks;
 
@@ -17,8 +17,8 @@ public sealed class SubscriptionService : ISubscriptionService
         _client = client;
     }
 
-    public async Tasks::Task<Subscriptions::Subscriptions> List(
-        Subscriptions1::SubscriptionListParams @params
+    public async Tasks::Task<Subscriptions1::Subscriptions> List(
+        Subscriptions::SubscriptionListParams @params
     )
     {
         Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Get, @params.Url(this._client));
@@ -32,7 +32,7 @@ public sealed class SubscriptionService : ISubscriptionService
         {
             throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Subscriptions::Subscriptions>(
+        return Json::JsonSerializer.Deserialize<Subscriptions1::Subscriptions>(
                 await response.Content.ReadAsStringAsync()
             ) ?? throw new System::NullReferenceException();
     }
