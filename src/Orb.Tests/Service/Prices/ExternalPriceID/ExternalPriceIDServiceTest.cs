@@ -1,4 +1,3 @@
-using ExternalPriceID = Orb.Models.Prices.ExternalPriceID;
 using Tasks = System.Threading.Tasks;
 using Tests = Orb.Tests;
 
@@ -10,7 +9,7 @@ public class ExternalPriceIDServiceTest : Tests::TestBase
     public async Tasks::Task Update_Works()
     {
         var price = await this.client.Prices.ExternalPriceID.Update(
-            new ExternalPriceID::ExternalPriceIDUpdateParams()
+            new()
             {
                 ExternalPriceID = "external_price_id",
                 Metadata = new() { { "foo", "string" } },
@@ -23,10 +22,7 @@ public class ExternalPriceIDServiceTest : Tests::TestBase
     public async Tasks::Task Fetch_Works()
     {
         var price = await this.client.Prices.ExternalPriceID.Fetch(
-            new ExternalPriceID::ExternalPriceIDFetchParams()
-            {
-                ExternalPriceID = "external_price_id",
-            }
+            new() { ExternalPriceID = "external_price_id" }
         );
         price.Validate();
     }

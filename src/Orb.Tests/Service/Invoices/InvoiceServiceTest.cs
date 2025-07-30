@@ -1,6 +1,4 @@
-using InvoiceCreateParamsProperties = Orb.Models.Invoices.InvoiceCreateParamsProperties;
 using InvoiceListParamsProperties = Orb.Models.Invoices.InvoiceListParamsProperties;
-using Invoices = Orb.Models.Invoices;
 using LineItemProperties = Orb.Models.Invoices.InvoiceCreateParamsProperties.LineItemProperties;
 using Models = Orb.Models;
 using PercentageDiscountProperties = Orb.Models.PercentageDiscountProperties;
@@ -17,13 +15,13 @@ public class InvoiceServiceTest : Tests::TestBase
     public async Tasks::Task Create_Works()
     {
         var invoice = await this.client.Invoices.Create(
-            new Invoices::InvoiceCreateParams()
+            new()
             {
                 Currency = "USD",
                 InvoiceDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
                 LineItems =
                 [
-                    new InvoiceCreateParamsProperties::LineItem()
+                    new()
                     {
                         EndDate = System::DateOnly.Parse("2023-09-22"),
                         ItemID = "4khy3nwzktxv7",
@@ -31,7 +29,7 @@ public class InvoiceServiceTest : Tests::TestBase
                         Name = "Line Item Name",
                         Quantity = 1,
                         StartDate = System::DateOnly.Parse("2023-09-22"),
-                        UnitConfig = new Models::UnitConfig() { UnitAmount = "unit_amount" },
+                        UnitConfig = new() { UnitAmount = "unit_amount" },
                     },
                 ],
                 CustomerID = "4khy3nwzktxv7",
@@ -42,7 +40,7 @@ public class InvoiceServiceTest : Tests::TestBase
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
-                        new Models::TransformPriceFilter()
+                        new()
                         {
                             Field = TransformPriceFilterProperties::Field.PriceID,
                             Operator = TransformPriceFilterProperties::Operator.Includes,
@@ -65,7 +63,7 @@ public class InvoiceServiceTest : Tests::TestBase
     public async Tasks::Task Update_Works()
     {
         var invoice = await this.client.Invoices.Update(
-            new Invoices::InvoiceUpdateParams()
+            new()
             {
                 InvoiceID = "invoice_id",
                 Metadata = new() { { "foo", "string" } },
@@ -78,7 +76,7 @@ public class InvoiceServiceTest : Tests::TestBase
     public async Tasks::Task List_Works()
     {
         var page = await this.client.Invoices.List(
-            new Invoices::InvoiceListParams()
+            new()
             {
                 Amount = "amount",
                 AmountGt = "amount[gt]",
@@ -107,9 +105,7 @@ public class InvoiceServiceTest : Tests::TestBase
     [Fact]
     public async Tasks::Task Fetch_Works()
     {
-        var invoice = await this.client.Invoices.Fetch(
-            new Invoices::InvoiceFetchParams() { InvoiceID = "invoice_id" }
-        );
+        var invoice = await this.client.Invoices.Fetch(new() { InvoiceID = "invoice_id" });
         invoice.Validate();
     }
 
@@ -117,7 +113,7 @@ public class InvoiceServiceTest : Tests::TestBase
     public async Tasks::Task FetchUpcoming_Works()
     {
         var response = await this.client.Invoices.FetchUpcoming(
-            new Invoices::InvoiceFetchUpcomingParams() { SubscriptionID = "subscription_id" }
+            new() { SubscriptionID = "subscription_id" }
         );
         response.Validate();
     }
@@ -126,7 +122,7 @@ public class InvoiceServiceTest : Tests::TestBase
     public async Tasks::Task Issue_Works()
     {
         var invoice = await this.client.Invoices.Issue(
-            new Invoices::InvoiceIssueParams() { InvoiceID = "invoice_id", Synchronous = true }
+            new() { InvoiceID = "invoice_id", Synchronous = true }
         );
         invoice.Validate();
     }
@@ -135,7 +131,7 @@ public class InvoiceServiceTest : Tests::TestBase
     public async Tasks::Task MarkPaid_Works()
     {
         var invoice = await this.client.Invoices.MarkPaid(
-            new Invoices::InvoiceMarkPaidParams()
+            new()
             {
                 InvoiceID = "invoice_id",
                 PaymentReceivedDate = System::DateOnly.Parse("2023-09-22"),
@@ -149,18 +145,14 @@ public class InvoiceServiceTest : Tests::TestBase
     [Fact]
     public async Tasks::Task Pay_Works()
     {
-        var invoice = await this.client.Invoices.Pay(
-            new Invoices::InvoicePayParams() { InvoiceID = "invoice_id" }
-        );
+        var invoice = await this.client.Invoices.Pay(new() { InvoiceID = "invoice_id" });
         invoice.Validate();
     }
 
     [Fact]
     public async Tasks::Task Void_Works()
     {
-        var invoice = await this.client.Invoices.Void(
-            new Invoices::InvoiceVoidParams() { InvoiceID = "invoice_id" }
-        );
+        var invoice = await this.client.Invoices.Void(new() { InvoiceID = "invoice_id" });
         invoice.Validate();
     }
 }

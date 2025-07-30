@@ -1,5 +1,3 @@
-using EventIngestParamsProperties = Orb.Models.Events.EventIngestParamsProperties;
-using Events = Orb.Models.Events;
 using Json = System.Text.Json;
 using System = System;
 using Tasks = System.Threading.Tasks;
@@ -13,7 +11,7 @@ public class EventServiceTest : Tests::TestBase
     public async Tasks::Task Update_Works()
     {
         var event1 = await this.client.Events.Update(
-            new Events::EventUpdateParams()
+            new()
             {
                 EventID = "event_id",
                 EventName = "event_name",
@@ -29,9 +27,7 @@ public class EventServiceTest : Tests::TestBase
     [Fact]
     public async Tasks::Task Deprecate_Works()
     {
-        var response = await this.client.Events.Deprecate(
-            new Events::EventDeprecateParams() { EventID = "event_id" }
-        );
+        var response = await this.client.Events.Deprecate(new() { EventID = "event_id" });
         response.Validate();
     }
 
@@ -39,11 +35,11 @@ public class EventServiceTest : Tests::TestBase
     public async Tasks::Task Ingest_Works()
     {
         var response = await this.client.Events.Ingest(
-            new Events::EventIngestParams()
+            new()
             {
                 Events =
                 [
-                    new EventIngestParamsProperties::Event()
+                    new()
                     {
                         EventName = "event_name",
                         IdempotencyKey = "idempotency_key",
@@ -67,7 +63,7 @@ public class EventServiceTest : Tests::TestBase
     public async Tasks::Task Search_Works()
     {
         var response = await this.client.Events.Search(
-            new Events::EventSearchParams()
+            new()
             {
                 EventIDs = ["string"],
                 TimeframeEnd = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),

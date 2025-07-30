@@ -1,6 +1,5 @@
 using CostListByExternalIDParamsProperties = Orb.Models.Customers.Costs.CostListByExternalIDParamsProperties;
 using CostListParamsProperties = Orb.Models.Customers.Costs.CostListParamsProperties;
-using Costs = Orb.Models.Customers.Costs;
 using System = System;
 using Tasks = System.Threading.Tasks;
 using Tests = Orb.Tests;
@@ -13,7 +12,7 @@ public class CostServiceTest : Tests::TestBase
     public async Tasks::Task List_Works()
     {
         var costs = await this.client.Customers.Costs.List(
-            new Costs::CostListParams()
+            new()
             {
                 CustomerID = "customer_id",
                 Currency = "currency",
@@ -29,7 +28,7 @@ public class CostServiceTest : Tests::TestBase
     public async Tasks::Task ListByExternalID_Works()
     {
         var response = await this.client.Customers.Costs.ListByExternalID(
-            new Costs::CostListByExternalIDParams()
+            new()
             {
                 ExternalCustomerID = "external_customer_id",
                 Currency = "currency",

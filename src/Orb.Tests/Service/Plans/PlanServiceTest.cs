@@ -7,7 +7,6 @@ using NewPlanUnitPriceProperties = Orb.Models.NewPlanUnitPriceProperties;
 using PlanCreateParamsProperties = Orb.Models.Plans.PlanCreateParamsProperties;
 using PlanListParamsProperties = Orb.Models.Plans.PlanListParamsProperties;
 using PlanPhaseProperties = Orb.Models.Plans.PlanCreateParamsProperties.PlanPhaseProperties;
-using Plans = Orb.Models.Plans;
 using System = System;
 using Tasks = System.Threading.Tasks;
 using Tests = Orb.Tests;
@@ -22,20 +21,20 @@ public class PlanServiceTest : Tests::TestBase
     public async Tasks::Task Create_Works()
     {
         var plan = await this.client.Plans.Create(
-            new Plans::PlanCreateParams()
+            new()
             {
                 Currency = "currency",
                 Name = "name",
                 Prices =
                 [
-                    new PlanCreateParamsProperties::Price()
+                    new()
                     {
-                        AllocationPrice = new Models::NewAllocationPrice()
+                        AllocationPrice = new()
                         {
                             Amount = "10.00",
                             Cadence = NewAllocationPriceProperties::Cadence.Monthly,
                             Currency = "USD",
-                            CustomExpiration = new Models::CustomExpiration()
+                            CustomExpiration = new()
                             {
                                 Duration = 0,
                                 DurationUnit = CustomExpirationProperties::DurationUnit.Day,
@@ -49,10 +48,10 @@ public class PlanServiceTest : Tests::TestBase
                             ItemID = "item_id",
                             ModelType = NewPlanUnitPriceProperties::ModelType.Unit,
                             Name = "Annual fee",
-                            UnitConfig = new Models::UnitConfig() { UnitAmount = "unit_amount" },
+                            UnitConfig = new() { UnitAmount = "unit_amount" },
                             BillableMetricID = "billable_metric_id",
                             BilledInAdvance = true,
-                            BillingCycleConfiguration = new Models::NewBillingCycleConfiguration()
+                            BillingCycleConfiguration = new()
                             {
                                 Duration = 0,
                                 DurationUnit =
@@ -63,24 +62,20 @@ public class PlanServiceTest : Tests::TestBase
                             {
                                 ConversionRateType =
                                     UnitConversionRateConfigProperties::ConversionRateType.Unit,
-                                UnitConfig = new Models::ConversionRateUnitConfig()
-                                {
-                                    UnitAmount = "unit_amount",
-                                },
+                                UnitConfig = new() { UnitAmount = "unit_amount" },
                             },
                             Currency = "currency",
-                            DimensionalPriceConfiguration =
-                                new Models::NewDimensionalPriceConfiguration()
-                                {
-                                    DimensionValues = ["string"],
-                                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                                    ExternalDimensionalPriceGroupID =
-                                        "external_dimensional_price_group_id",
-                                },
+                            DimensionalPriceConfiguration = new()
+                            {
+                                DimensionValues = ["string"],
+                                DimensionalPriceGroupID = "dimensional_price_group_id",
+                                ExternalDimensionalPriceGroupID =
+                                    "external_dimensional_price_group_id",
+                            },
                             ExternalPriceID = "external_price_id",
                             FixedPriceQuantity = 0,
                             InvoiceGroupingKey = "x",
-                            InvoicingCycleConfiguration = new Models::NewBillingCycleConfiguration()
+                            InvoicingCycleConfiguration = new()
                             {
                                 Duration = 0,
                                 DurationUnit =
@@ -93,7 +88,7 @@ public class PlanServiceTest : Tests::TestBase
                 ],
                 Adjustments =
                 [
-                    new PlanCreateParamsProperties::Adjustment()
+                    new()
                     {
                         Adjustment1 = new Models::NewPercentageDiscount()
                         {
@@ -106,7 +101,7 @@ public class PlanServiceTest : Tests::TestBase
                             Currency = "currency",
                             Filters =
                             [
-                                new Models::TransformPriceFilter()
+                                new()
                                 {
                                     Field = TransformPriceFilterProperties::Field.PriceID,
                                     Operator = TransformPriceFilterProperties::Operator.Includes,
@@ -125,7 +120,7 @@ public class PlanServiceTest : Tests::TestBase
                 NetTerms = 0,
                 PlanPhases =
                 [
-                    new PlanCreateParamsProperties::PlanPhase()
+                    new()
                     {
                         Order = 0,
                         AlignBillingWithPhaseStartDate = true,
@@ -143,7 +138,7 @@ public class PlanServiceTest : Tests::TestBase
     public async Tasks::Task Update_Works()
     {
         var plan = await this.client.Plans.Update(
-            new Plans::PlanUpdateParams()
+            new()
             {
                 PlanID = "plan_id",
                 ExternalPlanID = "external_plan_id",
@@ -157,7 +152,7 @@ public class PlanServiceTest : Tests::TestBase
     public async Tasks::Task List_Works()
     {
         var page = await this.client.Plans.List(
-            new Plans::PlanListParams()
+            new()
             {
                 CreatedAtGt = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
                 CreatedAtGte = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
@@ -174,9 +169,7 @@ public class PlanServiceTest : Tests::TestBase
     [Fact]
     public async Tasks::Task Fetch_Works()
     {
-        var plan = await this.client.Plans.Fetch(
-            new Plans::PlanFetchParams() { PlanID = "plan_id" }
-        );
+        var plan = await this.client.Plans.Fetch(new() { PlanID = "plan_id" });
         plan.Validate();
     }
 }

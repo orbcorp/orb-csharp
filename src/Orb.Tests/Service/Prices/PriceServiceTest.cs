@@ -2,9 +2,6 @@ using Json = System.Text.Json;
 using Models = Orb.Models;
 using NewBillingCycleConfigurationProperties = Orb.Models.NewBillingCycleConfigurationProperties;
 using NewFloatingUnitPriceProperties = Orb.Models.NewFloatingUnitPriceProperties;
-using PriceEvaluateMultipleParamsProperties = Orb.Models.Prices.PriceEvaluateMultipleParamsProperties;
-using PriceEvaluatePreviewEventsParamsProperties = Orb.Models.Prices.PriceEvaluatePreviewEventsParamsProperties;
-using Prices = Orb.Models.Prices;
 using System = System;
 using Tasks = System.Threading.Tasks;
 using Tests = Orb.Tests;
@@ -18,7 +15,7 @@ public class PriceServiceTest : Tests::TestBase
     public async Tasks::Task Create_Works()
     {
         var price = await this.client.Prices.Create(
-            new Prices::PriceCreateParams()
+            new()
             {
                 Body = new Models::NewFloatingUnitPrice()
                 {
@@ -27,10 +24,10 @@ public class PriceServiceTest : Tests::TestBase
                     ItemID = "item_id",
                     ModelType = NewFloatingUnitPriceProperties::ModelType.Unit,
                     Name = "Annual fee",
-                    UnitConfig = new Models::UnitConfig() { UnitAmount = "unit_amount" },
+                    UnitConfig = new() { UnitAmount = "unit_amount" },
                     BillableMetricID = "billable_metric_id",
                     BilledInAdvance = true,
-                    BillingCycleConfiguration = new Models::NewBillingCycleConfiguration()
+                    BillingCycleConfiguration = new()
                     {
                         Duration = 0,
                         DurationUnit = NewBillingCycleConfigurationProperties::DurationUnit.Day,
@@ -40,12 +37,9 @@ public class PriceServiceTest : Tests::TestBase
                     {
                         ConversionRateType =
                             UnitConversionRateConfigProperties::ConversionRateType.Unit,
-                        UnitConfig = new Models::ConversionRateUnitConfig()
-                        {
-                            UnitAmount = "unit_amount",
-                        },
+                        UnitConfig = new() { UnitAmount = "unit_amount" },
                     },
-                    DimensionalPriceConfiguration = new Models::NewDimensionalPriceConfiguration()
+                    DimensionalPriceConfiguration = new()
                     {
                         DimensionValues = ["string"],
                         DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -54,7 +48,7 @@ public class PriceServiceTest : Tests::TestBase
                     ExternalPriceID = "external_price_id",
                     FixedPriceQuantity = 0,
                     InvoiceGroupingKey = "x",
-                    InvoicingCycleConfiguration = new Models::NewBillingCycleConfiguration()
+                    InvoicingCycleConfiguration = new()
                     {
                         Duration = 0,
                         DurationUnit = NewBillingCycleConfigurationProperties::DurationUnit.Day,
@@ -70,7 +64,7 @@ public class PriceServiceTest : Tests::TestBase
     public async Tasks::Task Update_Works()
     {
         var price = await this.client.Prices.Update(
-            new Prices::PriceUpdateParams()
+            new()
             {
                 PriceID = "price_id",
                 Metadata = new() { { "foo", "string" } },
@@ -82,9 +76,7 @@ public class PriceServiceTest : Tests::TestBase
     [Fact]
     public async Tasks::Task List_Works()
     {
-        var page = await this.client.Prices.List(
-            new Prices::PriceListParams() { Cursor = "cursor", Limit = 1 }
-        );
+        var page = await this.client.Prices.List(new() { Cursor = "cursor", Limit = 1 });
         page.Validate();
     }
 
@@ -92,7 +84,7 @@ public class PriceServiceTest : Tests::TestBase
     public async Tasks::Task Evaluate_Works()
     {
         var response = await this.client.Prices.Evaluate(
-            new Prices::PriceEvaluateParams()
+            new()
             {
                 PriceID = "price_id",
                 TimeframeEnd = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
@@ -110,7 +102,7 @@ public class PriceServiceTest : Tests::TestBase
     public async Tasks::Task EvaluateMultiple_Works()
     {
         var response = await this.client.Prices.EvaluateMultiple(
-            new Prices::PriceEvaluateMultipleParams()
+            new()
             {
                 TimeframeEnd = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
                 TimeframeStart = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
@@ -118,7 +110,7 @@ public class PriceServiceTest : Tests::TestBase
                 ExternalCustomerID = "external_customer_id",
                 PriceEvaluations =
                 [
-                    new PriceEvaluateMultipleParamsProperties::PriceEvaluation()
+                    new()
                     {
                         ExternalPriceID = "external_price_id",
                         Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
@@ -130,10 +122,10 @@ public class PriceServiceTest : Tests::TestBase
                             ItemID = "item_id",
                             ModelType = NewFloatingUnitPriceProperties::ModelType.Unit,
                             Name = "Annual fee",
-                            UnitConfig = new Models::UnitConfig() { UnitAmount = "unit_amount" },
+                            UnitConfig = new() { UnitAmount = "unit_amount" },
                             BillableMetricID = "billable_metric_id",
                             BilledInAdvance = true,
-                            BillingCycleConfiguration = new Models::NewBillingCycleConfiguration()
+                            BillingCycleConfiguration = new()
                             {
                                 Duration = 0,
                                 DurationUnit =
@@ -144,23 +136,19 @@ public class PriceServiceTest : Tests::TestBase
                             {
                                 ConversionRateType =
                                     UnitConversionRateConfigProperties::ConversionRateType.Unit,
-                                UnitConfig = new Models::ConversionRateUnitConfig()
-                                {
-                                    UnitAmount = "unit_amount",
-                                },
+                                UnitConfig = new() { UnitAmount = "unit_amount" },
                             },
-                            DimensionalPriceConfiguration =
-                                new Models::NewDimensionalPriceConfiguration()
-                                {
-                                    DimensionValues = ["string"],
-                                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                                    ExternalDimensionalPriceGroupID =
-                                        "external_dimensional_price_group_id",
-                                },
+                            DimensionalPriceConfiguration = new()
+                            {
+                                DimensionValues = ["string"],
+                                DimensionalPriceGroupID = "dimensional_price_group_id",
+                                ExternalDimensionalPriceGroupID =
+                                    "external_dimensional_price_group_id",
+                            },
                             ExternalPriceID = "external_price_id",
                             FixedPriceQuantity = 0,
                             InvoiceGroupingKey = "x",
-                            InvoicingCycleConfiguration = new Models::NewBillingCycleConfiguration()
+                            InvoicingCycleConfiguration = new()
                             {
                                 Duration = 0,
                                 DurationUnit =
@@ -180,14 +168,14 @@ public class PriceServiceTest : Tests::TestBase
     public async Tasks::Task EvaluatePreviewEvents_Works()
     {
         var response = await this.client.Prices.EvaluatePreviewEvents(
-            new Prices::PriceEvaluatePreviewEventsParams()
+            new()
             {
                 TimeframeEnd = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
                 TimeframeStart = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
                 CustomerID = "customer_id",
                 Events =
                 [
-                    new PriceEvaluatePreviewEventsParamsProperties::Event()
+                    new()
                     {
                         EventName = "event_name",
                         Properties1 = new()
@@ -202,7 +190,7 @@ public class PriceServiceTest : Tests::TestBase
                 ExternalCustomerID = "external_customer_id",
                 PriceEvaluations =
                 [
-                    new PriceEvaluatePreviewEventsParamsProperties::PriceEvaluation()
+                    new()
                     {
                         ExternalPriceID = "external_price_id",
                         Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
@@ -214,10 +202,10 @@ public class PriceServiceTest : Tests::TestBase
                             ItemID = "item_id",
                             ModelType = NewFloatingUnitPriceProperties::ModelType.Unit,
                             Name = "Annual fee",
-                            UnitConfig = new Models::UnitConfig() { UnitAmount = "unit_amount" },
+                            UnitConfig = new() { UnitAmount = "unit_amount" },
                             BillableMetricID = "billable_metric_id",
                             BilledInAdvance = true,
-                            BillingCycleConfiguration = new Models::NewBillingCycleConfiguration()
+                            BillingCycleConfiguration = new()
                             {
                                 Duration = 0,
                                 DurationUnit =
@@ -228,23 +216,19 @@ public class PriceServiceTest : Tests::TestBase
                             {
                                 ConversionRateType =
                                     UnitConversionRateConfigProperties::ConversionRateType.Unit,
-                                UnitConfig = new Models::ConversionRateUnitConfig()
-                                {
-                                    UnitAmount = "unit_amount",
-                                },
+                                UnitConfig = new() { UnitAmount = "unit_amount" },
                             },
-                            DimensionalPriceConfiguration =
-                                new Models::NewDimensionalPriceConfiguration()
-                                {
-                                    DimensionValues = ["string"],
-                                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                                    ExternalDimensionalPriceGroupID =
-                                        "external_dimensional_price_group_id",
-                                },
+                            DimensionalPriceConfiguration = new()
+                            {
+                                DimensionValues = ["string"],
+                                DimensionalPriceGroupID = "dimensional_price_group_id",
+                                ExternalDimensionalPriceGroupID =
+                                    "external_dimensional_price_group_id",
+                            },
                             ExternalPriceID = "external_price_id",
                             FixedPriceQuantity = 0,
                             InvoiceGroupingKey = "x",
-                            InvoicingCycleConfiguration = new Models::NewBillingCycleConfiguration()
+                            InvoicingCycleConfiguration = new()
                             {
                                 Duration = 0,
                                 DurationUnit =
@@ -263,9 +247,7 @@ public class PriceServiceTest : Tests::TestBase
     [Fact]
     public async Tasks::Task Fetch_Works()
     {
-        var price = await this.client.Prices.Fetch(
-            new Prices::PriceFetchParams() { PriceID = "price_id" }
-        );
+        var price = await this.client.Prices.Fetch(new() { PriceID = "price_id" });
         price.Validate();
     }
 }

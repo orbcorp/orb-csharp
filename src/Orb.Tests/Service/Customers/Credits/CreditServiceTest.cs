@@ -1,4 +1,3 @@
-using Credits = Orb.Models.Customers.Credits;
 using Tasks = System.Threading.Tasks;
 using Tests = Orb.Tests;
 
@@ -10,7 +9,7 @@ public class CreditServiceTest : Tests::TestBase
     public async Tasks::Task List_Works()
     {
         var page = await this.client.Customers.Credits.List(
-            new Credits::CreditListParams()
+            new()
             {
                 CustomerID = "customer_id",
                 Currency = "currency",
@@ -26,7 +25,7 @@ public class CreditServiceTest : Tests::TestBase
     public async Tasks::Task ListByExternalID_Works()
     {
         var page = await this.client.Customers.Credits.ListByExternalID(
-            new Credits::CreditListByExternalIDParams()
+            new()
             {
                 ExternalCustomerID = "external_customer_id",
                 Currency = "currency",

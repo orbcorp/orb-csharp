@@ -1,4 +1,3 @@
-using SubscriptionChanges = Orb.Models.SubscriptionChanges;
 using Tasks = System.Threading.Tasks;
 using Tests = Orb.Tests;
 
@@ -10,10 +9,7 @@ public class SubscriptionChangeServiceTest : Tests::TestBase
     public async Tasks::Task Retrieve_Works()
     {
         var subscriptionChange = await this.client.SubscriptionChanges.Retrieve(
-            new SubscriptionChanges::SubscriptionChangeRetrieveParams()
-            {
-                SubscriptionChangeID = "subscription_change_id",
-            }
+            new() { SubscriptionChangeID = "subscription_change_id" }
         );
         subscriptionChange.Validate();
     }
@@ -22,7 +18,7 @@ public class SubscriptionChangeServiceTest : Tests::TestBase
     public async Tasks::Task Apply_Works()
     {
         var response = await this.client.SubscriptionChanges.Apply(
-            new SubscriptionChanges::SubscriptionChangeApplyParams()
+            new()
             {
                 SubscriptionChangeID = "subscription_change_id",
                 Description = "description",
@@ -36,10 +32,7 @@ public class SubscriptionChangeServiceTest : Tests::TestBase
     public async Tasks::Task Cancel_Works()
     {
         var response = await this.client.SubscriptionChanges.Cancel(
-            new SubscriptionChanges::SubscriptionChangeCancelParams()
-            {
-                SubscriptionChangeID = "subscription_change_id",
-            }
+            new() { SubscriptionChangeID = "subscription_change_id" }
         );
         response.Validate();
     }

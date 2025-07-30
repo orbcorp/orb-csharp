@@ -200,7 +200,7 @@ public sealed record class ExternalPlanIDCreatePlanVersionParams : Orb::ParamsBa
 
     public Http::StringContent BodyContent()
     {
-        return new Http::StringContent(
+        return new(
             Json::JsonSerializer.Serialize(this.BodyProperties),
             Text::Encoding.UTF8,
             "application/json"

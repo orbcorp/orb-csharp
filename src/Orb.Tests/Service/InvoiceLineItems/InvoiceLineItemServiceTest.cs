@@ -1,4 +1,3 @@
-using InvoiceLineItems = Orb.Models.InvoiceLineItems;
 using System = System;
 using Tasks = System.Threading.Tasks;
 using Tests = Orb.Tests;
@@ -11,7 +10,7 @@ public class InvoiceLineItemServiceTest : Tests::TestBase
     public async Tasks::Task Create_Works()
     {
         var invoiceLineItem = await this.client.InvoiceLineItems.Create(
-            new InvoiceLineItems::InvoiceLineItemCreateParams()
+            new()
             {
                 Amount = "12.00",
                 EndDate = System::DateOnly.Parse("2023-09-22"),

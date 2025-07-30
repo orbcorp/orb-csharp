@@ -47,7 +47,7 @@ public sealed record class PriceCreateParams : Orb::ParamsBase
 
     public Http::StringContent BodyContent()
     {
-        return new Http::StringContent(
+        return new(
             Json::JsonSerializer.Serialize(this.BodyProperties),
             Text::Encoding.UTF8,
             "application/json"

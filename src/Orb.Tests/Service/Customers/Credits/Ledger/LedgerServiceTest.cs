@@ -1,8 +1,5 @@
 using BodyProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties;
 using BodyProperties1 = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties;
-using IncrementProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.IncrementProperties;
-using IncrementProperties1 = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.IncrementProperties;
-using Ledger = Orb.Models.Customers.Credits.Ledger;
 using LedgerListByExternalIDParamsProperties = Orb.Models.Customers.Credits.Ledger.LedgerListByExternalIDParamsProperties;
 using LedgerListParamsProperties = Orb.Models.Customers.Credits.Ledger.LedgerListParamsProperties;
 using System = System;
@@ -17,7 +14,7 @@ public class LedgerServiceTest : Tests::TestBase
     public async Tasks::Task List_Works()
     {
         var page = await this.client.Customers.Credits.Ledger.List(
-            new Ledger::LedgerListParams()
+            new()
             {
                 CustomerID = "customer_id",
                 CreatedAtGt = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
@@ -39,7 +36,7 @@ public class LedgerServiceTest : Tests::TestBase
     public async Tasks::Task CreateEntry_Works()
     {
         var response = await this.client.Customers.Credits.Ledger.CreateEntry(
-            new Ledger::LedgerCreateEntryParams()
+            new()
             {
                 CustomerID = "customer_id",
                 Body = new BodyProperties::Increment()
@@ -49,7 +46,7 @@ public class LedgerServiceTest : Tests::TestBase
                     Description = "description",
                     EffectiveDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
                     ExpiryDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                    InvoiceSettings = new IncrementProperties::InvoiceSettings()
+                    InvoiceSettings = new()
                     {
                         AutoCollection = true,
                         NetTerms = 0,
@@ -69,7 +66,7 @@ public class LedgerServiceTest : Tests::TestBase
     public async Tasks::Task CreateEntryByExternalID_Works()
     {
         var response = await this.client.Customers.Credits.Ledger.CreateEntryByExternalID(
-            new Ledger::LedgerCreateEntryByExternalIDParams()
+            new()
             {
                 ExternalCustomerID = "external_customer_id",
                 Body = new BodyProperties1::Increment()
@@ -79,7 +76,7 @@ public class LedgerServiceTest : Tests::TestBase
                     Description = "description",
                     EffectiveDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
                     ExpiryDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                    InvoiceSettings = new IncrementProperties1::InvoiceSettings()
+                    InvoiceSettings = new()
                     {
                         AutoCollection = true,
                         NetTerms = 0,
@@ -99,7 +96,7 @@ public class LedgerServiceTest : Tests::TestBase
     public async Tasks::Task ListByExternalID_Works()
     {
         var page = await this.client.Customers.Credits.Ledger.ListByExternalID(
-            new Ledger::LedgerListByExternalIDParams()
+            new()
             {
                 ExternalCustomerID = "external_customer_id",
                 CreatedAtGt = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),

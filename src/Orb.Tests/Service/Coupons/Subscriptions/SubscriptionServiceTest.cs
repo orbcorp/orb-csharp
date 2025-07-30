@@ -1,4 +1,3 @@
-using Subscriptions = Orb.Models.Coupons.Subscriptions;
 using Tasks = System.Threading.Tasks;
 using Tests = Orb.Tests;
 
@@ -10,7 +9,7 @@ public class SubscriptionServiceTest : Tests::TestBase
     public async Tasks::Task List_Works()
     {
         var page = await this.client.Coupons.Subscriptions.List(
-            new Subscriptions::SubscriptionListParams()
+            new()
             {
                 CouponID = "coupon_id",
                 Cursor = "cursor",

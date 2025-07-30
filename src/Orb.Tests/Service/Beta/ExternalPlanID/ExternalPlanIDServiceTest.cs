@@ -1,6 +1,4 @@
 using CustomExpirationProperties = Orb.Models.CustomExpirationProperties;
-using ExternalPlanID = Orb.Models.Beta.ExternalPlanID;
-using ExternalPlanIDCreatePlanVersionParamsProperties = Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties;
 using Models = Orb.Models;
 using NewAllocationPriceProperties = Orb.Models.NewAllocationPriceProperties;
 using NewBillingCycleConfigurationProperties = Orb.Models.NewBillingCycleConfigurationProperties;
@@ -19,13 +17,13 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
     public async Tasks::Task CreatePlanVersion_Works()
     {
         var planVersion = await this.client.Beta.ExternalPlanID.CreatePlanVersion(
-            new ExternalPlanID::ExternalPlanIDCreatePlanVersionParams()
+            new()
             {
                 ExternalPlanID = "external_plan_id",
                 Version = 0,
                 AddAdjustments =
                 [
-                    new ExternalPlanIDCreatePlanVersionParamsProperties::AddAdjustment()
+                    new()
                     {
                         Adjustment = new Models::NewPercentageDiscount()
                         {
@@ -38,7 +36,7 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
                             Currency = "currency",
                             Filters =
                             [
-                                new Models::TransformPriceFilter()
+                                new()
                                 {
                                     Field = TransformPriceFilterProperties::Field.PriceID,
                                     Operator = TransformPriceFilterProperties::Operator.Includes,
@@ -53,14 +51,14 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
                 ],
                 AddPrices =
                 [
-                    new ExternalPlanIDCreatePlanVersionParamsProperties::AddPrice()
+                    new()
                     {
-                        AllocationPrice = new Models::NewAllocationPrice()
+                        AllocationPrice = new()
                         {
                             Amount = "10.00",
                             Cadence = NewAllocationPriceProperties::Cadence.Monthly,
                             Currency = "USD",
-                            CustomExpiration = new Models::CustomExpiration()
+                            CustomExpiration = new()
                             {
                                 Duration = 0,
                                 DurationUnit = CustomExpirationProperties::DurationUnit.Day,
@@ -74,10 +72,10 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
                             ItemID = "item_id",
                             ModelType = NewPlanUnitPriceProperties::ModelType.Unit,
                             Name = "Annual fee",
-                            UnitConfig = new Models::UnitConfig() { UnitAmount = "unit_amount" },
+                            UnitConfig = new() { UnitAmount = "unit_amount" },
                             BillableMetricID = "billable_metric_id",
                             BilledInAdvance = true,
-                            BillingCycleConfiguration = new Models::NewBillingCycleConfiguration()
+                            BillingCycleConfiguration = new()
                             {
                                 Duration = 0,
                                 DurationUnit =
@@ -88,24 +86,20 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
                             {
                                 ConversionRateType =
                                     UnitConversionRateConfigProperties::ConversionRateType.Unit,
-                                UnitConfig = new Models::ConversionRateUnitConfig()
-                                {
-                                    UnitAmount = "unit_amount",
-                                },
+                                UnitConfig = new() { UnitAmount = "unit_amount" },
                             },
                             Currency = "currency",
-                            DimensionalPriceConfiguration =
-                                new Models::NewDimensionalPriceConfiguration()
-                                {
-                                    DimensionValues = ["string"],
-                                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                                    ExternalDimensionalPriceGroupID =
-                                        "external_dimensional_price_group_id",
-                                },
+                            DimensionalPriceConfiguration = new()
+                            {
+                                DimensionValues = ["string"],
+                                DimensionalPriceGroupID = "dimensional_price_group_id",
+                                ExternalDimensionalPriceGroupID =
+                                    "external_dimensional_price_group_id",
+                            },
                             ExternalPriceID = "external_price_id",
                             FixedPriceQuantity = 0,
                             InvoiceGroupingKey = "x",
-                            InvoicingCycleConfiguration = new Models::NewBillingCycleConfiguration()
+                            InvoicingCycleConfiguration = new()
                             {
                                 Duration = 0,
                                 DurationUnit =
@@ -116,25 +110,11 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
                         },
                     },
                 ],
-                RemoveAdjustments =
-                [
-                    new ExternalPlanIDCreatePlanVersionParamsProperties::RemoveAdjustment()
-                    {
-                        AdjustmentID = "adjustment_id",
-                        PlanPhaseOrder = 0,
-                    },
-                ],
-                RemovePrices =
-                [
-                    new ExternalPlanIDCreatePlanVersionParamsProperties::RemovePrice()
-                    {
-                        PriceID = "price_id",
-                        PlanPhaseOrder = 0,
-                    },
-                ],
+                RemoveAdjustments = [new() { AdjustmentID = "adjustment_id", PlanPhaseOrder = 0 }],
+                RemovePrices = [new() { PriceID = "price_id", PlanPhaseOrder = 0 }],
                 ReplaceAdjustments =
                 [
-                    new ExternalPlanIDCreatePlanVersionParamsProperties::ReplaceAdjustment()
+                    new()
                     {
                         Adjustment = new Models::NewPercentageDiscount()
                         {
@@ -147,7 +127,7 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
                             Currency = "currency",
                             Filters =
                             [
-                                new Models::TransformPriceFilter()
+                                new()
                                 {
                                     Field = TransformPriceFilterProperties::Field.PriceID,
                                     Operator = TransformPriceFilterProperties::Operator.Includes,
@@ -163,15 +143,15 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
                 ],
                 ReplacePrices =
                 [
-                    new ExternalPlanIDCreatePlanVersionParamsProperties::ReplacePrice()
+                    new()
                     {
                         ReplacesPriceID = "replaces_price_id",
-                        AllocationPrice = new Models::NewAllocationPrice()
+                        AllocationPrice = new()
                         {
                             Amount = "10.00",
                             Cadence = NewAllocationPriceProperties::Cadence.Monthly,
                             Currency = "USD",
-                            CustomExpiration = new Models::CustomExpiration()
+                            CustomExpiration = new()
                             {
                                 Duration = 0,
                                 DurationUnit = CustomExpirationProperties::DurationUnit.Day,
@@ -185,10 +165,10 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
                             ItemID = "item_id",
                             ModelType = NewPlanUnitPriceProperties::ModelType.Unit,
                             Name = "Annual fee",
-                            UnitConfig = new Models::UnitConfig() { UnitAmount = "unit_amount" },
+                            UnitConfig = new() { UnitAmount = "unit_amount" },
                             BillableMetricID = "billable_metric_id",
                             BilledInAdvance = true,
-                            BillingCycleConfiguration = new Models::NewBillingCycleConfiguration()
+                            BillingCycleConfiguration = new()
                             {
                                 Duration = 0,
                                 DurationUnit =
@@ -199,24 +179,20 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
                             {
                                 ConversionRateType =
                                     UnitConversionRateConfigProperties::ConversionRateType.Unit,
-                                UnitConfig = new Models::ConversionRateUnitConfig()
-                                {
-                                    UnitAmount = "unit_amount",
-                                },
+                                UnitConfig = new() { UnitAmount = "unit_amount" },
                             },
                             Currency = "currency",
-                            DimensionalPriceConfiguration =
-                                new Models::NewDimensionalPriceConfiguration()
-                                {
-                                    DimensionValues = ["string"],
-                                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                                    ExternalDimensionalPriceGroupID =
-                                        "external_dimensional_price_group_id",
-                                },
+                            DimensionalPriceConfiguration = new()
+                            {
+                                DimensionValues = ["string"],
+                                DimensionalPriceGroupID = "dimensional_price_group_id",
+                                ExternalDimensionalPriceGroupID =
+                                    "external_dimensional_price_group_id",
+                            },
                             ExternalPriceID = "external_price_id",
                             FixedPriceQuantity = 0,
                             InvoiceGroupingKey = "x",
-                            InvoicingCycleConfiguration = new Models::NewBillingCycleConfiguration()
+                            InvoicingCycleConfiguration = new()
                             {
                                 Duration = 0,
                                 DurationUnit =
@@ -237,11 +213,7 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
     public async Tasks::Task FetchPlanVersion_Works()
     {
         var planVersion = await this.client.Beta.ExternalPlanID.FetchPlanVersion(
-            new ExternalPlanID::ExternalPlanIDFetchPlanVersionParams()
-            {
-                ExternalPlanID = "external_plan_id",
-                Version = "version",
-            }
+            new() { ExternalPlanID = "external_plan_id", Version = "version" }
         );
         planVersion.Validate();
     }
@@ -250,11 +222,7 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
     public async Tasks::Task SetDefaultPlanVersion_Works()
     {
         var plan = await this.client.Beta.ExternalPlanID.SetDefaultPlanVersion(
-            new ExternalPlanID::ExternalPlanIDSetDefaultPlanVersionParams()
-            {
-                ExternalPlanID = "external_plan_id",
-                Version = 0,
-            }
+            new() { ExternalPlanID = "external_plan_id", Version = 0 }
         );
         plan.Validate();
     }
