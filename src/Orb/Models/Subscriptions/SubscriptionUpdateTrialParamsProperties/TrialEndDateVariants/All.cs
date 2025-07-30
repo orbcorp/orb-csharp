@@ -6,12 +6,12 @@ using TrialEndDateProperties = Orb.Models.Subscriptions.SubscriptionUpdateTrialP
 
 namespace Orb.Models.Subscriptions.SubscriptionUpdateTrialParamsProperties.TrialEndDateVariants;
 
-[Serialization::JsonConverter(typeof(Orb::VariantConverter<UnionMember0, System::DateTime>))]
-public sealed record class UnionMember0(System::DateTime Value)
+[Serialization::JsonConverter(typeof(Orb::VariantConverter<DateTime, System::DateTime>))]
+public sealed record class DateTime(System::DateTime Value)
     : SubscriptionUpdateTrialParamsProperties::TrialEndDate,
-        Orb::IVariant<UnionMember0, System::DateTime>
+        Orb::IVariant<DateTime, System::DateTime>
 {
-    public static UnionMember0 From(System::DateTime value)
+    public static DateTime From(System::DateTime value)
     {
         return new(value);
     }

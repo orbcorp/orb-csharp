@@ -10,13 +10,13 @@ public abstract record class GroupingValue
     internal GroupingValue() { }
 
     public static implicit operator GroupingValue(string value) =>
-        new GroupingValueVariants::UnionMember0(value);
+        new GroupingValueVariants::String(value);
 
     public static implicit operator GroupingValue(double value) =>
-        new GroupingValueVariants::UnionMember1(value);
+        new GroupingValueVariants::Double(value);
 
     public static implicit operator GroupingValue(bool value) =>
-        new GroupingValueVariants::UnionMember2(value);
+        new GroupingValueVariants::Bool(value);
 
     public abstract void Validate();
 }

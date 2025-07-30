@@ -16,7 +16,7 @@ public abstract record class TrialEndDate
     internal TrialEndDate() { }
 
     public static implicit operator TrialEndDate(System::DateTime value) =>
-        new TrialEndDateVariants::UnionMember0(value);
+        new TrialEndDateVariants::DateTime(value);
 
     public static implicit operator TrialEndDate(TrialEndDateProperties::UnionMember1 value) =>
         new TrialEndDateVariants::UnionMember1(value);
