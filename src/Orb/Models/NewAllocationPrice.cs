@@ -1,15 +1,14 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using NewAllocationPriceProperties = Orb.Models.NewAllocationPriceProperties;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<NewAllocationPrice>))]
-public sealed record class NewAllocationPrice : Orb::ModelBase, Orb::IFromRaw<NewAllocationPrice>
+[JsonConverter(typeof(ModelConverter<NewAllocationPrice>))]
+public sealed record class NewAllocationPrice : ModelBase, IFromRaw<NewAllocationPrice>
 {
     /// <summary>
     /// An amount of the currency to allocate to the customer at the specified cadence.
@@ -18,16 +17,16 @@ public sealed record class NewAllocationPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("amount", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "amount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("amount");
         }
-        set { this.Properties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -37,16 +36,16 @@ public sealed record class NewAllocationPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     {
         get
         {
-            if (!this.Properties.TryGetValue("cadence", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("cadence", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "cadence",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<NewAllocationPriceProperties::Cadence>(element)
+            return JsonSerializer.Deserialize<NewAllocationPriceProperties::Cadence>(element)
                 ?? throw new System::ArgumentNullException("cadence");
         }
-        set { this.Properties["cadence"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["cadence"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -57,16 +56,16 @@ public sealed record class NewAllocationPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     {
         get
         {
-            if (!this.Properties.TryGetValue("currency", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("currency", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "currency",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("currency");
         }
-        set { this.Properties["currency"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -76,15 +75,12 @@ public sealed record class NewAllocationPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     {
         get
         {
-            if (!this.Properties.TryGetValue("custom_expiration", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("custom_expiration", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<CustomExpiration?>(element);
+            return JsonSerializer.Deserialize<CustomExpiration?>(element);
         }
-        set
-        {
-            this.Properties["custom_expiration"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["custom_expiration"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -95,21 +91,14 @@ public sealed record class NewAllocationPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "expires_at_end_of_cadence",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.Properties.TryGetValue("expires_at_end_of_cadence", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element);
         }
         set
         {
-            this.Properties["expires_at_end_of_cadence"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.Properties["expires_at_end_of_cadence"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -125,16 +114,14 @@ public sealed record class NewAllocationPrice : Orb::ModelBase, Orb::IFromRaw<Ne
     public NewAllocationPrice() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    NewAllocationPrice(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    NewAllocationPrice(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static NewAllocationPrice FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static NewAllocationPrice FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

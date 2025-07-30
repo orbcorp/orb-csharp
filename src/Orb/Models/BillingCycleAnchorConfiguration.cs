@@ -1,16 +1,15 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<BillingCycleAnchorConfiguration>))]
+[JsonConverter(typeof(ModelConverter<BillingCycleAnchorConfiguration>))]
 public sealed record class BillingCycleAnchorConfiguration
-    : Orb::ModelBase,
-        Orb::IFromRaw<BillingCycleAnchorConfiguration>
+    : ModelBase,
+        IFromRaw<BillingCycleAnchorConfiguration>
 {
     /// <summary>
     /// The day of the month on which the billing cycle is anchored. If the maximum
@@ -22,12 +21,12 @@ public sealed record class BillingCycleAnchorConfiguration
     {
         get
         {
-            if (!this.Properties.TryGetValue("day", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("day", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("day", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element);
         }
-        set { this.Properties["day"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["day"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -38,12 +37,12 @@ public sealed record class BillingCycleAnchorConfiguration
     {
         get
         {
-            if (!this.Properties.TryGetValue("month", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("month", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set { this.Properties["month"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["month"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -54,12 +53,12 @@ public sealed record class BillingCycleAnchorConfiguration
     {
         get
         {
-            if (!this.Properties.TryGetValue("year", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("year", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set { this.Properties["year"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["year"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -72,15 +71,15 @@ public sealed record class BillingCycleAnchorConfiguration
     public BillingCycleAnchorConfiguration() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    BillingCycleAnchorConfiguration(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    BillingCycleAnchorConfiguration(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
     public static BillingCycleAnchorConfiguration FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        Dictionary<string, JsonElement> properties
     )
     {
         return new(properties);

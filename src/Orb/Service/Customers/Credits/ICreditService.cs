@@ -1,6 +1,6 @@
-using Credits = Orb.Models.Customers.Credits;
+using System.Threading.Tasks;
+using Orb.Models.Customers.Credits;
 using Ledger = Orb.Service.Customers.Credits.Ledger;
-using Tasks = System.Threading.Tasks;
 using TopUps = Orb.Service.Customers.Credits.TopUps;
 
 namespace Orb.Service.Customers.Credits;
@@ -20,7 +20,7 @@ public interface ICreditService
     /// Note that `currency` defaults to credits if not specified. To use a real world
     /// currency, set `currency` to an ISO 4217 string.
     /// </summary>
-    Tasks::Task<Credits::CreditListPageResponse> List(Credits::CreditListParams @params);
+    Task<CreditListPageResponse> List(CreditListParams @params);
 
     /// <summary>
     /// Returns a paginated list of unexpired, non-zero credit blocks for a customer.
@@ -31,7 +31,5 @@ public interface ICreditService
     /// Note that `currency` defaults to credits if not specified. To use a real world
     /// currency, set `currency` to an ISO 4217 string.
     /// </summary>
-    Tasks::Task<Credits::CreditListByExternalIDPageResponse> ListByExternalID(
-        Credits::CreditListByExternalIDParams @params
-    );
+    Task<CreditListByExternalIDPageResponse> ListByExternalID(CreditListByExternalIDParams @params);
 }

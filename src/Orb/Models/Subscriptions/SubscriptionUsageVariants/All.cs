@@ -1,12 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using Subscriptions = Orb.Models.Subscriptions;
+using System.Text.Json.Serialization;
 using SubscriptionUsageProperties = Orb.Models.Subscriptions.SubscriptionUsageProperties;
 
 namespace Orb.Models.Subscriptions.SubscriptionUsageVariants;
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
+[JsonConverter(
+    typeof(VariantConverter<
         UngroupedSubscriptionUsage,
         SubscriptionUsageProperties::UngroupedSubscriptionUsage
     >)
@@ -14,8 +12,8 @@ namespace Orb.Models.Subscriptions.SubscriptionUsageVariants;
 public sealed record class UngroupedSubscriptionUsage(
     SubscriptionUsageProperties::UngroupedSubscriptionUsage Value
 )
-    : Subscriptions::SubscriptionUsage,
-        Orb::IVariant<
+    : SubscriptionUsage,
+        IVariant<
             UngroupedSubscriptionUsage,
             SubscriptionUsageProperties::UngroupedSubscriptionUsage
         >
@@ -33,8 +31,8 @@ public sealed record class UngroupedSubscriptionUsage(
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
+[JsonConverter(
+    typeof(VariantConverter<
         GroupedSubscriptionUsage,
         SubscriptionUsageProperties::GroupedSubscriptionUsage
     >)
@@ -42,11 +40,8 @@ public sealed record class UngroupedSubscriptionUsage(
 public sealed record class GroupedSubscriptionUsage(
     SubscriptionUsageProperties::GroupedSubscriptionUsage Value
 )
-    : Subscriptions::SubscriptionUsage,
-        Orb::IVariant<
-            GroupedSubscriptionUsage,
-            SubscriptionUsageProperties::GroupedSubscriptionUsage
-        >
+    : SubscriptionUsage,
+        IVariant<GroupedSubscriptionUsage, SubscriptionUsageProperties::GroupedSubscriptionUsage>
 {
     public static GroupedSubscriptionUsage From(
         SubscriptionUsageProperties::GroupedSubscriptionUsage value

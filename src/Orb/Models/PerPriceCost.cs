@@ -1,14 +1,13 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<PerPriceCost>))]
-public sealed record class PerPriceCost : Orb::ModelBase, Orb::IFromRaw<PerPriceCost>
+[JsonConverter(typeof(ModelConverter<PerPriceCost>))]
+public sealed record class PerPriceCost : ModelBase, IFromRaw<PerPriceCost>
 {
     /// <summary>
     /// The price object
@@ -17,13 +16,13 @@ public sealed record class PerPriceCost : Orb::ModelBase, Orb::IFromRaw<PerPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("price", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("price", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("price", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Price>(element)
+            return JsonSerializer.Deserialize<Price>(element)
                 ?? throw new System::ArgumentNullException("price");
         }
-        set { this.Properties["price"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["price"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -33,16 +32,16 @@ public sealed record class PerPriceCost : Orb::ModelBase, Orb::IFromRaw<PerPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("price_id", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("price_id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "price_id",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("price_id");
         }
-        set { this.Properties["price_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["price_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -52,16 +51,16 @@ public sealed record class PerPriceCost : Orb::ModelBase, Orb::IFromRaw<PerPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("subtotal", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("subtotal", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "subtotal",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("subtotal");
         }
-        set { this.Properties["subtotal"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["subtotal"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -71,13 +70,13 @@ public sealed record class PerPriceCost : Orb::ModelBase, Orb::IFromRaw<PerPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("total", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("total", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("total", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("total");
         }
-        set { this.Properties["total"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["total"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -87,12 +86,12 @@ public sealed record class PerPriceCost : Orb::ModelBase, Orb::IFromRaw<PerPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("quantity", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("quantity", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element);
         }
-        set { this.Properties["quantity"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["quantity"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -107,16 +106,14 @@ public sealed record class PerPriceCost : Orb::ModelBase, Orb::IFromRaw<PerPrice
     public PerPriceCost() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    PerPriceCost(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    PerPriceCost(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static PerPriceCost FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static PerPriceCost FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

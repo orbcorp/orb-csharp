@@ -1,19 +1,18 @@
-using Http = System.Net.Http;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Net.Http;
 
 namespace Orb.Models.Items;
 
 /// <summary>
 /// This endpoint returns an item identified by its item_id.
 /// </summary>
-public sealed record class ItemFetchParams : Orb::ParamsBase
+public sealed record class ItemFetchParams : ParamsBase
 {
     public required string ItemID;
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/') + string.Format("/items/{0}", this.ItemID)
         )
         {
@@ -21,12 +20,12 @@ public sealed record class ItemFetchParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

@@ -1,24 +1,21 @@
+using System.Text.Json.Serialization;
 using ConversionRateConfigVariants = Orb.Models.Subscriptions.NewSubscriptionPackageWithAllocationPriceProperties.ConversionRateConfigVariants;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.NewSubscriptionPackageWithAllocationPriceProperties;
 
 /// <summary>
 /// The configuration for the rate of the price currency to the invoicing currency.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::UnionConverter<ConversionRateConfig>))]
+[JsonConverter(typeof(UnionConverter<ConversionRateConfig>))]
 public abstract record class ConversionRateConfig
 {
     internal ConversionRateConfig() { }
 
-    public static implicit operator ConversionRateConfig(Models::UnitConversionRateConfig value) =>
-        new ConversionRateConfigVariants::UnitConversionRateConfig(value);
+    public static implicit operator ConversionRateConfig(UnitConversionRateConfig value) =>
+        new ConversionRateConfigVariants::UnitConversionRateConfigVariant(value);
 
-    public static implicit operator ConversionRateConfig(
-        Models::TieredConversionRateConfig value
-    ) => new ConversionRateConfigVariants::TieredConversionRateConfig(value);
+    public static implicit operator ConversionRateConfig(TieredConversionRateConfig value) =>
+        new ConversionRateConfigVariants::TieredConversionRateConfigVariant(value);
 
     public abstract void Validate();
 }

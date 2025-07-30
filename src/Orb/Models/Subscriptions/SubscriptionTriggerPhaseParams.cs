@@ -1,18 +1,17 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using System = System;
-using Text = System.Text;
 
 namespace Orb.Models.Subscriptions;
 
 /// <summary>
 /// Manually trigger a phase, effective the given date (or the current time, if not specified).
 /// </summary>
-public sealed record class SubscriptionTriggerPhaseParams : Orb::ParamsBase
+public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     public required string SubscriptionID;
 
@@ -28,17 +27,18 @@ public sealed record class SubscriptionTriggerPhaseParams : Orb::ParamsBase
             if (
                 !this.BodyProperties.TryGetValue(
                     "allow_invoice_credit_or_void",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
                 return null;
 
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element);
         }
         set
         {
-            this.BodyProperties["allow_invoice_credit_or_void"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["allow_invoice_credit_or_void"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
@@ -50,18 +50,15 @@ public sealed record class SubscriptionTriggerPhaseParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("effective_date", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("effective_date", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateOnly?>(element);
+            return JsonSerializer.Deserialize<System::DateOnly?>(element);
         }
-        set
-        {
-            this.BodyProperties["effective_date"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["effective_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
@@ -72,21 +69,21 @@ public sealed record class SubscriptionTriggerPhaseParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

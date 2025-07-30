@@ -1,37 +1,33 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<MatrixValue>))]
-public sealed record class MatrixValue : Orb::ModelBase, Orb::IFromRaw<MatrixValue>
+[JsonConverter(typeof(ModelConverter<MatrixValue>))]
+public sealed record class MatrixValue : ModelBase, IFromRaw<MatrixValue>
 {
     /// <summary>
     /// One or two matrix keys to filter usage to this Matrix value by. For example,
     /// ["region", "tier"] could be used to filter cloud usage by a cloud region and
     /// an instance tier.
     /// </summary>
-    public required Generic::List<string?> DimensionValues
+    public required List<string?> DimensionValues
     {
         get
         {
-            if (!this.Properties.TryGetValue("dimension_values", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("dimension_values", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "dimension_values",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<string?>>(element)
+            return JsonSerializer.Deserialize<List<string?>>(element)
                 ?? throw new System::ArgumentNullException("dimension_values");
         }
-        set
-        {
-            this.Properties["dimension_values"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["dimension_values"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -41,16 +37,16 @@ public sealed record class MatrixValue : Orb::ModelBase, Orb::IFromRaw<MatrixVal
     {
         get
         {
-            if (!this.Properties.TryGetValue("unit_amount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("unit_amount", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "unit_amount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("unit_amount");
         }
-        set { this.Properties["unit_amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["unit_amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -65,16 +61,14 @@ public sealed record class MatrixValue : Orb::ModelBase, Orb::IFromRaw<MatrixVal
     public MatrixValue() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    MatrixValue(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    MatrixValue(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static MatrixValue FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static MatrixValue FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

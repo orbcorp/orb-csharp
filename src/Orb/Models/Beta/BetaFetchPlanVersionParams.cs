@@ -1,6 +1,5 @@
-using Http = System.Net.Http;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Net.Http;
 
 namespace Orb.Models.Beta;
 
@@ -11,15 +10,15 @@ namespace Orb.Models.Beta;
 /// This endpoint is used to fetch a plan version. It returns the phases, prices,
 /// and adjustments present on this version of the plan.
 /// </summary>
-public sealed record class BetaFetchPlanVersionParams : Orb::ParamsBase
+public sealed record class BetaFetchPlanVersionParams : ParamsBase
 {
     public required string PlanID;
 
     public required string Version;
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/plans/{0}/versions/{1}", this.PlanID, this.Version)
         )
@@ -28,12 +27,12 @@ public sealed record class BetaFetchPlanVersionParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

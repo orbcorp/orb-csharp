@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<Status, string>))]
-public sealed record class Status(string value) : Orb::IEnum<Status, string>
+[JsonConverter(typeof(EnumConverter<Status, string>))]
+public sealed record class Status(string value) : IEnum<Status, string>
 {
     public static readonly Status Issued = new("issued");
 

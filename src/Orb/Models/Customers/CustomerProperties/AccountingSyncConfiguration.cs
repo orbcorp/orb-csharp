@@ -1,53 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using AccountingSyncConfigurationProperties = Orb.Models.Customers.CustomerProperties.AccountingSyncConfigurationProperties;
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Customers.CustomerProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<AccountingSyncConfiguration>))]
+[JsonConverter(typeof(ModelConverter<AccountingSyncConfiguration>))]
 public sealed record class AccountingSyncConfiguration
-    : Orb::ModelBase,
-        Orb::IFromRaw<AccountingSyncConfiguration>
+    : ModelBase,
+        IFromRaw<AccountingSyncConfiguration>
 {
-    public required Generic::List<AccountingSyncConfigurationProperties::AccountingProvider> AccountingProviders
+    public required List<AccountingSyncConfigurationProperties::AccountingProvider> AccountingProviders
     {
         get
         {
-            if (!this.Properties.TryGetValue("accounting_providers", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("accounting_providers", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "accounting_providers",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<AccountingSyncConfigurationProperties::AccountingProvider>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("accounting_providers");
+            return JsonSerializer.Deserialize<
+                    List<AccountingSyncConfigurationProperties::AccountingProvider>
+                >(element) ?? throw new ArgumentNullException("accounting_providers");
         }
-        set
-        {
-            this.Properties["accounting_providers"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.Properties["accounting_providers"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required bool Excluded
     {
         get
         {
-            if (!this.Properties.TryGetValue("excluded", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "excluded",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("excluded", out JsonElement element))
+                throw new ArgumentOutOfRangeException("excluded", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element);
         }
-        set { this.Properties["excluded"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["excluded"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -62,15 +53,15 @@ public sealed record class AccountingSyncConfiguration
     public AccountingSyncConfiguration() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    AccountingSyncConfiguration(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    AccountingSyncConfiguration(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
     public static AccountingSyncConfiguration FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        Dictionary<string, JsonElement> properties
     )
     {
         return new(properties);

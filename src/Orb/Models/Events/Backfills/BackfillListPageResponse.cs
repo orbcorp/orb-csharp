@@ -1,50 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using BackfillListPageResponseProperties = Orb.Models.Events.Backfills.BackfillListPageResponseProperties;
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
 using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Events.Backfills;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<BackfillListPageResponse>))]
-public sealed record class BackfillListPageResponse
-    : Orb::ModelBase,
-        Orb::IFromRaw<BackfillListPageResponse>
+[JsonConverter(typeof(ModelConverter<BackfillListPageResponse>))]
+public sealed record class BackfillListPageResponse : ModelBase, IFromRaw<BackfillListPageResponse>
 {
-    public required Generic::List<BackfillListPageResponseProperties::Data> Data
+    public required List<BackfillListPageResponseProperties::Data> Data
     {
         get
         {
-            if (!this.Properties.TryGetValue("data", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
+            if (!this.Properties.TryGetValue("data", out JsonElement element))
+                throw new ArgumentOutOfRangeException("data", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Generic::List<BackfillListPageResponseProperties::Data>>(
+            return JsonSerializer.Deserialize<List<BackfillListPageResponseProperties::Data>>(
                     element
-                ) ?? throw new System::ArgumentNullException("data");
+                ) ?? throw new ArgumentNullException("data");
         }
-        set { this.Properties["data"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required Models::PaginationMetadata PaginationMetadata
     {
         get
         {
-            if (!this.Properties.TryGetValue("pagination_metadata", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("pagination_metadata", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "pagination_metadata",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Models::PaginationMetadata>(element)
-                ?? throw new System::ArgumentNullException("pagination_metadata");
+            return JsonSerializer.Deserialize<Models::PaginationMetadata>(element)
+                ?? throw new ArgumentNullException("pagination_metadata");
         }
-        set
-        {
-            this.Properties["pagination_metadata"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -59,15 +53,15 @@ public sealed record class BackfillListPageResponse
     public BackfillListPageResponse() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    BackfillListPageResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    BackfillListPageResponse(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
     public static BackfillListPageResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        Dictionary<string, JsonElement> properties
     )
     {
         return new(properties);

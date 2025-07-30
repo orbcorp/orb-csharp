@@ -1,15 +1,13 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Prices = Orb.Models.Prices;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Prices.PriceEvaluatePreviewEventsResponseProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<Data>))]
-public sealed record class Data : Orb::ModelBase, Orb::IFromRaw<Data>
+[JsonConverter(typeof(ModelConverter<Data>))]
+public sealed record class Data : ModelBase, IFromRaw<Data>
 {
     /// <summary>
     /// The currency of the price
@@ -18,36 +16,29 @@ public sealed record class Data : Orb::ModelBase, Orb::IFromRaw<Data>
     {
         get
         {
-            if (!this.Properties.TryGetValue("currency", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "currency",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("currency", out JsonElement element))
+                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("currency");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("currency");
         }
-        set { this.Properties["currency"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The computed price groups associated with input price.
     /// </summary>
-    public required Generic::List<Prices::EvaluatePriceGroup> PriceGroups
+    public required List<EvaluatePriceGroup> PriceGroups
     {
         get
         {
-            if (!this.Properties.TryGetValue("price_groups", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "price_groups",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("price_groups", out JsonElement element))
+                throw new ArgumentOutOfRangeException("price_groups", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Generic::List<Prices::EvaluatePriceGroup>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("price_groups");
+            return JsonSerializer.Deserialize<List<EvaluatePriceGroup>>(element)
+                ?? throw new ArgumentNullException("price_groups");
         }
-        set { this.Properties["price_groups"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["price_groups"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -57,15 +48,12 @@ public sealed record class Data : Orb::ModelBase, Orb::IFromRaw<Data>
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_price_id", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("external_price_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set
-        {
-            this.Properties["external_price_id"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -75,15 +63,12 @@ public sealed record class Data : Orb::ModelBase, Orb::IFromRaw<Data>
     {
         get
         {
-            if (!this.Properties.TryGetValue("inline_price_index", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("inline_price_index", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set
-        {
-            this.Properties["inline_price_index"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["inline_price_index"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -93,12 +78,12 @@ public sealed record class Data : Orb::ModelBase, Orb::IFromRaw<Data>
     {
         get
         {
-            if (!this.Properties.TryGetValue("price_id", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("price_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["price_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["price_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -116,14 +101,14 @@ public sealed record class Data : Orb::ModelBase, Orb::IFromRaw<Data>
     public Data() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    Data(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    Data(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static Data FromRawUnchecked(Generic::Dictionary<string, Json::JsonElement> properties)
+    public static Data FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

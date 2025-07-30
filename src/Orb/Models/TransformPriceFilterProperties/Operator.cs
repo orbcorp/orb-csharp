@@ -1,14 +1,13 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.TransformPriceFilterProperties;
 
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<Operator, string>))]
-public sealed record class Operator(string value) : Orb::IEnum<Operator, string>
+[JsonConverter(typeof(EnumConverter<Operator, string>))]
+public sealed record class Operator(string value) : IEnum<Operator, string>
 {
     public static readonly Operator Includes = new("includes");
 
@@ -27,7 +26,7 @@ public sealed record class Operator(string value) : Orb::IEnum<Operator, string>
         {
             "includes" => Value.Includes,
             "excludes" => Value.Excludes,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

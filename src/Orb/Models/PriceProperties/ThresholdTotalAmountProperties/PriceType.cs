@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.PriceProperties.ThresholdTotalAmountProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<PriceType, string>))]
-public sealed record class PriceType(string value) : Orb::IEnum<PriceType, string>
+[JsonConverter(typeof(EnumConverter<PriceType, string>))]
+public sealed record class PriceType(string value) : IEnum<PriceType, string>
 {
     public static readonly PriceType UsagePrice = new("usage_price");
 
@@ -24,7 +23,7 @@ public sealed record class PriceType(string value) : Orb::IEnum<PriceType, strin
         {
             "usage_price" => Value.UsagePrice,
             "fixed_price" => Value.FixedPrice,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

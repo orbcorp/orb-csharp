@@ -1,14 +1,13 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.NewFloatingBulkBPSPriceProperties;
 
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<Cadence, string>))]
-public sealed record class Cadence(string value) : Orb::IEnum<Cadence, string>
+[JsonConverter(typeof(EnumConverter<Cadence, string>))]
+public sealed record class Cadence(string value) : IEnum<Cadence, string>
 {
     public static readonly Cadence Annual = new("annual");
 
@@ -43,7 +42,7 @@ public sealed record class Cadence(string value) : Orb::IEnum<Cadence, string>
             "quarterly" => Value.Quarterly,
             "one_time" => Value.OneTime,
             "custom" => Value.Custom,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

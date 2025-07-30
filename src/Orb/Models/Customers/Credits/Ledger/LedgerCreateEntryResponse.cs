@@ -1,6 +1,5 @@
+using System.Text.Json.Serialization;
 using LedgerCreateEntryResponseVariants = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryResponseVariants;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
@@ -8,31 +7,31 @@ namespace Orb.Models.Customers.Credits.Ledger;
 /// The [Credit Ledger Entry resource](/product-catalog/prepurchase) models prepaid
 /// credits within Orb.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::UnionConverter<LedgerCreateEntryResponse>))]
+[JsonConverter(typeof(UnionConverter<LedgerCreateEntryResponse>))]
 public abstract record class LedgerCreateEntryResponse
 {
     internal LedgerCreateEntryResponse() { }
 
     public static implicit operator LedgerCreateEntryResponse(IncrementLedgerEntry value) =>
-        new LedgerCreateEntryResponseVariants::IncrementLedgerEntry(value);
+        new LedgerCreateEntryResponseVariants::IncrementLedgerEntryVariant(value);
 
     public static implicit operator LedgerCreateEntryResponse(DecrementLedgerEntry value) =>
-        new LedgerCreateEntryResponseVariants::DecrementLedgerEntry(value);
+        new LedgerCreateEntryResponseVariants::DecrementLedgerEntryVariant(value);
 
     public static implicit operator LedgerCreateEntryResponse(ExpirationChangeLedgerEntry value) =>
-        new LedgerCreateEntryResponseVariants::ExpirationChangeLedgerEntry(value);
+        new LedgerCreateEntryResponseVariants::ExpirationChangeLedgerEntryVariant(value);
 
     public static implicit operator LedgerCreateEntryResponse(CreditBlockExpiryLedgerEntry value) =>
-        new LedgerCreateEntryResponseVariants::CreditBlockExpiryLedgerEntry(value);
+        new LedgerCreateEntryResponseVariants::CreditBlockExpiryLedgerEntryVariant(value);
 
     public static implicit operator LedgerCreateEntryResponse(VoidLedgerEntry value) =>
-        new LedgerCreateEntryResponseVariants::VoidLedgerEntry(value);
+        new LedgerCreateEntryResponseVariants::VoidLedgerEntryVariant(value);
 
     public static implicit operator LedgerCreateEntryResponse(VoidInitiatedLedgerEntry value) =>
-        new LedgerCreateEntryResponseVariants::VoidInitiatedLedgerEntry(value);
+        new LedgerCreateEntryResponseVariants::VoidInitiatedLedgerEntryVariant(value);
 
     public static implicit operator LedgerCreateEntryResponse(AmendmentLedgerEntry value) =>
-        new LedgerCreateEntryResponseVariants::AmendmentLedgerEntry(value);
+        new LedgerCreateEntryResponseVariants::AmendmentLedgerEntryVariant(value);
 
     public abstract void Validate();
 }

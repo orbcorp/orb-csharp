@@ -1,48 +1,45 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using NewTaxJarConfigurationProperties = Orb.Models.Customers.NewTaxJarConfigurationProperties;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Customers;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<NewTaxJarConfiguration>))]
-public sealed record class NewTaxJarConfiguration
-    : Orb::ModelBase,
-        Orb::IFromRaw<NewTaxJarConfiguration>
+[JsonConverter(typeof(ModelConverter<NewTaxJarConfiguration>))]
+public sealed record class NewTaxJarConfiguration : ModelBase, IFromRaw<NewTaxJarConfiguration>
 {
     public required bool TaxExempt
     {
         get
         {
-            if (!this.Properties.TryGetValue("tax_exempt", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("tax_exempt", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "tax_exempt",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element);
         }
-        set { this.Properties["tax_exempt"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["tax_exempt"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required NewTaxJarConfigurationProperties::TaxProvider TaxProvider
     {
         get
         {
-            if (!this.Properties.TryGetValue("tax_provider", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("tax_provider", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "tax_provider",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<NewTaxJarConfigurationProperties::TaxProvider>(
+            return JsonSerializer.Deserialize<NewTaxJarConfigurationProperties::TaxProvider>(
                     element
                 ) ?? throw new System::ArgumentNullException("tax_provider");
         }
-        set { this.Properties["tax_provider"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["tax_provider"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -54,15 +51,15 @@ public sealed record class NewTaxJarConfiguration
     public NewTaxJarConfiguration() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    NewTaxJarConfiguration(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    NewTaxJarConfiguration(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
     public static NewTaxJarConfiguration FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        Dictionary<string, JsonElement> properties
     )
     {
         return new(properties);

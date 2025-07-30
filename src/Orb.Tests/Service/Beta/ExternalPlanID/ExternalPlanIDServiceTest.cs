@@ -1,20 +1,19 @@
-using CustomExpirationProperties = Orb.Models.CustomExpirationProperties;
-using Models = Orb.Models;
-using NewAllocationPriceProperties = Orb.Models.NewAllocationPriceProperties;
+using System.Threading.Tasks;
+using Orb.Models;
+using Orb.Models.CustomExpirationProperties;
+using Orb.Models.NewAllocationPriceProperties;
+using Orb.Models.NewPercentageDiscountProperties;
+using Orb.Models.TransformPriceFilterProperties;
+using Orb.Models.UnitConversionRateConfigProperties;
 using NewBillingCycleConfigurationProperties = Orb.Models.NewBillingCycleConfigurationProperties;
-using NewPercentageDiscountProperties = Orb.Models.NewPercentageDiscountProperties;
 using NewPlanUnitPriceProperties = Orb.Models.NewPlanUnitPriceProperties;
-using Tasks = System.Threading.Tasks;
-using Tests = Orb.Tests;
-using TransformPriceFilterProperties = Orb.Models.TransformPriceFilterProperties;
-using UnitConversionRateConfigProperties = Orb.Models.UnitConversionRateConfigProperties;
 
 namespace Orb.Tests.Service.Beta.ExternalPlanID;
 
-public class ExternalPlanIDServiceTest : Tests::TestBase
+public class ExternalPlanIDServiceTest : TestBase
 {
     [Fact]
-    public async Tasks::Task CreatePlanVersion_Works()
+    public async Task CreatePlanVersion_Works()
     {
         var planVersion = await this.client.Beta.ExternalPlanID.CreatePlanVersion(
             new()
@@ -25,12 +24,11 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
                 [
                     new()
                     {
-                        Adjustment = new Models::NewPercentageDiscount()
+                        Adjustment = new NewPercentageDiscount()
                         {
-                            AdjustmentType =
-                                NewPercentageDiscountProperties::AdjustmentType.PercentageDiscount,
+                            AdjustmentType = AdjustmentType.PercentageDiscount,
                             PercentageDiscount = 0,
-                            AppliesToAll = NewPercentageDiscountProperties::AppliesToAll.True,
+                            AppliesToAll = AppliesToAll.True,
                             AppliesToItemIDs = ["item_1", "item_2"],
                             AppliesToPriceIDs = ["price_1", "price_2"],
                             Currency = "currency",
@@ -38,13 +36,13 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
                             [
                                 new()
                                 {
-                                    Field = TransformPriceFilterProperties::Field.PriceID,
-                                    Operator = TransformPriceFilterProperties::Operator.Includes,
+                                    Field = Field.PriceID,
+                                    Operator = Operator.Includes,
                                     Values = ["string"],
                                 },
                             ],
                             IsInvoiceLevel = true,
-                            PriceType = NewPercentageDiscountProperties::PriceType.Usage,
+                            PriceType = PriceType.Usage,
                         },
                         PlanPhaseOrder = 0,
                     },
@@ -56,17 +54,17 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
                         AllocationPrice = new()
                         {
                             Amount = "10.00",
-                            Cadence = NewAllocationPriceProperties::Cadence.Monthly,
+                            Cadence = Cadence.Monthly,
                             Currency = "USD",
                             CustomExpiration = new()
                             {
                                 Duration = 0,
-                                DurationUnit = CustomExpirationProperties::DurationUnit.Day,
+                                DurationUnit = DurationUnit.Day,
                             },
                             ExpiresAtEndOfCadence = true,
                         },
                         PlanPhaseOrder = 0,
-                        Price = new Models::NewPlanUnitPrice()
+                        Price = new NewPlanUnitPrice()
                         {
                             Cadence = NewPlanUnitPriceProperties::Cadence.Annual,
                             ItemID = "item_id",
@@ -82,10 +80,9 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
                                     NewBillingCycleConfigurationProperties::DurationUnit.Day,
                             },
                             ConversionRate = 0,
-                            ConversionRateConfig = new Models::UnitConversionRateConfig()
+                            ConversionRateConfig = new UnitConversionRateConfig()
                             {
-                                ConversionRateType =
-                                    UnitConversionRateConfigProperties::ConversionRateType.Unit,
+                                ConversionRateType = ConversionRateType.Unit,
                                 UnitConfig = new() { UnitAmount = "unit_amount" },
                             },
                             Currency = "currency",
@@ -116,12 +113,11 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
                 [
                     new()
                     {
-                        Adjustment = new Models::NewPercentageDiscount()
+                        Adjustment = new NewPercentageDiscount()
                         {
-                            AdjustmentType =
-                                NewPercentageDiscountProperties::AdjustmentType.PercentageDiscount,
+                            AdjustmentType = AdjustmentType.PercentageDiscount,
                             PercentageDiscount = 0,
-                            AppliesToAll = NewPercentageDiscountProperties::AppliesToAll.True,
+                            AppliesToAll = AppliesToAll.True,
                             AppliesToItemIDs = ["item_1", "item_2"],
                             AppliesToPriceIDs = ["price_1", "price_2"],
                             Currency = "currency",
@@ -129,13 +125,13 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
                             [
                                 new()
                                 {
-                                    Field = TransformPriceFilterProperties::Field.PriceID,
-                                    Operator = TransformPriceFilterProperties::Operator.Includes,
+                                    Field = Field.PriceID,
+                                    Operator = Operator.Includes,
                                     Values = ["string"],
                                 },
                             ],
                             IsInvoiceLevel = true,
-                            PriceType = NewPercentageDiscountProperties::PriceType.Usage,
+                            PriceType = PriceType.Usage,
                         },
                         ReplacesAdjustmentID = "replaces_adjustment_id",
                         PlanPhaseOrder = 0,
@@ -149,17 +145,17 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
                         AllocationPrice = new()
                         {
                             Amount = "10.00",
-                            Cadence = NewAllocationPriceProperties::Cadence.Monthly,
+                            Cadence = Cadence.Monthly,
                             Currency = "USD",
                             CustomExpiration = new()
                             {
                                 Duration = 0,
-                                DurationUnit = CustomExpirationProperties::DurationUnit.Day,
+                                DurationUnit = DurationUnit.Day,
                             },
                             ExpiresAtEndOfCadence = true,
                         },
                         PlanPhaseOrder = 0,
-                        Price = new Models::NewPlanUnitPrice()
+                        Price = new NewPlanUnitPrice()
                         {
                             Cadence = NewPlanUnitPriceProperties::Cadence.Annual,
                             ItemID = "item_id",
@@ -175,10 +171,9 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
                                     NewBillingCycleConfigurationProperties::DurationUnit.Day,
                             },
                             ConversionRate = 0,
-                            ConversionRateConfig = new Models::UnitConversionRateConfig()
+                            ConversionRateConfig = new UnitConversionRateConfig()
                             {
-                                ConversionRateType =
-                                    UnitConversionRateConfigProperties::ConversionRateType.Unit,
+                                ConversionRateType = ConversionRateType.Unit,
                                 UnitConfig = new() { UnitAmount = "unit_amount" },
                             },
                             Currency = "currency",
@@ -210,7 +205,7 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task FetchPlanVersion_Works()
+    public async Task FetchPlanVersion_Works()
     {
         var planVersion = await this.client.Beta.ExternalPlanID.FetchPlanVersion(
             new() { ExternalPlanID = "external_plan_id", Version = "version" }
@@ -219,7 +214,7 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task SetDefaultPlanVersion_Works()
+    public async Task SetDefaultPlanVersion_Works()
     {
         var plan = await this.client.Beta.ExternalPlanID.SetDefaultPlanVersion(
             new() { ExternalPlanID = "external_plan_id", Version = 0 }

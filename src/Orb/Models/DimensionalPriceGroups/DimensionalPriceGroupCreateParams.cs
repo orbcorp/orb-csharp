@@ -1,9 +1,8 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
-using Text = System.Text;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 
 namespace Orb.Models.DimensionalPriceGroups;
 
@@ -17,66 +16,56 @@ namespace Orb.Models.DimensionalPriceGroups;
 /// can create a price group with a dimension "color" and two prices: one that charges
 /// \$10 per red widget and one that charges \$20 per blue widget.
 /// </summary>
-public sealed record class DimensionalPriceGroupCreateParams : Orb::ParamsBase
+public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     public required string BillableMetricID
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "billable_metric_id",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.BodyProperties.TryGetValue("billable_metric_id", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "billable_metric_id",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("billable_metric_id");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("billable_metric_id");
         }
         set
         {
-            this.BodyProperties["billable_metric_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["billable_metric_id"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
     /// <summary>
     /// The set of keys (in order) used to disambiguate prices in the group.
     /// </summary>
-    public required Generic::List<string> Dimensions
+    public required List<string> Dimensions
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("dimensions", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "dimensions",
-                    "Missing required argument"
-                );
+            if (!this.BodyProperties.TryGetValue("dimensions", out JsonElement element))
+                throw new ArgumentOutOfRangeException("dimensions", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Generic::List<string>>(element)
-                ?? throw new System::ArgumentNullException("dimensions");
+            return JsonSerializer.Deserialize<List<string>>(element)
+                ?? throw new ArgumentNullException("dimensions");
         }
-        set { this.BodyProperties["dimensions"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["dimensions"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string Name
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("name", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
+            if (!this.BodyProperties.TryGetValue("name", out JsonElement element))
+                throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("name");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("name");
         }
-        set { this.BodyProperties["name"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["name"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public string? ExternalDimensionalPriceGroupID
@@ -86,17 +75,17 @@ public sealed record class DimensionalPriceGroupCreateParams : Orb::ParamsBase
             if (
                 !this.BodyProperties.TryGetValue(
                     "external_dimensional_price_group_id",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
         set
         {
             this.BodyProperties["external_dimensional_price_group_id"] =
-                Json::JsonSerializer.SerializeToElement(value);
+                JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -105,43 +94,41 @@ public sealed record class DimensionalPriceGroupCreateParams : Orb::ParamsBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Generic::Dictionary<string, string?>? Metadata
+    public Dictionary<string, string?>? Metadata
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("metadata", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::Dictionary<string, string?>?>(element);
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(element);
         }
-        set { this.BodyProperties["metadata"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/') + "/dimensional_price_groups"
-        )
+        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/dimensional_price_groups")
         {
             Query = this.QueryString(client),
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

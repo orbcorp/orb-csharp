@@ -1,18 +1,13 @@
-using InvoiceLineItemCreateResponseProperties = Orb.Models.InvoiceLineItems.InvoiceLineItemCreateResponseProperties;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.InvoiceLineItems.InvoiceLineItemCreateResponseProperties.SubLineItemVariants;
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<MatrixSubLineItem, Models::MatrixSubLineItem>)
-)]
-public sealed record class MatrixSubLineItem(Models::MatrixSubLineItem Value)
-    : InvoiceLineItemCreateResponseProperties::SubLineItem,
-        Orb::IVariant<MatrixSubLineItem, Models::MatrixSubLineItem>
+[JsonConverter(typeof(VariantConverter<MatrixSubLineItemVariant, MatrixSubLineItem>))]
+public sealed record class MatrixSubLineItemVariant(MatrixSubLineItem Value)
+    : SubLineItem,
+        IVariant<MatrixSubLineItemVariant, MatrixSubLineItem>
 {
-    public static MatrixSubLineItem From(Models::MatrixSubLineItem value)
+    public static MatrixSubLineItemVariant From(MatrixSubLineItem value)
     {
         return new(value);
     }
@@ -23,14 +18,12 @@ public sealed record class MatrixSubLineItem(Models::MatrixSubLineItem Value)
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<TierSubLineItem, Models::TierSubLineItem>)
-)]
-public sealed record class TierSubLineItem(Models::TierSubLineItem Value)
-    : InvoiceLineItemCreateResponseProperties::SubLineItem,
-        Orb::IVariant<TierSubLineItem, Models::TierSubLineItem>
+[JsonConverter(typeof(VariantConverter<TierSubLineItemVariant, TierSubLineItem>))]
+public sealed record class TierSubLineItemVariant(TierSubLineItem Value)
+    : SubLineItem,
+        IVariant<TierSubLineItemVariant, TierSubLineItem>
 {
-    public static TierSubLineItem From(Models::TierSubLineItem value)
+    public static TierSubLineItemVariant From(TierSubLineItem value)
     {
         return new(value);
     }
@@ -41,14 +34,12 @@ public sealed record class TierSubLineItem(Models::TierSubLineItem Value)
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<OtherSubLineItem, Models::OtherSubLineItem>)
-)]
-public sealed record class OtherSubLineItem(Models::OtherSubLineItem Value)
-    : InvoiceLineItemCreateResponseProperties::SubLineItem,
-        Orb::IVariant<OtherSubLineItem, Models::OtherSubLineItem>
+[JsonConverter(typeof(VariantConverter<OtherSubLineItemVariant, OtherSubLineItem>))]
+public sealed record class OtherSubLineItemVariant(OtherSubLineItem Value)
+    : SubLineItem,
+        IVariant<OtherSubLineItemVariant, OtherSubLineItem>
 {
-    public static OtherSubLineItem From(Models::OtherSubLineItem value)
+    public static OtherSubLineItemVariant From(OtherSubLineItem value)
     {
         return new(value);
     }

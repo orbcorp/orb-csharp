@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.NewPlanGroupedWithMeteredMinimumPriceProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<ModelType, string>))]
-public sealed record class ModelType(string value) : Orb::IEnum<ModelType, string>
+[JsonConverter(typeof(EnumConverter<ModelType, string>))]
+public sealed record class ModelType(string value) : IEnum<ModelType, string>
 {
     public static readonly ModelType GroupedWithMeteredMinimum = new(
         "grouped_with_metered_minimum"
@@ -22,7 +21,7 @@ public sealed record class ModelType(string value) : Orb::IEnum<ModelType, strin
         _value switch
         {
             "grouped_with_metered_minimum" => Value.GroupedWithMeteredMinimum,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

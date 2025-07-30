@@ -1,9 +1,8 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
-using Text = System.Text;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 
 namespace Orb.Models.Events;
 
@@ -22,92 +21,83 @@ namespace Orb.Models.Events;
 /// By default, Orb will not throw a `404` if no events matched, Orb will return
 /// an empty array for `data` instead.
 /// </summary>
-public sealed record class EventSearchParams : Orb::ParamsBase
+public sealed record class EventSearchParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     /// <summary>
     /// This is an explicit array of IDs to filter by. Note that an event's ID is the
     /// idempotency_key that was originally used for ingestion, and this only supports
     /// events that have not been amended. Values in this array will be treated case sensitively.
     /// </summary>
-    public required Generic::List<string> EventIDs
+    public required List<string> EventIDs
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("event_ids", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "event_ids",
-                    "Missing required argument"
-                );
+            if (!this.BodyProperties.TryGetValue("event_ids", out JsonElement element))
+                throw new ArgumentOutOfRangeException("event_ids", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Generic::List<string>>(element)
-                ?? throw new System::ArgumentNullException("event_ids");
+            return JsonSerializer.Deserialize<List<string>>(element)
+                ?? throw new ArgumentNullException("event_ids");
         }
-        set { this.BodyProperties["event_ids"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["event_ids"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The end of the timeframe, exclusive, in which to search events. If not specified,
     /// the current time is used.
     /// </summary>
-    public System::DateTime? TimeframeEnd
+    public DateTime? TimeframeEnd
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("timeframe_end", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("timeframe_end", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element);
         }
-        set
-        {
-            this.BodyProperties["timeframe_end"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The start of the timeframe, inclusive, in which to search events. If not specified,
     /// the one week ago is used.
     /// </summary>
-    public System::DateTime? TimeframeStart
+    public DateTime? TimeframeStart
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("timeframe_start", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("timeframe_start", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element);
         }
-        set
-        {
-            this.BodyProperties["timeframe_start"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/events/search")
+        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/events/search")
         {
             Query = this.QueryString(client),
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

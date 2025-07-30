@@ -1,15 +1,14 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using EvaluatePriceGroupProperties = Orb.Models.Prices.EvaluatePriceGroupProperties;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Prices;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<EvaluatePriceGroup>))]
-public sealed record class EvaluatePriceGroup : Orb::ModelBase, Orb::IFromRaw<EvaluatePriceGroup>
+[JsonConverter(typeof(ModelConverter<EvaluatePriceGroup>))]
+public sealed record class EvaluatePriceGroup : ModelBase, IFromRaw<EvaluatePriceGroup>
 {
     /// <summary>
     /// The price's output for the group
@@ -18,36 +17,36 @@ public sealed record class EvaluatePriceGroup : Orb::ModelBase, Orb::IFromRaw<Ev
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("amount", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "amount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("amount");
         }
-        set { this.Properties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The values for the group in the order specified by `grouping_keys`
     /// </summary>
-    public required Generic::List<EvaluatePriceGroupProperties::GroupingValue> GroupingValues
+    public required List<EvaluatePriceGroupProperties::GroupingValue> GroupingValues
     {
         get
         {
-            if (!this.Properties.TryGetValue("grouping_values", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("grouping_values", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "grouping_values",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<EvaluatePriceGroupProperties::GroupingValue>>(
+            return JsonSerializer.Deserialize<List<EvaluatePriceGroupProperties::GroupingValue>>(
                     element
                 ) ?? throw new System::ArgumentNullException("grouping_values");
         }
-        set { this.Properties["grouping_values"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["grouping_values"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -57,15 +56,15 @@ public sealed record class EvaluatePriceGroup : Orb::ModelBase, Orb::IFromRaw<Ev
     {
         get
         {
-            if (!this.Properties.TryGetValue("quantity", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("quantity", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "quantity",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element);
         }
-        set { this.Properties["quantity"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["quantity"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -81,16 +80,14 @@ public sealed record class EvaluatePriceGroup : Orb::ModelBase, Orb::IFromRaw<Ev
     public EvaluatePriceGroup() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    EvaluatePriceGroup(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    EvaluatePriceGroup(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static EvaluatePriceGroup FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static EvaluatePriceGroup FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

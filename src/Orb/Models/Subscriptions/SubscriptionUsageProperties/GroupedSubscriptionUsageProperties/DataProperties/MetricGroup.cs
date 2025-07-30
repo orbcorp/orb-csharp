@@ -1,45 +1,41 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionUsageProperties.GroupedSubscriptionUsageProperties.DataProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<MetricGroup>))]
-public sealed record class MetricGroup : Orb::ModelBase, Orb::IFromRaw<MetricGroup>
+[JsonConverter(typeof(ModelConverter<MetricGroup>))]
+public sealed record class MetricGroup : ModelBase, IFromRaw<MetricGroup>
 {
     public required string PropertyKey
     {
         get
         {
-            if (!this.Properties.TryGetValue("property_key", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "property_key",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("property_key", out JsonElement element))
+                throw new ArgumentOutOfRangeException("property_key", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("property_key");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("property_key");
         }
-        set { this.Properties["property_key"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["property_key"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string PropertyValue
     {
         get
         {
-            if (!this.Properties.TryGetValue("property_value", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("property_value", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "property_value",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("property_value");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("property_value");
         }
-        set { this.Properties["property_value"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["property_value"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -51,16 +47,14 @@ public sealed record class MetricGroup : Orb::ModelBase, Orb::IFromRaw<MetricGro
     public MetricGroup() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    MetricGroup(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    MetricGroup(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static MetricGroup FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static MetricGroup FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

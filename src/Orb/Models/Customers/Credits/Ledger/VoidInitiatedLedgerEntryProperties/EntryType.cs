@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.Credits.Ledger.VoidInitiatedLedgerEntryProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<EntryType, string>))]
-public sealed record class EntryType(string value) : Orb::IEnum<EntryType, string>
+[JsonConverter(typeof(EnumConverter<EntryType, string>))]
+public sealed record class EntryType(string value) : IEnum<EntryType, string>
 {
     public static readonly EntryType VoidInitiated = new("void_initiated");
 
@@ -20,7 +19,7 @@ public sealed record class EntryType(string value) : Orb::IEnum<EntryType, strin
         _value switch
         {
             "void_initiated" => Value.VoidInitiated,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

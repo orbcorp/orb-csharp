@@ -1,8 +1,7 @@
+using System;
+using System.Net.Http;
+using System.Text.Json;
 using CostListParamsProperties = Orb.Models.Customers.Costs.CostListParamsProperties;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
 
 namespace Orb.Models.Customers.Costs;
 
@@ -102,7 +101,7 @@ namespace Orb.Models.Customers.Costs;
 /// and `secondary_grouping_key` based on the matrix price definition, for each `grouping_value`
 /// and `secondary_grouping_value` available.
 /// </summary>
-public sealed record class CostListParams : Orb::ParamsBase
+public sealed record class CostListParams : ParamsBase
 {
     public required string CustomerID;
 
@@ -113,50 +112,42 @@ public sealed record class CostListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("currency", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("currency", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.QueryProperties["currency"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// Costs returned are exclusive of `timeframe_end`.
     /// </summary>
-    public System::DateTime? TimeframeEnd
+    public DateTime? TimeframeEnd
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("timeframe_end", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("timeframe_end", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element);
         }
-        set
-        {
-            this.QueryProperties["timeframe_end"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.QueryProperties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// Costs returned are inclusive of `timeframe_start`.
     /// </summary>
-    public System::DateTime? TimeframeStart
+    public DateTime? TimeframeStart
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("timeframe_start", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("timeframe_start", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element);
         }
-        set
-        {
-            this.QueryProperties["timeframe_start"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.QueryProperties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -168,17 +159,17 @@ public sealed record class CostListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("view_mode", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("view_mode", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<CostListParamsProperties::ViewMode?>(element);
+            return JsonSerializer.Deserialize<CostListParamsProperties::ViewMode?>(element);
         }
-        set { this.QueryProperties["view_mode"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["view_mode"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/customers/{0}/costs", this.CustomerID)
         )
@@ -187,12 +178,12 @@ public sealed record class CostListParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

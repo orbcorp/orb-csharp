@@ -1,6 +1,5 @@
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Net.Http;
+using System.Text.Json;
 using System = System;
 
 namespace Orb.Models.Customers.BalanceTransactions;
@@ -27,7 +26,7 @@ namespace Orb.Models.Customers.BalanceTransactions;
 /// order for a single customer, providing a complete audit trail of all adjustments
 /// and invoice applications.
 /// </summary>
-public sealed record class BalanceTransactionListParams : Orb::ParamsBase
+public sealed record class BalanceTransactionListParams : ParamsBase
 {
     public required string CustomerID;
 
@@ -39,12 +38,12 @@ public sealed record class BalanceTransactionListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("cursor", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("cursor", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.QueryProperties["cursor"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -54,33 +53,26 @@ public sealed record class BalanceTransactionListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("limit", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("limit", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set { this.QueryProperties["limit"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public System::DateTime? OperationTimeGt
     {
         get
         {
-            if (
-                !this.QueryProperties.TryGetValue(
-                    "operation_time[gt]",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.QueryProperties.TryGetValue("operation_time[gt]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
         set
         {
-            this.QueryProperties["operation_time[gt]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.QueryProperties["operation_time[gt]"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -88,21 +80,14 @@ public sealed record class BalanceTransactionListParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.QueryProperties.TryGetValue(
-                    "operation_time[gte]",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.QueryProperties.TryGetValue("operation_time[gte]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
         set
         {
-            this.QueryProperties["operation_time[gte]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.QueryProperties["operation_time[gte]"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -110,21 +95,14 @@ public sealed record class BalanceTransactionListParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.QueryProperties.TryGetValue(
-                    "operation_time[lt]",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.QueryProperties.TryGetValue("operation_time[lt]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
         set
         {
-            this.QueryProperties["operation_time[lt]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.QueryProperties["operation_time[lt]"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -132,25 +110,18 @@ public sealed record class BalanceTransactionListParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.QueryProperties.TryGetValue(
-                    "operation_time[lte]",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.QueryProperties.TryGetValue("operation_time[lte]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
         set
         {
-            this.QueryProperties["operation_time[lte]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.QueryProperties["operation_time[lte]"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
@@ -161,12 +132,12 @@ public sealed record class BalanceTransactionListParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

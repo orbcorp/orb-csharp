@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<InvoiceSource, string>))]
-public sealed record class InvoiceSource(string value) : Orb::IEnum<InvoiceSource, string>
+[JsonConverter(typeof(EnumConverter<InvoiceSource, string>))]
+public sealed record class InvoiceSource(string value) : IEnum<InvoiceSource, string>
 {
     public static readonly InvoiceSource Subscription = new("subscription");
 

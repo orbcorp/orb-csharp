@@ -1,9 +1,8 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using System = System;
-using Text = System.Text;
 
 namespace Orb.Models.Subscriptions;
 
@@ -11,9 +10,9 @@ namespace Orb.Models.Subscriptions;
 /// This endpoint can be used to update the `metadata`, `net terms`, `auto_collection`,
 /// `invoicing_threshold`, and `default_invoice_memo` properties on a subscription.
 /// </summary>
-public sealed record class SubscriptionUpdateParams : Orb::ParamsBase
+public sealed record class SubscriptionUpdateParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     public required string SubscriptionID;
 
@@ -26,15 +25,12 @@ public sealed record class SubscriptionUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("auto_collection", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("auto_collection", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element);
         }
-        set
-        {
-            this.BodyProperties["auto_collection"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["auto_collection"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -45,21 +41,14 @@ public sealed record class SubscriptionUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "default_invoice_memo",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("default_invoice_memo", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
         set
         {
-            this.BodyProperties["default_invoice_memo"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["default_invoice_memo"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -72,21 +61,14 @@ public sealed record class SubscriptionUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "invoicing_threshold",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("invoicing_threshold", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
         set
         {
-            this.BodyProperties["invoicing_threshold"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["invoicing_threshold"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -95,16 +77,16 @@ public sealed record class SubscriptionUpdateParams : Orb::ParamsBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Generic::Dictionary<string, string?>? Metadata
+    public Dictionary<string, string?>? Metadata
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("metadata", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::Dictionary<string, string?>?>(element);
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(element);
         }
-        set { this.BodyProperties["metadata"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -117,15 +99,15 @@ public sealed record class SubscriptionUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("net_terms", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("net_terms", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set { this.BodyProperties["net_terms"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["net_terms"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
@@ -136,21 +118,21 @@ public sealed record class SubscriptionUpdateParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

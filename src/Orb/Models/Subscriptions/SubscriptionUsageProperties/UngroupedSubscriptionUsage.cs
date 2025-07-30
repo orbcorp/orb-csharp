@@ -1,30 +1,29 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using UngroupedSubscriptionUsageProperties = Orb.Models.Subscriptions.SubscriptionUsageProperties.UngroupedSubscriptionUsageProperties;
 
 namespace Orb.Models.Subscriptions.SubscriptionUsageProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<UngroupedSubscriptionUsage>))]
+[JsonConverter(typeof(ModelConverter<UngroupedSubscriptionUsage>))]
 public sealed record class UngroupedSubscriptionUsage
-    : Orb::ModelBase,
-        Orb::IFromRaw<UngroupedSubscriptionUsage>
+    : ModelBase,
+        IFromRaw<UngroupedSubscriptionUsage>
 {
-    public required Generic::List<UngroupedSubscriptionUsageProperties::Data> Data
+    public required List<UngroupedSubscriptionUsageProperties::Data> Data
     {
         get
         {
-            if (!this.Properties.TryGetValue("data", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
+            if (!this.Properties.TryGetValue("data", out JsonElement element))
+                throw new ArgumentOutOfRangeException("data", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Generic::List<UngroupedSubscriptionUsageProperties::Data>>(
+            return JsonSerializer.Deserialize<List<UngroupedSubscriptionUsageProperties::Data>>(
                     element
-                ) ?? throw new System::ArgumentNullException("data");
+                ) ?? throw new ArgumentNullException("data");
         }
-        set { this.Properties["data"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -38,15 +37,15 @@ public sealed record class UngroupedSubscriptionUsage
     public UngroupedSubscriptionUsage() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    UngroupedSubscriptionUsage(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    UngroupedSubscriptionUsage(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
     public static UngroupedSubscriptionUsage FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        Dictionary<string, JsonElement> properties
     )
     {
         return new(properties);

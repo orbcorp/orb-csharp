@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.CreditNoteProperties.LineItemProperties.DiscountProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<DiscountType, string>))]
-public sealed record class DiscountType(string value) : Orb::IEnum<DiscountType, string>
+[JsonConverter(typeof(EnumConverter<DiscountType, string>))]
+public sealed record class DiscountType(string value) : IEnum<DiscountType, string>
 {
     public static readonly DiscountType Percentage = new("percentage");
 
@@ -24,7 +23,7 @@ public sealed record class DiscountType(string value) : Orb::IEnum<DiscountType,
         {
             "percentage" => Value.Percentage,
             "amount" => Value.Amount,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

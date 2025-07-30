@@ -1,6 +1,6 @@
+using System.Threading.Tasks;
+using Orb.Models.Events;
 using Backfills = Orb.Service.Events.Backfills;
-using Events = Orb.Models.Events;
-using Tasks = System.Threading.Tasks;
 using Volume = Orb.Service.Events.Volume;
 
 namespace Orb.Service.Events;
@@ -52,7 +52,7 @@ public interface IEventService
     /// for a single customer in a 100 day period. For higher volume   updates, consider
     /// using the [event backfill](create-backfill) endpoint.
     /// </summary>
-    Tasks::Task<Events::EventUpdateResponse> Update(Events::EventUpdateParams @params);
+    Task<EventUpdateResponse> Update(EventUpdateParams @params);
 
     /// <summary>
     /// This endpoint is used to deprecate a single usage event with a given `event_id`.
@@ -90,7 +90,7 @@ public interface IEventService
     /// in a 100 day period. For higher volume   updates, consider using the [event
     /// backfill](create-backfill) endpoint.
     /// </summary>
-    Tasks::Task<Events::EventDeprecateResponse> Deprecate(Events::EventDeprecateParams @params);
+    Task<EventDeprecateResponse> Deprecate(EventDeprecateParams @params);
 
     /// <summary>
     /// Orb's event ingestion model and API is designed around two core principles:
@@ -259,7 +259,7 @@ public interface IEventService
     ///
     /// ```json {   "validation_failed": [] } ```
     /// </summary>
-    Tasks::Task<Events::EventIngestResponse> Ingest(Events::EventIngestParams @params);
+    Task<EventIngestResponse> Ingest(EventIngestParams @params);
 
     /// <summary>
     /// This endpoint returns a filtered set of events for an account in a [paginated
@@ -277,5 +277,5 @@ public interface IEventService
     /// By default, Orb will not throw a `404` if no events matched, Orb will return
     /// an empty array for `data` instead.
     /// </summary>
-    Tasks::Task<Events::EventSearchResponse> Search(Events::EventSearchParams @params);
+    Task<EventSearchResponse> Search(EventSearchParams @params);
 }

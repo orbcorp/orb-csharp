@@ -1,8 +1,7 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text.Json;
 using InvoiceListParamsProperties = Orb.Models.Invoices.InvoiceListParamsProperties;
-using Json = System.Text.Json;
-using Orb = Orb;
 using System = System;
 
 namespace Orb.Models.Invoices;
@@ -21,42 +20,42 @@ namespace Orb.Models.Invoices;
 /// for each draft invoice, which may not always be up-to-date since Orb regularly
 /// refreshes invoices asynchronously.
 /// </summary>
-public sealed record class InvoiceListParams : Orb::ParamsBase
+public sealed record class InvoiceListParams : ParamsBase
 {
     public string? Amount
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("amount", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("amount", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.QueryProperties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public string? AmountGt
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("amount[gt]", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("amount[gt]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.QueryProperties["amount[gt]"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["amount[gt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public string? AmountLt
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("amount[lt]", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("amount[lt]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.QueryProperties["amount[lt]"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["amount[lt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -67,53 +66,48 @@ public sealed record class InvoiceListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("cursor", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("cursor", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.QueryProperties["cursor"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public string? CustomerID
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("customer_id", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("customer_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set
-        {
-            this.QueryProperties["customer_id"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.QueryProperties["customer_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public InvoiceListParamsProperties::DateType? DateType
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("date_type", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("date_type", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<InvoiceListParamsProperties::DateType?>(
-                element
-            );
+            return JsonSerializer.Deserialize<InvoiceListParamsProperties::DateType?>(element);
         }
-        set { this.QueryProperties["date_type"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["date_type"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public System::DateOnly? DueDate
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("due_date", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("due_date", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateOnly?>(element);
+            return JsonSerializer.Deserialize<System::DateOnly?>(element);
         }
-        set { this.QueryProperties["due_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["due_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -126,68 +120,50 @@ public sealed record class InvoiceListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("due_date_window", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("due_date_window", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set
-        {
-            this.QueryProperties["due_date_window"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.QueryProperties["due_date_window"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public System::DateOnly? DueDateGt
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("due_date[gt]", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("due_date[gt]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateOnly?>(element);
+            return JsonSerializer.Deserialize<System::DateOnly?>(element);
         }
-        set
-        {
-            this.QueryProperties["due_date[gt]"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.QueryProperties["due_date[gt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public System::DateOnly? DueDateLt
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("due_date[lt]", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("due_date[lt]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateOnly?>(element);
+            return JsonSerializer.Deserialize<System::DateOnly?>(element);
         }
-        set
-        {
-            this.QueryProperties["due_date[lt]"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.QueryProperties["due_date[lt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public string? ExternalCustomerID
     {
         get
         {
-            if (
-                !this.QueryProperties.TryGetValue(
-                    "external_customer_id",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.QueryProperties.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
         set
         {
-            this.QueryProperties["external_customer_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.QueryProperties["external_customer_id"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -195,40 +171,26 @@ public sealed record class InvoiceListParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.QueryProperties.TryGetValue("invoice_date[gt]", out Json::JsonElement element)
-            )
+            if (!this.QueryProperties.TryGetValue("invoice_date[gt]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
-        set
-        {
-            this.QueryProperties["invoice_date[gt]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.QueryProperties["invoice_date[gt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public System::DateTime? InvoiceDateGte
     {
         get
         {
-            if (
-                !this.QueryProperties.TryGetValue(
-                    "invoice_date[gte]",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.QueryProperties.TryGetValue("invoice_date[gte]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
         set
         {
-            this.QueryProperties["invoice_date[gte]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.QueryProperties["invoice_date[gte]"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -236,40 +198,26 @@ public sealed record class InvoiceListParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.QueryProperties.TryGetValue("invoice_date[lt]", out Json::JsonElement element)
-            )
+            if (!this.QueryProperties.TryGetValue("invoice_date[lt]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
-        set
-        {
-            this.QueryProperties["invoice_date[lt]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.QueryProperties["invoice_date[lt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public System::DateTime? InvoiceDateLte
     {
         get
         {
-            if (
-                !this.QueryProperties.TryGetValue(
-                    "invoice_date[lte]",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.QueryProperties.TryGetValue("invoice_date[lte]", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
         set
         {
-            this.QueryProperties["invoice_date[lte]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.QueryProperties["invoice_date[lte]"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -277,15 +225,12 @@ public sealed record class InvoiceListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("is_recurring", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("is_recurring", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element);
         }
-        set
-        {
-            this.QueryProperties["is_recurring"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.QueryProperties["is_recurring"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -295,46 +240,39 @@ public sealed record class InvoiceListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("limit", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("limit", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set { this.QueryProperties["limit"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public Generic::List<InvoiceListParamsProperties::Status>? Status
+    public List<InvoiceListParamsProperties::Status>? Status
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("status", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("status", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<InvoiceListParamsProperties::Status>?>(
-                element
-            );
+            return JsonSerializer.Deserialize<List<InvoiceListParamsProperties::Status>?>(element);
         }
-        set { this.QueryProperties["status"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.QueryProperties["status"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public string? SubscriptionID
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("subscription_id", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("subscription_id", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set
-        {
-            this.QueryProperties["subscription_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.QueryProperties["subscription_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/invoices")
         {
@@ -342,12 +280,12 @@ public sealed record class InvoiceListParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

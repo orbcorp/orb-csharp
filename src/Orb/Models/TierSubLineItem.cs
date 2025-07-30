@@ -1,15 +1,14 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 using TierSubLineItemProperties = Orb.Models.TierSubLineItemProperties;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<TierSubLineItem>))]
-public sealed record class TierSubLineItem : Orb::ModelBase, Orb::IFromRaw<TierSubLineItem>
+[JsonConverter(typeof(ModelConverter<TierSubLineItem>))]
+public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem>
 {
     /// <summary>
     /// The total amount for this sub line item.
@@ -18,88 +17,88 @@ public sealed record class TierSubLineItem : Orb::ModelBase, Orb::IFromRaw<TierS
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("amount", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "amount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("amount");
         }
-        set { this.Properties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required SubLineItemGrouping? Grouping
     {
         get
         {
-            if (!this.Properties.TryGetValue("grouping", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("grouping", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "grouping",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<SubLineItemGrouping?>(element);
+            return JsonSerializer.Deserialize<SubLineItemGrouping?>(element);
         }
-        set { this.Properties["grouping"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["grouping"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string Name
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("name");
         }
-        set { this.Properties["name"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required double Quantity
     {
         get
         {
-            if (!this.Properties.TryGetValue("quantity", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("quantity", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "quantity",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element);
         }
-        set { this.Properties["quantity"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["quantity"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required TierConfig TierConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("tier_config", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("tier_config", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "tier_config",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<TierConfig>(element)
+            return JsonSerializer.Deserialize<TierConfig>(element)
                 ?? throw new System::ArgumentNullException("tier_config");
         }
-        set { this.Properties["tier_config"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["tier_config"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required TierSubLineItemProperties::Type Type
     {
         get
         {
-            if (!this.Properties.TryGetValue("type", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<TierSubLineItemProperties::Type>(element)
+            return JsonSerializer.Deserialize<TierSubLineItemProperties::Type>(element)
                 ?? throw new System::ArgumentNullException("type");
         }
-        set { this.Properties["type"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["type"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -115,16 +114,14 @@ public sealed record class TierSubLineItem : Orb::ModelBase, Orb::IFromRaw<TierS
     public TierSubLineItem() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    TierSubLineItem(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    TierSubLineItem(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static TierSubLineItem FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static TierSubLineItem FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

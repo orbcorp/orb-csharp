@@ -1,14 +1,13 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.TransformPriceFilterProperties;
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<Field, string>))]
-public sealed record class Field(string value) : Orb::IEnum<Field, string>
+[JsonConverter(typeof(EnumConverter<Field, string>))]
+public sealed record class Field(string value) : IEnum<Field, string>
 {
     public static readonly Field PriceID = new("price_id");
 
@@ -39,7 +38,7 @@ public sealed record class Field(string value) : Orb::IEnum<Field, string>
             "price_type" => Value.PriceType,
             "currency" => Value.Currency,
             "pricing_unit_id" => Value.PricingUnitID,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

@@ -1,6 +1,6 @@
-using DimensionalPriceGroups = Orb.Models.DimensionalPriceGroups;
+using System.Threading.Tasks;
+using Orb.Models.DimensionalPriceGroups;
 using ExternalDimensionalPriceGroupID = Orb.Service.DimensionalPriceGroups.ExternalDimensionalPriceGroupID;
-using Tasks = System.Threading.Tasks;
 
 namespace Orb.Service.DimensionalPriceGroups;
 
@@ -18,30 +18,22 @@ public interface IDimensionalPriceGroupService
     /// widget. We can create a price group with a dimension "color" and two prices:
     /// one that charges \$10 per red widget and one that charges \$20 per blue widget.
     /// </summary>
-    Tasks::Task<DimensionalPriceGroups::DimensionalPriceGroup> Create(
-        DimensionalPriceGroups::DimensionalPriceGroupCreateParams @params
-    );
+    Task<DimensionalPriceGroup> Create(DimensionalPriceGroupCreateParams @params);
 
     /// <summary>
     /// Fetch dimensional price group
     /// </summary>
-    Tasks::Task<DimensionalPriceGroups::DimensionalPriceGroup> Retrieve(
-        DimensionalPriceGroups::DimensionalPriceGroupRetrieveParams @params
-    );
+    Task<DimensionalPriceGroup> Retrieve(DimensionalPriceGroupRetrieveParams @params);
 
     /// <summary>
     /// This endpoint can be used to update the `external_dimensional_price_group_id`
     /// and `metadata` of an existing dimensional price group. Other fields on a dimensional
     /// price group are currently immutable.
     /// </summary>
-    Tasks::Task<DimensionalPriceGroups::DimensionalPriceGroup> Update(
-        DimensionalPriceGroups::DimensionalPriceGroupUpdateParams @params
-    );
+    Task<DimensionalPriceGroup> Update(DimensionalPriceGroupUpdateParams @params);
 
     /// <summary>
     /// List dimensional price groups
     /// </summary>
-    Tasks::Task<DimensionalPriceGroups::DimensionalPriceGroups> List(
-        DimensionalPriceGroups::DimensionalPriceGroupListParams @params
-    );
+    Task<DimensionalPriceGroups> List(DimensionalPriceGroupListParams @params);
 }

@@ -1,6 +1,5 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.CustomerUpdateByExternalIDParamsProperties;
 
@@ -10,8 +9,8 @@ namespace Orb.Models.Customers.CustomerUpdateByExternalIDParamsProperties;
 ///  - if the provider is an invoicing provider (`stripe_invoice`, `quickbooks`, `bill.com`,
 /// `netsuite`), any product mappings must first be configured with the Orb team.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<PaymentProvider, string>))]
-public sealed record class PaymentProvider(string value) : Orb::IEnum<PaymentProvider, string>
+[JsonConverter(typeof(EnumConverter<PaymentProvider, string>))]
+public sealed record class PaymentProvider(string value) : IEnum<PaymentProvider, string>
 {
     public static readonly PaymentProvider Quickbooks = new("quickbooks");
 
@@ -42,7 +41,7 @@ public sealed record class PaymentProvider(string value) : Orb::IEnum<PaymentPro
             "stripe_charge" => Value.StripeCharge,
             "stripe_invoice" => Value.StripeInvoice,
             "netsuite" => Value.Netsuite,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

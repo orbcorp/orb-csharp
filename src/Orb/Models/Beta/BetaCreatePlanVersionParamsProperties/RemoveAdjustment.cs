@@ -1,14 +1,13 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Beta.BetaCreatePlanVersionParamsProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<RemoveAdjustment>))]
-public sealed record class RemoveAdjustment : Orb::ModelBase, Orb::IFromRaw<RemoveAdjustment>
+[JsonConverter(typeof(ModelConverter<RemoveAdjustment>))]
+public sealed record class RemoveAdjustment : ModelBase, IFromRaw<RemoveAdjustment>
 {
     /// <summary>
     /// The id of the adjustment to remove from on the plan.
@@ -17,16 +16,13 @@ public sealed record class RemoveAdjustment : Orb::ModelBase, Orb::IFromRaw<Remo
     {
         get
         {
-            if (!this.Properties.TryGetValue("adjustment_id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "adjustment_id",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("adjustment_id", out JsonElement element))
+                throw new ArgumentOutOfRangeException("adjustment_id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("adjustment_id");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("adjustment_id");
         }
-        set { this.Properties["adjustment_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["adjustment_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -36,15 +32,12 @@ public sealed record class RemoveAdjustment : Orb::ModelBase, Orb::IFromRaw<Remo
     {
         get
         {
-            if (!this.Properties.TryGetValue("plan_phase_order", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("plan_phase_order", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set
-        {
-            this.Properties["plan_phase_order"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -56,16 +49,14 @@ public sealed record class RemoveAdjustment : Orb::ModelBase, Orb::IFromRaw<Remo
     public RemoveAdjustment() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    RemoveAdjustment(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    RemoveAdjustment(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static RemoveAdjustment FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static RemoveAdjustment FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

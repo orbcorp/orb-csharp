@@ -1,12 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionCreateParamsProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<ExternalMarketplace, string>))]
-public sealed record class ExternalMarketplace(string value)
-    : Orb::IEnum<ExternalMarketplace, string>
+[JsonConverter(typeof(EnumConverter<ExternalMarketplace, string>))]
+public sealed record class ExternalMarketplace(string value) : IEnum<ExternalMarketplace, string>
 {
     public static readonly ExternalMarketplace Google = new("google");
 
@@ -29,7 +27,7 @@ public sealed record class ExternalMarketplace(string value)
             "google" => Value.Google,
             "aws" => Value.Aws,
             "azure" => Value.Azure,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

@@ -1,6 +1,5 @@
-using Http = System.Net.Http;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Net.Http;
 
 namespace Orb.Models.Prices.ExternalPriceID;
 
@@ -8,13 +7,13 @@ namespace Orb.Models.Prices.ExternalPriceID;
 /// This endpoint returns a price given an external price id. See the [price creation
 /// API](/api-reference/price/create-price) for more information about external price aliases.
 /// </summary>
-public sealed record class ExternalPriceIDFetchParams : Orb::ParamsBase
+public sealed record class ExternalPriceIDFetchParams : ParamsBase
 {
     public required string ExternalPriceID;
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/prices/external_price_id/{0}", this.ExternalPriceID)
         )
@@ -23,12 +22,12 @@ public sealed record class ExternalPriceIDFetchParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

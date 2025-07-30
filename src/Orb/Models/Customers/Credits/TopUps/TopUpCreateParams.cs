@@ -1,9 +1,8 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
-using Text = System.Text;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using TopUpCreateParamsProperties = Orb.Models.Customers.Credits.TopUps.TopUpCreateParamsProperties;
 
 namespace Orb.Models.Customers.Credits.TopUps;
@@ -16,9 +15,9 @@ namespace Orb.Models.Customers.Credits.TopUps;
 /// If a top-up already exists for this customer in the same currency, the existing
 /// top-up will be replaced.
 /// </summary>
-public sealed record class TopUpCreateParams : Orb::ParamsBase
+public sealed record class TopUpCreateParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     public required string CustomerID;
 
@@ -29,16 +28,13 @@ public sealed record class TopUpCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("amount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount",
-                    "Missing required argument"
-                );
+            if (!this.BodyProperties.TryGetValue("amount", out JsonElement element))
+                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("amount");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("amount");
         }
-        set { this.BodyProperties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -49,16 +45,13 @@ public sealed record class TopUpCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("currency", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "currency",
-                    "Missing required argument"
-                );
+            if (!this.BodyProperties.TryGetValue("currency", out JsonElement element))
+                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("currency");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("currency");
         }
-        set { this.BodyProperties["currency"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -68,22 +61,16 @@ public sealed record class TopUpCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("invoice_settings", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.BodyProperties.TryGetValue("invoice_settings", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "invoice_settings",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<TopUpCreateParamsProperties::InvoiceSettings>(
-                    element
-                ) ?? throw new System::ArgumentNullException("invoice_settings");
+            return JsonSerializer.Deserialize<TopUpCreateParamsProperties::InvoiceSettings>(element)
+                ?? throw new ArgumentNullException("invoice_settings");
         }
-        set
-        {
-            this.BodyProperties["invoice_settings"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.BodyProperties["invoice_settings"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -93,25 +80,18 @@ public sealed record class TopUpCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "per_unit_cost_basis",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.BodyProperties.TryGetValue("per_unit_cost_basis", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "per_unit_cost_basis",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("per_unit_cost_basis");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("per_unit_cost_basis");
         }
         set
         {
-            this.BodyProperties["per_unit_cost_basis"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["per_unit_cost_basis"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -123,32 +103,29 @@ public sealed record class TopUpCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("threshold", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "threshold",
-                    "Missing required argument"
-                );
+            if (!this.BodyProperties.TryGetValue("threshold", out JsonElement element))
+                throw new ArgumentOutOfRangeException("threshold", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("threshold");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("threshold");
         }
-        set { this.BodyProperties["threshold"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["threshold"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The date from which the top-up is active. If unspecified, the top-up is active
     /// immediately.             This should not be more than 10 days in the past.
     /// </summary>
-    public System::DateTime? ActiveFrom
+    public DateTime? ActiveFrom
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("active_from", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("active_from", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element);
         }
-        set { this.BodyProperties["active_from"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["active_from"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -159,15 +136,12 @@ public sealed record class TopUpCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("expires_after", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("expires_after", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set
-        {
-            this.BodyProperties["expires_after"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["expires_after"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -177,29 +151,22 @@ public sealed record class TopUpCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "expires_after_unit",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("expires_after_unit", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<TopUpCreateParamsProperties::ExpiresAfterUnit?>(
+            return JsonSerializer.Deserialize<TopUpCreateParamsProperties::ExpiresAfterUnit?>(
                 element
             );
         }
         set
         {
-            this.BodyProperties["expires_after_unit"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["expires_after_unit"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/customers/{0}/credits/top_ups", this.CustomerID)
         )
@@ -208,21 +175,21 @@ public sealed record class TopUpCreateParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

@@ -1,10 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using CouponCreateParamsProperties = Orb.Models.Coupons.CouponCreateParamsProperties;
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
-using Text = System.Text;
 
 namespace Orb.Models.Coupons;
 
@@ -12,24 +11,21 @@ namespace Orb.Models.Coupons;
 /// This endpoint allows the creation of coupons, which can then be redeemed at subscription
 /// creation or plan change.
 /// </summary>
-public sealed record class CouponCreateParams : Orb::ParamsBase
+public sealed record class CouponCreateParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     public required CouponCreateParamsProperties::Discount Discount
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("discount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "discount",
-                    "Missing required argument"
-                );
+            if (!this.BodyProperties.TryGetValue("discount", out JsonElement element))
+                throw new ArgumentOutOfRangeException("discount", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<CouponCreateParamsProperties::Discount>(element)
-                ?? throw new System::ArgumentNullException("discount");
+            return JsonSerializer.Deserialize<CouponCreateParamsProperties::Discount>(element)
+                ?? throw new ArgumentNullException("discount");
         }
-        set { this.BodyProperties["discount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["discount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -39,19 +35,16 @@ public sealed record class CouponCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("redemption_code", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.BodyProperties.TryGetValue("redemption_code", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "redemption_code",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("redemption_code");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("redemption_code");
         }
-        set
-        {
-            this.BodyProperties["redemption_code"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["redemption_code"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -62,21 +55,14 @@ public sealed record class CouponCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "duration_in_months",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.BodyProperties.TryGetValue("duration_in_months", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
         set
         {
-            this.BodyProperties["duration_in_months"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.BodyProperties["duration_in_months"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -88,40 +74,37 @@ public sealed record class CouponCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("max_redemptions", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("max_redemptions", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set
-        {
-            this.BodyProperties["max_redemptions"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.BodyProperties["max_redemptions"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/coupons")
+        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/coupons")
         {
             Query = this.QueryString(client),
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

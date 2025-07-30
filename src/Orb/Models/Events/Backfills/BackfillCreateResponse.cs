@@ -1,10 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using BackfillCreateResponseProperties = Orb.Models.Events.Backfills.BackfillCreateResponseProperties;
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Events.Backfills;
 
@@ -12,56 +11,48 @@ namespace Orb.Models.Events.Backfills;
 /// A backfill represents an update to historical usage data, adding or replacing
 /// events in a timeframe.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<BackfillCreateResponse>))]
-public sealed record class BackfillCreateResponse
-    : Orb::ModelBase,
-        Orb::IFromRaw<BackfillCreateResponse>
+[JsonConverter(typeof(ModelConverter<BackfillCreateResponse>))]
+public sealed record class BackfillCreateResponse : ModelBase, IFromRaw<BackfillCreateResponse>
 {
     public required string ID
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
+                throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("id");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// If in the future, the time at which the backfill will automatically close.
     /// If in the past, the time at which the backfill was closed.
     /// </summary>
-    public required System::DateTime? CloseTime
+    public required DateTime? CloseTime
     {
         get
         {
-            if (!this.Properties.TryGetValue("close_time", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "close_time",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("close_time", out JsonElement element))
+                throw new ArgumentOutOfRangeException("close_time", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element);
         }
-        set { this.Properties["close_time"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["close_time"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public required System::DateTime CreatedAt
+    public required DateTime CreatedAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("created_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "created_at",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("created_at", out JsonElement element))
+                throw new ArgumentOutOfRangeException("created_at", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element);
         }
-        set { this.Properties["created_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -72,15 +63,12 @@ public sealed record class BackfillCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("customer_id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "customer_id",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("customer_id", out JsonElement element))
+                throw new ArgumentOutOfRangeException("customer_id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["customer_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["customer_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -90,15 +78,15 @@ public sealed record class BackfillCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("events_ingested", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("events_ingested", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "events_ingested",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element);
         }
-        set { this.Properties["events_ingested"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["events_ingested"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -110,43 +98,33 @@ public sealed record class BackfillCreateResponse
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "replace_existing_events",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("replace_existing_events", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "replace_existing_events",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element);
         }
         set
         {
-            this.Properties["replace_existing_events"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.Properties["replace_existing_events"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
     /// <summary>
     /// The time at which this backfill was reverted.
     /// </summary>
-    public required System::DateTime? RevertedAt
+    public required DateTime? RevertedAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("reverted_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "reverted_at",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("reverted_at", out JsonElement element))
+                throw new ArgumentOutOfRangeException("reverted_at", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element);
         }
-        set { this.Properties["reverted_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["reverted_at"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -156,47 +134,40 @@ public sealed record class BackfillCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("status", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "status",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("status", out JsonElement element))
+                throw new ArgumentOutOfRangeException("status", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<BackfillCreateResponseProperties::Status>(
-                    element
-                ) ?? throw new System::ArgumentNullException("status");
+            return JsonSerializer.Deserialize<BackfillCreateResponseProperties::Status>(element)
+                ?? throw new ArgumentNullException("status");
         }
-        set { this.Properties["status"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["status"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public required System::DateTime TimeframeEnd
+    public required DateTime TimeframeEnd
     {
         get
         {
-            if (!this.Properties.TryGetValue("timeframe_end", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "timeframe_end",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("timeframe_end", out JsonElement element))
+                throw new ArgumentOutOfRangeException("timeframe_end", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element);
         }
-        set { this.Properties["timeframe_end"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public required System::DateTime TimeframeStart
+    public required DateTime TimeframeStart
     {
         get
         {
-            if (!this.Properties.TryGetValue("timeframe_start", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("timeframe_start", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "timeframe_start",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element);
         }
-        set { this.Properties["timeframe_start"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -207,15 +178,12 @@ public sealed record class BackfillCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("deprecation_filter", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("deprecation_filter", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set
-        {
-            this.Properties["deprecation_filter"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["deprecation_filter"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -236,15 +204,15 @@ public sealed record class BackfillCreateResponse
     public BackfillCreateResponse() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    BackfillCreateResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    BackfillCreateResponse(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
     public static BackfillCreateResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        Dictionary<string, JsonElement> properties
     )
     {
         return new(properties);

@@ -1,14 +1,13 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<BPSTier>))]
-public sealed record class BPSTier : Orb::ModelBase, Orb::IFromRaw<BPSTier>
+[JsonConverter(typeof(ModelConverter<BPSTier>))]
+public sealed record class BPSTier : ModelBase, IFromRaw<BPSTier>
 {
     /// <summary>
     /// Per-event basis point rate
@@ -17,12 +16,12 @@ public sealed record class BPSTier : Orb::ModelBase, Orb::IFromRaw<BPSTier>
     {
         get
         {
-            if (!this.Properties.TryGetValue("bps", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("bps", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("bps", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element);
         }
-        set { this.Properties["bps"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["bps"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -32,16 +31,16 @@ public sealed record class BPSTier : Orb::ModelBase, Orb::IFromRaw<BPSTier>
     {
         get
         {
-            if (!this.Properties.TryGetValue("minimum_amount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("minimum_amount", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "minimum_amount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("minimum_amount");
         }
-        set { this.Properties["minimum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -51,12 +50,12 @@ public sealed record class BPSTier : Orb::ModelBase, Orb::IFromRaw<BPSTier>
     {
         get
         {
-            if (!this.Properties.TryGetValue("maximum_amount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("maximum_amount", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["maximum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -66,15 +65,12 @@ public sealed record class BPSTier : Orb::ModelBase, Orb::IFromRaw<BPSTier>
     {
         get
         {
-            if (!this.Properties.TryGetValue("per_unit_maximum", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("per_unit_maximum", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set
-        {
-            this.Properties["per_unit_maximum"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["per_unit_maximum"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -88,16 +84,14 @@ public sealed record class BPSTier : Orb::ModelBase, Orb::IFromRaw<BPSTier>
     public BPSTier() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    BPSTier(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    BPSTier(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static BPSTier FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static BPSTier FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

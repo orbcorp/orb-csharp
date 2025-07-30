@@ -1,18 +1,15 @@
-using CustomerCreateParamsProperties = Orb.Models.Customers.CustomerCreateParamsProperties;
-using Customers = Orb.Models.Customers;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.CustomerCreateParamsProperties.TaxConfigurationVariants;
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<NewAvalaraTaxConfiguration, Customers::NewAvalaraTaxConfiguration>)
+[JsonConverter(
+    typeof(VariantConverter<NewAvalaraTaxConfigurationVariant, NewAvalaraTaxConfiguration>)
 )]
-public sealed record class NewAvalaraTaxConfiguration(Customers::NewAvalaraTaxConfiguration Value)
-    : CustomerCreateParamsProperties::TaxConfiguration,
-        Orb::IVariant<NewAvalaraTaxConfiguration, Customers::NewAvalaraTaxConfiguration>
+public sealed record class NewAvalaraTaxConfigurationVariant(NewAvalaraTaxConfiguration Value)
+    : TaxConfiguration,
+        IVariant<NewAvalaraTaxConfigurationVariant, NewAvalaraTaxConfiguration>
 {
-    public static NewAvalaraTaxConfiguration From(Customers::NewAvalaraTaxConfiguration value)
+    public static NewAvalaraTaxConfigurationVariant From(NewAvalaraTaxConfiguration value)
     {
         return new(value);
     }
@@ -23,14 +20,12 @@ public sealed record class NewAvalaraTaxConfiguration(Customers::NewAvalaraTaxCo
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<NewTaxJarConfiguration, Customers::NewTaxJarConfiguration>)
-)]
-public sealed record class NewTaxJarConfiguration(Customers::NewTaxJarConfiguration Value)
-    : CustomerCreateParamsProperties::TaxConfiguration,
-        Orb::IVariant<NewTaxJarConfiguration, Customers::NewTaxJarConfiguration>
+[JsonConverter(typeof(VariantConverter<NewTaxJarConfigurationVariant, NewTaxJarConfiguration>))]
+public sealed record class NewTaxJarConfigurationVariant(NewTaxJarConfiguration Value)
+    : TaxConfiguration,
+        IVariant<NewTaxJarConfigurationVariant, NewTaxJarConfiguration>
 {
-    public static NewTaxJarConfiguration From(Customers::NewTaxJarConfiguration value)
+    public static NewTaxJarConfigurationVariant From(NewTaxJarConfiguration value)
     {
         return new(value);
     }
@@ -41,14 +36,12 @@ public sealed record class NewTaxJarConfiguration(Customers::NewTaxJarConfigurat
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<NewSphereConfiguration, Customers::NewSphereConfiguration>)
-)]
-public sealed record class NewSphereConfiguration(Customers::NewSphereConfiguration Value)
-    : CustomerCreateParamsProperties::TaxConfiguration,
-        Orb::IVariant<NewSphereConfiguration, Customers::NewSphereConfiguration>
+[JsonConverter(typeof(VariantConverter<NewSphereConfigurationVariant, NewSphereConfiguration>))]
+public sealed record class NewSphereConfigurationVariant(NewSphereConfiguration Value)
+    : TaxConfiguration,
+        IVariant<NewSphereConfigurationVariant, NewSphereConfiguration>
 {
-    public static NewSphereConfiguration From(Customers::NewSphereConfiguration value)
+    public static NewSphereConfigurationVariant From(NewSphereConfiguration value)
     {
         return new(value);
     }

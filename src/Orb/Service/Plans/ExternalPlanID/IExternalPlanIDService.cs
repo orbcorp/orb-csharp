@@ -1,6 +1,6 @@
-using ExternalPlanID = Orb.Models.Plans.ExternalPlanID;
-using Plans = Orb.Models.Plans;
-using Tasks = System.Threading.Tasks;
+using System.Threading.Tasks;
+using Orb.Models.Plans;
+using Orb.Models.Plans.ExternalPlanID;
 
 namespace Orb.Service.Plans.ExternalPlanID;
 
@@ -12,7 +12,7 @@ public interface IExternalPlanIDService
     ///
     /// Other fields on a plan are currently immutable.
     /// </summary>
-    Tasks::Task<Plans::Plan> Update(ExternalPlanID::ExternalPlanIDUpdateParams @params);
+    Task<Plan> Update(ExternalPlanIDUpdateParams @params);
 
     /// <summary>
     /// This endpoint is used to fetch [plan](/core-concepts##plan-and-price) details
@@ -30,5 +30,5 @@ public interface IExternalPlanIDService
     /// that is present. A detailed explanation of price types can be found in the [Price
     /// schema](/core-concepts#plan-and-price). "
     /// </summary>
-    Tasks::Task<Plans::Plan> Fetch(ExternalPlanID::ExternalPlanIDFetchParams @params);
+    Task<Plan> Fetch(ExternalPlanIDFetchParams @params);
 }

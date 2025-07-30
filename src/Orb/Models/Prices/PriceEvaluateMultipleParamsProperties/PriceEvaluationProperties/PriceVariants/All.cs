@@ -1,18 +1,13 @@
-using Models = Orb.Models;
-using Orb = Orb;
-using PriceEvaluationProperties = Orb.Models.Prices.PriceEvaluateMultipleParamsProperties.PriceEvaluationProperties;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Prices.PriceEvaluateMultipleParamsProperties.PriceEvaluationProperties.PriceVariants;
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<NewFloatingUnitPrice, Models::NewFloatingUnitPrice>)
-)]
-public sealed record class NewFloatingUnitPrice(Models::NewFloatingUnitPrice Value)
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<NewFloatingUnitPrice, Models::NewFloatingUnitPrice>
+[JsonConverter(typeof(VariantConverter<NewFloatingUnitPriceVariant, NewFloatingUnitPrice>))]
+public sealed record class NewFloatingUnitPriceVariant(NewFloatingUnitPrice Value)
+    : Price1,
+        IVariant<NewFloatingUnitPriceVariant, NewFloatingUnitPrice>
 {
-    public static NewFloatingUnitPrice From(Models::NewFloatingUnitPrice value)
+    public static NewFloatingUnitPriceVariant From(NewFloatingUnitPrice value)
     {
         return new(value);
     }
@@ -23,14 +18,12 @@ public sealed record class NewFloatingUnitPrice(Models::NewFloatingUnitPrice Val
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<NewFloatingPackagePrice, Models::NewFloatingPackagePrice>)
-)]
-public sealed record class NewFloatingPackagePrice(Models::NewFloatingPackagePrice Value)
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<NewFloatingPackagePrice, Models::NewFloatingPackagePrice>
+[JsonConverter(typeof(VariantConverter<NewFloatingPackagePriceVariant, NewFloatingPackagePrice>))]
+public sealed record class NewFloatingPackagePriceVariant(NewFloatingPackagePrice Value)
+    : Price1,
+        IVariant<NewFloatingPackagePriceVariant, NewFloatingPackagePrice>
 {
-    public static NewFloatingPackagePrice From(Models::NewFloatingPackagePrice value)
+    public static NewFloatingPackagePriceVariant From(NewFloatingPackagePrice value)
     {
         return new(value);
     }
@@ -41,14 +34,12 @@ public sealed record class NewFloatingPackagePrice(Models::NewFloatingPackagePri
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<NewFloatingMatrixPrice, Models::NewFloatingMatrixPrice>)
-)]
-public sealed record class NewFloatingMatrixPrice(Models::NewFloatingMatrixPrice Value)
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<NewFloatingMatrixPrice, Models::NewFloatingMatrixPrice>
+[JsonConverter(typeof(VariantConverter<NewFloatingMatrixPriceVariant, NewFloatingMatrixPrice>))]
+public sealed record class NewFloatingMatrixPriceVariant(NewFloatingMatrixPrice Value)
+    : Price1,
+        IVariant<NewFloatingMatrixPriceVariant, NewFloatingMatrixPrice>
 {
-    public static NewFloatingMatrixPrice From(Models::NewFloatingMatrixPrice value)
+    public static NewFloatingMatrixPriceVariant From(NewFloatingMatrixPrice value)
     {
         return new(value);
     }
@@ -59,23 +50,191 @@ public sealed record class NewFloatingMatrixPrice(Models::NewFloatingMatrixPrice
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingMatrixWithAllocationPrice,
-        Models::NewFloatingMatrixWithAllocationPrice
+[JsonConverter(
+    typeof(VariantConverter<
+        NewFloatingMatrixWithAllocationPriceVariant,
+        NewFloatingMatrixWithAllocationPrice
     >)
 )]
-public sealed record class NewFloatingMatrixWithAllocationPrice(
-    Models::NewFloatingMatrixWithAllocationPrice Value
+public sealed record class NewFloatingMatrixWithAllocationPriceVariant(
+    NewFloatingMatrixWithAllocationPrice Value
 )
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<
-            NewFloatingMatrixWithAllocationPrice,
-            Models::NewFloatingMatrixWithAllocationPrice
+    : Price1,
+        IVariant<NewFloatingMatrixWithAllocationPriceVariant, NewFloatingMatrixWithAllocationPrice>
+{
+    public static NewFloatingMatrixWithAllocationPriceVariant From(
+        NewFloatingMatrixWithAllocationPrice value
+    )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+[JsonConverter(typeof(VariantConverter<NewFloatingTieredPriceVariant, NewFloatingTieredPrice>))]
+public sealed record class NewFloatingTieredPriceVariant(NewFloatingTieredPrice Value)
+    : Price1,
+        IVariant<NewFloatingTieredPriceVariant, NewFloatingTieredPrice>
+{
+    public static NewFloatingTieredPriceVariant From(NewFloatingTieredPrice value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+[JsonConverter(
+    typeof(VariantConverter<NewFloatingTieredBPSPriceVariant, NewFloatingTieredBPSPrice>)
+)]
+public sealed record class NewFloatingTieredBPSPriceVariant(NewFloatingTieredBPSPrice Value)
+    : Price1,
+        IVariant<NewFloatingTieredBPSPriceVariant, NewFloatingTieredBPSPrice>
+{
+    public static NewFloatingTieredBPSPriceVariant From(NewFloatingTieredBPSPrice value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+[JsonConverter(typeof(VariantConverter<NewFloatingBPSPriceVariant, NewFloatingBPSPrice>))]
+public sealed record class NewFloatingBPSPriceVariant(NewFloatingBPSPrice Value)
+    : Price1,
+        IVariant<NewFloatingBPSPriceVariant, NewFloatingBPSPrice>
+{
+    public static NewFloatingBPSPriceVariant From(NewFloatingBPSPrice value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+[JsonConverter(typeof(VariantConverter<NewFloatingBulkBPSPriceVariant, NewFloatingBulkBPSPrice>))]
+public sealed record class NewFloatingBulkBPSPriceVariant(NewFloatingBulkBPSPrice Value)
+    : Price1,
+        IVariant<NewFloatingBulkBPSPriceVariant, NewFloatingBulkBPSPrice>
+{
+    public static NewFloatingBulkBPSPriceVariant From(NewFloatingBulkBPSPrice value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+[JsonConverter(typeof(VariantConverter<NewFloatingBulkPriceVariant, NewFloatingBulkPrice>))]
+public sealed record class NewFloatingBulkPriceVariant(NewFloatingBulkPrice Value)
+    : Price1,
+        IVariant<NewFloatingBulkPriceVariant, NewFloatingBulkPrice>
+{
+    public static NewFloatingBulkPriceVariant From(NewFloatingBulkPrice value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+[JsonConverter(
+    typeof(VariantConverter<
+        NewFloatingThresholdTotalAmountPriceVariant,
+        NewFloatingThresholdTotalAmountPrice
+    >)
+)]
+public sealed record class NewFloatingThresholdTotalAmountPriceVariant(
+    NewFloatingThresholdTotalAmountPrice Value
+)
+    : Price1,
+        IVariant<NewFloatingThresholdTotalAmountPriceVariant, NewFloatingThresholdTotalAmountPrice>
+{
+    public static NewFloatingThresholdTotalAmountPriceVariant From(
+        NewFloatingThresholdTotalAmountPrice value
+    )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+[JsonConverter(
+    typeof(VariantConverter<NewFloatingTieredPackagePriceVariant, NewFloatingTieredPackagePrice>)
+)]
+public sealed record class NewFloatingTieredPackagePriceVariant(NewFloatingTieredPackagePrice Value)
+    : Price1,
+        IVariant<NewFloatingTieredPackagePriceVariant, NewFloatingTieredPackagePrice>
+{
+    public static NewFloatingTieredPackagePriceVariant From(NewFloatingTieredPackagePrice value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+[JsonConverter(
+    typeof(VariantConverter<NewFloatingGroupedTieredPriceVariant, NewFloatingGroupedTieredPrice>)
+)]
+public sealed record class NewFloatingGroupedTieredPriceVariant(NewFloatingGroupedTieredPrice Value)
+    : Price1,
+        IVariant<NewFloatingGroupedTieredPriceVariant, NewFloatingGroupedTieredPrice>
+{
+    public static NewFloatingGroupedTieredPriceVariant From(NewFloatingGroupedTieredPrice value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+[JsonConverter(
+    typeof(VariantConverter<
+        NewFloatingMaxGroupTieredPackagePriceVariant,
+        NewFloatingMaxGroupTieredPackagePrice
+    >)
+)]
+public sealed record class NewFloatingMaxGroupTieredPackagePriceVariant(
+    NewFloatingMaxGroupTieredPackagePrice Value
+)
+    : Price1,
+        IVariant<
+            NewFloatingMaxGroupTieredPackagePriceVariant,
+            NewFloatingMaxGroupTieredPackagePrice
         >
 {
-    public static NewFloatingMatrixWithAllocationPrice From(
-        Models::NewFloatingMatrixWithAllocationPrice value
+    public static NewFloatingMaxGroupTieredPackagePriceVariant From(
+        NewFloatingMaxGroupTieredPackagePrice value
     )
     {
         return new(value);
@@ -87,113 +246,46 @@ public sealed record class NewFloatingMatrixWithAllocationPrice(
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<NewFloatingTieredPrice, Models::NewFloatingTieredPrice>)
-)]
-public sealed record class NewFloatingTieredPrice(Models::NewFloatingTieredPrice Value)
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<NewFloatingTieredPrice, Models::NewFloatingTieredPrice>
-{
-    public static NewFloatingTieredPrice From(Models::NewFloatingTieredPrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<NewFloatingTieredBPSPrice, Models::NewFloatingTieredBPSPrice>)
-)]
-public sealed record class NewFloatingTieredBPSPrice(Models::NewFloatingTieredBPSPrice Value)
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<NewFloatingTieredBPSPrice, Models::NewFloatingTieredBPSPrice>
-{
-    public static NewFloatingTieredBPSPrice From(Models::NewFloatingTieredBPSPrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<NewFloatingBPSPrice, Models::NewFloatingBPSPrice>)
-)]
-public sealed record class NewFloatingBPSPrice(Models::NewFloatingBPSPrice Value)
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<NewFloatingBPSPrice, Models::NewFloatingBPSPrice>
-{
-    public static NewFloatingBPSPrice From(Models::NewFloatingBPSPrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<NewFloatingBulkBPSPrice, Models::NewFloatingBulkBPSPrice>)
-)]
-public sealed record class NewFloatingBulkBPSPrice(Models::NewFloatingBulkBPSPrice Value)
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<NewFloatingBulkBPSPrice, Models::NewFloatingBulkBPSPrice>
-{
-    public static NewFloatingBulkBPSPrice From(Models::NewFloatingBulkBPSPrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<NewFloatingBulkPrice, Models::NewFloatingBulkPrice>)
-)]
-public sealed record class NewFloatingBulkPrice(Models::NewFloatingBulkPrice Value)
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<NewFloatingBulkPrice, Models::NewFloatingBulkPrice>
-{
-    public static NewFloatingBulkPrice From(Models::NewFloatingBulkPrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingThresholdTotalAmountPrice,
-        Models::NewFloatingThresholdTotalAmountPrice
+[JsonConverter(
+    typeof(VariantConverter<
+        NewFloatingTieredWithMinimumPriceVariant,
+        NewFloatingTieredWithMinimumPrice
     >)
 )]
-public sealed record class NewFloatingThresholdTotalAmountPrice(
-    Models::NewFloatingThresholdTotalAmountPrice Value
+public sealed record class NewFloatingTieredWithMinimumPriceVariant(
+    NewFloatingTieredWithMinimumPrice Value
+) : Price1, IVariant<NewFloatingTieredWithMinimumPriceVariant, NewFloatingTieredWithMinimumPrice>
+{
+    public static NewFloatingTieredWithMinimumPriceVariant From(
+        NewFloatingTieredWithMinimumPrice value
+    )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+[JsonConverter(
+    typeof(VariantConverter<
+        NewFloatingPackageWithAllocationPriceVariant,
+        NewFloatingPackageWithAllocationPrice
+    >)
+)]
+public sealed record class NewFloatingPackageWithAllocationPriceVariant(
+    NewFloatingPackageWithAllocationPrice Value
 )
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<
-            NewFloatingThresholdTotalAmountPrice,
-            Models::NewFloatingThresholdTotalAmountPrice
+    : Price1,
+        IVariant<
+            NewFloatingPackageWithAllocationPriceVariant,
+            NewFloatingPackageWithAllocationPrice
         >
 {
-    public static NewFloatingThresholdTotalAmountPrice From(
-        Models::NewFloatingThresholdTotalAmountPrice value
+    public static NewFloatingPackageWithAllocationPriceVariant From(
+        NewFloatingPackageWithAllocationPrice value
     )
     {
         return new(value);
@@ -205,69 +297,23 @@ public sealed record class NewFloatingThresholdTotalAmountPrice(
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingTieredPackagePrice,
-        Models::NewFloatingTieredPackagePrice
+[JsonConverter(
+    typeof(VariantConverter<
+        NewFloatingTieredPackageWithMinimumPriceVariant,
+        NewFloatingTieredPackageWithMinimumPrice
     >)
 )]
-public sealed record class NewFloatingTieredPackagePrice(
-    Models::NewFloatingTieredPackagePrice Value
+public sealed record class NewFloatingTieredPackageWithMinimumPriceVariant(
+    NewFloatingTieredPackageWithMinimumPrice Value
 )
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<NewFloatingTieredPackagePrice, Models::NewFloatingTieredPackagePrice>
-{
-    public static NewFloatingTieredPackagePrice From(Models::NewFloatingTieredPackagePrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingGroupedTieredPrice,
-        Models::NewFloatingGroupedTieredPrice
-    >)
-)]
-public sealed record class NewFloatingGroupedTieredPrice(
-    Models::NewFloatingGroupedTieredPrice Value
-)
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<NewFloatingGroupedTieredPrice, Models::NewFloatingGroupedTieredPrice>
-{
-    public static NewFloatingGroupedTieredPrice From(Models::NewFloatingGroupedTieredPrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingMaxGroupTieredPackagePrice,
-        Models::NewFloatingMaxGroupTieredPackagePrice
-    >)
-)]
-public sealed record class NewFloatingMaxGroupTieredPackagePrice(
-    Models::NewFloatingMaxGroupTieredPackagePrice Value
-)
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<
-            NewFloatingMaxGroupTieredPackagePrice,
-            Models::NewFloatingMaxGroupTieredPackagePrice
+    : Price1,
+        IVariant<
+            NewFloatingTieredPackageWithMinimumPriceVariant,
+            NewFloatingTieredPackageWithMinimumPrice
         >
 {
-    public static NewFloatingMaxGroupTieredPackagePrice From(
-        Models::NewFloatingMaxGroupTieredPackagePrice value
+    public static NewFloatingTieredPackageWithMinimumPriceVariant From(
+        NewFloatingTieredPackageWithMinimumPrice value
     )
     {
         return new(value);
@@ -279,20 +325,41 @@ public sealed record class NewFloatingMaxGroupTieredPackagePrice(
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingTieredWithMinimumPrice,
-        Models::NewFloatingTieredWithMinimumPrice
+[JsonConverter(
+    typeof(VariantConverter<
+        NewFloatingUnitWithPercentPriceVariant,
+        NewFloatingUnitWithPercentPrice
     >)
 )]
-public sealed record class NewFloatingTieredWithMinimumPrice(
-    Models::NewFloatingTieredWithMinimumPrice Value
-)
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<NewFloatingTieredWithMinimumPrice, Models::NewFloatingTieredWithMinimumPrice>
+public sealed record class NewFloatingUnitWithPercentPriceVariant(
+    NewFloatingUnitWithPercentPrice Value
+) : Price1, IVariant<NewFloatingUnitWithPercentPriceVariant, NewFloatingUnitWithPercentPrice>
 {
-    public static NewFloatingTieredWithMinimumPrice From(
-        Models::NewFloatingTieredWithMinimumPrice value
+    public static NewFloatingUnitWithPercentPriceVariant From(NewFloatingUnitWithPercentPrice value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+[JsonConverter(
+    typeof(VariantConverter<
+        NewFloatingTieredWithProrationPriceVariant,
+        NewFloatingTieredWithProrationPrice
+    >)
+)]
+public sealed record class NewFloatingTieredWithProrationPriceVariant(
+    NewFloatingTieredWithProrationPrice Value
+)
+    : Price1,
+        IVariant<NewFloatingTieredWithProrationPriceVariant, NewFloatingTieredWithProrationPrice>
+{
+    public static NewFloatingTieredWithProrationPriceVariant From(
+        NewFloatingTieredWithProrationPrice value
     )
     {
         return new(value);
@@ -304,23 +371,69 @@ public sealed record class NewFloatingTieredWithMinimumPrice(
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingPackageWithAllocationPrice,
-        Models::NewFloatingPackageWithAllocationPrice
+[JsonConverter(
+    typeof(VariantConverter<
+        NewFloatingUnitWithProrationPriceVariant,
+        NewFloatingUnitWithProrationPrice
     >)
 )]
-public sealed record class NewFloatingPackageWithAllocationPrice(
-    Models::NewFloatingPackageWithAllocationPrice Value
+public sealed record class NewFloatingUnitWithProrationPriceVariant(
+    NewFloatingUnitWithProrationPrice Value
+) : Price1, IVariant<NewFloatingUnitWithProrationPriceVariant, NewFloatingUnitWithProrationPrice>
+{
+    public static NewFloatingUnitWithProrationPriceVariant From(
+        NewFloatingUnitWithProrationPrice value
+    )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+[JsonConverter(
+    typeof(VariantConverter<
+        NewFloatingGroupedAllocationPriceVariant,
+        NewFloatingGroupedAllocationPrice
+    >)
+)]
+public sealed record class NewFloatingGroupedAllocationPriceVariant(
+    NewFloatingGroupedAllocationPrice Value
+) : Price1, IVariant<NewFloatingGroupedAllocationPriceVariant, NewFloatingGroupedAllocationPrice>
+{
+    public static NewFloatingGroupedAllocationPriceVariant From(
+        NewFloatingGroupedAllocationPrice value
+    )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+[JsonConverter(
+    typeof(VariantConverter<
+        NewFloatingGroupedWithProratedMinimumPriceVariant,
+        NewFloatingGroupedWithProratedMinimumPrice
+    >)
+)]
+public sealed record class NewFloatingGroupedWithProratedMinimumPriceVariant(
+    NewFloatingGroupedWithProratedMinimumPrice Value
 )
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<
-            NewFloatingPackageWithAllocationPrice,
-            Models::NewFloatingPackageWithAllocationPrice
+    : Price1,
+        IVariant<
+            NewFloatingGroupedWithProratedMinimumPriceVariant,
+            NewFloatingGroupedWithProratedMinimumPrice
         >
 {
-    public static NewFloatingPackageWithAllocationPrice From(
-        Models::NewFloatingPackageWithAllocationPrice value
+    public static NewFloatingGroupedWithProratedMinimumPriceVariant From(
+        NewFloatingGroupedWithProratedMinimumPrice value
     )
     {
         return new(value);
@@ -332,23 +445,23 @@ public sealed record class NewFloatingPackageWithAllocationPrice(
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingTieredPackageWithMinimumPrice,
-        Models::NewFloatingTieredPackageWithMinimumPrice
+[JsonConverter(
+    typeof(VariantConverter<
+        NewFloatingGroupedWithMeteredMinimumPriceVariant,
+        NewFloatingGroupedWithMeteredMinimumPrice
     >)
 )]
-public sealed record class NewFloatingTieredPackageWithMinimumPrice(
-    Models::NewFloatingTieredPackageWithMinimumPrice Value
+public sealed record class NewFloatingGroupedWithMeteredMinimumPriceVariant(
+    NewFloatingGroupedWithMeteredMinimumPrice Value
 )
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<
-            NewFloatingTieredPackageWithMinimumPrice,
-            Models::NewFloatingTieredPackageWithMinimumPrice
+    : Price1,
+        IVariant<
+            NewFloatingGroupedWithMeteredMinimumPriceVariant,
+            NewFloatingGroupedWithMeteredMinimumPrice
         >
 {
-    public static NewFloatingTieredPackageWithMinimumPrice From(
-        Models::NewFloatingTieredPackageWithMinimumPrice value
+    public static NewFloatingGroupedWithMeteredMinimumPriceVariant From(
+        NewFloatingGroupedWithMeteredMinimumPrice value
     )
     {
         return new(value);
@@ -360,48 +473,23 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice(
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingUnitWithPercentPrice,
-        Models::NewFloatingUnitWithPercentPrice
+[JsonConverter(
+    typeof(VariantConverter<
+        NewFloatingMatrixWithDisplayNamePriceVariant,
+        NewFloatingMatrixWithDisplayNamePrice
     >)
 )]
-public sealed record class NewFloatingUnitWithPercentPrice(
-    Models::NewFloatingUnitWithPercentPrice Value
+public sealed record class NewFloatingMatrixWithDisplayNamePriceVariant(
+    NewFloatingMatrixWithDisplayNamePrice Value
 )
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<NewFloatingUnitWithPercentPrice, Models::NewFloatingUnitWithPercentPrice>
-{
-    public static NewFloatingUnitWithPercentPrice From(
-        Models::NewFloatingUnitWithPercentPrice value
-    )
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingTieredWithProrationPrice,
-        Models::NewFloatingTieredWithProrationPrice
-    >)
-)]
-public sealed record class NewFloatingTieredWithProrationPrice(
-    Models::NewFloatingTieredWithProrationPrice Value
-)
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<
-            NewFloatingTieredWithProrationPrice,
-            Models::NewFloatingTieredWithProrationPrice
+    : Price1,
+        IVariant<
+            NewFloatingMatrixWithDisplayNamePriceVariant,
+            NewFloatingMatrixWithDisplayNamePrice
         >
 {
-    public static NewFloatingTieredWithProrationPrice From(
-        Models::NewFloatingTieredWithProrationPrice value
+    public static NewFloatingMatrixWithDisplayNamePriceVariant From(
+        NewFloatingMatrixWithDisplayNamePrice value
     )
     {
         return new(value);
@@ -413,20 +501,18 @@ public sealed record class NewFloatingTieredWithProrationPrice(
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingUnitWithProrationPrice,
-        Models::NewFloatingUnitWithProrationPrice
+[JsonConverter(
+    typeof(VariantConverter<
+        NewFloatingBulkWithProrationPriceVariant,
+        NewFloatingBulkWithProrationPrice
     >)
 )]
-public sealed record class NewFloatingUnitWithProrationPrice(
-    Models::NewFloatingUnitWithProrationPrice Value
-)
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<NewFloatingUnitWithProrationPrice, Models::NewFloatingUnitWithProrationPrice>
+public sealed record class NewFloatingBulkWithProrationPriceVariant(
+    NewFloatingBulkWithProrationPrice Value
+) : Price1, IVariant<NewFloatingBulkWithProrationPriceVariant, NewFloatingBulkWithProrationPrice>
 {
-    public static NewFloatingUnitWithProrationPrice From(
-        Models::NewFloatingUnitWithProrationPrice value
+    public static NewFloatingBulkWithProrationPriceVariant From(
+        NewFloatingBulkWithProrationPrice value
     )
     {
         return new(value);
@@ -438,20 +524,20 @@ public sealed record class NewFloatingUnitWithProrationPrice(
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingGroupedAllocationPrice,
-        Models::NewFloatingGroupedAllocationPrice
+[JsonConverter(
+    typeof(VariantConverter<
+        NewFloatingGroupedTieredPackagePriceVariant,
+        NewFloatingGroupedTieredPackagePrice
     >)
 )]
-public sealed record class NewFloatingGroupedAllocationPrice(
-    Models::NewFloatingGroupedAllocationPrice Value
+public sealed record class NewFloatingGroupedTieredPackagePriceVariant(
+    NewFloatingGroupedTieredPackagePrice Value
 )
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<NewFloatingGroupedAllocationPrice, Models::NewFloatingGroupedAllocationPrice>
+    : Price1,
+        IVariant<NewFloatingGroupedTieredPackagePriceVariant, NewFloatingGroupedTieredPackagePrice>
 {
-    public static NewFloatingGroupedAllocationPrice From(
-        Models::NewFloatingGroupedAllocationPrice value
+    public static NewFloatingGroupedTieredPackagePriceVariant From(
+        NewFloatingGroupedTieredPackagePrice value
     )
     {
         return new(value);
@@ -463,23 +549,23 @@ public sealed record class NewFloatingGroupedAllocationPrice(
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingGroupedWithProratedMinimumPrice,
-        Models::NewFloatingGroupedWithProratedMinimumPrice
+[JsonConverter(
+    typeof(VariantConverter<
+        NewFloatingScalableMatrixWithUnitPricingPriceVariant,
+        NewFloatingScalableMatrixWithUnitPricingPrice
     >)
 )]
-public sealed record class NewFloatingGroupedWithProratedMinimumPrice(
-    Models::NewFloatingGroupedWithProratedMinimumPrice Value
+public sealed record class NewFloatingScalableMatrixWithUnitPricingPriceVariant(
+    NewFloatingScalableMatrixWithUnitPricingPrice Value
 )
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<
-            NewFloatingGroupedWithProratedMinimumPrice,
-            Models::NewFloatingGroupedWithProratedMinimumPrice
+    : Price1,
+        IVariant<
+            NewFloatingScalableMatrixWithUnitPricingPriceVariant,
+            NewFloatingScalableMatrixWithUnitPricingPrice
         >
 {
-    public static NewFloatingGroupedWithProratedMinimumPrice From(
-        Models::NewFloatingGroupedWithProratedMinimumPrice value
+    public static NewFloatingScalableMatrixWithUnitPricingPriceVariant From(
+        NewFloatingScalableMatrixWithUnitPricingPrice value
     )
     {
         return new(value);
@@ -491,23 +577,23 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice(
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingGroupedWithMeteredMinimumPrice,
-        Models::NewFloatingGroupedWithMeteredMinimumPrice
+[JsonConverter(
+    typeof(VariantConverter<
+        NewFloatingScalableMatrixWithTieredPricingPriceVariant,
+        NewFloatingScalableMatrixWithTieredPricingPrice
     >)
 )]
-public sealed record class NewFloatingGroupedWithMeteredMinimumPrice(
-    Models::NewFloatingGroupedWithMeteredMinimumPrice Value
+public sealed record class NewFloatingScalableMatrixWithTieredPricingPriceVariant(
+    NewFloatingScalableMatrixWithTieredPricingPrice Value
 )
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<
-            NewFloatingGroupedWithMeteredMinimumPrice,
-            Models::NewFloatingGroupedWithMeteredMinimumPrice
+    : Price1,
+        IVariant<
+            NewFloatingScalableMatrixWithTieredPricingPriceVariant,
+            NewFloatingScalableMatrixWithTieredPricingPrice
         >
 {
-    public static NewFloatingGroupedWithMeteredMinimumPrice From(
-        Models::NewFloatingGroupedWithMeteredMinimumPrice value
+    public static NewFloatingScalableMatrixWithTieredPricingPriceVariant From(
+        NewFloatingScalableMatrixWithTieredPricingPrice value
     )
     {
         return new(value);
@@ -519,160 +605,23 @@ public sealed record class NewFloatingGroupedWithMeteredMinimumPrice(
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingMatrixWithDisplayNamePrice,
-        Models::NewFloatingMatrixWithDisplayNamePrice
+[JsonConverter(
+    typeof(VariantConverter<
+        NewFloatingCumulativeGroupedBulkPriceVariant,
+        NewFloatingCumulativeGroupedBulkPrice
     >)
 )]
-public sealed record class NewFloatingMatrixWithDisplayNamePrice(
-    Models::NewFloatingMatrixWithDisplayNamePrice Value
+public sealed record class NewFloatingCumulativeGroupedBulkPriceVariant(
+    NewFloatingCumulativeGroupedBulkPrice Value
 )
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<
-            NewFloatingMatrixWithDisplayNamePrice,
-            Models::NewFloatingMatrixWithDisplayNamePrice
+    : Price1,
+        IVariant<
+            NewFloatingCumulativeGroupedBulkPriceVariant,
+            NewFloatingCumulativeGroupedBulkPrice
         >
 {
-    public static NewFloatingMatrixWithDisplayNamePrice From(
-        Models::NewFloatingMatrixWithDisplayNamePrice value
-    )
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingBulkWithProrationPrice,
-        Models::NewFloatingBulkWithProrationPrice
-    >)
-)]
-public sealed record class NewFloatingBulkWithProrationPrice(
-    Models::NewFloatingBulkWithProrationPrice Value
-)
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<NewFloatingBulkWithProrationPrice, Models::NewFloatingBulkWithProrationPrice>
-{
-    public static NewFloatingBulkWithProrationPrice From(
-        Models::NewFloatingBulkWithProrationPrice value
-    )
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingGroupedTieredPackagePrice,
-        Models::NewFloatingGroupedTieredPackagePrice
-    >)
-)]
-public sealed record class NewFloatingGroupedTieredPackagePrice(
-    Models::NewFloatingGroupedTieredPackagePrice Value
-)
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<
-            NewFloatingGroupedTieredPackagePrice,
-            Models::NewFloatingGroupedTieredPackagePrice
-        >
-{
-    public static NewFloatingGroupedTieredPackagePrice From(
-        Models::NewFloatingGroupedTieredPackagePrice value
-    )
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingScalableMatrixWithUnitPricingPrice,
-        Models::NewFloatingScalableMatrixWithUnitPricingPrice
-    >)
-)]
-public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice(
-    Models::NewFloatingScalableMatrixWithUnitPricingPrice Value
-)
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<
-            NewFloatingScalableMatrixWithUnitPricingPrice,
-            Models::NewFloatingScalableMatrixWithUnitPricingPrice
-        >
-{
-    public static NewFloatingScalableMatrixWithUnitPricingPrice From(
-        Models::NewFloatingScalableMatrixWithUnitPricingPrice value
-    )
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingScalableMatrixWithTieredPricingPrice,
-        Models::NewFloatingScalableMatrixWithTieredPricingPrice
-    >)
-)]
-public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice(
-    Models::NewFloatingScalableMatrixWithTieredPricingPrice Value
-)
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<
-            NewFloatingScalableMatrixWithTieredPricingPrice,
-            Models::NewFloatingScalableMatrixWithTieredPricingPrice
-        >
-{
-    public static NewFloatingScalableMatrixWithTieredPricingPrice From(
-        Models::NewFloatingScalableMatrixWithTieredPricingPrice value
-    )
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<
-        NewFloatingCumulativeGroupedBulkPrice,
-        Models::NewFloatingCumulativeGroupedBulkPrice
-    >)
-)]
-public sealed record class NewFloatingCumulativeGroupedBulkPrice(
-    Models::NewFloatingCumulativeGroupedBulkPrice Value
-)
-    : PriceEvaluationProperties::Price,
-        Orb::IVariant<
-            NewFloatingCumulativeGroupedBulkPrice,
-            Models::NewFloatingCumulativeGroupedBulkPrice
-        >
-{
-    public static NewFloatingCumulativeGroupedBulkPrice From(
-        Models::NewFloatingCumulativeGroupedBulkPrice value
+    public static NewFloatingCumulativeGroupedBulkPriceVariant From(
+        NewFloatingCumulativeGroupedBulkPrice value
     )
     {
         return new(value);

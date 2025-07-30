@@ -1,12 +1,11 @@
-using Tasks = System.Threading.Tasks;
-using Tests = Orb.Tests;
+using System.Threading.Tasks;
 
 namespace Orb.Tests.Service.Customers.Credits;
 
-public class CreditServiceTest : Tests::TestBase
+public class CreditServiceTest : TestBase
 {
     [Fact]
-    public async Tasks::Task List_Works()
+    public async Task List_Works()
     {
         var page = await this.client.Customers.Credits.List(
             new()
@@ -22,7 +21,7 @@ public class CreditServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task ListByExternalID_Works()
+    public async Task ListByExternalID_Works()
     {
         var page = await this.client.Customers.Credits.ListByExternalID(
             new()

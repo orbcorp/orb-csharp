@@ -1,9 +1,8 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using System = System;
-using Text = System.Text;
 
 namespace Orb.Models.Invoices;
 
@@ -14,9 +13,9 @@ namespace Orb.Models.Invoices;
 /// trigger side effects, some of which could be customer-visible (e.g. sending emails,
 /// auto-collecting payment, syncing the invoice to external providers, etc).
 /// </summary>
-public sealed record class InvoiceIssueParams : Orb::ParamsBase
+public sealed record class InvoiceIssueParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     public required string InvoiceID;
 
@@ -31,15 +30,15 @@ public sealed record class InvoiceIssueParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("synchronous", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("synchronous", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element);
         }
-        set { this.BodyProperties["synchronous"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["synchronous"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
@@ -50,21 +49,21 @@ public sealed record class InvoiceIssueParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerListParamsProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<EntryType, string>))]
-public sealed record class EntryType(string value) : Orb::IEnum<EntryType, string>
+[JsonConverter(typeof(EnumConverter<EntryType, string>))]
+public sealed record class EntryType(string value) : IEnum<EntryType, string>
 {
     public static readonly EntryType Increment = new("increment");
 
@@ -44,7 +43,7 @@ public sealed record class EntryType(string value) : Orb::IEnum<EntryType, strin
             "void" => Value.Void,
             "void_initiated" => Value.VoidInitiated,
             "amendment" => Value.Amendment,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

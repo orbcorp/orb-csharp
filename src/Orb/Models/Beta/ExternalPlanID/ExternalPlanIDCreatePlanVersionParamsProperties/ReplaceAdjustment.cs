@@ -1,15 +1,14 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using ReplaceAdjustmentProperties = Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties.ReplaceAdjustmentProperties;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<ReplaceAdjustment>))]
-public sealed record class ReplaceAdjustment : Orb::ModelBase, Orb::IFromRaw<ReplaceAdjustment>
+[JsonConverter(typeof(ModelConverter<ReplaceAdjustment>))]
+public sealed record class ReplaceAdjustment : ModelBase, IFromRaw<ReplaceAdjustment>
 {
     /// <summary>
     /// The definition of a new adjustment to create and add to the plan.
@@ -18,17 +17,13 @@ public sealed record class ReplaceAdjustment : Orb::ModelBase, Orb::IFromRaw<Rep
     {
         get
         {
-            if (!this.Properties.TryGetValue("adjustment", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "adjustment",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("adjustment", out JsonElement element))
+                throw new ArgumentOutOfRangeException("adjustment", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<ReplaceAdjustmentProperties::Adjustment>(
-                    element
-                ) ?? throw new System::ArgumentNullException("adjustment");
+            return JsonSerializer.Deserialize<ReplaceAdjustmentProperties::Adjustment>(element)
+                ?? throw new ArgumentNullException("adjustment");
         }
-        set { this.Properties["adjustment"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["adjustment"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -38,25 +33,18 @@ public sealed record class ReplaceAdjustment : Orb::ModelBase, Orb::IFromRaw<Rep
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "replaces_adjustment_id",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("replaces_adjustment_id", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "replaces_adjustment_id",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("replaces_adjustment_id");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("replaces_adjustment_id");
         }
         set
         {
-            this.Properties["replaces_adjustment_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.Properties["replaces_adjustment_id"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -67,15 +55,12 @@ public sealed record class ReplaceAdjustment : Orb::ModelBase, Orb::IFromRaw<Rep
     {
         get
         {
-            if (!this.Properties.TryGetValue("plan_phase_order", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("plan_phase_order", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set
-        {
-            this.Properties["plan_phase_order"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -88,16 +73,14 @@ public sealed record class ReplaceAdjustment : Orb::ModelBase, Orb::IFromRaw<Rep
     public ReplaceAdjustment() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    ReplaceAdjustment(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    ReplaceAdjustment(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static ReplaceAdjustment FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static ReplaceAdjustment FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

@@ -1,25 +1,24 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionFetchSchedulePageResponseProperties.DataProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<Plan>))]
-public sealed record class Plan : Orb::ModelBase, Orb::IFromRaw<Plan>
+[JsonConverter(typeof(ModelConverter<Plan>))]
+public sealed record class Plan : ModelBase, IFromRaw<Plan>
 {
     public required string? ID
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
+                throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -31,30 +30,27 @@ public sealed record class Plan : Orb::ModelBase, Orb::IFromRaw<Plan>
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_plan_id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("external_plan_id", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "external_plan_id",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set
-        {
-            this.Properties["external_plan_id"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["external_plan_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string? Name
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
+            if (!this.Properties.TryGetValue("name", out JsonElement element))
+                throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["name"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -67,14 +63,14 @@ public sealed record class Plan : Orb::ModelBase, Orb::IFromRaw<Plan>
     public Plan() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    Plan(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    Plan(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static Plan FromRawUnchecked(Generic::Dictionary<string, Json::JsonElement> properties)
+    public static Plan FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

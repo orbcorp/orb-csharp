@@ -1,12 +1,11 @@
-using Tasks = System.Threading.Tasks;
-using Tests = Orb.Tests;
+using System.Threading.Tasks;
 
 namespace Orb.Tests.Service.Plans.ExternalPlanID;
 
-public class ExternalPlanIDServiceTest : Tests::TestBase
+public class ExternalPlanIDServiceTest : TestBase
 {
     [Fact]
-    public async Tasks::Task Update_Works()
+    public async Task Update_Works()
     {
         var plan = await this.client.Plans.ExternalPlanID.Update(
             new()
@@ -20,7 +19,7 @@ public class ExternalPlanIDServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task Fetch_Works()
+    public async Task Fetch_Works()
     {
         var plan = await this.client.Plans.ExternalPlanID.Fetch(
             new() { ExternalPlanID = "external_plan_id" }

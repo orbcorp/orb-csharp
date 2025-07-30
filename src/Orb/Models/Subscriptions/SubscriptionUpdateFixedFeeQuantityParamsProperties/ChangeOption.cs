@@ -1,6 +1,5 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionUpdateFixedFeeQuantityParamsProperties;
 
@@ -9,8 +8,8 @@ namespace Orb.Models.Subscriptions.SubscriptionUpdateFixedFeeQuantityParamsPrope
 /// this defaults to `effective_date`. Otherwise, this defaults to `immediate` unless
 /// it's explicitly set to `upcoming_invoice`.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<ChangeOption, string>))]
-public sealed record class ChangeOption(string value) : Orb::IEnum<ChangeOption, string>
+[JsonConverter(typeof(EnumConverter<ChangeOption, string>))]
+public sealed record class ChangeOption(string value) : IEnum<ChangeOption, string>
 {
     public static readonly ChangeOption Immediate = new("immediate");
 
@@ -33,7 +32,7 @@ public sealed record class ChangeOption(string value) : Orb::IEnum<ChangeOption,
             "immediate" => Value.Immediate,
             "upcoming_invoice" => Value.UpcomingInvoice,
             "effective_date" => Value.EffectiveDate,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

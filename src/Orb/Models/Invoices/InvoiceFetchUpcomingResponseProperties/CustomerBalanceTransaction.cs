@@ -1,18 +1,16 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using CustomerBalanceTransactionProperties = Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.CustomerBalanceTransactionProperties;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<CustomerBalanceTransaction>))]
+[JsonConverter(typeof(ModelConverter<CustomerBalanceTransaction>))]
 public sealed record class CustomerBalanceTransaction
-    : Orb::ModelBase,
-        Orb::IFromRaw<CustomerBalanceTransaction>
+    : ModelBase,
+        IFromRaw<CustomerBalanceTransaction>
 {
     /// <summary>
     /// A unique id for this transaction.
@@ -21,30 +19,29 @@ public sealed record class CustomerBalanceTransaction
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required CustomerBalanceTransactionProperties::Action Action
     {
         get
         {
-            if (!this.Properties.TryGetValue("action", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("action", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "action",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<CustomerBalanceTransactionProperties::Action>(
-                    element
-                ) ?? throw new System::ArgumentNullException("action");
+            return JsonSerializer.Deserialize<CustomerBalanceTransactionProperties::Action>(element)
+                ?? throw new System::ArgumentNullException("action");
         }
-        set { this.Properties["action"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["action"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -54,16 +51,16 @@ public sealed record class CustomerBalanceTransaction
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("amount", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "amount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("amount");
         }
-        set { this.Properties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -73,30 +70,30 @@ public sealed record class CustomerBalanceTransaction
     {
         get
         {
-            if (!this.Properties.TryGetValue("created_at", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("created_at", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "created_at",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(element);
         }
-        set { this.Properties["created_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public required Models::CreditNoteTiny? CreditNote
+    public required CreditNoteTiny? CreditNote
     {
         get
         {
-            if (!this.Properties.TryGetValue("credit_note", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("credit_note", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "credit_note",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Models::CreditNoteTiny?>(element);
+            return JsonSerializer.Deserialize<CreditNoteTiny?>(element);
         }
-        set { this.Properties["credit_note"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["credit_note"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -106,15 +103,15 @@ public sealed record class CustomerBalanceTransaction
     {
         get
         {
-            if (!this.Properties.TryGetValue("description", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("description", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "description",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["description"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["description"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -124,31 +121,31 @@ public sealed record class CustomerBalanceTransaction
     {
         get
         {
-            if (!this.Properties.TryGetValue("ending_balance", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("ending_balance", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "ending_balance",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("ending_balance");
         }
-        set { this.Properties["ending_balance"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["ending_balance"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public required Models::InvoiceTiny? Invoice
+    public required InvoiceTiny? Invoice
     {
         get
         {
-            if (!this.Properties.TryGetValue("invoice", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("invoice", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "invoice",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Models::InvoiceTiny?>(element);
+            return JsonSerializer.Deserialize<InvoiceTiny?>(element);
         }
-        set { this.Properties["invoice"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["invoice"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -159,33 +156,29 @@ public sealed record class CustomerBalanceTransaction
     {
         get
         {
-            if (!this.Properties.TryGetValue("starting_balance", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("starting_balance", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "starting_balance",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("starting_balance");
         }
-        set
-        {
-            this.Properties["starting_balance"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["starting_balance"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required CustomerBalanceTransactionProperties::Type Type
     {
         get
         {
-            if (!this.Properties.TryGetValue("type", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<CustomerBalanceTransactionProperties::Type>(
-                    element
-                ) ?? throw new System::ArgumentNullException("type");
+            return JsonSerializer.Deserialize<CustomerBalanceTransactionProperties::Type>(element)
+                ?? throw new System::ArgumentNullException("type");
         }
-        set { this.Properties["type"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["type"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -205,15 +198,15 @@ public sealed record class CustomerBalanceTransaction
     public CustomerBalanceTransaction() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    CustomerBalanceTransaction(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    CustomerBalanceTransaction(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
     public static CustomerBalanceTransaction FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        Dictionary<string, JsonElement> properties
     )
     {
         return new(properties);

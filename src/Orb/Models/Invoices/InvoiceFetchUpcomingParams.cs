@@ -1,6 +1,5 @@
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Net.Http;
+using System.Text.Json;
 using System = System;
 
 namespace Orb.Models.Invoices;
@@ -9,30 +8,25 @@ namespace Orb.Models.Invoices;
 /// This endpoint can be used to fetch the upcoming [invoice](/core-concepts#invoice)
 /// for the current billing period given a subscription.
 /// </summary>
-public sealed record class InvoiceFetchUpcomingParams : Orb::ParamsBase
+public sealed record class InvoiceFetchUpcomingParams : ParamsBase
 {
     public required string SubscriptionID
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("subscription_id", out Json::JsonElement element))
+            if (!this.QueryProperties.TryGetValue("subscription_id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "subscription_id",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("subscription_id");
         }
-        set
-        {
-            this.QueryProperties["subscription_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.QueryProperties["subscription_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/invoices/upcoming")
         {
@@ -40,12 +34,12 @@ public sealed record class InvoiceFetchUpcomingParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

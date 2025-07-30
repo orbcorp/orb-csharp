@@ -1,15 +1,14 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using PaymentAttemptProperties = Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.PaymentAttemptProperties;
-using Serialization = System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<PaymentAttempt>))]
-public sealed record class PaymentAttempt : Orb::ModelBase, Orb::IFromRaw<PaymentAttempt>
+[JsonConverter(typeof(ModelConverter<PaymentAttempt>))]
+public sealed record class PaymentAttempt : ModelBase, IFromRaw<PaymentAttempt>
 {
     /// <summary>
     /// The ID of the payment attempt.
@@ -18,13 +17,13 @@ public sealed record class PaymentAttempt : Orb::ModelBase, Orb::IFromRaw<Paymen
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -34,16 +33,16 @@ public sealed record class PaymentAttempt : Orb::ModelBase, Orb::IFromRaw<Paymen
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("amount", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "amount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("amount");
         }
-        set { this.Properties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -53,15 +52,15 @@ public sealed record class PaymentAttempt : Orb::ModelBase, Orb::IFromRaw<Paymen
     {
         get
         {
-            if (!this.Properties.TryGetValue("created_at", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("created_at", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "created_at",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(element);
         }
-        set { this.Properties["created_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -71,20 +70,15 @@ public sealed record class PaymentAttempt : Orb::ModelBase, Orb::IFromRaw<Paymen
     {
         get
         {
-            if (!this.Properties.TryGetValue("payment_provider", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("payment_provider", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "payment_provider",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<PaymentAttemptProperties::PaymentProvider?>(
-                element
-            );
+            return JsonSerializer.Deserialize<PaymentAttemptProperties::PaymentProvider?>(element);
         }
-        set
-        {
-            this.Properties["payment_provider"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["payment_provider"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -94,18 +88,15 @@ public sealed record class PaymentAttempt : Orb::ModelBase, Orb::IFromRaw<Paymen
     {
         get
         {
-            if (!this.Properties.TryGetValue("payment_provider_id", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("payment_provider_id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "payment_provider_id",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set
-        {
-            this.Properties["payment_provider_id"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["payment_provider_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -115,15 +106,15 @@ public sealed record class PaymentAttempt : Orb::ModelBase, Orb::IFromRaw<Paymen
     {
         get
         {
-            if (!this.Properties.TryGetValue("succeeded", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("succeeded", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "succeeded",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element);
         }
-        set { this.Properties["succeeded"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["succeeded"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -139,16 +130,14 @@ public sealed record class PaymentAttempt : Orb::ModelBase, Orb::IFromRaw<Paymen
     public PaymentAttempt() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    PaymentAttempt(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    PaymentAttempt(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static PaymentAttempt FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static PaymentAttempt FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

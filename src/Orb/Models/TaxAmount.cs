@@ -1,14 +1,13 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<TaxAmount>))]
-public sealed record class TaxAmount : Orb::ModelBase, Orb::IFromRaw<TaxAmount>
+[JsonConverter(typeof(ModelConverter<TaxAmount>))]
+public sealed record class TaxAmount : ModelBase, IFromRaw<TaxAmount>
 {
     /// <summary>
     /// The amount of additional tax incurred by this tax rate.
@@ -17,16 +16,16 @@ public sealed record class TaxAmount : Orb::ModelBase, Orb::IFromRaw<TaxAmount>
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("amount", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "amount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("amount");
         }
-        set { this.Properties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -36,21 +35,16 @@ public sealed record class TaxAmount : Orb::ModelBase, Orb::IFromRaw<TaxAmount>
     {
         get
         {
-            if (!this.Properties.TryGetValue("tax_rate_description", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("tax_rate_description", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "tax_rate_description",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("tax_rate_description");
         }
-        set
-        {
-            this.Properties["tax_rate_description"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.Properties["tax_rate_description"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -60,18 +54,15 @@ public sealed record class TaxAmount : Orb::ModelBase, Orb::IFromRaw<TaxAmount>
     {
         get
         {
-            if (!this.Properties.TryGetValue("tax_rate_percentage", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("tax_rate_percentage", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "tax_rate_percentage",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set
-        {
-            this.Properties["tax_rate_percentage"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["tax_rate_percentage"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -84,16 +75,14 @@ public sealed record class TaxAmount : Orb::ModelBase, Orb::IFromRaw<TaxAmount>
     public TaxAmount() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    TaxAmount(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    TaxAmount(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static TaxAmount FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static TaxAmount FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

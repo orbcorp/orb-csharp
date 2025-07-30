@@ -1,11 +1,10 @@
+using System.Text.Json.Serialization;
 using DiscountProperties = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.DiscountProperties;
 using DiscountVariants = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.DiscountVariants;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties;
 
-[Serialization::JsonConverter(typeof(Orb::UnionConverter<Discount>))]
+[JsonConverter(typeof(UnionConverter<Discount>))]
 public abstract record class Discount
 {
     internal Discount() { }

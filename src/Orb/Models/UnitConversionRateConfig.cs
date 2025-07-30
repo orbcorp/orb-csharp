@@ -1,54 +1,46 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 using UnitConversionRateConfigProperties = Orb.Models.UnitConversionRateConfigProperties;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<UnitConversionRateConfig>))]
-public sealed record class UnitConversionRateConfig
-    : Orb::ModelBase,
-        Orb::IFromRaw<UnitConversionRateConfig>
+[JsonConverter(typeof(ModelConverter<UnitConversionRateConfig>))]
+public sealed record class UnitConversionRateConfig : ModelBase, IFromRaw<UnitConversionRateConfig>
 {
     public required UnitConversionRateConfigProperties::ConversionRateType ConversionRateType
     {
         get
         {
-            if (!this.Properties.TryGetValue("conversion_rate_type", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("conversion_rate_type", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "conversion_rate_type",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<UnitConversionRateConfigProperties::ConversionRateType>(
+            return JsonSerializer.Deserialize<UnitConversionRateConfigProperties::ConversionRateType>(
                     element
                 ) ?? throw new System::ArgumentNullException("conversion_rate_type");
         }
-        set
-        {
-            this.Properties["conversion_rate_type"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.Properties["conversion_rate_type"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required ConversionRateUnitConfig UnitConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("unit_config", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("unit_config", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "unit_config",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<ConversionRateUnitConfig>(element)
+            return JsonSerializer.Deserialize<ConversionRateUnitConfig>(element)
                 ?? throw new System::ArgumentNullException("unit_config");
         }
-        set { this.Properties["unit_config"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["unit_config"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -60,15 +52,15 @@ public sealed record class UnitConversionRateConfig
     public UnitConversionRateConfig() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    UnitConversionRateConfig(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    UnitConversionRateConfig(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
     public static UnitConversionRateConfig FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        Dictionary<string, JsonElement> properties
     )
     {
         return new(properties);

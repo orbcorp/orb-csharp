@@ -1,5 +1,5 @@
-using Costs = Orb.Models.Customers.Costs;
-using Tasks = System.Threading.Tasks;
+using System.Threading.Tasks;
+using Orb.Models.Customers.Costs;
 
 namespace Orb.Service.Customers.Costs;
 
@@ -103,7 +103,7 @@ public interface ICostService
     /// the `grouping_key` and `secondary_grouping_key` based on the matrix price definition,
     /// for each `grouping_value` and `secondary_grouping_value` available.
     /// </summary>
-    Tasks::Task<Costs::CostListResponse> List(Costs::CostListParams @params);
+    Task<CostListResponse> List(CostListParams @params);
 
     /// <summary>
     /// This endpoint is used to fetch a day-by-day snapshot of a customer's costs
@@ -203,7 +203,5 @@ public interface ICostService
     /// the `grouping_key` and `secondary_grouping_key` based on the matrix price definition,
     /// for each `grouping_value` and `secondary_grouping_value` available.
     /// </summary>
-    Tasks::Task<Costs::CostListByExternalIDResponse> ListByExternalID(
-        Costs::CostListByExternalIDParams @params
-    );
+    Task<CostListByExternalIDResponse> ListByExternalID(CostListByExternalIDParams @params);
 }

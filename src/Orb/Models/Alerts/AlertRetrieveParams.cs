@@ -1,5 +1,4 @@
-using Http = System.Net.Http;
-using Orb = Orb;
+using System.Net.Http;
 using System = System;
 
 namespace Orb.Models.Alerts;
@@ -7,11 +6,11 @@ namespace Orb.Models.Alerts;
 /// <summary>
 /// This endpoint retrieves an alert by its ID.
 /// </summary>
-public sealed record class AlertRetrieveParams : Orb::ParamsBase
+public sealed record class AlertRetrieveParams : ParamsBase
 {
     public required string AlertID;
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/') + string.Format("/alerts/{0}", this.AlertID)
@@ -21,12 +20,12 @@ public sealed record class AlertRetrieveParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

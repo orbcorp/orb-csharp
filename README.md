@@ -22,21 +22,21 @@ dotnet add reference /path/to/orb-csharp/src/Orb/
 See the [`examples`](examples) directory for complete and runnable examples.
 
 ```C#
-using Customers = Orb.Models.Customers;
-using Orb = Orb;
-using System = System;
+using Orb;
+using Orb.Models.Customers;
+using System;
 
 // Configured using the ORB_API_KEY, ORB_WEBHOOK_SECRET and ORB_BASE_URL environment variables
-Orb::OrbClient client = new();
+OrbClient client = new();
 
-Customers::CustomerCreateParams param = new()
+CustomerCreateParams param = new()
 {
   Email = "example-customer@withorb.com", Name = "My Customer"
 };
 
 var customer = await client.Customers.Create(param);
 
-System::Console.WriteLine(customer);
+Console.WriteLine(customer);
 ```
 
 ## Client Configuration
@@ -44,18 +44,18 @@ System::Console.WriteLine(customer);
 Configure the client using environment variables:
 
 ```C#
-using Orb = Orb;
+using Orb;
 
 // Configured using the ORB_API_KEY, ORB_WEBHOOK_SECRET and ORB_BASE_URL environment variables
-Orb::OrbClient client = new();
+OrbClient client = new();
 ```
 
 Or manually:
 
 ```C#
-using Orb = Orb;
+using Orb;
 
-Orb::OrbClient client = new()
+OrbClient client = new()
 {
   APIKey = "My API Key"
 };

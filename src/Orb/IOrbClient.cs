@@ -3,7 +3,6 @@ using Beta = Orb.Service.Beta;
 using Coupons = Orb.Service.Coupons;
 using CreditNotes = Orb.Service.CreditNotes;
 using Customers = Orb.Service.Customers;
-using DimensionalPriceGroups = Orb.Service.DimensionalPriceGroups;
 using Events = Orb.Service.Events;
 using Http = System.Net.Http;
 using InvoiceLineItems = Orb.Service.InvoiceLineItems;
@@ -13,7 +12,6 @@ using Metrics = Orb.Service.Metrics;
 using Plans = Orb.Service.Plans;
 using Prices = Orb.Service.Prices;
 using SubscriptionChanges = Orb.Service.SubscriptionChanges;
-using Subscriptions = Orb.Service.Subscriptions;
 using System = System;
 using TopLevel = Orb.Service.TopLevel;
 
@@ -51,11 +49,11 @@ public interface IOrbClient
 
     Prices::IPriceService Prices { get; }
 
-    Subscriptions::ISubscriptionService Subscriptions { get; }
+    global::Orb.Service.Subscriptions.ISubscriptionService Subscriptions { get; }
 
     Alerts::IAlertService Alerts { get; }
 
-    DimensionalPriceGroups::IDimensionalPriceGroupService DimensionalPriceGroups { get; }
+    global::Orb.Service.DimensionalPriceGroups.IDimensionalPriceGroupService DimensionalPriceGroups { get; }
 
     SubscriptionChanges::ISubscriptionChangeService SubscriptionChanges { get; }
 }

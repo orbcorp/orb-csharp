@@ -1,42 +1,38 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using PlanVersionPhaseProperties = Orb.Models.Beta.PlanVersionPhaseProperties;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Beta;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<PlanVersionPhase>))]
-public sealed record class PlanVersionPhase : Orb::ModelBase, Orb::IFromRaw<PlanVersionPhase>
+[JsonConverter(typeof(ModelConverter<PlanVersionPhase>))]
+public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPhase>
 {
     public required string ID
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
+                throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("id");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string? Description
     {
         get
         {
-            if (!this.Properties.TryGetValue("description", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "description",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("description", out JsonElement element))
+                throw new ArgumentOutOfRangeException("description", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["description"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["description"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -47,45 +43,37 @@ public sealed record class PlanVersionPhase : Orb::ModelBase, Orb::IFromRaw<Plan
     {
         get
         {
-            if (!this.Properties.TryGetValue("duration", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "duration",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("duration", out JsonElement element))
+                throw new ArgumentOutOfRangeException("duration", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set { this.Properties["duration"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["duration"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required PlanVersionPhaseProperties::DurationUnit? DurationUnit
     {
         get
         {
-            if (!this.Properties.TryGetValue("duration_unit", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "duration_unit",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("duration_unit", out JsonElement element))
+                throw new ArgumentOutOfRangeException("duration_unit", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<PlanVersionPhaseProperties::DurationUnit?>(
-                element
-            );
+            return JsonSerializer.Deserialize<PlanVersionPhaseProperties::DurationUnit?>(element);
         }
-        set { this.Properties["duration_unit"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["duration_unit"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string Name
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
+            if (!this.Properties.TryGetValue("name", out JsonElement element))
+                throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("name");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("name");
         }
-        set { this.Properties["name"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -95,12 +83,12 @@ public sealed record class PlanVersionPhase : Orb::ModelBase, Orb::IFromRaw<Plan
     {
         get
         {
-            if (!this.Properties.TryGetValue("order", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("order", "Missing required argument");
+            if (!this.Properties.TryGetValue("order", out JsonElement element))
+                throw new ArgumentOutOfRangeException("order", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element);
         }
-        set { this.Properties["order"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["order"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -116,16 +104,14 @@ public sealed record class PlanVersionPhase : Orb::ModelBase, Orb::IFromRaw<Plan
     public PlanVersionPhase() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    PlanVersionPhase(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    PlanVersionPhase(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static PlanVersionPhase FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static PlanVersionPhase FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

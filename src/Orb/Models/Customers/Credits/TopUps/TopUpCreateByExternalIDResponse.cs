@@ -1,29 +1,28 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using TopUpCreateByExternalIDResponseProperties = Orb.Models.Customers.Credits.TopUps.TopUpCreateByExternalIDResponseProperties;
 
 namespace Orb.Models.Customers.Credits.TopUps;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<TopUpCreateByExternalIDResponse>))]
+[JsonConverter(typeof(ModelConverter<TopUpCreateByExternalIDResponse>))]
 public sealed record class TopUpCreateByExternalIDResponse
-    : Orb::ModelBase,
-        Orb::IFromRaw<TopUpCreateByExternalIDResponse>
+    : ModelBase,
+        IFromRaw<TopUpCreateByExternalIDResponse>
 {
     public required string ID
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
+                throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("id");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -33,16 +32,13 @@ public sealed record class TopUpCreateByExternalIDResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("amount", out JsonElement element))
+                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("amount");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("amount");
         }
-        set { this.Properties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -53,16 +49,13 @@ public sealed record class TopUpCreateByExternalIDResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("currency", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "currency",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("currency", out JsonElement element))
+                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("currency");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("currency");
         }
-        set { this.Properties["currency"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -72,19 +65,16 @@ public sealed record class TopUpCreateByExternalIDResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("invoice_settings", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("invoice_settings", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "invoice_settings",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<TopUpInvoiceSettings>(element)
-                ?? throw new System::ArgumentNullException("invoice_settings");
+            return JsonSerializer.Deserialize<TopUpInvoiceSettings>(element)
+                ?? throw new ArgumentNullException("invoice_settings");
         }
-        set
-        {
-            this.Properties["invoice_settings"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["invoice_settings"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -94,19 +84,16 @@ public sealed record class TopUpCreateByExternalIDResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("per_unit_cost_basis", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("per_unit_cost_basis", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "per_unit_cost_basis",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("per_unit_cost_basis");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("per_unit_cost_basis");
         }
-        set
-        {
-            this.Properties["per_unit_cost_basis"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["per_unit_cost_basis"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -117,16 +104,13 @@ public sealed record class TopUpCreateByExternalIDResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("threshold", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "threshold",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("threshold", out JsonElement element))
+                throw new ArgumentOutOfRangeException("threshold", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("threshold");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("threshold");
         }
-        set { this.Properties["threshold"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["threshold"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -137,12 +121,12 @@ public sealed record class TopUpCreateByExternalIDResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("expires_after", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("expires_after", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set { this.Properties["expires_after"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["expires_after"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -152,17 +136,14 @@ public sealed record class TopUpCreateByExternalIDResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("expires_after_unit", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("expires_after_unit", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<TopUpCreateByExternalIDResponseProperties::ExpiresAfterUnit?>(
+            return JsonSerializer.Deserialize<TopUpCreateByExternalIDResponseProperties::ExpiresAfterUnit?>(
                 element
             );
         }
-        set
-        {
-            this.Properties["expires_after_unit"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["expires_after_unit"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -180,15 +161,15 @@ public sealed record class TopUpCreateByExternalIDResponse
     public TopUpCreateByExternalIDResponse() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    TopUpCreateByExternalIDResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    TopUpCreateByExternalIDResponse(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
     public static TopUpCreateByExternalIDResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        Dictionary<string, JsonElement> properties
     )
     {
         return new(properties);

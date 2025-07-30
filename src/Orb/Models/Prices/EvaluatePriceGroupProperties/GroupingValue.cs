@@ -1,10 +1,9 @@
+using System.Text.Json.Serialization;
 using GroupingValueVariants = Orb.Models.Prices.EvaluatePriceGroupProperties.GroupingValueVariants;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 
 namespace Orb.Models.Prices.EvaluatePriceGroupProperties;
 
-[Serialization::JsonConverter(typeof(Orb::UnionConverter<GroupingValue>))]
+[JsonConverter(typeof(UnionConverter<GroupingValue>))]
 public abstract record class GroupingValue
 {
     internal GroupingValue() { }

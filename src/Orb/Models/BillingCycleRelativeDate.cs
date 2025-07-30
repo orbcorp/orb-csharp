@@ -1,12 +1,11 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<BillingCycleRelativeDate, string>))]
+[JsonConverter(typeof(EnumConverter<BillingCycleRelativeDate, string>))]
 public sealed record class BillingCycleRelativeDate(string value)
-    : Orb::IEnum<BillingCycleRelativeDate, string>
+    : IEnum<BillingCycleRelativeDate, string>
 {
     public static readonly BillingCycleRelativeDate StartOfTerm = new("start_of_term");
 

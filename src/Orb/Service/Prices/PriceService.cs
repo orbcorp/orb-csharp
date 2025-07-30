@@ -1,174 +1,168 @@
+using System;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Orb.Models;
+using Orb.Models.Prices;
 using ExternalPriceID = Orb.Service.Prices.ExternalPriceID;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Models = Orb.Models;
-using Orb = Orb;
-using Prices = Orb.Models.Prices;
-using System = System;
-using Tasks = System.Threading.Tasks;
 
 namespace Orb.Service.Prices;
 
 public sealed class PriceService : IPriceService
 {
-    readonly Orb::IOrbClient _client;
+    readonly IOrbClient _client;
 
-    public PriceService(Orb::IOrbClient client)
+    public PriceService(IOrbClient client)
     {
         _client = client;
         _externalPriceID = new(() => new ExternalPriceID::ExternalPriceIDService(client));
     }
 
-    readonly System::Lazy<ExternalPriceID::IExternalPriceIDService> _externalPriceID;
+    readonly Lazy<ExternalPriceID::IExternalPriceIDService> _externalPriceID;
     public ExternalPriceID::IExternalPriceIDService ExternalPriceID
     {
         get { return _externalPriceID.Value; }
     }
 
-    public async Tasks::Task<Models::Price> Create(Prices::PriceCreateParams @params)
+    public async Task<Price> Create(PriceCreateParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Models::Price>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+        return JsonSerializer.Deserialize<Price>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Models::Price> Update(Prices::PriceUpdateParams @params)
+    public async Task<Price> Update(PriceUpdateParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Put, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Put, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Models::Price>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+        return JsonSerializer.Deserialize<Price>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Prices::PriceListPageResponse> List(Prices::PriceListParams @params)
+    public async Task<PriceListPageResponse> List(PriceListParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Get, @params.Url(this._client));
+        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Prices::PriceListPageResponse>(
+        return JsonSerializer.Deserialize<PriceListPageResponse>(
                 await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+            ) ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Prices::PriceEvaluateResponse> Evaluate(
-        Prices::PriceEvaluateParams @params
+    public async Task<PriceEvaluateResponse> Evaluate(PriceEvaluateParams @params)
+    {
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
+        {
+            Content = @params.BodyContent(),
+        };
+        @params.AddHeadersToRequest(webRequest, this._client);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        try
+        {
+            response.EnsureSuccessStatusCode();
+        }
+        catch (HttpRequestException e)
+        {
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+        }
+        return JsonSerializer.Deserialize<PriceEvaluateResponse>(
+                await response.Content.ReadAsStringAsync()
+            ) ?? throw new NullReferenceException();
+    }
+
+    public async Task<PriceEvaluateMultipleResponse> EvaluateMultiple(
+        PriceEvaluateMultipleParams @params
     )
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Prices::PriceEvaluateResponse>(
+        return JsonSerializer.Deserialize<PriceEvaluateMultipleResponse>(
                 await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+            ) ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Prices::PriceEvaluateMultipleResponse> EvaluateMultiple(
-        Prices::PriceEvaluateMultipleParams @params
+    public async Task<PriceEvaluatePreviewEventsResponse> EvaluatePreviewEvents(
+        PriceEvaluatePreviewEventsParams @params
     )
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Prices::PriceEvaluateMultipleResponse>(
+        return JsonSerializer.Deserialize<PriceEvaluatePreviewEventsResponse>(
                 await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+            ) ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Prices::PriceEvaluatePreviewEventsResponse> EvaluatePreviewEvents(
-        Prices::PriceEvaluatePreviewEventsParams @params
-    )
+    public async Task<Price> Fetch(PriceFetchParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client))
-        {
-            Content = @params.BodyContent(),
-        };
+        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Prices::PriceEvaluatePreviewEventsResponse>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
-    }
-
-    public async Tasks::Task<Models::Price> Fetch(Prices::PriceFetchParams @params)
-    {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Get, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
-        {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (Http::HttpRequestException e)
-        {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
-        }
-        return Json::JsonSerializer.Deserialize<Models::Price>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+        return JsonSerializer.Deserialize<Price>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
     }
 }

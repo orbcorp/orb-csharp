@@ -1,57 +1,55 @@
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using AdjustmentIntervalProperties = Orb.Models.AdjustmentIntervalProperties;
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<AdjustmentInterval>))]
-public sealed record class AdjustmentInterval : Orb::ModelBase, Orb::IFromRaw<AdjustmentInterval>
+[JsonConverter(typeof(ModelConverter<AdjustmentInterval>))]
+public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentInterval>
 {
     public required string ID
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required AdjustmentIntervalProperties::Adjustment Adjustment
     {
         get
         {
-            if (!this.Properties.TryGetValue("adjustment", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("adjustment", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "adjustment",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<AdjustmentIntervalProperties::Adjustment>(
-                    element
-                ) ?? throw new System::ArgumentNullException("adjustment");
+            return JsonSerializer.Deserialize<AdjustmentIntervalProperties::Adjustment>(element)
+                ?? throw new System::ArgumentNullException("adjustment");
         }
-        set { this.Properties["adjustment"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["adjustment"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The price interval IDs that this adjustment applies to.
     /// </summary>
-    public required Generic::List<string> AppliesToPriceIntervalIDs
+    public required List<string> AppliesToPriceIntervalIDs
     {
         get
         {
             if (
                 !this.Properties.TryGetValue(
                     "applies_to_price_interval_ids",
-                    out Json::JsonElement element
+                    out JsonElement element
                 )
             )
                 throw new System::ArgumentOutOfRangeException(
@@ -59,13 +57,14 @@ public sealed record class AdjustmentInterval : Orb::ModelBase, Orb::IFromRaw<Ad
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<string>>(element)
+            return JsonSerializer.Deserialize<List<string>>(element)
                 ?? throw new System::ArgumentNullException("applies_to_price_interval_ids");
         }
         set
         {
-            this.Properties["applies_to_price_interval_ids"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this.Properties["applies_to_price_interval_ids"] = JsonSerializer.SerializeToElement(
+                value
+            );
         }
     }
 
@@ -76,15 +75,15 @@ public sealed record class AdjustmentInterval : Orb::ModelBase, Orb::IFromRaw<Ad
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("end_date", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "end_date",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
-        set { this.Properties["end_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -94,15 +93,15 @@ public sealed record class AdjustmentInterval : Orb::ModelBase, Orb::IFromRaw<Ad
     {
         get
         {
-            if (!this.Properties.TryGetValue("start_date", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("start_date", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "start_date",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(element);
         }
-        set { this.Properties["start_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -120,16 +119,14 @@ public sealed record class AdjustmentInterval : Orb::ModelBase, Orb::IFromRaw<Ad
     public AdjustmentInterval() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    AdjustmentInterval(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    AdjustmentInterval(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static AdjustmentInterval FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static AdjustmentInterval FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

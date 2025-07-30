@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.NewMaximumProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<AdjustmentType, string>))]
-public sealed record class AdjustmentType(string value) : Orb::IEnum<AdjustmentType, string>
+[JsonConverter(typeof(EnumConverter<AdjustmentType, string>))]
+public sealed record class AdjustmentType(string value) : IEnum<AdjustmentType, string>
 {
     public static readonly AdjustmentType Maximum = new("maximum");
 
@@ -20,7 +19,7 @@ public sealed record class AdjustmentType(string value) : Orb::IEnum<AdjustmentT
         _value switch
         {
             "maximum" => Value.Maximum,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

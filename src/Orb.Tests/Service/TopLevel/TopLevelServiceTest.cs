@@ -1,12 +1,11 @@
-using Tasks = System.Threading.Tasks;
-using Tests = Orb.Tests;
+using System.Threading.Tasks;
 
 namespace Orb.Tests.Service.TopLevel;
 
-public class TopLevelServiceTest : Tests::TestBase
+public class TopLevelServiceTest : TestBase
 {
     [Fact]
-    public async Tasks::Task Ping_Works()
+    public async Task Ping_Works()
     {
         var response = await this.client.TopLevel.Ping(new() { });
         response.Validate();

@@ -1,18 +1,13 @@
-using AddAdjustmentProperties = Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.AddAdjustmentProperties;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.AddAdjustmentProperties.AdjustmentVariants;
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<NewPercentageDiscount, Models::NewPercentageDiscount>)
-)]
-public sealed record class NewPercentageDiscount(Models::NewPercentageDiscount Value)
-    : AddAdjustmentProperties::Adjustment,
-        Orb::IVariant<NewPercentageDiscount, Models::NewPercentageDiscount>
+[JsonConverter(typeof(VariantConverter<NewPercentageDiscountVariant, NewPercentageDiscount>))]
+public sealed record class NewPercentageDiscountVariant(NewPercentageDiscount Value)
+    : Adjustment,
+        IVariant<NewPercentageDiscountVariant, NewPercentageDiscount>
 {
-    public static NewPercentageDiscount From(Models::NewPercentageDiscount value)
+    public static NewPercentageDiscountVariant From(NewPercentageDiscount value)
     {
         return new(value);
     }
@@ -23,14 +18,12 @@ public sealed record class NewPercentageDiscount(Models::NewPercentageDiscount V
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<NewUsageDiscount, Models::NewUsageDiscount>)
-)]
-public sealed record class NewUsageDiscount(Models::NewUsageDiscount Value)
-    : AddAdjustmentProperties::Adjustment,
-        Orb::IVariant<NewUsageDiscount, Models::NewUsageDiscount>
+[JsonConverter(typeof(VariantConverter<NewUsageDiscountVariant, NewUsageDiscount>))]
+public sealed record class NewUsageDiscountVariant(NewUsageDiscount Value)
+    : Adjustment,
+        IVariant<NewUsageDiscountVariant, NewUsageDiscount>
 {
-    public static NewUsageDiscount From(Models::NewUsageDiscount value)
+    public static NewUsageDiscountVariant From(NewUsageDiscount value)
     {
         return new(value);
     }
@@ -41,14 +34,12 @@ public sealed record class NewUsageDiscount(Models::NewUsageDiscount Value)
     }
 }
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<NewAmountDiscount, Models::NewAmountDiscount>)
-)]
-public sealed record class NewAmountDiscount(Models::NewAmountDiscount Value)
-    : AddAdjustmentProperties::Adjustment,
-        Orb::IVariant<NewAmountDiscount, Models::NewAmountDiscount>
+[JsonConverter(typeof(VariantConverter<NewAmountDiscountVariant, NewAmountDiscount>))]
+public sealed record class NewAmountDiscountVariant(NewAmountDiscount Value)
+    : Adjustment,
+        IVariant<NewAmountDiscountVariant, NewAmountDiscount>
 {
-    public static NewAmountDiscount From(Models::NewAmountDiscount value)
+    public static NewAmountDiscountVariant From(NewAmountDiscount value)
     {
         return new(value);
     }
@@ -59,12 +50,12 @@ public sealed record class NewAmountDiscount(Models::NewAmountDiscount Value)
     }
 }
 
-[Serialization::JsonConverter(typeof(Orb::VariantConverter<NewMinimum, Models::NewMinimum>))]
-public sealed record class NewMinimum(Models::NewMinimum Value)
-    : AddAdjustmentProperties::Adjustment,
-        Orb::IVariant<NewMinimum, Models::NewMinimum>
+[JsonConverter(typeof(VariantConverter<NewMinimumVariant, NewMinimum>))]
+public sealed record class NewMinimumVariant(NewMinimum Value)
+    : Adjustment,
+        IVariant<NewMinimumVariant, NewMinimum>
 {
-    public static NewMinimum From(Models::NewMinimum value)
+    public static NewMinimumVariant From(NewMinimum value)
     {
         return new(value);
     }
@@ -75,12 +66,12 @@ public sealed record class NewMinimum(Models::NewMinimum Value)
     }
 }
 
-[Serialization::JsonConverter(typeof(Orb::VariantConverter<NewMaximum, Models::NewMaximum>))]
-public sealed record class NewMaximum(Models::NewMaximum Value)
-    : AddAdjustmentProperties::Adjustment,
-        Orb::IVariant<NewMaximum, Models::NewMaximum>
+[JsonConverter(typeof(VariantConverter<NewMaximumVariant, NewMaximum>))]
+public sealed record class NewMaximumVariant(NewMaximum Value)
+    : Adjustment,
+        IVariant<NewMaximumVariant, NewMaximum>
 {
-    public static NewMaximum From(Models::NewMaximum value)
+    public static NewMaximumVariant From(NewMaximum value)
     {
         return new(value);
     }

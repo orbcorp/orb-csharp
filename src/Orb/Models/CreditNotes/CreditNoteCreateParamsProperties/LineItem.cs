@@ -1,14 +1,13 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.CreditNotes.CreditNoteCreateParamsProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<LineItem>))]
-public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
+[JsonConverter(typeof(ModelConverter<LineItem>))]
+public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
 {
     /// <summary>
     /// The total amount in the invoice's currency to credit this line item.
@@ -17,16 +16,13 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("amount", out JsonElement element))
+                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("amount");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("amount");
         }
-        set { this.Properties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -36,21 +32,16 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     {
         get
         {
-            if (!this.Properties.TryGetValue("invoice_line_item_id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("invoice_line_item_id", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "invoice_line_item_id",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("invoice_line_item_id");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("invoice_line_item_id");
         }
-        set
-        {
-            this.Properties["invoice_line_item_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.Properties["invoice_line_item_id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -59,16 +50,16 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     /// line item. If not provided, will use the global end_date if available, otherwise
     /// defaults to the original invoice line item's end date. This date is inclusive.
     /// </summary>
-    public System::DateOnly? EndDate
+    public DateOnly? EndDate
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateOnly?>(element);
+            return JsonSerializer.Deserialize<DateOnly?>(element);
         }
-        set { this.Properties["end_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -77,16 +68,16 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     /// line item. If not provided, will use the global start_date if available, otherwise
     /// defaults to the original invoice line item's start date. This date is inclusive.
     /// </summary>
-    public System::DateOnly? StartDate
+    public DateOnly? StartDate
     {
         get
         {
-            if (!this.Properties.TryGetValue("start_date", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("start_date", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<System::DateOnly?>(element);
+            return JsonSerializer.Deserialize<DateOnly?>(element);
         }
-        set { this.Properties["start_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -100,16 +91,14 @@ public sealed record class LineItem : Orb::ModelBase, Orb::IFromRaw<LineItem>
     public LineItem() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    LineItem(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    LineItem(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static LineItem FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static LineItem FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

@@ -1,39 +1,36 @@
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Subscriptions = Orb.Models.Coupons.Subscriptions;
-using Subscriptions1 = Orb.Models.Subscriptions;
-using System = System;
-using Tasks = System.Threading.Tasks;
+using System;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Orb.Models.Coupons.Subscriptions;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Service.Coupons.Subscriptions;
 
 public sealed class SubscriptionService : ISubscriptionService
 {
-    readonly Orb::IOrbClient _client;
+    readonly IOrbClient _client;
 
-    public SubscriptionService(Orb::IOrbClient client)
+    public SubscriptionService(IOrbClient client)
     {
         _client = client;
     }
 
-    public async Tasks::Task<Subscriptions1::Subscriptions> List(
-        Subscriptions::SubscriptionListParams @params
-    )
+    public async Task<Subscriptions::Subscriptions> List(SubscriptionListParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Get, @params.Url(this._client));
+        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Subscriptions1::Subscriptions>(
+        return JsonSerializer.Deserialize<Subscriptions::Subscriptions>(
                 await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+            ) ?? throw new NullReferenceException();
     }
 }

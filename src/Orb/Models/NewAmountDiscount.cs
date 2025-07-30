@@ -1,47 +1,45 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using NewAmountDiscountProperties = Orb.Models.NewAmountDiscountProperties;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<NewAmountDiscount>))]
-public sealed record class NewAmountDiscount : Orb::ModelBase, Orb::IFromRaw<NewAmountDiscount>
+[JsonConverter(typeof(ModelConverter<NewAmountDiscount>))]
+public sealed record class NewAmountDiscount : ModelBase, IFromRaw<NewAmountDiscount>
 {
     public required NewAmountDiscountProperties::AdjustmentType AdjustmentType
     {
         get
         {
-            if (!this.Properties.TryGetValue("adjustment_type", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("adjustment_type", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "adjustment_type",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<NewAmountDiscountProperties::AdjustmentType>(
-                    element
-                ) ?? throw new System::ArgumentNullException("adjustment_type");
+            return JsonSerializer.Deserialize<NewAmountDiscountProperties::AdjustmentType>(element)
+                ?? throw new System::ArgumentNullException("adjustment_type");
         }
-        set { this.Properties["adjustment_type"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["adjustment_type"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string AmountDiscount
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount_discount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("amount_discount", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "amount_discount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("amount_discount");
         }
-        set { this.Properties["amount_discount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["amount_discount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -51,52 +49,42 @@ public sealed record class NewAmountDiscount : Orb::ModelBase, Orb::IFromRaw<New
     {
         get
         {
-            if (!this.Properties.TryGetValue("applies_to_all", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("applies_to_all", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<NewAmountDiscountProperties::AppliesToAll?>(
-                element
-            );
+            return JsonSerializer.Deserialize<NewAmountDiscountProperties::AppliesToAll?>(element);
         }
-        set { this.Properties["applies_to_all"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["applies_to_all"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The set of item IDs to which this adjustment applies.
     /// </summary>
-    public Generic::List<string>? AppliesToItemIDs
+    public List<string>? AppliesToItemIDs
     {
         get
         {
-            if (!this.Properties.TryGetValue("applies_to_item_ids", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("applies_to_item_ids", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<string>?>(element);
+            return JsonSerializer.Deserialize<List<string>?>(element);
         }
-        set
-        {
-            this.Properties["applies_to_item_ids"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["applies_to_item_ids"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The set of price IDs to which this adjustment applies.
     /// </summary>
-    public Generic::List<string>? AppliesToPriceIDs
+    public List<string>? AppliesToPriceIDs
     {
         get
         {
-            if (!this.Properties.TryGetValue("applies_to_price_ids", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("applies_to_price_ids", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<string>?>(element);
+            return JsonSerializer.Deserialize<List<string>?>(element);
         }
-        set
-        {
-            this.Properties["applies_to_price_ids"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        set { this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -106,27 +94,27 @@ public sealed record class NewAmountDiscount : Orb::ModelBase, Orb::IFromRaw<New
     {
         get
         {
-            if (!this.Properties.TryGetValue("currency", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("currency", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["currency"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// A list of filters that determine which prices this adjustment will apply to.
     /// </summary>
-    public Generic::List<TransformPriceFilter>? Filters
+    public List<TransformPriceFilter>? Filters
     {
         get
         {
-            if (!this.Properties.TryGetValue("filters", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("filters", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<TransformPriceFilter>?>(element);
+            return JsonSerializer.Deserialize<List<TransformPriceFilter>?>(element);
         }
-        set { this.Properties["filters"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["filters"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -137,15 +125,12 @@ public sealed record class NewAmountDiscount : Orb::ModelBase, Orb::IFromRaw<New
     {
         get
         {
-            if (!this.Properties.TryGetValue("is_invoice_level", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("is_invoice_level", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element);
         }
-        set
-        {
-            this.Properties["is_invoice_level"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["is_invoice_level"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -155,14 +140,12 @@ public sealed record class NewAmountDiscount : Orb::ModelBase, Orb::IFromRaw<New
     {
         get
         {
-            if (!this.Properties.TryGetValue("price_type", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("price_type", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<NewAmountDiscountProperties::PriceType?>(
-                element
-            );
+            return JsonSerializer.Deserialize<NewAmountDiscountProperties::PriceType?>(element);
         }
-        set { this.Properties["price_type"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["price_type"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -190,16 +173,14 @@ public sealed record class NewAmountDiscount : Orb::ModelBase, Orb::IFromRaw<New
     public NewAmountDiscount() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    NewAmountDiscount(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    NewAmountDiscount(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static NewAmountDiscount FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static NewAmountDiscount FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

@@ -1,16 +1,13 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.Credits.TopUps;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<TopUpInvoiceSettings>))]
-public sealed record class TopUpInvoiceSettings
-    : Orb::ModelBase,
-        Orb::IFromRaw<TopUpInvoiceSettings>
+[JsonConverter(typeof(ModelConverter<TopUpInvoiceSettings>))]
+public sealed record class TopUpInvoiceSettings : ModelBase, IFromRaw<TopUpInvoiceSettings>
 {
     /// <summary>
     /// Whether the credits purchase invoice should auto collect with the customer's
@@ -20,15 +17,15 @@ public sealed record class TopUpInvoiceSettings
     {
         get
         {
-            if (!this.Properties.TryGetValue("auto_collection", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("auto_collection", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "auto_collection",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element);
         }
-        set { this.Properties["auto_collection"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["auto_collection"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -40,15 +37,12 @@ public sealed record class TopUpInvoiceSettings
     {
         get
         {
-            if (!this.Properties.TryGetValue("net_terms", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "net_terms",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("net_terms", out JsonElement element))
+                throw new ArgumentOutOfRangeException("net_terms", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element);
         }
-        set { this.Properties["net_terms"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["net_terms"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -58,12 +52,12 @@ public sealed record class TopUpInvoiceSettings
     {
         get
         {
-            if (!this.Properties.TryGetValue("memo", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("memo", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["memo"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["memo"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -76,19 +70,14 @@ public sealed record class TopUpInvoiceSettings
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "require_successful_payment",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.Properties.TryGetValue("require_successful_payment", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element);
         }
         set
         {
-            this.Properties["require_successful_payment"] = Json::JsonSerializer.SerializeToElement(
+            this.Properties["require_successful_payment"] = JsonSerializer.SerializeToElement(
                 value
             );
         }
@@ -105,16 +94,14 @@ public sealed record class TopUpInvoiceSettings
     public TopUpInvoiceSettings() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    TopUpInvoiceSettings(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    TopUpInvoiceSettings(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static TopUpInvoiceSettings FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static TopUpInvoiceSettings FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

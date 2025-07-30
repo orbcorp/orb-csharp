@@ -1,6 +1,5 @@
-using Http = System.Net.Http;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Net.Http;
 
 namespace Orb.Models.Plans;
 
@@ -17,13 +16,13 @@ namespace Orb.Models.Plans;
 /// ## Phases Orb supports plan phases, also known as contract ramps. For plans with
 /// phases, the serialized prices refer to all prices across all phases.
 /// </summary>
-public sealed record class PlanFetchParams : Orb::ParamsBase
+public sealed record class PlanFetchParams : ParamsBase
 {
     public required string PlanID;
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/') + string.Format("/plans/{0}", this.PlanID)
         )
         {
@@ -31,12 +30,12 @@ public sealed record class PlanFetchParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

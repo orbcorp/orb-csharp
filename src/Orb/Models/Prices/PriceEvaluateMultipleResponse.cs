@@ -1,30 +1,29 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using PriceEvaluateMultipleResponseProperties = Orb.Models.Prices.PriceEvaluateMultipleResponseProperties;
-using Serialization = System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Prices;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<PriceEvaluateMultipleResponse>))]
+[JsonConverter(typeof(ModelConverter<PriceEvaluateMultipleResponse>))]
 public sealed record class PriceEvaluateMultipleResponse
-    : Orb::ModelBase,
-        Orb::IFromRaw<PriceEvaluateMultipleResponse>
+    : ModelBase,
+        IFromRaw<PriceEvaluateMultipleResponse>
 {
-    public required Generic::List<PriceEvaluateMultipleResponseProperties::Data> Data
+    public required List<PriceEvaluateMultipleResponseProperties::Data> Data
     {
         get
         {
-            if (!this.Properties.TryGetValue("data", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("data", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Generic::List<PriceEvaluateMultipleResponseProperties::Data>>(
+            return JsonSerializer.Deserialize<List<PriceEvaluateMultipleResponseProperties::Data>>(
                     element
                 ) ?? throw new System::ArgumentNullException("data");
         }
-        set { this.Properties["data"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -38,15 +37,15 @@ public sealed record class PriceEvaluateMultipleResponse
     public PriceEvaluateMultipleResponse() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    PriceEvaluateMultipleResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    PriceEvaluateMultipleResponse(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
     public static PriceEvaluateMultipleResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        Dictionary<string, JsonElement> properties
     )
     {
         return new(properties);

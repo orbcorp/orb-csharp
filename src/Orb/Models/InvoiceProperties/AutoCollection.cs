@@ -1,14 +1,13 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.InvoiceProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<AutoCollection>))]
-public sealed record class AutoCollection : Orb::ModelBase, Orb::IFromRaw<AutoCollection>
+[JsonConverter(typeof(ModelConverter<AutoCollection>))]
+public sealed record class AutoCollection : ModelBase, IFromRaw<AutoCollection>
 {
     /// <summary>
     /// True only if auto-collection is enabled for this invoice.
@@ -17,15 +16,15 @@ public sealed record class AutoCollection : Orb::ModelBase, Orb::IFromRaw<AutoCo
     {
         get
         {
-            if (!this.Properties.TryGetValue("enabled", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("enabled", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "enabled",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element);
         }
-        set { this.Properties["enabled"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["enabled"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -37,15 +36,15 @@ public sealed record class AutoCollection : Orb::ModelBase, Orb::IFromRaw<AutoCo
     {
         get
         {
-            if (!this.Properties.TryGetValue("next_attempt_at", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("next_attempt_at", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "next_attempt_at",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
-        set { this.Properties["next_attempt_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["next_attempt_at"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -55,15 +54,15 @@ public sealed record class AutoCollection : Orb::ModelBase, Orb::IFromRaw<AutoCo
     {
         get
         {
-            if (!this.Properties.TryGetValue("num_attempts", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("num_attempts", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "num_attempts",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element);
         }
-        set { this.Properties["num_attempts"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["num_attempts"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -78,24 +77,17 @@ public sealed record class AutoCollection : Orb::ModelBase, Orb::IFromRaw<AutoCo
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "previously_attempted_at",
-                    out Json::JsonElement element
-                )
-            )
+            if (!this.Properties.TryGetValue("previously_attempted_at", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "previously_attempted_at",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(element);
         }
         set
         {
-            this.Properties["previously_attempted_at"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            this.Properties["previously_attempted_at"] = JsonSerializer.SerializeToElement(value);
         }
     }
 
@@ -110,16 +102,14 @@ public sealed record class AutoCollection : Orb::ModelBase, Orb::IFromRaw<AutoCo
     public AutoCollection() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    AutoCollection(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    AutoCollection(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static AutoCollection FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static AutoCollection FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

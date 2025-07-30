@@ -1,6 +1,5 @@
-using Http = System.Net.Http;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Net.Http;
 
 namespace Orb.Models.Plans.ExternalPlanID;
 
@@ -20,13 +19,13 @@ namespace Orb.Models.Plans.ExternalPlanID;
 /// that is present. A detailed explanation of price types can be found in the [Price
 /// schema](/core-concepts#plan-and-price). "
 /// </summary>
-public sealed record class ExternalPlanIDFetchParams : Orb::ParamsBase
+public sealed record class ExternalPlanIDFetchParams : ParamsBase
 {
     public required string ExternalPlanID;
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/plans/external_plan_id/{0}", this.ExternalPlanID)
         )
@@ -35,12 +34,12 @@ public sealed record class ExternalPlanIDFetchParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.NewAvalaraTaxConfigurationProperties;
 
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<TaxProvider, string>))]
-public sealed record class TaxProvider(string value) : Orb::IEnum<TaxProvider, string>
+[JsonConverter(typeof(EnumConverter<TaxProvider, string>))]
+public sealed record class TaxProvider(string value) : IEnum<TaxProvider, string>
 {
     public static readonly TaxProvider Avalara = new("avalara");
 
@@ -20,7 +19,7 @@ public sealed record class TaxProvider(string value) : Orb::IEnum<TaxProvider, s
         _value switch
         {
             "avalara" => Value.Avalara,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

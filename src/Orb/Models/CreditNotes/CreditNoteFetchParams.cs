@@ -1,6 +1,5 @@
-using Http = System.Net.Http;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Net.Http;
 
 namespace Orb.Models.CreditNotes;
 
@@ -8,13 +7,13 @@ namespace Orb.Models.CreditNotes;
 /// This endpoint is used to fetch a single [`Credit Note`](/invoicing/credit-notes)
 /// given an identifier.
 /// </summary>
-public sealed record class CreditNoteFetchParams : Orb::ParamsBase
+public sealed record class CreditNoteFetchParams : ParamsBase
 {
     public required string CreditNoteID;
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/credit_notes/{0}", this.CreditNoteID)
         )
@@ -23,12 +22,12 @@ public sealed record class CreditNoteFetchParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

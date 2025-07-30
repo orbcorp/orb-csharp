@@ -1,44 +1,44 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Specialized = System.Collections.Specialized;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using System = System;
-using Text = System.Text;
 using Web = System.Web;
 
 namespace Orb;
 
 public abstract record class ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> QueryProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> QueryProperties { get; set; } = [];
 
-    public Generic::Dictionary<string, Json::JsonElement> HeaderProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> HeaderProperties { get; set; } = [];
 
     public abstract System::Uri Url(IOrbClient client);
 
     protected static void AddQueryElementToCollection(
-        Specialized::NameValueCollection collection,
+        NameValueCollection collection,
         string key,
-        Json::JsonElement element
+        JsonElement element
     )
     {
         switch (element.ValueKind)
         {
-            case Json::JsonValueKind.Undefined:
-            case Json::JsonValueKind.Null:
+            case JsonValueKind.Undefined:
+            case JsonValueKind.Null:
                 collection.Add(key, "");
                 break;
-            case Json::JsonValueKind.String:
-            case Json::JsonValueKind.Number:
+            case JsonValueKind.String:
+            case JsonValueKind.Number:
                 collection.Add(key, element.ToString());
                 break;
-            case Json::JsonValueKind.True:
+            case JsonValueKind.True:
                 collection.Add(key, "true");
                 break;
-            case Json::JsonValueKind.False:
+            case JsonValueKind.False:
                 collection.Add(key, "false");
                 break;
-            case Json::JsonValueKind.Object:
+            case JsonValueKind.Object:
                 foreach (var item in element.EnumerateObject())
                 {
                     AddQueryElementToCollection(
@@ -48,16 +48,16 @@ public abstract record class ParamsBase
                     );
                 }
                 break;
-            case Json::JsonValueKind.Array:
+            case JsonValueKind.Array:
                 foreach (var item in element.EnumerateArray())
                 {
                     collection.Add(
                         string.Format("{0}[]", key),
                         item.ValueKind switch
                         {
-                            Json::JsonValueKind.Null => "",
-                            Json::JsonValueKind.True => "true",
-                            Json::JsonValueKind.False => "false",
+                            JsonValueKind.Null => "",
+                            JsonValueKind.True => "true",
+                            JsonValueKind.False => "false",
                             _ => item.GetString(),
                         }
                     );
@@ -67,28 +67,28 @@ public abstract record class ParamsBase
     }
 
     protected static void AddHeaderElementToRequest(
-        Http::HttpRequestMessage request,
+        HttpRequestMessage request,
         string key,
-        Json::JsonElement element
+        JsonElement element
     )
     {
         switch (element.ValueKind)
         {
-            case Json::JsonValueKind.Undefined:
-            case Json::JsonValueKind.Null:
+            case JsonValueKind.Undefined:
+            case JsonValueKind.Null:
                 request.Headers.Add(key, "");
                 break;
-            case Json::JsonValueKind.String:
-            case Json::JsonValueKind.Number:
+            case JsonValueKind.String:
+            case JsonValueKind.Number:
                 request.Headers.Add(key, element.ToString());
                 break;
-            case Json::JsonValueKind.True:
+            case JsonValueKind.True:
                 request.Headers.Add(key, "true");
                 break;
-            case Json::JsonValueKind.False:
+            case JsonValueKind.False:
                 request.Headers.Add(key, "false");
                 break;
-            case Json::JsonValueKind.Object:
+            case JsonValueKind.Object:
                 foreach (var item in element.EnumerateObject())
                 {
                     AddHeaderElementToRequest(
@@ -98,16 +98,16 @@ public abstract record class ParamsBase
                     );
                 }
                 break;
-            case Json::JsonValueKind.Array:
+            case JsonValueKind.Array:
                 foreach (var item in element.EnumerateArray())
                 {
                     request.Headers.Add(
                         key,
                         item.ValueKind switch
                         {
-                            Json::JsonValueKind.Null => "",
-                            Json::JsonValueKind.True => "true",
-                            Json::JsonValueKind.False => "false",
+                            JsonValueKind.Null => "",
+                            JsonValueKind.True => "true",
+                            JsonValueKind.False => "false",
                             _ => item.GetString(),
                         }
                     );
@@ -118,12 +118,12 @@ public abstract record class ParamsBase
 
     protected string QueryString(IOrbClient client)
     {
-        Specialized::NameValueCollection collection = [];
+        NameValueCollection collection = [];
         foreach (var item in this.QueryProperties)
         {
             ParamsBase.AddQueryElementToCollection(collection, item.Key, item.Value);
         }
-        Text::StringBuilder sb = new();
+        StringBuilder sb = new();
         bool first = true;
         foreach (var key in collection.AllKeys)
         {
@@ -142,7 +142,7 @@ public abstract record class ParamsBase
         return sb.ToString();
     }
 
-    protected static void AddDefaultHeaders(Http::HttpRequestMessage request, IOrbClient client)
+    protected static void AddDefaultHeaders(HttpRequestMessage request, IOrbClient client)
     {
         request.Headers.Add("Authorization", string.Format("Bearer {0}", client.APIKey));
     }

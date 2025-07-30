@@ -1,29 +1,28 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<AggregatedCost>))]
-public sealed record class AggregatedCost : Orb::ModelBase, Orb::IFromRaw<AggregatedCost>
+[JsonConverter(typeof(ModelConverter<AggregatedCost>))]
+public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
 {
-    public required Generic::List<PerPriceCost> PerPriceCosts
+    public required List<PerPriceCost> PerPriceCosts
     {
         get
         {
-            if (!this.Properties.TryGetValue("per_price_costs", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("per_price_costs", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "per_price_costs",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<PerPriceCost>>(element)
+            return JsonSerializer.Deserialize<List<PerPriceCost>>(element)
                 ?? throw new System::ArgumentNullException("per_price_costs");
         }
-        set { this.Properties["per_price_costs"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["per_price_costs"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -33,46 +32,46 @@ public sealed record class AggregatedCost : Orb::ModelBase, Orb::IFromRaw<Aggreg
     {
         get
         {
-            if (!this.Properties.TryGetValue("subtotal", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("subtotal", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "subtotal",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("subtotal");
         }
-        set { this.Properties["subtotal"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["subtotal"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required System::DateTime TimeframeEnd
     {
         get
         {
-            if (!this.Properties.TryGetValue("timeframe_end", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("timeframe_end", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "timeframe_end",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(element);
         }
-        set { this.Properties["timeframe_end"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required System::DateTime TimeframeStart
     {
         get
         {
-            if (!this.Properties.TryGetValue("timeframe_start", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("timeframe_start", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "timeframe_start",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(element);
         }
-        set { this.Properties["timeframe_start"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -82,13 +81,13 @@ public sealed record class AggregatedCost : Orb::ModelBase, Orb::IFromRaw<Aggreg
     {
         get
         {
-            if (!this.Properties.TryGetValue("total", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("total", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("total", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("total");
         }
-        set { this.Properties["total"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["total"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -106,16 +105,14 @@ public sealed record class AggregatedCost : Orb::ModelBase, Orb::IFromRaw<Aggreg
     public AggregatedCost() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    AggregatedCost(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    AggregatedCost(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static AggregatedCost FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static AggregatedCost FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

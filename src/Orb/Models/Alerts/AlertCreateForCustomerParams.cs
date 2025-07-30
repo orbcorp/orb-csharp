@@ -1,10 +1,9 @@
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using AlertCreateForCustomerParamsProperties = Orb.Models.Alerts.AlertCreateForCustomerParamsProperties;
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
 using System = System;
-using Text = System.Text;
 
 namespace Orb.Models.Alerts;
 
@@ -16,9 +15,9 @@ namespace Orb.Models.Alerts;
 /// `credit_balance_dropped` alerts require a list of thresholds to be provided while
 /// `credit_balance_depleted`  and `credit_balance_recovered` alerts do not require thresholds.
 /// </summary>
-public sealed record class AlertCreateForCustomerParams : Orb::ParamsBase
+public sealed record class AlertCreateForCustomerParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     public required string CustomerID;
 
@@ -29,16 +28,16 @@ public sealed record class AlertCreateForCustomerParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("currency", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("currency", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "currency",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("currency");
         }
-        set { this.BodyProperties["currency"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -48,32 +47,31 @@ public sealed record class AlertCreateForCustomerParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("type", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("type", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<AlertCreateForCustomerParamsProperties::Type>(
-                    element
-                ) ?? throw new System::ArgumentNullException("type");
+            return JsonSerializer.Deserialize<AlertCreateForCustomerParamsProperties::Type>(element)
+                ?? throw new System::ArgumentNullException("type");
         }
-        set { this.BodyProperties["type"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["type"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The thresholds that define the values at which the alert will be triggered.
     /// </summary>
-    public Generic::List<Threshold>? Thresholds
+    public List<Threshold>? Thresholds
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("thresholds", out Json::JsonElement element))
+            if (!this.BodyProperties.TryGetValue("thresholds", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::List<Threshold>?>(element);
+            return JsonSerializer.Deserialize<List<Threshold>?>(element);
         }
-        set { this.BodyProperties["thresholds"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.BodyProperties["thresholds"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
         return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
@@ -84,21 +82,21 @@ public sealed record class AlertCreateForCustomerParams : Orb::ParamsBase
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    public StringContent BodyContent()
     {
         return new(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

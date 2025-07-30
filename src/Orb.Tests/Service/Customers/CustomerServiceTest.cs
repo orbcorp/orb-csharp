@@ -1,19 +1,18 @@
-using CustomerCreateParamsProperties = Orb.Models.Customers.CustomerCreateParamsProperties;
-using Customers = Orb.Models.Customers;
+using System;
+using System.Threading.Tasks;
+using Orb.Models.Customers;
+using Orb.Models.Customers.CustomerCreateParamsProperties;
+using Orb.Models.Customers.NewAvalaraTaxConfigurationProperties;
 using CustomerTaxIDProperties = Orb.Models.CustomerTaxIDProperties;
 using CustomerUpdateByExternalIDParamsProperties = Orb.Models.Customers.CustomerUpdateByExternalIDParamsProperties;
 using CustomerUpdateParamsProperties = Orb.Models.Customers.CustomerUpdateParamsProperties;
-using NewAvalaraTaxConfigurationProperties = Orb.Models.Customers.NewAvalaraTaxConfigurationProperties;
-using System = System;
-using Tasks = System.Threading.Tasks;
-using Tests = Orb.Tests;
 
 namespace Orb.Tests.Service.Customers;
 
-public class CustomerServiceTest : Tests::TestBase
+public class CustomerServiceTest : TestBase
 {
     [Fact]
-    public async Tasks::Task Create_Works()
+    public async Task Create_Works()
     {
         var customer = await this.client.Customers.Create(
             new()
@@ -52,7 +51,7 @@ public class CustomerServiceTest : Tests::TestBase
                     ParentCustomerID = "parent_customer_id",
                 },
                 Metadata = new() { { "foo", "string" } },
-                PaymentProvider = CustomerCreateParamsProperties::PaymentProvider.Quickbooks,
+                PaymentProvider = PaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
                 ReportingConfiguration = new() { Exempt = true },
                 ShippingAddress = new()
@@ -64,10 +63,10 @@ public class CustomerServiceTest : Tests::TestBase
                     PostalCode = "postal_code",
                     State = "state",
                 },
-                TaxConfiguration = new Customers::NewAvalaraTaxConfiguration()
+                TaxConfiguration = new NewAvalaraTaxConfiguration()
                 {
                     TaxExempt = true,
-                    TaxProvider = NewAvalaraTaxConfigurationProperties::TaxProvider.Avalara,
+                    TaxProvider = TaxProvider.Avalara,
                     TaxExemptionCode = "tax_exemption_code",
                 },
                 TaxID = new()
@@ -83,7 +82,7 @@ public class CustomerServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task Update_Works()
+    public async Task Update_Works()
     {
         var customer = await this.client.Customers.Update(
             new()
@@ -135,10 +134,10 @@ public class CustomerServiceTest : Tests::TestBase
                     PostalCode = "postal_code",
                     State = "state",
                 },
-                TaxConfiguration = new Customers::NewAvalaraTaxConfiguration()
+                TaxConfiguration = new NewAvalaraTaxConfiguration()
                 {
                     TaxExempt = true,
-                    TaxProvider = NewAvalaraTaxConfigurationProperties::TaxProvider.Avalara,
+                    TaxProvider = TaxProvider.Avalara,
                     TaxExemptionCode = "tax_exemption_code",
                 },
                 TaxID = new()
@@ -153,15 +152,15 @@ public class CustomerServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task List_Works()
+    public async Task List_Works()
     {
         var page = await this.client.Customers.List(
             new()
             {
-                CreatedAtGt = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtGte = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtLt = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtLte = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtGt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtGte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtLt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtLte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                 Cursor = "cursor",
                 Limit = 1,
             }
@@ -170,20 +169,20 @@ public class CustomerServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task Delete_Works()
+    public async Task Delete_Works()
     {
         await this.client.Customers.Delete(new() { CustomerID = "customer_id" });
     }
 
     [Fact]
-    public async Tasks::Task Fetch_Works()
+    public async Task Fetch_Works()
     {
         var customer = await this.client.Customers.Fetch(new() { CustomerID = "customer_id" });
         customer.Validate();
     }
 
     [Fact]
-    public async Tasks::Task FetchByExternalID_Works()
+    public async Task FetchByExternalID_Works()
     {
         var customer = await this.client.Customers.FetchByExternalID(
             new() { ExternalCustomerID = "external_customer_id" }
@@ -192,7 +191,7 @@ public class CustomerServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task SyncPaymentMethodsFromGateway_Works()
+    public async Task SyncPaymentMethodsFromGateway_Works()
     {
         await this.client.Customers.SyncPaymentMethodsFromGateway(
             new() { CustomerID = "customer_id" }
@@ -200,7 +199,7 @@ public class CustomerServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task SyncPaymentMethodsFromGatewayByExternalCustomerID_Works()
+    public async Task SyncPaymentMethodsFromGatewayByExternalCustomerID_Works()
     {
         await this.client.Customers.SyncPaymentMethodsFromGatewayByExternalCustomerID(
             new() { ExternalCustomerID = "external_customer_id" }
@@ -208,7 +207,7 @@ public class CustomerServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task UpdateByExternalID_Works()
+    public async Task UpdateByExternalID_Works()
     {
         var customer = await this.client.Customers.UpdateByExternalID(
             new()
@@ -261,10 +260,10 @@ public class CustomerServiceTest : Tests::TestBase
                     PostalCode = "postal_code",
                     State = "state",
                 },
-                TaxConfiguration = new Customers::NewAvalaraTaxConfiguration()
+                TaxConfiguration = new NewAvalaraTaxConfiguration()
                 {
                     TaxExempt = true,
-                    TaxProvider = NewAvalaraTaxConfigurationProperties::TaxProvider.Avalara,
+                    TaxProvider = TaxProvider.Avalara,
                     TaxExemptionCode = "tax_exemption_code",
                 },
                 TaxID = new()

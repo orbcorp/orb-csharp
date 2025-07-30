@@ -1,12 +1,12 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Net = System.Net;
+using System.Diagnostics.CodeAnalysis;
+using System.Net;
 using System = System;
 
 namespace Orb;
 
 public sealed class HttpException : System::Exception
 {
-    public required Net::HttpStatusCode? StatusCode { get; set; }
+    public required HttpStatusCode? StatusCode { get; set; }
     public required string ResponseBody { get; set; }
     public override string Message
     {
@@ -20,8 +20,8 @@ public sealed class HttpException : System::Exception
         }
     }
 
-    [CodeAnalysis::SetsRequiredMembers]
-    public HttpException(Net::HttpStatusCode? statusCode, string responseBody)
+    [SetsRequiredMembers]
+    public HttpException(HttpStatusCode? statusCode, string responseBody)
     {
         this.StatusCode = statusCode;
         this.ResponseBody = responseBody;

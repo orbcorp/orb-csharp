@@ -1,16 +1,12 @@
-using CouponCreateParamsProperties = Orb.Models.Coupons.CouponCreateParamsProperties;
+using System.Text.Json.Serialization;
 using DiscountProperties = Orb.Models.Coupons.CouponCreateParamsProperties.DiscountProperties;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
 
 namespace Orb.Models.Coupons.CouponCreateParamsProperties.DiscountVariants;
 
-[Serialization::JsonConverter(
-    typeof(Orb::VariantConverter<Percentage, DiscountProperties::Percentage>)
-)]
+[JsonConverter(typeof(VariantConverter<Percentage, DiscountProperties::Percentage>))]
 public sealed record class Percentage(DiscountProperties::Percentage Value)
-    : CouponCreateParamsProperties::Discount,
-        Orb::IVariant<Percentage, DiscountProperties::Percentage>
+    : Discount,
+        IVariant<Percentage, DiscountProperties::Percentage>
 {
     public static Percentage From(DiscountProperties::Percentage value)
     {
@@ -23,10 +19,10 @@ public sealed record class Percentage(DiscountProperties::Percentage Value)
     }
 }
 
-[Serialization::JsonConverter(typeof(Orb::VariantConverter<Amount, DiscountProperties::Amount>))]
+[JsonConverter(typeof(VariantConverter<Amount, DiscountProperties::Amount>))]
 public sealed record class Amount(DiscountProperties::Amount Value)
-    : CouponCreateParamsProperties::Discount,
-        Orb::IVariant<Amount, DiscountProperties::Amount>
+    : Discount,
+        IVariant<Amount, DiscountProperties::Amount>
 {
     public static Amount From(DiscountProperties::Amount value)
     {

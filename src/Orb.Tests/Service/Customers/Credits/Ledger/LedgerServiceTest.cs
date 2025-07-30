@@ -1,30 +1,29 @@
-using BodyProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties;
-using BodyProperties1 = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties;
+using System;
+using System.Threading.Tasks;
+using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties;
+using Orb.Models.Customers.Credits.Ledger.LedgerListParamsProperties;
+using BodyProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties;
 using LedgerListByExternalIDParamsProperties = Orb.Models.Customers.Credits.Ledger.LedgerListByExternalIDParamsProperties;
-using LedgerListParamsProperties = Orb.Models.Customers.Credits.Ledger.LedgerListParamsProperties;
-using System = System;
-using Tasks = System.Threading.Tasks;
-using Tests = Orb.Tests;
 
 namespace Orb.Tests.Service.Customers.Credits.Ledger;
 
-public class LedgerServiceTest : Tests::TestBase
+public class LedgerServiceTest : TestBase
 {
     [Fact]
-    public async Tasks::Task List_Works()
+    public async Task List_Works()
     {
         var page = await this.client.Customers.Credits.Ledger.List(
             new()
             {
                 CustomerID = "customer_id",
-                CreatedAtGt = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtGte = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtLt = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtLte = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtGt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtGte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtLt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtLte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                 Currency = "currency",
                 Cursor = "cursor",
-                EntryStatus = LedgerListParamsProperties::EntryStatus.Committed,
-                EntryType = LedgerListParamsProperties::EntryType.Increment,
+                EntryStatus = EntryStatus.Committed,
+                EntryType = EntryType.Increment,
                 Limit = 1,
                 MinimumAmount = "minimum_amount",
             }
@@ -33,24 +32,24 @@ public class LedgerServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task CreateEntry_Works()
+    public async Task CreateEntry_Works()
     {
         var response = await this.client.Customers.Credits.Ledger.CreateEntry(
             new()
             {
                 CustomerID = "customer_id",
-                Body = new BodyProperties::Increment()
+                Body = new Increment()
                 {
                     Amount = 0,
                     Currency = "currency",
                     Description = "description",
-                    EffectiveDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                    ExpiryDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                    EffectiveDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                    ExpiryDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                     InvoiceSettings = new()
                     {
                         AutoCollection = true,
                         NetTerms = 0,
-                        InvoiceDate = System::DateOnly.Parse("2019-12-27"),
+                        InvoiceDate = DateOnly.Parse("2019-12-27"),
                         Memo = "memo",
                         RequireSuccessfulPayment = true,
                     },
@@ -63,24 +62,24 @@ public class LedgerServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task CreateEntryByExternalID_Works()
+    public async Task CreateEntryByExternalID_Works()
     {
         var response = await this.client.Customers.Credits.Ledger.CreateEntryByExternalID(
             new()
             {
                 ExternalCustomerID = "external_customer_id",
-                Body = new BodyProperties1::Increment()
+                Body = new BodyProperties::Increment()
                 {
                     Amount = 0,
                     Currency = "currency",
                     Description = "description",
-                    EffectiveDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                    ExpiryDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                    EffectiveDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                    ExpiryDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                     InvoiceSettings = new()
                     {
                         AutoCollection = true,
                         NetTerms = 0,
-                        InvoiceDate = System::DateOnly.Parse("2019-12-27"),
+                        InvoiceDate = DateOnly.Parse("2019-12-27"),
                         Memo = "memo",
                         RequireSuccessfulPayment = true,
                     },
@@ -93,16 +92,16 @@ public class LedgerServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task ListByExternalID_Works()
+    public async Task ListByExternalID_Works()
     {
         var page = await this.client.Customers.Credits.Ledger.ListByExternalID(
             new()
             {
                 ExternalCustomerID = "external_customer_id",
-                CreatedAtGt = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtGte = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtLt = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtLte = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtGt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtGte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtLt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtLte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                 Currency = "currency",
                 Cursor = "cursor",
                 EntryStatus = LedgerListByExternalIDParamsProperties::EntryStatus.Committed,

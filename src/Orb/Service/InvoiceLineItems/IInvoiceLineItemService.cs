@@ -1,5 +1,5 @@
-using InvoiceLineItems = Orb.Models.InvoiceLineItems;
-using Tasks = System.Threading.Tasks;
+using System.Threading.Tasks;
+using Orb.Models.InvoiceLineItems;
 
 namespace Orb.Service.InvoiceLineItems;
 
@@ -9,7 +9,5 @@ public interface IInvoiceLineItemService
     /// This creates a one-off fixed fee invoice line item on an Invoice. This can only
     /// be done for invoices that are in a `draft` status.
     /// </summary>
-    Tasks::Task<InvoiceLineItems::InvoiceLineItemCreateResponse> Create(
-        InvoiceLineItems::InvoiceLineItemCreateParams @params
-    );
+    Task<InvoiceLineItemCreateResponse> Create(InvoiceLineItemCreateParams @params);
 }

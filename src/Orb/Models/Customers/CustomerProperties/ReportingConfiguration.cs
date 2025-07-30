@@ -1,30 +1,24 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.CustomerProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<ReportingConfiguration>))]
-public sealed record class ReportingConfiguration
-    : Orb::ModelBase,
-        Orb::IFromRaw<ReportingConfiguration>
+[JsonConverter(typeof(ModelConverter<ReportingConfiguration>))]
+public sealed record class ReportingConfiguration : ModelBase, IFromRaw<ReportingConfiguration>
 {
     public required bool Exempt
     {
         get
         {
-            if (!this.Properties.TryGetValue("exempt", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "exempt",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("exempt", out JsonElement element))
+                throw new ArgumentOutOfRangeException("exempt", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element);
         }
-        set { this.Properties["exempt"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["exempt"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -35,15 +29,15 @@ public sealed record class ReportingConfiguration
     public ReportingConfiguration() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    ReportingConfiguration(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    ReportingConfiguration(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
     public static ReportingConfiguration FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        Dictionary<string, JsonElement> properties
     )
     {
         return new(properties);

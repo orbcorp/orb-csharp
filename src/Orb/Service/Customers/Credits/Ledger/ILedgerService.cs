@@ -1,5 +1,5 @@
-using Ledger = Orb.Models.Customers.Credits.Ledger;
-using Tasks = System.Threading.Tasks;
+using System.Threading.Tasks;
+using Orb.Models.Customers.Credits.Ledger;
 
 namespace Orb.Service.Customers.Credits.Ledger;
 
@@ -73,7 +73,7 @@ public interface ILedgerService
     /// correction, this entry will be added to the ledger to indicate the adjustment
     /// of credits.
     /// </summary>
-    Tasks::Task<Ledger::LedgerListPageResponse> List(Ledger::LedgerListParams @params);
+    Task<LedgerListPageResponse> List(LedgerListParams @params);
 
     /// <summary>
     /// This endpoint allows you to create a new ledger entry for a specified customer's
@@ -157,9 +157,7 @@ public interface ILedgerService
     /// block that was originally decremented from, and `amount` indicates how many
     /// credits to return to the customer, up to the block's initial balance.
     /// </summary>
-    Tasks::Task<Ledger::LedgerCreateEntryResponse> CreateEntry(
-        Ledger::LedgerCreateEntryParams @params
-    );
+    Task<LedgerCreateEntryResponse> CreateEntry(LedgerCreateEntryParams @params);
 
     /// <summary>
     /// This endpoint allows you to create a new ledger entry for a specified customer's
@@ -243,8 +241,8 @@ public interface ILedgerService
     /// block that was originally decremented from, and `amount` indicates how many
     /// credits to return to the customer, up to the block's initial balance.
     /// </summary>
-    Tasks::Task<Ledger::LedgerCreateEntryByExternalIDResponse> CreateEntryByExternalID(
-        Ledger::LedgerCreateEntryByExternalIDParams @params
+    Task<LedgerCreateEntryByExternalIDResponse> CreateEntryByExternalID(
+        LedgerCreateEntryByExternalIDParams @params
     );
 
     /// <summary>
@@ -315,7 +313,5 @@ public interface ILedgerService
     /// correction, this entry will be added to the ledger to indicate the adjustment
     /// of credits.
     /// </summary>
-    Tasks::Task<Ledger::LedgerListByExternalIDPageResponse> ListByExternalID(
-        Ledger::LedgerListByExternalIDParams @params
-    );
+    Task<LedgerListByExternalIDPageResponse> ListByExternalID(LedgerListByExternalIDParams @params);
 }

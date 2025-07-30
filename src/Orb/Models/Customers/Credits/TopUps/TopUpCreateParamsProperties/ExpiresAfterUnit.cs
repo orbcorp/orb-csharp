@@ -1,14 +1,13 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.Credits.TopUps.TopUpCreateParamsProperties;
 
 /// <summary>
 /// The unit of expires_after.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<ExpiresAfterUnit, string>))]
-public sealed record class ExpiresAfterUnit(string value) : Orb::IEnum<ExpiresAfterUnit, string>
+[JsonConverter(typeof(EnumConverter<ExpiresAfterUnit, string>))]
+public sealed record class ExpiresAfterUnit(string value) : IEnum<ExpiresAfterUnit, string>
 {
     public static readonly ExpiresAfterUnit Day = new("day");
 
@@ -27,7 +26,7 @@ public sealed record class ExpiresAfterUnit(string value) : Orb::IEnum<ExpiresAf
         {
             "day" => Value.Day,
             "month" => Value.Month,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

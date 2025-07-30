@@ -1,16 +1,13 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Events;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<EventDeprecateResponse>))]
-public sealed record class EventDeprecateResponse
-    : Orb::ModelBase,
-        Orb::IFromRaw<EventDeprecateResponse>
+[JsonConverter(typeof(ModelConverter<EventDeprecateResponse>))]
+public sealed record class EventDeprecateResponse : ModelBase, IFromRaw<EventDeprecateResponse>
 {
     /// <summary>
     /// event_id of the deprecated event, if successfully updated
@@ -19,16 +16,13 @@ public sealed record class EventDeprecateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("deprecated", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "deprecated",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("deprecated", out JsonElement element))
+                throw new ArgumentOutOfRangeException("deprecated", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("deprecated");
+            return JsonSerializer.Deserialize<string>(element)
+                ?? throw new ArgumentNullException("deprecated");
         }
-        set { this.Properties["deprecated"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["deprecated"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -39,15 +33,15 @@ public sealed record class EventDeprecateResponse
     public EventDeprecateResponse() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    EventDeprecateResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    EventDeprecateResponse(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
     public static EventDeprecateResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        Dictionary<string, JsonElement> properties
     )
     {
         return new(properties);

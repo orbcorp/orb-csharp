@@ -1,17 +1,14 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 using TransformPriceFilterProperties = Orb.Models.TransformPriceFilterProperties;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<TransformPriceFilter>))]
-public sealed record class TransformPriceFilter
-    : Orb::ModelBase,
-        Orb::IFromRaw<TransformPriceFilter>
+[JsonConverter(typeof(ModelConverter<TransformPriceFilter>))]
+public sealed record class TransformPriceFilter : ModelBase, IFromRaw<TransformPriceFilter>
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -20,13 +17,13 @@ public sealed record class TransformPriceFilter
     {
         get
         {
-            if (!this.Properties.TryGetValue("field", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("field", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("field", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<TransformPriceFilterProperties::Field>(element)
+            return JsonSerializer.Deserialize<TransformPriceFilterProperties::Field>(element)
                 ?? throw new System::ArgumentNullException("field");
         }
-        set { this.Properties["field"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["field"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -36,36 +33,35 @@ public sealed record class TransformPriceFilter
     {
         get
         {
-            if (!this.Properties.TryGetValue("operator", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("operator", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "operator",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<TransformPriceFilterProperties::Operator>(
-                    element
-                ) ?? throw new System::ArgumentNullException("operator");
+            return JsonSerializer.Deserialize<TransformPriceFilterProperties::Operator>(element)
+                ?? throw new System::ArgumentNullException("operator");
         }
-        set { this.Properties["operator"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["operator"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required Generic::List<string> Values
+    public required List<string> Values
     {
         get
         {
-            if (!this.Properties.TryGetValue("values", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("values", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "values",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<string>>(element)
+            return JsonSerializer.Deserialize<List<string>>(element)
                 ?? throw new System::ArgumentNullException("values");
         }
-        set { this.Properties["values"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["values"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -81,16 +77,14 @@ public sealed record class TransformPriceFilter
     public TransformPriceFilter() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    TransformPriceFilter(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    TransformPriceFilter(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static TransformPriceFilter FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static TransformPriceFilter FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

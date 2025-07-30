@@ -1,7 +1,6 @@
-using Orb = Orb;
+using System.Text.Json.Serialization;
 using PriceProperties = Orb.Models.PriceProperties;
 using PriceVariants = Orb.Models.PriceVariants;
-using Serialization = System.Text.Json.Serialization;
 
 namespace Orb.Models;
 
@@ -16,7 +15,7 @@ namespace Orb.Models;
 ///
 /// For more on the types of prices, see [the core concepts documentation](/core-concepts#plan-and-price)
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::UnionConverter<Price>))]
+[JsonConverter(typeof(UnionConverter<Price>))]
 public abstract record class Price
 {
     internal Price() { }

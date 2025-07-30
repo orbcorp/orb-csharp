@@ -1,6 +1,5 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties;
 
@@ -9,9 +8,9 @@ namespace Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsPropertie
 /// start of the month. Defaults to `unchanged` which keeps subscription's existing
 /// billing cycle alignment.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<BillingCycleAlignment, string>))]
+[JsonConverter(typeof(EnumConverter<BillingCycleAlignment, string>))]
 public sealed record class BillingCycleAlignment(string value)
-    : Orb::IEnum<BillingCycleAlignment, string>
+    : IEnum<BillingCycleAlignment, string>
 {
     public static readonly BillingCycleAlignment Unchanged = new("unchanged");
 
@@ -34,7 +33,7 @@ public sealed record class BillingCycleAlignment(string value)
             "unchanged" => Value.Unchanged,
             "plan_change_date" => Value.PlanChangeDate,
             "start_of_month" => Value.StartOfMonth,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

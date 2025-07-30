@@ -1,31 +1,30 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<ConversionRateTieredConfig>))]
+[JsonConverter(typeof(ModelConverter<ConversionRateTieredConfig>))]
 public sealed record class ConversionRateTieredConfig
-    : Orb::ModelBase,
-        Orb::IFromRaw<ConversionRateTieredConfig>
+    : ModelBase,
+        IFromRaw<ConversionRateTieredConfig>
 {
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
     /// </summary>
-    public required Generic::List<ConversionRateTier> Tiers
+    public required List<ConversionRateTier> Tiers
     {
         get
         {
-            if (!this.Properties.TryGetValue("tiers", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("tiers", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("tiers", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<Generic::List<ConversionRateTier>>(element)
+            return JsonSerializer.Deserialize<List<ConversionRateTier>>(element)
                 ?? throw new System::ArgumentNullException("tiers");
         }
-        set { this.Properties["tiers"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["tiers"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -39,15 +38,15 @@ public sealed record class ConversionRateTieredConfig
     public ConversionRateTieredConfig() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    ConversionRateTieredConfig(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    ConversionRateTieredConfig(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
     public static ConversionRateTieredConfig FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        Dictionary<string, JsonElement> properties
     )
     {
         return new(properties);

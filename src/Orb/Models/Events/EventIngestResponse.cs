@@ -1,38 +1,34 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using EventIngestResponseProperties = Orb.Models.Events.EventIngestResponseProperties;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Events;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<EventIngestResponse>))]
-public sealed record class EventIngestResponse : Orb::ModelBase, Orb::IFromRaw<EventIngestResponse>
+[JsonConverter(typeof(ModelConverter<EventIngestResponse>))]
+public sealed record class EventIngestResponse : ModelBase, IFromRaw<EventIngestResponse>
 {
     /// <summary>
     /// Contains all failing validation events. In the case of a 200, this array will
     /// always be empty. This field will always be present.
     /// </summary>
-    public required Generic::List<EventIngestResponseProperties::ValidationFailed> ValidationFailed
+    public required List<EventIngestResponseProperties::ValidationFailed> ValidationFailed
     {
         get
         {
-            if (!this.Properties.TryGetValue("validation_failed", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+            if (!this.Properties.TryGetValue("validation_failed", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
                     "validation_failed",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Generic::List<EventIngestResponseProperties::ValidationFailed>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("validation_failed");
+            return JsonSerializer.Deserialize<
+                    List<EventIngestResponseProperties::ValidationFailed>
+                >(element) ?? throw new ArgumentNullException("validation_failed");
         }
-        set
-        {
-            this.Properties["validation_failed"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        set { this.Properties["validation_failed"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -43,12 +39,12 @@ public sealed record class EventIngestResponse : Orb::ModelBase, Orb::IFromRaw<E
     {
         get
         {
-            if (!this.Properties.TryGetValue("debug", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("debug", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<EventIngestResponseProperties::Debug?>(element);
+            return JsonSerializer.Deserialize<EventIngestResponseProperties::Debug?>(element);
         }
-        set { this.Properties["debug"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["debug"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -63,16 +59,14 @@ public sealed record class EventIngestResponse : Orb::ModelBase, Orb::IFromRaw<E
     public EventIngestResponse() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    EventIngestResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    EventIngestResponse(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static EventIngestResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static EventIngestResponse FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

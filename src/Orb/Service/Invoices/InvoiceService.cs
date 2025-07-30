@@ -1,197 +1,187 @@
-using Http = System.Net.Http;
-using Invoices = Orb.Models.Invoices;
-using Json = System.Text.Json;
-using Models = Orb.Models;
-using Orb = Orb;
-using System = System;
-using Tasks = System.Threading.Tasks;
+using System;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Orb.Models;
+using Orb.Models.Invoices;
 
 namespace Orb.Service.Invoices;
 
 public sealed class InvoiceService : IInvoiceService
 {
-    readonly Orb::IOrbClient _client;
+    readonly IOrbClient _client;
 
-    public InvoiceService(Orb::IOrbClient client)
+    public InvoiceService(IOrbClient client)
     {
         _client = client;
     }
 
-    public async Tasks::Task<Models::Invoice> Create(Invoices::InvoiceCreateParams @params)
+    public async Task<Invoice> Create(InvoiceCreateParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Models::Invoice>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+        return JsonSerializer.Deserialize<Invoice>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Models::Invoice> Update(Invoices::InvoiceUpdateParams @params)
+    public async Task<Invoice> Update(InvoiceUpdateParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Put, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Put, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Models::Invoice>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+        return JsonSerializer.Deserialize<Invoice>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Invoices::InvoiceListPageResponse> List(
-        Invoices::InvoiceListParams @params
+    public async Task<InvoiceListPageResponse> List(InvoiceListParams @params)
+    {
+        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
+        @params.AddHeadersToRequest(webRequest, this._client);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        try
+        {
+            response.EnsureSuccessStatusCode();
+        }
+        catch (HttpRequestException e)
+        {
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+        }
+        return JsonSerializer.Deserialize<InvoiceListPageResponse>(
+                await response.Content.ReadAsStringAsync()
+            ) ?? throw new NullReferenceException();
+    }
+
+    public async Task<Invoice> Fetch(InvoiceFetchParams @params)
+    {
+        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
+        @params.AddHeadersToRequest(webRequest, this._client);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        try
+        {
+            response.EnsureSuccessStatusCode();
+        }
+        catch (HttpRequestException e)
+        {
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+        }
+        return JsonSerializer.Deserialize<Invoice>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
+    }
+
+    public async Task<InvoiceFetchUpcomingResponse> FetchUpcoming(
+        InvoiceFetchUpcomingParams @params
     )
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Get, @params.Url(this._client));
+        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Invoices::InvoiceListPageResponse>(
+        return JsonSerializer.Deserialize<InvoiceFetchUpcomingResponse>(
                 await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+            ) ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Models::Invoice> Fetch(Invoices::InvoiceFetchParams @params)
+    public async Task<Invoice> Issue(InvoiceIssueParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Get, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
-        {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (Http::HttpRequestException e)
-        {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
-        }
-        return Json::JsonSerializer.Deserialize<Models::Invoice>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
-    }
-
-    public async Tasks::Task<Invoices::InvoiceFetchUpcomingResponse> FetchUpcoming(
-        Invoices::InvoiceFetchUpcomingParams @params
-    )
-    {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Get, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
-        {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (Http::HttpRequestException e)
-        {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
-        }
-        return Json::JsonSerializer.Deserialize<Invoices::InvoiceFetchUpcomingResponse>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
-    }
-
-    public async Tasks::Task<Models::Invoice> Issue(Invoices::InvoiceIssueParams @params)
-    {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Models::Invoice>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+        return JsonSerializer.Deserialize<Invoice>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Models::Invoice> MarkPaid(Invoices::InvoiceMarkPaidParams @params)
+    public async Task<Invoice> MarkPaid(InvoiceMarkPaidParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client))
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Models::Invoice>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+        return JsonSerializer.Deserialize<Invoice>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Models::Invoice> Pay(Invoices::InvoicePayParams @params)
+    public async Task<Invoice> Pay(InvoicePayParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client));
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Models::Invoice>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+        return JsonSerializer.Deserialize<Invoice>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
     }
 
-    public async Tasks::Task<Models::Invoice> Void(Invoices::InvoiceVoidParams @params)
+    public async Task<Invoice> Void(InvoiceVoidParams @params)
     {
-        Http::HttpRequestMessage webRequest = new(Http::HttpMethod.Post, @params.Url(this._client));
+        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using Http::HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
+        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
         try
         {
             response.EnsureSuccessStatusCode();
         }
-        catch (Http::HttpRequestException e)
+        catch (HttpRequestException e)
         {
-            throw new Orb::HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
         }
-        return Json::JsonSerializer.Deserialize<Models::Invoice>(
-                await response.Content.ReadAsStringAsync()
-            ) ?? throw new System::NullReferenceException();
+        return JsonSerializer.Deserialize<Invoice>(await response.Content.ReadAsStringAsync())
+            ?? throw new NullReferenceException();
     }
 }

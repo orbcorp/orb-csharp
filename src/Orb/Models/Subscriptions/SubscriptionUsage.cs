@@ -1,11 +1,10 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using SubscriptionUsageProperties = Orb.Models.Subscriptions.SubscriptionUsageProperties;
 using SubscriptionUsageVariants = Orb.Models.Subscriptions.SubscriptionUsageVariants;
 
 namespace Orb.Models.Subscriptions;
 
-[Serialization::JsonConverter(typeof(Orb::UnionConverter<SubscriptionUsage>))]
+[JsonConverter(typeof(UnionConverter<SubscriptionUsage>))]
 public abstract record class SubscriptionUsage
 {
     internal SubscriptionUsage() { }

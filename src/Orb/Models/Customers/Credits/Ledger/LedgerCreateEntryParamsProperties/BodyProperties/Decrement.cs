@@ -1,14 +1,13 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<Decrement>))]
-public sealed record class Decrement : Orb::ModelBase, Orb::IFromRaw<Decrement>
+[JsonConverter(typeof(ModelConverter<Decrement>))]
+public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -18,30 +17,30 @@ public sealed record class Decrement : Orb::ModelBase, Orb::IFromRaw<Decrement>
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("amount", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "amount",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element);
         }
-        set { this.Properties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public Json::JsonElement EntryType
+    public JsonElement EntryType
     {
         get
         {
-            if (!this.Properties.TryGetValue("entry_type", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("entry_type", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException(
                     "entry_type",
                     "Missing required argument"
                 );
 
-            return Json::JsonSerializer.Deserialize<Json::JsonElement>(element);
+            return JsonSerializer.Deserialize<JsonElement>(element);
         }
-        set { this.Properties["entry_type"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["entry_type"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -52,12 +51,12 @@ public sealed record class Decrement : Orb::ModelBase, Orb::IFromRaw<Decrement>
     {
         get
         {
-            if (!this.Properties.TryGetValue("currency", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("currency", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["currency"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -69,12 +68,12 @@ public sealed record class Decrement : Orb::ModelBase, Orb::IFromRaw<Decrement>
     {
         get
         {
-            if (!this.Properties.TryGetValue("description", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("description", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element);
         }
-        set { this.Properties["description"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["description"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -82,16 +81,16 @@ public sealed record class Decrement : Orb::ModelBase, Orb::IFromRaw<Decrement>
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Generic::Dictionary<string, string?>? Metadata
+    public Dictionary<string, string?>? Metadata
     {
         get
         {
-            if (!this.Properties.TryGetValue("metadata", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
-            return Json::JsonSerializer.Deserialize<Generic::Dictionary<string, string?>?>(element);
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(element);
         }
-        set { this.Properties["metadata"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -110,20 +109,18 @@ public sealed record class Decrement : Orb::ModelBase, Orb::IFromRaw<Decrement>
 
     public Decrement()
     {
-        this.EntryType = Json::JsonSerializer.Deserialize<Json::JsonElement>("\"decrement\"");
+        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"decrement\"");
     }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    Decrement(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    Decrement(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static Decrement FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static Decrement FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

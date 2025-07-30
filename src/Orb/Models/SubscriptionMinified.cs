@@ -1,28 +1,25 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<SubscriptionMinified>))]
-public sealed record class SubscriptionMinified
-    : Orb::ModelBase,
-        Orb::IFromRaw<SubscriptionMinified>
+[JsonConverter(typeof(ModelConverter<SubscriptionMinified>))]
+public sealed record class SubscriptionMinified : ModelBase, IFromRaw<SubscriptionMinified>
 {
     public required string ID
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return Json::JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element)
                 ?? throw new System::ArgumentNullException("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -33,16 +30,14 @@ public sealed record class SubscriptionMinified
     public SubscriptionMinified() { }
 
 #pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    SubscriptionMinified(Generic::Dictionary<string, Json::JsonElement> properties)
+    [SetsRequiredMembers]
+    SubscriptionMinified(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static SubscriptionMinified FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    public static SubscriptionMinified FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

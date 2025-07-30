@@ -1,14 +1,13 @@
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Orb.Models.InvoiceProperties.PaymentAttemptProperties;
 
 /// <summary>
 /// The payment provider that attempted to collect the payment.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::EnumConverter<PaymentProvider, string>))]
-public sealed record class PaymentProvider(string value) : Orb::IEnum<PaymentProvider, string>
+[JsonConverter(typeof(EnumConverter<PaymentProvider, string>))]
+public sealed record class PaymentProvider(string value) : IEnum<PaymentProvider, string>
 {
     public static readonly PaymentProvider Stripe = new("stripe");
 
@@ -23,7 +22,7 @@ public sealed record class PaymentProvider(string value) : Orb::IEnum<PaymentPro
         _value switch
         {
             "stripe" => Value.Stripe,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
         };
 
     public string Raw()

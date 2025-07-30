@@ -1,34 +1,33 @@
-using CustomExpirationProperties = Orb.Models.CustomExpirationProperties;
-using DiscountOverrideProperties = Orb.Models.Subscriptions.DiscountOverrideProperties;
-using DiscountProperties = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.DiscountProperties;
-using Json = System.Text.Json;
-using Models = Orb.Models;
+using System;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Orb.Models;
+using Orb.Models.CustomExpirationProperties;
+using Orb.Models.NewFloatingUnitPriceProperties;
+using Orb.Models.NewPercentageDiscountProperties;
+using Orb.Models.Subscriptions;
+using Orb.Models.Subscriptions.DiscountOverrideProperties;
+using Orb.Models.Subscriptions.SubscriptionCancelParamsProperties;
+using Orb.Models.Subscriptions.SubscriptionCreateParamsProperties;
+using Orb.Models.Subscriptions.SubscriptionFetchCostsParamsProperties;
+using Orb.Models.Subscriptions.SubscriptionListParamsProperties;
+using Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.DiscountProperties;
+using Orb.Models.Subscriptions.SubscriptionRedeemCouponParamsProperties;
+using Orb.Models.TransformPriceFilterProperties;
+using Orb.Models.UnitConversionRateConfigProperties;
 using NewAllocationPriceProperties = Orb.Models.NewAllocationPriceProperties;
 using NewBillingCycleConfigurationProperties = Orb.Models.NewBillingCycleConfigurationProperties;
-using NewFloatingUnitPriceProperties = Orb.Models.NewFloatingUnitPriceProperties;
-using NewPercentageDiscountProperties = Orb.Models.NewPercentageDiscountProperties;
 using NewSubscriptionUnitPriceProperties = Orb.Models.Subscriptions.NewSubscriptionUnitPriceProperties;
-using SubscriptionCancelParamsProperties = Orb.Models.Subscriptions.SubscriptionCancelParamsProperties;
-using SubscriptionCreateParamsProperties = Orb.Models.Subscriptions.SubscriptionCreateParamsProperties;
-using SubscriptionFetchCostsParamsProperties = Orb.Models.Subscriptions.SubscriptionFetchCostsParamsProperties;
 using SubscriptionFetchUsageParamsProperties = Orb.Models.Subscriptions.SubscriptionFetchUsageParamsProperties;
-using SubscriptionListParamsProperties = Orb.Models.Subscriptions.SubscriptionListParamsProperties;
-using SubscriptionRedeemCouponParamsProperties = Orb.Models.Subscriptions.SubscriptionRedeemCouponParamsProperties;
-using Subscriptions = Orb.Models.Subscriptions;
 using SubscriptionSchedulePlanChangeParamsProperties = Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties;
 using SubscriptionUpdateFixedFeeQuantityParamsProperties = Orb.Models.Subscriptions.SubscriptionUpdateFixedFeeQuantityParamsProperties;
-using System = System;
-using Tasks = System.Threading.Tasks;
-using Tests = Orb.Tests;
-using TransformPriceFilterProperties = Orb.Models.TransformPriceFilterProperties;
-using UnitConversionRateConfigProperties = Orb.Models.UnitConversionRateConfigProperties;
 
 namespace Orb.Tests.Service.Subscriptions;
 
-public class SubscriptionServiceTest : Tests::TestBase
+public class SubscriptionServiceTest : TestBase
 {
     [Fact]
-    public async Tasks::Task Create_Works()
+    public async Task Create_Works()
     {
         var mutatedSubscription = await this.client.Subscriptions.Create(
             new()
@@ -37,12 +36,11 @@ public class SubscriptionServiceTest : Tests::TestBase
                 [
                     new()
                     {
-                        Adjustment = new Models::NewPercentageDiscount()
+                        Adjustment = new NewPercentageDiscount()
                         {
-                            AdjustmentType =
-                                NewPercentageDiscountProperties::AdjustmentType.PercentageDiscount,
+                            AdjustmentType = AdjustmentType.PercentageDiscount,
                             PercentageDiscount = 0,
-                            AppliesToAll = NewPercentageDiscountProperties::AppliesToAll.True,
+                            AppliesToAll = AppliesToAll.True,
                             AppliesToItemIDs = ["item_1", "item_2"],
                             AppliesToPriceIDs = ["price_1", "price_2"],
                             Currency = "currency",
@@ -50,17 +48,17 @@ public class SubscriptionServiceTest : Tests::TestBase
                             [
                                 new()
                                 {
-                                    Field = TransformPriceFilterProperties::Field.PriceID,
-                                    Operator = TransformPriceFilterProperties::Operator.Includes,
+                                    Field = Field.PriceID,
+                                    Operator = Operator.Includes,
                                     Values = ["string"],
                                 },
                             ],
                             IsInvoiceLevel = true,
-                            PriceType = NewPercentageDiscountProperties::PriceType.Usage,
+                            PriceType = PriceType.Usage,
                         },
-                        EndDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        EndDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                         PlanPhaseOrder = 0,
-                        StartDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        StartDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                     },
                 ],
                 AddPrices =
@@ -75,7 +73,7 @@ public class SubscriptionServiceTest : Tests::TestBase
                             CustomExpiration = new()
                             {
                                 Duration = 0,
-                                DurationUnit = CustomExpirationProperties::DurationUnit.Day,
+                                DurationUnit = DurationUnit.Day,
                             },
                             ExpiresAtEndOfCadence = true,
                         },
@@ -83,18 +81,18 @@ public class SubscriptionServiceTest : Tests::TestBase
                         [
                             new()
                             {
-                                DiscountType = DiscountOverrideProperties::DiscountType.Percentage,
+                                DiscountType = DiscountType.Percentage,
                                 AmountDiscount = "amount_discount",
                                 PercentageDiscount = 0.15,
                                 UsageDiscount = 0,
                             },
                         ],
-                        EndDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        EndDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                         ExternalPriceID = "external_price_id",
                         MaximumAmount = "1.23",
                         MinimumAmount = "1.23",
                         PlanPhaseOrder = 0,
-                        Price = new Subscriptions::NewSubscriptionUnitPrice()
+                        Price = new NewSubscriptionUnitPrice()
                         {
                             Cadence = NewSubscriptionUnitPriceProperties::Cadence.Annual,
                             ItemID = "item_id",
@@ -110,10 +108,9 @@ public class SubscriptionServiceTest : Tests::TestBase
                                     NewBillingCycleConfigurationProperties::DurationUnit.Day,
                             },
                             ConversionRate = 0,
-                            ConversionRateConfig = new Models::UnitConversionRateConfig()
+                            ConversionRateConfig = new UnitConversionRateConfig()
                             {
-                                ConversionRateType =
-                                    UnitConversionRateConfigProperties::ConversionRateType.Unit,
+                                ConversionRateType = ConversionRateType.Unit,
                                 UnitConfig = new() { UnitAmount = "unit_amount" },
                             },
                             Currency = "currency",
@@ -137,7 +134,7 @@ public class SubscriptionServiceTest : Tests::TestBase
                             ReferenceID = "reference_id",
                         },
                         PriceID = "h74gfhdjvn7ujokd",
-                        StartDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        StartDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                     },
                 ],
                 AlignBillingWithSubscriptionStartDate = true,
@@ -154,10 +151,9 @@ public class SubscriptionServiceTest : Tests::TestBase
                 Currency = "currency",
                 CustomerID = "customer_id",
                 DefaultInvoiceMemo = "default_invoice_memo",
-                EndDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                EndDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                 ExternalCustomerID = "external_customer_id",
-                ExternalMarketplace =
-                    SubscriptionCreateParamsProperties::ExternalMarketplace.Google,
+                ExternalMarketplace = ExternalMarketplace.Google,
                 ExternalMarketplaceReportingID = "external_marketplace_reporting_id",
                 ExternalPlanID = "ZMwNQefe7J3ecf7W",
                 Filter = "my_property > 100 AND my_other_property = 'bar'",
@@ -169,7 +165,7 @@ public class SubscriptionServiceTest : Tests::TestBase
                 PerCreditOverageAmount = 0,
                 PlanID = "ZMwNQefe7J3ecf7W",
                 PlanVersionNumber = 0,
-                PriceOverrides = [Json::JsonSerializer.Deserialize<Json::JsonElement>("{}")],
+                PriceOverrides = [JsonSerializer.Deserialize<JsonElement>("{}")],
                 RemoveAdjustments = [new() { AdjustmentID = "h74gfhdjvn7ujokd" }],
                 RemovePrices =
                 [
@@ -179,12 +175,11 @@ public class SubscriptionServiceTest : Tests::TestBase
                 [
                     new()
                     {
-                        Adjustment = new Models::NewPercentageDiscount()
+                        Adjustment = new NewPercentageDiscount()
                         {
-                            AdjustmentType =
-                                NewPercentageDiscountProperties::AdjustmentType.PercentageDiscount,
+                            AdjustmentType = AdjustmentType.PercentageDiscount,
                             PercentageDiscount = 0,
-                            AppliesToAll = NewPercentageDiscountProperties::AppliesToAll.True,
+                            AppliesToAll = AppliesToAll.True,
                             AppliesToItemIDs = ["item_1", "item_2"],
                             AppliesToPriceIDs = ["price_1", "price_2"],
                             Currency = "currency",
@@ -192,13 +187,13 @@ public class SubscriptionServiceTest : Tests::TestBase
                             [
                                 new()
                                 {
-                                    Field = TransformPriceFilterProperties::Field.PriceID,
-                                    Operator = TransformPriceFilterProperties::Operator.Includes,
+                                    Field = Field.PriceID,
+                                    Operator = Operator.Includes,
                                     Values = ["string"],
                                 },
                             ],
                             IsInvoiceLevel = true,
-                            PriceType = NewPercentageDiscountProperties::PriceType.Usage,
+                            PriceType = PriceType.Usage,
                         },
                         ReplacesAdjustmentID = "replaces_adjustment_id",
                     },
@@ -216,7 +211,7 @@ public class SubscriptionServiceTest : Tests::TestBase
                             CustomExpiration = new()
                             {
                                 Duration = 0,
-                                DurationUnit = CustomExpirationProperties::DurationUnit.Day,
+                                DurationUnit = DurationUnit.Day,
                             },
                             ExpiresAtEndOfCadence = true,
                         },
@@ -224,7 +219,7 @@ public class SubscriptionServiceTest : Tests::TestBase
                         [
                             new()
                             {
-                                DiscountType = DiscountOverrideProperties::DiscountType.Percentage,
+                                DiscountType = DiscountType.Percentage,
                                 AmountDiscount = "amount_discount",
                                 PercentageDiscount = 0.15,
                                 UsageDiscount = 0,
@@ -234,7 +229,7 @@ public class SubscriptionServiceTest : Tests::TestBase
                         FixedPriceQuantity = 2,
                         MaximumAmount = "1.23",
                         MinimumAmount = "1.23",
-                        Price = new Subscriptions::NewSubscriptionUnitPrice()
+                        Price = new NewSubscriptionUnitPrice()
                         {
                             Cadence = NewSubscriptionUnitPriceProperties::Cadence.Annual,
                             ItemID = "item_id",
@@ -250,10 +245,9 @@ public class SubscriptionServiceTest : Tests::TestBase
                                     NewBillingCycleConfigurationProperties::DurationUnit.Day,
                             },
                             ConversionRate = 0,
-                            ConversionRateConfig = new Models::UnitConversionRateConfig()
+                            ConversionRateConfig = new UnitConversionRateConfig()
                             {
-                                ConversionRateType =
-                                    UnitConversionRateConfigProperties::ConversionRateType.Unit,
+                                ConversionRateType = ConversionRateType.Unit,
                                 UnitConfig = new() { UnitAmount = "unit_amount" },
                             },
                             Currency = "currency",
@@ -279,7 +273,7 @@ public class SubscriptionServiceTest : Tests::TestBase
                         PriceID = "h74gfhdjvn7ujokd",
                     },
                 ],
-                StartDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                StartDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                 TrialDurationDays = 0,
                 UsageCustomerIDs = ["string"],
             }
@@ -288,7 +282,7 @@ public class SubscriptionServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task Update_Works()
+    public async Task Update_Works()
     {
         var subscription = await this.client.Subscriptions.Update(
             new()
@@ -305,43 +299,42 @@ public class SubscriptionServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task List_Works()
+    public async Task List_Works()
     {
         var page = await this.client.Subscriptions.List(
             new()
             {
-                CreatedAtGt = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtGte = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtLt = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtLte = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtGt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtGte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtLt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAtLte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                 Cursor = "cursor",
                 CustomerID = ["string"],
                 ExternalCustomerID = ["string"],
                 Limit = 1,
-                Status = SubscriptionListParamsProperties::Status.Active,
+                Status = Status.Active,
             }
         );
         page.Validate();
     }
 
     [Fact]
-    public async Tasks::Task Cancel_Works()
+    public async Task Cancel_Works()
     {
         var mutatedSubscription = await this.client.Subscriptions.Cancel(
             new()
             {
                 SubscriptionID = "subscription_id",
-                CancelOption =
-                    SubscriptionCancelParamsProperties::CancelOption.EndOfSubscriptionTerm,
+                CancelOption = CancelOption.EndOfSubscriptionTerm,
                 AllowInvoiceCreditOrVoid = true,
-                CancellationDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                CancellationDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
             }
         );
         mutatedSubscription.Validate();
     }
 
     [Fact]
-    public async Tasks::Task Fetch_Works()
+    public async Task Fetch_Works()
     {
         var subscription = await this.client.Subscriptions.Fetch(
             new() { SubscriptionID = "subscription_id" }
@@ -350,23 +343,23 @@ public class SubscriptionServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task FetchCosts_Works()
+    public async Task FetchCosts_Works()
     {
         var response = await this.client.Subscriptions.FetchCosts(
             new()
             {
                 SubscriptionID = "subscription_id",
                 Currency = "currency",
-                TimeframeEnd = System::DateTime.Parse("2022-03-01T05:00:00Z"),
-                TimeframeStart = System::DateTime.Parse("2022-02-01T05:00:00Z"),
-                ViewMode = SubscriptionFetchCostsParamsProperties::ViewMode.Periodic,
+                TimeframeEnd = DateTime.Parse("2022-03-01T05:00:00Z"),
+                TimeframeStart = DateTime.Parse("2022-02-01T05:00:00Z"),
+                ViewMode = ViewMode.Periodic,
             }
         );
         response.Validate();
     }
 
     [Fact]
-    public async Tasks::Task FetchSchedule_Works()
+    public async Task FetchSchedule_Works()
     {
         var page = await this.client.Subscriptions.FetchSchedule(
             new()
@@ -374,17 +367,17 @@ public class SubscriptionServiceTest : Tests::TestBase
                 SubscriptionID = "subscription_id",
                 Cursor = "cursor",
                 Limit = 1,
-                StartDateGt = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                StartDateGte = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                StartDateLt = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                StartDateLte = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                StartDateGt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                StartDateGte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                StartDateLt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                StartDateLte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
             }
         );
         page.Validate();
     }
 
     [Fact]
-    public async Tasks::Task FetchUsage_Works()
+    public async Task FetchUsage_Works()
     {
         var subscriptionUsage = await this.client.Subscriptions.FetchUsage(
             new()
@@ -397,8 +390,8 @@ public class SubscriptionServiceTest : Tests::TestBase
                 GroupBy = "group_by",
                 SecondDimensionKey = "second_dimension_key",
                 SecondDimensionValue = "second_dimension_value",
-                TimeframeEnd = System::DateTime.Parse("2022-03-01T05:00:00Z"),
-                TimeframeStart = System::DateTime.Parse("2022-02-01T05:00:00Z"),
+                TimeframeEnd = DateTime.Parse("2022-03-01T05:00:00Z"),
+                TimeframeStart = DateTime.Parse("2022-02-01T05:00:00Z"),
                 ViewMode = SubscriptionFetchUsageParamsProperties::ViewMode.Periodic,
             }
         );
@@ -406,7 +399,7 @@ public class SubscriptionServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task PriceIntervals_Works()
+    public async Task PriceIntervals_Works()
     {
         var mutatedSubscription = await this.client.Subscriptions.PriceIntervals(
             new()
@@ -416,7 +409,7 @@ public class SubscriptionServiceTest : Tests::TestBase
                 [
                     new()
                     {
-                        StartDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        StartDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                         AllocationPrice = new()
                         {
                             Amount = "10.00",
@@ -425,30 +418,30 @@ public class SubscriptionServiceTest : Tests::TestBase
                             CustomExpiration = new()
                             {
                                 Duration = 0,
-                                DurationUnit = CustomExpirationProperties::DurationUnit.Day,
+                                DurationUnit = DurationUnit.Day,
                             },
                             ExpiresAtEndOfCadence = true,
                         },
-                        Discounts = [new DiscountProperties::Amount() { AmountDiscount = 0 }],
-                        EndDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        Discounts = [new Amount() { AmountDiscount = 0 }],
+                        EndDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                         ExternalPriceID = "external_price_id",
                         Filter = "my_property > 100 AND my_other_property = 'bar'",
                         FixedFeeQuantityTransitions =
                         [
                             new()
                             {
-                                EffectiveDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                                EffectiveDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                                 Quantity = 5,
                             },
                         ],
                         MaximumAmount = 0,
                         MinimumAmount = 0,
-                        Price = new Models::NewFloatingUnitPrice()
+                        Price = new NewFloatingUnitPrice()
                         {
-                            Cadence = NewFloatingUnitPriceProperties::Cadence.Annual,
+                            Cadence = Cadence.Annual,
                             Currency = "currency",
                             ItemID = "item_id",
-                            ModelType = NewFloatingUnitPriceProperties::ModelType.Unit,
+                            ModelType = ModelType.Unit,
                             Name = "Annual fee",
                             UnitConfig = new() { UnitAmount = "unit_amount" },
                             BillableMetricID = "billable_metric_id",
@@ -460,10 +453,9 @@ public class SubscriptionServiceTest : Tests::TestBase
                                     NewBillingCycleConfigurationProperties::DurationUnit.Day,
                             },
                             ConversionRate = 0,
-                            ConversionRateConfig = new Models::UnitConversionRateConfig()
+                            ConversionRateConfig = new UnitConversionRateConfig()
                             {
-                                ConversionRateType =
-                                    UnitConversionRateConfigProperties::ConversionRateType.Unit,
+                                ConversionRateType = ConversionRateType.Unit,
                                 UnitConfig = new() { UnitAmount = "unit_amount" },
                             },
                             DimensionalPriceConfiguration = new()
@@ -492,12 +484,11 @@ public class SubscriptionServiceTest : Tests::TestBase
                 [
                     new()
                     {
-                        Adjustment = new Models::NewPercentageDiscount()
+                        Adjustment = new NewPercentageDiscount()
                         {
-                            AdjustmentType =
-                                NewPercentageDiscountProperties::AdjustmentType.PercentageDiscount,
+                            AdjustmentType = AdjustmentType.PercentageDiscount,
                             PercentageDiscount = 0,
-                            AppliesToAll = NewPercentageDiscountProperties::AppliesToAll.True,
+                            AppliesToAll = AppliesToAll.True,
                             AppliesToItemIDs = ["item_1", "item_2"],
                             AppliesToPriceIDs = ["price_1", "price_2"],
                             Currency = "currency",
@@ -505,16 +496,16 @@ public class SubscriptionServiceTest : Tests::TestBase
                             [
                                 new()
                                 {
-                                    Field = TransformPriceFilterProperties::Field.PriceID,
-                                    Operator = TransformPriceFilterProperties::Operator.Includes,
+                                    Field = Field.PriceID,
+                                    Operator = Operator.Includes,
                                     Values = ["string"],
                                 },
                             ],
                             IsInvoiceLevel = true,
-                            PriceType = NewPercentageDiscountProperties::PriceType.Usage,
+                            PriceType = PriceType.Usage,
                         },
-                        StartDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                        EndDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        StartDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        EndDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                     },
                 ],
                 AllowInvoiceCreditOrVoid = true,
@@ -524,17 +515,17 @@ public class SubscriptionServiceTest : Tests::TestBase
                     {
                         PriceIntervalID = "sdfs6wdjvn7ujokd",
                         BillingCycleDay = 0,
-                        EndDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        EndDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                         Filter = "my_property > 100 AND my_other_property = 'bar'",
                         FixedFeeQuantityTransitions =
                         [
                             new()
                             {
-                                EffectiveDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                                EffectiveDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                                 Quantity = 5,
                             },
                         ],
-                        StartDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        StartDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                         UsageCustomerIDs = ["string"],
                     },
                 ],
@@ -543,8 +534,8 @@ public class SubscriptionServiceTest : Tests::TestBase
                     new()
                     {
                         AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
-                        EndDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                        StartDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        EndDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        StartDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                     },
                 ],
             }
@@ -553,15 +544,15 @@ public class SubscriptionServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task RedeemCoupon_Works()
+    public async Task RedeemCoupon_Works()
     {
         var mutatedSubscription = await this.client.Subscriptions.RedeemCoupon(
             new()
             {
                 SubscriptionID = "subscription_id",
-                ChangeOption = SubscriptionRedeemCouponParamsProperties::ChangeOption.RequestedDate,
+                ChangeOption = ChangeOption.RequestedDate,
                 AllowInvoiceCreditOrVoid = true,
-                ChangeDate = System::DateTime.Parse("2017-07-21T17:32:28Z"),
+                ChangeDate = DateTime.Parse("2017-07-21T17:32:28Z"),
                 CouponID = "coupon_id",
                 CouponRedemptionCode = "coupon_redemption_code",
             }
@@ -570,7 +561,7 @@ public class SubscriptionServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task SchedulePlanChange_Works()
+    public async Task SchedulePlanChange_Works()
     {
         var mutatedSubscription = await this.client.Subscriptions.SchedulePlanChange(
             new()
@@ -582,12 +573,11 @@ public class SubscriptionServiceTest : Tests::TestBase
                 [
                     new()
                     {
-                        Adjustment = new Models::NewPercentageDiscount()
+                        Adjustment = new NewPercentageDiscount()
                         {
-                            AdjustmentType =
-                                NewPercentageDiscountProperties::AdjustmentType.PercentageDiscount,
+                            AdjustmentType = AdjustmentType.PercentageDiscount,
                             PercentageDiscount = 0,
-                            AppliesToAll = NewPercentageDiscountProperties::AppliesToAll.True,
+                            AppliesToAll = AppliesToAll.True,
                             AppliesToItemIDs = ["item_1", "item_2"],
                             AppliesToPriceIDs = ["price_1", "price_2"],
                             Currency = "currency",
@@ -595,17 +585,17 @@ public class SubscriptionServiceTest : Tests::TestBase
                             [
                                 new()
                                 {
-                                    Field = TransformPriceFilterProperties::Field.PriceID,
-                                    Operator = TransformPriceFilterProperties::Operator.Includes,
+                                    Field = Field.PriceID,
+                                    Operator = Operator.Includes,
                                     Values = ["string"],
                                 },
                             ],
                             IsInvoiceLevel = true,
-                            PriceType = NewPercentageDiscountProperties::PriceType.Usage,
+                            PriceType = PriceType.Usage,
                         },
-                        EndDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        EndDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                         PlanPhaseOrder = 0,
-                        StartDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        StartDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                     },
                 ],
                 AddPrices =
@@ -620,7 +610,7 @@ public class SubscriptionServiceTest : Tests::TestBase
                             CustomExpiration = new()
                             {
                                 Duration = 0,
-                                DurationUnit = CustomExpirationProperties::DurationUnit.Day,
+                                DurationUnit = DurationUnit.Day,
                             },
                             ExpiresAtEndOfCadence = true,
                         },
@@ -628,18 +618,18 @@ public class SubscriptionServiceTest : Tests::TestBase
                         [
                             new()
                             {
-                                DiscountType = DiscountOverrideProperties::DiscountType.Percentage,
+                                DiscountType = DiscountType.Percentage,
                                 AmountDiscount = "amount_discount",
                                 PercentageDiscount = 0.15,
                                 UsageDiscount = 0,
                             },
                         ],
-                        EndDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        EndDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                         ExternalPriceID = "external_price_id",
                         MaximumAmount = "1.23",
                         MinimumAmount = "1.23",
                         PlanPhaseOrder = 0,
-                        Price = new Subscriptions::NewSubscriptionUnitPrice()
+                        Price = new NewSubscriptionUnitPrice()
                         {
                             Cadence = NewSubscriptionUnitPriceProperties::Cadence.Annual,
                             ItemID = "item_id",
@@ -655,10 +645,9 @@ public class SubscriptionServiceTest : Tests::TestBase
                                     NewBillingCycleConfigurationProperties::DurationUnit.Day,
                             },
                             ConversionRate = 0,
-                            ConversionRateConfig = new Models::UnitConversionRateConfig()
+                            ConversionRateConfig = new UnitConversionRateConfig()
                             {
-                                ConversionRateType =
-                                    UnitConversionRateConfigProperties::ConversionRateType.Unit,
+                                ConversionRateType = ConversionRateType.Unit,
                                 UnitConfig = new() { UnitAmount = "unit_amount" },
                             },
                             Currency = "currency",
@@ -682,7 +671,7 @@ public class SubscriptionServiceTest : Tests::TestBase
                             ReferenceID = "reference_id",
                         },
                         PriceID = "h74gfhdjvn7ujokd",
-                        StartDate = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        StartDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                     },
                 ],
                 AlignBillingWithPlanChangeDate = true,
@@ -695,7 +684,7 @@ public class SubscriptionServiceTest : Tests::TestBase
                     Month = 1,
                     Year = 0,
                 },
-                ChangeDate = System::DateTime.Parse("2017-07-21T17:32:28Z"),
+                ChangeDate = DateTime.Parse("2017-07-21T17:32:28Z"),
                 CouponRedemptionCode = "coupon_redemption_code",
                 CreditsOverageRate = 0,
                 DefaultInvoiceMemo = "default_invoice_memo",
@@ -707,7 +696,7 @@ public class SubscriptionServiceTest : Tests::TestBase
                 PerCreditOverageAmount = 0,
                 PlanID = "ZMwNQefe7J3ecf7W",
                 PlanVersionNumber = 0,
-                PriceOverrides = [Json::JsonSerializer.Deserialize<Json::JsonElement>("{}")],
+                PriceOverrides = [JsonSerializer.Deserialize<JsonElement>("{}")],
                 RemoveAdjustments = [new() { AdjustmentID = "h74gfhdjvn7ujokd" }],
                 RemovePrices =
                 [
@@ -717,12 +706,11 @@ public class SubscriptionServiceTest : Tests::TestBase
                 [
                     new()
                     {
-                        Adjustment = new Models::NewPercentageDiscount()
+                        Adjustment = new NewPercentageDiscount()
                         {
-                            AdjustmentType =
-                                NewPercentageDiscountProperties::AdjustmentType.PercentageDiscount,
+                            AdjustmentType = AdjustmentType.PercentageDiscount,
                             PercentageDiscount = 0,
-                            AppliesToAll = NewPercentageDiscountProperties::AppliesToAll.True,
+                            AppliesToAll = AppliesToAll.True,
                             AppliesToItemIDs = ["item_1", "item_2"],
                             AppliesToPriceIDs = ["price_1", "price_2"],
                             Currency = "currency",
@@ -730,13 +718,13 @@ public class SubscriptionServiceTest : Tests::TestBase
                             [
                                 new()
                                 {
-                                    Field = TransformPriceFilterProperties::Field.PriceID,
-                                    Operator = TransformPriceFilterProperties::Operator.Includes,
+                                    Field = Field.PriceID,
+                                    Operator = Operator.Includes,
                                     Values = ["string"],
                                 },
                             ],
                             IsInvoiceLevel = true,
-                            PriceType = NewPercentageDiscountProperties::PriceType.Usage,
+                            PriceType = PriceType.Usage,
                         },
                         ReplacesAdjustmentID = "replaces_adjustment_id",
                     },
@@ -754,7 +742,7 @@ public class SubscriptionServiceTest : Tests::TestBase
                             CustomExpiration = new()
                             {
                                 Duration = 0,
-                                DurationUnit = CustomExpirationProperties::DurationUnit.Day,
+                                DurationUnit = DurationUnit.Day,
                             },
                             ExpiresAtEndOfCadence = true,
                         },
@@ -762,7 +750,7 @@ public class SubscriptionServiceTest : Tests::TestBase
                         [
                             new()
                             {
-                                DiscountType = DiscountOverrideProperties::DiscountType.Percentage,
+                                DiscountType = DiscountType.Percentage,
                                 AmountDiscount = "amount_discount",
                                 PercentageDiscount = 0.15,
                                 UsageDiscount = 0,
@@ -772,7 +760,7 @@ public class SubscriptionServiceTest : Tests::TestBase
                         FixedPriceQuantity = 2,
                         MaximumAmount = "1.23",
                         MinimumAmount = "1.23",
-                        Price = new Subscriptions::NewSubscriptionUnitPrice()
+                        Price = new NewSubscriptionUnitPrice()
                         {
                             Cadence = NewSubscriptionUnitPriceProperties::Cadence.Annual,
                             ItemID = "item_id",
@@ -788,10 +776,9 @@ public class SubscriptionServiceTest : Tests::TestBase
                                     NewBillingCycleConfigurationProperties::DurationUnit.Day,
                             },
                             ConversionRate = 0,
-                            ConversionRateConfig = new Models::UnitConversionRateConfig()
+                            ConversionRateConfig = new UnitConversionRateConfig()
                             {
-                                ConversionRateType =
-                                    UnitConversionRateConfigProperties::ConversionRateType.Unit,
+                                ConversionRateType = ConversionRateType.Unit,
                                 UnitConfig = new() { UnitAmount = "unit_amount" },
                             },
                             Currency = "currency",
@@ -825,21 +812,21 @@ public class SubscriptionServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task TriggerPhase_Works()
+    public async Task TriggerPhase_Works()
     {
         var mutatedSubscription = await this.client.Subscriptions.TriggerPhase(
             new()
             {
                 SubscriptionID = "subscription_id",
                 AllowInvoiceCreditOrVoid = true,
-                EffectiveDate = System::DateOnly.Parse("2019-12-27"),
+                EffectiveDate = DateOnly.Parse("2019-12-27"),
             }
         );
         mutatedSubscription.Validate();
     }
 
     [Fact]
-    public async Tasks::Task UnscheduleCancellation_Works()
+    public async Task UnscheduleCancellation_Works()
     {
         var mutatedSubscription = await this.client.Subscriptions.UnscheduleCancellation(
             new() { SubscriptionID = "subscription_id" }
@@ -848,7 +835,7 @@ public class SubscriptionServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task UnscheduleFixedFeeQuantityUpdates_Works()
+    public async Task UnscheduleFixedFeeQuantityUpdates_Works()
     {
         var mutatedSubscription = await this.client.Subscriptions.UnscheduleFixedFeeQuantityUpdates(
             new() { SubscriptionID = "subscription_id", PriceID = "price_id" }
@@ -857,7 +844,7 @@ public class SubscriptionServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task UnschedulePendingPlanChanges_Works()
+    public async Task UnschedulePendingPlanChanges_Works()
     {
         var mutatedSubscription = await this.client.Subscriptions.UnschedulePendingPlanChanges(
             new() { SubscriptionID = "subscription_id" }
@@ -866,7 +853,7 @@ public class SubscriptionServiceTest : Tests::TestBase
     }
 
     [Fact]
-    public async Tasks::Task UpdateFixedFeeQuantity_Works()
+    public async Task UpdateFixedFeeQuantity_Works()
     {
         var mutatedSubscription = await this.client.Subscriptions.UpdateFixedFeeQuantity(
             new()
@@ -877,20 +864,20 @@ public class SubscriptionServiceTest : Tests::TestBase
                 AllowInvoiceCreditOrVoid = true,
                 ChangeOption =
                     SubscriptionUpdateFixedFeeQuantityParamsProperties::ChangeOption.Immediate,
-                EffectiveDate = System::DateOnly.Parse("2022-12-21"),
+                EffectiveDate = DateOnly.Parse("2022-12-21"),
             }
         );
         mutatedSubscription.Validate();
     }
 
     [Fact]
-    public async Tasks::Task UpdateTrial_Works()
+    public async Task UpdateTrial_Works()
     {
         var mutatedSubscription = await this.client.Subscriptions.UpdateTrial(
             new()
             {
                 SubscriptionID = "subscription_id",
-                TrialEndDate = System::DateTime.Parse("2017-07-21T17:32:28Z"),
+                TrialEndDate = DateTime.Parse("2017-07-21T17:32:28Z"),
                 Shift = true,
             }
         );
