@@ -1,4 +1,3 @@
-using ExternalDimensionalPriceGroupID = Orb.Models.DimensionalPriceGroups.ExternalDimensionalPriceGroupID;
 using Tasks = System.Threading.Tasks;
 using Tests = Orb.Tests;
 
@@ -11,10 +10,7 @@ public class ExternalDimensionalPriceGroupIDServiceTest : Tests::TestBase
     {
         var dimensionalPriceGroup =
             await this.client.DimensionalPriceGroups.ExternalDimensionalPriceGroupID.Retrieve(
-                new ExternalDimensionalPriceGroupID::ExternalDimensionalPriceGroupIDRetrieveParams()
-                {
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                }
+                new() { ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id" }
             );
         dimensionalPriceGroup.Validate();
     }
@@ -24,7 +20,7 @@ public class ExternalDimensionalPriceGroupIDServiceTest : Tests::TestBase
     {
         var dimensionalPriceGroup =
             await this.client.DimensionalPriceGroups.ExternalDimensionalPriceGroupID.Update(
-                new ExternalDimensionalPriceGroupID::ExternalDimensionalPriceGroupIDUpdateParams()
+                new()
                 {
                     ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
                     ExternalDimensionalPriceGroupID1 = "external_dimensional_price_group_id",

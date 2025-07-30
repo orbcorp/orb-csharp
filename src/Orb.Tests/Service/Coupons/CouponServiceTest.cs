@@ -1,4 +1,3 @@
-using Coupons = Orb.Models.Coupons;
 using DiscountProperties = Orb.Models.Coupons.CouponCreateParamsProperties.DiscountProperties;
 using Tasks = System.Threading.Tasks;
 using Tests = Orb.Tests;
@@ -11,7 +10,7 @@ public class CouponServiceTest : Tests::TestBase
     public async Tasks::Task Create_Works()
     {
         var coupon = await this.client.Coupons.Create(
-            new Coupons::CouponCreateParams()
+            new()
             {
                 Discount = new DiscountProperties::Percentage() { PercentageDiscount = 0 },
                 RedemptionCode = "HALFOFF",
@@ -26,7 +25,7 @@ public class CouponServiceTest : Tests::TestBase
     public async Tasks::Task List_Works()
     {
         var page = await this.client.Coupons.List(
-            new Coupons::CouponListParams()
+            new()
             {
                 Cursor = "cursor",
                 Limit = 1,
@@ -40,18 +39,14 @@ public class CouponServiceTest : Tests::TestBase
     [Fact]
     public async Tasks::Task Archive_Works()
     {
-        var coupon = await this.client.Coupons.Archive(
-            new Coupons::CouponArchiveParams() { CouponID = "coupon_id" }
-        );
+        var coupon = await this.client.Coupons.Archive(new() { CouponID = "coupon_id" });
         coupon.Validate();
     }
 
     [Fact]
     public async Tasks::Task Fetch_Works()
     {
-        var coupon = await this.client.Coupons.Fetch(
-            new Coupons::CouponFetchParams() { CouponID = "coupon_id" }
-        );
+        var coupon = await this.client.Coupons.Fetch(new() { CouponID = "coupon_id" });
         coupon.Validate();
     }
 }

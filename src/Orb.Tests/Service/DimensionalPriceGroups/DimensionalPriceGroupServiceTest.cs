@@ -1,4 +1,3 @@
-using DimensionalPriceGroups = Orb.Models.DimensionalPriceGroups;
 using Tasks = System.Threading.Tasks;
 using Tests = Orb.Tests;
 
@@ -10,7 +9,7 @@ public class DimensionalPriceGroupServiceTest : Tests::TestBase
     public async Tasks::Task Create_Works()
     {
         var dimensionalPriceGroup = await this.client.DimensionalPriceGroups.Create(
-            new DimensionalPriceGroups::DimensionalPriceGroupCreateParams()
+            new()
             {
                 BillableMetricID = "billable_metric_id",
                 Dimensions = ["region", "instance_type"],
@@ -26,10 +25,7 @@ public class DimensionalPriceGroupServiceTest : Tests::TestBase
     public async Tasks::Task Retrieve_Works()
     {
         var dimensionalPriceGroup = await this.client.DimensionalPriceGroups.Retrieve(
-            new DimensionalPriceGroups::DimensionalPriceGroupRetrieveParams()
-            {
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-            }
+            new() { DimensionalPriceGroupID = "dimensional_price_group_id" }
         );
         dimensionalPriceGroup.Validate();
     }
@@ -38,7 +34,7 @@ public class DimensionalPriceGroupServiceTest : Tests::TestBase
     public async Tasks::Task Update_Works()
     {
         var dimensionalPriceGroup = await this.client.DimensionalPriceGroups.Update(
-            new DimensionalPriceGroups::DimensionalPriceGroupUpdateParams()
+            new()
             {
                 DimensionalPriceGroupID = "dimensional_price_group_id",
                 ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
@@ -52,11 +48,7 @@ public class DimensionalPriceGroupServiceTest : Tests::TestBase
     public async Tasks::Task List_Works()
     {
         var page = await this.client.DimensionalPriceGroups.List(
-            new DimensionalPriceGroups::DimensionalPriceGroupListParams()
-            {
-                Cursor = "cursor",
-                Limit = 1,
-            }
+            new() { Cursor = "cursor", Limit = 1 }
         );
         page.Validate();
     }

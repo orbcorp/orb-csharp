@@ -1,5 +1,3 @@
-using Beta = Orb.Models.Beta;
-using BetaCreatePlanVersionParamsProperties = Orb.Models.Beta.BetaCreatePlanVersionParamsProperties;
 using CustomExpirationProperties = Orb.Models.CustomExpirationProperties;
 using Models = Orb.Models;
 using NewAllocationPriceProperties = Orb.Models.NewAllocationPriceProperties;
@@ -19,13 +17,13 @@ public class BetaServiceTest : Tests::TestBase
     public async Tasks::Task CreatePlanVersion_Works()
     {
         var planVersion = await this.client.Beta.CreatePlanVersion(
-            new Beta::BetaCreatePlanVersionParams()
+            new()
             {
                 PlanID = "plan_id",
                 Version = 0,
                 AddAdjustments =
                 [
-                    new BetaCreatePlanVersionParamsProperties::AddAdjustment()
+                    new()
                     {
                         Adjustment = new Models::NewPercentageDiscount()
                         {
@@ -38,7 +36,7 @@ public class BetaServiceTest : Tests::TestBase
                             Currency = "currency",
                             Filters =
                             [
-                                new Models::TransformPriceFilter()
+                                new()
                                 {
                                     Field = TransformPriceFilterProperties::Field.PriceID,
                                     Operator = TransformPriceFilterProperties::Operator.Includes,
@@ -53,14 +51,14 @@ public class BetaServiceTest : Tests::TestBase
                 ],
                 AddPrices =
                 [
-                    new BetaCreatePlanVersionParamsProperties::AddPrice()
+                    new()
                     {
-                        AllocationPrice = new Models::NewAllocationPrice()
+                        AllocationPrice = new()
                         {
                             Amount = "10.00",
                             Cadence = NewAllocationPriceProperties::Cadence.Monthly,
                             Currency = "USD",
-                            CustomExpiration = new Models::CustomExpiration()
+                            CustomExpiration = new()
                             {
                                 Duration = 0,
                                 DurationUnit = CustomExpirationProperties::DurationUnit.Day,
@@ -74,10 +72,10 @@ public class BetaServiceTest : Tests::TestBase
                             ItemID = "item_id",
                             ModelType = NewPlanUnitPriceProperties::ModelType.Unit,
                             Name = "Annual fee",
-                            UnitConfig = new Models::UnitConfig() { UnitAmount = "unit_amount" },
+                            UnitConfig = new() { UnitAmount = "unit_amount" },
                             BillableMetricID = "billable_metric_id",
                             BilledInAdvance = true,
-                            BillingCycleConfiguration = new Models::NewBillingCycleConfiguration()
+                            BillingCycleConfiguration = new()
                             {
                                 Duration = 0,
                                 DurationUnit =
@@ -88,24 +86,20 @@ public class BetaServiceTest : Tests::TestBase
                             {
                                 ConversionRateType =
                                     UnitConversionRateConfigProperties::ConversionRateType.Unit,
-                                UnitConfig = new Models::ConversionRateUnitConfig()
-                                {
-                                    UnitAmount = "unit_amount",
-                                },
+                                UnitConfig = new() { UnitAmount = "unit_amount" },
                             },
                             Currency = "currency",
-                            DimensionalPriceConfiguration =
-                                new Models::NewDimensionalPriceConfiguration()
-                                {
-                                    DimensionValues = ["string"],
-                                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                                    ExternalDimensionalPriceGroupID =
-                                        "external_dimensional_price_group_id",
-                                },
+                            DimensionalPriceConfiguration = new()
+                            {
+                                DimensionValues = ["string"],
+                                DimensionalPriceGroupID = "dimensional_price_group_id",
+                                ExternalDimensionalPriceGroupID =
+                                    "external_dimensional_price_group_id",
+                            },
                             ExternalPriceID = "external_price_id",
                             FixedPriceQuantity = 0,
                             InvoiceGroupingKey = "x",
-                            InvoicingCycleConfiguration = new Models::NewBillingCycleConfiguration()
+                            InvoicingCycleConfiguration = new()
                             {
                                 Duration = 0,
                                 DurationUnit =
@@ -116,25 +110,11 @@ public class BetaServiceTest : Tests::TestBase
                         },
                     },
                 ],
-                RemoveAdjustments =
-                [
-                    new BetaCreatePlanVersionParamsProperties::RemoveAdjustment()
-                    {
-                        AdjustmentID = "adjustment_id",
-                        PlanPhaseOrder = 0,
-                    },
-                ],
-                RemovePrices =
-                [
-                    new BetaCreatePlanVersionParamsProperties::RemovePrice()
-                    {
-                        PriceID = "price_id",
-                        PlanPhaseOrder = 0,
-                    },
-                ],
+                RemoveAdjustments = [new() { AdjustmentID = "adjustment_id", PlanPhaseOrder = 0 }],
+                RemovePrices = [new() { PriceID = "price_id", PlanPhaseOrder = 0 }],
                 ReplaceAdjustments =
                 [
-                    new BetaCreatePlanVersionParamsProperties::ReplaceAdjustment()
+                    new()
                     {
                         Adjustment = new Models::NewPercentageDiscount()
                         {
@@ -147,7 +127,7 @@ public class BetaServiceTest : Tests::TestBase
                             Currency = "currency",
                             Filters =
                             [
-                                new Models::TransformPriceFilter()
+                                new()
                                 {
                                     Field = TransformPriceFilterProperties::Field.PriceID,
                                     Operator = TransformPriceFilterProperties::Operator.Includes,
@@ -163,15 +143,15 @@ public class BetaServiceTest : Tests::TestBase
                 ],
                 ReplacePrices =
                 [
-                    new BetaCreatePlanVersionParamsProperties::ReplacePrice()
+                    new()
                     {
                         ReplacesPriceID = "replaces_price_id",
-                        AllocationPrice = new Models::NewAllocationPrice()
+                        AllocationPrice = new()
                         {
                             Amount = "10.00",
                             Cadence = NewAllocationPriceProperties::Cadence.Monthly,
                             Currency = "USD",
-                            CustomExpiration = new Models::CustomExpiration()
+                            CustomExpiration = new()
                             {
                                 Duration = 0,
                                 DurationUnit = CustomExpirationProperties::DurationUnit.Day,
@@ -185,10 +165,10 @@ public class BetaServiceTest : Tests::TestBase
                             ItemID = "item_id",
                             ModelType = NewPlanUnitPriceProperties::ModelType.Unit,
                             Name = "Annual fee",
-                            UnitConfig = new Models::UnitConfig() { UnitAmount = "unit_amount" },
+                            UnitConfig = new() { UnitAmount = "unit_amount" },
                             BillableMetricID = "billable_metric_id",
                             BilledInAdvance = true,
-                            BillingCycleConfiguration = new Models::NewBillingCycleConfiguration()
+                            BillingCycleConfiguration = new()
                             {
                                 Duration = 0,
                                 DurationUnit =
@@ -199,24 +179,20 @@ public class BetaServiceTest : Tests::TestBase
                             {
                                 ConversionRateType =
                                     UnitConversionRateConfigProperties::ConversionRateType.Unit,
-                                UnitConfig = new Models::ConversionRateUnitConfig()
-                                {
-                                    UnitAmount = "unit_amount",
-                                },
+                                UnitConfig = new() { UnitAmount = "unit_amount" },
                             },
                             Currency = "currency",
-                            DimensionalPriceConfiguration =
-                                new Models::NewDimensionalPriceConfiguration()
-                                {
-                                    DimensionValues = ["string"],
-                                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                                    ExternalDimensionalPriceGroupID =
-                                        "external_dimensional_price_group_id",
-                                },
+                            DimensionalPriceConfiguration = new()
+                            {
+                                DimensionValues = ["string"],
+                                DimensionalPriceGroupID = "dimensional_price_group_id",
+                                ExternalDimensionalPriceGroupID =
+                                    "external_dimensional_price_group_id",
+                            },
                             ExternalPriceID = "external_price_id",
                             FixedPriceQuantity = 0,
                             InvoiceGroupingKey = "x",
-                            InvoicingCycleConfiguration = new Models::NewBillingCycleConfiguration()
+                            InvoicingCycleConfiguration = new()
                             {
                                 Duration = 0,
                                 DurationUnit =
@@ -237,7 +213,7 @@ public class BetaServiceTest : Tests::TestBase
     public async Tasks::Task FetchPlanVersion_Works()
     {
         var planVersion = await this.client.Beta.FetchPlanVersion(
-            new Beta::BetaFetchPlanVersionParams() { PlanID = "plan_id", Version = "version" }
+            new() { PlanID = "plan_id", Version = "version" }
         );
         planVersion.Validate();
     }
@@ -246,7 +222,7 @@ public class BetaServiceTest : Tests::TestBase
     public async Tasks::Task SetDefaultPlanVersion_Works()
     {
         var plan = await this.client.Beta.SetDefaultPlanVersion(
-            new Beta::BetaSetDefaultPlanVersionParams() { PlanID = "plan_id", Version = 0 }
+            new() { PlanID = "plan_id", Version = 0 }
         );
         plan.Validate();
     }

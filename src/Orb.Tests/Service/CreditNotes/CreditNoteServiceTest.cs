@@ -1,5 +1,4 @@
 using CreditNoteCreateParamsProperties = Orb.Models.CreditNotes.CreditNoteCreateParamsProperties;
-using CreditNotes = Orb.Models.CreditNotes;
 using System = System;
 using Tasks = System.Threading.Tasks;
 using Tests = Orb.Tests;
@@ -12,11 +11,11 @@ public class CreditNoteServiceTest : Tests::TestBase
     public async Tasks::Task Create_Works()
     {
         var creditNote = await this.client.CreditNotes.Create(
-            new CreditNotes::CreditNoteCreateParams()
+            new()
             {
                 LineItems =
                 [
-                    new CreditNoteCreateParamsProperties::LineItem()
+                    new()
                     {
                         Amount = "amount",
                         InvoiceLineItemID = "4khy3nwzktxv7",
@@ -37,7 +36,7 @@ public class CreditNoteServiceTest : Tests::TestBase
     public async Tasks::Task List_Works()
     {
         var page = await this.client.CreditNotes.List(
-            new CreditNotes::CreditNoteListParams()
+            new()
             {
                 CreatedAtGt = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
                 CreatedAtGte = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
@@ -54,7 +53,7 @@ public class CreditNoteServiceTest : Tests::TestBase
     public async Tasks::Task Fetch_Works()
     {
         var creditNote = await this.client.CreditNotes.Fetch(
-            new CreditNotes::CreditNoteFetchParams() { CreditNoteID = "credit_note_id" }
+            new() { CreditNoteID = "credit_note_id" }
         );
         creditNote.Validate();
     }

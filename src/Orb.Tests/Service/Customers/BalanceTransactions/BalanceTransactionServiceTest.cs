@@ -1,5 +1,4 @@
 using BalanceTransactionCreateParamsProperties = Orb.Models.Customers.BalanceTransactions.BalanceTransactionCreateParamsProperties;
-using BalanceTransactions = Orb.Models.Customers.BalanceTransactions;
 using System = System;
 using Tasks = System.Threading.Tasks;
 using Tests = Orb.Tests;
@@ -12,7 +11,7 @@ public class BalanceTransactionServiceTest : Tests::TestBase
     public async Tasks::Task Create_Works()
     {
         var balanceTransaction = await this.client.Customers.BalanceTransactions.Create(
-            new BalanceTransactions::BalanceTransactionCreateParams()
+            new()
             {
                 CustomerID = "customer_id",
                 Amount = "amount",
@@ -27,7 +26,7 @@ public class BalanceTransactionServiceTest : Tests::TestBase
     public async Tasks::Task List_Works()
     {
         var page = await this.client.Customers.BalanceTransactions.List(
-            new BalanceTransactions::BalanceTransactionListParams()
+            new()
             {
                 CustomerID = "customer_id",
                 Cursor = "cursor",

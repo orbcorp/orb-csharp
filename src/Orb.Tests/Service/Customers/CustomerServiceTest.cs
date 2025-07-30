@@ -3,7 +3,6 @@ using Customers = Orb.Models.Customers;
 using CustomerTaxIDProperties = Orb.Models.CustomerTaxIDProperties;
 using CustomerUpdateByExternalIDParamsProperties = Orb.Models.Customers.CustomerUpdateByExternalIDParamsProperties;
 using CustomerUpdateParamsProperties = Orb.Models.Customers.CustomerUpdateParamsProperties;
-using Models = Orb.Models;
 using NewAvalaraTaxConfigurationProperties = Orb.Models.Customers.NewAvalaraTaxConfigurationProperties;
 using System = System;
 using Tasks = System.Threading.Tasks;
@@ -17,15 +16,15 @@ public class CustomerServiceTest : Tests::TestBase
     public async Tasks::Task Create_Works()
     {
         var customer = await this.client.Customers.Create(
-            new Customers::CustomerCreateParams()
+            new()
             {
                 Email = "dev@stainless.com",
                 Name = "x",
-                AccountingSyncConfiguration = new Customers::NewAccountingSyncConfiguration()
+                AccountingSyncConfiguration = new()
                 {
                     AccountingProviders =
                     [
-                        new Customers::AccountingProviderConfig()
+                        new()
                         {
                             ExternalProviderID = "external_provider_id",
                             ProviderType = "provider_type",
@@ -35,7 +34,7 @@ public class CustomerServiceTest : Tests::TestBase
                 },
                 AdditionalEmails = ["dev@stainless.com"],
                 AutoCollection = true,
-                BillingAddress = new Customers::AddressInput()
+                BillingAddress = new()
                 {
                     City = "city",
                     Country = "country",
@@ -47,7 +46,7 @@ public class CustomerServiceTest : Tests::TestBase
                 Currency = "currency",
                 EmailDelivery = true,
                 ExternalCustomerID = "external_customer_id",
-                Hierarchy = new Customers::CustomerHierarchyConfig()
+                Hierarchy = new()
                 {
                     ChildCustomerIDs = ["string"],
                     ParentCustomerID = "parent_customer_id",
@@ -55,11 +54,8 @@ public class CustomerServiceTest : Tests::TestBase
                 Metadata = new() { { "foo", "string" } },
                 PaymentProvider = CustomerCreateParamsProperties::PaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                ReportingConfiguration = new Customers::NewReportingConfiguration()
-                {
-                    Exempt = true,
-                },
-                ShippingAddress = new Customers::AddressInput()
+                ReportingConfiguration = new() { Exempt = true },
+                ShippingAddress = new()
                 {
                     City = "city",
                     Country = "country",
@@ -74,7 +70,7 @@ public class CustomerServiceTest : Tests::TestBase
                     TaxProvider = NewAvalaraTaxConfigurationProperties::TaxProvider.Avalara,
                     TaxExemptionCode = "tax_exemption_code",
                 },
-                TaxID = new Models::CustomerTaxID()
+                TaxID = new()
                 {
                     Country = CustomerTaxIDProperties::Country.Ad,
                     Type = CustomerTaxIDProperties::Type.AdNrt,
@@ -90,14 +86,14 @@ public class CustomerServiceTest : Tests::TestBase
     public async Tasks::Task Update_Works()
     {
         var customer = await this.client.Customers.Update(
-            new Customers::CustomerUpdateParams()
+            new()
             {
                 CustomerID = "customer_id",
-                AccountingSyncConfiguration = new Customers::NewAccountingSyncConfiguration()
+                AccountingSyncConfiguration = new()
                 {
                     AccountingProviders =
                     [
-                        new Customers::AccountingProviderConfig()
+                        new()
                         {
                             ExternalProviderID = "external_provider_id",
                             ProviderType = "provider_type",
@@ -107,7 +103,7 @@ public class CustomerServiceTest : Tests::TestBase
                 },
                 AdditionalEmails = ["string"],
                 AutoCollection = true,
-                BillingAddress = new Customers::AddressInput()
+                BillingAddress = new()
                 {
                     City = "city",
                     Country = "country",
@@ -120,7 +116,7 @@ public class CustomerServiceTest : Tests::TestBase
                 Email = "dev@stainless.com",
                 EmailDelivery = true,
                 ExternalCustomerID = "external_customer_id",
-                Hierarchy = new Customers::CustomerHierarchyConfig()
+                Hierarchy = new()
                 {
                     ChildCustomerIDs = ["string"],
                     ParentCustomerID = "parent_customer_id",
@@ -129,11 +125,8 @@ public class CustomerServiceTest : Tests::TestBase
                 Name = "name",
                 PaymentProvider = CustomerUpdateParamsProperties::PaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                ReportingConfiguration = new Customers::NewReportingConfiguration()
-                {
-                    Exempt = true,
-                },
-                ShippingAddress = new Customers::AddressInput()
+                ReportingConfiguration = new() { Exempt = true },
+                ShippingAddress = new()
                 {
                     City = "city",
                     Country = "country",
@@ -148,7 +141,7 @@ public class CustomerServiceTest : Tests::TestBase
                     TaxProvider = NewAvalaraTaxConfigurationProperties::TaxProvider.Avalara,
                     TaxExemptionCode = "tax_exemption_code",
                 },
-                TaxID = new Models::CustomerTaxID()
+                TaxID = new()
                 {
                     Country = CustomerTaxIDProperties::Country.Ad,
                     Type = CustomerTaxIDProperties::Type.AdNrt,
@@ -163,7 +156,7 @@ public class CustomerServiceTest : Tests::TestBase
     public async Tasks::Task List_Works()
     {
         var page = await this.client.Customers.List(
-            new Customers::CustomerListParams()
+            new()
             {
                 CreatedAtGt = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
                 CreatedAtGte = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
@@ -179,17 +172,13 @@ public class CustomerServiceTest : Tests::TestBase
     [Fact]
     public async Tasks::Task Delete_Works()
     {
-        await this.client.Customers.Delete(
-            new Customers::CustomerDeleteParams() { CustomerID = "customer_id" }
-        );
+        await this.client.Customers.Delete(new() { CustomerID = "customer_id" });
     }
 
     [Fact]
     public async Tasks::Task Fetch_Works()
     {
-        var customer = await this.client.Customers.Fetch(
-            new Customers::CustomerFetchParams() { CustomerID = "customer_id" }
-        );
+        var customer = await this.client.Customers.Fetch(new() { CustomerID = "customer_id" });
         customer.Validate();
     }
 
@@ -197,10 +186,7 @@ public class CustomerServiceTest : Tests::TestBase
     public async Tasks::Task FetchByExternalID_Works()
     {
         var customer = await this.client.Customers.FetchByExternalID(
-            new Customers::CustomerFetchByExternalIDParams()
-            {
-                ExternalCustomerID = "external_customer_id",
-            }
+            new() { ExternalCustomerID = "external_customer_id" }
         );
         customer.Validate();
     }
@@ -209,10 +195,7 @@ public class CustomerServiceTest : Tests::TestBase
     public async Tasks::Task SyncPaymentMethodsFromGateway_Works()
     {
         await this.client.Customers.SyncPaymentMethodsFromGateway(
-            new Customers::CustomerSyncPaymentMethodsFromGatewayParams()
-            {
-                CustomerID = "customer_id",
-            }
+            new() { CustomerID = "customer_id" }
         );
     }
 
@@ -220,10 +203,7 @@ public class CustomerServiceTest : Tests::TestBase
     public async Tasks::Task SyncPaymentMethodsFromGatewayByExternalCustomerID_Works()
     {
         await this.client.Customers.SyncPaymentMethodsFromGatewayByExternalCustomerID(
-            new Customers::CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams()
-            {
-                ExternalCustomerID = "external_customer_id",
-            }
+            new() { ExternalCustomerID = "external_customer_id" }
         );
     }
 
@@ -231,14 +211,14 @@ public class CustomerServiceTest : Tests::TestBase
     public async Tasks::Task UpdateByExternalID_Works()
     {
         var customer = await this.client.Customers.UpdateByExternalID(
-            new Customers::CustomerUpdateByExternalIDParams()
+            new()
             {
                 ID = "external_customer_id",
-                AccountingSyncConfiguration = new Customers::NewAccountingSyncConfiguration()
+                AccountingSyncConfiguration = new()
                 {
                     AccountingProviders =
                     [
-                        new Customers::AccountingProviderConfig()
+                        new()
                         {
                             ExternalProviderID = "external_provider_id",
                             ProviderType = "provider_type",
@@ -248,7 +228,7 @@ public class CustomerServiceTest : Tests::TestBase
                 },
                 AdditionalEmails = ["string"],
                 AutoCollection = true,
-                BillingAddress = new Customers::AddressInput()
+                BillingAddress = new()
                 {
                     City = "city",
                     Country = "country",
@@ -261,7 +241,7 @@ public class CustomerServiceTest : Tests::TestBase
                 Email = "dev@stainless.com",
                 EmailDelivery = true,
                 ExternalCustomerID = "external_customer_id",
-                Hierarchy = new Customers::CustomerHierarchyConfig()
+                Hierarchy = new()
                 {
                     ChildCustomerIDs = ["string"],
                     ParentCustomerID = "parent_customer_id",
@@ -271,11 +251,8 @@ public class CustomerServiceTest : Tests::TestBase
                 PaymentProvider =
                     CustomerUpdateByExternalIDParamsProperties::PaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                ReportingConfiguration = new Customers::NewReportingConfiguration()
-                {
-                    Exempt = true,
-                },
-                ShippingAddress = new Customers::AddressInput()
+                ReportingConfiguration = new() { Exempt = true },
+                ShippingAddress = new()
                 {
                     City = "city",
                     Country = "country",
@@ -290,7 +267,7 @@ public class CustomerServiceTest : Tests::TestBase
                     TaxProvider = NewAvalaraTaxConfigurationProperties::TaxProvider.Avalara,
                     TaxExemptionCode = "tax_exemption_code",
                 },
-                TaxID = new Models::CustomerTaxID()
+                TaxID = new()
                 {
                     Country = CustomerTaxIDProperties::Country.Ad,
                     Type = CustomerTaxIDProperties::Type.AdNrt,

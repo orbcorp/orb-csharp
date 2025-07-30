@@ -27,9 +27,9 @@ using Orb = Orb;
 using System = System;
 
 // Configured using the ORB_API_KEY, ORB_WEBHOOK_SECRET and ORB_BASE_URL environment variables
-Orb::OrbClient client = new Orb::OrbClient();
+Orb::OrbClient client = new();
 
-var param = new Customers::CustomerCreateParams()
+Customers::CustomerCreateParams param = new()
 {
   Email = "example-customer@withorb.com", Name = "My Customer"
 };
@@ -47,7 +47,7 @@ Configure the client using environment variables:
 using Orb = Orb;
 
 // Configured using the ORB_API_KEY, ORB_WEBHOOK_SECRET and ORB_BASE_URL environment variables
-Orb::OrbClient client = new Orb::OrbClient();
+Orb::OrbClient client = new();
 ```
 
 Or manually:
@@ -55,7 +55,7 @@ Or manually:
 ```C#
 using Orb = Orb;
 
-Orb::OrbClient client = new Orb::OrbClient()
+Orb::OrbClient client = new()
 {
   APIKey = "My API Key"
 };

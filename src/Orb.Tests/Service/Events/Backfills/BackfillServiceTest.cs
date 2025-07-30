@@ -1,4 +1,3 @@
-using Backfills = Orb.Models.Events.Backfills;
 using System = System;
 using Tasks = System.Threading.Tasks;
 using Tests = Orb.Tests;
@@ -11,7 +10,7 @@ public class BackfillServiceTest : Tests::TestBase
     public async Tasks::Task Create_Works()
     {
         var backfill = await this.client.Events.Backfills.Create(
-            new Backfills::BackfillCreateParams()
+            new()
             {
                 TimeframeEnd = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
                 TimeframeStart = System::DateTime.Parse("2019-12-27T18:11:19.117Z"),
@@ -28,9 +27,7 @@ public class BackfillServiceTest : Tests::TestBase
     [Fact]
     public async Tasks::Task List_Works()
     {
-        var page = await this.client.Events.Backfills.List(
-            new Backfills::BackfillListParams() { Cursor = "cursor", Limit = 1 }
-        );
+        var page = await this.client.Events.Backfills.List(new() { Cursor = "cursor", Limit = 1 });
         page.Validate();
     }
 
@@ -38,7 +35,7 @@ public class BackfillServiceTest : Tests::TestBase
     public async Tasks::Task Close_Works()
     {
         var response = await this.client.Events.Backfills.Close(
-            new Backfills::BackfillCloseParams() { BackfillID = "backfill_id" }
+            new() { BackfillID = "backfill_id" }
         );
         response.Validate();
     }
@@ -47,7 +44,7 @@ public class BackfillServiceTest : Tests::TestBase
     public async Tasks::Task Fetch_Works()
     {
         var response = await this.client.Events.Backfills.Fetch(
-            new Backfills::BackfillFetchParams() { BackfillID = "backfill_id" }
+            new() { BackfillID = "backfill_id" }
         );
         response.Validate();
     }
@@ -56,7 +53,7 @@ public class BackfillServiceTest : Tests::TestBase
     public async Tasks::Task Revert_Works()
     {
         var response = await this.client.Events.Backfills.Revert(
-            new Backfills::BackfillRevertParams() { BackfillID = "backfill_id" }
+            new() { BackfillID = "backfill_id" }
         );
         response.Validate();
     }
