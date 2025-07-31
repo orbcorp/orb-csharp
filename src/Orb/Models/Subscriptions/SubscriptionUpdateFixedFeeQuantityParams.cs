@@ -40,7 +40,7 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("price_id");
         }
         set { this.BodyProperties["price_id"] = JsonSerializer.SerializeToElement(value); }
@@ -56,7 +56,7 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["quantity"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -78,7 +78,7 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
             )
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -101,7 +101,8 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<SubscriptionUpdateFixedFeeQuantityParamsProperties::ChangeOption?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.BodyProperties["change_option"] = JsonSerializer.SerializeToElement(value); }
@@ -119,7 +120,10 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("effective_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateOnly?>(element);
+            return JsonSerializer.Deserialize<System::DateOnly?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.BodyProperties["effective_date"] = JsonSerializer.SerializeToElement(value); }
     }

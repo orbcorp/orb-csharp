@@ -16,7 +16,7 @@ public sealed record class CustomerMinified : ModelBase, IFromRaw<CustomerMinifi
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -32,7 +32,7 @@ public sealed record class CustomerMinified : ModelBase, IFromRaw<CustomerMinifi
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["external_customer_id"] = JsonSerializer.SerializeToElement(value); }
     }

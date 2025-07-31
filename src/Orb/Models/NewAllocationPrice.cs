@@ -23,7 +23,7 @@ public sealed record class NewAllocationPrice : ModelBase, IFromRaw<NewAllocatio
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("amount");
         }
         set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
@@ -42,8 +42,10 @@ public sealed record class NewAllocationPrice : ModelBase, IFromRaw<NewAllocatio
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<NewAllocationPriceProperties::Cadence>(element)
-                ?? throw new System::ArgumentNullException("cadence");
+            return JsonSerializer.Deserialize<NewAllocationPriceProperties::Cadence>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("cadence");
         }
         set { this.Properties["cadence"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -62,7 +64,7 @@ public sealed record class NewAllocationPrice : ModelBase, IFromRaw<NewAllocatio
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("currency");
         }
         set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
@@ -78,7 +80,10 @@ public sealed record class NewAllocationPrice : ModelBase, IFromRaw<NewAllocatio
             if (!this.Properties.TryGetValue("custom_expiration", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<CustomExpiration?>(element);
+            return JsonSerializer.Deserialize<CustomExpiration?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["custom_expiration"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -94,7 +99,7 @@ public sealed record class NewAllocationPrice : ModelBase, IFromRaw<NewAllocatio
             if (!this.Properties.TryGetValue("expires_at_end_of_cadence", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set
         {

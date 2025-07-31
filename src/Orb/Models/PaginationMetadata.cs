@@ -19,7 +19,7 @@ public sealed record class PaginationMetadata : ModelBase, IFromRaw<PaginationMe
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["has_more"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -34,7 +34,7 @@ public sealed record class PaginationMetadata : ModelBase, IFromRaw<PaginationMe
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["next_cursor"] = JsonSerializer.SerializeToElement(value); }
     }

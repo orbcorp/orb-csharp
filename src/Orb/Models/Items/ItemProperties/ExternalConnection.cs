@@ -21,7 +21,8 @@ public sealed record class ExternalConnection : ModelBase, IFromRaw<ExternalConn
                 );
 
             return JsonSerializer.Deserialize<ExternalConnectionProperties::ExternalConnectionName>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("external_connection_name");
         }
         set
@@ -40,7 +41,7 @@ public sealed record class ExternalConnection : ModelBase, IFromRaw<ExternalConn
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("external_entity_id");
         }
         set { this.Properties["external_entity_id"] = JsonSerializer.SerializeToElement(value); }

@@ -30,7 +30,7 @@ public sealed record class PlanUpdateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("external_plan_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["external_plan_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -47,7 +47,10 @@ public sealed record class PlanUpdateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(element);
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }

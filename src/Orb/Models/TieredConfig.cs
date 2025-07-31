@@ -19,7 +19,7 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
             if (!this.Properties.TryGetValue("tiers", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("tiers", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<Tier>>(element)
+            return JsonSerializer.Deserialize<List<Tier>>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("tiers");
         }
         set { this.Properties["tiers"] = JsonSerializer.SerializeToElement(value); }

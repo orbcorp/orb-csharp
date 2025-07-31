@@ -19,7 +19,7 @@ public sealed record class MonetaryAmountDiscountAdjustment
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -36,7 +36,8 @@ public sealed record class MonetaryAmountDiscountAdjustment
                 );
 
             return JsonSerializer.Deserialize<MonetaryAmountDiscountAdjustmentProperties::AdjustmentType>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new System::ArgumentNullException("adjustment_type");
         }
         set { this.Properties["adjustment_type"] = JsonSerializer.SerializeToElement(value); }
@@ -55,7 +56,7 @@ public sealed record class MonetaryAmountDiscountAdjustment
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("amount");
         }
         set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
@@ -75,7 +76,7 @@ public sealed record class MonetaryAmountDiscountAdjustment
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("amount_discount");
         }
         set { this.Properties["amount_discount"] = JsonSerializer.SerializeToElement(value); }
@@ -94,7 +95,7 @@ public sealed record class MonetaryAmountDiscountAdjustment
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<string>>(element)
+            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("applies_to_price_ids");
         }
         set { this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(value); }
@@ -113,8 +114,10 @@ public sealed record class MonetaryAmountDiscountAdjustment
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<TransformPriceFilter>>(element)
-                ?? throw new System::ArgumentNullException("filters");
+            return JsonSerializer.Deserialize<List<TransformPriceFilter>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("filters");
         }
         set { this.Properties["filters"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -133,7 +136,7 @@ public sealed record class MonetaryAmountDiscountAdjustment
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["is_invoice_level"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -151,7 +154,7 @@ public sealed record class MonetaryAmountDiscountAdjustment
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["reason"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -170,7 +173,7 @@ public sealed record class MonetaryAmountDiscountAdjustment
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {

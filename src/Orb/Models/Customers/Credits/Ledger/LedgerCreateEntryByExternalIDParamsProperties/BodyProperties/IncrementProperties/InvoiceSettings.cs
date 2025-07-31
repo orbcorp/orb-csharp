@@ -29,7 +29,7 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["auto_collection"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -49,7 +49,7 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["net_terms"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -66,7 +66,10 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
             if (!this.Properties.TryGetValue("invoice_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<InvoiceSettingsProperties::InvoiceDate?>(element);
+            return JsonSerializer.Deserialize<InvoiceSettingsProperties::InvoiceDate?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["invoice_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -81,7 +84,7 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
             if (!this.Properties.TryGetValue("memo", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["memo"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -97,7 +100,7 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
             if (!this.Properties.TryGetValue("require_successful_payment", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set
         {

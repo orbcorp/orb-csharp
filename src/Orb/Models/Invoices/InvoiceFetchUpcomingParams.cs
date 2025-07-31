@@ -20,7 +20,7 @@ public sealed record class InvoiceFetchUpcomingParams : ParamsBase
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("subscription_id");
         }
         set { this.QueryProperties["subscription_id"] = JsonSerializer.SerializeToElement(value); }

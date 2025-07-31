@@ -16,7 +16,7 @@ public sealed record class ItemSlim : ModelBase, IFromRaw<ItemSlim>
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -29,7 +29,7 @@ public sealed record class ItemSlim : ModelBase, IFromRaw<ItemSlim>
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("name");
         }
         set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }

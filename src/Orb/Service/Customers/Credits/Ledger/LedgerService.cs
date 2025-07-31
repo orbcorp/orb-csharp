@@ -17,40 +17,44 @@ public sealed class LedgerService : ILedgerService
 
     public async Task<LedgerListPageResponse> List(LedgerListParams @params)
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
+        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
         return JsonSerializer.Deserialize<LedgerListPageResponse>(
-                await response.Content.ReadAsStringAsync()
+                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
+                ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
     public async Task<LedgerCreateEntryResponse> CreateEntry(LedgerCreateEntryParams @params)
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
+        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
         return JsonSerializer.Deserialize<LedgerCreateEntryResponse>(
-                await response.Content.ReadAsStringAsync()
+                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
+                ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
@@ -58,22 +62,24 @@ public sealed class LedgerService : ILedgerService
         LedgerCreateEntryByExternalIDParams @params
     )
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
+        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
         return JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDResponse>(
-                await response.Content.ReadAsStringAsync()
+                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
+                ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
@@ -81,19 +87,21 @@ public sealed class LedgerService : ILedgerService
         LedgerListByExternalIDParams @params
     )
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
+        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
         return JsonSerializer.Deserialize<LedgerListByExternalIDPageResponse>(
-                await response.Content.ReadAsStringAsync()
+                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
+                ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 }

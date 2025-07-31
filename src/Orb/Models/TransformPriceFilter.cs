@@ -20,8 +20,10 @@ public sealed record class TransformPriceFilter : ModelBase, IFromRaw<TransformP
             if (!this.Properties.TryGetValue("field", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("field", "Missing required argument");
 
-            return JsonSerializer.Deserialize<TransformPriceFilterProperties::Field>(element)
-                ?? throw new System::ArgumentNullException("field");
+            return JsonSerializer.Deserialize<TransformPriceFilterProperties::Field>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("field");
         }
         set { this.Properties["field"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -39,8 +41,10 @@ public sealed record class TransformPriceFilter : ModelBase, IFromRaw<TransformP
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<TransformPriceFilterProperties::Operator>(element)
-                ?? throw new System::ArgumentNullException("operator");
+            return JsonSerializer.Deserialize<TransformPriceFilterProperties::Operator>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("operator");
         }
         set { this.Properties["operator"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -58,7 +62,7 @@ public sealed record class TransformPriceFilter : ModelBase, IFromRaw<TransformP
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<string>>(element)
+            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("values");
         }
         set { this.Properties["values"] = JsonSerializer.SerializeToElement(value); }

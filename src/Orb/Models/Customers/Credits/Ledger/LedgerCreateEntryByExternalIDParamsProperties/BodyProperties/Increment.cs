@@ -24,7 +24,7 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -39,7 +39,7 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<JsonElement>(element);
+            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["entry_type"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -55,7 +55,7 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -72,7 +72,7 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
             if (!this.Properties.TryGetValue("description", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["description"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -88,7 +88,10 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
             if (!this.Properties.TryGetValue("effective_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["effective_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -103,7 +106,10 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
             if (!this.Properties.TryGetValue("expiry_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["expiry_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -120,7 +126,10 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
             if (!this.Properties.TryGetValue("invoice_settings", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<IncrementProperties::InvoiceSettings?>(element);
+            return JsonSerializer.Deserialize<IncrementProperties::InvoiceSettings?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["invoice_settings"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -137,7 +146,10 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
             if (!this.Properties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(element);
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -153,7 +165,7 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
             if (!this.Properties.TryGetValue("per_unit_cost_basis", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["per_unit_cost_basis"] = JsonSerializer.SerializeToElement(value); }
     }

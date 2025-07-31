@@ -16,7 +16,7 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -36,7 +36,7 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["external_plan_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -48,7 +48,7 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
     }

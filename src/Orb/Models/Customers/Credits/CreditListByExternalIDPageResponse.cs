@@ -22,7 +22,8 @@ public sealed record class CreditListByExternalIDPageResponse
 
             return JsonSerializer.Deserialize<
                     List<CreditListByExternalIDPageResponseProperties::Data>
-                >(element) ?? throw new System::ArgumentNullException("data");
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new System::ArgumentNullException("data");
         }
         set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -37,8 +38,10 @@ public sealed record class CreditListByExternalIDPageResponse
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Models::PaginationMetadata>(element)
-                ?? throw new System::ArgumentNullException("pagination_metadata");
+            return JsonSerializer.Deserialize<Models::PaginationMetadata>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("pagination_metadata");
         }
         set { this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(value); }
     }

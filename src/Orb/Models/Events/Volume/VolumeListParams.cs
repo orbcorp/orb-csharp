@@ -34,7 +34,7 @@ public sealed record class VolumeListParams : ParamsBase
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -50,7 +50,7 @@ public sealed record class VolumeListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("cursor", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -65,7 +65,7 @@ public sealed record class VolumeListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("limit", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -83,7 +83,7 @@ public sealed record class VolumeListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("timeframe_end", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }

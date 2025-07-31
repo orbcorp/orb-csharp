@@ -29,7 +29,7 @@ public sealed record class InvoiceListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("amount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["amount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -41,7 +41,7 @@ public sealed record class InvoiceListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("amount[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["amount[gt]"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -53,7 +53,7 @@ public sealed record class InvoiceListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("amount[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["amount[lt]"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -69,7 +69,7 @@ public sealed record class InvoiceListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("cursor", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -81,7 +81,7 @@ public sealed record class InvoiceListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("customer_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["customer_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -93,7 +93,10 @@ public sealed record class InvoiceListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("date_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<InvoiceListParamsProperties::DateType?>(element);
+            return JsonSerializer.Deserialize<InvoiceListParamsProperties::DateType?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["date_type"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -105,7 +108,10 @@ public sealed record class InvoiceListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("due_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateOnly?>(element);
+            return JsonSerializer.Deserialize<System::DateOnly?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["due_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -123,7 +129,7 @@ public sealed record class InvoiceListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("due_date_window", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["due_date_window"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -135,7 +141,10 @@ public sealed record class InvoiceListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("due_date[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateOnly?>(element);
+            return JsonSerializer.Deserialize<System::DateOnly?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["due_date[gt]"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -147,7 +156,10 @@ public sealed record class InvoiceListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("due_date[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateOnly?>(element);
+            return JsonSerializer.Deserialize<System::DateOnly?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["due_date[lt]"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -159,7 +171,7 @@ public sealed record class InvoiceListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -174,7 +186,10 @@ public sealed record class InvoiceListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("invoice_date[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["invoice_date[gt]"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -186,7 +201,10 @@ public sealed record class InvoiceListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("invoice_date[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -201,7 +219,10 @@ public sealed record class InvoiceListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("invoice_date[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["invoice_date[lt]"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -213,7 +234,10 @@ public sealed record class InvoiceListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("invoice_date[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -228,7 +252,7 @@ public sealed record class InvoiceListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("is_recurring", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["is_recurring"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -243,7 +267,7 @@ public sealed record class InvoiceListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("limit", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -255,7 +279,10 @@ public sealed record class InvoiceListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("status", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<InvoiceListParamsProperties::Status>?>(element);
+            return JsonSerializer.Deserialize<List<InvoiceListParamsProperties::Status>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["status"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -267,7 +294,7 @@ public sealed record class InvoiceListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("subscription_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["subscription_id"] = JsonSerializer.SerializeToElement(value); }
     }

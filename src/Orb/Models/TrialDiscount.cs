@@ -20,8 +20,10 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<TrialDiscountProperties::DiscountType>(element)
-                ?? throw new System::ArgumentNullException("discount_type");
+            return JsonSerializer.Deserialize<TrialDiscountProperties::DiscountType>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("discount_type");
         }
         set { this.Properties["discount_type"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -37,7 +39,7 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
             if (!this.Properties.TryGetValue("applies_to_price_ids", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<string>?>(element);
+            return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -52,7 +54,10 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
             if (!this.Properties.TryGetValue("filters", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<TransformPriceFilter>?>(element);
+            return JsonSerializer.Deserialize<List<TransformPriceFilter>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["filters"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -64,7 +69,7 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
             if (!this.Properties.TryGetValue("reason", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["reason"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -79,7 +84,7 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
             if (!this.Properties.TryGetValue("trial_amount_discount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["trial_amount_discount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -94,7 +99,7 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
             if (!this.Properties.TryGetValue("trial_percentage_discount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         set
         {

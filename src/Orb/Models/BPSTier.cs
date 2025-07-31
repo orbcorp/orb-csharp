@@ -19,7 +19,7 @@ public sealed record class BPSTier : ModelBase, IFromRaw<BPSTier>
             if (!this.Properties.TryGetValue("bps", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("bps", "Missing required argument");
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["bps"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -37,7 +37,7 @@ public sealed record class BPSTier : ModelBase, IFromRaw<BPSTier>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("minimum_amount");
         }
         set { this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(value); }
@@ -53,7 +53,7 @@ public sealed record class BPSTier : ModelBase, IFromRaw<BPSTier>
             if (!this.Properties.TryGetValue("maximum_amount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -68,7 +68,7 @@ public sealed record class BPSTier : ModelBase, IFromRaw<BPSTier>
             if (!this.Properties.TryGetValue("per_unit_maximum", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["per_unit_maximum"] = JsonSerializer.SerializeToElement(value); }
     }

@@ -19,7 +19,8 @@ public sealed record class GroupedSubscriptionUsage : ModelBase, IFromRaw<Groupe
                 throw new ArgumentOutOfRangeException("data", "Missing required argument");
 
             return JsonSerializer.Deserialize<List<GroupedSubscriptionUsageProperties::Data>>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("data");
         }
         set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
@@ -32,7 +33,10 @@ public sealed record class GroupedSubscriptionUsage : ModelBase, IFromRaw<Groupe
             if (!this.Properties.TryGetValue("pagination_metadata", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Models::PaginationMetadata?>(element);
+            return JsonSerializer.Deserialize<Models::PaginationMetadata?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(value); }
     }

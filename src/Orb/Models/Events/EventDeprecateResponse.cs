@@ -19,7 +19,7 @@ public sealed record class EventDeprecateResponse : ModelBase, IFromRaw<EventDep
             if (!this.Properties.TryGetValue("deprecated", out JsonElement element))
                 throw new ArgumentOutOfRangeException("deprecated", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("deprecated");
         }
         set { this.Properties["deprecated"] = JsonSerializer.SerializeToElement(value); }

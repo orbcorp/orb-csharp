@@ -20,8 +20,10 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<NewMinimumProperties::AdjustmentType>(element)
-                ?? throw new System::ArgumentNullException("adjustment_type");
+            return JsonSerializer.Deserialize<NewMinimumProperties::AdjustmentType>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("adjustment_type");
         }
         set { this.Properties["adjustment_type"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -39,7 +41,7 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("item_id");
         }
         set { this.Properties["item_id"] = JsonSerializer.SerializeToElement(value); }
@@ -55,7 +57,7 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("minimum_amount");
         }
         set { this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(value); }
@@ -71,7 +73,10 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
             if (!this.Properties.TryGetValue("applies_to_all", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<NewMinimumProperties::AppliesToAll?>(element);
+            return JsonSerializer.Deserialize<NewMinimumProperties::AppliesToAll?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["applies_to_all"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -86,7 +91,7 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
             if (!this.Properties.TryGetValue("applies_to_item_ids", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<string>?>(element);
+            return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["applies_to_item_ids"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -101,7 +106,7 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
             if (!this.Properties.TryGetValue("applies_to_price_ids", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<string>?>(element);
+            return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -116,7 +121,7 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -131,7 +136,10 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
             if (!this.Properties.TryGetValue("filters", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<TransformPriceFilter>?>(element);
+            return JsonSerializer.Deserialize<List<TransformPriceFilter>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["filters"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -147,7 +155,7 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
             if (!this.Properties.TryGetValue("is_invoice_level", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["is_invoice_level"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -162,7 +170,10 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
             if (!this.Properties.TryGetValue("price_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<NewMinimumProperties::PriceType?>(element);
+            return JsonSerializer.Deserialize<NewMinimumProperties::PriceType?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["price_type"] = JsonSerializer.SerializeToElement(value); }
     }

@@ -17,8 +17,10 @@ public sealed record class Subscriptions : ModelBase, IFromRaw<Subscriptions>
             if (!this.Properties.TryGetValue("data", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<Subscription>>(element)
-                ?? throw new System::ArgumentNullException("data");
+            return JsonSerializer.Deserialize<List<Subscription>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("data");
         }
         set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -33,8 +35,10 @@ public sealed record class Subscriptions : ModelBase, IFromRaw<Subscriptions>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Models::PaginationMetadata>(element)
-                ?? throw new System::ArgumentNullException("pagination_metadata");
+            return JsonSerializer.Deserialize<Models::PaginationMetadata>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("pagination_metadata");
         }
         set { this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(value); }
     }

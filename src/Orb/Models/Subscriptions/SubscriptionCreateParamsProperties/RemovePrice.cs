@@ -18,7 +18,7 @@ public sealed record class RemovePrice : ModelBase, IFromRaw<RemovePrice>
             if (!this.Properties.TryGetValue("external_price_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -33,7 +33,7 @@ public sealed record class RemovePrice : ModelBase, IFromRaw<RemovePrice>
             if (!this.Properties.TryGetValue("price_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["price_id"] = JsonSerializer.SerializeToElement(value); }
     }

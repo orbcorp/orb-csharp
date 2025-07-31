@@ -25,7 +25,7 @@ public sealed record class BalanceAlertStatus : ModelBase, IFromRaw<BalanceAlert
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["in_alert"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -43,7 +43,7 @@ public sealed record class BalanceAlertStatus : ModelBase, IFromRaw<BalanceAlert
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["threshold_value"] = JsonSerializer.SerializeToElement(value); }
     }

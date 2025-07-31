@@ -120,8 +120,10 @@ public sealed record class CustomerTaxID : ModelBase, IFromRaw<CustomerTaxID>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<CustomerTaxIDProperties::Country>(element)
-                ?? throw new System::ArgumentNullException("country");
+            return JsonSerializer.Deserialize<CustomerTaxIDProperties::Country>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("country");
         }
         set { this.Properties["country"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -133,8 +135,10 @@ public sealed record class CustomerTaxID : ModelBase, IFromRaw<CustomerTaxID>
             if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<CustomerTaxIDProperties::Type>(element)
-                ?? throw new System::ArgumentNullException("type");
+            return JsonSerializer.Deserialize<CustomerTaxIDProperties::Type>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("type");
         }
         set { this.Properties["type"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -146,7 +150,7 @@ public sealed record class CustomerTaxID : ModelBase, IFromRaw<CustomerTaxID>
             if (!this.Properties.TryGetValue("value", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("value", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("value");
         }
         set { this.Properties["value"] = JsonSerializer.SerializeToElement(value); }

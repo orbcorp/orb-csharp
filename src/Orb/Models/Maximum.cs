@@ -23,7 +23,7 @@ public sealed record class Maximum : ModelBase, IFromRaw<Maximum>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<string>>(element)
+            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("applies_to_price_ids");
         }
         set { this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(value); }
@@ -42,8 +42,10 @@ public sealed record class Maximum : ModelBase, IFromRaw<Maximum>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<TransformPriceFilter>>(element)
-                ?? throw new System::ArgumentNullException("filters");
+            return JsonSerializer.Deserialize<List<TransformPriceFilter>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("filters");
         }
         set { this.Properties["filters"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -61,7 +63,7 @@ public sealed record class Maximum : ModelBase, IFromRaw<Maximum>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("maximum_amount");
         }
         set { this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(value); }

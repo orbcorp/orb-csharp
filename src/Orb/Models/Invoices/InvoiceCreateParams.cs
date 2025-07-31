@@ -28,7 +28,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("currency");
         }
         set { this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(value); }
@@ -48,7 +48,10 @@ public sealed record class InvoiceCreateParams : ParamsBase
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.BodyProperties["invoice_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -64,7 +67,8 @@ public sealed record class InvoiceCreateParams : ParamsBase
                 );
 
             return JsonSerializer.Deserialize<List<InvoiceCreateParamsProperties::LineItem>>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new System::ArgumentNullException("line_items");
         }
         set { this.BodyProperties["line_items"] = JsonSerializer.SerializeToElement(value); }
@@ -81,7 +85,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("customer_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -96,7 +100,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("discount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Discount2?>(element);
+            return JsonSerializer.Deserialize<Discount2?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["discount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -112,7 +116,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -130,7 +134,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("memo", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["memo"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -147,7 +151,10 @@ public sealed record class InvoiceCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(element);
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -165,7 +172,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("net_terms", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["net_terms"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -181,7 +188,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("will_auto_issue", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["will_auto_issue"] = JsonSerializer.SerializeToElement(value); }
     }

@@ -25,7 +25,7 @@ public sealed record class CouponListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("cursor", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -40,7 +40,7 @@ public sealed record class CouponListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("limit", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -55,7 +55,7 @@ public sealed record class CouponListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("redemption_code", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["redemption_code"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -70,7 +70,7 @@ public sealed record class CouponListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("show_archived", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["show_archived"] = JsonSerializer.SerializeToElement(value); }
     }

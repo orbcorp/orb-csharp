@@ -22,7 +22,7 @@ public sealed record class BulkTier : ModelBase, IFromRaw<BulkTier>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("unit_amount");
         }
         set { this.Properties["unit_amount"] = JsonSerializer.SerializeToElement(value); }
@@ -38,7 +38,7 @@ public sealed record class BulkTier : ModelBase, IFromRaw<BulkTier>
             if (!this.Properties.TryGetValue("maximum_units", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["maximum_units"] = JsonSerializer.SerializeToElement(value); }
     }

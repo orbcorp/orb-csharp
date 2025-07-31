@@ -21,7 +21,10 @@ public sealed record class FixedFeeQuantityTransition
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["effective_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -36,7 +39,7 @@ public sealed record class FixedFeeQuantityTransition
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("price_id");
         }
         set { this.Properties["price_id"] = JsonSerializer.SerializeToElement(value); }
@@ -52,7 +55,7 @@ public sealed record class FixedFeeQuantityTransition
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["quantity"] = JsonSerializer.SerializeToElement(value); }
     }

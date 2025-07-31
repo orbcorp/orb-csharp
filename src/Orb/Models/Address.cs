@@ -16,7 +16,7 @@ public sealed record class Address : ModelBase, IFromRaw<Address>
             if (!this.Properties.TryGetValue("city", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("city", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["city"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -31,7 +31,7 @@ public sealed record class Address : ModelBase, IFromRaw<Address>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["country"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -43,7 +43,7 @@ public sealed record class Address : ModelBase, IFromRaw<Address>
             if (!this.Properties.TryGetValue("line1", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("line1", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["line1"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -55,7 +55,7 @@ public sealed record class Address : ModelBase, IFromRaw<Address>
             if (!this.Properties.TryGetValue("line2", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("line2", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["line2"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -70,7 +70,7 @@ public sealed record class Address : ModelBase, IFromRaw<Address>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["postal_code"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -82,7 +82,7 @@ public sealed record class Address : ModelBase, IFromRaw<Address>
             if (!this.Properties.TryGetValue("state", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("state", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["state"] = JsonSerializer.SerializeToElement(value); }
     }

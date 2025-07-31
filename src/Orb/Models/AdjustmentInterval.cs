@@ -17,7 +17,7 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -33,8 +33,10 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<AdjustmentIntervalProperties::Adjustment>(element)
-                ?? throw new System::ArgumentNullException("adjustment");
+            return JsonSerializer.Deserialize<AdjustmentIntervalProperties::Adjustment>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("adjustment");
         }
         set { this.Properties["adjustment"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -57,7 +59,7 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<string>>(element)
+            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("applies_to_price_interval_ids");
         }
         set
@@ -81,7 +83,10 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -99,7 +104,10 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }

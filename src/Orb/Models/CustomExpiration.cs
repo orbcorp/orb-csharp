@@ -20,7 +20,7 @@ public sealed record class CustomExpiration : ModelBase, IFromRaw<CustomExpirati
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["duration"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -35,8 +35,10 @@ public sealed record class CustomExpiration : ModelBase, IFromRaw<CustomExpirati
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<CustomExpirationProperties::DurationUnit>(element)
-                ?? throw new System::ArgumentNullException("duration_unit");
+            return JsonSerializer.Deserialize<CustomExpirationProperties::DurationUnit>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("duration_unit");
         }
         set { this.Properties["duration_unit"] = JsonSerializer.SerializeToElement(value); }
     }

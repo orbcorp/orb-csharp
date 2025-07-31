@@ -19,7 +19,10 @@ public sealed record class SubscriptionTrialInfo : ModelBase, IFromRaw<Subscript
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }

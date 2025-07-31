@@ -24,7 +24,7 @@ public sealed record class SubscriptionChangeCancelResponse
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -43,7 +43,7 @@ public sealed record class SubscriptionChangeCancelResponse
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["expiration_time"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -56,7 +56,8 @@ public sealed record class SubscriptionChangeCancelResponse
                 throw new ArgumentOutOfRangeException("status", "Missing required argument");
 
             return JsonSerializer.Deserialize<SubscriptionChangeCancelResponseProperties::Status>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("status");
         }
         set { this.Properties["status"] = JsonSerializer.SerializeToElement(value); }
@@ -69,7 +70,10 @@ public sealed record class SubscriptionChangeCancelResponse
             if (!this.Properties.TryGetValue("subscription", out JsonElement element))
                 throw new ArgumentOutOfRangeException("subscription", "Missing required argument");
 
-            return JsonSerializer.Deserialize<MutatedSubscription?>(element);
+            return JsonSerializer.Deserialize<MutatedSubscription?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["subscription"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -84,7 +88,7 @@ public sealed record class SubscriptionChangeCancelResponse
             if (!this.Properties.TryGetValue("applied_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["applied_at"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -99,7 +103,7 @@ public sealed record class SubscriptionChangeCancelResponse
             if (!this.Properties.TryGetValue("cancelled_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["cancelled_at"] = JsonSerializer.SerializeToElement(value); }
     }

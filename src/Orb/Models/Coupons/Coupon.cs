@@ -27,7 +27,7 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -44,7 +44,7 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
             if (!this.Properties.TryGetValue("archived_at", out JsonElement element))
                 throw new ArgumentOutOfRangeException("archived_at", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["archived_at"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -56,8 +56,10 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
             if (!this.Properties.TryGetValue("discount", out JsonElement element))
                 throw new ArgumentOutOfRangeException("discount", "Missing required argument");
 
-            return JsonSerializer.Deserialize<CouponProperties::Discount>(element)
-                ?? throw new ArgumentNullException("discount");
+            return JsonSerializer.Deserialize<CouponProperties::Discount>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("discount");
         }
         set { this.Properties["discount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -76,7 +78,7 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["duration_in_months"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -95,7 +97,7 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["max_redemptions"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -113,7 +115,7 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("redemption_code");
         }
         set { this.Properties["redemption_code"] = JsonSerializer.SerializeToElement(value); }
@@ -132,7 +134,7 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["times_redeemed"] = JsonSerializer.SerializeToElement(value); }
     }

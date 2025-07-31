@@ -31,7 +31,7 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("price_id");
         }
         set { this.BodyProperties["price_id"] = JsonSerializer.SerializeToElement(value); }

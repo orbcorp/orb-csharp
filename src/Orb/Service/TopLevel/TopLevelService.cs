@@ -17,19 +17,21 @@ public sealed class TopLevelService : ITopLevelService
 
     public async Task<TopLevelPingResponse> Ping(TopLevelPingParams @params)
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
+        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
         return JsonSerializer.Deserialize<TopLevelPingResponse>(
-                await response.Content.ReadAsStringAsync()
+                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
+                ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 }

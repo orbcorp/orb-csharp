@@ -30,7 +30,7 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("billable_metric_id");
         }
         set
@@ -49,7 +49,7 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("dimensions", out JsonElement element))
                 throw new ArgumentOutOfRangeException("dimensions", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<string>>(element)
+            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("dimensions");
         }
         set { this.BodyProperties["dimensions"] = JsonSerializer.SerializeToElement(value); }
@@ -62,7 +62,7 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("name", out JsonElement element))
                 throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
         set { this.BodyProperties["name"] = JsonSerializer.SerializeToElement(value); }
@@ -80,7 +80,7 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
             )
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -101,7 +101,10 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(element);
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }

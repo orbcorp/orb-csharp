@@ -21,8 +21,10 @@ public sealed record class ConversionRateTieredConfig
             if (!this.Properties.TryGetValue("tiers", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("tiers", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<ConversionRateTier>>(element)
-                ?? throw new System::ArgumentNullException("tiers");
+            return JsonSerializer.Deserialize<List<ConversionRateTier>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("tiers");
         }
         set { this.Properties["tiers"] = JsonSerializer.SerializeToElement(value); }
     }

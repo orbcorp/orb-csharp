@@ -24,8 +24,10 @@ public sealed record class ChangedSubscriptionResources
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<CreditNote>>(element)
-                ?? throw new System::ArgumentNullException("created_credit_notes");
+            return JsonSerializer.Deserialize<List<CreditNote>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("created_credit_notes");
         }
         set { this.Properties["created_credit_notes"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -43,7 +45,7 @@ public sealed record class ChangedSubscriptionResources
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<Invoice>>(element)
+            return JsonSerializer.Deserialize<List<Invoice>>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("created_invoices");
         }
         set { this.Properties["created_invoices"] = JsonSerializer.SerializeToElement(value); }
@@ -62,8 +64,10 @@ public sealed record class ChangedSubscriptionResources
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<CreditNote>>(element)
-                ?? throw new System::ArgumentNullException("voided_credit_notes");
+            return JsonSerializer.Deserialize<List<CreditNote>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("voided_credit_notes");
         }
         set { this.Properties["voided_credit_notes"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -81,7 +85,7 @@ public sealed record class ChangedSubscriptionResources
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<Invoice>>(element)
+            return JsonSerializer.Deserialize<List<Invoice>>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("voided_invoices");
         }
         set { this.Properties["voided_invoices"] = JsonSerializer.SerializeToElement(value); }

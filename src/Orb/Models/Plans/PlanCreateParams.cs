@@ -24,7 +24,7 @@ public sealed record class PlanCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("currency", out JsonElement element))
                 throw new ArgumentOutOfRangeException("currency", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("currency");
         }
         set { this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(value); }
@@ -37,7 +37,7 @@ public sealed record class PlanCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("name", out JsonElement element))
                 throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
         set { this.BodyProperties["name"] = JsonSerializer.SerializeToElement(value); }
@@ -54,8 +54,10 @@ public sealed record class PlanCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("prices", out JsonElement element))
                 throw new ArgumentOutOfRangeException("prices", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<PlanCreateParamsProperties::Price1>>(element)
-                ?? throw new ArgumentNullException("prices");
+            return JsonSerializer.Deserialize<List<PlanCreateParamsProperties::Price1>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("prices");
         }
         set { this.BodyProperties["prices"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -72,7 +74,8 @@ public sealed record class PlanCreateParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<List<PlanCreateParamsProperties::Adjustment>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.BodyProperties["adjustments"] = JsonSerializer.SerializeToElement(value); }
@@ -88,7 +91,7 @@ public sealed record class PlanCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("default_invoice_memo", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -103,7 +106,7 @@ public sealed record class PlanCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("external_plan_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["external_plan_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -120,7 +123,10 @@ public sealed record class PlanCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(element);
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -137,7 +143,7 @@ public sealed record class PlanCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("net_terms", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["net_terms"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -154,7 +160,8 @@ public sealed record class PlanCreateParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<List<PlanCreateParamsProperties::PlanPhase>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.BodyProperties["plan_phases"] = JsonSerializer.SerializeToElement(value); }
@@ -171,7 +178,10 @@ public sealed record class PlanCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("status", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<PlanCreateParamsProperties::Status?>(element);
+            return JsonSerializer.Deserialize<PlanCreateParamsProperties::Status?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.BodyProperties["status"] = JsonSerializer.SerializeToElement(value); }
     }

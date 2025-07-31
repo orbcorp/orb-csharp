@@ -16,7 +16,7 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
             if (!this.Properties.TryGetValue("discount_type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("discount_type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<JsonElement>(element);
+            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["discount_type"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -35,7 +35,7 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["usage_discount"] = JsonSerializer.SerializeToElement(value); }
     }

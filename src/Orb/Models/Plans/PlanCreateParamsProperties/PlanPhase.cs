@@ -20,7 +20,7 @@ public sealed record class PlanPhase : ModelBase, IFromRaw<PlanPhase>
             if (!this.Properties.TryGetValue("order", out JsonElement element))
                 throw new ArgumentOutOfRangeException("order", "Missing required argument");
 
-            return JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["order"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -40,7 +40,7 @@ public sealed record class PlanPhase : ModelBase, IFromRaw<PlanPhase>
             )
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -60,7 +60,7 @@ public sealed record class PlanPhase : ModelBase, IFromRaw<PlanPhase>
             if (!this.Properties.TryGetValue("duration", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["duration"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -72,7 +72,10 @@ public sealed record class PlanPhase : ModelBase, IFromRaw<PlanPhase>
             if (!this.Properties.TryGetValue("duration_unit", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<PlanPhaseProperties::DurationUnit?>(element);
+            return JsonSerializer.Deserialize<PlanPhaseProperties::DurationUnit?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["duration_unit"] = JsonSerializer.SerializeToElement(value); }
     }

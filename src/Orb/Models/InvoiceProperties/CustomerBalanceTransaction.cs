@@ -22,7 +22,7 @@ public sealed record class CustomerBalanceTransaction
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -38,8 +38,10 @@ public sealed record class CustomerBalanceTransaction
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<CustomerBalanceTransactionProperties::Action>(element)
-                ?? throw new System::ArgumentNullException("action");
+            return JsonSerializer.Deserialize<CustomerBalanceTransactionProperties::Action>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("action");
         }
         set { this.Properties["action"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -57,7 +59,7 @@ public sealed record class CustomerBalanceTransaction
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("amount");
         }
         set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
@@ -76,7 +78,10 @@ public sealed record class CustomerBalanceTransaction
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -91,7 +96,10 @@ public sealed record class CustomerBalanceTransaction
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<CreditNoteTiny?>(element);
+            return JsonSerializer.Deserialize<CreditNoteTiny?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["credit_note"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -109,7 +117,7 @@ public sealed record class CustomerBalanceTransaction
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["description"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -127,7 +135,7 @@ public sealed record class CustomerBalanceTransaction
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("ending_balance");
         }
         set { this.Properties["ending_balance"] = JsonSerializer.SerializeToElement(value); }
@@ -143,7 +151,7 @@ public sealed record class CustomerBalanceTransaction
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<InvoiceTiny?>(element);
+            return JsonSerializer.Deserialize<InvoiceTiny?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["invoice"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -162,7 +170,7 @@ public sealed record class CustomerBalanceTransaction
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("starting_balance");
         }
         set { this.Properties["starting_balance"] = JsonSerializer.SerializeToElement(value); }
@@ -175,8 +183,10 @@ public sealed record class CustomerBalanceTransaction
             if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<CustomerBalanceTransactionProperties::Type>(element)
-                ?? throw new System::ArgumentNullException("type");
+            return JsonSerializer.Deserialize<CustomerBalanceTransactionProperties::Type>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("type");
         }
         set { this.Properties["type"] = JsonSerializer.SerializeToElement(value); }
     }

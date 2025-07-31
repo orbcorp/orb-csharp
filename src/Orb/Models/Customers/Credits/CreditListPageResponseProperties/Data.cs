@@ -17,7 +17,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -30,7 +30,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             if (!this.Properties.TryGetValue("balance", out JsonElement element))
                 throw new ArgumentOutOfRangeException("balance", "Missing required argument");
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["balance"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -45,7 +45,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["effective_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -57,7 +57,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             if (!this.Properties.TryGetValue("expiry_date", out JsonElement element))
                 throw new ArgumentOutOfRangeException("expiry_date", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["expiry_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -72,7 +72,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -90,7 +90,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["per_unit_cost_basis"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -102,8 +102,10 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             if (!this.Properties.TryGetValue("status", out JsonElement element))
                 throw new ArgumentOutOfRangeException("status", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DataProperties::Status>(element)
-                ?? throw new ArgumentNullException("status");
+            return JsonSerializer.Deserialize<DataProperties::Status>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("status");
         }
         set { this.Properties["status"] = JsonSerializer.SerializeToElement(value); }
     }

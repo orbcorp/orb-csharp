@@ -19,7 +19,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
                 throw new ArgumentOutOfRangeException("amount", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("amount");
         }
         set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
@@ -38,7 +38,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("invoice_line_item_id");
         }
         set { this.Properties["invoice_line_item_id"] = JsonSerializer.SerializeToElement(value); }
@@ -57,7 +57,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             if (!this.Properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateOnly?>(element);
+            return JsonSerializer.Deserialize<DateOnly?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -75,7 +75,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             if (!this.Properties.TryGetValue("start_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateOnly?>(element);
+            return JsonSerializer.Deserialize<DateOnly?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }

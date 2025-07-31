@@ -19,7 +19,7 @@ public sealed record class Allocation : ModelBase, IFromRaw<Allocation>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["allows_rollover"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -34,7 +34,7 @@ public sealed record class Allocation : ModelBase, IFromRaw<Allocation>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("currency");
         }
         set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
@@ -50,7 +50,10 @@ public sealed record class Allocation : ModelBase, IFromRaw<Allocation>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<CustomExpiration?>(element);
+            return JsonSerializer.Deserialize<CustomExpiration?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["custom_expiration"] = JsonSerializer.SerializeToElement(value); }
     }

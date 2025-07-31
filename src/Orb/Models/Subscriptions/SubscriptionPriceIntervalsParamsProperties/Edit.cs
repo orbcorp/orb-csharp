@@ -23,7 +23,7 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("price_interval_id");
         }
         set { this.Properties["price_interval_id"] = JsonSerializer.SerializeToElement(value); }
@@ -41,7 +41,7 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
             if (!this.Properties.TryGetValue("billing_cycle_day", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["billing_cycle_day"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -57,7 +57,10 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
             if (!this.Properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<EditProperties::EndDate?>(element);
+            return JsonSerializer.Deserialize<EditProperties::EndDate?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -74,7 +77,7 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
             if (!this.Properties.TryGetValue("filter", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["filter"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -97,7 +100,8 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
                 return null;
 
             return JsonSerializer.Deserialize<List<EditProperties::FixedFeeQuantityTransition1>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set
@@ -119,7 +123,10 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
             if (!this.Properties.TryGetValue("start_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<EditProperties::StartDate?>(element);
+            return JsonSerializer.Deserialize<EditProperties::StartDate?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -139,7 +146,7 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
             if (!this.Properties.TryGetValue("usage_customer_ids", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<string>?>(element);
+            return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["usage_customer_ids"] = JsonSerializer.SerializeToElement(value); }
     }

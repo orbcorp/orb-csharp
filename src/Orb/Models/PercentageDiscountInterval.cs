@@ -30,7 +30,7 @@ public sealed record class PercentageDiscountInterval
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<string>>(element)
+            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("applies_to_price_interval_ids");
         }
         set
@@ -52,7 +52,8 @@ public sealed record class PercentageDiscountInterval
                 );
 
             return JsonSerializer.Deserialize<PercentageDiscountIntervalProperties::DiscountType>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new System::ArgumentNullException("discount_type");
         }
         set { this.Properties["discount_type"] = JsonSerializer.SerializeToElement(value); }
@@ -71,7 +72,10 @@ public sealed record class PercentageDiscountInterval
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -89,8 +93,10 @@ public sealed record class PercentageDiscountInterval
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<TransformPriceFilter>>(element)
-                ?? throw new System::ArgumentNullException("filters");
+            return JsonSerializer.Deserialize<List<TransformPriceFilter>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("filters");
         }
         set { this.Properties["filters"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -109,7 +115,7 @@ public sealed record class PercentageDiscountInterval
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["percentage_discount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -127,7 +133,10 @@ public sealed record class PercentageDiscountInterval
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }

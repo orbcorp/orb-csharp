@@ -17,7 +17,7 @@ public sealed record class TrialConfig : ModelBase, IFromRaw<TrialConfig>
             if (!this.Properties.TryGetValue("trial_period", out JsonElement element))
                 throw new ArgumentOutOfRangeException("trial_period", "Missing required argument");
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["trial_period"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -32,8 +32,10 @@ public sealed record class TrialConfig : ModelBase, IFromRaw<TrialConfig>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<TrialConfigProperties::TrialPeriodUnit>(element)
-                ?? throw new ArgumentNullException("trial_period_unit");
+            return JsonSerializer.Deserialize<TrialConfigProperties::TrialPeriodUnit>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("trial_period_unit");
         }
         set { this.Properties["trial_period_unit"] = JsonSerializer.SerializeToElement(value); }
     }

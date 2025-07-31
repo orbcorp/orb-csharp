@@ -21,7 +21,7 @@ public sealed record class NewReportingConfiguration
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["exempt"] = JsonSerializer.SerializeToElement(value); }
     }

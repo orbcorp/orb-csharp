@@ -23,7 +23,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             if (!this.Properties.TryGetValue("count", out JsonElement element))
                 throw new ArgumentOutOfRangeException("count", "Missing required argument");
 
-            return JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["count"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -35,7 +35,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             if (!this.Properties.TryGetValue("timeframe_end", out JsonElement element))
                 throw new ArgumentOutOfRangeException("timeframe_end", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -50,7 +50,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }

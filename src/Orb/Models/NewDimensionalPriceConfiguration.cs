@@ -24,7 +24,7 @@ public sealed record class NewDimensionalPriceConfiguration
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<string>>(element)
+            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("dimension_values");
         }
         set { this.Properties["dimension_values"] = JsonSerializer.SerializeToElement(value); }
@@ -40,7 +40,7 @@ public sealed record class NewDimensionalPriceConfiguration
             if (!this.Properties.TryGetValue("dimensional_price_group_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -65,7 +65,7 @@ public sealed record class NewDimensionalPriceConfiguration
             )
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {

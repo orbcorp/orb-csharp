@@ -20,7 +20,8 @@ public sealed record class PriceEvaluateMultipleResponse
                 throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
 
             return JsonSerializer.Deserialize<List<PriceEvaluateMultipleResponseProperties::Data>>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new System::ArgumentNullException("data");
         }
         set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }

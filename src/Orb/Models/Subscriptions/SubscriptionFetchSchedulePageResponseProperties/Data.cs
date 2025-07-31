@@ -17,7 +17,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
                 throw new ArgumentOutOfRangeException("created_at", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -29,7 +29,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             if (!this.Properties.TryGetValue("end_date", out JsonElement element))
                 throw new ArgumentOutOfRangeException("end_date", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -41,7 +41,10 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             if (!this.Properties.TryGetValue("plan", out JsonElement element))
                 throw new ArgumentOutOfRangeException("plan", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DataProperties::Plan?>(element);
+            return JsonSerializer.Deserialize<DataProperties::Plan?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["plan"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -53,7 +56,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             if (!this.Properties.TryGetValue("start_date", out JsonElement element))
                 throw new ArgumentOutOfRangeException("start_date", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }

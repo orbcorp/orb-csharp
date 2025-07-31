@@ -56,7 +56,7 @@ public sealed record class BackfillCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("timeframe_end", out JsonElement element))
                 throw new ArgumentOutOfRangeException("timeframe_end", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -76,7 +76,7 @@ public sealed record class BackfillCreateParams : ParamsBase
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -93,7 +93,7 @@ public sealed record class BackfillCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("close_time", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["close_time"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -109,7 +109,7 @@ public sealed record class BackfillCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("customer_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -125,7 +125,7 @@ public sealed record class BackfillCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("deprecation_filter", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -144,7 +144,7 @@ public sealed record class BackfillCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -165,7 +165,7 @@ public sealed record class BackfillCreateParams : ParamsBase
             )
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set
         {

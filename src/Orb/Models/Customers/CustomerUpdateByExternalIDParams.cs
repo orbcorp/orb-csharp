@@ -30,7 +30,10 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
             )
                 return null;
 
-            return JsonSerializer.Deserialize<NewAccountingSyncConfiguration?>(element);
+            return JsonSerializer.Deserialize<NewAccountingSyncConfiguration?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -50,7 +53,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("additional_emails", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<string>?>(element);
+            return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["additional_emails"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -67,7 +70,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("auto_collection", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["auto_collection"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -79,7 +82,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("billing_address", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<AddressInput?>(element);
+            return JsonSerializer.Deserialize<AddressInput?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["billing_address"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -95,7 +98,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("currency", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -110,7 +113,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("email", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["email"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -122,7 +125,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("email_delivery", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["email_delivery"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -140,7 +143,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -158,7 +161,10 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("hierarchy", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<CustomerHierarchyConfig?>(element);
+            return JsonSerializer.Deserialize<CustomerHierarchyConfig?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.BodyProperties["hierarchy"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -175,7 +181,10 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(element);
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -190,7 +199,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("name", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["name"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -210,7 +219,8 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsProperties::PaymentProvider?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.BodyProperties["payment_provider"] = JsonSerializer.SerializeToElement(value); }
@@ -227,7 +237,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("payment_provider_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -244,7 +254,10 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
             )
                 return null;
 
-            return JsonSerializer.Deserialize<NewReportingConfiguration?>(element);
+            return JsonSerializer.Deserialize<NewReportingConfiguration?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -261,7 +274,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("shipping_address", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<AddressInput?>(element);
+            return JsonSerializer.Deserialize<AddressInput?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["shipping_address"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -274,7 +287,8 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsProperties::TaxConfiguration?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.BodyProperties["tax_configuration"] = JsonSerializer.SerializeToElement(value); }
@@ -390,7 +404,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("tax_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<CustomerTaxID?>(element);
+            return JsonSerializer.Deserialize<CustomerTaxID?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["tax_id"] = JsonSerializer.SerializeToElement(value); }
     }

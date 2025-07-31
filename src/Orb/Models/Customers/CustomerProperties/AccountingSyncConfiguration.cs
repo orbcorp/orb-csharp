@@ -24,7 +24,8 @@ public sealed record class AccountingSyncConfiguration
 
             return JsonSerializer.Deserialize<
                     List<AccountingSyncConfigurationProperties::AccountingProvider>
-                >(element) ?? throw new ArgumentNullException("accounting_providers");
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("accounting_providers");
         }
         set { this.Properties["accounting_providers"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -36,7 +37,7 @@ public sealed record class AccountingSyncConfiguration
             if (!this.Properties.TryGetValue("excluded", out JsonElement element))
                 throw new ArgumentOutOfRangeException("excluded", "Missing required argument");
 
-            return JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["excluded"] = JsonSerializer.SerializeToElement(value); }
     }

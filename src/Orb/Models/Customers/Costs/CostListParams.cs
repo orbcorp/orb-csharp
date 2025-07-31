@@ -115,7 +115,7 @@ public sealed record class CostListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("currency", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -130,7 +130,7 @@ public sealed record class CostListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("timeframe_end", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -145,7 +145,7 @@ public sealed record class CostListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("timeframe_start", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -162,7 +162,10 @@ public sealed record class CostListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("view_mode", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<CostListParamsProperties::ViewMode?>(element);
+            return JsonSerializer.Deserialize<CostListParamsProperties::ViewMode?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["view_mode"] = JsonSerializer.SerializeToElement(value); }
     }

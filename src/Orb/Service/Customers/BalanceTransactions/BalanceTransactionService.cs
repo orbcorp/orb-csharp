@@ -19,40 +19,44 @@ public sealed class BalanceTransactionService : IBalanceTransactionService
         BalanceTransactionCreateParams @params
     )
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
+        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
         return JsonSerializer.Deserialize<BalanceTransactionCreateResponse>(
-                await response.Content.ReadAsStringAsync()
+                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
+                ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
     public async Task<BalanceTransactionListPageResponse> List(BalanceTransactionListParams @params)
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
+        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
         return JsonSerializer.Deserialize<BalanceTransactionListPageResponse>(
-                await response.Content.ReadAsStringAsync()
+                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
+                ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 }

@@ -19,7 +19,7 @@ public sealed record class AccountingProviderConfig : ModelBase, IFromRaw<Accoun
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("external_provider_id");
         }
         set { this.Properties["external_provider_id"] = JsonSerializer.SerializeToElement(value); }
@@ -35,7 +35,7 @@ public sealed record class AccountingProviderConfig : ModelBase, IFromRaw<Accoun
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("provider_type");
         }
         set { this.Properties["provider_type"] = JsonSerializer.SerializeToElement(value); }

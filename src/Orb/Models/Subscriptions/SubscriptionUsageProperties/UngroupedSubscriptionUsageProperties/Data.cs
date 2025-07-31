@@ -20,8 +20,10 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<DataProperties::BillableMetric>(element)
-                ?? throw new ArgumentNullException("billable_metric");
+            return JsonSerializer.Deserialize<DataProperties::BillableMetric>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("billable_metric");
         }
         set { this.Properties["billable_metric"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -33,8 +35,10 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             if (!this.Properties.TryGetValue("usage", out JsonElement element))
                 throw new ArgumentOutOfRangeException("usage", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<DataProperties::Usage>>(element)
-                ?? throw new ArgumentNullException("usage");
+            return JsonSerializer.Deserialize<List<DataProperties::Usage>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("usage");
         }
         set { this.Properties["usage"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -46,8 +50,10 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             if (!this.Properties.TryGetValue("view_mode", out JsonElement element))
                 throw new ArgumentOutOfRangeException("view_mode", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DataProperties::ViewMode>(element)
-                ?? throw new ArgumentNullException("view_mode");
+            return JsonSerializer.Deserialize<DataProperties::ViewMode>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("view_mode");
         }
         set { this.Properties["view_mode"] = JsonSerializer.SerializeToElement(value); }
     }

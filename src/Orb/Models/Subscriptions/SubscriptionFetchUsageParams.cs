@@ -149,7 +149,7 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("billable_metric_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -164,7 +164,7 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("first_dimension_key", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -179,7 +179,7 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("first_dimension_value", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -200,7 +200,8 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<SubscriptionFetchUsageParamsProperties::Granularity?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.QueryProperties["granularity"] = JsonSerializer.SerializeToElement(value); }
@@ -216,7 +217,7 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("group_by", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["group_by"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -228,7 +229,7 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("second_dimension_key", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -245,7 +246,7 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
             )
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -265,7 +266,10 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("timeframe_end", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -280,7 +284,10 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("timeframe_start", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -298,7 +305,8 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<SubscriptionFetchUsageParamsProperties::ViewMode?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.QueryProperties["view_mode"] = JsonSerializer.SerializeToElement(value); }

@@ -17,22 +17,24 @@ public sealed class InvoiceLineItemService : IInvoiceLineItemService
 
     public async Task<InvoiceLineItemCreateResponse> Create(InvoiceLineItemCreateParams @params)
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
+        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
         return JsonSerializer.Deserialize<InvoiceLineItemCreateResponse>(
-                await response.Content.ReadAsStringAsync()
+                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
+                ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 }

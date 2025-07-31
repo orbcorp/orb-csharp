@@ -19,58 +19,67 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
 
     public async Task<PlanVersion> CreatePlanVersion(ExternalPlanIDCreatePlanVersionParams @params)
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
+        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
-        }
-        return JsonSerializer.Deserialize<PlanVersion>(await response.Content.ReadAsStringAsync())
-            ?? throw new NullReferenceException();
+        return JsonSerializer.Deserialize<PlanVersion>(
+                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
+                ModelBase.SerializerOptions
+            ) ?? throw new NullReferenceException();
     }
 
     public async Task<PlanVersion> FetchPlanVersion(ExternalPlanIDFetchPlanVersionParams @params)
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
+        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
-        }
-        return JsonSerializer.Deserialize<PlanVersion>(await response.Content.ReadAsStringAsync())
-            ?? throw new NullReferenceException();
+        return JsonSerializer.Deserialize<PlanVersion>(
+                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
+                ModelBase.SerializerOptions
+            ) ?? throw new NullReferenceException();
     }
 
     public async Task<Plan> SetDefaultPlanVersion(ExternalPlanIDSetDefaultPlanVersionParams @params)
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
+        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
-        }
-        return JsonSerializer.Deserialize<Plan>(await response.Content.ReadAsStringAsync())
-            ?? throw new NullReferenceException();
+        return JsonSerializer.Deserialize<Plan>(
+                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
+                ModelBase.SerializerOptions
+            ) ?? throw new NullReferenceException();
     }
 }

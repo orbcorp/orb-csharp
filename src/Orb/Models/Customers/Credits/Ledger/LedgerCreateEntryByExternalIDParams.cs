@@ -102,7 +102,8 @@ public sealed record class LedgerCreateEntryByExternalIDParams : ParamsBase
                 throw new System::ArgumentOutOfRangeException("body", "Missing required argument");
 
             return JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsProperties::Body>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new System::ArgumentNullException("body");
         }
         set { this.BodyProperties["body"] = JsonSerializer.SerializeToElement(value); }

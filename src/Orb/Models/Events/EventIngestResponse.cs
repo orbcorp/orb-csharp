@@ -26,7 +26,8 @@ public sealed record class EventIngestResponse : ModelBase, IFromRaw<EventIngest
 
             return JsonSerializer.Deserialize<
                     List<EventIngestResponseProperties::ValidationFailed>
-                >(element) ?? throw new ArgumentNullException("validation_failed");
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("validation_failed");
         }
         set { this.Properties["validation_failed"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -42,7 +43,10 @@ public sealed record class EventIngestResponse : ModelBase, IFromRaw<EventIngest
             if (!this.Properties.TryGetValue("debug", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<EventIngestResponseProperties::Debug?>(element);
+            return JsonSerializer.Deserialize<EventIngestResponseProperties::Debug?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["debug"] = JsonSerializer.SerializeToElement(value); }
     }

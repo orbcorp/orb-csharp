@@ -16,7 +16,7 @@ public sealed record class MetricGroup : ModelBase, IFromRaw<MetricGroup>
             if (!this.Properties.TryGetValue("property_key", out JsonElement element))
                 throw new ArgumentOutOfRangeException("property_key", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("property_key");
         }
         set { this.Properties["property_key"] = JsonSerializer.SerializeToElement(value); }
@@ -32,7 +32,7 @@ public sealed record class MetricGroup : ModelBase, IFromRaw<MetricGroup>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("property_value");
         }
         set { this.Properties["property_value"] = JsonSerializer.SerializeToElement(value); }

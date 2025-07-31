@@ -37,7 +37,7 @@ public sealed record class EventSearchParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("event_ids", out JsonElement element))
                 throw new ArgumentOutOfRangeException("event_ids", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<string>>(element)
+            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("event_ids");
         }
         set { this.BodyProperties["event_ids"] = JsonSerializer.SerializeToElement(value); }
@@ -54,7 +54,7 @@ public sealed record class EventSearchParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("timeframe_end", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -70,7 +70,7 @@ public sealed record class EventSearchParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("timeframe_start", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }

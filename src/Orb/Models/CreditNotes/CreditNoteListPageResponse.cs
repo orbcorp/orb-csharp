@@ -19,8 +19,10 @@ public sealed record class CreditNoteListPageResponse
             if (!this.Properties.TryGetValue("data", out JsonElement element))
                 throw new ArgumentOutOfRangeException("data", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<Models::CreditNote>>(element)
-                ?? throw new ArgumentNullException("data");
+            return JsonSerializer.Deserialize<List<Models::CreditNote>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("data");
         }
         set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -35,8 +37,10 @@ public sealed record class CreditNoteListPageResponse
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Models::PaginationMetadata>(element)
-                ?? throw new ArgumentNullException("pagination_metadata");
+            return JsonSerializer.Deserialize<Models::PaginationMetadata>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("pagination_metadata");
         }
         set { this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(value); }
     }

@@ -27,7 +27,7 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("amount");
         }
         set { this.BodyProperties["amount"] = JsonSerializer.SerializeToElement(value); }
@@ -41,7 +41,8 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
                 throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
 
             return JsonSerializer.Deserialize<BalanceTransactionCreateParamsProperties::Type>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new System::ArgumentNullException("type");
         }
         set { this.BodyProperties["type"] = JsonSerializer.SerializeToElement(value); }
@@ -57,7 +58,7 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("description", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["description"] = JsonSerializer.SerializeToElement(value); }
     }

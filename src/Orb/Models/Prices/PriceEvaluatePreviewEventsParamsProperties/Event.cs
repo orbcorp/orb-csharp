@@ -19,7 +19,7 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
             if (!this.Properties.TryGetValue("event_name", out JsonElement element))
                 throw new ArgumentOutOfRangeException("event_name", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("event_name");
         }
         set { this.Properties["event_name"] = JsonSerializer.SerializeToElement(value); }
@@ -36,8 +36,10 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
             if (!this.Properties.TryGetValue("properties", out JsonElement element))
                 throw new ArgumentOutOfRangeException("properties", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(element)
-                ?? throw new ArgumentNullException("properties");
+            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("properties");
         }
         set { this.Properties["properties"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -54,7 +56,7 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
             if (!this.Properties.TryGetValue("timestamp", out JsonElement element))
                 throw new ArgumentOutOfRangeException("timestamp", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["timestamp"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -69,7 +71,7 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
             if (!this.Properties.TryGetValue("customer_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["customer_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -84,7 +86,7 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
             if (!this.Properties.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["external_customer_id"] = JsonSerializer.SerializeToElement(value); }
     }

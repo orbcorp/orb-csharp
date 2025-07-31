@@ -20,7 +20,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -39,7 +39,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["billing_cycle_day"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -64,7 +64,10 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -94,7 +97,10 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -117,7 +123,10 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -135,7 +144,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["filter"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -159,7 +168,10 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<FixedFeeQuantityTransition>?>(element);
+            return JsonSerializer.Deserialize<List<FixedFeeQuantityTransition>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -187,7 +199,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
             if (!this.Properties.TryGetValue("price", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("price", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Price>(element)
+            return JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("price");
         }
         set { this.Properties["price"] = JsonSerializer.SerializeToElement(value); }
@@ -207,7 +219,10 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -226,7 +241,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<string>?>(element);
+            return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["usage_customer_ids"] = JsonSerializer.SerializeToElement(value); }
     }

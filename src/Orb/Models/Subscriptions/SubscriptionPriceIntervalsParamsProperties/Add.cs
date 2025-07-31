@@ -24,8 +24,10 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<AddProperties::StartDate>(element)
-                ?? throw new System::ArgumentNullException("start_date");
+            return JsonSerializer.Deserialize<AddProperties::StartDate>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("start_date");
         }
         set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -40,7 +42,10 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
             if (!this.Properties.TryGetValue("allocation_price", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<NewAllocationPrice?>(element);
+            return JsonSerializer.Deserialize<NewAllocationPrice?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["allocation_price"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -55,7 +60,10 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
             if (!this.Properties.TryGetValue("discounts", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<AddProperties::Discount>?>(element);
+            return JsonSerializer.Deserialize<List<AddProperties::Discount>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["discounts"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -71,7 +79,10 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
             if (!this.Properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<AddProperties::EndDate?>(element);
+            return JsonSerializer.Deserialize<AddProperties::EndDate?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -86,7 +97,7 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
             if (!this.Properties.TryGetValue("external_price_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -103,7 +114,7 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
             if (!this.Properties.TryGetValue("filter", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["filter"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -124,7 +135,8 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
                 return null;
 
             return JsonSerializer.Deserialize<List<AddProperties::FixedFeeQuantityTransition1>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set
@@ -145,7 +157,7 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
             if (!this.Properties.TryGetValue("maximum_amount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -160,7 +172,7 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
             if (!this.Properties.TryGetValue("minimum_amount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -175,7 +187,10 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
             if (!this.Properties.TryGetValue("price", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<AddProperties::Price1?>(element);
+            return JsonSerializer.Deserialize<AddProperties::Price1?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["price"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -190,7 +205,7 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
             if (!this.Properties.TryGetValue("price_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["price_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -210,7 +225,7 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
             if (!this.Properties.TryGetValue("usage_customer_ids", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<string>?>(element);
+            return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["usage_customer_ids"] = JsonSerializer.SerializeToElement(value); }
     }

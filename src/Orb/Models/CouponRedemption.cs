@@ -19,7 +19,7 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("coupon_id");
         }
         set { this.Properties["coupon_id"] = JsonSerializer.SerializeToElement(value); }
@@ -35,7 +35,10 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -50,7 +53,10 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }

@@ -22,7 +22,7 @@ public sealed record class ValidationFailed : ModelBase, IFromRaw<ValidationFail
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("idempotency_key");
         }
         set { this.Properties["idempotency_key"] = JsonSerializer.SerializeToElement(value); }
@@ -41,7 +41,7 @@ public sealed record class ValidationFailed : ModelBase, IFromRaw<ValidationFail
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<string>>(element)
+            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("validation_errors");
         }
         set { this.Properties["validation_errors"] = JsonSerializer.SerializeToElement(value); }

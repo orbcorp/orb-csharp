@@ -16,7 +16,7 @@ public sealed record class SubLineItemGrouping : ModelBase, IFromRaw<SubLineItem
             if (!this.Properties.TryGetValue("key", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("key", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("key");
         }
         set { this.Properties["key"] = JsonSerializer.SerializeToElement(value); }
@@ -32,7 +32,7 @@ public sealed record class SubLineItemGrouping : ModelBase, IFromRaw<SubLineItem
             if (!this.Properties.TryGetValue("value", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("value", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["value"] = JsonSerializer.SerializeToElement(value); }
     }

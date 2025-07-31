@@ -20,7 +20,8 @@ public sealed record class UngroupedSubscriptionUsage
                 throw new ArgumentOutOfRangeException("data", "Missing required argument");
 
             return JsonSerializer.Deserialize<List<UngroupedSubscriptionUsageProperties::Data>>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("data");
         }
         set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }

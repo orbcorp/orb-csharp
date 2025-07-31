@@ -22,7 +22,7 @@ public sealed record class TaxAmount : ModelBase, IFromRaw<TaxAmount>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("amount");
         }
         set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
@@ -41,7 +41,7 @@ public sealed record class TaxAmount : ModelBase, IFromRaw<TaxAmount>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("tax_rate_description");
         }
         set { this.Properties["tax_rate_description"] = JsonSerializer.SerializeToElement(value); }
@@ -60,7 +60,7 @@ public sealed record class TaxAmount : ModelBase, IFromRaw<TaxAmount>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["tax_rate_percentage"] = JsonSerializer.SerializeToElement(value); }
     }

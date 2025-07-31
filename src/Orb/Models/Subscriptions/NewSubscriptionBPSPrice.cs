@@ -21,8 +21,10 @@ public sealed record class NewSubscriptionBPSPrice : ModelBase, IFromRaw<NewSubs
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Models::BPSConfig>(element)
-                ?? throw new System::ArgumentNullException("bps_config");
+            return JsonSerializer.Deserialize<Models::BPSConfig>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("bps_config");
         }
         set { this.Properties["bps_config"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -40,8 +42,10 @@ public sealed record class NewSubscriptionBPSPrice : ModelBase, IFromRaw<NewSubs
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<NewSubscriptionBPSPriceProperties::Cadence>(element)
-                ?? throw new System::ArgumentNullException("cadence");
+            return JsonSerializer.Deserialize<NewSubscriptionBPSPriceProperties::Cadence>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("cadence");
         }
         set { this.Properties["cadence"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -59,7 +63,7 @@ public sealed record class NewSubscriptionBPSPrice : ModelBase, IFromRaw<NewSubs
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("item_id");
         }
         set { this.Properties["item_id"] = JsonSerializer.SerializeToElement(value); }
@@ -75,8 +79,10 @@ public sealed record class NewSubscriptionBPSPrice : ModelBase, IFromRaw<NewSubs
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<NewSubscriptionBPSPriceProperties::ModelType>(element)
-                ?? throw new System::ArgumentNullException("model_type");
+            return JsonSerializer.Deserialize<NewSubscriptionBPSPriceProperties::ModelType>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("model_type");
         }
         set { this.Properties["model_type"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -91,7 +97,7 @@ public sealed record class NewSubscriptionBPSPrice : ModelBase, IFromRaw<NewSubs
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("name");
         }
         set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
@@ -107,7 +113,7 @@ public sealed record class NewSubscriptionBPSPrice : ModelBase, IFromRaw<NewSubs
             if (!this.Properties.TryGetValue("billable_metric_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["billable_metric_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -123,7 +129,7 @@ public sealed record class NewSubscriptionBPSPrice : ModelBase, IFromRaw<NewSubs
             if (!this.Properties.TryGetValue("billed_in_advance", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["billed_in_advance"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -140,7 +146,10 @@ public sealed record class NewSubscriptionBPSPrice : ModelBase, IFromRaw<NewSubs
             )
                 return null;
 
-            return JsonSerializer.Deserialize<Models::NewBillingCycleConfiguration?>(element);
+            return JsonSerializer.Deserialize<Models::NewBillingCycleConfiguration?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -160,7 +169,7 @@ public sealed record class NewSubscriptionBPSPrice : ModelBase, IFromRaw<NewSubs
             if (!this.Properties.TryGetValue("conversion_rate", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["conversion_rate"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -176,7 +185,8 @@ public sealed record class NewSubscriptionBPSPrice : ModelBase, IFromRaw<NewSubs
                 return null;
 
             return JsonSerializer.Deserialize<NewSubscriptionBPSPriceProperties::ConversionRateConfig?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set
@@ -196,7 +206,7 @@ public sealed record class NewSubscriptionBPSPrice : ModelBase, IFromRaw<NewSubs
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -216,7 +226,10 @@ public sealed record class NewSubscriptionBPSPrice : ModelBase, IFromRaw<NewSubs
             )
                 return null;
 
-            return JsonSerializer.Deserialize<Models::NewDimensionalPriceConfiguration?>(element);
+            return JsonSerializer.Deserialize<Models::NewDimensionalPriceConfiguration?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -236,7 +249,7 @@ public sealed record class NewSubscriptionBPSPrice : ModelBase, IFromRaw<NewSubs
             if (!this.Properties.TryGetValue("external_price_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -251,7 +264,7 @@ public sealed record class NewSubscriptionBPSPrice : ModelBase, IFromRaw<NewSubs
             if (!this.Properties.TryGetValue("fixed_price_quantity", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["fixed_price_quantity"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -266,7 +279,7 @@ public sealed record class NewSubscriptionBPSPrice : ModelBase, IFromRaw<NewSubs
             if (!this.Properties.TryGetValue("invoice_grouping_key", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["invoice_grouping_key"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -287,7 +300,10 @@ public sealed record class NewSubscriptionBPSPrice : ModelBase, IFromRaw<NewSubs
             )
                 return null;
 
-            return JsonSerializer.Deserialize<Models::NewBillingCycleConfiguration?>(element);
+            return JsonSerializer.Deserialize<Models::NewBillingCycleConfiguration?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -309,7 +325,10 @@ public sealed record class NewSubscriptionBPSPrice : ModelBase, IFromRaw<NewSubs
             if (!this.Properties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(element);
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -325,7 +344,7 @@ public sealed record class NewSubscriptionBPSPrice : ModelBase, IFromRaw<NewSubs
             if (!this.Properties.TryGetValue("reference_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["reference_id"] = JsonSerializer.SerializeToElement(value); }
     }

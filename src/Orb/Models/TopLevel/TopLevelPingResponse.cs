@@ -16,7 +16,7 @@ public sealed record class TopLevelPingResponse : ModelBase, IFromRaw<TopLevelPi
             if (!this.Properties.TryGetValue("response", out JsonElement element))
                 throw new ArgumentOutOfRangeException("response", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("response");
         }
         set { this.Properties["response"] = JsonSerializer.SerializeToElement(value); }

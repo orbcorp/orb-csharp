@@ -20,8 +20,10 @@ public sealed record class ReplaceAdjustment : ModelBase, IFromRaw<ReplaceAdjust
             if (!this.Properties.TryGetValue("adjustment", out JsonElement element))
                 throw new ArgumentOutOfRangeException("adjustment", "Missing required argument");
 
-            return JsonSerializer.Deserialize<ReplaceAdjustmentProperties::Adjustment>(element)
-                ?? throw new ArgumentNullException("adjustment");
+            return JsonSerializer.Deserialize<ReplaceAdjustmentProperties::Adjustment>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("adjustment");
         }
         set { this.Properties["adjustment"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -39,7 +41,7 @@ public sealed record class ReplaceAdjustment : ModelBase, IFromRaw<ReplaceAdjust
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("replaces_adjustment_id");
         }
         set

@@ -24,7 +24,7 @@ public sealed record class MatrixValue : ModelBase, IFromRaw<MatrixValue>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<string?>>(element)
+            return JsonSerializer.Deserialize<List<string?>>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("dimension_values");
         }
         set { this.Properties["dimension_values"] = JsonSerializer.SerializeToElement(value); }
@@ -43,7 +43,7 @@ public sealed record class MatrixValue : ModelBase, IFromRaw<MatrixValue>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("unit_amount");
         }
         set { this.Properties["unit_amount"] = JsonSerializer.SerializeToElement(value); }

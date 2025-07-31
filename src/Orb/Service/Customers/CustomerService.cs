@@ -42,125 +42,141 @@ public sealed class CustomerService : ICustomerService
 
     public async Task<Customer> Create(CustomerCreateParams @params)
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
+        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
-        }
-        return JsonSerializer.Deserialize<Customer>(await response.Content.ReadAsStringAsync())
-            ?? throw new NullReferenceException();
+        return JsonSerializer.Deserialize<Customer>(
+                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
+                ModelBase.SerializerOptions
+            ) ?? throw new NullReferenceException();
     }
 
     public async Task<Customer> Update(CustomerUpdateParams @params)
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Put, @params.Url(this._client))
+        using HttpRequestMessage webRequest = new(HttpMethod.Put, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
-        }
-        return JsonSerializer.Deserialize<Customer>(await response.Content.ReadAsStringAsync())
-            ?? throw new NullReferenceException();
+        return JsonSerializer.Deserialize<Customer>(
+                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
+                ModelBase.SerializerOptions
+            ) ?? throw new NullReferenceException();
     }
 
     public async Task<CustomerListPageResponse> List(CustomerListParams @params)
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
+        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
         return JsonSerializer.Deserialize<CustomerListPageResponse>(
-                await response.Content.ReadAsStringAsync()
+                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
+                ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
     public async Task Delete(CustomerDeleteParams @params)
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Delete, @params.Url(this._client));
+        using HttpRequestMessage webRequest = new(HttpMethod.Delete, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
     }
 
     public async Task<Customer> Fetch(CustomerFetchParams @params)
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
+        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
-        }
-        return JsonSerializer.Deserialize<Customer>(await response.Content.ReadAsStringAsync())
-            ?? throw new NullReferenceException();
+        return JsonSerializer.Deserialize<Customer>(
+                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
+                ModelBase.SerializerOptions
+            ) ?? throw new NullReferenceException();
     }
 
     public async Task<Customer> FetchByExternalID(CustomerFetchByExternalIDParams @params)
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
+        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
-        }
-        return JsonSerializer.Deserialize<Customer>(await response.Content.ReadAsStringAsync())
-            ?? throw new NullReferenceException();
+        return JsonSerializer.Deserialize<Customer>(
+                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
+                ModelBase.SerializerOptions
+            ) ?? throw new NullReferenceException();
     }
 
     public async Task SyncPaymentMethodsFromGateway(
         CustomerSyncPaymentMethodsFromGatewayParams @params
     )
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client));
+        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
     }
 
@@ -168,36 +184,40 @@ public sealed class CustomerService : ICustomerService
         CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams @params
     )
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client));
+        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client));
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
     }
 
     public async Task<Customer> UpdateByExternalID(CustomerUpdateByExternalIDParams @params)
     {
-        HttpRequestMessage webRequest = new(HttpMethod.Put, @params.Url(this._client))
+        using HttpRequestMessage webRequest = new(HttpMethod.Put, @params.Url(this._client))
         {
             Content = @params.BodyContent(),
         };
         @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client.HttpClient.SendAsync(webRequest);
-        try
+        using HttpResponseMessage response = await _client
+            .HttpClient.SendAsync(webRequest)
+            .ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            response.EnsureSuccessStatusCode();
+            throw new HttpException(
+                response.StatusCode,
+                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
+            );
         }
-        catch (HttpRequestException e)
-        {
-            throw new HttpException(e.StatusCode, await response.Content.ReadAsStringAsync());
-        }
-        return JsonSerializer.Deserialize<Customer>(await response.Content.ReadAsStringAsync())
-            ?? throw new NullReferenceException();
+        return JsonSerializer.Deserialize<Customer>(
+                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
+                ModelBase.SerializerOptions
+            ) ?? throw new NullReferenceException();
     }
 }

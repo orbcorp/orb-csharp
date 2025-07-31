@@ -24,7 +24,7 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("amount", out JsonElement element))
                 throw new ArgumentOutOfRangeException("amount", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("amount");
         }
         set { this.BodyProperties["amount"] = JsonSerializer.SerializeToElement(value); }
@@ -40,7 +40,7 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("end_date", out JsonElement element))
                 throw new ArgumentOutOfRangeException("end_date", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DateOnly>(element);
+            return JsonSerializer.Deserialize<DateOnly>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -55,7 +55,7 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("invoice_id", out JsonElement element))
                 throw new ArgumentOutOfRangeException("invoice_id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("invoice_id");
         }
         set { this.BodyProperties["invoice_id"] = JsonSerializer.SerializeToElement(value); }
@@ -72,7 +72,7 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("name", out JsonElement element))
                 throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
         set { this.BodyProperties["name"] = JsonSerializer.SerializeToElement(value); }
@@ -88,7 +88,7 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("quantity", out JsonElement element))
                 throw new ArgumentOutOfRangeException("quantity", "Missing required argument");
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["quantity"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -103,7 +103,7 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("start_date", out JsonElement element))
                 throw new ArgumentOutOfRangeException("start_date", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DateOnly>(element);
+            return JsonSerializer.Deserialize<DateOnly>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }

@@ -19,7 +19,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
                 throw new ArgumentOutOfRangeException("currency", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("currency");
         }
         set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
@@ -35,8 +35,10 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             if (!this.Properties.TryGetValue("price_groups", out JsonElement element))
                 throw new ArgumentOutOfRangeException("price_groups", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<EvaluatePriceGroup>>(element)
-                ?? throw new ArgumentNullException("price_groups");
+            return JsonSerializer.Deserialize<List<EvaluatePriceGroup>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("price_groups");
         }
         set { this.Properties["price_groups"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -51,7 +53,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             if (!this.Properties.TryGetValue("external_price_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -66,7 +68,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             if (!this.Properties.TryGetValue("inline_price_index", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["inline_price_index"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -81,7 +83,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             if (!this.Properties.TryGetValue("price_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["price_id"] = JsonSerializer.SerializeToElement(value); }
     }

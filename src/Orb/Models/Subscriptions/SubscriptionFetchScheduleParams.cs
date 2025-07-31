@@ -24,7 +24,7 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("cursor", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -39,7 +39,7 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("limit", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -51,7 +51,10 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("start_date[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["start_date[gt]"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -63,7 +66,10 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("start_date[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["start_date[gte]"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -75,7 +81,10 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("start_date[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["start_date[lt]"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -87,7 +96,10 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("start_date[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["start_date[lte]"] = JsonSerializer.SerializeToElement(value); }
     }

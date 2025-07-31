@@ -20,8 +20,10 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<DiscountOverrideProperties::DiscountType>(element)
-                ?? throw new System::ArgumentNullException("discount_type");
+            return JsonSerializer.Deserialize<DiscountOverrideProperties::DiscountType>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("discount_type");
         }
         set { this.Properties["discount_type"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -36,7 +38,7 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
             if (!this.Properties.TryGetValue("amount_discount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["amount_discount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -52,7 +54,7 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
             if (!this.Properties.TryGetValue("percentage_discount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["percentage_discount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -68,7 +70,7 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
             if (!this.Properties.TryGetValue("usage_discount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["usage_discount"] = JsonSerializer.SerializeToElement(value); }
     }

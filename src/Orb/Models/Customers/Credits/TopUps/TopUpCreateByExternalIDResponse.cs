@@ -19,7 +19,7 @@ public sealed record class TopUpCreateByExternalIDResponse
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -35,7 +35,7 @@ public sealed record class TopUpCreateByExternalIDResponse
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
                 throw new ArgumentOutOfRangeException("amount", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("amount");
         }
         set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
@@ -52,7 +52,7 @@ public sealed record class TopUpCreateByExternalIDResponse
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
                 throw new ArgumentOutOfRangeException("currency", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("currency");
         }
         set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
@@ -71,8 +71,10 @@ public sealed record class TopUpCreateByExternalIDResponse
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<TopUpInvoiceSettings>(element)
-                ?? throw new ArgumentNullException("invoice_settings");
+            return JsonSerializer.Deserialize<TopUpInvoiceSettings>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("invoice_settings");
         }
         set { this.Properties["invoice_settings"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -90,7 +92,7 @@ public sealed record class TopUpCreateByExternalIDResponse
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("per_unit_cost_basis");
         }
         set { this.Properties["per_unit_cost_basis"] = JsonSerializer.SerializeToElement(value); }
@@ -107,7 +109,7 @@ public sealed record class TopUpCreateByExternalIDResponse
             if (!this.Properties.TryGetValue("threshold", out JsonElement element))
                 throw new ArgumentOutOfRangeException("threshold", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("threshold");
         }
         set { this.Properties["threshold"] = JsonSerializer.SerializeToElement(value); }
@@ -124,7 +126,7 @@ public sealed record class TopUpCreateByExternalIDResponse
             if (!this.Properties.TryGetValue("expires_after", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["expires_after"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -140,7 +142,8 @@ public sealed record class TopUpCreateByExternalIDResponse
                 return null;
 
             return JsonSerializer.Deserialize<TopUpCreateByExternalIDResponseProperties::ExpiresAfterUnit?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.Properties["expires_after_unit"] = JsonSerializer.SerializeToElement(value); }

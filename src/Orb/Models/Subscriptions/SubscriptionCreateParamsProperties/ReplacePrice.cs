@@ -23,7 +23,7 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("replaces_price_id");
         }
         set { this.Properties["replaces_price_id"] = JsonSerializer.SerializeToElement(value); }
@@ -39,7 +39,10 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
             if (!this.Properties.TryGetValue("allocation_price", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<NewAllocationPrice?>(element);
+            return JsonSerializer.Deserialize<NewAllocationPrice?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["allocation_price"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -55,7 +58,10 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
             if (!this.Properties.TryGetValue("discounts", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<DiscountOverride>?>(element);
+            return JsonSerializer.Deserialize<List<DiscountOverride>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["discounts"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -70,7 +76,7 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
             if (!this.Properties.TryGetValue("external_price_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -85,7 +91,7 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
             if (!this.Properties.TryGetValue("fixed_price_quantity", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["fixed_price_quantity"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -101,7 +107,7 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
             if (!this.Properties.TryGetValue("maximum_amount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -117,7 +123,7 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
             if (!this.Properties.TryGetValue("minimum_amount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -132,7 +138,10 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
             if (!this.Properties.TryGetValue("price", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ReplacePriceProperties::Price1?>(element);
+            return JsonSerializer.Deserialize<ReplacePriceProperties::Price1?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["price"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -147,7 +156,7 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
             if (!this.Properties.TryGetValue("price_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["price_id"] = JsonSerializer.SerializeToElement(value); }
     }

@@ -93,7 +93,8 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<List<SubscriptionPriceIntervalsParamsProperties::Add>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.BodyProperties["add"] = JsonSerializer.SerializeToElement(value); }
@@ -110,7 +111,8 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<List<SubscriptionPriceIntervalsParamsProperties::AddAdjustment>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.BodyProperties["add_adjustments"] = JsonSerializer.SerializeToElement(value); }
@@ -133,7 +135,7 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
             )
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -154,7 +156,8 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<List<SubscriptionPriceIntervalsParamsProperties::Edit>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.BodyProperties["edit"] = JsonSerializer.SerializeToElement(value); }
@@ -171,7 +174,8 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<List<SubscriptionPriceIntervalsParamsProperties::EditAdjustment>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.BodyProperties["edit_adjustments"] = JsonSerializer.SerializeToElement(value); }

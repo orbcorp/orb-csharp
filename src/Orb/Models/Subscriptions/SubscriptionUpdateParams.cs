@@ -28,7 +28,7 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("auto_collection", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["auto_collection"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -44,7 +44,7 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("default_invoice_memo", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -64,7 +64,7 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("invoicing_threshold", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -84,7 +84,10 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(element);
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -102,7 +105,7 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("net_terms", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["net_terms"] = JsonSerializer.SerializeToElement(value); }
     }

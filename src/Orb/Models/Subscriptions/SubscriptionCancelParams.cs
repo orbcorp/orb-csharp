@@ -79,7 +79,8 @@ public sealed record class SubscriptionCancelParams : ParamsBase
                 );
 
             return JsonSerializer.Deserialize<SubscriptionCancelParamsProperties::CancelOption>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new System::ArgumentNullException("cancel_option");
         }
         set { this.BodyProperties["cancel_option"] = JsonSerializer.SerializeToElement(value); }
@@ -102,7 +103,7 @@ public sealed record class SubscriptionCancelParams : ParamsBase
             )
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -123,7 +124,10 @@ public sealed record class SubscriptionCancelParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("cancellation_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.BodyProperties["cancellation_date"] = JsonSerializer.SerializeToElement(value); }
     }
