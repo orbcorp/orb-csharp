@@ -20,7 +20,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -39,7 +39,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("amount");
         }
         set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
@@ -58,7 +58,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("item_id");
         }
         set { this.Properties["item_id"] = JsonSerializer.SerializeToElement(value); }
@@ -74,7 +74,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("name");
         }
         set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
@@ -93,7 +93,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["quantity"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -111,7 +111,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("subtotal");
         }
         set { this.Properties["subtotal"] = JsonSerializer.SerializeToElement(value); }
@@ -130,7 +130,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<TaxAmount>>(element)
+            return JsonSerializer.Deserialize<List<TaxAmount>>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("tax_amounts");
         }
         set { this.Properties["tax_amounts"] = JsonSerializer.SerializeToElement(value); }
@@ -146,7 +146,10 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             if (!this.Properties.TryGetValue("discounts", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<LineItemProperties::Discount>?>(element);
+            return JsonSerializer.Deserialize<List<LineItemProperties::Discount>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["discounts"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -161,7 +164,10 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             if (!this.Properties.TryGetValue("end_time_exclusive", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["end_time_exclusive"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -176,7 +182,10 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             if (!this.Properties.TryGetValue("start_time_inclusive", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["start_time_inclusive"] = JsonSerializer.SerializeToElement(value); }
     }

@@ -22,7 +22,7 @@ public sealed record class NewAvalaraTaxConfiguration
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["tax_exempt"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -38,7 +38,8 @@ public sealed record class NewAvalaraTaxConfiguration
                 );
 
             return JsonSerializer.Deserialize<NewAvalaraTaxConfigurationProperties::TaxProvider>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new System::ArgumentNullException("tax_provider");
         }
         set { this.Properties["tax_provider"] = JsonSerializer.SerializeToElement(value); }
@@ -51,7 +52,7 @@ public sealed record class NewAvalaraTaxConfiguration
             if (!this.Properties.TryGetValue("tax_exemption_code", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["tax_exemption_code"] = JsonSerializer.SerializeToElement(value); }
     }

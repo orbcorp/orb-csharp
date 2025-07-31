@@ -24,7 +24,7 @@ public sealed record class Threshold : ModelBase, IFromRaw<Threshold>
             if (!this.Properties.TryGetValue("value", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("value", "Missing required argument");
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["value"] = JsonSerializer.SerializeToElement(value); }
     }

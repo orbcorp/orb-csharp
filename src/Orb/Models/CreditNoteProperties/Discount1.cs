@@ -20,7 +20,7 @@ public sealed record class Discount1 : ModelBase, IFromRaw<Discount1>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("amount_applied");
         }
         set { this.Properties["amount_applied"] = JsonSerializer.SerializeToElement(value); }
@@ -36,8 +36,10 @@ public sealed record class Discount1 : ModelBase, IFromRaw<Discount1>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<DiscountProperties::DiscountType>(element)
-                ?? throw new System::ArgumentNullException("discount_type");
+            return JsonSerializer.Deserialize<DiscountProperties::DiscountType>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("discount_type");
         }
         set { this.Properties["discount_type"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -52,7 +54,7 @@ public sealed record class Discount1 : ModelBase, IFromRaw<Discount1>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["percentage_discount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -64,7 +66,10 @@ public sealed record class Discount1 : ModelBase, IFromRaw<Discount1>
             if (!this.Properties.TryGetValue("applies_to_prices", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<DiscountProperties::AppliesToPrice>?>(element);
+            return JsonSerializer.Deserialize<List<DiscountProperties::AppliesToPrice>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["applies_to_prices"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -76,7 +81,7 @@ public sealed record class Discount1 : ModelBase, IFromRaw<Discount1>
             if (!this.Properties.TryGetValue("reason", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["reason"] = JsonSerializer.SerializeToElement(value); }
     }

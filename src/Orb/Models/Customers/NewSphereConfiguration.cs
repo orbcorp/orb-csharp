@@ -20,7 +20,7 @@ public sealed record class NewSphereConfiguration : ModelBase, IFromRaw<NewSpher
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["tax_exempt"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -36,7 +36,8 @@ public sealed record class NewSphereConfiguration : ModelBase, IFromRaw<NewSpher
                 );
 
             return JsonSerializer.Deserialize<NewSphereConfigurationProperties::TaxProvider>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new System::ArgumentNullException("tax_provider");
         }
         set { this.Properties["tax_provider"] = JsonSerializer.SerializeToElement(value); }

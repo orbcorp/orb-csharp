@@ -19,7 +19,7 @@ public sealed record class PlanPhasePercentageDiscountAdjustment
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -36,7 +36,8 @@ public sealed record class PlanPhasePercentageDiscountAdjustment
                 );
 
             return JsonSerializer.Deserialize<PlanPhasePercentageDiscountAdjustmentProperties::AdjustmentType>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new System::ArgumentNullException("adjustment_type");
         }
         set { this.Properties["adjustment_type"] = JsonSerializer.SerializeToElement(value); }
@@ -55,7 +56,7 @@ public sealed record class PlanPhasePercentageDiscountAdjustment
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<string>>(element)
+            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("applies_to_price_ids");
         }
         set { this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(value); }
@@ -74,8 +75,10 @@ public sealed record class PlanPhasePercentageDiscountAdjustment
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<TransformPriceFilter>>(element)
-                ?? throw new System::ArgumentNullException("filters");
+            return JsonSerializer.Deserialize<List<TransformPriceFilter>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("filters");
         }
         set { this.Properties["filters"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -94,7 +97,7 @@ public sealed record class PlanPhasePercentageDiscountAdjustment
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["is_invoice_level"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -113,7 +116,7 @@ public sealed record class PlanPhasePercentageDiscountAdjustment
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["percentage_discount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -131,7 +134,7 @@ public sealed record class PlanPhasePercentageDiscountAdjustment
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -149,7 +152,7 @@ public sealed record class PlanPhasePercentageDiscountAdjustment
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["reason"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -168,7 +171,7 @@ public sealed record class PlanPhasePercentageDiscountAdjustment
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {

@@ -32,7 +32,7 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
             )
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -53,7 +53,10 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("effective_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateOnly?>(element);
+            return JsonSerializer.Deserialize<System::DateOnly?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.BodyProperties["effective_date"] = JsonSerializer.SerializeToElement(value); }
     }

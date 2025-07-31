@@ -16,7 +16,7 @@ public sealed record class AffectedBlock : ModelBase, IFromRaw<AffectedBlock>
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -32,7 +32,10 @@ public sealed record class AffectedBlock : ModelBase, IFromRaw<AffectedBlock>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["expiry_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -47,7 +50,7 @@ public sealed record class AffectedBlock : ModelBase, IFromRaw<AffectedBlock>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["per_unit_cost_basis"] = JsonSerializer.SerializeToElement(value); }
     }

@@ -46,7 +46,8 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
                 );
 
             return JsonSerializer.Deserialize<SubscriptionUpdateTrialParamsProperties::TrialEndDate>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new System::ArgumentNullException("trial_end_date");
         }
         set { this.BodyProperties["trial_end_date"] = JsonSerializer.SerializeToElement(value); }
@@ -63,7 +64,7 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("shift", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["shift"] = JsonSerializer.SerializeToElement(value); }
     }

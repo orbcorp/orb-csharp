@@ -23,8 +23,10 @@ public sealed record class AddAdjustment : ModelBase, IFromRaw<AddAdjustment>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<AddAdjustmentProperties::Adjustment>(element)
-                ?? throw new System::ArgumentNullException("adjustment");
+            return JsonSerializer.Deserialize<AddAdjustmentProperties::Adjustment>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("adjustment");
         }
         set { this.Properties["adjustment"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -45,8 +47,10 @@ public sealed record class AddAdjustment : ModelBase, IFromRaw<AddAdjustment>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<AddAdjustmentProperties::StartDate>(element)
-                ?? throw new System::ArgumentNullException("start_date");
+            return JsonSerializer.Deserialize<AddAdjustmentProperties::StartDate>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("start_date");
         }
         set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -64,7 +68,10 @@ public sealed record class AddAdjustment : ModelBase, IFromRaw<AddAdjustment>
             if (!this.Properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<AddAdjustmentProperties::EndDate?>(element);
+            return JsonSerializer.Deserialize<AddAdjustmentProperties::EndDate?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }

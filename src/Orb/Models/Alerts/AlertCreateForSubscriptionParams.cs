@@ -39,7 +39,7 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<Threshold>>(element)
+            return JsonSerializer.Deserialize<List<Threshold>>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("thresholds");
         }
         set { this.BodyProperties["thresholds"] = JsonSerializer.SerializeToElement(value); }
@@ -56,7 +56,8 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
                 throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
 
             return JsonSerializer.Deserialize<AlertCreateForSubscriptionParamsProperties::Type>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new System::ArgumentNullException("type");
         }
         set { this.BodyProperties["type"] = JsonSerializer.SerializeToElement(value); }
@@ -72,7 +73,7 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("metric_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["metric_id"] = JsonSerializer.SerializeToElement(value); }
     }

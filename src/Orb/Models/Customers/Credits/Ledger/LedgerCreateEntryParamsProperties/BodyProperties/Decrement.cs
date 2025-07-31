@@ -23,7 +23,7 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -38,7 +38,7 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<JsonElement>(element);
+            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["entry_type"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -54,7 +54,7 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -71,7 +71,7 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
             if (!this.Properties.TryGetValue("description", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["description"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -88,7 +88,10 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
             if (!this.Properties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(element);
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }

@@ -21,7 +21,8 @@ public sealed record class UnitConversionRateConfig : ModelBase, IFromRaw<UnitCo
                 );
 
             return JsonSerializer.Deserialize<UnitConversionRateConfigProperties::ConversionRateType>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new System::ArgumentNullException("conversion_rate_type");
         }
         set { this.Properties["conversion_rate_type"] = JsonSerializer.SerializeToElement(value); }
@@ -37,8 +38,10 @@ public sealed record class UnitConversionRateConfig : ModelBase, IFromRaw<UnitCo
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<ConversionRateUnitConfig>(element)
-                ?? throw new System::ArgumentNullException("unit_config");
+            return JsonSerializer.Deserialize<ConversionRateUnitConfig>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("unit_config");
         }
         set { this.Properties["unit_config"] = JsonSerializer.SerializeToElement(value); }
     }

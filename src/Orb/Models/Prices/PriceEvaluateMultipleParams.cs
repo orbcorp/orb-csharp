@@ -51,7 +51,10 @@ public sealed record class PriceEvaluateMultipleParams : ParamsBase
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.BodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -69,7 +72,10 @@ public sealed record class PriceEvaluateMultipleParams : ParamsBase
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.BodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -84,7 +90,7 @@ public sealed record class PriceEvaluateMultipleParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("customer_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -99,7 +105,7 @@ public sealed record class PriceEvaluateMultipleParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -118,7 +124,8 @@ public sealed record class PriceEvaluateMultipleParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<List<PriceEvaluateMultipleParamsProperties::PriceEvaluation>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.BodyProperties["price_evaluations"] = JsonSerializer.SerializeToElement(value); }

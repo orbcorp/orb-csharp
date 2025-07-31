@@ -17,7 +17,7 @@ public sealed record class PlanListPageResponse : ModelBase, IFromRaw<PlanListPa
             if (!this.Properties.TryGetValue("data", out JsonElement element))
                 throw new ArgumentOutOfRangeException("data", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<Plan>>(element)
+            return JsonSerializer.Deserialize<List<Plan>>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("data");
         }
         set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
@@ -33,8 +33,10 @@ public sealed record class PlanListPageResponse : ModelBase, IFromRaw<PlanListPa
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Models::PaginationMetadata>(element)
-                ?? throw new ArgumentNullException("pagination_metadata");
+            return JsonSerializer.Deserialize<Models::PaginationMetadata>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("pagination_metadata");
         }
         set { this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(value); }
     }

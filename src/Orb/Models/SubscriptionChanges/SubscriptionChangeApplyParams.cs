@@ -27,7 +27,7 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("description", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["description"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -47,7 +47,7 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
             )
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {

@@ -19,7 +19,7 @@ public sealed record class CustomerHierarchyConfig : ModelBase, IFromRaw<Custome
             if (!this.Properties.TryGetValue("child_customer_ids", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<string>?>(element);
+            return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["child_customer_ids"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -35,7 +35,7 @@ public sealed record class CustomerHierarchyConfig : ModelBase, IFromRaw<Custome
             if (!this.Properties.TryGetValue("parent_customer_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["parent_customer_id"] = JsonSerializer.SerializeToElement(value); }
     }

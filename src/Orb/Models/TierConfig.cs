@@ -19,7 +19,7 @@ public sealed record class TierConfig : ModelBase, IFromRaw<TierConfig>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["first_unit"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -34,7 +34,7 @@ public sealed record class TierConfig : ModelBase, IFromRaw<TierConfig>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["last_unit"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -49,7 +49,7 @@ public sealed record class TierConfig : ModelBase, IFromRaw<TierConfig>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("unit_amount");
         }
         set { this.Properties["unit_amount"] = JsonSerializer.SerializeToElement(value); }

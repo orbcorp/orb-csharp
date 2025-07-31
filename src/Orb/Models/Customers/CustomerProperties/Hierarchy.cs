@@ -19,8 +19,10 @@ public sealed record class Hierarchy : ModelBase, IFromRaw<Hierarchy>
             if (!this.Properties.TryGetValue("children", out JsonElement element))
                 throw new ArgumentOutOfRangeException("children", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<CustomerMinified>>(element)
-                ?? throw new ArgumentNullException("children");
+            return JsonSerializer.Deserialize<List<CustomerMinified>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("children");
         }
         set { this.Properties["children"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -32,7 +34,10 @@ public sealed record class Hierarchy : ModelBase, IFromRaw<Hierarchy>
             if (!this.Properties.TryGetValue("parent", out JsonElement element))
                 throw new ArgumentOutOfRangeException("parent", "Missing required argument");
 
-            return JsonSerializer.Deserialize<CustomerMinified?>(element);
+            return JsonSerializer.Deserialize<CustomerMinified?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["parent"] = JsonSerializer.SerializeToElement(value); }
     }

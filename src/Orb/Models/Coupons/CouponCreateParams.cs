@@ -22,8 +22,10 @@ public sealed record class CouponCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("discount", out JsonElement element))
                 throw new ArgumentOutOfRangeException("discount", "Missing required argument");
 
-            return JsonSerializer.Deserialize<CouponCreateParamsProperties::Discount>(element)
-                ?? throw new ArgumentNullException("discount");
+            return JsonSerializer.Deserialize<CouponCreateParamsProperties::Discount>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("discount");
         }
         set { this.BodyProperties["discount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -41,7 +43,7 @@ public sealed record class CouponCreateParams : ParamsBase
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("redemption_code");
         }
         set { this.BodyProperties["redemption_code"] = JsonSerializer.SerializeToElement(value); }
@@ -58,7 +60,7 @@ public sealed record class CouponCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("duration_in_months", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -77,7 +79,7 @@ public sealed record class CouponCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("max_redemptions", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["max_redemptions"] = JsonSerializer.SerializeToElement(value); }
     }

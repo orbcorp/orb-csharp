@@ -17,7 +17,10 @@ public sealed record class NewAccountingSyncConfiguration
             if (!this.Properties.TryGetValue("accounting_providers", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<AccountingProviderConfig>?>(element);
+            return JsonSerializer.Deserialize<List<AccountingProviderConfig>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["accounting_providers"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -29,7 +32,7 @@ public sealed record class NewAccountingSyncConfiguration
             if (!this.Properties.TryGetValue("excluded", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["excluded"] = JsonSerializer.SerializeToElement(value); }
     }

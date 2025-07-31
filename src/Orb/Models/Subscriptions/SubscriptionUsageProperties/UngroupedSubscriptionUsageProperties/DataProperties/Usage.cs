@@ -16,7 +16,7 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
             if (!this.Properties.TryGetValue("quantity", out JsonElement element))
                 throw new ArgumentOutOfRangeException("quantity", "Missing required argument");
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["quantity"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -28,7 +28,7 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
             if (!this.Properties.TryGetValue("timeframe_end", out JsonElement element))
                 throw new ArgumentOutOfRangeException("timeframe_end", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -43,7 +43,7 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }

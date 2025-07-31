@@ -31,7 +31,7 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("amount", out JsonElement element))
                 throw new ArgumentOutOfRangeException("amount", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("amount");
         }
         set { this.BodyProperties["amount"] = JsonSerializer.SerializeToElement(value); }
@@ -48,7 +48,7 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("currency", out JsonElement element))
                 throw new ArgumentOutOfRangeException("currency", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("currency");
         }
         set { this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(value); }
@@ -68,7 +68,8 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
                 );
 
             return JsonSerializer.Deserialize<TopUpCreateByExternalIDParamsProperties::InvoiceSettings>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("invoice_settings");
         }
         set { this.BodyProperties["invoice_settings"] = JsonSerializer.SerializeToElement(value); }
@@ -87,7 +88,7 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("per_unit_cost_basis");
         }
         set
@@ -107,7 +108,7 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("threshold", out JsonElement element))
                 throw new ArgumentOutOfRangeException("threshold", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("threshold");
         }
         set { this.BodyProperties["threshold"] = JsonSerializer.SerializeToElement(value); }
@@ -124,7 +125,7 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("active_from", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element);
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["active_from"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -140,7 +141,7 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("expires_after", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["expires_after"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -156,7 +157,8 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<TopUpCreateByExternalIDParamsProperties::ExpiresAfterUnit?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set

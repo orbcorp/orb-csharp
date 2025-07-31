@@ -16,7 +16,7 @@ public sealed record class CreditNote1 : ModelBase, IFromRaw<CreditNote1>
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -32,7 +32,7 @@ public sealed record class CreditNote1 : ModelBase, IFromRaw<CreditNote1>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("credit_note_number");
         }
         set { this.Properties["credit_note_number"] = JsonSerializer.SerializeToElement(value); }
@@ -48,7 +48,7 @@ public sealed record class CreditNote1 : ModelBase, IFromRaw<CreditNote1>
             if (!this.Properties.TryGetValue("memo", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("memo", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["memo"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -63,7 +63,7 @@ public sealed record class CreditNote1 : ModelBase, IFromRaw<CreditNote1>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("reason");
         }
         set { this.Properties["reason"] = JsonSerializer.SerializeToElement(value); }
@@ -76,7 +76,7 @@ public sealed record class CreditNote1 : ModelBase, IFromRaw<CreditNote1>
             if (!this.Properties.TryGetValue("total", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("total", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("total");
         }
         set { this.Properties["total"] = JsonSerializer.SerializeToElement(value); }
@@ -89,7 +89,7 @@ public sealed record class CreditNote1 : ModelBase, IFromRaw<CreditNote1>
             if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("type");
         }
         set { this.Properties["type"] = JsonSerializer.SerializeToElement(value); }
@@ -109,7 +109,10 @@ public sealed record class CreditNote1 : ModelBase, IFromRaw<CreditNote1>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["voided_at"] = JsonSerializer.SerializeToElement(value); }
     }

@@ -22,7 +22,7 @@ public sealed record class BillingCycleConfiguration
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["duration"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -38,7 +38,8 @@ public sealed record class BillingCycleConfiguration
                 );
 
             return JsonSerializer.Deserialize<BillingCycleConfigurationProperties::DurationUnit>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new System::ArgumentNullException("duration_unit");
         }
         set { this.Properties["duration_unit"] = JsonSerializer.SerializeToElement(value); }

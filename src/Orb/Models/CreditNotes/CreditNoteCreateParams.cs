@@ -46,7 +46,8 @@ public sealed record class CreditNoteCreateParams : ParamsBase
                 throw new ArgumentOutOfRangeException("line_items", "Missing required argument");
 
             return JsonSerializer.Deserialize<List<CreditNoteCreateParamsProperties::LineItem>>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("line_items");
         }
         set { this.BodyProperties["line_items"] = JsonSerializer.SerializeToElement(value); }
@@ -62,8 +63,10 @@ public sealed record class CreditNoteCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("reason", out JsonElement element))
                 throw new ArgumentOutOfRangeException("reason", "Missing required argument");
 
-            return JsonSerializer.Deserialize<CreditNoteCreateParamsProperties::Reason>(element)
-                ?? throw new ArgumentNullException("reason");
+            return JsonSerializer.Deserialize<CreditNoteCreateParamsProperties::Reason>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("reason");
         }
         set { this.BodyProperties["reason"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -81,7 +84,7 @@ public sealed record class CreditNoteCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateOnly?>(element);
+            return JsonSerializer.Deserialize<DateOnly?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -96,7 +99,7 @@ public sealed record class CreditNoteCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("memo", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["memo"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -114,7 +117,7 @@ public sealed record class CreditNoteCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("start_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateOnly?>(element);
+            return JsonSerializer.Deserialize<DateOnly?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }

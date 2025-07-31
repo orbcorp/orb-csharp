@@ -83,7 +83,10 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("created_at[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["created_at[gt]"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -95,7 +98,10 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("created_at[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["created_at[gte]"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -107,7 +113,10 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("created_at[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["created_at[lt]"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -119,7 +128,10 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("created_at[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["created_at[lte]"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -134,7 +146,7 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("currency", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -150,7 +162,7 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("cursor", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -163,7 +175,8 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<LedgerListByExternalIDParamsProperties::EntryStatus?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.QueryProperties["entry_status"] = JsonSerializer.SerializeToElement(value); }
@@ -177,7 +190,8 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<LedgerListByExternalIDParamsProperties::EntryType?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.QueryProperties["entry_type"] = JsonSerializer.SerializeToElement(value); }
@@ -193,7 +207,7 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("limit", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -205,7 +219,7 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("minimum_amount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["minimum_amount"] = JsonSerializer.SerializeToElement(value); }
     }

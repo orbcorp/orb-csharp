@@ -20,7 +20,7 @@ public sealed record class Debug : ModelBase, IFromRaw<Debug>
             if (!this.Properties.TryGetValue("duplicate", out JsonElement element))
                 throw new ArgumentOutOfRangeException("duplicate", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<string>>(element)
+            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("duplicate");
         }
         set { this.Properties["duplicate"] = JsonSerializer.SerializeToElement(value); }
@@ -33,7 +33,7 @@ public sealed record class Debug : ModelBase, IFromRaw<Debug>
             if (!this.Properties.TryGetValue("ingested", out JsonElement element))
                 throw new ArgumentOutOfRangeException("ingested", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<string>>(element)
+            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("ingested");
         }
         set { this.Properties["ingested"] = JsonSerializer.SerializeToElement(value); }

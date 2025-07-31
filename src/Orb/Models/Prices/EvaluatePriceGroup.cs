@@ -23,7 +23,7 @@ public sealed record class EvaluatePriceGroup : ModelBase, IFromRaw<EvaluatePric
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("amount");
         }
         set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
@@ -43,7 +43,8 @@ public sealed record class EvaluatePriceGroup : ModelBase, IFromRaw<EvaluatePric
                 );
 
             return JsonSerializer.Deserialize<List<EvaluatePriceGroupProperties::GroupingValue>>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new System::ArgumentNullException("grouping_values");
         }
         set { this.Properties["grouping_values"] = JsonSerializer.SerializeToElement(value); }
@@ -62,7 +63,7 @@ public sealed record class EvaluatePriceGroup : ModelBase, IFromRaw<EvaluatePric
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["quantity"] = JsonSerializer.SerializeToElement(value); }
     }

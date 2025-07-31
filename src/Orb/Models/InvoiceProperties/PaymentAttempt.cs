@@ -20,7 +20,7 @@ public sealed record class PaymentAttempt : ModelBase, IFromRaw<PaymentAttempt>
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -39,7 +39,7 @@ public sealed record class PaymentAttempt : ModelBase, IFromRaw<PaymentAttempt>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("amount");
         }
         set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
@@ -58,7 +58,10 @@ public sealed record class PaymentAttempt : ModelBase, IFromRaw<PaymentAttempt>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -76,7 +79,10 @@ public sealed record class PaymentAttempt : ModelBase, IFromRaw<PaymentAttempt>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<PaymentAttemptProperties::PaymentProvider?>(element);
+            return JsonSerializer.Deserialize<PaymentAttemptProperties::PaymentProvider?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["payment_provider"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -94,7 +100,7 @@ public sealed record class PaymentAttempt : ModelBase, IFromRaw<PaymentAttempt>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["payment_provider_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -112,7 +118,7 @@ public sealed record class PaymentAttempt : ModelBase, IFromRaw<PaymentAttempt>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["succeeded"] = JsonSerializer.SerializeToElement(value); }
     }

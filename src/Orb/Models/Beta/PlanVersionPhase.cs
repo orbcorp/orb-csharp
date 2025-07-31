@@ -17,7 +17,7 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -30,7 +30,7 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
             if (!this.Properties.TryGetValue("description", out JsonElement element))
                 throw new ArgumentOutOfRangeException("description", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["description"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -46,7 +46,7 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
             if (!this.Properties.TryGetValue("duration", out JsonElement element))
                 throw new ArgumentOutOfRangeException("duration", "Missing required argument");
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["duration"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -58,7 +58,10 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
             if (!this.Properties.TryGetValue("duration_unit", out JsonElement element))
                 throw new ArgumentOutOfRangeException("duration_unit", "Missing required argument");
 
-            return JsonSerializer.Deserialize<PlanVersionPhaseProperties::DurationUnit?>(element);
+            return JsonSerializer.Deserialize<PlanVersionPhaseProperties::DurationUnit?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["duration_unit"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -70,7 +73,7 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
         set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
@@ -86,7 +89,7 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
             if (!this.Properties.TryGetValue("order", out JsonElement element))
                 throw new ArgumentOutOfRangeException("order", "Missing required argument");
 
-            return JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["order"] = JsonSerializer.SerializeToElement(value); }
     }

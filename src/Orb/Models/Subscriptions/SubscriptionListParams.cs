@@ -24,7 +24,10 @@ public sealed record class SubscriptionListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("created_at[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["created_at[gt]"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -36,7 +39,10 @@ public sealed record class SubscriptionListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("created_at[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["created_at[gte]"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -48,7 +54,10 @@ public sealed record class SubscriptionListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("created_at[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["created_at[lt]"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -60,7 +69,10 @@ public sealed record class SubscriptionListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("created_at[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["created_at[lte]"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -76,7 +88,7 @@ public sealed record class SubscriptionListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("cursor", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -88,7 +100,7 @@ public sealed record class SubscriptionListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("customer_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<string>?>(element);
+            return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["customer_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -100,7 +112,7 @@ public sealed record class SubscriptionListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<string>?>(element);
+            return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -118,7 +130,7 @@ public sealed record class SubscriptionListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("limit", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -130,7 +142,10 @@ public sealed record class SubscriptionListParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("status", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<SubscriptionListParamsProperties::Status?>(element);
+            return JsonSerializer.Deserialize<SubscriptionListParamsProperties::Status?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["status"] = JsonSerializer.SerializeToElement(value); }
     }

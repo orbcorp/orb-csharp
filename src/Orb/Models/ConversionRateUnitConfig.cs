@@ -22,7 +22,7 @@ public sealed record class ConversionRateUnitConfig : ModelBase, IFromRaw<Conver
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("unit_amount");
         }
         set { this.Properties["unit_amount"] = JsonSerializer.SerializeToElement(value); }

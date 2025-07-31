@@ -182,8 +182,10 @@ public sealed record class EventIngestParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("events", out JsonElement element))
                 throw new ArgumentOutOfRangeException("events", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<EventIngestParamsProperties::Event>>(element)
-                ?? throw new ArgumentNullException("events");
+            return JsonSerializer.Deserialize<List<EventIngestParamsProperties::Event>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("events");
         }
         set { this.BodyProperties["events"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -199,7 +201,7 @@ public sealed record class EventIngestParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("backfill_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["backfill_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -214,7 +216,7 @@ public sealed record class EventIngestParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("debug", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["debug"] = JsonSerializer.SerializeToElement(value); }
     }

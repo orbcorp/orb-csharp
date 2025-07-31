@@ -16,7 +16,7 @@ public sealed record class ReportingConfiguration : ModelBase, IFromRaw<Reportin
             if (!this.Properties.TryGetValue("exempt", out JsonElement element))
                 throw new ArgumentOutOfRangeException("exempt", "Missing required argument");
 
-            return JsonSerializer.Deserialize<bool>(element);
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["exempt"] = JsonSerializer.SerializeToElement(value); }
     }

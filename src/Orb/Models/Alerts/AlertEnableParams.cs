@@ -23,7 +23,7 @@ public sealed record class AlertEnableParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("subscription_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["subscription_id"] = JsonSerializer.SerializeToElement(value); }
     }

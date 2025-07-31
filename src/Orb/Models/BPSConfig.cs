@@ -19,7 +19,7 @@ public sealed record class BPSConfig : ModelBase, IFromRaw<BPSConfig>
             if (!this.Properties.TryGetValue("bps", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("bps", "Missing required argument");
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["bps"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -34,7 +34,7 @@ public sealed record class BPSConfig : ModelBase, IFromRaw<BPSConfig>
             if (!this.Properties.TryGetValue("per_unit_maximum", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["per_unit_maximum"] = JsonSerializer.SerializeToElement(value); }
     }

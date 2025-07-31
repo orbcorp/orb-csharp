@@ -23,7 +23,7 @@ public sealed record class MaximumAmountAdjustment : ModelBase, IFromRaw<Maximum
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("amount_applied");
         }
         set { this.Properties["amount_applied"] = JsonSerializer.SerializeToElement(value); }
@@ -40,7 +40,8 @@ public sealed record class MaximumAmountAdjustment : ModelBase, IFromRaw<Maximum
                 );
 
             return JsonSerializer.Deserialize<MaximumAmountAdjustmentProperties::DiscountType>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new System::ArgumentNullException("discount_type");
         }
         set { this.Properties["discount_type"] = JsonSerializer.SerializeToElement(value); }
@@ -56,7 +57,7 @@ public sealed record class MaximumAmountAdjustment : ModelBase, IFromRaw<Maximum
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["percentage_discount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -69,7 +70,8 @@ public sealed record class MaximumAmountAdjustment : ModelBase, IFromRaw<Maximum
                 return null;
 
             return JsonSerializer.Deserialize<List<MaximumAmountAdjustmentProperties::AppliesToPrice>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.Properties["applies_to_prices"] = JsonSerializer.SerializeToElement(value); }
@@ -82,7 +84,7 @@ public sealed record class MaximumAmountAdjustment : ModelBase, IFromRaw<Maximum
             if (!this.Properties.TryGetValue("reason", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["reason"] = JsonSerializer.SerializeToElement(value); }
     }

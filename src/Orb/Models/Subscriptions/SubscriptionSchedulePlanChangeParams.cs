@@ -183,7 +183,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
                 );
 
             return JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsProperties::ChangeOption>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new System::ArgumentNullException("change_option");
         }
         set { this.BodyProperties["change_option"] = JsonSerializer.SerializeToElement(value); }
@@ -201,7 +202,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<List<SubscriptionSchedulePlanChangeParamsProperties::AddAdjustment>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.BodyProperties["add_adjustments"] = JsonSerializer.SerializeToElement(value); }
@@ -219,7 +221,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<List<SubscriptionSchedulePlanChangeParamsProperties::AddPrice>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.BodyProperties["add_prices"] = JsonSerializer.SerializeToElement(value); }
@@ -241,7 +244,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
             )
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -262,7 +265,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("auto_collection", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["auto_collection"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -282,7 +285,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsProperties::BillingCycleAlignment?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set
@@ -305,7 +309,10 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
             )
                 return null;
 
-            return JsonSerializer.Deserialize<Models::BillingCycleAnchorConfiguration?>(element);
+            return JsonSerializer.Deserialize<Models::BillingCycleAnchorConfiguration?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -326,7 +333,10 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("change_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.BodyProperties["change_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -343,7 +353,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("coupon_redemption_code", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -360,7 +370,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("credits_overage_rate", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -379,7 +389,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("default_invoice_memo", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -398,7 +408,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("external_plan_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["external_plan_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -415,7 +425,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("filter", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["filter"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -430,7 +440,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("initial_phase_order", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -450,7 +460,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("invoicing_threshold", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -470,7 +480,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("net_terms", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["net_terms"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -487,7 +497,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
             )
                 return null;
 
-            return JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -508,7 +518,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("plan_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["plan_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -524,7 +534,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("plan_version_number", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -542,7 +552,10 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("price_overrides", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<JsonElement>?>(element);
+            return JsonSerializer.Deserialize<List<JsonElement>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.BodyProperties["price_overrides"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -559,7 +572,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<List<SubscriptionSchedulePlanChangeParamsProperties::RemoveAdjustment>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set
@@ -580,7 +594,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<List<SubscriptionSchedulePlanChangeParamsProperties::RemovePrice>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.BodyProperties["remove_prices"] = JsonSerializer.SerializeToElement(value); }
@@ -598,7 +613,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<List<SubscriptionSchedulePlanChangeParamsProperties::ReplaceAdjustment>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set
@@ -619,7 +635,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<List<SubscriptionSchedulePlanChangeParamsProperties::ReplacePrice>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.BodyProperties["replace_prices"] = JsonSerializer.SerializeToElement(value); }
@@ -637,7 +654,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("trial_duration_days", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -660,7 +677,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("usage_customer_ids", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<string>?>(element);
+            return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
         set
         {

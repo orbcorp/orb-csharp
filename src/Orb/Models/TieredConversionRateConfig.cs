@@ -23,7 +23,8 @@ public sealed record class TieredConversionRateConfig
                 );
 
             return JsonSerializer.Deserialize<TieredConversionRateConfigProperties::ConversionRateType>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new System::ArgumentNullException("conversion_rate_type");
         }
         set { this.Properties["conversion_rate_type"] = JsonSerializer.SerializeToElement(value); }
@@ -39,8 +40,10 @@ public sealed record class TieredConversionRateConfig
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<ConversionRateTieredConfig>(element)
-                ?? throw new System::ArgumentNullException("tiered_config");
+            return JsonSerializer.Deserialize<ConversionRateTieredConfig>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("tiered_config");
         }
         set { this.Properties["tiered_config"] = JsonSerializer.SerializeToElement(value); }
     }

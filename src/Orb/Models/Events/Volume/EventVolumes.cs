@@ -17,8 +17,10 @@ public sealed record class EventVolumes : ModelBase, IFromRaw<EventVolumes>
             if (!this.Properties.TryGetValue("data", out JsonElement element))
                 throw new ArgumentOutOfRangeException("data", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<EventVolumesProperties::Data>>(element)
-                ?? throw new ArgumentNullException("data");
+            return JsonSerializer.Deserialize<List<EventVolumesProperties::Data>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("data");
         }
         set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
     }

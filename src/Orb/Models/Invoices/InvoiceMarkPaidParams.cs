@@ -29,7 +29,10 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateOnly>(element);
+            return JsonSerializer.Deserialize<System::DateOnly>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -47,7 +50,7 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("external_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["external_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -62,7 +65,7 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("notes", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["notes"] = JsonSerializer.SerializeToElement(value); }
     }

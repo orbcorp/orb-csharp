@@ -60,7 +60,7 @@ public sealed record class EventUpdateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("event_name", out JsonElement element))
                 throw new ArgumentOutOfRangeException("event_name", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("event_name");
         }
         set { this.BodyProperties["event_name"] = JsonSerializer.SerializeToElement(value); }
@@ -77,8 +77,10 @@ public sealed record class EventUpdateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("properties", out JsonElement element))
                 throw new ArgumentOutOfRangeException("properties", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(element)
-                ?? throw new ArgumentNullException("properties");
+            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("properties");
         }
         set { this.BodyProperties["properties"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -95,7 +97,7 @@ public sealed record class EventUpdateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("timestamp", out JsonElement element))
                 throw new ArgumentOutOfRangeException("timestamp", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["timestamp"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -110,7 +112,7 @@ public sealed record class EventUpdateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("customer_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -125,7 +127,7 @@ public sealed record class EventUpdateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {

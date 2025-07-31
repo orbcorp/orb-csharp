@@ -23,7 +23,7 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("amount");
         }
         set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
@@ -39,7 +39,10 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<SubLineItemGrouping?>(element);
+            return JsonSerializer.Deserialize<SubLineItemGrouping?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["grouping"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -51,7 +54,7 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("name");
         }
         set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
@@ -67,7 +70,7 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["quantity"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -79,8 +82,10 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
             if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<OtherSubLineItemProperties::Type>(element)
-                ?? throw new System::ArgumentNullException("type");
+            return JsonSerializer.Deserialize<OtherSubLineItemProperties::Type>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("type");
         }
         set { this.Properties["type"] = JsonSerializer.SerializeToElement(value); }
     }

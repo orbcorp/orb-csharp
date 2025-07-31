@@ -19,7 +19,7 @@ public sealed record class RemovePrice : ModelBase, IFromRaw<RemovePrice>
             if (!this.Properties.TryGetValue("price_id", out JsonElement element))
                 throw new ArgumentOutOfRangeException("price_id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("price_id");
         }
         set { this.Properties["price_id"] = JsonSerializer.SerializeToElement(value); }
@@ -35,7 +35,7 @@ public sealed record class RemovePrice : ModelBase, IFromRaw<RemovePrice>
             if (!this.Properties.TryGetValue("plan_phase_order", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(value); }
     }

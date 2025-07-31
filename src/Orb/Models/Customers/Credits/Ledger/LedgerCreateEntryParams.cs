@@ -101,8 +101,10 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("body", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("body", "Missing required argument");
 
-            return JsonSerializer.Deserialize<LedgerCreateEntryParamsProperties::Body>(element)
-                ?? throw new System::ArgumentNullException("body");
+            return JsonSerializer.Deserialize<LedgerCreateEntryParamsProperties::Body>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("body");
         }
         set { this.BodyProperties["body"] = JsonSerializer.SerializeToElement(value); }
     }

@@ -22,7 +22,7 @@ public sealed record class AutoCollection : ModelBase, IFromRaw<AutoCollection>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["enabled"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -42,7 +42,10 @@ public sealed record class AutoCollection : ModelBase, IFromRaw<AutoCollection>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["next_attempt_at"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -60,7 +63,7 @@ public sealed record class AutoCollection : ModelBase, IFromRaw<AutoCollection>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["num_attempts"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -83,7 +86,10 @@ public sealed record class AutoCollection : ModelBase, IFromRaw<AutoCollection>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {

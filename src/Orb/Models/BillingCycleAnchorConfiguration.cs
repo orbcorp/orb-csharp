@@ -24,7 +24,7 @@ public sealed record class BillingCycleAnchorConfiguration
             if (!this.Properties.TryGetValue("day", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("day", "Missing required argument");
 
-            return JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["day"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -40,7 +40,7 @@ public sealed record class BillingCycleAnchorConfiguration
             if (!this.Properties.TryGetValue("month", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["month"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -56,7 +56,7 @@ public sealed record class BillingCycleAnchorConfiguration
             if (!this.Properties.TryGetValue("year", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["year"] = JsonSerializer.SerializeToElement(value); }
     }

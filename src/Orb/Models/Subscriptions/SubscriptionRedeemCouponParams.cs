@@ -27,7 +27,8 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
                 );
 
             return JsonSerializer.Deserialize<SubscriptionRedeemCouponParamsProperties::ChangeOption>(
-                    element
+                    element,
+                    ModelBase.SerializerOptions
                 ) ?? throw new System::ArgumentNullException("change_option");
         }
         set { this.BodyProperties["change_option"] = JsonSerializer.SerializeToElement(value); }
@@ -50,7 +51,7 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
             )
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -71,7 +72,10 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("change_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.BodyProperties["change_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -86,7 +90,7 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("coupon_id", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["coupon_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -101,7 +105,7 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("coupon_redemption_code", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {

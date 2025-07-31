@@ -19,7 +19,10 @@ public sealed record class AddPrice : ModelBase, IFromRaw<AddPrice>
             if (!this.Properties.TryGetValue("allocation_price", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<NewAllocationPrice?>(element);
+            return JsonSerializer.Deserialize<NewAllocationPrice?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["allocation_price"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -34,7 +37,7 @@ public sealed record class AddPrice : ModelBase, IFromRaw<AddPrice>
             if (!this.Properties.TryGetValue("plan_phase_order", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -49,7 +52,10 @@ public sealed record class AddPrice : ModelBase, IFromRaw<AddPrice>
             if (!this.Properties.TryGetValue("price", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<AddPriceProperties::Price1?>(element);
+            return JsonSerializer.Deserialize<AddPriceProperties::Price1?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["price"] = JsonSerializer.SerializeToElement(value); }
     }

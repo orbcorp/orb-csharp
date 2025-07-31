@@ -17,7 +17,7 @@ public sealed record class CustomerListPageResponse : ModelBase, IFromRaw<Custom
             if (!this.Properties.TryGetValue("data", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<Customer>>(element)
+            return JsonSerializer.Deserialize<List<Customer>>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("data");
         }
         set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
@@ -33,8 +33,10 @@ public sealed record class CustomerListPageResponse : ModelBase, IFromRaw<Custom
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Models::PaginationMetadata>(element)
-                ?? throw new System::ArgumentNullException("pagination_metadata");
+            return JsonSerializer.Deserialize<Models::PaginationMetadata>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("pagination_metadata");
         }
         set { this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(value); }
     }

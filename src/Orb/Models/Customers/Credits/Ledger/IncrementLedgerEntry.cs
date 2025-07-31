@@ -17,7 +17,7 @@ public sealed record class IncrementLedgerEntry : ModelBase, IFromRaw<IncrementL
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -33,7 +33,7 @@ public sealed record class IncrementLedgerEntry : ModelBase, IFromRaw<IncrementL
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -48,7 +48,10 @@ public sealed record class IncrementLedgerEntry : ModelBase, IFromRaw<IncrementL
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -63,7 +66,7 @@ public sealed record class IncrementLedgerEntry : ModelBase, IFromRaw<IncrementL
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<AffectedBlock>(element)
+            return JsonSerializer.Deserialize<AffectedBlock>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("credit_block");
         }
         set { this.Properties["credit_block"] = JsonSerializer.SerializeToElement(value); }
@@ -79,7 +82,7 @@ public sealed record class IncrementLedgerEntry : ModelBase, IFromRaw<IncrementL
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("currency");
         }
         set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
@@ -95,8 +98,10 @@ public sealed record class IncrementLedgerEntry : ModelBase, IFromRaw<IncrementL
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<CustomerMinified>(element)
-                ?? throw new System::ArgumentNullException("customer");
+            return JsonSerializer.Deserialize<CustomerMinified>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("customer");
         }
         set { this.Properties["customer"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -111,7 +116,7 @@ public sealed record class IncrementLedgerEntry : ModelBase, IFromRaw<IncrementL
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["description"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -126,7 +131,7 @@ public sealed record class IncrementLedgerEntry : ModelBase, IFromRaw<IncrementL
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["ending_balance"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -141,8 +146,10 @@ public sealed record class IncrementLedgerEntry : ModelBase, IFromRaw<IncrementL
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<IncrementLedgerEntryProperties::EntryStatus>(element)
-                ?? throw new System::ArgumentNullException("entry_status");
+            return JsonSerializer.Deserialize<IncrementLedgerEntryProperties::EntryStatus>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("entry_status");
         }
         set { this.Properties["entry_status"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -157,8 +164,10 @@ public sealed record class IncrementLedgerEntry : ModelBase, IFromRaw<IncrementL
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<IncrementLedgerEntryProperties::EntryType>(element)
-                ?? throw new System::ArgumentNullException("entry_type");
+            return JsonSerializer.Deserialize<IncrementLedgerEntryProperties::EntryType>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("entry_type");
         }
         set { this.Properties["entry_type"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -173,7 +182,7 @@ public sealed record class IncrementLedgerEntry : ModelBase, IFromRaw<IncrementL
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -197,8 +206,10 @@ public sealed record class IncrementLedgerEntry : ModelBase, IFromRaw<IncrementL
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, string>>(element)
-                ?? throw new System::ArgumentNullException("metadata");
+            return JsonSerializer.Deserialize<Dictionary<string, string>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("metadata");
         }
         set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -213,7 +224,7 @@ public sealed record class IncrementLedgerEntry : ModelBase, IFromRaw<IncrementL
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["starting_balance"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -228,7 +239,7 @@ public sealed record class IncrementLedgerEntry : ModelBase, IFromRaw<IncrementL
             if (!this.Properties.TryGetValue("created_invoices", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<Invoice>?>(element);
+            return JsonSerializer.Deserialize<List<Invoice>?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["created_invoices"] = JsonSerializer.SerializeToElement(value); }
     }

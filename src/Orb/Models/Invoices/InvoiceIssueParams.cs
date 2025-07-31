@@ -33,7 +33,7 @@ public sealed record class InvoiceIssueParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("synchronous", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["synchronous"] = JsonSerializer.SerializeToElement(value); }
     }

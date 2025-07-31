@@ -28,7 +28,7 @@ public sealed record class AlertUpdateParams : ParamsBase
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<Threshold>>(element)
+            return JsonSerializer.Deserialize<List<Threshold>>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("thresholds");
         }
         set { this.BodyProperties["thresholds"] = JsonSerializer.SerializeToElement(value); }

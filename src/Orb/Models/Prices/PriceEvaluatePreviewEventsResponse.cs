@@ -21,7 +21,8 @@ public sealed record class PriceEvaluatePreviewEventsResponse
 
             return JsonSerializer.Deserialize<
                     List<PriceEvaluatePreviewEventsResponseProperties::Data>
-                >(element) ?? throw new System::ArgumentNullException("data");
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new System::ArgumentNullException("data");
         }
         set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
     }

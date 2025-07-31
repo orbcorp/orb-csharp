@@ -19,8 +19,10 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<PerPriceCost>>(element)
-                ?? throw new System::ArgumentNullException("per_price_costs");
+            return JsonSerializer.Deserialize<List<PerPriceCost>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("per_price_costs");
         }
         set { this.Properties["per_price_costs"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -38,7 +40,7 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("subtotal");
         }
         set { this.Properties["subtotal"] = JsonSerializer.SerializeToElement(value); }
@@ -54,7 +56,10 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -69,7 +74,10 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(element);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -84,7 +92,7 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
             if (!this.Properties.TryGetValue("total", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("total", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("total");
         }
         set { this.Properties["total"] = JsonSerializer.SerializeToElement(value); }

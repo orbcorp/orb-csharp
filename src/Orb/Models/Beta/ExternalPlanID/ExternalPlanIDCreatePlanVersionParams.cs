@@ -29,7 +29,7 @@ public sealed record class ExternalPlanIDCreatePlanVersionParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("version", out JsonElement element))
                 throw new ArgumentOutOfRangeException("version", "Missing required argument");
 
-            return JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["version"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -45,7 +45,8 @@ public sealed record class ExternalPlanIDCreatePlanVersionParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<List<ExternalPlanIDCreatePlanVersionParamsProperties::AddAdjustment>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.BodyProperties["add_adjustments"] = JsonSerializer.SerializeToElement(value); }
@@ -62,7 +63,8 @@ public sealed record class ExternalPlanIDCreatePlanVersionParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<List<ExternalPlanIDCreatePlanVersionParamsProperties::AddPrice>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.BodyProperties["add_prices"] = JsonSerializer.SerializeToElement(value); }
@@ -79,7 +81,8 @@ public sealed record class ExternalPlanIDCreatePlanVersionParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<List<ExternalPlanIDCreatePlanVersionParamsProperties::RemoveAdjustment>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set
@@ -99,7 +102,8 @@ public sealed record class ExternalPlanIDCreatePlanVersionParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<List<ExternalPlanIDCreatePlanVersionParamsProperties::RemovePrice>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.BodyProperties["remove_prices"] = JsonSerializer.SerializeToElement(value); }
@@ -116,7 +120,8 @@ public sealed record class ExternalPlanIDCreatePlanVersionParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<List<ExternalPlanIDCreatePlanVersionParamsProperties::ReplaceAdjustment>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set
@@ -136,7 +141,8 @@ public sealed record class ExternalPlanIDCreatePlanVersionParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<List<ExternalPlanIDCreatePlanVersionParamsProperties::ReplacePrice>?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.BodyProperties["replace_prices"] = JsonSerializer.SerializeToElement(value); }
@@ -152,7 +158,7 @@ public sealed record class ExternalPlanIDCreatePlanVersionParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("set_as_default", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<bool?>(element);
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["set_as_default"] = JsonSerializer.SerializeToElement(value); }
     }

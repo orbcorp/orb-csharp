@@ -19,7 +19,7 @@ public sealed record class PerPriceCost : ModelBase, IFromRaw<PerPriceCost>
             if (!this.Properties.TryGetValue("price", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("price", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Price>(element)
+            return JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("price");
         }
         set { this.Properties["price"] = JsonSerializer.SerializeToElement(value); }
@@ -38,7 +38,7 @@ public sealed record class PerPriceCost : ModelBase, IFromRaw<PerPriceCost>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("price_id");
         }
         set { this.Properties["price_id"] = JsonSerializer.SerializeToElement(value); }
@@ -57,7 +57,7 @@ public sealed record class PerPriceCost : ModelBase, IFromRaw<PerPriceCost>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("subtotal");
         }
         set { this.Properties["subtotal"] = JsonSerializer.SerializeToElement(value); }
@@ -73,7 +73,7 @@ public sealed record class PerPriceCost : ModelBase, IFromRaw<PerPriceCost>
             if (!this.Properties.TryGetValue("total", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("total", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("total");
         }
         set { this.Properties["total"] = JsonSerializer.SerializeToElement(value); }
@@ -89,7 +89,7 @@ public sealed record class PerPriceCost : ModelBase, IFromRaw<PerPriceCost>
             if (!this.Properties.TryGetValue("quantity", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["quantity"] = JsonSerializer.SerializeToElement(value); }
     }

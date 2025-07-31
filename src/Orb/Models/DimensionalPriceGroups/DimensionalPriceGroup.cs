@@ -21,7 +21,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -41,7 +41,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("billable_metric_id");
         }
         set { this.Properties["billable_metric_id"] = JsonSerializer.SerializeToElement(value); }
@@ -57,7 +57,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
             if (!this.Properties.TryGetValue("dimensions", out JsonElement element))
                 throw new ArgumentOutOfRangeException("dimensions", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<string>>(element)
+            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("dimensions");
         }
         set { this.Properties["dimensions"] = JsonSerializer.SerializeToElement(value); }
@@ -81,7 +81,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -103,8 +103,10 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
             if (!this.Properties.TryGetValue("metadata", out JsonElement element))
                 throw new ArgumentOutOfRangeException("metadata", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Dictionary<string, string>>(element)
-                ?? throw new ArgumentNullException("metadata");
+            return JsonSerializer.Deserialize<Dictionary<string, string>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("metadata");
         }
         set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -119,7 +121,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
         set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }

@@ -22,7 +22,7 @@ public sealed record class TopUpListByExternalIDPageResponse
 
             return JsonSerializer.Deserialize<
                     List<TopUpListByExternalIDPageResponseProperties::Data>
-                >(element) ?? throw new ArgumentNullException("data");
+                >(element, ModelBase.SerializerOptions) ?? throw new ArgumentNullException("data");
         }
         set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -37,8 +37,10 @@ public sealed record class TopUpListByExternalIDPageResponse
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Models::PaginationMetadata>(element)
-                ?? throw new ArgumentNullException("pagination_metadata");
+            return JsonSerializer.Deserialize<Models::PaginationMetadata>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("pagination_metadata");
         }
         set { this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(value); }
     }

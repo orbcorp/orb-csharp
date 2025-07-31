@@ -19,7 +19,7 @@ public sealed record class RemoveAdjustment : ModelBase, IFromRaw<RemoveAdjustme
             if (!this.Properties.TryGetValue("adjustment_id", out JsonElement element))
                 throw new ArgumentOutOfRangeException("adjustment_id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("adjustment_id");
         }
         set { this.Properties["adjustment_id"] = JsonSerializer.SerializeToElement(value); }

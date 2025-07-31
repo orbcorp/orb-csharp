@@ -30,7 +30,7 @@ public sealed record class SubscriptionFetchCostsParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("currency", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.QueryProperties["currency"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -45,7 +45,10 @@ public sealed record class SubscriptionFetchCostsParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("timeframe_end", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -60,7 +63,10 @@ public sealed record class SubscriptionFetchCostsParams : ParamsBase
             if (!this.QueryProperties.TryGetValue("timeframe_start", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(element);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.QueryProperties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -78,7 +84,8 @@ public sealed record class SubscriptionFetchCostsParams : ParamsBase
                 return null;
 
             return JsonSerializer.Deserialize<SubscriptionFetchCostsParamsProperties::ViewMode?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set { this.QueryProperties["view_mode"] = JsonSerializer.SerializeToElement(value); }

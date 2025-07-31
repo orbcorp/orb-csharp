@@ -25,7 +25,7 @@ public sealed record class MetricCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("description", out JsonElement element))
                 throw new ArgumentOutOfRangeException("description", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["description"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -40,7 +40,7 @@ public sealed record class MetricCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("item_id", out JsonElement element))
                 throw new ArgumentOutOfRangeException("item_id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("item_id");
         }
         set { this.BodyProperties["item_id"] = JsonSerializer.SerializeToElement(value); }
@@ -56,7 +56,7 @@ public sealed record class MetricCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("name", out JsonElement element))
                 throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
         set { this.BodyProperties["name"] = JsonSerializer.SerializeToElement(value); }
@@ -72,7 +72,7 @@ public sealed record class MetricCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("sql", out JsonElement element))
                 throw new ArgumentOutOfRangeException("sql", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("sql");
         }
         set { this.BodyProperties["sql"] = JsonSerializer.SerializeToElement(value); }
@@ -90,7 +90,10 @@ public sealed record class MetricCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(element);
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }

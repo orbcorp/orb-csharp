@@ -22,7 +22,7 @@ public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("package_amount");
         }
         set { this.Properties["package_amount"] = JsonSerializer.SerializeToElement(value); }
@@ -42,7 +42,7 @@ public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["package_size"] = JsonSerializer.SerializeToElement(value); }
     }

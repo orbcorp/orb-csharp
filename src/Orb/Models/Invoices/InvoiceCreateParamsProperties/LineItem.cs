@@ -21,7 +21,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             if (!this.Properties.TryGetValue("end_date", out JsonElement element))
                 throw new ArgumentOutOfRangeException("end_date", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DateOnly>(element);
+            return JsonSerializer.Deserialize<DateOnly>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -33,7 +33,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             if (!this.Properties.TryGetValue("item_id", out JsonElement element))
                 throw new ArgumentOutOfRangeException("item_id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("item_id");
         }
         set { this.Properties["item_id"] = JsonSerializer.SerializeToElement(value); }
@@ -46,8 +46,10 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             if (!this.Properties.TryGetValue("model_type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("model_type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<LineItemProperties::ModelType>(element)
-                ?? throw new ArgumentNullException("model_type");
+            return JsonSerializer.Deserialize<LineItemProperties::ModelType>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("model_type");
         }
         set { this.Properties["model_type"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -62,7 +64,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
         set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
@@ -78,7 +80,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             if (!this.Properties.TryGetValue("quantity", out JsonElement element))
                 throw new ArgumentOutOfRangeException("quantity", "Missing required argument");
 
-            return JsonSerializer.Deserialize<double>(element);
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["quantity"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -93,7 +95,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             if (!this.Properties.TryGetValue("start_date", out JsonElement element))
                 throw new ArgumentOutOfRangeException("start_date", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DateOnly>(element);
+            return JsonSerializer.Deserialize<DateOnly>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -105,8 +107,10 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             if (!this.Properties.TryGetValue("unit_config", out JsonElement element))
                 throw new ArgumentOutOfRangeException("unit_config", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Models::UnitConfig>(element)
-                ?? throw new ArgumentNullException("unit_config");
+            return JsonSerializer.Deserialize<Models::UnitConfig>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("unit_config");
         }
         set { this.Properties["unit_config"] = JsonSerializer.SerializeToElement(value); }
     }

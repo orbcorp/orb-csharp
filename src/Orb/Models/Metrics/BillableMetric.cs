@@ -23,7 +23,7 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -36,7 +36,7 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
             if (!this.Properties.TryGetValue("description", out JsonElement element))
                 throw new ArgumentOutOfRangeException("description", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["description"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -53,7 +53,7 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
             if (!this.Properties.TryGetValue("item", out JsonElement element))
                 throw new ArgumentOutOfRangeException("item", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Items::Item>(element)
+            return JsonSerializer.Deserialize<Items::Item>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("item");
         }
         set { this.Properties["item"] = JsonSerializer.SerializeToElement(value); }
@@ -72,8 +72,10 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
             if (!this.Properties.TryGetValue("metadata", out JsonElement element))
                 throw new ArgumentOutOfRangeException("metadata", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Dictionary<string, string>>(element)
-                ?? throw new ArgumentNullException("metadata");
+            return JsonSerializer.Deserialize<Dictionary<string, string>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("metadata");
         }
         set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -85,7 +87,7 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
         set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
@@ -98,8 +100,10 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
             if (!this.Properties.TryGetValue("status", out JsonElement element))
                 throw new ArgumentOutOfRangeException("status", "Missing required argument");
 
-            return JsonSerializer.Deserialize<BillableMetricProperties::Status>(element)
-                ?? throw new ArgumentNullException("status");
+            return JsonSerializer.Deserialize<BillableMetricProperties::Status>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("status");
         }
         set { this.Properties["status"] = JsonSerializer.SerializeToElement(value); }
     }

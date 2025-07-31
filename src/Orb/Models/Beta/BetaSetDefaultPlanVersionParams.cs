@@ -28,7 +28,7 @@ public sealed record class BetaSetDefaultPlanVersionParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("version", out JsonElement element))
                 throw new ArgumentOutOfRangeException("version", "Missing required argument");
 
-            return JsonSerializer.Deserialize<long>(element);
+            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
         set { this.BodyProperties["version"] = JsonSerializer.SerializeToElement(value); }
     }

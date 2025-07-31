@@ -16,8 +16,10 @@ public sealed record class PriceEvaluateResponse : ModelBase, IFromRaw<PriceEval
             if (!this.Properties.TryGetValue("data", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<EvaluatePriceGroup>>(element)
-                ?? throw new System::ArgumentNullException("data");
+            return JsonSerializer.Deserialize<List<EvaluatePriceGroup>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("data");
         }
         set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
     }

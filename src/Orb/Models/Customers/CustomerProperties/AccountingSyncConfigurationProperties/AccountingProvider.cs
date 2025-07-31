@@ -20,7 +20,7 @@ public sealed record class AccountingProvider : ModelBase, IFromRaw<AccountingPr
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["external_provider_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -32,8 +32,10 @@ public sealed record class AccountingProvider : ModelBase, IFromRaw<AccountingPr
             if (!this.Properties.TryGetValue("provider_type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("provider_type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<AccountingProviderProperties::ProviderType>(element)
-                ?? throw new ArgumentNullException("provider_type");
+            return JsonSerializer.Deserialize<AccountingProviderProperties::ProviderType>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("provider_type");
         }
         set { this.Properties["provider_type"] = JsonSerializer.SerializeToElement(value); }
     }

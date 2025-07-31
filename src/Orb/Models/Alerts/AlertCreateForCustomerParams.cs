@@ -34,7 +34,7 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("currency");
         }
         set { this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(value); }
@@ -50,8 +50,10 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("type", out JsonElement element))
                 throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<AlertCreateForCustomerParamsProperties::Type>(element)
-                ?? throw new System::ArgumentNullException("type");
+            return JsonSerializer.Deserialize<AlertCreateForCustomerParamsProperties::Type>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("type");
         }
         set { this.BodyProperties["type"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -66,7 +68,10 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("thresholds", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<Threshold>?>(element);
+            return JsonSerializer.Deserialize<List<Threshold>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.BodyProperties["thresholds"] = JsonSerializer.SerializeToElement(value); }
     }

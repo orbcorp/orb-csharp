@@ -18,7 +18,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
         set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
@@ -34,7 +34,10 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Models::BillableMetricTiny?>(element);
+            return JsonSerializer.Deserialize<Models::BillableMetricTiny?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["billable_metric"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -51,8 +54,10 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Models::BillingCycleConfiguration>(element)
-                ?? throw new ArgumentNullException("billing_cycle_configuration");
+            return JsonSerializer.Deserialize<Models::BillingCycleConfiguration>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("billing_cycle_configuration");
         }
         set
         {
@@ -69,8 +74,10 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
             if (!this.Properties.TryGetValue("cadence", out JsonElement element))
                 throw new ArgumentOutOfRangeException("cadence", "Missing required argument");
 
-            return JsonSerializer.Deserialize<TieredPackageProperties::Cadence>(element)
-                ?? throw new ArgumentNullException("cadence");
+            return JsonSerializer.Deserialize<TieredPackageProperties::Cadence>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("cadence");
         }
         set { this.Properties["cadence"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -85,7 +92,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["conversion_rate"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -101,7 +108,8 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
                 );
 
             return JsonSerializer.Deserialize<TieredPackageProperties::ConversionRateConfig?>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         }
         set
@@ -117,7 +125,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
                 throw new ArgumentOutOfRangeException("created_at", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DateTime>(element);
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -132,7 +140,10 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Models::Allocation?>(element);
+            return JsonSerializer.Deserialize<Models::Allocation?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["credit_allocation"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -144,7 +155,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
                 throw new ArgumentOutOfRangeException("currency", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("currency");
         }
         set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
@@ -157,7 +168,10 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
             if (!this.Properties.TryGetValue("discount", out JsonElement element))
                 throw new ArgumentOutOfRangeException("discount", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Models::Discount2?>(element);
+            return JsonSerializer.Deserialize<Models::Discount2?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["discount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -172,7 +186,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -187,7 +201,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<double?>(element);
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["fixed_price_quantity"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -207,7 +221,10 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Models::BillingCycleConfiguration?>(element);
+            return JsonSerializer.Deserialize<Models::BillingCycleConfiguration?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -224,8 +241,10 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
             if (!this.Properties.TryGetValue("item", out JsonElement element))
                 throw new ArgumentOutOfRangeException("item", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Models::ItemSlim>(element)
-                ?? throw new ArgumentNullException("item");
+            return JsonSerializer.Deserialize<Models::ItemSlim>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("item");
         }
         set { this.Properties["item"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -237,7 +256,10 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
             if (!this.Properties.TryGetValue("maximum", out JsonElement element))
                 throw new ArgumentOutOfRangeException("maximum", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Models::Maximum?>(element);
+            return JsonSerializer.Deserialize<Models::Maximum?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["maximum"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -252,7 +274,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -270,8 +292,10 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
             if (!this.Properties.TryGetValue("metadata", out JsonElement element))
                 throw new ArgumentOutOfRangeException("metadata", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Dictionary<string, string>>(element)
-                ?? throw new ArgumentNullException("metadata");
+            return JsonSerializer.Deserialize<Dictionary<string, string>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("metadata");
         }
         set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -283,7 +307,10 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
             if (!this.Properties.TryGetValue("minimum", out JsonElement element))
                 throw new ArgumentOutOfRangeException("minimum", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Models::Minimum?>(element);
+            return JsonSerializer.Deserialize<Models::Minimum?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set { this.Properties["minimum"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -298,7 +325,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -310,7 +337,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
             if (!this.Properties.TryGetValue("model_type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("model_type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<JsonElement>(element);
+            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["model_type"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -322,7 +349,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
         set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
@@ -338,7 +365,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<long?>(element);
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -350,8 +377,10 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
             if (!this.Properties.TryGetValue("price_type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("price_type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<TieredPackageProperties::PriceType>(element)
-                ?? throw new ArgumentNullException("price_type");
+            return JsonSerializer.Deserialize<TieredPackageProperties::PriceType>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("price_type");
         }
         set { this.Properties["price_type"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -370,7 +399,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<string?>(element);
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set { this.Properties["replaces_price_id"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -385,8 +414,10 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(element)
-                ?? throw new ArgumentNullException("tiered_package_config");
+            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("tiered_package_config");
         }
         set { this.Properties["tiered_package_config"] = JsonSerializer.SerializeToElement(value); }
     }
@@ -403,7 +434,10 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
             )
                 return null;
 
-            return JsonSerializer.Deserialize<Models::DimensionalPriceConfiguration?>(element);
+            return JsonSerializer.Deserialize<Models::DimensionalPriceConfiguration?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {

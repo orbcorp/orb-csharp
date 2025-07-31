@@ -19,7 +19,7 @@ public sealed record class EventUpdateResponse : ModelBase, IFromRaw<EventUpdate
             if (!this.Properties.TryGetValue("amended", out JsonElement element))
                 throw new ArgumentOutOfRangeException("amended", "Missing required argument");
 
-            return JsonSerializer.Deserialize<string>(element)
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("amended");
         }
         set { this.Properties["amended"] = JsonSerializer.SerializeToElement(value); }
