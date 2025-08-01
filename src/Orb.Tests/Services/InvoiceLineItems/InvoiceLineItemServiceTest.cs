@@ -1,0 +1,24 @@
+using System;
+using System.Threading.Tasks;
+
+namespace Orb.Tests.Services.InvoiceLineItems;
+
+public class InvoiceLineItemServiceTest : TestBase
+{
+    [Fact]
+    public async Task Create_Works()
+    {
+        var invoiceLineItem = await this.client.InvoiceLineItems.Create(
+            new()
+            {
+                Amount = "12.00",
+                EndDate = DateOnly.Parse("2023-09-22"),
+                InvoiceID = "4khy3nwzktxv7",
+                Name = "Item Name",
+                Quantity = 1,
+                StartDate = DateOnly.Parse("2023-09-22"),
+            }
+        );
+        invoiceLineItem.Validate();
+    }
+}
