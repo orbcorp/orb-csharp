@@ -75,4 +75,9 @@ public sealed record class BulkBPSTier : ModelBase, IFromRaw<BulkBPSTier>
     {
         return new(properties);
     }
+
+    public BulkBPSTier(double bps)
+    {
+        this.BPS = bps;
+    }
 }

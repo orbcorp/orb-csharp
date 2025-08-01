@@ -127,4 +127,9 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
     {
         return new(properties);
     }
+
+    public Decrement(double amount)
+    {
+        this.Amount = amount;
+    }
 }

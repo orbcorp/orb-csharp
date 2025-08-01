@@ -41,4 +41,9 @@ public sealed record class TopLevelPingResponse : ModelBase, IFromRaw<TopLevelPi
     {
         return new(properties);
     }
+
+    public TopLevelPingResponse(string response)
+    {
+        this.Response = response;
+    }
 }

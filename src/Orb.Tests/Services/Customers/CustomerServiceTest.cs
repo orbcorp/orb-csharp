@@ -53,7 +53,7 @@ public class CustomerServiceTest : TestBase
                 Metadata = new() { { "foo", "string" } },
                 PaymentProvider = PaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                ReportingConfiguration = new() { Exempt = true },
+                ReportingConfiguration = new(true),
                 ShippingAddress = new()
                 {
                     City = "city",
@@ -124,7 +124,7 @@ public class CustomerServiceTest : TestBase
                 Name = "name",
                 PaymentProvider = CustomerUpdateParamsProperties::PaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                ReportingConfiguration = new() { Exempt = true },
+                ReportingConfiguration = new(true),
                 ShippingAddress = new()
                 {
                     City = "city",
@@ -250,7 +250,7 @@ public class CustomerServiceTest : TestBase
                 PaymentProvider =
                     CustomerUpdateByExternalIDParamsProperties::PaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                ReportingConfiguration = new() { Exempt = true },
+                ReportingConfiguration = new(true),
                 ShippingAddress = new()
                 {
                     City = "city",

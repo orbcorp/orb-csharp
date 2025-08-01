@@ -102,4 +102,9 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
     {
         return new(properties);
     }
+
+    public ReplacePrice(string replacesPriceID)
+    {
+        this.ReplacesPriceID = replacesPriceID;
+    }
 }

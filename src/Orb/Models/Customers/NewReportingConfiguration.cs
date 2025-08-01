@@ -47,4 +47,9 @@ public sealed record class NewReportingConfiguration
     {
         return new(properties);
     }
+
+    public NewReportingConfiguration(bool exempt)
+    {
+        this.Exempt = exempt;
+    }
 }

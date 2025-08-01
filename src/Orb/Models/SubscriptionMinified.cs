@@ -41,4 +41,9 @@ public sealed record class SubscriptionMinified : ModelBase, IFromRaw<Subscripti
     {
         return new(properties);
     }
+
+    public SubscriptionMinified(string id)
+    {
+        this.ID = id;
+    }
 }

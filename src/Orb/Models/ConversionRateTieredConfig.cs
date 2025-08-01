@@ -53,4 +53,9 @@ public sealed record class ConversionRateTieredConfig
     {
         return new(properties);
     }
+
+    public ConversionRateTieredConfig(List<ConversionRateTier> tiers)
+    {
+        this.Tiers = tiers;
+    }
 }

@@ -47,4 +47,9 @@ public sealed record class EventVolumes : ModelBase, IFromRaw<EventVolumes>
     {
         return new(properties);
     }
+
+    public EventVolumes(List<EventVolumesProperties::Data> data)
+    {
+        this.Data = data;
+    }
 }

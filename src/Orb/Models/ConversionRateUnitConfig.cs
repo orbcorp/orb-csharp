@@ -49,4 +49,9 @@ public sealed record class ConversionRateUnitConfig : ModelBase, IFromRaw<Conver
     {
         return new(properties);
     }
+
+    public ConversionRateUnitConfig(string unitAmount)
+    {
+        this.UnitAmount = unitAmount;
+    }
 }

@@ -44,4 +44,9 @@ public sealed record class EventUpdateResponse : ModelBase, IFromRaw<EventUpdate
     {
         return new(properties);
     }
+
+    public EventUpdateResponse(string amended)
+    {
+        this.Amended = amended;
+    }
 }

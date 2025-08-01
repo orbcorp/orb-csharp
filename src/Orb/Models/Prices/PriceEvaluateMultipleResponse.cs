@@ -51,4 +51,9 @@ public sealed record class PriceEvaluateMultipleResponse
     {
         return new(properties);
     }
+
+    public PriceEvaluateMultipleResponse(List<PriceEvaluateMultipleResponseProperties::Data> data)
+    {
+        this.Data = data;
+    }
 }

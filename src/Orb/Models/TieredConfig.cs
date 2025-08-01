@@ -47,4 +47,9 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
     {
         return new(properties);
     }
+
+    public TieredConfig(List<Tier> tiers)
+    {
+        this.Tiers = tiers;
+    }
 }

@@ -91,4 +91,9 @@ public sealed record class EditAdjustment : ModelBase, IFromRaw<EditAdjustment>
     {
         return new(properties);
     }
+
+    public EditAdjustment(string adjustmentIntervalID)
+    {
+        this.AdjustmentIntervalID = adjustmentIntervalID;
+    }
 }

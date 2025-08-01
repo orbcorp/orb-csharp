@@ -46,4 +46,9 @@ public sealed record class SubscriptionTrialInfo : ModelBase, IFromRaw<Subscript
     {
         return new(properties);
     }
+
+    public SubscriptionTrialInfo(System::DateTime? endDate)
+    {
+        this.EndDate = endDate;
+    }
 }

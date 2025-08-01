@@ -50,4 +50,9 @@ public sealed record class BulkBPSConfig : ModelBase, IFromRaw<BulkBPSConfig>
     {
         return new(properties);
     }
+
+    public BulkBPSConfig(List<BulkBPSTier> tiers)
+    {
+        this.Tiers = tiers;
+    }
 }

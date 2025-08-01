@@ -51,4 +51,11 @@ public sealed record class PriceEvaluatePreviewEventsResponse
     {
         return new(properties);
     }
+
+    public PriceEvaluatePreviewEventsResponse(
+        List<PriceEvaluatePreviewEventsResponseProperties::Data> data
+    )
+    {
+        this.Data = data;
+    }
 }

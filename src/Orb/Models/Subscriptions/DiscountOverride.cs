@@ -97,4 +97,9 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
     {
         return new(properties);
     }
+
+    public DiscountOverride(DiscountOverrideProperties::DiscountType discountType)
+    {
+        this.DiscountType = discountType;
+    }
 }

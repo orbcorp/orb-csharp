@@ -98,7 +98,7 @@ public class SubscriptionServiceTest : TestBase
                             ItemID = "item_id",
                             ModelType = NewSubscriptionUnitPriceProperties::ModelType.Unit,
                             Name = "Annual fee",
-                            UnitConfig = new() { UnitAmount = "unit_amount" },
+                            UnitConfig = new("unit_amount"),
                             BillableMetricID = "billable_metric_id",
                             BilledInAdvance = true,
                             BillingCycleConfiguration = new()
@@ -111,7 +111,7 @@ public class SubscriptionServiceTest : TestBase
                             ConversionRateConfig = new UnitConversionRateConfig()
                             {
                                 ConversionRateType = ConversionRateType.Unit,
-                                UnitConfig = new() { UnitAmount = "unit_amount" },
+                                UnitConfig = new("unit_amount"),
                             },
                             Currency = "currency",
                             DimensionalPriceConfiguration = new()
@@ -166,7 +166,7 @@ public class SubscriptionServiceTest : TestBase
                 PlanID = "ZMwNQefe7J3ecf7W",
                 PlanVersionNumber = 0,
                 PriceOverrides = [JsonSerializer.Deserialize<JsonElement>("{}")],
-                RemoveAdjustments = [new() { AdjustmentID = "h74gfhdjvn7ujokd" }],
+                RemoveAdjustments = [new("h74gfhdjvn7ujokd")],
                 RemovePrices =
                 [
                     new() { ExternalPriceID = "external_price_id", PriceID = "h74gfhdjvn7ujokd" },
@@ -235,7 +235,7 @@ public class SubscriptionServiceTest : TestBase
                             ItemID = "item_id",
                             ModelType = NewSubscriptionUnitPriceProperties::ModelType.Unit,
                             Name = "Annual fee",
-                            UnitConfig = new() { UnitAmount = "unit_amount" },
+                            UnitConfig = new("unit_amount"),
                             BillableMetricID = "billable_metric_id",
                             BilledInAdvance = true,
                             BillingCycleConfiguration = new()
@@ -248,7 +248,7 @@ public class SubscriptionServiceTest : TestBase
                             ConversionRateConfig = new UnitConversionRateConfig()
                             {
                                 ConversionRateType = ConversionRateType.Unit,
-                                UnitConfig = new() { UnitAmount = "unit_amount" },
+                                UnitConfig = new("unit_amount"),
                             },
                             Currency = "currency",
                             DimensionalPriceConfiguration = new()
@@ -422,7 +422,7 @@ public class SubscriptionServiceTest : TestBase
                             },
                             ExpiresAtEndOfCadence = true,
                         },
-                        Discounts = [new Amount() { AmountDiscount = 0 }],
+                        Discounts = [new Amount(0)],
                         EndDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                         ExternalPriceID = "external_price_id",
                         Filter = "my_property > 100 AND my_other_property = 'bar'",
@@ -443,7 +443,7 @@ public class SubscriptionServiceTest : TestBase
                             ItemID = "item_id",
                             ModelType = ModelType.Unit,
                             Name = "Annual fee",
-                            UnitConfig = new() { UnitAmount = "unit_amount" },
+                            UnitConfig = new("unit_amount"),
                             BillableMetricID = "billable_metric_id",
                             BilledInAdvance = true,
                             BillingCycleConfiguration = new()
@@ -456,7 +456,7 @@ public class SubscriptionServiceTest : TestBase
                             ConversionRateConfig = new UnitConversionRateConfig()
                             {
                                 ConversionRateType = ConversionRateType.Unit,
-                                UnitConfig = new() { UnitAmount = "unit_amount" },
+                                UnitConfig = new("unit_amount"),
                             },
                             DimensionalPriceConfiguration = new()
                             {
@@ -635,7 +635,7 @@ public class SubscriptionServiceTest : TestBase
                             ItemID = "item_id",
                             ModelType = NewSubscriptionUnitPriceProperties::ModelType.Unit,
                             Name = "Annual fee",
-                            UnitConfig = new() { UnitAmount = "unit_amount" },
+                            UnitConfig = new("unit_amount"),
                             BillableMetricID = "billable_metric_id",
                             BilledInAdvance = true,
                             BillingCycleConfiguration = new()
@@ -648,7 +648,7 @@ public class SubscriptionServiceTest : TestBase
                             ConversionRateConfig = new UnitConversionRateConfig()
                             {
                                 ConversionRateType = ConversionRateType.Unit,
-                                UnitConfig = new() { UnitAmount = "unit_amount" },
+                                UnitConfig = new("unit_amount"),
                             },
                             Currency = "currency",
                             DimensionalPriceConfiguration = new()
@@ -697,7 +697,7 @@ public class SubscriptionServiceTest : TestBase
                 PlanID = "ZMwNQefe7J3ecf7W",
                 PlanVersionNumber = 0,
                 PriceOverrides = [JsonSerializer.Deserialize<JsonElement>("{}")],
-                RemoveAdjustments = [new() { AdjustmentID = "h74gfhdjvn7ujokd" }],
+                RemoveAdjustments = [new("h74gfhdjvn7ujokd")],
                 RemovePrices =
                 [
                     new() { ExternalPriceID = "external_price_id", PriceID = "h74gfhdjvn7ujokd" },
@@ -766,7 +766,7 @@ public class SubscriptionServiceTest : TestBase
                             ItemID = "item_id",
                             ModelType = NewSubscriptionUnitPriceProperties::ModelType.Unit,
                             Name = "Annual fee",
-                            UnitConfig = new() { UnitAmount = "unit_amount" },
+                            UnitConfig = new("unit_amount"),
                             BillableMetricID = "billable_metric_id",
                             BilledInAdvance = true,
                             BillingCycleConfiguration = new()
@@ -779,7 +779,7 @@ public class SubscriptionServiceTest : TestBase
                             ConversionRateConfig = new UnitConversionRateConfig()
                             {
                                 ConversionRateType = ConversionRateType.Unit,
-                                UnitConfig = new() { UnitAmount = "unit_amount" },
+                                UnitConfig = new("unit_amount"),
                             },
                             Currency = "currency",
                             DimensionalPriceConfiguration = new()

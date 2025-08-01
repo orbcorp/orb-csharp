@@ -63,4 +63,9 @@ public sealed record class AddAdjustment : ModelBase, IFromRaw<AddAdjustment>
     {
         return new(properties);
     }
+
+    public AddAdjustment(AddAdjustmentProperties::Adjustment adjustment)
+    {
+        this.Adjustment = adjustment;
+    }
 }

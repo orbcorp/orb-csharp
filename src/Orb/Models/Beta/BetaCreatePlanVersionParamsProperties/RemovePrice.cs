@@ -60,4 +60,9 @@ public sealed record class RemovePrice : ModelBase, IFromRaw<RemovePrice>
     {
         return new(properties);
     }
+
+    public RemovePrice(string priceID)
+    {
+        this.PriceID = priceID;
+    }
 }

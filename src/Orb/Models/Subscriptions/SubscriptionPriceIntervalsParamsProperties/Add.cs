@@ -271,4 +271,9 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
     {
         return new(properties);
     }
+
+    public Add(AddProperties::StartDate startDate)
+    {
+        this.StartDate = startDate;
+    }
 }

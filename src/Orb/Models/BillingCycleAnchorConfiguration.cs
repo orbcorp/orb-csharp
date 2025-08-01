@@ -84,4 +84,9 @@ public sealed record class BillingCycleAnchorConfiguration
     {
         return new(properties);
     }
+
+    public BillingCycleAnchorConfiguration(long day)
+    {
+        this.Day = day;
+    }
 }

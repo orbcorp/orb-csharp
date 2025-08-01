@@ -47,4 +47,9 @@ public sealed record class EventSearchResponse : ModelBase, IFromRaw<EventSearch
     {
         return new(properties);
     }
+
+    public EventSearchResponse(List<EventSearchResponseProperties::Data> data)
+    {
+        this.Data = data;
+    }
 }

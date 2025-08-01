@@ -74,4 +74,11 @@ public sealed record class EventIngestResponse : ModelBase, IFromRaw<EventIngest
     {
         return new(properties);
     }
+
+    public EventIngestResponse(
+        List<EventIngestResponseProperties::ValidationFailed> validationFailed
+    )
+    {
+        this.ValidationFailed = validationFailed;
+    }
 }

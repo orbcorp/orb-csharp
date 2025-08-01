@@ -102,4 +102,9 @@ public sealed record class PlanPhase : ModelBase, IFromRaw<PlanPhase>
     {
         return new(properties);
     }
+
+    public PlanPhase(long order)
+    {
+        this.Order = order;
+    }
 }

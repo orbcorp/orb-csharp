@@ -47,4 +47,9 @@ public sealed record class TieredBPSConfig : ModelBase, IFromRaw<TieredBPSConfig
     {
         return new(properties);
     }
+
+    public TieredBPSConfig(List<BPSTier> tiers)
+    {
+        this.Tiers = tiers;
+    }
 }

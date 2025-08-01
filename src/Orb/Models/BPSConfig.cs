@@ -59,4 +59,9 @@ public sealed record class BPSConfig : ModelBase, IFromRaw<BPSConfig>
     {
         return new(properties);
     }
+
+    public BPSConfig(double bps)
+    {
+        this.BPS = bps;
+    }
 }

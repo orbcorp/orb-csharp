@@ -45,4 +45,9 @@ public sealed record class SubscriptionChangeMinified
     {
         return new(properties);
     }
+
+    public SubscriptionChangeMinified(string id)
+    {
+        this.ID = id;
+    }
 }

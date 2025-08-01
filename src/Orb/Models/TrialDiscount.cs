@@ -137,4 +137,9 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
     {
         return new(properties);
     }
+
+    public TrialDiscount(TrialDiscountProperties::DiscountType discountType)
+    {
+        this.DiscountType = discountType;
+    }
 }

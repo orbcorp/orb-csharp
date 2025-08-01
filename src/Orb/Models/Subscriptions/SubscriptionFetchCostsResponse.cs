@@ -50,4 +50,9 @@ public sealed record class SubscriptionFetchCostsResponse
     {
         return new(properties);
     }
+
+    public SubscriptionFetchCostsResponse(List<AggregatedCost> data)
+    {
+        this.Data = data;
+    }
 }

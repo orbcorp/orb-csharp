@@ -44,4 +44,9 @@ public sealed record class CreditNoteTiny : ModelBase, IFromRaw<CreditNoteTiny>
     {
         return new(properties);
     }
+
+    public CreditNoteTiny(string id)
+    {
+        this.ID = id;
+    }
 }
