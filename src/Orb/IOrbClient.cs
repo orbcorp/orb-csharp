@@ -1,19 +1,19 @@
-using Alerts = Orb.Service.Alerts;
-using Beta = Orb.Service.Beta;
-using Coupons = Orb.Service.Coupons;
-using CreditNotes = Orb.Service.CreditNotes;
-using Customers = Orb.Service.Customers;
-using Events = Orb.Service.Events;
+using Alerts = Orb.Services.Alerts;
+using Beta = Orb.Services.Beta;
+using Coupons = Orb.Services.Coupons;
+using CreditNotes = Orb.Services.CreditNotes;
+using Customers = Orb.Services.Customers;
+using Events = Orb.Services.Events;
 using Http = System.Net.Http;
-using InvoiceLineItems = Orb.Service.InvoiceLineItems;
-using Invoices = Orb.Service.Invoices;
-using Items = Orb.Service.Items;
-using Metrics = Orb.Service.Metrics;
-using Plans = Orb.Service.Plans;
-using Prices = Orb.Service.Prices;
-using SubscriptionChanges = Orb.Service.SubscriptionChanges;
+using InvoiceLineItems = Orb.Services.InvoiceLineItems;
+using Invoices = Orb.Services.Invoices;
+using Items = Orb.Services.Items;
+using Metrics = Orb.Services.Metrics;
+using Plans = Orb.Services.Plans;
+using Prices = Orb.Services.Prices;
+using SubscriptionChanges = Orb.Services.SubscriptionChanges;
 using System = System;
-using TopLevel = Orb.Service.TopLevel;
+using TopLevel = Orb.Services.TopLevel;
 
 namespace Orb;
 
@@ -49,11 +49,11 @@ public interface IOrbClient
 
     Prices::IPriceService Prices { get; }
 
-    global::Orb.Service.Subscriptions.ISubscriptionService Subscriptions { get; }
+    global::Orb.Services.Subscriptions.ISubscriptionService Subscriptions { get; }
 
     Alerts::IAlertService Alerts { get; }
 
-    global::Orb.Service.DimensionalPriceGroups.IDimensionalPriceGroupService DimensionalPriceGroups { get; }
+    global::Orb.Services.DimensionalPriceGroups.IDimensionalPriceGroupService DimensionalPriceGroups { get; }
 
     SubscriptionChanges::ISubscriptionChangeService SubscriptionChanges { get; }
 }

@@ -1,19 +1,19 @@
-using Alerts = Orb.Service.Alerts;
-using Beta = Orb.Service.Beta;
-using Coupons = Orb.Service.Coupons;
-using CreditNotes = Orb.Service.CreditNotes;
-using Customers = Orb.Service.Customers;
-using Events = Orb.Service.Events;
+using Alerts = Orb.Services.Alerts;
+using Beta = Orb.Services.Beta;
+using Coupons = Orb.Services.Coupons;
+using CreditNotes = Orb.Services.CreditNotes;
+using Customers = Orb.Services.Customers;
+using Events = Orb.Services.Events;
 using Http = System.Net.Http;
-using InvoiceLineItems = Orb.Service.InvoiceLineItems;
-using Invoices = Orb.Service.Invoices;
-using Items = Orb.Service.Items;
-using Metrics = Orb.Service.Metrics;
-using Plans = Orb.Service.Plans;
-using Prices = Orb.Service.Prices;
-using SubscriptionChanges = Orb.Service.SubscriptionChanges;
+using InvoiceLineItems = Orb.Services.InvoiceLineItems;
+using Invoices = Orb.Services.Invoices;
+using Items = Orb.Services.Items;
+using Metrics = Orb.Services.Metrics;
+using Plans = Orb.Services.Plans;
+using Prices = Orb.Services.Prices;
+using SubscriptionChanges = Orb.Services.SubscriptionChanges;
 using System = System;
-using TopLevel = Orb.Service.TopLevel;
+using TopLevel = Orb.Services.TopLevel;
 
 namespace Orb;
 
@@ -115,8 +115,8 @@ public sealed class OrbClient : IOrbClient
         get { return _prices.Value; }
     }
 
-    readonly System::Lazy<global::Orb.Service.Subscriptions.ISubscriptionService> _subscriptions;
-    public global::Orb.Service.Subscriptions.ISubscriptionService Subscriptions
+    readonly System::Lazy<global::Orb.Services.Subscriptions.ISubscriptionService> _subscriptions;
+    public global::Orb.Services.Subscriptions.ISubscriptionService Subscriptions
     {
         get { return _subscriptions.Value; }
     }
@@ -127,8 +127,8 @@ public sealed class OrbClient : IOrbClient
         get { return _alerts.Value; }
     }
 
-    readonly System::Lazy<global::Orb.Service.DimensionalPriceGroups.IDimensionalPriceGroupService> _dimensionalPriceGroups;
-    public global::Orb.Service.DimensionalPriceGroups.IDimensionalPriceGroupService DimensionalPriceGroups
+    readonly System::Lazy<global::Orb.Services.DimensionalPriceGroups.IDimensionalPriceGroupService> _dimensionalPriceGroups;
+    public global::Orb.Services.DimensionalPriceGroups.IDimensionalPriceGroupService DimensionalPriceGroups
     {
         get { return _dimensionalPriceGroups.Value; }
     }
@@ -153,10 +153,11 @@ public sealed class OrbClient : IOrbClient
         _metrics = new(() => new Metrics::MetricService(this));
         _plans = new(() => new Plans::PlanService(this));
         _prices = new(() => new Prices::PriceService(this));
-        _subscriptions = new(() => new global::Orb.Service.Subscriptions.SubscriptionService(this));
+        _subscriptions = new(() => new global::Orb.Services.Subscriptions.SubscriptionService(this)
+        );
         _alerts = new(() => new Alerts::AlertService(this));
         _dimensionalPriceGroups = new(() =>
-            new global::Orb.Service.DimensionalPriceGroups.DimensionalPriceGroupService(this)
+            new global::Orb.Services.DimensionalPriceGroups.DimensionalPriceGroupService(this)
         );
         _subscriptionChanges = new(() => new SubscriptionChanges::SubscriptionChangeService(this));
     }
