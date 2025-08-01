@@ -15,8 +15,8 @@ public sealed record class InvoiceCreateParams : ParamsBase
     public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     /// <summary>
-    /// An ISO 4217 currency string. Must be the same as the customer's currency if
-    /// it is set.
+    /// An ISO 4217 currency string. Must be the same as the customer's currency
+    /// if it is set.
     /// </summary>
     public required string Currency
     {
@@ -75,8 +75,8 @@ public sealed record class InvoiceCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// The id of the `Customer` to create this invoice for. One of `customer_id` and
-    /// `external_customer_id` are required.
+    /// The id of the `Customer` to create this invoice for. One of `customer_id`
+    /// and `external_customer_id` are required.
     /// </summary>
     public string? CustomerID
     {
@@ -160,10 +160,10 @@ public sealed record class InvoiceCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// Determines the difference between the invoice issue date for subscription invoices
-    /// as the date that they are due. A value of '0' here represents that the invoice
-    /// is due on issue, whereas a value of 30 represents that the customer has 30 days
-    /// to pay the invoice.
+    /// Determines the difference between the invoice issue date for subscription
+    /// invoices as the date that they are due. A value of '0' here represents that
+    /// the invoice is due on issue, whereas a value of 30 represents that the customer
+    /// has 30 days to pay the invoice.
     /// </summary>
     public long? NetTerms
     {
@@ -178,8 +178,9 @@ public sealed record class InvoiceCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// When true, this invoice will be submitted for issuance upon creation. When false,
-    /// the resulting invoice will require manual review to issue. Defaulted to false.
+    /// When true, this invoice will be submitted for issuance upon creation. When
+    /// false, the resulting invoice will require manual review to issue. Defaulted
+    /// to false.
     /// </summary>
     public bool? WillAutoIssue
     {

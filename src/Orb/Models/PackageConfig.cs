@@ -29,8 +29,8 @@ public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
     }
 
     /// <summary>
-    /// An integer amount to represent package size. For example, 1000 here would divide
-    /// usage by 1000 before multiplying by package_amount in rating
+    /// An integer amount to represent package size. For example, 1000 here would
+    /// divide usage by 1000 before multiplying by package_amount in rating
     /// </summary>
     public required long PackageSize
     {

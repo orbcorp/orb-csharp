@@ -11,8 +11,8 @@ namespace Orb.Models.Events;
 public sealed record class EventIngestResponse : ModelBase, IFromRaw<EventIngestResponse>
 {
     /// <summary>
-    /// Contains all failing validation events. In the case of a 200, this array will
-    /// always be empty. This field will always be present.
+    /// Contains all failing validation events. In the case of a 200, this array
+    /// will always be empty. This field will always be present.
     /// </summary>
     public required List<EventIngestResponseProperties::ValidationFailed> ValidationFailed
     {
@@ -33,8 +33,8 @@ public sealed record class EventIngestResponse : ModelBase, IFromRaw<EventIngest
     }
 
     /// <summary>
-    /// Optional debug information (only present when debug=true is passed to the endpoint).
-    /// Contains ingested and duplicate event idempotency keys.
+    /// Optional debug information (only present when debug=true is passed to the
+    /// endpoint). Contains ingested and duplicate event idempotency keys.
     /// </summary>
     public EventIngestResponseProperties::Debug? Debug
     {

@@ -55,9 +55,9 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
     }
 
     /// <summary>
-    /// An ISO 8601 format date that denotes when this invoice should be dated in the
-    /// customer's timezone. If not provided, the invoice date will default to the
-    /// credit block's effective date.
+    /// An ISO 8601 format date that denotes when this invoice should be dated in
+    /// the customer's timezone. If not provided, the invoice date will default to
+    /// the credit block's effective date.
     /// </summary>
     public InvoiceSettingsProperties::InvoiceDate? InvoiceDate
     {
@@ -90,8 +90,8 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
     }
 
     /// <summary>
-    /// If true, the new credit block will require that the corresponding invoice is
-    /// paid before it can be drawn down from.
+    /// If true, the new credit block will require that the corresponding invoice
+    /// is paid before it can be drawn down from.
     /// </summary>
     public bool? RequireSuccessfulPayment
     {

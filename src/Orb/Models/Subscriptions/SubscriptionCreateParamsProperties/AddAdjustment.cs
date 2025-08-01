@@ -61,8 +61,8 @@ public sealed record class AddAdjustment : ModelBase, IFromRaw<AddAdjustment>
 
     /// <summary>
     /// The start date of the adjustment interval. This is the date that the adjustment
-    /// will start affecting prices on the subscription. If null, the adjustment will
-    /// start when the phase or subscription starts.
+    /// will start affecting prices on the subscription. If null, the adjustment
+    /// will start when the phase or subscription starts.
     /// </summary>
     public DateTime? StartDate
     {

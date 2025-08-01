@@ -10,8 +10,8 @@ namespace Orb.Models;
 public sealed record class Maximum : ModelBase, IFromRaw<Maximum>
 {
     /// <summary>
-    /// List of price_ids that this maximum amount applies to. For plan/plan phase maximums,
-    /// this can be a subset of prices.
+    /// List of price_ids that this maximum amount applies to. For plan/plan phase
+    /// maximums, this can be a subset of prices.
     /// </summary>
     public required List<string> AppliesToPriceIDs
     {

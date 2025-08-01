@@ -122,8 +122,8 @@ public sealed record class PlanPhaseMinimumAdjustment
     }
 
     /// <summary>
-    /// The minimum amount to charge in a given billing period for the prices this adjustment
-    /// applies to.
+    /// The minimum amount to charge in a given billing period for the prices this
+    /// adjustment applies to.
     /// </summary>
     public required string MinimumAmount
     {
@@ -178,8 +178,8 @@ public sealed record class PlanPhaseMinimumAdjustment
     }
 
     /// <summary>
-    /// The adjustment id this adjustment replaces. This adjustment will take the place
-    /// of the replaced adjustment in plan version migrations.
+    /// The adjustment id this adjustment replaces. This adjustment will take the
+    /// place of the replaced adjustment in plan version migrations.
     /// </summary>
     public required string? ReplacesAdjustmentID
     {

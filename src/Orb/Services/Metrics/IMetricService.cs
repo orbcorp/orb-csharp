@@ -6,8 +6,8 @@ namespace Orb.Services.Metrics;
 public interface IMetricService
 {
     /// <summary>
-    /// This endpoint is used to create a [metric](/core-concepts###metric) using a
-    /// SQL string. See [SQL support](/extensibility/advanced-metrics#sql-support)
+    /// This endpoint is used to create a [metric](/core-concepts###metric) using
+    /// a SQL string. See [SQL support](/extensibility/advanced-metrics#sql-support)
     /// for a description of constructing SQL queries with examples.
     /// </summary>
     Task<BillableMetric> Create(MetricCreateParams @params);

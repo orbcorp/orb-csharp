@@ -34,8 +34,8 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     }
 
     /// <summary>
-    /// Determines the default memo on this subscription's invoices. Note that if this
-    /// is not provided, it is determined by the plan configuration.
+    /// Determines the default memo on this subscription's invoices. Note that if
+    /// this is not provided, it is determined by the plan configuration.
     /// </summary>
     public string? DefaultInvoiceMemo
     {
@@ -53,9 +53,9 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     }
 
     /// <summary>
-    /// When this subscription's accrued usage reaches this threshold, an invoice will
-    /// be issued for the subscription. If not specified, invoices will only be issued
-    /// at the end of the billing period.
+    /// When this subscription's accrued usage reaches this threshold, an invoice
+    /// will be issued for the subscription. If not specified, invoices will only
+    /// be issued at the end of the billing period.
     /// </summary>
     public string? InvoicingThreshold
     {
@@ -93,10 +93,10 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     }
 
     /// <summary>
-    /// Determines the difference between the invoice issue date for subscription invoices
-    /// as the date that they are due. A value of `0` here represents that the invoice
-    /// is due on issue, whereas a value of `30` represents that the customer has a
-    /// month to pay the invoice.
+    /// Determines the difference between the invoice issue date for subscription
+    /// invoices as the date that they are due. A value of `0` here represents that
+    /// the invoice is due on issue, whereas a value of `30` represents that the
+    /// customer has a month to pay the invoice.
     /// </summary>
     public long? NetTerms
     {

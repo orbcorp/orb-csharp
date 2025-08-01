@@ -139,8 +139,8 @@ public sealed record class PlanPhaseUsageDiscountAdjustment
     }
 
     /// <summary>
-    /// The adjustment id this adjustment replaces. This adjustment will take the place
-    /// of the replaced adjustment in plan version migrations.
+    /// The adjustment id this adjustment replaces. This adjustment will take the
+    /// place of the replaced adjustment in plan version migrations.
     /// </summary>
     public required string? ReplacesAdjustmentID
     {
@@ -161,8 +161,8 @@ public sealed record class PlanPhaseUsageDiscountAdjustment
     }
 
     /// <summary>
-    /// The number of usage units by which to discount the price this adjustment applies
-    /// to in a given billing period.
+    /// The number of usage units by which to discount the price this adjustment
+    /// applies to in a given billing period.
     /// </summary>
     public required double UsageDiscount
     {

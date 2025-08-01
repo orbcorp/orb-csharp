@@ -45,8 +45,8 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
     }
 
     /// <summary>
-    /// A date string to specify this line item's credit note service period end date
-    /// in the customer's timezone. If provided, this will be used for this specific
+    /// A date string to specify this line item's credit note service period end
+    /// date in the customer's timezone. If provided, this will be used for this specific
     /// line item. If not provided, will use the global end_date if available, otherwise
     /// defaults to the original invoice line item's end date. This date is inclusive.
     /// </summary>
@@ -65,8 +65,9 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
     /// <summary>
     /// A date string to specify this line item's credit note service period start
     /// date in the customer's timezone. If provided, this will be used for this specific
-    /// line item. If not provided, will use the global start_date if available, otherwise
-    /// defaults to the original invoice line item's start date. This date is inclusive.
+    /// line item. If not provided, will use the global start_date if available,
+    /// otherwise defaults to the original invoice line item's start date. This date
+    /// is inclusive.
     /// </summary>
     public DateOnly? StartDate
     {

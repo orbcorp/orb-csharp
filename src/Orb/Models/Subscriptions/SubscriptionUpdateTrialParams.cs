@@ -32,8 +32,8 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
     public required string SubscriptionID;
 
     /// <summary>
-    /// The new date that the trial should end, or the literal string `immediate` to
-    /// end the trial immediately.
+    /// The new date that the trial should end, or the literal string `immediate`
+    /// to end the trial immediately.
     /// </summary>
     public required SubscriptionUpdateTrialParamsProperties::TrialEndDate TrialEndDate
     {

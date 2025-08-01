@@ -79,8 +79,8 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
 
     /// <summary>
     /// The start date of the current billing period. This is an inclusive timestamp;
-    /// the instant returned is exactly the beginning of the billing period. Set to
-    /// null if this price interval is not currently active.
+    /// the instant returned is exactly the beginning of the billing period. Set
+    /// to null if this price interval is not currently active.
     /// </summary>
     public required System::DateTime? CurrentBillingPeriodStartDate
     {
@@ -186,9 +186,9 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     /// resulting in a charge on an invoice in the form of an invoice line item. Prices
     /// take a quantity and determine an amount to bill.
     ///
-    /// Orb supports a few different pricing models out of the box. Each of these models
-    /// is serialized differently in a given Price object. The model_type field determines
-    /// the key for the configuration object that is present.
+    /// Orb supports a few different pricing models out of the box. Each of these
+    /// models is serialized differently in a given Price object. The model_type
+    /// field determines the key for the configuration object that is present.
     ///
     /// For more on the types of prices, see [the core concepts documentation](/core-concepts#plan-and-price)
     /// </summary>

@@ -26,7 +26,8 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
 
     /// <summary>
     /// A future date (specified in YYYY-MM-DD format) used for expiration change,
-    /// denoting when credits transferred (as part of a partial block expiration) should expire.
+    /// denoting when credits transferred (as part of a partial block expiration)
+    /// should expire.
     /// </summary>
     public required System::DateOnly TargetExpiryDate
     {
@@ -79,8 +80,8 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
     }
 
     /// <summary>
-    /// The currency or custom pricing unit to use for this ledger entry. If this is
-    /// a real-world currency, it must match the customer's invoicing currency.
+    /// The currency or custom pricing unit to use for this ledger entry. If this
+    /// is a real-world currency, it must match the customer's invoicing currency.
     /// </summary>
     public string? Currency
     {
@@ -95,8 +96,8 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
     }
 
     /// <summary>
-    /// Optional metadata that can be specified when adding ledger results via the API.
-    /// For example, this can be used to note an increment refers to trial credits,
+    /// Optional metadata that can be specified when adding ledger results via the
+    /// API. For example, this can be used to note an increment refers to trial credits,
     /// or for noting corrections as a result of an incident, etc.
     /// </summary>
     public string? Description

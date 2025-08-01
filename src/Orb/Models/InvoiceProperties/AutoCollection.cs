@@ -28,8 +28,8 @@ public sealed record class AutoCollection : ModelBase, IFromRaw<AutoCollection>
     }
 
     /// <summary>
-    /// If the invoice is scheduled for auto-collection, this field will reflect when
-    /// the next attempt will occur. If dunning has been exhausted, or auto-collection
+    /// If the invoice is scheduled for auto-collection, this field will reflect
+    /// when the next attempt will occur. If dunning has been exhausted, or auto-collection
     /// is not enabled for this invoice, this field will be `null`.
     /// </summary>
     public required System::DateTime? NextAttemptAt
@@ -69,12 +69,12 @@ public sealed record class AutoCollection : ModelBase, IFromRaw<AutoCollection>
     }
 
     /// <summary>
-    /// If Orb has ever attempted payment auto-collection for this invoice, this field
-    /// will reflect when that attempt occurred. In conjunction with `next_attempt_at`,
-    /// this can be used to tell whether the invoice is currently in dunning (that is,
-    /// `previously_attempted_at` is non-null, and `next_attempt_time` is non-null),
-    /// or if dunning has been exhausted (`previously_attempted_at` is non-null, but
-    /// `next_attempt_time` is null).
+    /// If Orb has ever attempted payment auto-collection for this invoice, this
+    /// field will reflect when that attempt occurred. In conjunction with `next_attempt_at`,
+    /// this can be used to tell whether the invoice is currently in dunning (that
+    /// is, `previously_attempted_at` is non-null, and `next_attempt_time` is non-null),
+    /// or if dunning has been exhausted (`previously_attempted_at` is non-null,
+    /// but `next_attempt_time` is null).
     /// </summary>
     public required System::DateTime? PreviouslyAttemptedAt
     {

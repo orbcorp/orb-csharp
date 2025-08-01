@@ -289,10 +289,11 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
     }
 
     /// <summary>
-    /// Determines the difference between the invoice issue date and the due date. A
-    /// value of "0" here signifies that invoices are due on issue, whereas a value
-    /// of "30" means that the customer has a month to pay the invoice before its overdue.
-    /// Note that individual subscriptions or invoices may set a different net terms configuration.
+    /// Determines the difference between the invoice issue date and the due date.
+    /// A value of "0" here signifies that invoices are due on issue, whereas a value
+    /// of "30" means that the customer has a month to pay the invoice before its
+    /// overdue. Note that individual subscriptions or invoices may set a different
+    /// net terms configuration.
     /// </summary>
     public required long? NetTerms
     {
@@ -322,8 +323,8 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
     }
 
     /// <summary>
-    /// Prices for this plan. If the plan has phases, this includes prices across all
-    /// phases of the plan.
+    /// Prices for this plan. If the plan has phases, this includes prices across
+    /// all phases of the plan.
     /// </summary>
     public required List<Models::Price> Prices
     {

@@ -114,8 +114,8 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     }
 
     /// <summary>
-    /// The date that the cancellation should take effect. This parameter can only be
-    /// passed if the `cancel_option` is `requested_date`.
+    /// The date that the cancellation should take effect. This parameter can only
+    /// be passed if the `cancel_option` is `requested_date`.
     /// </summary>
     public System::DateTime? CancellationDate
     {

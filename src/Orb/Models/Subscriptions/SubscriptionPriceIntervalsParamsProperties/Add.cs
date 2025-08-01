@@ -69,8 +69,8 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
     }
 
     /// <summary>
-    /// The end date of the price interval. This is the date that the price will stop
-    /// billing on the subscription.
+    /// The end date of the price interval. This is the date that the price will
+    /// stop billing on the subscription.
     /// </summary>
     public AddProperties::EndDate? EndDate
     {
@@ -148,7 +148,8 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
     }
 
     /// <summary>
-    /// The maximum amount that will be billed for this price interval for a given billing period.
+    /// The maximum amount that will be billed for this price interval for a given
+    /// billing period.
     /// </summary>
     public double? MaximumAmount
     {
@@ -163,7 +164,8 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
     }
 
     /// <summary>
-    /// The minimum amount that will be billed for this price interval for a given billing period.
+    /// The minimum amount that will be billed for this price interval for a given
+    /// billing period.
     /// </summary>
     public double? MinimumAmount
     {
@@ -212,11 +214,11 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
 
     /// <summary>
     /// A list of customer IDs whose usage events will be aggregated and billed under
-    /// this subscription. By default, a subscription only considers usage events associated
-    /// with its attached customer's customer_id. When usage_customer_ids is provided,
-    /// the subscription includes usage events from the specified customers only. Provided
-    /// usage_customer_ids must be either the customer for this subscription itself,
-    /// or any of that customer's children.
+    /// this subscription. By default, a subscription only considers usage events
+    /// associated with its attached customer's customer_id. When usage_customer_ids
+    /// is provided, the subscription includes usage events from the specified customers
+    /// only. Provided usage_customer_ids must be either the customer for this subscription
+    /// itself, or any of that customer's children.
     /// </summary>
     public List<string>? UsageCustomerIDs
     {

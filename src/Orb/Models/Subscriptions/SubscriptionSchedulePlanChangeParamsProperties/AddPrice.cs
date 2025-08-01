@@ -29,7 +29,8 @@ public sealed record class AddPrice : ModelBase, IFromRaw<AddPrice>
     }
 
     /// <summary>
-    /// [DEPRECATED] Use add_adjustments instead. The subscription's discounts for this price.
+    /// [DEPRECATED] Use add_adjustments instead. The subscription's discounts for
+    /// this price.
     /// </summary>
     public List<DiscountOverride>? Discounts
     {
@@ -47,8 +48,9 @@ public sealed record class AddPrice : ModelBase, IFromRaw<AddPrice>
     }
 
     /// <summary>
-    /// The end date of the price interval. This is the date that the price will stop
-    /// billing on the subscription. If null, billing will end when the phase or subscription ends.
+    /// The end date of the price interval. This is the date that the price will
+    /// stop billing on the subscription. If null, billing will end when the phase
+    /// or subscription ends.
     /// </summary>
     public DateTime? EndDate
     {

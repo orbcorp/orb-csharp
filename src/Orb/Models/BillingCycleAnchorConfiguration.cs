@@ -13,9 +13,9 @@ public sealed record class BillingCycleAnchorConfiguration
 {
     /// <summary>
     /// The day of the month on which the billing cycle is anchored. If the maximum
-    /// number of days in a month is greater than this value, the last day of the month
-    /// is the billing cycle day (e.g. billing_cycle_day=31 for April means the billing
-    /// period begins on the 30th.
+    /// number of days in a month is greater than this value, the last day of the
+    /// month is the billing cycle day (e.g. billing_cycle_day=31 for April means
+    /// the billing period begins on the 30th.
     /// </summary>
     public required long Day
     {
@@ -30,8 +30,8 @@ public sealed record class BillingCycleAnchorConfiguration
     }
 
     /// <summary>
-    /// The month on which the billing cycle is anchored (e.g. a quarterly price anchored
-    /// in February would have cycles starting February, May, August, and November).
+    /// The month on which the billing cycle is anchored (e.g. a quarterly price
+    /// anchored in February would have cycles starting February, May, August, and November).
     /// </summary>
     public long? Month
     {

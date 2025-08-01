@@ -31,9 +31,9 @@ public interface IInvoiceService
     ///
     /// By default, this only returns invoices that are `issued`, `paid`, or `synced`.
     ///
-    /// When fetching any `draft` invoices, this returns the last-computed invoice values
-    /// for each draft invoice, which may not always be up-to-date since Orb regularly
-    /// refreshes invoices asynchronously.
+    /// When fetching any `draft` invoices, this returns the last-computed invoice
+    /// values for each draft invoice, which may not always be up-to-date since Orb
+    /// regularly refreshes invoices asynchronously.
     /// </summary>
     Task<InvoiceListPageResponse> List(InvoiceListParams @params);
 
@@ -75,13 +75,13 @@ public interface IInvoiceService
     /// can only be done to invoices that are in the `issued` status.
     ///
     /// If the associated invoice has used the customer balance to change the amount
-    /// due, the customer balance operation will be reverted. For example, if the invoice
-    /// used \$10 of customer balance, that amount will be added back to the customer
-    /// balance upon voiding.
+    /// due, the customer balance operation will be reverted. For example, if the
+    /// invoice used \$10 of customer balance, that amount will be added back to the
+    /// customer balance upon voiding.
     ///
     /// If the invoice was used to purchase a credit block, but the invoice is not
-    /// yet paid, the credit block will be voided. If the invoice was created due to
-    /// a top-up, the top-up will be disabled.
+    /// yet paid, the credit block will be voided. If the invoice was created due
+    /// to a top-up, the top-up will be disabled.
     /// </summary>
     Task<Invoice> Void(InvoiceVoidParams @params);
 }

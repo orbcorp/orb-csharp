@@ -191,8 +191,8 @@ public sealed record class EventIngestParams : ParamsBase
     }
 
     /// <summary>
-    /// If this ingestion request is part of a backfill, this parameter ties the ingested
-    /// events to the backfill
+    /// If this ingestion request is part of a backfill, this parameter ties the
+    /// ingested events to the backfill
     /// </summary>
     public string? BackfillID
     {

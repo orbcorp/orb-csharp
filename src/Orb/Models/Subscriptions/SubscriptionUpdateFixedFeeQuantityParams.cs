@@ -89,9 +89,9 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     }
 
     /// <summary>
-    /// Determines when the change takes effect. Note that if `effective_date` is specified,
-    /// this defaults to `effective_date`. Otherwise, this defaults to `immediate`
-    /// unless it's explicitly set to `upcoming_invoice`.
+    /// Determines when the change takes effect. Note that if `effective_date` is
+    /// specified, this defaults to `effective_date`. Otherwise, this defaults to
+    /// `immediate` unless it's explicitly set to `upcoming_invoice`.
     /// </summary>
     public SubscriptionUpdateFixedFeeQuantityParamsProperties::ChangeOption? ChangeOption
     {

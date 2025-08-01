@@ -17,8 +17,8 @@ public interface ICreditService
     /// If `include_all_blocks` is set to `true`, all credit blocks (including expired
     /// and depleted blocks) will be included in the response.
     ///
-    /// Note that `currency` defaults to credits if not specified. To use a real world
-    /// currency, set `currency` to an ISO 4217 string.
+    /// Note that `currency` defaults to credits if not specified. To use a real
+    /// world currency, set `currency` to an ISO 4217 string.
     /// </summary>
     Task<CreditListPageResponse> List(CreditListParams @params);
 
@@ -28,8 +28,8 @@ public interface ICreditService
     /// If `include_all_blocks` is set to `true`, all credit blocks (including expired
     /// and depleted blocks) will be included in the response.
     ///
-    /// Note that `currency` defaults to credits if not specified. To use a real world
-    /// currency, set `currency` to an ISO 4217 string.
+    /// Note that `currency` defaults to credits if not specified. To use a real
+    /// world currency, set `currency` to an ISO 4217 string.
     /// </summary>
     Task<CreditListByExternalIDPageResponse> ListByExternalID(CreditListByExternalIDParams @params);
 }

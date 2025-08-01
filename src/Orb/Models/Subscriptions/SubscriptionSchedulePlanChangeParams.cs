@@ -229,8 +229,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     }
 
     /// <summary>
-    /// [DEPRECATED] Use billing_cycle_alignment instead. Reset billing periods to be
-    /// aligned with the plan change's effective date.
+    /// [DEPRECATED] Use billing_cycle_alignment instead. Reset billing periods to
+    /// be aligned with the plan change's effective date.
     /// </summary>
     public bool? AlignBillingWithPlanChangeDate
     {
@@ -271,9 +271,9 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     }
 
     /// <summary>
-    /// Reset billing periods to be aligned with the plan change's effective date or
-    /// start of the month. Defaults to `unchanged` which keeps subscription's existing
-    /// billing cycle alignment.
+    /// Reset billing periods to be aligned with the plan change's effective date
+    /// or start of the month. Defaults to `unchanged` which keeps subscription's
+    /// existing billing cycle alignment.
     /// </summary>
     public SubscriptionSchedulePlanChangeParamsProperties::BillingCycleAlignment? BillingCycleAlignment
     {
@@ -322,9 +322,9 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     }
 
     /// <summary>
-    /// The date that the plan change should take effect. This parameter can only be
-    /// passed if the `change_option` is `requested_date`. If a date with no time is
-    /// passed, the plan change will happen at midnight in the customer's timezone.
+    /// The date that the plan change should take effect. This parameter can only
+    /// be passed if the `change_option` is `requested_date`. If a date with no time
+    /// is passed, the plan change will happen at midnight in the customer's timezone.
     /// </summary>
     public System::DateTime? ChangeDate
     {
@@ -342,9 +342,9 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     }
 
     /// <summary>
-    /// Redemption code to be used for this subscription. If the coupon cannot be found
-    /// by its redemption code, or cannot be redeemed, an error response will be returned
-    /// and the subscription creation or plan change will not be scheduled.
+    /// Redemption code to be used for this subscription. If the coupon cannot be
+    /// found by its redemption code, or cannot be redeemed, an error response will
+    /// be returned and the subscription creation or plan change will not be scheduled.
     /// </summary>
     public string? CouponRedemptionCode
     {
@@ -379,8 +379,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     }
 
     /// <summary>
-    /// Determines the default memo on this subscription's invoices. Note that if this
-    /// is not provided, it is determined by the plan configuration.
+    /// Determines the default memo on this subscription's invoices. Note that if
+    /// this is not provided, it is determined by the plan configuration.
     /// </summary>
     public string? DefaultInvoiceMemo
     {
@@ -449,9 +449,9 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     }
 
     /// <summary>
-    /// When this subscription's accrued usage reaches this threshold, an invoice will
-    /// be issued for the subscription. If not specified, invoices will only be issued
-    /// at the end of the billing period.
+    /// When this subscription's accrued usage reaches this threshold, an invoice
+    /// will be issued for the subscription. If not specified, invoices will only
+    /// be issued at the end of the billing period.
     /// </summary>
     public string? InvoicingThreshold
     {
@@ -561,8 +561,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     }
 
     /// <summary>
-    /// Plan adjustments to be removed from the subscription. (Only available for accounts
-    /// that have migrated off of legacy subscription overrides)
+    /// Plan adjustments to be removed from the subscription. (Only available for
+    /// accounts that have migrated off of legacy subscription overrides)
     /// </summary>
     public List<SubscriptionSchedulePlanChangeParamsProperties::RemoveAdjustment>? RemoveAdjustments
     {
@@ -643,8 +643,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     }
 
     /// <summary>
-    /// The duration of the trial period in days. If not provided, this defaults to
-    /// the value specified in the plan. If `0` is provided, the trial on the plan
+    /// The duration of the trial period in days. If not provided, this defaults
+    /// to the value specified in the plan. If `0` is provided, the trial on the plan
     /// will be skipped.
     /// </summary>
     public long? TrialDurationDays
@@ -664,11 +664,11 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
 
     /// <summary>
     /// A list of customer IDs whose usage events will be aggregated and billed under
-    /// this subscription. By default, a subscription only considers usage events associated
-    /// with its attached customer's customer_id. When usage_customer_ids is provided,
-    /// the subscription includes usage events from the specified customers only. Provided
-    /// usage_customer_ids must be either the customer for this subscription itself,
-    /// or any of that customer's children.
+    /// this subscription. By default, a subscription only considers usage events
+    /// associated with its attached customer's customer_id. When usage_customer_ids
+    /// is provided, the subscription includes usage events from the specified customers
+    /// only. Provided usage_customer_ids must be either the customer for this subscription
+    /// itself, or any of that customer's children.
     /// </summary>
     public List<string>? UsageCustomerIDs
     {

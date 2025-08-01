@@ -10,8 +10,8 @@ namespace Orb.Models;
 public sealed record class Minimum : ModelBase, IFromRaw<Minimum>
 {
     /// <summary>
-    /// List of price_ids that this minimum amount applies to. For plan/plan phase minimums,
-    /// this can be a subset of prices.
+    /// List of price_ids that this minimum amount applies to. For plan/plan phase
+    /// minimums, this can be a subset of prices.
     /// </summary>
     public required List<string> AppliesToPriceIDs
     {

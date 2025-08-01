@@ -56,8 +56,8 @@ public sealed record class BackfillCloseResponse : ModelBase, IFromRaw<BackfillC
     }
 
     /// <summary>
-    /// The Orb-generated ID of the customer to which this backfill is scoped. If `null`,
-    /// this backfill is scoped to all customers.
+    /// The Orb-generated ID of the customer to which this backfill is scoped. If
+    /// `null`, this backfill is scoped to all customers.
     /// </summary>
     public required string? CustomerID
     {
@@ -91,8 +91,8 @@ public sealed record class BackfillCloseResponse : ModelBase, IFromRaw<BackfillC
 
     /// <summary>
     /// If `true`, existing events in the backfill's timeframe will be replaced with
-    /// the newly ingested events associated with the backfill. If `false`, newly ingested
-    /// events will be added to the existing events.
+    /// the newly ingested events associated with the backfill. If `false`, newly
+    /// ingested events will be added to the existing events.
     /// </summary>
     public required bool ReplaceExistingEvents
     {
