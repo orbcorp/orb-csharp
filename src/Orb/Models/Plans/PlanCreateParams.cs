@@ -44,8 +44,8 @@ public sealed record class PlanCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// Prices for this plan. If the plan has phases, this includes prices across all
-    /// phases of the plan.
+    /// Prices for this plan. If the plan has phases, this includes prices across
+    /// all phases of the plan.
     /// </summary>
     public required List<PlanCreateParamsProperties::Price1> Prices
     {

@@ -62,9 +62,9 @@ public sealed record class BackfillCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// The (inclusive) start of the usage timeframe affected by this backfill. By default,
-    /// Orb allows backfills up to 31 days in duration at a time. Reach out to discuss
-    /// extending this limit and your use case.
+    /// The (inclusive) start of the usage timeframe affected by this backfill. By
+    /// default, Orb allows backfills up to 31 days in duration at a time. Reach out
+    /// to discuss extending this limit and your use case.
     /// </summary>
     public required DateTime TimeframeStart
     {

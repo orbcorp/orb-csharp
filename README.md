@@ -33,7 +33,8 @@ OrbClient client = new();
 
 CustomerCreateParams param = new()
 {
-  Email = "example-customer@withorb.com", Name = "My Customer"
+    Email = "example-customer@withorb.com",
+    Name = "My Customer",
 };
 
 var customer = await client.Customers.Create(param);
@@ -57,10 +58,7 @@ Or manually:
 ```C#
 using Orb;
 
-OrbClient client = new()
-{
-  APIKey = "My API Key"
-};
+OrbClient client = new() { APIKey = "My API Key" };
 ```
 
 Alternatively, you can use a combination of the two approaches.

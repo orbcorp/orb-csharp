@@ -13,10 +13,10 @@ public interface IVolumeService
     /// means that late-arriving events increment the volume count for the hour window
     /// the timestamp is in, not the latest hour window.
     ///
-    /// Each item in the response contains the count of events aggregated by the hour
-    /// where the start and end time are hour-aligned and in UTC. When a specific timestamp
-    /// is passed in for either start or end time, the response includes the hours
-    /// the timestamp falls in.
+    /// Each item in the response contains the count of events aggregated by the
+    /// hour where the start and end time are hour-aligned and in UTC. When a specific
+    /// timestamp is passed in for either start or end time, the response includes
+    /// the hours the timestamp falls in.
     /// </summary>
     Task<EventVolumes> List(VolumeListParams @params);
 }

@@ -44,8 +44,8 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
     }
 
     /// <summary>
-    /// The currency or custom pricing unit to use for this ledger entry. If this is
-    /// a real-world currency, it must match the customer's invoicing currency.
+    /// The currency or custom pricing unit to use for this ledger entry. If this
+    /// is a real-world currency, it must match the customer's invoicing currency.
     /// </summary>
     public string? Currency
     {
@@ -60,8 +60,8 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
     }
 
     /// <summary>
-    /// Optional metadata that can be specified when adding ledger results via the API.
-    /// For example, this can be used to note an increment refers to trial credits,
+    /// Optional metadata that can be specified when adding ledger results via the
+    /// API. For example, this can be used to note an increment refers to trial credits,
     /// or for noting corrections as a result of an incident, etc.
     /// </summary>
     public string? Description

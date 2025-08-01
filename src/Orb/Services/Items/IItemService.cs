@@ -16,7 +16,8 @@ public interface IItemService
     Task<Item> Update(ItemUpdateParams @params);
 
     /// <summary>
-    /// This endpoint returns a list of all Items, ordered in descending order by creation time.
+    /// This endpoint returns a list of all Items, ordered in descending order by
+    /// creation time.
     /// </summary>
     Task<ItemListPageResponse> List(ItemListParams @params);
 

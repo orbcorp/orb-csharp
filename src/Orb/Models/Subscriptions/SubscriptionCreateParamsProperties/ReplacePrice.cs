@@ -48,8 +48,8 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
     }
 
     /// <summary>
-    /// [DEPRECATED] Use add_adjustments instead. The subscription's discounts for the
-    /// replacement price.
+    /// [DEPRECATED] Use add_adjustments instead. The subscription's discounts for
+    /// the replacement price.
     /// </summary>
     public List<DiscountOverride>? Discounts
     {

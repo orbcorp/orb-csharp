@@ -123,7 +123,8 @@ public sealed record class BalanceTransactionCreateResponse
     }
 
     /// <summary>
-    /// The new value of the customer's balance prior to the transaction, in the customer's currency.
+    /// The new value of the customer's balance prior to the transaction, in the
+    /// customer's currency.
     /// </summary>
     public required string EndingBalance
     {
@@ -157,8 +158,8 @@ public sealed record class BalanceTransactionCreateResponse
     }
 
     /// <summary>
-    /// The original value of the customer's balance prior to the transaction, in the
-    /// customer's currency.
+    /// The original value of the customer's balance prior to the transaction, in
+    /// the customer's currency.
     /// </summary>
     public required string StartingBalance
     {

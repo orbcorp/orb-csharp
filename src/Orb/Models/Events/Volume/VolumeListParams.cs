@@ -71,10 +71,10 @@ public sealed record class VolumeListParams : ParamsBase
     }
 
     /// <summary>
-    /// The end of the timeframe, exclusive, in which to return event volume. If not
-    /// specified, the current time is used. All datetime values are converted to UTC
-    /// time.If the specified time isn't hour-aligned, the response includes the event
-    /// volumecount for the hour the time falls in.
+    /// The end of the timeframe, exclusive, in which to return event volume. If
+    /// not specified, the current time is used. All datetime values are converted
+    /// to UTC time.If the specified time isn't hour-aligned, the response includes
+    /// the event volumecount for the hour the time falls in.
     /// </summary>
     public DateTime? TimeframeEnd
     {

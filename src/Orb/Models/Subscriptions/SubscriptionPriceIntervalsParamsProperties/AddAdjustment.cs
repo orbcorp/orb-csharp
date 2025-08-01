@@ -34,8 +34,8 @@ public sealed record class AddAdjustment : ModelBase, IFromRaw<AddAdjustment>
     /// <summary>
     /// The start date of the adjustment interval. This is the date that the adjustment
     /// will start affecting prices on the subscription. The adjustment will apply
-    /// to invoice dates that overlap with this `start_date`. This `start_date` is treated
-    /// as inclusive for in-advance prices, and exclusive for in-arrears prices.
+    /// to invoice dates that overlap with this `start_date`. This `start_date` is
+    /// treated as inclusive for in-advance prices, and exclusive for in-arrears prices.
     /// </summary>
     public required AddAdjustmentProperties::StartDate StartDate
     {
@@ -57,9 +57,9 @@ public sealed record class AddAdjustment : ModelBase, IFromRaw<AddAdjustment>
 
     /// <summary>
     /// The end date of the adjustment interval. This is the date that the adjustment
-    /// will stop affecting prices on the subscription. The adjustment will apply to
-    /// invoice dates that overlap with this `end_date`.This `end_date` is treated as
-    /// exclusive for in-advance prices, and inclusive for in-arrears prices.
+    /// will stop affecting prices on the subscription. The adjustment will apply
+    /// to invoice dates that overlap with this `end_date`.This `end_date` is treated
+    /// as exclusive for in-advance prices, and inclusive for in-arrears prices.
     /// </summary>
     public AddAdjustmentProperties::EndDate? EndDate
     {

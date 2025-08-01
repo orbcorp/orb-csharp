@@ -170,9 +170,9 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
     }
 
     /// <summary>
-    /// [DEPRECATED] For configured prices that are split by a grouping key, this will
-    /// be populated with the key and a value. The `amount` and `subtotal` will be
-    /// the values for this particular grouping.
+    /// [DEPRECATED] For configured prices that are split by a grouping key, this
+    /// will be populated with the key and a value. The `amount` and `subtotal` will
+    /// be the values for this particular grouping.
     /// </summary>
     public required string? Grouping
     {
@@ -310,9 +310,9 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
     /// resulting in a charge on an invoice in the form of an invoice line item. Prices
     /// take a quantity and determine an amount to bill.
     ///
-    /// Orb supports a few different pricing models out of the box. Each of these models
-    /// is serialized differently in a given Price object. The model_type field determines
-    /// the key for the configuration object that is present.
+    /// Orb supports a few different pricing models out of the box. Each of these
+    /// models is serialized differently in a given Price object. The model_type
+    /// field determines the key for the configuration object that is present.
     ///
     /// For more on the types of prices, see [the core concepts documentation](/core-concepts#plan-and-price)
     /// </summary>

@@ -44,8 +44,8 @@ public sealed record class PlanPhaseAmountDiscountAdjustment
     }
 
     /// <summary>
-    /// The amount by which to discount the prices this adjustment applies to in a given
-    /// billing period.
+    /// The amount by which to discount the prices this adjustment applies to in
+    /// a given billing period.
     /// </summary>
     public required string AmountDiscount
     {
@@ -159,8 +159,8 @@ public sealed record class PlanPhaseAmountDiscountAdjustment
     }
 
     /// <summary>
-    /// The adjustment id this adjustment replaces. This adjustment will take the place
-    /// of the replaced adjustment in plan version migrations.
+    /// The adjustment id this adjustment replaces. This adjustment will take the
+    /// place of the replaced adjustment in plan version migrations.
     /// </summary>
     public required string? ReplacesAdjustmentID
     {

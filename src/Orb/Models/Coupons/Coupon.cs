@@ -34,8 +34,8 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
     }
 
     /// <summary>
-    /// An archived coupon can no longer be redeemed. Active coupons will have a value
-    /// of null for `archived_at`; this field will be non-null for archived coupons.
+    /// An archived coupon can no longer be redeemed. Active coupons will have a
+    /// value of null for `archived_at`; this field will be non-null for archived coupons.
     /// </summary>
     public required DateTime? ArchivedAt
     {

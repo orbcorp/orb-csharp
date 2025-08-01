@@ -44,8 +44,8 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
     }
 
     /// <summary>
-    /// Only available if discount_type is `percentage`. This is a number between 0
-    /// and 1.
+    /// Only available if discount_type is `percentage`. This is a number between
+    /// 0 and 1.
     /// </summary>
     public double? PercentageDiscount
     {

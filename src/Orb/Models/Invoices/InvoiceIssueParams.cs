@@ -23,8 +23,8 @@ public sealed record class InvoiceIssueParams : ParamsBase
     /// If true, the invoice will be issued synchronously. If false, the invoice will
     /// be issued asynchronously. The synchronous option is only available for invoices
     /// that have no usage fees. If the invoice is configured to sync to an external
-    /// provider, a successful response from this endpoint guarantees the invoice is
-    /// present in the provider.
+    /// provider, a successful response from this endpoint guarantees the invoice
+    /// is present in the provider.
     /// </summary>
     public bool? Synchronous
     {

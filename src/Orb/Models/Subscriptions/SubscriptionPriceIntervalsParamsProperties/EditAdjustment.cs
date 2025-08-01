@@ -52,8 +52,8 @@ public sealed record class EditAdjustment : ModelBase, IFromRaw<EditAdjustment>
     }
 
     /// <summary>
-    /// The updated start date of this adjustment interval. If not specified, the start
-    /// date will not be updated.
+    /// The updated start date of this adjustment interval. If not specified, the
+    /// start date will not be updated.
     /// </summary>
     public EditAdjustmentProperties::StartDate? StartDate
     {

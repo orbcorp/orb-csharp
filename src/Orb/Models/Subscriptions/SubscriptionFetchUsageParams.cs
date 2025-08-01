@@ -294,8 +294,8 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
 
     /// <summary>
     /// Controls whether Orb returns cumulative usage since the start of the billing
-    /// period, or incremental day-by-day usage. If your customer has minimums or discounts,
-    /// it's strongly recommended that you use the default cumulative behavior.
+    /// period, or incremental day-by-day usage. If your customer has minimums or
+    /// discounts, it's strongly recommended that you use the default cumulative behavior.
     /// </summary>
     public SubscriptionFetchUsageParamsProperties::ViewMode? ViewMode
     {

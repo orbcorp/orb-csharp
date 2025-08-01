@@ -83,9 +83,9 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
     }
 
     /// <summary>
-    /// A list of fixed fee quantity transitions to use for this price interval. Note
-    /// that this list will overwrite all existing fixed fee quantity transitions on
-    /// the price interval.
+    /// A list of fixed fee quantity transitions to use for this price interval.
+    /// Note that this list will overwrite all existing fixed fee quantity transitions
+    /// on the price interval.
     /// </summary>
     public List<EditProperties::FixedFeeQuantityTransition1>? FixedFeeQuantityTransitions
     {
@@ -133,11 +133,11 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
 
     /// <summary>
     /// A list of customer IDs whose usage events will be aggregated and billed under
-    /// this subscription. By default, a subscription only considers usage events associated
-    /// with its attached customer's customer_id. When usage_customer_ids is provided,
-    /// the subscription includes usage events from the specified customers only. Provided
-    /// usage_customer_ids must be either the customer for this subscription itself,
-    /// or any of that customer's children.
+    /// this subscription. By default, a subscription only considers usage events
+    /// associated with its attached customer's customer_id. When usage_customer_ids
+    /// is provided, the subscription includes usage events from the specified customers
+    /// only. Provided usage_customer_ids must be either the customer for this subscription
+    /// itself, or any of that customer's children.
     /// </summary>
     public List<string>? UsageCustomerIDs
     {

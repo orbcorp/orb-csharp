@@ -130,8 +130,8 @@ public sealed record class NewSubscriptionGroupedTieredPackagePrice
     }
 
     /// <summary>
-    /// If the Price represents a fixed cost, the price will be billed in-advance if
-    /// this is true, and in-arrears if this is false.
+    /// If the Price represents a fixed cost, the price will be billed in-advance
+    /// if this is true, and in-arrears if this is false.
     /// </summary>
     public bool? BilledInAdvance
     {

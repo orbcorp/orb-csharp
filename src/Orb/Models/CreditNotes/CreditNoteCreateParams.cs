@@ -72,10 +72,11 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// A date string to specify the global credit note service period end date in the
-    /// customer's timezone. This will be applied to all line items that don't have
-    /// their own individual service periods specified. If not provided, line items
-    /// will use their original invoice line item service periods. This date is inclusive.
+    /// A date string to specify the global credit note service period end date in
+    /// the customer's timezone. This will be applied to all line items that don't
+    /// have their own individual service periods specified. If not provided, line
+    /// items will use their original invoice line item service periods. This date
+    /// is inclusive.
     /// </summary>
     public DateOnly? EndDate
     {
@@ -105,10 +106,11 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// A date string to specify the global credit note service period start date in
-    /// the customer's timezone. This will be applied to all line items that don't
-    /// have their own individual service periods specified. If not provided, line items
-    /// will use their original invoice line item service periods. This date is inclusive.
+    /// A date string to specify the global credit note service period start date
+    /// in the customer's timezone. This will be applied to all line items that don't
+    /// have their own individual service periods specified. If not provided, line
+    /// items will use their original invoice line item service periods. This date
+    /// is inclusive.
     /// </summary>
     public DateOnly? StartDate
     {

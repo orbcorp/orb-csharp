@@ -125,8 +125,8 @@ public sealed record class NewUsageDiscount : ModelBase, IFromRaw<NewUsageDiscou
     }
 
     /// <summary>
-    /// When false, this adjustment will be applied to a single price. Otherwise, it
-    /// will be applied at the invoice level, possibly to multiple prices.
+    /// When false, this adjustment will be applied to a single price. Otherwise,
+    /// it will be applied at the invoice level, possibly to multiple prices.
     /// </summary>
     public bool? IsInvoiceLevel
     {

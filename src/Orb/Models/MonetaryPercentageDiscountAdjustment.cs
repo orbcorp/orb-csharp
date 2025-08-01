@@ -159,8 +159,8 @@ public sealed record class MonetaryPercentageDiscountAdjustment
     }
 
     /// <summary>
-    /// The adjustment id this adjustment replaces. This adjustment will take the place
-    /// of the replaced adjustment in plan version migrations.
+    /// The adjustment id this adjustment replaces. This adjustment will take the
+    /// place of the replaced adjustment in plan version migrations.
     /// </summary>
     public required string? ReplacesAdjustmentID
     {
