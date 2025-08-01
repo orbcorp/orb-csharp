@@ -42,4 +42,9 @@ public sealed record class ReportingConfiguration : ModelBase, IFromRaw<Reportin
     {
         return new(properties);
     }
+
+    public ReportingConfiguration(bool exempt)
+    {
+        this.Exempt = exempt;
+    }
 }

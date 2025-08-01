@@ -70,7 +70,7 @@ public class ExternalPlanIDServiceTest : TestBase
                             ItemID = "item_id",
                             ModelType = NewPlanUnitPriceProperties::ModelType.Unit,
                             Name = "Annual fee",
-                            UnitConfig = new() { UnitAmount = "unit_amount" },
+                            UnitConfig = new("unit_amount"),
                             BillableMetricID = "billable_metric_id",
                             BilledInAdvance = true,
                             BillingCycleConfiguration = new()
@@ -83,7 +83,7 @@ public class ExternalPlanIDServiceTest : TestBase
                             ConversionRateConfig = new UnitConversionRateConfig()
                             {
                                 ConversionRateType = ConversionRateType.Unit,
-                                UnitConfig = new() { UnitAmount = "unit_amount" },
+                                UnitConfig = new("unit_amount"),
                             },
                             Currency = "currency",
                             DimensionalPriceConfiguration = new()
@@ -161,7 +161,7 @@ public class ExternalPlanIDServiceTest : TestBase
                             ItemID = "item_id",
                             ModelType = NewPlanUnitPriceProperties::ModelType.Unit,
                             Name = "Annual fee",
-                            UnitConfig = new() { UnitAmount = "unit_amount" },
+                            UnitConfig = new("unit_amount"),
                             BillableMetricID = "billable_metric_id",
                             BilledInAdvance = true,
                             BillingCycleConfiguration = new()
@@ -174,7 +174,7 @@ public class ExternalPlanIDServiceTest : TestBase
                             ConversionRateConfig = new UnitConversionRateConfig()
                             {
                                 ConversionRateType = ConversionRateType.Unit,
-                                UnitConfig = new() { UnitAmount = "unit_amount" },
+                                UnitConfig = new("unit_amount"),
                             },
                             Currency = "currency",
                             DimensionalPriceConfiguration = new()

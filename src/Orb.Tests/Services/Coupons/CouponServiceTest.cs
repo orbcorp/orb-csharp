@@ -11,7 +11,7 @@ public class CouponServiceTest : TestBase
         var coupon = await this.client.Coupons.Create(
             new()
             {
-                Discount = new Percentage() { PercentageDiscount = 0 },
+                Discount = new Percentage(0),
                 RedemptionCode = "HALFOFF",
                 DurationInMonths = 12,
                 MaxRedemptions = 1,

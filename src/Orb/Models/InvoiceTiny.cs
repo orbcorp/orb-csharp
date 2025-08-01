@@ -44,4 +44,9 @@ public sealed record class InvoiceTiny : ModelBase, IFromRaw<InvoiceTiny>
     {
         return new(properties);
     }
+
+    public InvoiceTiny(string id)
+    {
+        this.ID = id;
+    }
 }

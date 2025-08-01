@@ -63,4 +63,9 @@ public sealed record class BulkTier : ModelBase, IFromRaw<BulkTier>
     {
         return new(properties);
     }
+
+    public BulkTier(string unitAmount)
+    {
+        this.UnitAmount = unitAmount;
+    }
 }

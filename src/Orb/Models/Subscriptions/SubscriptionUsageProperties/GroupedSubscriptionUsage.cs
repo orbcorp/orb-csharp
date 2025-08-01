@@ -66,4 +66,9 @@ public sealed record class GroupedSubscriptionUsage : ModelBase, IFromRaw<Groupe
     {
         return new(properties);
     }
+
+    public GroupedSubscriptionUsage(List<GroupedSubscriptionUsageProperties::Data> data)
+    {
+        this.Data = data;
+    }
 }

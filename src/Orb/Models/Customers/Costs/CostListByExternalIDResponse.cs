@@ -50,4 +50,9 @@ public sealed record class CostListByExternalIDResponse
     {
         return new(properties);
     }
+
+    public CostListByExternalIDResponse(List<AggregatedCost> data)
+    {
+        this.Data = data;
+    }
 }

@@ -46,4 +46,9 @@ public sealed record class CostListResponse : ModelBase, IFromRaw<CostListRespon
     {
         return new(properties);
     }
+
+    public CostListResponse(List<AggregatedCost> data)
+    {
+        this.Data = data;
+    }
 }

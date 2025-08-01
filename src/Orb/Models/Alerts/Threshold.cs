@@ -48,4 +48,9 @@ public sealed record class Threshold : ModelBase, IFromRaw<Threshold>
     {
         return new(properties);
     }
+
+    public Threshold(double value)
+    {
+        this.Value = value;
+    }
 }

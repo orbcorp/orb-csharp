@@ -44,4 +44,9 @@ public sealed record class Metric : ModelBase, IFromRaw<Metric>
     {
         return new(properties);
     }
+
+    public Metric(string id)
+    {
+        this.ID = id;
+    }
 }

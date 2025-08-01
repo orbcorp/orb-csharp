@@ -47,4 +47,9 @@ public sealed record class UnitConfig : ModelBase, IFromRaw<UnitConfig>
     {
         return new(properties);
     }
+
+    public UnitConfig(string unitAmount)
+    {
+        this.UnitAmount = unitAmount;
+    }
 }

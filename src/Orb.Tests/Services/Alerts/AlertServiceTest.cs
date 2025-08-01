@@ -19,11 +19,7 @@ public class AlertServiceTest : TestBase
     public async Task Update_Works()
     {
         var alert = await this.client.Alerts.Update(
-            new()
-            {
-                AlertConfigurationID = "alert_configuration_id",
-                Thresholds = [new() { Value = 0 }],
-            }
+            new() { AlertConfigurationID = "alert_configuration_id", Thresholds = [new(0)] }
         );
         alert.Validate();
     }
@@ -57,7 +53,7 @@ public class AlertServiceTest : TestBase
                 CustomerID = "customer_id",
                 Currency = "currency",
                 Type = AlertCreateForCustomerParamsProperties::Type.CreditBalanceDepleted,
-                Thresholds = [new() { Value = 0 }],
+                Thresholds = [new(0)],
             }
         );
         alert.Validate();
@@ -72,7 +68,7 @@ public class AlertServiceTest : TestBase
                 ExternalCustomerID = "external_customer_id",
                 Currency = "currency",
                 Type = AlertCreateForExternalCustomerParamsProperties::Type.CreditBalanceDepleted,
-                Thresholds = [new() { Value = 0 }],
+                Thresholds = [new(0)],
             }
         );
         alert.Validate();
@@ -85,7 +81,7 @@ public class AlertServiceTest : TestBase
             new()
             {
                 SubscriptionID = "subscription_id",
-                Thresholds = [new() { Value = 0 }],
+                Thresholds = [new(0)],
                 Type = AlertCreateForSubscriptionParamsProperties::Type.UsageExceeded,
                 MetricID = "metric_id",
             }

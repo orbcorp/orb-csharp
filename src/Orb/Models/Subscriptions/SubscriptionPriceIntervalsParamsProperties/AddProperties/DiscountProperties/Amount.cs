@@ -61,4 +61,9 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
     {
         return new(properties);
     }
+
+    public Amount(double amountDiscount)
+    {
+        this.AmountDiscount = amountDiscount;
+    }
 }

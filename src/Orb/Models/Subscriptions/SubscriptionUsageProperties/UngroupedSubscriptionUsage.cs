@@ -51,4 +51,9 @@ public sealed record class UngroupedSubscriptionUsage
     {
         return new(properties);
     }
+
+    public UngroupedSubscriptionUsage(List<UngroupedSubscriptionUsageProperties::Data> data)
+    {
+        this.Data = data;
+    }
 }

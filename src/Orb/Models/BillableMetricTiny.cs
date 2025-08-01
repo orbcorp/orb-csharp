@@ -41,4 +41,9 @@ public sealed record class BillableMetricTiny : ModelBase, IFromRaw<BillableMetr
     {
         return new(properties);
     }
+
+    public BillableMetricTiny(string id)
+    {
+        this.ID = id;
+    }
 }

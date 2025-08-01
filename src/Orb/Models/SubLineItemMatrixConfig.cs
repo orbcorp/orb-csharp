@@ -52,4 +52,9 @@ public sealed record class SubLineItemMatrixConfig : ModelBase, IFromRaw<SubLine
     {
         return new(properties);
     }
+
+    public SubLineItemMatrixConfig(List<string?> dimensionValues)
+    {
+        this.DimensionValues = dimensionValues;
+    }
 }

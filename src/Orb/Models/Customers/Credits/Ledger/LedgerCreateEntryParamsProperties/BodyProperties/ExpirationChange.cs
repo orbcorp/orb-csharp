@@ -184,4 +184,9 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
     {
         return new(properties);
     }
+
+    public ExpirationChange(System::DateOnly targetExpiryDate)
+    {
+        this.TargetExpiryDate = targetExpiryDate;
+    }
 }

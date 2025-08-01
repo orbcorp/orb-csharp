@@ -46,4 +46,9 @@ public sealed record class EventDeprecateResponse : ModelBase, IFromRaw<EventDep
     {
         return new(properties);
     }
+
+    public EventDeprecateResponse(string deprecated)
+    {
+        this.Deprecated = deprecated;
+    }
 }

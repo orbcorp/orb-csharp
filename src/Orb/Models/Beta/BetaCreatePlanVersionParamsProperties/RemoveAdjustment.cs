@@ -60,4 +60,9 @@ public sealed record class RemoveAdjustment : ModelBase, IFromRaw<RemoveAdjustme
     {
         return new(properties);
     }
+
+    public RemoveAdjustment(string adjustmentID)
+    {
+        this.AdjustmentID = adjustmentID;
+    }
 }

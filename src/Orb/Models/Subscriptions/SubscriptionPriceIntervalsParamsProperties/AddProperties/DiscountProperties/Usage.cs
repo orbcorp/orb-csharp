@@ -62,4 +62,9 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
     {
         return new(properties);
     }
+
+    public Usage(double usageDiscount)
+    {
+        this.UsageDiscount = usageDiscount;
+    }
 }

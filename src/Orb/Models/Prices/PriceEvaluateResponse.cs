@@ -46,4 +46,9 @@ public sealed record class PriceEvaluateResponse : ModelBase, IFromRaw<PriceEval
     {
         return new(properties);
     }
+
+    public PriceEvaluateResponse(List<EvaluatePriceGroup> data)
+    {
+        this.Data = data;
+    }
 }

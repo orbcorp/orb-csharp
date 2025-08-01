@@ -23,7 +23,7 @@ public class PriceServiceTest : TestBase
                     ItemID = "item_id",
                     ModelType = ModelType.Unit,
                     Name = "Annual fee",
-                    UnitConfig = new() { UnitAmount = "unit_amount" },
+                    UnitConfig = new("unit_amount"),
                     BillableMetricID = "billable_metric_id",
                     BilledInAdvance = true,
                     BillingCycleConfiguration = new()
@@ -35,7 +35,7 @@ public class PriceServiceTest : TestBase
                     ConversionRateConfig = new UnitConversionRateConfig()
                     {
                         ConversionRateType = ConversionRateType.Unit,
-                        UnitConfig = new() { UnitAmount = "unit_amount" },
+                        UnitConfig = new("unit_amount"),
                     },
                     DimensionalPriceConfiguration = new()
                     {
@@ -120,7 +120,7 @@ public class PriceServiceTest : TestBase
                             ItemID = "item_id",
                             ModelType = ModelType.Unit,
                             Name = "Annual fee",
-                            UnitConfig = new() { UnitAmount = "unit_amount" },
+                            UnitConfig = new("unit_amount"),
                             BillableMetricID = "billable_metric_id",
                             BilledInAdvance = true,
                             BillingCycleConfiguration = new()
@@ -132,7 +132,7 @@ public class PriceServiceTest : TestBase
                             ConversionRateConfig = new UnitConversionRateConfig()
                             {
                                 ConversionRateType = ConversionRateType.Unit,
-                                UnitConfig = new() { UnitAmount = "unit_amount" },
+                                UnitConfig = new("unit_amount"),
                             },
                             DimensionalPriceConfiguration = new()
                             {
@@ -194,7 +194,7 @@ public class PriceServiceTest : TestBase
                             ItemID = "item_id",
                             ModelType = ModelType.Unit,
                             Name = "Annual fee",
-                            UnitConfig = new() { UnitAmount = "unit_amount" },
+                            UnitConfig = new("unit_amount"),
                             BillableMetricID = "billable_metric_id",
                             BilledInAdvance = true,
                             BillingCycleConfiguration = new()
@@ -206,7 +206,7 @@ public class PriceServiceTest : TestBase
                             ConversionRateConfig = new UnitConversionRateConfig()
                             {
                                 ConversionRateType = ConversionRateType.Unit,
-                                UnitConfig = new() { UnitAmount = "unit_amount" },
+                                UnitConfig = new("unit_amount"),
                             },
                             DimensionalPriceConfiguration = new()
                             {

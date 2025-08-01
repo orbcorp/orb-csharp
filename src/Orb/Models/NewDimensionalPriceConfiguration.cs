@@ -100,4 +100,9 @@ public sealed record class NewDimensionalPriceConfiguration
     {
         return new(properties);
     }
+
+    public NewDimensionalPriceConfiguration(List<string> dimensionValues)
+    {
+        this.DimensionValues = dimensionValues;
+    }
 }

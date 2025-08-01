@@ -47,4 +47,9 @@ public sealed record class BulkConfig : ModelBase, IFromRaw<BulkConfig>
     {
         return new(properties);
     }
+
+    public BulkConfig(List<BulkTier> tiers)
+    {
+        this.Tiers = tiers;
+    }
 }

@@ -182,4 +182,9 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
     {
         return new(properties);
     }
+
+    public Edit(string priceIntervalID)
+    {
+        this.PriceIntervalID = priceIntervalID;
+    }
 }

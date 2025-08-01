@@ -58,4 +58,9 @@ public sealed record class Percentage : ModelBase, IFromRaw<Percentage>
     {
         return new(properties);
     }
+
+    public Percentage(double percentageDiscount)
+    {
+        this.PercentageDiscount = percentageDiscount;
+    }
 }

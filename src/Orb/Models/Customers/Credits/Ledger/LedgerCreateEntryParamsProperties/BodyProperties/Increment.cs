@@ -205,4 +205,9 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
     {
         return new(properties);
     }
+
+    public Increment(double amount)
+    {
+        this.Amount = amount;
+    }
 }
