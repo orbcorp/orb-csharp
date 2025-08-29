@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using SubscriptionChangeCancelResponseProperties = Orb.Models.SubscriptionChanges.SubscriptionChangeCancelResponseProperties;
+using Orb.Models.SubscriptionChanges.SubscriptionChangeCancelResponseProperties;
 
 namespace Orb.Models.SubscriptionChanges;
 
@@ -27,7 +27,13 @@ public sealed record class SubscriptionChangeCancelResponse
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -45,22 +51,34 @@ public sealed record class SubscriptionChangeCancelResponse
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["expiration_time"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["expiration_time"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required SubscriptionChangeCancelResponseProperties::Status Status
+    public required ApiEnum<string, Status> Status
     {
         get
         {
             if (!this.Properties.TryGetValue("status", out JsonElement element))
                 throw new ArgumentOutOfRangeException("status", "Missing required argument");
 
-            return JsonSerializer.Deserialize<SubscriptionChangeCancelResponseProperties::Status>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("status");
+            return JsonSerializer.Deserialize<ApiEnum<string, Status>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["status"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["status"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required MutatedSubscription? Subscription
@@ -68,14 +86,20 @@ public sealed record class SubscriptionChangeCancelResponse
         get
         {
             if (!this.Properties.TryGetValue("subscription", out JsonElement element))
-                throw new ArgumentOutOfRangeException("subscription", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<MutatedSubscription?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["subscription"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["subscription"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -90,7 +114,13 @@ public sealed record class SubscriptionChangeCancelResponse
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["applied_at"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["applied_at"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -105,7 +135,13 @@ public sealed record class SubscriptionChangeCancelResponse
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["cancelled_at"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["cancelled_at"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

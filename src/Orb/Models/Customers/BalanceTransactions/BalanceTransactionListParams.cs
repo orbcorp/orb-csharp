@@ -1,6 +1,6 @@
+using System;
 using System.Net.Http;
 using System.Text.Json;
-using System = System;
 
 namespace Orb.Models.Customers.BalanceTransactions;
 
@@ -43,7 +43,13 @@ public sealed record class BalanceTransactionListParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -58,84 +64,90 @@ public sealed record class BalanceTransactionListParams : ParamsBase
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public System::DateTime? OperationTimeGt
+    public DateTime? OperationTimeGt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("operation_time[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set
         {
-            this.QueryProperties["operation_time[gt]"] = JsonSerializer.SerializeToElement(value);
+            this.QueryProperties["operation_time[gt]"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
-    public System::DateTime? OperationTimeGte
+    public DateTime? OperationTimeGte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("operation_time[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set
         {
-            this.QueryProperties["operation_time[gte]"] = JsonSerializer.SerializeToElement(value);
+            this.QueryProperties["operation_time[gte]"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
-    public System::DateTime? OperationTimeLt
+    public DateTime? OperationTimeLt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("operation_time[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set
         {
-            this.QueryProperties["operation_time[lt]"] = JsonSerializer.SerializeToElement(value);
+            this.QueryProperties["operation_time[lt]"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
-    public System::DateTime? OperationTimeLte
+    public DateTime? OperationTimeLte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("operation_time[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set
         {
-            this.QueryProperties["operation_time[lte]"] = JsonSerializer.SerializeToElement(value);
+            this.QueryProperties["operation_time[lte]"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/customers/{0}/balance_transactions", this.CustomerID)
         )

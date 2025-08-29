@@ -1,7 +1,4 @@
-using System;
 using System.Threading.Tasks;
-using Orb.Models.Customers.Credits.TopUps.TopUpCreateParamsProperties;
-using TopUpCreateByExternalIDParamsProperties = Orb.Models.Customers.Credits.TopUps.TopUpCreateByExternalIDParamsProperties;
 
 namespace Orb.Tests.Services.Customers.Credits.TopUps;
 
@@ -25,9 +22,6 @@ public class TopUpServiceTest : TestBase
                 },
                 PerUnitCostBasis = "per_unit_cost_basis",
                 Threshold = "threshold",
-                ActiveFrom = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                ExpiresAfter = 0,
-                ExpiresAfterUnit = ExpiresAfterUnit.Day,
             }
         );
         topUp.Validate();
@@ -37,12 +31,7 @@ public class TopUpServiceTest : TestBase
     public async Task List_Works()
     {
         var page = await this.client.Customers.Credits.TopUps.List(
-            new()
-            {
-                CustomerID = "customer_id",
-                Cursor = "cursor",
-                Limit = 1,
-            }
+            new() { CustomerID = "customer_id" }
         );
         page.Validate();
     }
@@ -73,9 +62,6 @@ public class TopUpServiceTest : TestBase
                 },
                 PerUnitCostBasis = "per_unit_cost_basis",
                 Threshold = "threshold",
-                ActiveFrom = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                ExpiresAfter = 0,
-                ExpiresAfterUnit = TopUpCreateByExternalIDParamsProperties::ExpiresAfterUnit.Day,
             }
         );
         response.Validate();
@@ -93,12 +79,7 @@ public class TopUpServiceTest : TestBase
     public async Task ListByExternalID_Works()
     {
         var page = await this.client.Customers.Credits.TopUps.ListByExternalID(
-            new()
-            {
-                ExternalCustomerID = "external_customer_id",
-                Cursor = "cursor",
-                Limit = 1,
-            }
+            new() { ExternalCustomerID = "external_customer_id" }
         );
         page.Validate();
     }

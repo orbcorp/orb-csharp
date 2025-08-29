@@ -1,13 +1,12 @@
-using System.Text.Json.Serialization;
+using Models = Orb.Models;
 
 namespace Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.LineItemProperties.SubLineItemVariants;
 
-[JsonConverter(typeof(VariantConverter<MatrixSubLineItemVariant, MatrixSubLineItem>))]
-public sealed record class MatrixSubLineItemVariant(MatrixSubLineItem Value)
+public sealed record class MatrixSubLineItem(Models::MatrixSubLineItem Value)
     : SubLineItem,
-        IVariant<MatrixSubLineItemVariant, MatrixSubLineItem>
+        IVariant<MatrixSubLineItem, Models::MatrixSubLineItem>
 {
-    public static MatrixSubLineItemVariant From(MatrixSubLineItem value)
+    public static MatrixSubLineItem From(Models::MatrixSubLineItem value)
     {
         return new(value);
     }
@@ -18,12 +17,11 @@ public sealed record class MatrixSubLineItemVariant(MatrixSubLineItem Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<TierSubLineItemVariant, TierSubLineItem>))]
-public sealed record class TierSubLineItemVariant(TierSubLineItem Value)
+public sealed record class TierSubLineItem(Models::TierSubLineItem Value)
     : SubLineItem,
-        IVariant<TierSubLineItemVariant, TierSubLineItem>
+        IVariant<TierSubLineItem, Models::TierSubLineItem>
 {
-    public static TierSubLineItemVariant From(TierSubLineItem value)
+    public static TierSubLineItem From(Models::TierSubLineItem value)
     {
         return new(value);
     }
@@ -34,12 +32,11 @@ public sealed record class TierSubLineItemVariant(TierSubLineItem Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<OtherSubLineItemVariant, OtherSubLineItem>))]
-public sealed record class OtherSubLineItemVariant(OtherSubLineItem Value)
+public sealed record class OtherSubLineItem(Models::OtherSubLineItem Value)
     : SubLineItem,
-        IVariant<OtherSubLineItemVariant, OtherSubLineItem>
+        IVariant<OtherSubLineItem, Models::OtherSubLineItem>
 {
-    public static OtherSubLineItemVariant From(OtherSubLineItem value)
+    public static OtherSubLineItem From(Models::OtherSubLineItem value)
     {
         return new(value);
     }

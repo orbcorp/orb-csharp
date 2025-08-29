@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.Costs.CostListParamsProperties;
@@ -8,41 +9,40 @@ namespace Orb.Models.Customers.Costs.CostListParamsProperties;
 /// or incremental day-by-day costs. If your customer has minimums or discounts, it's
 /// strongly recommended that you use the default cumulative behavior.
 /// </summary>
-[JsonConverter(typeof(EnumConverter<ViewMode, string>))]
-public sealed record class ViewMode(string value) : IEnum<ViewMode, string>
+[JsonConverter(typeof(ViewModeConverter))]
+public enum ViewMode
 {
-    public static readonly ViewMode Periodic = new("periodic");
+    Periodic,
+    Cumulative,
+}
 
-    public static readonly ViewMode Cumulative = new("cumulative");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class ViewModeConverter : JsonConverter<ViewMode>
+{
+    public override ViewMode Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Periodic,
-        Cumulative,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "periodic" => Value.Periodic,
-            "cumulative" => Value.Cumulative,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "periodic" => ViewMode.Periodic,
+            "cumulative" => ViewMode.Cumulative,
+            _ => (ViewMode)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(Utf8JsonWriter writer, ViewMode value, JsonSerializerOptions options)
     {
-        Known();
-    }
-
-    public static ViewMode FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ViewMode.Periodic => "periodic",
+                ViewMode.Cumulative => "cumulative",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

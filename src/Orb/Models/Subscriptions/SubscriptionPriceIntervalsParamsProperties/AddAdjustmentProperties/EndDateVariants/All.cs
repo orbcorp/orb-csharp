@@ -1,9 +1,8 @@
-using System.Text.Json.Serialization;
+using Models = Orb.Models;
 using System = System;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddAdjustmentProperties.EndDateVariants;
 
-[JsonConverter(typeof(VariantConverter<DateTime, System::DateTime>))]
 public sealed record class DateTime(System::DateTime Value)
     : EndDate,
         IVariant<DateTime, System::DateTime>
@@ -16,12 +15,13 @@ public sealed record class DateTime(System::DateTime Value)
     public override void Validate() { }
 }
 
-[JsonConverter(typeof(VariantConverter<BillingCycleRelativeDateVariant, BillingCycleRelativeDate>))]
-public sealed record class BillingCycleRelativeDateVariant(BillingCycleRelativeDate Value)
-    : EndDate,
-        IVariant<BillingCycleRelativeDateVariant, BillingCycleRelativeDate>
+public sealed record class BillingCycleRelativeDate(
+    ApiEnum<string, Models::BillingCycleRelativeDate> Value
+) : EndDate, IVariant<BillingCycleRelativeDate, ApiEnum<string, Models::BillingCycleRelativeDate>>
 {
-    public static BillingCycleRelativeDateVariant From(BillingCycleRelativeDate value)
+    public static BillingCycleRelativeDate From(
+        ApiEnum<string, Models::BillingCycleRelativeDate> value
+    )
     {
         return new(value);
     }

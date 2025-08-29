@@ -1,13 +1,12 @@
-using System.Text.Json.Serialization;
+using Models = Orb.Models;
 
 namespace Orb.Models.Subscriptions.SubscriptionProperties.DiscountIntervalVariants;
 
-[JsonConverter(typeof(VariantConverter<AmountDiscountIntervalVariant, AmountDiscountInterval>))]
-public sealed record class AmountDiscountIntervalVariant(AmountDiscountInterval Value)
+public sealed record class AmountDiscountInterval(Models::AmountDiscountInterval Value)
     : DiscountInterval,
-        IVariant<AmountDiscountIntervalVariant, AmountDiscountInterval>
+        IVariant<AmountDiscountInterval, Models::AmountDiscountInterval>
 {
-    public static AmountDiscountIntervalVariant From(AmountDiscountInterval value)
+    public static AmountDiscountInterval From(Models::AmountDiscountInterval value)
     {
         return new(value);
     }
@@ -18,14 +17,11 @@ public sealed record class AmountDiscountIntervalVariant(AmountDiscountInterval 
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<PercentageDiscountIntervalVariant, PercentageDiscountInterval>)
-)]
-public sealed record class PercentageDiscountIntervalVariant(PercentageDiscountInterval Value)
+public sealed record class PercentageDiscountInterval(Models::PercentageDiscountInterval Value)
     : DiscountInterval,
-        IVariant<PercentageDiscountIntervalVariant, PercentageDiscountInterval>
+        IVariant<PercentageDiscountInterval, Models::PercentageDiscountInterval>
 {
-    public static PercentageDiscountIntervalVariant From(PercentageDiscountInterval value)
+    public static PercentageDiscountInterval From(Models::PercentageDiscountInterval value)
     {
         return new(value);
     }
@@ -36,12 +32,11 @@ public sealed record class PercentageDiscountIntervalVariant(PercentageDiscountI
     }
 }
 
-[JsonConverter(typeof(VariantConverter<UsageDiscountIntervalVariant, UsageDiscountInterval>))]
-public sealed record class UsageDiscountIntervalVariant(UsageDiscountInterval Value)
+public sealed record class UsageDiscountInterval(Models::UsageDiscountInterval Value)
     : DiscountInterval,
-        IVariant<UsageDiscountIntervalVariant, UsageDiscountInterval>
+        IVariant<UsageDiscountInterval, Models::UsageDiscountInterval>
 {
-    public static UsageDiscountIntervalVariant From(UsageDiscountInterval value)
+    public static UsageDiscountInterval From(Models::UsageDiscountInterval value)
     {
         return new(value);
     }

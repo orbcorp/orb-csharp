@@ -19,12 +19,7 @@ public class ExternalDimensionalPriceGroupIDServiceTest : TestBase
     {
         var dimensionalPriceGroup =
             await this.client.DimensionalPriceGroups.ExternalDimensionalPriceGroupID.Update(
-                new()
-                {
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID1 = "external_dimensional_price_group_id",
-                    Metadata = new() { { "foo", "string" } },
-                }
+                new() { ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id" }
             );
         dimensionalPriceGroup.Validate();
     }

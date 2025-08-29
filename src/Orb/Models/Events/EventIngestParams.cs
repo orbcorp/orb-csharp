@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using EventIngestParamsProperties = Orb.Models.Events.EventIngestParamsProperties;
+using Orb.Models.Events.EventIngestParamsProperties;
 
 namespace Orb.Models.Events;
 
@@ -175,19 +175,23 @@ public sealed record class EventIngestParams : ParamsBase
 {
     public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
-    public required List<EventIngestParamsProperties::Event> Events
+    public required List<Event> Events
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("events", out JsonElement element))
                 throw new ArgumentOutOfRangeException("events", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<EventIngestParamsProperties::Event>>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("events");
+            return JsonSerializer.Deserialize<List<Event>>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("events");
         }
-        set { this.BodyProperties["events"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["events"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -203,7 +207,13 @@ public sealed record class EventIngestParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["backfill_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["backfill_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -218,7 +228,13 @@ public sealed record class EventIngestParams : ParamsBase
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["debug"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["debug"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override Uri Url(IOrbClient client)

@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using SubscriptionUpdateFixedFeeQuantityParamsProperties = Orb.Models.Subscriptions.SubscriptionUpdateFixedFeeQuantityParamsProperties;
-using System = System;
+using Orb.Models.Subscriptions.SubscriptionUpdateFixedFeeQuantityParamsProperties;
 
 namespace Orb.Models.Subscriptions;
 
@@ -35,15 +35,18 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("price_id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "price_id",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("price_id", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("price_id");
+                ?? throw new ArgumentNullException("price_id");
         }
-        set { this.BodyProperties["price_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["price_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required double Quantity
@@ -51,14 +54,17 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("quantity", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "quantity",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("quantity", "Missing required argument");
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["quantity"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["quantity"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -83,7 +89,8 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
         set
         {
             this.BodyProperties["allow_invoice_credit_or_void"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -93,19 +100,25 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     /// specified, this defaults to `effective_date`. Otherwise, this defaults to
     /// `immediate` unless it's explicitly set to `upcoming_invoice`.
     /// </summary>
-    public SubscriptionUpdateFixedFeeQuantityParamsProperties::ChangeOption? ChangeOption
+    public ApiEnum<string, ChangeOption>? ChangeOption
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("change_option", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<SubscriptionUpdateFixedFeeQuantityParamsProperties::ChangeOption?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, ChangeOption>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["change_option"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["change_option"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -113,24 +126,27 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     /// timezone. If this parameter is not passed in, the quantity change is effective
     /// according to `change_option`.
     /// </summary>
-    public System::DateOnly? EffectiveDate
+    public DateOnly? EffectiveDate
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("effective_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateOnly?>(
-                element,
+            return JsonSerializer.Deserialize<DateOnly?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["effective_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["effective_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscriptions/{0}/update_fixed_fee_quantity", this.SubscriptionID)
         )

@@ -1,30 +1,30 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models;
 
 [JsonConverter(typeof(ModelConverter<SubscriptionTrialInfo>))]
 public sealed record class SubscriptionTrialInfo : ModelBase, IFromRaw<SubscriptionTrialInfo>
 {
-    public required System::DateTime? EndDate
+    public required DateTime? EndDate
     {
         get
         {
             if (!this.Properties.TryGetValue("end_date", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "end_date",
-                    "Missing required argument"
-                );
+                return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["end_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -47,7 +47,9 @@ public sealed record class SubscriptionTrialInfo : ModelBase, IFromRaw<Subscript
         return new(properties);
     }
 
-    public SubscriptionTrialInfo(System::DateTime? endDate)
+    [SetsRequiredMembers]
+    public SubscriptionTrialInfo(DateTime? endDate)
+        : this()
     {
         this.EndDate = endDate;
     }

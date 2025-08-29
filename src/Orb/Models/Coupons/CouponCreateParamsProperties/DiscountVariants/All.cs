@@ -1,9 +1,7 @@
-using System.Text.Json.Serialization;
 using DiscountProperties = Orb.Models.Coupons.CouponCreateParamsProperties.DiscountProperties;
 
 namespace Orb.Models.Coupons.CouponCreateParamsProperties.DiscountVariants;
 
-[JsonConverter(typeof(VariantConverter<Percentage, DiscountProperties::Percentage>))]
 public sealed record class Percentage(DiscountProperties::Percentage Value)
     : Discount,
         IVariant<Percentage, DiscountProperties::Percentage>
@@ -19,7 +17,6 @@ public sealed record class Percentage(DiscountProperties::Percentage Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<Amount, DiscountProperties::Amount>))]
 public sealed record class Amount(DiscountProperties::Amount Value)
     : Discount,
         IVariant<Amount, DiscountProperties::Amount>

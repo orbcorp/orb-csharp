@@ -29,7 +29,13 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -40,11 +46,17 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         get
         {
             if (!this.Properties.TryGetValue("customer_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("customer_id", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["customer_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -59,7 +71,13 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["deprecated"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["deprecated"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -75,7 +93,13 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("event_name");
         }
-        set { this.Properties["event_name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["event_name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -86,14 +110,17 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         get
         {
             if (!this.Properties.TryGetValue("external_customer_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "external_customer_id",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["external_customer_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["external_customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -112,7 +139,13 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("properties");
         }
-        set { this.Properties["properties"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["properties"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -129,7 +162,13 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["timestamp"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["timestamp"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

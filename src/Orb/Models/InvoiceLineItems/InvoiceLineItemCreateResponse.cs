@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using InvoiceLineItemCreateResponseProperties = Orb.Models.InvoiceLineItems.InvoiceLineItemCreateResponseProperties;
-using Models = Orb.Models;
+using Orb.Models.InvoiceLineItems.InvoiceLineItemCreateResponseProperties;
 
 namespace Orb.Models.InvoiceLineItems;
 
@@ -26,7 +25,13 @@ public sealed record class InvoiceLineItemCreateResponse
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -46,7 +51,13 @@ public sealed record class InvoiceLineItemCreateResponse
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("adjusted_subtotal");
         }
-        set { this.Properties["adjusted_subtotal"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["adjusted_subtotal"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -54,19 +65,25 @@ public sealed record class InvoiceLineItemCreateResponse
     /// on invoice calculations (ie. usage discounts -> amount discounts -> percentage
     /// discounts -> minimums -> maximums).
     /// </summary>
-    public required List<InvoiceLineItemCreateResponseProperties::Adjustment> Adjustments
+    public required List<Adjustment> Adjustments
     {
         get
         {
             if (!this.Properties.TryGetValue("adjustments", out JsonElement element))
                 throw new ArgumentOutOfRangeException("adjustments", "Missing required argument");
 
-            return JsonSerializer.Deserialize<
-                    List<InvoiceLineItemCreateResponseProperties::Adjustment>
-                >(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("adjustments");
+            return JsonSerializer.Deserialize<List<Adjustment>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("adjustments");
         }
-        set { this.Properties["adjustments"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["adjustments"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -83,7 +100,13 @@ public sealed record class InvoiceLineItemCreateResponse
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("amount");
         }
-        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -102,25 +125,34 @@ public sealed record class InvoiceLineItemCreateResponse
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("credits_applied");
         }
-        set { this.Properties["credits_applied"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["credits_applied"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// This field is deprecated in favor of `adjustments`
     /// </summary>
-    public required Models::Discount2? Discount
+    public required Discount? Discount
     {
         get
         {
             if (!this.Properties.TryGetValue("discount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("discount", "Missing required argument");
+                return null;
 
-            return JsonSerializer.Deserialize<Models::Discount2?>(
-                element,
+            return JsonSerializer.Deserialize<Discount?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["discount"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["discount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -135,7 +167,13 @@ public sealed record class InvoiceLineItemCreateResponse
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["end_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -146,11 +184,17 @@ public sealed record class InvoiceLineItemCreateResponse
         get
         {
             if (!this.Properties.TryGetValue("filter", out JsonElement element))
-                throw new ArgumentOutOfRangeException("filter", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["filter"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["filter"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -163,29 +207,38 @@ public sealed record class InvoiceLineItemCreateResponse
         get
         {
             if (!this.Properties.TryGetValue("grouping", out JsonElement element))
-                throw new ArgumentOutOfRangeException("grouping", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["grouping"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["grouping"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// This field is deprecated in favor of `adjustments`.
     /// </summary>
-    public required Models::Maximum? Maximum
+    public required Maximum? Maximum
     {
         get
         {
             if (!this.Properties.TryGetValue("maximum", out JsonElement element))
-                throw new ArgumentOutOfRangeException("maximum", "Missing required argument");
+                return null;
 
-            return JsonSerializer.Deserialize<Models::Maximum?>(
-                element,
+            return JsonSerializer.Deserialize<Maximum?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["maximum"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["maximum"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -196,32 +249,38 @@ public sealed record class InvoiceLineItemCreateResponse
         get
         {
             if (!this.Properties.TryGetValue("maximum_amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "maximum_amount",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// This field is deprecated in favor of `adjustments`.
     /// </summary>
-    public required Models::Minimum? Minimum
+    public required Minimum? Minimum
     {
         get
         {
             if (!this.Properties.TryGetValue("minimum", out JsonElement element))
-                throw new ArgumentOutOfRangeException("minimum", "Missing required argument");
+                return null;
 
-            return JsonSerializer.Deserialize<Models::Minimum?>(
-                element,
+            return JsonSerializer.Deserialize<Minimum?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["minimum"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["minimum"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -232,14 +291,17 @@ public sealed record class InvoiceLineItemCreateResponse
         get
         {
             if (!this.Properties.TryGetValue("minimum_amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "minimum_amount",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -255,7 +317,13 @@ public sealed record class InvoiceLineItemCreateResponse
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
-        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -276,7 +344,10 @@ public sealed record class InvoiceLineItemCreateResponse
         }
         set
         {
-            this.Properties["partially_invoiced_amount"] = JsonSerializer.SerializeToElement(value);
+            this.Properties["partially_invoiced_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -291,17 +362,23 @@ public sealed record class InvoiceLineItemCreateResponse
     ///
     /// For more on the types of prices, see [the core concepts documentation](/core-concepts#plan-and-price)
     /// </summary>
-    public required Models::Price Price
+    public required Price Price
     {
         get
         {
             if (!this.Properties.TryGetValue("price", out JsonElement element))
                 throw new ArgumentOutOfRangeException("price", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Models::Price>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("price");
         }
-        set { this.Properties["price"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["price"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -316,7 +393,13 @@ public sealed record class InvoiceLineItemCreateResponse
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["quantity"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["quantity"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -331,13 +414,19 @@ public sealed record class InvoiceLineItemCreateResponse
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["start_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// For complex pricing structures, the line item can be broken down further in `sub_line_items`.
     /// </summary>
-    public required List<InvoiceLineItemCreateResponseProperties::SubLineItem> SubLineItems
+    public required List<SubLineItem> SubLineItems
     {
         get
         {
@@ -347,12 +436,18 @@ public sealed record class InvoiceLineItemCreateResponse
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<
-                    List<InvoiceLineItemCreateResponseProperties::SubLineItem>
-                >(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("sub_line_items");
+            return JsonSerializer.Deserialize<List<SubLineItem>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("sub_line_items");
         }
-        set { this.Properties["sub_line_items"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["sub_line_items"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -368,26 +463,36 @@ public sealed record class InvoiceLineItemCreateResponse
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("subtotal");
         }
-        set { this.Properties["subtotal"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["subtotal"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// An array of tax rates and their incurred tax amounts. Empty if no tax integration
     /// is configured.
     /// </summary>
-    public required List<Models::TaxAmount> TaxAmounts
+    public required List<TaxAmount> TaxAmounts
     {
         get
         {
             if (!this.Properties.TryGetValue("tax_amounts", out JsonElement element))
                 throw new ArgumentOutOfRangeException("tax_amounts", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<Models::TaxAmount>>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("tax_amounts");
+            return JsonSerializer.Deserialize<List<TaxAmount>>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("tax_amounts");
         }
-        set { this.Properties["tax_amounts"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["tax_amounts"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -398,14 +503,17 @@ public sealed record class InvoiceLineItemCreateResponse
         get
         {
             if (!this.Properties.TryGetValue("usage_customer_ids", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "usage_customer_ids",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["usage_customer_ids"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["usage_customer_ids"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

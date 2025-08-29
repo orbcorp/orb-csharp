@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties;
@@ -8,46 +9,47 @@ namespace Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsPropertie
 /// start of the month. Defaults to `unchanged` which keeps subscription's existing
 /// billing cycle alignment.
 /// </summary>
-[JsonConverter(typeof(EnumConverter<BillingCycleAlignment, string>))]
-public sealed record class BillingCycleAlignment(string value)
-    : IEnum<BillingCycleAlignment, string>
+[JsonConverter(typeof(BillingCycleAlignmentConverter))]
+public enum BillingCycleAlignment
 {
-    public static readonly BillingCycleAlignment Unchanged = new("unchanged");
+    Unchanged,
+    PlanChangeDate,
+    StartOfMonth,
+}
 
-    public static readonly BillingCycleAlignment PlanChangeDate = new("plan_change_date");
-
-    public static readonly BillingCycleAlignment StartOfMonth = new("start_of_month");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class BillingCycleAlignmentConverter : JsonConverter<BillingCycleAlignment>
+{
+    public override BillingCycleAlignment Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Unchanged,
-        PlanChangeDate,
-        StartOfMonth,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "unchanged" => Value.Unchanged,
-            "plan_change_date" => Value.PlanChangeDate,
-            "start_of_month" => Value.StartOfMonth,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "unchanged" => BillingCycleAlignment.Unchanged,
+            "plan_change_date" => BillingCycleAlignment.PlanChangeDate,
+            "start_of_month" => BillingCycleAlignment.StartOfMonth,
+            _ => (BillingCycleAlignment)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        BillingCycleAlignment value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static BillingCycleAlignment FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                BillingCycleAlignment.Unchanged => "unchanged",
+                BillingCycleAlignment.PlanChangeDate => "plan_change_date",
+                BillingCycleAlignment.StartOfMonth => "start_of_month",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

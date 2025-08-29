@@ -104,7 +104,7 @@ public interface ICostService
     /// with the `grouping_key` and `secondary_grouping_key` based on the matrix price
     /// definition, for each `grouping_value` and `secondary_grouping_value` available.
     /// </summary>
-    Task<CostListResponse> List(CostListParams @params);
+    Task<CostListResponse> List(CostListParams parameters);
 
     /// <summary>
     /// This endpoint is used to fetch a day-by-day snapshot of a customer's costs
@@ -205,5 +205,5 @@ public interface ICostService
     /// with the `grouping_key` and `secondary_grouping_key` based on the matrix price
     /// definition, for each `grouping_value` and `secondary_grouping_value` available.
     /// </summary>
-    Task<CostListByExternalIDResponse> ListByExternalID(CostListByExternalIDParams @params);
+    Task<CostListByExternalIDResponse> ListByExternalID(CostListByExternalIDParams parameters);
 }

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using BulkBPSProperties = Orb.Models.PriceProperties.BulkBPSProperties;
-using Models = Orb.Models;
+using Orb.Models.PriceProperties.BulkBPSProperties;
 
 namespace Orb.Models.PriceProperties;
 
@@ -21,28 +20,37 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required Models::BillableMetricTiny? BillableMetric
+    public required BillableMetricTiny? BillableMetric
     {
         get
         {
             if (!this.Properties.TryGetValue("billable_metric", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "billable_metric",
-                    "Missing required argument"
-                );
+                return null;
 
-            return JsonSerializer.Deserialize<Models::BillableMetricTiny?>(
+            return JsonSerializer.Deserialize<BillableMetricTiny?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["billable_metric"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["billable_metric"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required Models::BillingCycleConfiguration BillingCycleConfiguration
+    public required BillingCycleConfiguration BillingCycleConfiguration
     {
         get
         {
@@ -54,7 +62,7 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Models::BillingCycleConfiguration>(
+            return JsonSerializer.Deserialize<BillingCycleConfiguration>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("billing_cycle_configuration");
@@ -62,12 +70,13 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
         set
         {
             this.Properties["billing_cycle_configuration"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
 
-    public required Models::BulkBPSConfig BulkBPSConfig
+    public required BulkBPSConfig BulkBPSConfig
     {
         get
         {
@@ -77,27 +86,37 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Models::BulkBPSConfig>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("bulk_bps_config");
+            return JsonSerializer.Deserialize<BulkBPSConfig>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("bulk_bps_config");
         }
-        set { this.Properties["bulk_bps_config"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["bulk_bps_config"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required BulkBPSProperties::Cadence Cadence
+    public required ApiEnum<string, Cadence> Cadence
     {
         get
         {
             if (!this.Properties.TryGetValue("cadence", out JsonElement element))
                 throw new ArgumentOutOfRangeException("cadence", "Missing required argument");
 
-            return JsonSerializer.Deserialize<BulkBPSProperties::Cadence>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("cadence");
+            return JsonSerializer.Deserialize<ApiEnum<string, Cadence>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["cadence"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["cadence"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required double? ConversionRate
@@ -105,34 +124,37 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
         get
         {
             if (!this.Properties.TryGetValue("conversion_rate", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "conversion_rate",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["conversion_rate"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["conversion_rate"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required BulkBPSProperties::ConversionRateConfig? ConversionRateConfig
+    public required ConversionRateConfig? ConversionRateConfig
     {
         get
         {
             if (!this.Properties.TryGetValue("conversion_rate_config", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "conversion_rate_config",
-                    "Missing required argument"
-                );
+                return null;
 
-            return JsonSerializer.Deserialize<BulkBPSProperties::ConversionRateConfig?>(
+            return JsonSerializer.Deserialize<ConversionRateConfig?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
         set
         {
-            this.Properties["conversion_rate_config"] = JsonSerializer.SerializeToElement(value);
+            this.Properties["conversion_rate_config"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -145,25 +167,31 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["created_at"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required Models::Allocation? CreditAllocation
+    public required Allocation? CreditAllocation
     {
         get
         {
             if (!this.Properties.TryGetValue("credit_allocation", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "credit_allocation",
-                    "Missing required argument"
-                );
+                return null;
 
-            return JsonSerializer.Deserialize<Models::Allocation?>(
-                element,
+            return JsonSerializer.Deserialize<Allocation?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["credit_allocation"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["credit_allocation"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string Currency
@@ -176,22 +204,31 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("currency");
         }
-        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required Models::Discount2? Discount
+    public required Discount? Discount
     {
         get
         {
             if (!this.Properties.TryGetValue("discount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("discount", "Missing required argument");
+                return null;
 
-            return JsonSerializer.Deserialize<Models::Discount2?>(
-                element,
+            return JsonSerializer.Deserialize<Discount?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["discount"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["discount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string? ExternalPriceID
@@ -199,14 +236,17 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
         get
         {
             if (!this.Properties.TryGetValue("external_price_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "external_price_id",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required double? FixedPriceQuantity
@@ -214,17 +254,20 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
         get
         {
             if (!this.Properties.TryGetValue("fixed_price_quantity", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "fixed_price_quantity",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["fixed_price_quantity"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["fixed_price_quantity"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required Models::BillingCycleConfiguration? InvoicingCycleConfiguration
+    public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
         {
@@ -234,12 +277,9 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
                     out JsonElement element
                 )
             )
-                throw new ArgumentOutOfRangeException(
-                    "invoicing_cycle_configuration",
-                    "Missing required argument"
-                );
+                return null;
 
-            return JsonSerializer.Deserialize<Models::BillingCycleConfiguration?>(
+            return JsonSerializer.Deserialize<BillingCycleConfiguration?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -247,39 +287,47 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
         set
         {
             this.Properties["invoicing_cycle_configuration"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
 
-    public required Models::ItemSlim Item
+    public required ItemSlim Item
     {
         get
         {
             if (!this.Properties.TryGetValue("item", out JsonElement element))
                 throw new ArgumentOutOfRangeException("item", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Models::ItemSlim>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("item");
+            return JsonSerializer.Deserialize<ItemSlim>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("item");
         }
-        set { this.Properties["item"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["item"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required Models::Maximum? Maximum
+    public required Maximum? Maximum
     {
         get
         {
             if (!this.Properties.TryGetValue("maximum", out JsonElement element))
-                throw new ArgumentOutOfRangeException("maximum", "Missing required argument");
+                return null;
 
-            return JsonSerializer.Deserialize<Models::Maximum?>(
-                element,
+            return JsonSerializer.Deserialize<Maximum?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["maximum"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["maximum"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string? MaximumAmount
@@ -287,14 +335,17 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
         get
         {
             if (!this.Properties.TryGetValue("maximum_amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "maximum_amount",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -315,22 +366,31 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("metadata");
         }
-        set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required Models::Minimum? Minimum
+    public required Minimum? Minimum
     {
         get
         {
             if (!this.Properties.TryGetValue("minimum", out JsonElement element))
-                throw new ArgumentOutOfRangeException("minimum", "Missing required argument");
+                return null;
 
-            return JsonSerializer.Deserialize<Models::Minimum?>(
-                element,
+            return JsonSerializer.Deserialize<Minimum?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["minimum"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["minimum"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string? MinimumAmount
@@ -338,14 +398,17 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
         get
         {
             if (!this.Properties.TryGetValue("minimum_amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "minimum_amount",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public JsonElement ModelType
@@ -357,7 +420,13 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
 
             return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["model_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["model_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string Name
@@ -370,7 +439,13 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
-        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required long? PlanPhaseOrder
@@ -378,29 +453,38 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
         get
         {
             if (!this.Properties.TryGetValue("plan_phase_order", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "plan_phase_order",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required BulkBPSProperties::PriceType PriceType
+    public required ApiEnum<string, PriceType> PriceType
     {
         get
         {
             if (!this.Properties.TryGetValue("price_type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("price_type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<BulkBPSProperties::PriceType>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("price_type");
+            return JsonSerializer.Deserialize<ApiEnum<string, PriceType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["price_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["price_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -412,17 +496,20 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
         get
         {
             if (!this.Properties.TryGetValue("replaces_price_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "replaces_price_id",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["replaces_price_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["replaces_price_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public Models::DimensionalPriceConfiguration? DimensionalPriceConfiguration
+    public DimensionalPriceConfiguration? DimensionalPriceConfiguration
     {
         get
         {
@@ -434,7 +521,7 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
             )
                 return null;
 
-            return JsonSerializer.Deserialize<Models::DimensionalPriceConfiguration?>(
+            return JsonSerializer.Deserialize<DimensionalPriceConfiguration?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -442,7 +529,8 @@ public sealed record class BulkBPS : ModelBase, IFromRaw<BulkBPS>
         set
         {
             this.Properties["dimensional_price_configuration"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }

@@ -1,39 +1,44 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Plans.PlanProperties.TrialConfigProperties;
 
-[JsonConverter(typeof(EnumConverter<TrialPeriodUnit, string>))]
-public sealed record class TrialPeriodUnit(string value) : IEnum<TrialPeriodUnit, string>
+[JsonConverter(typeof(TrialPeriodUnitConverter))]
+public enum TrialPeriodUnit
 {
-    public static readonly TrialPeriodUnit Days = new("days");
+    Days,
+}
 
-    readonly string _value = value;
-
-    public enum Value
+sealed class TrialPeriodUnitConverter : JsonConverter<TrialPeriodUnit>
+{
+    public override TrialPeriodUnit Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Days,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "days" => Value.Days,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "days" => TrialPeriodUnit.Days,
+            _ => (TrialPeriodUnit)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        TrialPeriodUnit value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static TrialPeriodUnit FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                TrialPeriodUnit.Days => "days",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

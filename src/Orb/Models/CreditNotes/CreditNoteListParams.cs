@@ -20,7 +20,13 @@ public sealed record class CreditNoteListParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["created_at[gt]"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["created_at[gt]"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public DateTime? CreatedAtGte
@@ -32,7 +38,13 @@ public sealed record class CreditNoteListParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["created_at[gte]"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["created_at[gte]"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public DateTime? CreatedAtLt
@@ -44,7 +56,13 @@ public sealed record class CreditNoteListParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["created_at[lt]"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["created_at[lt]"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public DateTime? CreatedAtLte
@@ -56,7 +74,13 @@ public sealed record class CreditNoteListParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["created_at[lte]"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["created_at[lte]"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -72,7 +96,13 @@ public sealed record class CreditNoteListParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -87,7 +117,13 @@ public sealed record class CreditNoteListParams : ParamsBase
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override Uri Url(IOrbClient client)

@@ -18,7 +18,13 @@ public sealed record class ReportingConfiguration : ModelBase, IFromRaw<Reportin
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["exempt"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["exempt"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -43,7 +49,9 @@ public sealed record class ReportingConfiguration : ModelBase, IFromRaw<Reportin
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public ReportingConfiguration(bool exempt)
+        : this()
     {
         this.Exempt = exempt;
     }

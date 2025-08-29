@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties;
 
@@ -18,14 +18,17 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public JsonElement EntryType
@@ -33,14 +36,17 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
         get
         {
             if (!this.Properties.TryGetValue("entry_type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "entry_type",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("entry_type", "Missing required argument");
 
             return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["entry_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["entry_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -56,7 +62,13 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -73,7 +85,13 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["description"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["description"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -93,7 +111,13 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -128,7 +152,9 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public Decrement(double amount)
+        : this()
     {
         this.Amount = amount;
     }

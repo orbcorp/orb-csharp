@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionFetchUsageParamsProperties;
@@ -6,37 +7,41 @@ namespace Orb.Models.Subscriptions.SubscriptionFetchUsageParamsProperties;
 /// <summary>
 /// This determines the windowing of usage reporting.
 /// </summary>
-[JsonConverter(typeof(EnumConverter<Granularity, string>))]
-public sealed record class Granularity(string value) : IEnum<Granularity, string>
+[JsonConverter(typeof(GranularityConverter))]
+public enum Granularity
 {
-    public static readonly Granularity Day = new("day");
+    Day,
+}
 
-    readonly string _value = value;
-
-    public enum Value
+sealed class GranularityConverter : JsonConverter<Granularity>
+{
+    public override Granularity Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Day,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "day" => Value.Day,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "day" => Granularity.Day,
+            _ => (Granularity)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        Granularity value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static Granularity FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Granularity.Day => "day",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

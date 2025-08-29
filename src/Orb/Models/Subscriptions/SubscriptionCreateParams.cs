@@ -1,10 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using Models = Orb.Models;
-using SubscriptionCreateParamsProperties = Orb.Models.Subscriptions.SubscriptionCreateParamsProperties;
-using System = System;
+using Orb.Models.Subscriptions.SubscriptionCreateParamsProperties;
 
 namespace Orb.Models.Subscriptions;
 
@@ -206,38 +205,50 @@ public sealed record class SubscriptionCreateParams : ParamsBase
     /// Additional adjustments to be added to the subscription. (Only available for
     /// accounts that have migrated off of legacy subscription overrides)
     /// </summary>
-    public List<SubscriptionCreateParamsProperties::AddAdjustment>? AddAdjustments
+    public List<AddAdjustment>? AddAdjustments
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("add_adjustments", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<SubscriptionCreateParamsProperties::AddAdjustment>?>(
+            return JsonSerializer.Deserialize<List<AddAdjustment>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["add_adjustments"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["add_adjustments"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// Additional prices to be added to the subscription. (Only available for accounts
     /// that have migrated off of legacy subscription overrides)
     /// </summary>
-    public List<SubscriptionCreateParamsProperties::AddPrice>? AddPrices
+    public List<AddPrice>? AddPrices
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("add_prices", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<SubscriptionCreateParamsProperties::AddPrice>?>(
+            return JsonSerializer.Deserialize<List<AddPrice>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["add_prices"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["add_prices"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public bool? AlignBillingWithSubscriptionStartDate
@@ -257,7 +268,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
         set
         {
             this.BodyProperties["align_billing_with_subscription_start_date"] =
-                JsonSerializer.SerializeToElement(value);
+                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
 
@@ -275,7 +286,13 @@ public sealed record class SubscriptionCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["auto_collection"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["auto_collection"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? AwsRegion
@@ -287,10 +304,16 @@ public sealed record class SubscriptionCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["aws_region"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["aws_region"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public Models::BillingCycleAnchorConfiguration? BillingCycleAnchorConfiguration
+    public BillingCycleAnchorConfiguration? BillingCycleAnchorConfiguration
     {
         get
         {
@@ -302,7 +325,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
             )
                 return null;
 
-            return JsonSerializer.Deserialize<Models::BillingCycleAnchorConfiguration?>(
+            return JsonSerializer.Deserialize<BillingCycleAnchorConfiguration?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -310,7 +333,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
         set
         {
             this.BodyProperties["billing_cycle_anchor_configuration"] =
-                JsonSerializer.SerializeToElement(value);
+                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
 
@@ -331,7 +354,8 @@ public sealed record class SubscriptionCreateParams : ParamsBase
         set
         {
             this.BodyProperties["coupon_redemption_code"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -347,7 +371,10 @@ public sealed record class SubscriptionCreateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["credits_overage_rate"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["credits_overage_rate"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -364,7 +391,13 @@ public sealed record class SubscriptionCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? CustomerID
@@ -376,7 +409,13 @@ public sealed record class SubscriptionCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -394,23 +433,29 @@ public sealed record class SubscriptionCreateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["default_invoice_memo"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["default_invoice_memo"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
-    public System::DateTime? EndDate
+    public DateTime? EndDate
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["end_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public string? ExternalCustomerID
@@ -424,25 +469,31 @@ public sealed record class SubscriptionCreateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
-    public SubscriptionCreateParamsProperties::ExternalMarketplace? ExternalMarketplace
+    public ApiEnum<string, ExternalMarketplace>? ExternalMarketplace
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("external_marketplace", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<SubscriptionCreateParamsProperties::ExternalMarketplace?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, ExternalMarketplace>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
         set
         {
-            this.BodyProperties["external_marketplace"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["external_marketplace"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -463,7 +514,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
         set
         {
             this.BodyProperties["external_marketplace_reporting_id"] =
-                JsonSerializer.SerializeToElement(value);
+                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
 
@@ -480,7 +531,13 @@ public sealed record class SubscriptionCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["external_plan_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["external_plan_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -497,7 +554,13 @@ public sealed record class SubscriptionCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["filter"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["filter"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -514,7 +577,10 @@ public sealed record class SubscriptionCreateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["initial_phase_order"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["initial_phase_order"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -534,7 +600,10 @@ public sealed record class SubscriptionCreateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["invoicing_threshold"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["invoicing_threshold"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -555,7 +624,13 @@ public sealed record class SubscriptionCreateParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -571,7 +646,13 @@ public sealed record class SubscriptionCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -588,7 +669,13 @@ public sealed record class SubscriptionCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["net_terms"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["net_terms"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public double? PerCreditOverageAmount
@@ -608,7 +695,8 @@ public sealed record class SubscriptionCreateParams : ParamsBase
         set
         {
             this.BodyProperties["per_credit_overage_amount"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -626,7 +714,13 @@ public sealed record class SubscriptionCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["plan_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["plan_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -644,7 +738,10 @@ public sealed record class SubscriptionCreateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["plan_version_number"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["plan_version_number"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -663,28 +760,37 @@ public sealed record class SubscriptionCreateParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["price_overrides"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["price_overrides"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// Plan adjustments to be removed from the subscription. (Only available for
     /// accounts that have migrated off of legacy subscription overrides)
     /// </summary>
-    public List<SubscriptionCreateParamsProperties::RemoveAdjustment>? RemoveAdjustments
+    public List<RemoveAdjustment>? RemoveAdjustments
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("remove_adjustments", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<SubscriptionCreateParamsProperties::RemoveAdjustment>?>(
+            return JsonSerializer.Deserialize<List<RemoveAdjustment>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
         set
         {
-            this.BodyProperties["remove_adjustments"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["remove_adjustments"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -692,40 +798,49 @@ public sealed record class SubscriptionCreateParams : ParamsBase
     /// Plan prices to be removed from the subscription. (Only available for accounts
     /// that have migrated off of legacy subscription overrides)
     /// </summary>
-    public List<SubscriptionCreateParamsProperties::RemovePrice>? RemovePrices
+    public List<RemovePrice>? RemovePrices
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("remove_prices", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<SubscriptionCreateParamsProperties::RemovePrice>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
-        set { this.BodyProperties["remove_prices"] = JsonSerializer.SerializeToElement(value); }
-    }
-
-    /// <summary>
-    /// Plan adjustments to be replaced with additional adjustments on the subscription.
-    /// (Only available for accounts that have migrated off of legacy subscription overrides)
-    /// </summary>
-    public List<SubscriptionCreateParamsProperties::ReplaceAdjustment>? ReplaceAdjustments
-    {
-        get
-        {
-            if (!this.BodyProperties.TryGetValue("replace_adjustments", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<SubscriptionCreateParamsProperties::ReplaceAdjustment>?>(
+            return JsonSerializer.Deserialize<List<RemovePrice>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
         set
         {
-            this.BodyProperties["replace_adjustments"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["remove_prices"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Plan adjustments to be replaced with additional adjustments on the subscription.
+    /// (Only available for accounts that have migrated off of legacy subscription overrides)
+    /// </summary>
+    public List<ReplaceAdjustment>? ReplaceAdjustments
+    {
+        get
+        {
+            if (!this.BodyProperties.TryGetValue("replace_adjustments", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<List<ReplaceAdjustment>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.BodyProperties["replace_adjustments"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -733,34 +848,43 @@ public sealed record class SubscriptionCreateParams : ParamsBase
     /// Plan prices to be replaced with additional prices on the subscription. (Only
     /// available for accounts that have migrated off of legacy subscription overrides)
     /// </summary>
-    public List<SubscriptionCreateParamsProperties::ReplacePrice>? ReplacePrices
+    public List<ReplacePrice>? ReplacePrices
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("replace_prices", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<SubscriptionCreateParamsProperties::ReplacePrice>?>(
+            return JsonSerializer.Deserialize<List<ReplacePrice>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["replace_prices"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["replace_prices"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public System::DateTime? StartDate
+    public DateTime? StartDate
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("start_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["start_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -779,7 +903,10 @@ public sealed record class SubscriptionCreateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["trial_duration_days"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["trial_duration_days"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -802,13 +929,16 @@ public sealed record class SubscriptionCreateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["usage_customer_ids"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["usage_customer_ids"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/subscriptions")
+        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/subscriptions")
         {
             Query = this.QueryString(client),
         }.Uri;

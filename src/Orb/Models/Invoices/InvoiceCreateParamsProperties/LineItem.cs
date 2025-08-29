@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using LineItemProperties = Orb.Models.Invoices.InvoiceCreateParamsProperties.LineItemProperties;
-using Models = Orb.Models;
+using Orb.Models.Invoices.InvoiceCreateParamsProperties.LineItemProperties;
 
 namespace Orb.Models.Invoices.InvoiceCreateParamsProperties;
 
@@ -23,7 +22,13 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
 
             return JsonSerializer.Deserialize<DateOnly>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["end_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string ItemID
@@ -36,22 +41,34 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("item_id");
         }
-        set { this.Properties["item_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["item_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required LineItemProperties::ModelType ModelType
+    public required ApiEnum<string, ModelType> ModelType
     {
         get
         {
             if (!this.Properties.TryGetValue("model_type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("model_type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<LineItemProperties::ModelType>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("model_type");
+            return JsonSerializer.Deserialize<ApiEnum<string, ModelType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["model_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["model_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -67,7 +84,13 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
-        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -82,7 +105,13 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["quantity"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["quantity"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -97,22 +126,32 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
 
             return JsonSerializer.Deserialize<DateOnly>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["start_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required Models::UnitConfig UnitConfig
+    public required UnitConfig UnitConfig
     {
         get
         {
             if (!this.Properties.TryGetValue("unit_config", out JsonElement element))
                 throw new ArgumentOutOfRangeException("unit_config", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Models::UnitConfig>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("unit_config");
+            return JsonSerializer.Deserialize<UnitConfig>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("unit_config");
         }
-        set { this.Properties["unit_config"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["unit_config"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

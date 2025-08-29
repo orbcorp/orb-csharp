@@ -1,47 +1,46 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.SubscriptionChanges.SubscriptionChangeRetrieveResponseProperties;
 
-[JsonConverter(typeof(EnumConverter<Status, string>))]
-public sealed record class Status(string value) : IEnum<Status, string>
+[JsonConverter(typeof(StatusConverter))]
+public enum Status
 {
-    public static readonly Status Pending = new("pending");
+    Pending,
+    Applied,
+    Cancelled,
+}
 
-    public static readonly Status Applied = new("applied");
-
-    public static readonly Status Cancelled = new("cancelled");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class StatusConverter : JsonConverter<Status>
+{
+    public override Status Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Pending,
-        Applied,
-        Cancelled,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "pending" => Value.Pending,
-            "applied" => Value.Applied,
-            "cancelled" => Value.Cancelled,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "pending" => Status.Pending,
+            "applied" => Status.Applied,
+            "cancelled" => Status.Cancelled,
+            _ => (Status)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(Utf8JsonWriter writer, Status value, JsonSerializerOptions options)
     {
-        Known();
-    }
-
-    public static Status FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Status.Pending => "pending",
+                Status.Applied => "applied",
+                Status.Cancelled => "cancelled",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

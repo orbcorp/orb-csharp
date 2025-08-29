@@ -13,31 +13,37 @@ The REST API documentation can be found on [docs.withorb.com](https://docs.witho
 
 ## Installation
 
-### Dotnet
-
 ```bash
-dotnet add reference /path/to/orb-csharp/src/Orb/
+git clone git@github.com:orbcorp/orb-csharp.git
+dotnet add reference orb-csharp/src/Orb
 ```
+
+## Requirements
+
+This library requires .NET 8 or later.
+
+> [!NOTE]
+> The library is currently in **beta**. The requirements will be lowered in the future.
 
 ## Usage
 
 See the [`examples`](examples) directory for complete and runnable examples.
 
-```C#
+```csharp
+using System;
 using Orb;
 using Orb.Models.Customers;
-using System;
 
 // Configured using the ORB_API_KEY, ORB_WEBHOOK_SECRET and ORB_BASE_URL environment variables
 OrbClient client = new();
 
-CustomerCreateParams param = new()
+CustomerCreateParams parameters = new()
 {
     Email = "example-customer@withorb.com",
     Name = "My Customer",
 };
 
-var customer = await client.Customers.Create(param);
+var customer = await client.Customers.Create(parameters);
 
 Console.WriteLine(customer);
 ```
@@ -46,7 +52,7 @@ Console.WriteLine(customer);
 
 Configure the client using environment variables:
 
-```C#
+```csharp
 using Orb;
 
 // Configured using the ORB_API_KEY, ORB_WEBHOOK_SECRET and ORB_BASE_URL environment variables
@@ -55,10 +61,35 @@ OrbClient client = new();
 
 Or manually:
 
-```C#
+```csharp
 using Orb;
 
 OrbClient client = new() { APIKey = "My API Key" };
 ```
 
-Alternatively, you can use a combination of the two approaches.
+Or using a combination of the two approaches.
+
+See this table for the available options:
+
+| Property        | Environment variable | Required | Default value                  |
+| --------------- | -------------------- | -------- | ------------------------------ |
+| `APIKey`        | `ORB_API_KEY`        | true     | -                              |
+| `WebhookSecret` | `ORB_WEBHOOK_SECRET` | false    | -                              |
+| `BaseUrl`       | `ORB_BASE_URL`       | true     | `"https://api.withorb.com/v1"` |
+
+## Requests and responses
+
+To send a request to the Orb API, build an instance of some `Params` class and pass it to the corresponding client method. When the response is received, it will be deserialized into an instance of a C# class.
+
+For example, `client.Customers.Create` should be called with an instance of `CustomerCreateParams`, and it will return an instance of `Task<Customer>`.
+
+## Semantic versioning
+
+This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
+
+1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_
+2. Changes that we do not expect to impact the vast majority of users in practice.
+
+We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
+
+We are keen for your feedback; please open an [issue](https://www.github.com/orbcorp/orb-csharp/issues) with questions, bugs, or suggestions.

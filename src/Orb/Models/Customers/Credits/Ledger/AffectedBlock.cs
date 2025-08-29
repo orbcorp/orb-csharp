@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
@@ -14,30 +14,36 @@ public sealed record class AffectedBlock : ModelBase, IFromRaw<AffectedBlock>
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("id");
+                ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required System::DateTime? ExpiryDate
+    public required DateTime? ExpiryDate
     {
         get
         {
             if (!this.Properties.TryGetValue("expiry_date", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "expiry_date",
-                    "Missing required argument"
-                );
+                return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["expiry_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["expiry_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string? PerUnitCostBasis
@@ -45,14 +51,17 @@ public sealed record class AffectedBlock : ModelBase, IFromRaw<AffectedBlock>
         get
         {
             if (!this.Properties.TryGetValue("per_unit_cost_basis", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "per_unit_cost_basis",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["per_unit_cost_basis"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["per_unit_cost_basis"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using EditProperties = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.EditProperties;
-using System = System;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties;
 
@@ -18,15 +18,21 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
         get
         {
             if (!this.Properties.TryGetValue("price_interval_id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "price_interval_id",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("price_interval_id");
+                ?? throw new ArgumentNullException("price_interval_id");
         }
-        set { this.Properties["price_interval_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["price_interval_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -43,7 +49,13 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["billing_cycle_day"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["billing_cycle_day"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -62,7 +74,13 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["end_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -79,7 +97,13 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["filter"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["filter"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -87,7 +111,7 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
     /// Note that this list will overwrite all existing fixed fee quantity transitions
     /// on the price interval.
     /// </summary>
-    public List<EditProperties::FixedFeeQuantityTransition1>? FixedFeeQuantityTransitions
+    public List<EditProperties::FixedFeeQuantityTransition>? FixedFeeQuantityTransitions
     {
         get
         {
@@ -99,7 +123,7 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
             )
                 return null;
 
-            return JsonSerializer.Deserialize<List<EditProperties::FixedFeeQuantityTransition1>?>(
+            return JsonSerializer.Deserialize<List<EditProperties::FixedFeeQuantityTransition>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -107,7 +131,8 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
         set
         {
             this.Properties["fixed_fee_quantity_transitions"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -128,7 +153,13 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["start_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -148,7 +179,13 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["usage_customer_ids"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["usage_customer_ids"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -183,7 +220,9 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public Edit(string priceIntervalID)
+        : this()
     {
         this.PriceIntervalID = priceIntervalID;
     }

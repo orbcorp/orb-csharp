@@ -23,9 +23,6 @@ public class CreditNoteServiceTest : TestBase
                     },
                 ],
                 Reason = Reason.Duplicate,
-                EndDate = DateOnly.Parse("2023-09-22"),
-                Memo = "An optional memo for my credit note.",
-                StartDate = DateOnly.Parse("2023-09-22"),
             }
         );
         creditNote.Validate();
@@ -34,17 +31,7 @@ public class CreditNoteServiceTest : TestBase
     [Fact]
     public async Task List_Works()
     {
-        var page = await this.client.CreditNotes.List(
-            new()
-            {
-                CreatedAtGt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtGte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtLt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtLte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                Cursor = "cursor",
-                Limit = 1,
-            }
-        );
+        var page = await this.client.CreditNotes.List();
         page.Validate();
     }
 

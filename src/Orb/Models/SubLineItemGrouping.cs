@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models;
 
@@ -14,12 +14,18 @@ public sealed record class SubLineItemGrouping : ModelBase, IFromRaw<SubLineItem
         get
         {
             if (!this.Properties.TryGetValue("key", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("key", "Missing required argument");
+                throw new ArgumentOutOfRangeException("key", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("key");
+                ?? throw new ArgumentNullException("key");
         }
-        set { this.Properties["key"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["key"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -30,11 +36,17 @@ public sealed record class SubLineItemGrouping : ModelBase, IFromRaw<SubLineItem
         get
         {
             if (!this.Properties.TryGetValue("value", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("value", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["value"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["value"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

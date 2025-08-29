@@ -1,13 +1,12 @@
-using System.Text.Json.Serialization;
+using Models = Orb.Models;
 
 namespace Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceVariants;
 
-[JsonConverter(typeof(VariantConverter<NewPlanUnitPriceVariant, NewPlanUnitPrice>))]
-public sealed record class NewPlanUnitPriceVariant(NewPlanUnitPrice Value)
-    : Price1,
-        IVariant<NewPlanUnitPriceVariant, NewPlanUnitPrice>
+public sealed record class NewPlanUnitPrice(Models::NewPlanUnitPrice Value)
+    : Price,
+        IVariant<NewPlanUnitPrice, Models::NewPlanUnitPrice>
 {
-    public static NewPlanUnitPriceVariant From(NewPlanUnitPrice value)
+    public static NewPlanUnitPrice From(Models::NewPlanUnitPrice value)
     {
         return new(value);
     }
@@ -18,12 +17,11 @@ public sealed record class NewPlanUnitPriceVariant(NewPlanUnitPrice Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewPlanPackagePriceVariant, NewPlanPackagePrice>))]
-public sealed record class NewPlanPackagePriceVariant(NewPlanPackagePrice Value)
-    : Price1,
-        IVariant<NewPlanPackagePriceVariant, NewPlanPackagePrice>
+public sealed record class NewPlanPackagePrice(Models::NewPlanPackagePrice Value)
+    : Price,
+        IVariant<NewPlanPackagePrice, Models::NewPlanPackagePrice>
 {
-    public static NewPlanPackagePriceVariant From(NewPlanPackagePrice value)
+    public static NewPlanPackagePrice From(Models::NewPlanPackagePrice value)
     {
         return new(value);
     }
@@ -34,12 +32,11 @@ public sealed record class NewPlanPackagePriceVariant(NewPlanPackagePrice Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewPlanMatrixPriceVariant, NewPlanMatrixPrice>))]
-public sealed record class NewPlanMatrixPriceVariant(NewPlanMatrixPrice Value)
-    : Price1,
-        IVariant<NewPlanMatrixPriceVariant, NewPlanMatrixPrice>
+public sealed record class NewPlanMatrixPrice(Models::NewPlanMatrixPrice Value)
+    : Price,
+        IVariant<NewPlanMatrixPrice, Models::NewPlanMatrixPrice>
 {
-    public static NewPlanMatrixPriceVariant From(NewPlanMatrixPrice value)
+    public static NewPlanMatrixPrice From(Models::NewPlanMatrixPrice value)
     {
         return new(value);
     }
@@ -50,12 +47,11 @@ public sealed record class NewPlanMatrixPriceVariant(NewPlanMatrixPrice Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewPlanTieredPriceVariant, NewPlanTieredPrice>))]
-public sealed record class NewPlanTieredPriceVariant(NewPlanTieredPrice Value)
-    : Price1,
-        IVariant<NewPlanTieredPriceVariant, NewPlanTieredPrice>
+public sealed record class NewPlanTieredPrice(Models::NewPlanTieredPrice Value)
+    : Price,
+        IVariant<NewPlanTieredPrice, Models::NewPlanTieredPrice>
 {
-    public static NewPlanTieredPriceVariant From(NewPlanTieredPrice value)
+    public static NewPlanTieredPrice From(Models::NewPlanTieredPrice value)
     {
         return new(value);
     }
@@ -66,12 +62,11 @@ public sealed record class NewPlanTieredPriceVariant(NewPlanTieredPrice Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewPlanTieredBPSPriceVariant, NewPlanTieredBPSPrice>))]
-public sealed record class NewPlanTieredBPSPriceVariant(NewPlanTieredBPSPrice Value)
-    : Price1,
-        IVariant<NewPlanTieredBPSPriceVariant, NewPlanTieredBPSPrice>
+public sealed record class NewPlanTieredBPSPrice(Models::NewPlanTieredBPSPrice Value)
+    : Price,
+        IVariant<NewPlanTieredBPSPrice, Models::NewPlanTieredBPSPrice>
 {
-    public static NewPlanTieredBPSPriceVariant From(NewPlanTieredBPSPrice value)
+    public static NewPlanTieredBPSPrice From(Models::NewPlanTieredBPSPrice value)
     {
         return new(value);
     }
@@ -82,12 +77,11 @@ public sealed record class NewPlanTieredBPSPriceVariant(NewPlanTieredBPSPrice Va
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewPlanBPSPriceVariant, NewPlanBPSPrice>))]
-public sealed record class NewPlanBPSPriceVariant(NewPlanBPSPrice Value)
-    : Price1,
-        IVariant<NewPlanBPSPriceVariant, NewPlanBPSPrice>
+public sealed record class NewPlanBPSPrice(Models::NewPlanBPSPrice Value)
+    : Price,
+        IVariant<NewPlanBPSPrice, Models::NewPlanBPSPrice>
 {
-    public static NewPlanBPSPriceVariant From(NewPlanBPSPrice value)
+    public static NewPlanBPSPrice From(Models::NewPlanBPSPrice value)
     {
         return new(value);
     }
@@ -98,12 +92,11 @@ public sealed record class NewPlanBPSPriceVariant(NewPlanBPSPrice Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewPlanBulkBPSPriceVariant, NewPlanBulkBPSPrice>))]
-public sealed record class NewPlanBulkBPSPriceVariant(NewPlanBulkBPSPrice Value)
-    : Price1,
-        IVariant<NewPlanBulkBPSPriceVariant, NewPlanBulkBPSPrice>
+public sealed record class NewPlanBulkBPSPrice(Models::NewPlanBulkBPSPrice Value)
+    : Price,
+        IVariant<NewPlanBulkBPSPrice, Models::NewPlanBulkBPSPrice>
 {
-    public static NewPlanBulkBPSPriceVariant From(NewPlanBulkBPSPrice value)
+    public static NewPlanBulkBPSPrice From(Models::NewPlanBulkBPSPrice value)
     {
         return new(value);
     }
@@ -114,12 +107,11 @@ public sealed record class NewPlanBulkBPSPriceVariant(NewPlanBulkBPSPrice Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewPlanBulkPriceVariant, NewPlanBulkPrice>))]
-public sealed record class NewPlanBulkPriceVariant(NewPlanBulkPrice Value)
-    : Price1,
-        IVariant<NewPlanBulkPriceVariant, NewPlanBulkPrice>
+public sealed record class NewPlanBulkPrice(Models::NewPlanBulkPrice Value)
+    : Price,
+        IVariant<NewPlanBulkPrice, Models::NewPlanBulkPrice>
 {
-    public static NewPlanBulkPriceVariant From(NewPlanBulkPrice value)
+    public static NewPlanBulkPrice From(Models::NewPlanBulkPrice value)
     {
         return new(value);
     }
@@ -130,18 +122,12 @@ public sealed record class NewPlanBulkPriceVariant(NewPlanBulkPrice Value)
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewPlanThresholdTotalAmountPriceVariant,
-        NewPlanThresholdTotalAmountPrice
-    >)
-)]
-public sealed record class NewPlanThresholdTotalAmountPriceVariant(
-    NewPlanThresholdTotalAmountPrice Value
-) : Price1, IVariant<NewPlanThresholdTotalAmountPriceVariant, NewPlanThresholdTotalAmountPrice>
+public sealed record class NewPlanThresholdTotalAmountPrice(
+    Models::NewPlanThresholdTotalAmountPrice Value
+) : Price, IVariant<NewPlanThresholdTotalAmountPrice, Models::NewPlanThresholdTotalAmountPrice>
 {
-    public static NewPlanThresholdTotalAmountPriceVariant From(
-        NewPlanThresholdTotalAmountPrice value
+    public static NewPlanThresholdTotalAmountPrice From(
+        Models::NewPlanThresholdTotalAmountPrice value
     )
     {
         return new(value);
@@ -153,14 +139,11 @@ public sealed record class NewPlanThresholdTotalAmountPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<NewPlanTieredPackagePriceVariant, NewPlanTieredPackagePrice>)
-)]
-public sealed record class NewPlanTieredPackagePriceVariant(NewPlanTieredPackagePrice Value)
-    : Price1,
-        IVariant<NewPlanTieredPackagePriceVariant, NewPlanTieredPackagePrice>
+public sealed record class NewPlanTieredPackagePrice(Models::NewPlanTieredPackagePrice Value)
+    : Price,
+        IVariant<NewPlanTieredPackagePrice, Models::NewPlanTieredPackagePrice>
 {
-    public static NewPlanTieredPackagePriceVariant From(NewPlanTieredPackagePrice value)
+    public static NewPlanTieredPackagePrice From(Models::NewPlanTieredPackagePrice value)
     {
         return new(value);
     }
@@ -171,14 +154,11 @@ public sealed record class NewPlanTieredPackagePriceVariant(NewPlanTieredPackage
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<NewPlanTieredWithMinimumPriceVariant, NewPlanTieredWithMinimumPrice>)
-)]
-public sealed record class NewPlanTieredWithMinimumPriceVariant(NewPlanTieredWithMinimumPrice Value)
-    : Price1,
-        IVariant<NewPlanTieredWithMinimumPriceVariant, NewPlanTieredWithMinimumPrice>
+public sealed record class NewPlanTieredWithMinimumPrice(
+    Models::NewPlanTieredWithMinimumPrice Value
+) : Price, IVariant<NewPlanTieredWithMinimumPrice, Models::NewPlanTieredWithMinimumPrice>
 {
-    public static NewPlanTieredWithMinimumPriceVariant From(NewPlanTieredWithMinimumPrice value)
+    public static NewPlanTieredWithMinimumPrice From(Models::NewPlanTieredWithMinimumPrice value)
     {
         return new(value);
     }
@@ -189,14 +169,11 @@ public sealed record class NewPlanTieredWithMinimumPriceVariant(NewPlanTieredWit
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<NewPlanUnitWithPercentPriceVariant, NewPlanUnitWithPercentPrice>)
-)]
-public sealed record class NewPlanUnitWithPercentPriceVariant(NewPlanUnitWithPercentPrice Value)
-    : Price1,
-        IVariant<NewPlanUnitWithPercentPriceVariant, NewPlanUnitWithPercentPrice>
+public sealed record class NewPlanUnitWithPercentPrice(Models::NewPlanUnitWithPercentPrice Value)
+    : Price,
+        IVariant<NewPlanUnitWithPercentPrice, Models::NewPlanUnitWithPercentPrice>
 {
-    public static NewPlanUnitWithPercentPriceVariant From(NewPlanUnitWithPercentPrice value)
+    public static NewPlanUnitWithPercentPrice From(Models::NewPlanUnitWithPercentPrice value)
     {
         return new(value);
     }
@@ -207,18 +184,12 @@ public sealed record class NewPlanUnitWithPercentPriceVariant(NewPlanUnitWithPer
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewPlanPackageWithAllocationPriceVariant,
-        NewPlanPackageWithAllocationPrice
-    >)
-)]
-public sealed record class NewPlanPackageWithAllocationPriceVariant(
-    NewPlanPackageWithAllocationPrice Value
-) : Price1, IVariant<NewPlanPackageWithAllocationPriceVariant, NewPlanPackageWithAllocationPrice>
+public sealed record class NewPlanPackageWithAllocationPrice(
+    Models::NewPlanPackageWithAllocationPrice Value
+) : Price, IVariant<NewPlanPackageWithAllocationPrice, Models::NewPlanPackageWithAllocationPrice>
 {
-    public static NewPlanPackageWithAllocationPriceVariant From(
-        NewPlanPackageWithAllocationPrice value
+    public static NewPlanPackageWithAllocationPrice From(
+        Models::NewPlanPackageWithAllocationPrice value
     )
     {
         return new(value);
@@ -230,14 +201,11 @@ public sealed record class NewPlanPackageWithAllocationPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<NewPlanTierWithProrationPriceVariant, NewPlanTierWithProrationPrice>)
-)]
-public sealed record class NewPlanTierWithProrationPriceVariant(NewPlanTierWithProrationPrice Value)
-    : Price1,
-        IVariant<NewPlanTierWithProrationPriceVariant, NewPlanTierWithProrationPrice>
+public sealed record class NewPlanTierWithProrationPrice(
+    Models::NewPlanTierWithProrationPrice Value
+) : Price, IVariant<NewPlanTierWithProrationPrice, Models::NewPlanTierWithProrationPrice>
 {
-    public static NewPlanTierWithProrationPriceVariant From(NewPlanTierWithProrationPrice value)
+    public static NewPlanTierWithProrationPrice From(Models::NewPlanTierWithProrationPrice value)
     {
         return new(value);
     }
@@ -248,14 +216,11 @@ public sealed record class NewPlanTierWithProrationPriceVariant(NewPlanTierWithP
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<NewPlanUnitWithProrationPriceVariant, NewPlanUnitWithProrationPrice>)
-)]
-public sealed record class NewPlanUnitWithProrationPriceVariant(NewPlanUnitWithProrationPrice Value)
-    : Price1,
-        IVariant<NewPlanUnitWithProrationPriceVariant, NewPlanUnitWithProrationPrice>
+public sealed record class NewPlanUnitWithProrationPrice(
+    Models::NewPlanUnitWithProrationPrice Value
+) : Price, IVariant<NewPlanUnitWithProrationPrice, Models::NewPlanUnitWithProrationPrice>
 {
-    public static NewPlanUnitWithProrationPriceVariant From(NewPlanUnitWithProrationPrice value)
+    public static NewPlanUnitWithProrationPrice From(Models::NewPlanUnitWithProrationPrice value)
     {
         return new(value);
     }
@@ -266,14 +231,11 @@ public sealed record class NewPlanUnitWithProrationPriceVariant(NewPlanUnitWithP
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<NewPlanGroupedAllocationPriceVariant, NewPlanGroupedAllocationPrice>)
-)]
-public sealed record class NewPlanGroupedAllocationPriceVariant(NewPlanGroupedAllocationPrice Value)
-    : Price1,
-        IVariant<NewPlanGroupedAllocationPriceVariant, NewPlanGroupedAllocationPrice>
+public sealed record class NewPlanGroupedAllocationPrice(
+    Models::NewPlanGroupedAllocationPrice Value
+) : Price, IVariant<NewPlanGroupedAllocationPrice, Models::NewPlanGroupedAllocationPrice>
 {
-    public static NewPlanGroupedAllocationPriceVariant From(NewPlanGroupedAllocationPrice value)
+    public static NewPlanGroupedAllocationPrice From(Models::NewPlanGroupedAllocationPrice value)
     {
         return new(value);
     }
@@ -284,23 +246,17 @@ public sealed record class NewPlanGroupedAllocationPriceVariant(NewPlanGroupedAl
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewPlanGroupedWithProratedMinimumPriceVariant,
-        NewPlanGroupedWithProratedMinimumPrice
-    >)
-)]
-public sealed record class NewPlanGroupedWithProratedMinimumPriceVariant(
-    NewPlanGroupedWithProratedMinimumPrice Value
+public sealed record class NewPlanGroupedWithProratedMinimumPrice(
+    Models::NewPlanGroupedWithProratedMinimumPrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewPlanGroupedWithProratedMinimumPriceVariant,
-            NewPlanGroupedWithProratedMinimumPrice
+            NewPlanGroupedWithProratedMinimumPrice,
+            Models::NewPlanGroupedWithProratedMinimumPrice
         >
 {
-    public static NewPlanGroupedWithProratedMinimumPriceVariant From(
-        NewPlanGroupedWithProratedMinimumPrice value
+    public static NewPlanGroupedWithProratedMinimumPrice From(
+        Models::NewPlanGroupedWithProratedMinimumPrice value
     )
     {
         return new(value);
@@ -312,23 +268,17 @@ public sealed record class NewPlanGroupedWithProratedMinimumPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewPlanGroupedWithMeteredMinimumPriceVariant,
-        NewPlanGroupedWithMeteredMinimumPrice
-    >)
-)]
-public sealed record class NewPlanGroupedWithMeteredMinimumPriceVariant(
-    NewPlanGroupedWithMeteredMinimumPrice Value
+public sealed record class NewPlanGroupedWithMeteredMinimumPrice(
+    Models::NewPlanGroupedWithMeteredMinimumPrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewPlanGroupedWithMeteredMinimumPriceVariant,
-            NewPlanGroupedWithMeteredMinimumPrice
+            NewPlanGroupedWithMeteredMinimumPrice,
+            Models::NewPlanGroupedWithMeteredMinimumPrice
         >
 {
-    public static NewPlanGroupedWithMeteredMinimumPriceVariant From(
-        NewPlanGroupedWithMeteredMinimumPrice value
+    public static NewPlanGroupedWithMeteredMinimumPrice From(
+        Models::NewPlanGroupedWithMeteredMinimumPrice value
     )
     {
         return new(value);
@@ -340,18 +290,12 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewPlanMatrixWithDisplayNamePriceVariant,
-        NewPlanMatrixWithDisplayNamePrice
-    >)
-)]
-public sealed record class NewPlanMatrixWithDisplayNamePriceVariant(
-    NewPlanMatrixWithDisplayNamePrice Value
-) : Price1, IVariant<NewPlanMatrixWithDisplayNamePriceVariant, NewPlanMatrixWithDisplayNamePrice>
+public sealed record class NewPlanMatrixWithDisplayNamePrice(
+    Models::NewPlanMatrixWithDisplayNamePrice Value
+) : Price, IVariant<NewPlanMatrixWithDisplayNamePrice, Models::NewPlanMatrixWithDisplayNamePrice>
 {
-    public static NewPlanMatrixWithDisplayNamePriceVariant From(
-        NewPlanMatrixWithDisplayNamePrice value
+    public static NewPlanMatrixWithDisplayNamePrice From(
+        Models::NewPlanMatrixWithDisplayNamePrice value
     )
     {
         return new(value);
@@ -363,14 +307,11 @@ public sealed record class NewPlanMatrixWithDisplayNamePriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<NewPlanBulkWithProrationPriceVariant, NewPlanBulkWithProrationPrice>)
-)]
-public sealed record class NewPlanBulkWithProrationPriceVariant(NewPlanBulkWithProrationPrice Value)
-    : Price1,
-        IVariant<NewPlanBulkWithProrationPriceVariant, NewPlanBulkWithProrationPrice>
+public sealed record class NewPlanBulkWithProrationPrice(
+    Models::NewPlanBulkWithProrationPrice Value
+) : Price, IVariant<NewPlanBulkWithProrationPrice, Models::NewPlanBulkWithProrationPrice>
 {
-    public static NewPlanBulkWithProrationPriceVariant From(NewPlanBulkWithProrationPrice value)
+    public static NewPlanBulkWithProrationPrice From(Models::NewPlanBulkWithProrationPrice value)
     {
         return new(value);
     }
@@ -381,18 +322,12 @@ public sealed record class NewPlanBulkWithProrationPriceVariant(NewPlanBulkWithP
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewPlanGroupedTieredPackagePriceVariant,
-        NewPlanGroupedTieredPackagePrice
-    >)
-)]
-public sealed record class NewPlanGroupedTieredPackagePriceVariant(
-    NewPlanGroupedTieredPackagePrice Value
-) : Price1, IVariant<NewPlanGroupedTieredPackagePriceVariant, NewPlanGroupedTieredPackagePrice>
+public sealed record class NewPlanGroupedTieredPackagePrice(
+    Models::NewPlanGroupedTieredPackagePrice Value
+) : Price, IVariant<NewPlanGroupedTieredPackagePrice, Models::NewPlanGroupedTieredPackagePrice>
 {
-    public static NewPlanGroupedTieredPackagePriceVariant From(
-        NewPlanGroupedTieredPackagePrice value
+    public static NewPlanGroupedTieredPackagePrice From(
+        Models::NewPlanGroupedTieredPackagePrice value
     )
     {
         return new(value);
@@ -404,18 +339,12 @@ public sealed record class NewPlanGroupedTieredPackagePriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewPlanMaxGroupTieredPackagePriceVariant,
-        NewPlanMaxGroupTieredPackagePrice
-    >)
-)]
-public sealed record class NewPlanMaxGroupTieredPackagePriceVariant(
-    NewPlanMaxGroupTieredPackagePrice Value
-) : Price1, IVariant<NewPlanMaxGroupTieredPackagePriceVariant, NewPlanMaxGroupTieredPackagePrice>
+public sealed record class NewPlanMaxGroupTieredPackagePrice(
+    Models::NewPlanMaxGroupTieredPackagePrice Value
+) : Price, IVariant<NewPlanMaxGroupTieredPackagePrice, Models::NewPlanMaxGroupTieredPackagePrice>
 {
-    public static NewPlanMaxGroupTieredPackagePriceVariant From(
-        NewPlanMaxGroupTieredPackagePrice value
+    public static NewPlanMaxGroupTieredPackagePrice From(
+        Models::NewPlanMaxGroupTieredPackagePrice value
     )
     {
         return new(value);
@@ -427,23 +356,17 @@ public sealed record class NewPlanMaxGroupTieredPackagePriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewPlanScalableMatrixWithUnitPricingPriceVariant,
-        NewPlanScalableMatrixWithUnitPricingPrice
-    >)
-)]
-public sealed record class NewPlanScalableMatrixWithUnitPricingPriceVariant(
-    NewPlanScalableMatrixWithUnitPricingPrice Value
+public sealed record class NewPlanScalableMatrixWithUnitPricingPrice(
+    Models::NewPlanScalableMatrixWithUnitPricingPrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewPlanScalableMatrixWithUnitPricingPriceVariant,
-            NewPlanScalableMatrixWithUnitPricingPrice
+            NewPlanScalableMatrixWithUnitPricingPrice,
+            Models::NewPlanScalableMatrixWithUnitPricingPrice
         >
 {
-    public static NewPlanScalableMatrixWithUnitPricingPriceVariant From(
-        NewPlanScalableMatrixWithUnitPricingPrice value
+    public static NewPlanScalableMatrixWithUnitPricingPrice From(
+        Models::NewPlanScalableMatrixWithUnitPricingPrice value
     )
     {
         return new(value);
@@ -455,23 +378,17 @@ public sealed record class NewPlanScalableMatrixWithUnitPricingPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewPlanScalableMatrixWithTieredPricingPriceVariant,
-        NewPlanScalableMatrixWithTieredPricingPrice
-    >)
-)]
-public sealed record class NewPlanScalableMatrixWithTieredPricingPriceVariant(
-    NewPlanScalableMatrixWithTieredPricingPrice Value
+public sealed record class NewPlanScalableMatrixWithTieredPricingPrice(
+    Models::NewPlanScalableMatrixWithTieredPricingPrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewPlanScalableMatrixWithTieredPricingPriceVariant,
-            NewPlanScalableMatrixWithTieredPricingPrice
+            NewPlanScalableMatrixWithTieredPricingPrice,
+            Models::NewPlanScalableMatrixWithTieredPricingPrice
         >
 {
-    public static NewPlanScalableMatrixWithTieredPricingPriceVariant From(
-        NewPlanScalableMatrixWithTieredPricingPrice value
+    public static NewPlanScalableMatrixWithTieredPricingPrice From(
+        Models::NewPlanScalableMatrixWithTieredPricingPrice value
     )
     {
         return new(value);
@@ -483,18 +400,12 @@ public sealed record class NewPlanScalableMatrixWithTieredPricingPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewPlanCumulativeGroupedBulkPriceVariant,
-        NewPlanCumulativeGroupedBulkPrice
-    >)
-)]
-public sealed record class NewPlanCumulativeGroupedBulkPriceVariant(
-    NewPlanCumulativeGroupedBulkPrice Value
-) : Price1, IVariant<NewPlanCumulativeGroupedBulkPriceVariant, NewPlanCumulativeGroupedBulkPrice>
+public sealed record class NewPlanCumulativeGroupedBulkPrice(
+    Models::NewPlanCumulativeGroupedBulkPrice Value
+) : Price, IVariant<NewPlanCumulativeGroupedBulkPrice, Models::NewPlanCumulativeGroupedBulkPrice>
 {
-    public static NewPlanCumulativeGroupedBulkPriceVariant From(
-        NewPlanCumulativeGroupedBulkPrice value
+    public static NewPlanCumulativeGroupedBulkPrice From(
+        Models::NewPlanCumulativeGroupedBulkPrice value
     )
     {
         return new(value);
@@ -506,20 +417,14 @@ public sealed record class NewPlanCumulativeGroupedBulkPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewPlanTieredPackageWithMinimumPriceVariant,
-        NewPlanTieredPackageWithMinimumPrice
-    >)
-)]
-public sealed record class NewPlanTieredPackageWithMinimumPriceVariant(
-    NewPlanTieredPackageWithMinimumPrice Value
+public sealed record class NewPlanTieredPackageWithMinimumPrice(
+    Models::NewPlanTieredPackageWithMinimumPrice Value
 )
-    : Price1,
-        IVariant<NewPlanTieredPackageWithMinimumPriceVariant, NewPlanTieredPackageWithMinimumPrice>
+    : Price,
+        IVariant<NewPlanTieredPackageWithMinimumPrice, Models::NewPlanTieredPackageWithMinimumPrice>
 {
-    public static NewPlanTieredPackageWithMinimumPriceVariant From(
-        NewPlanTieredPackageWithMinimumPrice value
+    public static NewPlanTieredPackageWithMinimumPrice From(
+        Models::NewPlanTieredPackageWithMinimumPrice value
     )
     {
         return new(value);
@@ -531,18 +436,12 @@ public sealed record class NewPlanTieredPackageWithMinimumPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewPlanMatrixWithAllocationPriceVariant,
-        NewPlanMatrixWithAllocationPrice
-    >)
-)]
-public sealed record class NewPlanMatrixWithAllocationPriceVariant(
-    NewPlanMatrixWithAllocationPrice Value
-) : Price1, IVariant<NewPlanMatrixWithAllocationPriceVariant, NewPlanMatrixWithAllocationPrice>
+public sealed record class NewPlanMatrixWithAllocationPrice(
+    Models::NewPlanMatrixWithAllocationPrice Value
+) : Price, IVariant<NewPlanMatrixWithAllocationPrice, Models::NewPlanMatrixWithAllocationPrice>
 {
-    public static NewPlanMatrixWithAllocationPriceVariant From(
-        NewPlanMatrixWithAllocationPrice value
+    public static NewPlanMatrixWithAllocationPrice From(
+        Models::NewPlanMatrixWithAllocationPrice value
     )
     {
         return new(value);
@@ -554,14 +453,11 @@ public sealed record class NewPlanMatrixWithAllocationPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<NewPlanGroupedTieredPriceVariant, NewPlanGroupedTieredPrice>)
-)]
-public sealed record class NewPlanGroupedTieredPriceVariant(NewPlanGroupedTieredPrice Value)
-    : Price1,
-        IVariant<NewPlanGroupedTieredPriceVariant, NewPlanGroupedTieredPrice>
+public sealed record class NewPlanGroupedTieredPrice(Models::NewPlanGroupedTieredPrice Value)
+    : Price,
+        IVariant<NewPlanGroupedTieredPrice, Models::NewPlanGroupedTieredPrice>
 {
-    public static NewPlanGroupedTieredPriceVariant From(NewPlanGroupedTieredPrice value)
+    public static NewPlanGroupedTieredPrice From(Models::NewPlanGroupedTieredPrice value)
     {
         return new(value);
     }

@@ -1,6 +1,6 @@
+using System;
 using System.Net.Http;
 using System.Text.Json;
-using System = System;
 
 namespace Orb.Models.Subscriptions;
 
@@ -26,7 +26,13 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -41,72 +47,90 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public System::DateTime? StartDateGt
+    public DateTime? StartDateGt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("start_date[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.QueryProperties["start_date[gt]"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["start_date[gt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public System::DateTime? StartDateGte
+    public DateTime? StartDateGte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("start_date[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.QueryProperties["start_date[gte]"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["start_date[gte]"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public System::DateTime? StartDateLt
+    public DateTime? StartDateLt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("start_date[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.QueryProperties["start_date[lt]"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["start_date[lt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public System::DateTime? StartDateLte
+    public DateTime? StartDateLte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("start_date[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.QueryProperties["start_date[lte]"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["start_date[lte]"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscriptions/{0}/schedule", this.SubscriptionID)
         )

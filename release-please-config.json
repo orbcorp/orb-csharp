@@ -61,6 +61,11 @@
   ],
   "release-type": "simple",
   "extra-files": [
-    "README.md"
+    "README.md",
+    {
+      "type": "xml",
+      "path": "src/Orb/Orb.csproj",
+      "xpath": "//Project/PropertyGroup/VersionPrefix"
+    }
   ]
 }

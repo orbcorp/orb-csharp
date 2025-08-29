@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using MaximumAmountAdjustmentProperties = Orb.Models.CreditNoteProperties.MaximumAmountAdjustmentProperties;
+using Orb.Models.CreditNoteProperties.MaximumAmountAdjustmentProperties;
 using System = System;
 
 namespace Orb.Models.CreditNoteProperties;
@@ -26,10 +26,16 @@ public sealed record class MaximumAmountAdjustment : ModelBase, IFromRaw<Maximum
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("amount_applied");
         }
-        set { this.Properties["amount_applied"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amount_applied"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required MaximumAmountAdjustmentProperties::DiscountType DiscountType
+    public required ApiEnum<string, DiscountType> DiscountType
     {
         get
         {
@@ -39,12 +45,18 @@ public sealed record class MaximumAmountAdjustment : ModelBase, IFromRaw<Maximum
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<MaximumAmountAdjustmentProperties::DiscountType>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("discount_type");
+            return JsonSerializer.Deserialize<ApiEnum<string, DiscountType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["discount_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["discount_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required double PercentageDiscount
@@ -59,22 +71,34 @@ public sealed record class MaximumAmountAdjustment : ModelBase, IFromRaw<Maximum
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["percentage_discount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["percentage_discount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public List<MaximumAmountAdjustmentProperties::AppliesToPrice>? AppliesToPrices
+    public List<AppliesToPrice>? AppliesToPrices
     {
         get
         {
             if (!this.Properties.TryGetValue("applies_to_prices", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<MaximumAmountAdjustmentProperties::AppliesToPrice>?>(
+            return JsonSerializer.Deserialize<List<AppliesToPrice>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["applies_to_prices"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["applies_to_prices"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? Reason
@@ -86,7 +110,13 @@ public sealed record class MaximumAmountAdjustment : ModelBase, IFromRaw<Maximum
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["reason"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["reason"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

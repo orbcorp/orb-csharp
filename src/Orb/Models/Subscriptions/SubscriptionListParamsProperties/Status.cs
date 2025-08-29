@@ -1,47 +1,46 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionListParamsProperties;
 
-[JsonConverter(typeof(EnumConverter<Status, string>))]
-public sealed record class Status(string value) : IEnum<Status, string>
+[JsonConverter(typeof(StatusConverter))]
+public enum Status
 {
-    public static readonly Status Active = new("active");
+    Active,
+    Ended,
+    Upcoming,
+}
 
-    public static readonly Status Ended = new("ended");
-
-    public static readonly Status Upcoming = new("upcoming");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class StatusConverter : JsonConverter<Status>
+{
+    public override Status Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Active,
-        Ended,
-        Upcoming,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "active" => Value.Active,
-            "ended" => Value.Ended,
-            "upcoming" => Value.Upcoming,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "active" => Status.Active,
+            "ended" => Status.Ended,
+            "upcoming" => Status.Upcoming,
+            _ => (Status)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(Utf8JsonWriter writer, Status value, JsonSerializerOptions options)
     {
-        Known();
-    }
-
-    public static Status FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Status.Active => "active",
+                Status.Ended => "ended",
+                Status.Upcoming => "upcoming",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

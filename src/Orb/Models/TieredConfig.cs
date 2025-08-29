@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models;
 
@@ -17,12 +17,18 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
         get
         {
             if (!this.Properties.TryGetValue("tiers", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("tiers", "Missing required argument");
+                throw new ArgumentOutOfRangeException("tiers", "Missing required argument");
 
             return JsonSerializer.Deserialize<List<Tier>>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("tiers");
+                ?? throw new ArgumentNullException("tiers");
         }
-        set { this.Properties["tiers"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["tiers"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -48,7 +54,9 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public TieredConfig(List<Tier> tiers)
+        : this()
     {
         this.Tiers = tiers;
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.Credits.TopUps.TopUpListPageResponseProperties.DataProperties;
@@ -6,41 +7,44 @@ namespace Orb.Models.Customers.Credits.TopUps.TopUpListPageResponseProperties.Da
 /// <summary>
 /// The unit of expires_after.
 /// </summary>
-[JsonConverter(typeof(EnumConverter<ExpiresAfterUnit, string>))]
-public sealed record class ExpiresAfterUnit(string value) : IEnum<ExpiresAfterUnit, string>
+[JsonConverter(typeof(ExpiresAfterUnitConverter))]
+public enum ExpiresAfterUnit
 {
-    public static readonly ExpiresAfterUnit Day = new("day");
+    Day,
+    Month,
+}
 
-    public static readonly ExpiresAfterUnit Month = new("month");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class ExpiresAfterUnitConverter : JsonConverter<ExpiresAfterUnit>
+{
+    public override ExpiresAfterUnit Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Day,
-        Month,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "day" => Value.Day,
-            "month" => Value.Month,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "day" => ExpiresAfterUnit.Day,
+            "month" => ExpiresAfterUnit.Month,
+            _ => (ExpiresAfterUnit)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        ExpiresAfterUnit value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static ExpiresAfterUnit FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ExpiresAfterUnit.Day => "day",
+                ExpiresAfterUnit.Month => "month",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

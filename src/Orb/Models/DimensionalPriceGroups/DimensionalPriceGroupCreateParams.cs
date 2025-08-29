@@ -35,7 +35,10 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["billable_metric_id"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["billable_metric_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -52,7 +55,13 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("dimensions");
         }
-        set { this.BodyProperties["dimensions"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["dimensions"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string Name
@@ -65,7 +74,13 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
-        set { this.BodyProperties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? ExternalDimensionalPriceGroupID
@@ -85,7 +100,7 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
         set
         {
             this.BodyProperties["external_dimensional_price_group_id"] =
-                JsonSerializer.SerializeToElement(value);
+                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
 
@@ -106,7 +121,13 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override Uri Url(IOrbClient client)

@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.InvoiceProperties;
 
@@ -17,14 +17,17 @@ public sealed record class AutoCollection : ModelBase, IFromRaw<AutoCollection>
         get
         {
             if (!this.Properties.TryGetValue("enabled", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "enabled",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["enabled"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["enabled"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -32,22 +35,22 @@ public sealed record class AutoCollection : ModelBase, IFromRaw<AutoCollection>
     /// when the next attempt will occur. If dunning has been exhausted, or auto-collection
     /// is not enabled for this invoice, this field will be `null`.
     /// </summary>
-    public required System::DateTime? NextAttemptAt
+    public required DateTime? NextAttemptAt
     {
         get
         {
             if (!this.Properties.TryGetValue("next_attempt_at", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "next_attempt_at",
-                    "Missing required argument"
-                );
+                return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["next_attempt_at"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["next_attempt_at"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -58,14 +61,17 @@ public sealed record class AutoCollection : ModelBase, IFromRaw<AutoCollection>
         get
         {
             if (!this.Properties.TryGetValue("num_attempts", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "num_attempts",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["num_attempts"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["num_attempts"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -76,24 +82,21 @@ public sealed record class AutoCollection : ModelBase, IFromRaw<AutoCollection>
     /// or if dunning has been exhausted (`previously_attempted_at` is non-null,
     /// but `next_attempt_time` is null).
     /// </summary>
-    public required System::DateTime? PreviouslyAttemptedAt
+    public required DateTime? PreviouslyAttemptedAt
     {
         get
         {
             if (!this.Properties.TryGetValue("previously_attempted_at", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "previously_attempted_at",
-                    "Missing required argument"
-                );
+                return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set
         {
-            this.Properties["previously_attempted_at"] = JsonSerializer.SerializeToElement(value);
+            this.Properties["previously_attempted_at"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 

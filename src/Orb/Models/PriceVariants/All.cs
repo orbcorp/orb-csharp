@@ -1,9 +1,7 @@
-using System.Text.Json.Serialization;
 using PriceProperties = Orb.Models.PriceProperties;
 
 namespace Orb.Models.PriceVariants;
 
-[JsonConverter(typeof(VariantConverter<Unit, PriceProperties::Unit>))]
 public sealed record class Unit(PriceProperties::Unit Value)
     : Price,
         IVariant<Unit, PriceProperties::Unit>
@@ -19,7 +17,6 @@ public sealed record class Unit(PriceProperties::Unit Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<Package, PriceProperties::Package>))]
 public sealed record class Package(PriceProperties::Package Value)
     : Price,
         IVariant<Package, PriceProperties::Package>
@@ -35,7 +32,6 @@ public sealed record class Package(PriceProperties::Package Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<Matrix, PriceProperties::Matrix>))]
 public sealed record class Matrix(PriceProperties::Matrix Value)
     : Price,
         IVariant<Matrix, PriceProperties::Matrix>
@@ -51,7 +47,6 @@ public sealed record class Matrix(PriceProperties::Matrix Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<Tiered, PriceProperties::Tiered>))]
 public sealed record class Tiered(PriceProperties::Tiered Value)
     : Price,
         IVariant<Tiered, PriceProperties::Tiered>
@@ -67,7 +62,6 @@ public sealed record class Tiered(PriceProperties::Tiered Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<TieredBPS, PriceProperties::TieredBPS>))]
 public sealed record class TieredBPS(PriceProperties::TieredBPS Value)
     : Price,
         IVariant<TieredBPS, PriceProperties::TieredBPS>
@@ -83,7 +77,6 @@ public sealed record class TieredBPS(PriceProperties::TieredBPS Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<BPS, PriceProperties::BPS>))]
 public sealed record class BPS(PriceProperties::BPS Value)
     : Price,
         IVariant<BPS, PriceProperties::BPS>
@@ -99,7 +92,6 @@ public sealed record class BPS(PriceProperties::BPS Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<BulkBPS, PriceProperties::BulkBPS>))]
 public sealed record class BulkBPS(PriceProperties::BulkBPS Value)
     : Price,
         IVariant<BulkBPS, PriceProperties::BulkBPS>
@@ -115,7 +107,6 @@ public sealed record class BulkBPS(PriceProperties::BulkBPS Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<Bulk, PriceProperties::Bulk>))]
 public sealed record class Bulk(PriceProperties::Bulk Value)
     : Price,
         IVariant<Bulk, PriceProperties::Bulk>
@@ -131,9 +122,6 @@ public sealed record class Bulk(PriceProperties::Bulk Value)
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<ThresholdTotalAmount, PriceProperties::ThresholdTotalAmount>)
-)]
 public sealed record class ThresholdTotalAmount(PriceProperties::ThresholdTotalAmount Value)
     : Price,
         IVariant<ThresholdTotalAmount, PriceProperties::ThresholdTotalAmount>
@@ -149,7 +137,6 @@ public sealed record class ThresholdTotalAmount(PriceProperties::ThresholdTotalA
     }
 }
 
-[JsonConverter(typeof(VariantConverter<TieredPackage, PriceProperties::TieredPackage>))]
 public sealed record class TieredPackage(PriceProperties::TieredPackage Value)
     : Price,
         IVariant<TieredPackage, PriceProperties::TieredPackage>
@@ -165,7 +152,6 @@ public sealed record class TieredPackage(PriceProperties::TieredPackage Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<GroupedTiered, PriceProperties::GroupedTiered>))]
 public sealed record class GroupedTiered(PriceProperties::GroupedTiered Value)
     : Price,
         IVariant<GroupedTiered, PriceProperties::GroupedTiered>
@@ -181,7 +167,6 @@ public sealed record class GroupedTiered(PriceProperties::GroupedTiered Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<TieredWithMinimum, PriceProperties::TieredWithMinimum>))]
 public sealed record class TieredWithMinimum(PriceProperties::TieredWithMinimum Value)
     : Price,
         IVariant<TieredWithMinimum, PriceProperties::TieredWithMinimum>
@@ -197,9 +182,6 @@ public sealed record class TieredWithMinimum(PriceProperties::TieredWithMinimum 
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<TieredPackageWithMinimum, PriceProperties::TieredPackageWithMinimum>)
-)]
 public sealed record class TieredPackageWithMinimum(PriceProperties::TieredPackageWithMinimum Value)
     : Price,
         IVariant<TieredPackageWithMinimum, PriceProperties::TieredPackageWithMinimum>
@@ -215,9 +197,6 @@ public sealed record class TieredPackageWithMinimum(PriceProperties::TieredPacka
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<PackageWithAllocation, PriceProperties::PackageWithAllocation>)
-)]
 public sealed record class PackageWithAllocation(PriceProperties::PackageWithAllocation Value)
     : Price,
         IVariant<PackageWithAllocation, PriceProperties::PackageWithAllocation>
@@ -233,7 +212,6 @@ public sealed record class PackageWithAllocation(PriceProperties::PackageWithAll
     }
 }
 
-[JsonConverter(typeof(VariantConverter<UnitWithPercent, PriceProperties::UnitWithPercent>))]
 public sealed record class UnitWithPercent(PriceProperties::UnitWithPercent Value)
     : Price,
         IVariant<UnitWithPercent, PriceProperties::UnitWithPercent>
@@ -249,9 +227,6 @@ public sealed record class UnitWithPercent(PriceProperties::UnitWithPercent Valu
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<MatrixWithAllocation, PriceProperties::MatrixWithAllocation>)
-)]
 public sealed record class MatrixWithAllocation(PriceProperties::MatrixWithAllocation Value)
     : Price,
         IVariant<MatrixWithAllocation, PriceProperties::MatrixWithAllocation>
@@ -267,7 +242,6 @@ public sealed record class MatrixWithAllocation(PriceProperties::MatrixWithAlloc
     }
 }
 
-[JsonConverter(typeof(VariantConverter<TieredWithProration, PriceProperties::TieredWithProration>))]
 public sealed record class TieredWithProration(PriceProperties::TieredWithProration Value)
     : Price,
         IVariant<TieredWithProration, PriceProperties::TieredWithProration>
@@ -283,7 +257,6 @@ public sealed record class TieredWithProration(PriceProperties::TieredWithProrat
     }
 }
 
-[JsonConverter(typeof(VariantConverter<UnitWithProration, PriceProperties::UnitWithProration>))]
 public sealed record class UnitWithProration(PriceProperties::UnitWithProration Value)
     : Price,
         IVariant<UnitWithProration, PriceProperties::UnitWithProration>
@@ -299,7 +272,6 @@ public sealed record class UnitWithProration(PriceProperties::UnitWithProration 
     }
 }
 
-[JsonConverter(typeof(VariantConverter<GroupedAllocation, PriceProperties::GroupedAllocation>))]
 public sealed record class GroupedAllocation(PriceProperties::GroupedAllocation Value)
     : Price,
         IVariant<GroupedAllocation, PriceProperties::GroupedAllocation>
@@ -315,12 +287,6 @@ public sealed record class GroupedAllocation(PriceProperties::GroupedAllocation 
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        GroupedWithProratedMinimum,
-        PriceProperties::GroupedWithProratedMinimum
-    >)
-)]
 public sealed record class GroupedWithProratedMinimum(
     PriceProperties::GroupedWithProratedMinimum Value
 ) : Price, IVariant<GroupedWithProratedMinimum, PriceProperties::GroupedWithProratedMinimum>
@@ -336,9 +302,6 @@ public sealed record class GroupedWithProratedMinimum(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<GroupedWithMeteredMinimum, PriceProperties::GroupedWithMeteredMinimum>)
-)]
 public sealed record class GroupedWithMeteredMinimum(
     PriceProperties::GroupedWithMeteredMinimum Value
 ) : Price, IVariant<GroupedWithMeteredMinimum, PriceProperties::GroupedWithMeteredMinimum>
@@ -354,9 +317,6 @@ public sealed record class GroupedWithMeteredMinimum(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<MatrixWithDisplayName, PriceProperties::MatrixWithDisplayName>)
-)]
 public sealed record class MatrixWithDisplayName(PriceProperties::MatrixWithDisplayName Value)
     : Price,
         IVariant<MatrixWithDisplayName, PriceProperties::MatrixWithDisplayName>
@@ -372,7 +332,6 @@ public sealed record class MatrixWithDisplayName(PriceProperties::MatrixWithDisp
     }
 }
 
-[JsonConverter(typeof(VariantConverter<BulkWithProration, PriceProperties::BulkWithProration>))]
 public sealed record class BulkWithProration(PriceProperties::BulkWithProration Value)
     : Price,
         IVariant<BulkWithProration, PriceProperties::BulkWithProration>
@@ -388,9 +347,6 @@ public sealed record class BulkWithProration(PriceProperties::BulkWithProration 
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<GroupedTieredPackage, PriceProperties::GroupedTieredPackage>)
-)]
 public sealed record class GroupedTieredPackage(PriceProperties::GroupedTieredPackage Value)
     : Price,
         IVariant<GroupedTieredPackage, PriceProperties::GroupedTieredPackage>
@@ -406,9 +362,6 @@ public sealed record class GroupedTieredPackage(PriceProperties::GroupedTieredPa
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<MaxGroupTieredPackage, PriceProperties::MaxGroupTieredPackage>)
-)]
 public sealed record class MaxGroupTieredPackage(PriceProperties::MaxGroupTieredPackage Value)
     : Price,
         IVariant<MaxGroupTieredPackage, PriceProperties::MaxGroupTieredPackage>
@@ -424,12 +377,6 @@ public sealed record class MaxGroupTieredPackage(PriceProperties::MaxGroupTiered
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        ScalableMatrixWithUnitPricing,
-        PriceProperties::ScalableMatrixWithUnitPricing
-    >)
-)]
 public sealed record class ScalableMatrixWithUnitPricing(
     PriceProperties::ScalableMatrixWithUnitPricing Value
 ) : Price, IVariant<ScalableMatrixWithUnitPricing, PriceProperties::ScalableMatrixWithUnitPricing>
@@ -447,12 +394,6 @@ public sealed record class ScalableMatrixWithUnitPricing(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        ScalableMatrixWithTieredPricing,
-        PriceProperties::ScalableMatrixWithTieredPricing
-    >)
-)]
 public sealed record class ScalableMatrixWithTieredPricing(
     PriceProperties::ScalableMatrixWithTieredPricing Value
 )
@@ -472,9 +413,6 @@ public sealed record class ScalableMatrixWithTieredPricing(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<CumulativeGroupedBulk, PriceProperties::CumulativeGroupedBulk>)
-)]
 public sealed record class CumulativeGroupedBulk(PriceProperties::CumulativeGroupedBulk Value)
     : Price,
         IVariant<CumulativeGroupedBulk, PriceProperties::CumulativeGroupedBulk>
@@ -490,12 +428,6 @@ public sealed record class CumulativeGroupedBulk(PriceProperties::CumulativeGrou
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        GroupedWithMinMaxThresholds,
-        PriceProperties::GroupedWithMinMaxThresholds
-    >)
-)]
 public sealed record class GroupedWithMinMaxThresholds(
     PriceProperties::GroupedWithMinMaxThresholds Value
 ) : Price, IVariant<GroupedWithMinMaxThresholds, PriceProperties::GroupedWithMinMaxThresholds>

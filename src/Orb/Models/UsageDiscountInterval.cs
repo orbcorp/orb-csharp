@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
-using UsageDiscountIntervalProperties = Orb.Models.UsageDiscountIntervalProperties;
+using Orb.Models.UsageDiscountIntervalProperties;
 
 namespace Orb.Models;
 
@@ -23,59 +23,63 @@ public sealed record class UsageDiscountInterval : ModelBase, IFromRaw<UsageDisc
                     out JsonElement element
                 )
             )
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "applies_to_price_interval_ids",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("applies_to_price_interval_ids");
+                ?? throw new ArgumentNullException("applies_to_price_interval_ids");
         }
         set
         {
             this.Properties["applies_to_price_interval_ids"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
 
-    public required UsageDiscountIntervalProperties::DiscountType DiscountType
+    public required ApiEnum<string, DiscountType> DiscountType
     {
         get
         {
             if (!this.Properties.TryGetValue("discount_type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "discount_type",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("discount_type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<UsageDiscountIntervalProperties::DiscountType>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("discount_type");
+            return JsonSerializer.Deserialize<ApiEnum<string, DiscountType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["discount_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["discount_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The end date of the discount interval.
     /// </summary>
-    public required System::DateTime? EndDate
+    public required DateTime? EndDate
     {
         get
         {
             if (!this.Properties.TryGetValue("end_date", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "end_date",
-                    "Missing required argument"
-                );
+                return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["end_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -86,38 +90,41 @@ public sealed record class UsageDiscountInterval : ModelBase, IFromRaw<UsageDisc
         get
         {
             if (!this.Properties.TryGetValue("filters", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "filters",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("filters", "Missing required argument");
 
             return JsonSerializer.Deserialize<List<TransformPriceFilter>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("filters");
+                ) ?? throw new ArgumentNullException("filters");
         }
-        set { this.Properties["filters"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["filters"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The start date of the discount interval.
     /// </summary>
-    public required System::DateTime StartDate
+    public required DateTime StartDate
     {
         get
         {
             if (!this.Properties.TryGetValue("start_date", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "start_date",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("start_date", "Missing required argument");
 
-            return JsonSerializer.Deserialize<System::DateTime>(
-                element,
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["start_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -129,14 +136,20 @@ public sealed record class UsageDiscountInterval : ModelBase, IFromRaw<UsageDisc
         get
         {
             if (!this.Properties.TryGetValue("usage_discount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "usage_discount",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["usage_discount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["usage_discount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

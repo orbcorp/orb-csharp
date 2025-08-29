@@ -3,9 +3,9 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Orb.Models.Customers;
-using BalanceTransactions = Orb.Services.Customers.BalanceTransactions;
-using Costs = Orb.Services.Customers.Costs;
-using Credits = Orb.Services.Customers.Credits;
+using Orb.Services.Customers.BalanceTransactions;
+using Orb.Services.Customers.Costs;
+using Orb.Services.Customers.Credits;
 
 namespace Orb.Services.Customers;
 
@@ -16,39 +16,38 @@ public sealed class CustomerService : ICustomerService
     public CustomerService(IOrbClient client)
     {
         _client = client;
-        _costs = new(() => new Costs::CostService(client));
-        _credits = new(() => new Credits::CreditService(client));
-        _balanceTransactions = new(() => new BalanceTransactions::BalanceTransactionService(client)
-        );
+        _costs = new(() => new CostService(client));
+        _credits = new(() => new CreditService(client));
+        _balanceTransactions = new(() => new BalanceTransactionService(client));
     }
 
-    readonly Lazy<Costs::ICostService> _costs;
-    public Costs::ICostService Costs
+    readonly Lazy<ICostService> _costs;
+    public ICostService Costs
     {
         get { return _costs.Value; }
     }
 
-    readonly Lazy<Credits::ICreditService> _credits;
-    public Credits::ICreditService Credits
+    readonly Lazy<ICreditService> _credits;
+    public ICreditService Credits
     {
         get { return _credits.Value; }
     }
 
-    readonly Lazy<BalanceTransactions::IBalanceTransactionService> _balanceTransactions;
-    public BalanceTransactions::IBalanceTransactionService BalanceTransactions
+    readonly Lazy<IBalanceTransactionService> _balanceTransactions;
+    public IBalanceTransactionService BalanceTransactions
     {
         get { return _balanceTransactions.Value; }
     }
 
-    public async Task<Customer> Create(CustomerCreateParams @params)
+    public async Task<Customer> Create(CustomerCreateParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
+        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
         {
-            Content = @params.BodyContent(),
+            Content = parameters.BodyContent(),
         };
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -57,21 +56,22 @@ public sealed class CustomerService : ICustomerService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<Customer>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<Customer> Update(CustomerUpdateParams @params)
+    public async Task<Customer> Update(CustomerUpdateParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Put, @params.Url(this._client))
+        using HttpRequestMessage request = new(HttpMethod.Put, parameters.Url(this._client))
         {
-            Content = @params.BodyContent(),
+            Content = parameters.BodyContent(),
         };
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -80,18 +80,21 @@ public sealed class CustomerService : ICustomerService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<Customer>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<CustomerListPageResponse> List(CustomerListParams @params)
+    public async Task<CustomerListPageResponse> List(CustomerListParams? parameters = null)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        parameters ??= new();
+
+        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -100,18 +103,19 @@ public sealed class CustomerService : ICustomerService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<CustomerListPageResponse>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task Delete(CustomerDeleteParams @params)
+    public async Task Delete(CustomerDeleteParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Delete, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        using HttpRequestMessage request = new(HttpMethod.Delete, parameters.Url(this._client));
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -122,12 +126,12 @@ public sealed class CustomerService : ICustomerService
         }
     }
 
-    public async Task<Customer> Fetch(CustomerFetchParams @params)
+    public async Task<Customer> Fetch(CustomerFetchParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -136,18 +140,19 @@ public sealed class CustomerService : ICustomerService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<Customer>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<Customer> FetchByExternalID(CustomerFetchByExternalIDParams @params)
+    public async Task<Customer> FetchByExternalID(CustomerFetchByExternalIDParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -156,6 +161,7 @@ public sealed class CustomerService : ICustomerService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<Customer>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
@@ -163,13 +169,13 @@ public sealed class CustomerService : ICustomerService
     }
 
     public async Task SyncPaymentMethodsFromGateway(
-        CustomerSyncPaymentMethodsFromGatewayParams @params
+        CustomerSyncPaymentMethodsFromGatewayParams parameters
     )
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client));
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -181,13 +187,13 @@ public sealed class CustomerService : ICustomerService
     }
 
     public async Task SyncPaymentMethodsFromGatewayByExternalCustomerID(
-        CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams @params
+        CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams parameters
     )
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client));
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -198,15 +204,15 @@ public sealed class CustomerService : ICustomerService
         }
     }
 
-    public async Task<Customer> UpdateByExternalID(CustomerUpdateByExternalIDParams @params)
+    public async Task<Customer> UpdateByExternalID(CustomerUpdateByExternalIDParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Put, @params.Url(this._client))
+        using HttpRequestMessage request = new(HttpMethod.Put, parameters.Url(this._client))
         {
-            Content = @params.BodyContent(),
+            Content = parameters.BodyContent(),
         };
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -215,6 +221,7 @@ public sealed class CustomerService : ICustomerService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<Customer>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions

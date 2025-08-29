@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Models = Orb.Models;
 
 namespace Orb.Models.Metrics;
 
@@ -22,10 +21,16 @@ public sealed record class MetricListPageResponse : ModelBase, IFromRaw<MetricLi
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("data");
         }
-        set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["data"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required Models::PaginationMetadata PaginationMetadata
+    public required PaginationMetadata PaginationMetadata
     {
         get
         {
@@ -35,12 +40,18 @@ public sealed record class MetricListPageResponse : ModelBase, IFromRaw<MetricLi
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Models::PaginationMetadata>(
+            return JsonSerializer.Deserialize<PaginationMetadata>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("pagination_metadata");
         }
-        set { this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

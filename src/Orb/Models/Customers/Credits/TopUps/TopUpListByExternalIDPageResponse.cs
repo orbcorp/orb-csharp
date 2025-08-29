@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Models = Orb.Models;
-using TopUpListByExternalIDPageResponseProperties = Orb.Models.Customers.Credits.TopUps.TopUpListByExternalIDPageResponseProperties;
+using Orb.Models.Customers.Credits.TopUps.TopUpListByExternalIDPageResponseProperties;
 
 namespace Orb.Models.Customers.Credits.TopUps;
 
@@ -13,21 +12,26 @@ public sealed record class TopUpListByExternalIDPageResponse
     : ModelBase,
         IFromRaw<TopUpListByExternalIDPageResponse>
 {
-    public required List<TopUpListByExternalIDPageResponseProperties::Data> Data
+    public required List<Data> Data
     {
         get
         {
             if (!this.Properties.TryGetValue("data", out JsonElement element))
                 throw new ArgumentOutOfRangeException("data", "Missing required argument");
 
-            return JsonSerializer.Deserialize<
-                    List<TopUpListByExternalIDPageResponseProperties::Data>
-                >(element, ModelBase.SerializerOptions) ?? throw new ArgumentNullException("data");
+            return JsonSerializer.Deserialize<List<Data>>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("data");
         }
-        set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["data"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required Models::PaginationMetadata PaginationMetadata
+    public required PaginationMetadata PaginationMetadata
     {
         get
         {
@@ -37,12 +41,18 @@ public sealed record class TopUpListByExternalIDPageResponse
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Models::PaginationMetadata>(
+            return JsonSerializer.Deserialize<PaginationMetadata>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("pagination_metadata");
         }
-        set { this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

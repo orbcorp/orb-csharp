@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models;
 
@@ -17,15 +17,18 @@ public sealed record class UnitConfig : ModelBase, IFromRaw<UnitConfig>
         get
         {
             if (!this.Properties.TryGetValue("unit_amount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "unit_amount",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("unit_amount", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("unit_amount");
+                ?? throw new ArgumentNullException("unit_amount");
         }
-        set { this.Properties["unit_amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["unit_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -48,7 +51,9 @@ public sealed record class UnitConfig : ModelBase, IFromRaw<UnitConfig>
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public UnitConfig(string unitAmount)
+        : this()
     {
         this.UnitAmount = unitAmount;
     }

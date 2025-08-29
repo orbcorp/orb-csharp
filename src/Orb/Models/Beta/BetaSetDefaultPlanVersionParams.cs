@@ -30,7 +30,13 @@ public sealed record class BetaSetDefaultPlanVersionParams : ParamsBase
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["version"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["version"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override Uri Url(IOrbClient client)

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using BillableMetricProperties = Orb.Models.Metrics.BillableMetricProperties;
-using Items = Orb.Models.Items;
+using Orb.Models.Items;
+using Orb.Models.Metrics.BillableMetricProperties;
 
 namespace Orb.Models.Metrics;
 
@@ -26,7 +26,13 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string? Description
@@ -34,11 +40,17 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
         get
         {
             if (!this.Properties.TryGetValue("description", out JsonElement element))
-                throw new ArgumentOutOfRangeException("description", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["description"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["description"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -46,17 +58,23 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
     /// with all line items, billable metrics, and prices and are used for defining
     /// external sync behavior for invoices and tax calculation purposes.
     /// </summary>
-    public required Items::Item Item
+    public required Item Item
     {
         get
         {
             if (!this.Properties.TryGetValue("item", out JsonElement element))
                 throw new ArgumentOutOfRangeException("item", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Items::Item>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<Item>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("item");
         }
-        set { this.Properties["item"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["item"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -77,7 +95,13 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("metadata");
         }
-        set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string Name
@@ -90,22 +114,34 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
-        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required BillableMetricProperties::Status Status
+    public required ApiEnum<string, Status> Status
     {
         get
         {
             if (!this.Properties.TryGetValue("status", out JsonElement element))
                 throw new ArgumentOutOfRangeException("status", "Missing required argument");
 
-            return JsonSerializer.Deserialize<BillableMetricProperties::Status>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("status");
+            return JsonSerializer.Deserialize<ApiEnum<string, Status>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["status"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["status"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using PriceEvaluatePreviewEventsParamsProperties = Orb.Models.Prices.PriceEvaluatePreviewEventsParamsProperties;
-using System = System;
+using Orb.Models.Prices.PriceEvaluatePreviewEventsParamsProperties;
 
 namespace Orb.Models.Prices;
 
@@ -31,43 +31,46 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     /// <summary>
     /// The exclusive upper bound for event timestamps
     /// </summary>
-    public required System::DateTime TimeframeEnd
+    public required DateTime TimeframeEnd
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("timeframe_end", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "timeframe_end",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("timeframe_end", "Missing required argument");
 
-            return JsonSerializer.Deserialize<System::DateTime>(
-                element,
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The inclusive lower bound for event timestamps
     /// </summary>
-    public required System::DateTime TimeframeStart
+    public required DateTime TimeframeStart
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("timeframe_start", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "timeframe_start",
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
-                element,
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -82,25 +85,34 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// List of preview events to use instead of actual usage data
     /// </summary>
-    public List<PriceEvaluatePreviewEventsParamsProperties::Event>? Events
+    public List<Event>? Events
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("events", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<PriceEvaluatePreviewEventsParamsProperties::Event>?>(
-                element,
+            return JsonSerializer.Deserialize<List<Event>?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["events"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["events"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -117,31 +129,40 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
     /// <summary>
     /// List of prices to evaluate (max 100)
     /// </summary>
-    public List<PriceEvaluatePreviewEventsParamsProperties::PriceEvaluation>? PriceEvaluations
+    public List<PriceEvaluation>? PriceEvaluations
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("price_evaluations", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<PriceEvaluatePreviewEventsParamsProperties::PriceEvaluation>?>(
+            return JsonSerializer.Deserialize<List<PriceEvaluation>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["price_evaluations"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["price_evaluations"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/') + "/prices/evaluate_preview_events"
         )
         {

@@ -13,19 +13,25 @@ public sealed record class Adjustment : ModelBase, IFromRaw<Adjustment>
     /// <summary>
     /// The definition of a new adjustment to create and add to the plan.
     /// </summary>
-    public required AdjustmentProperties::Adjustment1 Adjustment1
+    public required AdjustmentProperties::Adjustment Adjustment1
     {
         get
         {
             if (!this.Properties.TryGetValue("adjustment", out JsonElement element))
                 throw new ArgumentOutOfRangeException("adjustment", "Missing required argument");
 
-            return JsonSerializer.Deserialize<AdjustmentProperties::Adjustment1>(
+            return JsonSerializer.Deserialize<AdjustmentProperties::Adjustment>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("adjustment");
         }
-        set { this.Properties["adjustment"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["adjustment"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -40,7 +46,13 @@ public sealed record class Adjustment : ModelBase, IFromRaw<Adjustment>
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -64,7 +76,9 @@ public sealed record class Adjustment : ModelBase, IFromRaw<Adjustment>
         return new(properties);
     }
 
-    public Adjustment(AdjustmentProperties::Adjustment1 adjustment1)
+    [SetsRequiredMembers]
+    public Adjustment(AdjustmentProperties::Adjustment adjustment1)
+        : this()
     {
         this.Adjustment1 = adjustment1;
     }

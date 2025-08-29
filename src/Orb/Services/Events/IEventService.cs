@@ -1,15 +1,15 @@
 using System.Threading.Tasks;
 using Orb.Models.Events;
-using Backfills = Orb.Services.Events.Backfills;
-using Volume = Orb.Services.Events.Volume;
+using Orb.Services.Events.Backfills;
+using Orb.Services.Events.Volume;
 
 namespace Orb.Services.Events;
 
 public interface IEventService
 {
-    Backfills::IBackfillService Backfills { get; }
+    IBackfillService Backfills { get; }
 
-    Volume::IVolumeService Volume { get; }
+    IVolumeService Volume { get; }
 
     /// <summary>
     /// This endpoint is used to amend a single usage event with a given `event_id`.
@@ -52,7 +52,7 @@ public interface IEventService
     /// 100 events can be amended for a single customer in a 100 day period. For
     /// higher volume   updates, consider using the [event backfill](create-backfill) endpoint.
     /// </summary>
-    Task<EventUpdateResponse> Update(EventUpdateParams @params);
+    Task<EventUpdateResponse> Update(EventUpdateParams parameters);
 
     /// <summary>
     /// This endpoint is used to deprecate a single usage event with a given `event_id`.
@@ -91,7 +91,7 @@ public interface IEventService
     /// customer in a 100 day period. For higher volume   updates, consider using
     /// the [event backfill](create-backfill) endpoint.
     /// </summary>
-    Task<EventDeprecateResponse> Deprecate(EventDeprecateParams @params);
+    Task<EventDeprecateResponse> Deprecate(EventDeprecateParams parameters);
 
     /// <summary>
     /// Orb's event ingestion model and API is designed around two core principles:
@@ -265,7 +265,7 @@ public interface IEventService
     ///
     /// ```json {   "validation_failed": [] } ```
     /// </summary>
-    Task<EventIngestResponse> Ingest(EventIngestParams @params);
+    Task<EventIngestResponse> Ingest(EventIngestParams parameters);
 
     /// <summary>
     /// This endpoint returns a filtered set of events for an account in a [paginated
@@ -283,5 +283,5 @@ public interface IEventService
     /// By default, Orb will not throw a `404` if no events matched, Orb will return
     /// an empty array for `data` instead.
     /// </summary>
-    Task<EventSearchResponse> Search(EventSearchParams @params);
+    Task<EventSearchResponse> Search(EventSearchParams parameters);
 }

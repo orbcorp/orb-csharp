@@ -8,12 +8,7 @@ public class ExternalPlanIDServiceTest : TestBase
     public async Task Update_Works()
     {
         var plan = await this.client.Plans.ExternalPlanID.Update(
-            new()
-            {
-                OtherExternalPlanID = "external_plan_id",
-                ExternalPlanID = "external_plan_id",
-                Metadata = new() { { "foo", "string" } },
-            }
+            new() { OtherExternalPlanID = "external_plan_id" }
         );
         plan.Validate();
     }

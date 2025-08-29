@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
-using TieredConversionRateConfigProperties = Orb.Models.TieredConversionRateConfigProperties;
+using Orb.Models.TieredConversionRateConfigProperties;
 
 namespace Orb.Models;
 
@@ -12,22 +12,28 @@ public sealed record class TieredConversionRateConfig
     : ModelBase,
         IFromRaw<TieredConversionRateConfig>
 {
-    public required TieredConversionRateConfigProperties::ConversionRateType ConversionRateType
+    public required ApiEnum<string, ConversionRateType> ConversionRateType
     {
         get
         {
             if (!this.Properties.TryGetValue("conversion_rate_type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "conversion_rate_type",
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<TieredConversionRateConfigProperties::ConversionRateType>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("conversion_rate_type");
+            return JsonSerializer.Deserialize<ApiEnum<string, ConversionRateType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["conversion_rate_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["conversion_rate_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required ConversionRateTieredConfig TieredConfig
@@ -35,17 +41,20 @@ public sealed record class TieredConversionRateConfig
         get
         {
             if (!this.Properties.TryGetValue("tiered_config", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "tiered_config",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("tiered_config", "Missing required argument");
 
             return JsonSerializer.Deserialize<ConversionRateTieredConfig>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("tiered_config");
+                ) ?? throw new ArgumentNullException("tiered_config");
         }
-        set { this.Properties["tiered_config"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["tiered_config"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

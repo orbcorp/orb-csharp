@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.VoidProperties;
@@ -6,37 +7,41 @@ namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParam
 /// <summary>
 /// Can only be specified when `entry_type=void`. The reason for the void.
 /// </summary>
-[JsonConverter(typeof(EnumConverter<VoidReason, string>))]
-public sealed record class VoidReason(string value) : IEnum<VoidReason, string>
+[JsonConverter(typeof(VoidReasonConverter))]
+public enum VoidReason
 {
-    public static readonly VoidReason Refund = new("refund");
+    Refund,
+}
 
-    readonly string _value = value;
-
-    public enum Value
+sealed class VoidReasonConverter : JsonConverter<VoidReason>
+{
+    public override VoidReason Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Refund,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "refund" => Value.Refund,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "refund" => VoidReason.Refund,
+            _ => (VoidReason)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        VoidReason value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static VoidReason FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                VoidReason.Refund => "refund",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

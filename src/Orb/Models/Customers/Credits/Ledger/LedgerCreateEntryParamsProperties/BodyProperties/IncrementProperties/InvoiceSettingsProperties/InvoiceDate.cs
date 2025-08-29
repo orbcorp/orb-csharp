@@ -1,6 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using InvoiceDateVariants = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.IncrementProperties.InvoiceSettingsProperties.InvoiceDateVariants;
-using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.IncrementProperties.InvoiceSettingsProperties;
 
@@ -9,16 +12,111 @@ namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.
 /// customer's timezone. If not provided, the invoice date will default to the credit
 /// block's effective date.
 /// </summary>
-[JsonConverter(typeof(UnionConverter<InvoiceDate>))]
+[JsonConverter(typeof(InvoiceDateConverter))]
 public abstract record class InvoiceDate
 {
     internal InvoiceDate() { }
 
-    public static implicit operator InvoiceDate(System::DateOnly value) =>
+    public static implicit operator InvoiceDate(DateOnly value) =>
         new InvoiceDateVariants::Date(value);
 
-    public static implicit operator InvoiceDate(System::DateTime value) =>
+    public static implicit operator InvoiceDate(DateTime value) =>
         new InvoiceDateVariants::DateTime(value);
 
+    public bool TryPickDate([NotNullWhen(true)] out DateOnly? value)
+    {
+        value = (this as InvoiceDateVariants::Date)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickDateTime([NotNullWhen(true)] out DateTime? value)
+    {
+        value = (this as InvoiceDateVariants::DateTime)?.Value;
+        return value != null;
+    }
+
+    public void Switch(
+        Action<InvoiceDateVariants::Date> @date,
+        Action<InvoiceDateVariants::DateTime> @dateTime
+    )
+    {
+        switch (this)
+        {
+            case InvoiceDateVariants::Date inner:
+                @date(inner);
+                break;
+            case InvoiceDateVariants::DateTime inner:
+                @dateTime(inner);
+                break;
+            default:
+                throw new InvalidOperationException();
+        }
+    }
+
+    public T Match<T>(
+        Func<InvoiceDateVariants::Date, T> @date,
+        Func<InvoiceDateVariants::DateTime, T> @dateTime
+    )
+    {
+        return this switch
+        {
+            InvoiceDateVariants::Date inner => @date(inner),
+            InvoiceDateVariants::DateTime inner => @dateTime(inner),
+            _ => throw new InvalidOperationException(),
+        };
+    }
+
     public abstract void Validate();
+}
+
+sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
+{
+    public override InvoiceDate? Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        List<JsonException> exceptions = [];
+
+        try
+        {
+            return new InvoiceDateVariants::Date(
+                JsonSerializer.Deserialize<DateOnly>(ref reader, options)
+            );
+        }
+        catch (JsonException e)
+        {
+            exceptions.Add(e);
+        }
+
+        try
+        {
+            return new InvoiceDateVariants::DateTime(
+                JsonSerializer.Deserialize<DateTime>(ref reader, options)
+            );
+        }
+        catch (JsonException e)
+        {
+            exceptions.Add(e);
+        }
+
+        throw new AggregateException(exceptions);
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        InvoiceDate? value,
+        JsonSerializerOptions options
+    )
+    {
+        object? variant = value switch
+        {
+            null => null,
+            InvoiceDateVariants::Date(var @date) => @date,
+            InvoiceDateVariants::DateTime(var @dateTime) => @dateTime,
+            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+        };
+        JsonSerializer.Serialize(writer, variant, options);
+    }
 }

@@ -1,41 +1,40 @@
-using Alerts = Orb.Services.Alerts;
-using Beta = Orb.Services.Beta;
-using Coupons = Orb.Services.Coupons;
-using CreditNotes = Orb.Services.CreditNotes;
-using Customers = Orb.Services.Customers;
-using Events = Orb.Services.Events;
-using Http = System.Net.Http;
-using InvoiceLineItems = Orb.Services.InvoiceLineItems;
-using Invoices = Orb.Services.Invoices;
-using Items = Orb.Services.Items;
-using Metrics = Orb.Services.Metrics;
-using Plans = Orb.Services.Plans;
-using Prices = Orb.Services.Prices;
-using SubscriptionChanges = Orb.Services.SubscriptionChanges;
-using System = System;
-using TopLevel = Orb.Services.TopLevel;
+using System;
+using System.Net.Http;
+using Orb.Services.Alerts;
+using Orb.Services.Beta;
+using Orb.Services.Coupons;
+using Orb.Services.CreditNotes;
+using Orb.Services.Customers;
+using Orb.Services.DimensionalPriceGroups;
+using Orb.Services.Events;
+using Orb.Services.InvoiceLineItems;
+using Orb.Services.Invoices;
+using Orb.Services.Items;
+using Orb.Services.Metrics;
+using Orb.Services.Plans;
+using Orb.Services.Prices;
+using Orb.Services.SubscriptionChanges;
+using Orb.Services.Subscriptions;
+using Orb.Services.TopLevel;
 
 namespace Orb;
 
 public sealed class OrbClient : IOrbClient
 {
-    public Http::HttpClient HttpClient { get; init; } = new();
+    public HttpClient HttpClient { get; init; } = new();
 
-    System::Lazy<System::Uri> _baseUrl = new(() =>
-        new System::Uri(
-            System::Environment.GetEnvironmentVariable("ORB_BASE_URL")
-                ?? "https://api.withorb.com/v1"
-        )
+    Lazy<Uri> _baseUrl = new(() =>
+        new Uri(Environment.GetEnvironmentVariable("ORB_BASE_URL") ?? "https://api.withorb.com/v1")
     );
-    public System::Uri BaseUrl
+    public Uri BaseUrl
     {
         get { return _baseUrl.Value; }
         init { _baseUrl = new(() => value); }
     }
 
-    System::Lazy<string> _apiKey = new(() =>
-        System::Environment.GetEnvironmentVariable("ORB_API_KEY")
-        ?? throw new System::ArgumentNullException(nameof(APIKey))
+    Lazy<string> _apiKey = new(() =>
+        Environment.GetEnvironmentVariable("ORB_API_KEY")
+        ?? throw new ArgumentNullException(nameof(APIKey))
     );
     public string APIKey
     {
@@ -43,122 +42,128 @@ public sealed class OrbClient : IOrbClient
         init { _apiKey = new(() => value); }
     }
 
-    readonly System::Lazy<TopLevel::ITopLevelService> _topLevel;
-    public TopLevel::ITopLevelService TopLevel
+    Lazy<string?> _webhookSecret = new(() =>
+        Environment.GetEnvironmentVariable("ORB_WEBHOOK_SECRET")
+    );
+    public string? WebhookSecret
+    {
+        get { return _webhookSecret.Value; }
+        init { _webhookSecret = new(() => value); }
+    }
+
+    readonly Lazy<ITopLevelService> _topLevel;
+    public ITopLevelService TopLevel
     {
         get { return _topLevel.Value; }
     }
 
-    readonly System::Lazy<Beta::IBetaService> _beta;
-    public Beta::IBetaService Beta
+    readonly Lazy<IBetaService> _beta;
+    public IBetaService Beta
     {
         get { return _beta.Value; }
     }
 
-    readonly System::Lazy<Coupons::ICouponService> _coupons;
-    public Coupons::ICouponService Coupons
+    readonly Lazy<ICouponService> _coupons;
+    public ICouponService Coupons
     {
         get { return _coupons.Value; }
     }
 
-    readonly System::Lazy<CreditNotes::ICreditNoteService> _creditNotes;
-    public CreditNotes::ICreditNoteService CreditNotes
+    readonly Lazy<ICreditNoteService> _creditNotes;
+    public ICreditNoteService CreditNotes
     {
         get { return _creditNotes.Value; }
     }
 
-    readonly System::Lazy<Customers::ICustomerService> _customers;
-    public Customers::ICustomerService Customers
+    readonly Lazy<ICustomerService> _customers;
+    public ICustomerService Customers
     {
         get { return _customers.Value; }
     }
 
-    readonly System::Lazy<Events::IEventService> _events;
-    public Events::IEventService Events
+    readonly Lazy<IEventService> _events;
+    public IEventService Events
     {
         get { return _events.Value; }
     }
 
-    readonly System::Lazy<InvoiceLineItems::IInvoiceLineItemService> _invoiceLineItems;
-    public InvoiceLineItems::IInvoiceLineItemService InvoiceLineItems
+    readonly Lazy<IInvoiceLineItemService> _invoiceLineItems;
+    public IInvoiceLineItemService InvoiceLineItems
     {
         get { return _invoiceLineItems.Value; }
     }
 
-    readonly System::Lazy<Invoices::IInvoiceService> _invoices;
-    public Invoices::IInvoiceService Invoices
+    readonly Lazy<IInvoiceService> _invoices;
+    public IInvoiceService Invoices
     {
         get { return _invoices.Value; }
     }
 
-    readonly System::Lazy<Items::IItemService> _items;
-    public Items::IItemService Items
+    readonly Lazy<IItemService> _items;
+    public IItemService Items
     {
         get { return _items.Value; }
     }
 
-    readonly System::Lazy<Metrics::IMetricService> _metrics;
-    public Metrics::IMetricService Metrics
+    readonly Lazy<IMetricService> _metrics;
+    public IMetricService Metrics
     {
         get { return _metrics.Value; }
     }
 
-    readonly System::Lazy<Plans::IPlanService> _plans;
-    public Plans::IPlanService Plans
+    readonly Lazy<IPlanService> _plans;
+    public IPlanService Plans
     {
         get { return _plans.Value; }
     }
 
-    readonly System::Lazy<Prices::IPriceService> _prices;
-    public Prices::IPriceService Prices
+    readonly Lazy<IPriceService> _prices;
+    public IPriceService Prices
     {
         get { return _prices.Value; }
     }
 
-    readonly System::Lazy<global::Orb.Services.Subscriptions.ISubscriptionService> _subscriptions;
-    public global::Orb.Services.Subscriptions.ISubscriptionService Subscriptions
+    readonly Lazy<ISubscriptionService> _subscriptions;
+    public ISubscriptionService Subscriptions
     {
         get { return _subscriptions.Value; }
     }
 
-    readonly System::Lazy<Alerts::IAlertService> _alerts;
-    public Alerts::IAlertService Alerts
+    readonly Lazy<IAlertService> _alerts;
+    public IAlertService Alerts
     {
         get { return _alerts.Value; }
     }
 
-    readonly System::Lazy<global::Orb.Services.DimensionalPriceGroups.IDimensionalPriceGroupService> _dimensionalPriceGroups;
-    public global::Orb.Services.DimensionalPriceGroups.IDimensionalPriceGroupService DimensionalPriceGroups
+    readonly Lazy<IDimensionalPriceGroupService> _dimensionalPriceGroups;
+    public IDimensionalPriceGroupService DimensionalPriceGroups
     {
         get { return _dimensionalPriceGroups.Value; }
     }
 
-    readonly System::Lazy<SubscriptionChanges::ISubscriptionChangeService> _subscriptionChanges;
-    public SubscriptionChanges::ISubscriptionChangeService SubscriptionChanges
+    readonly Lazy<ISubscriptionChangeService> _subscriptionChanges;
+    public ISubscriptionChangeService SubscriptionChanges
     {
         get { return _subscriptionChanges.Value; }
     }
 
     public OrbClient()
     {
-        _topLevel = new(() => new TopLevel::TopLevelService(this));
-        _beta = new(() => new Beta::BetaService(this));
-        _coupons = new(() => new Coupons::CouponService(this));
-        _creditNotes = new(() => new CreditNotes::CreditNoteService(this));
-        _customers = new(() => new Customers::CustomerService(this));
-        _events = new(() => new Events::EventService(this));
-        _invoiceLineItems = new(() => new InvoiceLineItems::InvoiceLineItemService(this));
-        _invoices = new(() => new Invoices::InvoiceService(this));
-        _items = new(() => new Items::ItemService(this));
-        _metrics = new(() => new Metrics::MetricService(this));
-        _plans = new(() => new Plans::PlanService(this));
-        _prices = new(() => new Prices::PriceService(this));
-        _subscriptions = new(() => new global::Orb.Services.Subscriptions.SubscriptionService(this)
-        );
-        _alerts = new(() => new Alerts::AlertService(this));
-        _dimensionalPriceGroups = new(() =>
-            new global::Orb.Services.DimensionalPriceGroups.DimensionalPriceGroupService(this)
-        );
-        _subscriptionChanges = new(() => new SubscriptionChanges::SubscriptionChangeService(this));
+        _topLevel = new(() => new TopLevelService(this));
+        _beta = new(() => new BetaService(this));
+        _coupons = new(() => new CouponService(this));
+        _creditNotes = new(() => new CreditNoteService(this));
+        _customers = new(() => new CustomerService(this));
+        _events = new(() => new EventService(this));
+        _invoiceLineItems = new(() => new InvoiceLineItemService(this));
+        _invoices = new(() => new InvoiceService(this));
+        _items = new(() => new ItemService(this));
+        _metrics = new(() => new MetricService(this));
+        _plans = new(() => new PlanService(this));
+        _prices = new(() => new PriceService(this));
+        _subscriptions = new(() => new SubscriptionService(this));
+        _alerts = new(() => new AlertService(this));
+        _dimensionalPriceGroups = new(() => new DimensionalPriceGroupService(this));
+        _subscriptionChanges = new(() => new SubscriptionChangeService(this));
     }
 }

@@ -1,6 +1,6 @@
+using System;
 using System.Net.Http;
 using System.Text.Json;
-using System = System;
 
 namespace Orb.Models.Prices;
 
@@ -22,7 +22,13 @@ public sealed record class PriceListParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -37,12 +43,18 @@ public sealed record class PriceListParams : ParamsBase
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/prices")
+        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/prices")
         {
             Query = this.QueryString(client),
         }.Uri;

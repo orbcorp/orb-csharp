@@ -1,9 +1,7 @@
-using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.IncrementProperties.InvoiceSettingsProperties.InvoiceDateVariants;
 
-[JsonConverter(typeof(VariantConverter<Date, System::DateOnly>))]
 public sealed record class Date(System::DateOnly Value)
     : InvoiceDate,
         IVariant<Date, System::DateOnly>
@@ -16,7 +14,6 @@ public sealed record class Date(System::DateOnly Value)
     public override void Validate() { }
 }
 
-[JsonConverter(typeof(VariantConverter<DateTime, System::DateTime>))]
 public sealed record class DateTime(System::DateTime Value)
     : InvoiceDate,
         IVariant<DateTime, System::DateTime>

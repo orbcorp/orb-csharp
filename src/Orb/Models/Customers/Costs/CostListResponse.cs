@@ -21,7 +21,13 @@ public sealed record class CostListResponse : ModelBase, IFromRaw<CostListRespon
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("data");
         }
-        set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["data"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -47,7 +53,9 @@ public sealed record class CostListResponse : ModelBase, IFromRaw<CostListRespon
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public CostListResponse(List<AggregatedCost> data)
+        : this()
     {
         this.Data = data;
     }

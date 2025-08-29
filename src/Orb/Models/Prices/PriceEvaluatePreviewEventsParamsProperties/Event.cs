@@ -22,7 +22,13 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("event_name");
         }
-        set { this.Properties["event_name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["event_name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -41,7 +47,13 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("properties");
         }
-        set { this.Properties["properties"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["properties"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -58,7 +70,13 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["timestamp"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["timestamp"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -73,7 +91,13 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["customer_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -88,7 +112,13 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["external_customer_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["external_customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

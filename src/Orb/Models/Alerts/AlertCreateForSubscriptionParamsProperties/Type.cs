@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System = System;
 
@@ -6,41 +7,40 @@ namespace Orb.Models.Alerts.AlertCreateForSubscriptionParamsProperties;
 /// <summary>
 /// The type of alert to create. This must be a valid alert type.
 /// </summary>
-[JsonConverter(typeof(EnumConverter<Type, string>))]
-public sealed record class Type(string value) : IEnum<Type, string>
+[JsonConverter(typeof(TypeConverter))]
+public enum Type
 {
-    public static readonly Type UsageExceeded = new("usage_exceeded");
+    UsageExceeded,
+    CostExceeded,
+}
 
-    public static readonly Type CostExceeded = new("cost_exceeded");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class TypeConverter : JsonConverter<Type>
+{
+    public override Type Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        UsageExceeded,
-        CostExceeded,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "usage_exceeded" => Value.UsageExceeded,
-            "cost_exceeded" => Value.CostExceeded,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            "usage_exceeded" => AlertCreateForSubscriptionParamsProperties.Type.UsageExceeded,
+            "cost_exceeded" => AlertCreateForSubscriptionParamsProperties.Type.CostExceeded,
+            _ => (Type)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(Utf8JsonWriter writer, Type value, JsonSerializerOptions options)
     {
-        Known();
-    }
-
-    public static Type FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                AlertCreateForSubscriptionParamsProperties.Type.UsageExceeded => "usage_exceeded",
+                AlertCreateForSubscriptionParamsProperties.Type.CostExceeded => "cost_exceeded",
+                _ => throw new System::ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

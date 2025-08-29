@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models;
 
@@ -14,14 +14,20 @@ public sealed record class Allocation : ModelBase, IFromRaw<Allocation>
         get
         {
             if (!this.Properties.TryGetValue("allows_rollover", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "allows_rollover",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["allows_rollover"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["allows_rollover"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string Currency
@@ -29,15 +35,18 @@ public sealed record class Allocation : ModelBase, IFromRaw<Allocation>
         get
         {
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "currency",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("currency");
+                ?? throw new ArgumentNullException("currency");
         }
-        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required CustomExpiration? CustomExpiration
@@ -45,17 +54,20 @@ public sealed record class Allocation : ModelBase, IFromRaw<Allocation>
         get
         {
             if (!this.Properties.TryGetValue("custom_expiration", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "custom_expiration",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<CustomExpiration?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["custom_expiration"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["custom_expiration"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

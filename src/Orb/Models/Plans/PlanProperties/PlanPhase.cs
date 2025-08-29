@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Models = Orb.Models;
-using PlanPhaseProperties = Orb.Models.Plans.PlanProperties.PlanPhaseProperties;
+using Orb.Models.Plans.PlanProperties.PlanPhaseProperties;
 
 namespace Orb.Models.Plans.PlanProperties;
 
@@ -21,7 +20,13 @@ public sealed record class PlanPhase : ModelBase, IFromRaw<PlanPhase>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string? Description
@@ -29,26 +34,35 @@ public sealed record class PlanPhase : ModelBase, IFromRaw<PlanPhase>
         get
         {
             if (!this.Properties.TryGetValue("description", out JsonElement element))
-                throw new ArgumentOutOfRangeException("description", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["description"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["description"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required Models::Discount2? Discount
+    public required Discount? Discount
     {
         get
         {
             if (!this.Properties.TryGetValue("discount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("discount", "Missing required argument");
+                return null;
 
-            return JsonSerializer.Deserialize<Models::Discount2?>(
-                element,
+            return JsonSerializer.Deserialize<Discount?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["discount"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["discount"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -60,41 +74,56 @@ public sealed record class PlanPhase : ModelBase, IFromRaw<PlanPhase>
         get
         {
             if (!this.Properties.TryGetValue("duration", out JsonElement element))
-                throw new ArgumentOutOfRangeException("duration", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["duration"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["duration"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required PlanPhaseProperties::DurationUnit? DurationUnit
+    public required ApiEnum<string, DurationUnit>? DurationUnit
     {
         get
         {
             if (!this.Properties.TryGetValue("duration_unit", out JsonElement element))
-                throw new ArgumentOutOfRangeException("duration_unit", "Missing required argument");
+                return null;
 
-            return JsonSerializer.Deserialize<PlanPhaseProperties::DurationUnit?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, DurationUnit>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["duration_unit"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["duration_unit"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required Models::Maximum? Maximum
+    public required Maximum? Maximum
     {
         get
         {
             if (!this.Properties.TryGetValue("maximum", out JsonElement element))
-                throw new ArgumentOutOfRangeException("maximum", "Missing required argument");
+                return null;
 
-            return JsonSerializer.Deserialize<Models::Maximum?>(
-                element,
+            return JsonSerializer.Deserialize<Maximum?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["maximum"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["maximum"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string? MaximumAmount
@@ -102,29 +131,35 @@ public sealed record class PlanPhase : ModelBase, IFromRaw<PlanPhase>
         get
         {
             if (!this.Properties.TryGetValue("maximum_amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "maximum_amount",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required Models::Minimum? Minimum
+    public required Minimum? Minimum
     {
         get
         {
             if (!this.Properties.TryGetValue("minimum", out JsonElement element))
-                throw new ArgumentOutOfRangeException("minimum", "Missing required argument");
+                return null;
 
-            return JsonSerializer.Deserialize<Models::Minimum?>(
-                element,
+            return JsonSerializer.Deserialize<Minimum?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["minimum"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["minimum"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string? MinimumAmount
@@ -132,14 +167,17 @@ public sealed record class PlanPhase : ModelBase, IFromRaw<PlanPhase>
         get
         {
             if (!this.Properties.TryGetValue("minimum_amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "minimum_amount",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string Name
@@ -152,7 +190,13 @@ public sealed record class PlanPhase : ModelBase, IFromRaw<PlanPhase>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
-        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -167,7 +211,13 @@ public sealed record class PlanPhase : ModelBase, IFromRaw<PlanPhase>
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["order"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["order"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

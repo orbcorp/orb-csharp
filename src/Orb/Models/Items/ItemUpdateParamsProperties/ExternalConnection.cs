@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using ExternalConnectionProperties = Orb.Models.Items.ItemUpdateParamsProperties.ExternalConnectionProperties;
+using Orb.Models.Items.ItemUpdateParamsProperties.ExternalConnectionProperties;
 
 namespace Orb.Models.Items.ItemUpdateParamsProperties;
 
 [JsonConverter(typeof(ModelConverter<ExternalConnection>))]
 public sealed record class ExternalConnection : ModelBase, IFromRaw<ExternalConnection>
 {
-    public required ExternalConnectionProperties::ExternalConnectionName ExternalConnectionName
+    public required ApiEnum<string, ExternalConnectionName> ExternalConnectionName
     {
         get
         {
@@ -20,14 +20,17 @@ public sealed record class ExternalConnection : ModelBase, IFromRaw<ExternalConn
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<ExternalConnectionProperties::ExternalConnectionName>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("external_connection_name");
+            return JsonSerializer.Deserialize<ApiEnum<string, ExternalConnectionName>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
-            this.Properties["external_connection_name"] = JsonSerializer.SerializeToElement(value);
+            this.Properties["external_connection_name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -44,7 +47,13 @@ public sealed record class ExternalConnection : ModelBase, IFromRaw<ExternalConn
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("external_entity_id");
         }
-        set { this.Properties["external_entity_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["external_entity_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

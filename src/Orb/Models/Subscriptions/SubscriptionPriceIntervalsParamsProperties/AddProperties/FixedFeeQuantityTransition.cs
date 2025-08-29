@@ -1,35 +1,38 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties;
 
-[JsonConverter(typeof(ModelConverter<FixedFeeQuantityTransition1>))]
-public sealed record class FixedFeeQuantityTransition1
+[JsonConverter(typeof(ModelConverter<FixedFeeQuantityTransition>))]
+public sealed record class FixedFeeQuantityTransition
     : ModelBase,
-        IFromRaw<FixedFeeQuantityTransition1>
+        IFromRaw<FixedFeeQuantityTransition>
 {
     /// <summary>
     /// The date that the fixed fee quantity transition should take effect.
     /// </summary>
-    public required System::DateTime EffectiveDate
+    public required DateTime EffectiveDate
     {
         get
         {
             if (!this.Properties.TryGetValue("effective_date", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "effective_date",
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
-                element,
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["effective_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["effective_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -40,14 +43,17 @@ public sealed record class FixedFeeQuantityTransition1
         get
         {
             if (!this.Properties.TryGetValue("quantity", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "quantity",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("quantity", "Missing required argument");
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["quantity"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["quantity"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -56,17 +62,17 @@ public sealed record class FixedFeeQuantityTransition1
         _ = this.Quantity;
     }
 
-    public FixedFeeQuantityTransition1() { }
+    public FixedFeeQuantityTransition() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FixedFeeQuantityTransition1(Dictionary<string, JsonElement> properties)
+    FixedFeeQuantityTransition(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static FixedFeeQuantityTransition1 FromRawUnchecked(
+    public static FixedFeeQuantityTransition FromRawUnchecked(
         Dictionary<string, JsonElement> properties
     )
     {

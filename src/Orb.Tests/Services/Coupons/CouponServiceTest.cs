@@ -9,13 +9,7 @@ public class CouponServiceTest : TestBase
     public async Task Create_Works()
     {
         var coupon = await this.client.Coupons.Create(
-            new()
-            {
-                Discount = new Percentage(0),
-                RedemptionCode = "HALFOFF",
-                DurationInMonths = 12,
-                MaxRedemptions = 1,
-            }
+            new() { Discount = new Percentage(0), RedemptionCode = "HALFOFF" }
         );
         coupon.Validate();
     }
@@ -23,15 +17,7 @@ public class CouponServiceTest : TestBase
     [Fact]
     public async Task List_Works()
     {
-        var page = await this.client.Coupons.List(
-            new()
-            {
-                Cursor = "cursor",
-                Limit = 1,
-                RedemptionCode = "redemption_code",
-                ShowArchived = true,
-            }
-        );
+        var page = await this.client.Coupons.List();
         page.Validate();
     }
 

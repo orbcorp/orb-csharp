@@ -13,5 +13,5 @@ public interface ITopLevelService
     ///
     /// This API does not have any side-effects or return any Orb resources.
     /// </summary>
-    Task<TopLevelPingResponse> Ping(TopLevelPingParams @params);
+    Task<TopLevelPingResponse> Ping(TopLevelPingParams? parameters = null);
 }

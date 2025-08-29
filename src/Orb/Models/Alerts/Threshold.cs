@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Alerts;
 
@@ -22,11 +22,17 @@ public sealed record class Threshold : ModelBase, IFromRaw<Threshold>
         get
         {
             if (!this.Properties.TryGetValue("value", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("value", "Missing required argument");
+                throw new ArgumentOutOfRangeException("value", "Missing required argument");
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["value"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["value"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -49,7 +55,9 @@ public sealed record class Threshold : ModelBase, IFromRaw<Threshold>
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public Threshold(double value)
+        : this()
     {
         this.Value = value;
     }

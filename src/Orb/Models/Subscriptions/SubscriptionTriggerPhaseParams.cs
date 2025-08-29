@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System = System;
 
 namespace Orb.Models.Subscriptions;
 
@@ -37,7 +37,8 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
         set
         {
             this.BodyProperties["allow_invoice_credit_or_void"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -46,24 +47,27 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
     /// The date on which the phase change should take effect. If not provided, defaults
     /// to today in the customer's timezone.
     /// </summary>
-    public System::DateOnly? EffectiveDate
+    public DateOnly? EffectiveDate
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("effective_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateOnly?>(
-                element,
+            return JsonSerializer.Deserialize<DateOnly?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["effective_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["effective_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscriptions/{0}/trigger_phase", this.SubscriptionID)
         )

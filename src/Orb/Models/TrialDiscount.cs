@@ -1,31 +1,34 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
-using TrialDiscountProperties = Orb.Models.TrialDiscountProperties;
+using Orb.Models.TrialDiscountProperties;
 
 namespace Orb.Models;
 
 [JsonConverter(typeof(ModelConverter<TrialDiscount>))]
 public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
 {
-    public required TrialDiscountProperties::DiscountType DiscountType
+    public required ApiEnum<string, DiscountType> DiscountType
     {
         get
         {
             if (!this.Properties.TryGetValue("discount_type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "discount_type",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("discount_type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<TrialDiscountProperties::DiscountType>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("discount_type");
+            return JsonSerializer.Deserialize<ApiEnum<string, DiscountType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["discount_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["discount_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -41,7 +44,13 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -59,7 +68,13 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["filters"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["filters"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? Reason
@@ -71,7 +86,13 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["reason"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["reason"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -86,7 +107,13 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["trial_amount_discount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["trial_amount_discount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -103,7 +130,10 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
         }
         set
         {
-            this.Properties["trial_percentage_discount"] = JsonSerializer.SerializeToElement(value);
+            this.Properties["trial_percentage_discount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -138,7 +168,9 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
         return new(properties);
     }
 
-    public TrialDiscount(TrialDiscountProperties::DiscountType discountType)
+    [SetsRequiredMembers]
+    public TrialDiscount(ApiEnum<string, DiscountType> discountType)
+        : this()
     {
         this.DiscountType = discountType;
     }

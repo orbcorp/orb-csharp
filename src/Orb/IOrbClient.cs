@@ -1,59 +1,63 @@
-using Alerts = Orb.Services.Alerts;
-using Beta = Orb.Services.Beta;
-using Coupons = Orb.Services.Coupons;
-using CreditNotes = Orb.Services.CreditNotes;
-using Customers = Orb.Services.Customers;
-using Events = Orb.Services.Events;
-using Http = System.Net.Http;
-using InvoiceLineItems = Orb.Services.InvoiceLineItems;
-using Invoices = Orb.Services.Invoices;
-using Items = Orb.Services.Items;
-using Metrics = Orb.Services.Metrics;
-using Plans = Orb.Services.Plans;
-using Prices = Orb.Services.Prices;
-using SubscriptionChanges = Orb.Services.SubscriptionChanges;
-using System = System;
-using TopLevel = Orb.Services.TopLevel;
+using System;
+using System.Net.Http;
+using Orb.Services.Alerts;
+using Orb.Services.Beta;
+using Orb.Services.Coupons;
+using Orb.Services.CreditNotes;
+using Orb.Services.Customers;
+using Orb.Services.DimensionalPriceGroups;
+using Orb.Services.Events;
+using Orb.Services.InvoiceLineItems;
+using Orb.Services.Invoices;
+using Orb.Services.Items;
+using Orb.Services.Metrics;
+using Orb.Services.Plans;
+using Orb.Services.Prices;
+using Orb.Services.SubscriptionChanges;
+using Orb.Services.Subscriptions;
+using Orb.Services.TopLevel;
 
 namespace Orb;
 
 public interface IOrbClient
 {
-    Http::HttpClient HttpClient { get; init; }
+    HttpClient HttpClient { get; init; }
 
-    System::Uri BaseUrl { get; init; }
+    Uri BaseUrl { get; init; }
 
     string APIKey { get; init; }
 
-    TopLevel::ITopLevelService TopLevel { get; }
+    string? WebhookSecret { get; init; }
 
-    Beta::IBetaService Beta { get; }
+    ITopLevelService TopLevel { get; }
 
-    Coupons::ICouponService Coupons { get; }
+    IBetaService Beta { get; }
 
-    CreditNotes::ICreditNoteService CreditNotes { get; }
+    ICouponService Coupons { get; }
 
-    Customers::ICustomerService Customers { get; }
+    ICreditNoteService CreditNotes { get; }
 
-    Events::IEventService Events { get; }
+    ICustomerService Customers { get; }
 
-    InvoiceLineItems::IInvoiceLineItemService InvoiceLineItems { get; }
+    IEventService Events { get; }
 
-    Invoices::IInvoiceService Invoices { get; }
+    IInvoiceLineItemService InvoiceLineItems { get; }
 
-    Items::IItemService Items { get; }
+    IInvoiceService Invoices { get; }
 
-    Metrics::IMetricService Metrics { get; }
+    IItemService Items { get; }
 
-    Plans::IPlanService Plans { get; }
+    IMetricService Metrics { get; }
 
-    Prices::IPriceService Prices { get; }
+    IPlanService Plans { get; }
 
-    global::Orb.Services.Subscriptions.ISubscriptionService Subscriptions { get; }
+    IPriceService Prices { get; }
 
-    Alerts::IAlertService Alerts { get; }
+    ISubscriptionService Subscriptions { get; }
 
-    global::Orb.Services.DimensionalPriceGroups.IDimensionalPriceGroupService DimensionalPriceGroups { get; }
+    IAlertService Alerts { get; }
 
-    SubscriptionChanges::ISubscriptionChangeService SubscriptionChanges { get; }
+    IDimensionalPriceGroupService DimensionalPriceGroups { get; }
+
+    ISubscriptionChangeService SubscriptionChanges { get; }
 }

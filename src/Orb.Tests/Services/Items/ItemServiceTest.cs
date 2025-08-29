@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using Orb.Models.Items.ItemUpdateParamsProperties.ExternalConnectionProperties;
 
 namespace Orb.Tests.Services.Items;
 
@@ -8,42 +7,21 @@ public class ItemServiceTest : TestBase
     [Fact]
     public async Task Create_Works()
     {
-        var item = await this.client.Items.Create(
-            new()
-            {
-                Name = "API requests",
-                Metadata = new() { { "foo", "string" } },
-            }
-        );
+        var item = await this.client.Items.Create(new() { Name = "API requests" });
         item.Validate();
     }
 
     [Fact]
     public async Task Update_Works()
     {
-        var item = await this.client.Items.Update(
-            new()
-            {
-                ItemID = "item_id",
-                ExternalConnections =
-                [
-                    new()
-                    {
-                        ExternalConnectionName = ExternalConnectionName.Stripe,
-                        ExternalEntityID = "external_entity_id",
-                    },
-                ],
-                Metadata = new() { { "foo", "string" } },
-                Name = "name",
-            }
-        );
+        var item = await this.client.Items.Update(new() { ItemID = "item_id" });
         item.Validate();
     }
 
     [Fact]
     public async Task List_Works()
     {
-        var page = await this.client.Items.List(new() { Cursor = "cursor", Limit = 1 });
+        var page = await this.client.Items.List();
         page.Validate();
     }
 

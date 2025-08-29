@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using ReplaceAdjustmentProperties = Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.ReplaceAdjustmentProperties;
+using Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.ReplaceAdjustmentProperties;
 
 namespace Orb.Models.Beta.BetaCreatePlanVersionParamsProperties;
 
@@ -13,19 +13,23 @@ public sealed record class ReplaceAdjustment : ModelBase, IFromRaw<ReplaceAdjust
     /// <summary>
     /// The definition of a new adjustment to create and add to the plan.
     /// </summary>
-    public required ReplaceAdjustmentProperties::Adjustment Adjustment
+    public required Adjustment Adjustment
     {
         get
         {
             if (!this.Properties.TryGetValue("adjustment", out JsonElement element))
                 throw new ArgumentOutOfRangeException("adjustment", "Missing required argument");
 
-            return JsonSerializer.Deserialize<ReplaceAdjustmentProperties::Adjustment>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("adjustment");
+            return JsonSerializer.Deserialize<Adjustment>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("adjustment");
         }
-        set { this.Properties["adjustment"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["adjustment"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -46,7 +50,10 @@ public sealed record class ReplaceAdjustment : ModelBase, IFromRaw<ReplaceAdjust
         }
         set
         {
-            this.Properties["replaces_adjustment_id"] = JsonSerializer.SerializeToElement(value);
+            this.Properties["replaces_adjustment_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -62,7 +69,13 @@ public sealed record class ReplaceAdjustment : ModelBase, IFromRaw<ReplaceAdjust
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

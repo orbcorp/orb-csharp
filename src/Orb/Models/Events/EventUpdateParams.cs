@@ -63,7 +63,13 @@ public sealed record class EventUpdateParams : ParamsBase
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("event_name");
         }
-        set { this.BodyProperties["event_name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["event_name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -82,7 +88,13 @@ public sealed record class EventUpdateParams : ParamsBase
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("properties");
         }
-        set { this.BodyProperties["properties"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["properties"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -99,7 +111,13 @@ public sealed record class EventUpdateParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["timestamp"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["timestamp"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -114,7 +132,13 @@ public sealed record class EventUpdateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -131,7 +155,10 @@ public sealed record class EventUpdateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 

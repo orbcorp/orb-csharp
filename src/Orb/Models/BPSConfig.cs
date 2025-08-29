@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models;
 
@@ -17,11 +17,17 @@ public sealed record class BPSConfig : ModelBase, IFromRaw<BPSConfig>
         get
         {
             if (!this.Properties.TryGetValue("bps", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("bps", "Missing required argument");
+                throw new ArgumentOutOfRangeException("bps", "Missing required argument");
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["bps"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["bps"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -36,7 +42,13 @@ public sealed record class BPSConfig : ModelBase, IFromRaw<BPSConfig>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["per_unit_maximum"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["per_unit_maximum"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -60,7 +72,9 @@ public sealed record class BPSConfig : ModelBase, IFromRaw<BPSConfig>
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public BPSConfig(double bps)
+        : this()
     {
         this.BPS = bps;
     }

@@ -8,11 +8,7 @@ public class ExternalPriceIDServiceTest : TestBase
     public async Task Update_Works()
     {
         var price = await this.client.Prices.ExternalPriceID.Update(
-            new()
-            {
-                ExternalPriceID = "external_price_id",
-                Metadata = new() { { "foo", "string" } },
-            }
+            new() { ExternalPriceID = "external_price_id" }
         );
         price.Validate();
     }

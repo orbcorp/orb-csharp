@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using CustomerUpdateParamsProperties = Orb.Models.Customers.CustomerUpdateParamsProperties;
-using System = System;
+using Orb.Models.Customers.CustomerUpdateParamsProperties;
 
 namespace Orb.Models.Customers;
 
@@ -39,7 +39,7 @@ public sealed record class CustomerUpdateParams : ParamsBase
         set
         {
             this.BodyProperties["accounting_sync_configuration"] =
-                JsonSerializer.SerializeToElement(value);
+                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
 
@@ -56,7 +56,13 @@ public sealed record class CustomerUpdateParams : ParamsBase
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["additional_emails"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["additional_emails"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -73,7 +79,13 @@ public sealed record class CustomerUpdateParams : ParamsBase
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["auto_collection"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["auto_collection"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public AddressInput? BillingAddress
@@ -85,7 +97,13 @@ public sealed record class CustomerUpdateParams : ParamsBase
 
             return JsonSerializer.Deserialize<AddressInput?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["billing_address"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["billing_address"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -101,7 +119,13 @@ public sealed record class CustomerUpdateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -116,7 +140,13 @@ public sealed record class CustomerUpdateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["email"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["email"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public bool? EmailDelivery
@@ -128,7 +158,13 @@ public sealed record class CustomerUpdateParams : ParamsBase
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["email_delivery"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["email_delivery"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -148,7 +184,10 @@ public sealed record class CustomerUpdateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -167,7 +206,13 @@ public sealed record class CustomerUpdateParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["hierarchy"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["hierarchy"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -187,7 +232,13 @@ public sealed record class CustomerUpdateParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -202,7 +253,13 @@ public sealed record class CustomerUpdateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -212,19 +269,25 @@ public sealed record class CustomerUpdateParams : ParamsBase
     /// `bill.com`, `netsuite`), any product mappings must first be configured with
     /// the Orb team.
     /// </summary>
-    public CustomerUpdateParamsProperties::PaymentProvider? PaymentProvider
+    public ApiEnum<string, PaymentProvider>? PaymentProvider
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("payment_provider", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<CustomerUpdateParamsProperties::PaymentProvider?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, PaymentProvider>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["payment_provider"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["payment_provider"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -242,7 +305,10 @@ public sealed record class CustomerUpdateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["payment_provider_id"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["payment_provider_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -263,7 +329,8 @@ public sealed record class CustomerUpdateParams : ParamsBase
         set
         {
             this.BodyProperties["reporting_configuration"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -277,22 +344,34 @@ public sealed record class CustomerUpdateParams : ParamsBase
 
             return JsonSerializer.Deserialize<AddressInput?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["shipping_address"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["shipping_address"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public CustomerUpdateParamsProperties::TaxConfiguration? TaxConfiguration
+    public TaxConfiguration? TaxConfiguration
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("tax_configuration", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<CustomerUpdateParamsProperties::TaxConfiguration?>(
+            return JsonSerializer.Deserialize<TaxConfiguration?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["tax_configuration"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["tax_configuration"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -409,12 +488,18 @@ public sealed record class CustomerUpdateParams : ParamsBase
 
             return JsonSerializer.Deserialize<CustomerTaxID?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["tax_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["tax_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/customers/{0}", this.CustomerID)
         )

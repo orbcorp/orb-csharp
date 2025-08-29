@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System = System;
 
 namespace Orb.Models.Subscriptions;
 
@@ -30,7 +30,13 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["auto_collection"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["auto_collection"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -48,7 +54,10 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["default_invoice_memo"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["default_invoice_memo"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -68,7 +77,10 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["invoicing_threshold"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["invoicing_threshold"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -89,7 +101,13 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -107,12 +125,18 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["net_terms"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["net_terms"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscriptions/{0}", this.SubscriptionID)
         )

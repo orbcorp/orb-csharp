@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using PriceEvaluateMultipleParamsProperties = Orb.Models.Prices.PriceEvaluateMultipleParamsProperties;
-using System = System;
+using Orb.Models.Prices.PriceEvaluateMultipleParamsProperties;
 
 namespace Orb.Models.Prices;
 
@@ -41,43 +41,46 @@ public sealed record class PriceEvaluateMultipleParams : ParamsBase
     /// <summary>
     /// The exclusive upper bound for event timestamps
     /// </summary>
-    public required System::DateTime TimeframeEnd
+    public required DateTime TimeframeEnd
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("timeframe_end", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "timeframe_end",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("timeframe_end", "Missing required argument");
 
-            return JsonSerializer.Deserialize<System::DateTime>(
-                element,
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The inclusive lower bound for event timestamps
     /// </summary>
-    public required System::DateTime TimeframeStart
+    public required DateTime TimeframeStart
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("timeframe_start", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "timeframe_start",
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
-                element,
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -92,7 +95,13 @@ public sealed record class PriceEvaluateMultipleParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -109,31 +118,40 @@ public sealed record class PriceEvaluateMultipleParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
     /// <summary>
     /// List of prices to evaluate (max 100)
     /// </summary>
-    public List<PriceEvaluateMultipleParamsProperties::PriceEvaluation>? PriceEvaluations
+    public List<PriceEvaluation>? PriceEvaluations
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("price_evaluations", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<PriceEvaluateMultipleParamsProperties::PriceEvaluation>?>(
+            return JsonSerializer.Deserialize<List<PriceEvaluation>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["price_evaluations"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["price_evaluations"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/prices/evaluate")
+        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/prices/evaluate")
         {
             Query = this.QueryString(client),
         }.Uri;

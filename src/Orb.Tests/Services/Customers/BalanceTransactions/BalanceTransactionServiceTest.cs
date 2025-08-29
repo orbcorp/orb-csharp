@@ -1,6 +1,5 @@
-using System;
 using System.Threading.Tasks;
-using BalanceTransactionCreateParamsProperties = Orb.Models.Customers.BalanceTransactions.BalanceTransactionCreateParamsProperties;
+using Orb.Models.Customers.BalanceTransactions.BalanceTransactionCreateParamsProperties;
 
 namespace Orb.Tests.Services.Customers.BalanceTransactions;
 
@@ -14,8 +13,7 @@ public class BalanceTransactionServiceTest : TestBase
             {
                 CustomerID = "customer_id",
                 Amount = "amount",
-                Type = BalanceTransactionCreateParamsProperties::Type.Increment,
-                Description = "description",
+                Type = Type.Increment,
             }
         );
         balanceTransaction.Validate();
@@ -25,16 +23,7 @@ public class BalanceTransactionServiceTest : TestBase
     public async Task List_Works()
     {
         var page = await this.client.Customers.BalanceTransactions.List(
-            new()
-            {
-                CustomerID = "customer_id",
-                Cursor = "cursor",
-                Limit = 1,
-                OperationTimeGt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                OperationTimeGte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                OperationTimeLt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                OperationTimeLte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-            }
+            new() { CustomerID = "customer_id" }
         );
         page.Validate();
     }

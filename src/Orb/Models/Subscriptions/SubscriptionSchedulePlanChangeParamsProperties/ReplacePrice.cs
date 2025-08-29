@@ -26,7 +26,13 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("replaces_price_id");
         }
-        set { this.Properties["replaces_price_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["replaces_price_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -44,7 +50,13 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["allocation_price"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["allocation_price"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -63,7 +75,13 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["discounts"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["discounts"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -78,7 +96,13 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -93,7 +117,13 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["fixed_price_quantity"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["fixed_price_quantity"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -109,7 +139,13 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -125,25 +161,37 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The definition of a new price to create and add to the subscription.
     /// </summary>
-    public ReplacePriceProperties::Price1? Price
+    public ReplacePriceProperties::Price? Price
     {
         get
         {
             if (!this.Properties.TryGetValue("price", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ReplacePriceProperties::Price1?>(
+            return JsonSerializer.Deserialize<ReplacePriceProperties::Price?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["price"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["price"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -158,7 +206,13 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["price_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["price_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -192,7 +246,9 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public ReplacePrice(string replacesPriceID)
+        : this()
     {
         this.ReplacesPriceID = replacesPriceID;
     }

@@ -1,39 +1,44 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.Credits.Ledger.IncrementLedgerEntryProperties;
 
-[JsonConverter(typeof(EnumConverter<EntryType, string>))]
-public sealed record class EntryType(string value) : IEnum<EntryType, string>
+[JsonConverter(typeof(EntryTypeConverter))]
+public enum EntryType
 {
-    public static readonly EntryType Increment = new("increment");
+    Increment,
+}
 
-    readonly string _value = value;
-
-    public enum Value
+sealed class EntryTypeConverter : JsonConverter<EntryType>
+{
+    public override EntryType Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Increment,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "increment" => Value.Increment,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "increment" => EntryType.Increment,
+            _ => (EntryType)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        EntryType value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static EntryType FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                EntryType.Increment => "increment",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

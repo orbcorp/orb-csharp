@@ -1,47 +1,50 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionRedeemCouponParamsProperties;
 
-[JsonConverter(typeof(EnumConverter<ChangeOption, string>))]
-public sealed record class ChangeOption(string value) : IEnum<ChangeOption, string>
+[JsonConverter(typeof(ChangeOptionConverter))]
+public enum ChangeOption
 {
-    public static readonly ChangeOption RequestedDate = new("requested_date");
+    RequestedDate,
+    EndOfSubscriptionTerm,
+    Immediate,
+}
 
-    public static readonly ChangeOption EndOfSubscriptionTerm = new("end_of_subscription_term");
-
-    public static readonly ChangeOption Immediate = new("immediate");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class ChangeOptionConverter : JsonConverter<ChangeOption>
+{
+    public override ChangeOption Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        RequestedDate,
-        EndOfSubscriptionTerm,
-        Immediate,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "requested_date" => Value.RequestedDate,
-            "end_of_subscription_term" => Value.EndOfSubscriptionTerm,
-            "immediate" => Value.Immediate,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "requested_date" => ChangeOption.RequestedDate,
+            "end_of_subscription_term" => ChangeOption.EndOfSubscriptionTerm,
+            "immediate" => ChangeOption.Immediate,
+            _ => (ChangeOption)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        ChangeOption value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static ChangeOption FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ChangeOption.RequestedDate => "requested_date",
+                ChangeOption.EndOfSubscriptionTerm => "end_of_subscription_term",
+                ChangeOption.Immediate => "immediate",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

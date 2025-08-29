@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
-using TransformPriceFilterProperties = Orb.Models.TransformPriceFilterProperties;
+using Orb.Models.TransformPriceFilterProperties;
 
 namespace Orb.Models;
 
@@ -13,40 +13,49 @@ public sealed record class TransformPriceFilter : ModelBase, IFromRaw<TransformP
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required TransformPriceFilterProperties::Field Field
+    public required ApiEnum<string, Field> Field
     {
         get
         {
             if (!this.Properties.TryGetValue("field", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("field", "Missing required argument");
+                throw new ArgumentOutOfRangeException("field", "Missing required argument");
 
-            return JsonSerializer.Deserialize<TransformPriceFilterProperties::Field>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("field");
+            return JsonSerializer.Deserialize<ApiEnum<string, Field>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["field"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["field"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required TransformPriceFilterProperties::Operator Operator
+    public required ApiEnum<string, Operator> Operator
     {
         get
         {
             if (!this.Properties.TryGetValue("operator", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "operator",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("operator", "Missing required argument");
 
-            return JsonSerializer.Deserialize<TransformPriceFilterProperties::Operator>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("operator");
+            return JsonSerializer.Deserialize<ApiEnum<string, Operator>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["operator"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["operator"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -57,15 +66,18 @@ public sealed record class TransformPriceFilter : ModelBase, IFromRaw<TransformP
         get
         {
             if (!this.Properties.TryGetValue("values", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "values",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("values", "Missing required argument");
 
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("values");
+                ?? throw new ArgumentNullException("values");
         }
-        set { this.Properties["values"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["values"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

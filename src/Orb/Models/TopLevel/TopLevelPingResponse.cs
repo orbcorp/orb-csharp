@@ -19,7 +19,13 @@ public sealed record class TopLevelPingResponse : ModelBase, IFromRaw<TopLevelPi
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("response");
         }
-        set { this.Properties["response"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["response"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -42,7 +48,9 @@ public sealed record class TopLevelPingResponse : ModelBase, IFromRaw<TopLevelPi
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public TopLevelPingResponse(string response)
+        : this()
     {
         this.Response = response;
     }

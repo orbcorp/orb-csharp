@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using PlanPhaseProperties = Orb.Models.Plans.PlanCreateParamsProperties.PlanPhaseProperties;
+using Orb.Models.Plans.PlanCreateParamsProperties.PlanPhaseProperties;
 
 namespace Orb.Models.Plans.PlanCreateParamsProperties;
 
@@ -22,7 +22,13 @@ public sealed record class PlanPhase : ModelBase, IFromRaw<PlanPhase>
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["order"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["order"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -45,7 +51,7 @@ public sealed record class PlanPhase : ModelBase, IFromRaw<PlanPhase>
         set
         {
             this.Properties["align_billing_with_phase_start_date"] =
-                JsonSerializer.SerializeToElement(value);
+                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
 
@@ -62,22 +68,34 @@ public sealed record class PlanPhase : ModelBase, IFromRaw<PlanPhase>
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["duration"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["duration"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public PlanPhaseProperties::DurationUnit? DurationUnit
+    public ApiEnum<string, DurationUnit>? DurationUnit
     {
         get
         {
             if (!this.Properties.TryGetValue("duration_unit", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<PlanPhaseProperties::DurationUnit?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, DurationUnit>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["duration_unit"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["duration_unit"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -103,7 +121,9 @@ public sealed record class PlanPhase : ModelBase, IFromRaw<PlanPhase>
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public PlanPhase(long order)
+        : this()
     {
         this.Order = order;
     }

@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using AdjustmentIntervalProperties = Orb.Models.AdjustmentIntervalProperties;
-using System = System;
+using Orb.Models.AdjustmentIntervalProperties;
 
 namespace Orb.Models;
 
@@ -15,30 +15,37 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("id");
+                ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required AdjustmentIntervalProperties::Adjustment Adjustment
+    public required Adjustment Adjustment
     {
         get
         {
             if (!this.Properties.TryGetValue("adjustment", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "adjustment",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("adjustment", "Missing required argument");
 
-            return JsonSerializer.Deserialize<AdjustmentIntervalProperties::Adjustment>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("adjustment");
+            return JsonSerializer.Deserialize<Adjustment>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("adjustment");
         }
-        set { this.Properties["adjustment"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["adjustment"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -54,18 +61,19 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
                     out JsonElement element
                 )
             )
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "applies_to_price_interval_ids",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("applies_to_price_interval_ids");
+                ?? throw new ArgumentNullException("applies_to_price_interval_ids");
         }
         set
         {
             this.Properties["applies_to_price_interval_ids"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -73,43 +81,43 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
     /// <summary>
     /// The end date of the adjustment interval.
     /// </summary>
-    public required System::DateTime? EndDate
+    public required DateTime? EndDate
     {
         get
         {
             if (!this.Properties.TryGetValue("end_date", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "end_date",
-                    "Missing required argument"
-                );
+                return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["end_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The start date of the adjustment interval.
     /// </summary>
-    public required System::DateTime StartDate
+    public required DateTime StartDate
     {
         get
         {
             if (!this.Properties.TryGetValue("start_date", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "start_date",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("start_date", "Missing required argument");
 
-            return JsonSerializer.Deserialize<System::DateTime>(
-                element,
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["start_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()

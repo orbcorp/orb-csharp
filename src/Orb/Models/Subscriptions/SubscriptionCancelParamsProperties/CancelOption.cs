@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionCancelParamsProperties;
@@ -6,45 +7,47 @@ namespace Orb.Models.Subscriptions.SubscriptionCancelParamsProperties;
 /// <summary>
 /// Determines the timing of subscription cancellation
 /// </summary>
-[JsonConverter(typeof(EnumConverter<CancelOption, string>))]
-public sealed record class CancelOption(string value) : IEnum<CancelOption, string>
+[JsonConverter(typeof(CancelOptionConverter))]
+public enum CancelOption
 {
-    public static readonly CancelOption EndOfSubscriptionTerm = new("end_of_subscription_term");
+    EndOfSubscriptionTerm,
+    Immediate,
+    RequestedDate,
+}
 
-    public static readonly CancelOption Immediate = new("immediate");
-
-    public static readonly CancelOption RequestedDate = new("requested_date");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class CancelOptionConverter : JsonConverter<CancelOption>
+{
+    public override CancelOption Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        EndOfSubscriptionTerm,
-        Immediate,
-        RequestedDate,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "end_of_subscription_term" => Value.EndOfSubscriptionTerm,
-            "immediate" => Value.Immediate,
-            "requested_date" => Value.RequestedDate,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "end_of_subscription_term" => CancelOption.EndOfSubscriptionTerm,
+            "immediate" => CancelOption.Immediate,
+            "requested_date" => CancelOption.RequestedDate,
+            _ => (CancelOption)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        CancelOption value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static CancelOption FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                CancelOption.EndOfSubscriptionTerm => "end_of_subscription_term",
+                CancelOption.Immediate => "immediate",
+                CancelOption.RequestedDate => "requested_date",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

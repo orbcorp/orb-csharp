@@ -1,55 +1,56 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Plans.PlanCreateParamsProperties.PlanPhaseProperties;
 
-[JsonConverter(typeof(EnumConverter<DurationUnit, string>))]
-public sealed record class DurationUnit(string value) : IEnum<DurationUnit, string>
+[JsonConverter(typeof(DurationUnitConverter))]
+public enum DurationUnit
 {
-    public static readonly DurationUnit Daily = new("daily");
+    Daily,
+    Monthly,
+    Quarterly,
+    SemiAnnual,
+    Annual,
+}
 
-    public static readonly DurationUnit Monthly = new("monthly");
-
-    public static readonly DurationUnit Quarterly = new("quarterly");
-
-    public static readonly DurationUnit SemiAnnual = new("semi_annual");
-
-    public static readonly DurationUnit Annual = new("annual");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class DurationUnitConverter : JsonConverter<DurationUnit>
+{
+    public override DurationUnit Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Daily,
-        Monthly,
-        Quarterly,
-        SemiAnnual,
-        Annual,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "daily" => Value.Daily,
-            "monthly" => Value.Monthly,
-            "quarterly" => Value.Quarterly,
-            "semi_annual" => Value.SemiAnnual,
-            "annual" => Value.Annual,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "daily" => DurationUnit.Daily,
+            "monthly" => DurationUnit.Monthly,
+            "quarterly" => DurationUnit.Quarterly,
+            "semi_annual" => DurationUnit.SemiAnnual,
+            "annual" => DurationUnit.Annual,
+            _ => (DurationUnit)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        DurationUnit value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static DurationUnit FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                DurationUnit.Daily => "daily",
+                DurationUnit.Monthly => "monthly",
+                DurationUnit.Quarterly => "quarterly",
+                DurationUnit.SemiAnnual => "semi_annual",
+                DurationUnit.Annual => "annual",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

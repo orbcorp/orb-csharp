@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using DataProperties = Orb.Models.Customers.Credits.CreditListPageResponseProperties.DataProperties;
+using Orb.Models.Customers.Credits.CreditListPageResponseProperties.DataProperties;
 
 namespace Orb.Models.Customers.Credits.CreditListPageResponseProperties;
 
@@ -20,7 +20,13 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required double Balance
@@ -32,7 +38,13 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["balance"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["balance"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required DateTime? EffectiveDate
@@ -40,14 +52,17 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         get
         {
             if (!this.Properties.TryGetValue("effective_date", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "effective_date",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["effective_date"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["effective_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required DateTime? ExpiryDate
@@ -55,11 +70,17 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         get
         {
             if (!this.Properties.TryGetValue("expiry_date", out JsonElement element))
-                throw new ArgumentOutOfRangeException("expiry_date", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["expiry_date"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["expiry_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required double? MaximumInitialBalance
@@ -67,16 +88,16 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         get
         {
             if (!this.Properties.TryGetValue("maximum_initial_balance", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "maximum_initial_balance",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         set
         {
-            this.Properties["maximum_initial_balance"] = JsonSerializer.SerializeToElement(value);
+            this.Properties["maximum_initial_balance"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -85,29 +106,38 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         get
         {
             if (!this.Properties.TryGetValue("per_unit_cost_basis", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "per_unit_cost_basis",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["per_unit_cost_basis"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["per_unit_cost_basis"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required DataProperties::Status Status
+    public required ApiEnum<string, Status> Status
     {
         get
         {
             if (!this.Properties.TryGetValue("status", out JsonElement element))
                 throw new ArgumentOutOfRangeException("status", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DataProperties::Status>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("status");
+            return JsonSerializer.Deserialize<ApiEnum<string, Status>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["status"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["status"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

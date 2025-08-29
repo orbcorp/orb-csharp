@@ -27,7 +27,13 @@ public sealed record class BalanceAlertStatus : ModelBase, IFromRaw<BalanceAlert
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["in_alert"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["in_alert"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -45,7 +51,13 @@ public sealed record class BalanceAlertStatus : ModelBase, IFromRaw<BalanceAlert
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["threshold_value"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["threshold_value"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

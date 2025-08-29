@@ -1,39 +1,44 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.NewSubscriptionGroupedTieredPackagePriceProperties;
 
-[JsonConverter(typeof(EnumConverter<ModelType, string>))]
-public sealed record class ModelType(string value) : IEnum<ModelType, string>
+[JsonConverter(typeof(ModelTypeConverter))]
+public enum ModelType
 {
-    public static readonly ModelType GroupedTieredPackage = new("grouped_tiered_package");
+    GroupedTieredPackage,
+}
 
-    readonly string _value = value;
-
-    public enum Value
+sealed class ModelTypeConverter : JsonConverter<ModelType>
+{
+    public override ModelType Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        GroupedTieredPackage,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "grouped_tiered_package" => Value.GroupedTieredPackage,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "grouped_tiered_package" => ModelType.GroupedTieredPackage,
+            _ => (ModelType)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        ModelType value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static ModelType FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ModelType.GroupedTieredPackage => "grouped_tiered_package",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

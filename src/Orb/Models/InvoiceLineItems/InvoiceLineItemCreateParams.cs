@@ -27,7 +27,13 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("amount");
         }
-        set { this.BodyProperties["amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -42,7 +48,13 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateOnly>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["end_date"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["end_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -58,7 +70,13 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("invoice_id");
         }
-        set { this.BodyProperties["invoice_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["invoice_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -75,7 +93,13 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
-        set { this.BodyProperties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -90,7 +114,13 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["quantity"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["quantity"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -105,7 +135,13 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateOnly>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["start_date"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["start_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override Uri Url(IOrbClient client)

@@ -27,7 +27,13 @@ public sealed record class PlanCreateParams : ParamsBase
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("currency");
         }
-        set { this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string Name
@@ -40,26 +46,38 @@ public sealed record class PlanCreateParams : ParamsBase
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
-        set { this.BodyProperties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// Prices for this plan. If the plan has phases, this includes prices across
     /// all phases of the plan.
     /// </summary>
-    public required List<PlanCreateParamsProperties::Price1> Prices
+    public required List<PlanCreateParamsProperties::Price> Prices
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("prices", out JsonElement element))
                 throw new ArgumentOutOfRangeException("prices", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<PlanCreateParamsProperties::Price1>>(
+            return JsonSerializer.Deserialize<List<PlanCreateParamsProperties::Price>>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("prices");
         }
-        set { this.BodyProperties["prices"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["prices"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -78,7 +96,13 @@ public sealed record class PlanCreateParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["adjustments"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["adjustments"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -95,7 +119,10 @@ public sealed record class PlanCreateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["default_invoice_memo"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["default_invoice_memo"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -108,7 +135,13 @@ public sealed record class PlanCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["external_plan_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["external_plan_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -128,7 +161,13 @@ public sealed record class PlanCreateParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -145,7 +184,13 @@ public sealed record class PlanCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["net_terms"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["net_terms"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -164,26 +209,38 @@ public sealed record class PlanCreateParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["plan_phases"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["plan_phases"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The status of the plan to create (either active or draft). If not specified,
     /// this defaults to active.
     /// </summary>
-    public PlanCreateParamsProperties::Status? Status
+    public ApiEnum<string, PlanCreateParamsProperties::Status>? Status
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("status", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<PlanCreateParamsProperties::Status?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, PlanCreateParamsProperties::Status>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["status"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["status"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override Uri Url(IOrbClient client)

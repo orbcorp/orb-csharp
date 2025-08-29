@@ -30,7 +30,13 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -42,11 +48,17 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
         get
         {
             if (!this.Properties.TryGetValue("archived_at", out JsonElement element))
-                throw new ArgumentOutOfRangeException("archived_at", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["archived_at"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["archived_at"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required CouponProperties::Discount Discount
@@ -61,7 +73,13 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("discount");
         }
-        set { this.Properties["discount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["discount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -73,14 +91,17 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
         get
         {
             if (!this.Properties.TryGetValue("duration_in_months", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "duration_in_months",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["duration_in_months"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["duration_in_months"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -92,14 +113,17 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
         get
         {
             if (!this.Properties.TryGetValue("max_redemptions", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "max_redemptions",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["max_redemptions"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["max_redemptions"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -118,7 +142,13 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("redemption_code");
         }
-        set { this.Properties["redemption_code"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["redemption_code"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -136,7 +166,13 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["times_redeemed"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["times_redeemed"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

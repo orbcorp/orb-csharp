@@ -1,39 +1,44 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionUpdateTrialParamsProperties.TrialEndDateProperties;
 
-[JsonConverter(typeof(EnumConverter<UnionMember1, string>))]
-public sealed record class UnionMember1(string value) : IEnum<UnionMember1, string>
+[JsonConverter(typeof(UnionMember1Converter))]
+public enum UnionMember1
 {
-    public static readonly UnionMember1 Immediate = new("immediate");
+    Immediate,
+}
 
-    readonly string _value = value;
-
-    public enum Value
+sealed class UnionMember1Converter : JsonConverter<UnionMember1>
+{
+    public override UnionMember1 Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Immediate,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "immediate" => Value.Immediate,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "immediate" => UnionMember1.Immediate,
+            _ => (UnionMember1)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        UnionMember1 value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static UnionMember1 FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                UnionMember1.Immediate => "immediate",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

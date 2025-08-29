@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using EditAdjustmentProperties = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.EditAdjustmentProperties;
-using System = System;
+using Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.EditAdjustmentProperties;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties;
 
@@ -18,17 +18,20 @@ public sealed record class EditAdjustment : ModelBase, IFromRaw<EditAdjustment>
         get
         {
             if (!this.Properties.TryGetValue("adjustment_interval_id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "adjustment_interval_id",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("adjustment_interval_id");
+                ?? throw new ArgumentNullException("adjustment_interval_id");
         }
         set
         {
-            this.Properties["adjustment_interval_id"] = JsonSerializer.SerializeToElement(value);
+            this.Properties["adjustment_interval_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -36,38 +39,44 @@ public sealed record class EditAdjustment : ModelBase, IFromRaw<EditAdjustment>
     /// The updated end date of this adjustment interval. If not specified, the end
     /// date will not be updated.
     /// </summary>
-    public EditAdjustmentProperties::EndDate? EndDate
+    public EndDate? EndDate
     {
         get
         {
             if (!this.Properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<EditAdjustmentProperties::EndDate?>(
-                element,
+            return JsonSerializer.Deserialize<EndDate?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["end_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The updated start date of this adjustment interval. If not specified, the
     /// start date will not be updated.
     /// </summary>
-    public EditAdjustmentProperties::StartDate? StartDate
+    public StartDate? StartDate
     {
         get
         {
             if (!this.Properties.TryGetValue("start_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<EditAdjustmentProperties::StartDate?>(
-                element,
+            return JsonSerializer.Deserialize<StartDate?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["start_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -92,7 +101,9 @@ public sealed record class EditAdjustment : ModelBase, IFromRaw<EditAdjustment>
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public EditAdjustment(string adjustmentIntervalID)
+        : this()
     {
         this.AdjustmentIntervalID = adjustmentIntervalID;
     }

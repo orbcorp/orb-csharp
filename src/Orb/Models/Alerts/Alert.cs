@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using AlertProperties = Orb.Models.Alerts.AlertProperties;
-using System = System;
 
 namespace Orb.Models.Alerts;
 
@@ -24,33 +24,39 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("id");
+                ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The creation time of the resource in Orb.
     /// </summary>
-    public required System::DateTime CreatedAt
+    public required DateTime CreatedAt
     {
         get
         {
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "created_at",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("created_at", "Missing required argument");
 
-            return JsonSerializer.Deserialize<System::DateTime>(
-                element,
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["created_at"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -61,14 +67,17 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
         get
         {
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "currency",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -79,17 +88,20 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
         get
         {
             if (!this.Properties.TryGetValue("customer", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "customer",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<CustomerMinified?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["customer"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["customer"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -100,14 +112,17 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
         get
         {
             if (!this.Properties.TryGetValue("enabled", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "enabled",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("enabled", "Missing required argument");
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["enabled"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["enabled"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -118,17 +133,20 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
         get
         {
             if (!this.Properties.TryGetValue("metric", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "metric",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<AlertProperties::Metric?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["metric"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["metric"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -139,14 +157,20 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
         get
         {
             if (!this.Properties.TryGetValue("plan", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("plan", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<AlertProperties::Plan?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["plan"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["plan"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -157,17 +181,20 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
         get
         {
             if (!this.Properties.TryGetValue("subscription", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "subscription",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<SubscriptionMinified?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["subscription"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["subscription"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -178,35 +205,44 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
         get
         {
             if (!this.Properties.TryGetValue("thresholds", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "thresholds",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<List<Threshold>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["thresholds"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["thresholds"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The type of alert. This must be a valid alert type.
     /// </summary>
-    public required AlertProperties::Type Type
+    public required ApiEnum<string, AlertProperties::Type> Type
     {
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
+                throw new ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<AlertProperties::Type>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("type");
+            return JsonSerializer.Deserialize<ApiEnum<string, AlertProperties::Type>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -224,7 +260,13 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["balance_alert_status"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["balance_alert_status"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

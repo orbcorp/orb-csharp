@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using PlanPhaseAmountDiscountAdjustmentProperties = Orb.Models.PlanPhaseAmountDiscountAdjustmentProperties;
-using System = System;
+using Orb.Models.PlanPhaseAmountDiscountAdjustmentProperties;
 
 namespace Orb.Models;
 
@@ -17,30 +17,42 @@ public sealed record class PlanPhaseAmountDiscountAdjustment
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("id");
+                ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required PlanPhaseAmountDiscountAdjustmentProperties::AdjustmentType AdjustmentType
+    public required ApiEnum<string, AdjustmentType> AdjustmentType
     {
         get
         {
             if (!this.Properties.TryGetValue("adjustment_type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "adjustment_type",
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<PlanPhaseAmountDiscountAdjustmentProperties::AdjustmentType>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("adjustment_type");
+            return JsonSerializer.Deserialize<ApiEnum<string, AdjustmentType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["adjustment_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["adjustment_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -52,15 +64,21 @@ public sealed record class PlanPhaseAmountDiscountAdjustment
         get
         {
             if (!this.Properties.TryGetValue("amount_discount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "amount_discount",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("amount_discount");
+                ?? throw new ArgumentNullException("amount_discount");
         }
-        set { this.Properties["amount_discount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amount_discount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -71,15 +89,21 @@ public sealed record class PlanPhaseAmountDiscountAdjustment
         get
         {
             if (!this.Properties.TryGetValue("applies_to_price_ids", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "applies_to_price_ids",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("applies_to_price_ids");
+                ?? throw new ArgumentNullException("applies_to_price_ids");
         }
-        set { this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -90,17 +114,20 @@ public sealed record class PlanPhaseAmountDiscountAdjustment
         get
         {
             if (!this.Properties.TryGetValue("filters", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "filters",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("filters", "Missing required argument");
 
             return JsonSerializer.Deserialize<List<TransformPriceFilter>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("filters");
+                ) ?? throw new ArgumentNullException("filters");
         }
-        set { this.Properties["filters"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["filters"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -112,14 +139,20 @@ public sealed record class PlanPhaseAmountDiscountAdjustment
         get
         {
             if (!this.Properties.TryGetValue("is_invoice_level", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "is_invoice_level",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["is_invoice_level"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["is_invoice_level"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -130,14 +163,17 @@ public sealed record class PlanPhaseAmountDiscountAdjustment
         get
         {
             if (!this.Properties.TryGetValue("plan_phase_order", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "plan_phase_order",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -148,14 +184,17 @@ public sealed record class PlanPhaseAmountDiscountAdjustment
         get
         {
             if (!this.Properties.TryGetValue("reason", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "reason",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["reason"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["reason"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -167,16 +206,16 @@ public sealed record class PlanPhaseAmountDiscountAdjustment
         get
         {
             if (!this.Properties.TryGetValue("replaces_adjustment_id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "replaces_adjustment_id",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
-            this.Properties["replaces_adjustment_id"] = JsonSerializer.SerializeToElement(value);
+            this.Properties["replaces_adjustment_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 

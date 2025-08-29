@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionUpdateFixedFeeQuantityParamsProperties;
@@ -8,45 +9,47 @@ namespace Orb.Models.Subscriptions.SubscriptionUpdateFixedFeeQuantityParamsPrope
 /// this defaults to `effective_date`. Otherwise, this defaults to `immediate` unless
 /// it's explicitly set to `upcoming_invoice`.
 /// </summary>
-[JsonConverter(typeof(EnumConverter<ChangeOption, string>))]
-public sealed record class ChangeOption(string value) : IEnum<ChangeOption, string>
+[JsonConverter(typeof(ChangeOptionConverter))]
+public enum ChangeOption
 {
-    public static readonly ChangeOption Immediate = new("immediate");
+    Immediate,
+    UpcomingInvoice,
+    EffectiveDate,
+}
 
-    public static readonly ChangeOption UpcomingInvoice = new("upcoming_invoice");
-
-    public static readonly ChangeOption EffectiveDate = new("effective_date");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class ChangeOptionConverter : JsonConverter<ChangeOption>
+{
+    public override ChangeOption Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Immediate,
-        UpcomingInvoice,
-        EffectiveDate,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "immediate" => Value.Immediate,
-            "upcoming_invoice" => Value.UpcomingInvoice,
-            "effective_date" => Value.EffectiveDate,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "immediate" => ChangeOption.Immediate,
+            "upcoming_invoice" => ChangeOption.UpcomingInvoice,
+            "effective_date" => ChangeOption.EffectiveDate,
+            _ => (ChangeOption)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        ChangeOption value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static ChangeOption FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ChangeOption.Immediate => "immediate",
+                ChangeOption.UpcomingInvoice => "upcoming_invoice",
+                ChangeOption.EffectiveDate => "effective_date",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

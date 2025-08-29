@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using TopUpCreateByExternalIDResponseProperties = Orb.Models.Customers.Credits.TopUps.TopUpCreateByExternalIDResponseProperties;
+using Orb.Models.Customers.Credits.TopUps.TopUpCreateByExternalIDResponseProperties;
 
 namespace Orb.Models.Customers.Credits.TopUps;
 
@@ -22,7 +22,13 @@ public sealed record class TopUpCreateByExternalIDResponse
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -38,7 +44,13 @@ public sealed record class TopUpCreateByExternalIDResponse
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("amount");
         }
-        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -55,7 +67,13 @@ public sealed record class TopUpCreateByExternalIDResponse
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("currency");
         }
-        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -76,7 +94,13 @@ public sealed record class TopUpCreateByExternalIDResponse
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("invoice_settings");
         }
-        set { this.Properties["invoice_settings"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["invoice_settings"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -95,7 +119,13 @@ public sealed record class TopUpCreateByExternalIDResponse
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("per_unit_cost_basis");
         }
-        set { this.Properties["per_unit_cost_basis"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["per_unit_cost_basis"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -112,7 +142,13 @@ public sealed record class TopUpCreateByExternalIDResponse
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("threshold");
         }
-        set { this.Properties["threshold"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["threshold"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -128,25 +164,37 @@ public sealed record class TopUpCreateByExternalIDResponse
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["expires_after"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["expires_after"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The unit of expires_after.
     /// </summary>
-    public TopUpCreateByExternalIDResponseProperties::ExpiresAfterUnit? ExpiresAfterUnit
+    public ApiEnum<string, ExpiresAfterUnit>? ExpiresAfterUnit
     {
         get
         {
             if (!this.Properties.TryGetValue("expires_after_unit", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<TopUpCreateByExternalIDResponseProperties::ExpiresAfterUnit?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, ExpiresAfterUnit>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["expires_after_unit"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["expires_after_unit"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

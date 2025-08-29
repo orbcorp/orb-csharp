@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using OtherSubLineItemProperties = Orb.Models.OtherSubLineItemProperties;
-using System = System;
 
 namespace Orb.Models;
 
@@ -18,15 +18,18 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("amount");
+                ?? throw new ArgumentNullException("amount");
         }
-        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required SubLineItemGrouping? Grouping
@@ -34,17 +37,20 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
         get
         {
             if (!this.Properties.TryGetValue("grouping", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "grouping",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<SubLineItemGrouping?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["grouping"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["grouping"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string Name
@@ -52,12 +58,18 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
         get
         {
             if (!this.Properties.TryGetValue("name", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
+                throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("name");
+                ?? throw new ArgumentNullException("name");
         }
-        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required double Quantity
@@ -65,29 +77,38 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
         get
         {
             if (!this.Properties.TryGetValue("quantity", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "quantity",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("quantity", "Missing required argument");
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["quantity"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["quantity"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required OtherSubLineItemProperties::Type Type
+    public required ApiEnum<string, OtherSubLineItemProperties::Type> Type
     {
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
+                throw new ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<OtherSubLineItemProperties::Type>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("type");
+            return JsonSerializer.Deserialize<ApiEnum<string, OtherSubLineItemProperties::Type>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

@@ -1,43 +1,43 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.Credits.CreditListByExternalIDPageResponseProperties.DataProperties;
 
-[JsonConverter(typeof(EnumConverter<Status, string>))]
-public sealed record class Status(string value) : IEnum<Status, string>
+[JsonConverter(typeof(StatusConverter))]
+public enum Status
 {
-    public static readonly Status Active = new("active");
+    Active,
+    PendingPayment,
+}
 
-    public static readonly Status PendingPayment = new("pending_payment");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class StatusConverter : JsonConverter<Status>
+{
+    public override Status Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Active,
-        PendingPayment,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "active" => Value.Active,
-            "pending_payment" => Value.PendingPayment,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "active" => Status.Active,
+            "pending_payment" => Status.PendingPayment,
+            _ => (Status)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(Utf8JsonWriter writer, Status value, JsonSerializerOptions options)
     {
-        Known();
-    }
-
-    public static Status FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Status.Active => "active",
+                Status.PendingPayment => "pending_payment",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

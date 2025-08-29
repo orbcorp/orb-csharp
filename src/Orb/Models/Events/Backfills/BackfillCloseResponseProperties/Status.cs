@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Events.Backfills.BackfillCloseResponseProperties;
@@ -6,49 +7,46 @@ namespace Orb.Models.Events.Backfills.BackfillCloseResponseProperties;
 /// <summary>
 /// The status of the backfill.
 /// </summary>
-[JsonConverter(typeof(EnumConverter<Status, string>))]
-public sealed record class Status(string value) : IEnum<Status, string>
+[JsonConverter(typeof(StatusConverter))]
+public enum Status
 {
-    public static readonly Status Pending = new("pending");
+    Pending,
+    Reflected,
+    PendingRevert,
+    Reverted,
+}
 
-    public static readonly Status Reflected = new("reflected");
-
-    public static readonly Status PendingRevert = new("pending_revert");
-
-    public static readonly Status Reverted = new("reverted");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class StatusConverter : JsonConverter<Status>
+{
+    public override Status Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Pending,
-        Reflected,
-        PendingRevert,
-        Reverted,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "pending" => Value.Pending,
-            "reflected" => Value.Reflected,
-            "pending_revert" => Value.PendingRevert,
-            "reverted" => Value.Reverted,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "pending" => Status.Pending,
+            "reflected" => Status.Reflected,
+            "pending_revert" => Status.PendingRevert,
+            "reverted" => Status.Reverted,
+            _ => (Status)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(Utf8JsonWriter writer, Status value, JsonSerializerOptions options)
     {
-        Known();
-    }
-
-    public static Status FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Status.Pending => "pending",
+                Status.Reflected => "reflected",
+                Status.PendingRevert => "pending_revert",
+                Status.Reverted => "reverted",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

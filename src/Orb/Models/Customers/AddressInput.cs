@@ -17,7 +17,13 @@ public sealed record class AddressInput : ModelBase, IFromRaw<AddressInput>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["city"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["city"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? Country
@@ -29,7 +35,13 @@ public sealed record class AddressInput : ModelBase, IFromRaw<AddressInput>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["country"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["country"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? Line1
@@ -41,7 +53,13 @@ public sealed record class AddressInput : ModelBase, IFromRaw<AddressInput>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["line1"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["line1"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? Line2
@@ -53,7 +71,13 @@ public sealed record class AddressInput : ModelBase, IFromRaw<AddressInput>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["line2"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["line2"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? PostalCode
@@ -65,7 +89,13 @@ public sealed record class AddressInput : ModelBase, IFromRaw<AddressInput>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["postal_code"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["postal_code"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? State
@@ -77,7 +107,13 @@ public sealed record class AddressInput : ModelBase, IFromRaw<AddressInput>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["state"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["state"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

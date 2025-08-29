@@ -3,29 +3,34 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Models = Orb.Models;
 
-namespace Orb.Models.DimensionalPriceGroups;
+namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<DimensionalPriceGroups>))]
-public sealed record class DimensionalPriceGroups : ModelBase, IFromRaw<DimensionalPriceGroups>
+[JsonConverter(typeof(ModelConverter<SubscriptionsModel>))]
+public sealed record class SubscriptionsModel : ModelBase, IFromRaw<SubscriptionsModel>
 {
-    public required List<DimensionalPriceGroup> Data
+    public required List<Subscription> Data
     {
         get
         {
             if (!this.Properties.TryGetValue("data", out JsonElement element))
                 throw new ArgumentOutOfRangeException("data", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<DimensionalPriceGroup>>(
+            return JsonSerializer.Deserialize<List<Subscription>>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("data");
         }
-        set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["data"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required Models::PaginationMetadata PaginationMetadata
+    public required PaginationMetadata PaginationMetadata
     {
         get
         {
@@ -35,12 +40,18 @@ public sealed record class DimensionalPriceGroups : ModelBase, IFromRaw<Dimensio
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Models::PaginationMetadata>(
+            return JsonSerializer.Deserialize<PaginationMetadata>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("pagination_metadata");
         }
-        set { this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -52,19 +63,17 @@ public sealed record class DimensionalPriceGroups : ModelBase, IFromRaw<Dimensio
         this.PaginationMetadata.Validate();
     }
 
-    public DimensionalPriceGroups() { }
+    public SubscriptionsModel() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DimensionalPriceGroups(Dictionary<string, JsonElement> properties)
+    SubscriptionsModel(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static DimensionalPriceGroups FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
-    )
+    public static SubscriptionsModel FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

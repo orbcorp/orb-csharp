@@ -1,18 +1,18 @@
 using System.Threading.Tasks;
 using Orb.Models.Coupons;
-using Subscriptions = Orb.Services.Coupons.Subscriptions;
+using Orb.Services.Coupons.Subscriptions;
 
 namespace Orb.Services.Coupons;
 
 public interface ICouponService
 {
-    Subscriptions::ISubscriptionService Subscriptions { get; }
+    ISubscriptionService Subscriptions { get; }
 
     /// <summary>
     /// This endpoint allows the creation of coupons, which can then be redeemed at
     /// subscription creation or plan change.
     /// </summary>
-    Task<Coupon> Create(CouponCreateParams @params);
+    Task<Coupon> Create(CouponCreateParams parameters);
 
     /// <summary>
     /// This endpoint returns a list of all coupons for an account in a list format.
@@ -22,18 +22,18 @@ public interface ICouponService
     /// the next page of results if they exist. More information about pagination
     /// can be found in the Pagination-metadata schema.
     /// </summary>
-    Task<CouponListPageResponse> List(CouponListParams @params);
+    Task<CouponListPageResponse> List(CouponListParams? parameters = null);
 
     /// <summary>
     /// This endpoint allows a coupon to be archived. Archived coupons can no longer
     /// be redeemed, and will be hidden from lists of active coupons. Additionally,
     /// once a coupon is archived, its redemption code can be reused for a different coupon.
     /// </summary>
-    Task<Coupon> Archive(CouponArchiveParams @params);
+    Task<Coupon> Archive(CouponArchiveParams parameters);
 
     /// <summary>
     /// This endpoint retrieves a coupon by its ID. To fetch coupons by their redemption
     /// code, use the [List coupons](list-coupons) endpoint with the redemption_code parameter.
     /// </summary>
-    Task<Coupon> Fetch(CouponFetchParams @params);
+    Task<Coupon> Fetch(CouponFetchParams parameters);
 }

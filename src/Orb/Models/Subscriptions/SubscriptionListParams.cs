@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
-using SubscriptionListParamsProperties = Orb.Models.Subscriptions.SubscriptionListParamsProperties;
-using System = System;
+using Orb.Models.Subscriptions.SubscriptionListParamsProperties;
 
 namespace Orb.Models.Subscriptions;
 
@@ -17,64 +17,76 @@ namespace Orb.Models.Subscriptions;
 /// </summary>
 public sealed record class SubscriptionListParams : ParamsBase
 {
-    public System::DateTime? CreatedAtGt
+    public DateTime? CreatedAtGt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.QueryProperties["created_at[gt]"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["created_at[gt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public System::DateTime? CreatedAtGte
+    public DateTime? CreatedAtGte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.QueryProperties["created_at[gte]"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["created_at[gte]"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public System::DateTime? CreatedAtLt
+    public DateTime? CreatedAtLt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.QueryProperties["created_at[lt]"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["created_at[lt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public System::DateTime? CreatedAtLte
+    public DateTime? CreatedAtLte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.QueryProperties["created_at[lte]"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["created_at[lte]"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -90,7 +102,13 @@ public sealed record class SubscriptionListParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public List<string>? CustomerID
@@ -102,7 +120,13 @@ public sealed record class SubscriptionListParams : ParamsBase
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["customer_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public List<string>? ExternalCustomerID
@@ -116,7 +140,10 @@ public sealed record class SubscriptionListParams : ParamsBase
         }
         set
         {
-            this.QueryProperties["external_customer_id"] = JsonSerializer.SerializeToElement(value);
+            this.QueryProperties["external_customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -132,27 +159,39 @@ public sealed record class SubscriptionListParams : ParamsBase
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public SubscriptionListParamsProperties::Status? Status
+    public ApiEnum<string, Status>? Status
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("status", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<SubscriptionListParamsProperties::Status?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, Status>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["status"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["status"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/subscriptions")
+        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/subscriptions")
         {
             Query = this.QueryString(client),
         }.Uri;

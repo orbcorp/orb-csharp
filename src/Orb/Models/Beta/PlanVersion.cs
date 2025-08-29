@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using PlanVersionProperties = Orb.Models.Beta.PlanVersionProperties;
+using Orb.Models.Beta.PlanVersionProperties;
 
 namespace Orb.Models.Beta;
 
@@ -18,19 +18,25 @@ public sealed record class PlanVersion : ModelBase, IFromRaw<PlanVersion>
     /// Adjustments for this plan. If the plan has phases, this includes adjustments
     /// across all phases of the plan.
     /// </summary>
-    public required List<PlanVersionProperties::Adjustment> Adjustments
+    public required List<Adjustment> Adjustments
     {
         get
         {
             if (!this.Properties.TryGetValue("adjustments", out JsonElement element))
                 throw new ArgumentOutOfRangeException("adjustments", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<PlanVersionProperties::Adjustment>>(
+            return JsonSerializer.Deserialize<List<Adjustment>>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("adjustments");
         }
-        set { this.Properties["adjustments"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["adjustments"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required DateTime CreatedAt
@@ -42,7 +48,13 @@ public sealed record class PlanVersion : ModelBase, IFromRaw<PlanVersion>
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["created_at"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required List<PlanVersionPhase>? PlanPhases
@@ -50,14 +62,20 @@ public sealed record class PlanVersion : ModelBase, IFromRaw<PlanVersion>
         get
         {
             if (!this.Properties.TryGetValue("plan_phases", out JsonElement element))
-                throw new ArgumentOutOfRangeException("plan_phases", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<List<PlanVersionPhase>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["plan_phases"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["plan_phases"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -74,7 +92,13 @@ public sealed record class PlanVersion : ModelBase, IFromRaw<PlanVersion>
             return JsonSerializer.Deserialize<List<Price>>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("prices");
         }
-        set { this.Properties["prices"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["prices"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required long Version
@@ -86,7 +110,13 @@ public sealed record class PlanVersion : ModelBase, IFromRaw<PlanVersion>
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["version"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["version"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

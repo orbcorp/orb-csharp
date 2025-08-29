@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
-using VoidProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.VoidProperties;
+using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.VoidProperties;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties;
 
@@ -19,14 +19,17 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -37,15 +40,18 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
         get
         {
             if (!this.Properties.TryGetValue("block_id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "block_id",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("block_id", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("block_id");
+                ?? throw new ArgumentNullException("block_id");
         }
-        set { this.Properties["block_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["block_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public JsonElement EntryType
@@ -53,14 +59,17 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
         get
         {
             if (!this.Properties.TryGetValue("entry_type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "entry_type",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("entry_type", "Missing required argument");
 
             return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["entry_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["entry_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -76,7 +85,13 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -93,7 +108,13 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["description"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["description"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -113,25 +134,37 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// Can only be specified when `entry_type=void`. The reason for the void.
     /// </summary>
-    public VoidProperties::VoidReason? VoidReason
+    public ApiEnum<string, VoidReason>? VoidReason
     {
         get
         {
             if (!this.Properties.TryGetValue("void_reason", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<VoidProperties::VoidReason?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, VoidReason>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["void_reason"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["void_reason"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

@@ -1,47 +1,56 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using LedgerListPageResponseProperties = Orb.Models.Customers.Credits.Ledger.LedgerListPageResponseProperties;
-using Models = Orb.Models;
-using System = System;
+using Orb.Models.Customers.Credits.Ledger.LedgerListPageResponseProperties;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
 [JsonConverter(typeof(ModelConverter<LedgerListPageResponse>))]
 public sealed record class LedgerListPageResponse : ModelBase, IFromRaw<LedgerListPageResponse>
 {
-    public required List<LedgerListPageResponseProperties::Data> Data
+    public required List<Data> Data
     {
         get
         {
             if (!this.Properties.TryGetValue("data", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
+                throw new ArgumentOutOfRangeException("data", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<LedgerListPageResponseProperties::Data>>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("data");
+            return JsonSerializer.Deserialize<List<Data>>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("data");
         }
-        set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["data"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required Models::PaginationMetadata PaginationMetadata
+    public required PaginationMetadata PaginationMetadata
     {
         get
         {
             if (!this.Properties.TryGetValue("pagination_metadata", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "pagination_metadata",
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Models::PaginationMetadata>(
+            return JsonSerializer.Deserialize<PaginationMetadata>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("pagination_metadata");
+                ) ?? throw new ArgumentNullException("pagination_metadata");
         }
-        set { this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

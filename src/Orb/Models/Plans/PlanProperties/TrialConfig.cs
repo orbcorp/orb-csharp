@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using TrialConfigProperties = Orb.Models.Plans.PlanProperties.TrialConfigProperties;
+using Orb.Models.Plans.PlanProperties.TrialConfigProperties;
 
 namespace Orb.Models.Plans.PlanProperties;
 
@@ -15,14 +15,20 @@ public sealed record class TrialConfig : ModelBase, IFromRaw<TrialConfig>
         get
         {
             if (!this.Properties.TryGetValue("trial_period", out JsonElement element))
-                throw new ArgumentOutOfRangeException("trial_period", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["trial_period"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["trial_period"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required TrialConfigProperties::TrialPeriodUnit TrialPeriodUnit
+    public required ApiEnum<string, TrialPeriodUnit> TrialPeriodUnit
     {
         get
         {
@@ -32,12 +38,18 @@ public sealed record class TrialConfig : ModelBase, IFromRaw<TrialConfig>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<TrialConfigProperties::TrialPeriodUnit>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("trial_period_unit");
+            return JsonSerializer.Deserialize<ApiEnum<string, TrialPeriodUnit>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["trial_period_unit"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["trial_period_unit"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

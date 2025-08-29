@@ -1,10 +1,10 @@
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
-using System = System;
 
 namespace Orb;
 
-public sealed class HttpException : System::Exception
+public sealed class HttpException : Exception
 {
     public required HttpStatusCode? StatusCode { get; set; }
     public required string ResponseBody { get; set; }

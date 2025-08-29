@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using SubscriptionUpdateTrialParamsProperties = Orb.Models.Subscriptions.SubscriptionUpdateTrialParamsProperties;
-using System = System;
+using Orb.Models.Subscriptions.SubscriptionUpdateTrialParamsProperties;
 
 namespace Orb.Models.Subscriptions;
 
@@ -35,22 +35,26 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
     /// The new date that the trial should end, or the literal string `immediate`
     /// to end the trial immediately.
     /// </summary>
-    public required SubscriptionUpdateTrialParamsProperties::TrialEndDate TrialEndDate
+    public required TrialEndDate TrialEndDate
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("trial_end_date", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "trial_end_date",
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<SubscriptionUpdateTrialParamsProperties::TrialEndDate>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("trial_end_date");
+            return JsonSerializer.Deserialize<TrialEndDate>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("trial_end_date");
         }
-        set { this.BodyProperties["trial_end_date"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["trial_end_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -66,12 +70,18 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["shift"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["shift"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscriptions/{0}/update_trial", this.SubscriptionID)
         )

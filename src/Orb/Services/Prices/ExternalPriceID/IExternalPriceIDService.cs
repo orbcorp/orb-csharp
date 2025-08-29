@@ -11,12 +11,12 @@ public interface IExternalPriceIDService
     /// you pass null for the metadata value, it will clear any existing metadata
     /// for that price.
     /// </summary>
-    Task<Price> Update(ExternalPriceIDUpdateParams @params);
+    Task<Price> Update(ExternalPriceIDUpdateParams parameters);
 
     /// <summary>
     /// This endpoint returns a price given an external price id. See the [price
     /// creation API](/api-reference/price/create-price) for more information about
     /// external price aliases.
     /// </summary>
-    Task<Price> Fetch(ExternalPriceIDFetchParams @params);
+    Task<Price> Fetch(ExternalPriceIDFetchParams parameters);
 }

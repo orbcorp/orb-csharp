@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using PriceEvaluatePreviewEventsResponseProperties = Orb.Models.Prices.PriceEvaluatePreviewEventsResponseProperties;
-using System = System;
+using Orb.Models.Prices.PriceEvaluatePreviewEventsResponseProperties;
 
 namespace Orb.Models.Prices;
 
@@ -12,19 +12,23 @@ public sealed record class PriceEvaluatePreviewEventsResponse
     : ModelBase,
         IFromRaw<PriceEvaluatePreviewEventsResponse>
 {
-    public required List<PriceEvaluatePreviewEventsResponseProperties::Data> Data
+    public required List<Data> Data
     {
         get
         {
             if (!this.Properties.TryGetValue("data", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
+                throw new ArgumentOutOfRangeException("data", "Missing required argument");
 
-            return JsonSerializer.Deserialize<
-                    List<PriceEvaluatePreviewEventsResponseProperties::Data>
-                >(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("data");
+            return JsonSerializer.Deserialize<List<Data>>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("data");
         }
-        set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["data"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -52,9 +56,9 @@ public sealed record class PriceEvaluatePreviewEventsResponse
         return new(properties);
     }
 
-    public PriceEvaluatePreviewEventsResponse(
-        List<PriceEvaluatePreviewEventsResponseProperties::Data> data
-    )
+    [SetsRequiredMembers]
+    public PriceEvaluatePreviewEventsResponse(List<Data> data)
+        : this()
     {
         this.Data = data;
     }

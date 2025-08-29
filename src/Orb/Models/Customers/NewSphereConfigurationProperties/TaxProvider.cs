@@ -1,39 +1,44 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.NewSphereConfigurationProperties;
 
-[JsonConverter(typeof(EnumConverter<TaxProvider, string>))]
-public sealed record class TaxProvider(string value) : IEnum<TaxProvider, string>
+[JsonConverter(typeof(TaxProviderConverter))]
+public enum TaxProvider
 {
-    public static readonly TaxProvider Sphere = new("sphere");
+    Sphere,
+}
 
-    readonly string _value = value;
-
-    public enum Value
+sealed class TaxProviderConverter : JsonConverter<TaxProvider>
+{
+    public override TaxProvider Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Sphere,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "sphere" => Value.Sphere,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "sphere" => TaxProvider.Sphere,
+            _ => (TaxProvider)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        TaxProvider value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static TaxProvider FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                TaxProvider.Sphere => "sphere",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

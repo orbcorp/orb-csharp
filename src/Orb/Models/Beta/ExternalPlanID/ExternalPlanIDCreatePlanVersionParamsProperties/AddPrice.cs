@@ -24,7 +24,13 @@ public sealed record class AddPrice : ModelBase, IFromRaw<AddPrice>
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["allocation_price"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["allocation_price"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -39,25 +45,37 @@ public sealed record class AddPrice : ModelBase, IFromRaw<AddPrice>
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The price to add to the plan
     /// </summary>
-    public AddPriceProperties::Price1? Price
+    public AddPriceProperties::Price? Price
     {
         get
         {
             if (!this.Properties.TryGetValue("price", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<AddPriceProperties::Price1?>(
+            return JsonSerializer.Deserialize<AddPriceProperties::Price?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["price"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["price"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

@@ -41,7 +41,13 @@ public sealed record class EventSearchParams : ParamsBase
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("event_ids");
         }
-        set { this.BodyProperties["event_ids"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["event_ids"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -57,7 +63,13 @@ public sealed record class EventSearchParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -73,7 +85,13 @@ public sealed record class EventSearchParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override Uri Url(IOrbClient client)

@@ -9,5 +9,5 @@ public interface IInvoiceLineItemService
     /// This creates a one-off fixed fee invoice line item on an Invoice. This can
     /// only be done for invoices that are in a `draft` status.
     /// </summary>
-    Task<InvoiceLineItemCreateResponse> Create(InvoiceLineItemCreateParams @params);
+    Task<InvoiceLineItemCreateResponse> Create(InvoiceLineItemCreateParams parameters);
 }

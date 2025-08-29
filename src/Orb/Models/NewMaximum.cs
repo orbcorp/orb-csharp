@@ -1,31 +1,37 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using NewMaximumProperties = Orb.Models.NewMaximumProperties;
-using System = System;
+using Orb.Models.NewMaximumProperties;
 
 namespace Orb.Models;
 
 [JsonConverter(typeof(ModelConverter<NewMaximum>))]
 public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
 {
-    public required NewMaximumProperties::AdjustmentType AdjustmentType
+    public required ApiEnum<string, AdjustmentType> AdjustmentType
     {
         get
         {
             if (!this.Properties.TryGetValue("adjustment_type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "adjustment_type",
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<NewMaximumProperties::AdjustmentType>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("adjustment_type");
+            return JsonSerializer.Deserialize<ApiEnum<string, AdjustmentType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["adjustment_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["adjustment_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string MaximumAmount
@@ -33,33 +39,45 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
         get
         {
             if (!this.Properties.TryGetValue("maximum_amount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "maximum_amount",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("maximum_amount");
+                ?? throw new ArgumentNullException("maximum_amount");
         }
-        set { this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// If set, the adjustment will apply to every price on the subscription.
     /// </summary>
-    public NewMaximumProperties::AppliesToAll? AppliesToAll
+    public ApiEnum<bool, AppliesToAll>? AppliesToAll
     {
         get
         {
             if (!this.Properties.TryGetValue("applies_to_all", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<NewMaximumProperties::AppliesToAll?>(
+            return JsonSerializer.Deserialize<ApiEnum<bool, AppliesToAll>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["applies_to_all"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["applies_to_all"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -74,7 +92,13 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["applies_to_item_ids"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["applies_to_item_ids"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -89,7 +113,13 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -104,7 +134,13 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -122,7 +158,13 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["filters"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["filters"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -138,25 +180,37 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["is_invoice_level"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["is_invoice_level"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// If set, only prices of the specified type will have the adjustment applied.
     /// </summary>
-    public NewMaximumProperties::PriceType? PriceType
+    public ApiEnum<string, PriceType>? PriceType
     {
         get
         {
             if (!this.Properties.TryGetValue("price_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<NewMaximumProperties::PriceType?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, PriceType>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["price_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["price_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

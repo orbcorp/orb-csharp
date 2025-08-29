@@ -15,15 +15,15 @@ public sealed class InvoiceLineItemService : IInvoiceLineItemService
         _client = client;
     }
 
-    public async Task<InvoiceLineItemCreateResponse> Create(InvoiceLineItemCreateParams @params)
+    public async Task<InvoiceLineItemCreateResponse> Create(InvoiceLineItemCreateParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
+        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
         {
-            Content = @params.BodyContent(),
+            Content = parameters.BodyContent(),
         };
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -32,6 +32,7 @@ public sealed class InvoiceLineItemService : IInvoiceLineItemService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<InvoiceLineItemCreateResponse>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions

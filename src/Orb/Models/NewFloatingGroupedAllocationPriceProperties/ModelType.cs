@@ -1,39 +1,44 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.NewFloatingGroupedAllocationPriceProperties;
 
-[JsonConverter(typeof(EnumConverter<ModelType, string>))]
-public sealed record class ModelType(string value) : IEnum<ModelType, string>
+[JsonConverter(typeof(ModelTypeConverter))]
+public enum ModelType
 {
-    public static readonly ModelType GroupedAllocation = new("grouped_allocation");
+    GroupedAllocation,
+}
 
-    readonly string _value = value;
-
-    public enum Value
+sealed class ModelTypeConverter : JsonConverter<ModelType>
+{
+    public override ModelType Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        GroupedAllocation,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "grouped_allocation" => Value.GroupedAllocation,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "grouped_allocation" => ModelType.GroupedAllocation,
+            _ => (ModelType)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        ModelType value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static ModelType FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ModelType.GroupedAllocation => "grouped_allocation",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

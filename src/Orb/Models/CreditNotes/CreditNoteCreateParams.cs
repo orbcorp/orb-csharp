@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using CreditNoteCreateParamsProperties = Orb.Models.CreditNotes.CreditNoteCreateParamsProperties;
+using Orb.Models.CreditNotes.CreditNoteCreateParamsProperties;
 
 namespace Orb.Models.CreditNotes;
 
@@ -38,37 +38,47 @@ public sealed record class CreditNoteCreateParams : ParamsBase
 {
     public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
-    public required List<CreditNoteCreateParamsProperties::LineItem> LineItems
+    public required List<LineItem> LineItems
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("line_items", out JsonElement element))
                 throw new ArgumentOutOfRangeException("line_items", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<CreditNoteCreateParamsProperties::LineItem>>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("line_items");
+            return JsonSerializer.Deserialize<List<LineItem>>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("line_items");
         }
-        set { this.BodyProperties["line_items"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["line_items"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// An optional reason for the credit note.
     /// </summary>
-    public required CreditNoteCreateParamsProperties::Reason Reason
+    public required ApiEnum<string, Reason> Reason
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("reason", out JsonElement element))
                 throw new ArgumentOutOfRangeException("reason", "Missing required argument");
 
-            return JsonSerializer.Deserialize<CreditNoteCreateParamsProperties::Reason>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("reason");
+            return JsonSerializer.Deserialize<ApiEnum<string, Reason>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.BodyProperties["reason"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["reason"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -87,7 +97,13 @@ public sealed record class CreditNoteCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateOnly?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["end_date"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["end_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -102,7 +118,13 @@ public sealed record class CreditNoteCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["memo"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["memo"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -121,7 +143,13 @@ public sealed record class CreditNoteCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateOnly?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["start_date"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["start_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override Uri Url(IOrbClient client)

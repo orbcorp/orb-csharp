@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System = System;
 
@@ -6,45 +7,52 @@ namespace Orb.Models.Alerts.AlertCreateForCustomerParamsProperties;
 /// <summary>
 /// The type of alert to create. This must be a valid alert type.
 /// </summary>
-[JsonConverter(typeof(EnumConverter<Type, string>))]
-public sealed record class Type(string value) : IEnum<Type, string>
+[JsonConverter(typeof(TypeConverter))]
+public enum Type
 {
-    public static readonly Type CreditBalanceDepleted = new("credit_balance_depleted");
+    CreditBalanceDepleted,
+    CreditBalanceDropped,
+    CreditBalanceRecovered,
+}
 
-    public static readonly Type CreditBalanceDropped = new("credit_balance_dropped");
-
-    public static readonly Type CreditBalanceRecovered = new("credit_balance_recovered");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class TypeConverter : JsonConverter<Type>
+{
+    public override Type Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        CreditBalanceDepleted,
-        CreditBalanceDropped,
-        CreditBalanceRecovered,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "credit_balance_depleted" => Value.CreditBalanceDepleted,
-            "credit_balance_dropped" => Value.CreditBalanceDropped,
-            "credit_balance_recovered" => Value.CreditBalanceRecovered,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            "credit_balance_depleted" => AlertCreateForCustomerParamsProperties
+                .Type
+                .CreditBalanceDepleted,
+            "credit_balance_dropped" => AlertCreateForCustomerParamsProperties
+                .Type
+                .CreditBalanceDropped,
+            "credit_balance_recovered" => AlertCreateForCustomerParamsProperties
+                .Type
+                .CreditBalanceRecovered,
+            _ => (Type)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(Utf8JsonWriter writer, Type value, JsonSerializerOptions options)
     {
-        Known();
-    }
-
-    public static Type FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                AlertCreateForCustomerParamsProperties.Type.CreditBalanceDepleted =>
+                    "credit_balance_depleted",
+                AlertCreateForCustomerParamsProperties.Type.CreditBalanceDropped =>
+                    "credit_balance_dropped",
+                AlertCreateForCustomerParamsProperties.Type.CreditBalanceRecovered =>
+                    "credit_balance_recovered",
+                _ => throw new System::ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

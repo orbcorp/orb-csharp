@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using NewFloatingTieredPackageWithMinimumPriceProperties = Orb.Models.NewFloatingTieredPackageWithMinimumPriceProperties;
-using System = System;
+using Orb.Models.NewFloatingTieredPackageWithMinimumPriceProperties;
 
 namespace Orb.Models;
 
@@ -15,22 +15,25 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required NewFloatingTieredPackageWithMinimumPriceProperties::Cadence Cadence
+    public required ApiEnum<string, Cadence> Cadence
     {
         get
         {
             if (!this.Properties.TryGetValue("cadence", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "cadence",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("cadence", "Missing required argument");
 
-            return JsonSerializer.Deserialize<NewFloatingTieredPackageWithMinimumPriceProperties::Cadence>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("cadence");
+            return JsonSerializer.Deserialize<ApiEnum<string, Cadence>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["cadence"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["cadence"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -41,15 +44,18 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice
         get
         {
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "currency",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("currency");
+                ?? throw new ArgumentNullException("currency");
         }
-        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -60,33 +66,39 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice
         get
         {
             if (!this.Properties.TryGetValue("item_id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "item_id",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("item_id", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("item_id");
+                ?? throw new ArgumentNullException("item_id");
         }
-        set { this.Properties["item_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["item_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required NewFloatingTieredPackageWithMinimumPriceProperties::ModelType ModelType
+    public required ApiEnum<string, ModelType> ModelType
     {
         get
         {
             if (!this.Properties.TryGetValue("model_type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "model_type",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("model_type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<NewFloatingTieredPackageWithMinimumPriceProperties::ModelType>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("model_type");
+            return JsonSerializer.Deserialize<ApiEnum<string, ModelType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["model_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["model_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -97,12 +109,18 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice
         get
         {
             if (!this.Properties.TryGetValue("name", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
+                throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("name");
+                ?? throw new ArgumentNullException("name");
         }
-        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required Dictionary<string, JsonElement> TieredPackageWithMinimumConfig
@@ -115,7 +133,7 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice
                     out JsonElement element
                 )
             )
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "tiered_package_with_minimum_config",
                     "Missing required argument"
                 );
@@ -123,12 +141,12 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice
             return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("tiered_package_with_minimum_config");
+                ) ?? throw new ArgumentNullException("tiered_package_with_minimum_config");
         }
         set
         {
             this.Properties["tiered_package_with_minimum_config"] =
-                JsonSerializer.SerializeToElement(value);
+                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
 
@@ -144,7 +162,13 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["billable_metric_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["billable_metric_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -160,7 +184,13 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["billed_in_advance"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["billed_in_advance"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -183,7 +213,8 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice
         set
         {
             this.Properties["billing_cycle_configuration"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -200,27 +231,36 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["conversion_rate"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["conversion_rate"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public NewFloatingTieredPackageWithMinimumPriceProperties::ConversionRateConfig? ConversionRateConfig
+    public ConversionRateConfig? ConversionRateConfig
     {
         get
         {
             if (!this.Properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<NewFloatingTieredPackageWithMinimumPriceProperties::ConversionRateConfig?>(
+            return JsonSerializer.Deserialize<ConversionRateConfig?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
         set
         {
-            this.Properties["conversion_rate_config"] = JsonSerializer.SerializeToElement(value);
+            this.Properties["conversion_rate_config"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -247,7 +287,8 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice
         set
         {
             this.Properties["dimensional_price_configuration"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -264,7 +305,13 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -279,7 +326,13 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["fixed_price_quantity"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["fixed_price_quantity"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -294,7 +347,13 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["invoice_grouping_key"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["invoice_grouping_key"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -321,7 +380,8 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice
         set
         {
             this.Properties["invoicing_cycle_configuration"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -343,7 +403,13 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

@@ -12,7 +12,7 @@ public interface IExternalPlanIDService
     ///
     /// Other fields on a plan are currently immutable.
     /// </summary>
-    Task<Plan> Update(ExternalPlanIDUpdateParams @params);
+    Task<Plan> Update(ExternalPlanIDUpdateParams parameters);
 
     /// <summary>
     /// This endpoint is used to fetch [plan](/core-concepts##plan-and-price) details
@@ -30,5 +30,5 @@ public interface IExternalPlanIDService
     /// that is present. A detailed explanation of price types can be found in the
     /// [Price schema](/core-concepts#plan-and-price). "
     /// </summary>
-    Task<Plan> Fetch(ExternalPlanIDFetchParams @params);
+    Task<Plan> Fetch(ExternalPlanIDFetchParams parameters);
 }

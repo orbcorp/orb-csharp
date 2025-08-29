@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.NewBillingCycleConfigurationProperties;
@@ -6,41 +7,44 @@ namespace Orb.Models.NewBillingCycleConfigurationProperties;
 /// <summary>
 /// The unit of billing period duration.
 /// </summary>
-[JsonConverter(typeof(EnumConverter<DurationUnit, string>))]
-public sealed record class DurationUnit(string value) : IEnum<DurationUnit, string>
+[JsonConverter(typeof(DurationUnitConverter))]
+public enum DurationUnit
 {
-    public static readonly DurationUnit Day = new("day");
+    Day,
+    Month,
+}
 
-    public static readonly DurationUnit Month = new("month");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class DurationUnitConverter : JsonConverter<DurationUnit>
+{
+    public override DurationUnit Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Day,
-        Month,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "day" => Value.Day,
-            "month" => Value.Month,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "day" => DurationUnit.Day,
+            "month" => DurationUnit.Month,
+            _ => (DurationUnit)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        DurationUnit value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static DurationUnit FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                DurationUnit.Day => "day",
+                DurationUnit.Month => "month",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

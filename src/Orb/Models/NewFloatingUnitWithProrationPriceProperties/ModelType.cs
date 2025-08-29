@@ -1,39 +1,44 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.NewFloatingUnitWithProrationPriceProperties;
 
-[JsonConverter(typeof(EnumConverter<ModelType, string>))]
-public sealed record class ModelType(string value) : IEnum<ModelType, string>
+[JsonConverter(typeof(ModelTypeConverter))]
+public enum ModelType
 {
-    public static readonly ModelType UnitWithProration = new("unit_with_proration");
+    UnitWithProration,
+}
 
-    readonly string _value = value;
-
-    public enum Value
+sealed class ModelTypeConverter : JsonConverter<ModelType>
+{
+    public override ModelType Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        UnitWithProration,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "unit_with_proration" => Value.UnitWithProration,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "unit_with_proration" => ModelType.UnitWithProration,
+            _ => (ModelType)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        ModelType value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static ModelType FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ModelType.UnitWithProration => "unit_with_proration",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

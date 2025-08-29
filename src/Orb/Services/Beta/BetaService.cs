@@ -4,7 +4,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Orb.Models.Beta;
 using Orb.Models.Plans;
-using ExternalPlanID = Orb.Services.Beta.ExternalPlanID;
+using Orb.Services.Beta.ExternalPlanID;
 
 namespace Orb.Services.Beta;
 
@@ -15,24 +15,24 @@ public sealed class BetaService : IBetaService
     public BetaService(IOrbClient client)
     {
         _client = client;
-        _externalPlanID = new(() => new ExternalPlanID::ExternalPlanIDService(client));
+        _externalPlanID = new(() => new ExternalPlanIDService(client));
     }
 
-    readonly Lazy<ExternalPlanID::IExternalPlanIDService> _externalPlanID;
-    public ExternalPlanID::IExternalPlanIDService ExternalPlanID
+    readonly Lazy<IExternalPlanIDService> _externalPlanID;
+    public IExternalPlanIDService ExternalPlanID
     {
         get { return _externalPlanID.Value; }
     }
 
-    public async Task<PlanVersion> CreatePlanVersion(BetaCreatePlanVersionParams @params)
+    public async Task<PlanVersion> CreatePlanVersion(BetaCreatePlanVersionParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
+        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
         {
-            Content = @params.BodyContent(),
+            Content = parameters.BodyContent(),
         };
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -41,18 +41,19 @@ public sealed class BetaService : IBetaService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<PlanVersion>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<PlanVersion> FetchPlanVersion(BetaFetchPlanVersionParams @params)
+    public async Task<PlanVersion> FetchPlanVersion(BetaFetchPlanVersionParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -61,21 +62,22 @@ public sealed class BetaService : IBetaService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<PlanVersion>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<Plan> SetDefaultPlanVersion(BetaSetDefaultPlanVersionParams @params)
+    public async Task<Plan> SetDefaultPlanVersion(BetaSetDefaultPlanVersionParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
+        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
         {
-            Content = @params.BodyContent(),
+            Content = parameters.BodyContent(),
         };
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -84,6 +86,7 @@ public sealed class BetaService : IBetaService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<Plan>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions

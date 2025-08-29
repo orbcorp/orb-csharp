@@ -2,29 +2,36 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Models = Orb.Models;
 using PriceProperties = Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties;
 
 namespace Orb.Models.Plans.PlanCreateParamsProperties;
 
-[JsonConverter(typeof(ModelConverter<Price1>))]
-public sealed record class Price1 : ModelBase, IFromRaw<Price1>
+[JsonConverter(typeof(ModelConverter<Price>))]
+public sealed record class Price : ModelBase, IFromRaw<Price>
 {
     /// <summary>
     /// The allocation price to add to the plan.
     /// </summary>
-    public NewAllocationPrice? AllocationPrice
+    public Models::NewAllocationPrice? AllocationPrice
     {
         get
         {
             if (!this.Properties.TryGetValue("allocation_price", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<NewAllocationPrice?>(
+            return JsonSerializer.Deserialize<Models::NewAllocationPrice?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["allocation_price"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["allocation_price"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -39,45 +46,57 @@ public sealed record class Price1 : ModelBase, IFromRaw<Price1>
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The price to add to the plan
     /// </summary>
-    public PriceProperties::Price2? Price
+    public PriceProperties::Price? Price1
     {
         get
         {
             if (!this.Properties.TryGetValue("price", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<PriceProperties::Price2?>(
+            return JsonSerializer.Deserialize<PriceProperties::Price?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["price"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["price"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
     {
         this.AllocationPrice?.Validate();
         _ = this.PlanPhaseOrder;
-        this.Price?.Validate();
+        this.Price1?.Validate();
     }
 
-    public Price1() { }
+    public Price() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Price1(Dictionary<string, JsonElement> properties)
+    Price(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static Price1 FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Price FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

@@ -8,12 +8,12 @@ public interface IAlertService
     /// <summary>
     /// This endpoint retrieves an alert by its ID.
     /// </summary>
-    Task<Alert> Retrieve(AlertRetrieveParams @params);
+    Task<Alert> Retrieve(AlertRetrieveParams parameters);
 
     /// <summary>
     /// This endpoint updates the thresholds of an alert.
     /// </summary>
-    Task<Alert> Update(AlertUpdateParams @params);
+    Task<Alert> Update(AlertUpdateParams parameters);
 
     /// <summary>
     /// This endpoint returns a list of alerts within Orb.
@@ -26,7 +26,7 @@ public interface IAlertService
     /// The list of alerts is ordered starting from the most recently created alert.
     /// This endpoint follows Orb's [standardized pagination format](/api-reference/pagination).
     /// </summary>
-    Task<AlertListPageResponse> List(AlertListParams @params);
+    Task<AlertListPageResponse> List(AlertListParams? parameters = null);
 
     /// <summary>
     ///  This endpoint creates a new alert to monitor a customer's credit balance.
@@ -37,7 +37,7 @@ public interface IAlertService
     /// while `credit_balance_depleted`  and `credit_balance_recovered` alerts do
     /// not require thresholds.
     /// </summary>
-    Task<Alert> CreateForCustomer(AlertCreateForCustomerParams @params);
+    Task<Alert> CreateForCustomer(AlertCreateForCustomerParams parameters);
 
     /// <summary>
     ///  This endpoint creates a new alert to monitor a customer's credit balance.
@@ -48,7 +48,7 @@ public interface IAlertService
     /// while `credit_balance_depleted`  and `credit_balance_recovered` alerts do
     /// not require thresholds.
     /// </summary>
-    Task<Alert> CreateForExternalCustomer(AlertCreateForExternalCustomerParams @params);
+    Task<Alert> CreateForExternalCustomer(AlertCreateForExternalCustomerParams parameters);
 
     /// <summary>
     /// This endpoint is used to create alerts at the subscription level.
@@ -63,19 +63,19 @@ public interface IAlertService
     /// that is a part of the subscription. Alerts are triggered based on usage or
     /// cost conditions met during the current billing cycle.
     /// </summary>
-    Task<Alert> CreateForSubscription(AlertCreateForSubscriptionParams @params);
+    Task<Alert> CreateForSubscription(AlertCreateForSubscriptionParams parameters);
 
     /// <summary>
     /// This endpoint allows you to disable an alert. To disable a plan-level alert
     /// for a specific subscription, you must include the `subscription_id`. The
     /// `subscription_id` is not required for customer or subscription level alerts.
     /// </summary>
-    Task<Alert> Disable(AlertDisableParams @params);
+    Task<Alert> Disable(AlertDisableParams parameters);
 
     /// <summary>
     /// This endpoint allows you to enable an alert. To enable a plan-level alert
     /// for a specific subscription, you must include the `subscription_id`. The
     /// `subscription_id` is not required for customer or subscription level alerts.
     /// </summary>
-    Task<Alert> Enable(AlertEnableParams @params);
+    Task<Alert> Enable(AlertEnableParams parameters);
 }

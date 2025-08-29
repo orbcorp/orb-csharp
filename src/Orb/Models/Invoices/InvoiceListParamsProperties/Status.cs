@@ -1,55 +1,52 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Invoices.InvoiceListParamsProperties;
 
-[JsonConverter(typeof(EnumConverter<Status, string>))]
-public sealed record class Status(string value) : IEnum<Status, string>
+[JsonConverter(typeof(StatusConverter))]
+public enum Status
 {
-    public static readonly Status Draft = new("draft");
+    Draft,
+    Issued,
+    Paid,
+    Synced,
+    Void,
+}
 
-    public static readonly Status Issued = new("issued");
-
-    public static readonly Status Paid = new("paid");
-
-    public static readonly Status Synced = new("synced");
-
-    public static readonly Status Void = new("void");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class StatusConverter : JsonConverter<Status>
+{
+    public override Status Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Draft,
-        Issued,
-        Paid,
-        Synced,
-        Void,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "draft" => Value.Draft,
-            "issued" => Value.Issued,
-            "paid" => Value.Paid,
-            "synced" => Value.Synced,
-            "void" => Value.Void,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "draft" => Status.Draft,
+            "issued" => Status.Issued,
+            "paid" => Status.Paid,
+            "synced" => Status.Synced,
+            "void" => Status.Void,
+            _ => (Status)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(Utf8JsonWriter writer, Status value, JsonSerializerOptions options)
     {
-        Known();
-    }
-
-    public static Status FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Status.Draft => "draft",
+                Status.Issued => "issued",
+                Status.Paid => "paid",
+                Status.Synced => "synced",
+                Status.Void => "void",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

@@ -1,31 +1,34 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using DiscountOverrideProperties = Orb.Models.Subscriptions.DiscountOverrideProperties;
-using System = System;
+using Orb.Models.Subscriptions.DiscountOverrideProperties;
 
 namespace Orb.Models.Subscriptions;
 
 [JsonConverter(typeof(ModelConverter<DiscountOverride>))]
 public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverride>
 {
-    public required DiscountOverrideProperties::DiscountType DiscountType
+    public required ApiEnum<string, DiscountType> DiscountType
     {
         get
         {
             if (!this.Properties.TryGetValue("discount_type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "discount_type",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("discount_type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DiscountOverrideProperties::DiscountType>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("discount_type");
+            return JsonSerializer.Deserialize<ApiEnum<string, DiscountType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["discount_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["discount_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -40,7 +43,13 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["amount_discount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amount_discount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -56,7 +65,13 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["percentage_discount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["percentage_discount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -72,7 +87,13 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["usage_discount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["usage_discount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -98,7 +119,9 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
         return new(properties);
     }
 
-    public DiscountOverride(DiscountOverrideProperties::DiscountType discountType)
+    [SetsRequiredMembers]
+    public DiscountOverride(ApiEnum<string, DiscountType> discountType)
+        : this()
     {
         this.DiscountType = discountType;
     }

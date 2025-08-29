@@ -22,7 +22,13 @@ public sealed record class EventDeprecateResponse : ModelBase, IFromRaw<EventDep
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("deprecated");
         }
-        set { this.Properties["deprecated"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["deprecated"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -47,7 +53,9 @@ public sealed record class EventDeprecateResponse : ModelBase, IFromRaw<EventDep
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public EventDeprecateResponse(string deprecated)
+        : this()
     {
         this.Deprecated = deprecated;
     }
