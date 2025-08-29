@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models;
 
@@ -17,15 +17,18 @@ public sealed record class TaxAmount : ModelBase, IFromRaw<TaxAmount>
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("amount");
+                ?? throw new ArgumentNullException("amount");
         }
-        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -36,15 +39,21 @@ public sealed record class TaxAmount : ModelBase, IFromRaw<TaxAmount>
         get
         {
             if (!this.Properties.TryGetValue("tax_rate_description", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "tax_rate_description",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("tax_rate_description");
+                ?? throw new ArgumentNullException("tax_rate_description");
         }
-        set { this.Properties["tax_rate_description"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["tax_rate_description"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -55,14 +64,17 @@ public sealed record class TaxAmount : ModelBase, IFromRaw<TaxAmount>
         get
         {
             if (!this.Properties.TryGetValue("tax_rate_percentage", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "tax_rate_percentage",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["tax_rate_percentage"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["tax_rate_percentage"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

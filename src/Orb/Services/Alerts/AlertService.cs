@@ -15,12 +15,12 @@ public sealed class AlertService : IAlertService
         _client = client;
     }
 
-    public async Task<Alert> Retrieve(AlertRetrieveParams @params)
+    public async Task<Alert> Retrieve(AlertRetrieveParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -29,21 +29,22 @@ public sealed class AlertService : IAlertService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<Alert>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<Alert> Update(AlertUpdateParams @params)
+    public async Task<Alert> Update(AlertUpdateParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Put, @params.Url(this._client))
+        using HttpRequestMessage request = new(HttpMethod.Put, parameters.Url(this._client))
         {
-            Content = @params.BodyContent(),
+            Content = parameters.BodyContent(),
         };
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -52,18 +53,21 @@ public sealed class AlertService : IAlertService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<Alert>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<AlertListPageResponse> List(AlertListParams @params)
+    public async Task<AlertListPageResponse> List(AlertListParams? parameters = null)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        parameters ??= new();
+
+        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -72,21 +76,22 @@ public sealed class AlertService : IAlertService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<AlertListPageResponse>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<Alert> CreateForCustomer(AlertCreateForCustomerParams @params)
+    public async Task<Alert> CreateForCustomer(AlertCreateForCustomerParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
+        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
         {
-            Content = @params.BodyContent(),
+            Content = parameters.BodyContent(),
         };
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -95,21 +100,24 @@ public sealed class AlertService : IAlertService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<Alert>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<Alert> CreateForExternalCustomer(AlertCreateForExternalCustomerParams @params)
+    public async Task<Alert> CreateForExternalCustomer(
+        AlertCreateForExternalCustomerParams parameters
+    )
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
+        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
         {
-            Content = @params.BodyContent(),
+            Content = parameters.BodyContent(),
         };
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -118,21 +126,22 @@ public sealed class AlertService : IAlertService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<Alert>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<Alert> CreateForSubscription(AlertCreateForSubscriptionParams @params)
+    public async Task<Alert> CreateForSubscription(AlertCreateForSubscriptionParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
+        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
         {
-            Content = @params.BodyContent(),
+            Content = parameters.BodyContent(),
         };
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -141,18 +150,19 @@ public sealed class AlertService : IAlertService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<Alert>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<Alert> Disable(AlertDisableParams @params)
+    public async Task<Alert> Disable(AlertDisableParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client));
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -161,18 +171,19 @@ public sealed class AlertService : IAlertService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<Alert>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<Alert> Enable(AlertEnableParams @params)
+    public async Task<Alert> Enable(AlertEnableParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client));
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -181,6 +192,7 @@ public sealed class AlertService : IAlertService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<Alert>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions

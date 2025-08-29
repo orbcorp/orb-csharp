@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using SubscriptionCancelParamsProperties = Orb.Models.Subscriptions.SubscriptionCancelParamsProperties;
-using System = System;
+using Orb.Models.Subscriptions.SubscriptionCancelParamsProperties;
 
 namespace Orb.Models.Subscriptions;
 
@@ -68,22 +68,25 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     /// <summary>
     /// Determines the timing of subscription cancellation
     /// </summary>
-    public required SubscriptionCancelParamsProperties::CancelOption CancelOption
+    public required ApiEnum<string, CancelOption> CancelOption
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("cancel_option", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "cancel_option",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("cancel_option", "Missing required argument");
 
-            return JsonSerializer.Deserialize<SubscriptionCancelParamsProperties::CancelOption>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("cancel_option");
+            return JsonSerializer.Deserialize<ApiEnum<string, CancelOption>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.BodyProperties["cancel_option"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["cancel_option"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -108,7 +111,8 @@ public sealed record class SubscriptionCancelParams : ParamsBase
         set
         {
             this.BodyProperties["allow_invoice_credit_or_void"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -117,24 +121,27 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     /// The date that the cancellation should take effect. This parameter can only
     /// be passed if the `cancel_option` is `requested_date`.
     /// </summary>
-    public System::DateTime? CancellationDate
+    public DateTime? CancellationDate
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("cancellation_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["cancellation_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["cancellation_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscriptions/{0}/cancel", this.SubscriptionID)
         )

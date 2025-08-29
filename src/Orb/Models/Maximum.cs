@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models;
 
@@ -18,15 +18,21 @@ public sealed record class Maximum : ModelBase, IFromRaw<Maximum>
         get
         {
             if (!this.Properties.TryGetValue("applies_to_price_ids", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "applies_to_price_ids",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("applies_to_price_ids");
+                ?? throw new ArgumentNullException("applies_to_price_ids");
         }
-        set { this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -37,17 +43,20 @@ public sealed record class Maximum : ModelBase, IFromRaw<Maximum>
         get
         {
             if (!this.Properties.TryGetValue("filters", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "filters",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("filters", "Missing required argument");
 
             return JsonSerializer.Deserialize<List<TransformPriceFilter>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("filters");
+                ) ?? throw new ArgumentNullException("filters");
         }
-        set { this.Properties["filters"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["filters"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -58,15 +67,21 @@ public sealed record class Maximum : ModelBase, IFromRaw<Maximum>
         get
         {
             if (!this.Properties.TryGetValue("maximum_amount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "maximum_amount",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("maximum_amount");
+                ?? throw new ArgumentNullException("maximum_amount");
         }
-        set { this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

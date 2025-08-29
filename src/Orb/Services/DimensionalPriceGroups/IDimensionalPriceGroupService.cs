@@ -1,12 +1,12 @@
 using System.Threading.Tasks;
 using Orb.Models.DimensionalPriceGroups;
-using ExternalDimensionalPriceGroupID = Orb.Services.DimensionalPriceGroups.ExternalDimensionalPriceGroupID;
+using Orb.Services.DimensionalPriceGroups.ExternalDimensionalPriceGroupID;
 
 namespace Orb.Services.DimensionalPriceGroups;
 
 public interface IDimensionalPriceGroupService
 {
-    ExternalDimensionalPriceGroupID::IExternalDimensionalPriceGroupIDService ExternalDimensionalPriceGroupID { get; }
+    IExternalDimensionalPriceGroupIDService ExternalDimensionalPriceGroupID { get; }
 
     /// <summary>
     /// A dimensional price group is used to partition the result of a billable metric
@@ -18,22 +18,22 @@ public interface IDimensionalPriceGroupService
     /// widget. We can create a price group with a dimension "color" and two prices:
     /// one that charges \$10 per red widget and one that charges \$20 per blue widget.
     /// </summary>
-    Task<DimensionalPriceGroup> Create(DimensionalPriceGroupCreateParams @params);
+    Task<DimensionalPriceGroup> Create(DimensionalPriceGroupCreateParams parameters);
 
     /// <summary>
     /// Fetch dimensional price group
     /// </summary>
-    Task<DimensionalPriceGroup> Retrieve(DimensionalPriceGroupRetrieveParams @params);
+    Task<DimensionalPriceGroup> Retrieve(DimensionalPriceGroupRetrieveParams parameters);
 
     /// <summary>
     /// This endpoint can be used to update the `external_dimensional_price_group_id`
     /// and `metadata` of an existing dimensional price group. Other fields on a
     /// dimensional price group are currently immutable.
     /// </summary>
-    Task<DimensionalPriceGroup> Update(DimensionalPriceGroupUpdateParams @params);
+    Task<DimensionalPriceGroup> Update(DimensionalPriceGroupUpdateParams parameters);
 
     /// <summary>
     /// List dimensional price groups
     /// </summary>
-    Task<DimensionalPriceGroups> List(DimensionalPriceGroupListParams @params);
+    Task<DimensionalPriceGroupsModel> List(DimensionalPriceGroupListParams? parameters = null);
 }

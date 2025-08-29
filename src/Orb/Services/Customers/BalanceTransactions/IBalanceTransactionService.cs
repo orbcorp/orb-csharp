@@ -9,7 +9,7 @@ public interface IBalanceTransactionService
     /// Creates an immutable balance transaction that updates the customer's balance
     /// and returns back the newly created transaction.
     /// </summary>
-    Task<BalanceTransactionCreateResponse> Create(BalanceTransactionCreateParams @params);
+    Task<BalanceTransactionCreateResponse> Create(BalanceTransactionCreateParams parameters);
 
     /// <summary>
     /// ## The customer balance
@@ -34,5 +34,5 @@ public interface IBalanceTransactionService
     /// order for a single customer, providing a complete audit trail of all adjustments
     /// and invoice applications.
     /// </summary>
-    Task<BalanceTransactionListPageResponse> List(BalanceTransactionListParams @params);
+    Task<BalanceTransactionListPageResponse> List(BalanceTransactionListParams parameters);
 }

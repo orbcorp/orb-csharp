@@ -18,5 +18,5 @@ public interface IVolumeService
     /// timestamp is passed in for either start or end time, the response includes
     /// the hours the timestamp falls in.
     /// </summary>
-    Task<EventVolumes> List(VolumeListParams @params);
+    Task<EventVolumes> List(VolumeListParams parameters);
 }

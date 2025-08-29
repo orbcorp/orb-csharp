@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.PaymentAttemptProperties;
@@ -6,37 +7,41 @@ namespace Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.PaymentAtte
 /// <summary>
 /// The payment provider that attempted to collect the payment.
 /// </summary>
-[JsonConverter(typeof(EnumConverter<PaymentProvider, string>))]
-public sealed record class PaymentProvider(string value) : IEnum<PaymentProvider, string>
+[JsonConverter(typeof(PaymentProviderConverter))]
+public enum PaymentProvider
 {
-    public static readonly PaymentProvider Stripe = new("stripe");
+    Stripe,
+}
 
-    readonly string _value = value;
-
-    public enum Value
+sealed class PaymentProviderConverter : JsonConverter<PaymentProvider>
+{
+    public override PaymentProvider Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Stripe,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "stripe" => Value.Stripe,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "stripe" => PaymentProvider.Stripe,
+            _ => (PaymentProvider)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        PaymentProvider value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static PaymentProvider FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                PaymentProvider.Stripe => "stripe",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

@@ -18,7 +18,13 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
 
             return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["discount_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["discount_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -37,7 +43,13 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["usage_discount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["usage_discount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -63,7 +75,9 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public Usage(double usageDiscount)
+        : this()
     {
         this.UsageDiscount = usageDiscount;
     }

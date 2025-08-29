@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models;
 
@@ -16,12 +16,18 @@ public sealed record class SubscriptionChangeMinified
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("id");
+                ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -46,7 +52,9 @@ public sealed record class SubscriptionChangeMinified
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public SubscriptionChangeMinified(string id)
+        : this()
     {
         this.ID = id;
     }

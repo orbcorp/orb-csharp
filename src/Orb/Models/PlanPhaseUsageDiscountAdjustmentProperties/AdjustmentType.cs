@@ -1,39 +1,44 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.PlanPhaseUsageDiscountAdjustmentProperties;
 
-[JsonConverter(typeof(EnumConverter<AdjustmentType, string>))]
-public sealed record class AdjustmentType(string value) : IEnum<AdjustmentType, string>
+[JsonConverter(typeof(AdjustmentTypeConverter))]
+public enum AdjustmentType
 {
-    public static readonly AdjustmentType UsageDiscount = new("usage_discount");
+    UsageDiscount,
+}
 
-    readonly string _value = value;
-
-    public enum Value
+sealed class AdjustmentTypeConverter : JsonConverter<AdjustmentType>
+{
+    public override AdjustmentType Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        UsageDiscount,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "usage_discount" => Value.UsageDiscount,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "usage_discount" => AdjustmentType.UsageDiscount,
+            _ => (AdjustmentType)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        AdjustmentType value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static AdjustmentType FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                AdjustmentType.UsageDiscount => "usage_discount",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

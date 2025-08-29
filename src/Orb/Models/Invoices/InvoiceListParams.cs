@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
-using InvoiceListParamsProperties = Orb.Models.Invoices.InvoiceListParamsProperties;
-using System = System;
+using Orb.Models.Invoices.InvoiceListParamsProperties;
 
 namespace Orb.Models.Invoices;
 
@@ -31,7 +31,13 @@ public sealed record class InvoiceListParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? AmountGt
@@ -43,7 +49,13 @@ public sealed record class InvoiceListParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["amount[gt]"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["amount[gt]"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? AmountLt
@@ -55,7 +67,13 @@ public sealed record class InvoiceListParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["amount[lt]"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["amount[lt]"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -71,7 +89,13 @@ public sealed record class InvoiceListParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? CustomerID
@@ -83,37 +107,52 @@ public sealed record class InvoiceListParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["customer_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public InvoiceListParamsProperties::DateType? DateType
+    public ApiEnum<string, DateType>? DateType
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("date_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<InvoiceListParamsProperties::DateType?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, DateType>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["date_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["date_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public System::DateOnly? DueDate
+    public DateOnly? DueDate
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("due_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateOnly?>(
-                element,
+            return JsonSerializer.Deserialize<DateOnly?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.QueryProperties["due_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["due_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -131,37 +170,49 @@ public sealed record class InvoiceListParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["due_date_window"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["due_date_window"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public System::DateOnly? DueDateGt
+    public DateOnly? DueDateGt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("due_date[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateOnly?>(
-                element,
+            return JsonSerializer.Deserialize<DateOnly?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.QueryProperties["due_date[gt]"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["due_date[gt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public System::DateOnly? DueDateLt
+    public DateOnly? DueDateLt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("due_date[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateOnly?>(
-                element,
+            return JsonSerializer.Deserialize<DateOnly?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.QueryProperties["due_date[lt]"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["due_date[lt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public string? ExternalCustomerID
@@ -175,73 +226,82 @@ public sealed record class InvoiceListParams : ParamsBase
         }
         set
         {
-            this.QueryProperties["external_customer_id"] = JsonSerializer.SerializeToElement(value);
+            this.QueryProperties["external_customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
-    public System::DateTime? InvoiceDateGt
+    public DateTime? InvoiceDateGt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("invoice_date[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.QueryProperties["invoice_date[gt]"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["invoice_date[gt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public System::DateTime? InvoiceDateGte
+    public DateTime? InvoiceDateGte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("invoice_date[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set
         {
-            this.QueryProperties["invoice_date[gte]"] = JsonSerializer.SerializeToElement(value);
+            this.QueryProperties["invoice_date[gte]"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
-    public System::DateTime? InvoiceDateLt
+    public DateTime? InvoiceDateLt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("invoice_date[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.QueryProperties["invoice_date[lt]"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["invoice_date[lt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public System::DateTime? InvoiceDateLte
+    public DateTime? InvoiceDateLte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("invoice_date[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set
         {
-            this.QueryProperties["invoice_date[lte]"] = JsonSerializer.SerializeToElement(value);
+            this.QueryProperties["invoice_date[lte]"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -254,7 +314,13 @@ public sealed record class InvoiceListParams : ParamsBase
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["is_recurring"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["is_recurring"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -269,22 +335,34 @@ public sealed record class InvoiceListParams : ParamsBase
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public List<InvoiceListParamsProperties::Status>? Status
+    public List<ApiEnum<string, Status>>? Status
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("status", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<InvoiceListParamsProperties::Status>?>(
+            return JsonSerializer.Deserialize<List<ApiEnum<string, Status>>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["status"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["status"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? SubscriptionID
@@ -296,12 +374,18 @@ public sealed record class InvoiceListParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["subscription_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["subscription_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/invoices")
+        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/invoices")
         {
             Query = this.QueryString(client),
         }.Uri;

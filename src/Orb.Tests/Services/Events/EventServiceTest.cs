@@ -16,8 +16,6 @@ public class EventServiceTest : TestBase
                 EventName = "event_name",
                 Properties = new() { { "foo", JsonSerializer.SerializeToElement("bar") } },
                 Timestamp = DateTime.Parse("2020-12-09T16:09:53Z"),
-                CustomerID = "customer_id",
-                ExternalCustomerID = "external_customer_id",
             }
         );
         event1.Validate();
@@ -48,8 +46,6 @@ public class EventServiceTest : TestBase
                         ExternalCustomerID = "external_customer_id",
                     },
                 ],
-                BackfillID = "backfill_id",
-                Debug = true,
             }
         );
         response.Validate();
@@ -58,14 +54,7 @@ public class EventServiceTest : TestBase
     [Fact]
     public async Task Search_Works()
     {
-        var response = await this.client.Events.Search(
-            new()
-            {
-                EventIDs = ["string"],
-                TimeframeEnd = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                TimeframeStart = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-            }
-        );
+        var response = await this.client.Events.Search(new() { EventIDs = ["string"] });
         response.Validate();
     }
 }

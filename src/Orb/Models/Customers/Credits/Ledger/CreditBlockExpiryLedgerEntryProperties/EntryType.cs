@@ -1,39 +1,44 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.Credits.Ledger.CreditBlockExpiryLedgerEntryProperties;
 
-[JsonConverter(typeof(EnumConverter<EntryType, string>))]
-public sealed record class EntryType(string value) : IEnum<EntryType, string>
+[JsonConverter(typeof(EntryTypeConverter))]
+public enum EntryType
 {
-    public static readonly EntryType CreditBlockExpiry = new("credit_block_expiry");
+    CreditBlockExpiry,
+}
 
-    readonly string _value = value;
-
-    public enum Value
+sealed class EntryTypeConverter : JsonConverter<EntryType>
+{
+    public override EntryType Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        CreditBlockExpiry,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "credit_block_expiry" => Value.CreditBlockExpiry,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "credit_block_expiry" => EntryType.CreditBlockExpiry,
+            _ => (EntryType)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        EntryType value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static EntryType FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                EntryType.CreditBlockExpiry => "credit_block_expiry",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

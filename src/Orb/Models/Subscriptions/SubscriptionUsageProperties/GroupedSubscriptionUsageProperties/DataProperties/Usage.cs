@@ -18,7 +18,13 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["quantity"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["quantity"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required DateTime TimeframeEnd
@@ -30,7 +36,13 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["timeframe_end"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required DateTime TimeframeStart
@@ -45,7 +57,13 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["timeframe_start"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

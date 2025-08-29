@@ -1,39 +1,44 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.Credits.Ledger.DecrementLedgerEntryProperties;
 
-[JsonConverter(typeof(EnumConverter<EntryType, string>))]
-public sealed record class EntryType(string value) : IEnum<EntryType, string>
+[JsonConverter(typeof(EntryTypeConverter))]
+public enum EntryType
 {
-    public static readonly EntryType Decrement = new("decrement");
+    Decrement,
+}
 
-    readonly string _value = value;
-
-    public enum Value
+sealed class EntryTypeConverter : JsonConverter<EntryType>
+{
+    public override EntryType Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Decrement,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "decrement" => Value.Decrement,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "decrement" => EntryType.Decrement,
+            _ => (EntryType)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        EntryType value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static EntryType FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                EntryType.Decrement => "decrement",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

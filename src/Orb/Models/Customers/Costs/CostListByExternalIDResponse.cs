@@ -23,7 +23,13 @@ public sealed record class CostListByExternalIDResponse
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("data");
         }
-        set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["data"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -51,7 +57,9 @@ public sealed record class CostListByExternalIDResponse
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public CostListByExternalIDResponse(List<AggregatedCost> data)
+        : this()
     {
         this.Data = data;
     }

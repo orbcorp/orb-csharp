@@ -24,7 +24,13 @@ public sealed record class Hierarchy : ModelBase, IFromRaw<Hierarchy>
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("children");
         }
-        set { this.Properties["children"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["children"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required CustomerMinified? Parent
@@ -32,14 +38,20 @@ public sealed record class Hierarchy : ModelBase, IFromRaw<Hierarchy>
         get
         {
             if (!this.Properties.TryGetValue("parent", out JsonElement element))
-                throw new ArgumentOutOfRangeException("parent", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<CustomerMinified?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["parent"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["parent"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

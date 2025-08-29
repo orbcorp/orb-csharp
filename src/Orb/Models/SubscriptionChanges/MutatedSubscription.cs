@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Customers = Orb.Models.Customers;
-using Models = Orb.Models;
-using MutatedSubscriptionProperties = Orb.Models.SubscriptionChanges.MutatedSubscriptionProperties;
-using Plans = Orb.Models.Plans;
+using Orb.Models.Customers;
+using Orb.Models.Plans;
+using Orb.Models.SubscriptionChanges.MutatedSubscriptionProperties;
 
 namespace Orb.Models.SubscriptionChanges;
 
@@ -23,7 +22,13 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -34,16 +39,16 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("active_plan_phase_order", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "active_plan_phase_order",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         set
         {
-            this.Properties["active_plan_phase_order"] = JsonSerializer.SerializeToElement(value);
+            this.Properties["active_plan_phase_order"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -51,7 +56,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     /// The adjustment intervals for this subscription sorted by the start_date of
     /// the adjustment interval.
     /// </summary>
-    public required List<Models::AdjustmentInterval> AdjustmentIntervals
+    public required List<AdjustmentInterval> AdjustmentIntervals
     {
         get
         {
@@ -61,12 +66,18 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<Models::AdjustmentInterval>>(
+            return JsonSerializer.Deserialize<List<AdjustmentInterval>>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("adjustment_intervals");
         }
-        set { this.Properties["adjustment_intervals"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["adjustment_intervals"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -79,17 +90,20 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("auto_collection", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "auto_collection",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["auto_collection"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["auto_collection"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required Models::BillingCycleAnchorConfiguration BillingCycleAnchorConfiguration
+    public required BillingCycleAnchorConfiguration BillingCycleAnchorConfiguration
     {
         get
         {
@@ -104,7 +118,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Models::BillingCycleAnchorConfiguration>(
+            return JsonSerializer.Deserialize<BillingCycleAnchorConfiguration>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("billing_cycle_anchor_configuration");
@@ -112,7 +126,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         set
         {
             this.Properties["billing_cycle_anchor_configuration"] =
-                JsonSerializer.SerializeToElement(value);
+                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
 
@@ -134,7 +148,13 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["billing_cycle_day"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["billing_cycle_day"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required DateTime CreatedAt
@@ -146,7 +166,13 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["created_at"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -164,17 +190,15 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     out JsonElement element
                 )
             )
-                throw new ArgumentOutOfRangeException(
-                    "current_billing_period_end_date",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set
         {
             this.Properties["current_billing_period_end_date"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -194,17 +218,14 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     out JsonElement element
                 )
             )
-                throw new ArgumentOutOfRangeException(
-                    "current_billing_period_start_date",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         set
         {
             this.Properties["current_billing_period_start_date"] =
-                JsonSerializer.SerializeToElement(value);
+                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
 
@@ -225,19 +246,23 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     /// which defaults to your account's timezone. See [Timezone localization](/essentials/timezones)
     /// for information on what this timezone parameter influences within Orb.
     /// </summary>
-    public required Customers::Customer Customer
+    public required Customer Customer
     {
         get
         {
             if (!this.Properties.TryGetValue("customer", out JsonElement element))
                 throw new ArgumentOutOfRangeException("customer", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Customers::Customer>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("customer");
+            return JsonSerializer.Deserialize<Customer>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("customer");
         }
-        set { this.Properties["customer"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["customer"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -249,21 +274,24 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("default_invoice_memo", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "default_invoice_memo",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["default_invoice_memo"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["default_invoice_memo"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The discount intervals for this subscription sorted by the start_date. This
     /// field is deprecated in favor of `adjustment_intervals`.
     /// </summary>
-    public required List<MutatedSubscriptionProperties::DiscountInterval> DiscountIntervals
+    public required List<DiscountInterval> DiscountIntervals
     {
         get
         {
@@ -273,12 +301,18 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<
-                    List<MutatedSubscriptionProperties::DiscountInterval>
-                >(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("discount_intervals");
+            return JsonSerializer.Deserialize<List<DiscountInterval>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("discount_intervals");
         }
-        set { this.Properties["discount_intervals"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["discount_intervals"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -289,14 +323,20 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("end_date", out JsonElement element))
-                throw new ArgumentOutOfRangeException("end_date", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["end_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required List<Models::FixedFeeQuantityScheduleEntry> FixedFeeQuantitySchedule
+    public required List<FixedFeeQuantityScheduleEntry> FixedFeeQuantitySchedule
     {
         get
         {
@@ -308,7 +348,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<Models::FixedFeeQuantityScheduleEntry>>(
+            return JsonSerializer.Deserialize<List<FixedFeeQuantityScheduleEntry>>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("fixed_fee_quantity_schedule");
@@ -316,7 +356,8 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         set
         {
             this.Properties["fixed_fee_quantity_schedule"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -326,21 +367,24 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("invoicing_threshold", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "invoicing_threshold",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["invoicing_threshold"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["invoicing_threshold"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The maximum intervals for this subscription sorted by the start_date. This
     /// field is deprecated in favor of `adjustment_intervals`.
     /// </summary>
-    public required List<Models::MaximumInterval> MaximumIntervals
+    public required List<MaximumInterval> MaximumIntervals
     {
         get
         {
@@ -350,12 +394,18 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<Models::MaximumInterval>>(
+            return JsonSerializer.Deserialize<List<MaximumInterval>>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("maximum_intervals");
         }
-        set { this.Properties["maximum_intervals"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["maximum_intervals"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -376,14 +426,20 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("metadata");
         }
-        set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The minimum intervals for this subscription sorted by the start_date. This
     /// field is deprecated in favor of `adjustment_intervals`.
     /// </summary>
-    public required List<Models::MinimumInterval> MinimumIntervals
+    public required List<MinimumInterval> MinimumIntervals
     {
         get
         {
@@ -393,12 +449,18 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<Models::MinimumInterval>>(
+            return JsonSerializer.Deserialize<List<MinimumInterval>>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("minimum_intervals");
         }
-        set { this.Properties["minimum_intervals"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["minimum_intervals"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -414,7 +476,13 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
-        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -432,25 +500,28 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["net_terms"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["net_terms"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// A pending subscription change if one exists on this subscription.
     /// </summary>
-    public required Models::SubscriptionChangeMinified? PendingSubscriptionChange
+    public required SubscriptionChangeMinified? PendingSubscriptionChange
     {
         get
         {
             if (
                 !this.Properties.TryGetValue("pending_subscription_change", out JsonElement element)
             )
-                throw new ArgumentOutOfRangeException(
-                    "pending_subscription_change",
-                    "Missing required argument"
-                );
+                return null;
 
-            return JsonSerializer.Deserialize<Models::SubscriptionChangeMinified?>(
+            return JsonSerializer.Deserialize<SubscriptionChangeMinified?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -458,7 +529,8 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         set
         {
             this.Properties["pending_subscription_change"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -468,22 +540,28 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     /// can be subscribed to by a customer. Plans define the billing behavior of the
     /// subscription. You can see more about how to configure prices in the [Price resource](/reference/price).
     /// </summary>
-    public required Plans::Plan? Plan
+    public required Plan? Plan
     {
         get
         {
             if (!this.Properties.TryGetValue("plan", out JsonElement element))
-                throw new ArgumentOutOfRangeException("plan", "Missing required argument");
+                return null;
 
-            return JsonSerializer.Deserialize<Plans::Plan?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<Plan?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["plan"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["plan"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The price intervals for this subscription.
     /// </summary>
-    public required List<Models::PriceInterval> PriceIntervals
+    public required List<PriceInterval> PriceIntervals
     {
         get
         {
@@ -493,30 +571,39 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<Models::PriceInterval>>(
+            return JsonSerializer.Deserialize<List<PriceInterval>>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("price_intervals");
         }
-        set { this.Properties["price_intervals"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["price_intervals"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required Models::CouponRedemption? RedeemedCoupon
+    public required CouponRedemption? RedeemedCoupon
     {
         get
         {
             if (!this.Properties.TryGetValue("redeemed_coupon", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "redeemed_coupon",
-                    "Missing required argument"
-                );
+                return null;
 
-            return JsonSerializer.Deserialize<Models::CouponRedemption?>(
+            return JsonSerializer.Deserialize<CouponRedemption?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["redeemed_coupon"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["redeemed_coupon"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -531,37 +618,55 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["start_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required MutatedSubscriptionProperties::Status Status
+    public required ApiEnum<string, Status> Status
     {
         get
         {
             if (!this.Properties.TryGetValue("status", out JsonElement element))
                 throw new ArgumentOutOfRangeException("status", "Missing required argument");
 
-            return JsonSerializer.Deserialize<MutatedSubscriptionProperties::Status>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("status");
+            return JsonSerializer.Deserialize<ApiEnum<string, Status>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["status"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["status"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required Models::SubscriptionTrialInfo TrialInfo
+    public required SubscriptionTrialInfo TrialInfo
     {
         get
         {
             if (!this.Properties.TryGetValue("trial_info", out JsonElement element))
                 throw new ArgumentOutOfRangeException("trial_info", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Models::SubscriptionTrialInfo>(
+            return JsonSerializer.Deserialize<SubscriptionTrialInfo>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("trial_info");
         }
-        set { this.Properties["trial_info"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["trial_info"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -569,19 +674,25 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     /// fetched through the subscription changes API or if the `include_changed_resources`
     /// parameter was passed in the request.
     /// </summary>
-    public Models::ChangedSubscriptionResources? ChangedResources
+    public ChangedSubscriptionResources? ChangedResources
     {
         get
         {
             if (!this.Properties.TryGetValue("changed_resources", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Models::ChangedSubscriptionResources?>(
+            return JsonSerializer.Deserialize<ChangedSubscriptionResources?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["changed_resources"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["changed_resources"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

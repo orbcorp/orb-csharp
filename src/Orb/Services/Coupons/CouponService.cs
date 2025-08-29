@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Orb.Models.Coupons;
-using Subscriptions = Orb.Services.Coupons.Subscriptions;
+using Orb.Services.Coupons.Subscriptions;
 
 namespace Orb.Services.Coupons;
 
@@ -14,24 +14,24 @@ public sealed class CouponService : ICouponService
     public CouponService(IOrbClient client)
     {
         _client = client;
-        _subscriptions = new(() => new Subscriptions::SubscriptionService(client));
+        _subscriptions = new(() => new SubscriptionService(client));
     }
 
-    readonly Lazy<Subscriptions::ISubscriptionService> _subscriptions;
-    public Subscriptions::ISubscriptionService Subscriptions
+    readonly Lazy<ISubscriptionService> _subscriptions;
+    public ISubscriptionService Subscriptions
     {
         get { return _subscriptions.Value; }
     }
 
-    public async Task<Coupon> Create(CouponCreateParams @params)
+    public async Task<Coupon> Create(CouponCreateParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
+        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
         {
-            Content = @params.BodyContent(),
+            Content = parameters.BodyContent(),
         };
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -40,18 +40,21 @@ public sealed class CouponService : ICouponService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<Coupon>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<CouponListPageResponse> List(CouponListParams @params)
+    public async Task<CouponListPageResponse> List(CouponListParams? parameters = null)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        parameters ??= new();
+
+        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -60,18 +63,19 @@ public sealed class CouponService : ICouponService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<CouponListPageResponse>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<Coupon> Archive(CouponArchiveParams @params)
+    public async Task<Coupon> Archive(CouponArchiveParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client));
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -80,18 +84,19 @@ public sealed class CouponService : ICouponService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<Coupon>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<Coupon> Fetch(CouponFetchParams @params)
+    public async Task<Coupon> Fetch(CouponFetchParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -100,6 +105,7 @@ public sealed class CouponService : ICouponService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<Coupon>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions

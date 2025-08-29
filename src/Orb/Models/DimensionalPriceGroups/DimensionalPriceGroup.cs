@@ -24,7 +24,13 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -44,7 +50,13 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("billable_metric_id");
         }
-        set { this.Properties["billable_metric_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["billable_metric_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -60,7 +72,13 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("dimensions");
         }
-        set { this.Properties["dimensions"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["dimensions"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -76,17 +94,14 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
                     out JsonElement element
                 )
             )
-                throw new ArgumentOutOfRangeException(
-                    "external_dimensional_price_group_id",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         set
         {
             this.Properties["external_dimensional_price_group_id"] =
-                JsonSerializer.SerializeToElement(value);
+                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
 
@@ -108,7 +123,13 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("metadata");
         }
-        set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -124,7 +145,13 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
-        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

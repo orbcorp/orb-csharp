@@ -16,15 +16,15 @@ public sealed class CreditNoteService : ICreditNoteService
         _client = client;
     }
 
-    public async Task<CreditNote> Create(CreditNoteCreateParams @params)
+    public async Task<CreditNote> Create(CreditNoteCreateParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
+        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
         {
-            Content = @params.BodyContent(),
+            Content = parameters.BodyContent(),
         };
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -33,18 +33,21 @@ public sealed class CreditNoteService : ICreditNoteService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<CreditNote>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<CreditNoteListPageResponse> List(CreditNoteListParams @params)
+    public async Task<CreditNoteListPageResponse> List(CreditNoteListParams? parameters = null)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        parameters ??= new();
+
+        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -53,18 +56,19 @@ public sealed class CreditNoteService : ICreditNoteService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<CreditNoteListPageResponse>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<CreditNote> Fetch(CreditNoteFetchParams @params)
+    public async Task<CreditNote> Fetch(CreditNoteFetchParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -73,6 +77,7 @@ public sealed class CreditNoteService : ICreditNoteService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<CreditNote>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions

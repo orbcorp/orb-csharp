@@ -29,7 +29,13 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["description"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["description"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -52,7 +58,8 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
         set
         {
             this.BodyProperties["previously_collected_amount"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }

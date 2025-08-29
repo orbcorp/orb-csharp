@@ -1,43 +1,47 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.PriceProperties.TieredPackageWithMinimumProperties;
 
-[JsonConverter(typeof(EnumConverter<PriceType, string>))]
-public sealed record class PriceType(string value) : IEnum<PriceType, string>
+[JsonConverter(typeof(PriceTypeConverter))]
+public enum PriceType
 {
-    public static readonly PriceType UsagePrice = new("usage_price");
+    UsagePrice,
+    FixedPrice,
+}
 
-    public static readonly PriceType FixedPrice = new("fixed_price");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class PriceTypeConverter : JsonConverter<PriceType>
+{
+    public override PriceType Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        UsagePrice,
-        FixedPrice,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "usage_price" => Value.UsagePrice,
-            "fixed_price" => Value.FixedPrice,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "usage_price" => PriceType.UsagePrice,
+            "fixed_price" => PriceType.FixedPrice,
+            _ => (PriceType)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        PriceType value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static PriceType FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                PriceType.UsagePrice => "usage_price",
+                PriceType.FixedPrice => "fixed_price",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

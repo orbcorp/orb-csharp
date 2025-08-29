@@ -1,40 +1,13 @@
-using System.Text.Json.Serialization;
+using Models = Orb.Models;
 
 namespace Orb.Models.InvoiceLineItems.InvoiceLineItemCreateResponseProperties.AdjustmentVariants;
 
-[JsonConverter(
-    typeof(VariantConverter<
-        MonetaryUsageDiscountAdjustmentVariant,
-        MonetaryUsageDiscountAdjustment
-    >)
-)]
-public sealed record class MonetaryUsageDiscountAdjustmentVariant(
-    MonetaryUsageDiscountAdjustment Value
-) : Adjustment, IVariant<MonetaryUsageDiscountAdjustmentVariant, MonetaryUsageDiscountAdjustment>
+public sealed record class MonetaryUsageDiscountAdjustment(
+    Models::MonetaryUsageDiscountAdjustment Value
+) : Adjustment, IVariant<MonetaryUsageDiscountAdjustment, Models::MonetaryUsageDiscountAdjustment>
 {
-    public static MonetaryUsageDiscountAdjustmentVariant From(MonetaryUsageDiscountAdjustment value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-[JsonConverter(
-    typeof(VariantConverter<
-        MonetaryAmountDiscountAdjustmentVariant,
-        MonetaryAmountDiscountAdjustment
-    >)
-)]
-public sealed record class MonetaryAmountDiscountAdjustmentVariant(
-    MonetaryAmountDiscountAdjustment Value
-) : Adjustment, IVariant<MonetaryAmountDiscountAdjustmentVariant, MonetaryAmountDiscountAdjustment>
-{
-    public static MonetaryAmountDiscountAdjustmentVariant From(
-        MonetaryAmountDiscountAdjustment value
+    public static MonetaryUsageDiscountAdjustment From(
+        Models::MonetaryUsageDiscountAdjustment value
     )
     {
         return new(value);
@@ -46,20 +19,31 @@ public sealed record class MonetaryAmountDiscountAdjustmentVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        MonetaryPercentageDiscountAdjustmentVariant,
-        MonetaryPercentageDiscountAdjustment
-    >)
-)]
-public sealed record class MonetaryPercentageDiscountAdjustmentVariant(
-    MonetaryPercentageDiscountAdjustment Value
+public sealed record class MonetaryAmountDiscountAdjustment(
+    Models::MonetaryAmountDiscountAdjustment Value
+) : Adjustment, IVariant<MonetaryAmountDiscountAdjustment, Models::MonetaryAmountDiscountAdjustment>
+{
+    public static MonetaryAmountDiscountAdjustment From(
+        Models::MonetaryAmountDiscountAdjustment value
+    )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class MonetaryPercentageDiscountAdjustment(
+    Models::MonetaryPercentageDiscountAdjustment Value
 )
     : Adjustment,
-        IVariant<MonetaryPercentageDiscountAdjustmentVariant, MonetaryPercentageDiscountAdjustment>
+        IVariant<MonetaryPercentageDiscountAdjustment, Models::MonetaryPercentageDiscountAdjustment>
 {
-    public static MonetaryPercentageDiscountAdjustmentVariant From(
-        MonetaryPercentageDiscountAdjustment value
+    public static MonetaryPercentageDiscountAdjustment From(
+        Models::MonetaryPercentageDiscountAdjustment value
     )
     {
         return new(value);
@@ -71,14 +55,11 @@ public sealed record class MonetaryPercentageDiscountAdjustmentVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<MonetaryMinimumAdjustmentVariant, MonetaryMinimumAdjustment>)
-)]
-public sealed record class MonetaryMinimumAdjustmentVariant(MonetaryMinimumAdjustment Value)
+public sealed record class MonetaryMinimumAdjustment(Models::MonetaryMinimumAdjustment Value)
     : Adjustment,
-        IVariant<MonetaryMinimumAdjustmentVariant, MonetaryMinimumAdjustment>
+        IVariant<MonetaryMinimumAdjustment, Models::MonetaryMinimumAdjustment>
 {
-    public static MonetaryMinimumAdjustmentVariant From(MonetaryMinimumAdjustment value)
+    public static MonetaryMinimumAdjustment From(Models::MonetaryMinimumAdjustment value)
     {
         return new(value);
     }
@@ -89,14 +70,11 @@ public sealed record class MonetaryMinimumAdjustmentVariant(MonetaryMinimumAdjus
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<MonetaryMaximumAdjustmentVariant, MonetaryMaximumAdjustment>)
-)]
-public sealed record class MonetaryMaximumAdjustmentVariant(MonetaryMaximumAdjustment Value)
+public sealed record class MonetaryMaximumAdjustment(Models::MonetaryMaximumAdjustment Value)
     : Adjustment,
-        IVariant<MonetaryMaximumAdjustmentVariant, MonetaryMaximumAdjustment>
+        IVariant<MonetaryMaximumAdjustment, Models::MonetaryMaximumAdjustment>
 {
-    public static MonetaryMaximumAdjustmentVariant From(MonetaryMaximumAdjustment value)
+    public static MonetaryMaximumAdjustment From(Models::MonetaryMaximumAdjustment value)
     {
         return new(value);
     }

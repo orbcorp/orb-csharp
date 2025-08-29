@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models;
 
@@ -22,11 +22,17 @@ public sealed record class BillingCycleAnchorConfiguration
         get
         {
             if (!this.Properties.TryGetValue("day", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("day", "Missing required argument");
+                throw new ArgumentOutOfRangeException("day", "Missing required argument");
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["day"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["day"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -42,7 +48,13 @@ public sealed record class BillingCycleAnchorConfiguration
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["month"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["month"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -58,7 +70,13 @@ public sealed record class BillingCycleAnchorConfiguration
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["year"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["year"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -85,7 +103,9 @@ public sealed record class BillingCycleAnchorConfiguration
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public BillingCycleAnchorConfiguration(long day)
+        : this()
     {
         this.Day = day;
     }

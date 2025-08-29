@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using LineItemProperties = Orb.Models.CreditNoteProperties.LineItemProperties;
+using Models = Orb.Models;
 using System = System;
 
 namespace Orb.Models.CreditNoteProperties;
@@ -23,7 +24,13 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -42,7 +49,13 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("amount");
         }
-        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -61,7 +74,13 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("item_id");
         }
-        set { this.Properties["item_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["item_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -77,7 +96,13 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("name");
         }
-        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -88,14 +113,17 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
         get
         {
             if (!this.Properties.TryGetValue("quantity", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "quantity",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["quantity"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["quantity"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -114,13 +142,19 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("subtotal");
         }
-        set { this.Properties["subtotal"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["subtotal"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// Any tax amounts applied onto the line item.
     /// </summary>
-    public required List<TaxAmount> TaxAmounts
+    public required List<Models::TaxAmount> TaxAmounts
     {
         get
         {
@@ -130,10 +164,18 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<TaxAmount>>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("tax_amounts");
+            return JsonSerializer.Deserialize<List<Models::TaxAmount>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new System::ArgumentNullException("tax_amounts");
         }
-        set { this.Properties["tax_amounts"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["tax_amounts"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -151,7 +193,13 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["discounts"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["discounts"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -169,7 +217,13 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["end_time_exclusive"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["end_time_exclusive"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -187,7 +241,13 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["start_time_inclusive"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["start_time_inclusive"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

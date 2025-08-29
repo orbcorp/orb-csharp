@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using EventIngestResponseProperties = Orb.Models.Events.EventIngestResponseProperties;
+using Orb.Models.Events.EventIngestResponseProperties;
 
 namespace Orb.Models.Events;
 
@@ -14,7 +14,7 @@ public sealed record class EventIngestResponse : ModelBase, IFromRaw<EventIngest
     /// Contains all failing validation events. In the case of a 200, this array
     /// will always be empty. This field will always be present.
     /// </summary>
-    public required List<EventIngestResponseProperties::ValidationFailed> ValidationFailed
+    public required List<ValidationFailed> ValidationFailed
     {
         get
         {
@@ -24,31 +24,40 @@ public sealed record class EventIngestResponse : ModelBase, IFromRaw<EventIngest
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<
-                    List<EventIngestResponseProperties::ValidationFailed>
-                >(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("validation_failed");
+            return JsonSerializer.Deserialize<List<ValidationFailed>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("validation_failed");
         }
-        set { this.Properties["validation_failed"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["validation_failed"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// Optional debug information (only present when debug=true is passed to the
     /// endpoint). Contains ingested and duplicate event idempotency keys.
     /// </summary>
-    public EventIngestResponseProperties::Debug? Debug
+    public Debug? Debug
     {
         get
         {
             if (!this.Properties.TryGetValue("debug", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<EventIngestResponseProperties::Debug?>(
-                element,
+            return JsonSerializer.Deserialize<Debug?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["debug"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["debug"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()
@@ -75,9 +84,9 @@ public sealed record class EventIngestResponse : ModelBase, IFromRaw<EventIngest
         return new(properties);
     }
 
-    public EventIngestResponse(
-        List<EventIngestResponseProperties::ValidationFailed> validationFailed
-    )
+    [SetsRequiredMembers]
+    public EventIngestResponse(List<ValidationFailed> validationFailed)
+        : this()
     {
         this.ValidationFailed = validationFailed;
     }

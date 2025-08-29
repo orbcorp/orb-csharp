@@ -1,7 +1,7 @@
 using System;
 using System.Net.Http;
 using System.Text.Json;
-using PlanListParamsProperties = Orb.Models.Plans.PlanListParamsProperties;
+using Orb.Models.Plans.PlanListParamsProperties;
 
 namespace Orb.Models.Plans;
 
@@ -22,7 +22,13 @@ public sealed record class PlanListParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["created_at[gt]"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["created_at[gt]"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public DateTime? CreatedAtGte
@@ -34,7 +40,13 @@ public sealed record class PlanListParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["created_at[gte]"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["created_at[gte]"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public DateTime? CreatedAtLt
@@ -46,7 +58,13 @@ public sealed record class PlanListParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["created_at[lt]"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["created_at[lt]"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public DateTime? CreatedAtLte
@@ -58,7 +76,13 @@ public sealed record class PlanListParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["created_at[lte]"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["created_at[lte]"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -74,7 +98,13 @@ public sealed record class PlanListParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -89,25 +119,37 @@ public sealed record class PlanListParams : ParamsBase
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The plan status to filter to ('active', 'archived', or 'draft').
     /// </summary>
-    public PlanListParamsProperties::Status? Status
+    public ApiEnum<string, Status>? Status
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("status", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<PlanListParamsProperties::Status?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, Status>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["status"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["status"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override Uri Url(IOrbClient client)

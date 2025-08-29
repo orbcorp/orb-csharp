@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using CustomerProperties = Orb.Models.Customers.CustomerProperties;
-using System = System;
+using Orb.Models.Customers.CustomerProperties;
 
 namespace Orb.Models.Customers;
 
@@ -32,12 +32,18 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("id");
+                ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required List<string> AdditionalEmails
@@ -45,15 +51,21 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         get
         {
             if (!this.Properties.TryGetValue("additional_emails", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "additional_emails",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("additional_emails");
+                ?? throw new ArgumentNullException("additional_emails");
         }
-        set { this.Properties["additional_emails"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["additional_emails"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required bool AutoCollection
@@ -61,14 +73,20 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         get
         {
             if (!this.Properties.TryGetValue("auto_collection", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "auto_collection",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["auto_collection"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["auto_collection"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -79,15 +97,18 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         get
         {
             if (!this.Properties.TryGetValue("balance", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "balance",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("balance", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("balance");
+                ?? throw new ArgumentNullException("balance");
         }
-        set { this.Properties["balance"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["balance"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required Address? BillingAddress
@@ -95,32 +116,35 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         get
         {
             if (!this.Properties.TryGetValue("billing_address", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "billing_address",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<Address?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["billing_address"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["billing_address"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required System::DateTime CreatedAt
+    public required DateTime CreatedAt
     {
         get
         {
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "created_at",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("created_at", "Missing required argument");
 
-            return JsonSerializer.Deserialize<System::DateTime>(
-                element,
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["created_at"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required string? Currency
@@ -128,14 +152,17 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         get
         {
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "currency",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -148,12 +175,18 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         get
         {
             if (!this.Properties.TryGetValue("email", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("email", "Missing required argument");
+                throw new ArgumentOutOfRangeException("email", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("email");
+                ?? throw new ArgumentNullException("email");
         }
-        set { this.Properties["email"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["email"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required bool EmailDelivery
@@ -161,14 +194,20 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         get
         {
             if (!this.Properties.TryGetValue("email_delivery", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "email_delivery",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["email_delivery"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["email_delivery"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required bool? ExemptFromAutomatedTax
@@ -176,16 +215,16 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         get
         {
             if (!this.Properties.TryGetValue("exempt_from_automated_tax", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "exempt_from_automated_tax",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         set
         {
-            this.Properties["exempt_from_automated_tax"] = JsonSerializer.SerializeToElement(value);
+            this.Properties["exempt_from_automated_tax"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -199,35 +238,39 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         get
         {
             if (!this.Properties.TryGetValue("external_customer_id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "external_customer_id",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["external_customer_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["external_customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The hierarchical relationships for this customer.
     /// </summary>
-    public required CustomerProperties::Hierarchy Hierarchy
+    public required Hierarchy Hierarchy
     {
         get
         {
             if (!this.Properties.TryGetValue("hierarchy", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "hierarchy",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("hierarchy", "Missing required argument");
 
-            return JsonSerializer.Deserialize<CustomerProperties::Hierarchy>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("hierarchy");
+            return JsonSerializer.Deserialize<Hierarchy>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("hierarchy");
         }
-        set { this.Properties["hierarchy"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["hierarchy"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -241,17 +284,20 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         get
         {
             if (!this.Properties.TryGetValue("metadata", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "metadata",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("metadata", "Missing required argument");
 
             return JsonSerializer.Deserialize<Dictionary<string, string>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("metadata");
+                ) ?? throw new ArgumentNullException("metadata");
         }
-        set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -262,34 +308,43 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         get
         {
             if (!this.Properties.TryGetValue("name", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
+                throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("name");
+                ?? throw new ArgumentNullException("name");
         }
-        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// This is used for creating charges or invoices in an external system via Orb.
     /// When not in test mode, the connection must first be configured in the Orb webapp.
     /// </summary>
-    public required CustomerProperties::PaymentProvider? PaymentProvider
+    public required ApiEnum<string, PaymentProvider>? PaymentProvider
     {
         get
         {
             if (!this.Properties.TryGetValue("payment_provider", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "payment_provider",
-                    "Missing required argument"
-                );
+                return null;
 
-            return JsonSerializer.Deserialize<CustomerProperties::PaymentProvider?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, PaymentProvider>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["payment_provider"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["payment_provider"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -301,14 +356,17 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         get
         {
             if (!this.Properties.TryGetValue("payment_provider_id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "payment_provider_id",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["payment_provider_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["payment_provider_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string? PortalURL
@@ -316,14 +374,17 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         get
         {
             if (!this.Properties.TryGetValue("portal_url", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "portal_url",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["portal_url"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["portal_url"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required Address? ShippingAddress
@@ -331,14 +392,17 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         get
         {
             if (!this.Properties.TryGetValue("shipping_address", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "shipping_address",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<Address?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["shipping_address"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["shipping_address"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -451,14 +515,17 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         get
         {
             if (!this.Properties.TryGetValue("tax_id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "tax_id",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<CustomerTaxID?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["tax_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["tax_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -471,18 +538,21 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         get
         {
             if (!this.Properties.TryGetValue("timezone", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "timezone",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("timezone", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("timezone");
+                ?? throw new ArgumentNullException("timezone");
         }
-        set { this.Properties["timezone"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["timezone"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public CustomerProperties::AccountingSyncConfiguration? AccountingSyncConfiguration
+    public AccountingSyncConfiguration? AccountingSyncConfiguration
     {
         get
         {
@@ -494,7 +564,7 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
             )
                 return null;
 
-            return JsonSerializer.Deserialize<CustomerProperties::AccountingSyncConfiguration?>(
+            return JsonSerializer.Deserialize<AccountingSyncConfiguration?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -502,26 +572,30 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         set
         {
             this.Properties["accounting_sync_configuration"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
 
-    public CustomerProperties::ReportingConfiguration? ReportingConfiguration
+    public ReportingConfiguration? ReportingConfiguration
     {
         get
         {
             if (!this.Properties.TryGetValue("reporting_configuration", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<CustomerProperties::ReportingConfiguration?>(
+            return JsonSerializer.Deserialize<ReportingConfiguration?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
         set
         {
-            this.Properties["reporting_configuration"] = JsonSerializer.SerializeToElement(value);
+            this.Properties["reporting_configuration"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 

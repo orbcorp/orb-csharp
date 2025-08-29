@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using DataProperties = Orb.Models.Subscriptions.SubscriptionFetchSchedulePageResponseProperties.DataProperties;
+using Orb.Models.Subscriptions.SubscriptionFetchSchedulePageResponseProperties.DataProperties;
 
 namespace Orb.Models.Subscriptions.SubscriptionFetchSchedulePageResponseProperties;
 
@@ -19,7 +19,13 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["created_at"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required DateTime? EndDate
@@ -27,26 +33,35 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         get
         {
             if (!this.Properties.TryGetValue("end_date", out JsonElement element))
-                throw new ArgumentOutOfRangeException("end_date", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["end_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required DataProperties::Plan? Plan
+    public required Plan? Plan
     {
         get
         {
             if (!this.Properties.TryGetValue("plan", out JsonElement element))
-                throw new ArgumentOutOfRangeException("plan", "Missing required argument");
+                return null;
 
-            return JsonSerializer.Deserialize<DataProperties::Plan?>(
-                element,
+            return JsonSerializer.Deserialize<Plan?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["plan"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["plan"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required DateTime StartDate
@@ -58,7 +73,13 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["start_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

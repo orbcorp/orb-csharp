@@ -75,7 +75,7 @@ public interface ILedgerService
     /// a correction, this entry will be added to the ledger to indicate the adjustment
     /// of credits.
     /// </summary>
-    Task<LedgerListPageResponse> List(LedgerListParams @params);
+    Task<LedgerListPageResponse> List(LedgerListParams parameters);
 
     /// <summary>
     /// This endpoint allows you to create a new ledger entry for a specified customer's
@@ -161,7 +161,7 @@ public interface ILedgerService
     /// block that was originally decremented from, and `amount` indicates how many
     /// credits to return to the customer, up to the block's initial balance.
     /// </summary>
-    Task<LedgerCreateEntryResponse> CreateEntry(LedgerCreateEntryParams @params);
+    Task<LedgerCreateEntryResponse> CreateEntry(LedgerCreateEntryParams parameters);
 
     /// <summary>
     /// This endpoint allows you to create a new ledger entry for a specified customer's
@@ -248,7 +248,7 @@ public interface ILedgerService
     /// credits to return to the customer, up to the block's initial balance.
     /// </summary>
     Task<LedgerCreateEntryByExternalIDResponse> CreateEntryByExternalID(
-        LedgerCreateEntryByExternalIDParams @params
+        LedgerCreateEntryByExternalIDParams parameters
     );
 
     /// <summary>
@@ -321,5 +321,7 @@ public interface ILedgerService
     /// a correction, this entry will be added to the ledger to indicate the adjustment
     /// of credits.
     /// </summary>
-    Task<LedgerListByExternalIDPageResponse> ListByExternalID(LedgerListByExternalIDParams @params);
+    Task<LedgerListByExternalIDPageResponse> ListByExternalID(
+        LedgerListByExternalIDParams parameters
+    );
 }

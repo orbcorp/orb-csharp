@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using NewFloatingGroupedTieredPriceProperties = Orb.Models.NewFloatingGroupedTieredPriceProperties;
-using System = System;
+using Orb.Models.NewFloatingGroupedTieredPriceProperties;
 
 namespace Orb.Models;
 
@@ -15,22 +15,25 @@ public sealed record class NewFloatingGroupedTieredPrice
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required NewFloatingGroupedTieredPriceProperties::Cadence Cadence
+    public required ApiEnum<string, Cadence> Cadence
     {
         get
         {
             if (!this.Properties.TryGetValue("cadence", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "cadence",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("cadence", "Missing required argument");
 
-            return JsonSerializer.Deserialize<NewFloatingGroupedTieredPriceProperties::Cadence>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("cadence");
+            return JsonSerializer.Deserialize<ApiEnum<string, Cadence>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["cadence"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["cadence"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -41,15 +44,18 @@ public sealed record class NewFloatingGroupedTieredPrice
         get
         {
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "currency",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("currency");
+                ?? throw new ArgumentNullException("currency");
         }
-        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required Dictionary<string, JsonElement> GroupedTieredConfig
@@ -57,7 +63,7 @@ public sealed record class NewFloatingGroupedTieredPrice
         get
         {
             if (!this.Properties.TryGetValue("grouped_tiered_config", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "grouped_tiered_config",
                     "Missing required argument"
                 );
@@ -65,9 +71,15 @@ public sealed record class NewFloatingGroupedTieredPrice
             return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("grouped_tiered_config");
+                ) ?? throw new ArgumentNullException("grouped_tiered_config");
         }
-        set { this.Properties["grouped_tiered_config"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["grouped_tiered_config"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -78,33 +90,39 @@ public sealed record class NewFloatingGroupedTieredPrice
         get
         {
             if (!this.Properties.TryGetValue("item_id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "item_id",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("item_id", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("item_id");
+                ?? throw new ArgumentNullException("item_id");
         }
-        set { this.Properties["item_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["item_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required NewFloatingGroupedTieredPriceProperties::ModelType ModelType
+    public required ApiEnum<string, ModelType> ModelType
     {
         get
         {
             if (!this.Properties.TryGetValue("model_type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "model_type",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("model_type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<NewFloatingGroupedTieredPriceProperties::ModelType>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("model_type");
+            return JsonSerializer.Deserialize<ApiEnum<string, ModelType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["model_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["model_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -115,12 +133,18 @@ public sealed record class NewFloatingGroupedTieredPrice
         get
         {
             if (!this.Properties.TryGetValue("name", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
+                throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("name");
+                ?? throw new ArgumentNullException("name");
         }
-        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -135,7 +159,13 @@ public sealed record class NewFloatingGroupedTieredPrice
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["billable_metric_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["billable_metric_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -151,7 +181,13 @@ public sealed record class NewFloatingGroupedTieredPrice
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["billed_in_advance"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["billed_in_advance"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -174,7 +210,8 @@ public sealed record class NewFloatingGroupedTieredPrice
         set
         {
             this.Properties["billing_cycle_configuration"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -191,27 +228,36 @@ public sealed record class NewFloatingGroupedTieredPrice
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["conversion_rate"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["conversion_rate"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public NewFloatingGroupedTieredPriceProperties::ConversionRateConfig? ConversionRateConfig
+    public ConversionRateConfig? ConversionRateConfig
     {
         get
         {
             if (!this.Properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<NewFloatingGroupedTieredPriceProperties::ConversionRateConfig?>(
+            return JsonSerializer.Deserialize<ConversionRateConfig?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
         set
         {
-            this.Properties["conversion_rate_config"] = JsonSerializer.SerializeToElement(value);
+            this.Properties["conversion_rate_config"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -238,7 +284,8 @@ public sealed record class NewFloatingGroupedTieredPrice
         set
         {
             this.Properties["dimensional_price_configuration"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -255,7 +302,13 @@ public sealed record class NewFloatingGroupedTieredPrice
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -270,7 +323,13 @@ public sealed record class NewFloatingGroupedTieredPrice
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["fixed_price_quantity"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["fixed_price_quantity"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -285,7 +344,13 @@ public sealed record class NewFloatingGroupedTieredPrice
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["invoice_grouping_key"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["invoice_grouping_key"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -312,7 +377,8 @@ public sealed record class NewFloatingGroupedTieredPrice
         set
         {
             this.Properties["invoicing_cycle_configuration"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -334,7 +400,13 @@ public sealed record class NewFloatingGroupedTieredPrice
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

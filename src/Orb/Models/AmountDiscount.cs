@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using AmountDiscountProperties = Orb.Models.AmountDiscountProperties;
-using System = System;
+using Orb.Models.AmountDiscountProperties;
 
 namespace Orb.Models;
 
@@ -18,33 +18,42 @@ public sealed record class AmountDiscount : ModelBase, IFromRaw<AmountDiscount>
         get
         {
             if (!this.Properties.TryGetValue("amount_discount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "amount_discount",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("amount_discount");
+                ?? throw new ArgumentNullException("amount_discount");
         }
-        set { this.Properties["amount_discount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amount_discount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required AmountDiscountProperties::DiscountType DiscountType
+    public required ApiEnum<string, DiscountType> DiscountType
     {
         get
         {
             if (!this.Properties.TryGetValue("discount_type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "discount_type",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("discount_type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<AmountDiscountProperties::DiscountType>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("discount_type");
+            return JsonSerializer.Deserialize<ApiEnum<string, DiscountType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["discount_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["discount_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -60,7 +69,13 @@ public sealed record class AmountDiscount : ModelBase, IFromRaw<AmountDiscount>
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -78,7 +93,13 @@ public sealed record class AmountDiscount : ModelBase, IFromRaw<AmountDiscount>
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["filters"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["filters"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? Reason
@@ -90,7 +111,13 @@ public sealed record class AmountDiscount : ModelBase, IFromRaw<AmountDiscount>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["reason"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["reason"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

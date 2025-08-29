@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models;
 
@@ -17,14 +17,17 @@ public sealed record class ConversionRateTier : ModelBase, IFromRaw<ConversionRa
         get
         {
             if (!this.Properties.TryGetValue("first_unit", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "first_unit",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("first_unit", "Missing required argument");
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["first_unit"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["first_unit"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -35,15 +38,18 @@ public sealed record class ConversionRateTier : ModelBase, IFromRaw<ConversionRa
         get
         {
             if (!this.Properties.TryGetValue("unit_amount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "unit_amount",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("unit_amount", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("unit_amount");
+                ?? throw new ArgumentNullException("unit_amount");
         }
-        set { this.Properties["unit_amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["unit_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -58,7 +64,13 @@ public sealed record class ConversionRateTier : ModelBase, IFromRaw<ConversionRa
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["last_unit"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["last_unit"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

@@ -15,12 +15,12 @@ public sealed class VolumeService : IVolumeService
         _client = client;
     }
 
-    public async Task<EventVolumes> List(VolumeListParams @params)
+    public async Task<EventVolumes> List(VolumeListParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -29,6 +29,7 @@ public sealed class VolumeService : IVolumeService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<EventVolumes>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions

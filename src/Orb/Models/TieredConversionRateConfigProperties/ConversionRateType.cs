@@ -1,39 +1,44 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.TieredConversionRateConfigProperties;
 
-[JsonConverter(typeof(EnumConverter<ConversionRateType, string>))]
-public sealed record class ConversionRateType(string value) : IEnum<ConversionRateType, string>
+[JsonConverter(typeof(ConversionRateTypeConverter))]
+public enum ConversionRateType
 {
-    public static readonly ConversionRateType Tiered = new("tiered");
+    Tiered,
+}
 
-    readonly string _value = value;
-
-    public enum Value
+sealed class ConversionRateTypeConverter : JsonConverter<ConversionRateType>
+{
+    public override ConversionRateType Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Tiered,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "tiered" => Value.Tiered,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "tiered" => ConversionRateType.Tiered,
+            _ => (ConversionRateType)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        ConversionRateType value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static ConversionRateType FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ConversionRateType.Tiered => "tiered",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

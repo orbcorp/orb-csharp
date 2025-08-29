@@ -21,7 +21,13 @@ public sealed record class CustomerHierarchyConfig : ModelBase, IFromRaw<Custome
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["child_customer_ids"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["child_customer_ids"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -37,7 +43,13 @@ public sealed record class CustomerHierarchyConfig : ModelBase, IFromRaw<Custome
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["parent_customer_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["parent_customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

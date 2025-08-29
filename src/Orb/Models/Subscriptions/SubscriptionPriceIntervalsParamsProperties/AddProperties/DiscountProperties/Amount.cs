@@ -24,7 +24,13 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["amount_discount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amount_discount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public JsonElement DiscountType
@@ -36,7 +42,13 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
 
             return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["discount_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["discount_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -62,7 +74,9 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public Amount(double amountDiscount)
+        : this()
     {
         this.AmountDiscount = amountDiscount;
     }

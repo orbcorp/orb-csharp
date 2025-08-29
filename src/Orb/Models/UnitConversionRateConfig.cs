@@ -1,31 +1,37 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
-using UnitConversionRateConfigProperties = Orb.Models.UnitConversionRateConfigProperties;
+using Orb.Models.UnitConversionRateConfigProperties;
 
 namespace Orb.Models;
 
 [JsonConverter(typeof(ModelConverter<UnitConversionRateConfig>))]
 public sealed record class UnitConversionRateConfig : ModelBase, IFromRaw<UnitConversionRateConfig>
 {
-    public required UnitConversionRateConfigProperties::ConversionRateType ConversionRateType
+    public required ApiEnum<string, ConversionRateType> ConversionRateType
     {
         get
         {
             if (!this.Properties.TryGetValue("conversion_rate_type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "conversion_rate_type",
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<UnitConversionRateConfigProperties::ConversionRateType>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("conversion_rate_type");
+            return JsonSerializer.Deserialize<ApiEnum<string, ConversionRateType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["conversion_rate_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["conversion_rate_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required ConversionRateUnitConfig UnitConfig
@@ -33,17 +39,20 @@ public sealed record class UnitConversionRateConfig : ModelBase, IFromRaw<UnitCo
         get
         {
             if (!this.Properties.TryGetValue("unit_config", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "unit_config",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("unit_config", "Missing required argument");
 
             return JsonSerializer.Deserialize<ConversionRateUnitConfig>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("unit_config");
+                ) ?? throw new ArgumentNullException("unit_config");
         }
-        set { this.Properties["unit_config"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["unit_config"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

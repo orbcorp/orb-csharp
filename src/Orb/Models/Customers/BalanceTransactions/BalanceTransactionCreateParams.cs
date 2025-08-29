@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using BalanceTransactionCreateParamsProperties = Orb.Models.Customers.BalanceTransactions.BalanceTransactionCreateParamsProperties;
-using System = System;
 
 namespace Orb.Models.Customers.BalanceTransactions;
 
@@ -22,30 +22,38 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("amount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("amount");
+                ?? throw new ArgumentNullException("amount");
         }
-        set { this.BodyProperties["amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required BalanceTransactionCreateParamsProperties::Type Type
+    public required ApiEnum<string, BalanceTransactionCreateParamsProperties::Type> Type
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
+                throw new ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<BalanceTransactionCreateParamsProperties::Type>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("type");
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, BalanceTransactionCreateParamsProperties::Type>
+            >(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -60,12 +68,18 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["description"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["description"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/customers/{0}/balance_transactions", this.CustomerID)
         )

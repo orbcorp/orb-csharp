@@ -3,26 +3,30 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using EventSearchResponseProperties = Orb.Models.Events.EventSearchResponseProperties;
+using Orb.Models.Events.EventSearchResponseProperties;
 
 namespace Orb.Models.Events;
 
 [JsonConverter(typeof(ModelConverter<EventSearchResponse>))]
 public sealed record class EventSearchResponse : ModelBase, IFromRaw<EventSearchResponse>
 {
-    public required List<EventSearchResponseProperties::Data> Data
+    public required List<Data> Data
     {
         get
         {
             if (!this.Properties.TryGetValue("data", out JsonElement element))
                 throw new ArgumentOutOfRangeException("data", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<EventSearchResponseProperties::Data>>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("data");
+            return JsonSerializer.Deserialize<List<Data>>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("data");
         }
-        set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["data"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -48,7 +52,9 @@ public sealed record class EventSearchResponse : ModelBase, IFromRaw<EventSearch
         return new(properties);
     }
 
-    public EventSearchResponse(List<EventSearchResponseProperties::Data> data)
+    [SetsRequiredMembers]
+    public EventSearchResponse(List<Data> data)
+        : this()
     {
         this.Data = data;
     }

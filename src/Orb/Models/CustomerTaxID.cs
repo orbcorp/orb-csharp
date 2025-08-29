@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using CustomerTaxIDProperties = Orb.Models.CustomerTaxIDProperties;
-using System = System;
 
 namespace Orb.Models;
 
@@ -110,37 +110,46 @@ namespace Orb.Models;
 [JsonConverter(typeof(ModelConverter<CustomerTaxID>))]
 public sealed record class CustomerTaxID : ModelBase, IFromRaw<CustomerTaxID>
 {
-    public required CustomerTaxIDProperties::Country Country
+    public required ApiEnum<string, CustomerTaxIDProperties::Country> Country
     {
         get
         {
             if (!this.Properties.TryGetValue("country", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "country",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("country", "Missing required argument");
 
-            return JsonSerializer.Deserialize<CustomerTaxIDProperties::Country>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("country");
+            return JsonSerializer.Deserialize<ApiEnum<string, CustomerTaxIDProperties::Country>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["country"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["country"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required CustomerTaxIDProperties::Type Type
+    public required ApiEnum<string, CustomerTaxIDProperties::Type> Type
     {
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
+                throw new ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<CustomerTaxIDProperties::Type>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("type");
+            return JsonSerializer.Deserialize<ApiEnum<string, CustomerTaxIDProperties::Type>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string Value
@@ -148,12 +157,18 @@ public sealed record class CustomerTaxID : ModelBase, IFromRaw<CustomerTaxID>
         get
         {
             if (!this.Properties.TryGetValue("value", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("value", "Missing required argument");
+                throw new ArgumentOutOfRangeException("value", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("value");
+                ?? throw new ArgumentNullException("value");
         }
-        set { this.Properties["value"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["value"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

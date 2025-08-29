@@ -1,39 +1,40 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.MatrixSubLineItemProperties;
 
-[JsonConverter(typeof(EnumConverter<Type, string>))]
-public sealed record class Type(string value) : IEnum<Type, string>
+[JsonConverter(typeof(TypeConverter))]
+public enum Type
 {
-    public static readonly Type Matrix = new("matrix");
+    Matrix,
+}
 
-    readonly string _value = value;
-
-    public enum Value
+sealed class TypeConverter : JsonConverter<Type>
+{
+    public override Type Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Matrix,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "matrix" => Value.Matrix,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            "matrix" => MatrixSubLineItemProperties.Type.Matrix,
+            _ => (Type)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(Utf8JsonWriter writer, Type value, JsonSerializerOptions options)
     {
-        Known();
-    }
-
-    public static Type FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                MatrixSubLineItemProperties.Type.Matrix => "matrix",
+                _ => throw new System::ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

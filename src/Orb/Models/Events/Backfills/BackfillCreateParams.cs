@@ -58,7 +58,13 @@ public sealed record class BackfillCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -78,7 +84,13 @@ public sealed record class BackfillCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -95,7 +107,13 @@ public sealed record class BackfillCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["close_time"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["close_time"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -111,7 +129,13 @@ public sealed record class BackfillCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -129,7 +153,10 @@ public sealed record class BackfillCreateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["deprecation_filter"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["deprecation_filter"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -148,7 +175,10 @@ public sealed record class BackfillCreateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -170,7 +200,8 @@ public sealed record class BackfillCreateParams : ParamsBase
         set
         {
             this.BodyProperties["replace_existing_events"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }

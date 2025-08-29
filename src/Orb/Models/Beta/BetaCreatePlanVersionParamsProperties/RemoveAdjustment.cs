@@ -22,7 +22,13 @@ public sealed record class RemoveAdjustment : ModelBase, IFromRaw<RemoveAdjustme
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("adjustment_id");
         }
-        set { this.Properties["adjustment_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["adjustment_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -37,7 +43,13 @@ public sealed record class RemoveAdjustment : ModelBase, IFromRaw<RemoveAdjustme
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["plan_phase_order"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -61,7 +73,9 @@ public sealed record class RemoveAdjustment : ModelBase, IFromRaw<RemoveAdjustme
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public RemoveAdjustment(string adjustmentID)
+        : this()
     {
         this.AdjustmentID = adjustmentID;
     }

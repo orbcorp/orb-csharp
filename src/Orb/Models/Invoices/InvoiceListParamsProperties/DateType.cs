@@ -1,43 +1,43 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Invoices.InvoiceListParamsProperties;
 
-[JsonConverter(typeof(EnumConverter<DateType, string>))]
-public sealed record class DateType(string value) : IEnum<DateType, string>
+[JsonConverter(typeof(DateTypeConverter))]
+public enum DateType
 {
-    public static readonly DateType DueDate = new("due_date");
+    DueDate,
+    InvoiceDate,
+}
 
-    public static readonly DateType InvoiceDate = new("invoice_date");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class DateTypeConverter : JsonConverter<DateType>
+{
+    public override DateType Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        DueDate,
-        InvoiceDate,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "due_date" => Value.DueDate,
-            "invoice_date" => Value.InvoiceDate,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "due_date" => DateType.DueDate,
+            "invoice_date" => DateType.InvoiceDate,
+            _ => (DateType)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(Utf8JsonWriter writer, DateType value, JsonSerializerOptions options)
     {
-        Known();
-    }
-
-    public static DateType FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                DateType.DueDate => "due_date",
+                DateType.InvoiceDate => "invoice_date",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

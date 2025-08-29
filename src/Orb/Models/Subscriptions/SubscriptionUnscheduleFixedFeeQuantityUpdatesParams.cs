@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System = System;
 
 namespace Orb.Models.Subscriptions;
 
@@ -26,20 +26,23 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
         get
         {
             if (!this.BodyProperties.TryGetValue("price_id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "price_id",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("price_id", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("price_id");
+                ?? throw new ArgumentNullException("price_id");
         }
-        set { this.BodyProperties["price_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["price_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format(
                     "/subscriptions/{0}/unschedule_fixed_fee_quantity_updates",

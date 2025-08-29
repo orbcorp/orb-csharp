@@ -1,64 +1,62 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Items.ItemUpdateParamsProperties.ExternalConnectionProperties;
 
-[JsonConverter(typeof(EnumConverter<ExternalConnectionName, string>))]
-public sealed record class ExternalConnectionName(string value)
-    : IEnum<ExternalConnectionName, string>
+[JsonConverter(typeof(ExternalConnectionNameConverter))]
+public enum ExternalConnectionName
 {
-    public static readonly ExternalConnectionName Stripe = new("stripe");
+    Stripe,
+    Quickbooks,
+    BillCom,
+    Netsuite,
+    Taxjar,
+    Avalara,
+    Anrok,
+}
 
-    public static readonly ExternalConnectionName Quickbooks = new("quickbooks");
-
-    public static readonly ExternalConnectionName BillCom = new("bill.com");
-
-    public static readonly ExternalConnectionName Netsuite = new("netsuite");
-
-    public static readonly ExternalConnectionName Taxjar = new("taxjar");
-
-    public static readonly ExternalConnectionName Avalara = new("avalara");
-
-    public static readonly ExternalConnectionName Anrok = new("anrok");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class ExternalConnectionNameConverter : JsonConverter<ExternalConnectionName>
+{
+    public override ExternalConnectionName Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Stripe,
-        Quickbooks,
-        BillCom,
-        Netsuite,
-        Taxjar,
-        Avalara,
-        Anrok,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "stripe" => Value.Stripe,
-            "quickbooks" => Value.Quickbooks,
-            "bill.com" => Value.BillCom,
-            "netsuite" => Value.Netsuite,
-            "taxjar" => Value.Taxjar,
-            "avalara" => Value.Avalara,
-            "anrok" => Value.Anrok,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "stripe" => ExternalConnectionName.Stripe,
+            "quickbooks" => ExternalConnectionName.Quickbooks,
+            "bill.com" => ExternalConnectionName.BillCom,
+            "netsuite" => ExternalConnectionName.Netsuite,
+            "taxjar" => ExternalConnectionName.Taxjar,
+            "avalara" => ExternalConnectionName.Avalara,
+            "anrok" => ExternalConnectionName.Anrok,
+            _ => (ExternalConnectionName)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        ExternalConnectionName value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static ExternalConnectionName FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ExternalConnectionName.Stripe => "stripe",
+                ExternalConnectionName.Quickbooks => "quickbooks",
+                ExternalConnectionName.BillCom => "bill.com",
+                ExternalConnectionName.Netsuite => "netsuite",
+                ExternalConnectionName.Taxjar => "taxjar",
+                ExternalConnectionName.Avalara => "avalara",
+                ExternalConnectionName.Anrok => "anrok",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

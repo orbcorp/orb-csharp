@@ -22,7 +22,13 @@ public sealed record class NewAccountingSyncConfiguration
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["accounting_providers"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["accounting_providers"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public bool? Excluded
@@ -34,7 +40,13 @@ public sealed record class NewAccountingSyncConfiguration
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["excluded"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["excluded"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

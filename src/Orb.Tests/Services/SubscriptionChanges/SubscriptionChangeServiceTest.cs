@@ -17,12 +17,7 @@ public class SubscriptionChangeServiceTest : TestBase
     public async Task Apply_Works()
     {
         var response = await this.client.SubscriptionChanges.Apply(
-            new()
-            {
-                SubscriptionChangeID = "subscription_change_id",
-                Description = "description",
-                PreviouslyCollectedAmount = "previously_collected_amount",
-            }
+            new() { SubscriptionChangeID = "subscription_change_id" }
         );
         response.Validate();
     }

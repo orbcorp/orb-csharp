@@ -1,13 +1,12 @@
-using System.Text.Json.Serialization;
+using Models = Orb.Models;
 
 namespace Orb.Models.PriceProperties.BulkWithProrationProperties.ConversionRateConfigVariants;
 
-[JsonConverter(typeof(VariantConverter<UnitConversionRateConfigVariant, UnitConversionRateConfig>))]
-public sealed record class UnitConversionRateConfigVariant(UnitConversionRateConfig Value)
+public sealed record class UnitConversionRateConfig(Models::UnitConversionRateConfig Value)
     : ConversionRateConfig,
-        IVariant<UnitConversionRateConfigVariant, UnitConversionRateConfig>
+        IVariant<UnitConversionRateConfig, Models::UnitConversionRateConfig>
 {
-    public static UnitConversionRateConfigVariant From(UnitConversionRateConfig value)
+    public static UnitConversionRateConfig From(Models::UnitConversionRateConfig value)
     {
         return new(value);
     }
@@ -18,14 +17,11 @@ public sealed record class UnitConversionRateConfigVariant(UnitConversionRateCon
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<TieredConversionRateConfigVariant, TieredConversionRateConfig>)
-)]
-public sealed record class TieredConversionRateConfigVariant(TieredConversionRateConfig Value)
+public sealed record class TieredConversionRateConfig(Models::TieredConversionRateConfig Value)
     : ConversionRateConfig,
-        IVariant<TieredConversionRateConfigVariant, TieredConversionRateConfig>
+        IVariant<TieredConversionRateConfig, Models::TieredConversionRateConfig>
 {
-    public static TieredConversionRateConfigVariant From(TieredConversionRateConfig value)
+    public static TieredConversionRateConfig From(Models::TieredConversionRateConfig value)
     {
         return new(value);
     }

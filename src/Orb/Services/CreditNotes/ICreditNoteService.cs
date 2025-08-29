@@ -33,18 +33,18 @@ public interface ICreditNoteService
     /// cover both the start date and end date completely (from start of start_date
     /// to end of end_date).
     /// </summary>
-    Task<CreditNote> Create(CreditNoteCreateParams @params);
+    Task<CreditNote> Create(CreditNoteCreateParams parameters);
 
     /// <summary>
     /// Get a paginated list of CreditNotes. Users can also filter by customer_id,
     /// subscription_id, or external_customer_id. The credit notes will be returned
     /// in reverse chronological order by `creation_time`.
     /// </summary>
-    Task<CreditNoteListPageResponse> List(CreditNoteListParams @params);
+    Task<CreditNoteListPageResponse> List(CreditNoteListParams? parameters = null);
 
     /// <summary>
     /// This endpoint is used to fetch a single [`Credit Note`](/invoicing/credit-notes)
     /// given an identifier.
     /// </summary>
-    Task<CreditNote> Fetch(CreditNoteFetchParams @params);
+    Task<CreditNote> Fetch(CreditNoteFetchParams parameters);
 }

@@ -19,7 +19,13 @@ public sealed record class MetricGroup : ModelBase, IFromRaw<MetricGroup>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("property_key");
         }
-        set { this.Properties["property_key"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["property_key"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string PropertyValue
@@ -35,7 +41,13 @@ public sealed record class MetricGroup : ModelBase, IFromRaw<MetricGroup>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("property_value");
         }
-        set { this.Properties["property_value"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["property_value"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

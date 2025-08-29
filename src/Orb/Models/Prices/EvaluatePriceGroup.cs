@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using EvaluatePriceGroupProperties = Orb.Models.Prices.EvaluatePriceGroupProperties;
-using System = System;
+using Orb.Models.Prices.EvaluatePriceGroupProperties;
 
 namespace Orb.Models.Prices;
 
@@ -18,36 +18,45 @@ public sealed record class EvaluatePriceGroup : ModelBase, IFromRaw<EvaluatePric
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("amount");
+                ?? throw new ArgumentNullException("amount");
         }
-        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The values for the group in the order specified by `grouping_keys`
     /// </summary>
-    public required List<EvaluatePriceGroupProperties::GroupingValue> GroupingValues
+    public required List<GroupingValue> GroupingValues
     {
         get
         {
             if (!this.Properties.TryGetValue("grouping_values", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "grouping_values",
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<EvaluatePriceGroupProperties::GroupingValue>>(
+            return JsonSerializer.Deserialize<List<GroupingValue>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("grouping_values");
+                ) ?? throw new ArgumentNullException("grouping_values");
         }
-        set { this.Properties["grouping_values"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["grouping_values"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -58,14 +67,17 @@ public sealed record class EvaluatePriceGroup : ModelBase, IFromRaw<EvaluatePric
         get
         {
             if (!this.Properties.TryGetValue("quantity", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "quantity",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("quantity", "Missing required argument");
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["quantity"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["quantity"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

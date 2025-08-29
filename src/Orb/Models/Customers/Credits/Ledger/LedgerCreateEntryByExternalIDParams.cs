@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using LedgerCreateEntryByExternalIDParamsProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties;
-using System = System;
+using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
@@ -94,24 +94,28 @@ public sealed record class LedgerCreateEntryByExternalIDParams : ParamsBase
 
     public required string ExternalCustomerID;
 
-    public required LedgerCreateEntryByExternalIDParamsProperties::Body Body
+    public required Body Body
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("body", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("body", "Missing required argument");
+                throw new ArgumentOutOfRangeException("body", "Missing required argument");
 
-            return JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsProperties::Body>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("body");
+            return JsonSerializer.Deserialize<Body>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("body");
         }
-        set { this.BodyProperties["body"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["body"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format(
                     "/customers/external_customer_id/{0}/credits/ledger_entry",

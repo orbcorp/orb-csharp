@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models;
 
@@ -14,51 +14,54 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
         get
         {
             if (!this.Properties.TryGetValue("coupon_id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "coupon_id",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("coupon_id", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("coupon_id");
+                ?? throw new ArgumentNullException("coupon_id");
         }
-        set { this.Properties["coupon_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["coupon_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required System::DateTime? EndDate
+    public required DateTime? EndDate
     {
         get
         {
             if (!this.Properties.TryGetValue("end_date", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "end_date",
-                    "Missing required argument"
-                );
+                return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["end_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["end_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public required System::DateTime StartDate
+    public required DateTime StartDate
     {
         get
         {
             if (!this.Properties.TryGetValue("start_date", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "start_date",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("start_date", "Missing required argument");
 
-            return JsonSerializer.Deserialize<System::DateTime>(
-                element,
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["start_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["start_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public override void Validate()

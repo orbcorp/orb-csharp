@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.NewPlanBulkBPSPriceProperties;
@@ -6,57 +7,52 @@ namespace Orb.Models.NewPlanBulkBPSPriceProperties;
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(EnumConverter<Cadence, string>))]
-public sealed record class Cadence(string value) : IEnum<Cadence, string>
+[JsonConverter(typeof(CadenceConverter))]
+public enum Cadence
 {
-    public static readonly Cadence Annual = new("annual");
+    Annual,
+    SemiAnnual,
+    Monthly,
+    Quarterly,
+    OneTime,
+    Custom,
+}
 
-    public static readonly Cadence SemiAnnual = new("semi_annual");
-
-    public static readonly Cadence Monthly = new("monthly");
-
-    public static readonly Cadence Quarterly = new("quarterly");
-
-    public static readonly Cadence OneTime = new("one_time");
-
-    public static readonly Cadence Custom = new("custom");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class CadenceConverter : JsonConverter<Cadence>
+{
+    public override Cadence Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Annual,
-        SemiAnnual,
-        Monthly,
-        Quarterly,
-        OneTime,
-        Custom,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => Value.Annual,
-            "semi_annual" => Value.SemiAnnual,
-            "monthly" => Value.Monthly,
-            "quarterly" => Value.Quarterly,
-            "one_time" => Value.OneTime,
-            "custom" => Value.Custom,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "annual" => Cadence.Annual,
+            "semi_annual" => Cadence.SemiAnnual,
+            "monthly" => Cadence.Monthly,
+            "quarterly" => Cadence.Quarterly,
+            "one_time" => Cadence.OneTime,
+            "custom" => Cadence.Custom,
+            _ => (Cadence)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(Utf8JsonWriter writer, Cadence value, JsonSerializerOptions options)
     {
-        Known();
-    }
-
-    public static Cadence FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Cadence.Annual => "annual",
+                Cadence.SemiAnnual => "semi_annual",
+                Cadence.Monthly => "monthly",
+                Cadence.Quarterly => "quarterly",
+                Cadence.OneTime => "one_time",
+                Cadence.Custom => "custom",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

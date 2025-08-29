@@ -1,5 +1,5 @@
+using System;
 using System.Net.Http;
-using System = System;
 
 namespace Orb.Models.Customers;
 
@@ -13,9 +13,9 @@ public sealed record class CustomerFetchByExternalIDParams : ParamsBase
 {
     public required string ExternalCustomerID;
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/customers/external_customer_id/{0}", this.ExternalCustomerID)
         )

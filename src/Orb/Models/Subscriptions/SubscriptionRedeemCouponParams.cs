@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using SubscriptionRedeemCouponParamsProperties = Orb.Models.Subscriptions.SubscriptionRedeemCouponParamsProperties;
-using System = System;
+using Orb.Models.Subscriptions.SubscriptionRedeemCouponParamsProperties;
 
 namespace Orb.Models.Subscriptions;
 
@@ -16,22 +16,25 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
 
     public required string SubscriptionID;
 
-    public required SubscriptionRedeemCouponParamsProperties::ChangeOption ChangeOption
+    public required ApiEnum<string, ChangeOption> ChangeOption
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("change_option", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "change_option",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("change_option", "Missing required argument");
 
-            return JsonSerializer.Deserialize<SubscriptionRedeemCouponParamsProperties::ChangeOption>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("change_option");
+            return JsonSerializer.Deserialize<ApiEnum<string, ChangeOption>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.BodyProperties["change_option"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["change_option"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -56,7 +59,8 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
         set
         {
             this.BodyProperties["allow_invoice_credit_or_void"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -65,19 +69,22 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     /// The date that the coupon discount should take effect. This parameter can only
     /// be passed if the `change_option` is `requested_date`.
     /// </summary>
-    public System::DateTime? ChangeDate
+    public DateTime? ChangeDate
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("change_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["change_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["change_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -92,7 +99,13 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["coupon_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["coupon_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -110,14 +123,15 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
         set
         {
             this.BodyProperties["coupon_redemption_code"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscriptions/{0}/redeem_coupon", this.SubscriptionID)
         )

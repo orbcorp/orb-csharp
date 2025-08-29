@@ -1,13 +1,13 @@
 using System.Threading.Tasks;
 using Orb.Models;
 using Orb.Models.Prices;
-using ExternalPriceID = Orb.Services.Prices.ExternalPriceID;
+using Orb.Services.Prices.ExternalPriceID;
 
 namespace Orb.Services.Prices;
 
 public interface IPriceService
 {
-    ExternalPriceID::IExternalPriceIDService ExternalPriceID { get; }
+    IExternalPriceIDService ExternalPriceID { get; }
 
     /// <summary>
     /// This endpoint is used to create a [price](/product-catalog/price-configuration).
@@ -21,20 +21,20 @@ public interface IPriceService
     /// See the [Price resource](/product-catalog/price-configuration) for the specification
     /// of different price model configurations possible in this endpoint.
     /// </summary>
-    Task<Price> Create(PriceCreateParams @params);
+    Task<Price> Create(PriceCreateParams parameters);
 
     /// <summary>
     /// This endpoint allows you to update the `metadata` property on a price. If
     /// you pass null for the metadata value, it will clear any existing metadata
     /// for that price.
     /// </summary>
-    Task<Price> Update(PriceUpdateParams @params);
+    Task<Price> Update(PriceUpdateParams parameters);
 
     /// <summary>
     /// This endpoint is used to list all add-on prices created using the [price
     /// creation endpoint](/api-reference/price/create-price).
     /// </summary>
-    Task<PriceListPageResponse> List(PriceListParams @params);
+    Task<PriceListPageResponse> List(PriceListParams? parameters = null);
 
     /// <summary>
     /// [NOTE] It is recommended to use the `/v1/prices/evaluate` which offers further
@@ -62,7 +62,7 @@ public interface IPriceService
     /// is a POST endpoint rather than a GET endpoint because it employs a JSON body
     /// rather than query parameters.
     /// </summary>
-    Task<PriceEvaluateResponse> Evaluate(PriceEvaluateParams @params);
+    Task<PriceEvaluateResponse> Evaluate(PriceEvaluateParams parameters);
 
     /// <summary>
     /// This endpoint is used to evaluate the output of price(s) for a given customer
@@ -92,7 +92,7 @@ public interface IPriceService
     /// Note that this is a POST endpoint rather than a GET endpoint because it employs
     /// a JSON body rather than query parameters.
     /// </summary>
-    Task<PriceEvaluateMultipleResponse> EvaluateMultiple(PriceEvaluateMultipleParams @params);
+    Task<PriceEvaluateMultipleResponse> EvaluateMultiple(PriceEvaluateMultipleParams parameters);
 
     /// <summary>
     /// This endpoint evaluates prices on preview events instead of actual usage,
@@ -112,11 +112,11 @@ public interface IPriceService
     /// a JSON body rather than query parameters.
     /// </summary>
     Task<PriceEvaluatePreviewEventsResponse> EvaluatePreviewEvents(
-        PriceEvaluatePreviewEventsParams @params
+        PriceEvaluatePreviewEventsParams parameters
     );
 
     /// <summary>
     /// This endpoint returns a price given an identifier.
     /// </summary>
-    Task<Price> Fetch(PriceFetchParams @params);
+    Task<Price> Fetch(PriceFetchParams parameters);
 }

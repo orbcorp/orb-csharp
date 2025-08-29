@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
-using Orb.Models.Subscriptions;
+using Orb.Models.Coupons.Subscriptions;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Services.Coupons.Subscriptions;
 
@@ -11,7 +12,5 @@ public interface ISubscriptionService
     /// from the most recently created subscription. For a full discussion of the
     /// subscription resource, see [Subscription](/core-concepts#subscription).
     /// </summary>
-    Task<Subscriptions> List(
-        global::Orb.Models.Coupons.Subscriptions.SubscriptionListParams @params
-    );
+    Task<Subscriptions::SubscriptionsModel> List(SubscriptionListParams parameters);
 }

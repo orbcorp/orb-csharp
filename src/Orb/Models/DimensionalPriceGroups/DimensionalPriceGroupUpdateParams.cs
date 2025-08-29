@@ -39,7 +39,7 @@ public sealed record class DimensionalPriceGroupUpdateParams : ParamsBase
         set
         {
             this.BodyProperties["external_dimensional_price_group_id"] =
-                JsonSerializer.SerializeToElement(value);
+                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
 
@@ -60,7 +60,13 @@ public sealed record class DimensionalPriceGroupUpdateParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override Uri Url(IOrbClient client)

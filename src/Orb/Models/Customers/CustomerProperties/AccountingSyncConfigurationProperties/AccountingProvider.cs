@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using AccountingProviderProperties = Orb.Models.Customers.CustomerProperties.AccountingSyncConfigurationProperties.AccountingProviderProperties;
+using Orb.Models.Customers.CustomerProperties.AccountingSyncConfigurationProperties.AccountingProviderProperties;
 
 namespace Orb.Models.Customers.CustomerProperties.AccountingSyncConfigurationProperties;
 
@@ -15,29 +15,38 @@ public sealed record class AccountingProvider : ModelBase, IFromRaw<AccountingPr
         get
         {
             if (!this.Properties.TryGetValue("external_provider_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "external_provider_id",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["external_provider_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["external_provider_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required AccountingProviderProperties::ProviderType ProviderType
+    public required ApiEnum<string, ProviderType> ProviderType
     {
         get
         {
             if (!this.Properties.TryGetValue("provider_type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("provider_type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<AccountingProviderProperties::ProviderType>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("provider_type");
+            return JsonSerializer.Deserialize<ApiEnum<string, ProviderType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["provider_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["provider_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

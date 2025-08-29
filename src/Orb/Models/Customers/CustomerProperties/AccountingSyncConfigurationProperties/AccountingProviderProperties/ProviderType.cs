@@ -1,43 +1,47 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.CustomerProperties.AccountingSyncConfigurationProperties.AccountingProviderProperties;
 
-[JsonConverter(typeof(EnumConverter<ProviderType, string>))]
-public sealed record class ProviderType(string value) : IEnum<ProviderType, string>
+[JsonConverter(typeof(ProviderTypeConverter))]
+public enum ProviderType
 {
-    public static readonly ProviderType Quickbooks = new("quickbooks");
+    Quickbooks,
+    Netsuite,
+}
 
-    public static readonly ProviderType Netsuite = new("netsuite");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class ProviderTypeConverter : JsonConverter<ProviderType>
+{
+    public override ProviderType Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Quickbooks,
-        Netsuite,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "quickbooks" => Value.Quickbooks,
-            "netsuite" => Value.Netsuite,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "quickbooks" => ProviderType.Quickbooks,
+            "netsuite" => ProviderType.Netsuite,
+            _ => (ProviderType)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        ProviderType value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static ProviderType FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ProviderType.Quickbooks => "quickbooks",
+                ProviderType.Netsuite => "netsuite",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

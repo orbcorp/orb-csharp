@@ -28,7 +28,13 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["auto_collection"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["auto_collection"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -45,7 +51,13 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["net_terms"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["net_terms"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -60,7 +72,13 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["memo"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["memo"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -81,7 +99,8 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
         set
         {
             this.Properties["require_successful_payment"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }

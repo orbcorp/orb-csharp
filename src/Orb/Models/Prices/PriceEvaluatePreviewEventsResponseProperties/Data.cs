@@ -22,7 +22,13 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("currency");
         }
-        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -40,7 +46,13 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("price_groups");
         }
-        set { this.Properties["price_groups"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["price_groups"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -55,7 +67,13 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -70,7 +88,13 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["inline_price_index"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["inline_price_index"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -85,7 +109,13 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["price_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["price_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

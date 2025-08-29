@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using BackfillFetchResponseProperties = Orb.Models.Events.Backfills.BackfillFetchResponseProperties;
+using Orb.Models.Events.Backfills.BackfillFetchResponseProperties;
 
 namespace Orb.Models.Events.Backfills;
 
@@ -24,7 +24,13 @@ public sealed record class BackfillFetchResponse : ModelBase, IFromRaw<BackfillF
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -36,11 +42,17 @@ public sealed record class BackfillFetchResponse : ModelBase, IFromRaw<BackfillF
         get
         {
             if (!this.Properties.TryGetValue("close_time", out JsonElement element))
-                throw new ArgumentOutOfRangeException("close_time", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["close_time"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["close_time"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required DateTime CreatedAt
@@ -52,7 +64,13 @@ public sealed record class BackfillFetchResponse : ModelBase, IFromRaw<BackfillF
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["created_at"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -64,11 +82,17 @@ public sealed record class BackfillFetchResponse : ModelBase, IFromRaw<BackfillF
         get
         {
             if (!this.Properties.TryGetValue("customer_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("customer_id", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["customer_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -86,7 +110,13 @@ public sealed record class BackfillFetchResponse : ModelBase, IFromRaw<BackfillF
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["events_ingested"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["events_ingested"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -108,7 +138,10 @@ public sealed record class BackfillFetchResponse : ModelBase, IFromRaw<BackfillF
         }
         set
         {
-            this.Properties["replace_existing_events"] = JsonSerializer.SerializeToElement(value);
+            this.Properties["replace_existing_events"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -120,29 +153,41 @@ public sealed record class BackfillFetchResponse : ModelBase, IFromRaw<BackfillF
         get
         {
             if (!this.Properties.TryGetValue("reverted_at", out JsonElement element))
-                throw new ArgumentOutOfRangeException("reverted_at", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["reverted_at"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["reverted_at"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The status of the backfill.
     /// </summary>
-    public required BackfillFetchResponseProperties::Status Status
+    public required ApiEnum<string, Status> Status
     {
         get
         {
             if (!this.Properties.TryGetValue("status", out JsonElement element))
                 throw new ArgumentOutOfRangeException("status", "Missing required argument");
 
-            return JsonSerializer.Deserialize<BackfillFetchResponseProperties::Status>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("status");
+            return JsonSerializer.Deserialize<ApiEnum<string, Status>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["status"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["status"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required DateTime TimeframeEnd
@@ -154,7 +199,13 @@ public sealed record class BackfillFetchResponse : ModelBase, IFromRaw<BackfillF
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["timeframe_end"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required DateTime TimeframeStart
@@ -169,7 +220,13 @@ public sealed record class BackfillFetchResponse : ModelBase, IFromRaw<BackfillF
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["timeframe_start"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -185,7 +242,13 @@ public sealed record class BackfillFetchResponse : ModelBase, IFromRaw<BackfillF
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["deprecation_filter"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["deprecation_filter"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

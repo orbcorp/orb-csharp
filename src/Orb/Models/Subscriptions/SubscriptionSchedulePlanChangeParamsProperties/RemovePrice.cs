@@ -20,7 +20,13 @@ public sealed record class RemovePrice : ModelBase, IFromRaw<RemovePrice>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -35,7 +41,13 @@ public sealed record class RemovePrice : ModelBase, IFromRaw<RemovePrice>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["price_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["price_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

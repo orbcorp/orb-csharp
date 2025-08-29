@@ -1,47 +1,50 @@
+using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties;
 
-[JsonConverter(typeof(EnumConverter<InvoiceSource, string>))]
-public sealed record class InvoiceSource(string value) : IEnum<InvoiceSource, string>
+[JsonConverter(typeof(InvoiceSourceConverter))]
+public enum InvoiceSource
 {
-    public static readonly InvoiceSource Subscription = new("subscription");
+    Subscription,
+    Partial,
+    OneOff,
+}
 
-    public static readonly InvoiceSource Partial = new("partial");
-
-    public static readonly InvoiceSource OneOff = new("one_off");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class InvoiceSourceConverter : JsonConverter<InvoiceSource>
+{
+    public override InvoiceSource Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Subscription,
-        Partial,
-        OneOff,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "subscription" => Value.Subscription,
-            "partial" => Value.Partial,
-            "one_off" => Value.OneOff,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            "subscription" => InvoiceSource.Subscription,
+            "partial" => InvoiceSource.Partial,
+            "one_off" => InvoiceSource.OneOff,
+            _ => (InvoiceSource)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        InvoiceSource value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static InvoiceSource FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                InvoiceSource.Subscription => "subscription",
+                InvoiceSource.Partial => "partial",
+                InvoiceSource.OneOff => "one_off",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

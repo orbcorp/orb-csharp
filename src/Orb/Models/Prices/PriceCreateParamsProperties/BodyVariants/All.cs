@@ -1,13 +1,12 @@
-using System.Text.Json.Serialization;
+using Models = Orb.Models;
 
 namespace Orb.Models.Prices.PriceCreateParamsProperties.BodyVariants;
 
-[JsonConverter(typeof(VariantConverter<NewFloatingUnitPriceVariant, NewFloatingUnitPrice>))]
-public sealed record class NewFloatingUnitPriceVariant(NewFloatingUnitPrice Value)
+public sealed record class NewFloatingUnitPrice(Models::NewFloatingUnitPrice Value)
     : Body,
-        IVariant<NewFloatingUnitPriceVariant, NewFloatingUnitPrice>
+        IVariant<NewFloatingUnitPrice, Models::NewFloatingUnitPrice>
 {
-    public static NewFloatingUnitPriceVariant From(NewFloatingUnitPrice value)
+    public static NewFloatingUnitPrice From(Models::NewFloatingUnitPrice value)
     {
         return new(value);
     }
@@ -18,12 +17,11 @@ public sealed record class NewFloatingUnitPriceVariant(NewFloatingUnitPrice Valu
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewFloatingPackagePriceVariant, NewFloatingPackagePrice>))]
-public sealed record class NewFloatingPackagePriceVariant(NewFloatingPackagePrice Value)
+public sealed record class NewFloatingPackagePrice(Models::NewFloatingPackagePrice Value)
     : Body,
-        IVariant<NewFloatingPackagePriceVariant, NewFloatingPackagePrice>
+        IVariant<NewFloatingPackagePrice, Models::NewFloatingPackagePrice>
 {
-    public static NewFloatingPackagePriceVariant From(NewFloatingPackagePrice value)
+    public static NewFloatingPackagePrice From(Models::NewFloatingPackagePrice value)
     {
         return new(value);
     }
@@ -34,12 +32,11 @@ public sealed record class NewFloatingPackagePriceVariant(NewFloatingPackagePric
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewFloatingMatrixPriceVariant, NewFloatingMatrixPrice>))]
-public sealed record class NewFloatingMatrixPriceVariant(NewFloatingMatrixPrice Value)
+public sealed record class NewFloatingMatrixPrice(Models::NewFloatingMatrixPrice Value)
     : Body,
-        IVariant<NewFloatingMatrixPriceVariant, NewFloatingMatrixPrice>
+        IVariant<NewFloatingMatrixPrice, Models::NewFloatingMatrixPrice>
 {
-    public static NewFloatingMatrixPriceVariant From(NewFloatingMatrixPrice value)
+    public static NewFloatingMatrixPrice From(Models::NewFloatingMatrixPrice value)
     {
         return new(value);
     }
@@ -50,20 +47,14 @@ public sealed record class NewFloatingMatrixPriceVariant(NewFloatingMatrixPrice 
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewFloatingMatrixWithAllocationPriceVariant,
-        NewFloatingMatrixWithAllocationPrice
-    >)
-)]
-public sealed record class NewFloatingMatrixWithAllocationPriceVariant(
-    NewFloatingMatrixWithAllocationPrice Value
+public sealed record class NewFloatingMatrixWithAllocationPrice(
+    Models::NewFloatingMatrixWithAllocationPrice Value
 )
     : Body,
-        IVariant<NewFloatingMatrixWithAllocationPriceVariant, NewFloatingMatrixWithAllocationPrice>
+        IVariant<NewFloatingMatrixWithAllocationPrice, Models::NewFloatingMatrixWithAllocationPrice>
 {
-    public static NewFloatingMatrixWithAllocationPriceVariant From(
-        NewFloatingMatrixWithAllocationPrice value
+    public static NewFloatingMatrixWithAllocationPrice From(
+        Models::NewFloatingMatrixWithAllocationPrice value
     )
     {
         return new(value);
@@ -75,12 +66,11 @@ public sealed record class NewFloatingMatrixWithAllocationPriceVariant(
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewFloatingTieredPriceVariant, NewFloatingTieredPrice>))]
-public sealed record class NewFloatingTieredPriceVariant(NewFloatingTieredPrice Value)
+public sealed record class NewFloatingTieredPrice(Models::NewFloatingTieredPrice Value)
     : Body,
-        IVariant<NewFloatingTieredPriceVariant, NewFloatingTieredPrice>
+        IVariant<NewFloatingTieredPrice, Models::NewFloatingTieredPrice>
 {
-    public static NewFloatingTieredPriceVariant From(NewFloatingTieredPrice value)
+    public static NewFloatingTieredPrice From(Models::NewFloatingTieredPrice value)
     {
         return new(value);
     }
@@ -91,14 +81,11 @@ public sealed record class NewFloatingTieredPriceVariant(NewFloatingTieredPrice 
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<NewFloatingTieredBPSPriceVariant, NewFloatingTieredBPSPrice>)
-)]
-public sealed record class NewFloatingTieredBPSPriceVariant(NewFloatingTieredBPSPrice Value)
+public sealed record class NewFloatingTieredBPSPrice(Models::NewFloatingTieredBPSPrice Value)
     : Body,
-        IVariant<NewFloatingTieredBPSPriceVariant, NewFloatingTieredBPSPrice>
+        IVariant<NewFloatingTieredBPSPrice, Models::NewFloatingTieredBPSPrice>
 {
-    public static NewFloatingTieredBPSPriceVariant From(NewFloatingTieredBPSPrice value)
+    public static NewFloatingTieredBPSPrice From(Models::NewFloatingTieredBPSPrice value)
     {
         return new(value);
     }
@@ -109,12 +96,11 @@ public sealed record class NewFloatingTieredBPSPriceVariant(NewFloatingTieredBPS
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewFloatingBPSPriceVariant, NewFloatingBPSPrice>))]
-public sealed record class NewFloatingBPSPriceVariant(NewFloatingBPSPrice Value)
+public sealed record class NewFloatingBPSPrice(Models::NewFloatingBPSPrice Value)
     : Body,
-        IVariant<NewFloatingBPSPriceVariant, NewFloatingBPSPrice>
+        IVariant<NewFloatingBPSPrice, Models::NewFloatingBPSPrice>
 {
-    public static NewFloatingBPSPriceVariant From(NewFloatingBPSPrice value)
+    public static NewFloatingBPSPrice From(Models::NewFloatingBPSPrice value)
     {
         return new(value);
     }
@@ -125,12 +111,11 @@ public sealed record class NewFloatingBPSPriceVariant(NewFloatingBPSPrice Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewFloatingBulkBPSPriceVariant, NewFloatingBulkBPSPrice>))]
-public sealed record class NewFloatingBulkBPSPriceVariant(NewFloatingBulkBPSPrice Value)
+public sealed record class NewFloatingBulkBPSPrice(Models::NewFloatingBulkBPSPrice Value)
     : Body,
-        IVariant<NewFloatingBulkBPSPriceVariant, NewFloatingBulkBPSPrice>
+        IVariant<NewFloatingBulkBPSPrice, Models::NewFloatingBulkBPSPrice>
 {
-    public static NewFloatingBulkBPSPriceVariant From(NewFloatingBulkBPSPrice value)
+    public static NewFloatingBulkBPSPrice From(Models::NewFloatingBulkBPSPrice value)
     {
         return new(value);
     }
@@ -141,12 +126,11 @@ public sealed record class NewFloatingBulkBPSPriceVariant(NewFloatingBulkBPSPric
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewFloatingBulkPriceVariant, NewFloatingBulkPrice>))]
-public sealed record class NewFloatingBulkPriceVariant(NewFloatingBulkPrice Value)
+public sealed record class NewFloatingBulkPrice(Models::NewFloatingBulkPrice Value)
     : Body,
-        IVariant<NewFloatingBulkPriceVariant, NewFloatingBulkPrice>
+        IVariant<NewFloatingBulkPrice, Models::NewFloatingBulkPrice>
 {
-    public static NewFloatingBulkPriceVariant From(NewFloatingBulkPrice value)
+    public static NewFloatingBulkPrice From(Models::NewFloatingBulkPrice value)
     {
         return new(value);
     }
@@ -157,20 +141,14 @@ public sealed record class NewFloatingBulkPriceVariant(NewFloatingBulkPrice Valu
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewFloatingThresholdTotalAmountPriceVariant,
-        NewFloatingThresholdTotalAmountPrice
-    >)
-)]
-public sealed record class NewFloatingThresholdTotalAmountPriceVariant(
-    NewFloatingThresholdTotalAmountPrice Value
+public sealed record class NewFloatingThresholdTotalAmountPrice(
+    Models::NewFloatingThresholdTotalAmountPrice Value
 )
     : Body,
-        IVariant<NewFloatingThresholdTotalAmountPriceVariant, NewFloatingThresholdTotalAmountPrice>
+        IVariant<NewFloatingThresholdTotalAmountPrice, Models::NewFloatingThresholdTotalAmountPrice>
 {
-    public static NewFloatingThresholdTotalAmountPriceVariant From(
-        NewFloatingThresholdTotalAmountPrice value
+    public static NewFloatingThresholdTotalAmountPrice From(
+        Models::NewFloatingThresholdTotalAmountPrice value
     )
     {
         return new(value);
@@ -182,14 +160,11 @@ public sealed record class NewFloatingThresholdTotalAmountPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<NewFloatingTieredPackagePriceVariant, NewFloatingTieredPackagePrice>)
-)]
-public sealed record class NewFloatingTieredPackagePriceVariant(NewFloatingTieredPackagePrice Value)
-    : Body,
-        IVariant<NewFloatingTieredPackagePriceVariant, NewFloatingTieredPackagePrice>
+public sealed record class NewFloatingTieredPackagePrice(
+    Models::NewFloatingTieredPackagePrice Value
+) : Body, IVariant<NewFloatingTieredPackagePrice, Models::NewFloatingTieredPackagePrice>
 {
-    public static NewFloatingTieredPackagePriceVariant From(NewFloatingTieredPackagePrice value)
+    public static NewFloatingTieredPackagePrice From(Models::NewFloatingTieredPackagePrice value)
     {
         return new(value);
     }
@@ -200,14 +175,11 @@ public sealed record class NewFloatingTieredPackagePriceVariant(NewFloatingTiere
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<NewFloatingGroupedTieredPriceVariant, NewFloatingGroupedTieredPrice>)
-)]
-public sealed record class NewFloatingGroupedTieredPriceVariant(NewFloatingGroupedTieredPrice Value)
-    : Body,
-        IVariant<NewFloatingGroupedTieredPriceVariant, NewFloatingGroupedTieredPrice>
+public sealed record class NewFloatingGroupedTieredPrice(
+    Models::NewFloatingGroupedTieredPrice Value
+) : Body, IVariant<NewFloatingGroupedTieredPrice, Models::NewFloatingGroupedTieredPrice>
 {
-    public static NewFloatingGroupedTieredPriceVariant From(NewFloatingGroupedTieredPrice value)
+    public static NewFloatingGroupedTieredPrice From(Models::NewFloatingGroupedTieredPrice value)
     {
         return new(value);
     }
@@ -218,23 +190,17 @@ public sealed record class NewFloatingGroupedTieredPriceVariant(NewFloatingGroup
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewFloatingMaxGroupTieredPackagePriceVariant,
-        NewFloatingMaxGroupTieredPackagePrice
-    >)
-)]
-public sealed record class NewFloatingMaxGroupTieredPackagePriceVariant(
-    NewFloatingMaxGroupTieredPackagePrice Value
+public sealed record class NewFloatingMaxGroupTieredPackagePrice(
+    Models::NewFloatingMaxGroupTieredPackagePrice Value
 )
     : Body,
         IVariant<
-            NewFloatingMaxGroupTieredPackagePriceVariant,
-            NewFloatingMaxGroupTieredPackagePrice
+            NewFloatingMaxGroupTieredPackagePrice,
+            Models::NewFloatingMaxGroupTieredPackagePrice
         >
 {
-    public static NewFloatingMaxGroupTieredPackagePriceVariant From(
-        NewFloatingMaxGroupTieredPackagePrice value
+    public static NewFloatingMaxGroupTieredPackagePrice From(
+        Models::NewFloatingMaxGroupTieredPackagePrice value
     )
     {
         return new(value);
@@ -246,18 +212,12 @@ public sealed record class NewFloatingMaxGroupTieredPackagePriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewFloatingTieredWithMinimumPriceVariant,
-        NewFloatingTieredWithMinimumPrice
-    >)
-)]
-public sealed record class NewFloatingTieredWithMinimumPriceVariant(
-    NewFloatingTieredWithMinimumPrice Value
-) : Body, IVariant<NewFloatingTieredWithMinimumPriceVariant, NewFloatingTieredWithMinimumPrice>
+public sealed record class NewFloatingTieredWithMinimumPrice(
+    Models::NewFloatingTieredWithMinimumPrice Value
+) : Body, IVariant<NewFloatingTieredWithMinimumPrice, Models::NewFloatingTieredWithMinimumPrice>
 {
-    public static NewFloatingTieredWithMinimumPriceVariant From(
-        NewFloatingTieredWithMinimumPrice value
+    public static NewFloatingTieredWithMinimumPrice From(
+        Models::NewFloatingTieredWithMinimumPrice value
     )
     {
         return new(value);
@@ -269,23 +229,17 @@ public sealed record class NewFloatingTieredWithMinimumPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewFloatingPackageWithAllocationPriceVariant,
-        NewFloatingPackageWithAllocationPrice
-    >)
-)]
-public sealed record class NewFloatingPackageWithAllocationPriceVariant(
-    NewFloatingPackageWithAllocationPrice Value
+public sealed record class NewFloatingPackageWithAllocationPrice(
+    Models::NewFloatingPackageWithAllocationPrice Value
 )
     : Body,
         IVariant<
-            NewFloatingPackageWithAllocationPriceVariant,
-            NewFloatingPackageWithAllocationPrice
+            NewFloatingPackageWithAllocationPrice,
+            Models::NewFloatingPackageWithAllocationPrice
         >
 {
-    public static NewFloatingPackageWithAllocationPriceVariant From(
-        NewFloatingPackageWithAllocationPrice value
+    public static NewFloatingPackageWithAllocationPrice From(
+        Models::NewFloatingPackageWithAllocationPrice value
     )
     {
         return new(value);
@@ -297,23 +251,17 @@ public sealed record class NewFloatingPackageWithAllocationPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewFloatingTieredPackageWithMinimumPriceVariant,
-        NewFloatingTieredPackageWithMinimumPrice
-    >)
-)]
-public sealed record class NewFloatingTieredPackageWithMinimumPriceVariant(
-    NewFloatingTieredPackageWithMinimumPrice Value
+public sealed record class NewFloatingTieredPackageWithMinimumPrice(
+    Models::NewFloatingTieredPackageWithMinimumPrice Value
 )
     : Body,
         IVariant<
-            NewFloatingTieredPackageWithMinimumPriceVariant,
-            NewFloatingTieredPackageWithMinimumPrice
+            NewFloatingTieredPackageWithMinimumPrice,
+            Models::NewFloatingTieredPackageWithMinimumPrice
         >
 {
-    public static NewFloatingTieredPackageWithMinimumPriceVariant From(
-        NewFloatingTieredPackageWithMinimumPrice value
+    public static NewFloatingTieredPackageWithMinimumPrice From(
+        Models::NewFloatingTieredPackageWithMinimumPrice value
     )
     {
         return new(value);
@@ -325,39 +273,12 @@ public sealed record class NewFloatingTieredPackageWithMinimumPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewFloatingUnitWithPercentPriceVariant,
-        NewFloatingUnitWithPercentPrice
-    >)
-)]
-public sealed record class NewFloatingUnitWithPercentPriceVariant(
-    NewFloatingUnitWithPercentPrice Value
-) : Body, IVariant<NewFloatingUnitWithPercentPriceVariant, NewFloatingUnitWithPercentPrice>
+public sealed record class NewFloatingUnitWithPercentPrice(
+    Models::NewFloatingUnitWithPercentPrice Value
+) : Body, IVariant<NewFloatingUnitWithPercentPrice, Models::NewFloatingUnitWithPercentPrice>
 {
-    public static NewFloatingUnitWithPercentPriceVariant From(NewFloatingUnitWithPercentPrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-[JsonConverter(
-    typeof(VariantConverter<
-        NewFloatingTieredWithProrationPriceVariant,
-        NewFloatingTieredWithProrationPrice
-    >)
-)]
-public sealed record class NewFloatingTieredWithProrationPriceVariant(
-    NewFloatingTieredWithProrationPrice Value
-) : Body, IVariant<NewFloatingTieredWithProrationPriceVariant, NewFloatingTieredWithProrationPrice>
-{
-    public static NewFloatingTieredWithProrationPriceVariant From(
-        NewFloatingTieredWithProrationPrice value
+    public static NewFloatingUnitWithPercentPrice From(
+        Models::NewFloatingUnitWithPercentPrice value
     )
     {
         return new(value);
@@ -369,18 +290,12 @@ public sealed record class NewFloatingTieredWithProrationPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewFloatingUnitWithProrationPriceVariant,
-        NewFloatingUnitWithProrationPrice
-    >)
-)]
-public sealed record class NewFloatingUnitWithProrationPriceVariant(
-    NewFloatingUnitWithProrationPrice Value
-) : Body, IVariant<NewFloatingUnitWithProrationPriceVariant, NewFloatingUnitWithProrationPrice>
+public sealed record class NewFloatingTieredWithProrationPrice(
+    Models::NewFloatingTieredWithProrationPrice Value
+) : Body, IVariant<NewFloatingTieredWithProrationPrice, Models::NewFloatingTieredWithProrationPrice>
 {
-    public static NewFloatingUnitWithProrationPriceVariant From(
-        NewFloatingUnitWithProrationPrice value
+    public static NewFloatingTieredWithProrationPrice From(
+        Models::NewFloatingTieredWithProrationPrice value
     )
     {
         return new(value);
@@ -392,18 +307,12 @@ public sealed record class NewFloatingUnitWithProrationPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewFloatingGroupedAllocationPriceVariant,
-        NewFloatingGroupedAllocationPrice
-    >)
-)]
-public sealed record class NewFloatingGroupedAllocationPriceVariant(
-    NewFloatingGroupedAllocationPrice Value
-) : Body, IVariant<NewFloatingGroupedAllocationPriceVariant, NewFloatingGroupedAllocationPrice>
+public sealed record class NewFloatingUnitWithProrationPrice(
+    Models::NewFloatingUnitWithProrationPrice Value
+) : Body, IVariant<NewFloatingUnitWithProrationPrice, Models::NewFloatingUnitWithProrationPrice>
 {
-    public static NewFloatingGroupedAllocationPriceVariant From(
-        NewFloatingGroupedAllocationPrice value
+    public static NewFloatingUnitWithProrationPrice From(
+        Models::NewFloatingUnitWithProrationPrice value
     )
     {
         return new(value);
@@ -415,23 +324,34 @@ public sealed record class NewFloatingGroupedAllocationPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewFloatingGroupedWithProratedMinimumPriceVariant,
-        NewFloatingGroupedWithProratedMinimumPrice
-    >)
-)]
-public sealed record class NewFloatingGroupedWithProratedMinimumPriceVariant(
-    NewFloatingGroupedWithProratedMinimumPrice Value
+public sealed record class NewFloatingGroupedAllocationPrice(
+    Models::NewFloatingGroupedAllocationPrice Value
+) : Body, IVariant<NewFloatingGroupedAllocationPrice, Models::NewFloatingGroupedAllocationPrice>
+{
+    public static NewFloatingGroupedAllocationPrice From(
+        Models::NewFloatingGroupedAllocationPrice value
+    )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class NewFloatingGroupedWithProratedMinimumPrice(
+    Models::NewFloatingGroupedWithProratedMinimumPrice Value
 )
     : Body,
         IVariant<
-            NewFloatingGroupedWithProratedMinimumPriceVariant,
-            NewFloatingGroupedWithProratedMinimumPrice
+            NewFloatingGroupedWithProratedMinimumPrice,
+            Models::NewFloatingGroupedWithProratedMinimumPrice
         >
 {
-    public static NewFloatingGroupedWithProratedMinimumPriceVariant From(
-        NewFloatingGroupedWithProratedMinimumPrice value
+    public static NewFloatingGroupedWithProratedMinimumPrice From(
+        Models::NewFloatingGroupedWithProratedMinimumPrice value
     )
     {
         return new(value);
@@ -443,23 +363,17 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewFloatingGroupedWithMeteredMinimumPriceVariant,
-        NewFloatingGroupedWithMeteredMinimumPrice
-    >)
-)]
-public sealed record class NewFloatingGroupedWithMeteredMinimumPriceVariant(
-    NewFloatingGroupedWithMeteredMinimumPrice Value
+public sealed record class NewFloatingGroupedWithMeteredMinimumPrice(
+    Models::NewFloatingGroupedWithMeteredMinimumPrice Value
 )
     : Body,
         IVariant<
-            NewFloatingGroupedWithMeteredMinimumPriceVariant,
-            NewFloatingGroupedWithMeteredMinimumPrice
+            NewFloatingGroupedWithMeteredMinimumPrice,
+            Models::NewFloatingGroupedWithMeteredMinimumPrice
         >
 {
-    public static NewFloatingGroupedWithMeteredMinimumPriceVariant From(
-        NewFloatingGroupedWithMeteredMinimumPrice value
+    public static NewFloatingGroupedWithMeteredMinimumPrice From(
+        Models::NewFloatingGroupedWithMeteredMinimumPrice value
     )
     {
         return new(value);
@@ -471,23 +385,17 @@ public sealed record class NewFloatingGroupedWithMeteredMinimumPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewFloatingMatrixWithDisplayNamePriceVariant,
-        NewFloatingMatrixWithDisplayNamePrice
-    >)
-)]
-public sealed record class NewFloatingMatrixWithDisplayNamePriceVariant(
-    NewFloatingMatrixWithDisplayNamePrice Value
+public sealed record class NewFloatingMatrixWithDisplayNamePrice(
+    Models::NewFloatingMatrixWithDisplayNamePrice Value
 )
     : Body,
         IVariant<
-            NewFloatingMatrixWithDisplayNamePriceVariant,
-            NewFloatingMatrixWithDisplayNamePrice
+            NewFloatingMatrixWithDisplayNamePrice,
+            Models::NewFloatingMatrixWithDisplayNamePrice
         >
 {
-    public static NewFloatingMatrixWithDisplayNamePriceVariant From(
-        NewFloatingMatrixWithDisplayNamePrice value
+    public static NewFloatingMatrixWithDisplayNamePrice From(
+        Models::NewFloatingMatrixWithDisplayNamePrice value
     )
     {
         return new(value);
@@ -499,18 +407,12 @@ public sealed record class NewFloatingMatrixWithDisplayNamePriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewFloatingBulkWithProrationPriceVariant,
-        NewFloatingBulkWithProrationPrice
-    >)
-)]
-public sealed record class NewFloatingBulkWithProrationPriceVariant(
-    NewFloatingBulkWithProrationPrice Value
-) : Body, IVariant<NewFloatingBulkWithProrationPriceVariant, NewFloatingBulkWithProrationPrice>
+public sealed record class NewFloatingBulkWithProrationPrice(
+    Models::NewFloatingBulkWithProrationPrice Value
+) : Body, IVariant<NewFloatingBulkWithProrationPrice, Models::NewFloatingBulkWithProrationPrice>
 {
-    public static NewFloatingBulkWithProrationPriceVariant From(
-        NewFloatingBulkWithProrationPrice value
+    public static NewFloatingBulkWithProrationPrice From(
+        Models::NewFloatingBulkWithProrationPrice value
     )
     {
         return new(value);
@@ -522,20 +424,14 @@ public sealed record class NewFloatingBulkWithProrationPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewFloatingGroupedTieredPackagePriceVariant,
-        NewFloatingGroupedTieredPackagePrice
-    >)
-)]
-public sealed record class NewFloatingGroupedTieredPackagePriceVariant(
-    NewFloatingGroupedTieredPackagePrice Value
+public sealed record class NewFloatingGroupedTieredPackagePrice(
+    Models::NewFloatingGroupedTieredPackagePrice Value
 )
     : Body,
-        IVariant<NewFloatingGroupedTieredPackagePriceVariant, NewFloatingGroupedTieredPackagePrice>
+        IVariant<NewFloatingGroupedTieredPackagePrice, Models::NewFloatingGroupedTieredPackagePrice>
 {
-    public static NewFloatingGroupedTieredPackagePriceVariant From(
-        NewFloatingGroupedTieredPackagePrice value
+    public static NewFloatingGroupedTieredPackagePrice From(
+        Models::NewFloatingGroupedTieredPackagePrice value
     )
     {
         return new(value);
@@ -547,23 +443,17 @@ public sealed record class NewFloatingGroupedTieredPackagePriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewFloatingScalableMatrixWithUnitPricingPriceVariant,
-        NewFloatingScalableMatrixWithUnitPricingPrice
-    >)
-)]
-public sealed record class NewFloatingScalableMatrixWithUnitPricingPriceVariant(
-    NewFloatingScalableMatrixWithUnitPricingPrice Value
+public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice(
+    Models::NewFloatingScalableMatrixWithUnitPricingPrice Value
 )
     : Body,
         IVariant<
-            NewFloatingScalableMatrixWithUnitPricingPriceVariant,
-            NewFloatingScalableMatrixWithUnitPricingPrice
+            NewFloatingScalableMatrixWithUnitPricingPrice,
+            Models::NewFloatingScalableMatrixWithUnitPricingPrice
         >
 {
-    public static NewFloatingScalableMatrixWithUnitPricingPriceVariant From(
-        NewFloatingScalableMatrixWithUnitPricingPrice value
+    public static NewFloatingScalableMatrixWithUnitPricingPrice From(
+        Models::NewFloatingScalableMatrixWithUnitPricingPrice value
     )
     {
         return new(value);
@@ -575,23 +465,17 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewFloatingScalableMatrixWithTieredPricingPriceVariant,
-        NewFloatingScalableMatrixWithTieredPricingPrice
-    >)
-)]
-public sealed record class NewFloatingScalableMatrixWithTieredPricingPriceVariant(
-    NewFloatingScalableMatrixWithTieredPricingPrice Value
+public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice(
+    Models::NewFloatingScalableMatrixWithTieredPricingPrice Value
 )
     : Body,
         IVariant<
-            NewFloatingScalableMatrixWithTieredPricingPriceVariant,
-            NewFloatingScalableMatrixWithTieredPricingPrice
+            NewFloatingScalableMatrixWithTieredPricingPrice,
+            Models::NewFloatingScalableMatrixWithTieredPricingPrice
         >
 {
-    public static NewFloatingScalableMatrixWithTieredPricingPriceVariant From(
-        NewFloatingScalableMatrixWithTieredPricingPrice value
+    public static NewFloatingScalableMatrixWithTieredPricingPrice From(
+        Models::NewFloatingScalableMatrixWithTieredPricingPrice value
     )
     {
         return new(value);
@@ -603,23 +487,17 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPriceVarian
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewFloatingCumulativeGroupedBulkPriceVariant,
-        NewFloatingCumulativeGroupedBulkPrice
-    >)
-)]
-public sealed record class NewFloatingCumulativeGroupedBulkPriceVariant(
-    NewFloatingCumulativeGroupedBulkPrice Value
+public sealed record class NewFloatingCumulativeGroupedBulkPrice(
+    Models::NewFloatingCumulativeGroupedBulkPrice Value
 )
     : Body,
         IVariant<
-            NewFloatingCumulativeGroupedBulkPriceVariant,
-            NewFloatingCumulativeGroupedBulkPrice
+            NewFloatingCumulativeGroupedBulkPrice,
+            Models::NewFloatingCumulativeGroupedBulkPrice
         >
 {
-    public static NewFloatingCumulativeGroupedBulkPriceVariant From(
-        NewFloatingCumulativeGroupedBulkPrice value
+    public static NewFloatingCumulativeGroupedBulkPrice From(
+        Models::NewFloatingCumulativeGroupedBulkPrice value
     )
     {
         return new(value);

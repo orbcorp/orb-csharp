@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.TransformPriceFilterProperties;
@@ -6,41 +7,40 @@ namespace Orb.Models.TransformPriceFilterProperties;
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(EnumConverter<Operator, string>))]
-public sealed record class Operator(string value) : IEnum<Operator, string>
+[JsonConverter(typeof(OperatorConverter))]
+public enum Operator
 {
-    public static readonly Operator Includes = new("includes");
+    Includes,
+    Excludes,
+}
 
-    public static readonly Operator Excludes = new("excludes");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class OperatorConverter : JsonConverter<Operator>
+{
+    public override Operator Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Includes,
-        Excludes,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Value.Includes,
-            "excludes" => Value.Excludes,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "includes" => Operator.Includes,
+            "excludes" => Operator.Excludes,
+            _ => (Operator)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(Utf8JsonWriter writer, Operator value, JsonSerializerOptions options)
     {
-        Known();
-    }
-
-    public static Operator FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Operator.Includes => "includes",
+                Operator.Excludes => "excludes",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

@@ -17,15 +17,17 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
         _client = client;
     }
 
-    public async Task<PlanVersion> CreatePlanVersion(ExternalPlanIDCreatePlanVersionParams @params)
+    public async Task<PlanVersion> CreatePlanVersion(
+        ExternalPlanIDCreatePlanVersionParams parameters
+    )
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
+        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
         {
-            Content = @params.BodyContent(),
+            Content = parameters.BodyContent(),
         };
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -34,18 +36,19 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<PlanVersion>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<PlanVersion> FetchPlanVersion(ExternalPlanIDFetchPlanVersionParams @params)
+    public async Task<PlanVersion> FetchPlanVersion(ExternalPlanIDFetchPlanVersionParams parameters)
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Get, @params.Url(this._client));
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -54,21 +57,24 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<PlanVersion>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<Plan> SetDefaultPlanVersion(ExternalPlanIDSetDefaultPlanVersionParams @params)
+    public async Task<Plan> SetDefaultPlanVersion(
+        ExternalPlanIDSetDefaultPlanVersionParams parameters
+    )
     {
-        using HttpRequestMessage webRequest = new(HttpMethod.Post, @params.Url(this._client))
+        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
         {
-            Content = @params.BodyContent(),
+            Content = parameters.BodyContent(),
         };
-        @params.AddHeadersToRequest(webRequest, this._client);
-        using HttpResponseMessage response = await _client
-            .HttpClient.SendAsync(webRequest)
+        parameters.AddHeadersToRequest(request, this._client);
+        using HttpResponseMessage response = await this
+            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
             .ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
@@ -77,6 +83,7 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
                 await response.Content.ReadAsStringAsync().ConfigureAwait(false)
             );
         }
+
         return JsonSerializer.Deserialize<Plan>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
                 ModelBase.SerializerOptions

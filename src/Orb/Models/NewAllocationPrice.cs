@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using NewAllocationPriceProperties = Orb.Models.NewAllocationPriceProperties;
-using System = System;
+using Orb.Models.NewAllocationPriceProperties;
 
 namespace Orb.Models;
 
@@ -18,36 +18,42 @@ public sealed record class NewAllocationPrice : ModelBase, IFromRaw<NewAllocatio
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("amount");
+                ?? throw new ArgumentNullException("amount");
         }
-        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The cadence at which to allocate the amount to the customer.
     /// </summary>
-    public required NewAllocationPriceProperties::Cadence Cadence
+    public required ApiEnum<string, Cadence> Cadence
     {
         get
         {
             if (!this.Properties.TryGetValue("cadence", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "cadence",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("cadence", "Missing required argument");
 
-            return JsonSerializer.Deserialize<NewAllocationPriceProperties::Cadence>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("cadence");
+            return JsonSerializer.Deserialize<ApiEnum<string, Cadence>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["cadence"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["cadence"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -59,15 +65,18 @@ public sealed record class NewAllocationPrice : ModelBase, IFromRaw<NewAllocatio
         get
         {
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "currency",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("currency");
+                ?? throw new ArgumentNullException("currency");
         }
-        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -85,7 +94,13 @@ public sealed record class NewAllocationPrice : ModelBase, IFromRaw<NewAllocatio
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["custom_expiration"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["custom_expiration"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -103,7 +118,10 @@ public sealed record class NewAllocationPrice : ModelBase, IFromRaw<NewAllocatio
         }
         set
         {
-            this.Properties["expires_at_end_of_cadence"] = JsonSerializer.SerializeToElement(value);
+            this.Properties["expires_at_end_of_cadence"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 

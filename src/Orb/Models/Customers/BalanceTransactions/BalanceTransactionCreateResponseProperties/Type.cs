@@ -1,43 +1,43 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.Customers.BalanceTransactions.BalanceTransactionCreateResponseProperties;
 
-[JsonConverter(typeof(EnumConverter<Type, string>))]
-public sealed record class Type(string value) : IEnum<Type, string>
+[JsonConverter(typeof(TypeConverter))]
+public enum Type
 {
-    public static readonly Type Increment = new("increment");
+    Increment,
+    Decrement,
+}
 
-    public static readonly Type Decrement = new("decrement");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class TypeConverter : JsonConverter<Type>
+{
+    public override Type Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Increment,
-        Decrement,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "increment" => Value.Increment,
-            "decrement" => Value.Decrement,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            "increment" => BalanceTransactionCreateResponseProperties.Type.Increment,
+            "decrement" => BalanceTransactionCreateResponseProperties.Type.Decrement,
+            _ => (Type)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(Utf8JsonWriter writer, Type value, JsonSerializerOptions options)
     {
-        Known();
-    }
-
-    public static Type FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                BalanceTransactionCreateResponseProperties.Type.Increment => "increment",
+                BalanceTransactionCreateResponseProperties.Type.Decrement => "decrement",
+                _ => throw new System::ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using SubscriptionPriceIntervalsParamsProperties = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties;
-using System = System;
+using Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties;
 
 namespace Orb.Models.Subscriptions;
 
@@ -85,37 +85,46 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
     /// <summary>
     /// A list of price intervals to add to the subscription.
     /// </summary>
-    public List<SubscriptionPriceIntervalsParamsProperties::Add>? Add
+    public List<Add>? Add
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("add", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<SubscriptionPriceIntervalsParamsProperties::Add>?>(
-                element,
+            return JsonSerializer.Deserialize<List<Add>?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["add"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["add"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// A list of adjustments to add to the subscription.
     /// </summary>
-    public List<SubscriptionPriceIntervalsParamsProperties::AddAdjustment>? AddAdjustments
+    public List<AddAdjustment>? AddAdjustments
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("add_adjustments", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<SubscriptionPriceIntervalsParamsProperties::AddAdjustment>?>(
+            return JsonSerializer.Deserialize<List<AddAdjustment>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["add_adjustments"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["add_adjustments"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -140,7 +149,8 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
         set
         {
             this.BodyProperties["allow_invoice_credit_or_void"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -148,42 +158,51 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
     /// <summary>
     /// A list of price intervals to edit on the subscription.
     /// </summary>
-    public List<SubscriptionPriceIntervalsParamsProperties::Edit>? Edit
+    public List<Edit>? Edit
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("edit", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<SubscriptionPriceIntervalsParamsProperties::Edit>?>(
-                element,
+            return JsonSerializer.Deserialize<List<Edit>?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["edit"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["edit"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// A list of adjustments to edit on the subscription.
     /// </summary>
-    public List<SubscriptionPriceIntervalsParamsProperties::EditAdjustment>? EditAdjustments
+    public List<EditAdjustment>? EditAdjustments
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("edit_adjustments", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<SubscriptionPriceIntervalsParamsProperties::EditAdjustment>?>(
+            return JsonSerializer.Deserialize<List<EditAdjustment>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["edit_adjustments"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["edit_adjustments"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscriptions/{0}/price_intervals", this.SubscriptionID)
         )

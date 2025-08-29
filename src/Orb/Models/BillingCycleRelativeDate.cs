@@ -1,44 +1,47 @@
+using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(EnumConverter<BillingCycleRelativeDate, string>))]
-public sealed record class BillingCycleRelativeDate(string value)
-    : IEnum<BillingCycleRelativeDate, string>
+[JsonConverter(typeof(BillingCycleRelativeDateConverter))]
+public enum BillingCycleRelativeDate
 {
-    public static readonly BillingCycleRelativeDate StartOfTerm = new("start_of_term");
+    StartOfTerm,
+    EndOfTerm,
+}
 
-    public static readonly BillingCycleRelativeDate EndOfTerm = new("end_of_term");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class BillingCycleRelativeDateConverter : JsonConverter<BillingCycleRelativeDate>
+{
+    public override BillingCycleRelativeDate Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        StartOfTerm,
-        EndOfTerm,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "start_of_term" => Value.StartOfTerm,
-            "end_of_term" => Value.EndOfTerm,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            "start_of_term" => BillingCycleRelativeDate.StartOfTerm,
+            "end_of_term" => BillingCycleRelativeDate.EndOfTerm,
+            _ => (BillingCycleRelativeDate)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        BillingCycleRelativeDate value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static BillingCycleRelativeDate FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                BillingCycleRelativeDate.StartOfTerm => "start_of_term",
+                BillingCycleRelativeDate.EndOfTerm => "end_of_term",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

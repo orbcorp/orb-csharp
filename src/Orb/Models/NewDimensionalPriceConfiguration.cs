@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models;
 
@@ -19,15 +19,21 @@ public sealed record class NewDimensionalPriceConfiguration
         get
         {
             if (!this.Properties.TryGetValue("dimension_values", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "dimension_values",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("dimension_values");
+                ?? throw new ArgumentNullException("dimension_values");
         }
-        set { this.Properties["dimension_values"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["dimension_values"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -45,7 +51,8 @@ public sealed record class NewDimensionalPriceConfiguration
         set
         {
             this.Properties["dimensional_price_group_id"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }
@@ -70,7 +77,7 @@ public sealed record class NewDimensionalPriceConfiguration
         set
         {
             this.Properties["external_dimensional_price_group_id"] =
-                JsonSerializer.SerializeToElement(value);
+                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
 
@@ -101,7 +108,9 @@ public sealed record class NewDimensionalPriceConfiguration
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public NewDimensionalPriceConfiguration(List<string> dimensionValues)
+        : this()
     {
         this.DimensionValues = dimensionValues;
     }

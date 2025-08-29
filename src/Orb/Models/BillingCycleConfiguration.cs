@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using BillingCycleConfigurationProperties = Orb.Models.BillingCycleConfigurationProperties;
-using System = System;
+using Orb.Models.BillingCycleConfigurationProperties;
 
 namespace Orb.Models;
 
@@ -17,32 +17,38 @@ public sealed record class BillingCycleConfiguration
         get
         {
             if (!this.Properties.TryGetValue("duration", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "duration",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("duration", "Missing required argument");
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["duration"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["duration"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required BillingCycleConfigurationProperties::DurationUnit DurationUnit
+    public required ApiEnum<string, DurationUnit> DurationUnit
     {
         get
         {
             if (!this.Properties.TryGetValue("duration_unit", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "duration_unit",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("duration_unit", "Missing required argument");
 
-            return JsonSerializer.Deserialize<BillingCycleConfigurationProperties::DurationUnit>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("duration_unit");
+            return JsonSerializer.Deserialize<ApiEnum<string, DurationUnit>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["duration_unit"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["duration_unit"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

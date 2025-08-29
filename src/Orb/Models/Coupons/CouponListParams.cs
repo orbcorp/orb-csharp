@@ -27,7 +27,13 @@ public sealed record class CouponListParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -42,7 +48,13 @@ public sealed record class CouponListParams : ParamsBase
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -57,7 +69,13 @@ public sealed record class CouponListParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["redemption_code"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["redemption_code"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -72,7 +90,13 @@ public sealed record class CouponListParams : ParamsBase
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["show_archived"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["show_archived"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override Uri Url(IOrbClient client)

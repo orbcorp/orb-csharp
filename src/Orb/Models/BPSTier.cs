@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models;
 
@@ -17,11 +17,17 @@ public sealed record class BPSTier : ModelBase, IFromRaw<BPSTier>
         get
         {
             if (!this.Properties.TryGetValue("bps", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("bps", "Missing required argument");
+                throw new ArgumentOutOfRangeException("bps", "Missing required argument");
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["bps"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["bps"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -32,15 +38,21 @@ public sealed record class BPSTier : ModelBase, IFromRaw<BPSTier>
         get
         {
             if (!this.Properties.TryGetValue("minimum_amount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "minimum_amount",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("minimum_amount");
+                ?? throw new ArgumentNullException("minimum_amount");
         }
-        set { this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -55,7 +67,13 @@ public sealed record class BPSTier : ModelBase, IFromRaw<BPSTier>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -70,7 +88,13 @@ public sealed record class BPSTier : ModelBase, IFromRaw<BPSTier>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["per_unit_maximum"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["per_unit_maximum"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

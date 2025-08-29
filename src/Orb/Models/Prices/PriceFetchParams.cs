@@ -1,5 +1,5 @@
+using System;
 using System.Net.Http;
-using System = System;
 
 namespace Orb.Models.Prices;
 
@@ -10,9 +10,9 @@ public sealed record class PriceFetchParams : ParamsBase
 {
     public required string PriceID;
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/') + string.Format("/prices/{0}", this.PriceID)
         )
         {

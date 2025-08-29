@@ -1,71 +1,64 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.InvoiceProperties.CustomerBalanceTransactionProperties;
 
-[JsonConverter(typeof(EnumConverter<Action, string>))]
-public sealed record class Action(string value) : IEnum<Action, string>
+[JsonConverter(typeof(ActionConverter))]
+public enum Action
 {
-    public static readonly Action AppliedToInvoice = new("applied_to_invoice");
+    AppliedToInvoice,
+    ManualAdjustment,
+    ProratedRefund,
+    RevertProratedRefund,
+    ReturnFromVoiding,
+    CreditNoteApplied,
+    CreditNoteVoided,
+    OverpaymentRefund,
+    ExternalPayment,
+}
 
-    public static readonly Action ManualAdjustment = new("manual_adjustment");
-
-    public static readonly Action ProratedRefund = new("prorated_refund");
-
-    public static readonly Action RevertProratedRefund = new("revert_prorated_refund");
-
-    public static readonly Action ReturnFromVoiding = new("return_from_voiding");
-
-    public static readonly Action CreditNoteApplied = new("credit_note_applied");
-
-    public static readonly Action CreditNoteVoided = new("credit_note_voided");
-
-    public static readonly Action OverpaymentRefund = new("overpayment_refund");
-
-    public static readonly Action ExternalPayment = new("external_payment");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class ActionConverter : JsonConverter<Action>
+{
+    public override Action Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        AppliedToInvoice,
-        ManualAdjustment,
-        ProratedRefund,
-        RevertProratedRefund,
-        ReturnFromVoiding,
-        CreditNoteApplied,
-        CreditNoteVoided,
-        OverpaymentRefund,
-        ExternalPayment,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "applied_to_invoice" => Value.AppliedToInvoice,
-            "manual_adjustment" => Value.ManualAdjustment,
-            "prorated_refund" => Value.ProratedRefund,
-            "revert_prorated_refund" => Value.RevertProratedRefund,
-            "return_from_voiding" => Value.ReturnFromVoiding,
-            "credit_note_applied" => Value.CreditNoteApplied,
-            "credit_note_voided" => Value.CreditNoteVoided,
-            "overpayment_refund" => Value.OverpaymentRefund,
-            "external_payment" => Value.ExternalPayment,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            "applied_to_invoice" => Action.AppliedToInvoice,
+            "manual_adjustment" => Action.ManualAdjustment,
+            "prorated_refund" => Action.ProratedRefund,
+            "revert_prorated_refund" => Action.RevertProratedRefund,
+            "return_from_voiding" => Action.ReturnFromVoiding,
+            "credit_note_applied" => Action.CreditNoteApplied,
+            "credit_note_voided" => Action.CreditNoteVoided,
+            "overpayment_refund" => Action.OverpaymentRefund,
+            "external_payment" => Action.ExternalPayment,
+            _ => (Action)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(Utf8JsonWriter writer, Action value, JsonSerializerOptions options)
     {
-        Known();
-    }
-
-    public static Action FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Action.AppliedToInvoice => "applied_to_invoice",
+                Action.ManualAdjustment => "manual_adjustment",
+                Action.ProratedRefund => "prorated_refund",
+                Action.RevertProratedRefund => "revert_prorated_refund",
+                Action.ReturnFromVoiding => "return_from_voiding",
+                Action.CreditNoteApplied => "credit_note_applied",
+                Action.CreditNoteVoided => "credit_note_voided",
+                Action.OverpaymentRefund => "overpayment_refund",
+                Action.ExternalPayment => "external_payment",
+                _ => throw new System::ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

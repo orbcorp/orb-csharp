@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties;
 
@@ -14,14 +14,17 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
         get
         {
             if (!this.Properties.TryGetValue("entry_type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "entry_type",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("entry_type", "Missing required argument");
 
             return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["entry_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["entry_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -29,22 +32,25 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
     /// denoting when credits transferred (as part of a partial block expiration)
     /// should expire.
     /// </summary>
-    public required System::DateOnly TargetExpiryDate
+    public required DateOnly TargetExpiryDate
     {
         get
         {
             if (!this.Properties.TryGetValue("target_expiry_date", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "target_expiry_date",
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateOnly>(
-                element,
+            return JsonSerializer.Deserialize<DateOnly>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["target_expiry_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["target_expiry_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -60,7 +66,13 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -76,7 +88,13 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["block_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["block_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -92,7 +110,13 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -109,25 +133,34 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["description"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["description"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// An ISO 8601 format date that identifies the origination credit block to expire
     /// </summary>
-    public System::DateTime? ExpiryDate
+    public DateTime? ExpiryDate
     {
         get
         {
             if (!this.Properties.TryGetValue("expiry_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["expiry_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["expiry_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -147,7 +180,13 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -185,7 +224,9 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
         return new(properties);
     }
 
-    public ExpirationChange(System::DateOnly targetExpiryDate)
+    [SetsRequiredMembers]
+    public ExpirationChange(DateOnly targetExpiryDate)
+        : this()
     {
         this.TargetExpiryDate = targetExpiryDate;
     }

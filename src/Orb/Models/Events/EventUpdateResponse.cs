@@ -22,7 +22,13 @@ public sealed record class EventUpdateResponse : ModelBase, IFromRaw<EventUpdate
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("amended");
         }
-        set { this.Properties["amended"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amended"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -45,7 +51,9 @@ public sealed record class EventUpdateResponse : ModelBase, IFromRaw<EventUpdate
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public EventUpdateResponse(string amended)
+        : this()
     {
         this.Amended = amended;
     }

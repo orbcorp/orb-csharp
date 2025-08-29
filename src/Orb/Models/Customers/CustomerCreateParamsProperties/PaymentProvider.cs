@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.CustomerCreateParamsProperties;
@@ -7,53 +8,53 @@ namespace Orb.Models.Customers.CustomerCreateParamsProperties;
 /// This is used for creating charges or invoices in an external system via Orb. When
 /// not in test mode, the connection must first be configured in the Orb webapp.
 /// </summary>
-[JsonConverter(typeof(EnumConverter<PaymentProvider, string>))]
-public sealed record class PaymentProvider(string value) : IEnum<PaymentProvider, string>
+[JsonConverter(typeof(PaymentProviderConverter))]
+public enum PaymentProvider
 {
-    public static readonly PaymentProvider Quickbooks = new("quickbooks");
+    Quickbooks,
+    BillCom,
+    StripeCharge,
+    StripeInvoice,
+    Netsuite,
+}
 
-    public static readonly PaymentProvider BillCom = new("bill.com");
-
-    public static readonly PaymentProvider StripeCharge = new("stripe_charge");
-
-    public static readonly PaymentProvider StripeInvoice = new("stripe_invoice");
-
-    public static readonly PaymentProvider Netsuite = new("netsuite");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class PaymentProviderConverter : JsonConverter<PaymentProvider>
+{
+    public override PaymentProvider Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Quickbooks,
-        BillCom,
-        StripeCharge,
-        StripeInvoice,
-        Netsuite,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "quickbooks" => Value.Quickbooks,
-            "bill.com" => Value.BillCom,
-            "stripe_charge" => Value.StripeCharge,
-            "stripe_invoice" => Value.StripeInvoice,
-            "netsuite" => Value.Netsuite,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "quickbooks" => PaymentProvider.Quickbooks,
+            "bill.com" => PaymentProvider.BillCom,
+            "stripe_charge" => PaymentProvider.StripeCharge,
+            "stripe_invoice" => PaymentProvider.StripeInvoice,
+            "netsuite" => PaymentProvider.Netsuite,
+            _ => (PaymentProvider)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        PaymentProvider value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static PaymentProvider FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                PaymentProvider.Quickbooks => "quickbooks",
+                PaymentProvider.BillCom => "bill.com",
+                PaymentProvider.StripeCharge => "stripe_charge",
+                PaymentProvider.StripeInvoice => "stripe_invoice",
+                PaymentProvider.Netsuite => "netsuite",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

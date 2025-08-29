@@ -1,6 +1,6 @@
+using System;
 using System.Net.Http;
 using System.Text.Json;
-using System = System;
 
 namespace Orb.Models.Invoices;
 
@@ -15,20 +15,26 @@ public sealed record class InvoiceFetchUpcomingParams : ParamsBase
         get
         {
             if (!this.QueryProperties.TryGetValue("subscription_id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "subscription_id",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("subscription_id");
+                ?? throw new ArgumentNullException("subscription_id");
         }
-        set { this.QueryProperties["subscription_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["subscription_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/invoices/upcoming")
+        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/invoices/upcoming")
         {
             Query = this.QueryString(client),
         }.Uri;

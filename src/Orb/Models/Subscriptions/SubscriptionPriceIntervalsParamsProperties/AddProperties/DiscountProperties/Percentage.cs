@@ -18,7 +18,13 @@ public sealed record class Percentage : ModelBase, IFromRaw<Percentage>
 
             return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["discount_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["discount_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -37,7 +43,13 @@ public sealed record class Percentage : ModelBase, IFromRaw<Percentage>
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["percentage_discount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["percentage_discount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -63,7 +75,9 @@ public sealed record class Percentage : ModelBase, IFromRaw<Percentage>
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public Percentage(double percentageDiscount)
+        : this()
     {
         this.PercentageDiscount = percentageDiscount;
     }

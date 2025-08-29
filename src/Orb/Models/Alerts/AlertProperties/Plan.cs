@@ -17,11 +17,17 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -34,14 +40,17 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
         get
         {
             if (!this.Properties.TryGetValue("external_plan_id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "external_plan_id",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["external_plan_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["external_plan_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string? Name
@@ -49,11 +58,17 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
         get
         {
             if (!this.Properties.TryGetValue("name", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string PlanVersion
@@ -69,7 +84,13 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("plan_version");
         }
-        set { this.Properties["plan_version"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["plan_version"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

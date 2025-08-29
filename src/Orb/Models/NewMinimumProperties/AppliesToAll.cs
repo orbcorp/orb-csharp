@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.NewMinimumProperties;
@@ -6,37 +7,41 @@ namespace Orb.Models.NewMinimumProperties;
 /// <summary>
 /// If set, the adjustment will apply to every price on the subscription.
 /// </summary>
-[JsonConverter(typeof(EnumConverter<AppliesToAll, bool>))]
-public sealed record class AppliesToAll(bool value) : IEnum<AppliesToAll, bool>
+[JsonConverter(typeof(AppliesToAllConverter))]
+public enum AppliesToAll
 {
-    public static readonly AppliesToAll True = new(true);
+    True,
+}
 
-    readonly bool _value = value;
-
-    public enum Value
+sealed class AppliesToAllConverter : JsonConverter<AppliesToAll>
+{
+    public override AppliesToAll Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        True,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<bool>(ref reader, options) switch
         {
-            true => Value.True,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            true => AppliesToAll.True,
+            _ => (AppliesToAll)(-1),
         };
-
-    public bool Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        AppliesToAll value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static AppliesToAll FromRaw(bool value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                AppliesToAll.True => true,
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

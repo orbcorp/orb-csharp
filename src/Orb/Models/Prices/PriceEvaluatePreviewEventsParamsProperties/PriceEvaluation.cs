@@ -21,7 +21,13 @@ public sealed record class PriceEvaluation : ModelBase, IFromRaw<PriceEvaluation
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -37,7 +43,13 @@ public sealed record class PriceEvaluation : ModelBase, IFromRaw<PriceEvaluation
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["filter"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["filter"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -53,26 +65,38 @@ public sealed record class PriceEvaluation : ModelBase, IFromRaw<PriceEvaluation
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["grouping_keys"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["grouping_keys"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// An inline price definition to evaluate, allowing you to test price configurations
     /// before adding them to Orb.
     /// </summary>
-    public PriceEvaluationProperties::Price1? Price
+    public PriceEvaluationProperties::Price? Price
     {
         get
         {
             if (!this.Properties.TryGetValue("price", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<PriceEvaluationProperties::Price1?>(
+            return JsonSerializer.Deserialize<PriceEvaluationProperties::Price?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["price"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["price"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -87,7 +111,13 @@ public sealed record class PriceEvaluation : ModelBase, IFromRaw<PriceEvaluation
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["price_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["price_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

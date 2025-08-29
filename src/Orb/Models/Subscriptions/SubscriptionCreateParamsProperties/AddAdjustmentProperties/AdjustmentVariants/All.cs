@@ -1,13 +1,12 @@
-using System.Text.Json.Serialization;
+using Models = Orb.Models;
 
 namespace Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddAdjustmentProperties.AdjustmentVariants;
 
-[JsonConverter(typeof(VariantConverter<NewPercentageDiscountVariant, NewPercentageDiscount>))]
-public sealed record class NewPercentageDiscountVariant(NewPercentageDiscount Value)
+public sealed record class NewPercentageDiscount(Models::NewPercentageDiscount Value)
     : Adjustment,
-        IVariant<NewPercentageDiscountVariant, NewPercentageDiscount>
+        IVariant<NewPercentageDiscount, Models::NewPercentageDiscount>
 {
-    public static NewPercentageDiscountVariant From(NewPercentageDiscount value)
+    public static NewPercentageDiscount From(Models::NewPercentageDiscount value)
     {
         return new(value);
     }
@@ -18,12 +17,11 @@ public sealed record class NewPercentageDiscountVariant(NewPercentageDiscount Va
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewUsageDiscountVariant, NewUsageDiscount>))]
-public sealed record class NewUsageDiscountVariant(NewUsageDiscount Value)
+public sealed record class NewUsageDiscount(Models::NewUsageDiscount Value)
     : Adjustment,
-        IVariant<NewUsageDiscountVariant, NewUsageDiscount>
+        IVariant<NewUsageDiscount, Models::NewUsageDiscount>
 {
-    public static NewUsageDiscountVariant From(NewUsageDiscount value)
+    public static NewUsageDiscount From(Models::NewUsageDiscount value)
     {
         return new(value);
     }
@@ -34,12 +32,11 @@ public sealed record class NewUsageDiscountVariant(NewUsageDiscount Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewAmountDiscountVariant, NewAmountDiscount>))]
-public sealed record class NewAmountDiscountVariant(NewAmountDiscount Value)
+public sealed record class NewAmountDiscount(Models::NewAmountDiscount Value)
     : Adjustment,
-        IVariant<NewAmountDiscountVariant, NewAmountDiscount>
+        IVariant<NewAmountDiscount, Models::NewAmountDiscount>
 {
-    public static NewAmountDiscountVariant From(NewAmountDiscount value)
+    public static NewAmountDiscount From(Models::NewAmountDiscount value)
     {
         return new(value);
     }
@@ -50,12 +47,11 @@ public sealed record class NewAmountDiscountVariant(NewAmountDiscount Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewMinimumVariant, NewMinimum>))]
-public sealed record class NewMinimumVariant(NewMinimum Value)
+public sealed record class NewMinimum(Models::NewMinimum Value)
     : Adjustment,
-        IVariant<NewMinimumVariant, NewMinimum>
+        IVariant<NewMinimum, Models::NewMinimum>
 {
-    public static NewMinimumVariant From(NewMinimum value)
+    public static NewMinimum From(Models::NewMinimum value)
     {
         return new(value);
     }
@@ -66,12 +62,11 @@ public sealed record class NewMinimumVariant(NewMinimum Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewMaximumVariant, NewMaximum>))]
-public sealed record class NewMaximumVariant(NewMaximum Value)
+public sealed record class NewMaximum(Models::NewMaximum Value)
     : Adjustment,
-        IVariant<NewMaximumVariant, NewMaximum>
+        IVariant<NewMaximum, Models::NewMaximum>
 {
-    public static NewMaximumVariant From(NewMaximum value)
+    public static NewMaximum From(Models::NewMaximum value)
     {
         return new(value);
     }

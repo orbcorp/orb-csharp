@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using NewAvalaraTaxConfigurationProperties = Orb.Models.Customers.NewAvalaraTaxConfigurationProperties;
-using System = System;
+using Orb.Models.Customers.NewAvalaraTaxConfigurationProperties;
 
 namespace Orb.Models.Customers;
 
@@ -17,32 +17,38 @@ public sealed record class NewAvalaraTaxConfiguration
         get
         {
             if (!this.Properties.TryGetValue("tax_exempt", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "tax_exempt",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("tax_exempt", "Missing required argument");
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["tax_exempt"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["tax_exempt"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required NewAvalaraTaxConfigurationProperties::TaxProvider TaxProvider
+    public required ApiEnum<string, TaxProvider> TaxProvider
     {
         get
         {
             if (!this.Properties.TryGetValue("tax_provider", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "tax_provider",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("tax_provider", "Missing required argument");
 
-            return JsonSerializer.Deserialize<NewAvalaraTaxConfigurationProperties::TaxProvider>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("tax_provider");
+            return JsonSerializer.Deserialize<ApiEnum<string, TaxProvider>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["tax_provider"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["tax_provider"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? TaxExemptionCode
@@ -54,7 +60,13 @@ public sealed record class NewAvalaraTaxConfiguration
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["tax_exemption_code"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["tax_exemption_code"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

@@ -22,7 +22,13 @@ public sealed record class DimensionalPriceGroupListParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -37,7 +43,13 @@ public sealed record class DimensionalPriceGroupListParams : ParamsBase
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override Uri Url(IOrbClient client)

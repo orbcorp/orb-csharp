@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using ExternalPlanIDCreatePlanVersionParamsProperties = Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties;
+using Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties;
 
 namespace Orb.Models.Beta.ExternalPlanID;
 
@@ -31,121 +31,157 @@ public sealed record class ExternalPlanIDCreatePlanVersionParams : ParamsBase
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["version"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["version"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// Additional adjustments to be added to the plan.
     /// </summary>
-    public List<ExternalPlanIDCreatePlanVersionParamsProperties::AddAdjustment>? AddAdjustments
+    public List<AddAdjustment>? AddAdjustments
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("add_adjustments", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<ExternalPlanIDCreatePlanVersionParamsProperties::AddAdjustment>?>(
+            return JsonSerializer.Deserialize<List<AddAdjustment>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["add_adjustments"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["add_adjustments"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// Additional prices to be added to the plan.
     /// </summary>
-    public List<ExternalPlanIDCreatePlanVersionParamsProperties::AddPrice>? AddPrices
+    public List<AddPrice>? AddPrices
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("add_prices", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<ExternalPlanIDCreatePlanVersionParamsProperties::AddPrice>?>(
+            return JsonSerializer.Deserialize<List<AddPrice>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["add_prices"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["add_prices"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// Adjustments to be removed from the plan.
     /// </summary>
-    public List<ExternalPlanIDCreatePlanVersionParamsProperties::RemoveAdjustment>? RemoveAdjustments
+    public List<RemoveAdjustment>? RemoveAdjustments
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("remove_adjustments", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<ExternalPlanIDCreatePlanVersionParamsProperties::RemoveAdjustment>?>(
+            return JsonSerializer.Deserialize<List<RemoveAdjustment>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
         set
         {
-            this.BodyProperties["remove_adjustments"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["remove_adjustments"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
     /// <summary>
     /// Prices to be removed from the plan.
     /// </summary>
-    public List<ExternalPlanIDCreatePlanVersionParamsProperties::RemovePrice>? RemovePrices
+    public List<RemovePrice>? RemovePrices
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("remove_prices", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<ExternalPlanIDCreatePlanVersionParamsProperties::RemovePrice>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
-        set { this.BodyProperties["remove_prices"] = JsonSerializer.SerializeToElement(value); }
-    }
-
-    /// <summary>
-    /// Adjustments to be replaced with additional adjustments on the plan.
-    /// </summary>
-    public List<ExternalPlanIDCreatePlanVersionParamsProperties::ReplaceAdjustment>? ReplaceAdjustments
-    {
-        get
-        {
-            if (!this.BodyProperties.TryGetValue("replace_adjustments", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<ExternalPlanIDCreatePlanVersionParamsProperties::ReplaceAdjustment>?>(
+            return JsonSerializer.Deserialize<List<RemovePrice>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
         set
         {
-            this.BodyProperties["replace_adjustments"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["remove_prices"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Adjustments to be replaced with additional adjustments on the plan.
+    /// </summary>
+    public List<ReplaceAdjustment>? ReplaceAdjustments
+    {
+        get
+        {
+            if (!this.BodyProperties.TryGetValue("replace_adjustments", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<List<ReplaceAdjustment>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.BodyProperties["replace_adjustments"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
     /// <summary>
     /// Prices to be replaced with additional prices on the plan.
     /// </summary>
-    public List<ExternalPlanIDCreatePlanVersionParamsProperties::ReplacePrice>? ReplacePrices
+    public List<ReplacePrice>? ReplacePrices
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("replace_prices", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<ExternalPlanIDCreatePlanVersionParamsProperties::ReplacePrice>?>(
+            return JsonSerializer.Deserialize<List<ReplacePrice>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["replace_prices"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["replace_prices"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -160,7 +196,13 @@ public sealed record class ExternalPlanIDCreatePlanVersionParams : ParamsBase
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["set_as_default"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["set_as_default"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override Uri Url(IOrbClient client)

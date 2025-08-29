@@ -1,15 +1,12 @@
-using System.Text.Json.Serialization;
+using Customers = Orb.Models.Customers;
 
 namespace Orb.Models.Customers.CustomerUpdateParamsProperties.TaxConfigurationVariants;
 
-[JsonConverter(
-    typeof(VariantConverter<NewAvalaraTaxConfigurationVariant, NewAvalaraTaxConfiguration>)
-)]
-public sealed record class NewAvalaraTaxConfigurationVariant(NewAvalaraTaxConfiguration Value)
+public sealed record class NewAvalaraTaxConfiguration(Customers::NewAvalaraTaxConfiguration Value)
     : TaxConfiguration,
-        IVariant<NewAvalaraTaxConfigurationVariant, NewAvalaraTaxConfiguration>
+        IVariant<NewAvalaraTaxConfiguration, Customers::NewAvalaraTaxConfiguration>
 {
-    public static NewAvalaraTaxConfigurationVariant From(NewAvalaraTaxConfiguration value)
+    public static NewAvalaraTaxConfiguration From(Customers::NewAvalaraTaxConfiguration value)
     {
         return new(value);
     }
@@ -20,12 +17,11 @@ public sealed record class NewAvalaraTaxConfigurationVariant(NewAvalaraTaxConfig
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewTaxJarConfigurationVariant, NewTaxJarConfiguration>))]
-public sealed record class NewTaxJarConfigurationVariant(NewTaxJarConfiguration Value)
+public sealed record class NewTaxJarConfiguration(Customers::NewTaxJarConfiguration Value)
     : TaxConfiguration,
-        IVariant<NewTaxJarConfigurationVariant, NewTaxJarConfiguration>
+        IVariant<NewTaxJarConfiguration, Customers::NewTaxJarConfiguration>
 {
-    public static NewTaxJarConfigurationVariant From(NewTaxJarConfiguration value)
+    public static NewTaxJarConfiguration From(Customers::NewTaxJarConfiguration value)
     {
         return new(value);
     }
@@ -36,12 +32,11 @@ public sealed record class NewTaxJarConfigurationVariant(NewTaxJarConfiguration 
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewSphereConfigurationVariant, NewSphereConfiguration>))]
-public sealed record class NewSphereConfigurationVariant(NewSphereConfiguration Value)
+public sealed record class NewSphereConfiguration(Customers::NewSphereConfiguration Value)
     : TaxConfiguration,
-        IVariant<NewSphereConfigurationVariant, NewSphereConfiguration>
+        IVariant<NewSphereConfiguration, Customers::NewSphereConfiguration>
 {
-    public static NewSphereConfigurationVariant From(NewSphereConfiguration value)
+    public static NewSphereConfiguration From(Customers::NewSphereConfiguration value)
     {
         return new(value);
     }

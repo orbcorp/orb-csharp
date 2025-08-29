@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using InvoiceSettingsProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.IncrementProperties.InvoiceSettingsProperties;
-using System = System;
+using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.IncrementProperties.InvoiceSettingsProperties;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.IncrementProperties;
 
@@ -24,14 +24,20 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
         get
         {
             if (!this.Properties.TryGetValue("auto_collection", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "auto_collection",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["auto_collection"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["auto_collection"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -44,14 +50,17 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
         get
         {
             if (!this.Properties.TryGetValue("net_terms", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "net_terms",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["net_terms"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["net_terms"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -59,19 +68,22 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
     /// the customer's timezone. If not provided, the invoice date will default to
     /// the credit block's effective date.
     /// </summary>
-    public InvoiceSettingsProperties::InvoiceDate? InvoiceDate
+    public InvoiceDate? InvoiceDate
     {
         get
         {
             if (!this.Properties.TryGetValue("invoice_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<InvoiceSettingsProperties::InvoiceDate?>(
-                element,
+            return JsonSerializer.Deserialize<InvoiceDate?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["invoice_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["invoice_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -86,7 +98,13 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["memo"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["memo"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -105,7 +123,8 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
         set
         {
             this.Properties["require_successful_payment"] = JsonSerializer.SerializeToElement(
-                value
+                value,
+                ModelBase.SerializerOptions
             );
         }
     }

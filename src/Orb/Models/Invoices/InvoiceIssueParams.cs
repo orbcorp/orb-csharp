@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System = System;
 
 namespace Orb.Models.Invoices;
 
@@ -35,12 +35,18 @@ public sealed record class InvoiceIssueParams : ParamsBase
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["synchronous"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["synchronous"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/invoices/{0}/issue", this.InvoiceID)
         )

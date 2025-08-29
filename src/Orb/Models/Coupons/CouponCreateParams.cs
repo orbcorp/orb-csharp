@@ -27,7 +27,13 @@ public sealed record class CouponCreateParams : ParamsBase
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("discount");
         }
-        set { this.BodyProperties["discount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["discount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -46,7 +52,13 @@ public sealed record class CouponCreateParams : ParamsBase
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("redemption_code");
         }
-        set { this.BodyProperties["redemption_code"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["redemption_code"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -64,7 +76,10 @@ public sealed record class CouponCreateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["duration_in_months"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["duration_in_months"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -81,7 +96,13 @@ public sealed record class CouponCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["max_redemptions"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["max_redemptions"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override Uri Url(IOrbClient client)

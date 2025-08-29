@@ -23,7 +23,13 @@ public sealed record class Debug : ModelBase, IFromRaw<Debug>
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("duplicate");
         }
-        set { this.Properties["duplicate"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["duplicate"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required List<string> Ingested
@@ -36,7 +42,13 @@ public sealed record class Debug : ModelBase, IFromRaw<Debug>
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("ingested");
         }
-        set { this.Properties["ingested"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["ingested"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

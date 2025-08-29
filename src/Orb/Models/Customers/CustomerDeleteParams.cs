@@ -1,5 +1,5 @@
+using System;
 using System.Net.Http;
-using System = System;
 
 namespace Orb.Models.Customers;
 
@@ -19,9 +19,9 @@ public sealed record class CustomerDeleteParams : ParamsBase
 {
     public required string CustomerID;
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/customers/{0}", this.CustomerID)
         )

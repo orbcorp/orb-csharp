@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System = System;
 
 namespace Orb.Models.Invoices;
 
@@ -19,24 +19,24 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     /// <summary>
     /// A date string to specify the date of the payment.
     /// </summary>
-    public required System::DateOnly PaymentReceivedDate
+    public required DateOnly PaymentReceivedDate
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("payment_received_date", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "payment_received_date",
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateOnly>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateOnly>(element, ModelBase.SerializerOptions);
         }
         set
         {
-            this.BodyProperties["payment_received_date"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["payment_received_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -52,7 +52,13 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["external_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["external_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -67,12 +73,18 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["notes"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["notes"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/invoices/{0}/mark_paid", this.InvoiceID)
         )

@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using AlertCreateForCustomerParamsProperties = Orb.Models.Alerts.AlertCreateForCustomerParamsProperties;
-using System = System;
 
 namespace Orb.Models.Alerts;
 
@@ -29,33 +29,41 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("currency", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "currency",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("currency");
+                ?? throw new ArgumentNullException("currency");
         }
-        set { this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// The type of alert to create. This must be a valid alert type.
     /// </summary>
-    public required AlertCreateForCustomerParamsProperties::Type Type
+    public required ApiEnum<string, AlertCreateForCustomerParamsProperties::Type> Type
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
+                throw new ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<AlertCreateForCustomerParamsProperties::Type>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("type");
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, AlertCreateForCustomerParamsProperties::Type>
+            >(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -73,12 +81,18 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["thresholds"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["thresholds"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/alerts/customer_id/{0}", this.CustomerID)
         )

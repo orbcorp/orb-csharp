@@ -1,51 +1,49 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System = System;
 
 namespace Orb.Models.CreditNoteProperties;
 
-[JsonConverter(typeof(EnumConverter<Reason, string>))]
-public sealed record class Reason(string value) : IEnum<Reason, string>
+[JsonConverter(typeof(ReasonConverter))]
+public enum Reason
 {
-    public static readonly Reason Duplicate = new("Duplicate");
+    Duplicate,
+    Fraudulent,
+    OrderChange,
+    ProductUnsatisfactory,
+}
 
-    public static readonly Reason Fraudulent = new("Fraudulent");
-
-    public static readonly Reason OrderChange = new("Order change");
-
-    public static readonly Reason ProductUnsatisfactory = new("Product unsatisfactory");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class ReasonConverter : JsonConverter<Reason>
+{
+    public override Reason Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Duplicate,
-        Fraudulent,
-        OrderChange,
-        ProductUnsatisfactory,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "Duplicate" => Value.Duplicate,
-            "Fraudulent" => Value.Fraudulent,
-            "Order change" => Value.OrderChange,
-            "Product unsatisfactory" => Value.ProductUnsatisfactory,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(_value)),
+            "Duplicate" => Reason.Duplicate,
+            "Fraudulent" => Reason.Fraudulent,
+            "Order change" => Reason.OrderChange,
+            "Product unsatisfactory" => Reason.ProductUnsatisfactory,
+            _ => (Reason)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(Utf8JsonWriter writer, Reason value, JsonSerializerOptions options)
     {
-        Known();
-    }
-
-    public static Reason FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Reason.Duplicate => "Duplicate",
+                Reason.Fraudulent => "Fraudulent",
+                Reason.OrderChange => "Order change",
+                Reason.ProductUnsatisfactory => "Product unsatisfactory",
+                _ => throw new System::ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

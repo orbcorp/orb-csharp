@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models;
 
@@ -17,15 +17,21 @@ public sealed record class SubLineItemMatrixConfig : ModelBase, IFromRaw<SubLine
         get
         {
             if (!this.Properties.TryGetValue("dimension_values", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "dimension_values",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<List<string?>>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("dimension_values");
+                ?? throw new ArgumentNullException("dimension_values");
         }
-        set { this.Properties["dimension_values"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["dimension_values"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -53,7 +59,9 @@ public sealed record class SubLineItemMatrixConfig : ModelBase, IFromRaw<SubLine
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public SubLineItemMatrixConfig(List<string?> dimensionValues)
+        : this()
     {
         this.DimensionValues = dimensionValues;
     }

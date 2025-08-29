@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using InvoiceCreateParamsProperties = Orb.Models.Invoices.InvoiceCreateParamsProperties;
-using System = System;
+using Orb.Models.Invoices.InvoiceCreateParamsProperties;
 
 namespace Orb.Models.Invoices;
 
@@ -23,55 +23,59 @@ public sealed record class InvoiceCreateParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("currency", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "currency",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("currency");
+                ?? throw new ArgumentNullException("currency");
         }
-        set { this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// Optional invoice date to set. Must be in the past, if not set, `invoice_date`
     /// is set to the current time in the customer's timezone.
     /// </summary>
-    public required System::DateTime InvoiceDate
+    public required DateTime InvoiceDate
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("invoice_date", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "invoice_date",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("invoice_date", "Missing required argument");
 
-            return JsonSerializer.Deserialize<System::DateTime>(
-                element,
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["invoice_date"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["invoice_date"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public required List<InvoiceCreateParamsProperties::LineItem> LineItems
+    public required List<LineItem> LineItems
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("line_items", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "line_items",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("line_items", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<InvoiceCreateParamsProperties::LineItem>>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("line_items");
+            return JsonSerializer.Deserialize<List<LineItem>>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("line_items");
         }
-        set { this.BodyProperties["line_items"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["line_items"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -87,22 +91,34 @@ public sealed record class InvoiceCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
     /// An optional discount to attach to the invoice.
     /// </summary>
-    public Discount2? Discount
+    public Discount? Discount
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("discount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Discount2?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<Discount?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["discount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["discount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -120,7 +136,10 @@ public sealed record class InvoiceCreateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -136,7 +155,13 @@ public sealed record class InvoiceCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["memo"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["memo"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -156,7 +181,13 @@ public sealed record class InvoiceCreateParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -174,7 +205,13 @@ public sealed record class InvoiceCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["net_terms"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["net_terms"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -191,12 +228,18 @@ public sealed record class InvoiceCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["will_auto_issue"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["will_auto_issue"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/invoices")
+        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/invoices")
         {
             Query = this.QueryString(client),
         }.Uri;

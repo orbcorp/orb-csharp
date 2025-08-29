@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models;
 
@@ -17,15 +17,21 @@ public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
         get
         {
             if (!this.Properties.TryGetValue("package_amount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "package_amount",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("package_amount");
+                ?? throw new ArgumentNullException("package_amount");
         }
-        set { this.Properties["package_amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["package_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -37,14 +43,17 @@ public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
         get
         {
             if (!this.Properties.TryGetValue("package_size", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "package_size",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("package_size", "Missing required argument");
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["package_size"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["package_size"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

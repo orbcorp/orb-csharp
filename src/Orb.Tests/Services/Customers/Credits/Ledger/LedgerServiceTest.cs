@@ -1,9 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties;
-using Orb.Models.Customers.Credits.Ledger.LedgerListParamsProperties;
 using BodyProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties;
-using LedgerListByExternalIDParamsProperties = Orb.Models.Customers.Credits.Ledger.LedgerListByExternalIDParamsProperties;
 
 namespace Orb.Tests.Services.Customers.Credits.Ledger;
 
@@ -13,20 +11,7 @@ public class LedgerServiceTest : TestBase
     public async Task List_Works()
     {
         var page = await this.client.Customers.Credits.Ledger.List(
-            new()
-            {
-                CustomerID = "customer_id",
-                CreatedAtGt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtGte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtLt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtLte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                Currency = "currency",
-                Cursor = "cursor",
-                EntryStatus = EntryStatus.Committed,
-                EntryType = EntryType.Increment,
-                Limit = 1,
-                MinimumAmount = "minimum_amount",
-            }
+            new() { CustomerID = "customer_id" }
         );
         page.Validate();
     }
@@ -95,20 +80,7 @@ public class LedgerServiceTest : TestBase
     public async Task ListByExternalID_Works()
     {
         var page = await this.client.Customers.Credits.Ledger.ListByExternalID(
-            new()
-            {
-                ExternalCustomerID = "external_customer_id",
-                CreatedAtGt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtGte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtLt = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                CreatedAtLte = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                Currency = "currency",
-                Cursor = "cursor",
-                EntryStatus = LedgerListByExternalIDParamsProperties::EntryStatus.Committed,
-                EntryType = LedgerListByExternalIDParamsProperties::EntryType.Increment,
-                Limit = 1,
-                MinimumAmount = "minimum_amount",
-            }
+            new() { ExternalCustomerID = "external_customer_id" }
         );
         page.Validate();
     }

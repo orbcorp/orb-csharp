@@ -1,43 +1,47 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerListParamsProperties;
 
-[JsonConverter(typeof(EnumConverter<EntryStatus, string>))]
-public sealed record class EntryStatus(string value) : IEnum<EntryStatus, string>
+[JsonConverter(typeof(EntryStatusConverter))]
+public enum EntryStatus
 {
-    public static readonly EntryStatus Committed = new("committed");
+    Committed,
+    Pending,
+}
 
-    public static readonly EntryStatus Pending = new("pending");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class EntryStatusConverter : JsonConverter<EntryStatus>
+{
+    public override EntryStatus Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Committed,
-        Pending,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "committed" => Value.Committed,
-            "pending" => Value.Pending,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "committed" => EntryStatus.Committed,
+            "pending" => EntryStatus.Pending,
+            _ => (EntryStatus)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        EntryStatus value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static EntryStatus FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                EntryStatus.Committed => "committed",
+                EntryStatus.Pending => "pending",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

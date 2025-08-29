@@ -1,39 +1,44 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.TrialDiscountProperties;
 
-[JsonConverter(typeof(EnumConverter<DiscountType, string>))]
-public sealed record class DiscountType(string value) : IEnum<DiscountType, string>
+[JsonConverter(typeof(DiscountTypeConverter))]
+public enum DiscountType
 {
-    public static readonly DiscountType Trial = new("trial");
+    Trial,
+}
 
-    readonly string _value = value;
-
-    public enum Value
+sealed class DiscountTypeConverter : JsonConverter<DiscountType>
+{
+    public override DiscountType Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Trial,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "trial" => Value.Trial,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "trial" => DiscountType.Trial,
+            _ => (DiscountType)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        DiscountType value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static DiscountType FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                DiscountType.Trial => "trial",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

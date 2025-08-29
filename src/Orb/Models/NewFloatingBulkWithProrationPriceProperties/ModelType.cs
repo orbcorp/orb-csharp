@@ -1,39 +1,44 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.NewFloatingBulkWithProrationPriceProperties;
 
-[JsonConverter(typeof(EnumConverter<ModelType, string>))]
-public sealed record class ModelType(string value) : IEnum<ModelType, string>
+[JsonConverter(typeof(ModelTypeConverter))]
+public enum ModelType
 {
-    public static readonly ModelType BulkWithProration = new("bulk_with_proration");
+    BulkWithProration,
+}
 
-    readonly string _value = value;
-
-    public enum Value
+sealed class ModelTypeConverter : JsonConverter<ModelType>
+{
+    public override ModelType Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        BulkWithProration,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "bulk_with_proration" => Value.BulkWithProration,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "bulk_with_proration" => ModelType.BulkWithProration,
+            _ => (ModelType)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        ModelType value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static ModelType FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ModelType.BulkWithProration => "bulk_with_proration",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

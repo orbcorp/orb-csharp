@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using ItemUpdateParamsProperties = Orb.Models.Items.ItemUpdateParamsProperties;
+using Orb.Models.Items.ItemUpdateParamsProperties;
 
 namespace Orb.Models.Items;
 
@@ -16,21 +16,24 @@ public sealed record class ItemUpdateParams : ParamsBase
 
     public required string ItemID;
 
-    public List<ItemUpdateParamsProperties::ExternalConnection>? ExternalConnections
+    public List<ExternalConnection>? ExternalConnections
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("external_connections", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<ItemUpdateParamsProperties::ExternalConnection>?>(
+            return JsonSerializer.Deserialize<List<ExternalConnection>?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
         set
         {
-            this.BodyProperties["external_connections"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["external_connections"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -51,7 +54,13 @@ public sealed record class ItemUpdateParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? Name
@@ -63,7 +72,13 @@ public sealed record class ItemUpdateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override Uri Url(IOrbClient client)

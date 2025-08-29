@@ -1,39 +1,44 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.MonetaryPercentageDiscountAdjustmentProperties;
 
-[JsonConverter(typeof(EnumConverter<AdjustmentType, string>))]
-public sealed record class AdjustmentType(string value) : IEnum<AdjustmentType, string>
+[JsonConverter(typeof(AdjustmentTypeConverter))]
+public enum AdjustmentType
 {
-    public static readonly AdjustmentType PercentageDiscount = new("percentage_discount");
+    PercentageDiscount,
+}
 
-    readonly string _value = value;
-
-    public enum Value
+sealed class AdjustmentTypeConverter : JsonConverter<AdjustmentType>
+{
+    public override AdjustmentType Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        PercentageDiscount,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "percentage_discount" => Value.PercentageDiscount,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "percentage_discount" => AdjustmentType.PercentageDiscount,
+            _ => (AdjustmentType)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        AdjustmentType value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static AdjustmentType FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                AdjustmentType.PercentageDiscount => "percentage_discount",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

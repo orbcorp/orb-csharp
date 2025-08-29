@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 using TierSubLineItemProperties = Orb.Models.TierSubLineItemProperties;
 
 namespace Orb.Models;
@@ -18,15 +18,18 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("amount");
+                ?? throw new ArgumentNullException("amount");
         }
-        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required SubLineItemGrouping? Grouping
@@ -34,17 +37,20 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
         get
         {
             if (!this.Properties.TryGetValue("grouping", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "grouping",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<SubLineItemGrouping?>(
                 element,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["grouping"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["grouping"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string Name
@@ -52,12 +58,18 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
         get
         {
             if (!this.Properties.TryGetValue("name", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
+                throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("name");
+                ?? throw new ArgumentNullException("name");
         }
-        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required double Quantity
@@ -65,14 +77,17 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
         get
         {
             if (!this.Properties.TryGetValue("quantity", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "quantity",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("quantity", "Missing required argument");
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["quantity"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["quantity"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required TierConfig TierConfig
@@ -80,30 +95,39 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
         get
         {
             if (!this.Properties.TryGetValue("tier_config", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "tier_config",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("tier_config", "Missing required argument");
 
             return JsonSerializer.Deserialize<TierConfig>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("tier_config");
+                ?? throw new ArgumentNullException("tier_config");
         }
-        set { this.Properties["tier_config"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["tier_config"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required TierSubLineItemProperties::Type Type
+    public required ApiEnum<string, TierSubLineItemProperties::Type> Type
     {
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
+                throw new ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<TierSubLineItemProperties::Type>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("type");
+            return JsonSerializer.Deserialize<ApiEnum<string, TierSubLineItemProperties::Type>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

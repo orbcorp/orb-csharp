@@ -40,7 +40,7 @@ public interface IBackfillService
     /// The expressiveness of computed properties allows you to deprecate existing
     /// events based on both a period of time and specific property values.
     /// </summary>
-    Task<BackfillCreateResponse> Create(BackfillCreateParams @params);
+    Task<BackfillCreateResponse> Create(BackfillCreateParams parameters);
 
     /// <summary>
     /// This endpoint returns a list of all backfills in a list format.
@@ -50,7 +50,7 @@ public interface IBackfillService
     /// which lets the caller retrieve the next page of results if they exist. More
     /// information about pagination can be found in the [Pagination-metadata schema](pagination).
     /// </summary>
-    Task<BackfillListPageResponse> List(BackfillListParams @params);
+    Task<BackfillListPageResponse> List(BackfillListParams? parameters = null);
 
     /// <summary>
     /// Closing a backfill makes the updated usage visible in Orb. Upon closing a
@@ -58,12 +58,12 @@ public interface IBackfillService
     /// and usage graphs. Once all of the updates are complete, the backfill's status
     /// will transition to `reflected`.
     /// </summary>
-    Task<BackfillCloseResponse> Close(BackfillCloseParams @params);
+    Task<BackfillCloseResponse> Close(BackfillCloseParams parameters);
 
     /// <summary>
     /// This endpoint is used to fetch a backfill given an identifier.
     /// </summary>
-    Task<BackfillFetchResponse> Fetch(BackfillFetchParams @params);
+    Task<BackfillFetchResponse> Fetch(BackfillFetchParams parameters);
 
     /// <summary>
     /// Reverting a backfill undoes all the effects of closing the backfill. If the
@@ -74,5 +74,5 @@ public interface IBackfillService
     /// If a backfill is reverted before its closed, no usage will be updated as a
     /// result of the backfill and it will immediately transition to `reverted`.
     /// </summary>
-    Task<BackfillRevertResponse> Revert(BackfillRevertParams @params);
+    Task<BackfillRevertResponse> Revert(BackfillRevertParams parameters);
 }

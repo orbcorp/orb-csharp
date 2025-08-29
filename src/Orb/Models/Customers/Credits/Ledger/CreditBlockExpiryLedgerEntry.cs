@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using CreditBlockExpiryLedgerEntryProperties = Orb.Models.Customers.Credits.Ledger.CreditBlockExpiryLedgerEntryProperties;
-using System = System;
+using Orb.Models.Customers.Credits.Ledger.CreditBlockExpiryLedgerEntryProperties;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
@@ -17,12 +17,18 @@ public sealed record class CreditBlockExpiryLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new ArgumentOutOfRangeException("id", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("id");
+                ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required double Amount
@@ -30,32 +36,35 @@ public sealed record class CreditBlockExpiryLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required System::DateTime CreatedAt
+    public required DateTime CreatedAt
     {
         get
         {
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "created_at",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("created_at", "Missing required argument");
 
-            return JsonSerializer.Deserialize<System::DateTime>(
-                element,
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["created_at"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
     }
 
     public required AffectedBlock CreditBlock
@@ -63,15 +72,18 @@ public sealed record class CreditBlockExpiryLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("credit_block", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "credit_block",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("credit_block", "Missing required argument");
 
             return JsonSerializer.Deserialize<AffectedBlock>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("credit_block");
+                ?? throw new ArgumentNullException("credit_block");
         }
-        set { this.Properties["credit_block"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["credit_block"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string Currency
@@ -79,15 +91,18 @@ public sealed record class CreditBlockExpiryLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "currency",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("currency");
+                ?? throw new ArgumentNullException("currency");
         }
-        set { this.Properties["currency"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required CustomerMinified Customer
@@ -95,17 +110,20 @@ public sealed record class CreditBlockExpiryLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("customer", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "customer",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("customer", "Missing required argument");
 
             return JsonSerializer.Deserialize<CustomerMinified>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("customer");
+                ) ?? throw new ArgumentNullException("customer");
         }
-        set { this.Properties["customer"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["customer"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string? Description
@@ -113,14 +131,17 @@ public sealed record class CreditBlockExpiryLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("description", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "description",
-                    "Missing required argument"
-                );
+                return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["description"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["description"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required double EndingBalance
@@ -128,50 +149,62 @@ public sealed record class CreditBlockExpiryLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("ending_balance", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "ending_balance",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["ending_balance"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["ending_balance"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required CreditBlockExpiryLedgerEntryProperties::EntryStatus EntryStatus
+    public required ApiEnum<string, EntryStatus> EntryStatus
     {
         get
         {
             if (!this.Properties.TryGetValue("entry_status", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "entry_status",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("entry_status", "Missing required argument");
 
-            return JsonSerializer.Deserialize<CreditBlockExpiryLedgerEntryProperties::EntryStatus>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("entry_status");
+            return JsonSerializer.Deserialize<ApiEnum<string, EntryStatus>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["entry_status"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["entry_status"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required CreditBlockExpiryLedgerEntryProperties::EntryType EntryType
+    public required ApiEnum<string, EntryType> EntryType
     {
         get
         {
             if (!this.Properties.TryGetValue("entry_type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "entry_type",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("entry_type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<CreditBlockExpiryLedgerEntryProperties::EntryType>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("entry_type");
+            return JsonSerializer.Deserialize<ApiEnum<string, EntryType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["entry_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["entry_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required long LedgerSequenceNumber
@@ -179,7 +212,7 @@ public sealed record class CreditBlockExpiryLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("ledger_sequence_number", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "ledger_sequence_number",
                     "Missing required argument"
                 );
@@ -188,7 +221,10 @@ public sealed record class CreditBlockExpiryLedgerEntry
         }
         set
         {
-            this.Properties["ledger_sequence_number"] = JsonSerializer.SerializeToElement(value);
+            this.Properties["ledger_sequence_number"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -203,17 +239,20 @@ public sealed record class CreditBlockExpiryLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("metadata", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "metadata",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("metadata", "Missing required argument");
 
             return JsonSerializer.Deserialize<Dictionary<string, string>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("metadata");
+                ) ?? throw new ArgumentNullException("metadata");
         }
-        set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required double StartingBalance
@@ -221,14 +260,20 @@ public sealed record class CreditBlockExpiryLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("starting_balance", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "starting_balance",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["starting_balance"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["starting_balance"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

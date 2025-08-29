@@ -1,47 +1,50 @@
 using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.SubscriptionCreateParamsProperties;
 
-[JsonConverter(typeof(EnumConverter<ExternalMarketplace, string>))]
-public sealed record class ExternalMarketplace(string value) : IEnum<ExternalMarketplace, string>
+[JsonConverter(typeof(ExternalMarketplaceConverter))]
+public enum ExternalMarketplace
 {
-    public static readonly ExternalMarketplace Google = new("google");
+    Google,
+    Aws,
+    Azure,
+}
 
-    public static readonly ExternalMarketplace Aws = new("aws");
-
-    public static readonly ExternalMarketplace Azure = new("azure");
-
-    readonly string _value = value;
-
-    public enum Value
+sealed class ExternalMarketplaceConverter : JsonConverter<ExternalMarketplace>
+{
+    public override ExternalMarketplace Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
-        Google,
-        Aws,
-        Azure,
-    }
-
-    public Value Known() =>
-        _value switch
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "google" => Value.Google,
-            "aws" => Value.Aws,
-            "azure" => Value.Azure,
-            _ => throw new ArgumentOutOfRangeException(nameof(_value)),
+            "google" => ExternalMarketplace.Google,
+            "aws" => ExternalMarketplace.Aws,
+            "azure" => ExternalMarketplace.Azure,
+            _ => (ExternalMarketplace)(-1),
         };
-
-    public string Raw()
-    {
-        return _value;
     }
 
-    public void Validate()
+    public override void Write(
+        Utf8JsonWriter writer,
+        ExternalMarketplace value,
+        JsonSerializerOptions options
+    )
     {
-        Known();
-    }
-
-    public static ExternalMarketplace FromRaw(string value)
-    {
-        return new(value);
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ExternalMarketplace.Google => "google",
+                ExternalMarketplace.Aws => "aws",
+                ExternalMarketplace.Azure => "azure",
+                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            },
+            options
+        );
     }
 }

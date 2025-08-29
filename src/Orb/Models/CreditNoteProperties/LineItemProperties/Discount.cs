@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using DiscountProperties = Orb.Models.CreditNoteProperties.LineItemProperties.DiscountProperties;
+using Orb.Models.CreditNoteProperties.LineItemProperties.DiscountProperties;
 
 namespace Orb.Models.CreditNoteProperties.LineItemProperties;
 
@@ -20,7 +20,13 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string AmountApplied
@@ -36,7 +42,13 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("amount_applied");
         }
-        set { this.Properties["amount_applied"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amount_applied"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required List<string> AppliesToPriceIDs
@@ -52,22 +64,34 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("applies_to_price_ids");
         }
-        set { this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required DiscountProperties::DiscountType DiscountType
+    public required ApiEnum<string, DiscountType> DiscountType
     {
         get
         {
             if (!this.Properties.TryGetValue("discount_type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("discount_type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<DiscountProperties::DiscountType>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("discount_type");
+            return JsonSerializer.Deserialize<ApiEnum<string, DiscountType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
-        set { this.Properties["discount_type"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["discount_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required double PercentageDiscount
@@ -82,7 +106,13 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["percentage_discount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["percentage_discount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? AmountDiscount
@@ -94,7 +124,13 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["amount_discount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["amount_discount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? Reason
@@ -106,7 +142,13 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["reason"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["reason"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

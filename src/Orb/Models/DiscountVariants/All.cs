@@ -1,13 +1,12 @@
-using System.Text.Json.Serialization;
+using Models = Orb.Models;
 
 namespace Orb.Models.DiscountVariants;
 
-[JsonConverter(typeof(VariantConverter<PercentageDiscountVariant, PercentageDiscount>))]
-public sealed record class PercentageDiscountVariant(PercentageDiscount Value)
-    : Discount2,
-        IVariant<PercentageDiscountVariant, PercentageDiscount>
+public sealed record class PercentageDiscount(Models::PercentageDiscount Value)
+    : Models::Discount,
+        IVariant<PercentageDiscount, Models::PercentageDiscount>
 {
-    public static PercentageDiscountVariant From(PercentageDiscount value)
+    public static PercentageDiscount From(Models::PercentageDiscount value)
     {
         return new(value);
     }
@@ -18,12 +17,11 @@ public sealed record class PercentageDiscountVariant(PercentageDiscount Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<TrialDiscountVariant, TrialDiscount>))]
-public sealed record class TrialDiscountVariant(TrialDiscount Value)
-    : Discount2,
-        IVariant<TrialDiscountVariant, TrialDiscount>
+public sealed record class TrialDiscount(Models::TrialDiscount Value)
+    : Models::Discount,
+        IVariant<TrialDiscount, Models::TrialDiscount>
 {
-    public static TrialDiscountVariant From(TrialDiscount value)
+    public static TrialDiscount From(Models::TrialDiscount value)
     {
         return new(value);
     }
@@ -34,12 +32,11 @@ public sealed record class TrialDiscountVariant(TrialDiscount Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<UsageDiscountVariant, UsageDiscount>))]
-public sealed record class UsageDiscountVariant(UsageDiscount Value)
-    : Discount2,
-        IVariant<UsageDiscountVariant, UsageDiscount>
+public sealed record class UsageDiscount(Models::UsageDiscount Value)
+    : Models::Discount,
+        IVariant<UsageDiscount, Models::UsageDiscount>
 {
-    public static UsageDiscountVariant From(UsageDiscount value)
+    public static UsageDiscount From(Models::UsageDiscount value)
     {
         return new(value);
     }
@@ -50,12 +47,11 @@ public sealed record class UsageDiscountVariant(UsageDiscount Value)
     }
 }
 
-[JsonConverter(typeof(VariantConverter<AmountDiscountVariant, AmountDiscount>))]
-public sealed record class AmountDiscountVariant(AmountDiscount Value)
-    : Discount2,
-        IVariant<AmountDiscountVariant, AmountDiscount>
+public sealed record class AmountDiscount(Models::AmountDiscount Value)
+    : Models::Discount,
+        IVariant<AmountDiscount, Models::AmountDiscount>
 {
-    public static AmountDiscountVariant From(AmountDiscount value)
+    public static AmountDiscount From(Models::AmountDiscount value)
     {
         return new(value);
     }

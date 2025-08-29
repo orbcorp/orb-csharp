@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System = System;
 
 namespace Orb.Models.Prices;
 
@@ -40,43 +40,46 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// <summary>
     /// The exclusive upper bound for event timestamps
     /// </summary>
-    public required System::DateTime TimeframeEnd
+    public required DateTime TimeframeEnd
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("timeframe_end", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "timeframe_end",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("timeframe_end", "Missing required argument");
 
-            return JsonSerializer.Deserialize<System::DateTime>(
-                element,
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
     /// The inclusive lower bound for event timestamps
     /// </summary>
-    public required System::DateTime TimeframeStart
+    public required DateTime TimeframeStart
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("timeframe_start", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "timeframe_start",
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
-                element,
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.BodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -91,7 +94,13 @@ public sealed record class PriceEvaluateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -108,7 +117,10 @@ public sealed record class PriceEvaluateParams : ParamsBase
         }
         set
         {
-            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(value);
+            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -125,7 +137,13 @@ public sealed record class PriceEvaluateParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["filter"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["filter"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -141,12 +159,18 @@ public sealed record class PriceEvaluateParams : ParamsBase
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set { this.BodyProperties["grouping_keys"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.BodyProperties["grouping_keys"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/prices/{0}/evaluate", this.PriceID)
         )

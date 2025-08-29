@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System = System;
 using Web = System.Web;
 
 namespace Orb;
@@ -14,7 +14,7 @@ public abstract record class ParamsBase
 
     public Dictionary<string, JsonElement> HeaderProperties { get; set; } = [];
 
-    public abstract System::Uri Url(IOrbClient client);
+    public abstract Uri Url(IOrbClient client);
 
     protected static void AddQueryElementToCollection(
         NameValueCollection collection,

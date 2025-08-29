@@ -1,6 +1,6 @@
+using System;
 using System.Net.Http;
 using System.Text.Json;
-using System = System;
 
 namespace Orb.Models.Customers;
 
@@ -13,64 +13,76 @@ namespace Orb.Models.Customers;
 /// </summary>
 public sealed record class CustomerListParams : ParamsBase
 {
-    public System::DateTime? CreatedAtGt
+    public DateTime? CreatedAtGt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.QueryProperties["created_at[gt]"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["created_at[gt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public System::DateTime? CreatedAtGte
+    public DateTime? CreatedAtGte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.QueryProperties["created_at[gte]"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["created_at[gte]"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public System::DateTime? CreatedAtLt
+    public DateTime? CreatedAtLt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.QueryProperties["created_at[lt]"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["created_at[lt]"] = JsonSerializer.SerializeToElement(value); }
     }
 
-    public System::DateTime? CreatedAtLte
+    public DateTime? CreatedAtLte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.QueryProperties["created_at[lte]"] = JsonSerializer.SerializeToElement(
+                value,
                 ModelBase.SerializerOptions
             );
         }
-        set { this.QueryProperties["created_at[lte]"] = JsonSerializer.SerializeToElement(value); }
     }
 
     /// <summary>
@@ -86,7 +98,13 @@ public sealed record class CustomerListParams : ParamsBase
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -101,12 +119,18 @@ public sealed record class CustomerListParams : ParamsBase
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set { this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override Uri Url(IOrbClient client)
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/customers")
+        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/customers")
         {
             Query = this.QueryString(client),
         }.Uri;

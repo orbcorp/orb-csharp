@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Prices;
 
@@ -14,14 +14,20 @@ public sealed record class PriceEvaluateResponse : ModelBase, IFromRaw<PriceEval
         get
         {
             if (!this.Properties.TryGetValue("data", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
+                throw new ArgumentOutOfRangeException("data", "Missing required argument");
 
             return JsonSerializer.Deserialize<List<EvaluatePriceGroup>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("data");
+                ) ?? throw new ArgumentNullException("data");
         }
-        set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["data"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -47,7 +53,9 @@ public sealed record class PriceEvaluateResponse : ModelBase, IFromRaw<PriceEval
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public PriceEvaluateResponse(List<EvaluatePriceGroup> data)
+        : this()
     {
         this.Data = data;
     }

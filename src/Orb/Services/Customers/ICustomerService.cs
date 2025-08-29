@@ -1,18 +1,18 @@
 using System.Threading.Tasks;
 using Orb.Models.Customers;
-using BalanceTransactions = Orb.Services.Customers.BalanceTransactions;
-using Costs = Orb.Services.Customers.Costs;
-using Credits = Orb.Services.Customers.Credits;
+using Orb.Services.Customers.BalanceTransactions;
+using Orb.Services.Customers.Costs;
+using Orb.Services.Customers.Credits;
 
 namespace Orb.Services.Customers;
 
 public interface ICustomerService
 {
-    Costs::ICostService Costs { get; }
+    ICostService Costs { get; }
 
-    Credits::ICreditService Credits { get; }
+    ICreditService Credits { get; }
 
-    BalanceTransactions::IBalanceTransactionService BalanceTransactions { get; }
+    IBalanceTransactionService BalanceTransactions { get; }
 
     /// <summary>
     /// This operation is used to create an Orb customer, who is party to the core
@@ -25,7 +25,7 @@ public interface ICustomerService
     /// can be configured by setting   `external_customer_id` * [Timezone localization](/essentials/timezones)
     /// can be configured on a per-customer basis by   setting the `timezone` parameter
     /// </summary>
-    Task<Customer> Create(CustomerCreateParams @params);
+    Task<Customer> Create(CustomerCreateParams parameters);
 
     /// <summary>
     /// This endpoint can be used to update the `payment_provider`, `payment_provider_id`,
@@ -33,7 +33,7 @@ public interface ICustomerService
     /// `shipping_address`, `billing_address`, and `additional_emails` of an existing
     /// customer. Other fields on a customer are currently immutable.
     /// </summary>
-    Task<Customer> Update(CustomerUpdateParams @params);
+    Task<Customer> Update(CustomerUpdateParams parameters);
 
     /// <summary>
     /// This endpoint returns a list of all customers for an account. The list of
@@ -42,7 +42,7 @@ public interface ICustomerService
     ///
     /// See [Customer](/core-concepts##customer) for an overview of the customer model.
     /// </summary>
-    Task<CustomerListPageResponse> List(CustomerListParams @params);
+    Task<CustomerListPageResponse> List(CustomerListParams? parameters = null);
 
     /// <summary>
     /// This performs a deletion of this customer, its subscriptions, and its invoices,
@@ -58,7 +58,7 @@ public interface ICustomerService
     /// customer on subsequent GET requests while deletion is in process will reflect
     /// its deletion.
     /// </summary>
-    Task Delete(CustomerDeleteParams @params);
+    Task Delete(CustomerDeleteParams parameters);
 
     /// <summary>
     /// This endpoint is used to fetch customer details given an identifier. If the
@@ -68,7 +68,7 @@ public interface ICustomerService
     /// See the [Customer resource](/core-concepts#customer) for a full discussion
     /// of the Customer model.
     /// </summary>
-    Task<Customer> Fetch(CustomerFetchParams @params);
+    Task<Customer> Fetch(CustomerFetchParams parameters);
 
     /// <summary>
     /// This endpoint is used to fetch customer details given an `external_customer_id`
@@ -76,7 +76,7 @@ public interface ICustomerService
     ///
     /// Note that the resource and semantics of this endpoint exactly mirror [Get Customer](fetch-customer).
     /// </summary>
-    Task<Customer> FetchByExternalID(CustomerFetchByExternalIDParams @params);
+    Task<Customer> FetchByExternalID(CustomerFetchByExternalIDParams parameters);
 
     /// <summary>
     /// Sync Orb's payment methods for the customer with their gateway.
@@ -86,7 +86,7 @@ public interface ICustomerService
     ///
     /// **Note**: This functionality is currently only available for Stripe.
     /// </summary>
-    Task SyncPaymentMethodsFromGateway(CustomerSyncPaymentMethodsFromGatewayParams @params);
+    Task SyncPaymentMethodsFromGateway(CustomerSyncPaymentMethodsFromGatewayParams parameters);
 
     /// <summary>
     /// Sync Orb's payment methods for the customer with their gateway.
@@ -97,7 +97,7 @@ public interface ICustomerService
     /// **Note**: This functionality is currently only available for Stripe.
     /// </summary>
     Task SyncPaymentMethodsFromGatewayByExternalCustomerID(
-        CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams @params
+        CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams parameters
     );
 
     /// <summary>
@@ -105,5 +105,5 @@ public interface ICustomerService
     /// (see [Customer ID Aliases](/events-and-metrics/customer-aliases)). Note that
     /// the resource and semantics of this endpoint exactly mirror [Update Customer](update-customer).
     /// </summary>
-    Task<Customer> UpdateByExternalID(CustomerUpdateByExternalIDParams @params);
+    Task<Customer> UpdateByExternalID(CustomerUpdateByExternalIDParams parameters);
 }

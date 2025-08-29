@@ -1,13 +1,12 @@
-using System.Text.Json.Serialization;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.ReplacePriceProperties.PriceVariants;
 
-[JsonConverter(typeof(VariantConverter<NewSubscriptionUnitPriceVariant, NewSubscriptionUnitPrice>))]
-public sealed record class NewSubscriptionUnitPriceVariant(NewSubscriptionUnitPrice Value)
-    : Price1,
-        IVariant<NewSubscriptionUnitPriceVariant, NewSubscriptionUnitPrice>
+public sealed record class NewSubscriptionUnitPrice(Subscriptions::NewSubscriptionUnitPrice Value)
+    : Price,
+        IVariant<NewSubscriptionUnitPrice, Subscriptions::NewSubscriptionUnitPrice>
 {
-    public static NewSubscriptionUnitPriceVariant From(NewSubscriptionUnitPrice value)
+    public static NewSubscriptionUnitPrice From(Subscriptions::NewSubscriptionUnitPrice value)
     {
         return new(value);
     }
@@ -18,14 +17,11 @@ public sealed record class NewSubscriptionUnitPriceVariant(NewSubscriptionUnitPr
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<NewSubscriptionPackagePriceVariant, NewSubscriptionPackagePrice>)
-)]
-public sealed record class NewSubscriptionPackagePriceVariant(NewSubscriptionPackagePrice Value)
-    : Price1,
-        IVariant<NewSubscriptionPackagePriceVariant, NewSubscriptionPackagePrice>
+public sealed record class NewSubscriptionPackagePrice(
+    Subscriptions::NewSubscriptionPackagePrice Value
+) : Price, IVariant<NewSubscriptionPackagePrice, Subscriptions::NewSubscriptionPackagePrice>
 {
-    public static NewSubscriptionPackagePriceVariant From(NewSubscriptionPackagePrice value)
+    public static NewSubscriptionPackagePrice From(Subscriptions::NewSubscriptionPackagePrice value)
     {
         return new(value);
     }
@@ -36,14 +32,11 @@ public sealed record class NewSubscriptionPackagePriceVariant(NewSubscriptionPac
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<NewSubscriptionMatrixPriceVariant, NewSubscriptionMatrixPrice>)
-)]
-public sealed record class NewSubscriptionMatrixPriceVariant(NewSubscriptionMatrixPrice Value)
-    : Price1,
-        IVariant<NewSubscriptionMatrixPriceVariant, NewSubscriptionMatrixPrice>
+public sealed record class NewSubscriptionMatrixPrice(
+    Subscriptions::NewSubscriptionMatrixPrice Value
+) : Price, IVariant<NewSubscriptionMatrixPrice, Subscriptions::NewSubscriptionMatrixPrice>
 {
-    public static NewSubscriptionMatrixPriceVariant From(NewSubscriptionMatrixPrice value)
+    public static NewSubscriptionMatrixPrice From(Subscriptions::NewSubscriptionMatrixPrice value)
     {
         return new(value);
     }
@@ -54,14 +47,11 @@ public sealed record class NewSubscriptionMatrixPriceVariant(NewSubscriptionMatr
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<NewSubscriptionTieredPriceVariant, NewSubscriptionTieredPrice>)
-)]
-public sealed record class NewSubscriptionTieredPriceVariant(NewSubscriptionTieredPrice Value)
-    : Price1,
-        IVariant<NewSubscriptionTieredPriceVariant, NewSubscriptionTieredPrice>
+public sealed record class NewSubscriptionTieredPrice(
+    Subscriptions::NewSubscriptionTieredPrice Value
+) : Price, IVariant<NewSubscriptionTieredPrice, Subscriptions::NewSubscriptionTieredPrice>
 {
-    public static NewSubscriptionTieredPriceVariant From(NewSubscriptionTieredPrice value)
+    public static NewSubscriptionTieredPrice From(Subscriptions::NewSubscriptionTieredPrice value)
     {
         return new(value);
     }
@@ -72,14 +62,13 @@ public sealed record class NewSubscriptionTieredPriceVariant(NewSubscriptionTier
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<NewSubscriptionTieredBPSPriceVariant, NewSubscriptionTieredBPSPrice>)
-)]
-public sealed record class NewSubscriptionTieredBPSPriceVariant(NewSubscriptionTieredBPSPrice Value)
-    : Price1,
-        IVariant<NewSubscriptionTieredBPSPriceVariant, NewSubscriptionTieredBPSPrice>
+public sealed record class NewSubscriptionTieredBPSPrice(
+    Subscriptions::NewSubscriptionTieredBPSPrice Value
+) : Price, IVariant<NewSubscriptionTieredBPSPrice, Subscriptions::NewSubscriptionTieredBPSPrice>
 {
-    public static NewSubscriptionTieredBPSPriceVariant From(NewSubscriptionTieredBPSPrice value)
+    public static NewSubscriptionTieredBPSPrice From(
+        Subscriptions::NewSubscriptionTieredBPSPrice value
+    )
     {
         return new(value);
     }
@@ -90,12 +79,11 @@ public sealed record class NewSubscriptionTieredBPSPriceVariant(NewSubscriptionT
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewSubscriptionBPSPriceVariant, NewSubscriptionBPSPrice>))]
-public sealed record class NewSubscriptionBPSPriceVariant(NewSubscriptionBPSPrice Value)
-    : Price1,
-        IVariant<NewSubscriptionBPSPriceVariant, NewSubscriptionBPSPrice>
+public sealed record class NewSubscriptionBPSPrice(Subscriptions::NewSubscriptionBPSPrice Value)
+    : Price,
+        IVariant<NewSubscriptionBPSPrice, Subscriptions::NewSubscriptionBPSPrice>
 {
-    public static NewSubscriptionBPSPriceVariant From(NewSubscriptionBPSPrice value)
+    public static NewSubscriptionBPSPrice From(Subscriptions::NewSubscriptionBPSPrice value)
     {
         return new(value);
     }
@@ -106,14 +94,11 @@ public sealed record class NewSubscriptionBPSPriceVariant(NewSubscriptionBPSPric
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<NewSubscriptionBulkBPSPriceVariant, NewSubscriptionBulkBPSPrice>)
-)]
-public sealed record class NewSubscriptionBulkBPSPriceVariant(NewSubscriptionBulkBPSPrice Value)
-    : Price1,
-        IVariant<NewSubscriptionBulkBPSPriceVariant, NewSubscriptionBulkBPSPrice>
+public sealed record class NewSubscriptionBulkBPSPrice(
+    Subscriptions::NewSubscriptionBulkBPSPrice Value
+) : Price, IVariant<NewSubscriptionBulkBPSPrice, Subscriptions::NewSubscriptionBulkBPSPrice>
 {
-    public static NewSubscriptionBulkBPSPriceVariant From(NewSubscriptionBulkBPSPrice value)
+    public static NewSubscriptionBulkBPSPrice From(Subscriptions::NewSubscriptionBulkBPSPrice value)
     {
         return new(value);
     }
@@ -124,12 +109,11 @@ public sealed record class NewSubscriptionBulkBPSPriceVariant(NewSubscriptionBul
     }
 }
 
-[JsonConverter(typeof(VariantConverter<NewSubscriptionBulkPriceVariant, NewSubscriptionBulkPrice>))]
-public sealed record class NewSubscriptionBulkPriceVariant(NewSubscriptionBulkPrice Value)
-    : Price1,
-        IVariant<NewSubscriptionBulkPriceVariant, NewSubscriptionBulkPrice>
+public sealed record class NewSubscriptionBulkPrice(Subscriptions::NewSubscriptionBulkPrice Value)
+    : Price,
+        IVariant<NewSubscriptionBulkPrice, Subscriptions::NewSubscriptionBulkPrice>
 {
-    public static NewSubscriptionBulkPriceVariant From(NewSubscriptionBulkPrice value)
+    public static NewSubscriptionBulkPrice From(Subscriptions::NewSubscriptionBulkPrice value)
     {
         return new(value);
     }
@@ -140,23 +124,17 @@ public sealed record class NewSubscriptionBulkPriceVariant(NewSubscriptionBulkPr
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionThresholdTotalAmountPriceVariant,
-        NewSubscriptionThresholdTotalAmountPrice
-    >)
-)]
-public sealed record class NewSubscriptionThresholdTotalAmountPriceVariant(
-    NewSubscriptionThresholdTotalAmountPrice Value
+public sealed record class NewSubscriptionThresholdTotalAmountPrice(
+    Subscriptions::NewSubscriptionThresholdTotalAmountPrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewSubscriptionThresholdTotalAmountPriceVariant,
-            NewSubscriptionThresholdTotalAmountPrice
+            NewSubscriptionThresholdTotalAmountPrice,
+            Subscriptions::NewSubscriptionThresholdTotalAmountPrice
         >
 {
-    public static NewSubscriptionThresholdTotalAmountPriceVariant From(
-        NewSubscriptionThresholdTotalAmountPrice value
+    public static NewSubscriptionThresholdTotalAmountPrice From(
+        Subscriptions::NewSubscriptionThresholdTotalAmountPrice value
     )
     {
         return new(value);
@@ -168,46 +146,17 @@ public sealed record class NewSubscriptionThresholdTotalAmountPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionTieredPackagePriceVariant,
-        NewSubscriptionTieredPackagePrice
-    >)
-)]
-public sealed record class NewSubscriptionTieredPackagePriceVariant(
-    NewSubscriptionTieredPackagePrice Value
-) : Price1, IVariant<NewSubscriptionTieredPackagePriceVariant, NewSubscriptionTieredPackagePrice>
-{
-    public static NewSubscriptionTieredPackagePriceVariant From(
-        NewSubscriptionTieredPackagePrice value
-    )
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionTieredWithMinimumPriceVariant,
-        NewSubscriptionTieredWithMinimumPrice
-    >)
-)]
-public sealed record class NewSubscriptionTieredWithMinimumPriceVariant(
-    NewSubscriptionTieredWithMinimumPrice Value
+public sealed record class NewSubscriptionTieredPackagePrice(
+    Subscriptions::NewSubscriptionTieredPackagePrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewSubscriptionTieredWithMinimumPriceVariant,
-            NewSubscriptionTieredWithMinimumPrice
+            NewSubscriptionTieredPackagePrice,
+            Subscriptions::NewSubscriptionTieredPackagePrice
         >
 {
-    public static NewSubscriptionTieredWithMinimumPriceVariant From(
-        NewSubscriptionTieredWithMinimumPrice value
+    public static NewSubscriptionTieredPackagePrice From(
+        Subscriptions::NewSubscriptionTieredPackagePrice value
     )
     {
         return new(value);
@@ -219,48 +168,17 @@ public sealed record class NewSubscriptionTieredWithMinimumPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionUnitWithPercentPriceVariant,
-        NewSubscriptionUnitWithPercentPrice
-    >)
-)]
-public sealed record class NewSubscriptionUnitWithPercentPriceVariant(
-    NewSubscriptionUnitWithPercentPrice Value
+public sealed record class NewSubscriptionTieredWithMinimumPrice(
+    Subscriptions::NewSubscriptionTieredWithMinimumPrice Value
 )
-    : Price1,
-        IVariant<NewSubscriptionUnitWithPercentPriceVariant, NewSubscriptionUnitWithPercentPrice>
-{
-    public static NewSubscriptionUnitWithPercentPriceVariant From(
-        NewSubscriptionUnitWithPercentPrice value
-    )
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionPackageWithAllocationPriceVariant,
-        NewSubscriptionPackageWithAllocationPrice
-    >)
-)]
-public sealed record class NewSubscriptionPackageWithAllocationPriceVariant(
-    NewSubscriptionPackageWithAllocationPrice Value
-)
-    : Price1,
+    : Price,
         IVariant<
-            NewSubscriptionPackageWithAllocationPriceVariant,
-            NewSubscriptionPackageWithAllocationPrice
+            NewSubscriptionTieredWithMinimumPrice,
+            Subscriptions::NewSubscriptionTieredWithMinimumPrice
         >
 {
-    public static NewSubscriptionPackageWithAllocationPriceVariant From(
-        NewSubscriptionPackageWithAllocationPrice value
+    public static NewSubscriptionTieredWithMinimumPrice From(
+        Subscriptions::NewSubscriptionTieredWithMinimumPrice value
     )
     {
         return new(value);
@@ -272,23 +190,17 @@ public sealed record class NewSubscriptionPackageWithAllocationPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionTierWithProrationPriceVariant,
-        NewSubscriptionTierWithProrationPrice
-    >)
-)]
-public sealed record class NewSubscriptionTierWithProrationPriceVariant(
-    NewSubscriptionTierWithProrationPrice Value
+public sealed record class NewSubscriptionUnitWithPercentPrice(
+    Subscriptions::NewSubscriptionUnitWithPercentPrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewSubscriptionTierWithProrationPriceVariant,
-            NewSubscriptionTierWithProrationPrice
+            NewSubscriptionUnitWithPercentPrice,
+            Subscriptions::NewSubscriptionUnitWithPercentPrice
         >
 {
-    public static NewSubscriptionTierWithProrationPriceVariant From(
-        NewSubscriptionTierWithProrationPrice value
+    public static NewSubscriptionUnitWithPercentPrice From(
+        Subscriptions::NewSubscriptionUnitWithPercentPrice value
     )
     {
         return new(value);
@@ -300,23 +212,17 @@ public sealed record class NewSubscriptionTierWithProrationPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionUnitWithProrationPriceVariant,
-        NewSubscriptionUnitWithProrationPrice
-    >)
-)]
-public sealed record class NewSubscriptionUnitWithProrationPriceVariant(
-    NewSubscriptionUnitWithProrationPrice Value
+public sealed record class NewSubscriptionPackageWithAllocationPrice(
+    Subscriptions::NewSubscriptionPackageWithAllocationPrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewSubscriptionUnitWithProrationPriceVariant,
-            NewSubscriptionUnitWithProrationPrice
+            NewSubscriptionPackageWithAllocationPrice,
+            Subscriptions::NewSubscriptionPackageWithAllocationPrice
         >
 {
-    public static NewSubscriptionUnitWithProrationPriceVariant From(
-        NewSubscriptionUnitWithProrationPrice value
+    public static NewSubscriptionPackageWithAllocationPrice From(
+        Subscriptions::NewSubscriptionPackageWithAllocationPrice value
     )
     {
         return new(value);
@@ -328,23 +234,17 @@ public sealed record class NewSubscriptionUnitWithProrationPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionGroupedAllocationPriceVariant,
-        NewSubscriptionGroupedAllocationPrice
-    >)
-)]
-public sealed record class NewSubscriptionGroupedAllocationPriceVariant(
-    NewSubscriptionGroupedAllocationPrice Value
+public sealed record class NewSubscriptionTierWithProrationPrice(
+    Subscriptions::NewSubscriptionTierWithProrationPrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewSubscriptionGroupedAllocationPriceVariant,
-            NewSubscriptionGroupedAllocationPrice
+            NewSubscriptionTierWithProrationPrice,
+            Subscriptions::NewSubscriptionTierWithProrationPrice
         >
 {
-    public static NewSubscriptionGroupedAllocationPriceVariant From(
-        NewSubscriptionGroupedAllocationPrice value
+    public static NewSubscriptionTierWithProrationPrice From(
+        Subscriptions::NewSubscriptionTierWithProrationPrice value
     )
     {
         return new(value);
@@ -356,23 +256,17 @@ public sealed record class NewSubscriptionGroupedAllocationPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionGroupedWithProratedMinimumPriceVariant,
-        NewSubscriptionGroupedWithProratedMinimumPrice
-    >)
-)]
-public sealed record class NewSubscriptionGroupedWithProratedMinimumPriceVariant(
-    NewSubscriptionGroupedWithProratedMinimumPrice Value
+public sealed record class NewSubscriptionUnitWithProrationPrice(
+    Subscriptions::NewSubscriptionUnitWithProrationPrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewSubscriptionGroupedWithProratedMinimumPriceVariant,
-            NewSubscriptionGroupedWithProratedMinimumPrice
+            NewSubscriptionUnitWithProrationPrice,
+            Subscriptions::NewSubscriptionUnitWithProrationPrice
         >
 {
-    public static NewSubscriptionGroupedWithProratedMinimumPriceVariant From(
-        NewSubscriptionGroupedWithProratedMinimumPrice value
+    public static NewSubscriptionUnitWithProrationPrice From(
+        Subscriptions::NewSubscriptionUnitWithProrationPrice value
     )
     {
         return new(value);
@@ -384,23 +278,17 @@ public sealed record class NewSubscriptionGroupedWithProratedMinimumPriceVariant
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionBulkWithProrationPriceVariant,
-        NewSubscriptionBulkWithProrationPrice
-    >)
-)]
-public sealed record class NewSubscriptionBulkWithProrationPriceVariant(
-    NewSubscriptionBulkWithProrationPrice Value
+public sealed record class NewSubscriptionGroupedAllocationPrice(
+    Subscriptions::NewSubscriptionGroupedAllocationPrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewSubscriptionBulkWithProrationPriceVariant,
-            NewSubscriptionBulkWithProrationPrice
+            NewSubscriptionGroupedAllocationPrice,
+            Subscriptions::NewSubscriptionGroupedAllocationPrice
         >
 {
-    public static NewSubscriptionBulkWithProrationPriceVariant From(
-        NewSubscriptionBulkWithProrationPrice value
+    public static NewSubscriptionGroupedAllocationPrice From(
+        Subscriptions::NewSubscriptionGroupedAllocationPrice value
     )
     {
         return new(value);
@@ -412,23 +300,17 @@ public sealed record class NewSubscriptionBulkWithProrationPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionScalableMatrixWithUnitPricingPriceVariant,
-        NewSubscriptionScalableMatrixWithUnitPricingPrice
-    >)
-)]
-public sealed record class NewSubscriptionScalableMatrixWithUnitPricingPriceVariant(
-    NewSubscriptionScalableMatrixWithUnitPricingPrice Value
+public sealed record class NewSubscriptionGroupedWithProratedMinimumPrice(
+    Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewSubscriptionScalableMatrixWithUnitPricingPriceVariant,
-            NewSubscriptionScalableMatrixWithUnitPricingPrice
+            NewSubscriptionGroupedWithProratedMinimumPrice,
+            Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice
         >
 {
-    public static NewSubscriptionScalableMatrixWithUnitPricingPriceVariant From(
-        NewSubscriptionScalableMatrixWithUnitPricingPrice value
+    public static NewSubscriptionGroupedWithProratedMinimumPrice From(
+        Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice value
     )
     {
         return new(value);
@@ -440,23 +322,17 @@ public sealed record class NewSubscriptionScalableMatrixWithUnitPricingPriceVari
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionScalableMatrixWithTieredPricingPriceVariant,
-        NewSubscriptionScalableMatrixWithTieredPricingPrice
-    >)
-)]
-public sealed record class NewSubscriptionScalableMatrixWithTieredPricingPriceVariant(
-    NewSubscriptionScalableMatrixWithTieredPricingPrice Value
+public sealed record class NewSubscriptionBulkWithProrationPrice(
+    Subscriptions::NewSubscriptionBulkWithProrationPrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewSubscriptionScalableMatrixWithTieredPricingPriceVariant,
-            NewSubscriptionScalableMatrixWithTieredPricingPrice
+            NewSubscriptionBulkWithProrationPrice,
+            Subscriptions::NewSubscriptionBulkWithProrationPrice
         >
 {
-    public static NewSubscriptionScalableMatrixWithTieredPricingPriceVariant From(
-        NewSubscriptionScalableMatrixWithTieredPricingPrice value
+    public static NewSubscriptionBulkWithProrationPrice From(
+        Subscriptions::NewSubscriptionBulkWithProrationPrice value
     )
     {
         return new(value);
@@ -468,23 +344,17 @@ public sealed record class NewSubscriptionScalableMatrixWithTieredPricingPriceVa
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionCumulativeGroupedBulkPriceVariant,
-        NewSubscriptionCumulativeGroupedBulkPrice
-    >)
-)]
-public sealed record class NewSubscriptionCumulativeGroupedBulkPriceVariant(
-    NewSubscriptionCumulativeGroupedBulkPrice Value
+public sealed record class NewSubscriptionScalableMatrixWithUnitPricingPrice(
+    Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewSubscriptionCumulativeGroupedBulkPriceVariant,
-            NewSubscriptionCumulativeGroupedBulkPrice
+            NewSubscriptionScalableMatrixWithUnitPricingPrice,
+            Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice
         >
 {
-    public static NewSubscriptionCumulativeGroupedBulkPriceVariant From(
-        NewSubscriptionCumulativeGroupedBulkPrice value
+    public static NewSubscriptionScalableMatrixWithUnitPricingPrice From(
+        Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice value
     )
     {
         return new(value);
@@ -496,23 +366,17 @@ public sealed record class NewSubscriptionCumulativeGroupedBulkPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionMaxGroupTieredPackagePriceVariant,
-        NewSubscriptionMaxGroupTieredPackagePrice
-    >)
-)]
-public sealed record class NewSubscriptionMaxGroupTieredPackagePriceVariant(
-    NewSubscriptionMaxGroupTieredPackagePrice Value
+public sealed record class NewSubscriptionScalableMatrixWithTieredPricingPrice(
+    Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewSubscriptionMaxGroupTieredPackagePriceVariant,
-            NewSubscriptionMaxGroupTieredPackagePrice
+            NewSubscriptionScalableMatrixWithTieredPricingPrice,
+            Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPrice
         >
 {
-    public static NewSubscriptionMaxGroupTieredPackagePriceVariant From(
-        NewSubscriptionMaxGroupTieredPackagePrice value
+    public static NewSubscriptionScalableMatrixWithTieredPricingPrice From(
+        Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPrice value
     )
     {
         return new(value);
@@ -524,23 +388,17 @@ public sealed record class NewSubscriptionMaxGroupTieredPackagePriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionGroupedWithMeteredMinimumPriceVariant,
-        NewSubscriptionGroupedWithMeteredMinimumPrice
-    >)
-)]
-public sealed record class NewSubscriptionGroupedWithMeteredMinimumPriceVariant(
-    NewSubscriptionGroupedWithMeteredMinimumPrice Value
+public sealed record class NewSubscriptionCumulativeGroupedBulkPrice(
+    Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewSubscriptionGroupedWithMeteredMinimumPriceVariant,
-            NewSubscriptionGroupedWithMeteredMinimumPrice
+            NewSubscriptionCumulativeGroupedBulkPrice,
+            Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice
         >
 {
-    public static NewSubscriptionGroupedWithMeteredMinimumPriceVariant From(
-        NewSubscriptionGroupedWithMeteredMinimumPrice value
+    public static NewSubscriptionCumulativeGroupedBulkPrice From(
+        Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice value
     )
     {
         return new(value);
@@ -552,23 +410,17 @@ public sealed record class NewSubscriptionGroupedWithMeteredMinimumPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionMatrixWithDisplayNamePriceVariant,
-        NewSubscriptionMatrixWithDisplayNamePrice
-    >)
-)]
-public sealed record class NewSubscriptionMatrixWithDisplayNamePriceVariant(
-    NewSubscriptionMatrixWithDisplayNamePrice Value
+public sealed record class NewSubscriptionMaxGroupTieredPackagePrice(
+    Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewSubscriptionMatrixWithDisplayNamePriceVariant,
-            NewSubscriptionMatrixWithDisplayNamePrice
+            NewSubscriptionMaxGroupTieredPackagePrice,
+            Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice
         >
 {
-    public static NewSubscriptionMatrixWithDisplayNamePriceVariant From(
-        NewSubscriptionMatrixWithDisplayNamePrice value
+    public static NewSubscriptionMaxGroupTieredPackagePrice From(
+        Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice value
     )
     {
         return new(value);
@@ -580,23 +432,17 @@ public sealed record class NewSubscriptionMatrixWithDisplayNamePriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionGroupedTieredPackagePriceVariant,
-        NewSubscriptionGroupedTieredPackagePrice
-    >)
-)]
-public sealed record class NewSubscriptionGroupedTieredPackagePriceVariant(
-    NewSubscriptionGroupedTieredPackagePrice Value
+public sealed record class NewSubscriptionGroupedWithMeteredMinimumPrice(
+    Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewSubscriptionGroupedTieredPackagePriceVariant,
-            NewSubscriptionGroupedTieredPackagePrice
+            NewSubscriptionGroupedWithMeteredMinimumPrice,
+            Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice
         >
 {
-    public static NewSubscriptionGroupedTieredPackagePriceVariant From(
-        NewSubscriptionGroupedTieredPackagePrice value
+    public static NewSubscriptionGroupedWithMeteredMinimumPrice From(
+        Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice value
     )
     {
         return new(value);
@@ -608,23 +454,17 @@ public sealed record class NewSubscriptionGroupedTieredPackagePriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionMatrixWithAllocationPriceVariant,
-        NewSubscriptionMatrixWithAllocationPrice
-    >)
-)]
-public sealed record class NewSubscriptionMatrixWithAllocationPriceVariant(
-    NewSubscriptionMatrixWithAllocationPrice Value
+public sealed record class NewSubscriptionMatrixWithDisplayNamePrice(
+    Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewSubscriptionMatrixWithAllocationPriceVariant,
-            NewSubscriptionMatrixWithAllocationPrice
+            NewSubscriptionMatrixWithDisplayNamePrice,
+            Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice
         >
 {
-    public static NewSubscriptionMatrixWithAllocationPriceVariant From(
-        NewSubscriptionMatrixWithAllocationPrice value
+    public static NewSubscriptionMatrixWithDisplayNamePrice From(
+        Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice value
     )
     {
         return new(value);
@@ -636,23 +476,17 @@ public sealed record class NewSubscriptionMatrixWithAllocationPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionTieredPackageWithMinimumPriceVariant,
-        NewSubscriptionTieredPackageWithMinimumPrice
-    >)
-)]
-public sealed record class NewSubscriptionTieredPackageWithMinimumPriceVariant(
-    NewSubscriptionTieredPackageWithMinimumPrice Value
+public sealed record class NewSubscriptionGroupedTieredPackagePrice(
+    Subscriptions::NewSubscriptionGroupedTieredPackagePrice Value
 )
-    : Price1,
+    : Price,
         IVariant<
-            NewSubscriptionTieredPackageWithMinimumPriceVariant,
-            NewSubscriptionTieredPackageWithMinimumPrice
+            NewSubscriptionGroupedTieredPackagePrice,
+            Subscriptions::NewSubscriptionGroupedTieredPackagePrice
         >
 {
-    public static NewSubscriptionTieredPackageWithMinimumPriceVariant From(
-        NewSubscriptionTieredPackageWithMinimumPrice value
+    public static NewSubscriptionGroupedTieredPackagePrice From(
+        Subscriptions::NewSubscriptionGroupedTieredPackagePrice value
     )
     {
         return new(value);
@@ -664,18 +498,61 @@ public sealed record class NewSubscriptionTieredPackageWithMinimumPriceVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        NewSubscriptionGroupedTieredPriceVariant,
-        NewSubscriptionGroupedTieredPrice
-    >)
-)]
-public sealed record class NewSubscriptionGroupedTieredPriceVariant(
-    NewSubscriptionGroupedTieredPrice Value
-) : Price1, IVariant<NewSubscriptionGroupedTieredPriceVariant, NewSubscriptionGroupedTieredPrice>
+public sealed record class NewSubscriptionMatrixWithAllocationPrice(
+    Subscriptions::NewSubscriptionMatrixWithAllocationPrice Value
+)
+    : Price,
+        IVariant<
+            NewSubscriptionMatrixWithAllocationPrice,
+            Subscriptions::NewSubscriptionMatrixWithAllocationPrice
+        >
 {
-    public static NewSubscriptionGroupedTieredPriceVariant From(
-        NewSubscriptionGroupedTieredPrice value
+    public static NewSubscriptionMatrixWithAllocationPrice From(
+        Subscriptions::NewSubscriptionMatrixWithAllocationPrice value
+    )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class NewSubscriptionTieredPackageWithMinimumPrice(
+    Subscriptions::NewSubscriptionTieredPackageWithMinimumPrice Value
+)
+    : Price,
+        IVariant<
+            NewSubscriptionTieredPackageWithMinimumPrice,
+            Subscriptions::NewSubscriptionTieredPackageWithMinimumPrice
+        >
+{
+    public static NewSubscriptionTieredPackageWithMinimumPrice From(
+        Subscriptions::NewSubscriptionTieredPackageWithMinimumPrice value
+    )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class NewSubscriptionGroupedTieredPrice(
+    Subscriptions::NewSubscriptionGroupedTieredPrice Value
+)
+    : Price,
+        IVariant<
+            NewSubscriptionGroupedTieredPrice,
+            Subscriptions::NewSubscriptionGroupedTieredPrice
+        >
+{
+    public static NewSubscriptionGroupedTieredPrice From(
+        Subscriptions::NewSubscriptionGroupedTieredPrice value
     )
     {
         return new(value);

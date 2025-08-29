@@ -1,19 +1,13 @@
-using System.Text.Json.Serialization;
+using Models = Orb.Models;
 
 namespace Orb.Models.Plans.PlanProperties.AdjustmentVariants;
 
-[JsonConverter(
-    typeof(VariantConverter<
-        PlanPhaseUsageDiscountAdjustmentVariant,
-        PlanPhaseUsageDiscountAdjustment
-    >)
-)]
-public sealed record class PlanPhaseUsageDiscountAdjustmentVariant(
-    PlanPhaseUsageDiscountAdjustment Value
-) : Adjustment, IVariant<PlanPhaseUsageDiscountAdjustmentVariant, PlanPhaseUsageDiscountAdjustment>
+public sealed record class PlanPhaseUsageDiscountAdjustment(
+    Models::PlanPhaseUsageDiscountAdjustment Value
+) : Adjustment, IVariant<PlanPhaseUsageDiscountAdjustment, Models::PlanPhaseUsageDiscountAdjustment>
 {
-    public static PlanPhaseUsageDiscountAdjustmentVariant From(
-        PlanPhaseUsageDiscountAdjustment value
+    public static PlanPhaseUsageDiscountAdjustment From(
+        Models::PlanPhaseUsageDiscountAdjustment value
     )
     {
         return new(value);
@@ -25,20 +19,14 @@ public sealed record class PlanPhaseUsageDiscountAdjustmentVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        PlanPhaseAmountDiscountAdjustmentVariant,
-        PlanPhaseAmountDiscountAdjustment
-    >)
-)]
-public sealed record class PlanPhaseAmountDiscountAdjustmentVariant(
-    PlanPhaseAmountDiscountAdjustment Value
+public sealed record class PlanPhaseAmountDiscountAdjustment(
+    Models::PlanPhaseAmountDiscountAdjustment Value
 )
     : Adjustment,
-        IVariant<PlanPhaseAmountDiscountAdjustmentVariant, PlanPhaseAmountDiscountAdjustment>
+        IVariant<PlanPhaseAmountDiscountAdjustment, Models::PlanPhaseAmountDiscountAdjustment>
 {
-    public static PlanPhaseAmountDiscountAdjustmentVariant From(
-        PlanPhaseAmountDiscountAdjustment value
+    public static PlanPhaseAmountDiscountAdjustment From(
+        Models::PlanPhaseAmountDiscountAdjustment value
     )
     {
         return new(value);
@@ -50,23 +38,17 @@ public sealed record class PlanPhaseAmountDiscountAdjustmentVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<
-        PlanPhasePercentageDiscountAdjustmentVariant,
-        PlanPhasePercentageDiscountAdjustment
-    >)
-)]
-public sealed record class PlanPhasePercentageDiscountAdjustmentVariant(
-    PlanPhasePercentageDiscountAdjustment Value
+public sealed record class PlanPhasePercentageDiscountAdjustment(
+    Models::PlanPhasePercentageDiscountAdjustment Value
 )
     : Adjustment,
         IVariant<
-            PlanPhasePercentageDiscountAdjustmentVariant,
-            PlanPhasePercentageDiscountAdjustment
+            PlanPhasePercentageDiscountAdjustment,
+            Models::PlanPhasePercentageDiscountAdjustment
         >
 {
-    public static PlanPhasePercentageDiscountAdjustmentVariant From(
-        PlanPhasePercentageDiscountAdjustment value
+    public static PlanPhasePercentageDiscountAdjustment From(
+        Models::PlanPhasePercentageDiscountAdjustment value
     )
     {
         return new(value);
@@ -78,14 +60,11 @@ public sealed record class PlanPhasePercentageDiscountAdjustmentVariant(
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<PlanPhaseMinimumAdjustmentVariant, PlanPhaseMinimumAdjustment>)
-)]
-public sealed record class PlanPhaseMinimumAdjustmentVariant(PlanPhaseMinimumAdjustment Value)
+public sealed record class PlanPhaseMinimumAdjustment(Models::PlanPhaseMinimumAdjustment Value)
     : Adjustment,
-        IVariant<PlanPhaseMinimumAdjustmentVariant, PlanPhaseMinimumAdjustment>
+        IVariant<PlanPhaseMinimumAdjustment, Models::PlanPhaseMinimumAdjustment>
 {
-    public static PlanPhaseMinimumAdjustmentVariant From(PlanPhaseMinimumAdjustment value)
+    public static PlanPhaseMinimumAdjustment From(Models::PlanPhaseMinimumAdjustment value)
     {
         return new(value);
     }
@@ -96,14 +75,11 @@ public sealed record class PlanPhaseMinimumAdjustmentVariant(PlanPhaseMinimumAdj
     }
 }
 
-[JsonConverter(
-    typeof(VariantConverter<PlanPhaseMaximumAdjustmentVariant, PlanPhaseMaximumAdjustment>)
-)]
-public sealed record class PlanPhaseMaximumAdjustmentVariant(PlanPhaseMaximumAdjustment Value)
+public sealed record class PlanPhaseMaximumAdjustment(Models::PlanPhaseMaximumAdjustment Value)
     : Adjustment,
-        IVariant<PlanPhaseMaximumAdjustmentVariant, PlanPhaseMaximumAdjustment>
+        IVariant<PlanPhaseMaximumAdjustment, Models::PlanPhaseMaximumAdjustment>
 {
-    public static PlanPhaseMaximumAdjustmentVariant From(PlanPhaseMaximumAdjustment value)
+    public static PlanPhaseMaximumAdjustment From(Models::PlanPhaseMaximumAdjustment value)
     {
         return new(value);
     }

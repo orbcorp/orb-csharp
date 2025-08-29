@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models.Customers;
 
@@ -16,14 +16,17 @@ public sealed record class NewReportingConfiguration
         get
         {
             if (!this.Properties.TryGetValue("exempt", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "exempt",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("exempt", "Missing required argument");
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["exempt"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["exempt"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -48,7 +51,9 @@ public sealed record class NewReportingConfiguration
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public NewReportingConfiguration(bool exempt)
+        : this()
     {
         this.Exempt = exempt;
     }

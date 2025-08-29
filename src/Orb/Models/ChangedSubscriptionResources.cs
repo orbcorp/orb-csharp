@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models;
 
@@ -19,7 +19,7 @@ public sealed record class ChangedSubscriptionResources
         get
         {
             if (!this.Properties.TryGetValue("created_credit_notes", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "created_credit_notes",
                     "Missing required argument"
                 );
@@ -27,9 +27,15 @@ public sealed record class ChangedSubscriptionResources
             return JsonSerializer.Deserialize<List<CreditNote>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("created_credit_notes");
+                ) ?? throw new ArgumentNullException("created_credit_notes");
         }
-        set { this.Properties["created_credit_notes"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["created_credit_notes"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -40,15 +46,21 @@ public sealed record class ChangedSubscriptionResources
         get
         {
             if (!this.Properties.TryGetValue("created_invoices", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "created_invoices",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<List<Invoice>>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("created_invoices");
+                ?? throw new ArgumentNullException("created_invoices");
         }
-        set { this.Properties["created_invoices"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["created_invoices"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -59,7 +71,7 @@ public sealed record class ChangedSubscriptionResources
         get
         {
             if (!this.Properties.TryGetValue("voided_credit_notes", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "voided_credit_notes",
                     "Missing required argument"
                 );
@@ -67,9 +79,15 @@ public sealed record class ChangedSubscriptionResources
             return JsonSerializer.Deserialize<List<CreditNote>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("voided_credit_notes");
+                ) ?? throw new ArgumentNullException("voided_credit_notes");
         }
-        set { this.Properties["voided_credit_notes"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["voided_credit_notes"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -80,15 +98,21 @@ public sealed record class ChangedSubscriptionResources
         get
         {
             if (!this.Properties.TryGetValue("voided_invoices", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "voided_invoices",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<List<Invoice>>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("voided_invoices");
+                ?? throw new ArgumentNullException("voided_invoices");
         }
-        set { this.Properties["voided_invoices"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["voided_invoices"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

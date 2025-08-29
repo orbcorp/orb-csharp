@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using ItemProperties = Orb.Models.Items.ItemProperties;
+using Orb.Models.Items.ItemProperties;
 
 namespace Orb.Models.Items;
 
@@ -25,7 +25,13 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required DateTime CreatedAt
@@ -37,10 +43,16 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["created_at"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["created_at"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
-    public required List<ItemProperties::ExternalConnection> ExternalConnections
+    public required List<ExternalConnection> ExternalConnections
     {
         get
         {
@@ -50,12 +62,18 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<ItemProperties::ExternalConnection>>(
+            return JsonSerializer.Deserialize<List<ExternalConnection>>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("external_connections");
         }
-        set { this.Properties["external_connections"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["external_connections"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -76,7 +94,13 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("metadata");
         }
-        set { this.Properties["metadata"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required string Name
@@ -89,7 +113,13 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArgumentNullException("name");
         }
-        set { this.Properties["name"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

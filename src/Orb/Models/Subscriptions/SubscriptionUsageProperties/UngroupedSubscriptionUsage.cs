@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using UngroupedSubscriptionUsageProperties = Orb.Models.Subscriptions.SubscriptionUsageProperties.UngroupedSubscriptionUsageProperties;
+using Orb.Models.Subscriptions.SubscriptionUsageProperties.UngroupedSubscriptionUsageProperties;
 
 namespace Orb.Models.Subscriptions.SubscriptionUsageProperties;
 
@@ -12,19 +12,23 @@ public sealed record class UngroupedSubscriptionUsage
     : ModelBase,
         IFromRaw<UngroupedSubscriptionUsage>
 {
-    public required List<UngroupedSubscriptionUsageProperties::Data> Data
+    public required List<Data> Data
     {
         get
         {
             if (!this.Properties.TryGetValue("data", out JsonElement element))
                 throw new ArgumentOutOfRangeException("data", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<UngroupedSubscriptionUsageProperties::Data>>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("data");
+            return JsonSerializer.Deserialize<List<Data>>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("data");
         }
-        set { this.Properties["data"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["data"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -52,7 +56,9 @@ public sealed record class UngroupedSubscriptionUsage
         return new(properties);
     }
 
-    public UngroupedSubscriptionUsage(List<UngroupedSubscriptionUsageProperties::Data> data)
+    [SetsRequiredMembers]
+    public UngroupedSubscriptionUsage(List<Data> data)
+        : this()
     {
         this.Data = data;
     }

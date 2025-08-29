@@ -13,7 +13,7 @@ public interface IExternalPlanIDService
     ///
     /// This endpoint allows the creation of a new plan version for an existing plan.
     /// </summary>
-    Task<PlanVersion> CreatePlanVersion(ExternalPlanIDCreatePlanVersionParams @params);
+    Task<PlanVersion> CreatePlanVersion(ExternalPlanIDCreatePlanVersionParams parameters);
 
     /// <summary>
     /// This API endpoint is in beta and its interface may change. It is recommended
@@ -22,7 +22,7 @@ public interface IExternalPlanIDService
     /// This endpoint is used to fetch a plan version. It returns the phases, prices,
     /// and adjustments present on this version of the plan.
     /// </summary>
-    Task<PlanVersion> FetchPlanVersion(ExternalPlanIDFetchPlanVersionParams @params);
+    Task<PlanVersion> FetchPlanVersion(ExternalPlanIDFetchPlanVersionParams parameters);
 
     /// <summary>
     /// This API endpoint is in beta and its interface may change. It is recommended
@@ -30,5 +30,5 @@ public interface IExternalPlanIDService
     ///
     /// This endpoint allows setting the default version of a plan.
     /// </summary>
-    Task<Plan> SetDefaultPlanVersion(ExternalPlanIDSetDefaultPlanVersionParams @params);
+    Task<Plan> SetDefaultPlanVersion(ExternalPlanIDSetDefaultPlanVersionParams parameters);
 }

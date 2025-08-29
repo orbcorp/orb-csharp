@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System = System;
 
 namespace Orb.Models;
 
@@ -19,14 +19,17 @@ public sealed record class MatrixWithAllocationConfig
         get
         {
             if (!this.Properties.TryGetValue("allocation", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "allocation",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("allocation", "Missing required argument");
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["allocation"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["allocation"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -37,15 +40,21 @@ public sealed record class MatrixWithAllocationConfig
         get
         {
             if (!this.Properties.TryGetValue("default_unit_amount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     "default_unit_amount",
                     "Missing required argument"
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("default_unit_amount");
+                ?? throw new ArgumentNullException("default_unit_amount");
         }
-        set { this.Properties["default_unit_amount"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["default_unit_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -56,15 +65,18 @@ public sealed record class MatrixWithAllocationConfig
         get
         {
             if (!this.Properties.TryGetValue("dimensions", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "dimensions",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("dimensions", "Missing required argument");
 
             return JsonSerializer.Deserialize<List<string?>>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("dimensions");
+                ?? throw new ArgumentNullException("dimensions");
         }
-        set { this.Properties["dimensions"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["dimensions"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     /// <summary>
@@ -75,17 +87,20 @@ public sealed record class MatrixWithAllocationConfig
         get
         {
             if (!this.Properties.TryGetValue("matrix_values", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "matrix_values",
-                    "Missing required argument"
-                );
+                throw new ArgumentOutOfRangeException("matrix_values", "Missing required argument");
 
             return JsonSerializer.Deserialize<List<MatrixValue>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("matrix_values");
+                ) ?? throw new ArgumentNullException("matrix_values");
         }
-        set { this.Properties["matrix_values"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["matrix_values"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()

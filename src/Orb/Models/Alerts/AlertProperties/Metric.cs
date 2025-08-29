@@ -22,7 +22,13 @@ public sealed record class Metric : ModelBase, IFromRaw<Metric>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new System::ArgumentNullException("id");
         }
-        set { this.Properties["id"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
@@ -45,7 +51,9 @@ public sealed record class Metric : ModelBase, IFromRaw<Metric>
         return new(properties);
     }
 
+    [SetsRequiredMembers]
     public Metric(string id)
+        : this()
     {
         this.ID = id;
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using AccountingSyncConfigurationProperties = Orb.Models.Customers.CustomerProperties.AccountingSyncConfigurationProperties;
+using Orb.Models.Customers.CustomerProperties.AccountingSyncConfigurationProperties;
 
 namespace Orb.Models.Customers.CustomerProperties;
 
@@ -12,7 +12,7 @@ public sealed record class AccountingSyncConfiguration
     : ModelBase,
         IFromRaw<AccountingSyncConfiguration>
 {
-    public required List<AccountingSyncConfigurationProperties::AccountingProvider> AccountingProviders
+    public required List<AccountingProvider> AccountingProviders
     {
         get
         {
@@ -22,12 +22,18 @@ public sealed record class AccountingSyncConfiguration
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<
-                    List<AccountingSyncConfigurationProperties::AccountingProvider>
-                >(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("accounting_providers");
+            return JsonSerializer.Deserialize<List<AccountingProvider>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("accounting_providers");
         }
-        set { this.Properties["accounting_providers"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["accounting_providers"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public required bool Excluded
@@ -39,7 +45,13 @@ public sealed record class AccountingSyncConfiguration
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
-        set { this.Properties["excluded"] = JsonSerializer.SerializeToElement(value); }
+        set
+        {
+            this.Properties["excluded"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public override void Validate()
