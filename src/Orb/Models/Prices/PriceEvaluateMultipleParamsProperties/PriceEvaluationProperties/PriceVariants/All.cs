@@ -1,4 +1,5 @@
 using Models = Orb.Models;
+using PriceProperties = Orb.Models.Prices.PriceEvaluateMultipleParamsProperties.PriceEvaluationProperties.PriceProperties;
 
 namespace Orb.Models.Prices.PriceEvaluateMultipleParamsProperties.PriceEvaluationProperties.PriceVariants;
 
@@ -71,51 +72,6 @@ public sealed record class NewFloatingTieredPrice(Models::NewFloatingTieredPrice
         IVariant<NewFloatingTieredPrice, Models::NewFloatingTieredPrice>
 {
     public static NewFloatingTieredPrice From(Models::NewFloatingTieredPrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class NewFloatingTieredBPSPrice(Models::NewFloatingTieredBPSPrice Value)
-    : Price,
-        IVariant<NewFloatingTieredBPSPrice, Models::NewFloatingTieredBPSPrice>
-{
-    public static NewFloatingTieredBPSPrice From(Models::NewFloatingTieredBPSPrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class NewFloatingBPSPrice(Models::NewFloatingBPSPrice Value)
-    : Price,
-        IVariant<NewFloatingBPSPrice, Models::NewFloatingBPSPrice>
-{
-    public static NewFloatingBPSPrice From(Models::NewFloatingBPSPrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class NewFloatingBulkBPSPrice(Models::NewFloatingBulkBPSPrice Value)
-    : Price,
-        IVariant<NewFloatingBulkBPSPrice, Models::NewFloatingBulkBPSPrice>
-{
-    public static NewFloatingBulkBPSPrice From(Models::NewFloatingBulkBPSPrice value)
     {
         return new(value);
     }
@@ -501,6 +457,38 @@ public sealed record class NewFloatingCumulativeGroupedBulkPrice(
     public static NewFloatingCumulativeGroupedBulkPrice From(
         Models::NewFloatingCumulativeGroupedBulkPrice value
     )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class GroupedWithMinMaxThresholds(
+    PriceProperties::GroupedWithMinMaxThresholds Value
+) : Price, IVariant<GroupedWithMinMaxThresholds, PriceProperties::GroupedWithMinMaxThresholds>
+{
+    public static GroupedWithMinMaxThresholds From(
+        PriceProperties::GroupedWithMinMaxThresholds value
+    )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class Minimum(PriceProperties::Minimum Value)
+    : Price,
+        IVariant<Minimum, PriceProperties::Minimum>
+{
+    public static Minimum From(PriceProperties::Minimum value)
     {
         return new(value);
     }

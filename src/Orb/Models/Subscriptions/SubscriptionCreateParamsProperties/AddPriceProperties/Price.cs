@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using PriceProperties = Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.PriceProperties;
 using PriceVariants = Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.PriceVariants;
 
 namespace Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties;
@@ -26,15 +27,6 @@ public abstract record class Price
 
     public static implicit operator Price(NewSubscriptionTieredPrice value) =>
         new PriceVariants::NewSubscriptionTieredPrice(value);
-
-    public static implicit operator Price(NewSubscriptionTieredBPSPrice value) =>
-        new PriceVariants::NewSubscriptionTieredBPSPrice(value);
-
-    public static implicit operator Price(NewSubscriptionBPSPrice value) =>
-        new PriceVariants::NewSubscriptionBPSPrice(value);
-
-    public static implicit operator Price(NewSubscriptionBulkBPSPrice value) =>
-        new PriceVariants::NewSubscriptionBulkBPSPrice(value);
 
     public static implicit operator Price(NewSubscriptionBulkPrice value) =>
         new PriceVariants::NewSubscriptionBulkPrice(value);
@@ -101,6 +93,12 @@ public abstract record class Price
     public static implicit operator Price(NewSubscriptionGroupedTieredPrice value) =>
         new PriceVariants::NewSubscriptionGroupedTieredPrice(value);
 
+    public static implicit operator Price(PriceProperties::GroupedWithMinMaxThresholds value) =>
+        new PriceVariants::GroupedWithMinMaxThresholds(value);
+
+    public static implicit operator Price(PriceProperties::Minimum value) =>
+        new PriceVariants::Minimum(value);
+
     public bool TryPickNewSubscriptionUnit([NotNullWhen(true)] out NewSubscriptionUnitPrice? value)
     {
         value = (this as PriceVariants::NewSubscriptionUnitPrice)?.Value;
@@ -128,28 +126,6 @@ public abstract record class Price
     )
     {
         value = (this as PriceVariants::NewSubscriptionTieredPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewSubscriptionTieredBPS(
-        [NotNullWhen(true)] out NewSubscriptionTieredBPSPrice? value
-    )
-    {
-        value = (this as PriceVariants::NewSubscriptionTieredBPSPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewSubscriptionBPS([NotNullWhen(true)] out NewSubscriptionBPSPrice? value)
-    {
-        value = (this as PriceVariants::NewSubscriptionBPSPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewSubscriptionBulkBPS(
-        [NotNullWhen(true)] out NewSubscriptionBulkBPSPrice? value
-    )
-    {
-        value = (this as PriceVariants::NewSubscriptionBulkBPSPrice)?.Value;
         return value != null;
     }
 
@@ -319,14 +295,25 @@ public abstract record class Price
         return value != null;
     }
 
+    public bool TryPickGroupedWithMinMaxThresholds(
+        [NotNullWhen(true)] out PriceProperties::GroupedWithMinMaxThresholds? value
+    )
+    {
+        value = (this as PriceVariants::GroupedWithMinMaxThresholds)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickMinimum([NotNullWhen(true)] out PriceProperties::Minimum? value)
+    {
+        value = (this as PriceVariants::Minimum)?.Value;
+        return value != null;
+    }
+
     public void Switch(
         Action<PriceVariants::NewSubscriptionUnitPrice> newSubscriptionUnit,
         Action<PriceVariants::NewSubscriptionPackagePrice> newSubscriptionPackage,
         Action<PriceVariants::NewSubscriptionMatrixPrice> newSubscriptionMatrix,
         Action<PriceVariants::NewSubscriptionTieredPrice> newSubscriptionTiered,
-        Action<PriceVariants::NewSubscriptionTieredBPSPrice> newSubscriptionTieredBPS,
-        Action<PriceVariants::NewSubscriptionBPSPrice> newSubscriptionBPS,
-        Action<PriceVariants::NewSubscriptionBulkBPSPrice> newSubscriptionBulkBPS,
         Action<PriceVariants::NewSubscriptionBulkPrice> newSubscriptionBulk,
         Action<PriceVariants::NewSubscriptionThresholdTotalAmountPrice> newSubscriptionThresholdTotalAmount,
         Action<PriceVariants::NewSubscriptionTieredPackagePrice> newSubscriptionTieredPackage,
@@ -347,7 +334,9 @@ public abstract record class Price
         Action<PriceVariants::NewSubscriptionGroupedTieredPackagePrice> newSubscriptionGroupedTieredPackage,
         Action<PriceVariants::NewSubscriptionMatrixWithAllocationPrice> newSubscriptionMatrixWithAllocation,
         Action<PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice> newSubscriptionTieredPackageWithMinimum,
-        Action<PriceVariants::NewSubscriptionGroupedTieredPrice> newSubscriptionGroupedTiered
+        Action<PriceVariants::NewSubscriptionGroupedTieredPrice> newSubscriptionGroupedTiered,
+        Action<PriceVariants::GroupedWithMinMaxThresholds> groupedWithMinMaxThresholds,
+        Action<PriceVariants::Minimum> minimum
     )
     {
         switch (this)
@@ -363,15 +352,6 @@ public abstract record class Price
                 break;
             case PriceVariants::NewSubscriptionTieredPrice inner:
                 newSubscriptionTiered(inner);
-                break;
-            case PriceVariants::NewSubscriptionTieredBPSPrice inner:
-                newSubscriptionTieredBPS(inner);
-                break;
-            case PriceVariants::NewSubscriptionBPSPrice inner:
-                newSubscriptionBPS(inner);
-                break;
-            case PriceVariants::NewSubscriptionBulkBPSPrice inner:
-                newSubscriptionBulkBPS(inner);
                 break;
             case PriceVariants::NewSubscriptionBulkPrice inner:
                 newSubscriptionBulk(inner);
@@ -436,6 +416,12 @@ public abstract record class Price
             case PriceVariants::NewSubscriptionGroupedTieredPrice inner:
                 newSubscriptionGroupedTiered(inner);
                 break;
+            case PriceVariants::GroupedWithMinMaxThresholds inner:
+                groupedWithMinMaxThresholds(inner);
+                break;
+            case PriceVariants::Minimum inner:
+                minimum(inner);
+                break;
             default:
                 throw new InvalidOperationException();
         }
@@ -446,9 +432,6 @@ public abstract record class Price
         Func<PriceVariants::NewSubscriptionPackagePrice, T> newSubscriptionPackage,
         Func<PriceVariants::NewSubscriptionMatrixPrice, T> newSubscriptionMatrix,
         Func<PriceVariants::NewSubscriptionTieredPrice, T> newSubscriptionTiered,
-        Func<PriceVariants::NewSubscriptionTieredBPSPrice, T> newSubscriptionTieredBPS,
-        Func<PriceVariants::NewSubscriptionBPSPrice, T> newSubscriptionBPS,
-        Func<PriceVariants::NewSubscriptionBulkBPSPrice, T> newSubscriptionBulkBPS,
         Func<PriceVariants::NewSubscriptionBulkPrice, T> newSubscriptionBulk,
         Func<
             PriceVariants::NewSubscriptionThresholdTotalAmountPrice,
@@ -520,7 +503,9 @@ public abstract record class Price
             PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice,
             T
         > newSubscriptionTieredPackageWithMinimum,
-        Func<PriceVariants::NewSubscriptionGroupedTieredPrice, T> newSubscriptionGroupedTiered
+        Func<PriceVariants::NewSubscriptionGroupedTieredPrice, T> newSubscriptionGroupedTiered,
+        Func<PriceVariants::GroupedWithMinMaxThresholds, T> groupedWithMinMaxThresholds,
+        Func<PriceVariants::Minimum, T> minimum
     )
     {
         return this switch
@@ -529,9 +514,6 @@ public abstract record class Price
             PriceVariants::NewSubscriptionPackagePrice inner => newSubscriptionPackage(inner),
             PriceVariants::NewSubscriptionMatrixPrice inner => newSubscriptionMatrix(inner),
             PriceVariants::NewSubscriptionTieredPrice inner => newSubscriptionTiered(inner),
-            PriceVariants::NewSubscriptionTieredBPSPrice inner => newSubscriptionTieredBPS(inner),
-            PriceVariants::NewSubscriptionBPSPrice inner => newSubscriptionBPS(inner),
-            PriceVariants::NewSubscriptionBulkBPSPrice inner => newSubscriptionBulkBPS(inner),
             PriceVariants::NewSubscriptionBulkPrice inner => newSubscriptionBulk(inner),
             PriceVariants::NewSubscriptionThresholdTotalAmountPrice inner =>
                 newSubscriptionThresholdTotalAmount(inner),
@@ -575,6 +557,8 @@ public abstract record class Price
             PriceVariants::NewSubscriptionGroupedTieredPrice inner => newSubscriptionGroupedTiered(
                 inner
             ),
+            PriceVariants::GroupedWithMinMaxThresholds inner => groupedWithMinMaxThresholds(inner),
+            PriceVariants::Minimum inner => minimum(inner),
             _ => throw new InvalidOperationException(),
         };
     }
@@ -682,72 +666,6 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         return new PriceVariants::NewSubscriptionTieredPrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "tiered_bps":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<NewSubscriptionTieredBPSPrice>(
-                        json,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewSubscriptionTieredBPSPrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "bps":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<NewSubscriptionBPSPrice>(
-                        json,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewSubscriptionBPSPrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "bulk_bps":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<NewSubscriptionBulkBPSPrice>(
-                        json,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewSubscriptionBulkBPSPrice(deserialized);
                     }
                 }
                 catch (JsonException e)
@@ -1273,6 +1191,51 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
+            case "grouped_with_min_max_thresholds":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::GroupedWithMinMaxThresholds>(
+                            json,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::GroupedWithMinMaxThresholds(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "minimum":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<PriceProperties::Minimum>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::Minimum(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
             default:
             {
                 throw new Exception();
@@ -1292,11 +1255,6 @@ sealed class PriceConverter : JsonConverter<Price?>
                 newSubscriptionMatrix,
             PriceVariants::NewSubscriptionTieredPrice(var newSubscriptionTiered) =>
                 newSubscriptionTiered,
-            PriceVariants::NewSubscriptionTieredBPSPrice(var newSubscriptionTieredBPS) =>
-                newSubscriptionTieredBPS,
-            PriceVariants::NewSubscriptionBPSPrice(var newSubscriptionBPS) => newSubscriptionBPS,
-            PriceVariants::NewSubscriptionBulkBPSPrice(var newSubscriptionBulkBPS) =>
-                newSubscriptionBulkBPS,
             PriceVariants::NewSubscriptionBulkPrice(var newSubscriptionBulk) => newSubscriptionBulk,
             PriceVariants::NewSubscriptionThresholdTotalAmountPrice(
                 var newSubscriptionThresholdTotalAmount
@@ -1356,6 +1314,9 @@ sealed class PriceConverter : JsonConverter<Price?>
             ) => newSubscriptionTieredPackageWithMinimum,
             PriceVariants::NewSubscriptionGroupedTieredPrice(var newSubscriptionGroupedTiered) =>
                 newSubscriptionGroupedTiered,
+            PriceVariants::GroupedWithMinMaxThresholds(var groupedWithMinMaxThresholds) =>
+                groupedWithMinMaxThresholds,
+            PriceVariants::Minimum(var minimum) => minimum,
             _ => throw new ArgumentOutOfRangeException(nameof(value)),
         };
         JsonSerializer.Serialize(writer, variant, options);

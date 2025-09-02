@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Models = Orb.Models;
+using PriceProperties = Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties;
 using PriceVariants = Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceVariants;
 
 namespace Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties;
@@ -27,15 +28,6 @@ public abstract record class Price
 
     public static implicit operator Price(Models::NewPlanTieredPrice value) =>
         new PriceVariants::NewPlanTieredPrice(value);
-
-    public static implicit operator Price(Models::NewPlanTieredBPSPrice value) =>
-        new PriceVariants::NewPlanTieredBPSPrice(value);
-
-    public static implicit operator Price(Models::NewPlanBPSPrice value) =>
-        new PriceVariants::NewPlanBPSPrice(value);
-
-    public static implicit operator Price(Models::NewPlanBulkBPSPrice value) =>
-        new PriceVariants::NewPlanBulkBPSPrice(value);
 
     public static implicit operator Price(Models::NewPlanBulkPrice value) =>
         new PriceVariants::NewPlanBulkPrice(value);
@@ -70,6 +62,9 @@ public abstract record class Price
     public static implicit operator Price(Models::NewPlanGroupedWithMeteredMinimumPrice value) =>
         new PriceVariants::NewPlanGroupedWithMeteredMinimumPrice(value);
 
+    public static implicit operator Price(PriceProperties::GroupedWithMinMaxThresholds value) =>
+        new PriceVariants::GroupedWithMinMaxThresholds(value);
+
     public static implicit operator Price(Models::NewPlanMatrixWithDisplayNamePrice value) =>
         new PriceVariants::NewPlanMatrixWithDisplayNamePrice(value);
 
@@ -102,6 +97,9 @@ public abstract record class Price
     public static implicit operator Price(Models::NewPlanGroupedTieredPrice value) =>
         new PriceVariants::NewPlanGroupedTieredPrice(value);
 
+    public static implicit operator Price(PriceProperties::Minimum value) =>
+        new PriceVariants::Minimum(value);
+
     public bool TryPickNewPlanUnit([NotNullWhen(true)] out Models::NewPlanUnitPrice? value)
     {
         value = (this as PriceVariants::NewPlanUnitPrice)?.Value;
@@ -123,26 +121,6 @@ public abstract record class Price
     public bool TryPickNewPlanTiered([NotNullWhen(true)] out Models::NewPlanTieredPrice? value)
     {
         value = (this as PriceVariants::NewPlanTieredPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewPlanTieredBPS(
-        [NotNullWhen(true)] out Models::NewPlanTieredBPSPrice? value
-    )
-    {
-        value = (this as PriceVariants::NewPlanTieredBPSPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewPlanBPS([NotNullWhen(true)] out Models::NewPlanBPSPrice? value)
-    {
-        value = (this as PriceVariants::NewPlanBPSPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewPlanBulkBPS([NotNullWhen(true)] out Models::NewPlanBulkBPSPrice? value)
-    {
-        value = (this as PriceVariants::NewPlanBulkBPSPrice)?.Value;
         return value != null;
     }
 
@@ -232,6 +210,14 @@ public abstract record class Price
         return value != null;
     }
 
+    public bool TryPickGroupedWithMinMaxThresholds(
+        [NotNullWhen(true)] out PriceProperties::GroupedWithMinMaxThresholds? value
+    )
+    {
+        value = (this as PriceVariants::GroupedWithMinMaxThresholds)?.Value;
+        return value != null;
+    }
+
     public bool TryPickNewPlanMatrixWithDisplayName(
         [NotNullWhen(true)] out Models::NewPlanMatrixWithDisplayNamePrice? value
     )
@@ -312,14 +298,17 @@ public abstract record class Price
         return value != null;
     }
 
+    public bool TryPickMinimum([NotNullWhen(true)] out PriceProperties::Minimum? value)
+    {
+        value = (this as PriceVariants::Minimum)?.Value;
+        return value != null;
+    }
+
     public void Switch(
         Action<PriceVariants::NewPlanUnitPrice> newPlanUnit,
         Action<PriceVariants::NewPlanPackagePrice> newPlanPackage,
         Action<PriceVariants::NewPlanMatrixPrice> newPlanMatrix,
         Action<PriceVariants::NewPlanTieredPrice> newPlanTiered,
-        Action<PriceVariants::NewPlanTieredBPSPrice> newPlanTieredBPS,
-        Action<PriceVariants::NewPlanBPSPrice> newPlanBPS,
-        Action<PriceVariants::NewPlanBulkBPSPrice> newPlanBulkBPS,
         Action<PriceVariants::NewPlanBulkPrice> newPlanBulk,
         Action<PriceVariants::NewPlanThresholdTotalAmountPrice> newPlanThresholdTotalAmount,
         Action<PriceVariants::NewPlanTieredPackagePrice> newPlanTieredPackage,
@@ -331,6 +320,7 @@ public abstract record class Price
         Action<PriceVariants::NewPlanGroupedAllocationPrice> newPlanGroupedAllocation,
         Action<PriceVariants::NewPlanGroupedWithProratedMinimumPrice> newPlanGroupedWithProratedMinimum,
         Action<PriceVariants::NewPlanGroupedWithMeteredMinimumPrice> newPlanGroupedWithMeteredMinimum,
+        Action<PriceVariants::GroupedWithMinMaxThresholds> groupedWithMinMaxThresholds,
         Action<PriceVariants::NewPlanMatrixWithDisplayNamePrice> newPlanMatrixWithDisplayName,
         Action<PriceVariants::NewPlanBulkWithProrationPrice> newPlanBulkWithProration,
         Action<PriceVariants::NewPlanGroupedTieredPackagePrice> newPlanGroupedTieredPackage,
@@ -340,7 +330,8 @@ public abstract record class Price
         Action<PriceVariants::NewPlanCumulativeGroupedBulkPrice> newPlanCumulativeGroupedBulk,
         Action<PriceVariants::NewPlanTieredPackageWithMinimumPrice> newPlanTieredPackageWithMinimum,
         Action<PriceVariants::NewPlanMatrixWithAllocationPrice> newPlanMatrixWithAllocation,
-        Action<PriceVariants::NewPlanGroupedTieredPrice> newPlanGroupedTiered
+        Action<PriceVariants::NewPlanGroupedTieredPrice> newPlanGroupedTiered,
+        Action<PriceVariants::Minimum> minimum
     )
     {
         switch (this)
@@ -356,15 +347,6 @@ public abstract record class Price
                 break;
             case PriceVariants::NewPlanTieredPrice inner:
                 newPlanTiered(inner);
-                break;
-            case PriceVariants::NewPlanTieredBPSPrice inner:
-                newPlanTieredBPS(inner);
-                break;
-            case PriceVariants::NewPlanBPSPrice inner:
-                newPlanBPS(inner);
-                break;
-            case PriceVariants::NewPlanBulkBPSPrice inner:
-                newPlanBulkBPS(inner);
                 break;
             case PriceVariants::NewPlanBulkPrice inner:
                 newPlanBulk(inner);
@@ -399,6 +381,9 @@ public abstract record class Price
             case PriceVariants::NewPlanGroupedWithMeteredMinimumPrice inner:
                 newPlanGroupedWithMeteredMinimum(inner);
                 break;
+            case PriceVariants::GroupedWithMinMaxThresholds inner:
+                groupedWithMinMaxThresholds(inner);
+                break;
             case PriceVariants::NewPlanMatrixWithDisplayNamePrice inner:
                 newPlanMatrixWithDisplayName(inner);
                 break;
@@ -429,6 +414,9 @@ public abstract record class Price
             case PriceVariants::NewPlanGroupedTieredPrice inner:
                 newPlanGroupedTiered(inner);
                 break;
+            case PriceVariants::Minimum inner:
+                minimum(inner);
+                break;
             default:
                 throw new InvalidOperationException();
         }
@@ -439,9 +427,6 @@ public abstract record class Price
         Func<PriceVariants::NewPlanPackagePrice, T> newPlanPackage,
         Func<PriceVariants::NewPlanMatrixPrice, T> newPlanMatrix,
         Func<PriceVariants::NewPlanTieredPrice, T> newPlanTiered,
-        Func<PriceVariants::NewPlanTieredBPSPrice, T> newPlanTieredBPS,
-        Func<PriceVariants::NewPlanBPSPrice, T> newPlanBPS,
-        Func<PriceVariants::NewPlanBulkBPSPrice, T> newPlanBulkBPS,
         Func<PriceVariants::NewPlanBulkPrice, T> newPlanBulk,
         Func<PriceVariants::NewPlanThresholdTotalAmountPrice, T> newPlanThresholdTotalAmount,
         Func<PriceVariants::NewPlanTieredPackagePrice, T> newPlanTieredPackage,
@@ -459,6 +444,7 @@ public abstract record class Price
             PriceVariants::NewPlanGroupedWithMeteredMinimumPrice,
             T
         > newPlanGroupedWithMeteredMinimum,
+        Func<PriceVariants::GroupedWithMinMaxThresholds, T> groupedWithMinMaxThresholds,
         Func<PriceVariants::NewPlanMatrixWithDisplayNamePrice, T> newPlanMatrixWithDisplayName,
         Func<PriceVariants::NewPlanBulkWithProrationPrice, T> newPlanBulkWithProration,
         Func<PriceVariants::NewPlanGroupedTieredPackagePrice, T> newPlanGroupedTieredPackage,
@@ -477,7 +463,8 @@ public abstract record class Price
             T
         > newPlanTieredPackageWithMinimum,
         Func<PriceVariants::NewPlanMatrixWithAllocationPrice, T> newPlanMatrixWithAllocation,
-        Func<PriceVariants::NewPlanGroupedTieredPrice, T> newPlanGroupedTiered
+        Func<PriceVariants::NewPlanGroupedTieredPrice, T> newPlanGroupedTiered,
+        Func<PriceVariants::Minimum, T> minimum
     )
     {
         return this switch
@@ -486,9 +473,6 @@ public abstract record class Price
             PriceVariants::NewPlanPackagePrice inner => newPlanPackage(inner),
             PriceVariants::NewPlanMatrixPrice inner => newPlanMatrix(inner),
             PriceVariants::NewPlanTieredPrice inner => newPlanTiered(inner),
-            PriceVariants::NewPlanTieredBPSPrice inner => newPlanTieredBPS(inner),
-            PriceVariants::NewPlanBPSPrice inner => newPlanBPS(inner),
-            PriceVariants::NewPlanBulkBPSPrice inner => newPlanBulkBPS(inner),
             PriceVariants::NewPlanBulkPrice inner => newPlanBulk(inner),
             PriceVariants::NewPlanThresholdTotalAmountPrice inner => newPlanThresholdTotalAmount(
                 inner
@@ -506,6 +490,7 @@ public abstract record class Price
                 newPlanGroupedWithProratedMinimum(inner),
             PriceVariants::NewPlanGroupedWithMeteredMinimumPrice inner =>
                 newPlanGroupedWithMeteredMinimum(inner),
+            PriceVariants::GroupedWithMinMaxThresholds inner => groupedWithMinMaxThresholds(inner),
             PriceVariants::NewPlanMatrixWithDisplayNamePrice inner => newPlanMatrixWithDisplayName(
                 inner
             ),
@@ -529,6 +514,7 @@ public abstract record class Price
                 inner
             ),
             PriceVariants::NewPlanGroupedTieredPrice inner => newPlanGroupedTiered(inner),
+            PriceVariants::Minimum inner => minimum(inner),
             _ => throw new InvalidOperationException(),
         };
     }
@@ -636,72 +622,6 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         return new PriceVariants::NewPlanTieredPrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "tiered_bps":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<Models::NewPlanTieredBPSPrice>(
-                        json,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewPlanTieredBPSPrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "bps":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<Models::NewPlanBPSPrice>(
-                        json,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewPlanBPSPrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "bulk_bps":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<Models::NewPlanBulkBPSPrice>(
-                        json,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewPlanBulkBPSPrice(deserialized);
                     }
                 }
                 catch (JsonException e)
@@ -967,6 +887,29 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
+            case "grouped_with_min_max_thresholds":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::GroupedWithMinMaxThresholds>(
+                            json,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::GroupedWithMinMaxThresholds(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
             case "matrix_with_display_name":
             {
                 List<JsonException> exceptions = [];
@@ -1203,6 +1146,28 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
+            case "minimum":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<PriceProperties::Minimum>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::Minimum(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
             default:
             {
                 throw new Exception();
@@ -1219,9 +1184,6 @@ sealed class PriceConverter : JsonConverter<Price?>
             PriceVariants::NewPlanPackagePrice(var newPlanPackage) => newPlanPackage,
             PriceVariants::NewPlanMatrixPrice(var newPlanMatrix) => newPlanMatrix,
             PriceVariants::NewPlanTieredPrice(var newPlanTiered) => newPlanTiered,
-            PriceVariants::NewPlanTieredBPSPrice(var newPlanTieredBPS) => newPlanTieredBPS,
-            PriceVariants::NewPlanBPSPrice(var newPlanBPS) => newPlanBPS,
-            PriceVariants::NewPlanBulkBPSPrice(var newPlanBulkBPS) => newPlanBulkBPS,
             PriceVariants::NewPlanBulkPrice(var newPlanBulk) => newPlanBulk,
             PriceVariants::NewPlanThresholdTotalAmountPrice(var newPlanThresholdTotalAmount) =>
                 newPlanThresholdTotalAmount,
@@ -1245,6 +1207,8 @@ sealed class PriceConverter : JsonConverter<Price?>
             PriceVariants::NewPlanGroupedWithMeteredMinimumPrice(
                 var newPlanGroupedWithMeteredMinimum
             ) => newPlanGroupedWithMeteredMinimum,
+            PriceVariants::GroupedWithMinMaxThresholds(var groupedWithMinMaxThresholds) =>
+                groupedWithMinMaxThresholds,
             PriceVariants::NewPlanMatrixWithDisplayNamePrice(var newPlanMatrixWithDisplayName) =>
                 newPlanMatrixWithDisplayName,
             PriceVariants::NewPlanBulkWithProrationPrice(var newPlanBulkWithProration) =>
@@ -1268,6 +1232,7 @@ sealed class PriceConverter : JsonConverter<Price?>
                 newPlanMatrixWithAllocation,
             PriceVariants::NewPlanGroupedTieredPrice(var newPlanGroupedTiered) =>
                 newPlanGroupedTiered,
+            PriceVariants::Minimum(var minimum) => minimum,
             _ => throw new ArgumentOutOfRangeException(nameof(value)),
         };
         JsonSerializer.Serialize(writer, variant, options);

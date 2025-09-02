@@ -90,6 +90,29 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
     }
 
     /// <summary>
+    /// Whether invoices for this customer should be automatically issued. If true,
+    /// invoices will be automatically issued. If false, invoices will require manual
+    /// approval. If null, inherits the account-level setting.
+    /// </summary>
+    public required bool? AutoIssuance
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("auto_issuance", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["auto_issuance"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
     /// The customer's current balance in their currency.
     /// </summary>
     public required string Balance
@@ -607,6 +630,7 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
             _ = item;
         }
         _ = this.AutoCollection;
+        _ = this.AutoIssuance;
         _ = this.Balance;
         this.BillingAddress?.Validate();
         _ = this.CreatedAt;

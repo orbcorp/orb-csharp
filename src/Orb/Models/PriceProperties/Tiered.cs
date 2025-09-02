@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Models.PriceProperties.TieredProperties;
+using Models = Orb.Models;
 
 namespace Orb.Models.PriceProperties;
 
@@ -29,14 +30,14 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         }
     }
 
-    public required BillableMetricTiny? BillableMetric
+    public required Models::BillableMetricTiny? BillableMetric
     {
         get
         {
             if (!this.Properties.TryGetValue("billable_metric", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<BillableMetricTiny?>(
+            return JsonSerializer.Deserialize<Models::BillableMetricTiny?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -50,7 +51,7 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         }
     }
 
-    public required BillingCycleConfiguration BillingCycleConfiguration
+    public required Models::BillingCycleConfiguration BillingCycleConfiguration
     {
         get
         {
@@ -62,7 +63,7 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<BillingCycleConfiguration>(
+            return JsonSerializer.Deserialize<Models::BillingCycleConfiguration>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("billing_cycle_configuration");
@@ -91,6 +92,27 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         set
         {
             this.Properties["cadence"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required List<Models::TransformPriceFilter>? CompositePriceFilters
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("composite_price_filters", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<List<Models::TransformPriceFilter>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["composite_price_filters"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -154,14 +176,17 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         }
     }
 
-    public required Allocation? CreditAllocation
+    public required Models::Allocation? CreditAllocation
     {
         get
         {
             if (!this.Properties.TryGetValue("credit_allocation", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Allocation?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<Models::Allocation?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -191,14 +216,17 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         }
     }
 
-    public required Discount? Discount
+    public required Models::Discount? Discount
     {
         get
         {
             if (!this.Properties.TryGetValue("discount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Discount?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<Models::Discount?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -245,7 +273,7 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         }
     }
 
-    public required BillingCycleConfiguration? InvoicingCycleConfiguration
+    public required Models::BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
         {
@@ -257,7 +285,7 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
             )
                 return null;
 
-            return JsonSerializer.Deserialize<BillingCycleConfiguration?>(
+            return JsonSerializer.Deserialize<Models::BillingCycleConfiguration?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -271,15 +299,17 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         }
     }
 
-    public required ItemSlim Item
+    public required Models::ItemSlim Item
     {
         get
         {
             if (!this.Properties.TryGetValue("item", out JsonElement element))
                 throw new ArgumentOutOfRangeException("item", "Missing required argument");
 
-            return JsonSerializer.Deserialize<ItemSlim>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("item");
+            return JsonSerializer.Deserialize<Models::ItemSlim>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("item");
         }
         set
         {
@@ -290,14 +320,17 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         }
     }
 
-    public required Maximum? Maximum
+    public required Models::Maximum? Maximum
     {
         get
         {
             if (!this.Properties.TryGetValue("maximum", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Maximum?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<Models::Maximum?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -353,14 +386,17 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         }
     }
 
-    public required Minimum? Minimum
+    public required Models::Minimum? Minimum
     {
         get
         {
             if (!this.Properties.TryGetValue("minimum", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Minimum?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<Models::Minimum?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -487,15 +523,17 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         }
     }
 
-    public required TieredConfig TieredConfig
+    public required Models::TieredConfig TieredConfig
     {
         get
         {
             if (!this.Properties.TryGetValue("tiered_config", out JsonElement element))
                 throw new ArgumentOutOfRangeException("tiered_config", "Missing required argument");
 
-            return JsonSerializer.Deserialize<TieredConfig>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("tiered_config");
+            return JsonSerializer.Deserialize<Models::TieredConfig>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("tiered_config");
         }
         set
         {
@@ -506,7 +544,7 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         }
     }
 
-    public DimensionalPriceConfiguration? DimensionalPriceConfiguration
+    public Models::DimensionalPriceConfiguration? DimensionalPriceConfiguration
     {
         get
         {
@@ -518,7 +556,7 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
             )
                 return null;
 
-            return JsonSerializer.Deserialize<DimensionalPriceConfiguration?>(
+            return JsonSerializer.Deserialize<Models::DimensionalPriceConfiguration?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -538,6 +576,10 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         this.BillableMetric?.Validate();
         this.BillingCycleConfiguration.Validate();
         this.Cadence.Validate();
+        foreach (var item in this.CompositePriceFilters ?? [])
+        {
+            item.Validate();
+        }
         _ = this.ConversionRate;
         this.ConversionRateConfig?.Validate();
         _ = this.CreatedAt;

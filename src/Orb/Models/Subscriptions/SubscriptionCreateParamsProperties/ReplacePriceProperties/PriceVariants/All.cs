@@ -1,3 +1,4 @@
+using PriceProperties = Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplacePriceProperties.PriceProperties;
 using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplacePriceProperties.PriceVariants;
@@ -52,53 +53,6 @@ public sealed record class NewSubscriptionTieredPrice(
 ) : Price, IVariant<NewSubscriptionTieredPrice, Subscriptions::NewSubscriptionTieredPrice>
 {
     public static NewSubscriptionTieredPrice From(Subscriptions::NewSubscriptionTieredPrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class NewSubscriptionTieredBPSPrice(
-    Subscriptions::NewSubscriptionTieredBPSPrice Value
-) : Price, IVariant<NewSubscriptionTieredBPSPrice, Subscriptions::NewSubscriptionTieredBPSPrice>
-{
-    public static NewSubscriptionTieredBPSPrice From(
-        Subscriptions::NewSubscriptionTieredBPSPrice value
-    )
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class NewSubscriptionBPSPrice(Subscriptions::NewSubscriptionBPSPrice Value)
-    : Price,
-        IVariant<NewSubscriptionBPSPrice, Subscriptions::NewSubscriptionBPSPrice>
-{
-    public static NewSubscriptionBPSPrice From(Subscriptions::NewSubscriptionBPSPrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class NewSubscriptionBulkBPSPrice(
-    Subscriptions::NewSubscriptionBulkBPSPrice Value
-) : Price, IVariant<NewSubscriptionBulkBPSPrice, Subscriptions::NewSubscriptionBulkBPSPrice>
-{
-    public static NewSubscriptionBulkBPSPrice From(Subscriptions::NewSubscriptionBulkBPSPrice value)
     {
         return new(value);
     }
@@ -554,6 +508,38 @@ public sealed record class NewSubscriptionGroupedTieredPrice(
     public static NewSubscriptionGroupedTieredPrice From(
         Subscriptions::NewSubscriptionGroupedTieredPrice value
     )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class GroupedWithMinMaxThresholds(
+    PriceProperties::GroupedWithMinMaxThresholds Value
+) : Price, IVariant<GroupedWithMinMaxThresholds, PriceProperties::GroupedWithMinMaxThresholds>
+{
+    public static GroupedWithMinMaxThresholds From(
+        PriceProperties::GroupedWithMinMaxThresholds value
+    )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class Minimum(PriceProperties::Minimum Value)
+    : Price,
+        IVariant<Minimum, PriceProperties::Minimum>
+{
+    public static Minimum From(PriceProperties::Minimum value)
     {
         return new(value);
     }

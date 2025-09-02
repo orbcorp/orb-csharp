@@ -16,6 +16,7 @@ public enum Action
     CreditNoteVoided,
     OverpaymentRefund,
     ExternalPayment,
+    SmallInvoiceCarryover,
 }
 
 sealed class ActionConverter : JsonConverter<Action>
@@ -37,6 +38,7 @@ sealed class ActionConverter : JsonConverter<Action>
             "credit_note_voided" => Action.CreditNoteVoided,
             "overpayment_refund" => Action.OverpaymentRefund,
             "external_payment" => Action.ExternalPayment,
+            "small_invoice_carryover" => Action.SmallInvoiceCarryover,
             _ => (Action)(-1),
         };
     }
@@ -56,6 +58,7 @@ sealed class ActionConverter : JsonConverter<Action>
                 Action.CreditNoteVoided => "credit_note_voided",
                 Action.OverpaymentRefund => "overpayment_refund",
                 Action.ExternalPayment => "external_payment",
+                Action.SmallInvoiceCarryover => "small_invoice_carryover",
                 _ => throw new System::ArgumentOutOfRangeException(nameof(value)),
             },
             options

@@ -112,7 +112,7 @@ public abstract record class Adjustment
     public abstract void Validate();
 }
 
-sealed class AdjustmentConverter : JsonConverter<Adjustment>
+sealed class AdjustmentConverter : JsonConverter<Adjustment?>
 {
     public override Adjustment? Read(
         ref Utf8JsonReader reader,
@@ -240,12 +240,13 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
 
     public override void Write(
         Utf8JsonWriter writer,
-        Adjustment value,
+        Adjustment? value,
         JsonSerializerOptions options
     )
     {
-        object variant = value switch
+        object? variant = value switch
         {
+            null => null,
             AdjustmentVariants::NewPercentageDiscount(var newPercentageDiscount) =>
                 newPercentageDiscount,
             AdjustmentVariants::NewUsageDiscount(var newUsageDiscount) => newUsageDiscount,

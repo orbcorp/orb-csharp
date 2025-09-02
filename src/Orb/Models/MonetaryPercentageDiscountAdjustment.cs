@@ -127,7 +127,7 @@ public sealed record class MonetaryPercentageDiscountAdjustment
     }
 
     /// <summary>
-    /// True for adjustments that apply to an entire invocice, false for adjustments
+    /// True for adjustments that apply to an entire invoice, false for adjustments
     /// that apply to only one price.
     /// </summary>
     public required bool IsInvoiceLevel

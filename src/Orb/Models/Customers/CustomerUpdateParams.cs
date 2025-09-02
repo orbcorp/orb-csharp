@@ -88,6 +88,30 @@ public sealed record class CustomerUpdateParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Used to determine if invoices for this customer will be automatically issued.
+    /// If true, invoices will be automatically issued. If false, invoices will require
+    /// manual approval.If `null` is specified, the customer's auto issuance setting
+    /// will be inherited from the account-level setting.
+    /// </summary>
+    public bool? AutoIssuance
+    {
+        get
+        {
+            if (!this.BodyProperties.TryGetValue("auto_issuance", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["auto_issuance"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     public AddressInput? BillingAddress
     {
         get

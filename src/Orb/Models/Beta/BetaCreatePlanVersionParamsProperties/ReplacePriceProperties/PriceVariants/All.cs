@@ -1,4 +1,5 @@
 using Models = Orb.Models;
+using PriceProperties = Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties;
 
 namespace Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceVariants;
 
@@ -52,51 +53,6 @@ public sealed record class NewPlanTieredPrice(Models::NewPlanTieredPrice Value)
         IVariant<NewPlanTieredPrice, Models::NewPlanTieredPrice>
 {
     public static NewPlanTieredPrice From(Models::NewPlanTieredPrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class NewPlanTieredBPSPrice(Models::NewPlanTieredBPSPrice Value)
-    : Price,
-        IVariant<NewPlanTieredBPSPrice, Models::NewPlanTieredBPSPrice>
-{
-    public static NewPlanTieredBPSPrice From(Models::NewPlanTieredBPSPrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class NewPlanBPSPrice(Models::NewPlanBPSPrice Value)
-    : Price,
-        IVariant<NewPlanBPSPrice, Models::NewPlanBPSPrice>
-{
-    public static NewPlanBPSPrice From(Models::NewPlanBPSPrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class NewPlanBulkBPSPrice(Models::NewPlanBulkBPSPrice Value)
-    : Price,
-        IVariant<NewPlanBulkBPSPrice, Models::NewPlanBulkBPSPrice>
-{
-    public static NewPlanBulkBPSPrice From(Models::NewPlanBulkBPSPrice value)
     {
         return new(value);
     }
@@ -290,6 +246,23 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice(
     }
 }
 
+public sealed record class GroupedWithMinMaxThresholds(
+    PriceProperties::GroupedWithMinMaxThresholds Value
+) : Price, IVariant<GroupedWithMinMaxThresholds, PriceProperties::GroupedWithMinMaxThresholds>
+{
+    public static GroupedWithMinMaxThresholds From(
+        PriceProperties::GroupedWithMinMaxThresholds value
+    )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
 public sealed record class NewPlanMatrixWithDisplayNamePrice(
     Models::NewPlanMatrixWithDisplayNamePrice Value
 ) : Price, IVariant<NewPlanMatrixWithDisplayNamePrice, Models::NewPlanMatrixWithDisplayNamePrice>
@@ -458,6 +431,21 @@ public sealed record class NewPlanGroupedTieredPrice(Models::NewPlanGroupedTiere
         IVariant<NewPlanGroupedTieredPrice, Models::NewPlanGroupedTieredPrice>
 {
     public static NewPlanGroupedTieredPrice From(Models::NewPlanGroupedTieredPrice value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class Minimum(PriceProperties::Minimum Value)
+    : Price,
+        IVariant<Minimum, PriceProperties::Minimum>
+{
+    public static Minimum From(PriceProperties::Minimum value)
     {
         return new(value);
     }
