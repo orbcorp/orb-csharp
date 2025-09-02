@@ -64,7 +64,7 @@ public abstract record class ConversionRateConfig
     public abstract void Validate();
 }
 
-sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig?>
+sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig>
 {
     public override ConversionRateConfig? Read(
         ref Utf8JsonReader reader,
@@ -142,13 +142,12 @@ sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig?
 
     public override void Write(
         Utf8JsonWriter writer,
-        ConversionRateConfig? value,
+        ConversionRateConfig value,
         JsonSerializerOptions options
     )
     {
-        object? variant = value switch
+        object variant = value switch
         {
-            null => null,
             ConversionRateConfigVariants::UnitConversionRateConfig(var unit) => unit,
             ConversionRateConfigVariants::TieredConversionRateConfig(var tiered) => tiered,
             _ => throw new ArgumentOutOfRangeException(nameof(value)),
