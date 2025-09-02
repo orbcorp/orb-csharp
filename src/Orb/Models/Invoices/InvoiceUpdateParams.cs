@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Orb.Models.Invoices.InvoiceUpdateParamsProperties;
 
 namespace Orb.Models.Invoices;
 
@@ -19,6 +20,28 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
     public required string InvoiceID;
+
+    /// <summary>
+    /// An optional custom due date for the invoice. If not set, the due date will
+    /// be calculated based on the `net_terms` value.
+    /// </summary>
+    public DueDate? DueDate
+    {
+        get
+        {
+            if (!this.BodyProperties.TryGetValue("due_date", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<DueDate?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["due_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
 
     /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
@@ -40,6 +63,32 @@ public sealed record class InvoiceUpdateParams : ParamsBase
         set
         {
             this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The net terms determines the due date of the invoice. Due date is calculated
+    /// based on the invoice or issuance date, depending on the account's configured
+    /// due date calculation method. A value of '0' here represents that the invoice
+    /// is due on issue, whereas a value of '30' represents that the customer has
+    /// 30 days to pay the invoice. Do not set this field if you want to set a custom
+    /// due date.
+    /// </summary>
+    public long? NetTerms
+    {
+        get
+        {
+            if (!this.BodyProperties.TryGetValue("net_terms", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["net_terms"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );

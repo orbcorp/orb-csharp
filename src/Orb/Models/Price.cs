@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Orb.Models.PriceProperties;
+using PriceProperties = Orb.Models.PriceProperties;
 using PriceVariants = Orb.Models.PriceVariants;
 
 namespace Orb.Models;
@@ -24,203 +24,203 @@ public abstract record class Price
 {
     internal Price() { }
 
-    public static implicit operator Price(Unit value) => new PriceVariants::Unit(value);
+    public static implicit operator Price(PriceProperties::Unit value) =>
+        new PriceVariants::Unit(value);
 
-    public static implicit operator Price(Package value) => new PriceVariants::Package(value);
+    public static implicit operator Price(PriceProperties::Package value) =>
+        new PriceVariants::Package(value);
 
-    public static implicit operator Price(Matrix value) => new PriceVariants::Matrix(value);
+    public static implicit operator Price(PriceProperties::Matrix value) =>
+        new PriceVariants::Matrix(value);
 
-    public static implicit operator Price(Tiered value) => new PriceVariants::Tiered(value);
+    public static implicit operator Price(PriceProperties::Tiered value) =>
+        new PriceVariants::Tiered(value);
 
-    public static implicit operator Price(TieredBPS value) => new PriceVariants::TieredBPS(value);
+    public static implicit operator Price(PriceProperties::Bulk value) =>
+        new PriceVariants::Bulk(value);
 
-    public static implicit operator Price(BPS value) => new PriceVariants::BPS(value);
-
-    public static implicit operator Price(BulkBPS value) => new PriceVariants::BulkBPS(value);
-
-    public static implicit operator Price(Bulk value) => new PriceVariants::Bulk(value);
-
-    public static implicit operator Price(ThresholdTotalAmount value) =>
+    public static implicit operator Price(PriceProperties::ThresholdTotalAmount value) =>
         new PriceVariants::ThresholdTotalAmount(value);
 
-    public static implicit operator Price(TieredPackage value) =>
+    public static implicit operator Price(PriceProperties::TieredPackage value) =>
         new PriceVariants::TieredPackage(value);
 
-    public static implicit operator Price(GroupedTiered value) =>
+    public static implicit operator Price(PriceProperties::GroupedTiered value) =>
         new PriceVariants::GroupedTiered(value);
 
-    public static implicit operator Price(TieredWithMinimum value) =>
+    public static implicit operator Price(PriceProperties::TieredWithMinimum value) =>
         new PriceVariants::TieredWithMinimum(value);
 
-    public static implicit operator Price(TieredPackageWithMinimum value) =>
+    public static implicit operator Price(PriceProperties::TieredPackageWithMinimum value) =>
         new PriceVariants::TieredPackageWithMinimum(value);
 
-    public static implicit operator Price(PackageWithAllocation value) =>
+    public static implicit operator Price(PriceProperties::PackageWithAllocation value) =>
         new PriceVariants::PackageWithAllocation(value);
 
-    public static implicit operator Price(UnitWithPercent value) =>
+    public static implicit operator Price(PriceProperties::UnitWithPercent value) =>
         new PriceVariants::UnitWithPercent(value);
 
-    public static implicit operator Price(MatrixWithAllocation value) =>
+    public static implicit operator Price(PriceProperties::MatrixWithAllocation value) =>
         new PriceVariants::MatrixWithAllocation(value);
 
-    public static implicit operator Price(TieredWithProration value) =>
+    public static implicit operator Price(PriceProperties::TieredWithProration value) =>
         new PriceVariants::TieredWithProration(value);
 
-    public static implicit operator Price(UnitWithProration value) =>
+    public static implicit operator Price(PriceProperties::UnitWithProration value) =>
         new PriceVariants::UnitWithProration(value);
 
-    public static implicit operator Price(GroupedAllocation value) =>
+    public static implicit operator Price(PriceProperties::GroupedAllocation value) =>
         new PriceVariants::GroupedAllocation(value);
 
-    public static implicit operator Price(GroupedWithProratedMinimum value) =>
+    public static implicit operator Price(PriceProperties::GroupedWithProratedMinimum value) =>
         new PriceVariants::GroupedWithProratedMinimum(value);
 
-    public static implicit operator Price(GroupedWithMeteredMinimum value) =>
+    public static implicit operator Price(PriceProperties::GroupedWithMeteredMinimum value) =>
         new PriceVariants::GroupedWithMeteredMinimum(value);
 
-    public static implicit operator Price(MatrixWithDisplayName value) =>
+    public static implicit operator Price(PriceProperties::MatrixWithDisplayName value) =>
         new PriceVariants::MatrixWithDisplayName(value);
 
-    public static implicit operator Price(BulkWithProration value) =>
+    public static implicit operator Price(PriceProperties::BulkWithProration value) =>
         new PriceVariants::BulkWithProration(value);
 
-    public static implicit operator Price(GroupedTieredPackage value) =>
+    public static implicit operator Price(PriceProperties::GroupedTieredPackage value) =>
         new PriceVariants::GroupedTieredPackage(value);
 
-    public static implicit operator Price(MaxGroupTieredPackage value) =>
+    public static implicit operator Price(PriceProperties::MaxGroupTieredPackage value) =>
         new PriceVariants::MaxGroupTieredPackage(value);
 
-    public static implicit operator Price(ScalableMatrixWithUnitPricing value) =>
+    public static implicit operator Price(PriceProperties::ScalableMatrixWithUnitPricing value) =>
         new PriceVariants::ScalableMatrixWithUnitPricing(value);
 
-    public static implicit operator Price(ScalableMatrixWithTieredPricing value) =>
+    public static implicit operator Price(PriceProperties::ScalableMatrixWithTieredPricing value) =>
         new PriceVariants::ScalableMatrixWithTieredPricing(value);
 
-    public static implicit operator Price(CumulativeGroupedBulk value) =>
+    public static implicit operator Price(PriceProperties::CumulativeGroupedBulk value) =>
         new PriceVariants::CumulativeGroupedBulk(value);
 
-    public static implicit operator Price(GroupedWithMinMaxThresholds value) =>
+    public static implicit operator Price(PriceProperties::GroupedWithMinMaxThresholds value) =>
         new PriceVariants::GroupedWithMinMaxThresholds(value);
 
-    public bool TryPickUnit([NotNullWhen(true)] out Unit? value)
+    public static implicit operator Price(PriceProperties::Minimum value) =>
+        new PriceVariants::Minimum(value);
+
+    public bool TryPickUnit([NotNullWhen(true)] out PriceProperties::Unit? value)
     {
         value = (this as PriceVariants::Unit)?.Value;
         return value != null;
     }
 
-    public bool TryPickPackage([NotNullWhen(true)] out Package? value)
+    public bool TryPickPackage([NotNullWhen(true)] out PriceProperties::Package? value)
     {
         value = (this as PriceVariants::Package)?.Value;
         return value != null;
     }
 
-    public bool TryPickMatrix([NotNullWhen(true)] out Matrix? value)
+    public bool TryPickMatrix([NotNullWhen(true)] out PriceProperties::Matrix? value)
     {
         value = (this as PriceVariants::Matrix)?.Value;
         return value != null;
     }
 
-    public bool TryPickTiered([NotNullWhen(true)] out Tiered? value)
+    public bool TryPickTiered([NotNullWhen(true)] out PriceProperties::Tiered? value)
     {
         value = (this as PriceVariants::Tiered)?.Value;
         return value != null;
     }
 
-    public bool TryPickTieredBPS([NotNullWhen(true)] out TieredBPS? value)
-    {
-        value = (this as PriceVariants::TieredBPS)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickBPS([NotNullWhen(true)] out BPS? value)
-    {
-        value = (this as PriceVariants::BPS)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickBulkBPS([NotNullWhen(true)] out BulkBPS? value)
-    {
-        value = (this as PriceVariants::BulkBPS)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickBulk([NotNullWhen(true)] out Bulk? value)
+    public bool TryPickBulk([NotNullWhen(true)] out PriceProperties::Bulk? value)
     {
         value = (this as PriceVariants::Bulk)?.Value;
         return value != null;
     }
 
-    public bool TryPickThresholdTotalAmount([NotNullWhen(true)] out ThresholdTotalAmount? value)
+    public bool TryPickThresholdTotalAmount(
+        [NotNullWhen(true)] out PriceProperties::ThresholdTotalAmount? value
+    )
     {
         value = (this as PriceVariants::ThresholdTotalAmount)?.Value;
         return value != null;
     }
 
-    public bool TryPickTieredPackage([NotNullWhen(true)] out TieredPackage? value)
+    public bool TryPickTieredPackage([NotNullWhen(true)] out PriceProperties::TieredPackage? value)
     {
         value = (this as PriceVariants::TieredPackage)?.Value;
         return value != null;
     }
 
-    public bool TryPickGroupedTiered([NotNullWhen(true)] out GroupedTiered? value)
+    public bool TryPickGroupedTiered([NotNullWhen(true)] out PriceProperties::GroupedTiered? value)
     {
         value = (this as PriceVariants::GroupedTiered)?.Value;
         return value != null;
     }
 
-    public bool TryPickTieredWithMinimum([NotNullWhen(true)] out TieredWithMinimum? value)
+    public bool TryPickTieredWithMinimum(
+        [NotNullWhen(true)] out PriceProperties::TieredWithMinimum? value
+    )
     {
         value = (this as PriceVariants::TieredWithMinimum)?.Value;
         return value != null;
     }
 
     public bool TryPickTieredPackageWithMinimum(
-        [NotNullWhen(true)] out TieredPackageWithMinimum? value
+        [NotNullWhen(true)] out PriceProperties::TieredPackageWithMinimum? value
     )
     {
         value = (this as PriceVariants::TieredPackageWithMinimum)?.Value;
         return value != null;
     }
 
-    public bool TryPickPackageWithAllocation([NotNullWhen(true)] out PackageWithAllocation? value)
+    public bool TryPickPackageWithAllocation(
+        [NotNullWhen(true)] out PriceProperties::PackageWithAllocation? value
+    )
     {
         value = (this as PriceVariants::PackageWithAllocation)?.Value;
         return value != null;
     }
 
-    public bool TryPickUnitWithPercent([NotNullWhen(true)] out UnitWithPercent? value)
+    public bool TryPickUnitWithPercent(
+        [NotNullWhen(true)] out PriceProperties::UnitWithPercent? value
+    )
     {
         value = (this as PriceVariants::UnitWithPercent)?.Value;
         return value != null;
     }
 
-    public bool TryPickMatrixWithAllocation([NotNullWhen(true)] out MatrixWithAllocation? value)
+    public bool TryPickMatrixWithAllocation(
+        [NotNullWhen(true)] out PriceProperties::MatrixWithAllocation? value
+    )
     {
         value = (this as PriceVariants::MatrixWithAllocation)?.Value;
         return value != null;
     }
 
-    public bool TryPickTieredWithProration([NotNullWhen(true)] out TieredWithProration? value)
+    public bool TryPickTieredWithProration(
+        [NotNullWhen(true)] out PriceProperties::TieredWithProration? value
+    )
     {
         value = (this as PriceVariants::TieredWithProration)?.Value;
         return value != null;
     }
 
-    public bool TryPickUnitWithProration([NotNullWhen(true)] out UnitWithProration? value)
+    public bool TryPickUnitWithProration(
+        [NotNullWhen(true)] out PriceProperties::UnitWithProration? value
+    )
     {
         value = (this as PriceVariants::UnitWithProration)?.Value;
         return value != null;
     }
 
-    public bool TryPickGroupedAllocation([NotNullWhen(true)] out GroupedAllocation? value)
+    public bool TryPickGroupedAllocation(
+        [NotNullWhen(true)] out PriceProperties::GroupedAllocation? value
+    )
     {
         value = (this as PriceVariants::GroupedAllocation)?.Value;
         return value != null;
     }
 
     public bool TryPickGroupedWithProratedMinimum(
-        [NotNullWhen(true)] out GroupedWithProratedMinimum? value
+        [NotNullWhen(true)] out PriceProperties::GroupedWithProratedMinimum? value
     )
     {
         value = (this as PriceVariants::GroupedWithProratedMinimum)?.Value;
@@ -228,39 +228,47 @@ public abstract record class Price
     }
 
     public bool TryPickGroupedWithMeteredMinimum(
-        [NotNullWhen(true)] out GroupedWithMeteredMinimum? value
+        [NotNullWhen(true)] out PriceProperties::GroupedWithMeteredMinimum? value
     )
     {
         value = (this as PriceVariants::GroupedWithMeteredMinimum)?.Value;
         return value != null;
     }
 
-    public bool TryPickMatrixWithDisplayName([NotNullWhen(true)] out MatrixWithDisplayName? value)
+    public bool TryPickMatrixWithDisplayName(
+        [NotNullWhen(true)] out PriceProperties::MatrixWithDisplayName? value
+    )
     {
         value = (this as PriceVariants::MatrixWithDisplayName)?.Value;
         return value != null;
     }
 
-    public bool TryPickBulkWithProration([NotNullWhen(true)] out BulkWithProration? value)
+    public bool TryPickBulkWithProration(
+        [NotNullWhen(true)] out PriceProperties::BulkWithProration? value
+    )
     {
         value = (this as PriceVariants::BulkWithProration)?.Value;
         return value != null;
     }
 
-    public bool TryPickGroupedTieredPackage([NotNullWhen(true)] out GroupedTieredPackage? value)
+    public bool TryPickGroupedTieredPackage(
+        [NotNullWhen(true)] out PriceProperties::GroupedTieredPackage? value
+    )
     {
         value = (this as PriceVariants::GroupedTieredPackage)?.Value;
         return value != null;
     }
 
-    public bool TryPickMaxGroupTieredPackage([NotNullWhen(true)] out MaxGroupTieredPackage? value)
+    public bool TryPickMaxGroupTieredPackage(
+        [NotNullWhen(true)] out PriceProperties::MaxGroupTieredPackage? value
+    )
     {
         value = (this as PriceVariants::MaxGroupTieredPackage)?.Value;
         return value != null;
     }
 
     public bool TryPickScalableMatrixWithUnitPricing(
-        [NotNullWhen(true)] out ScalableMatrixWithUnitPricing? value
+        [NotNullWhen(true)] out PriceProperties::ScalableMatrixWithUnitPricing? value
     )
     {
         value = (this as PriceVariants::ScalableMatrixWithUnitPricing)?.Value;
@@ -268,24 +276,32 @@ public abstract record class Price
     }
 
     public bool TryPickScalableMatrixWithTieredPricing(
-        [NotNullWhen(true)] out ScalableMatrixWithTieredPricing? value
+        [NotNullWhen(true)] out PriceProperties::ScalableMatrixWithTieredPricing? value
     )
     {
         value = (this as PriceVariants::ScalableMatrixWithTieredPricing)?.Value;
         return value != null;
     }
 
-    public bool TryPickCumulativeGroupedBulk([NotNullWhen(true)] out CumulativeGroupedBulk? value)
+    public bool TryPickCumulativeGroupedBulk(
+        [NotNullWhen(true)] out PriceProperties::CumulativeGroupedBulk? value
+    )
     {
         value = (this as PriceVariants::CumulativeGroupedBulk)?.Value;
         return value != null;
     }
 
     public bool TryPickGroupedWithMinMaxThresholds(
-        [NotNullWhen(true)] out GroupedWithMinMaxThresholds? value
+        [NotNullWhen(true)] out PriceProperties::GroupedWithMinMaxThresholds? value
     )
     {
         value = (this as PriceVariants::GroupedWithMinMaxThresholds)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickMinimum([NotNullWhen(true)] out PriceProperties::Minimum? value)
+    {
+        value = (this as PriceVariants::Minimum)?.Value;
         return value != null;
     }
 
@@ -294,9 +310,6 @@ public abstract record class Price
         Action<PriceVariants::Package> package,
         Action<PriceVariants::Matrix> matrix,
         Action<PriceVariants::Tiered> tiered,
-        Action<PriceVariants::TieredBPS> tieredBPS,
-        Action<PriceVariants::BPS> bps,
-        Action<PriceVariants::BulkBPS> bulkBPS,
         Action<PriceVariants::Bulk> bulk,
         Action<PriceVariants::ThresholdTotalAmount> thresholdTotalAmount,
         Action<PriceVariants::TieredPackage> tieredPackage,
@@ -318,7 +331,8 @@ public abstract record class Price
         Action<PriceVariants::ScalableMatrixWithUnitPricing> scalableMatrixWithUnitPricing,
         Action<PriceVariants::ScalableMatrixWithTieredPricing> scalableMatrixWithTieredPricing,
         Action<PriceVariants::CumulativeGroupedBulk> cumulativeGroupedBulk,
-        Action<PriceVariants::GroupedWithMinMaxThresholds> groupedWithMinMaxThresholds
+        Action<PriceVariants::GroupedWithMinMaxThresholds> groupedWithMinMaxThresholds,
+        Action<PriceVariants::Minimum> minimum
     )
     {
         switch (this)
@@ -334,15 +348,6 @@ public abstract record class Price
                 break;
             case PriceVariants::Tiered inner:
                 tiered(inner);
-                break;
-            case PriceVariants::TieredBPS inner:
-                tieredBPS(inner);
-                break;
-            case PriceVariants::BPS inner:
-                bps(inner);
-                break;
-            case PriceVariants::BulkBPS inner:
-                bulkBPS(inner);
                 break;
             case PriceVariants::Bulk inner:
                 bulk(inner);
@@ -410,6 +415,9 @@ public abstract record class Price
             case PriceVariants::GroupedWithMinMaxThresholds inner:
                 groupedWithMinMaxThresholds(inner);
                 break;
+            case PriceVariants::Minimum inner:
+                minimum(inner);
+                break;
             default:
                 throw new InvalidOperationException();
         }
@@ -420,9 +428,6 @@ public abstract record class Price
         Func<PriceVariants::Package, T> package,
         Func<PriceVariants::Matrix, T> matrix,
         Func<PriceVariants::Tiered, T> tiered,
-        Func<PriceVariants::TieredBPS, T> tieredBPS,
-        Func<PriceVariants::BPS, T> bps,
-        Func<PriceVariants::BulkBPS, T> bulkBPS,
         Func<PriceVariants::Bulk, T> bulk,
         Func<PriceVariants::ThresholdTotalAmount, T> thresholdTotalAmount,
         Func<PriceVariants::TieredPackage, T> tieredPackage,
@@ -444,7 +449,8 @@ public abstract record class Price
         Func<PriceVariants::ScalableMatrixWithUnitPricing, T> scalableMatrixWithUnitPricing,
         Func<PriceVariants::ScalableMatrixWithTieredPricing, T> scalableMatrixWithTieredPricing,
         Func<PriceVariants::CumulativeGroupedBulk, T> cumulativeGroupedBulk,
-        Func<PriceVariants::GroupedWithMinMaxThresholds, T> groupedWithMinMaxThresholds
+        Func<PriceVariants::GroupedWithMinMaxThresholds, T> groupedWithMinMaxThresholds,
+        Func<PriceVariants::Minimum, T> minimum
     )
     {
         return this switch
@@ -453,9 +459,6 @@ public abstract record class Price
             PriceVariants::Package inner => package(inner),
             PriceVariants::Matrix inner => matrix(inner),
             PriceVariants::Tiered inner => tiered(inner),
-            PriceVariants::TieredBPS inner => tieredBPS(inner),
-            PriceVariants::BPS inner => bps(inner),
-            PriceVariants::BulkBPS inner => bulkBPS(inner),
             PriceVariants::Bulk inner => bulk(inner),
             PriceVariants::ThresholdTotalAmount inner => thresholdTotalAmount(inner),
             PriceVariants::TieredPackage inner => tieredPackage(inner),
@@ -482,6 +485,7 @@ public abstract record class Price
             ),
             PriceVariants::CumulativeGroupedBulk inner => cumulativeGroupedBulk(inner),
             PriceVariants::GroupedWithMinMaxThresholds inner => groupedWithMinMaxThresholds(inner),
+            PriceVariants::Minimum inner => minimum(inner),
             _ => throw new InvalidOperationException(),
         };
     }
@@ -516,7 +520,10 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Unit>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<PriceProperties::Unit>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new PriceVariants::Unit(deserialized);
@@ -535,7 +542,10 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Package>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<PriceProperties::Package>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new PriceVariants::Package(deserialized);
@@ -554,7 +564,10 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Matrix>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<PriceProperties::Matrix>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new PriceVariants::Matrix(deserialized);
@@ -573,67 +586,13 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Tiered>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<PriceProperties::Tiered>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new PriceVariants::Tiered(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "tiered_bps":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<TieredBPS>(json, options);
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::TieredBPS(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "bps":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<BPS>(json, options);
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::BPS(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "bulk_bps":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<BulkBPS>(json, options);
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::BulkBPS(deserialized);
                     }
                 }
                 catch (JsonException e)
@@ -649,7 +608,10 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Bulk>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<PriceProperties::Bulk>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new PriceVariants::Bulk(deserialized);
@@ -668,10 +630,11 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<ThresholdTotalAmount>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::ThresholdTotalAmount>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         return new PriceVariants::ThresholdTotalAmount(deserialized);
@@ -690,7 +653,10 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TieredPackage>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<PriceProperties::TieredPackage>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new PriceVariants::TieredPackage(deserialized);
@@ -709,7 +675,10 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<GroupedTiered>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<PriceProperties::GroupedTiered>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new PriceVariants::GroupedTiered(deserialized);
@@ -728,7 +697,11 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TieredWithMinimum>(json, options);
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::TieredWithMinimum>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         return new PriceVariants::TieredWithMinimum(deserialized);
@@ -747,10 +720,11 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TieredPackageWithMinimum>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::TieredPackageWithMinimum>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         return new PriceVariants::TieredPackageWithMinimum(deserialized);
@@ -769,10 +743,11 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<PackageWithAllocation>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::PackageWithAllocation>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         return new PriceVariants::PackageWithAllocation(deserialized);
@@ -791,7 +766,10 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<UnitWithPercent>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<PriceProperties::UnitWithPercent>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new PriceVariants::UnitWithPercent(deserialized);
@@ -810,10 +788,11 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<MatrixWithAllocation>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::MatrixWithAllocation>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         return new PriceVariants::MatrixWithAllocation(deserialized);
@@ -832,10 +811,11 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TieredWithProration>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::TieredWithProration>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         return new PriceVariants::TieredWithProration(deserialized);
@@ -854,7 +834,11 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<UnitWithProration>(json, options);
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::UnitWithProration>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         return new PriceVariants::UnitWithProration(deserialized);
@@ -873,7 +857,11 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<GroupedAllocation>(json, options);
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::GroupedAllocation>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         return new PriceVariants::GroupedAllocation(deserialized);
@@ -892,10 +880,11 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<GroupedWithProratedMinimum>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::GroupedWithProratedMinimum>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         return new PriceVariants::GroupedWithProratedMinimum(deserialized);
@@ -914,10 +903,11 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<GroupedWithMeteredMinimum>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::GroupedWithMeteredMinimum>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         return new PriceVariants::GroupedWithMeteredMinimum(deserialized);
@@ -936,10 +926,11 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<MatrixWithDisplayName>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::MatrixWithDisplayName>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         return new PriceVariants::MatrixWithDisplayName(deserialized);
@@ -958,7 +949,11 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<BulkWithProration>(json, options);
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::BulkWithProration>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         return new PriceVariants::BulkWithProration(deserialized);
@@ -977,10 +972,11 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<GroupedTieredPackage>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::GroupedTieredPackage>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         return new PriceVariants::GroupedTieredPackage(deserialized);
@@ -999,10 +995,11 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<MaxGroupTieredPackage>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::MaxGroupTieredPackage>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         return new PriceVariants::MaxGroupTieredPackage(deserialized);
@@ -1021,10 +1018,11 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithUnitPricing>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::ScalableMatrixWithUnitPricing>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         return new PriceVariants::ScalableMatrixWithUnitPricing(deserialized);
@@ -1043,10 +1041,11 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithTieredPricing>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::ScalableMatrixWithTieredPricing>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         return new PriceVariants::ScalableMatrixWithTieredPricing(deserialized);
@@ -1065,10 +1064,11 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<CumulativeGroupedBulk>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::CumulativeGroupedBulk>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         return new PriceVariants::CumulativeGroupedBulk(deserialized);
@@ -1087,13 +1087,36 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<GroupedWithMinMaxThresholds>(
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::GroupedWithMinMaxThresholds>(
+                            json,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::GroupedWithMinMaxThresholds(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "minimum":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<PriceProperties::Minimum>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::GroupedWithMinMaxThresholds(deserialized);
+                        return new PriceVariants::Minimum(deserialized);
                     }
                 }
                 catch (JsonException e)
@@ -1118,9 +1141,6 @@ sealed class PriceConverter : JsonConverter<Price>
             PriceVariants::Package(var package) => package,
             PriceVariants::Matrix(var matrix) => matrix,
             PriceVariants::Tiered(var tiered) => tiered,
-            PriceVariants::TieredBPS(var tieredBPS) => tieredBPS,
-            PriceVariants::BPS(var bps) => bps,
-            PriceVariants::BulkBPS(var bulkBPS) => bulkBPS,
             PriceVariants::Bulk(var bulk) => bulk,
             PriceVariants::ThresholdTotalAmount(var thresholdTotalAmount) => thresholdTotalAmount,
             PriceVariants::TieredPackage(var tieredPackage) => tieredPackage,
@@ -1153,6 +1173,7 @@ sealed class PriceConverter : JsonConverter<Price>
                 cumulativeGroupedBulk,
             PriceVariants::GroupedWithMinMaxThresholds(var groupedWithMinMaxThresholds) =>
                 groupedWithMinMaxThresholds,
+            PriceVariants::Minimum(var minimum) => minimum,
             _ => throw new ArgumentOutOfRangeException(nameof(value)),
         };
         JsonSerializer.Serialize(writer, variant, options);

@@ -1,9 +1,10 @@
+using Models = Orb.Models;
 using PriceProperties = Orb.Models.PriceProperties;
 
 namespace Orb.Models.PriceVariants;
 
 public sealed record class Unit(PriceProperties::Unit Value)
-    : Price,
+    : Models::Price,
         IVariant<Unit, PriceProperties::Unit>
 {
     public static Unit From(PriceProperties::Unit value)
@@ -18,7 +19,7 @@ public sealed record class Unit(PriceProperties::Unit Value)
 }
 
 public sealed record class Package(PriceProperties::Package Value)
-    : Price,
+    : Models::Price,
         IVariant<Package, PriceProperties::Package>
 {
     public static Package From(PriceProperties::Package value)
@@ -33,7 +34,7 @@ public sealed record class Package(PriceProperties::Package Value)
 }
 
 public sealed record class Matrix(PriceProperties::Matrix Value)
-    : Price,
+    : Models::Price,
         IVariant<Matrix, PriceProperties::Matrix>
 {
     public static Matrix From(PriceProperties::Matrix value)
@@ -48,7 +49,7 @@ public sealed record class Matrix(PriceProperties::Matrix Value)
 }
 
 public sealed record class Tiered(PriceProperties::Tiered Value)
-    : Price,
+    : Models::Price,
         IVariant<Tiered, PriceProperties::Tiered>
 {
     public static Tiered From(PriceProperties::Tiered value)
@@ -62,53 +63,8 @@ public sealed record class Tiered(PriceProperties::Tiered Value)
     }
 }
 
-public sealed record class TieredBPS(PriceProperties::TieredBPS Value)
-    : Price,
-        IVariant<TieredBPS, PriceProperties::TieredBPS>
-{
-    public static TieredBPS From(PriceProperties::TieredBPS value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class BPS(PriceProperties::BPS Value)
-    : Price,
-        IVariant<BPS, PriceProperties::BPS>
-{
-    public static BPS From(PriceProperties::BPS value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class BulkBPS(PriceProperties::BulkBPS Value)
-    : Price,
-        IVariant<BulkBPS, PriceProperties::BulkBPS>
-{
-    public static BulkBPS From(PriceProperties::BulkBPS value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
 public sealed record class Bulk(PriceProperties::Bulk Value)
-    : Price,
+    : Models::Price,
         IVariant<Bulk, PriceProperties::Bulk>
 {
     public static Bulk From(PriceProperties::Bulk value)
@@ -123,7 +79,7 @@ public sealed record class Bulk(PriceProperties::Bulk Value)
 }
 
 public sealed record class ThresholdTotalAmount(PriceProperties::ThresholdTotalAmount Value)
-    : Price,
+    : Models::Price,
         IVariant<ThresholdTotalAmount, PriceProperties::ThresholdTotalAmount>
 {
     public static ThresholdTotalAmount From(PriceProperties::ThresholdTotalAmount value)
@@ -138,7 +94,7 @@ public sealed record class ThresholdTotalAmount(PriceProperties::ThresholdTotalA
 }
 
 public sealed record class TieredPackage(PriceProperties::TieredPackage Value)
-    : Price,
+    : Models::Price,
         IVariant<TieredPackage, PriceProperties::TieredPackage>
 {
     public static TieredPackage From(PriceProperties::TieredPackage value)
@@ -153,7 +109,7 @@ public sealed record class TieredPackage(PriceProperties::TieredPackage Value)
 }
 
 public sealed record class GroupedTiered(PriceProperties::GroupedTiered Value)
-    : Price,
+    : Models::Price,
         IVariant<GroupedTiered, PriceProperties::GroupedTiered>
 {
     public static GroupedTiered From(PriceProperties::GroupedTiered value)
@@ -168,7 +124,7 @@ public sealed record class GroupedTiered(PriceProperties::GroupedTiered Value)
 }
 
 public sealed record class TieredWithMinimum(PriceProperties::TieredWithMinimum Value)
-    : Price,
+    : Models::Price,
         IVariant<TieredWithMinimum, PriceProperties::TieredWithMinimum>
 {
     public static TieredWithMinimum From(PriceProperties::TieredWithMinimum value)
@@ -183,7 +139,7 @@ public sealed record class TieredWithMinimum(PriceProperties::TieredWithMinimum 
 }
 
 public sealed record class TieredPackageWithMinimum(PriceProperties::TieredPackageWithMinimum Value)
-    : Price,
+    : Models::Price,
         IVariant<TieredPackageWithMinimum, PriceProperties::TieredPackageWithMinimum>
 {
     public static TieredPackageWithMinimum From(PriceProperties::TieredPackageWithMinimum value)
@@ -198,7 +154,7 @@ public sealed record class TieredPackageWithMinimum(PriceProperties::TieredPacka
 }
 
 public sealed record class PackageWithAllocation(PriceProperties::PackageWithAllocation Value)
-    : Price,
+    : Models::Price,
         IVariant<PackageWithAllocation, PriceProperties::PackageWithAllocation>
 {
     public static PackageWithAllocation From(PriceProperties::PackageWithAllocation value)
@@ -213,7 +169,7 @@ public sealed record class PackageWithAllocation(PriceProperties::PackageWithAll
 }
 
 public sealed record class UnitWithPercent(PriceProperties::UnitWithPercent Value)
-    : Price,
+    : Models::Price,
         IVariant<UnitWithPercent, PriceProperties::UnitWithPercent>
 {
     public static UnitWithPercent From(PriceProperties::UnitWithPercent value)
@@ -228,7 +184,7 @@ public sealed record class UnitWithPercent(PriceProperties::UnitWithPercent Valu
 }
 
 public sealed record class MatrixWithAllocation(PriceProperties::MatrixWithAllocation Value)
-    : Price,
+    : Models::Price,
         IVariant<MatrixWithAllocation, PriceProperties::MatrixWithAllocation>
 {
     public static MatrixWithAllocation From(PriceProperties::MatrixWithAllocation value)
@@ -243,7 +199,7 @@ public sealed record class MatrixWithAllocation(PriceProperties::MatrixWithAlloc
 }
 
 public sealed record class TieredWithProration(PriceProperties::TieredWithProration Value)
-    : Price,
+    : Models::Price,
         IVariant<TieredWithProration, PriceProperties::TieredWithProration>
 {
     public static TieredWithProration From(PriceProperties::TieredWithProration value)
@@ -258,7 +214,7 @@ public sealed record class TieredWithProration(PriceProperties::TieredWithProrat
 }
 
 public sealed record class UnitWithProration(PriceProperties::UnitWithProration Value)
-    : Price,
+    : Models::Price,
         IVariant<UnitWithProration, PriceProperties::UnitWithProration>
 {
     public static UnitWithProration From(PriceProperties::UnitWithProration value)
@@ -273,7 +229,7 @@ public sealed record class UnitWithProration(PriceProperties::UnitWithProration 
 }
 
 public sealed record class GroupedAllocation(PriceProperties::GroupedAllocation Value)
-    : Price,
+    : Models::Price,
         IVariant<GroupedAllocation, PriceProperties::GroupedAllocation>
 {
     public static GroupedAllocation From(PriceProperties::GroupedAllocation value)
@@ -289,7 +245,7 @@ public sealed record class GroupedAllocation(PriceProperties::GroupedAllocation 
 
 public sealed record class GroupedWithProratedMinimum(
     PriceProperties::GroupedWithProratedMinimum Value
-) : Price, IVariant<GroupedWithProratedMinimum, PriceProperties::GroupedWithProratedMinimum>
+) : Models::Price, IVariant<GroupedWithProratedMinimum, PriceProperties::GroupedWithProratedMinimum>
 {
     public static GroupedWithProratedMinimum From(PriceProperties::GroupedWithProratedMinimum value)
     {
@@ -304,7 +260,7 @@ public sealed record class GroupedWithProratedMinimum(
 
 public sealed record class GroupedWithMeteredMinimum(
     PriceProperties::GroupedWithMeteredMinimum Value
-) : Price, IVariant<GroupedWithMeteredMinimum, PriceProperties::GroupedWithMeteredMinimum>
+) : Models::Price, IVariant<GroupedWithMeteredMinimum, PriceProperties::GroupedWithMeteredMinimum>
 {
     public static GroupedWithMeteredMinimum From(PriceProperties::GroupedWithMeteredMinimum value)
     {
@@ -318,7 +274,7 @@ public sealed record class GroupedWithMeteredMinimum(
 }
 
 public sealed record class MatrixWithDisplayName(PriceProperties::MatrixWithDisplayName Value)
-    : Price,
+    : Models::Price,
         IVariant<MatrixWithDisplayName, PriceProperties::MatrixWithDisplayName>
 {
     public static MatrixWithDisplayName From(PriceProperties::MatrixWithDisplayName value)
@@ -333,7 +289,7 @@ public sealed record class MatrixWithDisplayName(PriceProperties::MatrixWithDisp
 }
 
 public sealed record class BulkWithProration(PriceProperties::BulkWithProration Value)
-    : Price,
+    : Models::Price,
         IVariant<BulkWithProration, PriceProperties::BulkWithProration>
 {
     public static BulkWithProration From(PriceProperties::BulkWithProration value)
@@ -348,7 +304,7 @@ public sealed record class BulkWithProration(PriceProperties::BulkWithProration 
 }
 
 public sealed record class GroupedTieredPackage(PriceProperties::GroupedTieredPackage Value)
-    : Price,
+    : Models::Price,
         IVariant<GroupedTieredPackage, PriceProperties::GroupedTieredPackage>
 {
     public static GroupedTieredPackage From(PriceProperties::GroupedTieredPackage value)
@@ -363,7 +319,7 @@ public sealed record class GroupedTieredPackage(PriceProperties::GroupedTieredPa
 }
 
 public sealed record class MaxGroupTieredPackage(PriceProperties::MaxGroupTieredPackage Value)
-    : Price,
+    : Models::Price,
         IVariant<MaxGroupTieredPackage, PriceProperties::MaxGroupTieredPackage>
 {
     public static MaxGroupTieredPackage From(PriceProperties::MaxGroupTieredPackage value)
@@ -379,7 +335,9 @@ public sealed record class MaxGroupTieredPackage(PriceProperties::MaxGroupTiered
 
 public sealed record class ScalableMatrixWithUnitPricing(
     PriceProperties::ScalableMatrixWithUnitPricing Value
-) : Price, IVariant<ScalableMatrixWithUnitPricing, PriceProperties::ScalableMatrixWithUnitPricing>
+)
+    : Models::Price,
+        IVariant<ScalableMatrixWithUnitPricing, PriceProperties::ScalableMatrixWithUnitPricing>
 {
     public static ScalableMatrixWithUnitPricing From(
         PriceProperties::ScalableMatrixWithUnitPricing value
@@ -397,7 +355,7 @@ public sealed record class ScalableMatrixWithUnitPricing(
 public sealed record class ScalableMatrixWithTieredPricing(
     PriceProperties::ScalableMatrixWithTieredPricing Value
 )
-    : Price,
+    : Models::Price,
         IVariant<ScalableMatrixWithTieredPricing, PriceProperties::ScalableMatrixWithTieredPricing>
 {
     public static ScalableMatrixWithTieredPricing From(
@@ -414,7 +372,7 @@ public sealed record class ScalableMatrixWithTieredPricing(
 }
 
 public sealed record class CumulativeGroupedBulk(PriceProperties::CumulativeGroupedBulk Value)
-    : Price,
+    : Models::Price,
         IVariant<CumulativeGroupedBulk, PriceProperties::CumulativeGroupedBulk>
 {
     public static CumulativeGroupedBulk From(PriceProperties::CumulativeGroupedBulk value)
@@ -430,11 +388,28 @@ public sealed record class CumulativeGroupedBulk(PriceProperties::CumulativeGrou
 
 public sealed record class GroupedWithMinMaxThresholds(
     PriceProperties::GroupedWithMinMaxThresholds Value
-) : Price, IVariant<GroupedWithMinMaxThresholds, PriceProperties::GroupedWithMinMaxThresholds>
+)
+    : Models::Price,
+        IVariant<GroupedWithMinMaxThresholds, PriceProperties::GroupedWithMinMaxThresholds>
 {
     public static GroupedWithMinMaxThresholds From(
         PriceProperties::GroupedWithMinMaxThresholds value
     )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class Minimum(PriceProperties::Minimum Value)
+    : Models::Price,
+        IVariant<Minimum, PriceProperties::Minimum>
+{
+    public static Minimum From(PriceProperties::Minimum value)
     {
         return new(value);
     }

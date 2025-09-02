@@ -451,7 +451,7 @@ public sealed record class InvoiceLineItemCreateResponse
     }
 
     /// <summary>
-    /// The line amount before before any adjustments.
+    /// The line amount before any adjustments.
     /// </summary>
     public required string Subtotal
     {

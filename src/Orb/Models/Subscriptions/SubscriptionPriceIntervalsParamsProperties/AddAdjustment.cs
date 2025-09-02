@@ -11,28 +11,6 @@ namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties;
 public sealed record class AddAdjustment : ModelBase, IFromRaw<AddAdjustment>
 {
     /// <summary>
-    /// The definition of a new adjustment to create and add to the subscription.
-    /// </summary>
-    public required Adjustment Adjustment
-    {
-        get
-        {
-            if (!this.Properties.TryGetValue("adjustment", out JsonElement element))
-                throw new ArgumentOutOfRangeException("adjustment", "Missing required argument");
-
-            return JsonSerializer.Deserialize<Adjustment>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("adjustment");
-        }
-        set
-        {
-            this.Properties["adjustment"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
-    /// <summary>
     /// The start date of the adjustment interval. This is the date that the adjustment
     /// will start affecting prices on the subscription. The adjustment will apply
     /// to invoice dates that overlap with this `start_date`. This `start_date` is
@@ -51,6 +29,50 @@ public sealed record class AddAdjustment : ModelBase, IFromRaw<AddAdjustment>
         set
         {
             this.Properties["start_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The definition of a new adjustment to create and add to the subscription.
+    /// </summary>
+    public Adjustment? Adjustment
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("adjustment", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<Adjustment?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["adjustment"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The ID of the adjustment to add to the subscription. Adjustment IDs can be
+    /// re-used from existing subscriptions or plans, but adjustments associated
+    /// with coupon redemptions cannot be re-used.
+    /// </summary>
+    public string? AdjustmentID
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("adjustment_id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["adjustment_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -83,8 +105,9 @@ public sealed record class AddAdjustment : ModelBase, IFromRaw<AddAdjustment>
 
     public override void Validate()
     {
-        this.Adjustment.Validate();
         this.StartDate.Validate();
+        this.Adjustment?.Validate();
+        _ = this.AdjustmentID;
         this.EndDate?.Validate();
     }
 
@@ -101,5 +124,12 @@ public sealed record class AddAdjustment : ModelBase, IFromRaw<AddAdjustment>
     public static AddAdjustment FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
+    }
+
+    [SetsRequiredMembers]
+    public AddAdjustment(StartDate startDate)
+        : this()
+    {
+        this.StartDate = startDate;
     }
 }

@@ -34,6 +34,7 @@ public class LedgerServiceTest : TestBase
                     {
                         AutoCollection = true,
                         NetTerms = 0,
+                        CustomDueDate = DateOnly.Parse("2019-12-27"),
                         InvoiceDate = DateOnly.Parse("2019-12-27"),
                         Memo = "memo",
                         RequireSuccessfulPayment = true,
@@ -64,6 +65,7 @@ public class LedgerServiceTest : TestBase
                     {
                         AutoCollection = true,
                         NetTerms = 0,
+                        CustomDueDate = DateOnly.Parse("2019-12-27"),
                         InvoiceDate = DateOnly.Parse("2019-12-27"),
                         Memo = "memo",
                         RequireSuccessfulPayment = true,

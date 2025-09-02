@@ -59,8 +59,8 @@ public interface IInvoiceService
     Task<Invoice> Issue(InvoiceIssueParams parameters);
 
     /// <summary>
-    /// This endpoint allows an invoice's status to be set the `paid` status. This
-    /// can only be done to invoices that are in the `issued` status.
+    /// This endpoint allows an invoice's status to be set to the `paid` status.
+    /// This can only be done to invoices that are in the `issued` or `synced` status.
     /// </summary>
     Task<Invoice> MarkPaid(InvoiceMarkPaidParams parameters);
 
@@ -71,8 +71,8 @@ public interface IInvoiceService
     Task<Invoice> Pay(InvoicePayParams parameters);
 
     /// <summary>
-    /// This endpoint allows an invoice's status to be set the `void` status. This
-    /// can only be done to invoices that are in the `issued` status.
+    /// This endpoint allows an invoice's status to be set to the `void` status.
+    /// This can only be done to invoices that are in the `issued` status.
     ///
     /// If the associated invoice has used the customer balance to change the amount
     /// due, the customer balance operation will be reverted. For example, if the

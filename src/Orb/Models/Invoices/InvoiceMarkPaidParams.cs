@@ -7,8 +7,8 @@ using System.Text.Json;
 namespace Orb.Models.Invoices;
 
 /// <summary>
-/// This endpoint allows an invoice's status to be set the `paid` status. This can
-/// only be done to invoices that are in the `issued` status.
+/// This endpoint allows an invoice's status to be set to the `paid` status. This
+/// can only be done to invoices that are in the `issued` or `synced` status.
 /// </summary>
 public sealed record class InvoiceMarkPaidParams : ParamsBase
 {

@@ -527,7 +527,7 @@ public interface ISubscriptionService
     /// This endpoint can be used to change an existing subscription's plan. It returns
     /// the serialized updated subscription object.
     ///
-    /// The body parameter `change_option` determines when the plan change occurrs.
+    /// The body parameter `change_option` determines when the plan change occurs.
     /// Orb supports three options: - `end_of_subscription_term`: changes the plan
     /// at the end of the existing plan's term.     - Issuing this plan change request
     /// for a monthly subscription will keep the existing plan active until the start

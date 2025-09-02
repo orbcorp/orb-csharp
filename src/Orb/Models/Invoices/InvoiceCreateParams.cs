@@ -122,6 +122,28 @@ public sealed record class InvoiceCreateParams : ParamsBase
     }
 
     /// <summary>
+    /// An optional custom due date for the invoice. If not set, the due date will
+    /// be calculated based on the `net_terms` value.
+    /// </summary>
+    public DueDate? DueDate
+    {
+        get
+        {
+            if (!this.BodyProperties.TryGetValue("due_date", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<DueDate?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["due_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
     /// The `external_customer_id` of the `Customer` to create this invoice for. One
     /// of `customer_id` and `external_customer_id` are required.
     /// </summary>
@@ -144,7 +166,8 @@ public sealed record class InvoiceCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// An optional memo to attach to the invoice.
+    /// An optional memo to attach to the invoice. If no memo is provided, we will
+    /// attach the default memo
     /// </summary>
     public string? Memo
     {
@@ -191,10 +214,12 @@ public sealed record class InvoiceCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// Determines the difference between the invoice issue date for subscription
-    /// invoices as the date that they are due. A value of '0' here represents that
-    /// the invoice is due on issue, whereas a value of 30 represents that the customer
-    /// has 30 days to pay the invoice.
+    /// The net terms determines the due date of the invoice. Due date is calculated
+    /// based on the invoice or issuance date, depending on the account's configured
+    /// due date calculation method. A value of '0' here represents that the invoice
+    /// is due on issue, whereas a value of '30' represents that the customer has
+    /// 30 days to pay the invoice. Do not set this field if you want to set a custom
+    /// due date.
     /// </summary>
     public long? NetTerms
     {

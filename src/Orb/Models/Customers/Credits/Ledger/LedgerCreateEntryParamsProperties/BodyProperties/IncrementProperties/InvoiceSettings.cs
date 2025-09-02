@@ -41,9 +41,12 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
     }
 
     /// <summary>
-    /// The net terms determines the difference between the invoice date and the issue
-    /// date for the invoice. If you intend the invoice to be due on issue, set this
-    /// to 0.
+    /// The net terms determines the due date of the invoice. Due date is calculated
+    /// based on the invoice or issuance date, depending on the account's configured
+    /// due date calculation method. A value of '0' here represents that the invoice
+    /// is due on issue, whereas a value of '30' represents that the customer has
+    /// 30 days to pay the invoice. Do not set this field if you want to set a custom
+    /// due date.
     /// </summary>
     public required long? NetTerms
     {
@@ -57,6 +60,28 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
         set
         {
             this.Properties["net_terms"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// An optional custom due date for the invoice. If not set, the due date will
+    /// be calculated based on the `net_terms` value.
+    /// </summary>
+    public CustomDueDate? CustomDueDate
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("custom_due_date", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<CustomDueDate?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["custom_due_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -133,6 +158,7 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
     {
         _ = this.AutoCollection;
         _ = this.NetTerms;
+        this.CustomDueDate?.Validate();
         this.InvoiceDate?.Validate();
         _ = this.Memo;
         _ = this.RequireSuccessfulPayment;

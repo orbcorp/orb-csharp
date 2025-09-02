@@ -121,6 +121,28 @@ public sealed record class PaymentAttempt : ModelBase, IFromRaw<PaymentAttempt>
     }
 
     /// <summary>
+    /// URL to the downloadable PDF version of the receipt. This field will be `null`
+    /// for payment attempts that did not succeed.
+    /// </summary>
+    public required string? ReceiptPdf
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("receipt_pdf", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["receipt_pdf"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
     /// Whether the payment attempt succeeded.
     /// </summary>
     public required bool Succeeded
@@ -148,6 +170,7 @@ public sealed record class PaymentAttempt : ModelBase, IFromRaw<PaymentAttempt>
         _ = this.CreatedAt;
         this.PaymentProvider?.Validate();
         _ = this.PaymentProviderID;
+        _ = this.ReceiptPdf;
         _ = this.Succeeded;
     }
 

@@ -54,7 +54,7 @@ namespace Orb.Models.Customers.Credits.Ledger;
 ///
 /// Note that for this entry type, `starting_balance` will equal `ending_balance`,
 /// and the `amount` represents the balance transferred. The credit block linked
-/// to the ledger entry is the source credit block from which there was an expiration change
+/// to the ledger entry is the source credit block from which there was an expiration change.
 ///
 /// ## Credits expiry When a set of credits expire on pre-set expiration date, the
 /// customer's balance automatically reflects this change and adds an entry to the

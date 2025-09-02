@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Models = Orb.Models;
+using PriceProperties = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.PriceProperties;
 using PriceVariants = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.PriceVariants;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties;
@@ -30,15 +31,6 @@ public abstract record class Price
 
     public static implicit operator Price(Models::NewFloatingTieredPrice value) =>
         new PriceVariants::NewFloatingTieredPrice(value);
-
-    public static implicit operator Price(Models::NewFloatingTieredBPSPrice value) =>
-        new PriceVariants::NewFloatingTieredBPSPrice(value);
-
-    public static implicit operator Price(Models::NewFloatingBPSPrice value) =>
-        new PriceVariants::NewFloatingBPSPrice(value);
-
-    public static implicit operator Price(Models::NewFloatingBulkBPSPrice value) =>
-        new PriceVariants::NewFloatingBulkBPSPrice(value);
 
     public static implicit operator Price(Models::NewFloatingBulkPrice value) =>
         new PriceVariants::NewFloatingBulkPrice(value);
@@ -104,6 +96,12 @@ public abstract record class Price
     public static implicit operator Price(Models::NewFloatingCumulativeGroupedBulkPrice value) =>
         new PriceVariants::NewFloatingCumulativeGroupedBulkPrice(value);
 
+    public static implicit operator Price(PriceProperties::GroupedWithMinMaxThresholds value) =>
+        new PriceVariants::GroupedWithMinMaxThresholds(value);
+
+    public static implicit operator Price(PriceProperties::Minimum value) =>
+        new PriceVariants::Minimum(value);
+
     public bool TryPickNewFloatingUnit([NotNullWhen(true)] out Models::NewFloatingUnitPrice? value)
     {
         value = (this as PriceVariants::NewFloatingUnitPrice)?.Value;
@@ -139,28 +137,6 @@ public abstract record class Price
     )
     {
         value = (this as PriceVariants::NewFloatingTieredPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewFloatingTieredBPS(
-        [NotNullWhen(true)] out Models::NewFloatingTieredBPSPrice? value
-    )
-    {
-        value = (this as PriceVariants::NewFloatingTieredBPSPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewFloatingBPS([NotNullWhen(true)] out Models::NewFloatingBPSPrice? value)
-    {
-        value = (this as PriceVariants::NewFloatingBPSPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewFloatingBulkBPS(
-        [NotNullWhen(true)] out Models::NewFloatingBulkBPSPrice? value
-    )
-    {
-        value = (this as PriceVariants::NewFloatingBulkBPSPrice)?.Value;
         return value != null;
     }
 
@@ -322,15 +298,26 @@ public abstract record class Price
         return value != null;
     }
 
+    public bool TryPickGroupedWithMinMaxThresholds(
+        [NotNullWhen(true)] out PriceProperties::GroupedWithMinMaxThresholds? value
+    )
+    {
+        value = (this as PriceVariants::GroupedWithMinMaxThresholds)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickMinimum([NotNullWhen(true)] out PriceProperties::Minimum? value)
+    {
+        value = (this as PriceVariants::Minimum)?.Value;
+        return value != null;
+    }
+
     public void Switch(
         Action<PriceVariants::NewFloatingUnitPrice> newFloatingUnit,
         Action<PriceVariants::NewFloatingPackagePrice> newFloatingPackage,
         Action<PriceVariants::NewFloatingMatrixPrice> newFloatingMatrix,
         Action<PriceVariants::NewFloatingMatrixWithAllocationPrice> newFloatingMatrixWithAllocation,
         Action<PriceVariants::NewFloatingTieredPrice> newFloatingTiered,
-        Action<PriceVariants::NewFloatingTieredBPSPrice> newFloatingTieredBPS,
-        Action<PriceVariants::NewFloatingBPSPrice> newFloatingBPS,
-        Action<PriceVariants::NewFloatingBulkBPSPrice> newFloatingBulkBPS,
         Action<PriceVariants::NewFloatingBulkPrice> newFloatingBulk,
         Action<PriceVariants::NewFloatingThresholdTotalAmountPrice> newFloatingThresholdTotalAmount,
         Action<PriceVariants::NewFloatingTieredPackagePrice> newFloatingTieredPackage,
@@ -350,7 +337,9 @@ public abstract record class Price
         Action<PriceVariants::NewFloatingGroupedTieredPackagePrice> newFloatingGroupedTieredPackage,
         Action<PriceVariants::NewFloatingScalableMatrixWithUnitPricingPrice> newFloatingScalableMatrixWithUnitPricing,
         Action<PriceVariants::NewFloatingScalableMatrixWithTieredPricingPrice> newFloatingScalableMatrixWithTieredPricing,
-        Action<PriceVariants::NewFloatingCumulativeGroupedBulkPrice> newFloatingCumulativeGroupedBulk
+        Action<PriceVariants::NewFloatingCumulativeGroupedBulkPrice> newFloatingCumulativeGroupedBulk,
+        Action<PriceVariants::GroupedWithMinMaxThresholds> groupedWithMinMaxThresholds,
+        Action<PriceVariants::Minimum> minimum
     )
     {
         switch (this)
@@ -369,15 +358,6 @@ public abstract record class Price
                 break;
             case PriceVariants::NewFloatingTieredPrice inner:
                 newFloatingTiered(inner);
-                break;
-            case PriceVariants::NewFloatingTieredBPSPrice inner:
-                newFloatingTieredBPS(inner);
-                break;
-            case PriceVariants::NewFloatingBPSPrice inner:
-                newFloatingBPS(inner);
-                break;
-            case PriceVariants::NewFloatingBulkBPSPrice inner:
-                newFloatingBulkBPS(inner);
                 break;
             case PriceVariants::NewFloatingBulkPrice inner:
                 newFloatingBulk(inner);
@@ -439,6 +419,12 @@ public abstract record class Price
             case PriceVariants::NewFloatingCumulativeGroupedBulkPrice inner:
                 newFloatingCumulativeGroupedBulk(inner);
                 break;
+            case PriceVariants::GroupedWithMinMaxThresholds inner:
+                groupedWithMinMaxThresholds(inner);
+                break;
+            case PriceVariants::Minimum inner:
+                minimum(inner);
+                break;
             default:
                 throw new InvalidOperationException();
         }
@@ -453,9 +439,6 @@ public abstract record class Price
             T
         > newFloatingMatrixWithAllocation,
         Func<PriceVariants::NewFloatingTieredPrice, T> newFloatingTiered,
-        Func<PriceVariants::NewFloatingTieredBPSPrice, T> newFloatingTieredBPS,
-        Func<PriceVariants::NewFloatingBPSPrice, T> newFloatingBPS,
-        Func<PriceVariants::NewFloatingBulkBPSPrice, T> newFloatingBulkBPS,
         Func<PriceVariants::NewFloatingBulkPrice, T> newFloatingBulk,
         Func<
             PriceVariants::NewFloatingThresholdTotalAmountPrice,
@@ -508,7 +491,9 @@ public abstract record class Price
         Func<
             PriceVariants::NewFloatingCumulativeGroupedBulkPrice,
             T
-        > newFloatingCumulativeGroupedBulk
+        > newFloatingCumulativeGroupedBulk,
+        Func<PriceVariants::GroupedWithMinMaxThresholds, T> groupedWithMinMaxThresholds,
+        Func<PriceVariants::Minimum, T> minimum
     )
     {
         return this switch
@@ -519,9 +504,6 @@ public abstract record class Price
             PriceVariants::NewFloatingMatrixWithAllocationPrice inner =>
                 newFloatingMatrixWithAllocation(inner),
             PriceVariants::NewFloatingTieredPrice inner => newFloatingTiered(inner),
-            PriceVariants::NewFloatingTieredBPSPrice inner => newFloatingTieredBPS(inner),
-            PriceVariants::NewFloatingBPSPrice inner => newFloatingBPS(inner),
-            PriceVariants::NewFloatingBulkBPSPrice inner => newFloatingBulkBPS(inner),
             PriceVariants::NewFloatingBulkPrice inner => newFloatingBulk(inner),
             PriceVariants::NewFloatingThresholdTotalAmountPrice inner =>
                 newFloatingThresholdTotalAmount(inner),
@@ -564,6 +546,8 @@ public abstract record class Price
                 newFloatingScalableMatrixWithTieredPricing(inner),
             PriceVariants::NewFloatingCumulativeGroupedBulkPrice inner =>
                 newFloatingCumulativeGroupedBulk(inner),
+            PriceVariants::GroupedWithMinMaxThresholds inner => groupedWithMinMaxThresholds(inner),
+            PriceVariants::Minimum inner => minimum(inner),
             _ => throw new InvalidOperationException(),
         };
     }
@@ -696,73 +680,6 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         return new PriceVariants::NewFloatingTieredPrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "tiered_bps":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingTieredBPSPrice>(
-                            json,
-                            options
-                        );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewFloatingTieredBPSPrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "bps":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<Models::NewFloatingBPSPrice>(
-                        json,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewFloatingBPSPrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "bulk_bps":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<Models::NewFloatingBulkBPSPrice>(
-                        json,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewFloatingBulkBPSPrice(deserialized);
                     }
                 }
                 catch (JsonException e)
@@ -1253,6 +1170,51 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
+            case "grouped_with_min_max_thresholds":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceProperties::GroupedWithMinMaxThresholds>(
+                            json,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::GroupedWithMinMaxThresholds(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "minimum":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<PriceProperties::Minimum>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::Minimum(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
             default:
             {
                 throw new Exception();
@@ -1272,10 +1234,6 @@ sealed class PriceConverter : JsonConverter<Price?>
                 var newFloatingMatrixWithAllocation
             ) => newFloatingMatrixWithAllocation,
             PriceVariants::NewFloatingTieredPrice(var newFloatingTiered) => newFloatingTiered,
-            PriceVariants::NewFloatingTieredBPSPrice(var newFloatingTieredBPS) =>
-                newFloatingTieredBPS,
-            PriceVariants::NewFloatingBPSPrice(var newFloatingBPS) => newFloatingBPS,
-            PriceVariants::NewFloatingBulkBPSPrice(var newFloatingBulkBPS) => newFloatingBulkBPS,
             PriceVariants::NewFloatingBulkPrice(var newFloatingBulk) => newFloatingBulk,
             PriceVariants::NewFloatingThresholdTotalAmountPrice(
                 var newFloatingThresholdTotalAmount
@@ -1327,6 +1285,9 @@ sealed class PriceConverter : JsonConverter<Price?>
             PriceVariants::NewFloatingCumulativeGroupedBulkPrice(
                 var newFloatingCumulativeGroupedBulk
             ) => newFloatingCumulativeGroupedBulk,
+            PriceVariants::GroupedWithMinMaxThresholds(var groupedWithMinMaxThresholds) =>
+                groupedWithMinMaxThresholds,
+            PriceVariants::Minimum(var minimum) => minimum,
             _ => throw new ArgumentOutOfRangeException(nameof(value)),
         };
         JsonSerializer.Serialize(writer, variant, options);
