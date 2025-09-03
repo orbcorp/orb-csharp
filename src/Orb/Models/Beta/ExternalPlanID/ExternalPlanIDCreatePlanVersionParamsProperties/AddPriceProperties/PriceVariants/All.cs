@@ -441,11 +441,11 @@ public sealed record class NewPlanGroupedTieredPrice(Models::NewPlanGroupedTiere
     }
 }
 
-public sealed record class Minimum(PriceProperties::Minimum Value)
+public sealed record class NewPlanMinimumCompositePrice(Models::NewPlanMinimumCompositePrice Value)
     : Price,
-        IVariant<Minimum, PriceProperties::Minimum>
+        IVariant<NewPlanMinimumCompositePrice, Models::NewPlanMinimumCompositePrice>
 {
-    public static Minimum From(PriceProperties::Minimum value)
+    public static NewPlanMinimumCompositePrice From(Models::NewPlanMinimumCompositePrice value)
     {
         return new(value);
     }

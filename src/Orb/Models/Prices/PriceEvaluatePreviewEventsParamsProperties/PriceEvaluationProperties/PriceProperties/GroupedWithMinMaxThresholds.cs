@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Models.Prices.PriceEvaluatePreviewEventsParamsProperties.PriceEvaluationProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties;
-using Models = Orb.Models;
 
 namespace Orb.Models.Prices.PriceEvaluatePreviewEventsParamsProperties.PriceEvaluationProperties.PriceProperties;
 
@@ -194,7 +193,7 @@ public sealed record class GroupedWithMinMaxThresholds
     /// <summary>
     /// For custom cadence: specifies the duration of the billing period in days or months.
     /// </summary>
-    public Models::NewBillingCycleConfiguration? BillingCycleConfiguration
+    public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
         get
         {
@@ -203,7 +202,7 @@ public sealed record class GroupedWithMinMaxThresholds
             )
                 return null;
 
-            return JsonSerializer.Deserialize<Models::NewBillingCycleConfiguration?>(
+            return JsonSerializer.Deserialize<NewBillingCycleConfiguration?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -265,7 +264,7 @@ public sealed record class GroupedWithMinMaxThresholds
     /// <summary>
     /// For dimensional price: specifies a price group and dimension values
     /// </summary>
-    public Models::NewDimensionalPriceConfiguration? DimensionalPriceConfiguration
+    public NewDimensionalPriceConfiguration? DimensionalPriceConfiguration
     {
         get
         {
@@ -277,7 +276,7 @@ public sealed record class GroupedWithMinMaxThresholds
             )
                 return null;
 
-            return JsonSerializer.Deserialize<Models::NewDimensionalPriceConfiguration?>(
+            return JsonSerializer.Deserialize<NewDimensionalPriceConfiguration?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -358,7 +357,7 @@ public sealed record class GroupedWithMinMaxThresholds
     /// Within each billing cycle, specifies the cadence at which invoices are produced.
     /// If unspecified, a single invoice is produced per billing cycle.
     /// </summary>
-    public Models::NewBillingCycleConfiguration? InvoicingCycleConfiguration
+    public NewBillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
         {
@@ -370,7 +369,7 @@ public sealed record class GroupedWithMinMaxThresholds
             )
                 return null;
 
-            return JsonSerializer.Deserialize<Models::NewBillingCycleConfiguration?>(
+            return JsonSerializer.Deserialize<NewBillingCycleConfiguration?>(
                 element,
                 ModelBase.SerializerOptions
             );

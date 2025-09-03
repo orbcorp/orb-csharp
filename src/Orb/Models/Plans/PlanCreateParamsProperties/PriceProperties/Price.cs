@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties;
 using Models = Orb.Models;
-using PriceProperties = Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties;
 using PriceVariants = Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceVariants;
 
 namespace Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties;
@@ -62,7 +62,7 @@ public abstract record class Price
     public static implicit operator Price(Models::NewPlanGroupedWithMeteredMinimumPrice value) =>
         new PriceVariants::NewPlanGroupedWithMeteredMinimumPrice(value);
 
-    public static implicit operator Price(PriceProperties::GroupedWithMinMaxThresholds value) =>
+    public static implicit operator Price(GroupedWithMinMaxThresholds value) =>
         new PriceVariants::GroupedWithMinMaxThresholds(value);
 
     public static implicit operator Price(Models::NewPlanMatrixWithDisplayNamePrice value) =>
@@ -97,8 +97,8 @@ public abstract record class Price
     public static implicit operator Price(Models::NewPlanGroupedTieredPrice value) =>
         new PriceVariants::NewPlanGroupedTieredPrice(value);
 
-    public static implicit operator Price(PriceProperties::Minimum value) =>
-        new PriceVariants::Minimum(value);
+    public static implicit operator Price(Models::NewPlanMinimumCompositePrice value) =>
+        new PriceVariants::NewPlanMinimumCompositePrice(value);
 
     public bool TryPickNewPlanUnit([NotNullWhen(true)] out Models::NewPlanUnitPrice? value)
     {
@@ -211,7 +211,7 @@ public abstract record class Price
     }
 
     public bool TryPickGroupedWithMinMaxThresholds(
-        [NotNullWhen(true)] out PriceProperties::GroupedWithMinMaxThresholds? value
+        [NotNullWhen(true)] out GroupedWithMinMaxThresholds? value
     )
     {
         value = (this as PriceVariants::GroupedWithMinMaxThresholds)?.Value;
@@ -298,9 +298,11 @@ public abstract record class Price
         return value != null;
     }
 
-    public bool TryPickMinimum([NotNullWhen(true)] out PriceProperties::Minimum? value)
+    public bool TryPickNewPlanMinimumComposite(
+        [NotNullWhen(true)] out Models::NewPlanMinimumCompositePrice? value
+    )
     {
-        value = (this as PriceVariants::Minimum)?.Value;
+        value = (this as PriceVariants::NewPlanMinimumCompositePrice)?.Value;
         return value != null;
     }
 
@@ -331,7 +333,7 @@ public abstract record class Price
         Action<PriceVariants::NewPlanTieredPackageWithMinimumPrice> newPlanTieredPackageWithMinimum,
         Action<PriceVariants::NewPlanMatrixWithAllocationPrice> newPlanMatrixWithAllocation,
         Action<PriceVariants::NewPlanGroupedTieredPrice> newPlanGroupedTiered,
-        Action<PriceVariants::Minimum> minimum
+        Action<PriceVariants::NewPlanMinimumCompositePrice> newPlanMinimumComposite
     )
     {
         switch (this)
@@ -414,8 +416,8 @@ public abstract record class Price
             case PriceVariants::NewPlanGroupedTieredPrice inner:
                 newPlanGroupedTiered(inner);
                 break;
-            case PriceVariants::Minimum inner:
-                minimum(inner);
+            case PriceVariants::NewPlanMinimumCompositePrice inner:
+                newPlanMinimumComposite(inner);
                 break;
             default:
                 throw new InvalidOperationException();
@@ -464,7 +466,7 @@ public abstract record class Price
         > newPlanTieredPackageWithMinimum,
         Func<PriceVariants::NewPlanMatrixWithAllocationPrice, T> newPlanMatrixWithAllocation,
         Func<PriceVariants::NewPlanGroupedTieredPrice, T> newPlanGroupedTiered,
-        Func<PriceVariants::Minimum, T> minimum
+        Func<PriceVariants::NewPlanMinimumCompositePrice, T> newPlanMinimumComposite
     )
     {
         return this switch
@@ -514,7 +516,7 @@ public abstract record class Price
                 inner
             ),
             PriceVariants::NewPlanGroupedTieredPrice inner => newPlanGroupedTiered(inner),
-            PriceVariants::Minimum inner => minimum(inner),
+            PriceVariants::NewPlanMinimumCompositePrice inner => newPlanMinimumComposite(inner),
             _ => throw new InvalidOperationException(),
         };
     }
@@ -893,11 +895,10 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<PriceProperties::GroupedWithMinMaxThresholds>(
-                            json,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<GroupedWithMinMaxThresholds>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new PriceVariants::GroupedWithMinMaxThresholds(deserialized);
@@ -1152,13 +1153,14 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<PriceProperties::Minimum>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<Models::NewPlanMinimumCompositePrice>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::Minimum(deserialized);
+                        return new PriceVariants::NewPlanMinimumCompositePrice(deserialized);
                     }
                 }
                 catch (JsonException e)
@@ -1232,7 +1234,8 @@ sealed class PriceConverter : JsonConverter<Price?>
                 newPlanMatrixWithAllocation,
             PriceVariants::NewPlanGroupedTieredPrice(var newPlanGroupedTiered) =>
                 newPlanGroupedTiered,
-            PriceVariants::Minimum(var minimum) => minimum,
+            PriceVariants::NewPlanMinimumCompositePrice(var newPlanMinimumComposite) =>
+                newPlanMinimumComposite,
             _ => throw new ArgumentOutOfRangeException(nameof(value)),
         };
         JsonSerializer.Serialize(writer, variant, options);

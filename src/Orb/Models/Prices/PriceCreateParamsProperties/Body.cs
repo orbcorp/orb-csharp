@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using BodyProperties = Orb.Models.Prices.PriceCreateParamsProperties.BodyProperties;
+using Orb.Models.Prices.PriceCreateParamsProperties.BodyProperties;
 using BodyVariants = Orb.Models.Prices.PriceCreateParamsProperties.BodyVariants;
 
 namespace Orb.Models.Prices.PriceCreateParamsProperties;
@@ -88,11 +88,11 @@ public abstract record class Body
     public static implicit operator Body(NewFloatingCumulativeGroupedBulkPrice value) =>
         new BodyVariants::NewFloatingCumulativeGroupedBulkPrice(value);
 
-    public static implicit operator Body(BodyProperties::GroupedWithMinMaxThresholds value) =>
+    public static implicit operator Body(GroupedWithMinMaxThresholds value) =>
         new BodyVariants::GroupedWithMinMaxThresholds(value);
 
-    public static implicit operator Body(BodyProperties::Minimum value) =>
-        new BodyVariants::Minimum(value);
+    public static implicit operator Body(NewFloatingMinimumCompositePrice value) =>
+        new BodyVariants::NewFloatingMinimumCompositePrice(value);
 
     public bool TryPickNewFloatingUnitPrice([NotNullWhen(true)] out NewFloatingUnitPrice? value)
     {
@@ -287,16 +287,18 @@ public abstract record class Body
     }
 
     public bool TryPickGroupedWithMinMaxThresholds(
-        [NotNullWhen(true)] out BodyProperties::GroupedWithMinMaxThresholds? value
+        [NotNullWhen(true)] out GroupedWithMinMaxThresholds? value
     )
     {
         value = (this as BodyVariants::GroupedWithMinMaxThresholds)?.Value;
         return value != null;
     }
 
-    public bool TryPickMinimum([NotNullWhen(true)] out BodyProperties::Minimum? value)
+    public bool TryPickNewFloatingMinimumCompositePrice(
+        [NotNullWhen(true)] out NewFloatingMinimumCompositePrice? value
+    )
     {
-        value = (this as BodyVariants::Minimum)?.Value;
+        value = (this as BodyVariants::NewFloatingMinimumCompositePrice)?.Value;
         return value != null;
     }
 
@@ -327,7 +329,7 @@ public abstract record class Body
         Action<BodyVariants::NewFloatingScalableMatrixWithTieredPricingPrice> newFloatingScalableMatrixWithTieredPricingPrice,
         Action<BodyVariants::NewFloatingCumulativeGroupedBulkPrice> newFloatingCumulativeGroupedBulkPrice,
         Action<BodyVariants::GroupedWithMinMaxThresholds> groupedWithMinMaxThresholds,
-        Action<BodyVariants::Minimum> minimum
+        Action<BodyVariants::NewFloatingMinimumCompositePrice> newFloatingMinimumCompositePrice
     )
     {
         switch (this)
@@ -410,8 +412,8 @@ public abstract record class Body
             case BodyVariants::GroupedWithMinMaxThresholds inner:
                 groupedWithMinMaxThresholds(inner);
                 break;
-            case BodyVariants::Minimum inner:
-                minimum(inner);
+            case BodyVariants::NewFloatingMinimumCompositePrice inner:
+                newFloatingMinimumCompositePrice(inner);
                 break;
             default:
                 throw new InvalidOperationException();
@@ -484,7 +486,7 @@ public abstract record class Body
             T
         > newFloatingCumulativeGroupedBulkPrice,
         Func<BodyVariants::GroupedWithMinMaxThresholds, T> groupedWithMinMaxThresholds,
-        Func<BodyVariants::Minimum, T> minimum
+        Func<BodyVariants::NewFloatingMinimumCompositePrice, T> newFloatingMinimumCompositePrice
     )
     {
         return this switch
@@ -538,7 +540,8 @@ public abstract record class Body
             BodyVariants::NewFloatingCumulativeGroupedBulkPrice inner =>
                 newFloatingCumulativeGroupedBulkPrice(inner),
             BodyVariants::GroupedWithMinMaxThresholds inner => groupedWithMinMaxThresholds(inner),
-            BodyVariants::Minimum inner => minimum(inner),
+            BodyVariants::NewFloatingMinimumCompositePrice inner =>
+                newFloatingMinimumCompositePrice(inner),
             _ => throw new InvalidOperationException(),
         };
     }
@@ -1158,11 +1161,10 @@ sealed class BodyConverter : JsonConverter<Body>
 
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<BodyProperties::GroupedWithMinMaxThresholds>(
-                            json,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<GroupedWithMinMaxThresholds>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new BodyVariants::GroupedWithMinMaxThresholds(deserialized);
@@ -1181,13 +1183,13 @@ sealed class BodyConverter : JsonConverter<Body>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<BodyProperties::Minimum>(
+                    var deserialized = JsonSerializer.Deserialize<NewFloatingMinimumCompositePrice>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::Minimum(deserialized);
+                        return new BodyVariants::NewFloatingMinimumCompositePrice(deserialized);
                     }
                 }
                 catch (JsonException e)
@@ -1275,7 +1277,8 @@ sealed class BodyConverter : JsonConverter<Body>
             ) => newFloatingCumulativeGroupedBulkPrice,
             BodyVariants::GroupedWithMinMaxThresholds(var groupedWithMinMaxThresholds) =>
                 groupedWithMinMaxThresholds,
-            BodyVariants::Minimum(var minimum) => minimum,
+            BodyVariants::NewFloatingMinimumCompositePrice(var newFloatingMinimumCompositePrice) =>
+                newFloatingMinimumCompositePrice,
             _ => throw new ArgumentOutOfRangeException(nameof(value)),
         };
         JsonSerializer.Serialize(writer, variant, options);

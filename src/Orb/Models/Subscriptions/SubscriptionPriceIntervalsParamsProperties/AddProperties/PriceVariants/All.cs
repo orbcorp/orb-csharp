@@ -484,11 +484,13 @@ public sealed record class GroupedWithMinMaxThresholds(
     }
 }
 
-public sealed record class Minimum(PriceProperties::Minimum Value)
-    : Price,
-        IVariant<Minimum, PriceProperties::Minimum>
+public sealed record class NewFloatingMinimumCompositePrice(
+    Models::NewFloatingMinimumCompositePrice Value
+) : Price, IVariant<NewFloatingMinimumCompositePrice, Models::NewFloatingMinimumCompositePrice>
 {
-    public static Minimum From(PriceProperties::Minimum value)
+    public static NewFloatingMinimumCompositePrice From(
+        Models::NewFloatingMinimumCompositePrice value
+    )
     {
         return new(value);
     }

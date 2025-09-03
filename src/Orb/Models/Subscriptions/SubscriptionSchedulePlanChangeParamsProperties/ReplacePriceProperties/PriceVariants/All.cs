@@ -535,11 +535,18 @@ public sealed record class GroupedWithMinMaxThresholds(
     }
 }
 
-public sealed record class Minimum(PriceProperties::Minimum Value)
+public sealed record class NewSubscriptionMinimumCompositePrice(
+    Subscriptions::NewSubscriptionMinimumCompositePrice Value
+)
     : Price,
-        IVariant<Minimum, PriceProperties::Minimum>
+        IVariant<
+            NewSubscriptionMinimumCompositePrice,
+            Subscriptions::NewSubscriptionMinimumCompositePrice
+        >
 {
-    public static Minimum From(PriceProperties::Minimum value)
+    public static NewSubscriptionMinimumCompositePrice From(
+        Subscriptions::NewSubscriptionMinimumCompositePrice value
+    )
     {
         return new(value);
     }

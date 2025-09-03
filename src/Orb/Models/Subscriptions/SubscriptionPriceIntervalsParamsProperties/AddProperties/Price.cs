@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.PriceProperties;
 using Models = Orb.Models;
-using PriceProperties = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.PriceProperties;
 using PriceVariants = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.PriceVariants;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties;
@@ -96,11 +96,11 @@ public abstract record class Price
     public static implicit operator Price(Models::NewFloatingCumulativeGroupedBulkPrice value) =>
         new PriceVariants::NewFloatingCumulativeGroupedBulkPrice(value);
 
-    public static implicit operator Price(PriceProperties::GroupedWithMinMaxThresholds value) =>
+    public static implicit operator Price(GroupedWithMinMaxThresholds value) =>
         new PriceVariants::GroupedWithMinMaxThresholds(value);
 
-    public static implicit operator Price(PriceProperties::Minimum value) =>
-        new PriceVariants::Minimum(value);
+    public static implicit operator Price(Models::NewFloatingMinimumCompositePrice value) =>
+        new PriceVariants::NewFloatingMinimumCompositePrice(value);
 
     public bool TryPickNewFloatingUnit([NotNullWhen(true)] out Models::NewFloatingUnitPrice? value)
     {
@@ -299,16 +299,18 @@ public abstract record class Price
     }
 
     public bool TryPickGroupedWithMinMaxThresholds(
-        [NotNullWhen(true)] out PriceProperties::GroupedWithMinMaxThresholds? value
+        [NotNullWhen(true)] out GroupedWithMinMaxThresholds? value
     )
     {
         value = (this as PriceVariants::GroupedWithMinMaxThresholds)?.Value;
         return value != null;
     }
 
-    public bool TryPickMinimum([NotNullWhen(true)] out PriceProperties::Minimum? value)
+    public bool TryPickNewFloatingMinimumComposite(
+        [NotNullWhen(true)] out Models::NewFloatingMinimumCompositePrice? value
+    )
     {
-        value = (this as PriceVariants::Minimum)?.Value;
+        value = (this as PriceVariants::NewFloatingMinimumCompositePrice)?.Value;
         return value != null;
     }
 
@@ -339,7 +341,7 @@ public abstract record class Price
         Action<PriceVariants::NewFloatingScalableMatrixWithTieredPricingPrice> newFloatingScalableMatrixWithTieredPricing,
         Action<PriceVariants::NewFloatingCumulativeGroupedBulkPrice> newFloatingCumulativeGroupedBulk,
         Action<PriceVariants::GroupedWithMinMaxThresholds> groupedWithMinMaxThresholds,
-        Action<PriceVariants::Minimum> minimum
+        Action<PriceVariants::NewFloatingMinimumCompositePrice> newFloatingMinimumComposite
     )
     {
         switch (this)
@@ -422,8 +424,8 @@ public abstract record class Price
             case PriceVariants::GroupedWithMinMaxThresholds inner:
                 groupedWithMinMaxThresholds(inner);
                 break;
-            case PriceVariants::Minimum inner:
-                minimum(inner);
+            case PriceVariants::NewFloatingMinimumCompositePrice inner:
+                newFloatingMinimumComposite(inner);
                 break;
             default:
                 throw new InvalidOperationException();
@@ -493,7 +495,7 @@ public abstract record class Price
             T
         > newFloatingCumulativeGroupedBulk,
         Func<PriceVariants::GroupedWithMinMaxThresholds, T> groupedWithMinMaxThresholds,
-        Func<PriceVariants::Minimum, T> minimum
+        Func<PriceVariants::NewFloatingMinimumCompositePrice, T> newFloatingMinimumComposite
     )
     {
         return this switch
@@ -547,7 +549,9 @@ public abstract record class Price
             PriceVariants::NewFloatingCumulativeGroupedBulkPrice inner =>
                 newFloatingCumulativeGroupedBulk(inner),
             PriceVariants::GroupedWithMinMaxThresholds inner => groupedWithMinMaxThresholds(inner),
-            PriceVariants::Minimum inner => minimum(inner),
+            PriceVariants::NewFloatingMinimumCompositePrice inner => newFloatingMinimumComposite(
+                inner
+            ),
             _ => throw new InvalidOperationException(),
         };
     }
@@ -1176,11 +1180,10 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<PriceProperties::GroupedWithMinMaxThresholds>(
-                            json,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<GroupedWithMinMaxThresholds>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new PriceVariants::GroupedWithMinMaxThresholds(deserialized);
@@ -1199,13 +1202,14 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<PriceProperties::Minimum>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<Models::NewFloatingMinimumCompositePrice>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::Minimum(deserialized);
+                        return new PriceVariants::NewFloatingMinimumCompositePrice(deserialized);
                     }
                 }
                 catch (JsonException e)
@@ -1287,7 +1291,8 @@ sealed class PriceConverter : JsonConverter<Price?>
             ) => newFloatingCumulativeGroupedBulk,
             PriceVariants::GroupedWithMinMaxThresholds(var groupedWithMinMaxThresholds) =>
                 groupedWithMinMaxThresholds,
-            PriceVariants::Minimum(var minimum) => minimum,
+            PriceVariants::NewFloatingMinimumCompositePrice(var newFloatingMinimumComposite) =>
+                newFloatingMinimumComposite,
             _ => throw new ArgumentOutOfRangeException(nameof(value)),
         };
         JsonSerializer.Serialize(writer, variant, options);
