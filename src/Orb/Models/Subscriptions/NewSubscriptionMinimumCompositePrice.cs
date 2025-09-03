@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplacePriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties;
+using Orb.Models.Subscriptions.NewSubscriptionMinimumCompositePriceProperties;
 
-namespace Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplacePriceProperties.PriceProperties;
+namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<GroupedWithMinMaxThresholds>))]
-public sealed record class GroupedWithMinMaxThresholds
+[JsonConverter(typeof(ModelConverter<NewSubscriptionMinimumCompositePrice>))]
+public sealed record class NewSubscriptionMinimumCompositePrice
     : ModelBase,
-        IFromRaw<GroupedWithMinMaxThresholds>
+        IFromRaw<NewSubscriptionMinimumCompositePrice>
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -36,33 +36,6 @@ public sealed record class GroupedWithMinMaxThresholds
         }
     }
 
-    public required Dictionary<string, JsonElement> GroupedWithMinMaxThresholdsConfig
-    {
-        get
-        {
-            if (
-                !this.Properties.TryGetValue(
-                    "grouped_with_min_max_thresholds_config",
-                    out JsonElement element
-                )
-            )
-                throw new ArgumentOutOfRangeException(
-                    "grouped_with_min_max_thresholds_config",
-                    "Missing required argument"
-                );
-
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("grouped_with_min_max_thresholds_config");
-        }
-        set
-        {
-            this.Properties["grouped_with_min_max_thresholds_config"] =
-                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
-        }
-    }
-
     /// <summary>
     /// The id of the item the price will be associated with.
     /// </summary>
@@ -85,14 +58,39 @@ public sealed record class GroupedWithMinMaxThresholds
         }
     }
 
-    public JsonElement ModelType
+    public required MinimumConfig MinimumConfig
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("minimum_config", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
+                    "minimum_config",
+                    "Missing required argument"
+                );
+
+            return JsonSerializer.Deserialize<MinimumConfig>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("minimum_config");
+        }
+        set
+        {
+            this.Properties["minimum_config"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required ApiEnum<string, ModelType> ModelType
     {
         get
         {
             if (!this.Properties.TryGetValue("model_type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("model_type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ApiEnum<string, ModelType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -434,11 +432,9 @@ public sealed record class GroupedWithMinMaxThresholds
     public override void Validate()
     {
         this.Cadence.Validate();
-        foreach (var item in this.GroupedWithMinMaxThresholdsConfig.Values)
-        {
-            _ = item;
-        }
         _ = this.ItemID;
+        this.MinimumConfig.Validate();
+        this.ModelType.Validate();
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -461,22 +457,17 @@ public sealed record class GroupedWithMinMaxThresholds
         _ = this.ReferenceID;
     }
 
-    public GroupedWithMinMaxThresholds()
-    {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_min_max_thresholds\""
-        );
-    }
+    public NewSubscriptionMinimumCompositePrice() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    GroupedWithMinMaxThresholds(Dictionary<string, JsonElement> properties)
+    NewSubscriptionMinimumCompositePrice(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static GroupedWithMinMaxThresholds FromRawUnchecked(
+    public static NewSubscriptionMinimumCompositePrice FromRawUnchecked(
         Dictionary<string, JsonElement> properties
     )
     {

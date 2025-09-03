@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplacePriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties;
+using Orb.Models.NewFloatingMinimumCompositePriceProperties;
 
-namespace Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplacePriceProperties.PriceProperties;
+namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<GroupedWithMinMaxThresholds>))]
-public sealed record class GroupedWithMinMaxThresholds
+[JsonConverter(typeof(ModelConverter<NewFloatingMinimumCompositePrice>))]
+public sealed record class NewFloatingMinimumCompositePrice
     : ModelBase,
-        IFromRaw<GroupedWithMinMaxThresholds>
+        IFromRaw<NewFloatingMinimumCompositePrice>
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -36,30 +36,25 @@ public sealed record class GroupedWithMinMaxThresholds
         }
     }
 
-    public required Dictionary<string, JsonElement> GroupedWithMinMaxThresholdsConfig
+    /// <summary>
+    /// An ISO 4217 currency string for which this price is billed in.
+    /// </summary>
+    public required string Currency
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "grouped_with_min_max_thresholds_config",
-                    out JsonElement element
-                )
-            )
-                throw new ArgumentOutOfRangeException(
-                    "grouped_with_min_max_thresholds_config",
-                    "Missing required argument"
-                );
+            if (!this.Properties.TryGetValue("currency", out JsonElement element))
+                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("grouped_with_min_max_thresholds_config");
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("currency");
         }
         set
         {
-            this.Properties["grouped_with_min_max_thresholds_config"] =
-                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -85,14 +80,39 @@ public sealed record class GroupedWithMinMaxThresholds
         }
     }
 
-    public JsonElement ModelType
+    public required MinimumConfig MinimumConfig
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("minimum_config", out JsonElement element))
+                throw new ArgumentOutOfRangeException(
+                    "minimum_config",
+                    "Missing required argument"
+                );
+
+            return JsonSerializer.Deserialize<MinimumConfig>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("minimum_config");
+        }
+        set
+        {
+            this.Properties["minimum_config"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required ApiEnum<string, ModelType> ModelType
     {
         get
         {
             if (!this.Properties.TryGetValue("model_type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("model_type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ApiEnum<string, ModelType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -233,28 +253,6 @@ public sealed record class GroupedWithMinMaxThresholds
         set
         {
             this.Properties["conversion_rate_config"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
-    /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
-    /// </summary>
-    public string? Currency
-    {
-        get
-        {
-            if (!this.Properties.TryGetValue("currency", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        set
-        {
-            this.Properties["currency"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -409,43 +407,19 @@ public sealed record class GroupedWithMinMaxThresholds
         }
     }
 
-    /// <summary>
-    /// A transient ID that can be used to reference this price when adding adjustments
-    /// in the same API call.
-    /// </summary>
-    public string? ReferenceID
-    {
-        get
-        {
-            if (!this.Properties.TryGetValue("reference_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        set
-        {
-            this.Properties["reference_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
     public override void Validate()
     {
         this.Cadence.Validate();
-        foreach (var item in this.GroupedWithMinMaxThresholdsConfig.Values)
-        {
-            _ = item;
-        }
+        _ = this.Currency;
         _ = this.ItemID;
+        this.MinimumConfig.Validate();
+        this.ModelType.Validate();
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
         this.BillingCycleConfiguration?.Validate();
         _ = this.ConversionRate;
         this.ConversionRateConfig?.Validate();
-        _ = this.Currency;
         this.DimensionalPriceConfiguration?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
@@ -458,25 +432,19 @@ public sealed record class GroupedWithMinMaxThresholds
                 _ = item;
             }
         }
-        _ = this.ReferenceID;
     }
 
-    public GroupedWithMinMaxThresholds()
-    {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_min_max_thresholds\""
-        );
-    }
+    public NewFloatingMinimumCompositePrice() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    GroupedWithMinMaxThresholds(Dictionary<string, JsonElement> properties)
+    NewFloatingMinimumCompositePrice(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static GroupedWithMinMaxThresholds FromRawUnchecked(
+    public static NewFloatingMinimumCompositePrice FromRawUnchecked(
         Dictionary<string, JsonElement> properties
     )
     {

@@ -92,6 +92,7 @@ using NewFloatingMatrixPriceProperties = Orb.Models.NewFloatingMatrixPriceProper
 using NewFloatingMatrixWithAllocationPriceProperties = Orb.Models.NewFloatingMatrixWithAllocationPriceProperties;
 using NewFloatingMatrixWithDisplayNamePriceProperties = Orb.Models.NewFloatingMatrixWithDisplayNamePriceProperties;
 using NewFloatingMaxGroupTieredPackagePriceProperties = Orb.Models.NewFloatingMaxGroupTieredPackagePriceProperties;
+using NewFloatingMinimumCompositePriceProperties = Orb.Models.NewFloatingMinimumCompositePriceProperties;
 using NewFloatingPackagePriceProperties = Orb.Models.NewFloatingPackagePriceProperties;
 using NewFloatingPackageWithAllocationPriceProperties = Orb.Models.NewFloatingPackageWithAllocationPriceProperties;
 using NewFloatingScalableMatrixWithTieredPricingPriceProperties = Orb.Models.NewFloatingScalableMatrixWithTieredPricingPriceProperties;
@@ -120,6 +121,7 @@ using NewPlanMatrixPriceProperties = Orb.Models.NewPlanMatrixPriceProperties;
 using NewPlanMatrixWithAllocationPriceProperties = Orb.Models.NewPlanMatrixWithAllocationPriceProperties;
 using NewPlanMatrixWithDisplayNamePriceProperties = Orb.Models.NewPlanMatrixWithDisplayNamePriceProperties;
 using NewPlanMaxGroupTieredPackagePriceProperties = Orb.Models.NewPlanMaxGroupTieredPackagePriceProperties;
+using NewPlanMinimumCompositePriceProperties = Orb.Models.NewPlanMinimumCompositePriceProperties;
 using NewPlanPackagePriceProperties = Orb.Models.NewPlanPackagePriceProperties;
 using NewPlanPackageWithAllocationPriceProperties = Orb.Models.NewPlanPackageWithAllocationPriceProperties;
 using NewPlanScalableMatrixWithTieredPricingPriceProperties = Orb.Models.NewPlanScalableMatrixWithTieredPricingPriceProperties;
@@ -146,6 +148,7 @@ using NewSubscriptionMatrixPriceProperties = Orb.Models.Subscriptions.NewSubscri
 using NewSubscriptionMatrixWithAllocationPriceProperties = Orb.Models.Subscriptions.NewSubscriptionMatrixWithAllocationPriceProperties;
 using NewSubscriptionMatrixWithDisplayNamePriceProperties = Orb.Models.Subscriptions.NewSubscriptionMatrixWithDisplayNamePriceProperties;
 using NewSubscriptionMaxGroupTieredPackagePriceProperties = Orb.Models.Subscriptions.NewSubscriptionMaxGroupTieredPackagePriceProperties;
+using NewSubscriptionMinimumCompositePriceProperties = Orb.Models.Subscriptions.NewSubscriptionMinimumCompositePriceProperties;
 using NewSubscriptionPackagePriceProperties = Orb.Models.Subscriptions.NewSubscriptionPackagePriceProperties;
 using NewSubscriptionPackageWithAllocationPriceProperties = Orb.Models.Subscriptions.NewSubscriptionPackageWithAllocationPriceProperties;
 using NewSubscriptionScalableMatrixWithTieredPricingPriceProperties = Orb.Models.Subscriptions.NewSubscriptionScalableMatrixWithTieredPricingPriceProperties;
@@ -316,6 +319,8 @@ public abstract record class ModelBase
                 string,
                 NewFloatingMaxGroupTieredPackagePriceProperties::ModelType
             >(),
+            new ApiEnumConverter<string, NewFloatingMinimumCompositePriceProperties::Cadence>(),
+            new ApiEnumConverter<string, NewFloatingMinimumCompositePriceProperties::ModelType>(),
             new ApiEnumConverter<string, NewFloatingPackagePriceProperties::Cadence>(),
             new ApiEnumConverter<string, NewFloatingPackagePriceProperties::ModelType>(),
             new ApiEnumConverter<
@@ -417,6 +422,8 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, NewPlanMatrixWithDisplayNamePriceProperties::ModelType>(),
             new ApiEnumConverter<string, NewPlanMaxGroupTieredPackagePriceProperties::Cadence>(),
             new ApiEnumConverter<string, NewPlanMaxGroupTieredPackagePriceProperties::ModelType>(),
+            new ApiEnumConverter<string, NewPlanMinimumCompositePriceProperties::Cadence>(),
+            new ApiEnumConverter<string, NewPlanMinimumCompositePriceProperties::ModelType>(),
             new ApiEnumConverter<string, NewPlanPackagePriceProperties::Cadence>(),
             new ApiEnumConverter<string, NewPlanPackagePriceProperties::ModelType>(),
             new ApiEnumConverter<string, NewPlanPackageWithAllocationPriceProperties::Cadence>(),
@@ -547,15 +554,7 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<
                 string,
-                global::Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.AddPriceProperties.PriceProperties.MinimumProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
                 global::Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.MinimumProperties.Cadence
             >(),
             new ApiEnumConverter<
                 string,
@@ -563,15 +562,7 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<
                 string,
-                global::Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties.AddPriceProperties.PriceProperties.MinimumProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
                 global::Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.MinimumProperties.Cadence
             >(),
             new ApiEnumConverter<string, Reason>(),
             new ApiEnumConverter<string, CustomerProperties::PaymentProvider>(),
@@ -672,10 +663,6 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<
                 string,
-                global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.MinimumProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
                 global::Orb.Models.Plans.PlanCreateParamsProperties.PlanPhaseProperties.DurationUnit
             >(),
             new ApiEnumConverter<string, PlanCreateParamsProperties::Status>(),
@@ -686,23 +673,11 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<
                 string,
-                global::Orb.Models.Prices.PriceCreateParamsProperties.BodyProperties.MinimumProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
                 global::Orb.Models.Prices.PriceEvaluateMultipleParamsProperties.PriceEvaluationProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
             >(),
             new ApiEnumConverter<
                 string,
-                global::Orb.Models.Prices.PriceEvaluateMultipleParamsProperties.PriceEvaluationProperties.PriceProperties.MinimumProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
                 global::Orb.Models.Prices.PriceEvaluatePreviewEventsParamsProperties.PriceEvaluationProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Prices.PriceEvaluatePreviewEventsParamsProperties.PriceEvaluationProperties.PriceProperties.MinimumProperties.Cadence
             >(),
             new ApiEnumConverter<string, DiscountOverrideProperties::DiscountType>(),
             new ApiEnumConverter<string, NewSubscriptionBulkPriceProperties::Cadence>(),
@@ -782,6 +757,11 @@ public abstract record class ModelBase
             new ApiEnumConverter<
                 string,
                 NewSubscriptionMaxGroupTieredPackagePriceProperties::ModelType
+            >(),
+            new ApiEnumConverter<string, NewSubscriptionMinimumCompositePriceProperties::Cadence>(),
+            new ApiEnumConverter<
+                string,
+                NewSubscriptionMinimumCompositePriceProperties::ModelType
             >(),
             new ApiEnumConverter<string, NewSubscriptionPackagePriceProperties::Cadence>(),
             new ApiEnumConverter<string, NewSubscriptionPackagePriceProperties::ModelType>(),
@@ -873,18 +853,10 @@ public abstract record class ModelBase
                 string,
                 global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
             >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.PriceProperties.MinimumProperties.Cadence
-            >(),
             new ApiEnumConverter<string, ExternalMarketplace>(),
             new ApiEnumConverter<
                 string,
                 global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplacePriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplacePriceProperties.PriceProperties.MinimumProperties.Cadence
             >(),
             new ApiEnumConverter<string, SubscriptionListParamsProperties::Status>(),
             new ApiEnumConverter<string, CancelOption>(),
@@ -894,10 +866,6 @@ public abstract record class ModelBase
             new ApiEnumConverter<
                 string,
                 global::Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.PriceProperties.MinimumProperties.Cadence
             >(),
             new ApiEnumConverter<string, ChangeOption>(),
             new ApiEnumConverter<
@@ -910,19 +878,11 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<
                 string,
-                global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.AddPriceProperties.PriceProperties.MinimumProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
                 SubscriptionSchedulePlanChangeParamsProperties::BillingCycleAlignment
             >(),
             new ApiEnumConverter<
                 string,
                 global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.ReplacePriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.ReplacePriceProperties.PriceProperties.MinimumProperties.Cadence
             >(),
             new ApiEnumConverter<
                 string,
