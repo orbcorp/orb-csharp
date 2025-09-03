@@ -275,7 +275,10 @@ public sealed record class GroupedWithMeteredMinimum
         }
     }
 
-    public required Dictionary<string, JsonElement> GroupedWithMeteredMinimumConfig
+    /// <summary>
+    /// Configuration for grouped_with_metered_minimum pricing
+    /// </summary>
+    public required GroupedWithMeteredMinimumConfig GroupedWithMeteredMinimumConfig
     {
         get
         {
@@ -290,7 +293,7 @@ public sealed record class GroupedWithMeteredMinimum
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<GroupedWithMeteredMinimumConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("grouped_with_metered_minimum_config");
@@ -454,6 +457,9 @@ public sealed record class GroupedWithMeteredMinimum
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get
@@ -596,10 +602,7 @@ public sealed record class GroupedWithMeteredMinimum
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
-        foreach (var item in this.GroupedWithMeteredMinimumConfig.Values)
-        {
-            _ = item;
-        }
+        this.GroupedWithMeteredMinimumConfig.Validate();
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();

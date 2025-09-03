@@ -6,6 +6,9 @@ using System.Text.Json.Serialization;
 
 namespace Orb.Models;
 
+/// <summary>
+/// Configuration for matrix pricing
+/// </summary>
 [JsonConverter(typeof(ModelConverter<MatrixConfig>))]
 public sealed record class MatrixConfig : ModelBase, IFromRaw<MatrixConfig>
 {
@@ -57,7 +60,7 @@ public sealed record class MatrixConfig : ModelBase, IFromRaw<MatrixConfig>
     }
 
     /// <summary>
-    /// Matrix values for specified matrix grouping keys
+    /// Matrix values configuration
     /// </summary>
     public required List<MatrixValue> MatrixValues
     {

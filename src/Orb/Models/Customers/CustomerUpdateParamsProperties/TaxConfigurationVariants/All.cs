@@ -1,4 +1,5 @@
 using Customers = Orb.Models.Customers;
+using TaxConfigurationProperties = Orb.Models.Customers.CustomerUpdateParamsProperties.TaxConfigurationProperties;
 
 namespace Orb.Models.Customers.CustomerUpdateParamsProperties.TaxConfigurationVariants;
 
@@ -37,6 +38,21 @@ public sealed record class NewSphereConfiguration(Customers::NewSphereConfigurat
         IVariant<NewSphereConfiguration, Customers::NewSphereConfiguration>
 {
     public static NewSphereConfiguration From(Customers::NewSphereConfiguration value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class Numeral(TaxConfigurationProperties::Numeral Value)
+    : TaxConfiguration,
+        IVariant<Numeral, TaxConfigurationProperties::Numeral>
+{
+    public static Numeral From(TaxConfigurationProperties::Numeral value)
     {
         return new(value);
     }

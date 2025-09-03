@@ -58,6 +58,9 @@ public sealed record class NewPlanThresholdTotalAmountPrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -101,7 +104,10 @@ public sealed record class NewPlanThresholdTotalAmountPrice
         }
     }
 
-    public required Dictionary<string, JsonElement> ThresholdTotalAmountConfig
+    /// <summary>
+    /// Configuration for threshold_total_amount pricing
+    /// </summary>
+    public required ThresholdTotalAmountConfig ThresholdTotalAmountConfig
     {
         get
         {
@@ -116,7 +122,7 @@ public sealed record class NewPlanThresholdTotalAmountPrice
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<ThresholdTotalAmountConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("threshold_total_amount_config");
@@ -442,10 +448,7 @@ public sealed record class NewPlanThresholdTotalAmountPrice
         _ = this.ItemID;
         this.ModelType.Validate();
         _ = this.Name;
-        foreach (var item in this.ThresholdTotalAmountConfig.Values)
-        {
-            _ = item;
-        }
+        this.ThresholdTotalAmountConfig.Validate();
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
         this.BillingCycleConfiguration?.Validate();

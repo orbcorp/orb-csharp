@@ -58,6 +58,9 @@ public sealed record class NewPlanMinimumCompositePrice
         }
     }
 
+    /// <summary>
+    /// Configuration for minimum pricing
+    /// </summary>
     public required MinimumConfig MinimumConfig
     {
         get
@@ -80,6 +83,9 @@ public sealed record class NewPlanMinimumCompositePrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get

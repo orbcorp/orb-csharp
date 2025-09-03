@@ -320,7 +320,10 @@ public sealed record class MaxGroupTieredPackage : ModelBase, IFromRaw<MaxGroupT
         }
     }
 
-    public required Dictionary<string, JsonElement> MaxGroupTieredPackageConfig
+    /// <summary>
+    /// Configuration for max_group_tiered_package pricing
+    /// </summary>
+    public required MaxGroupTieredPackageConfig MaxGroupTieredPackageConfig
     {
         get
         {
@@ -335,7 +338,7 @@ public sealed record class MaxGroupTieredPackage : ModelBase, IFromRaw<MaxGroupT
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<MaxGroupTieredPackageConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("max_group_tiered_package_config");
@@ -454,6 +457,9 @@ public sealed record class MaxGroupTieredPackage : ModelBase, IFromRaw<MaxGroupT
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get
@@ -598,10 +604,7 @@ public sealed record class MaxGroupTieredPackage : ModelBase, IFromRaw<MaxGroupT
         _ = this.FixedPriceQuantity;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
-        foreach (var item in this.MaxGroupTieredPackageConfig.Values)
-        {
-            _ = item;
-        }
+        this.MaxGroupTieredPackageConfig.Validate();
         this.Maximum?.Validate();
         _ = this.MaximumAmount;
         foreach (var item in this.Metadata.Values)

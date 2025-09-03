@@ -275,7 +275,10 @@ public sealed record class GroupedWithProratedMinimum
         }
     }
 
-    public required Dictionary<string, JsonElement> GroupedWithProratedMinimumConfig
+    /// <summary>
+    /// Configuration for grouped_with_prorated_minimum pricing
+    /// </summary>
+    public required GroupedWithProratedMinimumConfig GroupedWithProratedMinimumConfig
     {
         get
         {
@@ -290,7 +293,7 @@ public sealed record class GroupedWithProratedMinimum
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<GroupedWithProratedMinimumConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("grouped_with_prorated_minimum_config");
@@ -454,6 +457,9 @@ public sealed record class GroupedWithProratedMinimum
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get
@@ -596,10 +602,7 @@ public sealed record class GroupedWithProratedMinimum
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
-        foreach (var item in this.GroupedWithProratedMinimumConfig.Values)
-        {
-            _ = item;
-        }
+        this.GroupedWithProratedMinimumConfig.Validate();
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();

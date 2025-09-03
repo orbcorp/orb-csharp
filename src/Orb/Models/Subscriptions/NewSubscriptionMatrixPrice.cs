@@ -58,6 +58,9 @@ public sealed record class NewSubscriptionMatrixPrice
         }
     }
 
+    /// <summary>
+    /// Configuration for matrix pricing
+    /// </summary>
     public required MatrixConfig MatrixConfig
     {
         get
@@ -77,6 +80,9 @@ public sealed record class NewSubscriptionMatrixPrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get

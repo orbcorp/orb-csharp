@@ -58,6 +58,9 @@ public sealed record class NewPlanMatrixWithAllocationPrice
         }
     }
 
+    /// <summary>
+    /// Configuration for matrix_with_allocation pricing
+    /// </summary>
     public required MatrixWithAllocationConfig MatrixWithAllocationConfig
     {
         get
@@ -87,6 +90,9 @@ public sealed record class NewPlanMatrixWithAllocationPrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get

@@ -58,7 +58,10 @@ public sealed record class NewPlanMatrixWithDisplayNamePrice
         }
     }
 
-    public required Dictionary<string, JsonElement> MatrixWithDisplayNameConfig
+    /// <summary>
+    /// Configuration for matrix_with_display_name pricing
+    /// </summary>
+    public required MatrixWithDisplayNameConfig MatrixWithDisplayNameConfig
     {
         get
         {
@@ -73,7 +76,7 @@ public sealed record class NewPlanMatrixWithDisplayNamePrice
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<MatrixWithDisplayNameConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("matrix_with_display_name_config");
@@ -87,6 +90,9 @@ public sealed record class NewPlanMatrixWithDisplayNamePrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -440,10 +446,7 @@ public sealed record class NewPlanMatrixWithDisplayNamePrice
     {
         this.Cadence.Validate();
         _ = this.ItemID;
-        foreach (var item in this.MatrixWithDisplayNameConfig.Values)
-        {
-            _ = item;
-        }
+        this.MatrixWithDisplayNameConfig.Validate();
         this.ModelType.Validate();
         _ = this.Name;
         _ = this.BillableMetricID;

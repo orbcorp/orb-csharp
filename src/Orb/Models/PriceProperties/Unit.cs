@@ -425,6 +425,9 @@ public sealed record class Unit : ModelBase, IFromRaw<Unit>
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get
@@ -523,6 +526,9 @@ public sealed record class Unit : ModelBase, IFromRaw<Unit>
         }
     }
 
+    /// <summary>
+    /// Configuration for unit pricing
+    /// </summary>
     public required Models::UnitConfig UnitConfig
     {
         get

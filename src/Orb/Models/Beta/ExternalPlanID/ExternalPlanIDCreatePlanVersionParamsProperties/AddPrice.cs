@@ -55,7 +55,7 @@ public sealed record class AddPrice : ModelBase, IFromRaw<AddPrice>
     }
 
     /// <summary>
-    /// The price to add to the plan
+    /// New plan price request body params.
     /// </summary>
     public AddPriceProperties::Price? Price
     {

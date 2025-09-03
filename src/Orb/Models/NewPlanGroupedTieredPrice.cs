@@ -36,7 +36,10 @@ public sealed record class NewPlanGroupedTieredPrice
         }
     }
 
-    public required Dictionary<string, JsonElement> GroupedTieredConfig
+    /// <summary>
+    /// Configuration for grouped_tiered pricing
+    /// </summary>
+    public required GroupedTieredConfig GroupedTieredConfig
     {
         get
         {
@@ -46,7 +49,7 @@ public sealed record class NewPlanGroupedTieredPrice
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<GroupedTieredConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("grouped_tiered_config");
@@ -82,6 +85,9 @@ public sealed record class NewPlanGroupedTieredPrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -434,10 +440,7 @@ public sealed record class NewPlanGroupedTieredPrice
     public override void Validate()
     {
         this.Cadence.Validate();
-        foreach (var item in this.GroupedTieredConfig.Values)
-        {
-            _ = item;
-        }
+        this.GroupedTieredConfig.Validate();
         _ = this.ItemID;
         this.ModelType.Validate();
         _ = this.Name;

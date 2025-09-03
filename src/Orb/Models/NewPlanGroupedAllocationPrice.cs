@@ -36,7 +36,10 @@ public sealed record class NewPlanGroupedAllocationPrice
         }
     }
 
-    public required Dictionary<string, JsonElement> GroupedAllocationConfig
+    /// <summary>
+    /// Configuration for grouped_allocation pricing
+    /// </summary>
+    public required GroupedAllocationConfig GroupedAllocationConfig
     {
         get
         {
@@ -46,7 +49,7 @@ public sealed record class NewPlanGroupedAllocationPrice
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<GroupedAllocationConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("grouped_allocation_config");
@@ -82,6 +85,9 @@ public sealed record class NewPlanGroupedAllocationPrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -434,10 +440,7 @@ public sealed record class NewPlanGroupedAllocationPrice
     public override void Validate()
     {
         this.Cadence.Validate();
-        foreach (var item in this.GroupedAllocationConfig.Values)
-        {
-            _ = item;
-        }
+        this.GroupedAllocationConfig.Validate();
         _ = this.ItemID;
         this.ModelType.Validate();
         _ = this.Name;

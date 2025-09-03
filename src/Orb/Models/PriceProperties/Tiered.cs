@@ -425,6 +425,9 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get
@@ -523,6 +526,9 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         }
     }
 
+    /// <summary>
+    /// Configuration for tiered pricing
+    /// </summary>
     public required Models::TieredConfig TieredConfig
     {
         get

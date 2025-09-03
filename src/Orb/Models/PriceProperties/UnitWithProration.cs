@@ -425,6 +425,9 @@ public sealed record class UnitWithProration : ModelBase, IFromRaw<UnitWithProra
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get
@@ -523,7 +526,10 @@ public sealed record class UnitWithProration : ModelBase, IFromRaw<UnitWithProra
         }
     }
 
-    public required Dictionary<string, JsonElement> UnitWithProrationConfig
+    /// <summary>
+    /// Configuration for unit_with_proration pricing
+    /// </summary>
+    public required UnitWithProrationConfig UnitWithProrationConfig
     {
         get
         {
@@ -533,7 +539,7 @@ public sealed record class UnitWithProration : ModelBase, IFromRaw<UnitWithProra
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<UnitWithProrationConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("unit_with_proration_config");
@@ -605,10 +611,7 @@ public sealed record class UnitWithProration : ModelBase, IFromRaw<UnitWithProra
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
-        foreach (var item in this.UnitWithProrationConfig.Values)
-        {
-            _ = item;
-        }
+        this.UnitWithProrationConfig.Validate();
         this.DimensionalPriceConfiguration?.Validate();
     }
 

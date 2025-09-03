@@ -36,7 +36,10 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice
         }
     }
 
-    public required Dictionary<string, JsonElement> CumulativeGroupedBulkConfig
+    /// <summary>
+    /// Configuration for cumulative_grouped_bulk pricing
+    /// </summary>
+    public required CumulativeGroupedBulkConfig CumulativeGroupedBulkConfig
     {
         get
         {
@@ -51,7 +54,7 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<CumulativeGroupedBulkConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("cumulative_grouped_bulk_config");
@@ -87,6 +90,9 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -439,10 +445,7 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice
     public override void Validate()
     {
         this.Cadence.Validate();
-        foreach (var item in this.CumulativeGroupedBulkConfig.Values)
-        {
-            _ = item;
-        }
+        this.CumulativeGroupedBulkConfig.Validate();
         _ = this.ItemID;
         this.ModelType.Validate();
         _ = this.Name;

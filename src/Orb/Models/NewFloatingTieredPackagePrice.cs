@@ -80,6 +80,9 @@ public sealed record class NewFloatingTieredPackagePrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -123,7 +126,10 @@ public sealed record class NewFloatingTieredPackagePrice
         }
     }
 
-    public required Dictionary<string, JsonElement> TieredPackageConfig
+    /// <summary>
+    /// Configuration for tiered_package pricing
+    /// </summary>
+    public required TieredPackageConfig TieredPackageConfig
     {
         get
         {
@@ -133,7 +139,7 @@ public sealed record class NewFloatingTieredPackagePrice
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<TieredPackageConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("tiered_package_config");
@@ -416,10 +422,7 @@ public sealed record class NewFloatingTieredPackagePrice
         _ = this.ItemID;
         this.ModelType.Validate();
         _ = this.Name;
-        foreach (var item in this.TieredPackageConfig.Values)
-        {
-            _ = item;
-        }
+        this.TieredPackageConfig.Validate();
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
         this.BillingCycleConfiguration?.Validate();

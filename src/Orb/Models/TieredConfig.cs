@@ -6,6 +6,9 @@ using System.Text.Json.Serialization;
 
 namespace Orb.Models;
 
+/// <summary>
+/// Configuration for tiered pricing
+/// </summary>
 [JsonConverter(typeof(ModelConverter<TieredConfig>))]
 public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
 {

@@ -58,6 +58,9 @@ public sealed record class NewSubscriptionPackagePrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -101,6 +104,9 @@ public sealed record class NewSubscriptionPackagePrice
         }
     }
 
+    /// <summary>
+    /// Configuration for package pricing
+    /// </summary>
     public required PackageConfig PackageConfig
     {
         get

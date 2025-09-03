@@ -56,6 +56,9 @@ public sealed record class NewPlanMatrixPrice : ModelBase, IFromRaw<NewPlanMatri
         }
     }
 
+    /// <summary>
+    /// Configuration for matrix pricing
+    /// </summary>
     public required MatrixConfig MatrixConfig
     {
         get
@@ -75,6 +78,9 @@ public sealed record class NewPlanMatrixPrice : ModelBase, IFromRaw<NewPlanMatri
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get

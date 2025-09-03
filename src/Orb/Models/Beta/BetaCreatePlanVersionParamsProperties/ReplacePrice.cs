@@ -81,7 +81,7 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
     }
 
     /// <summary>
-    /// The price to add to the plan
+    /// New plan price request body params.
     /// </summary>
     public ReplacePriceProperties::Price? Price
     {

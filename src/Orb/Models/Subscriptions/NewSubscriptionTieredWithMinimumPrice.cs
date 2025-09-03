@@ -58,6 +58,9 @@ public sealed record class NewSubscriptionTieredWithMinimumPrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -101,7 +104,10 @@ public sealed record class NewSubscriptionTieredWithMinimumPrice
         }
     }
 
-    public required Dictionary<string, JsonElement> TieredWithMinimumConfig
+    /// <summary>
+    /// Configuration for tiered_with_minimum pricing
+    /// </summary>
+    public required TieredWithMinimumConfig TieredWithMinimumConfig
     {
         get
         {
@@ -111,7 +117,7 @@ public sealed record class NewSubscriptionTieredWithMinimumPrice
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<TieredWithMinimumConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("tiered_with_minimum_config");
@@ -437,10 +443,7 @@ public sealed record class NewSubscriptionTieredWithMinimumPrice
         _ = this.ItemID;
         this.ModelType.Validate();
         _ = this.Name;
-        foreach (var item in this.TieredWithMinimumConfig.Values)
-        {
-            _ = item;
-        }
+        this.TieredWithMinimumConfig.Validate();
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
         this.BillingCycleConfiguration?.Validate();

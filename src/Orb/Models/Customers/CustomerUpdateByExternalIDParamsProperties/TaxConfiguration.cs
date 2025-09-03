@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Models.Customers.CustomerUpdateByExternalIDParamsProperties.TaxConfigurationProperties;
 using TaxConfigurationVariants = Orb.Models.Customers.CustomerUpdateByExternalIDParamsProperties.TaxConfigurationVariants;
 
 namespace Orb.Models.Customers.CustomerUpdateByExternalIDParamsProperties;
@@ -20,6 +21,9 @@ public abstract record class TaxConfiguration
 
     public static implicit operator TaxConfiguration(NewSphereConfiguration value) =>
         new TaxConfigurationVariants::NewSphereConfiguration(value);
+
+    public static implicit operator TaxConfiguration(Numeral value) =>
+        new TaxConfigurationVariants::Numeral(value);
 
     public bool TryPickNewAvalara([NotNullWhen(true)] out NewAvalaraTaxConfiguration? value)
     {
@@ -39,10 +43,17 @@ public abstract record class TaxConfiguration
         return value != null;
     }
 
+    public bool TryPickNumeral([NotNullWhen(true)] out Numeral? value)
+    {
+        value = (this as TaxConfigurationVariants::Numeral)?.Value;
+        return value != null;
+    }
+
     public void Switch(
         Action<TaxConfigurationVariants::NewAvalaraTaxConfiguration> newAvalara,
         Action<TaxConfigurationVariants::NewTaxJarConfiguration> newTaxJar,
-        Action<TaxConfigurationVariants::NewSphereConfiguration> newSphere
+        Action<TaxConfigurationVariants::NewSphereConfiguration> newSphere,
+        Action<TaxConfigurationVariants::Numeral> numeral
     )
     {
         switch (this)
@@ -56,6 +67,9 @@ public abstract record class TaxConfiguration
             case TaxConfigurationVariants::NewSphereConfiguration inner:
                 newSphere(inner);
                 break;
+            case TaxConfigurationVariants::Numeral inner:
+                numeral(inner);
+                break;
             default:
                 throw new InvalidOperationException();
         }
@@ -64,7 +78,8 @@ public abstract record class TaxConfiguration
     public T Match<T>(
         Func<TaxConfigurationVariants::NewAvalaraTaxConfiguration, T> newAvalara,
         Func<TaxConfigurationVariants::NewTaxJarConfiguration, T> newTaxJar,
-        Func<TaxConfigurationVariants::NewSphereConfiguration, T> newSphere
+        Func<TaxConfigurationVariants::NewSphereConfiguration, T> newSphere,
+        Func<TaxConfigurationVariants::Numeral, T> numeral
     )
     {
         return this switch
@@ -72,6 +87,7 @@ public abstract record class TaxConfiguration
             TaxConfigurationVariants::NewAvalaraTaxConfiguration inner => newAvalara(inner),
             TaxConfigurationVariants::NewTaxJarConfiguration inner => newTaxJar(inner),
             TaxConfigurationVariants::NewSphereConfiguration inner => newSphere(inner),
+            TaxConfigurationVariants::Numeral inner => numeral(inner),
             _ => throw new InvalidOperationException(),
         };
     }
@@ -168,6 +184,25 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
 
                 throw new AggregateException(exceptions);
             }
+            case "numeral":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<Numeral>(json, options);
+                    if (deserialized != null)
+                    {
+                        return new TaxConfigurationVariants::Numeral(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
             default:
             {
                 throw new Exception();
@@ -187,6 +222,7 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
             TaxConfigurationVariants::NewAvalaraTaxConfiguration(var newAvalara) => newAvalara,
             TaxConfigurationVariants::NewTaxJarConfiguration(var newTaxJar) => newTaxJar,
             TaxConfigurationVariants::NewSphereConfiguration(var newSphere) => newSphere,
+            TaxConfigurationVariants::Numeral(var numeral) => numeral,
             _ => throw new ArgumentOutOfRangeException(nameof(value)),
         };
         JsonSerializer.Serialize(writer, variant, options);

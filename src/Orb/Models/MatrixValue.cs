@@ -6,13 +6,14 @@ using System.Text.Json.Serialization;
 
 namespace Orb.Models;
 
+/// <summary>
+/// Configuration for a single matrix value
+/// </summary>
 [JsonConverter(typeof(ModelConverter<MatrixValue>))]
 public sealed record class MatrixValue : ModelBase, IFromRaw<MatrixValue>
 {
     /// <summary>
-    /// One or two matrix keys to filter usage to this Matrix value by. For example,
-    /// ["region", "tier"] could be used to filter cloud usage by a cloud region and
-    /// an instance tier.
+    /// One or two matrix keys to filter usage to this Matrix value by
     /// </summary>
     public required List<string?> DimensionValues
     {

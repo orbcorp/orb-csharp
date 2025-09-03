@@ -6,6 +6,9 @@ using System.Text.Json.Serialization;
 
 namespace Orb.Models;
 
+/// <summary>
+/// Configuration for package pricing
+/// </summary>
 [JsonConverter(typeof(ModelConverter<PackageConfig>))]
 public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
 {

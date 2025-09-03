@@ -425,6 +425,9 @@ public sealed record class TieredWithMinimum : ModelBase, IFromRaw<TieredWithMin
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get
@@ -523,7 +526,10 @@ public sealed record class TieredWithMinimum : ModelBase, IFromRaw<TieredWithMin
         }
     }
 
-    public required Dictionary<string, JsonElement> TieredWithMinimumConfig
+    /// <summary>
+    /// Configuration for tiered_with_minimum pricing
+    /// </summary>
+    public required TieredWithMinimumConfig TieredWithMinimumConfig
     {
         get
         {
@@ -533,7 +539,7 @@ public sealed record class TieredWithMinimum : ModelBase, IFromRaw<TieredWithMin
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<TieredWithMinimumConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("tiered_with_minimum_config");
@@ -605,10 +611,7 @@ public sealed record class TieredWithMinimum : ModelBase, IFromRaw<TieredWithMin
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
-        foreach (var item in this.TieredWithMinimumConfig.Values)
-        {
-            _ = item;
-        }
+        this.TieredWithMinimumConfig.Validate();
         this.DimensionalPriceConfiguration?.Validate();
     }
 

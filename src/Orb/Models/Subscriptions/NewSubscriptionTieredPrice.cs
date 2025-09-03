@@ -58,6 +58,9 @@ public sealed record class NewSubscriptionTieredPrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -101,6 +104,9 @@ public sealed record class NewSubscriptionTieredPrice
         }
     }
 
+    /// <summary>
+    /// Configuration for tiered pricing
+    /// </summary>
     public required TieredConfig TieredConfig
     {
         get

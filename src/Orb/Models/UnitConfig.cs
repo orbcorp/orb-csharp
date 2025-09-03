@@ -6,6 +6,9 @@ using System.Text.Json.Serialization;
 
 namespace Orb.Models;
 
+/// <summary>
+/// Configuration for unit pricing
+/// </summary>
 [JsonConverter(typeof(ModelConverter<UnitConfig>))]
 public sealed record class UnitConfig : ModelBase, IFromRaw<UnitConfig>
 {
@@ -31,9 +34,31 @@ public sealed record class UnitConfig : ModelBase, IFromRaw<UnitConfig>
         }
     }
 
+    /// <summary>
+    /// Multiplier to scale rated quantity by
+    /// </summary>
+    public double? ScalingFactor
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("scaling_factor", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["scaling_factor"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     public override void Validate()
     {
         _ = this.UnitAmount;
+        _ = this.ScalingFactor;
     }
 
     public UnitConfig() { }

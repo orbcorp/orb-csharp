@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace Orb.Models.NewFloatingTieredPackagePriceProperties;
 
+/// <summary>
+/// The pricing model type
+/// </summary>
 [JsonConverter(typeof(ModelTypeConverter))]
 public enum ModelType
 {

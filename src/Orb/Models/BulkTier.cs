@@ -6,6 +6,9 @@ using System.Text.Json.Serialization;
 
 namespace Orb.Models;
 
+/// <summary>
+/// Configuration for a single bulk pricing tier
+/// </summary>
 [JsonConverter(typeof(ModelConverter<BulkTier>))]
 public sealed record class BulkTier : ModelBase, IFromRaw<BulkTier>
 {

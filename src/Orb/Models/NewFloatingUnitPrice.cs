@@ -78,6 +78,9 @@ public sealed record class NewFloatingUnitPrice : ModelBase, IFromRaw<NewFloatin
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -121,6 +124,9 @@ public sealed record class NewFloatingUnitPrice : ModelBase, IFromRaw<NewFloatin
         }
     }
 
+    /// <summary>
+    /// Configuration for unit pricing
+    /// </summary>
     public required UnitConfig UnitConfig
     {
         get

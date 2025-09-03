@@ -18,55 +18,6 @@ public sealed record class NewFloatingUnitPrice(Models::NewFloatingUnitPrice Val
     }
 }
 
-public sealed record class NewFloatingPackagePrice(Models::NewFloatingPackagePrice Value)
-    : Price,
-        IVariant<NewFloatingPackagePrice, Models::NewFloatingPackagePrice>
-{
-    public static NewFloatingPackagePrice From(Models::NewFloatingPackagePrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class NewFloatingMatrixPrice(Models::NewFloatingMatrixPrice Value)
-    : Price,
-        IVariant<NewFloatingMatrixPrice, Models::NewFloatingMatrixPrice>
-{
-    public static NewFloatingMatrixPrice From(Models::NewFloatingMatrixPrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class NewFloatingMatrixWithAllocationPrice(
-    Models::NewFloatingMatrixWithAllocationPrice Value
-)
-    : Price,
-        IVariant<NewFloatingMatrixWithAllocationPrice, Models::NewFloatingMatrixWithAllocationPrice>
-{
-    public static NewFloatingMatrixWithAllocationPrice From(
-        Models::NewFloatingMatrixWithAllocationPrice value
-    )
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
 public sealed record class NewFloatingTieredPrice(Models::NewFloatingTieredPrice Value)
     : Price,
         IVariant<NewFloatingTieredPrice, Models::NewFloatingTieredPrice>
@@ -87,6 +38,36 @@ public sealed record class NewFloatingBulkPrice(Models::NewFloatingBulkPrice Val
         IVariant<NewFloatingBulkPrice, Models::NewFloatingBulkPrice>
 {
     public static NewFloatingBulkPrice From(Models::NewFloatingBulkPrice value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class NewFloatingPackagePrice(Models::NewFloatingPackagePrice Value)
+    : Price,
+        IVariant<NewFloatingPackagePrice, Models::NewFloatingPackagePrice>
+{
+    public static NewFloatingPackagePrice From(Models::NewFloatingPackagePrice value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class NewFloatingMatrixPrice(Models::NewFloatingMatrixPrice Value)
+    : Price,
+        IVariant<NewFloatingMatrixPrice, Models::NewFloatingMatrixPrice>
+{
+    public static NewFloatingMatrixPrice From(Models::NewFloatingMatrixPrice value)
     {
         return new(value);
     }
@@ -131,6 +112,23 @@ public sealed record class NewFloatingTieredPackagePrice(
     }
 }
 
+public sealed record class NewFloatingTieredWithMinimumPrice(
+    Models::NewFloatingTieredWithMinimumPrice Value
+) : Price, IVariant<NewFloatingTieredWithMinimumPrice, Models::NewFloatingTieredWithMinimumPrice>
+{
+    public static NewFloatingTieredWithMinimumPrice From(
+        Models::NewFloatingTieredWithMinimumPrice value
+    )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
 public sealed record class NewFloatingGroupedTieredPrice(
     Models::NewFloatingGroupedTieredPrice Value
 ) : Price, IVariant<NewFloatingGroupedTieredPrice, Models::NewFloatingGroupedTieredPrice>
@@ -146,34 +144,17 @@ public sealed record class NewFloatingGroupedTieredPrice(
     }
 }
 
-public sealed record class NewFloatingMaxGroupTieredPackagePrice(
-    Models::NewFloatingMaxGroupTieredPackagePrice Value
+public sealed record class NewFloatingTieredPackageWithMinimumPrice(
+    Models::NewFloatingTieredPackageWithMinimumPrice Value
 )
     : Price,
         IVariant<
-            NewFloatingMaxGroupTieredPackagePrice,
-            Models::NewFloatingMaxGroupTieredPackagePrice
+            NewFloatingTieredPackageWithMinimumPrice,
+            Models::NewFloatingTieredPackageWithMinimumPrice
         >
 {
-    public static NewFloatingMaxGroupTieredPackagePrice From(
-        Models::NewFloatingMaxGroupTieredPackagePrice value
-    )
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class NewFloatingTieredWithMinimumPrice(
-    Models::NewFloatingTieredWithMinimumPrice Value
-) : Price, IVariant<NewFloatingTieredWithMinimumPrice, Models::NewFloatingTieredWithMinimumPrice>
-{
-    public static NewFloatingTieredWithMinimumPrice From(
-        Models::NewFloatingTieredWithMinimumPrice value
+    public static NewFloatingTieredPackageWithMinimumPrice From(
+        Models::NewFloatingTieredPackageWithMinimumPrice value
     )
     {
         return new(value);
@@ -207,17 +188,12 @@ public sealed record class NewFloatingPackageWithAllocationPrice(
     }
 }
 
-public sealed record class NewFloatingTieredPackageWithMinimumPrice(
-    Models::NewFloatingTieredPackageWithMinimumPrice Value
-)
-    : Price,
-        IVariant<
-            NewFloatingTieredPackageWithMinimumPrice,
-            Models::NewFloatingTieredPackageWithMinimumPrice
-        >
+public sealed record class NewFloatingUnitWithPercentPrice(
+    Models::NewFloatingUnitWithPercentPrice Value
+) : Price, IVariant<NewFloatingUnitWithPercentPrice, Models::NewFloatingUnitWithPercentPrice>
 {
-    public static NewFloatingTieredPackageWithMinimumPrice From(
-        Models::NewFloatingTieredPackageWithMinimumPrice value
+    public static NewFloatingUnitWithPercentPrice From(
+        Models::NewFloatingUnitWithPercentPrice value
     )
     {
         return new(value);
@@ -229,12 +205,14 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice(
     }
 }
 
-public sealed record class NewFloatingUnitWithPercentPrice(
-    Models::NewFloatingUnitWithPercentPrice Value
-) : Price, IVariant<NewFloatingUnitWithPercentPrice, Models::NewFloatingUnitWithPercentPrice>
+public sealed record class NewFloatingMatrixWithAllocationPrice(
+    Models::NewFloatingMatrixWithAllocationPrice Value
+)
+    : Price,
+        IVariant<NewFloatingMatrixWithAllocationPrice, Models::NewFloatingMatrixWithAllocationPrice>
 {
-    public static NewFloatingUnitWithPercentPrice From(
-        Models::NewFloatingUnitWithPercentPrice value
+    public static NewFloatingMatrixWithAllocationPrice From(
+        Models::NewFloatingMatrixWithAllocationPrice value
     )
     {
         return new(value);
@@ -299,6 +277,23 @@ public sealed record class NewFloatingGroupedAllocationPrice(
     }
 }
 
+public sealed record class NewFloatingBulkWithProrationPrice(
+    Models::NewFloatingBulkWithProrationPrice Value
+) : Price, IVariant<NewFloatingBulkWithProrationPrice, Models::NewFloatingBulkWithProrationPrice>
+{
+    public static NewFloatingBulkWithProrationPrice From(
+        Models::NewFloatingBulkWithProrationPrice value
+    )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
 public sealed record class NewFloatingGroupedWithProratedMinimumPrice(
     Models::NewFloatingGroupedWithProratedMinimumPrice Value
 )
@@ -343,6 +338,23 @@ public sealed record class NewFloatingGroupedWithMeteredMinimumPrice(
     }
 }
 
+public sealed record class GroupedWithMinMaxThresholds(
+    PriceProperties::GroupedWithMinMaxThresholds Value
+) : Price, IVariant<GroupedWithMinMaxThresholds, PriceProperties::GroupedWithMinMaxThresholds>
+{
+    public static GroupedWithMinMaxThresholds From(
+        PriceProperties::GroupedWithMinMaxThresholds value
+    )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
 public sealed record class NewFloatingMatrixWithDisplayNamePrice(
     Models::NewFloatingMatrixWithDisplayNamePrice Value
 )
@@ -365,12 +377,14 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice(
     }
 }
 
-public sealed record class NewFloatingBulkWithProrationPrice(
-    Models::NewFloatingBulkWithProrationPrice Value
-) : Price, IVariant<NewFloatingBulkWithProrationPrice, Models::NewFloatingBulkWithProrationPrice>
+public sealed record class NewFloatingGroupedTieredPackagePrice(
+    Models::NewFloatingGroupedTieredPackagePrice Value
+)
+    : Price,
+        IVariant<NewFloatingGroupedTieredPackagePrice, Models::NewFloatingGroupedTieredPackagePrice>
 {
-    public static NewFloatingBulkWithProrationPrice From(
-        Models::NewFloatingBulkWithProrationPrice value
+    public static NewFloatingGroupedTieredPackagePrice From(
+        Models::NewFloatingGroupedTieredPackagePrice value
     )
     {
         return new(value);
@@ -382,14 +396,17 @@ public sealed record class NewFloatingBulkWithProrationPrice(
     }
 }
 
-public sealed record class NewFloatingGroupedTieredPackagePrice(
-    Models::NewFloatingGroupedTieredPackagePrice Value
+public sealed record class NewFloatingMaxGroupTieredPackagePrice(
+    Models::NewFloatingMaxGroupTieredPackagePrice Value
 )
     : Price,
-        IVariant<NewFloatingGroupedTieredPackagePrice, Models::NewFloatingGroupedTieredPackagePrice>
+        IVariant<
+            NewFloatingMaxGroupTieredPackagePrice,
+            Models::NewFloatingMaxGroupTieredPackagePrice
+        >
 {
-    public static NewFloatingGroupedTieredPackagePrice From(
-        Models::NewFloatingGroupedTieredPackagePrice value
+    public static NewFloatingMaxGroupTieredPackagePrice From(
+        Models::NewFloatingMaxGroupTieredPackagePrice value
     )
     {
         return new(value);
@@ -456,23 +473,6 @@ public sealed record class NewFloatingCumulativeGroupedBulkPrice(
 {
     public static NewFloatingCumulativeGroupedBulkPrice From(
         Models::NewFloatingCumulativeGroupedBulkPrice value
-    )
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class GroupedWithMinMaxThresholds(
-    PriceProperties::GroupedWithMinMaxThresholds Value
-) : Price, IVariant<GroupedWithMinMaxThresholds, PriceProperties::GroupedWithMinMaxThresholds>
-{
-    public static GroupedWithMinMaxThresholds From(
-        PriceProperties::GroupedWithMinMaxThresholds value
     )
     {
         return new(value);

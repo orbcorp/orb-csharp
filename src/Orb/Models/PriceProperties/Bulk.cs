@@ -77,6 +77,9 @@ public sealed record class Bulk : ModelBase, IFromRaw<Bulk>
         }
     }
 
+    /// <summary>
+    /// Configuration for bulk pricing
+    /// </summary>
     public required Models::BulkConfig BulkConfig
     {
         get
@@ -446,6 +449,9 @@ public sealed record class Bulk : ModelBase, IFromRaw<Bulk>
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get

@@ -425,6 +425,9 @@ public sealed record class ThresholdTotalAmount : ModelBase, IFromRaw<ThresholdT
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get
@@ -523,7 +526,10 @@ public sealed record class ThresholdTotalAmount : ModelBase, IFromRaw<ThresholdT
         }
     }
 
-    public required Dictionary<string, JsonElement> ThresholdTotalAmountConfig
+    /// <summary>
+    /// Configuration for threshold_total_amount pricing
+    /// </summary>
+    public required ThresholdTotalAmountConfig ThresholdTotalAmountConfig
     {
         get
         {
@@ -538,7 +544,7 @@ public sealed record class ThresholdTotalAmount : ModelBase, IFromRaw<ThresholdT
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<ThresholdTotalAmountConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("threshold_total_amount_config");
@@ -610,10 +616,7 @@ public sealed record class ThresholdTotalAmount : ModelBase, IFromRaw<ThresholdT
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
-        foreach (var item in this.ThresholdTotalAmountConfig.Values)
-        {
-            _ = item;
-        }
+        this.ThresholdTotalAmountConfig.Validate();
         this.DimensionalPriceConfiguration?.Validate();
     }
 

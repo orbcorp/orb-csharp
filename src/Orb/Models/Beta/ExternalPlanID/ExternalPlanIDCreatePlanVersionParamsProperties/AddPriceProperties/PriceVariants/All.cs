@@ -18,36 +18,6 @@ public sealed record class NewPlanUnitPrice(Models::NewPlanUnitPrice Value)
     }
 }
 
-public sealed record class NewPlanPackagePrice(Models::NewPlanPackagePrice Value)
-    : Price,
-        IVariant<NewPlanPackagePrice, Models::NewPlanPackagePrice>
-{
-    public static NewPlanPackagePrice From(Models::NewPlanPackagePrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class NewPlanMatrixPrice(Models::NewPlanMatrixPrice Value)
-    : Price,
-        IVariant<NewPlanMatrixPrice, Models::NewPlanMatrixPrice>
-{
-    public static NewPlanMatrixPrice From(Models::NewPlanMatrixPrice value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
 public sealed record class NewPlanTieredPrice(Models::NewPlanTieredPrice Value)
     : Price,
         IVariant<NewPlanTieredPrice, Models::NewPlanTieredPrice>
@@ -68,6 +38,36 @@ public sealed record class NewPlanBulkPrice(Models::NewPlanBulkPrice Value)
         IVariant<NewPlanBulkPrice, Models::NewPlanBulkPrice>
 {
     public static NewPlanBulkPrice From(Models::NewPlanBulkPrice value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class NewPlanPackagePrice(Models::NewPlanPackagePrice Value)
+    : Price,
+        IVariant<NewPlanPackagePrice, Models::NewPlanPackagePrice>
+{
+    public static NewPlanPackagePrice From(Models::NewPlanPackagePrice value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class NewPlanMatrixPrice(Models::NewPlanMatrixPrice Value)
+    : Price,
+        IVariant<NewPlanMatrixPrice, Models::NewPlanMatrixPrice>
+{
+    public static NewPlanMatrixPrice From(Models::NewPlanMatrixPrice value)
     {
         return new(value);
     }
@@ -125,11 +125,30 @@ public sealed record class NewPlanTieredWithMinimumPrice(
     }
 }
 
-public sealed record class NewPlanUnitWithPercentPrice(Models::NewPlanUnitWithPercentPrice Value)
+public sealed record class NewPlanGroupedTieredPrice(Models::NewPlanGroupedTieredPrice Value)
     : Price,
-        IVariant<NewPlanUnitWithPercentPrice, Models::NewPlanUnitWithPercentPrice>
+        IVariant<NewPlanGroupedTieredPrice, Models::NewPlanGroupedTieredPrice>
 {
-    public static NewPlanUnitWithPercentPrice From(Models::NewPlanUnitWithPercentPrice value)
+    public static NewPlanGroupedTieredPrice From(Models::NewPlanGroupedTieredPrice value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class NewPlanTieredPackageWithMinimumPrice(
+    Models::NewPlanTieredPackageWithMinimumPrice Value
+)
+    : Price,
+        IVariant<NewPlanTieredPackageWithMinimumPrice, Models::NewPlanTieredPackageWithMinimumPrice>
+{
+    public static NewPlanTieredPackageWithMinimumPrice From(
+        Models::NewPlanTieredPackageWithMinimumPrice value
+    )
     {
         return new(value);
     }
@@ -157,11 +176,43 @@ public sealed record class NewPlanPackageWithAllocationPrice(
     }
 }
 
-public sealed record class NewPlanTierWithProrationPrice(
-    Models::NewPlanTierWithProrationPrice Value
-) : Price, IVariant<NewPlanTierWithProrationPrice, Models::NewPlanTierWithProrationPrice>
+public sealed record class NewPlanUnitWithPercentPrice(Models::NewPlanUnitWithPercentPrice Value)
+    : Price,
+        IVariant<NewPlanUnitWithPercentPrice, Models::NewPlanUnitWithPercentPrice>
 {
-    public static NewPlanTierWithProrationPrice From(Models::NewPlanTierWithProrationPrice value)
+    public static NewPlanUnitWithPercentPrice From(Models::NewPlanUnitWithPercentPrice value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class NewPlanMatrixWithAllocationPrice(
+    Models::NewPlanMatrixWithAllocationPrice Value
+) : Price, IVariant<NewPlanMatrixWithAllocationPrice, Models::NewPlanMatrixWithAllocationPrice>
+{
+    public static NewPlanMatrixWithAllocationPrice From(
+        Models::NewPlanMatrixWithAllocationPrice value
+    )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class TieredWithProration(PriceProperties::TieredWithProration Value)
+    : Price,
+        IVariant<TieredWithProration, PriceProperties::TieredWithProration>
+{
+    public static TieredWithProration From(PriceProperties::TieredWithProration value)
     {
         return new(value);
     }
@@ -192,6 +243,21 @@ public sealed record class NewPlanGroupedAllocationPrice(
 ) : Price, IVariant<NewPlanGroupedAllocationPrice, Models::NewPlanGroupedAllocationPrice>
 {
     public static NewPlanGroupedAllocationPrice From(Models::NewPlanGroupedAllocationPrice value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class NewPlanBulkWithProrationPrice(
+    Models::NewPlanBulkWithProrationPrice Value
+) : Price, IVariant<NewPlanBulkWithProrationPrice, Models::NewPlanBulkWithProrationPrice>
+{
+    public static NewPlanBulkWithProrationPrice From(Models::NewPlanBulkWithProrationPrice value)
     {
         return new(value);
     }
@@ -270,21 +336,6 @@ public sealed record class NewPlanMatrixWithDisplayNamePrice(
     public static NewPlanMatrixWithDisplayNamePrice From(
         Models::NewPlanMatrixWithDisplayNamePrice value
     )
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class NewPlanBulkWithProrationPrice(
-    Models::NewPlanBulkWithProrationPrice Value
-) : Price, IVariant<NewPlanBulkWithProrationPrice, Models::NewPlanBulkWithProrationPrice>
-{
-    public static NewPlanBulkWithProrationPrice From(Models::NewPlanBulkWithProrationPrice value)
     {
         return new(value);
     }
@@ -380,57 +431,6 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice(
     public static NewPlanCumulativeGroupedBulkPrice From(
         Models::NewPlanCumulativeGroupedBulkPrice value
     )
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class NewPlanTieredPackageWithMinimumPrice(
-    Models::NewPlanTieredPackageWithMinimumPrice Value
-)
-    : Price,
-        IVariant<NewPlanTieredPackageWithMinimumPrice, Models::NewPlanTieredPackageWithMinimumPrice>
-{
-    public static NewPlanTieredPackageWithMinimumPrice From(
-        Models::NewPlanTieredPackageWithMinimumPrice value
-    )
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class NewPlanMatrixWithAllocationPrice(
-    Models::NewPlanMatrixWithAllocationPrice Value
-) : Price, IVariant<NewPlanMatrixWithAllocationPrice, Models::NewPlanMatrixWithAllocationPrice>
-{
-    public static NewPlanMatrixWithAllocationPrice From(
-        Models::NewPlanMatrixWithAllocationPrice value
-    )
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class NewPlanGroupedTieredPrice(Models::NewPlanGroupedTieredPrice Value)
-    : Price,
-        IVariant<NewPlanGroupedTieredPrice, Models::NewPlanGroupedTieredPrice>
-{
-    public static NewPlanGroupedTieredPrice From(Models::NewPlanGroupedTieredPrice value)
     {
         return new(value);
     }

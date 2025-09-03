@@ -90,15 +90,17 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
         }
     }
 
-    public required TierConfig TierConfig
+    public required TierSubLineItemProperties::TierConfig TierConfig
     {
         get
         {
             if (!this.Properties.TryGetValue("tier_config", out JsonElement element))
                 throw new ArgumentOutOfRangeException("tier_config", "Missing required argument");
 
-            return JsonSerializer.Deserialize<TierConfig>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("tier_config");
+            return JsonSerializer.Deserialize<TierSubLineItemProperties::TierConfig>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("tier_config");
         }
         set
         {

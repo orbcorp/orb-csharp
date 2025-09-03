@@ -75,8 +75,7 @@ public sealed record class PriceEvaluation : ModelBase, IFromRaw<PriceEvaluation
     }
 
     /// <summary>
-    /// An inline price definition to evaluate, allowing you to test price configurations
-    /// before adding them to Orb.
+    /// New floating price request body params.
     /// </summary>
     public PriceEvaluationProperties::Price? Price
     {

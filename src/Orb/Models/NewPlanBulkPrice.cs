@@ -10,6 +10,9 @@ namespace Orb.Models;
 [JsonConverter(typeof(ModelConverter<NewPlanBulkPrice>))]
 public sealed record class NewPlanBulkPrice : ModelBase, IFromRaw<NewPlanBulkPrice>
 {
+    /// <summary>
+    /// Configuration for bulk pricing
+    /// </summary>
     public required BulkConfig BulkConfig
     {
         get
@@ -75,6 +78,9 @@ public sealed record class NewPlanBulkPrice : ModelBase, IFromRaw<NewPlanBulkPri
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get

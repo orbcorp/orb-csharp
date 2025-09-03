@@ -58,6 +58,9 @@ public sealed record class NewSubscriptionScalableMatrixWithUnitPricingPrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -101,7 +104,10 @@ public sealed record class NewSubscriptionScalableMatrixWithUnitPricingPrice
         }
     }
 
-    public required Dictionary<string, JsonElement> ScalableMatrixWithUnitPricingConfig
+    /// <summary>
+    /// Configuration for scalable_matrix_with_unit_pricing pricing
+    /// </summary>
+    public required ScalableMatrixWithUnitPricingConfig ScalableMatrixWithUnitPricingConfig
     {
         get
         {
@@ -116,7 +122,7 @@ public sealed record class NewSubscriptionScalableMatrixWithUnitPricingPrice
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("scalable_matrix_with_unit_pricing_config");
@@ -440,10 +446,7 @@ public sealed record class NewSubscriptionScalableMatrixWithUnitPricingPrice
         _ = this.ItemID;
         this.ModelType.Validate();
         _ = this.Name;
-        foreach (var item in this.ScalableMatrixWithUnitPricingConfig.Values)
-        {
-            _ = item;
-        }
+        this.ScalableMatrixWithUnitPricingConfig.Validate();
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
         this.BillingCycleConfiguration?.Validate();
