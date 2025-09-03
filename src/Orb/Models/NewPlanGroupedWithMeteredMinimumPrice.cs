@@ -36,7 +36,10 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
         }
     }
 
-    public required Dictionary<string, JsonElement> GroupedWithMeteredMinimumConfig
+    /// <summary>
+    /// Configuration for grouped_with_metered_minimum pricing
+    /// </summary>
+    public required GroupedWithMeteredMinimumConfig GroupedWithMeteredMinimumConfig
     {
         get
         {
@@ -51,7 +54,7 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<GroupedWithMeteredMinimumConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("grouped_with_metered_minimum_config");
@@ -85,6 +88,9 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -437,10 +443,7 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
     public override void Validate()
     {
         this.Cadence.Validate();
-        foreach (var item in this.GroupedWithMeteredMinimumConfig.Values)
-        {
-            _ = item;
-        }
+        this.GroupedWithMeteredMinimumConfig.Validate();
         _ = this.ItemID;
         this.ModelType.Validate();
         _ = this.Name;

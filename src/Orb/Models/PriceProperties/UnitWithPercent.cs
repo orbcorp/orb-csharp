@@ -425,6 +425,9 @@ public sealed record class UnitWithPercent : ModelBase, IFromRaw<UnitWithPercent
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get
@@ -523,7 +526,10 @@ public sealed record class UnitWithPercent : ModelBase, IFromRaw<UnitWithPercent
         }
     }
 
-    public required Dictionary<string, JsonElement> UnitWithPercentConfig
+    /// <summary>
+    /// Configuration for unit_with_percent pricing
+    /// </summary>
+    public required UnitWithPercentConfig UnitWithPercentConfig
     {
         get
         {
@@ -533,7 +539,7 @@ public sealed record class UnitWithPercent : ModelBase, IFromRaw<UnitWithPercent
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<UnitWithPercentConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("unit_with_percent_config");
@@ -605,10 +611,7 @@ public sealed record class UnitWithPercent : ModelBase, IFromRaw<UnitWithPercent
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
-        foreach (var item in this.UnitWithPercentConfig.Values)
-        {
-            _ = item;
-        }
+        this.UnitWithPercentConfig.Validate();
         this.DimensionalPriceConfiguration?.Validate();
     }
 

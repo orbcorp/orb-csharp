@@ -273,7 +273,10 @@ public sealed record class GroupedTiered : ModelBase, IFromRaw<GroupedTiered>
         }
     }
 
-    public required Dictionary<string, JsonElement> GroupedTieredConfig
+    /// <summary>
+    /// Configuration for grouped_tiered pricing
+    /// </summary>
+    public required GroupedTieredConfig GroupedTieredConfig
     {
         get
         {
@@ -283,7 +286,7 @@ public sealed record class GroupedTiered : ModelBase, IFromRaw<GroupedTiered>
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<GroupedTieredConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("grouped_tiered_config");
@@ -449,6 +452,9 @@ public sealed record class GroupedTiered : ModelBase, IFromRaw<GroupedTiered>
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get
@@ -591,10 +597,7 @@ public sealed record class GroupedTiered : ModelBase, IFromRaw<GroupedTiered>
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
-        foreach (var item in this.GroupedTieredConfig.Values)
-        {
-            _ = item;
-        }
+        this.GroupedTieredConfig.Validate();
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();

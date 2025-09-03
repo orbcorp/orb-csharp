@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.NewSubscriptionGroupedWithProratedMinimumPriceProperties;
 
+/// <summary>
+/// The pricing model type
+/// </summary>
 [JsonConverter(typeof(ModelTypeConverter))]
 public enum ModelType
 {

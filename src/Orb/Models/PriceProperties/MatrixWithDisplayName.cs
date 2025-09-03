@@ -320,7 +320,10 @@ public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWit
         }
     }
 
-    public required Dictionary<string, JsonElement> MatrixWithDisplayNameConfig
+    /// <summary>
+    /// Configuration for matrix_with_display_name pricing
+    /// </summary>
+    public required MatrixWithDisplayNameConfig MatrixWithDisplayNameConfig
     {
         get
         {
@@ -335,7 +338,7 @@ public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWit
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<MatrixWithDisplayNameConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("matrix_with_display_name_config");
@@ -454,6 +457,9 @@ public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWit
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get
@@ -598,10 +604,7 @@ public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWit
         _ = this.FixedPriceQuantity;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
-        foreach (var item in this.MatrixWithDisplayNameConfig.Values)
-        {
-            _ = item;
-        }
+        this.MatrixWithDisplayNameConfig.Validate();
         this.Maximum?.Validate();
         _ = this.MaximumAmount;
         foreach (var item in this.Metadata.Values)

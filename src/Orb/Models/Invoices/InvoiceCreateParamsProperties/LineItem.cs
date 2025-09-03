@@ -135,6 +135,9 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
         }
     }
 
+    /// <summary>
+    /// Configuration for unit pricing
+    /// </summary>
     public required UnitConfig UnitConfig
     {
         get

@@ -10,7 +10,7 @@ using PriceVariants = Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.Repl
 namespace Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.ReplacePriceProperties;
 
 /// <summary>
-/// The price to add to the plan
+/// New plan price request body params.
 /// </summary>
 [JsonConverter(typeof(PriceConverter))]
 public abstract record class Price
@@ -20,17 +20,17 @@ public abstract record class Price
     public static implicit operator Price(Models::NewPlanUnitPrice value) =>
         new PriceVariants::NewPlanUnitPrice(value);
 
-    public static implicit operator Price(Models::NewPlanPackagePrice value) =>
-        new PriceVariants::NewPlanPackagePrice(value);
-
-    public static implicit operator Price(Models::NewPlanMatrixPrice value) =>
-        new PriceVariants::NewPlanMatrixPrice(value);
-
     public static implicit operator Price(Models::NewPlanTieredPrice value) =>
         new PriceVariants::NewPlanTieredPrice(value);
 
     public static implicit operator Price(Models::NewPlanBulkPrice value) =>
         new PriceVariants::NewPlanBulkPrice(value);
+
+    public static implicit operator Price(Models::NewPlanPackagePrice value) =>
+        new PriceVariants::NewPlanPackagePrice(value);
+
+    public static implicit operator Price(Models::NewPlanMatrixPrice value) =>
+        new PriceVariants::NewPlanMatrixPrice(value);
 
     public static implicit operator Price(Models::NewPlanThresholdTotalAmountPrice value) =>
         new PriceVariants::NewPlanThresholdTotalAmountPrice(value);
@@ -41,20 +41,32 @@ public abstract record class Price
     public static implicit operator Price(Models::NewPlanTieredWithMinimumPrice value) =>
         new PriceVariants::NewPlanTieredWithMinimumPrice(value);
 
-    public static implicit operator Price(Models::NewPlanUnitWithPercentPrice value) =>
-        new PriceVariants::NewPlanUnitWithPercentPrice(value);
+    public static implicit operator Price(Models::NewPlanGroupedTieredPrice value) =>
+        new PriceVariants::NewPlanGroupedTieredPrice(value);
+
+    public static implicit operator Price(Models::NewPlanTieredPackageWithMinimumPrice value) =>
+        new PriceVariants::NewPlanTieredPackageWithMinimumPrice(value);
 
     public static implicit operator Price(Models::NewPlanPackageWithAllocationPrice value) =>
         new PriceVariants::NewPlanPackageWithAllocationPrice(value);
 
-    public static implicit operator Price(Models::NewPlanTierWithProrationPrice value) =>
-        new PriceVariants::NewPlanTierWithProrationPrice(value);
+    public static implicit operator Price(Models::NewPlanUnitWithPercentPrice value) =>
+        new PriceVariants::NewPlanUnitWithPercentPrice(value);
+
+    public static implicit operator Price(Models::NewPlanMatrixWithAllocationPrice value) =>
+        new PriceVariants::NewPlanMatrixWithAllocationPrice(value);
+
+    public static implicit operator Price(TieredWithProration value) =>
+        new PriceVariants::TieredWithProration(value);
 
     public static implicit operator Price(Models::NewPlanUnitWithProrationPrice value) =>
         new PriceVariants::NewPlanUnitWithProrationPrice(value);
 
     public static implicit operator Price(Models::NewPlanGroupedAllocationPrice value) =>
         new PriceVariants::NewPlanGroupedAllocationPrice(value);
+
+    public static implicit operator Price(Models::NewPlanBulkWithProrationPrice value) =>
+        new PriceVariants::NewPlanBulkWithProrationPrice(value);
 
     public static implicit operator Price(Models::NewPlanGroupedWithProratedMinimumPrice value) =>
         new PriceVariants::NewPlanGroupedWithProratedMinimumPrice(value);
@@ -67,9 +79,6 @@ public abstract record class Price
 
     public static implicit operator Price(Models::NewPlanMatrixWithDisplayNamePrice value) =>
         new PriceVariants::NewPlanMatrixWithDisplayNamePrice(value);
-
-    public static implicit operator Price(Models::NewPlanBulkWithProrationPrice value) =>
-        new PriceVariants::NewPlanBulkWithProrationPrice(value);
 
     public static implicit operator Price(Models::NewPlanGroupedTieredPackagePrice value) =>
         new PriceVariants::NewPlanGroupedTieredPackagePrice(value);
@@ -88,33 +97,12 @@ public abstract record class Price
     public static implicit operator Price(Models::NewPlanCumulativeGroupedBulkPrice value) =>
         new PriceVariants::NewPlanCumulativeGroupedBulkPrice(value);
 
-    public static implicit operator Price(Models::NewPlanTieredPackageWithMinimumPrice value) =>
-        new PriceVariants::NewPlanTieredPackageWithMinimumPrice(value);
-
-    public static implicit operator Price(Models::NewPlanMatrixWithAllocationPrice value) =>
-        new PriceVariants::NewPlanMatrixWithAllocationPrice(value);
-
-    public static implicit operator Price(Models::NewPlanGroupedTieredPrice value) =>
-        new PriceVariants::NewPlanGroupedTieredPrice(value);
-
     public static implicit operator Price(Models::NewPlanMinimumCompositePrice value) =>
         new PriceVariants::NewPlanMinimumCompositePrice(value);
 
     public bool TryPickNewPlanUnit([NotNullWhen(true)] out Models::NewPlanUnitPrice? value)
     {
         value = (this as PriceVariants::NewPlanUnitPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewPlanPackage([NotNullWhen(true)] out Models::NewPlanPackagePrice? value)
-    {
-        value = (this as PriceVariants::NewPlanPackagePrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewPlanMatrix([NotNullWhen(true)] out Models::NewPlanMatrixPrice? value)
-    {
-        value = (this as PriceVariants::NewPlanMatrixPrice)?.Value;
         return value != null;
     }
 
@@ -127,6 +115,18 @@ public abstract record class Price
     public bool TryPickNewPlanBulk([NotNullWhen(true)] out Models::NewPlanBulkPrice? value)
     {
         value = (this as PriceVariants::NewPlanBulkPrice)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickNewPlanPackage([NotNullWhen(true)] out Models::NewPlanPackagePrice? value)
+    {
+        value = (this as PriceVariants::NewPlanPackagePrice)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickNewPlanMatrix([NotNullWhen(true)] out Models::NewPlanMatrixPrice? value)
+    {
+        value = (this as PriceVariants::NewPlanMatrixPrice)?.Value;
         return value != null;
     }
 
@@ -154,11 +154,19 @@ public abstract record class Price
         return value != null;
     }
 
-    public bool TryPickNewPlanUnitWithPercent(
-        [NotNullWhen(true)] out Models::NewPlanUnitWithPercentPrice? value
+    public bool TryPickNewPlanGroupedTiered(
+        [NotNullWhen(true)] out Models::NewPlanGroupedTieredPrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanUnitWithPercentPrice)?.Value;
+        value = (this as PriceVariants::NewPlanGroupedTieredPrice)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickNewPlanTieredPackageWithMinimum(
+        [NotNullWhen(true)] out Models::NewPlanTieredPackageWithMinimumPrice? value
+    )
+    {
+        value = (this as PriceVariants::NewPlanTieredPackageWithMinimumPrice)?.Value;
         return value != null;
     }
 
@@ -170,11 +178,25 @@ public abstract record class Price
         return value != null;
     }
 
-    public bool TryPickNewPlanTierWithProration(
-        [NotNullWhen(true)] out Models::NewPlanTierWithProrationPrice? value
+    public bool TryPickNewPlanUnitWithPercent(
+        [NotNullWhen(true)] out Models::NewPlanUnitWithPercentPrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanTierWithProrationPrice)?.Value;
+        value = (this as PriceVariants::NewPlanUnitWithPercentPrice)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickNewPlanMatrixWithAllocation(
+        [NotNullWhen(true)] out Models::NewPlanMatrixWithAllocationPrice? value
+    )
+    {
+        value = (this as PriceVariants::NewPlanMatrixWithAllocationPrice)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickTieredWithProration([NotNullWhen(true)] out TieredWithProration? value)
+    {
+        value = (this as PriceVariants::TieredWithProration)?.Value;
         return value != null;
     }
 
@@ -191,6 +213,14 @@ public abstract record class Price
     )
     {
         value = (this as PriceVariants::NewPlanGroupedAllocationPrice)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickNewPlanBulkWithProration(
+        [NotNullWhen(true)] out Models::NewPlanBulkWithProrationPrice? value
+    )
+    {
+        value = (this as PriceVariants::NewPlanBulkWithProrationPrice)?.Value;
         return value != null;
     }
 
@@ -223,14 +253,6 @@ public abstract record class Price
     )
     {
         value = (this as PriceVariants::NewPlanMatrixWithDisplayNamePrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewPlanBulkWithProration(
-        [NotNullWhen(true)] out Models::NewPlanBulkWithProrationPrice? value
-    )
-    {
-        value = (this as PriceVariants::NewPlanBulkWithProrationPrice)?.Value;
         return value != null;
     }
 
@@ -274,30 +296,6 @@ public abstract record class Price
         return value != null;
     }
 
-    public bool TryPickNewPlanTieredPackageWithMinimum(
-        [NotNullWhen(true)] out Models::NewPlanTieredPackageWithMinimumPrice? value
-    )
-    {
-        value = (this as PriceVariants::NewPlanTieredPackageWithMinimumPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewPlanMatrixWithAllocation(
-        [NotNullWhen(true)] out Models::NewPlanMatrixWithAllocationPrice? value
-    )
-    {
-        value = (this as PriceVariants::NewPlanMatrixWithAllocationPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewPlanGroupedTiered(
-        [NotNullWhen(true)] out Models::NewPlanGroupedTieredPrice? value
-    )
-    {
-        value = (this as PriceVariants::NewPlanGroupedTieredPrice)?.Value;
-        return value != null;
-    }
-
     public bool TryPickNewPlanMinimumComposite(
         [NotNullWhen(true)] out Models::NewPlanMinimumCompositePrice? value
     )
@@ -308,31 +306,31 @@ public abstract record class Price
 
     public void Switch(
         Action<PriceVariants::NewPlanUnitPrice> newPlanUnit,
-        Action<PriceVariants::NewPlanPackagePrice> newPlanPackage,
-        Action<PriceVariants::NewPlanMatrixPrice> newPlanMatrix,
         Action<PriceVariants::NewPlanTieredPrice> newPlanTiered,
         Action<PriceVariants::NewPlanBulkPrice> newPlanBulk,
+        Action<PriceVariants::NewPlanPackagePrice> newPlanPackage,
+        Action<PriceVariants::NewPlanMatrixPrice> newPlanMatrix,
         Action<PriceVariants::NewPlanThresholdTotalAmountPrice> newPlanThresholdTotalAmount,
         Action<PriceVariants::NewPlanTieredPackagePrice> newPlanTieredPackage,
         Action<PriceVariants::NewPlanTieredWithMinimumPrice> newPlanTieredWithMinimum,
-        Action<PriceVariants::NewPlanUnitWithPercentPrice> newPlanUnitWithPercent,
+        Action<PriceVariants::NewPlanGroupedTieredPrice> newPlanGroupedTiered,
+        Action<PriceVariants::NewPlanTieredPackageWithMinimumPrice> newPlanTieredPackageWithMinimum,
         Action<PriceVariants::NewPlanPackageWithAllocationPrice> newPlanPackageWithAllocation,
-        Action<PriceVariants::NewPlanTierWithProrationPrice> newPlanTierWithProration,
+        Action<PriceVariants::NewPlanUnitWithPercentPrice> newPlanUnitWithPercent,
+        Action<PriceVariants::NewPlanMatrixWithAllocationPrice> newPlanMatrixWithAllocation,
+        Action<PriceVariants::TieredWithProration> tieredWithProration,
         Action<PriceVariants::NewPlanUnitWithProrationPrice> newPlanUnitWithProration,
         Action<PriceVariants::NewPlanGroupedAllocationPrice> newPlanGroupedAllocation,
+        Action<PriceVariants::NewPlanBulkWithProrationPrice> newPlanBulkWithProration,
         Action<PriceVariants::NewPlanGroupedWithProratedMinimumPrice> newPlanGroupedWithProratedMinimum,
         Action<PriceVariants::NewPlanGroupedWithMeteredMinimumPrice> newPlanGroupedWithMeteredMinimum,
         Action<PriceVariants::GroupedWithMinMaxThresholds> groupedWithMinMaxThresholds,
         Action<PriceVariants::NewPlanMatrixWithDisplayNamePrice> newPlanMatrixWithDisplayName,
-        Action<PriceVariants::NewPlanBulkWithProrationPrice> newPlanBulkWithProration,
         Action<PriceVariants::NewPlanGroupedTieredPackagePrice> newPlanGroupedTieredPackage,
         Action<PriceVariants::NewPlanMaxGroupTieredPackagePrice> newPlanMaxGroupTieredPackage,
         Action<PriceVariants::NewPlanScalableMatrixWithUnitPricingPrice> newPlanScalableMatrixWithUnitPricing,
         Action<PriceVariants::NewPlanScalableMatrixWithTieredPricingPrice> newPlanScalableMatrixWithTieredPricing,
         Action<PriceVariants::NewPlanCumulativeGroupedBulkPrice> newPlanCumulativeGroupedBulk,
-        Action<PriceVariants::NewPlanTieredPackageWithMinimumPrice> newPlanTieredPackageWithMinimum,
-        Action<PriceVariants::NewPlanMatrixWithAllocationPrice> newPlanMatrixWithAllocation,
-        Action<PriceVariants::NewPlanGroupedTieredPrice> newPlanGroupedTiered,
         Action<PriceVariants::NewPlanMinimumCompositePrice> newPlanMinimumComposite
     )
     {
@@ -341,17 +339,17 @@ public abstract record class Price
             case PriceVariants::NewPlanUnitPrice inner:
                 newPlanUnit(inner);
                 break;
-            case PriceVariants::NewPlanPackagePrice inner:
-                newPlanPackage(inner);
-                break;
-            case PriceVariants::NewPlanMatrixPrice inner:
-                newPlanMatrix(inner);
-                break;
             case PriceVariants::NewPlanTieredPrice inner:
                 newPlanTiered(inner);
                 break;
             case PriceVariants::NewPlanBulkPrice inner:
                 newPlanBulk(inner);
+                break;
+            case PriceVariants::NewPlanPackagePrice inner:
+                newPlanPackage(inner);
+                break;
+            case PriceVariants::NewPlanMatrixPrice inner:
+                newPlanMatrix(inner);
                 break;
             case PriceVariants::NewPlanThresholdTotalAmountPrice inner:
                 newPlanThresholdTotalAmount(inner);
@@ -362,20 +360,32 @@ public abstract record class Price
             case PriceVariants::NewPlanTieredWithMinimumPrice inner:
                 newPlanTieredWithMinimum(inner);
                 break;
-            case PriceVariants::NewPlanUnitWithPercentPrice inner:
-                newPlanUnitWithPercent(inner);
+            case PriceVariants::NewPlanGroupedTieredPrice inner:
+                newPlanGroupedTiered(inner);
+                break;
+            case PriceVariants::NewPlanTieredPackageWithMinimumPrice inner:
+                newPlanTieredPackageWithMinimum(inner);
                 break;
             case PriceVariants::NewPlanPackageWithAllocationPrice inner:
                 newPlanPackageWithAllocation(inner);
                 break;
-            case PriceVariants::NewPlanTierWithProrationPrice inner:
-                newPlanTierWithProration(inner);
+            case PriceVariants::NewPlanUnitWithPercentPrice inner:
+                newPlanUnitWithPercent(inner);
+                break;
+            case PriceVariants::NewPlanMatrixWithAllocationPrice inner:
+                newPlanMatrixWithAllocation(inner);
+                break;
+            case PriceVariants::TieredWithProration inner:
+                tieredWithProration(inner);
                 break;
             case PriceVariants::NewPlanUnitWithProrationPrice inner:
                 newPlanUnitWithProration(inner);
                 break;
             case PriceVariants::NewPlanGroupedAllocationPrice inner:
                 newPlanGroupedAllocation(inner);
+                break;
+            case PriceVariants::NewPlanBulkWithProrationPrice inner:
+                newPlanBulkWithProration(inner);
                 break;
             case PriceVariants::NewPlanGroupedWithProratedMinimumPrice inner:
                 newPlanGroupedWithProratedMinimum(inner);
@@ -388,9 +398,6 @@ public abstract record class Price
                 break;
             case PriceVariants::NewPlanMatrixWithDisplayNamePrice inner:
                 newPlanMatrixWithDisplayName(inner);
-                break;
-            case PriceVariants::NewPlanBulkWithProrationPrice inner:
-                newPlanBulkWithProration(inner);
                 break;
             case PriceVariants::NewPlanGroupedTieredPackagePrice inner:
                 newPlanGroupedTieredPackage(inner);
@@ -407,15 +414,6 @@ public abstract record class Price
             case PriceVariants::NewPlanCumulativeGroupedBulkPrice inner:
                 newPlanCumulativeGroupedBulk(inner);
                 break;
-            case PriceVariants::NewPlanTieredPackageWithMinimumPrice inner:
-                newPlanTieredPackageWithMinimum(inner);
-                break;
-            case PriceVariants::NewPlanMatrixWithAllocationPrice inner:
-                newPlanMatrixWithAllocation(inner);
-                break;
-            case PriceVariants::NewPlanGroupedTieredPrice inner:
-                newPlanGroupedTiered(inner);
-                break;
             case PriceVariants::NewPlanMinimumCompositePrice inner:
                 newPlanMinimumComposite(inner);
                 break;
@@ -426,18 +424,25 @@ public abstract record class Price
 
     public T Match<T>(
         Func<PriceVariants::NewPlanUnitPrice, T> newPlanUnit,
-        Func<PriceVariants::NewPlanPackagePrice, T> newPlanPackage,
-        Func<PriceVariants::NewPlanMatrixPrice, T> newPlanMatrix,
         Func<PriceVariants::NewPlanTieredPrice, T> newPlanTiered,
         Func<PriceVariants::NewPlanBulkPrice, T> newPlanBulk,
+        Func<PriceVariants::NewPlanPackagePrice, T> newPlanPackage,
+        Func<PriceVariants::NewPlanMatrixPrice, T> newPlanMatrix,
         Func<PriceVariants::NewPlanThresholdTotalAmountPrice, T> newPlanThresholdTotalAmount,
         Func<PriceVariants::NewPlanTieredPackagePrice, T> newPlanTieredPackage,
         Func<PriceVariants::NewPlanTieredWithMinimumPrice, T> newPlanTieredWithMinimum,
-        Func<PriceVariants::NewPlanUnitWithPercentPrice, T> newPlanUnitWithPercent,
+        Func<PriceVariants::NewPlanGroupedTieredPrice, T> newPlanGroupedTiered,
+        Func<
+            PriceVariants::NewPlanTieredPackageWithMinimumPrice,
+            T
+        > newPlanTieredPackageWithMinimum,
         Func<PriceVariants::NewPlanPackageWithAllocationPrice, T> newPlanPackageWithAllocation,
-        Func<PriceVariants::NewPlanTierWithProrationPrice, T> newPlanTierWithProration,
+        Func<PriceVariants::NewPlanUnitWithPercentPrice, T> newPlanUnitWithPercent,
+        Func<PriceVariants::NewPlanMatrixWithAllocationPrice, T> newPlanMatrixWithAllocation,
+        Func<PriceVariants::TieredWithProration, T> tieredWithProration,
         Func<PriceVariants::NewPlanUnitWithProrationPrice, T> newPlanUnitWithProration,
         Func<PriceVariants::NewPlanGroupedAllocationPrice, T> newPlanGroupedAllocation,
+        Func<PriceVariants::NewPlanBulkWithProrationPrice, T> newPlanBulkWithProration,
         Func<
             PriceVariants::NewPlanGroupedWithProratedMinimumPrice,
             T
@@ -448,7 +453,6 @@ public abstract record class Price
         > newPlanGroupedWithMeteredMinimum,
         Func<PriceVariants::GroupedWithMinMaxThresholds, T> groupedWithMinMaxThresholds,
         Func<PriceVariants::NewPlanMatrixWithDisplayNamePrice, T> newPlanMatrixWithDisplayName,
-        Func<PriceVariants::NewPlanBulkWithProrationPrice, T> newPlanBulkWithProration,
         Func<PriceVariants::NewPlanGroupedTieredPackagePrice, T> newPlanGroupedTieredPackage,
         Func<PriceVariants::NewPlanMaxGroupTieredPackagePrice, T> newPlanMaxGroupTieredPackage,
         Func<
@@ -460,34 +464,35 @@ public abstract record class Price
             T
         > newPlanScalableMatrixWithTieredPricing,
         Func<PriceVariants::NewPlanCumulativeGroupedBulkPrice, T> newPlanCumulativeGroupedBulk,
-        Func<
-            PriceVariants::NewPlanTieredPackageWithMinimumPrice,
-            T
-        > newPlanTieredPackageWithMinimum,
-        Func<PriceVariants::NewPlanMatrixWithAllocationPrice, T> newPlanMatrixWithAllocation,
-        Func<PriceVariants::NewPlanGroupedTieredPrice, T> newPlanGroupedTiered,
         Func<PriceVariants::NewPlanMinimumCompositePrice, T> newPlanMinimumComposite
     )
     {
         return this switch
         {
             PriceVariants::NewPlanUnitPrice inner => newPlanUnit(inner),
-            PriceVariants::NewPlanPackagePrice inner => newPlanPackage(inner),
-            PriceVariants::NewPlanMatrixPrice inner => newPlanMatrix(inner),
             PriceVariants::NewPlanTieredPrice inner => newPlanTiered(inner),
             PriceVariants::NewPlanBulkPrice inner => newPlanBulk(inner),
+            PriceVariants::NewPlanPackagePrice inner => newPlanPackage(inner),
+            PriceVariants::NewPlanMatrixPrice inner => newPlanMatrix(inner),
             PriceVariants::NewPlanThresholdTotalAmountPrice inner => newPlanThresholdTotalAmount(
                 inner
             ),
             PriceVariants::NewPlanTieredPackagePrice inner => newPlanTieredPackage(inner),
             PriceVariants::NewPlanTieredWithMinimumPrice inner => newPlanTieredWithMinimum(inner),
-            PriceVariants::NewPlanUnitWithPercentPrice inner => newPlanUnitWithPercent(inner),
+            PriceVariants::NewPlanGroupedTieredPrice inner => newPlanGroupedTiered(inner),
+            PriceVariants::NewPlanTieredPackageWithMinimumPrice inner =>
+                newPlanTieredPackageWithMinimum(inner),
             PriceVariants::NewPlanPackageWithAllocationPrice inner => newPlanPackageWithAllocation(
                 inner
             ),
-            PriceVariants::NewPlanTierWithProrationPrice inner => newPlanTierWithProration(inner),
+            PriceVariants::NewPlanUnitWithPercentPrice inner => newPlanUnitWithPercent(inner),
+            PriceVariants::NewPlanMatrixWithAllocationPrice inner => newPlanMatrixWithAllocation(
+                inner
+            ),
+            PriceVariants::TieredWithProration inner => tieredWithProration(inner),
             PriceVariants::NewPlanUnitWithProrationPrice inner => newPlanUnitWithProration(inner),
             PriceVariants::NewPlanGroupedAllocationPrice inner => newPlanGroupedAllocation(inner),
+            PriceVariants::NewPlanBulkWithProrationPrice inner => newPlanBulkWithProration(inner),
             PriceVariants::NewPlanGroupedWithProratedMinimumPrice inner =>
                 newPlanGroupedWithProratedMinimum(inner),
             PriceVariants::NewPlanGroupedWithMeteredMinimumPrice inner =>
@@ -496,7 +501,6 @@ public abstract record class Price
             PriceVariants::NewPlanMatrixWithDisplayNamePrice inner => newPlanMatrixWithDisplayName(
                 inner
             ),
-            PriceVariants::NewPlanBulkWithProrationPrice inner => newPlanBulkWithProration(inner),
             PriceVariants::NewPlanGroupedTieredPackagePrice inner => newPlanGroupedTieredPackage(
                 inner
             ),
@@ -510,12 +514,6 @@ public abstract record class Price
             PriceVariants::NewPlanCumulativeGroupedBulkPrice inner => newPlanCumulativeGroupedBulk(
                 inner
             ),
-            PriceVariants::NewPlanTieredPackageWithMinimumPrice inner =>
-                newPlanTieredPackageWithMinimum(inner),
-            PriceVariants::NewPlanMatrixWithAllocationPrice inner => newPlanMatrixWithAllocation(
-                inner
-            ),
-            PriceVariants::NewPlanGroupedTieredPrice inner => newPlanGroupedTiered(inner),
             PriceVariants::NewPlanMinimumCompositePrice inner => newPlanMinimumComposite(inner),
             _ => throw new InvalidOperationException(),
         };
@@ -567,50 +565,6 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
-            case "package":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<Models::NewPlanPackagePrice>(
-                        json,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewPlanPackagePrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "matrix":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<Models::NewPlanMatrixPrice>(
-                        json,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewPlanMatrixPrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
             case "tiered":
             {
                 List<JsonException> exceptions = [];
@@ -646,6 +600,50 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         return new PriceVariants::NewPlanBulkPrice(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "package":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<Models::NewPlanPackagePrice>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::NewPlanPackagePrice(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "matrix":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<Models::NewPlanMatrixPrice>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::NewPlanMatrixPrice(deserialized);
                     }
                 }
                 catch (JsonException e)
@@ -724,20 +722,45 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
-            case "unit_with_percent":
+            case "grouped_tiered":
             {
                 List<JsonException> exceptions = [];
 
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewPlanUnitWithPercentPrice>(
+                        JsonSerializer.Deserialize<Models::NewPlanGroupedTieredPrice>(
                             json,
                             options
                         );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanUnitWithPercentPrice(deserialized);
+                        return new PriceVariants::NewPlanGroupedTieredPrice(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "tiered_package_with_minimum":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<Models::NewPlanTieredPackageWithMinimumPrice>(
+                            json,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::NewPlanTieredPackageWithMinimumPrice(
+                            deserialized
+                        );
                     }
                 }
                 catch (JsonException e)
@@ -770,20 +793,65 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
-            case "tiered_with_proration":
+            case "unit_with_percent":
             {
                 List<JsonException> exceptions = [];
 
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewPlanTierWithProrationPrice>(
+                        JsonSerializer.Deserialize<Models::NewPlanUnitWithPercentPrice>(
                             json,
                             options
                         );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanTierWithProrationPrice(deserialized);
+                        return new PriceVariants::NewPlanUnitWithPercentPrice(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "matrix_with_allocation":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<Models::NewPlanMatrixWithAllocationPrice>(
+                            json,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::NewPlanMatrixWithAllocationPrice(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "tiered_with_proration":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<TieredWithProration>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::TieredWithProration(deserialized);
                     }
                 }
                 catch (JsonException e)
@@ -830,6 +898,29 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         return new PriceVariants::NewPlanGroupedAllocationPrice(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "bulk_with_proration":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<Models::NewPlanBulkWithProrationPrice>(
+                            json,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::NewPlanBulkWithProrationPrice(deserialized);
                     }
                 }
                 catch (JsonException e)
@@ -925,29 +1016,6 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         return new PriceVariants::NewPlanMatrixWithDisplayNamePrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "bulk_with_proration":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized =
-                        JsonSerializer.Deserialize<Models::NewPlanBulkWithProrationPrice>(
-                            json,
-                            options
-                        );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewPlanBulkWithProrationPrice(deserialized);
                     }
                 }
                 catch (JsonException e)
@@ -1076,77 +1144,6 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
-            case "tiered_package_with_minimum":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized =
-                        JsonSerializer.Deserialize<Models::NewPlanTieredPackageWithMinimumPrice>(
-                            json,
-                            options
-                        );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewPlanTieredPackageWithMinimumPrice(
-                            deserialized
-                        );
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "matrix_with_allocation":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized =
-                        JsonSerializer.Deserialize<Models::NewPlanMatrixWithAllocationPrice>(
-                            json,
-                            options
-                        );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewPlanMatrixWithAllocationPrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "grouped_tiered":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized =
-                        JsonSerializer.Deserialize<Models::NewPlanGroupedTieredPrice>(
-                            json,
-                            options
-                        );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewPlanGroupedTieredPrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
             case "minimum":
             {
                 List<JsonException> exceptions = [];
@@ -1183,26 +1180,34 @@ sealed class PriceConverter : JsonConverter<Price?>
         {
             null => null,
             PriceVariants::NewPlanUnitPrice(var newPlanUnit) => newPlanUnit,
-            PriceVariants::NewPlanPackagePrice(var newPlanPackage) => newPlanPackage,
-            PriceVariants::NewPlanMatrixPrice(var newPlanMatrix) => newPlanMatrix,
             PriceVariants::NewPlanTieredPrice(var newPlanTiered) => newPlanTiered,
             PriceVariants::NewPlanBulkPrice(var newPlanBulk) => newPlanBulk,
+            PriceVariants::NewPlanPackagePrice(var newPlanPackage) => newPlanPackage,
+            PriceVariants::NewPlanMatrixPrice(var newPlanMatrix) => newPlanMatrix,
             PriceVariants::NewPlanThresholdTotalAmountPrice(var newPlanThresholdTotalAmount) =>
                 newPlanThresholdTotalAmount,
             PriceVariants::NewPlanTieredPackagePrice(var newPlanTieredPackage) =>
                 newPlanTieredPackage,
             PriceVariants::NewPlanTieredWithMinimumPrice(var newPlanTieredWithMinimum) =>
                 newPlanTieredWithMinimum,
-            PriceVariants::NewPlanUnitWithPercentPrice(var newPlanUnitWithPercent) =>
-                newPlanUnitWithPercent,
+            PriceVariants::NewPlanGroupedTieredPrice(var newPlanGroupedTiered) =>
+                newPlanGroupedTiered,
+            PriceVariants::NewPlanTieredPackageWithMinimumPrice(
+                var newPlanTieredPackageWithMinimum
+            ) => newPlanTieredPackageWithMinimum,
             PriceVariants::NewPlanPackageWithAllocationPrice(var newPlanPackageWithAllocation) =>
                 newPlanPackageWithAllocation,
-            PriceVariants::NewPlanTierWithProrationPrice(var newPlanTierWithProration) =>
-                newPlanTierWithProration,
+            PriceVariants::NewPlanUnitWithPercentPrice(var newPlanUnitWithPercent) =>
+                newPlanUnitWithPercent,
+            PriceVariants::NewPlanMatrixWithAllocationPrice(var newPlanMatrixWithAllocation) =>
+                newPlanMatrixWithAllocation,
+            PriceVariants::TieredWithProration(var tieredWithProration) => tieredWithProration,
             PriceVariants::NewPlanUnitWithProrationPrice(var newPlanUnitWithProration) =>
                 newPlanUnitWithProration,
             PriceVariants::NewPlanGroupedAllocationPrice(var newPlanGroupedAllocation) =>
                 newPlanGroupedAllocation,
+            PriceVariants::NewPlanBulkWithProrationPrice(var newPlanBulkWithProration) =>
+                newPlanBulkWithProration,
             PriceVariants::NewPlanGroupedWithProratedMinimumPrice(
                 var newPlanGroupedWithProratedMinimum
             ) => newPlanGroupedWithProratedMinimum,
@@ -1213,8 +1218,6 @@ sealed class PriceConverter : JsonConverter<Price?>
                 groupedWithMinMaxThresholds,
             PriceVariants::NewPlanMatrixWithDisplayNamePrice(var newPlanMatrixWithDisplayName) =>
                 newPlanMatrixWithDisplayName,
-            PriceVariants::NewPlanBulkWithProrationPrice(var newPlanBulkWithProration) =>
-                newPlanBulkWithProration,
             PriceVariants::NewPlanGroupedTieredPackagePrice(var newPlanGroupedTieredPackage) =>
                 newPlanGroupedTieredPackage,
             PriceVariants::NewPlanMaxGroupTieredPackagePrice(var newPlanMaxGroupTieredPackage) =>
@@ -1227,13 +1230,6 @@ sealed class PriceConverter : JsonConverter<Price?>
             ) => newPlanScalableMatrixWithTieredPricing,
             PriceVariants::NewPlanCumulativeGroupedBulkPrice(var newPlanCumulativeGroupedBulk) =>
                 newPlanCumulativeGroupedBulk,
-            PriceVariants::NewPlanTieredPackageWithMinimumPrice(
-                var newPlanTieredPackageWithMinimum
-            ) => newPlanTieredPackageWithMinimum,
-            PriceVariants::NewPlanMatrixWithAllocationPrice(var newPlanMatrixWithAllocation) =>
-                newPlanMatrixWithAllocation,
-            PriceVariants::NewPlanGroupedTieredPrice(var newPlanGroupedTiered) =>
-                newPlanGroupedTiered,
             PriceVariants::NewPlanMinimumCompositePrice(var newPlanMinimumComposite) =>
                 newPlanMinimumComposite,
             _ => throw new ArgumentOutOfRangeException(nameof(value)),

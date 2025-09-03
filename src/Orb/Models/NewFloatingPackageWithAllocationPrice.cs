@@ -80,6 +80,9 @@ public sealed record class NewFloatingPackageWithAllocationPrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -123,7 +126,10 @@ public sealed record class NewFloatingPackageWithAllocationPrice
         }
     }
 
-    public required Dictionary<string, JsonElement> PackageWithAllocationConfig
+    /// <summary>
+    /// Configuration for package_with_allocation pricing
+    /// </summary>
+    public required PackageWithAllocationConfig PackageWithAllocationConfig
     {
         get
         {
@@ -138,7 +144,7 @@ public sealed record class NewFloatingPackageWithAllocationPrice
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<PackageWithAllocationConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("package_with_allocation_config");
@@ -421,10 +427,7 @@ public sealed record class NewFloatingPackageWithAllocationPrice
         _ = this.ItemID;
         this.ModelType.Validate();
         _ = this.Name;
-        foreach (var item in this.PackageWithAllocationConfig.Values)
-        {
-            _ = item;
-        }
+        this.PackageWithAllocationConfig.Validate();
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
         this.BillingCycleConfiguration?.Validate();

@@ -18,36 +18,6 @@ public sealed record class Unit(PriceProperties::Unit Value)
     }
 }
 
-public sealed record class Package(PriceProperties::Package Value)
-    : Models::Price,
-        IVariant<Package, PriceProperties::Package>
-{
-    public static Package From(PriceProperties::Package value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class Matrix(PriceProperties::Matrix Value)
-    : Models::Price,
-        IVariant<Matrix, PriceProperties::Matrix>
-{
-    public static Matrix From(PriceProperties::Matrix value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
 public sealed record class Tiered(PriceProperties::Tiered Value)
     : Models::Price,
         IVariant<Tiered, PriceProperties::Tiered>
@@ -68,6 +38,36 @@ public sealed record class Bulk(PriceProperties::Bulk Value)
         IVariant<Bulk, PriceProperties::Bulk>
 {
     public static Bulk From(PriceProperties::Bulk value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class Package(PriceProperties::Package Value)
+    : Models::Price,
+        IVariant<Package, PriceProperties::Package>
+{
+    public static Package From(PriceProperties::Package value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
+public sealed record class Matrix(PriceProperties::Matrix Value)
+    : Models::Price,
+        IVariant<Matrix, PriceProperties::Matrix>
+{
+    public static Matrix From(PriceProperties::Matrix value)
     {
         return new(value);
     }
@@ -108,11 +108,11 @@ public sealed record class TieredPackage(PriceProperties::TieredPackage Value)
     }
 }
 
-public sealed record class GroupedTiered(PriceProperties::GroupedTiered Value)
+public sealed record class TieredWithMinimum(PriceProperties::TieredWithMinimum Value)
     : Models::Price,
-        IVariant<GroupedTiered, PriceProperties::GroupedTiered>
+        IVariant<TieredWithMinimum, PriceProperties::TieredWithMinimum>
 {
-    public static GroupedTiered From(PriceProperties::GroupedTiered value)
+    public static TieredWithMinimum From(PriceProperties::TieredWithMinimum value)
     {
         return new(value);
     }
@@ -123,11 +123,11 @@ public sealed record class GroupedTiered(PriceProperties::GroupedTiered Value)
     }
 }
 
-public sealed record class TieredWithMinimum(PriceProperties::TieredWithMinimum Value)
+public sealed record class GroupedTiered(PriceProperties::GroupedTiered Value)
     : Models::Price,
-        IVariant<TieredWithMinimum, PriceProperties::TieredWithMinimum>
+        IVariant<GroupedTiered, PriceProperties::GroupedTiered>
 {
-    public static TieredWithMinimum From(PriceProperties::TieredWithMinimum value)
+    public static GroupedTiered From(PriceProperties::GroupedTiered value)
     {
         return new(value);
     }
@@ -243,6 +243,21 @@ public sealed record class GroupedAllocation(PriceProperties::GroupedAllocation 
     }
 }
 
+public sealed record class BulkWithProration(PriceProperties::BulkWithProration Value)
+    : Models::Price,
+        IVariant<BulkWithProration, PriceProperties::BulkWithProration>
+{
+    public static BulkWithProration From(PriceProperties::BulkWithProration value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
 public sealed record class GroupedWithProratedMinimum(
     PriceProperties::GroupedWithProratedMinimum Value
 ) : Models::Price, IVariant<GroupedWithProratedMinimum, PriceProperties::GroupedWithProratedMinimum>
@@ -273,11 +288,15 @@ public sealed record class GroupedWithMeteredMinimum(
     }
 }
 
-public sealed record class MatrixWithDisplayName(PriceProperties::MatrixWithDisplayName Value)
+public sealed record class GroupedWithMinMaxThresholds(
+    PriceProperties::GroupedWithMinMaxThresholds Value
+)
     : Models::Price,
-        IVariant<MatrixWithDisplayName, PriceProperties::MatrixWithDisplayName>
+        IVariant<GroupedWithMinMaxThresholds, PriceProperties::GroupedWithMinMaxThresholds>
 {
-    public static MatrixWithDisplayName From(PriceProperties::MatrixWithDisplayName value)
+    public static GroupedWithMinMaxThresholds From(
+        PriceProperties::GroupedWithMinMaxThresholds value
+    )
     {
         return new(value);
     }
@@ -288,11 +307,11 @@ public sealed record class MatrixWithDisplayName(PriceProperties::MatrixWithDisp
     }
 }
 
-public sealed record class BulkWithProration(PriceProperties::BulkWithProration Value)
+public sealed record class MatrixWithDisplayName(PriceProperties::MatrixWithDisplayName Value)
     : Models::Price,
-        IVariant<BulkWithProration, PriceProperties::BulkWithProration>
+        IVariant<MatrixWithDisplayName, PriceProperties::MatrixWithDisplayName>
 {
-    public static BulkWithProration From(PriceProperties::BulkWithProration value)
+    public static MatrixWithDisplayName From(PriceProperties::MatrixWithDisplayName value)
     {
         return new(value);
     }
@@ -376,25 +395,6 @@ public sealed record class CumulativeGroupedBulk(PriceProperties::CumulativeGrou
         IVariant<CumulativeGroupedBulk, PriceProperties::CumulativeGroupedBulk>
 {
     public static CumulativeGroupedBulk From(PriceProperties::CumulativeGroupedBulk value)
-    {
-        return new(value);
-    }
-
-    public override void Validate()
-    {
-        this.Value.Validate();
-    }
-}
-
-public sealed record class GroupedWithMinMaxThresholds(
-    PriceProperties::GroupedWithMinMaxThresholds Value
-)
-    : Models::Price,
-        IVariant<GroupedWithMinMaxThresholds, PriceProperties::GroupedWithMinMaxThresholds>
-{
-    public static GroupedWithMinMaxThresholds From(
-        PriceProperties::GroupedWithMinMaxThresholds value
-    )
     {
         return new(value);
     }

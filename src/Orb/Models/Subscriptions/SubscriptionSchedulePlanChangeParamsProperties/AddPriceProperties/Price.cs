@@ -9,7 +9,7 @@ using PriceVariants = Orb.Models.Subscriptions.SubscriptionSchedulePlanChangePar
 namespace Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.AddPriceProperties;
 
 /// <summary>
-/// The definition of a new price to create and add to the subscription.
+/// New subscription price request body params.
 /// </summary>
 [JsonConverter(typeof(PriceConverter))]
 public abstract record class Price
@@ -19,17 +19,17 @@ public abstract record class Price
     public static implicit operator Price(NewSubscriptionUnitPrice value) =>
         new PriceVariants::NewSubscriptionUnitPrice(value);
 
-    public static implicit operator Price(NewSubscriptionPackagePrice value) =>
-        new PriceVariants::NewSubscriptionPackagePrice(value);
-
-    public static implicit operator Price(NewSubscriptionMatrixPrice value) =>
-        new PriceVariants::NewSubscriptionMatrixPrice(value);
-
     public static implicit operator Price(NewSubscriptionTieredPrice value) =>
         new PriceVariants::NewSubscriptionTieredPrice(value);
 
     public static implicit operator Price(NewSubscriptionBulkPrice value) =>
         new PriceVariants::NewSubscriptionBulkPrice(value);
+
+    public static implicit operator Price(NewSubscriptionPackagePrice value) =>
+        new PriceVariants::NewSubscriptionPackagePrice(value);
+
+    public static implicit operator Price(NewSubscriptionMatrixPrice value) =>
+        new PriceVariants::NewSubscriptionMatrixPrice(value);
 
     public static implicit operator Price(NewSubscriptionThresholdTotalAmountPrice value) =>
         new PriceVariants::NewSubscriptionThresholdTotalAmountPrice(value);
@@ -40,14 +40,23 @@ public abstract record class Price
     public static implicit operator Price(NewSubscriptionTieredWithMinimumPrice value) =>
         new PriceVariants::NewSubscriptionTieredWithMinimumPrice(value);
 
-    public static implicit operator Price(NewSubscriptionUnitWithPercentPrice value) =>
-        new PriceVariants::NewSubscriptionUnitWithPercentPrice(value);
+    public static implicit operator Price(NewSubscriptionGroupedTieredPrice value) =>
+        new PriceVariants::NewSubscriptionGroupedTieredPrice(value);
+
+    public static implicit operator Price(NewSubscriptionTieredPackageWithMinimumPrice value) =>
+        new PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice(value);
 
     public static implicit operator Price(NewSubscriptionPackageWithAllocationPrice value) =>
         new PriceVariants::NewSubscriptionPackageWithAllocationPrice(value);
 
-    public static implicit operator Price(NewSubscriptionTierWithProrationPrice value) =>
-        new PriceVariants::NewSubscriptionTierWithProrationPrice(value);
+    public static implicit operator Price(NewSubscriptionUnitWithPercentPrice value) =>
+        new PriceVariants::NewSubscriptionUnitWithPercentPrice(value);
+
+    public static implicit operator Price(NewSubscriptionMatrixWithAllocationPrice value) =>
+        new PriceVariants::NewSubscriptionMatrixWithAllocationPrice(value);
+
+    public static implicit operator Price(TieredWithProration value) =>
+        new PriceVariants::TieredWithProration(value);
 
     public static implicit operator Price(NewSubscriptionUnitWithProrationPrice value) =>
         new PriceVariants::NewSubscriptionUnitWithProrationPrice(value);
@@ -55,11 +64,26 @@ public abstract record class Price
     public static implicit operator Price(NewSubscriptionGroupedAllocationPrice value) =>
         new PriceVariants::NewSubscriptionGroupedAllocationPrice(value);
 
+    public static implicit operator Price(NewSubscriptionBulkWithProrationPrice value) =>
+        new PriceVariants::NewSubscriptionBulkWithProrationPrice(value);
+
     public static implicit operator Price(NewSubscriptionGroupedWithProratedMinimumPrice value) =>
         new PriceVariants::NewSubscriptionGroupedWithProratedMinimumPrice(value);
 
-    public static implicit operator Price(NewSubscriptionBulkWithProrationPrice value) =>
-        new PriceVariants::NewSubscriptionBulkWithProrationPrice(value);
+    public static implicit operator Price(NewSubscriptionGroupedWithMeteredMinimumPrice value) =>
+        new PriceVariants::NewSubscriptionGroupedWithMeteredMinimumPrice(value);
+
+    public static implicit operator Price(GroupedWithMinMaxThresholds value) =>
+        new PriceVariants::GroupedWithMinMaxThresholds(value);
+
+    public static implicit operator Price(NewSubscriptionMatrixWithDisplayNamePrice value) =>
+        new PriceVariants::NewSubscriptionMatrixWithDisplayNamePrice(value);
+
+    public static implicit operator Price(NewSubscriptionGroupedTieredPackagePrice value) =>
+        new PriceVariants::NewSubscriptionGroupedTieredPackagePrice(value);
+
+    public static implicit operator Price(NewSubscriptionMaxGroupTieredPackagePrice value) =>
+        new PriceVariants::NewSubscriptionMaxGroupTieredPackagePrice(value);
 
     public static implicit operator Price(
         NewSubscriptionScalableMatrixWithUnitPricingPrice value
@@ -72,36 +96,26 @@ public abstract record class Price
     public static implicit operator Price(NewSubscriptionCumulativeGroupedBulkPrice value) =>
         new PriceVariants::NewSubscriptionCumulativeGroupedBulkPrice(value);
 
-    public static implicit operator Price(NewSubscriptionMaxGroupTieredPackagePrice value) =>
-        new PriceVariants::NewSubscriptionMaxGroupTieredPackagePrice(value);
-
-    public static implicit operator Price(NewSubscriptionGroupedWithMeteredMinimumPrice value) =>
-        new PriceVariants::NewSubscriptionGroupedWithMeteredMinimumPrice(value);
-
-    public static implicit operator Price(NewSubscriptionMatrixWithDisplayNamePrice value) =>
-        new PriceVariants::NewSubscriptionMatrixWithDisplayNamePrice(value);
-
-    public static implicit operator Price(NewSubscriptionGroupedTieredPackagePrice value) =>
-        new PriceVariants::NewSubscriptionGroupedTieredPackagePrice(value);
-
-    public static implicit operator Price(NewSubscriptionMatrixWithAllocationPrice value) =>
-        new PriceVariants::NewSubscriptionMatrixWithAllocationPrice(value);
-
-    public static implicit operator Price(NewSubscriptionTieredPackageWithMinimumPrice value) =>
-        new PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice(value);
-
-    public static implicit operator Price(NewSubscriptionGroupedTieredPrice value) =>
-        new PriceVariants::NewSubscriptionGroupedTieredPrice(value);
-
-    public static implicit operator Price(GroupedWithMinMaxThresholds value) =>
-        new PriceVariants::GroupedWithMinMaxThresholds(value);
-
     public static implicit operator Price(NewSubscriptionMinimumCompositePrice value) =>
         new PriceVariants::NewSubscriptionMinimumCompositePrice(value);
 
     public bool TryPickNewSubscriptionUnit([NotNullWhen(true)] out NewSubscriptionUnitPrice? value)
     {
         value = (this as PriceVariants::NewSubscriptionUnitPrice)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickNewSubscriptionTiered(
+        [NotNullWhen(true)] out NewSubscriptionTieredPrice? value
+    )
+    {
+        value = (this as PriceVariants::NewSubscriptionTieredPrice)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickNewSubscriptionBulk([NotNullWhen(true)] out NewSubscriptionBulkPrice? value)
+    {
+        value = (this as PriceVariants::NewSubscriptionBulkPrice)?.Value;
         return value != null;
     }
 
@@ -118,20 +132,6 @@ public abstract record class Price
     )
     {
         value = (this as PriceVariants::NewSubscriptionMatrixPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewSubscriptionTiered(
-        [NotNullWhen(true)] out NewSubscriptionTieredPrice? value
-    )
-    {
-        value = (this as PriceVariants::NewSubscriptionTieredPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewSubscriptionBulk([NotNullWhen(true)] out NewSubscriptionBulkPrice? value)
-    {
-        value = (this as PriceVariants::NewSubscriptionBulkPrice)?.Value;
         return value != null;
     }
 
@@ -159,11 +159,19 @@ public abstract record class Price
         return value != null;
     }
 
-    public bool TryPickNewSubscriptionUnitWithPercent(
-        [NotNullWhen(true)] out NewSubscriptionUnitWithPercentPrice? value
+    public bool TryPickNewSubscriptionGroupedTiered(
+        [NotNullWhen(true)] out NewSubscriptionGroupedTieredPrice? value
     )
     {
-        value = (this as PriceVariants::NewSubscriptionUnitWithPercentPrice)?.Value;
+        value = (this as PriceVariants::NewSubscriptionGroupedTieredPrice)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickNewSubscriptionTieredPackageWithMinimum(
+        [NotNullWhen(true)] out NewSubscriptionTieredPackageWithMinimumPrice? value
+    )
+    {
+        value = (this as PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice)?.Value;
         return value != null;
     }
 
@@ -175,11 +183,25 @@ public abstract record class Price
         return value != null;
     }
 
-    public bool TryPickNewSubscriptionTierWithProration(
-        [NotNullWhen(true)] out NewSubscriptionTierWithProrationPrice? value
+    public bool TryPickNewSubscriptionUnitWithPercent(
+        [NotNullWhen(true)] out NewSubscriptionUnitWithPercentPrice? value
     )
     {
-        value = (this as PriceVariants::NewSubscriptionTierWithProrationPrice)?.Value;
+        value = (this as PriceVariants::NewSubscriptionUnitWithPercentPrice)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickNewSubscriptionMatrixWithAllocation(
+        [NotNullWhen(true)] out NewSubscriptionMatrixWithAllocationPrice? value
+    )
+    {
+        value = (this as PriceVariants::NewSubscriptionMatrixWithAllocationPrice)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickTieredWithProration([NotNullWhen(true)] out TieredWithProration? value)
+    {
+        value = (this as PriceVariants::TieredWithProration)?.Value;
         return value != null;
     }
 
@@ -199,6 +221,14 @@ public abstract record class Price
         return value != null;
     }
 
+    public bool TryPickNewSubscriptionBulkWithProration(
+        [NotNullWhen(true)] out NewSubscriptionBulkWithProrationPrice? value
+    )
+    {
+        value = (this as PriceVariants::NewSubscriptionBulkWithProrationPrice)?.Value;
+        return value != null;
+    }
+
     public bool TryPickNewSubscriptionGroupedWithProratedMinimum(
         [NotNullWhen(true)] out NewSubscriptionGroupedWithProratedMinimumPrice? value
     )
@@ -207,11 +237,43 @@ public abstract record class Price
         return value != null;
     }
 
-    public bool TryPickNewSubscriptionBulkWithProration(
-        [NotNullWhen(true)] out NewSubscriptionBulkWithProrationPrice? value
+    public bool TryPickNewSubscriptionGroupedWithMeteredMinimum(
+        [NotNullWhen(true)] out NewSubscriptionGroupedWithMeteredMinimumPrice? value
     )
     {
-        value = (this as PriceVariants::NewSubscriptionBulkWithProrationPrice)?.Value;
+        value = (this as PriceVariants::NewSubscriptionGroupedWithMeteredMinimumPrice)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickGroupedWithMinMaxThresholds(
+        [NotNullWhen(true)] out GroupedWithMinMaxThresholds? value
+    )
+    {
+        value = (this as PriceVariants::GroupedWithMinMaxThresholds)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickNewSubscriptionMatrixWithDisplayName(
+        [NotNullWhen(true)] out NewSubscriptionMatrixWithDisplayNamePrice? value
+    )
+    {
+        value = (this as PriceVariants::NewSubscriptionMatrixWithDisplayNamePrice)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickNewSubscriptionGroupedTieredPackage(
+        [NotNullWhen(true)] out NewSubscriptionGroupedTieredPackagePrice? value
+    )
+    {
+        value = (this as PriceVariants::NewSubscriptionGroupedTieredPackagePrice)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickNewSubscriptionMaxGroupTieredPackage(
+        [NotNullWhen(true)] out NewSubscriptionMaxGroupTieredPackagePrice? value
+    )
+    {
+        value = (this as PriceVariants::NewSubscriptionMaxGroupTieredPackagePrice)?.Value;
         return value != null;
     }
 
@@ -239,70 +301,6 @@ public abstract record class Price
         return value != null;
     }
 
-    public bool TryPickNewSubscriptionMaxGroupTieredPackage(
-        [NotNullWhen(true)] out NewSubscriptionMaxGroupTieredPackagePrice? value
-    )
-    {
-        value = (this as PriceVariants::NewSubscriptionMaxGroupTieredPackagePrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewSubscriptionGroupedWithMeteredMinimum(
-        [NotNullWhen(true)] out NewSubscriptionGroupedWithMeteredMinimumPrice? value
-    )
-    {
-        value = (this as PriceVariants::NewSubscriptionGroupedWithMeteredMinimumPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewSubscriptionMatrixWithDisplayName(
-        [NotNullWhen(true)] out NewSubscriptionMatrixWithDisplayNamePrice? value
-    )
-    {
-        value = (this as PriceVariants::NewSubscriptionMatrixWithDisplayNamePrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewSubscriptionGroupedTieredPackage(
-        [NotNullWhen(true)] out NewSubscriptionGroupedTieredPackagePrice? value
-    )
-    {
-        value = (this as PriceVariants::NewSubscriptionGroupedTieredPackagePrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewSubscriptionMatrixWithAllocation(
-        [NotNullWhen(true)] out NewSubscriptionMatrixWithAllocationPrice? value
-    )
-    {
-        value = (this as PriceVariants::NewSubscriptionMatrixWithAllocationPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewSubscriptionTieredPackageWithMinimum(
-        [NotNullWhen(true)] out NewSubscriptionTieredPackageWithMinimumPrice? value
-    )
-    {
-        value = (this as PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewSubscriptionGroupedTiered(
-        [NotNullWhen(true)] out NewSubscriptionGroupedTieredPrice? value
-    )
-    {
-        value = (this as PriceVariants::NewSubscriptionGroupedTieredPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickGroupedWithMinMaxThresholds(
-        [NotNullWhen(true)] out GroupedWithMinMaxThresholds? value
-    )
-    {
-        value = (this as PriceVariants::GroupedWithMinMaxThresholds)?.Value;
-        return value != null;
-    }
-
     public bool TryPickNewSubscriptionMinimumComposite(
         [NotNullWhen(true)] out NewSubscriptionMinimumCompositePrice? value
     )
@@ -313,31 +311,31 @@ public abstract record class Price
 
     public void Switch(
         Action<PriceVariants::NewSubscriptionUnitPrice> newSubscriptionUnit,
-        Action<PriceVariants::NewSubscriptionPackagePrice> newSubscriptionPackage,
-        Action<PriceVariants::NewSubscriptionMatrixPrice> newSubscriptionMatrix,
         Action<PriceVariants::NewSubscriptionTieredPrice> newSubscriptionTiered,
         Action<PriceVariants::NewSubscriptionBulkPrice> newSubscriptionBulk,
+        Action<PriceVariants::NewSubscriptionPackagePrice> newSubscriptionPackage,
+        Action<PriceVariants::NewSubscriptionMatrixPrice> newSubscriptionMatrix,
         Action<PriceVariants::NewSubscriptionThresholdTotalAmountPrice> newSubscriptionThresholdTotalAmount,
         Action<PriceVariants::NewSubscriptionTieredPackagePrice> newSubscriptionTieredPackage,
         Action<PriceVariants::NewSubscriptionTieredWithMinimumPrice> newSubscriptionTieredWithMinimum,
-        Action<PriceVariants::NewSubscriptionUnitWithPercentPrice> newSubscriptionUnitWithPercent,
+        Action<PriceVariants::NewSubscriptionGroupedTieredPrice> newSubscriptionGroupedTiered,
+        Action<PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice> newSubscriptionTieredPackageWithMinimum,
         Action<PriceVariants::NewSubscriptionPackageWithAllocationPrice> newSubscriptionPackageWithAllocation,
-        Action<PriceVariants::NewSubscriptionTierWithProrationPrice> newSubscriptionTierWithProration,
+        Action<PriceVariants::NewSubscriptionUnitWithPercentPrice> newSubscriptionUnitWithPercent,
+        Action<PriceVariants::NewSubscriptionMatrixWithAllocationPrice> newSubscriptionMatrixWithAllocation,
+        Action<PriceVariants::TieredWithProration> tieredWithProration,
         Action<PriceVariants::NewSubscriptionUnitWithProrationPrice> newSubscriptionUnitWithProration,
         Action<PriceVariants::NewSubscriptionGroupedAllocationPrice> newSubscriptionGroupedAllocation,
-        Action<PriceVariants::NewSubscriptionGroupedWithProratedMinimumPrice> newSubscriptionGroupedWithProratedMinimum,
         Action<PriceVariants::NewSubscriptionBulkWithProrationPrice> newSubscriptionBulkWithProration,
+        Action<PriceVariants::NewSubscriptionGroupedWithProratedMinimumPrice> newSubscriptionGroupedWithProratedMinimum,
+        Action<PriceVariants::NewSubscriptionGroupedWithMeteredMinimumPrice> newSubscriptionGroupedWithMeteredMinimum,
+        Action<PriceVariants::GroupedWithMinMaxThresholds> groupedWithMinMaxThresholds,
+        Action<PriceVariants::NewSubscriptionMatrixWithDisplayNamePrice> newSubscriptionMatrixWithDisplayName,
+        Action<PriceVariants::NewSubscriptionGroupedTieredPackagePrice> newSubscriptionGroupedTieredPackage,
+        Action<PriceVariants::NewSubscriptionMaxGroupTieredPackagePrice> newSubscriptionMaxGroupTieredPackage,
         Action<PriceVariants::NewSubscriptionScalableMatrixWithUnitPricingPrice> newSubscriptionScalableMatrixWithUnitPricing,
         Action<PriceVariants::NewSubscriptionScalableMatrixWithTieredPricingPrice> newSubscriptionScalableMatrixWithTieredPricing,
         Action<PriceVariants::NewSubscriptionCumulativeGroupedBulkPrice> newSubscriptionCumulativeGroupedBulk,
-        Action<PriceVariants::NewSubscriptionMaxGroupTieredPackagePrice> newSubscriptionMaxGroupTieredPackage,
-        Action<PriceVariants::NewSubscriptionGroupedWithMeteredMinimumPrice> newSubscriptionGroupedWithMeteredMinimum,
-        Action<PriceVariants::NewSubscriptionMatrixWithDisplayNamePrice> newSubscriptionMatrixWithDisplayName,
-        Action<PriceVariants::NewSubscriptionGroupedTieredPackagePrice> newSubscriptionGroupedTieredPackage,
-        Action<PriceVariants::NewSubscriptionMatrixWithAllocationPrice> newSubscriptionMatrixWithAllocation,
-        Action<PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice> newSubscriptionTieredPackageWithMinimum,
-        Action<PriceVariants::NewSubscriptionGroupedTieredPrice> newSubscriptionGroupedTiered,
-        Action<PriceVariants::GroupedWithMinMaxThresholds> groupedWithMinMaxThresholds,
         Action<PriceVariants::NewSubscriptionMinimumCompositePrice> newSubscriptionMinimumComposite
     )
     {
@@ -346,17 +344,17 @@ public abstract record class Price
             case PriceVariants::NewSubscriptionUnitPrice inner:
                 newSubscriptionUnit(inner);
                 break;
-            case PriceVariants::NewSubscriptionPackagePrice inner:
-                newSubscriptionPackage(inner);
-                break;
-            case PriceVariants::NewSubscriptionMatrixPrice inner:
-                newSubscriptionMatrix(inner);
-                break;
             case PriceVariants::NewSubscriptionTieredPrice inner:
                 newSubscriptionTiered(inner);
                 break;
             case PriceVariants::NewSubscriptionBulkPrice inner:
                 newSubscriptionBulk(inner);
+                break;
+            case PriceVariants::NewSubscriptionPackagePrice inner:
+                newSubscriptionPackage(inner);
+                break;
+            case PriceVariants::NewSubscriptionMatrixPrice inner:
+                newSubscriptionMatrix(inner);
                 break;
             case PriceVariants::NewSubscriptionThresholdTotalAmountPrice inner:
                 newSubscriptionThresholdTotalAmount(inner);
@@ -367,14 +365,23 @@ public abstract record class Price
             case PriceVariants::NewSubscriptionTieredWithMinimumPrice inner:
                 newSubscriptionTieredWithMinimum(inner);
                 break;
-            case PriceVariants::NewSubscriptionUnitWithPercentPrice inner:
-                newSubscriptionUnitWithPercent(inner);
+            case PriceVariants::NewSubscriptionGroupedTieredPrice inner:
+                newSubscriptionGroupedTiered(inner);
+                break;
+            case PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice inner:
+                newSubscriptionTieredPackageWithMinimum(inner);
                 break;
             case PriceVariants::NewSubscriptionPackageWithAllocationPrice inner:
                 newSubscriptionPackageWithAllocation(inner);
                 break;
-            case PriceVariants::NewSubscriptionTierWithProrationPrice inner:
-                newSubscriptionTierWithProration(inner);
+            case PriceVariants::NewSubscriptionUnitWithPercentPrice inner:
+                newSubscriptionUnitWithPercent(inner);
+                break;
+            case PriceVariants::NewSubscriptionMatrixWithAllocationPrice inner:
+                newSubscriptionMatrixWithAllocation(inner);
+                break;
+            case PriceVariants::TieredWithProration inner:
+                tieredWithProration(inner);
                 break;
             case PriceVariants::NewSubscriptionUnitWithProrationPrice inner:
                 newSubscriptionUnitWithProration(inner);
@@ -382,11 +389,26 @@ public abstract record class Price
             case PriceVariants::NewSubscriptionGroupedAllocationPrice inner:
                 newSubscriptionGroupedAllocation(inner);
                 break;
+            case PriceVariants::NewSubscriptionBulkWithProrationPrice inner:
+                newSubscriptionBulkWithProration(inner);
+                break;
             case PriceVariants::NewSubscriptionGroupedWithProratedMinimumPrice inner:
                 newSubscriptionGroupedWithProratedMinimum(inner);
                 break;
-            case PriceVariants::NewSubscriptionBulkWithProrationPrice inner:
-                newSubscriptionBulkWithProration(inner);
+            case PriceVariants::NewSubscriptionGroupedWithMeteredMinimumPrice inner:
+                newSubscriptionGroupedWithMeteredMinimum(inner);
+                break;
+            case PriceVariants::GroupedWithMinMaxThresholds inner:
+                groupedWithMinMaxThresholds(inner);
+                break;
+            case PriceVariants::NewSubscriptionMatrixWithDisplayNamePrice inner:
+                newSubscriptionMatrixWithDisplayName(inner);
+                break;
+            case PriceVariants::NewSubscriptionGroupedTieredPackagePrice inner:
+                newSubscriptionGroupedTieredPackage(inner);
+                break;
+            case PriceVariants::NewSubscriptionMaxGroupTieredPackagePrice inner:
+                newSubscriptionMaxGroupTieredPackage(inner);
                 break;
             case PriceVariants::NewSubscriptionScalableMatrixWithUnitPricingPrice inner:
                 newSubscriptionScalableMatrixWithUnitPricing(inner);
@@ -396,30 +418,6 @@ public abstract record class Price
                 break;
             case PriceVariants::NewSubscriptionCumulativeGroupedBulkPrice inner:
                 newSubscriptionCumulativeGroupedBulk(inner);
-                break;
-            case PriceVariants::NewSubscriptionMaxGroupTieredPackagePrice inner:
-                newSubscriptionMaxGroupTieredPackage(inner);
-                break;
-            case PriceVariants::NewSubscriptionGroupedWithMeteredMinimumPrice inner:
-                newSubscriptionGroupedWithMeteredMinimum(inner);
-                break;
-            case PriceVariants::NewSubscriptionMatrixWithDisplayNamePrice inner:
-                newSubscriptionMatrixWithDisplayName(inner);
-                break;
-            case PriceVariants::NewSubscriptionGroupedTieredPackagePrice inner:
-                newSubscriptionGroupedTieredPackage(inner);
-                break;
-            case PriceVariants::NewSubscriptionMatrixWithAllocationPrice inner:
-                newSubscriptionMatrixWithAllocation(inner);
-                break;
-            case PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice inner:
-                newSubscriptionTieredPackageWithMinimum(inner);
-                break;
-            case PriceVariants::NewSubscriptionGroupedTieredPrice inner:
-                newSubscriptionGroupedTiered(inner);
-                break;
-            case PriceVariants::GroupedWithMinMaxThresholds inner:
-                groupedWithMinMaxThresholds(inner);
                 break;
             case PriceVariants::NewSubscriptionMinimumCompositePrice inner:
                 newSubscriptionMinimumComposite(inner);
@@ -431,10 +429,10 @@ public abstract record class Price
 
     public T Match<T>(
         Func<PriceVariants::NewSubscriptionUnitPrice, T> newSubscriptionUnit,
-        Func<PriceVariants::NewSubscriptionPackagePrice, T> newSubscriptionPackage,
-        Func<PriceVariants::NewSubscriptionMatrixPrice, T> newSubscriptionMatrix,
         Func<PriceVariants::NewSubscriptionTieredPrice, T> newSubscriptionTiered,
         Func<PriceVariants::NewSubscriptionBulkPrice, T> newSubscriptionBulk,
+        Func<PriceVariants::NewSubscriptionPackagePrice, T> newSubscriptionPackage,
+        Func<PriceVariants::NewSubscriptionMatrixPrice, T> newSubscriptionMatrix,
         Func<
             PriceVariants::NewSubscriptionThresholdTotalAmountPrice,
             T
@@ -444,15 +442,21 @@ public abstract record class Price
             PriceVariants::NewSubscriptionTieredWithMinimumPrice,
             T
         > newSubscriptionTieredWithMinimum,
-        Func<PriceVariants::NewSubscriptionUnitWithPercentPrice, T> newSubscriptionUnitWithPercent,
+        Func<PriceVariants::NewSubscriptionGroupedTieredPrice, T> newSubscriptionGroupedTiered,
+        Func<
+            PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice,
+            T
+        > newSubscriptionTieredPackageWithMinimum,
         Func<
             PriceVariants::NewSubscriptionPackageWithAllocationPrice,
             T
         > newSubscriptionPackageWithAllocation,
+        Func<PriceVariants::NewSubscriptionUnitWithPercentPrice, T> newSubscriptionUnitWithPercent,
         Func<
-            PriceVariants::NewSubscriptionTierWithProrationPrice,
+            PriceVariants::NewSubscriptionMatrixWithAllocationPrice,
             T
-        > newSubscriptionTierWithProration,
+        > newSubscriptionMatrixWithAllocation,
+        Func<PriceVariants::TieredWithProration, T> tieredWithProration,
         Func<
             PriceVariants::NewSubscriptionUnitWithProrationPrice,
             T
@@ -462,13 +466,30 @@ public abstract record class Price
             T
         > newSubscriptionGroupedAllocation,
         Func<
+            PriceVariants::NewSubscriptionBulkWithProrationPrice,
+            T
+        > newSubscriptionBulkWithProration,
+        Func<
             PriceVariants::NewSubscriptionGroupedWithProratedMinimumPrice,
             T
         > newSubscriptionGroupedWithProratedMinimum,
         Func<
-            PriceVariants::NewSubscriptionBulkWithProrationPrice,
+            PriceVariants::NewSubscriptionGroupedWithMeteredMinimumPrice,
             T
-        > newSubscriptionBulkWithProration,
+        > newSubscriptionGroupedWithMeteredMinimum,
+        Func<PriceVariants::GroupedWithMinMaxThresholds, T> groupedWithMinMaxThresholds,
+        Func<
+            PriceVariants::NewSubscriptionMatrixWithDisplayNamePrice,
+            T
+        > newSubscriptionMatrixWithDisplayName,
+        Func<
+            PriceVariants::NewSubscriptionGroupedTieredPackagePrice,
+            T
+        > newSubscriptionGroupedTieredPackage,
+        Func<
+            PriceVariants::NewSubscriptionMaxGroupTieredPackagePrice,
+            T
+        > newSubscriptionMaxGroupTieredPackage,
         Func<
             PriceVariants::NewSubscriptionScalableMatrixWithUnitPricingPrice,
             T
@@ -481,42 +502,16 @@ public abstract record class Price
             PriceVariants::NewSubscriptionCumulativeGroupedBulkPrice,
             T
         > newSubscriptionCumulativeGroupedBulk,
-        Func<
-            PriceVariants::NewSubscriptionMaxGroupTieredPackagePrice,
-            T
-        > newSubscriptionMaxGroupTieredPackage,
-        Func<
-            PriceVariants::NewSubscriptionGroupedWithMeteredMinimumPrice,
-            T
-        > newSubscriptionGroupedWithMeteredMinimum,
-        Func<
-            PriceVariants::NewSubscriptionMatrixWithDisplayNamePrice,
-            T
-        > newSubscriptionMatrixWithDisplayName,
-        Func<
-            PriceVariants::NewSubscriptionGroupedTieredPackagePrice,
-            T
-        > newSubscriptionGroupedTieredPackage,
-        Func<
-            PriceVariants::NewSubscriptionMatrixWithAllocationPrice,
-            T
-        > newSubscriptionMatrixWithAllocation,
-        Func<
-            PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice,
-            T
-        > newSubscriptionTieredPackageWithMinimum,
-        Func<PriceVariants::NewSubscriptionGroupedTieredPrice, T> newSubscriptionGroupedTiered,
-        Func<PriceVariants::GroupedWithMinMaxThresholds, T> groupedWithMinMaxThresholds,
         Func<PriceVariants::NewSubscriptionMinimumCompositePrice, T> newSubscriptionMinimumComposite
     )
     {
         return this switch
         {
             PriceVariants::NewSubscriptionUnitPrice inner => newSubscriptionUnit(inner),
-            PriceVariants::NewSubscriptionPackagePrice inner => newSubscriptionPackage(inner),
-            PriceVariants::NewSubscriptionMatrixPrice inner => newSubscriptionMatrix(inner),
             PriceVariants::NewSubscriptionTieredPrice inner => newSubscriptionTiered(inner),
             PriceVariants::NewSubscriptionBulkPrice inner => newSubscriptionBulk(inner),
+            PriceVariants::NewSubscriptionPackagePrice inner => newSubscriptionPackage(inner),
+            PriceVariants::NewSubscriptionMatrixPrice inner => newSubscriptionMatrix(inner),
             PriceVariants::NewSubscriptionThresholdTotalAmountPrice inner =>
                 newSubscriptionThresholdTotalAmount(inner),
             PriceVariants::NewSubscriptionTieredPackagePrice inner => newSubscriptionTieredPackage(
@@ -524,42 +519,41 @@ public abstract record class Price
             ),
             PriceVariants::NewSubscriptionTieredWithMinimumPrice inner =>
                 newSubscriptionTieredWithMinimum(inner),
-            PriceVariants::NewSubscriptionUnitWithPercentPrice inner =>
-                newSubscriptionUnitWithPercent(inner),
+            PriceVariants::NewSubscriptionGroupedTieredPrice inner => newSubscriptionGroupedTiered(
+                inner
+            ),
+            PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice inner =>
+                newSubscriptionTieredPackageWithMinimum(inner),
             PriceVariants::NewSubscriptionPackageWithAllocationPrice inner =>
                 newSubscriptionPackageWithAllocation(inner),
-            PriceVariants::NewSubscriptionTierWithProrationPrice inner =>
-                newSubscriptionTierWithProration(inner),
+            PriceVariants::NewSubscriptionUnitWithPercentPrice inner =>
+                newSubscriptionUnitWithPercent(inner),
+            PriceVariants::NewSubscriptionMatrixWithAllocationPrice inner =>
+                newSubscriptionMatrixWithAllocation(inner),
+            PriceVariants::TieredWithProration inner => tieredWithProration(inner),
             PriceVariants::NewSubscriptionUnitWithProrationPrice inner =>
                 newSubscriptionUnitWithProration(inner),
             PriceVariants::NewSubscriptionGroupedAllocationPrice inner =>
                 newSubscriptionGroupedAllocation(inner),
-            PriceVariants::NewSubscriptionGroupedWithProratedMinimumPrice inner =>
-                newSubscriptionGroupedWithProratedMinimum(inner),
             PriceVariants::NewSubscriptionBulkWithProrationPrice inner =>
                 newSubscriptionBulkWithProration(inner),
+            PriceVariants::NewSubscriptionGroupedWithProratedMinimumPrice inner =>
+                newSubscriptionGroupedWithProratedMinimum(inner),
+            PriceVariants::NewSubscriptionGroupedWithMeteredMinimumPrice inner =>
+                newSubscriptionGroupedWithMeteredMinimum(inner),
+            PriceVariants::GroupedWithMinMaxThresholds inner => groupedWithMinMaxThresholds(inner),
+            PriceVariants::NewSubscriptionMatrixWithDisplayNamePrice inner =>
+                newSubscriptionMatrixWithDisplayName(inner),
+            PriceVariants::NewSubscriptionGroupedTieredPackagePrice inner =>
+                newSubscriptionGroupedTieredPackage(inner),
+            PriceVariants::NewSubscriptionMaxGroupTieredPackagePrice inner =>
+                newSubscriptionMaxGroupTieredPackage(inner),
             PriceVariants::NewSubscriptionScalableMatrixWithUnitPricingPrice inner =>
                 newSubscriptionScalableMatrixWithUnitPricing(inner),
             PriceVariants::NewSubscriptionScalableMatrixWithTieredPricingPrice inner =>
                 newSubscriptionScalableMatrixWithTieredPricing(inner),
             PriceVariants::NewSubscriptionCumulativeGroupedBulkPrice inner =>
                 newSubscriptionCumulativeGroupedBulk(inner),
-            PriceVariants::NewSubscriptionMaxGroupTieredPackagePrice inner =>
-                newSubscriptionMaxGroupTieredPackage(inner),
-            PriceVariants::NewSubscriptionGroupedWithMeteredMinimumPrice inner =>
-                newSubscriptionGroupedWithMeteredMinimum(inner),
-            PriceVariants::NewSubscriptionMatrixWithDisplayNamePrice inner =>
-                newSubscriptionMatrixWithDisplayName(inner),
-            PriceVariants::NewSubscriptionGroupedTieredPackagePrice inner =>
-                newSubscriptionGroupedTieredPackage(inner),
-            PriceVariants::NewSubscriptionMatrixWithAllocationPrice inner =>
-                newSubscriptionMatrixWithAllocation(inner),
-            PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice inner =>
-                newSubscriptionTieredPackageWithMinimum(inner),
-            PriceVariants::NewSubscriptionGroupedTieredPrice inner => newSubscriptionGroupedTiered(
-                inner
-            ),
-            PriceVariants::GroupedWithMinMaxThresholds inner => groupedWithMinMaxThresholds(inner),
             PriceVariants::NewSubscriptionMinimumCompositePrice inner =>
                 newSubscriptionMinimumComposite(inner),
             _ => throw new InvalidOperationException(),
@@ -612,50 +606,6 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
-            case "package":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<NewSubscriptionPackagePrice>(
-                        json,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewSubscriptionPackagePrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "matrix":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<NewSubscriptionMatrixPrice>(
-                        json,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewSubscriptionMatrixPrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
             case "tiered":
             {
                 List<JsonException> exceptions = [];
@@ -691,6 +641,50 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         return new PriceVariants::NewSubscriptionBulkPrice(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "package":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<NewSubscriptionPackagePrice>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::NewSubscriptionPackagePrice(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "matrix":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<NewSubscriptionMatrixPrice>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::NewSubscriptionMatrixPrice(deserialized);
                     }
                 }
                 catch (JsonException e)
@@ -773,20 +767,45 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
-            case "unit_with_percent":
+            case "grouped_tiered":
             {
                 List<JsonException> exceptions = [];
 
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<NewSubscriptionUnitWithPercentPrice>(
+                        JsonSerializer.Deserialize<NewSubscriptionGroupedTieredPrice>(
                             json,
                             options
                         );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewSubscriptionUnitWithPercentPrice(deserialized);
+                        return new PriceVariants::NewSubscriptionGroupedTieredPrice(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "tiered_package_with_minimum":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<NewSubscriptionTieredPackageWithMinimumPrice>(
+                            json,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice(
+                            deserialized
+                        );
                     }
                 }
                 catch (JsonException e)
@@ -821,22 +840,67 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
-            case "tiered_with_proration":
+            case "unit_with_percent":
             {
                 List<JsonException> exceptions = [];
 
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<NewSubscriptionTierWithProrationPrice>(
+                        JsonSerializer.Deserialize<NewSubscriptionUnitWithPercentPrice>(
                             json,
                             options
                         );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewSubscriptionTierWithProrationPrice(
+                        return new PriceVariants::NewSubscriptionUnitWithPercentPrice(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "matrix_with_allocation":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<NewSubscriptionMatrixWithAllocationPrice>(
+                            json,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::NewSubscriptionMatrixWithAllocationPrice(
                             deserialized
                         );
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "tiered_with_proration":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<TieredWithProration>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::TieredWithProration(deserialized);
                     }
                 }
                 catch (JsonException e)
@@ -896,6 +960,31 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
+            case "bulk_with_proration":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<NewSubscriptionBulkWithProrationPrice>(
+                            json,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::NewSubscriptionBulkWithProrationPrice(
+                            deserialized
+                        );
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
             case "grouped_with_prorated_minimum":
             {
                 List<JsonException> exceptions = [];
@@ -921,20 +1010,117 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
-            case "bulk_with_proration":
+            case "grouped_with_metered_minimum":
             {
                 List<JsonException> exceptions = [];
 
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<NewSubscriptionBulkWithProrationPrice>(
+                        JsonSerializer.Deserialize<NewSubscriptionGroupedWithMeteredMinimumPrice>(
                             json,
                             options
                         );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewSubscriptionBulkWithProrationPrice(
+                        return new PriceVariants::NewSubscriptionGroupedWithMeteredMinimumPrice(
+                            deserialized
+                        );
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "grouped_with_min_max_thresholds":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<GroupedWithMinMaxThresholds>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::GroupedWithMinMaxThresholds(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "matrix_with_display_name":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<NewSubscriptionMatrixWithDisplayNamePrice>(
+                            json,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::NewSubscriptionMatrixWithDisplayNamePrice(
+                            deserialized
+                        );
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "grouped_tiered_package":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<NewSubscriptionGroupedTieredPackagePrice>(
+                            json,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::NewSubscriptionGroupedTieredPackagePrice(
+                            deserialized
+                        );
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "max_group_tiered_package":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<NewSubscriptionMaxGroupTieredPackagePrice>(
+                            json,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::NewSubscriptionMaxGroupTieredPackagePrice(
                             deserialized
                         );
                     }
@@ -1021,201 +1207,6 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
-            case "max_group_tiered_package":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized =
-                        JsonSerializer.Deserialize<NewSubscriptionMaxGroupTieredPackagePrice>(
-                            json,
-                            options
-                        );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewSubscriptionMaxGroupTieredPackagePrice(
-                            deserialized
-                        );
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "grouped_with_metered_minimum":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized =
-                        JsonSerializer.Deserialize<NewSubscriptionGroupedWithMeteredMinimumPrice>(
-                            json,
-                            options
-                        );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewSubscriptionGroupedWithMeteredMinimumPrice(
-                            deserialized
-                        );
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "matrix_with_display_name":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized =
-                        JsonSerializer.Deserialize<NewSubscriptionMatrixWithDisplayNamePrice>(
-                            json,
-                            options
-                        );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewSubscriptionMatrixWithDisplayNamePrice(
-                            deserialized
-                        );
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "grouped_tiered_package":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized =
-                        JsonSerializer.Deserialize<NewSubscriptionGroupedTieredPackagePrice>(
-                            json,
-                            options
-                        );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewSubscriptionGroupedTieredPackagePrice(
-                            deserialized
-                        );
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "matrix_with_allocation":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized =
-                        JsonSerializer.Deserialize<NewSubscriptionMatrixWithAllocationPrice>(
-                            json,
-                            options
-                        );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewSubscriptionMatrixWithAllocationPrice(
-                            deserialized
-                        );
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "tiered_package_with_minimum":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized =
-                        JsonSerializer.Deserialize<NewSubscriptionTieredPackageWithMinimumPrice>(
-                            json,
-                            options
-                        );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice(
-                            deserialized
-                        );
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "grouped_tiered":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized =
-                        JsonSerializer.Deserialize<NewSubscriptionGroupedTieredPrice>(
-                            json,
-                            options
-                        );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewSubscriptionGroupedTieredPrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "grouped_with_min_max_thresholds":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<GroupedWithMinMaxThresholds>(
-                        json,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::GroupedWithMinMaxThresholds(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
             case "minimum":
             {
                 List<JsonException> exceptions = [];
@@ -1254,13 +1245,13 @@ sealed class PriceConverter : JsonConverter<Price?>
         {
             null => null,
             PriceVariants::NewSubscriptionUnitPrice(var newSubscriptionUnit) => newSubscriptionUnit,
+            PriceVariants::NewSubscriptionTieredPrice(var newSubscriptionTiered) =>
+                newSubscriptionTiered,
+            PriceVariants::NewSubscriptionBulkPrice(var newSubscriptionBulk) => newSubscriptionBulk,
             PriceVariants::NewSubscriptionPackagePrice(var newSubscriptionPackage) =>
                 newSubscriptionPackage,
             PriceVariants::NewSubscriptionMatrixPrice(var newSubscriptionMatrix) =>
                 newSubscriptionMatrix,
-            PriceVariants::NewSubscriptionTieredPrice(var newSubscriptionTiered) =>
-                newSubscriptionTiered,
-            PriceVariants::NewSubscriptionBulkPrice(var newSubscriptionBulk) => newSubscriptionBulk,
             PriceVariants::NewSubscriptionThresholdTotalAmountPrice(
                 var newSubscriptionThresholdTotalAmount
             ) => newSubscriptionThresholdTotalAmount,
@@ -1269,27 +1260,47 @@ sealed class PriceConverter : JsonConverter<Price?>
             PriceVariants::NewSubscriptionTieredWithMinimumPrice(
                 var newSubscriptionTieredWithMinimum
             ) => newSubscriptionTieredWithMinimum,
-            PriceVariants::NewSubscriptionUnitWithPercentPrice(
-                var newSubscriptionUnitWithPercent
-            ) => newSubscriptionUnitWithPercent,
+            PriceVariants::NewSubscriptionGroupedTieredPrice(var newSubscriptionGroupedTiered) =>
+                newSubscriptionGroupedTiered,
+            PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice(
+                var newSubscriptionTieredPackageWithMinimum
+            ) => newSubscriptionTieredPackageWithMinimum,
             PriceVariants::NewSubscriptionPackageWithAllocationPrice(
                 var newSubscriptionPackageWithAllocation
             ) => newSubscriptionPackageWithAllocation,
-            PriceVariants::NewSubscriptionTierWithProrationPrice(
-                var newSubscriptionTierWithProration
-            ) => newSubscriptionTierWithProration,
+            PriceVariants::NewSubscriptionUnitWithPercentPrice(
+                var newSubscriptionUnitWithPercent
+            ) => newSubscriptionUnitWithPercent,
+            PriceVariants::NewSubscriptionMatrixWithAllocationPrice(
+                var newSubscriptionMatrixWithAllocation
+            ) => newSubscriptionMatrixWithAllocation,
+            PriceVariants::TieredWithProration(var tieredWithProration) => tieredWithProration,
             PriceVariants::NewSubscriptionUnitWithProrationPrice(
                 var newSubscriptionUnitWithProration
             ) => newSubscriptionUnitWithProration,
             PriceVariants::NewSubscriptionGroupedAllocationPrice(
                 var newSubscriptionGroupedAllocation
             ) => newSubscriptionGroupedAllocation,
-            PriceVariants::NewSubscriptionGroupedWithProratedMinimumPrice(
-                var newSubscriptionGroupedWithProratedMinimum
-            ) => newSubscriptionGroupedWithProratedMinimum,
             PriceVariants::NewSubscriptionBulkWithProrationPrice(
                 var newSubscriptionBulkWithProration
             ) => newSubscriptionBulkWithProration,
+            PriceVariants::NewSubscriptionGroupedWithProratedMinimumPrice(
+                var newSubscriptionGroupedWithProratedMinimum
+            ) => newSubscriptionGroupedWithProratedMinimum,
+            PriceVariants::NewSubscriptionGroupedWithMeteredMinimumPrice(
+                var newSubscriptionGroupedWithMeteredMinimum
+            ) => newSubscriptionGroupedWithMeteredMinimum,
+            PriceVariants::GroupedWithMinMaxThresholds(var groupedWithMinMaxThresholds) =>
+                groupedWithMinMaxThresholds,
+            PriceVariants::NewSubscriptionMatrixWithDisplayNamePrice(
+                var newSubscriptionMatrixWithDisplayName
+            ) => newSubscriptionMatrixWithDisplayName,
+            PriceVariants::NewSubscriptionGroupedTieredPackagePrice(
+                var newSubscriptionGroupedTieredPackage
+            ) => newSubscriptionGroupedTieredPackage,
+            PriceVariants::NewSubscriptionMaxGroupTieredPackagePrice(
+                var newSubscriptionMaxGroupTieredPackage
+            ) => newSubscriptionMaxGroupTieredPackage,
             PriceVariants::NewSubscriptionScalableMatrixWithUnitPricingPrice(
                 var newSubscriptionScalableMatrixWithUnitPricing
             ) => newSubscriptionScalableMatrixWithUnitPricing,
@@ -1299,28 +1310,6 @@ sealed class PriceConverter : JsonConverter<Price?>
             PriceVariants::NewSubscriptionCumulativeGroupedBulkPrice(
                 var newSubscriptionCumulativeGroupedBulk
             ) => newSubscriptionCumulativeGroupedBulk,
-            PriceVariants::NewSubscriptionMaxGroupTieredPackagePrice(
-                var newSubscriptionMaxGroupTieredPackage
-            ) => newSubscriptionMaxGroupTieredPackage,
-            PriceVariants::NewSubscriptionGroupedWithMeteredMinimumPrice(
-                var newSubscriptionGroupedWithMeteredMinimum
-            ) => newSubscriptionGroupedWithMeteredMinimum,
-            PriceVariants::NewSubscriptionMatrixWithDisplayNamePrice(
-                var newSubscriptionMatrixWithDisplayName
-            ) => newSubscriptionMatrixWithDisplayName,
-            PriceVariants::NewSubscriptionGroupedTieredPackagePrice(
-                var newSubscriptionGroupedTieredPackage
-            ) => newSubscriptionGroupedTieredPackage,
-            PriceVariants::NewSubscriptionMatrixWithAllocationPrice(
-                var newSubscriptionMatrixWithAllocation
-            ) => newSubscriptionMatrixWithAllocation,
-            PriceVariants::NewSubscriptionTieredPackageWithMinimumPrice(
-                var newSubscriptionTieredPackageWithMinimum
-            ) => newSubscriptionTieredPackageWithMinimum,
-            PriceVariants::NewSubscriptionGroupedTieredPrice(var newSubscriptionGroupedTiered) =>
-                newSubscriptionGroupedTiered,
-            PriceVariants::GroupedWithMinMaxThresholds(var groupedWithMinMaxThresholds) =>
-                groupedWithMinMaxThresholds,
             PriceVariants::NewSubscriptionMinimumCompositePrice(
                 var newSubscriptionMinimumComposite
             ) => newSubscriptionMinimumComposite,

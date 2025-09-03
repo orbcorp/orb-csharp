@@ -320,6 +320,9 @@ public sealed record class MatrixWithAllocation : ModelBase, IFromRaw<MatrixWith
         }
     }
 
+    /// <summary>
+    /// Configuration for matrix_with_allocation pricing
+    /// </summary>
     public required Models::MatrixWithAllocationConfig MatrixWithAllocationConfig
     {
         get
@@ -454,6 +457,9 @@ public sealed record class MatrixWithAllocation : ModelBase, IFromRaw<MatrixWith
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get

@@ -6,6 +6,9 @@ using System.Text.Json.Serialization;
 
 namespace Orb.Models.Subscriptions.NewSubscriptionMinimumCompositePriceProperties;
 
+/// <summary>
+/// Configuration for minimum pricing
+/// </summary>
 [JsonConverter(typeof(ModelConverter<MinimumConfig>))]
 public sealed record class MinimumConfig : ModelBase, IFromRaw<MinimumConfig>
 {
@@ -35,8 +38,7 @@ public sealed record class MinimumConfig : ModelBase, IFromRaw<MinimumConfig>
     }
 
     /// <summary>
-    /// By default, subtotals from minimum composite prices are prorated based on
-    /// the service period. Set to false to disable proration.
+    /// If true, subtotals from this price are prorated based on the service period
     /// </summary>
     public bool? Prorated
     {

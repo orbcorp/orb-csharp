@@ -6,6 +6,9 @@ using System.Text.Json.Serialization;
 
 namespace Orb.Models;
 
+/// <summary>
+/// Configuration for a single tier
+/// </summary>
 [JsonConverter(typeof(ModelConverter<Tier>))]
 public sealed record class Tier : ModelBase, IFromRaw<Tier>
 {
@@ -53,7 +56,8 @@ public sealed record class Tier : ModelBase, IFromRaw<Tier>
     }
 
     /// <summary>
-    /// Inclusive tier ending value. If null, this is treated as the last tier
+    /// Inclusive tier ending value. This value is null if and only if this is the
+    /// last tier.
     /// </summary>
     public double? LastUnit
     {

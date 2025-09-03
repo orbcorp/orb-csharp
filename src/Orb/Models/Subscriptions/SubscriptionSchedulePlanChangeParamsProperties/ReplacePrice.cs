@@ -171,7 +171,7 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
     }
 
     /// <summary>
-    /// The definition of a new price to create and add to the subscription.
+    /// New subscription price request body params.
     /// </summary>
     public ReplacePriceProperties::Price? Price
     {

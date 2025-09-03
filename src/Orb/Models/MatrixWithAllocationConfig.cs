@@ -3,25 +3,30 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using MatrixWithAllocationConfigProperties = Orb.Models.MatrixWithAllocationConfigProperties;
 
 namespace Orb.Models;
 
+/// <summary>
+/// Configuration for matrix pricing with usage allocation
+/// </summary>
 [JsonConverter(typeof(ModelConverter<MatrixWithAllocationConfig>))]
 public sealed record class MatrixWithAllocationConfig
     : ModelBase,
         IFromRaw<MatrixWithAllocationConfig>
 {
     /// <summary>
-    /// Allocation to be used to calculate the price
+    /// Usage allocation
     /// </summary>
-    public required double Allocation
+    public required string Allocation
     {
         get
         {
             if (!this.Properties.TryGetValue("allocation", out JsonElement element))
                 throw new ArgumentOutOfRangeException("allocation", "Missing required argument");
 
-            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("allocation");
         }
         set
         {
@@ -80,19 +85,19 @@ public sealed record class MatrixWithAllocationConfig
     }
 
     /// <summary>
-    /// Matrix values for specified matrix grouping keys
+    /// Matrix values configuration
     /// </summary>
-    public required List<MatrixValue> MatrixValues
+    public required List<MatrixWithAllocationConfigProperties::MatrixValue> MatrixValues
     {
         get
         {
             if (!this.Properties.TryGetValue("matrix_values", out JsonElement element))
                 throw new ArgumentOutOfRangeException("matrix_values", "Missing required argument");
 
-            return JsonSerializer.Deserialize<List<MatrixValue>>(
-                    element,
-                    ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("matrix_values");
+            return JsonSerializer.Deserialize<
+                    List<MatrixWithAllocationConfigProperties::MatrixValue>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new ArgumentNullException("matrix_values");
         }
         set
         {

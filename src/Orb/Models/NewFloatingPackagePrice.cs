@@ -78,6 +78,9 @@ public sealed record class NewFloatingPackagePrice : ModelBase, IFromRaw<NewFloa
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -121,6 +124,9 @@ public sealed record class NewFloatingPackagePrice : ModelBase, IFromRaw<NewFloa
         }
     }
 
+    /// <summary>
+    /// Configuration for package pricing
+    /// </summary>
     public required PackageConfig PackageConfig
     {
         get

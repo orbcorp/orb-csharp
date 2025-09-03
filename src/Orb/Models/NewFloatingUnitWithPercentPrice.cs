@@ -80,6 +80,9 @@ public sealed record class NewFloatingUnitWithPercentPrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -123,7 +126,10 @@ public sealed record class NewFloatingUnitWithPercentPrice
         }
     }
 
-    public required Dictionary<string, JsonElement> UnitWithPercentConfig
+    /// <summary>
+    /// Configuration for unit_with_percent pricing
+    /// </summary>
+    public required UnitWithPercentConfig UnitWithPercentConfig
     {
         get
         {
@@ -133,7 +139,7 @@ public sealed record class NewFloatingUnitWithPercentPrice
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<UnitWithPercentConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("unit_with_percent_config");
@@ -416,10 +422,7 @@ public sealed record class NewFloatingUnitWithPercentPrice
         _ = this.ItemID;
         this.ModelType.Validate();
         _ = this.Name;
-        foreach (var item in this.UnitWithPercentConfig.Values)
-        {
-            _ = item;
-        }
+        this.UnitWithPercentConfig.Validate();
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
         this.BillingCycleConfiguration?.Validate();

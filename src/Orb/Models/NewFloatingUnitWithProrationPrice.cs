@@ -80,6 +80,9 @@ public sealed record class NewFloatingUnitWithProrationPrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -123,7 +126,10 @@ public sealed record class NewFloatingUnitWithProrationPrice
         }
     }
 
-    public required Dictionary<string, JsonElement> UnitWithProrationConfig
+    /// <summary>
+    /// Configuration for unit_with_proration pricing
+    /// </summary>
+    public required UnitWithProrationConfig UnitWithProrationConfig
     {
         get
         {
@@ -133,7 +139,7 @@ public sealed record class NewFloatingUnitWithProrationPrice
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<UnitWithProrationConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("unit_with_proration_config");
@@ -416,10 +422,7 @@ public sealed record class NewFloatingUnitWithProrationPrice
         _ = this.ItemID;
         this.ModelType.Validate();
         _ = this.Name;
-        foreach (var item in this.UnitWithProrationConfig.Values)
-        {
-            _ = item;
-        }
+        this.UnitWithProrationConfig.Validate();
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
         this.BillingCycleConfiguration?.Validate();

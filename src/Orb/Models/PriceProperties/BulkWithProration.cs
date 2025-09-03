@@ -77,7 +77,10 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         }
     }
 
-    public required Dictionary<string, JsonElement> BulkWithProrationConfig
+    /// <summary>
+    /// Configuration for bulk_with_proration pricing
+    /// </summary>
+    public required BulkWithProrationConfig BulkWithProrationConfig
     {
         get
         {
@@ -87,7 +90,7 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<BulkWithProrationConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("bulk_with_proration_config");
@@ -449,6 +452,9 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get
@@ -578,10 +584,7 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         _ = this.ID;
         this.BillableMetric?.Validate();
         this.BillingCycleConfiguration.Validate();
-        foreach (var item in this.BulkWithProrationConfig.Values)
-        {
-            _ = item;
-        }
+        this.BulkWithProrationConfig.Validate();
         this.Cadence.Validate();
         foreach (var item in this.CompositePriceFilters ?? [])
         {

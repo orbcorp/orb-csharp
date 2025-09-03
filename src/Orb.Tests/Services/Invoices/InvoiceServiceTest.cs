@@ -24,7 +24,7 @@ public class InvoiceServiceTest : TestBase
                         Name = "Line Item Name",
                         Quantity = 1,
                         StartDate = DateOnly.Parse("2023-09-22"),
-                        UnitConfig = new("unit_amount"),
+                        UnitConfig = new() { UnitAmount = "unit_amount", ScalingFactor = 0 },
                     },
                 ],
             }

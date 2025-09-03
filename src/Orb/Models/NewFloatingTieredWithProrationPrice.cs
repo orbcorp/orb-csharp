@@ -80,6 +80,9 @@ public sealed record class NewFloatingTieredWithProrationPrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -123,7 +126,10 @@ public sealed record class NewFloatingTieredWithProrationPrice
         }
     }
 
-    public required Dictionary<string, JsonElement> TieredWithProrationConfig
+    /// <summary>
+    /// Configuration for tiered_with_proration pricing
+    /// </summary>
+    public required TieredWithProrationConfig TieredWithProrationConfig
     {
         get
         {
@@ -138,7 +144,7 @@ public sealed record class NewFloatingTieredWithProrationPrice
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<TieredWithProrationConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("tiered_with_proration_config");
@@ -421,10 +427,7 @@ public sealed record class NewFloatingTieredWithProrationPrice
         _ = this.ItemID;
         this.ModelType.Validate();
         _ = this.Name;
-        foreach (var item in this.TieredWithProrationConfig.Values)
-        {
-            _ = item;
-        }
+        this.TieredWithProrationConfig.Validate();
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
         this.BillingCycleConfiguration?.Validate();

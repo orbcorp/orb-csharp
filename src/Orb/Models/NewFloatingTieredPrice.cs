@@ -78,6 +78,9 @@ public sealed record class NewFloatingTieredPrice : ModelBase, IFromRaw<NewFloat
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -121,6 +124,9 @@ public sealed record class NewFloatingTieredPrice : ModelBase, IFromRaw<NewFloat
         }
     }
 
+    /// <summary>
+    /// Configuration for tiered pricing
+    /// </summary>
     public required TieredConfig TieredConfig
     {
         get

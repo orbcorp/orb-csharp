@@ -425,6 +425,9 @@ public sealed record class Package : ModelBase, IFromRaw<Package>
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get
@@ -462,6 +465,9 @@ public sealed record class Package : ModelBase, IFromRaw<Package>
         }
     }
 
+    /// <summary>
+    /// Configuration for package pricing
+    /// </summary>
     public required Models::PackageConfig PackageConfig
     {
         get

@@ -320,6 +320,9 @@ public sealed record class Matrix : ModelBase, IFromRaw<Matrix>
         }
     }
 
+    /// <summary>
+    /// Configuration for matrix pricing
+    /// </summary>
     public required Models::MatrixConfig MatrixConfig
     {
         get
@@ -446,6 +449,9 @@ public sealed record class Matrix : ModelBase, IFromRaw<Matrix>
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get

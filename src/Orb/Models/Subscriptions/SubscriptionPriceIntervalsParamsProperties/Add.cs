@@ -226,7 +226,7 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
     }
 
     /// <summary>
-    /// The definition of a new price to create and add to the subscription.
+    /// New floating price request body params.
     /// </summary>
     public AddProperties::Price? Price
     {

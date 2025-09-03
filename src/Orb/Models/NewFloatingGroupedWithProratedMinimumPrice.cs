@@ -58,7 +58,10 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice
         }
     }
 
-    public required Dictionary<string, JsonElement> GroupedWithProratedMinimumConfig
+    /// <summary>
+    /// Configuration for grouped_with_prorated_minimum pricing
+    /// </summary>
+    public required GroupedWithProratedMinimumConfig GroupedWithProratedMinimumConfig
     {
         get
         {
@@ -73,7 +76,7 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<GroupedWithProratedMinimumConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("grouped_with_prorated_minimum_config");
@@ -107,6 +110,9 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -416,10 +422,7 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice
     {
         this.Cadence.Validate();
         _ = this.Currency;
-        foreach (var item in this.GroupedWithProratedMinimumConfig.Values)
-        {
-            _ = item;
-        }
+        this.GroupedWithProratedMinimumConfig.Validate();
         _ = this.ItemID;
         this.ModelType.Validate();
         _ = this.Name;

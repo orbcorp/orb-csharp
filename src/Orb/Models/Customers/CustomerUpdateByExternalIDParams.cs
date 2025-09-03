@@ -44,7 +44,8 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
 
     /// <summary>
     /// Additional email addresses for this customer. If populated, these email addresses
-    /// will be CC'd for customer communications.
+    /// will be CC'd for customer communications. The total number of email addresses
+    /// (including the primary email) cannot exceed 50.
     /// </summary>
     public List<string>? AdditionalEmails
     {

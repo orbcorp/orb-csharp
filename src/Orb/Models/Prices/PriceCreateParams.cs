@@ -23,6 +23,9 @@ public sealed record class PriceCreateParams : ParamsBase
 {
     public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
+    /// <summary>
+    /// New floating price request body params.
+    /// </summary>
     public required Body Body
     {
         get

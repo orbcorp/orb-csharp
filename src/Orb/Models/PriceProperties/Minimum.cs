@@ -425,6 +425,9 @@ public sealed record class Minimum : ModelBase, IFromRaw<Minimum>
         }
     }
 
+    /// <summary>
+    /// Configuration for minimum pricing
+    /// </summary>
     public required MinimumConfig MinimumConfig
     {
         get
@@ -447,6 +450,9 @@ public sealed record class Minimum : ModelBase, IFromRaw<Minimum>
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get

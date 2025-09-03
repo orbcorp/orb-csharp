@@ -56,6 +56,9 @@ public sealed record class NewPlanUnitPrice : ModelBase, IFromRaw<NewPlanUnitPri
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -99,6 +102,9 @@ public sealed record class NewPlanUnitPrice : ModelBase, IFromRaw<NewPlanUnitPri
         }
     }
 
+    /// <summary>
+    /// Configuration for unit pricing
+    /// </summary>
     public required UnitConfig UnitConfig
     {
         get

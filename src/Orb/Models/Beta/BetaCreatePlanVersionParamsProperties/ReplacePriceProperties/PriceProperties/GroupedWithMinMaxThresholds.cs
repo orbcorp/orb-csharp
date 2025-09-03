@@ -36,7 +36,10 @@ public sealed record class GroupedWithMinMaxThresholds
         }
     }
 
-    public required Dictionary<string, JsonElement> GroupedWithMinMaxThresholdsConfig
+    /// <summary>
+    /// Configuration for grouped_with_min_max_thresholds pricing
+    /// </summary>
+    public required GroupedWithMinMaxThresholdsConfig GroupedWithMinMaxThresholdsConfig
     {
         get
         {
@@ -51,7 +54,7 @@ public sealed record class GroupedWithMinMaxThresholds
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("grouped_with_min_max_thresholds_config");
@@ -85,6 +88,9 @@ public sealed record class GroupedWithMinMaxThresholds
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get
@@ -434,10 +440,7 @@ public sealed record class GroupedWithMinMaxThresholds
     public override void Validate()
     {
         this.Cadence.Validate();
-        foreach (var item in this.GroupedWithMinMaxThresholdsConfig.Values)
-        {
-            _ = item;
-        }
+        this.GroupedWithMinMaxThresholdsConfig.Validate();
         _ = this.ItemID;
         _ = this.Name;
         _ = this.BillableMetricID;

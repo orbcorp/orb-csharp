@@ -273,7 +273,10 @@ public sealed record class GroupedAllocation : ModelBase, IFromRaw<GroupedAlloca
         }
     }
 
-    public required Dictionary<string, JsonElement> GroupedAllocationConfig
+    /// <summary>
+    /// Configuration for grouped_allocation pricing
+    /// </summary>
+    public required GroupedAllocationConfig GroupedAllocationConfig
     {
         get
         {
@@ -283,7 +286,7 @@ public sealed record class GroupedAllocation : ModelBase, IFromRaw<GroupedAlloca
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<GroupedAllocationConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("grouped_allocation_config");
@@ -449,6 +452,9 @@ public sealed record class GroupedAllocation : ModelBase, IFromRaw<GroupedAlloca
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get
@@ -591,10 +597,7 @@ public sealed record class GroupedAllocation : ModelBase, IFromRaw<GroupedAlloca
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
-        foreach (var item in this.GroupedAllocationConfig.Values)
-        {
-            _ = item;
-        }
+        this.GroupedAllocationConfig.Validate();
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();

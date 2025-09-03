@@ -56,6 +56,9 @@ public sealed record class NewPlanTieredPrice : ModelBase, IFromRaw<NewPlanTiere
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -99,6 +102,9 @@ public sealed record class NewPlanTieredPrice : ModelBase, IFromRaw<NewPlanTiere
         }
     }
 
+    /// <summary>
+    /// Configuration for tiered pricing
+    /// </summary>
     public required TieredConfig TieredConfig
     {
         get

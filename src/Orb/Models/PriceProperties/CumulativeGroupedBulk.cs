@@ -197,7 +197,10 @@ public sealed record class CumulativeGroupedBulk : ModelBase, IFromRaw<Cumulativ
         }
     }
 
-    public required Dictionary<string, JsonElement> CumulativeGroupedBulkConfig
+    /// <summary>
+    /// Configuration for cumulative_grouped_bulk pricing
+    /// </summary>
+    public required CumulativeGroupedBulkConfig CumulativeGroupedBulkConfig
     {
         get
         {
@@ -212,7 +215,7 @@ public sealed record class CumulativeGroupedBulk : ModelBase, IFromRaw<Cumulativ
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<CumulativeGroupedBulkConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("cumulative_grouped_bulk_config");
@@ -454,6 +457,9 @@ public sealed record class CumulativeGroupedBulk : ModelBase, IFromRaw<Cumulativ
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get
@@ -592,10 +598,7 @@ public sealed record class CumulativeGroupedBulk : ModelBase, IFromRaw<Cumulativ
         this.ConversionRateConfig?.Validate();
         _ = this.CreatedAt;
         this.CreditAllocation?.Validate();
-        foreach (var item in this.CumulativeGroupedBulkConfig.Values)
-        {
-            _ = item;
-        }
+        this.CumulativeGroupedBulkConfig.Validate();
         _ = this.Currency;
         this.Discount?.Validate();
         _ = this.ExternalPriceID;

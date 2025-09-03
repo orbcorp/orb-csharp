@@ -12,7 +12,10 @@ public sealed record class NewFloatingBulkWithProrationPrice
     : ModelBase,
         IFromRaw<NewFloatingBulkWithProrationPrice>
 {
-    public required Dictionary<string, JsonElement> BulkWithProrationConfig
+    /// <summary>
+    /// Configuration for bulk_with_proration pricing
+    /// </summary>
+    public required BulkWithProrationConfig BulkWithProrationConfig
     {
         get
         {
@@ -22,7 +25,7 @@ public sealed record class NewFloatingBulkWithProrationPrice
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<BulkWithProrationConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("bulk_with_proration_config");
@@ -104,6 +107,9 @@ public sealed record class NewFloatingBulkWithProrationPrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -411,10 +417,7 @@ public sealed record class NewFloatingBulkWithProrationPrice
 
     public override void Validate()
     {
-        foreach (var item in this.BulkWithProrationConfig.Values)
-        {
-            _ = item;
-        }
+        this.BulkWithProrationConfig.Validate();
         this.Cadence.Validate();
         _ = this.Currency;
         _ = this.ItemID;

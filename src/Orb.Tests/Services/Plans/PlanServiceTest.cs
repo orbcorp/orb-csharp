@@ -41,7 +41,7 @@ public class PlanServiceTest : TestBase
                             ItemID = "item_id",
                             ModelType = NewPlanUnitPriceProperties::ModelType.Unit,
                             Name = "Annual fee",
-                            UnitConfig = new("unit_amount"),
+                            UnitConfig = new() { UnitAmount = "unit_amount", ScalingFactor = 0 },
                             BillableMetricID = "billable_metric_id",
                             BilledInAdvance = true,
                             BillingCycleConfiguration = new()

@@ -6,6 +6,9 @@ using System.Text.Json.Serialization;
 
 namespace Orb.Models;
 
+/// <summary>
+/// Configuration for bulk pricing
+/// </summary>
 [JsonConverter(typeof(ModelConverter<BulkConfig>))]
 public sealed record class BulkConfig : ModelBase, IFromRaw<BulkConfig>
 {

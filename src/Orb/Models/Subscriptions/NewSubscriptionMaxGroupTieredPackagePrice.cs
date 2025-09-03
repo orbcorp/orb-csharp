@@ -58,7 +58,10 @@ public sealed record class NewSubscriptionMaxGroupTieredPackagePrice
         }
     }
 
-    public required Dictionary<string, JsonElement> MaxGroupTieredPackageConfig
+    /// <summary>
+    /// Configuration for max_group_tiered_package pricing
+    /// </summary>
+    public required MaxGroupTieredPackageConfig MaxGroupTieredPackageConfig
     {
         get
         {
@@ -73,7 +76,7 @@ public sealed record class NewSubscriptionMaxGroupTieredPackagePrice
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<MaxGroupTieredPackageConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("max_group_tiered_package_config");
@@ -87,6 +90,9 @@ public sealed record class NewSubscriptionMaxGroupTieredPackagePrice
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get
@@ -440,10 +446,7 @@ public sealed record class NewSubscriptionMaxGroupTieredPackagePrice
     {
         this.Cadence.Validate();
         _ = this.ItemID;
-        foreach (var item in this.MaxGroupTieredPackageConfig.Values)
-        {
-            _ = item;
-        }
+        this.MaxGroupTieredPackageConfig.Validate();
         this.ModelType.Validate();
         _ = this.Name;
         _ = this.BillableMetricID;

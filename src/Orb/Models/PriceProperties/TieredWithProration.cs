@@ -425,6 +425,9 @@ public sealed record class TieredWithProration : ModelBase, IFromRaw<TieredWithP
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get
@@ -523,7 +526,10 @@ public sealed record class TieredWithProration : ModelBase, IFromRaw<TieredWithP
         }
     }
 
-    public required Dictionary<string, JsonElement> TieredWithProrationConfig
+    /// <summary>
+    /// Configuration for tiered_with_proration pricing
+    /// </summary>
+    public required TieredWithProrationConfig TieredWithProrationConfig
     {
         get
         {
@@ -538,7 +544,7 @@ public sealed record class TieredWithProration : ModelBase, IFromRaw<TieredWithP
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<TieredWithProrationConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("tiered_with_proration_config");
@@ -610,10 +616,7 @@ public sealed record class TieredWithProration : ModelBase, IFromRaw<TieredWithP
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
-        foreach (var item in this.TieredWithProrationConfig.Values)
-        {
-            _ = item;
-        }
+        this.TieredWithProrationConfig.Validate();
         this.DimensionalPriceConfiguration?.Validate();
     }
 

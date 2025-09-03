@@ -78,6 +78,9 @@ public sealed record class NewFloatingMatrixPrice : ModelBase, IFromRaw<NewFloat
         }
     }
 
+    /// <summary>
+    /// Configuration for matrix pricing
+    /// </summary>
     public required MatrixConfig MatrixConfig
     {
         get
@@ -97,6 +100,9 @@ public sealed record class NewFloatingMatrixPrice : ModelBase, IFromRaw<NewFloat
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public required ApiEnum<string, ModelType> ModelType
     {
         get

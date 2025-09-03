@@ -10,7 +10,7 @@ using PriceVariants = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsP
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties;
 
 /// <summary>
-/// The definition of a new price to create and add to the subscription.
+/// New floating price request body params.
 /// </summary>
 [JsonConverter(typeof(PriceConverter))]
 public abstract record class Price
@@ -20,20 +20,17 @@ public abstract record class Price
     public static implicit operator Price(Models::NewFloatingUnitPrice value) =>
         new PriceVariants::NewFloatingUnitPrice(value);
 
-    public static implicit operator Price(Models::NewFloatingPackagePrice value) =>
-        new PriceVariants::NewFloatingPackagePrice(value);
-
-    public static implicit operator Price(Models::NewFloatingMatrixPrice value) =>
-        new PriceVariants::NewFloatingMatrixPrice(value);
-
-    public static implicit operator Price(Models::NewFloatingMatrixWithAllocationPrice value) =>
-        new PriceVariants::NewFloatingMatrixWithAllocationPrice(value);
-
     public static implicit operator Price(Models::NewFloatingTieredPrice value) =>
         new PriceVariants::NewFloatingTieredPrice(value);
 
     public static implicit operator Price(Models::NewFloatingBulkPrice value) =>
         new PriceVariants::NewFloatingBulkPrice(value);
+
+    public static implicit operator Price(Models::NewFloatingPackagePrice value) =>
+        new PriceVariants::NewFloatingPackagePrice(value);
+
+    public static implicit operator Price(Models::NewFloatingMatrixPrice value) =>
+        new PriceVariants::NewFloatingMatrixPrice(value);
 
     public static implicit operator Price(Models::NewFloatingThresholdTotalAmountPrice value) =>
         new PriceVariants::NewFloatingThresholdTotalAmountPrice(value);
@@ -41,23 +38,23 @@ public abstract record class Price
     public static implicit operator Price(Models::NewFloatingTieredPackagePrice value) =>
         new PriceVariants::NewFloatingTieredPackagePrice(value);
 
-    public static implicit operator Price(Models::NewFloatingGroupedTieredPrice value) =>
-        new PriceVariants::NewFloatingGroupedTieredPrice(value);
-
-    public static implicit operator Price(Models::NewFloatingMaxGroupTieredPackagePrice value) =>
-        new PriceVariants::NewFloatingMaxGroupTieredPackagePrice(value);
-
     public static implicit operator Price(Models::NewFloatingTieredWithMinimumPrice value) =>
         new PriceVariants::NewFloatingTieredWithMinimumPrice(value);
 
-    public static implicit operator Price(Models::NewFloatingPackageWithAllocationPrice value) =>
-        new PriceVariants::NewFloatingPackageWithAllocationPrice(value);
+    public static implicit operator Price(Models::NewFloatingGroupedTieredPrice value) =>
+        new PriceVariants::NewFloatingGroupedTieredPrice(value);
 
     public static implicit operator Price(Models::NewFloatingTieredPackageWithMinimumPrice value) =>
         new PriceVariants::NewFloatingTieredPackageWithMinimumPrice(value);
 
+    public static implicit operator Price(Models::NewFloatingPackageWithAllocationPrice value) =>
+        new PriceVariants::NewFloatingPackageWithAllocationPrice(value);
+
     public static implicit operator Price(Models::NewFloatingUnitWithPercentPrice value) =>
         new PriceVariants::NewFloatingUnitWithPercentPrice(value);
+
+    public static implicit operator Price(Models::NewFloatingMatrixWithAllocationPrice value) =>
+        new PriceVariants::NewFloatingMatrixWithAllocationPrice(value);
 
     public static implicit operator Price(Models::NewFloatingTieredWithProrationPrice value) =>
         new PriceVariants::NewFloatingTieredWithProrationPrice(value);
@@ -68,6 +65,9 @@ public abstract record class Price
     public static implicit operator Price(Models::NewFloatingGroupedAllocationPrice value) =>
         new PriceVariants::NewFloatingGroupedAllocationPrice(value);
 
+    public static implicit operator Price(Models::NewFloatingBulkWithProrationPrice value) =>
+        new PriceVariants::NewFloatingBulkWithProrationPrice(value);
+
     public static implicit operator Price(
         Models::NewFloatingGroupedWithProratedMinimumPrice value
     ) => new PriceVariants::NewFloatingGroupedWithProratedMinimumPrice(value);
@@ -76,14 +76,17 @@ public abstract record class Price
         Models::NewFloatingGroupedWithMeteredMinimumPrice value
     ) => new PriceVariants::NewFloatingGroupedWithMeteredMinimumPrice(value);
 
+    public static implicit operator Price(GroupedWithMinMaxThresholds value) =>
+        new PriceVariants::GroupedWithMinMaxThresholds(value);
+
     public static implicit operator Price(Models::NewFloatingMatrixWithDisplayNamePrice value) =>
         new PriceVariants::NewFloatingMatrixWithDisplayNamePrice(value);
 
-    public static implicit operator Price(Models::NewFloatingBulkWithProrationPrice value) =>
-        new PriceVariants::NewFloatingBulkWithProrationPrice(value);
-
     public static implicit operator Price(Models::NewFloatingGroupedTieredPackagePrice value) =>
         new PriceVariants::NewFloatingGroupedTieredPackagePrice(value);
+
+    public static implicit operator Price(Models::NewFloatingMaxGroupTieredPackagePrice value) =>
+        new PriceVariants::NewFloatingMaxGroupTieredPackagePrice(value);
 
     public static implicit operator Price(
         Models::NewFloatingScalableMatrixWithUnitPricingPrice value
@@ -96,15 +99,26 @@ public abstract record class Price
     public static implicit operator Price(Models::NewFloatingCumulativeGroupedBulkPrice value) =>
         new PriceVariants::NewFloatingCumulativeGroupedBulkPrice(value);
 
-    public static implicit operator Price(GroupedWithMinMaxThresholds value) =>
-        new PriceVariants::GroupedWithMinMaxThresholds(value);
-
     public static implicit operator Price(Models::NewFloatingMinimumCompositePrice value) =>
         new PriceVariants::NewFloatingMinimumCompositePrice(value);
 
     public bool TryPickNewFloatingUnit([NotNullWhen(true)] out Models::NewFloatingUnitPrice? value)
     {
         value = (this as PriceVariants::NewFloatingUnitPrice)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickNewFloatingTiered(
+        [NotNullWhen(true)] out Models::NewFloatingTieredPrice? value
+    )
+    {
+        value = (this as PriceVariants::NewFloatingTieredPrice)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickNewFloatingBulk([NotNullWhen(true)] out Models::NewFloatingBulkPrice? value)
+    {
+        value = (this as PriceVariants::NewFloatingBulkPrice)?.Value;
         return value != null;
     }
 
@@ -124,28 +138,6 @@ public abstract record class Price
         return value != null;
     }
 
-    public bool TryPickNewFloatingMatrixWithAllocation(
-        [NotNullWhen(true)] out Models::NewFloatingMatrixWithAllocationPrice? value
-    )
-    {
-        value = (this as PriceVariants::NewFloatingMatrixWithAllocationPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewFloatingTiered(
-        [NotNullWhen(true)] out Models::NewFloatingTieredPrice? value
-    )
-    {
-        value = (this as PriceVariants::NewFloatingTieredPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewFloatingBulk([NotNullWhen(true)] out Models::NewFloatingBulkPrice? value)
-    {
-        value = (this as PriceVariants::NewFloatingBulkPrice)?.Value;
-        return value != null;
-    }
-
     public bool TryPickNewFloatingThresholdTotalAmount(
         [NotNullWhen(true)] out Models::NewFloatingThresholdTotalAmountPrice? value
     )
@@ -162,22 +154,6 @@ public abstract record class Price
         return value != null;
     }
 
-    public bool TryPickNewFloatingGroupedTiered(
-        [NotNullWhen(true)] out Models::NewFloatingGroupedTieredPrice? value
-    )
-    {
-        value = (this as PriceVariants::NewFloatingGroupedTieredPrice)?.Value;
-        return value != null;
-    }
-
-    public bool TryPickNewFloatingMaxGroupTieredPackage(
-        [NotNullWhen(true)] out Models::NewFloatingMaxGroupTieredPackagePrice? value
-    )
-    {
-        value = (this as PriceVariants::NewFloatingMaxGroupTieredPackagePrice)?.Value;
-        return value != null;
-    }
-
     public bool TryPickNewFloatingTieredWithMinimum(
         [NotNullWhen(true)] out Models::NewFloatingTieredWithMinimumPrice? value
     )
@@ -186,11 +162,11 @@ public abstract record class Price
         return value != null;
     }
 
-    public bool TryPickNewFloatingPackageWithAllocation(
-        [NotNullWhen(true)] out Models::NewFloatingPackageWithAllocationPrice? value
+    public bool TryPickNewFloatingGroupedTiered(
+        [NotNullWhen(true)] out Models::NewFloatingGroupedTieredPrice? value
     )
     {
-        value = (this as PriceVariants::NewFloatingPackageWithAllocationPrice)?.Value;
+        value = (this as PriceVariants::NewFloatingGroupedTieredPrice)?.Value;
         return value != null;
     }
 
@@ -202,11 +178,27 @@ public abstract record class Price
         return value != null;
     }
 
+    public bool TryPickNewFloatingPackageWithAllocation(
+        [NotNullWhen(true)] out Models::NewFloatingPackageWithAllocationPrice? value
+    )
+    {
+        value = (this as PriceVariants::NewFloatingPackageWithAllocationPrice)?.Value;
+        return value != null;
+    }
+
     public bool TryPickNewFloatingUnitWithPercent(
         [NotNullWhen(true)] out Models::NewFloatingUnitWithPercentPrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingUnitWithPercentPrice)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickNewFloatingMatrixWithAllocation(
+        [NotNullWhen(true)] out Models::NewFloatingMatrixWithAllocationPrice? value
+    )
+    {
+        value = (this as PriceVariants::NewFloatingMatrixWithAllocationPrice)?.Value;
         return value != null;
     }
 
@@ -234,6 +226,14 @@ public abstract record class Price
         return value != null;
     }
 
+    public bool TryPickNewFloatingBulkWithProration(
+        [NotNullWhen(true)] out Models::NewFloatingBulkWithProrationPrice? value
+    )
+    {
+        value = (this as PriceVariants::NewFloatingBulkWithProrationPrice)?.Value;
+        return value != null;
+    }
+
     public bool TryPickNewFloatingGroupedWithProratedMinimum(
         [NotNullWhen(true)] out Models::NewFloatingGroupedWithProratedMinimumPrice? value
     )
@@ -250,6 +250,14 @@ public abstract record class Price
         return value != null;
     }
 
+    public bool TryPickGroupedWithMinMaxThresholds(
+        [NotNullWhen(true)] out GroupedWithMinMaxThresholds? value
+    )
+    {
+        value = (this as PriceVariants::GroupedWithMinMaxThresholds)?.Value;
+        return value != null;
+    }
+
     public bool TryPickNewFloatingMatrixWithDisplayName(
         [NotNullWhen(true)] out Models::NewFloatingMatrixWithDisplayNamePrice? value
     )
@@ -258,19 +266,19 @@ public abstract record class Price
         return value != null;
     }
 
-    public bool TryPickNewFloatingBulkWithProration(
-        [NotNullWhen(true)] out Models::NewFloatingBulkWithProrationPrice? value
-    )
-    {
-        value = (this as PriceVariants::NewFloatingBulkWithProrationPrice)?.Value;
-        return value != null;
-    }
-
     public bool TryPickNewFloatingGroupedTieredPackage(
         [NotNullWhen(true)] out Models::NewFloatingGroupedTieredPackagePrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingGroupedTieredPackagePrice)?.Value;
+        return value != null;
+    }
+
+    public bool TryPickNewFloatingMaxGroupTieredPackage(
+        [NotNullWhen(true)] out Models::NewFloatingMaxGroupTieredPackagePrice? value
+    )
+    {
+        value = (this as PriceVariants::NewFloatingMaxGroupTieredPackagePrice)?.Value;
         return value != null;
     }
 
@@ -298,14 +306,6 @@ public abstract record class Price
         return value != null;
     }
 
-    public bool TryPickGroupedWithMinMaxThresholds(
-        [NotNullWhen(true)] out GroupedWithMinMaxThresholds? value
-    )
-    {
-        value = (this as PriceVariants::GroupedWithMinMaxThresholds)?.Value;
-        return value != null;
-    }
-
     public bool TryPickNewFloatingMinimumComposite(
         [NotNullWhen(true)] out Models::NewFloatingMinimumCompositePrice? value
     )
@@ -316,31 +316,31 @@ public abstract record class Price
 
     public void Switch(
         Action<PriceVariants::NewFloatingUnitPrice> newFloatingUnit,
-        Action<PriceVariants::NewFloatingPackagePrice> newFloatingPackage,
-        Action<PriceVariants::NewFloatingMatrixPrice> newFloatingMatrix,
-        Action<PriceVariants::NewFloatingMatrixWithAllocationPrice> newFloatingMatrixWithAllocation,
         Action<PriceVariants::NewFloatingTieredPrice> newFloatingTiered,
         Action<PriceVariants::NewFloatingBulkPrice> newFloatingBulk,
+        Action<PriceVariants::NewFloatingPackagePrice> newFloatingPackage,
+        Action<PriceVariants::NewFloatingMatrixPrice> newFloatingMatrix,
         Action<PriceVariants::NewFloatingThresholdTotalAmountPrice> newFloatingThresholdTotalAmount,
         Action<PriceVariants::NewFloatingTieredPackagePrice> newFloatingTieredPackage,
-        Action<PriceVariants::NewFloatingGroupedTieredPrice> newFloatingGroupedTiered,
-        Action<PriceVariants::NewFloatingMaxGroupTieredPackagePrice> newFloatingMaxGroupTieredPackage,
         Action<PriceVariants::NewFloatingTieredWithMinimumPrice> newFloatingTieredWithMinimum,
-        Action<PriceVariants::NewFloatingPackageWithAllocationPrice> newFloatingPackageWithAllocation,
+        Action<PriceVariants::NewFloatingGroupedTieredPrice> newFloatingGroupedTiered,
         Action<PriceVariants::NewFloatingTieredPackageWithMinimumPrice> newFloatingTieredPackageWithMinimum,
+        Action<PriceVariants::NewFloatingPackageWithAllocationPrice> newFloatingPackageWithAllocation,
         Action<PriceVariants::NewFloatingUnitWithPercentPrice> newFloatingUnitWithPercent,
+        Action<PriceVariants::NewFloatingMatrixWithAllocationPrice> newFloatingMatrixWithAllocation,
         Action<PriceVariants::NewFloatingTieredWithProrationPrice> newFloatingTieredWithProration,
         Action<PriceVariants::NewFloatingUnitWithProrationPrice> newFloatingUnitWithProration,
         Action<PriceVariants::NewFloatingGroupedAllocationPrice> newFloatingGroupedAllocation,
+        Action<PriceVariants::NewFloatingBulkWithProrationPrice> newFloatingBulkWithProration,
         Action<PriceVariants::NewFloatingGroupedWithProratedMinimumPrice> newFloatingGroupedWithProratedMinimum,
         Action<PriceVariants::NewFloatingGroupedWithMeteredMinimumPrice> newFloatingGroupedWithMeteredMinimum,
+        Action<PriceVariants::GroupedWithMinMaxThresholds> groupedWithMinMaxThresholds,
         Action<PriceVariants::NewFloatingMatrixWithDisplayNamePrice> newFloatingMatrixWithDisplayName,
-        Action<PriceVariants::NewFloatingBulkWithProrationPrice> newFloatingBulkWithProration,
         Action<PriceVariants::NewFloatingGroupedTieredPackagePrice> newFloatingGroupedTieredPackage,
+        Action<PriceVariants::NewFloatingMaxGroupTieredPackagePrice> newFloatingMaxGroupTieredPackage,
         Action<PriceVariants::NewFloatingScalableMatrixWithUnitPricingPrice> newFloatingScalableMatrixWithUnitPricing,
         Action<PriceVariants::NewFloatingScalableMatrixWithTieredPricingPrice> newFloatingScalableMatrixWithTieredPricing,
         Action<PriceVariants::NewFloatingCumulativeGroupedBulkPrice> newFloatingCumulativeGroupedBulk,
-        Action<PriceVariants::GroupedWithMinMaxThresholds> groupedWithMinMaxThresholds,
         Action<PriceVariants::NewFloatingMinimumCompositePrice> newFloatingMinimumComposite
     )
     {
@@ -349,20 +349,17 @@ public abstract record class Price
             case PriceVariants::NewFloatingUnitPrice inner:
                 newFloatingUnit(inner);
                 break;
-            case PriceVariants::NewFloatingPackagePrice inner:
-                newFloatingPackage(inner);
-                break;
-            case PriceVariants::NewFloatingMatrixPrice inner:
-                newFloatingMatrix(inner);
-                break;
-            case PriceVariants::NewFloatingMatrixWithAllocationPrice inner:
-                newFloatingMatrixWithAllocation(inner);
-                break;
             case PriceVariants::NewFloatingTieredPrice inner:
                 newFloatingTiered(inner);
                 break;
             case PriceVariants::NewFloatingBulkPrice inner:
                 newFloatingBulk(inner);
+                break;
+            case PriceVariants::NewFloatingPackagePrice inner:
+                newFloatingPackage(inner);
+                break;
+            case PriceVariants::NewFloatingMatrixPrice inner:
+                newFloatingMatrix(inner);
                 break;
             case PriceVariants::NewFloatingThresholdTotalAmountPrice inner:
                 newFloatingThresholdTotalAmount(inner);
@@ -370,23 +367,23 @@ public abstract record class Price
             case PriceVariants::NewFloatingTieredPackagePrice inner:
                 newFloatingTieredPackage(inner);
                 break;
-            case PriceVariants::NewFloatingGroupedTieredPrice inner:
-                newFloatingGroupedTiered(inner);
-                break;
-            case PriceVariants::NewFloatingMaxGroupTieredPackagePrice inner:
-                newFloatingMaxGroupTieredPackage(inner);
-                break;
             case PriceVariants::NewFloatingTieredWithMinimumPrice inner:
                 newFloatingTieredWithMinimum(inner);
                 break;
-            case PriceVariants::NewFloatingPackageWithAllocationPrice inner:
-                newFloatingPackageWithAllocation(inner);
+            case PriceVariants::NewFloatingGroupedTieredPrice inner:
+                newFloatingGroupedTiered(inner);
                 break;
             case PriceVariants::NewFloatingTieredPackageWithMinimumPrice inner:
                 newFloatingTieredPackageWithMinimum(inner);
                 break;
+            case PriceVariants::NewFloatingPackageWithAllocationPrice inner:
+                newFloatingPackageWithAllocation(inner);
+                break;
             case PriceVariants::NewFloatingUnitWithPercentPrice inner:
                 newFloatingUnitWithPercent(inner);
+                break;
+            case PriceVariants::NewFloatingMatrixWithAllocationPrice inner:
+                newFloatingMatrixWithAllocation(inner);
                 break;
             case PriceVariants::NewFloatingTieredWithProrationPrice inner:
                 newFloatingTieredWithProration(inner);
@@ -397,20 +394,26 @@ public abstract record class Price
             case PriceVariants::NewFloatingGroupedAllocationPrice inner:
                 newFloatingGroupedAllocation(inner);
                 break;
+            case PriceVariants::NewFloatingBulkWithProrationPrice inner:
+                newFloatingBulkWithProration(inner);
+                break;
             case PriceVariants::NewFloatingGroupedWithProratedMinimumPrice inner:
                 newFloatingGroupedWithProratedMinimum(inner);
                 break;
             case PriceVariants::NewFloatingGroupedWithMeteredMinimumPrice inner:
                 newFloatingGroupedWithMeteredMinimum(inner);
                 break;
+            case PriceVariants::GroupedWithMinMaxThresholds inner:
+                groupedWithMinMaxThresholds(inner);
+                break;
             case PriceVariants::NewFloatingMatrixWithDisplayNamePrice inner:
                 newFloatingMatrixWithDisplayName(inner);
                 break;
-            case PriceVariants::NewFloatingBulkWithProrationPrice inner:
-                newFloatingBulkWithProration(inner);
-                break;
             case PriceVariants::NewFloatingGroupedTieredPackagePrice inner:
                 newFloatingGroupedTieredPackage(inner);
+                break;
+            case PriceVariants::NewFloatingMaxGroupTieredPackagePrice inner:
+                newFloatingMaxGroupTieredPackage(inner);
                 break;
             case PriceVariants::NewFloatingScalableMatrixWithUnitPricingPrice inner:
                 newFloatingScalableMatrixWithUnitPricing(inner);
@@ -420,9 +423,6 @@ public abstract record class Price
                 break;
             case PriceVariants::NewFloatingCumulativeGroupedBulkPrice inner:
                 newFloatingCumulativeGroupedBulk(inner);
-                break;
-            case PriceVariants::GroupedWithMinMaxThresholds inner:
-                groupedWithMinMaxThresholds(inner);
                 break;
             case PriceVariants::NewFloatingMinimumCompositePrice inner:
                 newFloatingMinimumComposite(inner);
@@ -434,37 +434,34 @@ public abstract record class Price
 
     public T Match<T>(
         Func<PriceVariants::NewFloatingUnitPrice, T> newFloatingUnit,
-        Func<PriceVariants::NewFloatingPackagePrice, T> newFloatingPackage,
-        Func<PriceVariants::NewFloatingMatrixPrice, T> newFloatingMatrix,
-        Func<
-            PriceVariants::NewFloatingMatrixWithAllocationPrice,
-            T
-        > newFloatingMatrixWithAllocation,
         Func<PriceVariants::NewFloatingTieredPrice, T> newFloatingTiered,
         Func<PriceVariants::NewFloatingBulkPrice, T> newFloatingBulk,
+        Func<PriceVariants::NewFloatingPackagePrice, T> newFloatingPackage,
+        Func<PriceVariants::NewFloatingMatrixPrice, T> newFloatingMatrix,
         Func<
             PriceVariants::NewFloatingThresholdTotalAmountPrice,
             T
         > newFloatingThresholdTotalAmount,
         Func<PriceVariants::NewFloatingTieredPackagePrice, T> newFloatingTieredPackage,
-        Func<PriceVariants::NewFloatingGroupedTieredPrice, T> newFloatingGroupedTiered,
-        Func<
-            PriceVariants::NewFloatingMaxGroupTieredPackagePrice,
-            T
-        > newFloatingMaxGroupTieredPackage,
         Func<PriceVariants::NewFloatingTieredWithMinimumPrice, T> newFloatingTieredWithMinimum,
-        Func<
-            PriceVariants::NewFloatingPackageWithAllocationPrice,
-            T
-        > newFloatingPackageWithAllocation,
+        Func<PriceVariants::NewFloatingGroupedTieredPrice, T> newFloatingGroupedTiered,
         Func<
             PriceVariants::NewFloatingTieredPackageWithMinimumPrice,
             T
         > newFloatingTieredPackageWithMinimum,
+        Func<
+            PriceVariants::NewFloatingPackageWithAllocationPrice,
+            T
+        > newFloatingPackageWithAllocation,
         Func<PriceVariants::NewFloatingUnitWithPercentPrice, T> newFloatingUnitWithPercent,
+        Func<
+            PriceVariants::NewFloatingMatrixWithAllocationPrice,
+            T
+        > newFloatingMatrixWithAllocation,
         Func<PriceVariants::NewFloatingTieredWithProrationPrice, T> newFloatingTieredWithProration,
         Func<PriceVariants::NewFloatingUnitWithProrationPrice, T> newFloatingUnitWithProration,
         Func<PriceVariants::NewFloatingGroupedAllocationPrice, T> newFloatingGroupedAllocation,
+        Func<PriceVariants::NewFloatingBulkWithProrationPrice, T> newFloatingBulkWithProration,
         Func<
             PriceVariants::NewFloatingGroupedWithProratedMinimumPrice,
             T
@@ -473,15 +470,19 @@ public abstract record class Price
             PriceVariants::NewFloatingGroupedWithMeteredMinimumPrice,
             T
         > newFloatingGroupedWithMeteredMinimum,
+        Func<PriceVariants::GroupedWithMinMaxThresholds, T> groupedWithMinMaxThresholds,
         Func<
             PriceVariants::NewFloatingMatrixWithDisplayNamePrice,
             T
         > newFloatingMatrixWithDisplayName,
-        Func<PriceVariants::NewFloatingBulkWithProrationPrice, T> newFloatingBulkWithProration,
         Func<
             PriceVariants::NewFloatingGroupedTieredPackagePrice,
             T
         > newFloatingGroupedTieredPackage,
+        Func<
+            PriceVariants::NewFloatingMaxGroupTieredPackagePrice,
+            T
+        > newFloatingMaxGroupTieredPackage,
         Func<
             PriceVariants::NewFloatingScalableMatrixWithUnitPricingPrice,
             T
@@ -494,35 +495,32 @@ public abstract record class Price
             PriceVariants::NewFloatingCumulativeGroupedBulkPrice,
             T
         > newFloatingCumulativeGroupedBulk,
-        Func<PriceVariants::GroupedWithMinMaxThresholds, T> groupedWithMinMaxThresholds,
         Func<PriceVariants::NewFloatingMinimumCompositePrice, T> newFloatingMinimumComposite
     )
     {
         return this switch
         {
             PriceVariants::NewFloatingUnitPrice inner => newFloatingUnit(inner),
-            PriceVariants::NewFloatingPackagePrice inner => newFloatingPackage(inner),
-            PriceVariants::NewFloatingMatrixPrice inner => newFloatingMatrix(inner),
-            PriceVariants::NewFloatingMatrixWithAllocationPrice inner =>
-                newFloatingMatrixWithAllocation(inner),
             PriceVariants::NewFloatingTieredPrice inner => newFloatingTiered(inner),
             PriceVariants::NewFloatingBulkPrice inner => newFloatingBulk(inner),
+            PriceVariants::NewFloatingPackagePrice inner => newFloatingPackage(inner),
+            PriceVariants::NewFloatingMatrixPrice inner => newFloatingMatrix(inner),
             PriceVariants::NewFloatingThresholdTotalAmountPrice inner =>
                 newFloatingThresholdTotalAmount(inner),
             PriceVariants::NewFloatingTieredPackagePrice inner => newFloatingTieredPackage(inner),
-            PriceVariants::NewFloatingGroupedTieredPrice inner => newFloatingGroupedTiered(inner),
-            PriceVariants::NewFloatingMaxGroupTieredPackagePrice inner =>
-                newFloatingMaxGroupTieredPackage(inner),
             PriceVariants::NewFloatingTieredWithMinimumPrice inner => newFloatingTieredWithMinimum(
                 inner
             ),
-            PriceVariants::NewFloatingPackageWithAllocationPrice inner =>
-                newFloatingPackageWithAllocation(inner),
+            PriceVariants::NewFloatingGroupedTieredPrice inner => newFloatingGroupedTiered(inner),
             PriceVariants::NewFloatingTieredPackageWithMinimumPrice inner =>
                 newFloatingTieredPackageWithMinimum(inner),
+            PriceVariants::NewFloatingPackageWithAllocationPrice inner =>
+                newFloatingPackageWithAllocation(inner),
             PriceVariants::NewFloatingUnitWithPercentPrice inner => newFloatingUnitWithPercent(
                 inner
             ),
+            PriceVariants::NewFloatingMatrixWithAllocationPrice inner =>
+                newFloatingMatrixWithAllocation(inner),
             PriceVariants::NewFloatingTieredWithProrationPrice inner =>
                 newFloatingTieredWithProration(inner),
             PriceVariants::NewFloatingUnitWithProrationPrice inner => newFloatingUnitWithProration(
@@ -531,24 +529,26 @@ public abstract record class Price
             PriceVariants::NewFloatingGroupedAllocationPrice inner => newFloatingGroupedAllocation(
                 inner
             ),
+            PriceVariants::NewFloatingBulkWithProrationPrice inner => newFloatingBulkWithProration(
+                inner
+            ),
             PriceVariants::NewFloatingGroupedWithProratedMinimumPrice inner =>
                 newFloatingGroupedWithProratedMinimum(inner),
             PriceVariants::NewFloatingGroupedWithMeteredMinimumPrice inner =>
                 newFloatingGroupedWithMeteredMinimum(inner),
+            PriceVariants::GroupedWithMinMaxThresholds inner => groupedWithMinMaxThresholds(inner),
             PriceVariants::NewFloatingMatrixWithDisplayNamePrice inner =>
                 newFloatingMatrixWithDisplayName(inner),
-            PriceVariants::NewFloatingBulkWithProrationPrice inner => newFloatingBulkWithProration(
-                inner
-            ),
             PriceVariants::NewFloatingGroupedTieredPackagePrice inner =>
                 newFloatingGroupedTieredPackage(inner),
+            PriceVariants::NewFloatingMaxGroupTieredPackagePrice inner =>
+                newFloatingMaxGroupTieredPackage(inner),
             PriceVariants::NewFloatingScalableMatrixWithUnitPricingPrice inner =>
                 newFloatingScalableMatrixWithUnitPricing(inner),
             PriceVariants::NewFloatingScalableMatrixWithTieredPricingPrice inner =>
                 newFloatingScalableMatrixWithTieredPricing(inner),
             PriceVariants::NewFloatingCumulativeGroupedBulkPrice inner =>
                 newFloatingCumulativeGroupedBulk(inner),
-            PriceVariants::GroupedWithMinMaxThresholds inner => groupedWithMinMaxThresholds(inner),
             PriceVariants::NewFloatingMinimumCompositePrice inner => newFloatingMinimumComposite(
                 inner
             ),
@@ -602,75 +602,6 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
-            case "package":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<Models::NewFloatingPackagePrice>(
-                        json,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewFloatingPackagePrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "matrix":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<Models::NewFloatingMatrixPrice>(
-                        json,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewFloatingMatrixPrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "matrix_with_allocation":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingMatrixWithAllocationPrice>(
-                            json,
-                            options
-                        );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewFloatingMatrixWithAllocationPrice(
-                            deserialized
-                        );
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
             case "tiered":
             {
                 List<JsonException> exceptions = [];
@@ -706,6 +637,50 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         return new PriceVariants::NewFloatingBulkPrice(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "package":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<Models::NewFloatingPackagePrice>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::NewFloatingPackagePrice(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "matrix":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<Models::NewFloatingMatrixPrice>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::NewFloatingMatrixPrice(deserialized);
                     }
                 }
                 catch (JsonException e)
@@ -763,54 +738,6 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
-            case "grouped_tiered":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingGroupedTieredPrice>(
-                            json,
-                            options
-                        );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewFloatingGroupedTieredPrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
-            case "max_group_tiered_package":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingMaxGroupTieredPackagePrice>(
-                            json,
-                            options
-                        );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewFloatingMaxGroupTieredPackagePrice(
-                            deserialized
-                        );
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
             case "tiered_with_minimum":
             {
                 List<JsonException> exceptions = [];
@@ -834,22 +761,20 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
-            case "package_with_allocation":
+            case "grouped_tiered":
             {
                 List<JsonException> exceptions = [];
 
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingPackageWithAllocationPrice>(
+                        JsonSerializer.Deserialize<Models::NewFloatingGroupedTieredPrice>(
                             json,
                             options
                         );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewFloatingPackageWithAllocationPrice(
-                            deserialized
-                        );
+                        return new PriceVariants::NewFloatingGroupedTieredPrice(deserialized);
                     }
                 }
                 catch (JsonException e)
@@ -884,6 +809,31 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
+            case "package_with_allocation":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<Models::NewFloatingPackageWithAllocationPrice>(
+                            json,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::NewFloatingPackageWithAllocationPrice(
+                            deserialized
+                        );
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
             case "unit_with_percent":
             {
                 List<JsonException> exceptions = [];
@@ -898,6 +848,31 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         return new PriceVariants::NewFloatingUnitWithPercentPrice(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "matrix_with_allocation":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<Models::NewFloatingMatrixWithAllocationPrice>(
+                            json,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::NewFloatingMatrixWithAllocationPrice(
+                            deserialized
+                        );
                     }
                 }
                 catch (JsonException e)
@@ -976,6 +951,29 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
+            case "bulk_with_proration":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<Models::NewFloatingBulkWithProrationPrice>(
+                            json,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::NewFloatingBulkWithProrationPrice(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
             case "grouped_with_prorated_minimum":
             {
                 List<JsonException> exceptions = [];
@@ -1026,6 +1024,28 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
+            case "grouped_with_min_max_thresholds":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<GroupedWithMinMaxThresholds>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::GroupedWithMinMaxThresholds(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
             case "matrix_with_display_name":
             {
                 List<JsonException> exceptions = [];
@@ -1051,29 +1071,6 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
-            case "bulk_with_proration":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingBulkWithProrationPrice>(
-                            json,
-                            options
-                        );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::NewFloatingBulkWithProrationPrice(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
             case "grouped_tiered_package":
             {
                 List<JsonException> exceptions = [];
@@ -1088,6 +1085,31 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         return new PriceVariants::NewFloatingGroupedTieredPackagePrice(
+                            deserialized
+                        );
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(e);
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "max_group_tiered_package":
+            {
+                List<JsonException> exceptions = [];
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<Models::NewFloatingMaxGroupTieredPackagePrice>(
+                            json,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::NewFloatingMaxGroupTieredPackagePrice(
                             deserialized
                         );
                     }
@@ -1174,28 +1196,6 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
-            case "grouped_with_min_max_thresholds":
-            {
-                List<JsonException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<GroupedWithMinMaxThresholds>(
-                        json,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new PriceVariants::GroupedWithMinMaxThresholds(deserialized);
-                    }
-                }
-                catch (JsonException e)
-                {
-                    exceptions.Add(e);
-                }
-
-                throw new AggregateException(exceptions);
-            }
             case "minimum":
             {
                 List<JsonException> exceptions = [];
@@ -1232,33 +1232,30 @@ sealed class PriceConverter : JsonConverter<Price?>
         {
             null => null,
             PriceVariants::NewFloatingUnitPrice(var newFloatingUnit) => newFloatingUnit,
-            PriceVariants::NewFloatingPackagePrice(var newFloatingPackage) => newFloatingPackage,
-            PriceVariants::NewFloatingMatrixPrice(var newFloatingMatrix) => newFloatingMatrix,
-            PriceVariants::NewFloatingMatrixWithAllocationPrice(
-                var newFloatingMatrixWithAllocation
-            ) => newFloatingMatrixWithAllocation,
             PriceVariants::NewFloatingTieredPrice(var newFloatingTiered) => newFloatingTiered,
             PriceVariants::NewFloatingBulkPrice(var newFloatingBulk) => newFloatingBulk,
+            PriceVariants::NewFloatingPackagePrice(var newFloatingPackage) => newFloatingPackage,
+            PriceVariants::NewFloatingMatrixPrice(var newFloatingMatrix) => newFloatingMatrix,
             PriceVariants::NewFloatingThresholdTotalAmountPrice(
                 var newFloatingThresholdTotalAmount
             ) => newFloatingThresholdTotalAmount,
             PriceVariants::NewFloatingTieredPackagePrice(var newFloatingTieredPackage) =>
                 newFloatingTieredPackage,
-            PriceVariants::NewFloatingGroupedTieredPrice(var newFloatingGroupedTiered) =>
-                newFloatingGroupedTiered,
-            PriceVariants::NewFloatingMaxGroupTieredPackagePrice(
-                var newFloatingMaxGroupTieredPackage
-            ) => newFloatingMaxGroupTieredPackage,
             PriceVariants::NewFloatingTieredWithMinimumPrice(var newFloatingTieredWithMinimum) =>
                 newFloatingTieredWithMinimum,
-            PriceVariants::NewFloatingPackageWithAllocationPrice(
-                var newFloatingPackageWithAllocation
-            ) => newFloatingPackageWithAllocation,
+            PriceVariants::NewFloatingGroupedTieredPrice(var newFloatingGroupedTiered) =>
+                newFloatingGroupedTiered,
             PriceVariants::NewFloatingTieredPackageWithMinimumPrice(
                 var newFloatingTieredPackageWithMinimum
             ) => newFloatingTieredPackageWithMinimum,
+            PriceVariants::NewFloatingPackageWithAllocationPrice(
+                var newFloatingPackageWithAllocation
+            ) => newFloatingPackageWithAllocation,
             PriceVariants::NewFloatingUnitWithPercentPrice(var newFloatingUnitWithPercent) =>
                 newFloatingUnitWithPercent,
+            PriceVariants::NewFloatingMatrixWithAllocationPrice(
+                var newFloatingMatrixWithAllocation
+            ) => newFloatingMatrixWithAllocation,
             PriceVariants::NewFloatingTieredWithProrationPrice(
                 var newFloatingTieredWithProration
             ) => newFloatingTieredWithProration,
@@ -1266,20 +1263,25 @@ sealed class PriceConverter : JsonConverter<Price?>
                 newFloatingUnitWithProration,
             PriceVariants::NewFloatingGroupedAllocationPrice(var newFloatingGroupedAllocation) =>
                 newFloatingGroupedAllocation,
+            PriceVariants::NewFloatingBulkWithProrationPrice(var newFloatingBulkWithProration) =>
+                newFloatingBulkWithProration,
             PriceVariants::NewFloatingGroupedWithProratedMinimumPrice(
                 var newFloatingGroupedWithProratedMinimum
             ) => newFloatingGroupedWithProratedMinimum,
             PriceVariants::NewFloatingGroupedWithMeteredMinimumPrice(
                 var newFloatingGroupedWithMeteredMinimum
             ) => newFloatingGroupedWithMeteredMinimum,
+            PriceVariants::GroupedWithMinMaxThresholds(var groupedWithMinMaxThresholds) =>
+                groupedWithMinMaxThresholds,
             PriceVariants::NewFloatingMatrixWithDisplayNamePrice(
                 var newFloatingMatrixWithDisplayName
             ) => newFloatingMatrixWithDisplayName,
-            PriceVariants::NewFloatingBulkWithProrationPrice(var newFloatingBulkWithProration) =>
-                newFloatingBulkWithProration,
             PriceVariants::NewFloatingGroupedTieredPackagePrice(
                 var newFloatingGroupedTieredPackage
             ) => newFloatingGroupedTieredPackage,
+            PriceVariants::NewFloatingMaxGroupTieredPackagePrice(
+                var newFloatingMaxGroupTieredPackage
+            ) => newFloatingMaxGroupTieredPackage,
             PriceVariants::NewFloatingScalableMatrixWithUnitPricingPrice(
                 var newFloatingScalableMatrixWithUnitPricing
             ) => newFloatingScalableMatrixWithUnitPricing,
@@ -1289,8 +1291,6 @@ sealed class PriceConverter : JsonConverter<Price?>
             PriceVariants::NewFloatingCumulativeGroupedBulkPrice(
                 var newFloatingCumulativeGroupedBulk
             ) => newFloatingCumulativeGroupedBulk,
-            PriceVariants::GroupedWithMinMaxThresholds(var groupedWithMinMaxThresholds) =>
-                groupedWithMinMaxThresholds,
             PriceVariants::NewFloatingMinimumCompositePrice(var newFloatingMinimumComposite) =>
                 newFloatingMinimumComposite,
             _ => throw new ArgumentOutOfRangeException(nameof(value)),

@@ -427,6 +427,9 @@ public sealed record class ScalableMatrixWithTieredPricing
         }
     }
 
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
     public JsonElement ModelType
     {
         get
@@ -525,7 +528,10 @@ public sealed record class ScalableMatrixWithTieredPricing
         }
     }
 
-    public required Dictionary<string, JsonElement> ScalableMatrixWithTieredPricingConfig
+    /// <summary>
+    /// Configuration for scalable_matrix_with_tiered_pricing pricing
+    /// </summary>
+    public required ScalableMatrixWithTieredPricingConfig ScalableMatrixWithTieredPricingConfig
     {
         get
         {
@@ -540,7 +546,7 @@ public sealed record class ScalableMatrixWithTieredPricing
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
+            return JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingConfig>(
                     element,
                     ModelBase.SerializerOptions
                 ) ?? throw new ArgumentNullException("scalable_matrix_with_tiered_pricing_config");
@@ -610,10 +616,7 @@ public sealed record class ScalableMatrixWithTieredPricing
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
-        foreach (var item in this.ScalableMatrixWithTieredPricingConfig.Values)
-        {
-            _ = item;
-        }
+        this.ScalableMatrixWithTieredPricingConfig.Validate();
         this.DimensionalPriceConfiguration?.Validate();
     }
 
