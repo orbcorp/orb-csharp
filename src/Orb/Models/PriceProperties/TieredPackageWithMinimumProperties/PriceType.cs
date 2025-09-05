@@ -9,6 +9,7 @@ public enum PriceType
 {
     UsagePrice,
     FixedPrice,
+    CompositePrice,
 }
 
 sealed class PriceTypeConverter : JsonConverter<PriceType>
@@ -23,6 +24,7 @@ sealed class PriceTypeConverter : JsonConverter<PriceType>
         {
             "usage_price" => PriceType.UsagePrice,
             "fixed_price" => PriceType.FixedPrice,
+            "composite_price" => PriceType.CompositePrice,
             _ => (PriceType)(-1),
         };
     }
@@ -39,6 +41,7 @@ sealed class PriceTypeConverter : JsonConverter<PriceType>
             {
                 PriceType.UsagePrice => "usage_price",
                 PriceType.FixedPrice => "fixed_price",
+                PriceType.CompositePrice => "composite_price",
                 _ => throw new ArgumentOutOfRangeException(nameof(value)),
             },
             options
