@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Orb.Models;
 using Orb.Models.CustomExpirationProperties;
@@ -73,7 +74,7 @@ public class PlanServiceTest : TestBase
                                 DurationUnit =
                                     NewBillingCycleConfigurationProperties::DurationUnit.Day,
                             },
-                            Metadata = new() { { "foo", "string" } },
+                            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                             ReferenceID = "reference_id",
                         },
                     },

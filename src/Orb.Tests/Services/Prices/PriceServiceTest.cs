@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Orb.Models;
 using Orb.Models.NewBillingCycleConfigurationProperties;
@@ -50,7 +51,7 @@ public class PriceServiceTest : TestBase
                         Duration = 0,
                         DurationUnit = DurationUnit.Day,
                     },
-                    Metadata = new() { { "foo", "string" } },
+                    Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 },
             }
         );
