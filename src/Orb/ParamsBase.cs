@@ -144,6 +144,9 @@ public abstract record class ParamsBase
 
     protected static void AddDefaultHeaders(HttpRequestMessage request, IOrbClient client)
     {
-        request.Headers.Add("Authorization", string.Format("Bearer {0}", client.APIKey));
+        if (client.APIKey != null)
+        {
+            request.Headers.Add("Authorization", string.Format("Bearer {0}", client.APIKey));
+        }
     }
 }
