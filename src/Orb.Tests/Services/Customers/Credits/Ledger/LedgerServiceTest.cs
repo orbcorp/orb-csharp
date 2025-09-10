@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties;
 using BodyProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties;
@@ -39,7 +40,7 @@ public class LedgerServiceTest : TestBase
                         Memo = "memo",
                         RequireSuccessfulPayment = true,
                     },
-                    Metadata = new() { { "foo", "string" } },
+                    Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                     PerUnitCostBasis = "per_unit_cost_basis",
                 },
             }
@@ -70,7 +71,7 @@ public class LedgerServiceTest : TestBase
                         Memo = "memo",
                         RequireSuccessfulPayment = true,
                     },
-                    Metadata = new() { { "foo", "string" } },
+                    Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                     PerUnitCostBasis = "per_unit_cost_basis",
                 },
             }

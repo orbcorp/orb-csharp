@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -14,7 +15,10 @@ public class EventServiceTest : TestBase
             {
                 EventID = "event_id",
                 EventName = "event_name",
-                Properties = new() { { "foo", JsonSerializer.SerializeToElement("bar") } },
+                Properties = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
                 Timestamp = DateTime.Parse("2020-12-09T16:09:53Z"),
             }
         );
@@ -40,7 +44,10 @@ public class EventServiceTest : TestBase
                     {
                         EventName = "event_name",
                         IdempotencyKey = "idempotency_key",
-                        Properties1 = new() { { "foo", JsonSerializer.SerializeToElement("bar") } },
+                        Properties1 = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
                         Timestamp = DateTime.Parse("2020-12-09T16:09:53Z"),
                         CustomerID = "customer_id",
                         ExternalCustomerID = "external_customer_id",
