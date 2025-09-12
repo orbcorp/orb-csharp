@@ -14,6 +14,7 @@ public enum ExternalConnectionName
     Taxjar,
     Avalara,
     Anrok,
+    Numeral,
 }
 
 sealed class ExternalConnectionNameConverter : JsonConverter<ExternalConnectionName>
@@ -33,6 +34,7 @@ sealed class ExternalConnectionNameConverter : JsonConverter<ExternalConnectionN
             "taxjar" => ExternalConnectionName.Taxjar,
             "avalara" => ExternalConnectionName.Avalara,
             "anrok" => ExternalConnectionName.Anrok,
+            "numeral" => ExternalConnectionName.Numeral,
             _ => (ExternalConnectionName)(-1),
         };
     }
@@ -54,6 +56,7 @@ sealed class ExternalConnectionNameConverter : JsonConverter<ExternalConnectionN
                 ExternalConnectionName.Taxjar => "taxjar",
                 ExternalConnectionName.Avalara => "avalara",
                 ExternalConnectionName.Anrok => "anrok",
+                ExternalConnectionName.Numeral => "numeral",
                 _ => throw new ArgumentOutOfRangeException(nameof(value)),
             },
             options
