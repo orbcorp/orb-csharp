@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Models.ChangedSubscriptionResourcesProperties;
 
 namespace Orb.Models;
 
@@ -41,7 +42,7 @@ public sealed record class ChangedSubscriptionResources
     /// <summary>
     /// The invoices that were created as part of this operation.
     /// </summary>
-    public required List<Invoice> CreatedInvoices
+    public required List<CreatedInvoice> CreatedInvoices
     {
         get
         {
@@ -51,8 +52,10 @@ public sealed record class ChangedSubscriptionResources
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<List<Invoice>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("created_invoices");
+            return JsonSerializer.Deserialize<List<CreatedInvoice>>(
+                    element,
+                    ModelBase.SerializerOptions
+                ) ?? throw new ArgumentNullException("created_invoices");
         }
         set
         {

@@ -77,6 +77,27 @@ public sealed record class TieredPackageWithMinimum : ModelBase, IFromRaw<Tiered
         }
     }
 
+    public required ApiEnum<string, BillingMode> BillingMode
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("billing_mode", out JsonElement element))
+                throw new ArgumentOutOfRangeException("billing_mode", "Missing required argument");
+
+            return JsonSerializer.Deserialize<ApiEnum<string, BillingMode>>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["billing_mode"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     public required ApiEnum<string, Cadence> Cadence
     {
         get
@@ -587,6 +608,7 @@ public sealed record class TieredPackageWithMinimum : ModelBase, IFromRaw<Tiered
         _ = this.ID;
         this.BillableMetric?.Validate();
         this.BillingCycleConfiguration.Validate();
+        this.BillingMode.Validate();
         this.Cadence.Validate();
         foreach (var item in this.CompositePriceFilters ?? [])
         {

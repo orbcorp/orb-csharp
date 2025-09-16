@@ -77,6 +77,27 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         }
     }
 
+    public required ApiEnum<string, BillingMode> BillingMode
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("billing_mode", out JsonElement element))
+                throw new ArgumentOutOfRangeException("billing_mode", "Missing required argument");
+
+            return JsonSerializer.Deserialize<ApiEnum<string, BillingMode>>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["billing_mode"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     /// <summary>
     /// Configuration for bulk_with_proration pricing
     /// </summary>
@@ -584,6 +605,7 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         _ = this.ID;
         this.BillableMetric?.Validate();
         this.BillingCycleConfiguration.Validate();
+        this.BillingMode.Validate();
         this.BulkWithProrationConfig.Validate();
         this.Cadence.Validate();
         foreach (var item in this.CompositePriceFilters ?? [])
