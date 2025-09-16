@@ -3,6 +3,8 @@ using System.Text.Json;
 using Orb.Models;
 using Orb.Models.AmountDiscountProperties;
 using Orb.Models.BillingCycleConfigurationProperties;
+using Orb.Models.ChangedSubscriptionResourcesProperties.CreatedInvoiceProperties.CustomerBalanceTransactionProperties;
+using Orb.Models.ChangedSubscriptionResourcesProperties.CreatedInvoiceProperties.PaymentAttemptProperties;
 using Orb.Models.CreditNotes.CreditNoteCreateParamsProperties;
 using Orb.Models.Customers.Costs.CostListParamsProperties;
 using Orb.Models.Customers.Credits.CreditListPageResponseProperties.DataProperties;
@@ -11,8 +13,6 @@ using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.Body
 using Orb.Models.Customers.Credits.TopUps.TopUpCreateResponseProperties;
 using Orb.Models.Customers.CustomerProperties.AccountingSyncConfigurationProperties.AccountingProviderProperties;
 using Orb.Models.Customers.NewAvalaraTaxConfigurationProperties;
-using Orb.Models.CustomerTaxIDProperties;
-using Orb.Models.InvoiceProperties.PaymentAttemptProperties;
 using Orb.Models.Invoices.InvoiceCreateParamsProperties.LineItemProperties;
 using Orb.Models.Items.ItemProperties.ExternalConnectionProperties;
 using Orb.Models.MonetaryAmountDiscountAdjustmentProperties;
@@ -39,12 +39,14 @@ using BillableMetricProperties = Orb.Models.Metrics.BillableMetricProperties;
 using BulkProperties = Orb.Models.PriceProperties.BulkProperties;
 using BulkWithProrationProperties = Orb.Models.PriceProperties.BulkWithProrationProperties;
 using CostListByExternalIDParamsProperties = Orb.Models.Customers.Costs.CostListByExternalIDParamsProperties;
+using CreatedInvoiceProperties = Orb.Models.ChangedSubscriptionResourcesProperties.CreatedInvoiceProperties;
 using CreditBlockExpiryLedgerEntryProperties = Orb.Models.Customers.Credits.Ledger.CreditBlockExpiryLedgerEntryProperties;
 using CreditNoteProperties = Orb.Models.CreditNoteProperties;
 using CumulativeGroupedBulkProperties = Orb.Models.PriceProperties.CumulativeGroupedBulkProperties;
 using CustomerBalanceTransactionProperties = Orb.Models.InvoiceProperties.CustomerBalanceTransactionProperties;
 using CustomerCreateParamsProperties = Orb.Models.Customers.CustomerCreateParamsProperties;
 using CustomerProperties = Orb.Models.Customers.CustomerProperties;
+using CustomerTaxIDProperties = Orb.Models.CustomerTaxIDProperties;
 using CustomerUpdateByExternalIDParamsProperties = Orb.Models.Customers.CustomerUpdateByExternalIDParamsProperties;
 using CustomerUpdateParamsProperties = Orb.Models.Customers.CustomerUpdateParamsProperties;
 using CustomExpirationProperties = Orb.Models.CustomExpirationProperties;
@@ -165,7 +167,7 @@ using NewUsageDiscountProperties = Orb.Models.NewUsageDiscountProperties;
 using OtherSubLineItemProperties = Orb.Models.OtherSubLineItemProperties;
 using PackageProperties = Orb.Models.PriceProperties.PackageProperties;
 using PackageWithAllocationProperties = Orb.Models.PriceProperties.PackageWithAllocationProperties;
-using PaymentAttemptProperties = Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.PaymentAttemptProperties;
+using PaymentAttemptProperties = Orb.Models.InvoiceProperties.PaymentAttemptProperties;
 using PercentageDiscountIntervalProperties = Orb.Models.PercentageDiscountIntervalProperties;
 using PercentageDiscountProperties = Orb.Models.PercentageDiscountProperties;
 using PlanCreateParamsProperties = Orb.Models.Plans.PlanCreateParamsProperties;
@@ -224,6 +226,11 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, AmountDiscountIntervalProperties::DiscountType>(),
             new ApiEnumConverter<string, DurationUnit>(),
             new ApiEnumConverter<string, BillingCycleRelativeDate>(),
+            new ApiEnumConverter<string, Action>(),
+            new ApiEnumConverter<string, Type>(),
+            new ApiEnumConverter<string, CreatedInvoiceProperties::InvoiceSource>(),
+            new ApiEnumConverter<string, PaymentProvider>(),
+            new ApiEnumConverter<string, CreatedInvoiceProperties::Status>(),
             new ApiEnumConverter<string, DiscountProperties::DiscountType>(),
             new ApiEnumConverter<string, MaximumAmountAdjustmentProperties::DiscountType>(),
             new ApiEnumConverter<string, CreditNoteProperties::Reason>(),
@@ -233,12 +240,12 @@ public abstract record class ModelBase
                 global::Orb.Models.CreditNoteProperties.DiscountProperties.DiscountType
             >(),
             new ApiEnumConverter<string, CustomExpirationProperties::DurationUnit>(),
-            new ApiEnumConverter<string, Country>(),
-            new ApiEnumConverter<string, Type>(),
+            new ApiEnumConverter<string, CustomerTaxIDProperties::Country>(),
+            new ApiEnumConverter<string, CustomerTaxIDProperties::Type>(),
             new ApiEnumConverter<string, CustomerBalanceTransactionProperties::Action>(),
             new ApiEnumConverter<string, CustomerBalanceTransactionProperties::Type>(),
             new ApiEnumConverter<string, InvoiceProperties::InvoiceSource>(),
-            new ApiEnumConverter<string, PaymentProvider>(),
+            new ApiEnumConverter<string, PaymentAttemptProperties::PaymentProvider>(),
             new ApiEnumConverter<string, InvoiceProperties::Status>(),
             new ApiEnumConverter<string, MatrixSubLineItemProperties::Type>(),
             new ApiEnumConverter<string, AdjustmentType>(),
@@ -481,58 +488,85 @@ public abstract record class ModelBase
                 string,
                 PlanPhaseUsageDiscountAdjustmentProperties::AdjustmentType
             >(),
+            new ApiEnumConverter<string, UnitProperties::BillingMode>(),
             new ApiEnumConverter<string, UnitProperties::Cadence>(),
             new ApiEnumConverter<string, UnitProperties::PriceType>(),
+            new ApiEnumConverter<string, TieredProperties::BillingMode>(),
             new ApiEnumConverter<string, TieredProperties::Cadence>(),
             new ApiEnumConverter<string, TieredProperties::PriceType>(),
+            new ApiEnumConverter<string, BulkProperties::BillingMode>(),
             new ApiEnumConverter<string, BulkProperties::Cadence>(),
             new ApiEnumConverter<string, BulkProperties::PriceType>(),
+            new ApiEnumConverter<string, PackageProperties::BillingMode>(),
             new ApiEnumConverter<string, PackageProperties::Cadence>(),
             new ApiEnumConverter<string, PackageProperties::PriceType>(),
+            new ApiEnumConverter<string, MatrixProperties::BillingMode>(),
             new ApiEnumConverter<string, MatrixProperties::Cadence>(),
             new ApiEnumConverter<string, MatrixProperties::PriceType>(),
+            new ApiEnumConverter<string, ThresholdTotalAmountProperties::BillingMode>(),
             new ApiEnumConverter<string, ThresholdTotalAmountProperties::Cadence>(),
             new ApiEnumConverter<string, ThresholdTotalAmountProperties::PriceType>(),
+            new ApiEnumConverter<string, TieredPackageProperties::BillingMode>(),
             new ApiEnumConverter<string, TieredPackageProperties::Cadence>(),
             new ApiEnumConverter<string, TieredPackageProperties::PriceType>(),
+            new ApiEnumConverter<string, TieredWithMinimumProperties::BillingMode>(),
             new ApiEnumConverter<string, TieredWithMinimumProperties::Cadence>(),
             new ApiEnumConverter<string, TieredWithMinimumProperties::PriceType>(),
+            new ApiEnumConverter<string, GroupedTieredProperties::BillingMode>(),
             new ApiEnumConverter<string, GroupedTieredProperties::Cadence>(),
             new ApiEnumConverter<string, GroupedTieredProperties::PriceType>(),
+            new ApiEnumConverter<string, TieredPackageWithMinimumProperties::BillingMode>(),
             new ApiEnumConverter<string, TieredPackageWithMinimumProperties::Cadence>(),
             new ApiEnumConverter<string, TieredPackageWithMinimumProperties::PriceType>(),
+            new ApiEnumConverter<string, PackageWithAllocationProperties::BillingMode>(),
             new ApiEnumConverter<string, PackageWithAllocationProperties::Cadence>(),
             new ApiEnumConverter<string, PackageWithAllocationProperties::PriceType>(),
+            new ApiEnumConverter<string, UnitWithPercentProperties::BillingMode>(),
             new ApiEnumConverter<string, UnitWithPercentProperties::Cadence>(),
             new ApiEnumConverter<string, UnitWithPercentProperties::PriceType>(),
+            new ApiEnumConverter<string, MatrixWithAllocationProperties::BillingMode>(),
             new ApiEnumConverter<string, MatrixWithAllocationProperties::Cadence>(),
             new ApiEnumConverter<string, MatrixWithAllocationProperties::PriceType>(),
+            new ApiEnumConverter<string, TieredWithProrationProperties::BillingMode>(),
             new ApiEnumConverter<string, TieredWithProrationProperties::Cadence>(),
             new ApiEnumConverter<string, TieredWithProrationProperties::PriceType>(),
+            new ApiEnumConverter<string, UnitWithProrationProperties::BillingMode>(),
             new ApiEnumConverter<string, UnitWithProrationProperties::Cadence>(),
             new ApiEnumConverter<string, UnitWithProrationProperties::PriceType>(),
+            new ApiEnumConverter<string, GroupedAllocationProperties::BillingMode>(),
             new ApiEnumConverter<string, GroupedAllocationProperties::Cadence>(),
             new ApiEnumConverter<string, GroupedAllocationProperties::PriceType>(),
+            new ApiEnumConverter<string, BulkWithProrationProperties::BillingMode>(),
             new ApiEnumConverter<string, BulkWithProrationProperties::Cadence>(),
             new ApiEnumConverter<string, BulkWithProrationProperties::PriceType>(),
+            new ApiEnumConverter<string, GroupedWithProratedMinimumProperties::BillingMode>(),
             new ApiEnumConverter<string, GroupedWithProratedMinimumProperties::Cadence>(),
             new ApiEnumConverter<string, GroupedWithProratedMinimumProperties::PriceType>(),
+            new ApiEnumConverter<string, GroupedWithMeteredMinimumProperties::BillingMode>(),
             new ApiEnumConverter<string, GroupedWithMeteredMinimumProperties::Cadence>(),
             new ApiEnumConverter<string, GroupedWithMeteredMinimumProperties::PriceType>(),
+            new ApiEnumConverter<string, GroupedWithMinMaxThresholdsProperties::BillingMode>(),
             new ApiEnumConverter<string, GroupedWithMinMaxThresholdsProperties::Cadence>(),
             new ApiEnumConverter<string, GroupedWithMinMaxThresholdsProperties::PriceType>(),
+            new ApiEnumConverter<string, MatrixWithDisplayNameProperties::BillingMode>(),
             new ApiEnumConverter<string, MatrixWithDisplayNameProperties::Cadence>(),
             new ApiEnumConverter<string, MatrixWithDisplayNameProperties::PriceType>(),
+            new ApiEnumConverter<string, GroupedTieredPackageProperties::BillingMode>(),
             new ApiEnumConverter<string, GroupedTieredPackageProperties::Cadence>(),
             new ApiEnumConverter<string, GroupedTieredPackageProperties::PriceType>(),
+            new ApiEnumConverter<string, MaxGroupTieredPackageProperties::BillingMode>(),
             new ApiEnumConverter<string, MaxGroupTieredPackageProperties::Cadence>(),
             new ApiEnumConverter<string, MaxGroupTieredPackageProperties::PriceType>(),
+            new ApiEnumConverter<string, ScalableMatrixWithUnitPricingProperties::BillingMode>(),
             new ApiEnumConverter<string, ScalableMatrixWithUnitPricingProperties::Cadence>(),
             new ApiEnumConverter<string, ScalableMatrixWithUnitPricingProperties::PriceType>(),
+            new ApiEnumConverter<string, ScalableMatrixWithTieredPricingProperties::BillingMode>(),
             new ApiEnumConverter<string, ScalableMatrixWithTieredPricingProperties::Cadence>(),
             new ApiEnumConverter<string, ScalableMatrixWithTieredPricingProperties::PriceType>(),
+            new ApiEnumConverter<string, CumulativeGroupedBulkProperties::BillingMode>(),
             new ApiEnumConverter<string, CumulativeGroupedBulkProperties::Cadence>(),
             new ApiEnumConverter<string, CumulativeGroupedBulkProperties::PriceType>(),
+            new ApiEnumConverter<string, MinimumProperties::BillingMode>(),
             new ApiEnumConverter<string, MinimumProperties::Cadence>(),
             new ApiEnumConverter<string, MinimumProperties::PriceType>(),
             new ApiEnumConverter<string, TierSubLineItemProperties::Type>(),
@@ -658,7 +692,10 @@ public abstract record class ModelBase
                 global::Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.CustomerBalanceTransactionProperties.Type
             >(),
             new ApiEnumConverter<string, InvoiceFetchUpcomingResponseProperties::InvoiceSource>(),
-            new ApiEnumConverter<string, PaymentAttemptProperties::PaymentProvider>(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.PaymentAttemptProperties.PaymentProvider
+            >(),
             new ApiEnumConverter<string, InvoiceFetchUpcomingResponseProperties::Status>(),
             new ApiEnumConverter<string, ModelType>(),
             new ApiEnumConverter<string, InvoiceListParamsProperties::DateType>(),
