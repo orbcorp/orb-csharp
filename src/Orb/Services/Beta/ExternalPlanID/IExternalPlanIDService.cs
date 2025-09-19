@@ -8,9 +8,6 @@ namespace Orb.Services.Beta.ExternalPlanID;
 public interface IExternalPlanIDService
 {
     /// <summary>
-    /// This API endpoint is in beta and its interface may change. It is recommended
-    /// for use only in test mode.
-    ///
     /// This endpoint allows the creation of a new plan version for an existing plan.
     /// </summary>
     Task<PlanVersion> CreatePlanVersion(ExternalPlanIDCreatePlanVersionParams parameters);
