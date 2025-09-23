@@ -1,8 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties;
 
@@ -18,7 +18,10 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
+                throw new System::ArgumentOutOfRangeException(
+                    "amount",
+                    "Missing required argument"
+                );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
@@ -36,7 +39,10 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
         get
         {
             if (!this.Properties.TryGetValue("entry_type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("entry_type", "Missing required argument");
+                throw new System::ArgumentOutOfRangeException(
+                    "entry_type",
+                    "Missing required argument"
+                );
 
             return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }

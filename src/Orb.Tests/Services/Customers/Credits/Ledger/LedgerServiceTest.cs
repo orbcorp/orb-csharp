@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties;
-using BodyProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties;
+using BodyProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties;
 
 namespace Orb.Tests.Services.Customers.Credits.Ledger;
 
@@ -24,7 +23,7 @@ public class LedgerServiceTest : TestBase
             new()
             {
                 CustomerID = "customer_id",
-                Body = new Increment()
+                Body = new BodyProperties::Increment()
                 {
                     Amount = 0,
                     Currency = "currency",
@@ -55,25 +54,26 @@ public class LedgerServiceTest : TestBase
             new()
             {
                 ExternalCustomerID = "external_customer_id",
-                Body = new BodyProperties::Increment()
-                {
-                    Amount = 0,
-                    Currency = "currency",
-                    Description = "description",
-                    EffectiveDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                    ExpiryDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                    InvoiceSettings = new()
+                Body =
+                    new global::Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.Increment()
                     {
-                        AutoCollection = true,
-                        NetTerms = 0,
-                        CustomDueDate = DateOnly.Parse("2019-12-27"),
-                        InvoiceDate = DateOnly.Parse("2019-12-27"),
-                        Memo = "memo",
-                        RequireSuccessfulPayment = true,
+                        Amount = 0,
+                        Currency = "currency",
+                        Description = "description",
+                        EffectiveDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        ExpiryDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        InvoiceSettings = new()
+                        {
+                            AutoCollection = true,
+                            NetTerms = 0,
+                            CustomDueDate = DateOnly.Parse("2019-12-27"),
+                            InvoiceDate = DateOnly.Parse("2019-12-27"),
+                            Memo = "memo",
+                            RequireSuccessfulPayment = true,
+                        },
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                        PerUnitCostBasis = "per_unit_cost_basis",
                     },
-                    Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                    PerUnitCostBasis = "per_unit_cost_basis",
-                },
             }
         );
         response.Validate();

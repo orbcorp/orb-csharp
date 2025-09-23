@@ -1,9 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.VoidProperties;
+using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties;
 
@@ -19,7 +19,10 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
+                throw new System::ArgumentOutOfRangeException(
+                    "amount",
+                    "Missing required argument"
+                );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
@@ -40,10 +43,13 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
         get
         {
             if (!this.Properties.TryGetValue("block_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("block_id", "Missing required argument");
+                throw new System::ArgumentOutOfRangeException(
+                    "block_id",
+                    "Missing required argument"
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("block_id");
+                ?? throw new System::ArgumentNullException("block_id");
         }
         set
         {
@@ -59,7 +65,10 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
         get
         {
             if (!this.Properties.TryGetValue("entry_type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("entry_type", "Missing required argument");
+                throw new System::ArgumentOutOfRangeException(
+                    "entry_type",
+                    "Missing required argument"
+                );
 
             return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }

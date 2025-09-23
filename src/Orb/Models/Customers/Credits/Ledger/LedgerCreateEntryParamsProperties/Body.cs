@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties;
+using BodyProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties;
 using BodyVariants = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyVariants;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties;
@@ -13,42 +13,48 @@ public abstract record class Body
 {
     internal Body() { }
 
-    public static implicit operator Body(Increment value) => new BodyVariants::Increment(value);
+    public static implicit operator Body(BodyProperties::Increment value) =>
+        new BodyVariants::Increment(value);
 
-    public static implicit operator Body(Decrement value) => new BodyVariants::Decrement(value);
+    public static implicit operator Body(BodyProperties::Decrement value) =>
+        new BodyVariants::Decrement(value);
 
-    public static implicit operator Body(ExpirationChange value) =>
+    public static implicit operator Body(BodyProperties::ExpirationChange value) =>
         new BodyVariants::ExpirationChange(value);
 
-    public static implicit operator Body(Void value) => new BodyVariants::Void(value);
+    public static implicit operator Body(BodyProperties::Void value) =>
+        new BodyVariants::Void(value);
 
-    public static implicit operator Body(Amendment value) => new BodyVariants::Amendment(value);
+    public static implicit operator Body(BodyProperties::Amendment value) =>
+        new BodyVariants::Amendment(value);
 
-    public bool TryPickIncrement([NotNullWhen(true)] out Increment? value)
+    public bool TryPickIncrement([NotNullWhen(true)] out BodyProperties::Increment? value)
     {
         value = (this as BodyVariants::Increment)?.Value;
         return value != null;
     }
 
-    public bool TryPickDecrement([NotNullWhen(true)] out Decrement? value)
+    public bool TryPickDecrement([NotNullWhen(true)] out BodyProperties::Decrement? value)
     {
         value = (this as BodyVariants::Decrement)?.Value;
         return value != null;
     }
 
-    public bool TryPickExpirationChange([NotNullWhen(true)] out ExpirationChange? value)
+    public bool TryPickExpirationChange(
+        [NotNullWhen(true)] out BodyProperties::ExpirationChange? value
+    )
     {
         value = (this as BodyVariants::ExpirationChange)?.Value;
         return value != null;
     }
 
-    public bool TryPickVoid([NotNullWhen(true)] out Void? value)
+    public bool TryPickVoid([NotNullWhen(true)] out BodyProperties::Void? value)
     {
         value = (this as BodyVariants::Void)?.Value;
         return value != null;
     }
 
-    public bool TryPickAmendment([NotNullWhen(true)] out Amendment? value)
+    public bool TryPickAmendment([NotNullWhen(true)] out BodyProperties::Amendment? value)
     {
         value = (this as BodyVariants::Amendment)?.Value;
         return value != null;
@@ -133,7 +139,10 @@ sealed class BodyConverter : JsonConverter<Body>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Increment>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<BodyProperties::Increment>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new BodyVariants::Increment(deserialized);
@@ -152,7 +161,10 @@ sealed class BodyConverter : JsonConverter<Body>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Decrement>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<BodyProperties::Decrement>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new BodyVariants::Decrement(deserialized);
@@ -171,7 +183,10 @@ sealed class BodyConverter : JsonConverter<Body>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<ExpirationChange>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<BodyProperties::ExpirationChange>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new BodyVariants::ExpirationChange(deserialized);
@@ -190,7 +205,10 @@ sealed class BodyConverter : JsonConverter<Body>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Void>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<BodyProperties::Void>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new BodyVariants::Void(deserialized);
@@ -209,7 +227,10 @@ sealed class BodyConverter : JsonConverter<Body>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Amendment>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<BodyProperties::Amendment>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new BodyVariants::Amendment(deserialized);

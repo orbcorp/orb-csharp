@@ -1,8 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties;
 
@@ -14,7 +14,10 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
         get
         {
             if (!this.Properties.TryGetValue("entry_type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("entry_type", "Missing required argument");
+                throw new System::ArgumentOutOfRangeException(
+                    "entry_type",
+                    "Missing required argument"
+                );
 
             return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }
@@ -32,17 +35,20 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
     /// denoting when credits transferred (as part of a partial block expiration)
     /// should expire.
     /// </summary>
-    public required DateOnly TargetExpiryDate
+    public required System::DateOnly TargetExpiryDate
     {
         get
         {
             if (!this.Properties.TryGetValue("target_expiry_date", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
+                throw new System::ArgumentOutOfRangeException(
                     "target_expiry_date",
                     "Missing required argument"
                 );
 
-            return JsonSerializer.Deserialize<DateOnly>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateOnly>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -145,14 +151,17 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
     /// <summary>
     /// An ISO 8601 format date that identifies the origination credit block to expire
     /// </summary>
-    public DateTime? ExpiryDate
+    public System::DateTime? ExpiryDate
     {
         get
         {
             if (!this.Properties.TryGetValue("expiry_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -225,7 +234,7 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
     }
 
     [SetsRequiredMembers]
-    public ExpirationChange(DateOnly targetExpiryDate)
+    public ExpirationChange(System::DateOnly targetExpiryDate)
         : this()
     {
         this.TargetExpiryDate = targetExpiryDate;
