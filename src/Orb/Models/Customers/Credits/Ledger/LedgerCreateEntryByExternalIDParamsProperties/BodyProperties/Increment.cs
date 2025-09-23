@@ -1,9 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.IncrementProperties;
+using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties;
 
@@ -19,7 +19,10 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
+                throw new System::ArgumentOutOfRangeException(
+                    "amount",
+                    "Missing required argument"
+                );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
@@ -37,7 +40,10 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
         get
         {
             if (!this.Properties.TryGetValue("entry_type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("entry_type", "Missing required argument");
+                throw new System::ArgumentOutOfRangeException(
+                    "entry_type",
+                    "Missing required argument"
+                );
 
             return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }
@@ -99,14 +105,17 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
     /// An ISO 8601 format date that denotes when this credit balance should become
     /// available for use.
     /// </summary>
-    public DateTime? EffectiveDate
+    public System::DateTime? EffectiveDate
     {
         get
         {
             if (!this.Properties.TryGetValue("effective_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -120,14 +129,17 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
     /// <summary>
     /// An ISO 8601 format date that denotes when this credit balance should expire.
     /// </summary>
-    public DateTime? ExpiryDate
+    public System::DateTime? ExpiryDate
     {
         get
         {
             if (!this.Properties.TryGetValue("expiry_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
