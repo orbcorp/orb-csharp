@@ -39,7 +39,30 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     }
 
     /// <summary>
-    /// Amount already collected to apply to the customer's balance.
+    /// Mark all pending invoices that are payable as paid. If amount is also provided,
+    /// mark as paid and credit the difference to the customer's balance.
+    /// </summary>
+    public bool? MarkAsPaid
+    {
+        get
+        {
+            if (!this.BodyProperties.TryGetValue("mark_as_paid", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["mark_as_paid"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Amount already collected to apply to the customer's balance. If mark_as_paid
+    /// is also provided, credit the difference to the customer's balance.
     /// </summary>
     public string? PreviouslyCollectedAmount
     {
