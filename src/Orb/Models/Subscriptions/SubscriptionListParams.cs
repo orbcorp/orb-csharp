@@ -147,6 +147,24 @@ public sealed record class SubscriptionListParams : ParamsBase
         }
     }
 
+    public string? ExternalPlanID
+    {
+        get
+        {
+            if (!this.QueryProperties.TryGetValue("external_plan_id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.QueryProperties["external_plan_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     /// <summary>
     /// The number of items to fetch. Defaults to 20.
     /// </summary>
@@ -162,6 +180,24 @@ public sealed record class SubscriptionListParams : ParamsBase
         set
         {
             this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public string? PlanID
+    {
+        get
+        {
+            if (!this.QueryProperties.TryGetValue("plan_id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.QueryProperties["plan_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
