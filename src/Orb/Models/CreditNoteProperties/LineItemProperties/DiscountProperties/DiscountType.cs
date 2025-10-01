@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models.CreditNoteProperties.LineItemProperties.DiscountProperties;
@@ -39,7 +40,9 @@ sealed class DiscountTypeConverter : JsonConverter<DiscountType>
             {
                 DiscountType.Percentage => "percentage",
                 DiscountType.Amount => "amount",
-                _ => throw new System::ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

@@ -1,3 +1,4 @@
+using Orb.Core;
 using Customers = Orb.Models.Customers;
 using TaxConfigurationProperties = Orb.Models.Customers.CustomerUpdateByExternalIDParamsProperties.TaxConfigurationProperties;
 

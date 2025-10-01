@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.TopLevel;
 
@@ -14,10 +16,16 @@ public sealed record class TopLevelPingResponse : ModelBase, IFromRaw<TopLevelPi
         get
         {
             if (!this.Properties.TryGetValue("response", out JsonElement element))
-                throw new ArgumentOutOfRangeException("response", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'response' cannot be null",
+                    new ArgumentOutOfRangeException("response", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("response");
+                ?? throw new OrbInvalidDataException(
+                    "'response' cannot be null",
+                    new ArgumentNullException("response")
+                );
         }
         set
         {

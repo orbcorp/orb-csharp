@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -17,7 +19,10 @@ public sealed record class ConversionRateTier : ModelBase, IFromRaw<ConversionRa
         get
         {
             if (!this.Properties.TryGetValue("first_unit", out JsonElement element))
-                throw new ArgumentOutOfRangeException("first_unit", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'first_unit' cannot be null",
+                    new ArgumentOutOfRangeException("first_unit", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
@@ -38,10 +43,16 @@ public sealed record class ConversionRateTier : ModelBase, IFromRaw<ConversionRa
         get
         {
             if (!this.Properties.TryGetValue("unit_amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("unit_amount", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'unit_amount' cannot be null",
+                    new ArgumentOutOfRangeException("unit_amount", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("unit_amount");
+                ?? throw new OrbInvalidDataException(
+                    "'unit_amount' cannot be null",
+                    new ArgumentNullException("unit_amount")
+                );
         }
         set
         {

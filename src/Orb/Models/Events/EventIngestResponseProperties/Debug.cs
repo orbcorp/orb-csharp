@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Events.EventIngestResponseProperties;
 
@@ -18,10 +20,16 @@ public sealed record class Debug : ModelBase, IFromRaw<Debug>
         get
         {
             if (!this.Properties.TryGetValue("duplicate", out JsonElement element))
-                throw new ArgumentOutOfRangeException("duplicate", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'duplicate' cannot be null",
+                    new ArgumentOutOfRangeException("duplicate", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("duplicate");
+                ?? throw new OrbInvalidDataException(
+                    "'duplicate' cannot be null",
+                    new ArgumentNullException("duplicate")
+                );
         }
         set
         {
@@ -37,10 +45,16 @@ public sealed record class Debug : ModelBase, IFromRaw<Debug>
         get
         {
             if (!this.Properties.TryGetValue("ingested", out JsonElement element))
-                throw new ArgumentOutOfRangeException("ingested", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'ingested' cannot be null",
+                    new ArgumentOutOfRangeException("ingested", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("ingested");
+                ?? throw new OrbInvalidDataException(
+                    "'ingested' cannot be null",
+                    new ArgumentNullException("ingested")
+                );
         }
         set
         {

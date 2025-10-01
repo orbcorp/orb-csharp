@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using GroupedTieredPackageConfigProperties = Orb.Models.NewFloatingGroupedTieredPackagePriceProperties.GroupedTieredPackageConfigProperties;
 
 namespace Orb.Models.NewFloatingGroupedTieredPackagePriceProperties;
@@ -23,10 +25,16 @@ public sealed record class GroupedTieredPackageConfig
         get
         {
             if (!this.Properties.TryGetValue("grouping_key", out JsonElement element))
-                throw new ArgumentOutOfRangeException("grouping_key", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'grouping_key' cannot be null",
+                    new ArgumentOutOfRangeException("grouping_key", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("grouping_key");
+                ?? throw new OrbInvalidDataException(
+                    "'grouping_key' cannot be null",
+                    new ArgumentNullException("grouping_key")
+                );
         }
         set
         {
@@ -45,10 +53,16 @@ public sealed record class GroupedTieredPackageConfig
         get
         {
             if (!this.Properties.TryGetValue("package_size", out JsonElement element))
-                throw new ArgumentOutOfRangeException("package_size", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'package_size' cannot be null",
+                    new ArgumentOutOfRangeException("package_size", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("package_size");
+                ?? throw new OrbInvalidDataException(
+                    "'package_size' cannot be null",
+                    new ArgumentNullException("package_size")
+                );
         }
         set
         {
@@ -68,12 +82,19 @@ public sealed record class GroupedTieredPackageConfig
         get
         {
             if (!this.Properties.TryGetValue("tiers", out JsonElement element))
-                throw new ArgumentOutOfRangeException("tiers", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'tiers' cannot be null",
+                    new ArgumentOutOfRangeException("tiers", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<GroupedTieredPackageConfigProperties::Tier>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("tiers");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'tiers' cannot be null",
+                    new ArgumentNullException("tiers")
+                );
         }
         set
         {

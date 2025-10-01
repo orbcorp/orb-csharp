@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Events;
 
@@ -36,10 +38,16 @@ public sealed record class EventSearchParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("event_ids", out JsonElement element))
-                throw new ArgumentOutOfRangeException("event_ids", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'event_ids' cannot be null",
+                    new ArgumentOutOfRangeException("event_ids", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("event_ids");
+                ?? throw new OrbInvalidDataException(
+                    "'event_ids' cannot be null",
+                    new ArgumentNullException("event_ids")
+                );
         }
         set
         {
@@ -102,7 +110,7 @@ public sealed record class EventSearchParams : ParamsBase
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -111,7 +119,7 @@ public sealed record class EventSearchParams : ParamsBase
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

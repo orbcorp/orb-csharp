@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers;
 using Orb.Models.Plans;
 using Orb.Models.SubscriptionChanges.MutatedSubscriptionProperties;
@@ -17,10 +19,16 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("id");
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentNullException("id")
+                );
         }
         set
         {
@@ -61,15 +69,22 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("adjustment_intervals", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "adjustment_intervals",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'adjustment_intervals' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "adjustment_intervals",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<AdjustmentInterval>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("adjustment_intervals");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'adjustment_intervals' cannot be null",
+                    new ArgumentNullException("adjustment_intervals")
+                );
         }
         set
         {
@@ -113,15 +128,22 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     out JsonElement element
                 )
             )
-                throw new ArgumentOutOfRangeException(
-                    "billing_cycle_anchor_configuration",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'billing_cycle_anchor_configuration' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "billing_cycle_anchor_configuration",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<BillingCycleAnchorConfiguration>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("billing_cycle_anchor_configuration");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_cycle_anchor_configuration' cannot be null",
+                    new ArgumentNullException("billing_cycle_anchor_configuration")
+                );
         }
         set
         {
@@ -141,9 +163,12 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("billing_cycle_day", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "billing_cycle_day",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'billing_cycle_day' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "billing_cycle_day",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
@@ -162,7 +187,10 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
-                throw new ArgumentOutOfRangeException("created_at", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'created_at' cannot be null",
+                    new ArgumentOutOfRangeException("created_at", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
@@ -251,10 +279,16 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("customer", out JsonElement element))
-                throw new ArgumentOutOfRangeException("customer", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'customer' cannot be null",
+                    new ArgumentOutOfRangeException("customer", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<Customer>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("customer");
+                ?? throw new OrbInvalidDataException(
+                    "'customer' cannot be null",
+                    new ArgumentNullException("customer")
+                );
         }
         set
         {
@@ -296,15 +330,22 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("discount_intervals", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "discount_intervals",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'discount_intervals' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "discount_intervals",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<DiscountInterval>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("discount_intervals");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'discount_intervals' cannot be null",
+                    new ArgumentNullException("discount_intervals")
+                );
         }
         set
         {
@@ -343,15 +384,22 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
             if (
                 !this.Properties.TryGetValue("fixed_fee_quantity_schedule", out JsonElement element)
             )
-                throw new ArgumentOutOfRangeException(
-                    "fixed_fee_quantity_schedule",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'fixed_fee_quantity_schedule' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "fixed_fee_quantity_schedule",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<FixedFeeQuantityScheduleEntry>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("fixed_fee_quantity_schedule");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'fixed_fee_quantity_schedule' cannot be null",
+                    new ArgumentNullException("fixed_fee_quantity_schedule")
+                );
         }
         set
         {
@@ -389,15 +437,22 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("maximum_intervals", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "maximum_intervals",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'maximum_intervals' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "maximum_intervals",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<MaximumInterval>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("maximum_intervals");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'maximum_intervals' cannot be null",
+                    new ArgumentNullException("maximum_intervals")
+                );
         }
         set
         {
@@ -419,12 +474,19 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("metadata", out JsonElement element))
-                throw new ArgumentOutOfRangeException("metadata", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'metadata' cannot be null",
+                    new ArgumentOutOfRangeException("metadata", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<Dictionary<string, string>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("metadata");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'metadata' cannot be null",
+                    new ArgumentNullException("metadata")
+                );
         }
         set
         {
@@ -444,15 +506,22 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("minimum_intervals", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "minimum_intervals",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'minimum_intervals' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "minimum_intervals",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<MinimumInterval>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("minimum_intervals");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'minimum_intervals' cannot be null",
+                    new ArgumentNullException("minimum_intervals")
+                );
         }
         set
         {
@@ -471,10 +540,16 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("name", out JsonElement element))
-                throw new ArgumentOutOfRangeException("name", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("name");
+                ?? throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new ArgumentNullException("name")
+                );
         }
         set
         {
@@ -496,7 +571,10 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("net_terms", out JsonElement element))
-                throw new ArgumentOutOfRangeException("net_terms", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'net_terms' cannot be null",
+                    new ArgumentOutOfRangeException("net_terms", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
@@ -566,15 +644,19 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("price_intervals", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "price_intervals",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'price_intervals' cannot be null",
+                    new ArgumentOutOfRangeException("price_intervals", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<List<PriceInterval>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("price_intervals");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_intervals' cannot be null",
+                    new ArgumentNullException("price_intervals")
+                );
         }
         set
         {
@@ -614,7 +696,10 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("start_date", out JsonElement element))
-                throw new ArgumentOutOfRangeException("start_date", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'start_date' cannot be null",
+                    new ArgumentOutOfRangeException("start_date", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
@@ -632,7 +717,10 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("status", out JsonElement element))
-                throw new ArgumentOutOfRangeException("status", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'status' cannot be null",
+                    new ArgumentOutOfRangeException("status", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Status>>(
                 element,
@@ -653,12 +741,19 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (!this.Properties.TryGetValue("trial_info", out JsonElement element))
-                throw new ArgumentOutOfRangeException("trial_info", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'trial_info' cannot be null",
+                    new ArgumentOutOfRangeException("trial_info", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<SubscriptionTrialInfo>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("trial_info");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'trial_info' cannot be null",
+                    new ArgumentNullException("trial_info")
+                );
         }
         set
         {

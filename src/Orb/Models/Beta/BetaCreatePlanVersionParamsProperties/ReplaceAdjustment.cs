@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.ReplaceAdjustmentProperties;
 
 namespace Orb.Models.Beta.BetaCreatePlanVersionParamsProperties;
@@ -18,10 +20,16 @@ public sealed record class ReplaceAdjustment : ModelBase, IFromRaw<ReplaceAdjust
         get
         {
             if (!this.Properties.TryGetValue("adjustment", out JsonElement element))
-                throw new ArgumentOutOfRangeException("adjustment", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'adjustment' cannot be null",
+                    new ArgumentOutOfRangeException("adjustment", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<Adjustment>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("adjustment");
+                ?? throw new OrbInvalidDataException(
+                    "'adjustment' cannot be null",
+                    new ArgumentNullException("adjustment")
+                );
         }
         set
         {
@@ -40,13 +48,19 @@ public sealed record class ReplaceAdjustment : ModelBase, IFromRaw<ReplaceAdjust
         get
         {
             if (!this.Properties.TryGetValue("replaces_adjustment_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "replaces_adjustment_id",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'replaces_adjustment_id' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "replaces_adjustment_id",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("replaces_adjustment_id");
+                ?? throw new OrbInvalidDataException(
+                    "'replaces_adjustment_id' cannot be null",
+                    new ArgumentNullException("replaces_adjustment_id")
+                );
         }
         set
         {

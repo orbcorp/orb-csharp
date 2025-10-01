@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Events.Volume.EventVolumesProperties;
 
@@ -21,7 +23,10 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         get
         {
             if (!this.Properties.TryGetValue("count", out JsonElement element))
-                throw new ArgumentOutOfRangeException("count", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'count' cannot be null",
+                    new ArgumentOutOfRangeException("count", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
@@ -39,7 +44,10 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         get
         {
             if (!this.Properties.TryGetValue("timeframe_end", out JsonElement element))
-                throw new ArgumentOutOfRangeException("timeframe_end", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'timeframe_end' cannot be null",
+                    new ArgumentOutOfRangeException("timeframe_end", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
@@ -57,9 +65,9 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         get
         {
             if (!this.Properties.TryGetValue("timeframe_start", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "timeframe_start",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'timeframe_start' cannot be null",
+                    new ArgumentOutOfRangeException("timeframe_start", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);

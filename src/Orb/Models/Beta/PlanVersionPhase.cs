@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Beta.PlanVersionPhaseProperties;
 
 namespace Orb.Models.Beta;
@@ -15,10 +17,16 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("id");
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentNullException("id")
+                );
         }
         set
         {
@@ -95,10 +103,16 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
         get
         {
             if (!this.Properties.TryGetValue("name", out JsonElement element))
-                throw new ArgumentOutOfRangeException("name", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("name");
+                ?? throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new ArgumentNullException("name")
+                );
         }
         set
         {
@@ -117,7 +131,10 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
         get
         {
             if (!this.Properties.TryGetValue("order", out JsonElement element))
-                throw new ArgumentOutOfRangeException("order", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'order' cannot be null",
+                    new ArgumentOutOfRangeException("order", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }

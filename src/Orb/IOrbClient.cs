@@ -1,5 +1,7 @@
 using System;
 using System.Net.Http;
+using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Services.Alerts;
 using Orb.Services.Beta;
 using Orb.Services.Coupons;
@@ -60,4 +62,7 @@ public interface IOrbClient
     IDimensionalPriceGroupService DimensionalPriceGroups { get; }
 
     ISubscriptionChangeService SubscriptionChanges { get; }
+
+    Task<HttpResponse> Execute<T>(HttpRequest<T> request)
+        where T : ParamsBase;
 }

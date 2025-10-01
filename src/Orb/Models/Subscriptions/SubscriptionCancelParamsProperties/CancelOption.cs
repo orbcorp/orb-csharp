@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 
 namespace Orb.Models.Subscriptions.SubscriptionCancelParamsProperties;
 
@@ -45,7 +46,9 @@ sealed class CancelOptionConverter : JsonConverter<CancelOption>
                 CancelOption.EndOfSubscriptionTerm => "end_of_subscription_term",
                 CancelOption.Immediate => "immediate",
                 CancelOption.RequestedDate => "requested_date",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

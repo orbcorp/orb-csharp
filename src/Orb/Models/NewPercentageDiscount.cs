@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.NewPercentageDiscountProperties;
 
 namespace Orb.Models;
@@ -15,9 +17,9 @@ public sealed record class NewPercentageDiscount : ModelBase, IFromRaw<NewPercen
         get
         {
             if (!this.Properties.TryGetValue("adjustment_type", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "adjustment_type",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'adjustment_type' cannot be null",
+                    new ArgumentOutOfRangeException("adjustment_type", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, AdjustmentType>>(
@@ -39,9 +41,12 @@ public sealed record class NewPercentageDiscount : ModelBase, IFromRaw<NewPercen
         get
         {
             if (!this.Properties.TryGetValue("percentage_discount", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "percentage_discount",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'percentage_discount' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "percentage_discount",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.UnitConversionRateConfigProperties;
 
 namespace Orb.Models;
@@ -15,9 +17,12 @@ public sealed record class UnitConversionRateConfig : ModelBase, IFromRaw<UnitCo
         get
         {
             if (!this.Properties.TryGetValue("conversion_rate_type", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "conversion_rate_type",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'conversion_rate_type' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "conversion_rate_type",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, ConversionRateType>>(
@@ -39,12 +44,19 @@ public sealed record class UnitConversionRateConfig : ModelBase, IFromRaw<UnitCo
         get
         {
             if (!this.Properties.TryGetValue("unit_config", out JsonElement element))
-                throw new ArgumentOutOfRangeException("unit_config", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'unit_config' cannot be null",
+                    new ArgumentOutOfRangeException("unit_config", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ConversionRateUnitConfig>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("unit_config");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'unit_config' cannot be null",
+                    new ArgumentNullException("unit_config")
+                );
         }
         set
         {

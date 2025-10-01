@@ -1,6 +1,7 @@
 using System;
 using System.Net.Http;
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models.Customers.Costs.CostListParamsProperties;
 
 namespace Orb.Models.Customers.Costs;
@@ -205,7 +206,7 @@ public sealed record class CostListParams : ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

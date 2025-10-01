@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using InvoiceDateVariants = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.IncrementProperties.InvoiceSettingsProperties.InvoiceDateVariants;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.IncrementProperties.InvoiceSettingsProperties;
@@ -49,7 +50,7 @@ public abstract record class InvoiceDate
                 @dateTime(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new OrbInvalidDataException("Data did not match any variant of InvoiceDate");
         }
     }
 
@@ -62,7 +63,7 @@ public abstract record class InvoiceDate
         {
             InvoiceDateVariants::Date inner => @date(inner),
             InvoiceDateVariants::DateTime inner => @dateTime(inner),
-            _ => throw new InvalidOperationException(),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of InvoiceDate"),
         };
     }
 
@@ -77,7 +78,7 @@ sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
         JsonSerializerOptions options
     )
     {
-        List<JsonException> exceptions = [];
+        List<OrbInvalidDataException> exceptions = [];
 
         try
         {
@@ -87,7 +88,12 @@ sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant InvoiceDateVariants::Date",
+                    e
+                )
+            );
         }
 
         try
@@ -98,7 +104,12 @@ sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant InvoiceDateVariants::DateTime",
+                    e
+                )
+            );
         }
 
         throw new AggregateException(exceptions);
@@ -115,7 +126,7 @@ sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
             null => null,
             InvoiceDateVariants::Date(var @date) => @date,
             InvoiceDateVariants::DateTime(var @dateTime) => @dateTime,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of InvoiceDate"),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

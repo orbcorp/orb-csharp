@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models.InvoiceProperties.CustomerBalanceTransactionProperties;
@@ -35,7 +36,9 @@ sealed class TypeConverter : JsonConverter<Type>
             {
                 CustomerBalanceTransactionProperties.Type.Increment => "increment",
                 CustomerBalanceTransactionProperties.Type.Decrement => "decrement",
-                _ => throw new System::ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

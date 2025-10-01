@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Items.ItemProperties;
 
 namespace Orb.Models.Items;
@@ -20,10 +22,16 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("id");
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentNullException("id")
+                );
         }
         set
         {
@@ -39,7 +47,10 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
         get
         {
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
-                throw new ArgumentOutOfRangeException("created_at", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'created_at' cannot be null",
+                    new ArgumentOutOfRangeException("created_at", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
@@ -57,15 +68,22 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
         get
         {
             if (!this.Properties.TryGetValue("external_connections", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "external_connections",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'external_connections' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "external_connections",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<ExternalConnection>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("external_connections");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'external_connections' cannot be null",
+                    new ArgumentNullException("external_connections")
+                );
         }
         set
         {
@@ -87,12 +105,19 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
         get
         {
             if (!this.Properties.TryGetValue("metadata", out JsonElement element))
-                throw new ArgumentOutOfRangeException("metadata", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'metadata' cannot be null",
+                    new ArgumentOutOfRangeException("metadata", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<Dictionary<string, string>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("metadata");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'metadata' cannot be null",
+                    new ArgumentNullException("metadata")
+                );
         }
         set
         {
@@ -108,10 +133,16 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
         get
         {
             if (!this.Properties.TryGetValue("name", out JsonElement element))
-                throw new ArgumentOutOfRangeException("name", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("name");
+                ?? throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new ArgumentNullException("name")
+                );
         }
         set
         {

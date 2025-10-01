@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -22,13 +24,19 @@ public sealed record class MinimumInterval : ModelBase, IFromRaw<MinimumInterval
                     out JsonElement element
                 )
             )
-                throw new ArgumentOutOfRangeException(
-                    "applies_to_price_interval_ids",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'applies_to_price_interval_ids' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "applies_to_price_interval_ids",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("applies_to_price_interval_ids");
+                ?? throw new OrbInvalidDataException(
+                    "'applies_to_price_interval_ids' cannot be null",
+                    new ArgumentNullException("applies_to_price_interval_ids")
+                );
         }
         set
         {
@@ -68,12 +76,19 @@ public sealed record class MinimumInterval : ModelBase, IFromRaw<MinimumInterval
         get
         {
             if (!this.Properties.TryGetValue("filters", out JsonElement element))
-                throw new ArgumentOutOfRangeException("filters", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'filters' cannot be null",
+                    new ArgumentOutOfRangeException("filters", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<TransformPriceFilter>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("filters");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'filters' cannot be null",
+                    new ArgumentNullException("filters")
+                );
         }
         set
         {
@@ -93,13 +108,16 @@ public sealed record class MinimumInterval : ModelBase, IFromRaw<MinimumInterval
         get
         {
             if (!this.Properties.TryGetValue("minimum_amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "minimum_amount",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'minimum_amount' cannot be null",
+                    new ArgumentOutOfRangeException("minimum_amount", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("minimum_amount");
+                ?? throw new OrbInvalidDataException(
+                    "'minimum_amount' cannot be null",
+                    new ArgumentNullException("minimum_amount")
+                );
         }
         set
         {
@@ -118,7 +136,10 @@ public sealed record class MinimumInterval : ModelBase, IFromRaw<MinimumInterval
         get
         {
             if (!this.Properties.TryGetValue("start_date", out JsonElement element))
-                throw new ArgumentOutOfRangeException("start_date", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'start_date' cannot be null",
+                    new ArgumentOutOfRangeException("start_date", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }

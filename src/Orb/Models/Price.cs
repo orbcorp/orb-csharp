@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using PriceProperties = Orb.Models.PriceProperties;
 using PriceVariants = Orb.Models.PriceVariants;
 
@@ -419,7 +420,7 @@ public abstract record class Price
                 minimum(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new OrbInvalidDataException("Data did not match any variant of Price");
         }
     }
 
@@ -486,7 +487,7 @@ public abstract record class Price
             ),
             PriceVariants::CumulativeGroupedBulk inner => cumulativeGroupedBulk(inner),
             PriceVariants::Minimum inner => minimum(inner),
-            _ => throw new InvalidOperationException(),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };
     }
 
@@ -516,7 +517,7 @@ sealed class PriceConverter : JsonConverter<Price>
         {
             case "unit":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -531,14 +532,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::Unit",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "tiered":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -553,14 +559,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::Tiered",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "bulk":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -575,14 +586,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::Bulk",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "package":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -597,14 +613,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::Package",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "matrix":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -619,14 +640,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::Matrix",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "threshold_total_amount":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -642,14 +668,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::ThresholdTotalAmount",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "tiered_package":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -664,14 +695,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::TieredPackage",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "tiered_with_minimum":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -687,14 +723,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::TieredWithMinimum",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "grouped_tiered":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -709,14 +750,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::GroupedTiered",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "tiered_package_with_minimum":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -732,14 +778,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::TieredPackageWithMinimum",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "package_with_allocation":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -755,14 +806,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::PackageWithAllocation",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "unit_with_percent":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -777,14 +833,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::UnitWithPercent",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "matrix_with_allocation":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -800,14 +861,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::MatrixWithAllocation",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "tiered_with_proration":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -823,14 +889,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::TieredWithProration",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "unit_with_proration":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -846,14 +917,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::UnitWithProration",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "grouped_allocation":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -869,14 +945,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::GroupedAllocation",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "bulk_with_proration":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -892,14 +973,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::BulkWithProration",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "grouped_with_prorated_minimum":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -915,14 +1001,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::GroupedWithProratedMinimum",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "grouped_with_metered_minimum":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -938,14 +1029,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::GroupedWithMeteredMinimum",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "grouped_with_min_max_thresholds":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -961,14 +1057,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::GroupedWithMinMaxThresholds",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "matrix_with_display_name":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -984,14 +1085,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::MatrixWithDisplayName",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "grouped_tiered_package":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -1007,14 +1113,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::GroupedTieredPackage",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "max_group_tiered_package":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -1030,14 +1141,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::MaxGroupTieredPackage",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "scalable_matrix_with_unit_pricing":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -1053,14 +1169,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::ScalableMatrixWithUnitPricing",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "scalable_matrix_with_tiered_pricing":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -1076,14 +1197,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::ScalableMatrixWithTieredPricing",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "cumulative_grouped_bulk":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -1099,14 +1225,19 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::CumulativeGroupedBulk",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "minimum":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -1121,14 +1252,21 @@ sealed class PriceConverter : JsonConverter<Price>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::Minimum",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             default:
             {
-                throw new Exception();
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
             }
         }
     }
@@ -1174,7 +1312,7 @@ sealed class PriceConverter : JsonConverter<Price>
             PriceVariants::CumulativeGroupedBulk(var cumulativeGroupedBulk) =>
                 cumulativeGroupedBulk,
             PriceVariants::Minimum(var minimum) => minimum,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

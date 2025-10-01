@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models.Alerts.AlertProperties;
@@ -47,7 +48,9 @@ sealed class TypeConverter : JsonConverter<Type>
                 AlertProperties.Type.CreditBalanceRecovered => "credit_balance_recovered",
                 AlertProperties.Type.UsageExceeded => "usage_exceeded",
                 AlertProperties.Type.CostExceeded => "cost_exceeded",
-                _ => throw new System::ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

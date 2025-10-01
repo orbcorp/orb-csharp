@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models.Alerts.AlertCreateForSubscriptionParamsProperties;
@@ -38,7 +39,9 @@ sealed class TypeConverter : JsonConverter<Type>
             {
                 AlertCreateForSubscriptionParamsProperties.Type.UsageExceeded => "usage_exceeded",
                 AlertCreateForSubscriptionParamsProperties.Type.CostExceeded => "cost_exceeded",
-                _ => throw new System::ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

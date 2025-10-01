@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Alerts;
 
@@ -23,10 +25,16 @@ public sealed record class AlertUpdateParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("thresholds", out JsonElement element))
-                throw new ArgumentOutOfRangeException("thresholds", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'thresholds' cannot be null",
+                    new ArgumentOutOfRangeException("thresholds", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<Threshold>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("thresholds");
+                ?? throw new OrbInvalidDataException(
+                    "'thresholds' cannot be null",
+                    new ArgumentNullException("thresholds")
+                );
         }
         set
         {
@@ -48,7 +56,7 @@ public sealed record class AlertUpdateParams : ParamsBase
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -57,7 +65,7 @@ public sealed record class AlertUpdateParams : ParamsBase
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

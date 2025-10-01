@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using AdjustmentVariants = Orb.Models.Plans.PlanProperties.AdjustmentVariants;
 
 namespace Orb.Models.Plans.PlanProperties;
@@ -89,7 +90,7 @@ public abstract record class Adjustment
                 planPhaseMaximum(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
         }
     }
 
@@ -116,7 +117,7 @@ public abstract record class Adjustment
                 planPhasePercentageDiscount(inner),
             AdjustmentVariants::PlanPhaseMinimumAdjustment inner => planPhaseMinimum(inner),
             AdjustmentVariants::PlanPhaseMaximumAdjustment inner => planPhaseMaximum(inner),
-            _ => throw new InvalidOperationException(),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment"),
         };
     }
 
@@ -146,7 +147,7 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
         {
             case "usage_discount":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -163,14 +164,19 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant AdjustmentVariants::PlanPhaseUsageDiscountAdjustment",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "amount_discount":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -188,14 +194,19 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant AdjustmentVariants::PlanPhaseAmountDiscountAdjustment",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "percentage_discount":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -213,14 +224,19 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant AdjustmentVariants::PlanPhasePercentageDiscountAdjustment",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "minimum":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -235,14 +251,19 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant AdjustmentVariants::PlanPhaseMinimumAdjustment",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "maximum":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -257,14 +278,21 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant AdjustmentVariants::PlanPhaseMaximumAdjustment",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             default:
             {
-                throw new Exception();
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
             }
         }
     }
@@ -288,7 +316,7 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                 planPhaseMinimum,
             AdjustmentVariants::PlanPhaseMaximumAdjustment(var planPhaseMaximum) =>
                 planPhaseMaximum,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment"),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

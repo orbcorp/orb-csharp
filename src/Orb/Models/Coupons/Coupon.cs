@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using CouponProperties = Orb.Models.Coupons.CouponProperties;
 
 namespace Orb.Models.Coupons;
@@ -25,10 +27,16 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("id");
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentNullException("id")
+                );
         }
         set
         {
@@ -66,12 +74,19 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
         get
         {
             if (!this.Properties.TryGetValue("discount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("discount", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'discount' cannot be null",
+                    new ArgumentOutOfRangeException("discount", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<CouponProperties::Discount>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("discount");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'discount' cannot be null",
+                    new ArgumentNullException("discount")
+                );
         }
         set
         {
@@ -134,13 +149,16 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
         get
         {
             if (!this.Properties.TryGetValue("redemption_code", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "redemption_code",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'redemption_code' cannot be null",
+                    new ArgumentOutOfRangeException("redemption_code", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("redemption_code");
+                ?? throw new OrbInvalidDataException(
+                    "'redemption_code' cannot be null",
+                    new ArgumentNullException("redemption_code")
+                );
         }
         set
         {
@@ -159,9 +177,9 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
         get
         {
             if (!this.Properties.TryGetValue("times_redeemed", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "times_redeemed",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'times_redeemed' cannot be null",
+                    new ArgumentOutOfRangeException("times_redeemed", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);

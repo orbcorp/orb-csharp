@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using EndDateVariants = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.EditAdjustmentProperties.EndDateVariants;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.EditAdjustmentProperties;
@@ -49,7 +51,7 @@ public abstract record class EndDate
                 billingCycleRelative(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new OrbInvalidDataException("Data did not match any variant of EndDate");
         }
     }
 
@@ -62,7 +64,7 @@ public abstract record class EndDate
         {
             EndDateVariants::DateTime inner => @dateTime(inner),
             EndDateVariants::BillingCycleRelativeDate inner => billingCycleRelative(inner),
-            _ => throw new InvalidOperationException(),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of EndDate"),
         };
     }
 
@@ -77,7 +79,7 @@ sealed class EndDateConverter : JsonConverter<EndDate?>
         JsonSerializerOptions options
     )
     {
-        List<JsonException> exceptions = [];
+        List<OrbInvalidDataException> exceptions = [];
 
         try
         {
@@ -90,7 +92,12 @@ sealed class EndDateConverter : JsonConverter<EndDate?>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant EndDateVariants::BillingCycleRelativeDate",
+                    e
+                )
+            );
         }
 
         try
@@ -101,7 +108,12 @@ sealed class EndDateConverter : JsonConverter<EndDate?>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant EndDateVariants::DateTime",
+                    e
+                )
+            );
         }
 
         throw new AggregateException(exceptions);
@@ -115,7 +127,7 @@ sealed class EndDateConverter : JsonConverter<EndDate?>
             EndDateVariants::DateTime(var @dateTime) => @dateTime,
             EndDateVariants::BillingCycleRelativeDate(var billingCycleRelative) =>
                 billingCycleRelative,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of EndDate"),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

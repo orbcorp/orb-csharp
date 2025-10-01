@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models.Customers.CustomerUpdateByExternalIDParamsProperties;
 
 namespace Orb.Models.Customers;
@@ -532,7 +533,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -541,7 +542,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

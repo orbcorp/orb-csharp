@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.NewFloatingGroupedWithMeteredMinimumPriceProperties.GroupedWithMeteredMinimumConfigProperties;
 
@@ -20,13 +22,16 @@ public sealed record class ScalingFactor : ModelBase, IFromRaw<ScalingFactor>
         get
         {
             if (!this.Properties.TryGetValue("scaling_factor", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "scaling_factor",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'scaling_factor' cannot be null",
+                    new ArgumentOutOfRangeException("scaling_factor", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("scaling_factor");
+                ?? throw new OrbInvalidDataException(
+                    "'scaling_factor' cannot be null",
+                    new ArgumentNullException("scaling_factor")
+                );
         }
         set
         {
@@ -45,10 +50,16 @@ public sealed record class ScalingFactor : ModelBase, IFromRaw<ScalingFactor>
         get
         {
             if (!this.Properties.TryGetValue("scaling_value", out JsonElement element))
-                throw new ArgumentOutOfRangeException("scaling_value", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'scaling_value' cannot be null",
+                    new ArgumentOutOfRangeException("scaling_value", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("scaling_value");
+                ?? throw new OrbInvalidDataException(
+                    "'scaling_value' cannot be null",
+                    new ArgumentNullException("scaling_value")
+                );
         }
         set
         {

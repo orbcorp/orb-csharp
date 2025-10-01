@@ -1,3 +1,5 @@
+using Orb.Core;
+
 namespace Orb.Models.Prices.EvaluatePriceGroupProperties.GroupingValueVariants;
 
 public sealed record class String(string Value) : GroupingValue, IVariant<String, string>

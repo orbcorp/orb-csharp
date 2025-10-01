@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Customers.CustomerProperties;
 
@@ -17,12 +19,19 @@ public sealed record class Hierarchy : ModelBase, IFromRaw<Hierarchy>
         get
         {
             if (!this.Properties.TryGetValue("children", out JsonElement element))
-                throw new ArgumentOutOfRangeException("children", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'children' cannot be null",
+                    new ArgumentOutOfRangeException("children", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<CustomerMinified>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("children");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'children' cannot be null",
+                    new ArgumentNullException("children")
+                );
         }
         set
         {

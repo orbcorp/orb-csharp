@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Prices.EvaluatePriceGroupProperties;
 
 namespace Orb.Models.Prices;
@@ -18,10 +20,16 @@ public sealed record class EvaluatePriceGroup : ModelBase, IFromRaw<EvaluatePric
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new ArgumentOutOfRangeException("amount", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("amount");
+                ?? throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new ArgumentNullException("amount")
+                );
         }
         set
         {
@@ -40,15 +48,19 @@ public sealed record class EvaluatePriceGroup : ModelBase, IFromRaw<EvaluatePric
         get
         {
             if (!this.Properties.TryGetValue("grouping_values", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "grouping_values",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'grouping_values' cannot be null",
+                    new ArgumentOutOfRangeException("grouping_values", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<List<GroupingValue>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("grouping_values");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'grouping_values' cannot be null",
+                    new ArgumentNullException("grouping_values")
+                );
         }
         set
         {
@@ -67,7 +79,10 @@ public sealed record class EvaluatePriceGroup : ModelBase, IFromRaw<EvaluatePric
         get
         {
             if (!this.Properties.TryGetValue("quantity", out JsonElement element))
-                throw new ArgumentOutOfRangeException("quantity", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'quantity' cannot be null",
+                    new ArgumentOutOfRangeException("quantity", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }

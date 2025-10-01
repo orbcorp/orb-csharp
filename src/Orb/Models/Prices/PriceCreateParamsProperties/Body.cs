@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using Orb.Models.Prices.PriceCreateParamsProperties.BodyProperties;
 using BodyVariants = Orb.Models.Prices.PriceCreateParamsProperties.BodyVariants;
 
@@ -419,7 +420,7 @@ public abstract record class Body
                 newFloatingMinimumCompositePrice(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new OrbInvalidDataException("Data did not match any variant of Body");
         }
     }
 
@@ -545,7 +546,7 @@ public abstract record class Body
                 newFloatingCumulativeGroupedBulkPrice(inner),
             BodyVariants::NewFloatingMinimumCompositePrice inner =>
                 newFloatingMinimumCompositePrice(inner),
-            _ => throw new InvalidOperationException(),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of Body"),
         };
     }
 
@@ -575,7 +576,7 @@ sealed class BodyConverter : JsonConverter<Body>
         {
             case "unit":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -590,14 +591,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingUnitPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "tiered":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -612,14 +618,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingTieredPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "bulk":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -634,14 +645,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingBulkPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "package":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -656,14 +672,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingPackagePrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "matrix":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -678,14 +699,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingMatrixPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "threshold_total_amount":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -701,14 +727,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingThresholdTotalAmountPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "tiered_package":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -723,14 +754,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingTieredPackagePrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "tiered_with_minimum":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -746,14 +782,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingTieredWithMinimumPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "grouped_tiered":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -768,14 +809,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingGroupedTieredPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "tiered_package_with_minimum":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -793,14 +839,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingTieredPackageWithMinimumPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "package_with_allocation":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -818,14 +869,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingPackageWithAllocationPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "unit_with_percent":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -840,14 +896,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingUnitWithPercentPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "matrix_with_allocation":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -863,14 +924,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingMatrixWithAllocationPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "tiered_with_proration":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -886,14 +952,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingTieredWithProrationPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "unit_with_proration":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -909,14 +980,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingUnitWithProrationPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "grouped_allocation":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -932,14 +1008,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingGroupedAllocationPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "bulk_with_proration":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -955,14 +1036,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingBulkWithProrationPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "grouped_with_prorated_minimum":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -980,14 +1066,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingGroupedWithProratedMinimumPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "grouped_with_metered_minimum":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -1005,14 +1096,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingGroupedWithMeteredMinimumPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "grouped_with_min_max_thresholds":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -1027,14 +1123,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::GroupedWithMinMaxThresholds",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "matrix_with_display_name":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -1052,14 +1153,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingMatrixWithDisplayNamePrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "grouped_tiered_package":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -1075,14 +1181,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingGroupedTieredPackagePrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "max_group_tiered_package":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -1100,14 +1211,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingMaxGroupTieredPackagePrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "scalable_matrix_with_unit_pricing":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -1125,14 +1241,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingScalableMatrixWithUnitPricingPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "scalable_matrix_with_tiered_pricing":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -1150,14 +1271,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingScalableMatrixWithTieredPricingPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "cumulative_grouped_bulk":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -1175,14 +1301,19 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingCumulativeGroupedBulkPrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "minimum":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -1197,14 +1328,21 @@ sealed class BodyConverter : JsonConverter<Body>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::NewFloatingMinimumCompositePrice",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             default:
             {
-                throw new Exception();
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
             }
         }
     }
@@ -1282,7 +1420,7 @@ sealed class BodyConverter : JsonConverter<Body>
             ) => newFloatingCumulativeGroupedBulkPrice,
             BodyVariants::NewFloatingMinimumCompositePrice(var newFloatingMinimumCompositePrice) =>
                 newFloatingMinimumCompositePrice,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of Body"),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Invoices;
 
@@ -24,9 +26,12 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("payment_received_date", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "payment_received_date",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'payment_received_date' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "payment_received_date",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<DateOnly>(element, ModelBase.SerializerOptions);
@@ -93,7 +98,7 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -102,7 +107,7 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

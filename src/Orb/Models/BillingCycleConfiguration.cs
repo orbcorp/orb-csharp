@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.BillingCycleConfigurationProperties;
 
 namespace Orb.Models;
@@ -17,7 +19,10 @@ public sealed record class BillingCycleConfiguration
         get
         {
             if (!this.Properties.TryGetValue("duration", out JsonElement element))
-                throw new ArgumentOutOfRangeException("duration", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'duration' cannot be null",
+                    new ArgumentOutOfRangeException("duration", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
@@ -35,7 +40,10 @@ public sealed record class BillingCycleConfiguration
         get
         {
             if (!this.Properties.TryGetValue("duration_unit", out JsonElement element))
-                throw new ArgumentOutOfRangeException("duration_unit", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'duration_unit' cannot be null",
+                    new ArgumentOutOfRangeException("duration_unit", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, DurationUnit>>(
                 element,

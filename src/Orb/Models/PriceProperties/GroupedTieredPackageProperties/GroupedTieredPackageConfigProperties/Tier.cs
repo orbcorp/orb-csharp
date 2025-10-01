@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.PriceProperties.GroupedTieredPackageProperties.GroupedTieredPackageConfigProperties;
 
@@ -20,10 +22,16 @@ public sealed record class Tier : ModelBase, IFromRaw<Tier>
         get
         {
             if (!this.Properties.TryGetValue("per_unit", out JsonElement element))
-                throw new ArgumentOutOfRangeException("per_unit", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'per_unit' cannot be null",
+                    new ArgumentOutOfRangeException("per_unit", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("per_unit");
+                ?? throw new OrbInvalidDataException(
+                    "'per_unit' cannot be null",
+                    new ArgumentNullException("per_unit")
+                );
         }
         set
         {
@@ -42,13 +50,16 @@ public sealed record class Tier : ModelBase, IFromRaw<Tier>
         get
         {
             if (!this.Properties.TryGetValue("tier_lower_bound", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "tier_lower_bound",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'tier_lower_bound' cannot be null",
+                    new ArgumentOutOfRangeException("tier_lower_bound", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("tier_lower_bound");
+                ?? throw new OrbInvalidDataException(
+                    "'tier_lower_bound' cannot be null",
+                    new ArgumentNullException("tier_lower_bound")
+                );
         }
         set
         {

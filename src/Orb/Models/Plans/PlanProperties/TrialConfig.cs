@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Plans.PlanProperties.TrialConfigProperties;
 
 namespace Orb.Models.Plans.PlanProperties;
@@ -33,9 +35,12 @@ public sealed record class TrialConfig : ModelBase, IFromRaw<TrialConfig>
         get
         {
             if (!this.Properties.TryGetValue("trial_period_unit", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "trial_period_unit",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'trial_period_unit' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "trial_period_unit",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, TrialPeriodUnit>>(

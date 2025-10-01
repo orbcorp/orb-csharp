@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Plans.PlanCreateParamsProperties.PlanPhaseProperties;
 
 namespace Orb.Models.Plans.PlanCreateParamsProperties;
@@ -18,7 +20,10 @@ public sealed record class PlanPhase : ModelBase, IFromRaw<PlanPhase>
         get
         {
             if (!this.Properties.TryGetValue("order", out JsonElement element))
-                throw new ArgumentOutOfRangeException("order", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'order' cannot be null",
+                    new ArgumentOutOfRangeException("order", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Subscriptions.NewSubscriptionThresholdTotalAmountPriceProperties.ThresholdTotalAmountConfigProperties;
 
@@ -20,10 +22,16 @@ public sealed record class ConsumptionTable : ModelBase, IFromRaw<ConsumptionTab
         get
         {
             if (!this.Properties.TryGetValue("threshold", out JsonElement element))
-                throw new ArgumentOutOfRangeException("threshold", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'threshold' cannot be null",
+                    new ArgumentOutOfRangeException("threshold", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("threshold");
+                ?? throw new OrbInvalidDataException(
+                    "'threshold' cannot be null",
+                    new ArgumentNullException("threshold")
+                );
         }
         set
         {
@@ -42,10 +50,16 @@ public sealed record class ConsumptionTable : ModelBase, IFromRaw<ConsumptionTab
         get
         {
             if (!this.Properties.TryGetValue("total_amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("total_amount", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'total_amount' cannot be null",
+                    new ArgumentOutOfRangeException("total_amount", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("total_amount");
+                ?? throw new OrbInvalidDataException(
+                    "'total_amount' cannot be null",
+                    new ArgumentNullException("total_amount")
+                );
         }
         set
         {

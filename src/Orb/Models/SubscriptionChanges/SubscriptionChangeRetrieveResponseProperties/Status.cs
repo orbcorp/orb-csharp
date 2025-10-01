@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 
 namespace Orb.Models.SubscriptionChanges.SubscriptionChangeRetrieveResponseProperties;
 
@@ -38,7 +39,9 @@ sealed class StatusConverter : JsonConverter<Status>
                 Status.Pending => "pending",
                 Status.Applied => "applied",
                 Status.Cancelled => "cancelled",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

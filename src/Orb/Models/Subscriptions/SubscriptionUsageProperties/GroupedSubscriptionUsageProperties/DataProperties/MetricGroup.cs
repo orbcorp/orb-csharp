@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Subscriptions.SubscriptionUsageProperties.GroupedSubscriptionUsageProperties.DataProperties;
 
@@ -14,10 +16,16 @@ public sealed record class MetricGroup : ModelBase, IFromRaw<MetricGroup>
         get
         {
             if (!this.Properties.TryGetValue("property_key", out JsonElement element))
-                throw new ArgumentOutOfRangeException("property_key", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'property_key' cannot be null",
+                    new ArgumentOutOfRangeException("property_key", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("property_key");
+                ?? throw new OrbInvalidDataException(
+                    "'property_key' cannot be null",
+                    new ArgumentNullException("property_key")
+                );
         }
         set
         {
@@ -33,13 +41,16 @@ public sealed record class MetricGroup : ModelBase, IFromRaw<MetricGroup>
         get
         {
             if (!this.Properties.TryGetValue("property_value", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "property_value",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'property_value' cannot be null",
+                    new ArgumentOutOfRangeException("property_value", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("property_value");
+                ?? throw new OrbInvalidDataException(
+                    "'property_value' cannot be null",
+                    new ArgumentNullException("property_value")
+                );
         }
         set
         {

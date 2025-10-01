@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 
 namespace Orb.Models.NewAllocationPriceProperties;
 
@@ -47,7 +48,9 @@ sealed class CadenceConverter : JsonConverter<Cadence>
                 Cadence.Quarterly => "quarterly",
                 Cadence.SemiAnnual => "semi_annual",
                 Cadence.Annual => "annual",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

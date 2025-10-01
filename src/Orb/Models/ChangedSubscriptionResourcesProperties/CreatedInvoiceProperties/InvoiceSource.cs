@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 
 namespace Orb.Models.ChangedSubscriptionResourcesProperties.CreatedInvoiceProperties;
 
@@ -42,7 +43,9 @@ sealed class InvoiceSourceConverter : JsonConverter<InvoiceSource>
                 InvoiceSource.Subscription => "subscription",
                 InvoiceSource.Partial => "partial",
                 InvoiceSource.OneOff => "one_off",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

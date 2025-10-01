@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -39,7 +40,9 @@ sealed class BillingCycleRelativeDateConverter : JsonConverter<BillingCycleRelat
             {
                 BillingCycleRelativeDate.StartOfTerm => "start_of_term",
                 BillingCycleRelativeDate.EndOfTerm => "end_of_term",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -16,9 +18,9 @@ public sealed record class FixedFeeQuantityTransition
         get
         {
             if (!this.Properties.TryGetValue("effective_date", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "effective_date",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'effective_date' cannot be null",
+                    new ArgumentOutOfRangeException("effective_date", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
@@ -37,10 +39,16 @@ public sealed record class FixedFeeQuantityTransition
         get
         {
             if (!this.Properties.TryGetValue("price_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("price_id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'price_id' cannot be null",
+                    new ArgumentOutOfRangeException("price_id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("price_id");
+                ?? throw new OrbInvalidDataException(
+                    "'price_id' cannot be null",
+                    new ArgumentNullException("price_id")
+                );
         }
         set
         {
@@ -56,7 +64,10 @@ public sealed record class FixedFeeQuantityTransition
         get
         {
             if (!this.Properties.TryGetValue("quantity", out JsonElement element))
-                throw new ArgumentOutOfRangeException("quantity", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'quantity' cannot be null",
+                    new ArgumentOutOfRangeException("quantity", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }

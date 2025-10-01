@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 
 namespace Orb.Models.Customers.Credits.Ledger.VoidInitiatedLedgerEntryProperties;
 
@@ -39,7 +40,9 @@ sealed class EntryStatusConverter : JsonConverter<EntryStatus>
             {
                 EntryStatus.Committed => "committed",
                 EntryStatus.Pending => "pending",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

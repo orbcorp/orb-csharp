@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using Orb.Models.Customers.CustomerUpdateByExternalIDParamsProperties.TaxConfigurationProperties;
 using TaxConfigurationVariants = Orb.Models.Customers.CustomerUpdateByExternalIDParamsProperties.TaxConfigurationVariants;
 
@@ -71,7 +72,9 @@ public abstract record class TaxConfiguration
                 numeral(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of TaxConfiguration"
+                );
         }
     }
 
@@ -88,7 +91,9 @@ public abstract record class TaxConfiguration
             TaxConfigurationVariants::NewTaxJarConfiguration inner => newTaxJar(inner),
             TaxConfigurationVariants::NewSphereConfiguration inner => newSphere(inner),
             TaxConfigurationVariants::Numeral inner => numeral(inner),
-            _ => throw new InvalidOperationException(),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of TaxConfiguration"
+            ),
         };
     }
 
@@ -118,7 +123,7 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
         {
             case "avalara":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -135,14 +140,19 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant TaxConfigurationVariants::NewAvalaraTaxConfiguration",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "taxjar":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -157,14 +167,19 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant TaxConfigurationVariants::NewTaxJarConfiguration",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "sphere":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -179,14 +194,19 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant TaxConfigurationVariants::NewSphereConfiguration",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "numeral":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -198,14 +218,21 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant TaxConfigurationVariants::Numeral",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             default:
             {
-                throw new Exception();
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
             }
         }
     }
@@ -223,7 +250,9 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
             TaxConfigurationVariants::NewTaxJarConfiguration(var newTaxJar) => newTaxJar,
             TaxConfigurationVariants::NewSphereConfiguration(var newSphere) => newSphere,
             TaxConfigurationVariants::Numeral(var numeral) => numeral,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of TaxConfiguration"
+            ),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

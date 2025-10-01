@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 
 namespace Orb.Models.TransformPriceFilterProperties;
 
@@ -47,7 +48,9 @@ sealed class FieldConverter : JsonConverter<Field>
                 Field.PriceType => "price_type",
                 Field.Currency => "currency",
                 Field.PricingUnitID => "pricing_unit_id",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

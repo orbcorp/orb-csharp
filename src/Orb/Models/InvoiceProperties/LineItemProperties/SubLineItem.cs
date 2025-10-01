@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using SubLineItemVariants = Orb.Models.InvoiceProperties.LineItemProperties.SubLineItemVariants;
 
 namespace Orb.Models.InvoiceProperties.LineItemProperties;
@@ -57,7 +58,7 @@ public abstract record class SubLineItem
                 other(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new OrbInvalidDataException("Data did not match any variant of SubLineItem");
         }
     }
 
@@ -72,7 +73,7 @@ public abstract record class SubLineItem
             SubLineItemVariants::MatrixSubLineItem inner => matrix(inner),
             SubLineItemVariants::TierSubLineItem inner => tier(inner),
             SubLineItemVariants::OtherSubLineItem inner => other(inner),
-            _ => throw new InvalidOperationException(),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of SubLineItem"),
         };
     }
 
@@ -102,7 +103,7 @@ sealed class SubLineItemConverter : JsonConverter<SubLineItem>
         {
             case "matrix":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -114,14 +115,19 @@ sealed class SubLineItemConverter : JsonConverter<SubLineItem>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant SubLineItemVariants::MatrixSubLineItem",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "tier":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -133,14 +139,19 @@ sealed class SubLineItemConverter : JsonConverter<SubLineItem>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant SubLineItemVariants::TierSubLineItem",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "'null'":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -152,14 +163,21 @@ sealed class SubLineItemConverter : JsonConverter<SubLineItem>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant SubLineItemVariants::OtherSubLineItem",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             default:
             {
-                throw new Exception();
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
             }
         }
     }
@@ -175,7 +193,7 @@ sealed class SubLineItemConverter : JsonConverter<SubLineItem>
             SubLineItemVariants::MatrixSubLineItem(var matrix) => matrix,
             SubLineItemVariants::TierSubLineItem(var tier) => tier,
             SubLineItemVariants::OtherSubLineItem(var other) => other,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of SubLineItem"),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

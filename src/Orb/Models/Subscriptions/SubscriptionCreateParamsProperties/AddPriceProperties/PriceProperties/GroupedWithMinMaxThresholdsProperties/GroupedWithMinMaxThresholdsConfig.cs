@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties;
 
@@ -22,10 +24,16 @@ public sealed record class GroupedWithMinMaxThresholdsConfig
         get
         {
             if (!this.Properties.TryGetValue("grouping_key", out JsonElement element))
-                throw new ArgumentOutOfRangeException("grouping_key", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'grouping_key' cannot be null",
+                    new ArgumentOutOfRangeException("grouping_key", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("grouping_key");
+                ?? throw new OrbInvalidDataException(
+                    "'grouping_key' cannot be null",
+                    new ArgumentNullException("grouping_key")
+                );
         }
         set
         {
@@ -44,13 +52,16 @@ public sealed record class GroupedWithMinMaxThresholdsConfig
         get
         {
             if (!this.Properties.TryGetValue("maximum_charge", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "maximum_charge",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'maximum_charge' cannot be null",
+                    new ArgumentOutOfRangeException("maximum_charge", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("maximum_charge");
+                ?? throw new OrbInvalidDataException(
+                    "'maximum_charge' cannot be null",
+                    new ArgumentNullException("maximum_charge")
+                );
         }
         set
         {
@@ -69,13 +80,16 @@ public sealed record class GroupedWithMinMaxThresholdsConfig
         get
         {
             if (!this.Properties.TryGetValue("minimum_charge", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "minimum_charge",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'minimum_charge' cannot be null",
+                    new ArgumentOutOfRangeException("minimum_charge", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("minimum_charge");
+                ?? throw new OrbInvalidDataException(
+                    "'minimum_charge' cannot be null",
+                    new ArgumentNullException("minimum_charge")
+                );
         }
         set
         {
@@ -94,10 +108,16 @@ public sealed record class GroupedWithMinMaxThresholdsConfig
         get
         {
             if (!this.Properties.TryGetValue("per_unit_rate", out JsonElement element))
-                throw new ArgumentOutOfRangeException("per_unit_rate", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'per_unit_rate' cannot be null",
+                    new ArgumentOutOfRangeException("per_unit_rate", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("per_unit_rate");
+                ?? throw new OrbInvalidDataException(
+                    "'per_unit_rate' cannot be null",
+                    new ArgumentNullException("per_unit_rate")
+                );
         }
         set
         {

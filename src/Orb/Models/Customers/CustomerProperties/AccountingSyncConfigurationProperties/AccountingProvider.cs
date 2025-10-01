@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers.CustomerProperties.AccountingSyncConfigurationProperties.AccountingProviderProperties;
 
 namespace Orb.Models.Customers.CustomerProperties.AccountingSyncConfigurationProperties;
@@ -33,7 +35,10 @@ public sealed record class AccountingProvider : ModelBase, IFromRaw<AccountingPr
         get
         {
             if (!this.Properties.TryGetValue("provider_type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("provider_type", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'provider_type' cannot be null",
+                    new ArgumentOutOfRangeException("provider_type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, ProviderType>>(
                 element,

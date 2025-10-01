@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.VoidProperties;
 using System = System;
 
@@ -19,9 +21,9 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new System::ArgumentOutOfRangeException("amount", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
@@ -43,13 +45,16 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
         get
         {
             if (!this.Properties.TryGetValue("block_id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "block_id",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'block_id' cannot be null",
+                    new System::ArgumentOutOfRangeException("block_id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("block_id");
+                ?? throw new OrbInvalidDataException(
+                    "'block_id' cannot be null",
+                    new System::ArgumentNullException("block_id")
+                );
         }
         set
         {
@@ -65,9 +70,12 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
         get
         {
             if (!this.Properties.TryGetValue("entry_type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "entry_type",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "entry_type",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);

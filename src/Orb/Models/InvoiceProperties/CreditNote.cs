@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.InvoiceProperties;
 
@@ -14,10 +16,16 @@ public sealed record class CreditNote : ModelBase, IFromRaw<CreditNote>
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("id");
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentNullException("id")
+                );
         }
         set
         {
@@ -33,13 +41,19 @@ public sealed record class CreditNote : ModelBase, IFromRaw<CreditNote>
         get
         {
             if (!this.Properties.TryGetValue("credit_note_number", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "credit_note_number",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'credit_note_number' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "credit_note_number",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("credit_note_number");
+                ?? throw new OrbInvalidDataException(
+                    "'credit_note_number' cannot be null",
+                    new ArgumentNullException("credit_note_number")
+                );
         }
         set
         {
@@ -76,10 +90,16 @@ public sealed record class CreditNote : ModelBase, IFromRaw<CreditNote>
         get
         {
             if (!this.Properties.TryGetValue("reason", out JsonElement element))
-                throw new ArgumentOutOfRangeException("reason", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'reason' cannot be null",
+                    new ArgumentOutOfRangeException("reason", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("reason");
+                ?? throw new OrbInvalidDataException(
+                    "'reason' cannot be null",
+                    new ArgumentNullException("reason")
+                );
         }
         set
         {
@@ -95,10 +115,16 @@ public sealed record class CreditNote : ModelBase, IFromRaw<CreditNote>
         get
         {
             if (!this.Properties.TryGetValue("total", out JsonElement element))
-                throw new ArgumentOutOfRangeException("total", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'total' cannot be null",
+                    new ArgumentOutOfRangeException("total", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("total");
+                ?? throw new OrbInvalidDataException(
+                    "'total' cannot be null",
+                    new ArgumentNullException("total")
+                );
         }
         set
         {
@@ -114,10 +140,16 @@ public sealed record class CreditNote : ModelBase, IFromRaw<CreditNote>
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("type", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentOutOfRangeException("type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("type");
+                ?? throw new OrbInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentNullException("type")
+                );
         }
         set
         {

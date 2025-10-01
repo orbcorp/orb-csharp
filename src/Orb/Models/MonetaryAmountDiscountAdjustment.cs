@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.MonetaryAmountDiscountAdjustmentProperties;
 
 namespace Orb.Models;
@@ -17,10 +19,16 @@ public sealed record class MonetaryAmountDiscountAdjustment
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("id");
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentNullException("id")
+                );
         }
         set
         {
@@ -36,9 +44,9 @@ public sealed record class MonetaryAmountDiscountAdjustment
         get
         {
             if (!this.Properties.TryGetValue("adjustment_type", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "adjustment_type",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'adjustment_type' cannot be null",
+                    new ArgumentOutOfRangeException("adjustment_type", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, AdjustmentType>>(
@@ -63,10 +71,16 @@ public sealed record class MonetaryAmountDiscountAdjustment
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new ArgumentOutOfRangeException("amount", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("amount");
+                ?? throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new ArgumentNullException("amount")
+                );
         }
         set
         {
@@ -86,13 +100,16 @@ public sealed record class MonetaryAmountDiscountAdjustment
         get
         {
             if (!this.Properties.TryGetValue("amount_discount", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "amount_discount",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'amount_discount' cannot be null",
+                    new ArgumentOutOfRangeException("amount_discount", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("amount_discount");
+                ?? throw new OrbInvalidDataException(
+                    "'amount_discount' cannot be null",
+                    new ArgumentNullException("amount_discount")
+                );
         }
         set
         {
@@ -111,13 +128,19 @@ public sealed record class MonetaryAmountDiscountAdjustment
         get
         {
             if (!this.Properties.TryGetValue("applies_to_price_ids", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "applies_to_price_ids",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'applies_to_price_ids' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "applies_to_price_ids",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("applies_to_price_ids");
+                ?? throw new OrbInvalidDataException(
+                    "'applies_to_price_ids' cannot be null",
+                    new ArgumentNullException("applies_to_price_ids")
+                );
         }
         set
         {
@@ -136,12 +159,19 @@ public sealed record class MonetaryAmountDiscountAdjustment
         get
         {
             if (!this.Properties.TryGetValue("filters", out JsonElement element))
-                throw new ArgumentOutOfRangeException("filters", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'filters' cannot be null",
+                    new ArgumentOutOfRangeException("filters", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<TransformPriceFilter>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("filters");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'filters' cannot be null",
+                    new ArgumentNullException("filters")
+                );
         }
         set
         {
@@ -161,9 +191,9 @@ public sealed record class MonetaryAmountDiscountAdjustment
         get
         {
             if (!this.Properties.TryGetValue("is_invoice_level", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "is_invoice_level",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'is_invoice_level' cannot be null",
+                    new ArgumentOutOfRangeException("is_invoice_level", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);

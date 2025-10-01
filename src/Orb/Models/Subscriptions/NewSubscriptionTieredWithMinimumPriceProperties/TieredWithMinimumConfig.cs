@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using TieredWithMinimumConfigProperties = Orb.Models.Subscriptions.NewSubscriptionTieredWithMinimumPriceProperties.TieredWithMinimumConfigProperties;
 
 namespace Orb.Models.Subscriptions.NewSubscriptionTieredWithMinimumPriceProperties;
@@ -22,12 +24,19 @@ public sealed record class TieredWithMinimumConfig : ModelBase, IFromRaw<TieredW
         get
         {
             if (!this.Properties.TryGetValue("tiers", out JsonElement element))
-                throw new ArgumentOutOfRangeException("tiers", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'tiers' cannot be null",
+                    new ArgumentOutOfRangeException("tiers", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<TieredWithMinimumConfigProperties::Tier>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("tiers");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'tiers' cannot be null",
+                    new ArgumentNullException("tiers")
+                );
         }
         set
         {

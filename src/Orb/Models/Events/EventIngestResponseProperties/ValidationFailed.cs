@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Events.EventIngestResponseProperties;
 
@@ -17,13 +19,16 @@ public sealed record class ValidationFailed : ModelBase, IFromRaw<ValidationFail
         get
         {
             if (!this.Properties.TryGetValue("idempotency_key", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "idempotency_key",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'idempotency_key' cannot be null",
+                    new ArgumentOutOfRangeException("idempotency_key", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("idempotency_key");
+                ?? throw new OrbInvalidDataException(
+                    "'idempotency_key' cannot be null",
+                    new ArgumentNullException("idempotency_key")
+                );
         }
         set
         {
@@ -42,13 +47,19 @@ public sealed record class ValidationFailed : ModelBase, IFromRaw<ValidationFail
         get
         {
             if (!this.Properties.TryGetValue("validation_errors", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "validation_errors",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'validation_errors' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "validation_errors",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("validation_errors");
+                ?? throw new OrbInvalidDataException(
+                    "'validation_errors' cannot be null",
+                    new ArgumentNullException("validation_errors")
+                );
         }
         set
         {

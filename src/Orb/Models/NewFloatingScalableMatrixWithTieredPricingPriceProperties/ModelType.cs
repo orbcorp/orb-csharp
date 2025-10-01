@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 
 namespace Orb.Models.NewFloatingScalableMatrixWithTieredPricingPriceProperties;
 
@@ -39,7 +40,9 @@ sealed class ModelTypeConverter : JsonConverter<ModelType>
             value switch
             {
                 ModelType.ScalableMatrixWithTieredPricing => "scalable_matrix_with_tiered_pricing",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

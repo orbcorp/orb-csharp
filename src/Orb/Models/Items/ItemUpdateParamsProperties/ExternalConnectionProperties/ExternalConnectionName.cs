@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 
 namespace Orb.Models.Items.ItemUpdateParamsProperties.ExternalConnectionProperties;
 
@@ -57,7 +58,9 @@ sealed class ExternalConnectionNameConverter : JsonConverter<ExternalConnectionN
                 ExternalConnectionName.Avalara => "avalara",
                 ExternalConnectionName.Anrok => "anrok",
                 ExternalConnectionName.Numeral => "numeral",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

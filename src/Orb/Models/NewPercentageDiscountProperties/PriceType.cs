@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 
 namespace Orb.Models.NewPercentageDiscountProperties;
 
@@ -51,7 +52,9 @@ sealed class PriceTypeConverter : JsonConverter<PriceType>
                 PriceType.FixedInArrears => "fixed_in_arrears",
                 PriceType.Fixed => "fixed",
                 PriceType.InArrears => "in_arrears",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

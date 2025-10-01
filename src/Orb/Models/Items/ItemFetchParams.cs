@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using Orb.Core;
 
 namespace Orb.Models.Items;
 
@@ -20,7 +21,7 @@ public sealed record class ItemFetchParams : ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

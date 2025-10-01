@@ -1,5 +1,8 @@
 using System;
 using System.Net.Http;
+using System.Threading.Tasks;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Services.Alerts;
 using Orb.Services.Beta;
 using Orb.Services.Coupons;
@@ -34,7 +37,10 @@ public sealed class OrbClient : IOrbClient
 
     Lazy<string> _apiKey = new(() =>
         Environment.GetEnvironmentVariable("ORB_API_KEY")
-        ?? throw new ArgumentNullException(nameof(APIKey))
+        ?? throw new OrbInvalidDataException(
+            string.Format("{0} cannot be null", nameof(APIKey)),
+            new ArgumentNullException(nameof(APIKey))
+        )
     );
     public string APIKey
     {
@@ -145,6 +151,46 @@ public sealed class OrbClient : IOrbClient
     public ISubscriptionChangeService SubscriptionChanges
     {
         get { return _subscriptionChanges.Value; }
+    }
+
+    public async Task<HttpResponse> Execute<T>(HttpRequest<T> request)
+        where T : ParamsBase
+    {
+        using HttpRequestMessage requestMessage = new(request.Method, request.Params.Url(this))
+        {
+            Content = request.Params.BodyContent(),
+        };
+        request.Params.AddHeadersToRequest(requestMessage, this);
+        HttpResponseMessage responseMessage;
+        try
+        {
+            responseMessage = await this
+                .HttpClient.SendAsync(requestMessage, HttpCompletionOption.ResponseHeadersRead)
+                .ConfigureAwait(false);
+        }
+        catch (HttpRequestException e1)
+        {
+            throw new OrbIOException("I/O exception", e1);
+        }
+        if (!responseMessage.IsSuccessStatusCode)
+        {
+            try
+            {
+                throw OrbExceptionFactory.CreateApiException(
+                    responseMessage.StatusCode,
+                    await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false)
+                );
+            }
+            catch (HttpRequestException e)
+            {
+                throw new OrbIOException("I/O Exception", e);
+            }
+            finally
+            {
+                responseMessage.Dispose();
+            }
+        }
+        return new() { Message = responseMessage };
     }
 
     public OrbClient()

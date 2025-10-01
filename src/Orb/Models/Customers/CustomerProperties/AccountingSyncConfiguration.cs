@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers.CustomerProperties.AccountingSyncConfigurationProperties;
 
 namespace Orb.Models.Customers.CustomerProperties;
@@ -17,15 +19,22 @@ public sealed record class AccountingSyncConfiguration
         get
         {
             if (!this.Properties.TryGetValue("accounting_providers", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "accounting_providers",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'accounting_providers' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "accounting_providers",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<AccountingProvider>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("accounting_providers");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'accounting_providers' cannot be null",
+                    new ArgumentNullException("accounting_providers")
+                );
         }
         set
         {
@@ -41,7 +50,10 @@ public sealed record class AccountingSyncConfiguration
         get
         {
             if (!this.Properties.TryGetValue("excluded", out JsonElement element))
-                throw new ArgumentOutOfRangeException("excluded", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'excluded' cannot be null",
+                    new ArgumentOutOfRangeException("excluded", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }

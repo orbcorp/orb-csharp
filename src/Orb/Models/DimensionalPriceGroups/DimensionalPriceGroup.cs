@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.DimensionalPriceGroups;
 
@@ -19,10 +21,16 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("id");
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentNullException("id")
+                );
         }
         set
         {
@@ -42,13 +50,19 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
         get
         {
             if (!this.Properties.TryGetValue("billable_metric_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "billable_metric_id",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'billable_metric_id' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "billable_metric_id",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("billable_metric_id");
+                ?? throw new OrbInvalidDataException(
+                    "'billable_metric_id' cannot be null",
+                    new ArgumentNullException("billable_metric_id")
+                );
         }
         set
         {
@@ -67,10 +81,16 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
         get
         {
             if (!this.Properties.TryGetValue("dimensions", out JsonElement element))
-                throw new ArgumentOutOfRangeException("dimensions", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'dimensions' cannot be null",
+                    new ArgumentOutOfRangeException("dimensions", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("dimensions");
+                ?? throw new OrbInvalidDataException(
+                    "'dimensions' cannot be null",
+                    new ArgumentNullException("dimensions")
+                );
         }
         set
         {
@@ -116,12 +136,19 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
         get
         {
             if (!this.Properties.TryGetValue("metadata", out JsonElement element))
-                throw new ArgumentOutOfRangeException("metadata", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'metadata' cannot be null",
+                    new ArgumentOutOfRangeException("metadata", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<Dictionary<string, string>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("metadata");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'metadata' cannot be null",
+                    new ArgumentNullException("metadata")
+                );
         }
         set
         {
@@ -140,10 +167,16 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
         get
         {
             if (!this.Properties.TryGetValue("name", out JsonElement element))
-                throw new ArgumentOutOfRangeException("name", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("name");
+                ?? throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new ArgumentNullException("name")
+                );
         }
         set
         {

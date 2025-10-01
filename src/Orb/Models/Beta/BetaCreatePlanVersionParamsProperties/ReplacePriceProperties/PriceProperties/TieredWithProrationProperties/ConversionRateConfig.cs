@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using ConversionRateConfigVariants = Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.TieredWithProrationProperties.ConversionRateConfigVariants;
 
 namespace Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.TieredWithProrationProperties;
@@ -44,7 +45,9 @@ public abstract record class ConversionRateConfig
                 tiered(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of ConversionRateConfig"
+                );
         }
     }
 
@@ -57,7 +60,9 @@ public abstract record class ConversionRateConfig
         {
             ConversionRateConfigVariants::UnitConversionRateConfig inner => unit(inner),
             ConversionRateConfigVariants::TieredConversionRateConfig inner => tiered(inner),
-            _ => throw new InvalidOperationException(),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of ConversionRateConfig"
+            ),
         };
     }
 
@@ -87,7 +92,7 @@ sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig>
         {
             case "unit":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -104,14 +109,19 @@ sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant ConversionRateConfigVariants::UnitConversionRateConfig",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "tiered":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -128,14 +138,21 @@ sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant ConversionRateConfigVariants::TieredConversionRateConfig",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             default:
             {
-                throw new Exception();
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
             }
         }
     }
@@ -150,7 +167,9 @@ sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig>
         {
             ConversionRateConfigVariants::UnitConversionRateConfig(var unit) => unit,
             ConversionRateConfigVariants::TieredConversionRateConfig(var tiered) => tiered,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of ConversionRateConfig"
+            ),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

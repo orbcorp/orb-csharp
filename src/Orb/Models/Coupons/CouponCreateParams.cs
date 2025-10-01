@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
 using CouponCreateParamsProperties = Orb.Models.Coupons.CouponCreateParamsProperties;
 
 namespace Orb.Models.Coupons;
@@ -20,12 +22,19 @@ public sealed record class CouponCreateParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("discount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("discount", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'discount' cannot be null",
+                    new ArgumentOutOfRangeException("discount", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<CouponCreateParamsProperties::Discount>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("discount");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'discount' cannot be null",
+                    new ArgumentNullException("discount")
+                );
         }
         set
         {
@@ -44,13 +53,16 @@ public sealed record class CouponCreateParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("redemption_code", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "redemption_code",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'redemption_code' cannot be null",
+                    new ArgumentOutOfRangeException("redemption_code", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("redemption_code");
+                ?? throw new OrbInvalidDataException(
+                    "'redemption_code' cannot be null",
+                    new ArgumentNullException("redemption_code")
+                );
         }
         set
         {
@@ -113,7 +125,7 @@ public sealed record class CouponCreateParams : ParamsBase
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -122,7 +134,7 @@ public sealed record class CouponCreateParams : ParamsBase
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

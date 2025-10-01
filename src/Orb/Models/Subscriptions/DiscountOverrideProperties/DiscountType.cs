@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 
 namespace Orb.Models.Subscriptions.DiscountOverrideProperties;
 
@@ -42,7 +43,9 @@ sealed class DiscountTypeConverter : JsonConverter<DiscountType>
                 DiscountType.Percentage => "percentage",
                 DiscountType.Usage => "usage",
                 DiscountType.Amount => "amount",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

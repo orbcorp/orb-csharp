@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.CreditNotes.CreditNoteCreateParamsProperties;
 
@@ -17,10 +19,16 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new ArgumentOutOfRangeException("amount", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("amount");
+                ?? throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new ArgumentNullException("amount")
+                );
         }
         set
         {
@@ -39,13 +47,19 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
         get
         {
             if (!this.Properties.TryGetValue("invoice_line_item_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "invoice_line_item_id",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'invoice_line_item_id' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "invoice_line_item_id",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("invoice_line_item_id");
+                ?? throw new OrbInvalidDataException(
+                    "'invoice_line_item_id' cannot be null",
+                    new ArgumentNullException("invoice_line_item_id")
+                );
         }
         set
         {

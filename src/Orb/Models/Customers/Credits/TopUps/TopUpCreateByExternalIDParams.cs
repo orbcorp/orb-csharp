@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers.Credits.TopUps.TopUpCreateByExternalIDParamsProperties;
 
 namespace Orb.Models.Customers.Credits.TopUps;
@@ -29,10 +31,16 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new ArgumentOutOfRangeException("amount", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("amount");
+                ?? throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new ArgumentNullException("amount")
+                );
         }
         set
         {
@@ -52,10 +60,16 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("currency", out JsonElement element))
-                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'currency' cannot be null",
+                    new ArgumentOutOfRangeException("currency", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("currency");
+                ?? throw new OrbInvalidDataException(
+                    "'currency' cannot be null",
+                    new ArgumentNullException("currency")
+                );
         }
         set
         {
@@ -74,13 +88,16 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("invoice_settings", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "invoice_settings",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'invoice_settings' cannot be null",
+                    new ArgumentOutOfRangeException("invoice_settings", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<InvoiceSettings>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("invoice_settings");
+                ?? throw new OrbInvalidDataException(
+                    "'invoice_settings' cannot be null",
+                    new ArgumentNullException("invoice_settings")
+                );
         }
         set
         {
@@ -99,13 +116,19 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("per_unit_cost_basis", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "per_unit_cost_basis",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'per_unit_cost_basis' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "per_unit_cost_basis",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("per_unit_cost_basis");
+                ?? throw new OrbInvalidDataException(
+                    "'per_unit_cost_basis' cannot be null",
+                    new ArgumentNullException("per_unit_cost_basis")
+                );
         }
         set
         {
@@ -125,10 +148,16 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("threshold", out JsonElement element))
-                throw new ArgumentOutOfRangeException("threshold", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'threshold' cannot be null",
+                    new ArgumentOutOfRangeException("threshold", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("threshold");
+                ?? throw new OrbInvalidDataException(
+                    "'threshold' cannot be null",
+                    new ArgumentNullException("threshold")
+                );
         }
         set
         {
@@ -221,7 +250,7 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -230,7 +259,7 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

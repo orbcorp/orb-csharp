@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Beta.PlanVersionProperties;
 
 namespace Orb.Models.Beta;
@@ -23,12 +25,19 @@ public sealed record class PlanVersion : ModelBase, IFromRaw<PlanVersion>
         get
         {
             if (!this.Properties.TryGetValue("adjustments", out JsonElement element))
-                throw new ArgumentOutOfRangeException("adjustments", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'adjustments' cannot be null",
+                    new ArgumentOutOfRangeException("adjustments", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<Adjustment>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("adjustments");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'adjustments' cannot be null",
+                    new ArgumentNullException("adjustments")
+                );
         }
         set
         {
@@ -44,7 +53,10 @@ public sealed record class PlanVersion : ModelBase, IFromRaw<PlanVersion>
         get
         {
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
-                throw new ArgumentOutOfRangeException("created_at", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'created_at' cannot be null",
+                    new ArgumentOutOfRangeException("created_at", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
@@ -87,10 +99,16 @@ public sealed record class PlanVersion : ModelBase, IFromRaw<PlanVersion>
         get
         {
             if (!this.Properties.TryGetValue("prices", out JsonElement element))
-                throw new ArgumentOutOfRangeException("prices", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'prices' cannot be null",
+                    new ArgumentOutOfRangeException("prices", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<Price>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("prices");
+                ?? throw new OrbInvalidDataException(
+                    "'prices' cannot be null",
+                    new ArgumentNullException("prices")
+                );
         }
         set
         {
@@ -106,7 +124,10 @@ public sealed record class PlanVersion : ModelBase, IFromRaw<PlanVersion>
         get
         {
             if (!this.Properties.TryGetValue("version", out JsonElement element))
-                throw new ArgumentOutOfRangeException("version", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'version' cannot be null",
+                    new ArgumentOutOfRangeException("version", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }

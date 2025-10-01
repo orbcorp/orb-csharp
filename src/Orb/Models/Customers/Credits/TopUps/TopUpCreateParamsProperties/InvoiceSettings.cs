@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Customers.Credits.TopUps.TopUpCreateParamsProperties;
 
@@ -21,9 +23,9 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
         get
         {
             if (!this.Properties.TryGetValue("auto_collection", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "auto_collection",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'auto_collection' cannot be null",
+                    new ArgumentOutOfRangeException("auto_collection", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
@@ -47,7 +49,10 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
         get
         {
             if (!this.Properties.TryGetValue("net_terms", out JsonElement element))
-                throw new ArgumentOutOfRangeException("net_terms", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'net_terms' cannot be null",
+                    new ArgumentOutOfRangeException("net_terms", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }

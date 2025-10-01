@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using LineItemProperties = Orb.Models.CreditNoteProperties.LineItemProperties;
 using Models = Orb.Models;
 using System = System;
@@ -19,10 +21,16 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("id");
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new System::ArgumentNullException("id")
+                );
         }
         set
         {
@@ -41,13 +49,16 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new System::ArgumentOutOfRangeException("amount", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("amount");
+                ?? throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new System::ArgumentNullException("amount")
+                );
         }
         set
         {
@@ -66,13 +77,16 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
         get
         {
             if (!this.Properties.TryGetValue("item_id", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "item_id",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'item_id' cannot be null",
+                    new System::ArgumentOutOfRangeException("item_id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("item_id");
+                ?? throw new OrbInvalidDataException(
+                    "'item_id' cannot be null",
+                    new System::ArgumentNullException("item_id")
+                );
         }
         set
         {
@@ -91,10 +105,16 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
         get
         {
             if (!this.Properties.TryGetValue("name", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("name");
+                ?? throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new System::ArgumentNullException("name")
+                );
         }
         set
         {
@@ -134,13 +154,16 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
         get
         {
             if (!this.Properties.TryGetValue("subtotal", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "subtotal",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'subtotal' cannot be null",
+                    new System::ArgumentOutOfRangeException("subtotal", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("subtotal");
+                ?? throw new OrbInvalidDataException(
+                    "'subtotal' cannot be null",
+                    new System::ArgumentNullException("subtotal")
+                );
         }
         set
         {
@@ -159,15 +182,22 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
         get
         {
             if (!this.Properties.TryGetValue("tax_amounts", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "tax_amounts",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'tax_amounts' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "tax_amounts",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<Models::TaxAmount>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new System::ArgumentNullException("tax_amounts");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'tax_amounts' cannot be null",
+                    new System::ArgumentNullException("tax_amounts")
+                );
         }
         set
         {

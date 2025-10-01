@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 
 namespace Orb.Models.Subscriptions.NewSubscriptionCumulativeGroupedBulkPriceProperties;
 
@@ -50,7 +51,9 @@ sealed class CadenceConverter : JsonConverter<Cadence>
                 Cadence.Quarterly => "quarterly",
                 Cadence.OneTime => "one_time",
                 Cadence.Custom => "custom",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

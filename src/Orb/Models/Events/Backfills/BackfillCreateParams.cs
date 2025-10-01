@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Events.Backfills;
 
@@ -54,7 +56,10 @@ public sealed record class BackfillCreateParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("timeframe_end", out JsonElement element))
-                throw new ArgumentOutOfRangeException("timeframe_end", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'timeframe_end' cannot be null",
+                    new ArgumentOutOfRangeException("timeframe_end", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
@@ -77,9 +82,9 @@ public sealed record class BackfillCreateParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("timeframe_start", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "timeframe_start",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'timeframe_start' cannot be null",
+                    new ArgumentOutOfRangeException("timeframe_start", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
@@ -214,7 +219,7 @@ public sealed record class BackfillCreateParams : ParamsBase
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -223,7 +228,7 @@ public sealed record class BackfillCreateParams : ParamsBase
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

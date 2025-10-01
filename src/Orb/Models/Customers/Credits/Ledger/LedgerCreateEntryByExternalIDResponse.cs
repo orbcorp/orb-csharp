@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using LedgerCreateEntryByExternalIDResponseVariants = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDResponseVariants;
 
 namespace Orb.Models.Customers.Credits.Ledger;
@@ -137,7 +138,9 @@ public abstract record class LedgerCreateEntryByExternalIDResponse
                 amendmentLedgerEntry(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of LedgerCreateEntryByExternalIDResponse"
+                );
         }
     }
 
@@ -186,7 +189,9 @@ public abstract record class LedgerCreateEntryByExternalIDResponse
                 voidInitiatedLedgerEntry(inner),
             LedgerCreateEntryByExternalIDResponseVariants::AmendmentLedgerEntry inner =>
                 amendmentLedgerEntry(inner),
-            _ => throw new InvalidOperationException(),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of LedgerCreateEntryByExternalIDResponse"
+            ),
         };
     }
 
@@ -217,7 +222,7 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
         {
             case "increment":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -234,14 +239,19 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant LedgerCreateEntryByExternalIDResponseVariants::IncrementLedgerEntry",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "decrement":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -258,14 +268,19 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant LedgerCreateEntryByExternalIDResponseVariants::DecrementLedgerEntry",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "expiration_change":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -282,14 +297,19 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant LedgerCreateEntryByExternalIDResponseVariants::ExpirationChangeLedgerEntry",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "credit_block_expiry":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -306,14 +326,19 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant LedgerCreateEntryByExternalIDResponseVariants::CreditBlockExpiryLedgerEntry",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "void":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -327,14 +352,19 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant LedgerCreateEntryByExternalIDResponseVariants::VoidLedgerEntry",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "void_initiated":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -351,14 +381,19 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant LedgerCreateEntryByExternalIDResponseVariants::VoidInitiatedLedgerEntry",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "amendment":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -375,14 +410,21 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant LedgerCreateEntryByExternalIDResponseVariants::AmendmentLedgerEntry",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             default:
             {
-                throw new Exception();
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
             }
         }
     }
@@ -415,7 +457,9 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
             LedgerCreateEntryByExternalIDResponseVariants::AmendmentLedgerEntry(
                 var amendmentLedgerEntry
             ) => amendmentLedgerEntry,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of LedgerCreateEntryByExternalIDResponse"
+            ),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

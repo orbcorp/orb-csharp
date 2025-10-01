@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.CreditNoteProperties.LineItemProperties.DiscountProperties;
 
 namespace Orb.Models.CreditNoteProperties.LineItemProperties;
@@ -15,10 +17,16 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("id");
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentNullException("id")
+                );
         }
         set
         {
@@ -34,13 +42,16 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
         get
         {
             if (!this.Properties.TryGetValue("amount_applied", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "amount_applied",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'amount_applied' cannot be null",
+                    new ArgumentOutOfRangeException("amount_applied", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("amount_applied");
+                ?? throw new OrbInvalidDataException(
+                    "'amount_applied' cannot be null",
+                    new ArgumentNullException("amount_applied")
+                );
         }
         set
         {
@@ -56,13 +67,19 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
         get
         {
             if (!this.Properties.TryGetValue("applies_to_price_ids", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "applies_to_price_ids",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'applies_to_price_ids' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "applies_to_price_ids",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("applies_to_price_ids");
+                ?? throw new OrbInvalidDataException(
+                    "'applies_to_price_ids' cannot be null",
+                    new ArgumentNullException("applies_to_price_ids")
+                );
         }
         set
         {
@@ -78,7 +95,10 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
         get
         {
             if (!this.Properties.TryGetValue("discount_type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("discount_type", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'discount_type' cannot be null",
+                    new ArgumentOutOfRangeException("discount_type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, DiscountType>>(
                 element,
@@ -99,9 +119,12 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
         get
         {
             if (!this.Properties.TryGetValue("percentage_discount", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "percentage_discount",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'percentage_discount' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "percentage_discount",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);

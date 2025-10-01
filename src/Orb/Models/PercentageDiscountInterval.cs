@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.PercentageDiscountIntervalProperties;
 
 namespace Orb.Models;
@@ -25,13 +27,19 @@ public sealed record class PercentageDiscountInterval
                     out JsonElement element
                 )
             )
-                throw new ArgumentOutOfRangeException(
-                    "applies_to_price_interval_ids",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'applies_to_price_interval_ids' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "applies_to_price_interval_ids",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("applies_to_price_interval_ids");
+                ?? throw new OrbInvalidDataException(
+                    "'applies_to_price_interval_ids' cannot be null",
+                    new ArgumentNullException("applies_to_price_interval_ids")
+                );
         }
         set
         {
@@ -47,7 +55,10 @@ public sealed record class PercentageDiscountInterval
         get
         {
             if (!this.Properties.TryGetValue("discount_type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("discount_type", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'discount_type' cannot be null",
+                    new ArgumentOutOfRangeException("discount_type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, DiscountType>>(
                 element,
@@ -92,12 +103,19 @@ public sealed record class PercentageDiscountInterval
         get
         {
             if (!this.Properties.TryGetValue("filters", out JsonElement element))
-                throw new ArgumentOutOfRangeException("filters", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'filters' cannot be null",
+                    new ArgumentOutOfRangeException("filters", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<TransformPriceFilter>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("filters");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'filters' cannot be null",
+                    new ArgumentNullException("filters")
+                );
         }
         set
         {
@@ -117,9 +135,12 @@ public sealed record class PercentageDiscountInterval
         get
         {
             if (!this.Properties.TryGetValue("percentage_discount", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "percentage_discount",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'percentage_discount' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "percentage_discount",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
@@ -141,7 +162,10 @@ public sealed record class PercentageDiscountInterval
         get
         {
             if (!this.Properties.TryGetValue("start_date", out JsonElement element))
-                throw new ArgumentOutOfRangeException("start_date", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'start_date' cannot be null",
+                    new ArgumentOutOfRangeException("start_date", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }

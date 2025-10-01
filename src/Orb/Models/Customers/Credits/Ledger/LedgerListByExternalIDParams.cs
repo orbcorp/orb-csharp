@@ -1,6 +1,7 @@
 using System;
 using System.Net.Http;
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models.Customers.Credits.Ledger.LedgerListByExternalIDParamsProperties;
 
 namespace Orb.Models.Customers.Credits.Ledger;
@@ -286,7 +287,7 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

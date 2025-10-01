@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.PriceProperties.GroupedWithMeteredMinimumProperties.GroupedWithMeteredMinimumConfigProperties;
 
 namespace Orb.Models.PriceProperties.GroupedWithMeteredMinimumProperties;
@@ -24,10 +26,16 @@ public sealed record class GroupedWithMeteredMinimumConfig
         get
         {
             if (!this.Properties.TryGetValue("grouping_key", out JsonElement element))
-                throw new ArgumentOutOfRangeException("grouping_key", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'grouping_key' cannot be null",
+                    new ArgumentOutOfRangeException("grouping_key", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("grouping_key");
+                ?? throw new OrbInvalidDataException(
+                    "'grouping_key' cannot be null",
+                    new ArgumentNullException("grouping_key")
+                );
         }
         set
         {
@@ -46,13 +54,19 @@ public sealed record class GroupedWithMeteredMinimumConfig
         get
         {
             if (!this.Properties.TryGetValue("minimum_unit_amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "minimum_unit_amount",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'minimum_unit_amount' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "minimum_unit_amount",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("minimum_unit_amount");
+                ?? throw new OrbInvalidDataException(
+                    "'minimum_unit_amount' cannot be null",
+                    new ArgumentNullException("minimum_unit_amount")
+                );
         }
         set
         {
@@ -71,10 +85,16 @@ public sealed record class GroupedWithMeteredMinimumConfig
         get
         {
             if (!this.Properties.TryGetValue("pricing_key", out JsonElement element))
-                throw new ArgumentOutOfRangeException("pricing_key", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'pricing_key' cannot be null",
+                    new ArgumentOutOfRangeException("pricing_key", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("pricing_key");
+                ?? throw new OrbInvalidDataException(
+                    "'pricing_key' cannot be null",
+                    new ArgumentNullException("pricing_key")
+                );
         }
         set
         {
@@ -93,15 +113,19 @@ public sealed record class GroupedWithMeteredMinimumConfig
         get
         {
             if (!this.Properties.TryGetValue("scaling_factors", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "scaling_factors",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'scaling_factors' cannot be null",
+                    new ArgumentOutOfRangeException("scaling_factors", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<List<ScalingFactor>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("scaling_factors");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'scaling_factors' cannot be null",
+                    new ArgumentNullException("scaling_factors")
+                );
         }
         set
         {
@@ -120,10 +144,16 @@ public sealed record class GroupedWithMeteredMinimumConfig
         get
         {
             if (!this.Properties.TryGetValue("scaling_key", out JsonElement element))
-                throw new ArgumentOutOfRangeException("scaling_key", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'scaling_key' cannot be null",
+                    new ArgumentOutOfRangeException("scaling_key", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("scaling_key");
+                ?? throw new OrbInvalidDataException(
+                    "'scaling_key' cannot be null",
+                    new ArgumentNullException("scaling_key")
+                );
         }
         set
         {
@@ -143,12 +173,19 @@ public sealed record class GroupedWithMeteredMinimumConfig
         get
         {
             if (!this.Properties.TryGetValue("unit_amounts", out JsonElement element))
-                throw new ArgumentOutOfRangeException("unit_amounts", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'unit_amounts' cannot be null",
+                    new ArgumentOutOfRangeException("unit_amounts", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<UnitAmount>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("unit_amounts");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'unit_amounts' cannot be null",
+                    new ArgumentNullException("unit_amounts")
+                );
         }
         set
         {

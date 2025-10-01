@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -14,10 +16,16 @@ public sealed record class SubLineItemGrouping : ModelBase, IFromRaw<SubLineItem
         get
         {
             if (!this.Properties.TryGetValue("key", out JsonElement element))
-                throw new ArgumentOutOfRangeException("key", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'key' cannot be null",
+                    new ArgumentOutOfRangeException("key", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("key");
+                ?? throw new OrbInvalidDataException(
+                    "'key' cannot be null",
+                    new ArgumentNullException("key")
+                );
         }
         set
         {

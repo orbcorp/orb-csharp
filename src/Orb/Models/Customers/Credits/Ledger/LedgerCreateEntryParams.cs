@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties;
 
 namespace Orb.Models.Customers.Credits.Ledger;
@@ -99,10 +101,16 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("body", out JsonElement element))
-                throw new ArgumentOutOfRangeException("body", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'body' cannot be null",
+                    new ArgumentOutOfRangeException("body", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<Body>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("body");
+                ?? throw new OrbInvalidDataException(
+                    "'body' cannot be null",
+                    new ArgumentNullException("body")
+                );
         }
         set
         {
@@ -124,7 +132,7 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -133,7 +141,7 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

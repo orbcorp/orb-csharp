@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Events.Backfills.BackfillListPageResponseProperties;
 
 namespace Orb.Models.Events.Backfills;
@@ -15,10 +17,16 @@ public sealed record class BackfillListPageResponse : ModelBase, IFromRaw<Backfi
         get
         {
             if (!this.Properties.TryGetValue("data", out JsonElement element))
-                throw new ArgumentOutOfRangeException("data", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'data' cannot be null",
+                    new ArgumentOutOfRangeException("data", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<Data>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("data");
+                ?? throw new OrbInvalidDataException(
+                    "'data' cannot be null",
+                    new ArgumentNullException("data")
+                );
         }
         set
         {
@@ -34,15 +42,22 @@ public sealed record class BackfillListPageResponse : ModelBase, IFromRaw<Backfi
         get
         {
             if (!this.Properties.TryGetValue("pagination_metadata", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "pagination_metadata",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'pagination_metadata' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "pagination_metadata",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<PaginationMetadata>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("pagination_metadata");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'pagination_metadata' cannot be null",
+                    new ArgumentNullException("pagination_metadata")
+                );
         }
         set
         {

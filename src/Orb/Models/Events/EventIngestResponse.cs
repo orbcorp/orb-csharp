@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Events.EventIngestResponseProperties;
 
 namespace Orb.Models.Events;
@@ -19,15 +21,22 @@ public sealed record class EventIngestResponse : ModelBase, IFromRaw<EventIngest
         get
         {
             if (!this.Properties.TryGetValue("validation_failed", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "validation_failed",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'validation_failed' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "validation_failed",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<ValidationFailed>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("validation_failed");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'validation_failed' cannot be null",
+                    new ArgumentNullException("validation_failed")
+                );
         }
         set
         {

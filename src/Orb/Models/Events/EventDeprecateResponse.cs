@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Events;
 
@@ -17,10 +19,16 @@ public sealed record class EventDeprecateResponse : ModelBase, IFromRaw<EventDep
         get
         {
             if (!this.Properties.TryGetValue("deprecated", out JsonElement element))
-                throw new ArgumentOutOfRangeException("deprecated", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'deprecated' cannot be null",
+                    new ArgumentOutOfRangeException("deprecated", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("deprecated");
+                ?? throw new OrbInvalidDataException(
+                    "'deprecated' cannot be null",
+                    new ArgumentNullException("deprecated")
+                );
         }
         set
         {

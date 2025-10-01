@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Customers;
 
@@ -14,13 +16,19 @@ public sealed record class AccountingProviderConfig : ModelBase, IFromRaw<Accoun
         get
         {
             if (!this.Properties.TryGetValue("external_provider_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "external_provider_id",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'external_provider_id' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "external_provider_id",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("external_provider_id");
+                ?? throw new OrbInvalidDataException(
+                    "'external_provider_id' cannot be null",
+                    new ArgumentNullException("external_provider_id")
+                );
         }
         set
         {
@@ -36,10 +44,16 @@ public sealed record class AccountingProviderConfig : ModelBase, IFromRaw<Accoun
         get
         {
             if (!this.Properties.TryGetValue("provider_type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("provider_type", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'provider_type' cannot be null",
+                    new ArgumentOutOfRangeException("provider_type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("provider_type");
+                ?? throw new OrbInvalidDataException(
+                    "'provider_type' cannot be null",
+                    new ArgumentNullException("provider_type")
+                );
         }
         set
         {

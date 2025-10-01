@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Alerts;
 
@@ -22,7 +24,10 @@ public sealed record class Threshold : ModelBase, IFromRaw<Threshold>
         get
         {
             if (!this.Properties.TryGetValue("value", out JsonElement element))
-                throw new ArgumentOutOfRangeException("value", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'value' cannot be null",
+                    new ArgumentOutOfRangeException("value", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }

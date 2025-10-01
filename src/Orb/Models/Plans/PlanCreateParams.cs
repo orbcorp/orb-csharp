@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
 using PlanCreateParamsProperties = Orb.Models.Plans.PlanCreateParamsProperties;
 
 namespace Orb.Models.Plans;
@@ -22,10 +24,16 @@ public sealed record class PlanCreateParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("currency", out JsonElement element))
-                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'currency' cannot be null",
+                    new ArgumentOutOfRangeException("currency", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("currency");
+                ?? throw new OrbInvalidDataException(
+                    "'currency' cannot be null",
+                    new ArgumentNullException("currency")
+                );
         }
         set
         {
@@ -41,10 +49,16 @@ public sealed record class PlanCreateParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("name", out JsonElement element))
-                throw new ArgumentOutOfRangeException("name", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("name");
+                ?? throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new ArgumentNullException("name")
+                );
         }
         set
         {
@@ -64,12 +78,19 @@ public sealed record class PlanCreateParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("prices", out JsonElement element))
-                throw new ArgumentOutOfRangeException("prices", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'prices' cannot be null",
+                    new ArgumentOutOfRangeException("prices", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<PlanCreateParamsProperties::Price>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("prices");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'prices' cannot be null",
+                    new ArgumentNullException("prices")
+                );
         }
         set
         {
@@ -251,7 +272,7 @@ public sealed record class PlanCreateParams : ParamsBase
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -260,7 +281,7 @@ public sealed record class PlanCreateParams : ParamsBase
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

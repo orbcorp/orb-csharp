@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Models = Orb.Models;
 using StartDateVariants = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.StartDateVariants;
 
@@ -52,7 +54,7 @@ public abstract record class StartDate
                 billingCycleRelative(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new OrbInvalidDataException("Data did not match any variant of StartDate");
         }
     }
 
@@ -65,7 +67,7 @@ public abstract record class StartDate
         {
             StartDateVariants::DateTime inner => @dateTime(inner),
             StartDateVariants::BillingCycleRelativeDate inner => billingCycleRelative(inner),
-            _ => throw new InvalidOperationException(),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of StartDate"),
         };
     }
 
@@ -80,7 +82,7 @@ sealed class StartDateConverter : JsonConverter<StartDate>
         JsonSerializerOptions options
     )
     {
-        List<JsonException> exceptions = [];
+        List<OrbInvalidDataException> exceptions = [];
 
         try
         {
@@ -93,7 +95,12 @@ sealed class StartDateConverter : JsonConverter<StartDate>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant StartDateVariants::BillingCycleRelativeDate",
+                    e
+                )
+            );
         }
 
         try
@@ -104,7 +111,12 @@ sealed class StartDateConverter : JsonConverter<StartDate>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant StartDateVariants::DateTime",
+                    e
+                )
+            );
         }
 
         throw new AggregateException(exceptions);
@@ -121,7 +133,7 @@ sealed class StartDateConverter : JsonConverter<StartDate>
             StartDateVariants::DateTime(var @dateTime) => @dateTime,
             StartDateVariants::BillingCycleRelativeDate(var billingCycleRelative) =>
                 billingCycleRelative,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of StartDate"),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

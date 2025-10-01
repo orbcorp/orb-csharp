@@ -212,7 +212,7 @@ using VoidInitiatedLedgerEntryProperties = Orb.Models.Customers.Credits.Ledger.V
 using VoidLedgerEntryProperties = Orb.Models.Customers.Credits.Ledger.VoidLedgerEntryProperties;
 using VoidProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.VoidProperties;
 
-namespace Orb;
+namespace Orb.Core;
 
 public abstract record class ModelBase
 {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using GroupedTieredConfigProperties = Orb.Models.NewFloatingGroupedTieredPriceProperties.GroupedTieredConfigProperties;
 
 namespace Orb.Models.NewFloatingGroupedTieredPriceProperties;
@@ -21,10 +23,16 @@ public sealed record class GroupedTieredConfig : ModelBase, IFromRaw<GroupedTier
         get
         {
             if (!this.Properties.TryGetValue("grouping_key", out JsonElement element))
-                throw new ArgumentOutOfRangeException("grouping_key", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'grouping_key' cannot be null",
+                    new ArgumentOutOfRangeException("grouping_key", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("grouping_key");
+                ?? throw new OrbInvalidDataException(
+                    "'grouping_key' cannot be null",
+                    new ArgumentNullException("grouping_key")
+                );
         }
         set
         {
@@ -43,12 +51,19 @@ public sealed record class GroupedTieredConfig : ModelBase, IFromRaw<GroupedTier
         get
         {
             if (!this.Properties.TryGetValue("tiers", out JsonElement element))
-                throw new ArgumentOutOfRangeException("tiers", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'tiers' cannot be null",
+                    new ArgumentOutOfRangeException("tiers", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<GroupedTieredConfigProperties::Tier>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("tiers");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'tiers' cannot be null",
+                    new ArgumentNullException("tiers")
+                );
         }
         set
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using Orb.Models.Subscriptions.SubscriptionUsageProperties;
 using SubscriptionUsageVariants = Orb.Models.Subscriptions.SubscriptionUsageVariants;
 
@@ -45,7 +46,9 @@ public abstract record class SubscriptionUsage
                 grouped(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of SubscriptionUsage"
+                );
         }
     }
 
@@ -58,7 +61,9 @@ public abstract record class SubscriptionUsage
         {
             SubscriptionUsageVariants::UngroupedSubscriptionUsage inner => ungrouped(inner),
             SubscriptionUsageVariants::GroupedSubscriptionUsage inner => grouped(inner),
-            _ => throw new InvalidOperationException(),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of SubscriptionUsage"
+            ),
         };
     }
 
@@ -73,7 +78,7 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
         JsonSerializerOptions options
     )
     {
-        List<JsonException> exceptions = [];
+        List<OrbInvalidDataException> exceptions = [];
 
         try
         {
@@ -88,7 +93,12 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant SubscriptionUsageVariants::UngroupedSubscriptionUsage",
+                    e
+                )
+            );
         }
 
         try
@@ -104,7 +114,12 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant SubscriptionUsageVariants::GroupedSubscriptionUsage",
+                    e
+                )
+            );
         }
 
         throw new AggregateException(exceptions);
@@ -120,7 +135,9 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
         {
             SubscriptionUsageVariants::UngroupedSubscriptionUsage(var ungrouped) => ungrouped,
             SubscriptionUsageVariants::GroupedSubscriptionUsage(var grouped) => grouped,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of SubscriptionUsage"
+            ),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

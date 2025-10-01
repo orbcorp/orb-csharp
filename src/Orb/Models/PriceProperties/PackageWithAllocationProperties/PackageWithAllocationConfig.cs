@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.PriceProperties.PackageWithAllocationProperties;
 
@@ -22,10 +24,16 @@ public sealed record class PackageWithAllocationConfig
         get
         {
             if (!this.Properties.TryGetValue("allocation", out JsonElement element))
-                throw new ArgumentOutOfRangeException("allocation", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'allocation' cannot be null",
+                    new ArgumentOutOfRangeException("allocation", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("allocation");
+                ?? throw new OrbInvalidDataException(
+                    "'allocation' cannot be null",
+                    new ArgumentNullException("allocation")
+                );
         }
         set
         {
@@ -44,13 +52,16 @@ public sealed record class PackageWithAllocationConfig
         get
         {
             if (!this.Properties.TryGetValue("package_amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "package_amount",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'package_amount' cannot be null",
+                    new ArgumentOutOfRangeException("package_amount", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("package_amount");
+                ?? throw new OrbInvalidDataException(
+                    "'package_amount' cannot be null",
+                    new ArgumentNullException("package_amount")
+                );
         }
         set
         {
@@ -69,10 +80,16 @@ public sealed record class PackageWithAllocationConfig
         get
         {
             if (!this.Properties.TryGetValue("package_size", out JsonElement element))
-                throw new ArgumentOutOfRangeException("package_size", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'package_size' cannot be null",
+                    new ArgumentOutOfRangeException("package_size", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("package_size");
+                ?? throw new OrbInvalidDataException(
+                    "'package_size' cannot be null",
+                    new ArgumentNullException("package_size")
+                );
         }
         set
         {
