@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 
 namespace Orb.Models.Subscriptions.SubscriptionRedeemCouponParamsProperties;
 
@@ -42,7 +43,9 @@ sealed class ChangeOptionConverter : JsonConverter<ChangeOption>
                 ChangeOption.RequestedDate => "requested_date",
                 ChangeOption.EndOfSubscriptionTerm => "end_of_subscription_term",
                 ChangeOption.Immediate => "immediate",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

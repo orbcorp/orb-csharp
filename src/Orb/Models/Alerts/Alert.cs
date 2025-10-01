@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using AlertProperties = Orb.Models.Alerts.AlertProperties;
 
 namespace Orb.Models.Alerts;
@@ -24,10 +26,16 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("id");
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentNullException("id")
+                );
         }
         set
         {
@@ -46,7 +54,10 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
         get
         {
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
-                throw new ArgumentOutOfRangeException("created_at", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'created_at' cannot be null",
+                    new ArgumentOutOfRangeException("created_at", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
@@ -112,7 +123,10 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
         get
         {
             if (!this.Properties.TryGetValue("enabled", out JsonElement element))
-                throw new ArgumentOutOfRangeException("enabled", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'enabled' cannot be null",
+                    new ArgumentOutOfRangeException("enabled", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
@@ -229,7 +243,10 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("type", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentOutOfRangeException("type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, AlertProperties::Type>>(
                 element,

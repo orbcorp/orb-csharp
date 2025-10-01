@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models.Alerts.AlertProperties;
@@ -76,13 +78,19 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
         get
         {
             if (!this.Properties.TryGetValue("plan_version", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "plan_version",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'plan_version' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "plan_version",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("plan_version");
+                ?? throw new OrbInvalidDataException(
+                    "'plan_version' cannot be null",
+                    new System::ArgumentNullException("plan_version")
+                );
         }
         set
         {

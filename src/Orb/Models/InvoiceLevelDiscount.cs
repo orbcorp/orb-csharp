@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using InvoiceLevelDiscountVariants = Orb.Models.InvoiceLevelDiscountVariants;
 
 namespace Orb.Models;
@@ -57,7 +58,9 @@ public abstract record class InvoiceLevelDiscount
                 trial(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of InvoiceLevelDiscount"
+                );
         }
     }
 
@@ -72,7 +75,9 @@ public abstract record class InvoiceLevelDiscount
             InvoiceLevelDiscountVariants::PercentageDiscount inner => percentage(inner),
             InvoiceLevelDiscountVariants::AmountDiscount inner => amount(inner),
             InvoiceLevelDiscountVariants::TrialDiscount inner => trial(inner),
-            _ => throw new InvalidOperationException(),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of InvoiceLevelDiscount"
+            ),
         };
     }
 
@@ -102,7 +107,7 @@ sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
         {
             case "percentage":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -117,14 +122,19 @@ sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant InvoiceLevelDiscountVariants::PercentageDiscount",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "amount":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -136,14 +146,19 @@ sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant InvoiceLevelDiscountVariants::AmountDiscount",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "trial":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -155,14 +170,21 @@ sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant InvoiceLevelDiscountVariants::TrialDiscount",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             default:
             {
-                throw new Exception();
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
             }
         }
     }
@@ -178,7 +200,9 @@ sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
             InvoiceLevelDiscountVariants::PercentageDiscount(var percentage) => percentage,
             InvoiceLevelDiscountVariants::AmountDiscount(var amount) => amount,
             InvoiceLevelDiscountVariants::TrialDiscount(var trial) => trial,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of InvoiceLevelDiscount"
+            ),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

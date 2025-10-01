@@ -1,6 +1,8 @@
 using System;
 using System.Net.Http;
 using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Events.Volume;
 
@@ -29,9 +31,9 @@ public sealed record class VolumeListParams : ParamsBase
         get
         {
             if (!this.QueryProperties.TryGetValue("timeframe_start", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "timeframe_start",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'timeframe_start' cannot be null",
+                    new ArgumentOutOfRangeException("timeframe_start", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
@@ -120,7 +122,7 @@ public sealed record class VolumeListParams : ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

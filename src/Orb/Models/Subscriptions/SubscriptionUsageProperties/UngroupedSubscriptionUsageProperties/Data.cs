@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Subscriptions.SubscriptionUsageProperties.UngroupedSubscriptionUsageProperties.DataProperties;
 
 namespace Orb.Models.Subscriptions.SubscriptionUsageProperties.UngroupedSubscriptionUsageProperties;
@@ -15,13 +17,16 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         get
         {
             if (!this.Properties.TryGetValue("billable_metric", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "billable_metric",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'billable_metric' cannot be null",
+                    new ArgumentOutOfRangeException("billable_metric", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<BillableMetric>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("billable_metric");
+                ?? throw new OrbInvalidDataException(
+                    "'billable_metric' cannot be null",
+                    new ArgumentNullException("billable_metric")
+                );
         }
         set
         {
@@ -37,10 +42,16 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         get
         {
             if (!this.Properties.TryGetValue("usage", out JsonElement element))
-                throw new ArgumentOutOfRangeException("usage", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'usage' cannot be null",
+                    new ArgumentOutOfRangeException("usage", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<Usage>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("usage");
+                ?? throw new OrbInvalidDataException(
+                    "'usage' cannot be null",
+                    new ArgumentNullException("usage")
+                );
         }
         set
         {
@@ -56,7 +67,10 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         get
         {
             if (!this.Properties.TryGetValue("view_mode", out JsonElement element))
-                throw new ArgumentOutOfRangeException("view_mode", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'view_mode' cannot be null",
+                    new ArgumentOutOfRangeException("view_mode", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, ViewMode>>(
                 element,

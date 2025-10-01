@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Events.EventIngestParamsProperties;
 
 namespace Orb.Models.Events;
@@ -180,10 +182,16 @@ public sealed record class EventIngestParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("events", out JsonElement element))
-                throw new ArgumentOutOfRangeException("events", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'events' cannot be null",
+                    new ArgumentOutOfRangeException("events", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<Event>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("events");
+                ?? throw new OrbInvalidDataException(
+                    "'events' cannot be null",
+                    new ArgumentNullException("events")
+                );
         }
         set
         {
@@ -245,7 +253,7 @@ public sealed record class EventIngestParams : ParamsBase
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -254,7 +262,7 @@ public sealed record class EventIngestParams : ParamsBase
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

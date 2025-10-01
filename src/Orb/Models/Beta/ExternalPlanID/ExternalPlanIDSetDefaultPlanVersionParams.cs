@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Beta.ExternalPlanID;
 
@@ -26,7 +28,10 @@ public sealed record class ExternalPlanIDSetDefaultPlanVersionParams : ParamsBas
         get
         {
             if (!this.BodyProperties.TryGetValue("version", out JsonElement element))
-                throw new ArgumentOutOfRangeException("version", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'version' cannot be null",
+                    new ArgumentOutOfRangeException("version", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
@@ -53,7 +58,7 @@ public sealed record class ExternalPlanIDSetDefaultPlanVersionParams : ParamsBas
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -62,7 +67,7 @@ public sealed record class ExternalPlanIDSetDefaultPlanVersionParams : ParamsBas
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

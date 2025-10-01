@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.DimensionalPriceGroups.ExternalDimensionalPriceGroupID;
 
@@ -83,7 +84,7 @@ public sealed record class ExternalDimensionalPriceGroupIDUpdateParams : ParamsB
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -92,7 +93,7 @@ public sealed record class ExternalDimensionalPriceGroupIDUpdateParams : ParamsB
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

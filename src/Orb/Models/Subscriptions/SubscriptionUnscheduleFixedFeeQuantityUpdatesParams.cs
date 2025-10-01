@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Subscriptions;
 
@@ -26,10 +28,16 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
         get
         {
             if (!this.BodyProperties.TryGetValue("price_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("price_id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'price_id' cannot be null",
+                    new ArgumentOutOfRangeException("price_id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("price_id");
+                ?? throw new OrbInvalidDataException(
+                    "'price_id' cannot be null",
+                    new ArgumentNullException("price_id")
+                );
         }
         set
         {
@@ -54,7 +62,7 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -63,7 +71,7 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

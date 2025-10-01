@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties;
 
@@ -17,10 +19,16 @@ public sealed record class RemoveAdjustment : ModelBase, IFromRaw<RemoveAdjustme
         get
         {
             if (!this.Properties.TryGetValue("adjustment_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("adjustment_id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'adjustment_id' cannot be null",
+                    new ArgumentOutOfRangeException("adjustment_id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("adjustment_id");
+                ?? throw new OrbInvalidDataException(
+                    "'adjustment_id' cannot be null",
+                    new ArgumentNullException("adjustment_id")
+                );
         }
         set
         {

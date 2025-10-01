@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using TieredPackageWithMinimumConfigProperties = Orb.Models.NewFloatingTieredPackageWithMinimumPriceProperties.TieredPackageWithMinimumConfigProperties;
 
 namespace Orb.Models.NewFloatingTieredPackageWithMinimumPriceProperties;
@@ -23,7 +25,10 @@ public sealed record class TieredPackageWithMinimumConfig
         get
         {
             if (!this.Properties.TryGetValue("package_size", out JsonElement element))
-                throw new ArgumentOutOfRangeException("package_size", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'package_size' cannot be null",
+                    new ArgumentOutOfRangeException("package_size", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
@@ -45,12 +50,19 @@ public sealed record class TieredPackageWithMinimumConfig
         get
         {
             if (!this.Properties.TryGetValue("tiers", out JsonElement element))
-                throw new ArgumentOutOfRangeException("tiers", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'tiers' cannot be null",
+                    new ArgumentOutOfRangeException("tiers", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<TieredPackageWithMinimumConfigProperties::Tier>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("tiers");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'tiers' cannot be null",
+                    new ArgumentNullException("tiers")
+                );
         }
         set
         {

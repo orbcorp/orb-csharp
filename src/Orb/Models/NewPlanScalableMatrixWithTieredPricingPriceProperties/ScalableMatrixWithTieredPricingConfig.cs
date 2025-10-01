@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using ScalableMatrixWithTieredPricingConfigProperties = Orb.Models.NewPlanScalableMatrixWithTieredPricingPriceProperties.ScalableMatrixWithTieredPricingConfigProperties;
 
 namespace Orb.Models.NewPlanScalableMatrixWithTieredPricingPriceProperties;
@@ -23,13 +25,16 @@ public sealed record class ScalableMatrixWithTieredPricingConfig
         get
         {
             if (!this.Properties.TryGetValue("first_dimension", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "first_dimension",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'first_dimension' cannot be null",
+                    new ArgumentOutOfRangeException("first_dimension", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("first_dimension");
+                ?? throw new OrbInvalidDataException(
+                    "'first_dimension' cannot be null",
+                    new ArgumentNullException("first_dimension")
+                );
         }
         set
         {
@@ -48,15 +53,21 @@ public sealed record class ScalableMatrixWithTieredPricingConfig
         get
         {
             if (!this.Properties.TryGetValue("matrix_scaling_factors", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "matrix_scaling_factors",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'matrix_scaling_factors' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "matrix_scaling_factors",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<
                     List<ScalableMatrixWithTieredPricingConfigProperties::MatrixScalingFactor>
                 >(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("matrix_scaling_factors");
+                ?? throw new OrbInvalidDataException(
+                    "'matrix_scaling_factors' cannot be null",
+                    new ArgumentNullException("matrix_scaling_factors")
+                );
         }
         set
         {
@@ -75,11 +86,18 @@ public sealed record class ScalableMatrixWithTieredPricingConfig
         get
         {
             if (!this.Properties.TryGetValue("tiers", out JsonElement element))
-                throw new ArgumentOutOfRangeException("tiers", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'tiers' cannot be null",
+                    new ArgumentOutOfRangeException("tiers", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<
                     List<ScalableMatrixWithTieredPricingConfigProperties::Tier>
-                >(element, ModelBase.SerializerOptions) ?? throw new ArgumentNullException("tiers");
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'tiers' cannot be null",
+                    new ArgumentNullException("tiers")
+                );
         }
         set
         {

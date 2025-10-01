@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 
 namespace Orb.Models.Plans.PlanProperties.PlanPhaseProperties;
 
@@ -48,7 +49,9 @@ sealed class DurationUnitConverter : JsonConverter<DurationUnit>
                 DurationUnit.Quarterly => "quarterly",
                 DurationUnit.SemiAnnual => "semi_annual",
                 DurationUnit.Annual => "annual",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

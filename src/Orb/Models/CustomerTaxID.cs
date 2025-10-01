@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using CustomerTaxIDProperties = Orb.Models.CustomerTaxIDProperties;
 
 namespace Orb.Models;
@@ -115,7 +117,10 @@ public sealed record class CustomerTaxID : ModelBase, IFromRaw<CustomerTaxID>
         get
         {
             if (!this.Properties.TryGetValue("country", out JsonElement element))
-                throw new ArgumentOutOfRangeException("country", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'country' cannot be null",
+                    new ArgumentOutOfRangeException("country", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CustomerTaxIDProperties::Country>>(
                 element,
@@ -136,7 +141,10 @@ public sealed record class CustomerTaxID : ModelBase, IFromRaw<CustomerTaxID>
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("type", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentOutOfRangeException("type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CustomerTaxIDProperties::Type>>(
                 element,
@@ -157,10 +165,16 @@ public sealed record class CustomerTaxID : ModelBase, IFromRaw<CustomerTaxID>
         get
         {
             if (!this.Properties.TryGetValue("value", out JsonElement element))
-                throw new ArgumentOutOfRangeException("value", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'value' cannot be null",
+                    new ArgumentOutOfRangeException("value", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("value");
+                ?? throw new OrbInvalidDataException(
+                    "'value' cannot be null",
+                    new ArgumentNullException("value")
+                );
         }
         set
         {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.NewAllocationPriceProperties;
 
 namespace Orb.Models;
@@ -18,10 +20,16 @@ public sealed record class NewAllocationPrice : ModelBase, IFromRaw<NewAllocatio
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new ArgumentOutOfRangeException("amount", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("amount");
+                ?? throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new ArgumentNullException("amount")
+                );
         }
         set
         {
@@ -40,7 +48,10 @@ public sealed record class NewAllocationPrice : ModelBase, IFromRaw<NewAllocatio
         get
         {
             if (!this.Properties.TryGetValue("cadence", out JsonElement element))
-                throw new ArgumentOutOfRangeException("cadence", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new ArgumentOutOfRangeException("cadence", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Cadence>>(
                 element,
@@ -65,10 +76,16 @@ public sealed record class NewAllocationPrice : ModelBase, IFromRaw<NewAllocatio
         get
         {
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
-                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'currency' cannot be null",
+                    new ArgumentOutOfRangeException("currency", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("currency");
+                ?? throw new OrbInvalidDataException(
+                    "'currency' cannot be null",
+                    new ArgumentNullException("currency")
+                );
         }
         set
         {

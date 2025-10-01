@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.CreditNoteProperties.DiscountProperties;
 using System = System;
 
@@ -15,13 +17,19 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
         get
         {
             if (!this.Properties.TryGetValue("amount_applied", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount_applied",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'amount_applied' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "amount_applied",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new System::ArgumentNullException("amount_applied");
+                ?? throw new OrbInvalidDataException(
+                    "'amount_applied' cannot be null",
+                    new System::ArgumentNullException("amount_applied")
+                );
         }
         set
         {
@@ -37,9 +45,12 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
         get
         {
             if (!this.Properties.TryGetValue("discount_type", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "discount_type",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'discount_type' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "discount_type",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, DiscountType>>(
@@ -61,9 +72,12 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
         get
         {
             if (!this.Properties.TryGetValue("percentage_discount", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "percentage_discount",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'percentage_discount' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "percentage_discount",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -22,7 +24,10 @@ public sealed record class BillingCycleAnchorConfiguration
         get
         {
             if (!this.Properties.TryGetValue("day", out JsonElement element))
-                throw new ArgumentOutOfRangeException("day", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'day' cannot be null",
+                    new ArgumentOutOfRangeException("day", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }

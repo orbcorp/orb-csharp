@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Events.EventIngestParamsProperties;
 
@@ -17,10 +19,16 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
         get
         {
             if (!this.Properties.TryGetValue("event_name", out JsonElement element))
-                throw new ArgumentOutOfRangeException("event_name", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'event_name' cannot be null",
+                    new ArgumentOutOfRangeException("event_name", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("event_name");
+                ?? throw new OrbInvalidDataException(
+                    "'event_name' cannot be null",
+                    new ArgumentNullException("event_name")
+                );
         }
         set
         {
@@ -41,13 +49,16 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
         get
         {
             if (!this.Properties.TryGetValue("idempotency_key", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "idempotency_key",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'idempotency_key' cannot be null",
+                    new ArgumentOutOfRangeException("idempotency_key", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("idempotency_key");
+                ?? throw new OrbInvalidDataException(
+                    "'idempotency_key' cannot be null",
+                    new ArgumentNullException("idempotency_key")
+                );
         }
         set
         {
@@ -67,12 +78,19 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
         get
         {
             if (!this.Properties.TryGetValue("properties", out JsonElement element))
-                throw new ArgumentOutOfRangeException("properties", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'properties' cannot be null",
+                    new ArgumentOutOfRangeException("properties", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("properties");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'properties' cannot be null",
+                    new ArgumentNullException("properties")
+                );
         }
         set
         {
@@ -93,7 +111,10 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
         get
         {
             if (!this.Properties.TryGetValue("timestamp", out JsonElement element))
-                throw new ArgumentOutOfRangeException("timestamp", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'timestamp' cannot be null",
+                    new ArgumentOutOfRangeException("timestamp", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }

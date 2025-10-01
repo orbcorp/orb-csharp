@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -18,10 +20,16 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("id");
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentNullException("id")
+                );
         }
         set
         {
@@ -40,9 +48,12 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
         get
         {
             if (!this.Properties.TryGetValue("billing_cycle_day", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "billing_cycle_day",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'billing_cycle_day' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "billing_cycle_day",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
@@ -199,10 +210,16 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
         get
         {
             if (!this.Properties.TryGetValue("price", out JsonElement element))
-                throw new ArgumentOutOfRangeException("price", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'price' cannot be null",
+                    new ArgumentOutOfRangeException("price", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("price");
+                ?? throw new OrbInvalidDataException(
+                    "'price' cannot be null",
+                    new ArgumentNullException("price")
+                );
         }
         set
         {
@@ -222,7 +239,10 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
         get
         {
             if (!this.Properties.TryGetValue("start_date", out JsonElement element))
-                throw new ArgumentOutOfRangeException("start_date", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'start_date' cannot be null",
+                    new ArgumentOutOfRangeException("start_date", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }

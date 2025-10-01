@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.TieredConversionRateConfigProperties;
 
 namespace Orb.Models;
@@ -17,9 +19,12 @@ public sealed record class TieredConversionRateConfig
         get
         {
             if (!this.Properties.TryGetValue("conversion_rate_type", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "conversion_rate_type",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'conversion_rate_type' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "conversion_rate_type",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, ConversionRateType>>(
@@ -41,12 +46,19 @@ public sealed record class TieredConversionRateConfig
         get
         {
             if (!this.Properties.TryGetValue("tiered_config", out JsonElement element))
-                throw new ArgumentOutOfRangeException("tiered_config", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'tiered_config' cannot be null",
+                    new ArgumentOutOfRangeException("tiered_config", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ConversionRateTieredConfig>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("tiered_config");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'tiered_config' cannot be null",
+                    new ArgumentNullException("tiered_config")
+                );
         }
         set
         {

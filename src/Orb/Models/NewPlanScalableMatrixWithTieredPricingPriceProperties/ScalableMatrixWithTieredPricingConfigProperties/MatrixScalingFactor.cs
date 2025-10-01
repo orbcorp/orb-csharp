@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.NewPlanScalableMatrixWithTieredPricingPriceProperties.ScalableMatrixWithTieredPricingConfigProperties;
 
@@ -20,13 +22,19 @@ public sealed record class MatrixScalingFactor : ModelBase, IFromRaw<MatrixScali
         get
         {
             if (!this.Properties.TryGetValue("first_dimension_value", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "first_dimension_value",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'first_dimension_value' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "first_dimension_value",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("first_dimension_value");
+                ?? throw new OrbInvalidDataException(
+                    "'first_dimension_value' cannot be null",
+                    new ArgumentNullException("first_dimension_value")
+                );
         }
         set
         {
@@ -45,13 +53,16 @@ public sealed record class MatrixScalingFactor : ModelBase, IFromRaw<MatrixScali
         get
         {
             if (!this.Properties.TryGetValue("scaling_factor", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "scaling_factor",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'scaling_factor' cannot be null",
+                    new ArgumentOutOfRangeException("scaling_factor", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("scaling_factor");
+                ?? throw new OrbInvalidDataException(
+                    "'scaling_factor' cannot be null",
+                    new ArgumentNullException("scaling_factor")
+                );
         }
         set
         {

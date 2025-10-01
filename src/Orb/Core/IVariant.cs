@@ -1,4 +1,4 @@
-namespace Orb;
+namespace Orb.Core;
 
 interface IVariant<TVariant, TValue>
     where TVariant : IVariant<TVariant, TValue>

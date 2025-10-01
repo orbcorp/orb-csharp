@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models.Customers.BalanceTransactions.BalanceTransactionListPageResponseProperties.DataProperties;
@@ -59,7 +60,9 @@ sealed class ActionConverter : JsonConverter<Action>
                 Action.OverpaymentRefund => "overpayment_refund",
                 Action.ExternalPayment => "external_payment",
                 Action.SmallInvoiceCarryover => "small_invoice_carryover",
-                _ => throw new System::ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

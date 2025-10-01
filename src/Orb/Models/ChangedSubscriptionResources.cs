@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.ChangedSubscriptionResourcesProperties;
 
 namespace Orb.Models;
@@ -20,15 +22,22 @@ public sealed record class ChangedSubscriptionResources
         get
         {
             if (!this.Properties.TryGetValue("created_credit_notes", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "created_credit_notes",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'created_credit_notes' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "created_credit_notes",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<CreditNote>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("created_credit_notes");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'created_credit_notes' cannot be null",
+                    new ArgumentNullException("created_credit_notes")
+                );
         }
         set
         {
@@ -47,15 +56,19 @@ public sealed record class ChangedSubscriptionResources
         get
         {
             if (!this.Properties.TryGetValue("created_invoices", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "created_invoices",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'created_invoices' cannot be null",
+                    new ArgumentOutOfRangeException("created_invoices", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<List<CreatedInvoice>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("created_invoices");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'created_invoices' cannot be null",
+                    new ArgumentNullException("created_invoices")
+                );
         }
         set
         {
@@ -74,15 +87,22 @@ public sealed record class ChangedSubscriptionResources
         get
         {
             if (!this.Properties.TryGetValue("voided_credit_notes", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "voided_credit_notes",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'voided_credit_notes' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "voided_credit_notes",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<CreditNote>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("voided_credit_notes");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'voided_credit_notes' cannot be null",
+                    new ArgumentNullException("voided_credit_notes")
+                );
         }
         set
         {
@@ -101,13 +121,16 @@ public sealed record class ChangedSubscriptionResources
         get
         {
             if (!this.Properties.TryGetValue("voided_invoices", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "voided_invoices",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'voided_invoices' cannot be null",
+                    new ArgumentOutOfRangeException("voided_invoices", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<List<Invoice>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("voided_invoices");
+                ?? throw new OrbInvalidDataException(
+                    "'voided_invoices' cannot be null",
+                    new ArgumentNullException("voided_invoices")
+                );
         }
         set
         {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -14,9 +16,9 @@ public sealed record class Allocation : ModelBase, IFromRaw<Allocation>
         get
         {
             if (!this.Properties.TryGetValue("allows_rollover", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "allows_rollover",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'allows_rollover' cannot be null",
+                    new ArgumentOutOfRangeException("allows_rollover", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
@@ -35,10 +37,16 @@ public sealed record class Allocation : ModelBase, IFromRaw<Allocation>
         get
         {
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
-                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'currency' cannot be null",
+                    new ArgumentOutOfRangeException("currency", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("currency");
+                ?? throw new OrbInvalidDataException(
+                    "'currency' cannot be null",
+                    new ArgumentNullException("currency")
+                );
         }
         set
         {

@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models.Alerts.AlertProperties;
@@ -20,9 +22,9 @@ public sealed record class BalanceAlertStatus : ModelBase, IFromRaw<BalanceAlert
         get
         {
             if (!this.Properties.TryGetValue("in_alert", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "in_alert",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'in_alert' cannot be null",
+                    new System::ArgumentOutOfRangeException("in_alert", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
@@ -44,9 +46,12 @@ public sealed record class BalanceAlertStatus : ModelBase, IFromRaw<BalanceAlert
         get
         {
             if (!this.Properties.TryGetValue("threshold_value", out JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "threshold_value",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'threshold_value' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "threshold_value",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);

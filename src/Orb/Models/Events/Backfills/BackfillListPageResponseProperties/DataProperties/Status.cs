@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 
 namespace Orb.Models.Events.Backfills.BackfillListPageResponseProperties.DataProperties;
 
@@ -44,7 +45,9 @@ sealed class StatusConverter : JsonConverter<Status>
                 Status.Reflected => "reflected",
                 Status.PendingRevert => "pending_revert",
                 Status.Reverted => "reverted",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

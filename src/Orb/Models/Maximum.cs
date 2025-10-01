@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -18,13 +20,19 @@ public sealed record class Maximum : ModelBase, IFromRaw<Maximum>
         get
         {
             if (!this.Properties.TryGetValue("applies_to_price_ids", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "applies_to_price_ids",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'applies_to_price_ids' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "applies_to_price_ids",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("applies_to_price_ids");
+                ?? throw new OrbInvalidDataException(
+                    "'applies_to_price_ids' cannot be null",
+                    new ArgumentNullException("applies_to_price_ids")
+                );
         }
         set
         {
@@ -43,12 +51,19 @@ public sealed record class Maximum : ModelBase, IFromRaw<Maximum>
         get
         {
             if (!this.Properties.TryGetValue("filters", out JsonElement element))
-                throw new ArgumentOutOfRangeException("filters", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'filters' cannot be null",
+                    new ArgumentOutOfRangeException("filters", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<TransformPriceFilter>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("filters");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'filters' cannot be null",
+                    new ArgumentNullException("filters")
+                );
         }
         set
         {
@@ -67,13 +82,16 @@ public sealed record class Maximum : ModelBase, IFromRaw<Maximum>
         get
         {
             if (!this.Properties.TryGetValue("maximum_amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "maximum_amount",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'maximum_amount' cannot be null",
+                    new ArgumentOutOfRangeException("maximum_amount", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("maximum_amount");
+                ?? throw new OrbInvalidDataException(
+                    "'maximum_amount' cannot be null",
+                    new ArgumentNullException("maximum_amount")
+                );
         }
         set
         {

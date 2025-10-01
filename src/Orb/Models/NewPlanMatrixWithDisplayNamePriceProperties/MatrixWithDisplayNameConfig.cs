@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.NewPlanMatrixWithDisplayNamePriceProperties.MatrixWithDisplayNameConfigProperties;
 
 namespace Orb.Models.NewPlanMatrixWithDisplayNamePriceProperties;
@@ -23,10 +25,16 @@ public sealed record class MatrixWithDisplayNameConfig
         get
         {
             if (!this.Properties.TryGetValue("dimension", out JsonElement element))
-                throw new ArgumentOutOfRangeException("dimension", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'dimension' cannot be null",
+                    new ArgumentOutOfRangeException("dimension", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("dimension");
+                ?? throw new OrbInvalidDataException(
+                    "'dimension' cannot be null",
+                    new ArgumentNullException("dimension")
+                );
         }
         set
         {
@@ -45,12 +53,19 @@ public sealed record class MatrixWithDisplayNameConfig
         get
         {
             if (!this.Properties.TryGetValue("unit_amounts", out JsonElement element))
-                throw new ArgumentOutOfRangeException("unit_amounts", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'unit_amounts' cannot be null",
+                    new ArgumentOutOfRangeException("unit_amounts", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<UnitAmount>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("unit_amounts");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'unit_amounts' cannot be null",
+                    new ArgumentNullException("unit_amounts")
+                );
         }
         set
         {

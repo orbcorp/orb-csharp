@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Items.ItemProperties.ExternalConnectionProperties;
 
 namespace Orb.Models.Items.ItemProperties;
@@ -15,9 +17,12 @@ public sealed record class ExternalConnection : ModelBase, IFromRaw<ExternalConn
         get
         {
             if (!this.Properties.TryGetValue("external_connection_name", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "external_connection_name",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'external_connection_name' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "external_connection_name",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, ExternalConnectionName>>(
@@ -39,13 +44,19 @@ public sealed record class ExternalConnection : ModelBase, IFromRaw<ExternalConn
         get
         {
             if (!this.Properties.TryGetValue("external_entity_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "external_entity_id",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'external_entity_id' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "external_entity_id",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("external_entity_id");
+                ?? throw new OrbInvalidDataException(
+                    "'external_entity_id' cannot be null",
+                    new ArgumentNullException("external_entity_id")
+                );
         }
         set
         {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Subscriptions.SubscriptionUpdateTrialParamsProperties.TrialEndDateProperties;
 using TrialEndDateVariants = Orb.Models.Subscriptions.SubscriptionUpdateTrialParamsProperties.TrialEndDateVariants;
 
@@ -49,7 +51,7 @@ public abstract record class TrialEndDate
                 unionMember1(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new OrbInvalidDataException("Data did not match any variant of TrialEndDate");
         }
     }
 
@@ -62,7 +64,9 @@ public abstract record class TrialEndDate
         {
             TrialEndDateVariants::DateTime inner => @dateTime(inner),
             TrialEndDateVariants::UnionMember1 inner => unionMember1(inner),
-            _ => throw new InvalidOperationException(),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of TrialEndDate"
+            ),
         };
     }
 
@@ -77,7 +81,7 @@ sealed class TrialEndDateConverter : JsonConverter<TrialEndDate>
         JsonSerializerOptions options
     )
     {
-        List<JsonException> exceptions = [];
+        List<OrbInvalidDataException> exceptions = [];
 
         try
         {
@@ -87,7 +91,12 @@ sealed class TrialEndDateConverter : JsonConverter<TrialEndDate>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant TrialEndDateVariants::UnionMember1",
+                    e
+                )
+            );
         }
 
         try
@@ -98,7 +107,12 @@ sealed class TrialEndDateConverter : JsonConverter<TrialEndDate>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant TrialEndDateVariants::DateTime",
+                    e
+                )
+            );
         }
 
         throw new AggregateException(exceptions);
@@ -114,7 +128,9 @@ sealed class TrialEndDateConverter : JsonConverter<TrialEndDate>
         {
             TrialEndDateVariants::DateTime(var @dateTime) => @dateTime,
             TrialEndDateVariants::UnionMember1(var unionMember1) => unionMember1,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of TrialEndDate"
+            ),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

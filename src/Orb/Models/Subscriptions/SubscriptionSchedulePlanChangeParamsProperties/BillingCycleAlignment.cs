@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 
 namespace Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties;
 
@@ -47,7 +48,9 @@ sealed class BillingCycleAlignmentConverter : JsonConverter<BillingCycleAlignmen
                 BillingCycleAlignment.Unchanged => "unchanged",
                 BillingCycleAlignment.PlanChangeDate => "plan_change_date",
                 BillingCycleAlignment.StartOfMonth => "start_of_month",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

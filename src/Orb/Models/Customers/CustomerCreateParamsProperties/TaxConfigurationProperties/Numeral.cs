@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Customers.CustomerCreateParamsProperties.TaxConfigurationProperties;
 
@@ -14,7 +16,10 @@ public sealed record class Numeral : ModelBase, IFromRaw<Numeral>
         get
         {
             if (!this.Properties.TryGetValue("tax_exempt", out JsonElement element))
-                throw new ArgumentOutOfRangeException("tax_exempt", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'tax_exempt' cannot be null",
+                    new ArgumentOutOfRangeException("tax_exempt", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
@@ -32,7 +37,10 @@ public sealed record class Numeral : ModelBase, IFromRaw<Numeral>
         get
         {
             if (!this.Properties.TryGetValue("tax_provider", out JsonElement element))
-                throw new ArgumentOutOfRangeException("tax_provider", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'tax_provider' cannot be null",
+                    new ArgumentOutOfRangeException("tax_provider", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }

@@ -1,6 +1,7 @@
 using System;
 using System.Net.Http;
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models.Subscriptions.SubscriptionFetchCostsParamsProperties;
 
 namespace Orb.Models.Subscriptions;
@@ -120,7 +121,7 @@ public sealed record class SubscriptionFetchCostsParams : ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.NewPlanUnitWithPercentPriceProperties;
 
@@ -20,10 +22,16 @@ public sealed record class UnitWithPercentConfig : ModelBase, IFromRaw<UnitWithP
         get
         {
             if (!this.Properties.TryGetValue("percent", out JsonElement element))
-                throw new ArgumentOutOfRangeException("percent", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'percent' cannot be null",
+                    new ArgumentOutOfRangeException("percent", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("percent");
+                ?? throw new OrbInvalidDataException(
+                    "'percent' cannot be null",
+                    new ArgumentNullException("percent")
+                );
         }
         set
         {
@@ -42,10 +50,16 @@ public sealed record class UnitWithPercentConfig : ModelBase, IFromRaw<UnitWithP
         get
         {
             if (!this.Properties.TryGetValue("unit_amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("unit_amount", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'unit_amount' cannot be null",
+                    new ArgumentOutOfRangeException("unit_amount", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("unit_amount");
+                ?? throw new OrbInvalidDataException(
+                    "'unit_amount' cannot be null",
+                    new ArgumentNullException("unit_amount")
+                );
         }
         set
         {

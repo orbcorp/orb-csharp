@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.PriceProperties.GroupedWithMeteredMinimumProperties;
 using Models = Orb.Models;
 
@@ -18,10 +20,16 @@ public sealed record class GroupedWithMeteredMinimum
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("id");
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentNullException("id")
+                );
         }
         set
         {
@@ -60,15 +68,22 @@ public sealed record class GroupedWithMeteredMinimum
             if (
                 !this.Properties.TryGetValue("billing_cycle_configuration", out JsonElement element)
             )
-                throw new ArgumentOutOfRangeException(
-                    "billing_cycle_configuration",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'billing_cycle_configuration' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "billing_cycle_configuration",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<Models::BillingCycleConfiguration>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("billing_cycle_configuration");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_cycle_configuration' cannot be null",
+                    new ArgumentNullException("billing_cycle_configuration")
+                );
         }
         set
         {
@@ -84,7 +99,10 @@ public sealed record class GroupedWithMeteredMinimum
         get
         {
             if (!this.Properties.TryGetValue("billing_mode", out JsonElement element))
-                throw new ArgumentOutOfRangeException("billing_mode", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new ArgumentOutOfRangeException("billing_mode", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, BillingMode>>(
                 element,
@@ -105,7 +123,10 @@ public sealed record class GroupedWithMeteredMinimum
         get
         {
             if (!this.Properties.TryGetValue("cadence", out JsonElement element))
-                throw new ArgumentOutOfRangeException("cadence", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new ArgumentOutOfRangeException("cadence", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Cadence>>(
                 element,
@@ -186,7 +207,10 @@ public sealed record class GroupedWithMeteredMinimum
         get
         {
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
-                throw new ArgumentOutOfRangeException("created_at", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'created_at' cannot be null",
+                    new ArgumentOutOfRangeException("created_at", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
@@ -225,10 +249,16 @@ public sealed record class GroupedWithMeteredMinimum
         get
         {
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
-                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'currency' cannot be null",
+                    new ArgumentOutOfRangeException("currency", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("currency");
+                ?? throw new OrbInvalidDataException(
+                    "'currency' cannot be null",
+                    new ArgumentNullException("currency")
+                );
         }
         set
         {
@@ -309,15 +339,22 @@ public sealed record class GroupedWithMeteredMinimum
                     out JsonElement element
                 )
             )
-                throw new ArgumentOutOfRangeException(
-                    "grouped_with_metered_minimum_config",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'grouped_with_metered_minimum_config' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "grouped_with_metered_minimum_config",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<GroupedWithMeteredMinimumConfig>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("grouped_with_metered_minimum_config");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'grouped_with_metered_minimum_config' cannot be null",
+                    new ArgumentNullException("grouped_with_metered_minimum_config")
+                );
         }
         set
         {
@@ -357,12 +394,19 @@ public sealed record class GroupedWithMeteredMinimum
         get
         {
             if (!this.Properties.TryGetValue("item", out JsonElement element))
-                throw new ArgumentOutOfRangeException("item", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'item' cannot be null",
+                    new ArgumentOutOfRangeException("item", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<Models::ItemSlim>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("item");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'item' cannot be null",
+                    new ArgumentNullException("item")
+                );
         }
         set
         {
@@ -423,12 +467,19 @@ public sealed record class GroupedWithMeteredMinimum
         get
         {
             if (!this.Properties.TryGetValue("metadata", out JsonElement element))
-                throw new ArgumentOutOfRangeException("metadata", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'metadata' cannot be null",
+                    new ArgumentOutOfRangeException("metadata", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<Dictionary<string, string>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("metadata");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'metadata' cannot be null",
+                    new ArgumentNullException("metadata")
+                );
         }
         set
         {
@@ -486,7 +537,10 @@ public sealed record class GroupedWithMeteredMinimum
         get
         {
             if (!this.Properties.TryGetValue("model_type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("model_type", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'model_type' cannot be null",
+                    new ArgumentOutOfRangeException("model_type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }
@@ -504,10 +558,16 @@ public sealed record class GroupedWithMeteredMinimum
         get
         {
             if (!this.Properties.TryGetValue("name", out JsonElement element))
-                throw new ArgumentOutOfRangeException("name", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("name");
+                ?? throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new ArgumentNullException("name")
+                );
         }
         set
         {
@@ -541,7 +601,10 @@ public sealed record class GroupedWithMeteredMinimum
         get
         {
             if (!this.Properties.TryGetValue("price_type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("price_type", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new ArgumentOutOfRangeException("price_type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, PriceType>>(
                 element,

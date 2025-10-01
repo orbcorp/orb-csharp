@@ -1,6 +1,8 @@
 using System;
 using System.Net.Http;
 using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Invoices;
 
@@ -15,13 +17,16 @@ public sealed record class InvoiceFetchUpcomingParams : ParamsBase
         get
         {
             if (!this.QueryProperties.TryGetValue("subscription_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "subscription_id",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'subscription_id' cannot be null",
+                    new ArgumentOutOfRangeException("subscription_id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("subscription_id");
+                ?? throw new OrbInvalidDataException(
+                    "'subscription_id' cannot be null",
+                    new ArgumentNullException("subscription_id")
+                );
         }
         set
         {
@@ -40,7 +45,7 @@ public sealed record class InvoiceFetchUpcomingParams : ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

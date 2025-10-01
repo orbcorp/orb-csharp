@@ -1,3 +1,4 @@
+using Orb.Core;
 using Models = Orb.Models;
 
 namespace Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.ReplacePriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.ConversionRateConfigVariants;

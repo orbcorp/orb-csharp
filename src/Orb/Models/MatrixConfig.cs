@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -20,13 +22,19 @@ public sealed record class MatrixConfig : ModelBase, IFromRaw<MatrixConfig>
         get
         {
             if (!this.Properties.TryGetValue("default_unit_amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "default_unit_amount",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'default_unit_amount' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "default_unit_amount",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("default_unit_amount");
+                ?? throw new OrbInvalidDataException(
+                    "'default_unit_amount' cannot be null",
+                    new ArgumentNullException("default_unit_amount")
+                );
         }
         set
         {
@@ -45,10 +53,16 @@ public sealed record class MatrixConfig : ModelBase, IFromRaw<MatrixConfig>
         get
         {
             if (!this.Properties.TryGetValue("dimensions", out JsonElement element))
-                throw new ArgumentOutOfRangeException("dimensions", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'dimensions' cannot be null",
+                    new ArgumentOutOfRangeException("dimensions", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<string?>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("dimensions");
+                ?? throw new OrbInvalidDataException(
+                    "'dimensions' cannot be null",
+                    new ArgumentNullException("dimensions")
+                );
         }
         set
         {
@@ -67,12 +81,19 @@ public sealed record class MatrixConfig : ModelBase, IFromRaw<MatrixConfig>
         get
         {
             if (!this.Properties.TryGetValue("matrix_values", out JsonElement element))
-                throw new ArgumentOutOfRangeException("matrix_values", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'matrix_values' cannot be null",
+                    new ArgumentOutOfRangeException("matrix_values", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<MatrixValue>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("matrix_values");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'matrix_values' cannot be null",
+                    new ArgumentNullException("matrix_values")
+                );
         }
         set
         {

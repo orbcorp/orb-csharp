@@ -1,3 +1,4 @@
+using Orb.Core;
 using System = System;
 using TrialEndDateProperties = Orb.Models.Subscriptions.SubscriptionUpdateTrialParamsProperties.TrialEndDateProperties;
 

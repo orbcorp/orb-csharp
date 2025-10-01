@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Customers;
 
@@ -16,7 +18,10 @@ public sealed record class NewReportingConfiguration
         get
         {
             if (!this.Properties.TryGetValue("exempt", out JsonElement element))
-                throw new ArgumentOutOfRangeException("exempt", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'exempt' cannot be null",
+                    new ArgumentOutOfRangeException("exempt", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }

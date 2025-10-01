@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.InvoiceLineItems;
 
@@ -22,10 +24,16 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new ArgumentOutOfRangeException("amount", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("amount");
+                ?? throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new ArgumentNullException("amount")
+                );
         }
         set
         {
@@ -44,7 +52,10 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("end_date", out JsonElement element))
-                throw new ArgumentOutOfRangeException("end_date", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'end_date' cannot be null",
+                    new ArgumentOutOfRangeException("end_date", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateOnly>(element, ModelBase.SerializerOptions);
         }
@@ -65,10 +76,16 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("invoice_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("invoice_id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'invoice_id' cannot be null",
+                    new ArgumentOutOfRangeException("invoice_id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("invoice_id");
+                ?? throw new OrbInvalidDataException(
+                    "'invoice_id' cannot be null",
+                    new ArgumentNullException("invoice_id")
+                );
         }
         set
         {
@@ -88,10 +105,16 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("name", out JsonElement element))
-                throw new ArgumentOutOfRangeException("name", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("name");
+                ?? throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new ArgumentNullException("name")
+                );
         }
         set
         {
@@ -110,7 +133,10 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("quantity", out JsonElement element))
-                throw new ArgumentOutOfRangeException("quantity", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'quantity' cannot be null",
+                    new ArgumentOutOfRangeException("quantity", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
@@ -131,7 +157,10 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("start_date", out JsonElement element))
-                throw new ArgumentOutOfRangeException("start_date", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'start_date' cannot be null",
+                    new ArgumentOutOfRangeException("start_date", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateOnly>(element, ModelBase.SerializerOptions);
         }
@@ -152,7 +181,7 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -161,7 +190,7 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

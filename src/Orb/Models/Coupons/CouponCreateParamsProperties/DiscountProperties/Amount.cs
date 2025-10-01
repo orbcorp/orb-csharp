@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.Coupons.CouponCreateParamsProperties.DiscountProperties;
 
@@ -14,13 +16,16 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
         get
         {
             if (!this.Properties.TryGetValue("amount_discount", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "amount_discount",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'amount_discount' cannot be null",
+                    new ArgumentOutOfRangeException("amount_discount", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("amount_discount");
+                ?? throw new OrbInvalidDataException(
+                    "'amount_discount' cannot be null",
+                    new ArgumentNullException("amount_discount")
+                );
         }
         set
         {
@@ -36,7 +41,10 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
         get
         {
             if (!this.Properties.TryGetValue("discount_type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("discount_type", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'discount_type' cannot be null",
+                    new ArgumentOutOfRangeException("discount_type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }

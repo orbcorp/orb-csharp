@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.CreditNotes.CreditNoteCreateParamsProperties;
 
 namespace Orb.Models.CreditNotes;
@@ -43,10 +45,16 @@ public sealed record class CreditNoteCreateParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("line_items", out JsonElement element))
-                throw new ArgumentOutOfRangeException("line_items", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'line_items' cannot be null",
+                    new ArgumentOutOfRangeException("line_items", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<LineItem>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("line_items");
+                ?? throw new OrbInvalidDataException(
+                    "'line_items' cannot be null",
+                    new ArgumentNullException("line_items")
+                );
         }
         set
         {
@@ -65,7 +73,10 @@ public sealed record class CreditNoteCreateParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("reason", out JsonElement element))
-                throw new ArgumentOutOfRangeException("reason", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'reason' cannot be null",
+                    new ArgumentOutOfRangeException("reason", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Reason>>(
                 element,
@@ -160,7 +171,7 @@ public sealed record class CreditNoteCreateParams : ParamsBase
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -169,7 +180,7 @@ public sealed record class CreditNoteCreateParams : ParamsBase
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

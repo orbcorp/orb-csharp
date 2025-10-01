@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Subscriptions.DiscountOverrideProperties;
 
 namespace Orb.Models.Subscriptions;
@@ -15,7 +17,10 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
         get
         {
             if (!this.Properties.TryGetValue("discount_type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("discount_type", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'discount_type' cannot be null",
+                    new ArgumentOutOfRangeException("discount_type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, DiscountType>>(
                 element,

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models.NewPlanGroupedAllocationPriceProperties;
 
@@ -20,10 +22,16 @@ public sealed record class GroupedAllocationConfig : ModelBase, IFromRaw<Grouped
         get
         {
             if (!this.Properties.TryGetValue("allocation", out JsonElement element))
-                throw new ArgumentOutOfRangeException("allocation", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'allocation' cannot be null",
+                    new ArgumentOutOfRangeException("allocation", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("allocation");
+                ?? throw new OrbInvalidDataException(
+                    "'allocation' cannot be null",
+                    new ArgumentNullException("allocation")
+                );
         }
         set
         {
@@ -42,10 +50,16 @@ public sealed record class GroupedAllocationConfig : ModelBase, IFromRaw<Grouped
         get
         {
             if (!this.Properties.TryGetValue("grouping_key", out JsonElement element))
-                throw new ArgumentOutOfRangeException("grouping_key", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'grouping_key' cannot be null",
+                    new ArgumentOutOfRangeException("grouping_key", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("grouping_key");
+                ?? throw new OrbInvalidDataException(
+                    "'grouping_key' cannot be null",
+                    new ArgumentNullException("grouping_key")
+                );
         }
         set
         {
@@ -64,13 +78,19 @@ public sealed record class GroupedAllocationConfig : ModelBase, IFromRaw<Grouped
         get
         {
             if (!this.Properties.TryGetValue("overage_unit_rate", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "overage_unit_rate",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'overage_unit_rate' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "overage_unit_rate",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("overage_unit_rate");
+                ?? throw new OrbInvalidDataException(
+                    "'overage_unit_rate' cannot be null",
+                    new ArgumentNullException("overage_unit_rate")
+                );
         }
         set
         {

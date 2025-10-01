@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 
 namespace Orb.Models.CreditNotes.CreditNoteCreateParamsProperties;
 
@@ -44,7 +45,9 @@ sealed class ReasonConverter : JsonConverter<Reason>
                 Reason.Fraudulent => "fraudulent",
                 Reason.OrderChange => "order_change",
                 Reason.ProductUnsatisfactory => "product_unsatisfactory",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

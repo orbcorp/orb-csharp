@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.NewMaximumProperties;
 
 namespace Orb.Models;
@@ -15,9 +17,9 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
         get
         {
             if (!this.Properties.TryGetValue("adjustment_type", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "adjustment_type",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'adjustment_type' cannot be null",
+                    new ArgumentOutOfRangeException("adjustment_type", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, AdjustmentType>>(
@@ -39,13 +41,16 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
         get
         {
             if (!this.Properties.TryGetValue("maximum_amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "maximum_amount",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'maximum_amount' cannot be null",
+                    new ArgumentOutOfRangeException("maximum_amount", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("maximum_amount");
+                ?? throw new OrbInvalidDataException(
+                    "'maximum_amount' cannot be null",
+                    new ArgumentNullException("maximum_amount")
+                );
         }
         set
         {

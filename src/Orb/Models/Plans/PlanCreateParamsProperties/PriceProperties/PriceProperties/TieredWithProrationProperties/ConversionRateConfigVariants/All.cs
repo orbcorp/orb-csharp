@@ -1,3 +1,4 @@
+using Orb.Core;
 using Models = Orb.Models;
 
 namespace Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.TieredWithProrationProperties.ConversionRateConfigVariants;

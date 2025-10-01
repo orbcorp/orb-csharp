@@ -83,6 +83,33 @@ To send a request to the Orb API, build an instance of some `Params` class and p
 
 For example, `client.Customers.Create` should be called with an instance of `CustomerCreateParams`, and it will return an instance of `Task<Customer>`.
 
+## Error handling
+
+The SDK throws custom unchecked exception types:
+
+- `OrbApiException`: Base class for API errors. See this table for which exception subclass is thrown for each HTTP status code:
+
+| Status | Exception                          |
+| ------ | ---------------------------------- |
+| 400    | `OrbBadRequestException`           |
+| 401    | `OrbUnauthorizedException`         |
+| 403    | `OrbForbiddenException`            |
+| 404    | `OrbNotFoundException`             |
+| 422    | `OrbUnprocessableEntityException`  |
+| 429    | `OrbRateLimitException`            |
+| 5xx    | `Orb5xxException`                  |
+| others | `OrbUnexpectedStatusCodeException` |
+
+Additionally, all 4xx errors inherit from `Orb4xxException`.
+
+false
+
+- `OrbIOException`: I/O networking errors.
+
+- `OrbInvalidDataException`: Failure to interpret successfully parsed data. For example, when accessing a property that's supposed to be required, but the API unexpectedly omitted it from the response.
+
+- `OrbException`: Base class for all exceptions.
+
 ## Semantic versioning
 
 This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:

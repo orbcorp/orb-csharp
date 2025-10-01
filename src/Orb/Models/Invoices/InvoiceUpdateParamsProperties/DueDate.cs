@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using DueDateVariants = Orb.Models.Invoices.InvoiceUpdateParamsProperties.DueDateVariants;
 
 namespace Orb.Models.Invoices.InvoiceUpdateParamsProperties;
@@ -46,7 +47,7 @@ public abstract record class DueDate
                 @dateTime(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new OrbInvalidDataException("Data did not match any variant of DueDate");
         }
     }
 
@@ -59,7 +60,7 @@ public abstract record class DueDate
         {
             DueDateVariants::Date inner => @date(inner),
             DueDateVariants::DateTime inner => @dateTime(inner),
-            _ => throw new InvalidOperationException(),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of DueDate"),
         };
     }
 
@@ -74,7 +75,7 @@ sealed class DueDateConverter : JsonConverter<DueDate?>
         JsonSerializerOptions options
     )
     {
-        List<JsonException> exceptions = [];
+        List<OrbInvalidDataException> exceptions = [];
 
         try
         {
@@ -84,7 +85,12 @@ sealed class DueDateConverter : JsonConverter<DueDate?>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant DueDateVariants::Date",
+                    e
+                )
+            );
         }
 
         try
@@ -95,7 +101,12 @@ sealed class DueDateConverter : JsonConverter<DueDate?>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant DueDateVariants::DateTime",
+                    e
+                )
+            );
         }
 
         throw new AggregateException(exceptions);
@@ -108,7 +119,7 @@ sealed class DueDateConverter : JsonConverter<DueDate?>
             null => null,
             DueDateVariants::Date(var @date) => @date,
             DueDateVariants::DateTime(var @dateTime) => @dateTime,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of DueDate"),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

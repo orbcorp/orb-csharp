@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using CustomerBalanceTransactionProperties = Orb.Models.ChangedSubscriptionResourcesProperties.CreatedInvoiceProperties.CustomerBalanceTransactionProperties;
 using Models = Orb.Models;
 
@@ -21,10 +23,16 @@ public sealed record class CustomerBalanceTransaction
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("id");
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentNullException("id")
+                );
         }
         set
         {
@@ -40,7 +48,10 @@ public sealed record class CustomerBalanceTransaction
         get
         {
             if (!this.Properties.TryGetValue("action", out JsonElement element))
-                throw new ArgumentOutOfRangeException("action", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'action' cannot be null",
+                    new ArgumentOutOfRangeException("action", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<
                 ApiEnum<string, CustomerBalanceTransactionProperties::Action>
@@ -63,10 +74,16 @@ public sealed record class CustomerBalanceTransaction
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new ArgumentOutOfRangeException("amount", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("amount");
+                ?? throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new ArgumentNullException("amount")
+                );
         }
         set
         {
@@ -85,7 +102,10 @@ public sealed record class CustomerBalanceTransaction
         get
         {
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
-                throw new ArgumentOutOfRangeException("created_at", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'created_at' cannot be null",
+                    new ArgumentOutOfRangeException("created_at", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
@@ -149,13 +169,16 @@ public sealed record class CustomerBalanceTransaction
         get
         {
             if (!this.Properties.TryGetValue("ending_balance", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "ending_balance",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'ending_balance' cannot be null",
+                    new ArgumentOutOfRangeException("ending_balance", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("ending_balance");
+                ?? throw new OrbInvalidDataException(
+                    "'ending_balance' cannot be null",
+                    new ArgumentNullException("ending_balance")
+                );
         }
         set
         {
@@ -196,13 +219,16 @@ public sealed record class CustomerBalanceTransaction
         get
         {
             if (!this.Properties.TryGetValue("starting_balance", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "starting_balance",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'starting_balance' cannot be null",
+                    new ArgumentOutOfRangeException("starting_balance", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("starting_balance");
+                ?? throw new OrbInvalidDataException(
+                    "'starting_balance' cannot be null",
+                    new ArgumentNullException("starting_balance")
+                );
         }
         set
         {
@@ -218,7 +244,10 @@ public sealed record class CustomerBalanceTransaction
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("type", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentOutOfRangeException("type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<
                 ApiEnum<string, CustomerBalanceTransactionProperties::Type>

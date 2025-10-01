@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers.Credits.CreditListPageResponseProperties.DataProperties;
 
 namespace Orb.Models.Customers.Credits.CreditListPageResponseProperties;
@@ -15,10 +17,16 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("id");
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentNullException("id")
+                );
         }
         set
         {
@@ -34,7 +42,10 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         get
         {
             if (!this.Properties.TryGetValue("balance", out JsonElement element))
-                throw new ArgumentOutOfRangeException("balance", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'balance' cannot be null",
+                    new ArgumentOutOfRangeException("balance", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
@@ -124,7 +135,10 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         get
         {
             if (!this.Properties.TryGetValue("status", out JsonElement element))
-                throw new ArgumentOutOfRangeException("status", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'status' cannot be null",
+                    new ArgumentOutOfRangeException("status", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Status>>(
                 element,

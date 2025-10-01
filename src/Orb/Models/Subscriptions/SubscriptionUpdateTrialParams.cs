@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Subscriptions.SubscriptionUpdateTrialParamsProperties;
 
 namespace Orb.Models.Subscriptions;
@@ -40,13 +42,16 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("trial_end_date", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "trial_end_date",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'trial_end_date' cannot be null",
+                    new ArgumentOutOfRangeException("trial_end_date", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<TrialEndDate>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("trial_end_date");
+                ?? throw new OrbInvalidDataException(
+                    "'trial_end_date' cannot be null",
+                    new ArgumentNullException("trial_end_date")
+                );
         }
         set
         {
@@ -90,7 +95,7 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -99,7 +104,7 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

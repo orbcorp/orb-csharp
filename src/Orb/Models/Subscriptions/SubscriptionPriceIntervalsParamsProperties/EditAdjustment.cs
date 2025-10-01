@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.EditAdjustmentProperties;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties;
@@ -18,13 +20,19 @@ public sealed record class EditAdjustment : ModelBase, IFromRaw<EditAdjustment>
         get
         {
             if (!this.Properties.TryGetValue("adjustment_interval_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "adjustment_interval_id",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'adjustment_interval_id' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "adjustment_interval_id",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("adjustment_interval_id");
+                ?? throw new OrbInvalidDataException(
+                    "'adjustment_interval_id' cannot be null",
+                    new ArgumentNullException("adjustment_interval_id")
+                );
         }
         set
         {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Subscriptions.NewSubscriptionThresholdTotalAmountPriceProperties.ThresholdTotalAmountConfigProperties;
 
 namespace Orb.Models.Subscriptions.NewSubscriptionThresholdTotalAmountPriceProperties;
@@ -24,15 +26,22 @@ public sealed record class ThresholdTotalAmountConfig
         get
         {
             if (!this.Properties.TryGetValue("consumption_table", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "consumption_table",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'consumption_table' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "consumption_table",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<ConsumptionTable>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("consumption_table");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'consumption_table' cannot be null",
+                    new ArgumentNullException("consumption_table")
+                );
         }
         set
         {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
 using AlertCreateForSubscriptionParamsProperties = Orb.Models.Alerts.AlertCreateForSubscriptionParamsProperties;
 
 namespace Orb.Models.Alerts;
@@ -34,10 +36,16 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("thresholds", out JsonElement element))
-                throw new ArgumentOutOfRangeException("thresholds", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'thresholds' cannot be null",
+                    new ArgumentOutOfRangeException("thresholds", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<Threshold>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("thresholds");
+                ?? throw new OrbInvalidDataException(
+                    "'thresholds' cannot be null",
+                    new ArgumentNullException("thresholds")
+                );
         }
         set
         {
@@ -56,7 +64,10 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("type", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentOutOfRangeException("type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<
                 ApiEnum<string, AlertCreateForSubscriptionParamsProperties::Type>
@@ -103,7 +114,7 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -112,7 +123,7 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

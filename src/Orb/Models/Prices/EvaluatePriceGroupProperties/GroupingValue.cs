@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using GroupingValueVariants = Orb.Models.Prices.EvaluatePriceGroupProperties.GroupingValueVariants;
 
 namespace Orb.Models.Prices.EvaluatePriceGroupProperties;
@@ -57,7 +58,9 @@ public abstract record class GroupingValue
                 @bool(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of GroupingValue"
+                );
         }
     }
 
@@ -72,7 +75,9 @@ public abstract record class GroupingValue
             GroupingValueVariants::String inner => @string(inner),
             GroupingValueVariants::Double inner => @double(inner),
             GroupingValueVariants::Bool inner => @bool(inner),
-            _ => throw new InvalidOperationException(),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of GroupingValue"
+            ),
         };
     }
 
@@ -87,7 +92,7 @@ sealed class GroupingValueConverter : JsonConverter<GroupingValue>
         JsonSerializerOptions options
     )
     {
-        List<JsonException> exceptions = [];
+        List<OrbInvalidDataException> exceptions = [];
 
         try
         {
@@ -99,7 +104,12 @@ sealed class GroupingValueConverter : JsonConverter<GroupingValue>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant GroupingValueVariants::String",
+                    e
+                )
+            );
         }
 
         try
@@ -110,7 +120,12 @@ sealed class GroupingValueConverter : JsonConverter<GroupingValue>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant GroupingValueVariants::Double",
+                    e
+                )
+            );
         }
 
         try
@@ -121,7 +136,12 @@ sealed class GroupingValueConverter : JsonConverter<GroupingValue>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant GroupingValueVariants::Bool",
+                    e
+                )
+            );
         }
 
         throw new AggregateException(exceptions);
@@ -138,7 +158,9 @@ sealed class GroupingValueConverter : JsonConverter<GroupingValue>
             GroupingValueVariants::String(var @string) => @string,
             GroupingValueVariants::Double(var @double) => @double,
             GroupingValueVariants::Bool(var @bool) => @bool,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of GroupingValue"
+            ),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

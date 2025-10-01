@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers.Credits.Ledger.VoidLedgerEntryProperties;
 
 namespace Orb.Models.Customers.Credits.Ledger;
@@ -15,10 +17,16 @@ public sealed record class VoidLedgerEntry : ModelBase, IFromRaw<VoidLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("id");
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentNullException("id")
+                );
         }
         set
         {
@@ -34,7 +42,10 @@ public sealed record class VoidLedgerEntry : ModelBase, IFromRaw<VoidLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new ArgumentOutOfRangeException("amount", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
@@ -52,7 +63,10 @@ public sealed record class VoidLedgerEntry : ModelBase, IFromRaw<VoidLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
-                throw new ArgumentOutOfRangeException("created_at", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'created_at' cannot be null",
+                    new ArgumentOutOfRangeException("created_at", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
@@ -70,10 +84,16 @@ public sealed record class VoidLedgerEntry : ModelBase, IFromRaw<VoidLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("credit_block", out JsonElement element))
-                throw new ArgumentOutOfRangeException("credit_block", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'credit_block' cannot be null",
+                    new ArgumentOutOfRangeException("credit_block", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<AffectedBlock>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("credit_block");
+                ?? throw new OrbInvalidDataException(
+                    "'credit_block' cannot be null",
+                    new ArgumentNullException("credit_block")
+                );
         }
         set
         {
@@ -89,10 +109,16 @@ public sealed record class VoidLedgerEntry : ModelBase, IFromRaw<VoidLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
-                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'currency' cannot be null",
+                    new ArgumentOutOfRangeException("currency", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("currency");
+                ?? throw new OrbInvalidDataException(
+                    "'currency' cannot be null",
+                    new ArgumentNullException("currency")
+                );
         }
         set
         {
@@ -108,12 +134,19 @@ public sealed record class VoidLedgerEntry : ModelBase, IFromRaw<VoidLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("customer", out JsonElement element))
-                throw new ArgumentOutOfRangeException("customer", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'customer' cannot be null",
+                    new ArgumentOutOfRangeException("customer", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<CustomerMinified>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("customer");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'customer' cannot be null",
+                    new ArgumentNullException("customer")
+                );
         }
         set
         {
@@ -147,9 +180,9 @@ public sealed record class VoidLedgerEntry : ModelBase, IFromRaw<VoidLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("ending_balance", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "ending_balance",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'ending_balance' cannot be null",
+                    new ArgumentOutOfRangeException("ending_balance", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
@@ -168,7 +201,10 @@ public sealed record class VoidLedgerEntry : ModelBase, IFromRaw<VoidLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("entry_status", out JsonElement element))
-                throw new ArgumentOutOfRangeException("entry_status", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'entry_status' cannot be null",
+                    new ArgumentOutOfRangeException("entry_status", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, EntryStatus>>(
                 element,
@@ -189,7 +225,10 @@ public sealed record class VoidLedgerEntry : ModelBase, IFromRaw<VoidLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("entry_type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("entry_type", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new ArgumentOutOfRangeException("entry_type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, EntryType>>(
                 element,
@@ -210,9 +249,12 @@ public sealed record class VoidLedgerEntry : ModelBase, IFromRaw<VoidLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("ledger_sequence_number", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "ledger_sequence_number",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'ledger_sequence_number' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "ledger_sequence_number",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
@@ -237,12 +279,19 @@ public sealed record class VoidLedgerEntry : ModelBase, IFromRaw<VoidLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("metadata", out JsonElement element))
-                throw new ArgumentOutOfRangeException("metadata", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'metadata' cannot be null",
+                    new ArgumentOutOfRangeException("metadata", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<Dictionary<string, string>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("metadata");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'metadata' cannot be null",
+                    new ArgumentNullException("metadata")
+                );
         }
         set
         {
@@ -258,9 +307,9 @@ public sealed record class VoidLedgerEntry : ModelBase, IFromRaw<VoidLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("starting_balance", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "starting_balance",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'starting_balance' cannot be null",
+                    new ArgumentOutOfRangeException("starting_balance", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
@@ -279,7 +328,10 @@ public sealed record class VoidLedgerEntry : ModelBase, IFromRaw<VoidLedgerEntry
         get
         {
             if (!this.Properties.TryGetValue("void_amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("void_amount", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'void_amount' cannot be null",
+                    new ArgumentOutOfRangeException("void_amount", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }

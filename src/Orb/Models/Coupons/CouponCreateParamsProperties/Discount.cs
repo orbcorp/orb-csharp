@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using Orb.Models.Coupons.CouponCreateParamsProperties.DiscountProperties;
 using DiscountVariants = Orb.Models.Coupons.CouponCreateParamsProperties.DiscountVariants;
 
@@ -44,7 +45,7 @@ public abstract record class Discount
                 amount(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new OrbInvalidDataException("Data did not match any variant of Discount");
         }
     }
 
@@ -57,7 +58,7 @@ public abstract record class Discount
         {
             DiscountVariants::Percentage inner => percentage(inner),
             DiscountVariants::Amount inner => amount(inner),
-            _ => throw new InvalidOperationException(),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of Discount"),
         };
     }
 
@@ -87,7 +88,7 @@ sealed class DiscountConverter : JsonConverter<Discount>
         {
             case "percentage":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -99,14 +100,19 @@ sealed class DiscountConverter : JsonConverter<Discount>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant DiscountVariants::Percentage",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "amount":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -118,14 +124,21 @@ sealed class DiscountConverter : JsonConverter<Discount>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant DiscountVariants::Amount",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             default:
             {
-                throw new Exception();
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
             }
         }
     }
@@ -136,7 +149,7 @@ sealed class DiscountConverter : JsonConverter<Discount>
         {
             DiscountVariants::Percentage(var percentage) => percentage,
             DiscountVariants::Amount(var amount) => amount,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of Discount"),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

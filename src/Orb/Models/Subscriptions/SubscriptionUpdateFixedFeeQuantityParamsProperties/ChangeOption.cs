@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 
 namespace Orb.Models.Subscriptions.SubscriptionUpdateFixedFeeQuantityParamsProperties;
 
@@ -47,7 +48,9 @@ sealed class ChangeOptionConverter : JsonConverter<ChangeOption>
                 ChangeOption.Immediate => "immediate",
                 ChangeOption.UpcomingInvoice => "upcoming_invoice",
                 ChangeOption.EffectiveDate => "effective_date",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

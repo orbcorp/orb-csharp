@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using ReplacePriceProperties = Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.ReplacePriceProperties;
 
 namespace Orb.Models.Beta.BetaCreatePlanVersionParamsProperties;
@@ -18,13 +20,19 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
         get
         {
             if (!this.Properties.TryGetValue("replaces_price_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "replaces_price_id",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'replaces_price_id' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "replaces_price_id",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("replaces_price_id");
+                ?? throw new OrbInvalidDataException(
+                    "'replaces_price_id' cannot be null",
+                    new ArgumentNullException("replaces_price_id")
+                );
         }
         set
         {

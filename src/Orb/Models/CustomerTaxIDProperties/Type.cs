@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models.CustomerTaxIDProperties;
@@ -359,7 +360,9 @@ sealed class TypeConverter : JsonConverter<Type>
                 CustomerTaxIDProperties.Type.ZaVat => "za_vat",
                 CustomerTaxIDProperties.Type.ZmTin => "zm_tin",
                 CustomerTaxIDProperties.Type.ZwTin => "zw_tin",
-                _ => throw new System::ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

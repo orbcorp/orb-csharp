@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using AddProperties = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties;
@@ -19,12 +21,19 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
         get
         {
             if (!this.Properties.TryGetValue("start_date", out JsonElement element))
-                throw new ArgumentOutOfRangeException("start_date", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'start_date' cannot be null",
+                    new ArgumentOutOfRangeException("start_date", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<AddProperties::StartDate>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("start_date");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'start_date' cannot be null",
+                    new ArgumentNullException("start_date")
+                );
         }
         set
         {

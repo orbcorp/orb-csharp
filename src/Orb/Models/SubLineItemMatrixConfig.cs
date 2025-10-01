@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -17,13 +19,16 @@ public sealed record class SubLineItemMatrixConfig : ModelBase, IFromRaw<SubLine
         get
         {
             if (!this.Properties.TryGetValue("dimension_values", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "dimension_values",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'dimension_values' cannot be null",
+                    new ArgumentOutOfRangeException("dimension_values", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<List<string?>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("dimension_values");
+                ?? throw new OrbInvalidDataException(
+                    "'dimension_values' cannot be null",
+                    new ArgumentNullException("dimension_values")
+                );
         }
         set
         {

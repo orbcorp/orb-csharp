@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using MatrixSubLineItemProperties = Orb.Models.MatrixSubLineItemProperties;
 
 namespace Orb.Models;
@@ -18,10 +20,16 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
         get
         {
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("amount", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new ArgumentOutOfRangeException("amount", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("amount");
+                ?? throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new ArgumentNullException("amount")
+                );
         }
         set
         {
@@ -58,12 +66,19 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
         get
         {
             if (!this.Properties.TryGetValue("matrix_config", out JsonElement element))
-                throw new ArgumentOutOfRangeException("matrix_config", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'matrix_config' cannot be null",
+                    new ArgumentOutOfRangeException("matrix_config", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<SubLineItemMatrixConfig>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("matrix_config");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'matrix_config' cannot be null",
+                    new ArgumentNullException("matrix_config")
+                );
         }
         set
         {
@@ -79,10 +94,16 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
         get
         {
             if (!this.Properties.TryGetValue("name", out JsonElement element))
-                throw new ArgumentOutOfRangeException("name", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("name");
+                ?? throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new ArgumentNullException("name")
+                );
         }
         set
         {
@@ -98,7 +119,10 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
         get
         {
             if (!this.Properties.TryGetValue("quantity", out JsonElement element))
-                throw new ArgumentOutOfRangeException("quantity", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'quantity' cannot be null",
+                    new ArgumentOutOfRangeException("quantity", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
@@ -116,7 +140,10 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("type", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentOutOfRangeException("type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, MatrixSubLineItemProperties::Type>>(
                 element,

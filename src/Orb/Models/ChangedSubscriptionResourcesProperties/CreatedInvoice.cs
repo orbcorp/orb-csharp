@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using CreatedInvoiceProperties = Orb.Models.ChangedSubscriptionResourcesProperties.CreatedInvoiceProperties;
 
 namespace Orb.Models.ChangedSubscriptionResourcesProperties;
@@ -15,10 +17,16 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("id");
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentNullException("id")
+                );
         }
         set
         {
@@ -38,10 +46,16 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("amount_due", out JsonElement element))
-                throw new ArgumentOutOfRangeException("amount_due", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'amount_due' cannot be null",
+                    new ArgumentOutOfRangeException("amount_due", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("amount_due");
+                ?? throw new OrbInvalidDataException(
+                    "'amount_due' cannot be null",
+                    new ArgumentNullException("amount_due")
+                );
         }
         set
         {
@@ -57,15 +71,19 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("auto_collection", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "auto_collection",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'auto_collection' cannot be null",
+                    new ArgumentOutOfRangeException("auto_collection", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<CreatedInvoiceProperties::AutoCollection>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("auto_collection");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'auto_collection' cannot be null",
+                    new ArgumentNullException("auto_collection")
+                );
         }
         set
         {
@@ -102,7 +120,10 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
-                throw new ArgumentOutOfRangeException("created_at", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'created_at' cannot be null",
+                    new ArgumentOutOfRangeException("created_at", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
@@ -123,12 +144,19 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("credit_notes", out JsonElement element))
-                throw new ArgumentOutOfRangeException("credit_notes", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'credit_notes' cannot be null",
+                    new ArgumentOutOfRangeException("credit_notes", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<CreatedInvoiceProperties::CreditNote>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("credit_notes");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'credit_notes' cannot be null",
+                    new ArgumentNullException("credit_notes")
+                );
         }
         set
         {
@@ -147,10 +175,16 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
-                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'currency' cannot be null",
+                    new ArgumentOutOfRangeException("currency", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("currency");
+                ?? throw new OrbInvalidDataException(
+                    "'currency' cannot be null",
+                    new ArgumentNullException("currency")
+                );
         }
         set
         {
@@ -166,12 +200,19 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("customer", out JsonElement element))
-                throw new ArgumentOutOfRangeException("customer", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'customer' cannot be null",
+                    new ArgumentOutOfRangeException("customer", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<CustomerMinified>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("customer");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'customer' cannot be null",
+                    new ArgumentNullException("customer")
+                );
         }
         set
         {
@@ -192,15 +233,21 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
                     out JsonElement element
                 )
             )
-                throw new ArgumentOutOfRangeException(
-                    "customer_balance_transactions",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'customer_balance_transactions' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "customer_balance_transactions",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<
                     List<CreatedInvoiceProperties::CustomerBalanceTransaction>
                 >(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("customer_balance_transactions");
+                ?? throw new OrbInvalidDataException(
+                    "'customer_balance_transactions' cannot be null",
+                    new ArgumentNullException("customer_balance_transactions")
+                );
         }
         set
         {
@@ -344,7 +391,10 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("discount", out JsonElement element))
-                throw new ArgumentOutOfRangeException("discount", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'discount' cannot be null",
+                    new ArgumentOutOfRangeException("discount", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }
@@ -362,12 +412,19 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("discounts", out JsonElement element))
-                throw new ArgumentOutOfRangeException("discounts", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'discounts' cannot be null",
+                    new ArgumentOutOfRangeException("discounts", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<InvoiceLevelDiscount>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("discounts");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'discounts' cannot be null",
+                    new ArgumentNullException("discounts")
+                );
         }
         set
         {
@@ -453,7 +510,10 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("invoice_date", out JsonElement element))
-                throw new ArgumentOutOfRangeException("invoice_date", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'invoice_date' cannot be null",
+                    new ArgumentOutOfRangeException("invoice_date", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
@@ -476,13 +536,16 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("invoice_number", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "invoice_number",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'invoice_number' cannot be null",
+                    new ArgumentOutOfRangeException("invoice_number", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("invoice_number");
+                ?? throw new OrbInvalidDataException(
+                    "'invoice_number' cannot be null",
+                    new ArgumentNullException("invoice_number")
+                );
         }
         set
         {
@@ -519,9 +582,9 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("invoice_source", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "invoice_source",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'invoice_source' cannot be null",
+                    new ArgumentOutOfRangeException("invoice_source", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<
@@ -545,9 +608,9 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("is_payable_now", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "is_payable_now",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'is_payable_now' cannot be null",
+                    new ArgumentOutOfRangeException("is_payable_now", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
@@ -613,12 +676,19 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("line_items", out JsonElement element))
-                throw new ArgumentOutOfRangeException("line_items", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'line_items' cannot be null",
+                    new ArgumentOutOfRangeException("line_items", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<CreatedInvoiceProperties::LineItem>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("line_items");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'line_items' cannot be null",
+                    new ArgumentNullException("line_items")
+                );
         }
         set
         {
@@ -697,12 +767,19 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("metadata", out JsonElement element))
-                throw new ArgumentOutOfRangeException("metadata", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'metadata' cannot be null",
+                    new ArgumentOutOfRangeException("metadata", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<Dictionary<string, string>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("metadata");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'metadata' cannot be null",
+                    new ArgumentNullException("metadata")
+                );
         }
         set
         {
@@ -779,15 +856,19 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("payment_attempts", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "payment_attempts",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'payment_attempts' cannot be null",
+                    new ArgumentOutOfRangeException("payment_attempts", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<List<CreatedInvoiceProperties::PaymentAttempt>>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("payment_attempts");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'payment_attempts' cannot be null",
+                    new ArgumentNullException("payment_attempts")
+                );
         }
         set
         {
@@ -888,7 +969,10 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("status", out JsonElement element))
-                throw new ArgumentOutOfRangeException("status", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'status' cannot be null",
+                    new ArgumentOutOfRangeException("status", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CreatedInvoiceProperties::Status>>(
                 element,
@@ -933,10 +1017,16 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("subtotal", out JsonElement element))
-                throw new ArgumentOutOfRangeException("subtotal", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'subtotal' cannot be null",
+                    new ArgumentOutOfRangeException("subtotal", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("subtotal");
+                ?? throw new OrbInvalidDataException(
+                    "'subtotal' cannot be null",
+                    new ArgumentNullException("subtotal")
+                );
         }
         set
         {
@@ -978,10 +1068,16 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("total", out JsonElement element))
-                throw new ArgumentOutOfRangeException("total", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'total' cannot be null",
+                    new ArgumentOutOfRangeException("total", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("total");
+                ?? throw new OrbInvalidDataException(
+                    "'total' cannot be null",
+                    new ArgumentNullException("total")
+                );
         }
         set
         {
@@ -1023,9 +1119,9 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
         get
         {
             if (!this.Properties.TryGetValue("will_auto_issue", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "will_auto_issue",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'will_auto_issue' cannot be null",
+                    new ArgumentOutOfRangeException("will_auto_issue", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Exceptions;
 using DiscountIntervalVariants = Orb.Models.SubscriptionChanges.MutatedSubscriptionProperties.DiscountIntervalVariants;
 
 namespace Orb.Models.SubscriptionChanges.MutatedSubscriptionProperties;
@@ -57,7 +58,9 @@ public abstract record class DiscountInterval
                 usage(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of DiscountInterval"
+                );
         }
     }
 
@@ -72,7 +75,9 @@ public abstract record class DiscountInterval
             DiscountIntervalVariants::AmountDiscountInterval inner => amount(inner),
             DiscountIntervalVariants::PercentageDiscountInterval inner => percentage(inner),
             DiscountIntervalVariants::UsageDiscountInterval inner => usage(inner),
-            _ => throw new InvalidOperationException(),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of DiscountInterval"
+            ),
         };
     }
 
@@ -102,7 +107,7 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
         {
             case "amount":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -117,14 +122,19 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant DiscountIntervalVariants::AmountDiscountInterval",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "percentage":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -141,14 +151,19 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant DiscountIntervalVariants::PercentageDiscountInterval",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "usage":
             {
-                List<JsonException> exceptions = [];
+                List<OrbInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -163,14 +178,21 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant DiscountIntervalVariants::UsageDiscountInterval",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             default:
             {
-                throw new Exception();
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
             }
         }
     }
@@ -186,7 +208,9 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
             DiscountIntervalVariants::AmountDiscountInterval(var amount) => amount,
             DiscountIntervalVariants::PercentageDiscountInterval(var percentage) => percentage,
             DiscountIntervalVariants::UsageDiscountInterval(var usage) => usage,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of DiscountInterval"
+            ),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

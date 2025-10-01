@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.NewFloatingGroupedWithProratedMinimumPriceProperties;
 
 namespace Orb.Models;
@@ -20,7 +22,10 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice
         get
         {
             if (!this.Properties.TryGetValue("cadence", out JsonElement element))
-                throw new ArgumentOutOfRangeException("cadence", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new ArgumentOutOfRangeException("cadence", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Cadence>>(
                 element,
@@ -44,10 +49,16 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice
         get
         {
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
-                throw new ArgumentOutOfRangeException("currency", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'currency' cannot be null",
+                    new ArgumentOutOfRangeException("currency", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("currency");
+                ?? throw new OrbInvalidDataException(
+                    "'currency' cannot be null",
+                    new ArgumentNullException("currency")
+                );
         }
         set
         {
@@ -71,15 +82,22 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice
                     out JsonElement element
                 )
             )
-                throw new ArgumentOutOfRangeException(
-                    "grouped_with_prorated_minimum_config",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'grouped_with_prorated_minimum_config' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "grouped_with_prorated_minimum_config",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<GroupedWithProratedMinimumConfig>(
                     element,
                     ModelBase.SerializerOptions
-                ) ?? throw new ArgumentNullException("grouped_with_prorated_minimum_config");
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'grouped_with_prorated_minimum_config' cannot be null",
+                    new ArgumentNullException("grouped_with_prorated_minimum_config")
+                );
         }
         set
         {
@@ -96,10 +114,16 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice
         get
         {
             if (!this.Properties.TryGetValue("item_id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("item_id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'item_id' cannot be null",
+                    new ArgumentOutOfRangeException("item_id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("item_id");
+                ?? throw new OrbInvalidDataException(
+                    "'item_id' cannot be null",
+                    new ArgumentNullException("item_id")
+                );
         }
         set
         {
@@ -118,7 +142,10 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice
         get
         {
             if (!this.Properties.TryGetValue("model_type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("model_type", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'model_type' cannot be null",
+                    new ArgumentOutOfRangeException("model_type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, ModelType>>(
                 element,
@@ -142,10 +169,16 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice
         get
         {
             if (!this.Properties.TryGetValue("name", out JsonElement element))
-                throw new ArgumentOutOfRangeException("name", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("name");
+                ?? throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new ArgumentNullException("name")
+                );
         }
         set
         {

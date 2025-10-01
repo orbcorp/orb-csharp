@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Subscriptions.SubscriptionRedeemCouponParamsProperties;
 
 namespace Orb.Models.Subscriptions;
@@ -21,7 +23,10 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("change_option", out JsonElement element))
-                throw new ArgumentOutOfRangeException("change_option", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'change_option' cannot be null",
+                    new ArgumentOutOfRangeException("change_option", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, ChangeOption>>(
                 element,
@@ -140,7 +145,7 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -149,7 +154,7 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

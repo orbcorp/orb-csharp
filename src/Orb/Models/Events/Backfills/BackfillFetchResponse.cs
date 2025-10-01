@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Events.Backfills.BackfillFetchResponseProperties;
 
 namespace Orb.Models.Events.Backfills;
@@ -19,10 +21,16 @@ public sealed record class BackfillFetchResponse : ModelBase, IFromRaw<BackfillF
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("id");
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentNullException("id")
+                );
         }
         set
         {
@@ -60,7 +68,10 @@ public sealed record class BackfillFetchResponse : ModelBase, IFromRaw<BackfillF
         get
         {
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
-                throw new ArgumentOutOfRangeException("created_at", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'created_at' cannot be null",
+                    new ArgumentOutOfRangeException("created_at", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
@@ -103,9 +114,9 @@ public sealed record class BackfillFetchResponse : ModelBase, IFromRaw<BackfillF
         get
         {
             if (!this.Properties.TryGetValue("events_ingested", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "events_ingested",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'events_ingested' cannot be null",
+                    new ArgumentOutOfRangeException("events_ingested", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
@@ -129,9 +140,12 @@ public sealed record class BackfillFetchResponse : ModelBase, IFromRaw<BackfillF
         get
         {
             if (!this.Properties.TryGetValue("replace_existing_events", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "replace_existing_events",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'replace_existing_events' cannot be null",
+                    new ArgumentOutOfRangeException(
+                        "replace_existing_events",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
@@ -174,7 +188,10 @@ public sealed record class BackfillFetchResponse : ModelBase, IFromRaw<BackfillF
         get
         {
             if (!this.Properties.TryGetValue("status", out JsonElement element))
-                throw new ArgumentOutOfRangeException("status", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'status' cannot be null",
+                    new ArgumentOutOfRangeException("status", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Status>>(
                 element,
@@ -195,7 +212,10 @@ public sealed record class BackfillFetchResponse : ModelBase, IFromRaw<BackfillF
         get
         {
             if (!this.Properties.TryGetValue("timeframe_end", out JsonElement element))
-                throw new ArgumentOutOfRangeException("timeframe_end", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'timeframe_end' cannot be null",
+                    new ArgumentOutOfRangeException("timeframe_end", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
@@ -213,9 +233,9 @@ public sealed record class BackfillFetchResponse : ModelBase, IFromRaw<BackfillF
         get
         {
             if (!this.Properties.TryGetValue("timeframe_start", out JsonElement element))
-                throw new ArgumentOutOfRangeException(
-                    "timeframe_start",
-                    "Missing required argument"
+                throw new OrbInvalidDataException(
+                    "'timeframe_start' cannot be null",
+                    new ArgumentOutOfRangeException("timeframe_start", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.TransformPriceFilterProperties;
 
 namespace Orb.Models;
@@ -18,7 +20,10 @@ public sealed record class TransformPriceFilter : ModelBase, IFromRaw<TransformP
         get
         {
             if (!this.Properties.TryGetValue("field", out JsonElement element))
-                throw new ArgumentOutOfRangeException("field", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new ArgumentOutOfRangeException("field", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Field>>(
                 element,
@@ -42,7 +47,10 @@ public sealed record class TransformPriceFilter : ModelBase, IFromRaw<TransformP
         get
         {
             if (!this.Properties.TryGetValue("operator", out JsonElement element))
-                throw new ArgumentOutOfRangeException("operator", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new ArgumentOutOfRangeException("operator", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Operator>>(
                 element,
@@ -66,10 +74,16 @@ public sealed record class TransformPriceFilter : ModelBase, IFromRaw<TransformP
         get
         {
             if (!this.Properties.TryGetValue("values", out JsonElement element))
-                throw new ArgumentOutOfRangeException("values", "Missing required argument");
+                throw new OrbInvalidDataException(
+                    "'values' cannot be null",
+                    new ArgumentOutOfRangeException("values", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("values");
+                ?? throw new OrbInvalidDataException(
+                    "'values' cannot be null",
+                    new ArgumentNullException("values")
+                );
         }
         set
         {
