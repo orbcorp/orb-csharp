@@ -5,7 +5,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
 using Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.PriceProperties;
-using Models = Orb.Models;
 using PriceVariants = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.PriceVariants;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties;
@@ -18,129 +17,119 @@ public abstract record class Price
 {
     internal Price() { }
 
-    public static implicit operator Price(Models::NewFloatingUnitPrice value) =>
+    public static implicit operator Price(NewFloatingUnitPrice value) =>
         new PriceVariants::NewFloatingUnitPrice(value);
 
-    public static implicit operator Price(Models::NewFloatingTieredPrice value) =>
+    public static implicit operator Price(NewFloatingTieredPrice value) =>
         new PriceVariants::NewFloatingTieredPrice(value);
 
-    public static implicit operator Price(Models::NewFloatingBulkPrice value) =>
+    public static implicit operator Price(NewFloatingBulkPrice value) =>
         new PriceVariants::NewFloatingBulkPrice(value);
 
-    public static implicit operator Price(Models::NewFloatingPackagePrice value) =>
+    public static implicit operator Price(NewFloatingPackagePrice value) =>
         new PriceVariants::NewFloatingPackagePrice(value);
 
-    public static implicit operator Price(Models::NewFloatingMatrixPrice value) =>
+    public static implicit operator Price(NewFloatingMatrixPrice value) =>
         new PriceVariants::NewFloatingMatrixPrice(value);
 
-    public static implicit operator Price(Models::NewFloatingThresholdTotalAmountPrice value) =>
+    public static implicit operator Price(NewFloatingThresholdTotalAmountPrice value) =>
         new PriceVariants::NewFloatingThresholdTotalAmountPrice(value);
 
-    public static implicit operator Price(Models::NewFloatingTieredPackagePrice value) =>
+    public static implicit operator Price(NewFloatingTieredPackagePrice value) =>
         new PriceVariants::NewFloatingTieredPackagePrice(value);
 
-    public static implicit operator Price(Models::NewFloatingTieredWithMinimumPrice value) =>
+    public static implicit operator Price(NewFloatingTieredWithMinimumPrice value) =>
         new PriceVariants::NewFloatingTieredWithMinimumPrice(value);
 
-    public static implicit operator Price(Models::NewFloatingGroupedTieredPrice value) =>
+    public static implicit operator Price(NewFloatingGroupedTieredPrice value) =>
         new PriceVariants::NewFloatingGroupedTieredPrice(value);
 
-    public static implicit operator Price(Models::NewFloatingTieredPackageWithMinimumPrice value) =>
+    public static implicit operator Price(NewFloatingTieredPackageWithMinimumPrice value) =>
         new PriceVariants::NewFloatingTieredPackageWithMinimumPrice(value);
 
-    public static implicit operator Price(Models::NewFloatingPackageWithAllocationPrice value) =>
+    public static implicit operator Price(NewFloatingPackageWithAllocationPrice value) =>
         new PriceVariants::NewFloatingPackageWithAllocationPrice(value);
 
-    public static implicit operator Price(Models::NewFloatingUnitWithPercentPrice value) =>
+    public static implicit operator Price(NewFloatingUnitWithPercentPrice value) =>
         new PriceVariants::NewFloatingUnitWithPercentPrice(value);
 
-    public static implicit operator Price(Models::NewFloatingMatrixWithAllocationPrice value) =>
+    public static implicit operator Price(NewFloatingMatrixWithAllocationPrice value) =>
         new PriceVariants::NewFloatingMatrixWithAllocationPrice(value);
 
-    public static implicit operator Price(Models::NewFloatingTieredWithProrationPrice value) =>
+    public static implicit operator Price(NewFloatingTieredWithProrationPrice value) =>
         new PriceVariants::NewFloatingTieredWithProrationPrice(value);
 
-    public static implicit operator Price(Models::NewFloatingUnitWithProrationPrice value) =>
+    public static implicit operator Price(NewFloatingUnitWithProrationPrice value) =>
         new PriceVariants::NewFloatingUnitWithProrationPrice(value);
 
-    public static implicit operator Price(Models::NewFloatingGroupedAllocationPrice value) =>
+    public static implicit operator Price(NewFloatingGroupedAllocationPrice value) =>
         new PriceVariants::NewFloatingGroupedAllocationPrice(value);
 
-    public static implicit operator Price(Models::NewFloatingBulkWithProrationPrice value) =>
+    public static implicit operator Price(NewFloatingBulkWithProrationPrice value) =>
         new PriceVariants::NewFloatingBulkWithProrationPrice(value);
 
-    public static implicit operator Price(
-        Models::NewFloatingGroupedWithProratedMinimumPrice value
-    ) => new PriceVariants::NewFloatingGroupedWithProratedMinimumPrice(value);
+    public static implicit operator Price(NewFloatingGroupedWithProratedMinimumPrice value) =>
+        new PriceVariants::NewFloatingGroupedWithProratedMinimumPrice(value);
 
-    public static implicit operator Price(
-        Models::NewFloatingGroupedWithMeteredMinimumPrice value
-    ) => new PriceVariants::NewFloatingGroupedWithMeteredMinimumPrice(value);
+    public static implicit operator Price(NewFloatingGroupedWithMeteredMinimumPrice value) =>
+        new PriceVariants::NewFloatingGroupedWithMeteredMinimumPrice(value);
 
     public static implicit operator Price(GroupedWithMinMaxThresholds value) =>
         new PriceVariants::GroupedWithMinMaxThresholds(value);
 
-    public static implicit operator Price(Models::NewFloatingMatrixWithDisplayNamePrice value) =>
+    public static implicit operator Price(NewFloatingMatrixWithDisplayNamePrice value) =>
         new PriceVariants::NewFloatingMatrixWithDisplayNamePrice(value);
 
-    public static implicit operator Price(Models::NewFloatingGroupedTieredPackagePrice value) =>
+    public static implicit operator Price(NewFloatingGroupedTieredPackagePrice value) =>
         new PriceVariants::NewFloatingGroupedTieredPackagePrice(value);
 
-    public static implicit operator Price(Models::NewFloatingMaxGroupTieredPackagePrice value) =>
+    public static implicit operator Price(NewFloatingMaxGroupTieredPackagePrice value) =>
         new PriceVariants::NewFloatingMaxGroupTieredPackagePrice(value);
 
-    public static implicit operator Price(
-        Models::NewFloatingScalableMatrixWithUnitPricingPrice value
-    ) => new PriceVariants::NewFloatingScalableMatrixWithUnitPricingPrice(value);
+    public static implicit operator Price(NewFloatingScalableMatrixWithUnitPricingPrice value) =>
+        new PriceVariants::NewFloatingScalableMatrixWithUnitPricingPrice(value);
 
-    public static implicit operator Price(
-        Models::NewFloatingScalableMatrixWithTieredPricingPrice value
-    ) => new PriceVariants::NewFloatingScalableMatrixWithTieredPricingPrice(value);
+    public static implicit operator Price(NewFloatingScalableMatrixWithTieredPricingPrice value) =>
+        new PriceVariants::NewFloatingScalableMatrixWithTieredPricingPrice(value);
 
-    public static implicit operator Price(Models::NewFloatingCumulativeGroupedBulkPrice value) =>
+    public static implicit operator Price(NewFloatingCumulativeGroupedBulkPrice value) =>
         new PriceVariants::NewFloatingCumulativeGroupedBulkPrice(value);
 
-    public static implicit operator Price(Models::NewFloatingMinimumCompositePrice value) =>
+    public static implicit operator Price(NewFloatingMinimumCompositePrice value) =>
         new PriceVariants::NewFloatingMinimumCompositePrice(value);
 
-    public bool TryPickNewFloatingUnit([NotNullWhen(true)] out Models::NewFloatingUnitPrice? value)
+    public bool TryPickNewFloatingUnit([NotNullWhen(true)] out NewFloatingUnitPrice? value)
     {
         value = (this as PriceVariants::NewFloatingUnitPrice)?.Value;
         return value != null;
     }
 
-    public bool TryPickNewFloatingTiered(
-        [NotNullWhen(true)] out Models::NewFloatingTieredPrice? value
-    )
+    public bool TryPickNewFloatingTiered([NotNullWhen(true)] out NewFloatingTieredPrice? value)
     {
         value = (this as PriceVariants::NewFloatingTieredPrice)?.Value;
         return value != null;
     }
 
-    public bool TryPickNewFloatingBulk([NotNullWhen(true)] out Models::NewFloatingBulkPrice? value)
+    public bool TryPickNewFloatingBulk([NotNullWhen(true)] out NewFloatingBulkPrice? value)
     {
         value = (this as PriceVariants::NewFloatingBulkPrice)?.Value;
         return value != null;
     }
 
-    public bool TryPickNewFloatingPackage(
-        [NotNullWhen(true)] out Models::NewFloatingPackagePrice? value
-    )
+    public bool TryPickNewFloatingPackage([NotNullWhen(true)] out NewFloatingPackagePrice? value)
     {
         value = (this as PriceVariants::NewFloatingPackagePrice)?.Value;
         return value != null;
     }
 
-    public bool TryPickNewFloatingMatrix(
-        [NotNullWhen(true)] out Models::NewFloatingMatrixPrice? value
-    )
+    public bool TryPickNewFloatingMatrix([NotNullWhen(true)] out NewFloatingMatrixPrice? value)
     {
         value = (this as PriceVariants::NewFloatingMatrixPrice)?.Value;
         return value != null;
     }
 
     public bool TryPickNewFloatingThresholdTotalAmount(
-        [NotNullWhen(true)] out Models::NewFloatingThresholdTotalAmountPrice? value
+        [NotNullWhen(true)] out NewFloatingThresholdTotalAmountPrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingThresholdTotalAmountPrice)?.Value;
@@ -148,7 +137,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingTieredPackage(
-        [NotNullWhen(true)] out Models::NewFloatingTieredPackagePrice? value
+        [NotNullWhen(true)] out NewFloatingTieredPackagePrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingTieredPackagePrice)?.Value;
@@ -156,7 +145,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingTieredWithMinimum(
-        [NotNullWhen(true)] out Models::NewFloatingTieredWithMinimumPrice? value
+        [NotNullWhen(true)] out NewFloatingTieredWithMinimumPrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingTieredWithMinimumPrice)?.Value;
@@ -164,7 +153,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingGroupedTiered(
-        [NotNullWhen(true)] out Models::NewFloatingGroupedTieredPrice? value
+        [NotNullWhen(true)] out NewFloatingGroupedTieredPrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingGroupedTieredPrice)?.Value;
@@ -172,7 +161,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingTieredPackageWithMinimum(
-        [NotNullWhen(true)] out Models::NewFloatingTieredPackageWithMinimumPrice? value
+        [NotNullWhen(true)] out NewFloatingTieredPackageWithMinimumPrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingTieredPackageWithMinimumPrice)?.Value;
@@ -180,7 +169,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingPackageWithAllocation(
-        [NotNullWhen(true)] out Models::NewFloatingPackageWithAllocationPrice? value
+        [NotNullWhen(true)] out NewFloatingPackageWithAllocationPrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingPackageWithAllocationPrice)?.Value;
@@ -188,7 +177,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingUnitWithPercent(
-        [NotNullWhen(true)] out Models::NewFloatingUnitWithPercentPrice? value
+        [NotNullWhen(true)] out NewFloatingUnitWithPercentPrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingUnitWithPercentPrice)?.Value;
@@ -196,7 +185,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingMatrixWithAllocation(
-        [NotNullWhen(true)] out Models::NewFloatingMatrixWithAllocationPrice? value
+        [NotNullWhen(true)] out NewFloatingMatrixWithAllocationPrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingMatrixWithAllocationPrice)?.Value;
@@ -204,7 +193,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingTieredWithProration(
-        [NotNullWhen(true)] out Models::NewFloatingTieredWithProrationPrice? value
+        [NotNullWhen(true)] out NewFloatingTieredWithProrationPrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingTieredWithProrationPrice)?.Value;
@@ -212,7 +201,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingUnitWithProration(
-        [NotNullWhen(true)] out Models::NewFloatingUnitWithProrationPrice? value
+        [NotNullWhen(true)] out NewFloatingUnitWithProrationPrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingUnitWithProrationPrice)?.Value;
@@ -220,7 +209,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingGroupedAllocation(
-        [NotNullWhen(true)] out Models::NewFloatingGroupedAllocationPrice? value
+        [NotNullWhen(true)] out NewFloatingGroupedAllocationPrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingGroupedAllocationPrice)?.Value;
@@ -228,7 +217,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingBulkWithProration(
-        [NotNullWhen(true)] out Models::NewFloatingBulkWithProrationPrice? value
+        [NotNullWhen(true)] out NewFloatingBulkWithProrationPrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingBulkWithProrationPrice)?.Value;
@@ -236,7 +225,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingGroupedWithProratedMinimum(
-        [NotNullWhen(true)] out Models::NewFloatingGroupedWithProratedMinimumPrice? value
+        [NotNullWhen(true)] out NewFloatingGroupedWithProratedMinimumPrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingGroupedWithProratedMinimumPrice)?.Value;
@@ -244,7 +233,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingGroupedWithMeteredMinimum(
-        [NotNullWhen(true)] out Models::NewFloatingGroupedWithMeteredMinimumPrice? value
+        [NotNullWhen(true)] out NewFloatingGroupedWithMeteredMinimumPrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingGroupedWithMeteredMinimumPrice)?.Value;
@@ -260,7 +249,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingMatrixWithDisplayName(
-        [NotNullWhen(true)] out Models::NewFloatingMatrixWithDisplayNamePrice? value
+        [NotNullWhen(true)] out NewFloatingMatrixWithDisplayNamePrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingMatrixWithDisplayNamePrice)?.Value;
@@ -268,7 +257,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingGroupedTieredPackage(
-        [NotNullWhen(true)] out Models::NewFloatingGroupedTieredPackagePrice? value
+        [NotNullWhen(true)] out NewFloatingGroupedTieredPackagePrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingGroupedTieredPackagePrice)?.Value;
@@ -276,7 +265,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingMaxGroupTieredPackage(
-        [NotNullWhen(true)] out Models::NewFloatingMaxGroupTieredPackagePrice? value
+        [NotNullWhen(true)] out NewFloatingMaxGroupTieredPackagePrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingMaxGroupTieredPackagePrice)?.Value;
@@ -284,7 +273,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingScalableMatrixWithUnitPricing(
-        [NotNullWhen(true)] out Models::NewFloatingScalableMatrixWithUnitPricingPrice? value
+        [NotNullWhen(true)] out NewFloatingScalableMatrixWithUnitPricingPrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingScalableMatrixWithUnitPricingPrice)?.Value;
@@ -292,7 +281,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingScalableMatrixWithTieredPricing(
-        [NotNullWhen(true)] out Models::NewFloatingScalableMatrixWithTieredPricingPrice? value
+        [NotNullWhen(true)] out NewFloatingScalableMatrixWithTieredPricingPrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingScalableMatrixWithTieredPricingPrice)?.Value;
@@ -300,7 +289,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingCumulativeGroupedBulk(
-        [NotNullWhen(true)] out Models::NewFloatingCumulativeGroupedBulkPrice? value
+        [NotNullWhen(true)] out NewFloatingCumulativeGroupedBulkPrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingCumulativeGroupedBulkPrice)?.Value;
@@ -308,7 +297,7 @@ public abstract record class Price
     }
 
     public bool TryPickNewFloatingMinimumComposite(
-        [NotNullWhen(true)] out Models::NewFloatingMinimumCompositePrice? value
+        [NotNullWhen(true)] out NewFloatingMinimumCompositePrice? value
     )
     {
         value = (this as PriceVariants::NewFloatingMinimumCompositePrice)?.Value;
@@ -587,7 +576,7 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Models::NewFloatingUnitPrice>(
+                    var deserialized = JsonSerializer.Deserialize<NewFloatingUnitPrice>(
                         json,
                         options
                     );
@@ -614,7 +603,7 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Models::NewFloatingTieredPrice>(
+                    var deserialized = JsonSerializer.Deserialize<NewFloatingTieredPrice>(
                         json,
                         options
                     );
@@ -641,7 +630,7 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Models::NewFloatingBulkPrice>(
+                    var deserialized = JsonSerializer.Deserialize<NewFloatingBulkPrice>(
                         json,
                         options
                     );
@@ -668,7 +657,7 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Models::NewFloatingPackagePrice>(
+                    var deserialized = JsonSerializer.Deserialize<NewFloatingPackagePrice>(
                         json,
                         options
                     );
@@ -695,7 +684,7 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Models::NewFloatingMatrixPrice>(
+                    var deserialized = JsonSerializer.Deserialize<NewFloatingMatrixPrice>(
                         json,
                         options
                     );
@@ -723,7 +712,7 @@ sealed class PriceConverter : JsonConverter<Price?>
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingThresholdTotalAmountPrice>(
+                        JsonSerializer.Deserialize<NewFloatingThresholdTotalAmountPrice>(
                             json,
                             options
                         );
@@ -752,11 +741,10 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingTieredPackagePrice>(
-                            json,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<NewFloatingTieredPackagePrice>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new PriceVariants::NewFloatingTieredPackagePrice(deserialized);
@@ -781,7 +769,7 @@ sealed class PriceConverter : JsonConverter<Price?>
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingTieredWithMinimumPrice>(
+                        JsonSerializer.Deserialize<NewFloatingTieredWithMinimumPrice>(
                             json,
                             options
                         );
@@ -808,11 +796,10 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingGroupedTieredPrice>(
-                            json,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<NewFloatingGroupedTieredPrice>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new PriceVariants::NewFloatingGroupedTieredPrice(deserialized);
@@ -837,7 +824,7 @@ sealed class PriceConverter : JsonConverter<Price?>
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingTieredPackageWithMinimumPrice>(
+                        JsonSerializer.Deserialize<NewFloatingTieredPackageWithMinimumPrice>(
                             json,
                             options
                         );
@@ -867,7 +854,7 @@ sealed class PriceConverter : JsonConverter<Price?>
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingPackageWithAllocationPrice>(
+                        JsonSerializer.Deserialize<NewFloatingPackageWithAllocationPrice>(
                             json,
                             options
                         );
@@ -896,11 +883,10 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingUnitWithPercentPrice>(
-                            json,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<NewFloatingUnitWithPercentPrice>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new PriceVariants::NewFloatingUnitWithPercentPrice(deserialized);
@@ -925,7 +911,7 @@ sealed class PriceConverter : JsonConverter<Price?>
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingMatrixWithAllocationPrice>(
+                        JsonSerializer.Deserialize<NewFloatingMatrixWithAllocationPrice>(
                             json,
                             options
                         );
@@ -955,7 +941,7 @@ sealed class PriceConverter : JsonConverter<Price?>
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingTieredWithProrationPrice>(
+                        JsonSerializer.Deserialize<NewFloatingTieredWithProrationPrice>(
                             json,
                             options
                         );
@@ -983,7 +969,7 @@ sealed class PriceConverter : JsonConverter<Price?>
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingUnitWithProrationPrice>(
+                        JsonSerializer.Deserialize<NewFloatingUnitWithProrationPrice>(
                             json,
                             options
                         );
@@ -1011,7 +997,7 @@ sealed class PriceConverter : JsonConverter<Price?>
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingGroupedAllocationPrice>(
+                        JsonSerializer.Deserialize<NewFloatingGroupedAllocationPrice>(
                             json,
                             options
                         );
@@ -1039,7 +1025,7 @@ sealed class PriceConverter : JsonConverter<Price?>
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingBulkWithProrationPrice>(
+                        JsonSerializer.Deserialize<NewFloatingBulkWithProrationPrice>(
                             json,
                             options
                         );
@@ -1067,7 +1053,7 @@ sealed class PriceConverter : JsonConverter<Price?>
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingGroupedWithProratedMinimumPrice>(
+                        JsonSerializer.Deserialize<NewFloatingGroupedWithProratedMinimumPrice>(
                             json,
                             options
                         );
@@ -1097,7 +1083,7 @@ sealed class PriceConverter : JsonConverter<Price?>
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingGroupedWithMeteredMinimumPrice>(
+                        JsonSerializer.Deserialize<NewFloatingGroupedWithMeteredMinimumPrice>(
                             json,
                             options
                         );
@@ -1154,7 +1140,7 @@ sealed class PriceConverter : JsonConverter<Price?>
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingMatrixWithDisplayNamePrice>(
+                        JsonSerializer.Deserialize<NewFloatingMatrixWithDisplayNamePrice>(
                             json,
                             options
                         );
@@ -1184,7 +1170,7 @@ sealed class PriceConverter : JsonConverter<Price?>
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingGroupedTieredPackagePrice>(
+                        JsonSerializer.Deserialize<NewFloatingGroupedTieredPackagePrice>(
                             json,
                             options
                         );
@@ -1214,7 +1200,7 @@ sealed class PriceConverter : JsonConverter<Price?>
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingMaxGroupTieredPackagePrice>(
+                        JsonSerializer.Deserialize<NewFloatingMaxGroupTieredPackagePrice>(
                             json,
                             options
                         );
@@ -1244,7 +1230,7 @@ sealed class PriceConverter : JsonConverter<Price?>
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingScalableMatrixWithUnitPricingPrice>(
+                        JsonSerializer.Deserialize<NewFloatingScalableMatrixWithUnitPricingPrice>(
                             json,
                             options
                         );
@@ -1274,7 +1260,7 @@ sealed class PriceConverter : JsonConverter<Price?>
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingScalableMatrixWithTieredPricingPrice>(
+                        JsonSerializer.Deserialize<NewFloatingScalableMatrixWithTieredPricingPrice>(
                             json,
                             options
                         );
@@ -1304,7 +1290,7 @@ sealed class PriceConverter : JsonConverter<Price?>
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingCumulativeGroupedBulkPrice>(
+                        JsonSerializer.Deserialize<NewFloatingCumulativeGroupedBulkPrice>(
                             json,
                             options
                         );
@@ -1333,11 +1319,10 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<Models::NewFloatingMinimumCompositePrice>(
-                            json,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<NewFloatingMinimumCompositePrice>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new PriceVariants::NewFloatingMinimumCompositePrice(deserialized);

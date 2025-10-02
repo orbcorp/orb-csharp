@@ -1,11 +1,12 @@
 using Orb.Core;
 using PriceProperties = Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.ReplacePriceProperties.PriceProperties;
+using ReplacePriceProperties = Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.ReplacePriceProperties;
 using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.ReplacePriceProperties.PriceVariants;
 
 public sealed record class NewSubscriptionUnitPrice(Subscriptions::NewSubscriptionUnitPrice Value)
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<NewSubscriptionUnitPrice, Subscriptions::NewSubscriptionUnitPrice>
 {
     public static NewSubscriptionUnitPrice From(Subscriptions::NewSubscriptionUnitPrice value)
@@ -21,7 +22,9 @@ public sealed record class NewSubscriptionUnitPrice(Subscriptions::NewSubscripti
 
 public sealed record class NewSubscriptionTieredPrice(
     Subscriptions::NewSubscriptionTieredPrice Value
-) : Price, IVariant<NewSubscriptionTieredPrice, Subscriptions::NewSubscriptionTieredPrice>
+)
+    : ReplacePriceProperties::Price,
+        IVariant<NewSubscriptionTieredPrice, Subscriptions::NewSubscriptionTieredPrice>
 {
     public static NewSubscriptionTieredPrice From(Subscriptions::NewSubscriptionTieredPrice value)
     {
@@ -35,7 +38,7 @@ public sealed record class NewSubscriptionTieredPrice(
 }
 
 public sealed record class NewSubscriptionBulkPrice(Subscriptions::NewSubscriptionBulkPrice Value)
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<NewSubscriptionBulkPrice, Subscriptions::NewSubscriptionBulkPrice>
 {
     public static NewSubscriptionBulkPrice From(Subscriptions::NewSubscriptionBulkPrice value)
@@ -51,7 +54,9 @@ public sealed record class NewSubscriptionBulkPrice(Subscriptions::NewSubscripti
 
 public sealed record class NewSubscriptionPackagePrice(
     Subscriptions::NewSubscriptionPackagePrice Value
-) : Price, IVariant<NewSubscriptionPackagePrice, Subscriptions::NewSubscriptionPackagePrice>
+)
+    : ReplacePriceProperties::Price,
+        IVariant<NewSubscriptionPackagePrice, Subscriptions::NewSubscriptionPackagePrice>
 {
     public static NewSubscriptionPackagePrice From(Subscriptions::NewSubscriptionPackagePrice value)
     {
@@ -66,7 +71,9 @@ public sealed record class NewSubscriptionPackagePrice(
 
 public sealed record class NewSubscriptionMatrixPrice(
     Subscriptions::NewSubscriptionMatrixPrice Value
-) : Price, IVariant<NewSubscriptionMatrixPrice, Subscriptions::NewSubscriptionMatrixPrice>
+)
+    : ReplacePriceProperties::Price,
+        IVariant<NewSubscriptionMatrixPrice, Subscriptions::NewSubscriptionMatrixPrice>
 {
     public static NewSubscriptionMatrixPrice From(Subscriptions::NewSubscriptionMatrixPrice value)
     {
@@ -82,7 +89,7 @@ public sealed record class NewSubscriptionMatrixPrice(
 public sealed record class NewSubscriptionThresholdTotalAmountPrice(
     Subscriptions::NewSubscriptionThresholdTotalAmountPrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionThresholdTotalAmountPrice,
             Subscriptions::NewSubscriptionThresholdTotalAmountPrice
@@ -104,7 +111,7 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice(
 public sealed record class NewSubscriptionTieredPackagePrice(
     Subscriptions::NewSubscriptionTieredPackagePrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionTieredPackagePrice,
             Subscriptions::NewSubscriptionTieredPackagePrice
@@ -126,7 +133,7 @@ public sealed record class NewSubscriptionTieredPackagePrice(
 public sealed record class NewSubscriptionTieredWithMinimumPrice(
     Subscriptions::NewSubscriptionTieredWithMinimumPrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionTieredWithMinimumPrice,
             Subscriptions::NewSubscriptionTieredWithMinimumPrice
@@ -148,7 +155,7 @@ public sealed record class NewSubscriptionTieredWithMinimumPrice(
 public sealed record class NewSubscriptionGroupedTieredPrice(
     Subscriptions::NewSubscriptionGroupedTieredPrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionGroupedTieredPrice,
             Subscriptions::NewSubscriptionGroupedTieredPrice
@@ -170,7 +177,7 @@ public sealed record class NewSubscriptionGroupedTieredPrice(
 public sealed record class NewSubscriptionTieredPackageWithMinimumPrice(
     Subscriptions::NewSubscriptionTieredPackageWithMinimumPrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionTieredPackageWithMinimumPrice,
             Subscriptions::NewSubscriptionTieredPackageWithMinimumPrice
@@ -192,7 +199,7 @@ public sealed record class NewSubscriptionTieredPackageWithMinimumPrice(
 public sealed record class NewSubscriptionPackageWithAllocationPrice(
     Subscriptions::NewSubscriptionPackageWithAllocationPrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionPackageWithAllocationPrice,
             Subscriptions::NewSubscriptionPackageWithAllocationPrice
@@ -214,7 +221,7 @@ public sealed record class NewSubscriptionPackageWithAllocationPrice(
 public sealed record class NewSubscriptionUnitWithPercentPrice(
     Subscriptions::NewSubscriptionUnitWithPercentPrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionUnitWithPercentPrice,
             Subscriptions::NewSubscriptionUnitWithPercentPrice
@@ -236,7 +243,7 @@ public sealed record class NewSubscriptionUnitWithPercentPrice(
 public sealed record class NewSubscriptionMatrixWithAllocationPrice(
     Subscriptions::NewSubscriptionMatrixWithAllocationPrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionMatrixWithAllocationPrice,
             Subscriptions::NewSubscriptionMatrixWithAllocationPrice
@@ -256,7 +263,7 @@ public sealed record class NewSubscriptionMatrixWithAllocationPrice(
 }
 
 public sealed record class TieredWithProration(PriceProperties::TieredWithProration Value)
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<TieredWithProration, PriceProperties::TieredWithProration>
 {
     public static TieredWithProration From(PriceProperties::TieredWithProration value)
@@ -273,7 +280,7 @@ public sealed record class TieredWithProration(PriceProperties::TieredWithProrat
 public sealed record class NewSubscriptionUnitWithProrationPrice(
     Subscriptions::NewSubscriptionUnitWithProrationPrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionUnitWithProrationPrice,
             Subscriptions::NewSubscriptionUnitWithProrationPrice
@@ -295,7 +302,7 @@ public sealed record class NewSubscriptionUnitWithProrationPrice(
 public sealed record class NewSubscriptionGroupedAllocationPrice(
     Subscriptions::NewSubscriptionGroupedAllocationPrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionGroupedAllocationPrice,
             Subscriptions::NewSubscriptionGroupedAllocationPrice
@@ -317,7 +324,7 @@ public sealed record class NewSubscriptionGroupedAllocationPrice(
 public sealed record class NewSubscriptionBulkWithProrationPrice(
     Subscriptions::NewSubscriptionBulkWithProrationPrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionBulkWithProrationPrice,
             Subscriptions::NewSubscriptionBulkWithProrationPrice
@@ -339,7 +346,7 @@ public sealed record class NewSubscriptionBulkWithProrationPrice(
 public sealed record class NewSubscriptionGroupedWithProratedMinimumPrice(
     Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionGroupedWithProratedMinimumPrice,
             Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice
@@ -361,7 +368,7 @@ public sealed record class NewSubscriptionGroupedWithProratedMinimumPrice(
 public sealed record class NewSubscriptionGroupedWithMeteredMinimumPrice(
     Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionGroupedWithMeteredMinimumPrice,
             Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice
@@ -382,7 +389,9 @@ public sealed record class NewSubscriptionGroupedWithMeteredMinimumPrice(
 
 public sealed record class GroupedWithMinMaxThresholds(
     PriceProperties::GroupedWithMinMaxThresholds Value
-) : Price, IVariant<GroupedWithMinMaxThresholds, PriceProperties::GroupedWithMinMaxThresholds>
+)
+    : ReplacePriceProperties::Price,
+        IVariant<GroupedWithMinMaxThresholds, PriceProperties::GroupedWithMinMaxThresholds>
 {
     public static GroupedWithMinMaxThresholds From(
         PriceProperties::GroupedWithMinMaxThresholds value
@@ -400,7 +409,7 @@ public sealed record class GroupedWithMinMaxThresholds(
 public sealed record class NewSubscriptionMatrixWithDisplayNamePrice(
     Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionMatrixWithDisplayNamePrice,
             Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice
@@ -422,7 +431,7 @@ public sealed record class NewSubscriptionMatrixWithDisplayNamePrice(
 public sealed record class NewSubscriptionGroupedTieredPackagePrice(
     Subscriptions::NewSubscriptionGroupedTieredPackagePrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionGroupedTieredPackagePrice,
             Subscriptions::NewSubscriptionGroupedTieredPackagePrice
@@ -444,7 +453,7 @@ public sealed record class NewSubscriptionGroupedTieredPackagePrice(
 public sealed record class NewSubscriptionMaxGroupTieredPackagePrice(
     Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionMaxGroupTieredPackagePrice,
             Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice
@@ -466,7 +475,7 @@ public sealed record class NewSubscriptionMaxGroupTieredPackagePrice(
 public sealed record class NewSubscriptionScalableMatrixWithUnitPricingPrice(
     Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionScalableMatrixWithUnitPricingPrice,
             Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice
@@ -488,7 +497,7 @@ public sealed record class NewSubscriptionScalableMatrixWithUnitPricingPrice(
 public sealed record class NewSubscriptionScalableMatrixWithTieredPricingPrice(
     Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionScalableMatrixWithTieredPricingPrice,
             Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPrice
@@ -510,7 +519,7 @@ public sealed record class NewSubscriptionScalableMatrixWithTieredPricingPrice(
 public sealed record class NewSubscriptionCumulativeGroupedBulkPrice(
     Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionCumulativeGroupedBulkPrice,
             Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice
@@ -532,7 +541,7 @@ public sealed record class NewSubscriptionCumulativeGroupedBulkPrice(
 public sealed record class NewSubscriptionMinimumCompositePrice(
     Subscriptions::NewSubscriptionMinimumCompositePrice Value
 )
-    : Price,
+    : ReplacePriceProperties::Price,
         IVariant<
             NewSubscriptionMinimumCompositePrice,
             Subscriptions::NewSubscriptionMinimumCompositePrice

@@ -1,11 +1,12 @@
 using Orb.Core;
+using AddProperties = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties;
 using Models = Orb.Models;
 using PriceProperties = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.PriceProperties;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.PriceVariants;
 
 public sealed record class NewFloatingUnitPrice(Models::NewFloatingUnitPrice Value)
-    : Price,
+    : AddProperties::Price,
         IVariant<NewFloatingUnitPrice, Models::NewFloatingUnitPrice>
 {
     public static NewFloatingUnitPrice From(Models::NewFloatingUnitPrice value)
@@ -20,7 +21,7 @@ public sealed record class NewFloatingUnitPrice(Models::NewFloatingUnitPrice Val
 }
 
 public sealed record class NewFloatingTieredPrice(Models::NewFloatingTieredPrice Value)
-    : Price,
+    : AddProperties::Price,
         IVariant<NewFloatingTieredPrice, Models::NewFloatingTieredPrice>
 {
     public static NewFloatingTieredPrice From(Models::NewFloatingTieredPrice value)
@@ -35,7 +36,7 @@ public sealed record class NewFloatingTieredPrice(Models::NewFloatingTieredPrice
 }
 
 public sealed record class NewFloatingBulkPrice(Models::NewFloatingBulkPrice Value)
-    : Price,
+    : AddProperties::Price,
         IVariant<NewFloatingBulkPrice, Models::NewFloatingBulkPrice>
 {
     public static NewFloatingBulkPrice From(Models::NewFloatingBulkPrice value)
@@ -50,7 +51,7 @@ public sealed record class NewFloatingBulkPrice(Models::NewFloatingBulkPrice Val
 }
 
 public sealed record class NewFloatingPackagePrice(Models::NewFloatingPackagePrice Value)
-    : Price,
+    : AddProperties::Price,
         IVariant<NewFloatingPackagePrice, Models::NewFloatingPackagePrice>
 {
     public static NewFloatingPackagePrice From(Models::NewFloatingPackagePrice value)
@@ -65,7 +66,7 @@ public sealed record class NewFloatingPackagePrice(Models::NewFloatingPackagePri
 }
 
 public sealed record class NewFloatingMatrixPrice(Models::NewFloatingMatrixPrice Value)
-    : Price,
+    : AddProperties::Price,
         IVariant<NewFloatingMatrixPrice, Models::NewFloatingMatrixPrice>
 {
     public static NewFloatingMatrixPrice From(Models::NewFloatingMatrixPrice value)
@@ -82,7 +83,7 @@ public sealed record class NewFloatingMatrixPrice(Models::NewFloatingMatrixPrice
 public sealed record class NewFloatingThresholdTotalAmountPrice(
     Models::NewFloatingThresholdTotalAmountPrice Value
 )
-    : Price,
+    : AddProperties::Price,
         IVariant<NewFloatingThresholdTotalAmountPrice, Models::NewFloatingThresholdTotalAmountPrice>
 {
     public static NewFloatingThresholdTotalAmountPrice From(
@@ -100,7 +101,9 @@ public sealed record class NewFloatingThresholdTotalAmountPrice(
 
 public sealed record class NewFloatingTieredPackagePrice(
     Models::NewFloatingTieredPackagePrice Value
-) : Price, IVariant<NewFloatingTieredPackagePrice, Models::NewFloatingTieredPackagePrice>
+)
+    : AddProperties::Price,
+        IVariant<NewFloatingTieredPackagePrice, Models::NewFloatingTieredPackagePrice>
 {
     public static NewFloatingTieredPackagePrice From(Models::NewFloatingTieredPackagePrice value)
     {
@@ -115,7 +118,9 @@ public sealed record class NewFloatingTieredPackagePrice(
 
 public sealed record class NewFloatingTieredWithMinimumPrice(
     Models::NewFloatingTieredWithMinimumPrice Value
-) : Price, IVariant<NewFloatingTieredWithMinimumPrice, Models::NewFloatingTieredWithMinimumPrice>
+)
+    : AddProperties::Price,
+        IVariant<NewFloatingTieredWithMinimumPrice, Models::NewFloatingTieredWithMinimumPrice>
 {
     public static NewFloatingTieredWithMinimumPrice From(
         Models::NewFloatingTieredWithMinimumPrice value
@@ -132,7 +137,9 @@ public sealed record class NewFloatingTieredWithMinimumPrice(
 
 public sealed record class NewFloatingGroupedTieredPrice(
     Models::NewFloatingGroupedTieredPrice Value
-) : Price, IVariant<NewFloatingGroupedTieredPrice, Models::NewFloatingGroupedTieredPrice>
+)
+    : AddProperties::Price,
+        IVariant<NewFloatingGroupedTieredPrice, Models::NewFloatingGroupedTieredPrice>
 {
     public static NewFloatingGroupedTieredPrice From(Models::NewFloatingGroupedTieredPrice value)
     {
@@ -148,7 +155,7 @@ public sealed record class NewFloatingGroupedTieredPrice(
 public sealed record class NewFloatingTieredPackageWithMinimumPrice(
     Models::NewFloatingTieredPackageWithMinimumPrice Value
 )
-    : Price,
+    : AddProperties::Price,
         IVariant<
             NewFloatingTieredPackageWithMinimumPrice,
             Models::NewFloatingTieredPackageWithMinimumPrice
@@ -170,7 +177,7 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice(
 public sealed record class NewFloatingPackageWithAllocationPrice(
     Models::NewFloatingPackageWithAllocationPrice Value
 )
-    : Price,
+    : AddProperties::Price,
         IVariant<
             NewFloatingPackageWithAllocationPrice,
             Models::NewFloatingPackageWithAllocationPrice
@@ -191,7 +198,9 @@ public sealed record class NewFloatingPackageWithAllocationPrice(
 
 public sealed record class NewFloatingUnitWithPercentPrice(
     Models::NewFloatingUnitWithPercentPrice Value
-) : Price, IVariant<NewFloatingUnitWithPercentPrice, Models::NewFloatingUnitWithPercentPrice>
+)
+    : AddProperties::Price,
+        IVariant<NewFloatingUnitWithPercentPrice, Models::NewFloatingUnitWithPercentPrice>
 {
     public static NewFloatingUnitWithPercentPrice From(
         Models::NewFloatingUnitWithPercentPrice value
@@ -209,7 +218,7 @@ public sealed record class NewFloatingUnitWithPercentPrice(
 public sealed record class NewFloatingMatrixWithAllocationPrice(
     Models::NewFloatingMatrixWithAllocationPrice Value
 )
-    : Price,
+    : AddProperties::Price,
         IVariant<NewFloatingMatrixWithAllocationPrice, Models::NewFloatingMatrixWithAllocationPrice>
 {
     public static NewFloatingMatrixWithAllocationPrice From(
@@ -228,7 +237,7 @@ public sealed record class NewFloatingMatrixWithAllocationPrice(
 public sealed record class NewFloatingTieredWithProrationPrice(
     Models::NewFloatingTieredWithProrationPrice Value
 )
-    : Price,
+    : AddProperties::Price,
         IVariant<NewFloatingTieredWithProrationPrice, Models::NewFloatingTieredWithProrationPrice>
 {
     public static NewFloatingTieredWithProrationPrice From(
@@ -246,7 +255,9 @@ public sealed record class NewFloatingTieredWithProrationPrice(
 
 public sealed record class NewFloatingUnitWithProrationPrice(
     Models::NewFloatingUnitWithProrationPrice Value
-) : Price, IVariant<NewFloatingUnitWithProrationPrice, Models::NewFloatingUnitWithProrationPrice>
+)
+    : AddProperties::Price,
+        IVariant<NewFloatingUnitWithProrationPrice, Models::NewFloatingUnitWithProrationPrice>
 {
     public static NewFloatingUnitWithProrationPrice From(
         Models::NewFloatingUnitWithProrationPrice value
@@ -263,7 +274,9 @@ public sealed record class NewFloatingUnitWithProrationPrice(
 
 public sealed record class NewFloatingGroupedAllocationPrice(
     Models::NewFloatingGroupedAllocationPrice Value
-) : Price, IVariant<NewFloatingGroupedAllocationPrice, Models::NewFloatingGroupedAllocationPrice>
+)
+    : AddProperties::Price,
+        IVariant<NewFloatingGroupedAllocationPrice, Models::NewFloatingGroupedAllocationPrice>
 {
     public static NewFloatingGroupedAllocationPrice From(
         Models::NewFloatingGroupedAllocationPrice value
@@ -280,7 +293,9 @@ public sealed record class NewFloatingGroupedAllocationPrice(
 
 public sealed record class NewFloatingBulkWithProrationPrice(
     Models::NewFloatingBulkWithProrationPrice Value
-) : Price, IVariant<NewFloatingBulkWithProrationPrice, Models::NewFloatingBulkWithProrationPrice>
+)
+    : AddProperties::Price,
+        IVariant<NewFloatingBulkWithProrationPrice, Models::NewFloatingBulkWithProrationPrice>
 {
     public static NewFloatingBulkWithProrationPrice From(
         Models::NewFloatingBulkWithProrationPrice value
@@ -298,7 +313,7 @@ public sealed record class NewFloatingBulkWithProrationPrice(
 public sealed record class NewFloatingGroupedWithProratedMinimumPrice(
     Models::NewFloatingGroupedWithProratedMinimumPrice Value
 )
-    : Price,
+    : AddProperties::Price,
         IVariant<
             NewFloatingGroupedWithProratedMinimumPrice,
             Models::NewFloatingGroupedWithProratedMinimumPrice
@@ -320,7 +335,7 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice(
 public sealed record class NewFloatingGroupedWithMeteredMinimumPrice(
     Models::NewFloatingGroupedWithMeteredMinimumPrice Value
 )
-    : Price,
+    : AddProperties::Price,
         IVariant<
             NewFloatingGroupedWithMeteredMinimumPrice,
             Models::NewFloatingGroupedWithMeteredMinimumPrice
@@ -341,7 +356,9 @@ public sealed record class NewFloatingGroupedWithMeteredMinimumPrice(
 
 public sealed record class GroupedWithMinMaxThresholds(
     PriceProperties::GroupedWithMinMaxThresholds Value
-) : Price, IVariant<GroupedWithMinMaxThresholds, PriceProperties::GroupedWithMinMaxThresholds>
+)
+    : AddProperties::Price,
+        IVariant<GroupedWithMinMaxThresholds, PriceProperties::GroupedWithMinMaxThresholds>
 {
     public static GroupedWithMinMaxThresholds From(
         PriceProperties::GroupedWithMinMaxThresholds value
@@ -359,7 +376,7 @@ public sealed record class GroupedWithMinMaxThresholds(
 public sealed record class NewFloatingMatrixWithDisplayNamePrice(
     Models::NewFloatingMatrixWithDisplayNamePrice Value
 )
-    : Price,
+    : AddProperties::Price,
         IVariant<
             NewFloatingMatrixWithDisplayNamePrice,
             Models::NewFloatingMatrixWithDisplayNamePrice
@@ -381,7 +398,7 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice(
 public sealed record class NewFloatingGroupedTieredPackagePrice(
     Models::NewFloatingGroupedTieredPackagePrice Value
 )
-    : Price,
+    : AddProperties::Price,
         IVariant<NewFloatingGroupedTieredPackagePrice, Models::NewFloatingGroupedTieredPackagePrice>
 {
     public static NewFloatingGroupedTieredPackagePrice From(
@@ -400,7 +417,7 @@ public sealed record class NewFloatingGroupedTieredPackagePrice(
 public sealed record class NewFloatingMaxGroupTieredPackagePrice(
     Models::NewFloatingMaxGroupTieredPackagePrice Value
 )
-    : Price,
+    : AddProperties::Price,
         IVariant<
             NewFloatingMaxGroupTieredPackagePrice,
             Models::NewFloatingMaxGroupTieredPackagePrice
@@ -422,7 +439,7 @@ public sealed record class NewFloatingMaxGroupTieredPackagePrice(
 public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice(
     Models::NewFloatingScalableMatrixWithUnitPricingPrice Value
 )
-    : Price,
+    : AddProperties::Price,
         IVariant<
             NewFloatingScalableMatrixWithUnitPricingPrice,
             Models::NewFloatingScalableMatrixWithUnitPricingPrice
@@ -444,7 +461,7 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice(
 public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice(
     Models::NewFloatingScalableMatrixWithTieredPricingPrice Value
 )
-    : Price,
+    : AddProperties::Price,
         IVariant<
             NewFloatingScalableMatrixWithTieredPricingPrice,
             Models::NewFloatingScalableMatrixWithTieredPricingPrice
@@ -466,7 +483,7 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice(
 public sealed record class NewFloatingCumulativeGroupedBulkPrice(
     Models::NewFloatingCumulativeGroupedBulkPrice Value
 )
-    : Price,
+    : AddProperties::Price,
         IVariant<
             NewFloatingCumulativeGroupedBulkPrice,
             Models::NewFloatingCumulativeGroupedBulkPrice
@@ -487,7 +504,9 @@ public sealed record class NewFloatingCumulativeGroupedBulkPrice(
 
 public sealed record class NewFloatingMinimumCompositePrice(
     Models::NewFloatingMinimumCompositePrice Value
-) : Price, IVariant<NewFloatingMinimumCompositePrice, Models::NewFloatingMinimumCompositePrice>
+)
+    : AddProperties::Price,
+        IVariant<NewFloatingMinimumCompositePrice, Models::NewFloatingMinimumCompositePrice>
 {
     public static NewFloatingMinimumCompositePrice From(
         Models::NewFloatingMinimumCompositePrice value

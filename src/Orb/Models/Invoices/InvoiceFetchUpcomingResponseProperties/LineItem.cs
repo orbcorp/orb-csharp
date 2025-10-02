@@ -6,7 +6,6 @@ using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
 using Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.LineItemProperties;
-using Models = Orb.Models;
 
 namespace Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties;
 
@@ -166,17 +165,14 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
     /// <summary>
     /// This field is deprecated in favor of `adjustments`
     /// </summary>
-    public required Models::Discount? Discount
+    public required Discount? Discount
     {
         get
         {
             if (!this.Properties.TryGetValue("discount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Models::Discount?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<Discount?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -258,17 +254,14 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
     /// <summary>
     /// This field is deprecated in favor of `adjustments`.
     /// </summary>
-    public required Models::Maximum? Maximum
+    public required Maximum? Maximum
     {
         get
         {
             if (!this.Properties.TryGetValue("maximum", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Models::Maximum?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<Maximum?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -303,17 +296,14 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
     /// <summary>
     /// This field is deprecated in favor of `adjustments`.
     /// </summary>
-    public required Models::Minimum? Minimum
+    public required Minimum? Minimum
     {
         get
         {
             if (!this.Properties.TryGetValue("minimum", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Models::Minimum?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<Minimum?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -415,7 +405,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
     ///
     /// For more on the types of prices, see [the core concepts documentation](/core-concepts#plan-and-price)
     /// </summary>
-    public required Models::Price Price
+    public required Price Price
     {
         get
         {
@@ -425,7 +415,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
                     new ArgumentOutOfRangeException("price", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<Models::Price>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'price' cannot be null",
                     new ArgumentNullException("price")
@@ -551,7 +541,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
     /// An array of tax rates and their incurred tax amounts. Empty if no tax integration
     /// is configured.
     /// </summary>
-    public required List<Models::TaxAmount> TaxAmounts
+    public required List<TaxAmount> TaxAmounts
     {
         get
         {
@@ -561,10 +551,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
                     new ArgumentOutOfRangeException("tax_amounts", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<List<Models::TaxAmount>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
+            return JsonSerializer.Deserialize<List<TaxAmount>>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'tax_amounts' cannot be null",
                     new ArgumentNullException("tax_amounts")

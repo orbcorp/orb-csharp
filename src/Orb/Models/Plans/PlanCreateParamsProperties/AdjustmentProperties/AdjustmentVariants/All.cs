@@ -1,10 +1,11 @@
 using Orb.Core;
+using AdjustmentProperties = Orb.Models.Plans.PlanCreateParamsProperties.AdjustmentProperties;
 using Models = Orb.Models;
 
 namespace Orb.Models.Plans.PlanCreateParamsProperties.AdjustmentProperties.AdjustmentVariants;
 
 public sealed record class NewPercentageDiscount(Models::NewPercentageDiscount Value)
-    : Adjustment,
+    : AdjustmentProperties::Adjustment,
         IVariant<NewPercentageDiscount, Models::NewPercentageDiscount>
 {
     public static NewPercentageDiscount From(Models::NewPercentageDiscount value)
@@ -19,7 +20,7 @@ public sealed record class NewPercentageDiscount(Models::NewPercentageDiscount V
 }
 
 public sealed record class NewUsageDiscount(Models::NewUsageDiscount Value)
-    : Adjustment,
+    : AdjustmentProperties::Adjustment,
         IVariant<NewUsageDiscount, Models::NewUsageDiscount>
 {
     public static NewUsageDiscount From(Models::NewUsageDiscount value)
@@ -34,7 +35,7 @@ public sealed record class NewUsageDiscount(Models::NewUsageDiscount Value)
 }
 
 public sealed record class NewAmountDiscount(Models::NewAmountDiscount Value)
-    : Adjustment,
+    : AdjustmentProperties::Adjustment,
         IVariant<NewAmountDiscount, Models::NewAmountDiscount>
 {
     public static NewAmountDiscount From(Models::NewAmountDiscount value)
@@ -49,7 +50,7 @@ public sealed record class NewAmountDiscount(Models::NewAmountDiscount Value)
 }
 
 public sealed record class NewMinimum(Models::NewMinimum Value)
-    : Adjustment,
+    : AdjustmentProperties::Adjustment,
         IVariant<NewMinimum, Models::NewMinimum>
 {
     public static NewMinimum From(Models::NewMinimum value)
@@ -64,7 +65,7 @@ public sealed record class NewMinimum(Models::NewMinimum Value)
 }
 
 public sealed record class NewMaximum(Models::NewMaximum Value)
-    : Adjustment,
+    : AdjustmentProperties::Adjustment,
         IVariant<NewMaximum, Models::NewMaximum>
 {
     public static NewMaximum From(Models::NewMaximum value)
