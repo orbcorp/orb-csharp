@@ -5,7 +5,6 @@ using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
 using LineItemProperties = Orb.Models.CreditNoteProperties.LineItemProperties;
-using Models = Orb.Models;
 using System = System;
 
 namespace Orb.Models.CreditNoteProperties;
@@ -177,7 +176,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
     /// <summary>
     /// Any tax amounts applied onto the line item.
     /// </summary>
-    public required List<Models::TaxAmount> TaxAmounts
+    public required List<TaxAmount> TaxAmounts
     {
         get
         {
@@ -190,10 +189,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
                     )
                 );
 
-            return JsonSerializer.Deserialize<List<Models::TaxAmount>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
+            return JsonSerializer.Deserialize<List<TaxAmount>>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'tax_amounts' cannot be null",
                     new System::ArgumentNullException("tax_amounts")

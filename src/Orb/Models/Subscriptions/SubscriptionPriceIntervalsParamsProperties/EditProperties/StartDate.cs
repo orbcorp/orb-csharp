@@ -5,7 +5,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Models = Orb.Models;
 using StartDateVariants = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.EditProperties.StartDateVariants;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.EditProperties;
@@ -22,9 +21,8 @@ public abstract record class StartDate
     public static implicit operator StartDate(DateTime value) =>
         new StartDateVariants::DateTime(value);
 
-    public static implicit operator StartDate(
-        ApiEnum<string, Models::BillingCycleRelativeDate> value
-    ) => new StartDateVariants::BillingCycleRelativeDate(value);
+    public static implicit operator StartDate(ApiEnum<string, BillingCycleRelativeDate> value) =>
+        new StartDateVariants::BillingCycleRelativeDate(value);
 
     public bool TryPickDateTime([NotNullWhen(true)] out DateTime? value)
     {
@@ -33,7 +31,7 @@ public abstract record class StartDate
     }
 
     public bool TryPickBillingCycleRelative(
-        [NotNullWhen(true)] out ApiEnum<string, Models::BillingCycleRelativeDate>? value
+        [NotNullWhen(true)] out ApiEnum<string, BillingCycleRelativeDate>? value
     )
     {
         value = (this as StartDateVariants::BillingCycleRelativeDate)?.Value;
@@ -87,7 +85,7 @@ sealed class StartDateConverter : JsonConverter<StartDate>
         try
         {
             return new StartDateVariants::BillingCycleRelativeDate(
-                JsonSerializer.Deserialize<ApiEnum<string, Models::BillingCycleRelativeDate>>(
+                JsonSerializer.Deserialize<ApiEnum<string, BillingCycleRelativeDate>>(
                     ref reader,
                     options
                 )

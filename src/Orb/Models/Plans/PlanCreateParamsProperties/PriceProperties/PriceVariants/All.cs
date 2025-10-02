@@ -1,11 +1,11 @@
 using Orb.Core;
 using Models = Orb.Models;
-using PriceProperties = Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties;
+using PriceProperties = Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties;
 
 namespace Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceVariants;
 
 public sealed record class NewPlanUnitPrice(Models::NewPlanUnitPrice Value)
-    : Price,
+    : PriceProperties::Price,
         IVariant<NewPlanUnitPrice, Models::NewPlanUnitPrice>
 {
     public static NewPlanUnitPrice From(Models::NewPlanUnitPrice value)
@@ -20,7 +20,7 @@ public sealed record class NewPlanUnitPrice(Models::NewPlanUnitPrice Value)
 }
 
 public sealed record class NewPlanTieredPrice(Models::NewPlanTieredPrice Value)
-    : Price,
+    : PriceProperties::Price,
         IVariant<NewPlanTieredPrice, Models::NewPlanTieredPrice>
 {
     public static NewPlanTieredPrice From(Models::NewPlanTieredPrice value)
@@ -35,7 +35,7 @@ public sealed record class NewPlanTieredPrice(Models::NewPlanTieredPrice Value)
 }
 
 public sealed record class NewPlanBulkPrice(Models::NewPlanBulkPrice Value)
-    : Price,
+    : PriceProperties::Price,
         IVariant<NewPlanBulkPrice, Models::NewPlanBulkPrice>
 {
     public static NewPlanBulkPrice From(Models::NewPlanBulkPrice value)
@@ -50,7 +50,7 @@ public sealed record class NewPlanBulkPrice(Models::NewPlanBulkPrice Value)
 }
 
 public sealed record class NewPlanPackagePrice(Models::NewPlanPackagePrice Value)
-    : Price,
+    : PriceProperties::Price,
         IVariant<NewPlanPackagePrice, Models::NewPlanPackagePrice>
 {
     public static NewPlanPackagePrice From(Models::NewPlanPackagePrice value)
@@ -65,7 +65,7 @@ public sealed record class NewPlanPackagePrice(Models::NewPlanPackagePrice Value
 }
 
 public sealed record class NewPlanMatrixPrice(Models::NewPlanMatrixPrice Value)
-    : Price,
+    : PriceProperties::Price,
         IVariant<NewPlanMatrixPrice, Models::NewPlanMatrixPrice>
 {
     public static NewPlanMatrixPrice From(Models::NewPlanMatrixPrice value)
@@ -81,7 +81,9 @@ public sealed record class NewPlanMatrixPrice(Models::NewPlanMatrixPrice Value)
 
 public sealed record class NewPlanThresholdTotalAmountPrice(
     Models::NewPlanThresholdTotalAmountPrice Value
-) : Price, IVariant<NewPlanThresholdTotalAmountPrice, Models::NewPlanThresholdTotalAmountPrice>
+)
+    : PriceProperties::Price,
+        IVariant<NewPlanThresholdTotalAmountPrice, Models::NewPlanThresholdTotalAmountPrice>
 {
     public static NewPlanThresholdTotalAmountPrice From(
         Models::NewPlanThresholdTotalAmountPrice value
@@ -97,7 +99,7 @@ public sealed record class NewPlanThresholdTotalAmountPrice(
 }
 
 public sealed record class NewPlanTieredPackagePrice(Models::NewPlanTieredPackagePrice Value)
-    : Price,
+    : PriceProperties::Price,
         IVariant<NewPlanTieredPackagePrice, Models::NewPlanTieredPackagePrice>
 {
     public static NewPlanTieredPackagePrice From(Models::NewPlanTieredPackagePrice value)
@@ -113,7 +115,9 @@ public sealed record class NewPlanTieredPackagePrice(Models::NewPlanTieredPackag
 
 public sealed record class NewPlanTieredWithMinimumPrice(
     Models::NewPlanTieredWithMinimumPrice Value
-) : Price, IVariant<NewPlanTieredWithMinimumPrice, Models::NewPlanTieredWithMinimumPrice>
+)
+    : PriceProperties::Price,
+        IVariant<NewPlanTieredWithMinimumPrice, Models::NewPlanTieredWithMinimumPrice>
 {
     public static NewPlanTieredWithMinimumPrice From(Models::NewPlanTieredWithMinimumPrice value)
     {
@@ -127,7 +131,7 @@ public sealed record class NewPlanTieredWithMinimumPrice(
 }
 
 public sealed record class NewPlanGroupedTieredPrice(Models::NewPlanGroupedTieredPrice Value)
-    : Price,
+    : PriceProperties::Price,
         IVariant<NewPlanGroupedTieredPrice, Models::NewPlanGroupedTieredPrice>
 {
     public static NewPlanGroupedTieredPrice From(Models::NewPlanGroupedTieredPrice value)
@@ -144,7 +148,7 @@ public sealed record class NewPlanGroupedTieredPrice(Models::NewPlanGroupedTiere
 public sealed record class NewPlanTieredPackageWithMinimumPrice(
     Models::NewPlanTieredPackageWithMinimumPrice Value
 )
-    : Price,
+    : PriceProperties::Price,
         IVariant<NewPlanTieredPackageWithMinimumPrice, Models::NewPlanTieredPackageWithMinimumPrice>
 {
     public static NewPlanTieredPackageWithMinimumPrice From(
@@ -162,7 +166,9 @@ public sealed record class NewPlanTieredPackageWithMinimumPrice(
 
 public sealed record class NewPlanPackageWithAllocationPrice(
     Models::NewPlanPackageWithAllocationPrice Value
-) : Price, IVariant<NewPlanPackageWithAllocationPrice, Models::NewPlanPackageWithAllocationPrice>
+)
+    : PriceProperties::Price,
+        IVariant<NewPlanPackageWithAllocationPrice, Models::NewPlanPackageWithAllocationPrice>
 {
     public static NewPlanPackageWithAllocationPrice From(
         Models::NewPlanPackageWithAllocationPrice value
@@ -178,7 +184,7 @@ public sealed record class NewPlanPackageWithAllocationPrice(
 }
 
 public sealed record class NewPlanUnitWithPercentPrice(Models::NewPlanUnitWithPercentPrice Value)
-    : Price,
+    : PriceProperties::Price,
         IVariant<NewPlanUnitWithPercentPrice, Models::NewPlanUnitWithPercentPrice>
 {
     public static NewPlanUnitWithPercentPrice From(Models::NewPlanUnitWithPercentPrice value)
@@ -194,7 +200,9 @@ public sealed record class NewPlanUnitWithPercentPrice(Models::NewPlanUnitWithPe
 
 public sealed record class NewPlanMatrixWithAllocationPrice(
     Models::NewPlanMatrixWithAllocationPrice Value
-) : Price, IVariant<NewPlanMatrixWithAllocationPrice, Models::NewPlanMatrixWithAllocationPrice>
+)
+    : PriceProperties::Price,
+        IVariant<NewPlanMatrixWithAllocationPrice, Models::NewPlanMatrixWithAllocationPrice>
 {
     public static NewPlanMatrixWithAllocationPrice From(
         Models::NewPlanMatrixWithAllocationPrice value
@@ -209,11 +217,18 @@ public sealed record class NewPlanMatrixWithAllocationPrice(
     }
 }
 
-public sealed record class TieredWithProration(PriceProperties::TieredWithProration Value)
-    : Price,
-        IVariant<TieredWithProration, PriceProperties::TieredWithProration>
+public sealed record class TieredWithProration(
+    global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.TieredWithProration Value
+)
+    : PriceProperties::Price,
+        IVariant<
+            TieredWithProration,
+            global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.TieredWithProration
+        >
 {
-    public static TieredWithProration From(PriceProperties::TieredWithProration value)
+    public static TieredWithProration From(
+        global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.TieredWithProration value
+    )
     {
         return new(value);
     }
@@ -226,7 +241,9 @@ public sealed record class TieredWithProration(PriceProperties::TieredWithProrat
 
 public sealed record class NewPlanUnitWithProrationPrice(
     Models::NewPlanUnitWithProrationPrice Value
-) : Price, IVariant<NewPlanUnitWithProrationPrice, Models::NewPlanUnitWithProrationPrice>
+)
+    : PriceProperties::Price,
+        IVariant<NewPlanUnitWithProrationPrice, Models::NewPlanUnitWithProrationPrice>
 {
     public static NewPlanUnitWithProrationPrice From(Models::NewPlanUnitWithProrationPrice value)
     {
@@ -241,7 +258,9 @@ public sealed record class NewPlanUnitWithProrationPrice(
 
 public sealed record class NewPlanGroupedAllocationPrice(
     Models::NewPlanGroupedAllocationPrice Value
-) : Price, IVariant<NewPlanGroupedAllocationPrice, Models::NewPlanGroupedAllocationPrice>
+)
+    : PriceProperties::Price,
+        IVariant<NewPlanGroupedAllocationPrice, Models::NewPlanGroupedAllocationPrice>
 {
     public static NewPlanGroupedAllocationPrice From(Models::NewPlanGroupedAllocationPrice value)
     {
@@ -256,7 +275,9 @@ public sealed record class NewPlanGroupedAllocationPrice(
 
 public sealed record class NewPlanBulkWithProrationPrice(
     Models::NewPlanBulkWithProrationPrice Value
-) : Price, IVariant<NewPlanBulkWithProrationPrice, Models::NewPlanBulkWithProrationPrice>
+)
+    : PriceProperties::Price,
+        IVariant<NewPlanBulkWithProrationPrice, Models::NewPlanBulkWithProrationPrice>
 {
     public static NewPlanBulkWithProrationPrice From(Models::NewPlanBulkWithProrationPrice value)
     {
@@ -272,7 +293,7 @@ public sealed record class NewPlanBulkWithProrationPrice(
 public sealed record class NewPlanGroupedWithProratedMinimumPrice(
     Models::NewPlanGroupedWithProratedMinimumPrice Value
 )
-    : Price,
+    : PriceProperties::Price,
         IVariant<
             NewPlanGroupedWithProratedMinimumPrice,
             Models::NewPlanGroupedWithProratedMinimumPrice
@@ -294,7 +315,7 @@ public sealed record class NewPlanGroupedWithProratedMinimumPrice(
 public sealed record class NewPlanGroupedWithMeteredMinimumPrice(
     Models::NewPlanGroupedWithMeteredMinimumPrice Value
 )
-    : Price,
+    : PriceProperties::Price,
         IVariant<
             NewPlanGroupedWithMeteredMinimumPrice,
             Models::NewPlanGroupedWithMeteredMinimumPrice
@@ -314,11 +335,16 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice(
 }
 
 public sealed record class GroupedWithMinMaxThresholds(
-    PriceProperties::GroupedWithMinMaxThresholds Value
-) : Price, IVariant<GroupedWithMinMaxThresholds, PriceProperties::GroupedWithMinMaxThresholds>
+    global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.GroupedWithMinMaxThresholds Value
+)
+    : PriceProperties::Price,
+        IVariant<
+            GroupedWithMinMaxThresholds,
+            global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.GroupedWithMinMaxThresholds
+        >
 {
     public static GroupedWithMinMaxThresholds From(
-        PriceProperties::GroupedWithMinMaxThresholds value
+        global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.GroupedWithMinMaxThresholds value
     )
     {
         return new(value);
@@ -332,7 +358,9 @@ public sealed record class GroupedWithMinMaxThresholds(
 
 public sealed record class NewPlanMatrixWithDisplayNamePrice(
     Models::NewPlanMatrixWithDisplayNamePrice Value
-) : Price, IVariant<NewPlanMatrixWithDisplayNamePrice, Models::NewPlanMatrixWithDisplayNamePrice>
+)
+    : PriceProperties::Price,
+        IVariant<NewPlanMatrixWithDisplayNamePrice, Models::NewPlanMatrixWithDisplayNamePrice>
 {
     public static NewPlanMatrixWithDisplayNamePrice From(
         Models::NewPlanMatrixWithDisplayNamePrice value
@@ -349,7 +377,9 @@ public sealed record class NewPlanMatrixWithDisplayNamePrice(
 
 public sealed record class NewPlanGroupedTieredPackagePrice(
     Models::NewPlanGroupedTieredPackagePrice Value
-) : Price, IVariant<NewPlanGroupedTieredPackagePrice, Models::NewPlanGroupedTieredPackagePrice>
+)
+    : PriceProperties::Price,
+        IVariant<NewPlanGroupedTieredPackagePrice, Models::NewPlanGroupedTieredPackagePrice>
 {
     public static NewPlanGroupedTieredPackagePrice From(
         Models::NewPlanGroupedTieredPackagePrice value
@@ -366,7 +396,9 @@ public sealed record class NewPlanGroupedTieredPackagePrice(
 
 public sealed record class NewPlanMaxGroupTieredPackagePrice(
     Models::NewPlanMaxGroupTieredPackagePrice Value
-) : Price, IVariant<NewPlanMaxGroupTieredPackagePrice, Models::NewPlanMaxGroupTieredPackagePrice>
+)
+    : PriceProperties::Price,
+        IVariant<NewPlanMaxGroupTieredPackagePrice, Models::NewPlanMaxGroupTieredPackagePrice>
 {
     public static NewPlanMaxGroupTieredPackagePrice From(
         Models::NewPlanMaxGroupTieredPackagePrice value
@@ -384,7 +416,7 @@ public sealed record class NewPlanMaxGroupTieredPackagePrice(
 public sealed record class NewPlanScalableMatrixWithUnitPricingPrice(
     Models::NewPlanScalableMatrixWithUnitPricingPrice Value
 )
-    : Price,
+    : PriceProperties::Price,
         IVariant<
             NewPlanScalableMatrixWithUnitPricingPrice,
             Models::NewPlanScalableMatrixWithUnitPricingPrice
@@ -406,7 +438,7 @@ public sealed record class NewPlanScalableMatrixWithUnitPricingPrice(
 public sealed record class NewPlanScalableMatrixWithTieredPricingPrice(
     Models::NewPlanScalableMatrixWithTieredPricingPrice Value
 )
-    : Price,
+    : PriceProperties::Price,
         IVariant<
             NewPlanScalableMatrixWithTieredPricingPrice,
             Models::NewPlanScalableMatrixWithTieredPricingPrice
@@ -427,7 +459,9 @@ public sealed record class NewPlanScalableMatrixWithTieredPricingPrice(
 
 public sealed record class NewPlanCumulativeGroupedBulkPrice(
     Models::NewPlanCumulativeGroupedBulkPrice Value
-) : Price, IVariant<NewPlanCumulativeGroupedBulkPrice, Models::NewPlanCumulativeGroupedBulkPrice>
+)
+    : PriceProperties::Price,
+        IVariant<NewPlanCumulativeGroupedBulkPrice, Models::NewPlanCumulativeGroupedBulkPrice>
 {
     public static NewPlanCumulativeGroupedBulkPrice From(
         Models::NewPlanCumulativeGroupedBulkPrice value
@@ -443,7 +477,7 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice(
 }
 
 public sealed record class NewPlanMinimumCompositePrice(Models::NewPlanMinimumCompositePrice Value)
-    : Price,
+    : PriceProperties::Price,
         IVariant<NewPlanMinimumCompositePrice, Models::NewPlanMinimumCompositePrice>
 {
     public static NewPlanMinimumCompositePrice From(Models::NewPlanMinimumCompositePrice value)

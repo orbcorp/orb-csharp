@@ -6,7 +6,6 @@ using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
 using CustomerBalanceTransactionProperties = Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.CustomerBalanceTransactionProperties;
-using Models = Orb.Models;
 
 namespace Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties;
 
@@ -118,14 +117,14 @@ public sealed record class CustomerBalanceTransaction
         }
     }
 
-    public required Models::CreditNoteTiny? CreditNote
+    public required CreditNoteTiny? CreditNote
     {
         get
         {
             if (!this.Properties.TryGetValue("credit_note", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Models::CreditNoteTiny?>(
+            return JsonSerializer.Deserialize<CreditNoteTiny?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -189,17 +188,14 @@ public sealed record class CustomerBalanceTransaction
         }
     }
 
-    public required Models::InvoiceTiny? Invoice
+    public required InvoiceTiny? Invoice
     {
         get
         {
             if (!this.Properties.TryGetValue("invoice", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Models::InvoiceTiny?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<InvoiceTiny?>(element, ModelBase.SerializerOptions);
         }
         set
         {

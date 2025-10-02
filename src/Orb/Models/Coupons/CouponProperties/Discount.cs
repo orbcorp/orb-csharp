@@ -5,7 +5,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
 using DiscountVariants = Orb.Models.Coupons.CouponProperties.DiscountVariants;
-using Models = Orb.Models;
 
 namespace Orb.Models.Coupons.CouponProperties;
 
@@ -14,19 +13,19 @@ public abstract record class Discount
 {
     internal Discount() { }
 
-    public static implicit operator Discount(Models::PercentageDiscount value) =>
+    public static implicit operator Discount(PercentageDiscount value) =>
         new DiscountVariants::PercentageDiscount(value);
 
-    public static implicit operator Discount(Models::AmountDiscount value) =>
+    public static implicit operator Discount(AmountDiscount value) =>
         new DiscountVariants::AmountDiscount(value);
 
-    public bool TryPickPercentage([NotNullWhen(true)] out Models::PercentageDiscount? value)
+    public bool TryPickPercentage([NotNullWhen(true)] out PercentageDiscount? value)
     {
         value = (this as DiscountVariants::PercentageDiscount)?.Value;
         return value != null;
     }
 
-    public bool TryPickAmount([NotNullWhen(true)] out Models::AmountDiscount? value)
+    public bool TryPickAmount([NotNullWhen(true)] out AmountDiscount? value)
     {
         value = (this as DiscountVariants::AmountDiscount)?.Value;
         return value != null;
@@ -93,7 +92,7 @@ sealed class DiscountConverter : JsonConverter<Discount>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Models::PercentageDiscount>(
+                    var deserialized = JsonSerializer.Deserialize<PercentageDiscount>(
                         json,
                         options
                     );
@@ -120,10 +119,7 @@ sealed class DiscountConverter : JsonConverter<Discount>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Models::AmountDiscount>(
-                        json,
-                        options
-                    );
+                    var deserialized = JsonSerializer.Deserialize<AmountDiscount>(json, options);
                     if (deserialized != null)
                     {
                         return new DiscountVariants::AmountDiscount(deserialized);

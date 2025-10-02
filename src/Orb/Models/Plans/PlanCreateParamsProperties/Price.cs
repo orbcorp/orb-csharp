@@ -3,7 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Models = Orb.Models;
 using PriceProperties = Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties;
 
 namespace Orb.Models.Plans.PlanCreateParamsProperties;
@@ -14,14 +13,14 @@ public sealed record class Price : ModelBase, IFromRaw<Price>
     /// <summary>
     /// The allocation price to add to the plan.
     /// </summary>
-    public Models::NewAllocationPrice? AllocationPrice
+    public NewAllocationPrice? AllocationPrice
     {
         get
         {
             if (!this.Properties.TryGetValue("allocation_price", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Models::NewAllocationPrice?>(
+            return JsonSerializer.Deserialize<NewAllocationPrice?>(
                 element,
                 ModelBase.SerializerOptions
             );

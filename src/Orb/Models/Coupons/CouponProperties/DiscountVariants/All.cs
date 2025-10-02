@@ -1,10 +1,11 @@
 using Orb.Core;
+using CouponProperties = Orb.Models.Coupons.CouponProperties;
 using Models = Orb.Models;
 
 namespace Orb.Models.Coupons.CouponProperties.DiscountVariants;
 
 public sealed record class PercentageDiscount(Models::PercentageDiscount Value)
-    : Discount,
+    : CouponProperties::Discount,
         IVariant<PercentageDiscount, Models::PercentageDiscount>
 {
     public static PercentageDiscount From(Models::PercentageDiscount value)
@@ -19,7 +20,7 @@ public sealed record class PercentageDiscount(Models::PercentageDiscount Value)
 }
 
 public sealed record class AmountDiscount(Models::AmountDiscount Value)
-    : Discount,
+    : CouponProperties::Discount,
         IVariant<AmountDiscount, Models::AmountDiscount>
 {
     public static AmountDiscount From(Models::AmountDiscount value)

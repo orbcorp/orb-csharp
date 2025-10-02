@@ -38,14 +38,14 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         }
     }
 
-    public required Models::BillableMetricTiny? BillableMetric
+    public required BillableMetricTiny? BillableMetric
     {
         get
         {
             if (!this.Properties.TryGetValue("billable_metric", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Models::BillableMetricTiny?>(
+            return JsonSerializer.Deserialize<BillableMetricTiny?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -59,7 +59,7 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         }
     }
 
-    public required Models::BillingCycleConfiguration BillingCycleConfiguration
+    public required BillingCycleConfiguration BillingCycleConfiguration
     {
         get
         {
@@ -74,7 +74,7 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
                     )
                 );
 
-            return JsonSerializer.Deserialize<Models::BillingCycleConfiguration>(
+            return JsonSerializer.Deserialize<BillingCycleConfiguration>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -174,14 +174,14 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         }
     }
 
-    public required List<Models::TransformPriceFilter>? CompositePriceFilters
+    public required List<TransformPriceFilter>? CompositePriceFilters
     {
         get
         {
             if (!this.Properties.TryGetValue("composite_price_filters", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<Models::TransformPriceFilter>?>(
+            return JsonSerializer.Deserialize<List<TransformPriceFilter>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -255,17 +255,14 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         }
     }
 
-    public required Models::Allocation? CreditAllocation
+    public required Allocation? CreditAllocation
     {
         get
         {
             if (!this.Properties.TryGetValue("credit_allocation", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Models::Allocation?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<Allocation?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -301,17 +298,14 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         }
     }
 
-    public required Models::Discount? Discount
+    public required Discount? Discount
     {
         get
         {
             if (!this.Properties.TryGetValue("discount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Models::Discount?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<Discount?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -358,7 +352,7 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         }
     }
 
-    public required Models::BillingCycleConfiguration? InvoicingCycleConfiguration
+    public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
         {
@@ -370,7 +364,7 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
             )
                 return null;
 
-            return JsonSerializer.Deserialize<Models::BillingCycleConfiguration?>(
+            return JsonSerializer.Deserialize<BillingCycleConfiguration?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -384,7 +378,7 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         }
     }
 
-    public required Models::ItemSlim Item
+    public required ItemSlim Item
     {
         get
         {
@@ -394,10 +388,7 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
                     new ArgumentOutOfRangeException("item", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<Models::ItemSlim>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
+            return JsonSerializer.Deserialize<ItemSlim>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'item' cannot be null",
                     new ArgumentNullException("item")
@@ -412,17 +403,14 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         }
     }
 
-    public required Models::Maximum? Maximum
+    public required Maximum? Maximum
     {
         get
         {
             if (!this.Properties.TryGetValue("maximum", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Models::Maximum?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<Maximum?>(element, ModelBase.SerializerOptions);
         }
         set
         {
