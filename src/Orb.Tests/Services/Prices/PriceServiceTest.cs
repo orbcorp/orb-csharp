@@ -23,7 +23,7 @@ public class PriceServiceTest : TestBase
                     ItemID = "item_id",
                     ModelType = ModelType.Unit,
                     Name = "Annual fee",
-                    UnitConfig = new() { UnitAmount = "unit_amount", ScalingFactor = 0 },
+                    UnitConfig = new("unit_amount"),
                     BillableMetricID = "billable_metric_id",
                     BilledInAdvance = true,
                     BillingCycleConfiguration = new()
