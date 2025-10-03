@@ -159,6 +159,27 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
         }
     }
 
+    /// <summary>
+    /// The scaled quantity for this line item for specific pricing structures
+    /// </summary>
+    public double? ScaledQuantity
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("scaled_quantity", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["scaled_quantity"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     public override void Validate()
     {
         _ = this.Amount;
@@ -167,6 +188,7 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
         _ = this.Name;
         _ = this.Quantity;
         this.Type.Validate();
+        _ = this.ScaledQuantity;
     }
 
     public MatrixSubLineItem() { }
