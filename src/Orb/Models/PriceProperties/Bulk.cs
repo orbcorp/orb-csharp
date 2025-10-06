@@ -372,6 +372,9 @@ public sealed record class Bulk : ModelBase, IFromRaw<Bulk>
         }
     }
 
+    /// <summary>
+    /// A minimal representation of an Item containing only the essential identifying information.
+    /// </summary>
     public required ItemSlim Item
     {
         get

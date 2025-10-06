@@ -8,9 +8,15 @@ using Orb.Exceptions;
 
 namespace Orb.Models;
 
+/// <summary>
+/// A minimal representation of an Item containing only the essential identifying information.
+/// </summary>
 [JsonConverter(typeof(ModelConverter<ItemSlim>))]
 public sealed record class ItemSlim : ModelBase, IFromRaw<ItemSlim>
 {
+    /// <summary>
+    /// The Orb-assigned unique identifier for the item.
+    /// </summary>
     public required string ID
     {
         get
@@ -36,6 +42,9 @@ public sealed record class ItemSlim : ModelBase, IFromRaw<ItemSlim>
         }
     }
 
+    /// <summary>
+    /// The name of the item.
+    /// </summary>
     public required string Name
     {
         get

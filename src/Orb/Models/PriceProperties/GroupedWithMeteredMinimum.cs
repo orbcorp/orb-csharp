@@ -383,6 +383,9 @@ public sealed record class GroupedWithMeteredMinimum
         }
     }
 
+    /// <summary>
+    /// A minimal representation of an Item containing only the essential identifying information.
+    /// </summary>
     public required ItemSlim Item
     {
         get

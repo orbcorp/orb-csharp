@@ -346,6 +346,9 @@ public sealed record class ScalableMatrixWithTieredPricing
         }
     }
 
+    /// <summary>
+    /// A minimal representation of an Item containing only the essential identifying information.
+    /// </summary>
     public required ItemSlim Item
     {
         get

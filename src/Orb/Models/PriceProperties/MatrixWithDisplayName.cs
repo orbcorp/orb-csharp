@@ -344,6 +344,9 @@ public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWit
         }
     }
 
+    /// <summary>
+    /// A minimal representation of an Item containing only the essential identifying information.
+    /// </summary>
     public required ItemSlim Item
     {
         get

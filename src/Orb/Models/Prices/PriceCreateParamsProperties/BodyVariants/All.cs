@@ -499,3 +499,18 @@ public sealed record class NewFloatingMinimumCompositePrice(
         this.Value.Validate();
     }
 }
+
+public sealed record class EventOutput(BodyProperties::EventOutput Value)
+    : Body,
+        IVariant<EventOutput, BodyProperties::EventOutput>
+{
+    public static EventOutput From(BodyProperties::EventOutput value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
