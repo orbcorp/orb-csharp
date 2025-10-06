@@ -490,3 +490,25 @@ public sealed record class NewPlanMinimumCompositePrice(Models::NewPlanMinimumCo
         this.Value.Validate();
     }
 }
+
+public sealed record class EventOutput(
+    global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.EventOutput Value
+)
+    : PriceProperties::Price,
+        IVariant<
+            EventOutput,
+            global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.EventOutput
+        >
+{
+    public static EventOutput From(
+        global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.EventOutput value
+    )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}

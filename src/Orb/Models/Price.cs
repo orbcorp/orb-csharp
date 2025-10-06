@@ -106,6 +106,9 @@ public abstract record class Price
     public static implicit operator Price(PriceProperties::Minimum value) =>
         new PriceVariants::Minimum(value);
 
+    public static implicit operator Price(PriceProperties::EventOutput value) =>
+        new PriceVariants::EventOutput(value);
+
     public bool TryPickUnit([NotNullWhen(true)] out PriceProperties::Unit? value)
     {
         value = (this as PriceVariants::Unit)?.Value;
@@ -306,6 +309,12 @@ public abstract record class Price
         return value != null;
     }
 
+    public bool TryPickEventOutput([NotNullWhen(true)] out PriceProperties::EventOutput? value)
+    {
+        value = (this as PriceVariants::EventOutput)?.Value;
+        return value != null;
+    }
+
     public void Switch(
         Action<PriceVariants::Unit> unit,
         Action<PriceVariants::Tiered> tiered,
@@ -333,7 +342,8 @@ public abstract record class Price
         Action<PriceVariants::ScalableMatrixWithUnitPricing> scalableMatrixWithUnitPricing,
         Action<PriceVariants::ScalableMatrixWithTieredPricing> scalableMatrixWithTieredPricing,
         Action<PriceVariants::CumulativeGroupedBulk> cumulativeGroupedBulk,
-        Action<PriceVariants::Minimum> minimum
+        Action<PriceVariants::Minimum> minimum,
+        Action<PriceVariants::EventOutput> eventOutput
     )
     {
         switch (this)
@@ -419,6 +429,9 @@ public abstract record class Price
             case PriceVariants::Minimum inner:
                 minimum(inner);
                 break;
+            case PriceVariants::EventOutput inner:
+                eventOutput(inner);
+                break;
             default:
                 throw new OrbInvalidDataException("Data did not match any variant of Price");
         }
@@ -451,7 +464,8 @@ public abstract record class Price
         Func<PriceVariants::ScalableMatrixWithUnitPricing, T> scalableMatrixWithUnitPricing,
         Func<PriceVariants::ScalableMatrixWithTieredPricing, T> scalableMatrixWithTieredPricing,
         Func<PriceVariants::CumulativeGroupedBulk, T> cumulativeGroupedBulk,
-        Func<PriceVariants::Minimum, T> minimum
+        Func<PriceVariants::Minimum, T> minimum,
+        Func<PriceVariants::EventOutput, T> eventOutput
     )
     {
         return this switch
@@ -487,6 +501,7 @@ public abstract record class Price
             ),
             PriceVariants::CumulativeGroupedBulk inner => cumulativeGroupedBulk(inner),
             PriceVariants::Minimum inner => minimum(inner),
+            PriceVariants::EventOutput inner => eventOutput(inner),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };
     }
@@ -1262,6 +1277,33 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 throw new AggregateException(exceptions);
             }
+            case "event_output":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<PriceProperties::EventOutput>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::EventOutput(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::EventOutput",
+                            e
+                        )
+                    );
+                }
+
+                throw new AggregateException(exceptions);
+            }
             default:
             {
                 throw new OrbInvalidDataException(
@@ -1312,6 +1354,7 @@ sealed class PriceConverter : JsonConverter<Price>
             PriceVariants::CumulativeGroupedBulk(var cumulativeGroupedBulk) =>
                 cumulativeGroupedBulk,
             PriceVariants::Minimum(var minimum) => minimum,
+            PriceVariants::EventOutput(var eventOutput) => eventOutput,
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };
         JsonSerializer.Serialize(writer, variant, options);

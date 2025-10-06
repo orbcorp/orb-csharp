@@ -98,6 +98,8 @@ public abstract record class Body
     public static implicit operator Body(NewFloatingMinimumCompositePrice value) =>
         new BodyVariants::NewFloatingMinimumCompositePrice(value);
 
+    public static implicit operator Body(EventOutput value) => new BodyVariants::EventOutput(value);
+
     public bool TryPickNewFloatingUnitPrice([NotNullWhen(true)] out NewFloatingUnitPrice? value)
     {
         value = (this as BodyVariants::NewFloatingUnitPrice)?.Value;
@@ -306,6 +308,12 @@ public abstract record class Body
         return value != null;
     }
 
+    public bool TryPickEventOutput([NotNullWhen(true)] out EventOutput? value)
+    {
+        value = (this as BodyVariants::EventOutput)?.Value;
+        return value != null;
+    }
+
     public void Switch(
         Action<BodyVariants::NewFloatingUnitPrice> newFloatingUnitPrice,
         Action<BodyVariants::NewFloatingTieredPrice> newFloatingTieredPrice,
@@ -333,7 +341,8 @@ public abstract record class Body
         Action<BodyVariants::NewFloatingScalableMatrixWithUnitPricingPrice> newFloatingScalableMatrixWithUnitPricingPrice,
         Action<BodyVariants::NewFloatingScalableMatrixWithTieredPricingPrice> newFloatingScalableMatrixWithTieredPricingPrice,
         Action<BodyVariants::NewFloatingCumulativeGroupedBulkPrice> newFloatingCumulativeGroupedBulkPrice,
-        Action<BodyVariants::NewFloatingMinimumCompositePrice> newFloatingMinimumCompositePrice
+        Action<BodyVariants::NewFloatingMinimumCompositePrice> newFloatingMinimumCompositePrice,
+        Action<BodyVariants::EventOutput> eventOutput
     )
     {
         switch (this)
@@ -419,6 +428,9 @@ public abstract record class Body
             case BodyVariants::NewFloatingMinimumCompositePrice inner:
                 newFloatingMinimumCompositePrice(inner);
                 break;
+            case BodyVariants::EventOutput inner:
+                eventOutput(inner);
+                break;
             default:
                 throw new OrbInvalidDataException("Data did not match any variant of Body");
         }
@@ -490,7 +502,8 @@ public abstract record class Body
             BodyVariants::NewFloatingCumulativeGroupedBulkPrice,
             T
         > newFloatingCumulativeGroupedBulkPrice,
-        Func<BodyVariants::NewFloatingMinimumCompositePrice, T> newFloatingMinimumCompositePrice
+        Func<BodyVariants::NewFloatingMinimumCompositePrice, T> newFloatingMinimumCompositePrice,
+        Func<BodyVariants::EventOutput, T> eventOutput
     )
     {
         return this switch
@@ -546,6 +559,7 @@ public abstract record class Body
                 newFloatingCumulativeGroupedBulkPrice(inner),
             BodyVariants::NewFloatingMinimumCompositePrice inner =>
                 newFloatingMinimumCompositePrice(inner),
+            BodyVariants::EventOutput inner => eventOutput(inner),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Body"),
         };
     }
@@ -1338,6 +1352,30 @@ sealed class BodyConverter : JsonConverter<Body>
 
                 throw new AggregateException(exceptions);
             }
+            case "event_output":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<EventOutput>(json, options);
+                    if (deserialized != null)
+                    {
+                        return new BodyVariants::EventOutput(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::EventOutput",
+                            e
+                        )
+                    );
+                }
+
+                throw new AggregateException(exceptions);
+            }
             default:
             {
                 throw new OrbInvalidDataException(
@@ -1420,6 +1458,7 @@ sealed class BodyConverter : JsonConverter<Body>
             ) => newFloatingCumulativeGroupedBulkPrice,
             BodyVariants::NewFloatingMinimumCompositePrice(var newFloatingMinimumCompositePrice) =>
                 newFloatingMinimumCompositePrice,
+            BodyVariants::EventOutput(var eventOutput) => eventOutput,
             _ => throw new OrbInvalidDataException("Data did not match any variant of Body"),
         };
         JsonSerializer.Serialize(writer, variant, options);

@@ -5,6 +5,9 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Items.ItemUpdateParamsProperties.ExternalConnectionProperties;
 
+/// <summary>
+/// The name of the external system this item is connected to.
+/// </summary>
 [JsonConverter(typeof(ExternalConnectionNameConverter))]
 public enum ExternalConnectionName
 {

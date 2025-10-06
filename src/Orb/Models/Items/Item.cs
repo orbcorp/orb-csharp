@@ -17,6 +17,9 @@ namespace Orb.Models.Items;
 [JsonConverter(typeof(ModelConverter<Item>))]
 public sealed record class Item : ModelBase, IFromRaw<Item>
 {
+    /// <summary>
+    /// The Orb-assigned unique identifier for the item.
+    /// </summary>
     public required string ID
     {
         get
@@ -42,6 +45,9 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
         }
     }
 
+    /// <summary>
+    /// The time at which the item was created.
+    /// </summary>
     public required DateTime CreatedAt
     {
         get
@@ -63,6 +69,10 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
         }
     }
 
+    /// <summary>
+    /// A list of external connections for this item, used to sync with external
+    /// invoicing and tax systems.
+    /// </summary>
     public required List<ExternalConnection> ExternalConnections
     {
         get
@@ -128,6 +138,9 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
         }
     }
 
+    /// <summary>
+    /// The name of the item.
+    /// </summary>
     public required string Name
     {
         get
@@ -153,6 +166,27 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
         }
     }
 
+    /// <summary>
+    /// The time at which the item was archived. If null, the item is not archived.
+    /// </summary>
+    public DateTime? ArchivedAt
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("archived_at", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["archived_at"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     public override void Validate()
     {
         _ = this.ID;
@@ -166,6 +200,7 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
             _ = item;
         }
         _ = this.Name;
+        _ = this.ArchivedAt;
     }
 
     public Item() { }

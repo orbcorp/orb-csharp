@@ -559,3 +559,18 @@ public sealed record class NewSubscriptionMinimumCompositePrice(
         this.Value.Validate();
     }
 }
+
+public sealed record class EventOutput(PriceProperties::EventOutput Value)
+    : AddPriceProperties::Price,
+        IVariant<EventOutput, PriceProperties::EventOutput>
+{
+    public static EventOutput From(PriceProperties::EventOutput value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}

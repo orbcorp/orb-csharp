@@ -520,3 +520,18 @@ public sealed record class NewFloatingMinimumCompositePrice(
         this.Value.Validate();
     }
 }
+
+public sealed record class EventOutput(PriceProperties::EventOutput Value)
+    : PriceEvaluationProperties::Price,
+        IVariant<EventOutput, PriceProperties::EventOutput>
+{
+    public static EventOutput From(PriceProperties::EventOutput value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}

@@ -98,6 +98,9 @@ public abstract record class Price
     public static implicit operator Price(NewFloatingMinimumCompositePrice value) =>
         new PriceVariants::NewFloatingMinimumCompositePrice(value);
 
+    public static implicit operator Price(EventOutput value) =>
+        new PriceVariants::EventOutput(value);
+
     public bool TryPickNewFloatingUnit([NotNullWhen(true)] out NewFloatingUnitPrice? value)
     {
         value = (this as PriceVariants::NewFloatingUnitPrice)?.Value;
@@ -304,6 +307,12 @@ public abstract record class Price
         return value != null;
     }
 
+    public bool TryPickEventOutput([NotNullWhen(true)] out EventOutput? value)
+    {
+        value = (this as PriceVariants::EventOutput)?.Value;
+        return value != null;
+    }
+
     public void Switch(
         Action<PriceVariants::NewFloatingUnitPrice> newFloatingUnit,
         Action<PriceVariants::NewFloatingTieredPrice> newFloatingTiered,
@@ -331,7 +340,8 @@ public abstract record class Price
         Action<PriceVariants::NewFloatingScalableMatrixWithUnitPricingPrice> newFloatingScalableMatrixWithUnitPricing,
         Action<PriceVariants::NewFloatingScalableMatrixWithTieredPricingPrice> newFloatingScalableMatrixWithTieredPricing,
         Action<PriceVariants::NewFloatingCumulativeGroupedBulkPrice> newFloatingCumulativeGroupedBulk,
-        Action<PriceVariants::NewFloatingMinimumCompositePrice> newFloatingMinimumComposite
+        Action<PriceVariants::NewFloatingMinimumCompositePrice> newFloatingMinimumComposite,
+        Action<PriceVariants::EventOutput> eventOutput
     )
     {
         switch (this)
@@ -417,6 +427,9 @@ public abstract record class Price
             case PriceVariants::NewFloatingMinimumCompositePrice inner:
                 newFloatingMinimumComposite(inner);
                 break;
+            case PriceVariants::EventOutput inner:
+                eventOutput(inner);
+                break;
             default:
                 throw new OrbInvalidDataException("Data did not match any variant of Price");
         }
@@ -485,7 +498,8 @@ public abstract record class Price
             PriceVariants::NewFloatingCumulativeGroupedBulkPrice,
             T
         > newFloatingCumulativeGroupedBulk,
-        Func<PriceVariants::NewFloatingMinimumCompositePrice, T> newFloatingMinimumComposite
+        Func<PriceVariants::NewFloatingMinimumCompositePrice, T> newFloatingMinimumComposite,
+        Func<PriceVariants::EventOutput, T> eventOutput
     )
     {
         return this switch
@@ -542,6 +556,7 @@ public abstract record class Price
             PriceVariants::NewFloatingMinimumCompositePrice inner => newFloatingMinimumComposite(
                 inner
             ),
+            PriceVariants::EventOutput inner => eventOutput(inner),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };
     }
@@ -1340,6 +1355,30 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
+            case "event_output":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<EventOutput>(json, options);
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::EventOutput(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::EventOutput",
+                            e
+                        )
+                    );
+                }
+
+                throw new AggregateException(exceptions);
+            }
             default:
             {
                 throw new OrbInvalidDataException(
@@ -1416,6 +1455,7 @@ sealed class PriceConverter : JsonConverter<Price?>
             ) => newFloatingCumulativeGroupedBulk,
             PriceVariants::NewFloatingMinimumCompositePrice(var newFloatingMinimumComposite) =>
                 newFloatingMinimumComposite,
+            PriceVariants::EventOutput(var eventOutput) => eventOutput,
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };
         JsonSerializer.Serialize(writer, variant, options);

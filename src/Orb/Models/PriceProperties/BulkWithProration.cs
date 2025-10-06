@@ -378,6 +378,9 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         }
     }
 
+    /// <summary>
+    /// A minimal representation of an Item containing only the essential identifying information.
+    /// </summary>
     public required ItemSlim Item
     {
         get

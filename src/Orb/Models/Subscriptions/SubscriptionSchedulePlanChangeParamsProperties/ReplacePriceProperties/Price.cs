@@ -100,6 +100,9 @@ public abstract record class Price
     public static implicit operator Price(NewSubscriptionMinimumCompositePrice value) =>
         new PriceVariants::NewSubscriptionMinimumCompositePrice(value);
 
+    public static implicit operator Price(EventOutput value) =>
+        new PriceVariants::EventOutput(value);
+
     public bool TryPickNewSubscriptionUnit([NotNullWhen(true)] out NewSubscriptionUnitPrice? value)
     {
         value = (this as PriceVariants::NewSubscriptionUnitPrice)?.Value;
@@ -310,6 +313,12 @@ public abstract record class Price
         return value != null;
     }
 
+    public bool TryPickEventOutput([NotNullWhen(true)] out EventOutput? value)
+    {
+        value = (this as PriceVariants::EventOutput)?.Value;
+        return value != null;
+    }
+
     public void Switch(
         Action<PriceVariants::NewSubscriptionUnitPrice> newSubscriptionUnit,
         Action<PriceVariants::NewSubscriptionTieredPrice> newSubscriptionTiered,
@@ -337,7 +346,8 @@ public abstract record class Price
         Action<PriceVariants::NewSubscriptionScalableMatrixWithUnitPricingPrice> newSubscriptionScalableMatrixWithUnitPricing,
         Action<PriceVariants::NewSubscriptionScalableMatrixWithTieredPricingPrice> newSubscriptionScalableMatrixWithTieredPricing,
         Action<PriceVariants::NewSubscriptionCumulativeGroupedBulkPrice> newSubscriptionCumulativeGroupedBulk,
-        Action<PriceVariants::NewSubscriptionMinimumCompositePrice> newSubscriptionMinimumComposite
+        Action<PriceVariants::NewSubscriptionMinimumCompositePrice> newSubscriptionMinimumComposite,
+        Action<PriceVariants::EventOutput> eventOutput
     )
     {
         switch (this)
@@ -423,6 +433,9 @@ public abstract record class Price
             case PriceVariants::NewSubscriptionMinimumCompositePrice inner:
                 newSubscriptionMinimumComposite(inner);
                 break;
+            case PriceVariants::EventOutput inner:
+                eventOutput(inner);
+                break;
             default:
                 throw new OrbInvalidDataException("Data did not match any variant of Price");
         }
@@ -503,7 +516,11 @@ public abstract record class Price
             PriceVariants::NewSubscriptionCumulativeGroupedBulkPrice,
             T
         > newSubscriptionCumulativeGroupedBulk,
-        Func<PriceVariants::NewSubscriptionMinimumCompositePrice, T> newSubscriptionMinimumComposite
+        Func<
+            PriceVariants::NewSubscriptionMinimumCompositePrice,
+            T
+        > newSubscriptionMinimumComposite,
+        Func<PriceVariants::EventOutput, T> eventOutput
     )
     {
         return this switch
@@ -557,6 +574,7 @@ public abstract record class Price
                 newSubscriptionCumulativeGroupedBulk(inner),
             PriceVariants::NewSubscriptionMinimumCompositePrice inner =>
                 newSubscriptionMinimumComposite(inner),
+            PriceVariants::EventOutput inner => eventOutput(inner),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };
     }
@@ -1368,6 +1386,30 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
+            case "event_output":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<EventOutput>(json, options);
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::EventOutput(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::EventOutput",
+                            e
+                        )
+                    );
+                }
+
+                throw new AggregateException(exceptions);
+            }
             default:
             {
                 throw new OrbInvalidDataException(
@@ -1451,6 +1493,7 @@ sealed class PriceConverter : JsonConverter<Price?>
             PriceVariants::NewSubscriptionMinimumCompositePrice(
                 var newSubscriptionMinimumComposite
             ) => newSubscriptionMinimumComposite,
+            PriceVariants::EventOutput(var eventOutput) => eventOutput,
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };
         JsonSerializer.Serialize(writer, variant, options);

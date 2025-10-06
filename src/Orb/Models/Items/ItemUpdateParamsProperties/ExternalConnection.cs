@@ -9,9 +9,16 @@ using Orb.Models.Items.ItemUpdateParamsProperties.ExternalConnectionProperties;
 
 namespace Orb.Models.Items.ItemUpdateParamsProperties;
 
+/// <summary>
+/// Represents a connection between an Item and an external system for invoicing or
+/// tax calculation purposes.
+/// </summary>
 [JsonConverter(typeof(ModelConverter<ExternalConnection>))]
 public sealed record class ExternalConnection : ModelBase, IFromRaw<ExternalConnection>
 {
+    /// <summary>
+    /// The name of the external system this item is connected to.
+    /// </summary>
     public required ApiEnum<string, ExternalConnectionName> ExternalConnectionName
     {
         get
@@ -39,6 +46,9 @@ public sealed record class ExternalConnection : ModelBase, IFromRaw<ExternalConn
         }
     }
 
+    /// <summary>
+    /// The identifier of this item in the external system.
+    /// </summary>
     public required string ExternalEntityID
     {
         get
