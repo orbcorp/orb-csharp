@@ -98,6 +98,8 @@ public abstract record class Price
     public static implicit operator Price(NewPlanMinimumCompositePrice value) =>
         new PriceVariants::NewPlanMinimumCompositePrice(value);
 
+    public static implicit operator Price(Percent value) => new PriceVariants::Percent(value);
+
     public static implicit operator Price(EventOutput value) =>
         new PriceVariants::EventOutput(value);
 
@@ -305,6 +307,12 @@ public abstract record class Price
         return value != null;
     }
 
+    public bool TryPickPercent([NotNullWhen(true)] out Percent? value)
+    {
+        value = (this as PriceVariants::Percent)?.Value;
+        return value != null;
+    }
+
     public bool TryPickEventOutput([NotNullWhen(true)] out EventOutput? value)
     {
         value = (this as PriceVariants::EventOutput)?.Value;
@@ -339,6 +347,7 @@ public abstract record class Price
         Action<PriceVariants::NewPlanScalableMatrixWithTieredPricingPrice> newPlanScalableMatrixWithTieredPricing,
         Action<PriceVariants::NewPlanCumulativeGroupedBulkPrice> newPlanCumulativeGroupedBulk,
         Action<PriceVariants::NewPlanMinimumCompositePrice> newPlanMinimumComposite,
+        Action<PriceVariants::Percent> percent,
         Action<PriceVariants::EventOutput> eventOutput
     )
     {
@@ -425,6 +434,9 @@ public abstract record class Price
             case PriceVariants::NewPlanMinimumCompositePrice inner:
                 newPlanMinimumComposite(inner);
                 break;
+            case PriceVariants::Percent inner:
+                percent(inner);
+                break;
             case PriceVariants::EventOutput inner:
                 eventOutput(inner);
                 break;
@@ -476,6 +488,7 @@ public abstract record class Price
         > newPlanScalableMatrixWithTieredPricing,
         Func<PriceVariants::NewPlanCumulativeGroupedBulkPrice, T> newPlanCumulativeGroupedBulk,
         Func<PriceVariants::NewPlanMinimumCompositePrice, T> newPlanMinimumComposite,
+        Func<PriceVariants::Percent, T> percent,
         Func<PriceVariants::EventOutput, T> eventOutput
     )
     {
@@ -527,6 +540,7 @@ public abstract record class Price
                 inner
             ),
             PriceVariants::NewPlanMinimumCompositePrice inner => newPlanMinimumComposite(inner),
+            PriceVariants::Percent inner => percent(inner),
             PriceVariants::EventOutput inner => eventOutput(inner),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };
@@ -1298,6 +1312,30 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
+            case "percent":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<Percent>(json, options);
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::Percent(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::Percent",
+                            e
+                        )
+                    );
+                }
+
+                throw new AggregateException(exceptions);
+            }
             case "event_output":
             {
                 List<OrbInvalidDataException> exceptions = [];
@@ -1389,6 +1427,7 @@ sealed class PriceConverter : JsonConverter<Price?>
                 newPlanCumulativeGroupedBulk,
             PriceVariants::NewPlanMinimumCompositePrice(var newPlanMinimumComposite) =>
                 newPlanMinimumComposite,
+            PriceVariants::Percent(var percent) => percent,
             PriceVariants::EventOutput(var eventOutput) => eventOutput,
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };

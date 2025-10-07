@@ -482,6 +482,21 @@ public sealed record class NewPlanMinimumCompositePrice(Models::NewPlanMinimumCo
     }
 }
 
+public sealed record class Percent(PriceProperties::Percent Value)
+    : ReplacePriceProperties::Price,
+        IVariant<Percent, PriceProperties::Percent>
+{
+    public static Percent From(PriceProperties::Percent value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
 public sealed record class EventOutput(PriceProperties::EventOutput Value)
     : ReplacePriceProperties::Price,
         IVariant<EventOutput, PriceProperties::EventOutput>

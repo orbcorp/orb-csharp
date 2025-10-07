@@ -106,6 +106,9 @@ public abstract record class Price
     public static implicit operator Price(PriceProperties::Minimum value) =>
         new PriceVariants::Minimum(value);
 
+    public static implicit operator Price(PriceProperties::Percent value) =>
+        new PriceVariants::Percent(value);
+
     public static implicit operator Price(PriceProperties::EventOutput value) =>
         new PriceVariants::EventOutput(value);
 
@@ -309,6 +312,12 @@ public abstract record class Price
         return value != null;
     }
 
+    public bool TryPickPercent([NotNullWhen(true)] out PriceProperties::Percent? value)
+    {
+        value = (this as PriceVariants::Percent)?.Value;
+        return value != null;
+    }
+
     public bool TryPickEventOutput([NotNullWhen(true)] out PriceProperties::EventOutput? value)
     {
         value = (this as PriceVariants::EventOutput)?.Value;
@@ -343,6 +352,7 @@ public abstract record class Price
         Action<PriceVariants::ScalableMatrixWithTieredPricing> scalableMatrixWithTieredPricing,
         Action<PriceVariants::CumulativeGroupedBulk> cumulativeGroupedBulk,
         Action<PriceVariants::Minimum> minimum,
+        Action<PriceVariants::Percent> percent,
         Action<PriceVariants::EventOutput> eventOutput
     )
     {
@@ -429,6 +439,9 @@ public abstract record class Price
             case PriceVariants::Minimum inner:
                 minimum(inner);
                 break;
+            case PriceVariants::Percent inner:
+                percent(inner);
+                break;
             case PriceVariants::EventOutput inner:
                 eventOutput(inner);
                 break;
@@ -465,6 +478,7 @@ public abstract record class Price
         Func<PriceVariants::ScalableMatrixWithTieredPricing, T> scalableMatrixWithTieredPricing,
         Func<PriceVariants::CumulativeGroupedBulk, T> cumulativeGroupedBulk,
         Func<PriceVariants::Minimum, T> minimum,
+        Func<PriceVariants::Percent, T> percent,
         Func<PriceVariants::EventOutput, T> eventOutput
     )
     {
@@ -501,6 +515,7 @@ public abstract record class Price
             ),
             PriceVariants::CumulativeGroupedBulk inner => cumulativeGroupedBulk(inner),
             PriceVariants::Minimum inner => minimum(inner),
+            PriceVariants::Percent inner => percent(inner),
             PriceVariants::EventOutput inner => eventOutput(inner),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };
@@ -1277,6 +1292,33 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 throw new AggregateException(exceptions);
             }
+            case "percent":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<PriceProperties::Percent>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::Percent(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::Percent",
+                            e
+                        )
+                    );
+                }
+
+                throw new AggregateException(exceptions);
+            }
             case "event_output":
             {
                 List<OrbInvalidDataException> exceptions = [];
@@ -1354,6 +1396,7 @@ sealed class PriceConverter : JsonConverter<Price>
             PriceVariants::CumulativeGroupedBulk(var cumulativeGroupedBulk) =>
                 cumulativeGroupedBulk,
             PriceVariants::Minimum(var minimum) => minimum,
+            PriceVariants::Percent(var percent) => percent,
             PriceVariants::EventOutput(var eventOutput) => eventOutput,
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };

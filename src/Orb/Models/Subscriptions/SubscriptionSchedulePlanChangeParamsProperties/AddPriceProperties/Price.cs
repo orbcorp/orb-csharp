@@ -100,6 +100,8 @@ public abstract record class Price
     public static implicit operator Price(NewSubscriptionMinimumCompositePrice value) =>
         new PriceVariants::NewSubscriptionMinimumCompositePrice(value);
 
+    public static implicit operator Price(Percent value) => new PriceVariants::Percent(value);
+
     public static implicit operator Price(EventOutput value) =>
         new PriceVariants::EventOutput(value);
 
@@ -313,6 +315,12 @@ public abstract record class Price
         return value != null;
     }
 
+    public bool TryPickPercent([NotNullWhen(true)] out Percent? value)
+    {
+        value = (this as PriceVariants::Percent)?.Value;
+        return value != null;
+    }
+
     public bool TryPickEventOutput([NotNullWhen(true)] out EventOutput? value)
     {
         value = (this as PriceVariants::EventOutput)?.Value;
@@ -347,6 +355,7 @@ public abstract record class Price
         Action<PriceVariants::NewSubscriptionScalableMatrixWithTieredPricingPrice> newSubscriptionScalableMatrixWithTieredPricing,
         Action<PriceVariants::NewSubscriptionCumulativeGroupedBulkPrice> newSubscriptionCumulativeGroupedBulk,
         Action<PriceVariants::NewSubscriptionMinimumCompositePrice> newSubscriptionMinimumComposite,
+        Action<PriceVariants::Percent> percent,
         Action<PriceVariants::EventOutput> eventOutput
     )
     {
@@ -432,6 +441,9 @@ public abstract record class Price
                 break;
             case PriceVariants::NewSubscriptionMinimumCompositePrice inner:
                 newSubscriptionMinimumComposite(inner);
+                break;
+            case PriceVariants::Percent inner:
+                percent(inner);
                 break;
             case PriceVariants::EventOutput inner:
                 eventOutput(inner);
@@ -520,6 +532,7 @@ public abstract record class Price
             PriceVariants::NewSubscriptionMinimumCompositePrice,
             T
         > newSubscriptionMinimumComposite,
+        Func<PriceVariants::Percent, T> percent,
         Func<PriceVariants::EventOutput, T> eventOutput
     )
     {
@@ -574,6 +587,7 @@ public abstract record class Price
                 newSubscriptionCumulativeGroupedBulk(inner),
             PriceVariants::NewSubscriptionMinimumCompositePrice inner =>
                 newSubscriptionMinimumComposite(inner),
+            PriceVariants::Percent inner => percent(inner),
             PriceVariants::EventOutput inner => eventOutput(inner),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };
@@ -1386,6 +1400,30 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
+            case "percent":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<Percent>(json, options);
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::Percent(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::Percent",
+                            e
+                        )
+                    );
+                }
+
+                throw new AggregateException(exceptions);
+            }
             case "event_output":
             {
                 List<OrbInvalidDataException> exceptions = [];
@@ -1493,6 +1531,7 @@ sealed class PriceConverter : JsonConverter<Price?>
             PriceVariants::NewSubscriptionMinimumCompositePrice(
                 var newSubscriptionMinimumComposite
             ) => newSubscriptionMinimumComposite,
+            PriceVariants::Percent(var percent) => percent,
             PriceVariants::EventOutput(var eventOutput) => eventOutput,
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };

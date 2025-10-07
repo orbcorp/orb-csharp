@@ -500,6 +500,21 @@ public sealed record class NewFloatingMinimumCompositePrice(
     }
 }
 
+public sealed record class Percent(BodyProperties::Percent Value)
+    : Body,
+        IVariant<Percent, BodyProperties::Percent>
+{
+    public static Percent From(BodyProperties::Percent value)
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
 public sealed record class EventOutput(BodyProperties::EventOutput Value)
     : Body,
         IVariant<EventOutput, BodyProperties::EventOutput>

@@ -98,6 +98,8 @@ public abstract record class Body
     public static implicit operator Body(NewFloatingMinimumCompositePrice value) =>
         new BodyVariants::NewFloatingMinimumCompositePrice(value);
 
+    public static implicit operator Body(Percent value) => new BodyVariants::Percent(value);
+
     public static implicit operator Body(EventOutput value) => new BodyVariants::EventOutput(value);
 
     public bool TryPickNewFloatingUnitPrice([NotNullWhen(true)] out NewFloatingUnitPrice? value)
@@ -308,6 +310,12 @@ public abstract record class Body
         return value != null;
     }
 
+    public bool TryPickPercent([NotNullWhen(true)] out Percent? value)
+    {
+        value = (this as BodyVariants::Percent)?.Value;
+        return value != null;
+    }
+
     public bool TryPickEventOutput([NotNullWhen(true)] out EventOutput? value)
     {
         value = (this as BodyVariants::EventOutput)?.Value;
@@ -342,6 +350,7 @@ public abstract record class Body
         Action<BodyVariants::NewFloatingScalableMatrixWithTieredPricingPrice> newFloatingScalableMatrixWithTieredPricingPrice,
         Action<BodyVariants::NewFloatingCumulativeGroupedBulkPrice> newFloatingCumulativeGroupedBulkPrice,
         Action<BodyVariants::NewFloatingMinimumCompositePrice> newFloatingMinimumCompositePrice,
+        Action<BodyVariants::Percent> percent,
         Action<BodyVariants::EventOutput> eventOutput
     )
     {
@@ -428,6 +437,9 @@ public abstract record class Body
             case BodyVariants::NewFloatingMinimumCompositePrice inner:
                 newFloatingMinimumCompositePrice(inner);
                 break;
+            case BodyVariants::Percent inner:
+                percent(inner);
+                break;
             case BodyVariants::EventOutput inner:
                 eventOutput(inner);
                 break;
@@ -503,6 +515,7 @@ public abstract record class Body
             T
         > newFloatingCumulativeGroupedBulkPrice,
         Func<BodyVariants::NewFloatingMinimumCompositePrice, T> newFloatingMinimumCompositePrice,
+        Func<BodyVariants::Percent, T> percent,
         Func<BodyVariants::EventOutput, T> eventOutput
     )
     {
@@ -559,6 +572,7 @@ public abstract record class Body
                 newFloatingCumulativeGroupedBulkPrice(inner),
             BodyVariants::NewFloatingMinimumCompositePrice inner =>
                 newFloatingMinimumCompositePrice(inner),
+            BodyVariants::Percent inner => percent(inner),
             BodyVariants::EventOutput inner => eventOutput(inner),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Body"),
         };
@@ -1352,6 +1366,30 @@ sealed class BodyConverter : JsonConverter<Body>
 
                 throw new AggregateException(exceptions);
             }
+            case "percent":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<Percent>(json, options);
+                    if (deserialized != null)
+                    {
+                        return new BodyVariants::Percent(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant BodyVariants::Percent",
+                            e
+                        )
+                    );
+                }
+
+                throw new AggregateException(exceptions);
+            }
             case "event_output":
             {
                 List<OrbInvalidDataException> exceptions = [];
@@ -1458,6 +1496,7 @@ sealed class BodyConverter : JsonConverter<Body>
             ) => newFloatingCumulativeGroupedBulkPrice,
             BodyVariants::NewFloatingMinimumCompositePrice(var newFloatingMinimumCompositePrice) =>
                 newFloatingMinimumCompositePrice,
+            BodyVariants::Percent(var percent) => percent,
             BodyVariants::EventOutput(var eventOutput) => eventOutput,
             _ => throw new OrbInvalidDataException("Data did not match any variant of Body"),
         };
