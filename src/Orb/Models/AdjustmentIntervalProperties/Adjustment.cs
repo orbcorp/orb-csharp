@@ -4,35 +4,124 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
-using AdjustmentVariants = Orb.Models.AdjustmentIntervalProperties.AdjustmentVariants;
 
 namespace Orb.Models.AdjustmentIntervalProperties;
 
 [JsonConverter(typeof(AdjustmentConverter))]
-public abstract record class Adjustment
+public record class Adjustment
 {
-    internal Adjustment() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Adjustment(PlanPhaseUsageDiscountAdjustment value) =>
-        new AdjustmentVariants::PlanPhaseUsageDiscountAdjustment(value);
+    public string ID
+    {
+        get
+        {
+            return Match(
+                planPhaseUsageDiscount: (x) => x.ID,
+                planPhaseAmountDiscount: (x) => x.ID,
+                planPhasePercentageDiscount: (x) => x.ID,
+                planPhaseMinimum: (x) => x.ID,
+                planPhaseMaximum: (x) => x.ID
+            );
+        }
+    }
 
-    public static implicit operator Adjustment(PlanPhaseAmountDiscountAdjustment value) =>
-        new AdjustmentVariants::PlanPhaseAmountDiscountAdjustment(value);
+    public bool IsInvoiceLevel
+    {
+        get
+        {
+            return Match(
+                planPhaseUsageDiscount: (x) => x.IsInvoiceLevel,
+                planPhaseAmountDiscount: (x) => x.IsInvoiceLevel,
+                planPhasePercentageDiscount: (x) => x.IsInvoiceLevel,
+                planPhaseMinimum: (x) => x.IsInvoiceLevel,
+                planPhaseMaximum: (x) => x.IsInvoiceLevel
+            );
+        }
+    }
 
-    public static implicit operator Adjustment(PlanPhasePercentageDiscountAdjustment value) =>
-        new AdjustmentVariants::PlanPhasePercentageDiscountAdjustment(value);
+    public long? PlanPhaseOrder
+    {
+        get
+        {
+            return Match<long?>(
+                planPhaseUsageDiscount: (x) => x.PlanPhaseOrder,
+                planPhaseAmountDiscount: (x) => x.PlanPhaseOrder,
+                planPhasePercentageDiscount: (x) => x.PlanPhaseOrder,
+                planPhaseMinimum: (x) => x.PlanPhaseOrder,
+                planPhaseMaximum: (x) => x.PlanPhaseOrder
+            );
+        }
+    }
 
-    public static implicit operator Adjustment(PlanPhaseMinimumAdjustment value) =>
-        new AdjustmentVariants::PlanPhaseMinimumAdjustment(value);
+    public string? Reason
+    {
+        get
+        {
+            return Match<string?>(
+                planPhaseUsageDiscount: (x) => x.Reason,
+                planPhaseAmountDiscount: (x) => x.Reason,
+                planPhasePercentageDiscount: (x) => x.Reason,
+                planPhaseMinimum: (x) => x.Reason,
+                planPhaseMaximum: (x) => x.Reason
+            );
+        }
+    }
 
-    public static implicit operator Adjustment(PlanPhaseMaximumAdjustment value) =>
-        new AdjustmentVariants::PlanPhaseMaximumAdjustment(value);
+    public string? ReplacesAdjustmentID
+    {
+        get
+        {
+            return Match<string?>(
+                planPhaseUsageDiscount: (x) => x.ReplacesAdjustmentID,
+                planPhaseAmountDiscount: (x) => x.ReplacesAdjustmentID,
+                planPhasePercentageDiscount: (x) => x.ReplacesAdjustmentID,
+                planPhaseMinimum: (x) => x.ReplacesAdjustmentID,
+                planPhaseMaximum: (x) => x.ReplacesAdjustmentID
+            );
+        }
+    }
+
+    public Adjustment(PlanPhaseUsageDiscountAdjustment value)
+    {
+        Value = value;
+    }
+
+    public Adjustment(PlanPhaseAmountDiscountAdjustment value)
+    {
+        Value = value;
+    }
+
+    public Adjustment(PlanPhasePercentageDiscountAdjustment value)
+    {
+        Value = value;
+    }
+
+    public Adjustment(PlanPhaseMinimumAdjustment value)
+    {
+        Value = value;
+    }
+
+    public Adjustment(PlanPhaseMaximumAdjustment value)
+    {
+        Value = value;
+    }
+
+    Adjustment(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Adjustment CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickPlanPhaseUsageDiscount(
         [NotNullWhen(true)] out PlanPhaseUsageDiscountAdjustment? value
     )
     {
-        value = (this as AdjustmentVariants::PlanPhaseUsageDiscountAdjustment)?.Value;
+        value = this.Value as PlanPhaseUsageDiscountAdjustment;
         return value != null;
     }
 
@@ -40,7 +129,7 @@ public abstract record class Adjustment
         [NotNullWhen(true)] out PlanPhaseAmountDiscountAdjustment? value
     )
     {
-        value = (this as AdjustmentVariants::PlanPhaseAmountDiscountAdjustment)?.Value;
+        value = this.Value as PlanPhaseAmountDiscountAdjustment;
         return value != null;
     }
 
@@ -48,46 +137,46 @@ public abstract record class Adjustment
         [NotNullWhen(true)] out PlanPhasePercentageDiscountAdjustment? value
     )
     {
-        value = (this as AdjustmentVariants::PlanPhasePercentageDiscountAdjustment)?.Value;
+        value = this.Value as PlanPhasePercentageDiscountAdjustment;
         return value != null;
     }
 
     public bool TryPickPlanPhaseMinimum([NotNullWhen(true)] out PlanPhaseMinimumAdjustment? value)
     {
-        value = (this as AdjustmentVariants::PlanPhaseMinimumAdjustment)?.Value;
+        value = this.Value as PlanPhaseMinimumAdjustment;
         return value != null;
     }
 
     public bool TryPickPlanPhaseMaximum([NotNullWhen(true)] out PlanPhaseMaximumAdjustment? value)
     {
-        value = (this as AdjustmentVariants::PlanPhaseMaximumAdjustment)?.Value;
+        value = this.Value as PlanPhaseMaximumAdjustment;
         return value != null;
     }
 
     public void Switch(
-        Action<AdjustmentVariants::PlanPhaseUsageDiscountAdjustment> planPhaseUsageDiscount,
-        Action<AdjustmentVariants::PlanPhaseAmountDiscountAdjustment> planPhaseAmountDiscount,
-        Action<AdjustmentVariants::PlanPhasePercentageDiscountAdjustment> planPhasePercentageDiscount,
-        Action<AdjustmentVariants::PlanPhaseMinimumAdjustment> planPhaseMinimum,
-        Action<AdjustmentVariants::PlanPhaseMaximumAdjustment> planPhaseMaximum
+        Action<PlanPhaseUsageDiscountAdjustment> planPhaseUsageDiscount,
+        Action<PlanPhaseAmountDiscountAdjustment> planPhaseAmountDiscount,
+        Action<PlanPhasePercentageDiscountAdjustment> planPhasePercentageDiscount,
+        Action<PlanPhaseMinimumAdjustment> planPhaseMinimum,
+        Action<PlanPhaseMaximumAdjustment> planPhaseMaximum
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case AdjustmentVariants::PlanPhaseUsageDiscountAdjustment inner:
-                planPhaseUsageDiscount(inner);
+            case PlanPhaseUsageDiscountAdjustment value:
+                planPhaseUsageDiscount(value);
                 break;
-            case AdjustmentVariants::PlanPhaseAmountDiscountAdjustment inner:
-                planPhaseAmountDiscount(inner);
+            case PlanPhaseAmountDiscountAdjustment value:
+                planPhaseAmountDiscount(value);
                 break;
-            case AdjustmentVariants::PlanPhasePercentageDiscountAdjustment inner:
-                planPhasePercentageDiscount(inner);
+            case PlanPhasePercentageDiscountAdjustment value:
+                planPhasePercentageDiscount(value);
                 break;
-            case AdjustmentVariants::PlanPhaseMinimumAdjustment inner:
-                planPhaseMinimum(inner);
+            case PlanPhaseMinimumAdjustment value:
+                planPhaseMinimum(value);
                 break;
-            case AdjustmentVariants::PlanPhaseMaximumAdjustment inner:
-                planPhaseMaximum(inner);
+            case PlanPhaseMaximumAdjustment value:
+                planPhaseMaximum(value);
                 break;
             default:
                 throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
@@ -95,33 +184,33 @@ public abstract record class Adjustment
     }
 
     public T Match<T>(
-        Func<AdjustmentVariants::PlanPhaseUsageDiscountAdjustment, T> planPhaseUsageDiscount,
-        Func<AdjustmentVariants::PlanPhaseAmountDiscountAdjustment, T> planPhaseAmountDiscount,
-        Func<
-            AdjustmentVariants::PlanPhasePercentageDiscountAdjustment,
-            T
-        > planPhasePercentageDiscount,
-        Func<AdjustmentVariants::PlanPhaseMinimumAdjustment, T> planPhaseMinimum,
-        Func<AdjustmentVariants::PlanPhaseMaximumAdjustment, T> planPhaseMaximum
+        Func<PlanPhaseUsageDiscountAdjustment, T> planPhaseUsageDiscount,
+        Func<PlanPhaseAmountDiscountAdjustment, T> planPhaseAmountDiscount,
+        Func<PlanPhasePercentageDiscountAdjustment, T> planPhasePercentageDiscount,
+        Func<PlanPhaseMinimumAdjustment, T> planPhaseMinimum,
+        Func<PlanPhaseMaximumAdjustment, T> planPhaseMaximum
     )
     {
-        return this switch
+        return this.Value switch
         {
-            AdjustmentVariants::PlanPhaseUsageDiscountAdjustment inner => planPhaseUsageDiscount(
-                inner
-            ),
-            AdjustmentVariants::PlanPhaseAmountDiscountAdjustment inner => planPhaseAmountDiscount(
-                inner
-            ),
-            AdjustmentVariants::PlanPhasePercentageDiscountAdjustment inner =>
-                planPhasePercentageDiscount(inner),
-            AdjustmentVariants::PlanPhaseMinimumAdjustment inner => planPhaseMinimum(inner),
-            AdjustmentVariants::PlanPhaseMaximumAdjustment inner => planPhaseMaximum(inner),
+            PlanPhaseUsageDiscountAdjustment value => planPhaseUsageDiscount(value),
+            PlanPhaseAmountDiscountAdjustment value => planPhaseAmountDiscount(value),
+            PlanPhasePercentageDiscountAdjustment value => planPhasePercentageDiscount(value),
+            PlanPhaseMinimumAdjustment value => planPhaseMinimum(value),
+            PlanPhaseMaximumAdjustment value => planPhaseMaximum(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment"),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class AdjustmentConverter : JsonConverter<Adjustment>
@@ -157,16 +246,15 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     );
                     if (deserialized != null)
                     {
-                        return new AdjustmentVariants::PlanPhaseUsageDiscountAdjustment(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Adjustment(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant AdjustmentVariants::PlanPhaseUsageDiscountAdjustment",
+                            "Data does not match union variant 'PlanPhaseUsageDiscountAdjustment'",
                             e
                         )
                     );
@@ -187,16 +275,15 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                         );
                     if (deserialized != null)
                     {
-                        return new AdjustmentVariants::PlanPhaseAmountDiscountAdjustment(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Adjustment(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant AdjustmentVariants::PlanPhaseAmountDiscountAdjustment",
+                            "Data does not match union variant 'PlanPhaseAmountDiscountAdjustment'",
                             e
                         )
                     );
@@ -217,16 +304,15 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                         );
                     if (deserialized != null)
                     {
-                        return new AdjustmentVariants::PlanPhasePercentageDiscountAdjustment(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Adjustment(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant AdjustmentVariants::PlanPhasePercentageDiscountAdjustment",
+                            "Data does not match union variant 'PlanPhasePercentageDiscountAdjustment'",
                             e
                         )
                     );
@@ -246,14 +332,15 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     );
                     if (deserialized != null)
                     {
-                        return new AdjustmentVariants::PlanPhaseMinimumAdjustment(deserialized);
+                        deserialized.Validate();
+                        return new Adjustment(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant AdjustmentVariants::PlanPhaseMinimumAdjustment",
+                            "Data does not match union variant 'PlanPhaseMinimumAdjustment'",
                             e
                         )
                     );
@@ -273,14 +360,15 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     );
                     if (deserialized != null)
                     {
-                        return new AdjustmentVariants::PlanPhaseMaximumAdjustment(deserialized);
+                        deserialized.Validate();
+                        return new Adjustment(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant AdjustmentVariants::PlanPhaseMaximumAdjustment",
+                            "Data does not match union variant 'PlanPhaseMaximumAdjustment'",
                             e
                         )
                     );
@@ -303,21 +391,7 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
         JsonSerializerOptions options
     )
     {
-        object variant = value switch
-        {
-            AdjustmentVariants::PlanPhaseUsageDiscountAdjustment(var planPhaseUsageDiscount) =>
-                planPhaseUsageDiscount,
-            AdjustmentVariants::PlanPhaseAmountDiscountAdjustment(var planPhaseAmountDiscount) =>
-                planPhaseAmountDiscount,
-            AdjustmentVariants::PlanPhasePercentageDiscountAdjustment(
-                var planPhasePercentageDiscount
-            ) => planPhasePercentageDiscount,
-            AdjustmentVariants::PlanPhaseMinimumAdjustment(var planPhaseMinimum) =>
-                planPhaseMinimum,
-            AdjustmentVariants::PlanPhaseMaximumAdjustment(var planPhaseMaximum) =>
-                planPhaseMaximum,
-            _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment"),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

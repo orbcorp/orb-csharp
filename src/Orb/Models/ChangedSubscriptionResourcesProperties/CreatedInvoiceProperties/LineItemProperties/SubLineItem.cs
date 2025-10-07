@@ -4,58 +4,110 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
-using SubLineItemVariants = Orb.Models.ChangedSubscriptionResourcesProperties.CreatedInvoiceProperties.LineItemProperties.SubLineItemVariants;
 
 namespace Orb.Models.ChangedSubscriptionResourcesProperties.CreatedInvoiceProperties.LineItemProperties;
 
 [JsonConverter(typeof(SubLineItemConverter))]
-public abstract record class SubLineItem
+public record class SubLineItem
 {
-    internal SubLineItem() { }
+    public object Value { get; private init; }
 
-    public static implicit operator SubLineItem(MatrixSubLineItem value) =>
-        new SubLineItemVariants::MatrixSubLineItem(value);
+    public string Amount
+    {
+        get
+        {
+            return Match(matrix: (x) => x.Amount, tier: (x) => x.Amount, other: (x) => x.Amount);
+        }
+    }
 
-    public static implicit operator SubLineItem(TierSubLineItem value) =>
-        new SubLineItemVariants::TierSubLineItem(value);
+    public SubLineItemGrouping? Grouping
+    {
+        get
+        {
+            return Match<SubLineItemGrouping?>(
+                matrix: (x) => x.Grouping,
+                tier: (x) => x.Grouping,
+                other: (x) => x.Grouping
+            );
+        }
+    }
 
-    public static implicit operator SubLineItem(OtherSubLineItem value) =>
-        new SubLineItemVariants::OtherSubLineItem(value);
+    public string Name
+    {
+        get { return Match(matrix: (x) => x.Name, tier: (x) => x.Name, other: (x) => x.Name); }
+    }
+
+    public double Quantity
+    {
+        get
+        {
+            return Match(
+                matrix: (x) => x.Quantity,
+                tier: (x) => x.Quantity,
+                other: (x) => x.Quantity
+            );
+        }
+    }
+
+    public SubLineItem(MatrixSubLineItem value)
+    {
+        Value = value;
+    }
+
+    public SubLineItem(TierSubLineItem value)
+    {
+        Value = value;
+    }
+
+    public SubLineItem(OtherSubLineItem value)
+    {
+        Value = value;
+    }
+
+    SubLineItem(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static SubLineItem CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickMatrix([NotNullWhen(true)] out MatrixSubLineItem? value)
     {
-        value = (this as SubLineItemVariants::MatrixSubLineItem)?.Value;
+        value = this.Value as MatrixSubLineItem;
         return value != null;
     }
 
     public bool TryPickTier([NotNullWhen(true)] out TierSubLineItem? value)
     {
-        value = (this as SubLineItemVariants::TierSubLineItem)?.Value;
+        value = this.Value as TierSubLineItem;
         return value != null;
     }
 
     public bool TryPickOther([NotNullWhen(true)] out OtherSubLineItem? value)
     {
-        value = (this as SubLineItemVariants::OtherSubLineItem)?.Value;
+        value = this.Value as OtherSubLineItem;
         return value != null;
     }
 
     public void Switch(
-        Action<SubLineItemVariants::MatrixSubLineItem> matrix,
-        Action<SubLineItemVariants::TierSubLineItem> tier,
-        Action<SubLineItemVariants::OtherSubLineItem> other
+        Action<MatrixSubLineItem> matrix,
+        Action<TierSubLineItem> tier,
+        Action<OtherSubLineItem> other
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case SubLineItemVariants::MatrixSubLineItem inner:
-                matrix(inner);
+            case MatrixSubLineItem value:
+                matrix(value);
                 break;
-            case SubLineItemVariants::TierSubLineItem inner:
-                tier(inner);
+            case TierSubLineItem value:
+                tier(value);
                 break;
-            case SubLineItemVariants::OtherSubLineItem inner:
-                other(inner);
+            case OtherSubLineItem value:
+                other(value);
                 break;
             default:
                 throw new OrbInvalidDataException("Data did not match any variant of SubLineItem");
@@ -63,21 +115,29 @@ public abstract record class SubLineItem
     }
 
     public T Match<T>(
-        Func<SubLineItemVariants::MatrixSubLineItem, T> matrix,
-        Func<SubLineItemVariants::TierSubLineItem, T> tier,
-        Func<SubLineItemVariants::OtherSubLineItem, T> other
+        Func<MatrixSubLineItem, T> matrix,
+        Func<TierSubLineItem, T> tier,
+        Func<OtherSubLineItem, T> other
     )
     {
-        return this switch
+        return this.Value switch
         {
-            SubLineItemVariants::MatrixSubLineItem inner => matrix(inner),
-            SubLineItemVariants::TierSubLineItem inner => tier(inner),
-            SubLineItemVariants::OtherSubLineItem inner => other(inner),
+            MatrixSubLineItem value => matrix(value),
+            TierSubLineItem value => tier(value),
+            OtherSubLineItem value => other(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of SubLineItem"),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of SubLineItem");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class SubLineItemConverter : JsonConverter<SubLineItem>
@@ -110,14 +170,15 @@ sealed class SubLineItemConverter : JsonConverter<SubLineItem>
                     var deserialized = JsonSerializer.Deserialize<MatrixSubLineItem>(json, options);
                     if (deserialized != null)
                     {
-                        return new SubLineItemVariants::MatrixSubLineItem(deserialized);
+                        deserialized.Validate();
+                        return new SubLineItem(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant SubLineItemVariants::MatrixSubLineItem",
+                            "Data does not match union variant 'MatrixSubLineItem'",
                             e
                         )
                     );
@@ -134,14 +195,15 @@ sealed class SubLineItemConverter : JsonConverter<SubLineItem>
                     var deserialized = JsonSerializer.Deserialize<TierSubLineItem>(json, options);
                     if (deserialized != null)
                     {
-                        return new SubLineItemVariants::TierSubLineItem(deserialized);
+                        deserialized.Validate();
+                        return new SubLineItem(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant SubLineItemVariants::TierSubLineItem",
+                            "Data does not match union variant 'TierSubLineItem'",
                             e
                         )
                     );
@@ -158,14 +220,15 @@ sealed class SubLineItemConverter : JsonConverter<SubLineItem>
                     var deserialized = JsonSerializer.Deserialize<OtherSubLineItem>(json, options);
                     if (deserialized != null)
                     {
-                        return new SubLineItemVariants::OtherSubLineItem(deserialized);
+                        deserialized.Validate();
+                        return new SubLineItem(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant SubLineItemVariants::OtherSubLineItem",
+                            "Data does not match union variant 'OtherSubLineItem'",
                             e
                         )
                     );
@@ -188,13 +251,7 @@ sealed class SubLineItemConverter : JsonConverter<SubLineItem>
         JsonSerializerOptions options
     )
     {
-        object variant = value switch
-        {
-            SubLineItemVariants::MatrixSubLineItem(var matrix) => matrix,
-            SubLineItemVariants::TierSubLineItem(var tier) => tier,
-            SubLineItemVariants::OtherSubLineItem(var other) => other,
-            _ => throw new OrbInvalidDataException("Data did not match any variant of SubLineItem"),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

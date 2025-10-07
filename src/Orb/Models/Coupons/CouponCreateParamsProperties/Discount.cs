@@ -5,64 +5,80 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
 using Orb.Models.Coupons.CouponCreateParamsProperties.DiscountProperties;
-using DiscountVariants = Orb.Models.Coupons.CouponCreateParamsProperties.DiscountVariants;
 
 namespace Orb.Models.Coupons.CouponCreateParamsProperties;
 
 [JsonConverter(typeof(DiscountConverter))]
-public abstract record class Discount
+public record class Discount
 {
-    internal Discount() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Discount(Percentage value) =>
-        new DiscountVariants::Percentage(value);
+    public Discount(Percentage value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Discount(Amount value) => new DiscountVariants::Amount(value);
+    public Discount(Amount value)
+    {
+        Value = value;
+    }
+
+    Discount(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Discount CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickPercentage([NotNullWhen(true)] out Percentage? value)
     {
-        value = (this as DiscountVariants::Percentage)?.Value;
+        value = this.Value as Percentage;
         return value != null;
     }
 
     public bool TryPickAmount([NotNullWhen(true)] out Amount? value)
     {
-        value = (this as DiscountVariants::Amount)?.Value;
+        value = this.Value as Amount;
         return value != null;
     }
 
-    public void Switch(
-        Action<DiscountVariants::Percentage> percentage,
-        Action<DiscountVariants::Amount> amount
-    )
+    public void Switch(Action<Percentage> percentage, Action<Amount> amount)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case DiscountVariants::Percentage inner:
-                percentage(inner);
+            case Percentage value:
+                percentage(value);
                 break;
-            case DiscountVariants::Amount inner:
-                amount(inner);
+            case Amount value:
+                amount(value);
                 break;
             default:
                 throw new OrbInvalidDataException("Data did not match any variant of Discount");
         }
     }
 
-    public T Match<T>(
-        Func<DiscountVariants::Percentage, T> percentage,
-        Func<DiscountVariants::Amount, T> amount
-    )
+    public T Match<T>(Func<Percentage, T> percentage, Func<Amount, T> amount)
     {
-        return this switch
+        return this.Value switch
         {
-            DiscountVariants::Percentage inner => percentage(inner),
-            DiscountVariants::Amount inner => amount(inner),
+            Percentage value => percentage(value),
+            Amount value => amount(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Discount"),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of Discount");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class DiscountConverter : JsonConverter<Discount>
@@ -95,14 +111,15 @@ sealed class DiscountConverter : JsonConverter<Discount>
                     var deserialized = JsonSerializer.Deserialize<Percentage>(json, options);
                     if (deserialized != null)
                     {
-                        return new DiscountVariants::Percentage(deserialized);
+                        deserialized.Validate();
+                        return new Discount(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant DiscountVariants::Percentage",
+                            "Data does not match union variant 'Percentage'",
                             e
                         )
                     );
@@ -119,16 +136,14 @@ sealed class DiscountConverter : JsonConverter<Discount>
                     var deserialized = JsonSerializer.Deserialize<Amount>(json, options);
                     if (deserialized != null)
                     {
-                        return new DiscountVariants::Amount(deserialized);
+                        deserialized.Validate();
+                        return new Discount(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant DiscountVariants::Amount",
-                            e
-                        )
+                        new OrbInvalidDataException("Data does not match union variant 'Amount'", e)
                     );
                 }
 
@@ -145,12 +160,7 @@ sealed class DiscountConverter : JsonConverter<Discount>
 
     public override void Write(Utf8JsonWriter writer, Discount value, JsonSerializerOptions options)
     {
-        object variant = value switch
-        {
-            DiscountVariants::Percentage(var percentage) => percentage,
-            DiscountVariants::Amount(var amount) => amount,
-            _ => throw new OrbInvalidDataException("Data did not match any variant of Discount"),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

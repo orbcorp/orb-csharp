@@ -9,7 +9,6 @@ using Orb.Models.CreditNotes.CreditNoteCreateParamsProperties;
 using Orb.Models.Customers.Costs.CostListParamsProperties;
 using Orb.Models.Customers.Credits.CreditListPageResponseProperties.DataProperties;
 using Orb.Models.Customers.Credits.Ledger.AmendmentLedgerEntryProperties;
-using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.VoidProperties;
 using Orb.Models.Customers.Credits.TopUps.TopUpCreateResponseProperties;
 using Orb.Models.Customers.CustomerProperties.AccountingSyncConfigurationProperties.AccountingProviderProperties;
 using Orb.Models.Customers.NewAvalaraTaxConfigurationProperties;
@@ -212,7 +211,7 @@ using UsageDiscountIntervalProperties = Orb.Models.UsageDiscountIntervalProperti
 using UsageDiscountProperties = Orb.Models.UsageDiscountProperties;
 using VoidInitiatedLedgerEntryProperties = Orb.Models.Customers.Credits.Ledger.VoidInitiatedLedgerEntryProperties;
 using VoidLedgerEntryProperties = Orb.Models.Customers.Credits.Ledger.VoidLedgerEntryProperties;
-using VoidProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.VoidProperties;
+using VoidProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.VoidProperties;
 
 namespace Orb.Core;
 
@@ -682,8 +681,11 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, VoidLedgerEntryProperties::EntryType>(),
             new ApiEnumConverter<string, LedgerListParamsProperties::EntryStatus>(),
             new ApiEnumConverter<string, LedgerListParamsProperties::EntryType>(),
-            new ApiEnumConverter<string, VoidReason>(),
             new ApiEnumConverter<string, VoidProperties::VoidReason>(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.VoidProperties.VoidReason
+            >(),
             new ApiEnumConverter<string, LedgerListByExternalIDParamsProperties::EntryStatus>(),
             new ApiEnumConverter<string, LedgerListByExternalIDParamsProperties::EntryType>(),
             new ApiEnumConverter<string, ExpiresAfterUnit>(),

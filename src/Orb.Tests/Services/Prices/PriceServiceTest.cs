@@ -16,43 +16,47 @@ public class PriceServiceTest : TestBase
         var price = await this.client.Prices.Create(
             new()
             {
-                Body = new NewFloatingUnitPrice()
-                {
-                    Cadence = Cadence.Annual,
-                    Currency = "currency",
-                    ItemID = "item_id",
-                    ModelType = ModelType.Unit,
-                    Name = "Annual fee",
-                    UnitConfig = new("unit_amount"),
-                    BillableMetricID = "billable_metric_id",
-                    BilledInAdvance = true,
-                    BillingCycleConfiguration = new()
+                Body = new(
+                    new NewFloatingUnitPrice()
                     {
-                        Duration = 0,
-                        DurationUnit = DurationUnit.Day,
-                    },
-                    ConversionRate = 0,
-                    ConversionRateConfig = new UnitConversionRateConfig()
-                    {
-                        ConversionRateType = ConversionRateType.Unit,
+                        Cadence = Cadence.Annual,
+                        Currency = "currency",
+                        ItemID = "item_id",
+                        ModelType = ModelType.Unit,
+                        Name = "Annual fee",
                         UnitConfig = new("unit_amount"),
-                    },
-                    DimensionalPriceConfiguration = new()
-                    {
-                        DimensionValues = ["string"],
-                        DimensionalPriceGroupID = "dimensional_price_group_id",
-                        ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                    },
-                    ExternalPriceID = "external_price_id",
-                    FixedPriceQuantity = 0,
-                    InvoiceGroupingKey = "x",
-                    InvoicingCycleConfiguration = new()
-                    {
-                        Duration = 0,
-                        DurationUnit = DurationUnit.Day,
-                    },
-                    Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                },
+                        BillableMetricID = "billable_metric_id",
+                        BilledInAdvance = true,
+                        BillingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = DurationUnit.Day,
+                        },
+                        ConversionRate = 0,
+                        ConversionRateConfig = new(
+                            new UnitConversionRateConfig()
+                            {
+                                ConversionRateType = ConversionRateType.Unit,
+                                UnitConfig = new("unit_amount"),
+                            }
+                        ),
+                        DimensionalPriceConfiguration = new()
+                        {
+                            DimensionValues = ["string"],
+                            DimensionalPriceGroupID = "dimensional_price_group_id",
+                            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                        },
+                        ExternalPriceID = "external_price_id",
+                        FixedPriceQuantity = 0,
+                        InvoiceGroupingKey = "x",
+                        InvoicingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = DurationUnit.Day,
+                        },
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                    }
+                ),
             }
         );
         price.Validate();

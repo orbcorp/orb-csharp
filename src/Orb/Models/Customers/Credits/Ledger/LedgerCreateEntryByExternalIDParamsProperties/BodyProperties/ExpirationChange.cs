@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
+using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.ExpirationChangeProperties;
 using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties;
@@ -11,7 +12,7 @@ namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParam
 [JsonConverter(typeof(ModelConverter<ExpirationChange>))]
 public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChange>
 {
-    public JsonElement EntryType
+    public EntryType EntryType
     {
         get
         {
@@ -24,7 +25,11 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
                     )
                 );
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<EntryType>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentNullException("entry_type")
+                );
         }
         set
         {
@@ -208,6 +213,7 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
 
     public override void Validate()
     {
+        this.EntryType.Validate();
         _ = this.TargetExpiryDate;
         _ = this.Amount;
         _ = this.BlockID;
@@ -225,7 +231,7 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
 
     public ExpirationChange()
     {
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"expiration_change\"");
+        this.EntryType = new();
     }
 
 #pragma warning disable CS8618

@@ -484,7 +484,7 @@ public sealed record class Package : ModelBase, IFromRaw<Package>
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public JsonElement ModelType
+    public ModelType ModelType
     {
         get
         {
@@ -494,7 +494,11 @@ public sealed record class Package : ModelBase, IFromRaw<Package>
                     new ArgumentOutOfRangeException("model_type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ModelType>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'model_type' cannot be null",
+                    new ArgumentNullException("model_type")
+                );
         }
         set
         {
@@ -680,6 +684,7 @@ public sealed record class Package : ModelBase, IFromRaw<Package>
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
+        this.ModelType.Validate();
         _ = this.Name;
         this.PackageConfig.Validate();
         _ = this.PlanPhaseOrder;
@@ -690,7 +695,7 @@ public sealed record class Package : ModelBase, IFromRaw<Package>
 
     public Package()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"package\"");
+        this.ModelType = new();
     }
 
 #pragma warning disable CS8618

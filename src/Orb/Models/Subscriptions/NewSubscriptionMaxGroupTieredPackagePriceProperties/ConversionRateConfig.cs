@@ -4,45 +4,58 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
-using ConversionRateConfigVariants = Orb.Models.Subscriptions.NewSubscriptionMaxGroupTieredPackagePriceProperties.ConversionRateConfigVariants;
 
 namespace Orb.Models.Subscriptions.NewSubscriptionMaxGroupTieredPackagePriceProperties;
 
 [JsonConverter(typeof(ConversionRateConfigConverter))]
-public abstract record class ConversionRateConfig
+public record class ConversionRateConfig
 {
-    internal ConversionRateConfig() { }
+    public object Value { get; private init; }
 
-    public static implicit operator ConversionRateConfig(UnitConversionRateConfig value) =>
-        new ConversionRateConfigVariants::UnitConversionRateConfig(value);
+    public ConversionRateConfig(UnitConversionRateConfig value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator ConversionRateConfig(TieredConversionRateConfig value) =>
-        new ConversionRateConfigVariants::TieredConversionRateConfig(value);
+    public ConversionRateConfig(TieredConversionRateConfig value)
+    {
+        Value = value;
+    }
+
+    ConversionRateConfig(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static ConversionRateConfig CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
     {
-        value = (this as ConversionRateConfigVariants::UnitConversionRateConfig)?.Value;
+        value = this.Value as UnitConversionRateConfig;
         return value != null;
     }
 
     public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
     {
-        value = (this as ConversionRateConfigVariants::TieredConversionRateConfig)?.Value;
+        value = this.Value as TieredConversionRateConfig;
         return value != null;
     }
 
     public void Switch(
-        Action<ConversionRateConfigVariants::UnitConversionRateConfig> unit,
-        Action<ConversionRateConfigVariants::TieredConversionRateConfig> tiered
+        Action<UnitConversionRateConfig> unit,
+        Action<TieredConversionRateConfig> tiered
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case ConversionRateConfigVariants::UnitConversionRateConfig inner:
-                unit(inner);
+            case UnitConversionRateConfig value:
+                unit(value);
                 break;
-            case ConversionRateConfigVariants::TieredConversionRateConfig inner:
-                tiered(inner);
+            case TieredConversionRateConfig value:
+                tiered(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
@@ -52,21 +65,31 @@ public abstract record class ConversionRateConfig
     }
 
     public T Match<T>(
-        Func<ConversionRateConfigVariants::UnitConversionRateConfig, T> unit,
-        Func<ConversionRateConfigVariants::TieredConversionRateConfig, T> tiered
+        Func<UnitConversionRateConfig, T> unit,
+        Func<TieredConversionRateConfig, T> tiered
     )
     {
-        return this switch
+        return this.Value switch
         {
-            ConversionRateConfigVariants::UnitConversionRateConfig inner => unit(inner),
-            ConversionRateConfigVariants::TieredConversionRateConfig inner => tiered(inner),
+            UnitConversionRateConfig value => unit(value),
+            TieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of ConversionRateConfig"
             ),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of ConversionRateConfig"
+            );
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig>
@@ -102,16 +125,15 @@ sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig>
                     );
                     if (deserialized != null)
                     {
-                        return new ConversionRateConfigVariants::UnitConversionRateConfig(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new ConversionRateConfig(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant ConversionRateConfigVariants::UnitConversionRateConfig",
+                            "Data does not match union variant 'UnitConversionRateConfig'",
                             e
                         )
                     );
@@ -131,16 +153,15 @@ sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig>
                     );
                     if (deserialized != null)
                     {
-                        return new ConversionRateConfigVariants::TieredConversionRateConfig(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new ConversionRateConfig(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant ConversionRateConfigVariants::TieredConversionRateConfig",
+                            "Data does not match union variant 'TieredConversionRateConfig'",
                             e
                         )
                     );
@@ -163,14 +184,7 @@ sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig>
         JsonSerializerOptions options
     )
     {
-        object variant = value switch
-        {
-            ConversionRateConfigVariants::UnitConversionRateConfig(var unit) => unit,
-            ConversionRateConfigVariants::TieredConversionRateConfig(var tiered) => tiered,
-            _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig"
-            ),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

@@ -523,7 +523,7 @@ public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWit
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public JsonElement ModelType
+    public ModelType ModelType
     {
         get
         {
@@ -533,7 +533,11 @@ public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWit
                     new ArgumentOutOfRangeException("model_type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ModelType>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'model_type' cannot be null",
+                    new ArgumentNullException("model_type")
+                );
         }
         set
         {
@@ -689,6 +693,7 @@ public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWit
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
+        this.ModelType.Validate();
         _ = this.Name;
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();
@@ -698,7 +703,7 @@ public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWit
 
     public MatrixWithDisplayName()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"matrix_with_display_name\"");
+        this.ModelType = new();
     }
 
 #pragma warning disable CS8618

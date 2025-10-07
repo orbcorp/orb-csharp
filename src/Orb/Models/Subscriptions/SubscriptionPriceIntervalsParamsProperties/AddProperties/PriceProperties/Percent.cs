@@ -98,7 +98,7 @@ public sealed record class Percent : ModelBase, IFromRaw<Percent>
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public JsonElement ModelType
+    public ModelType ModelType
     {
         get
         {
@@ -108,7 +108,11 @@ public sealed record class Percent : ModelBase, IFromRaw<Percent>
                     new ArgumentOutOfRangeException("model_type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ModelType>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'model_type' cannot be null",
+                    new ArgumentNullException("model_type")
+                );
         }
         set
         {
@@ -442,6 +446,7 @@ public sealed record class Percent : ModelBase, IFromRaw<Percent>
         this.Cadence.Validate();
         _ = this.Currency;
         _ = this.ItemID;
+        this.ModelType.Validate();
         _ = this.Name;
         this.PercentConfig.Validate();
         _ = this.BillableMetricID;
@@ -465,7 +470,7 @@ public sealed record class Percent : ModelBase, IFromRaw<Percent>
 
     public Percent()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
+        this.ModelType = new();
     }
 
 #pragma warning disable CS8618

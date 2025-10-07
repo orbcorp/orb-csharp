@@ -484,7 +484,7 @@ public sealed record class UnitWithPercent : ModelBase, IFromRaw<UnitWithPercent
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public JsonElement ModelType
+    public ModelType ModelType
     {
         get
         {
@@ -494,7 +494,11 @@ public sealed record class UnitWithPercent : ModelBase, IFromRaw<UnitWithPercent
                     new ArgumentOutOfRangeException("model_type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ModelType>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'model_type' cannot be null",
+                    new ArgumentNullException("model_type")
+                );
         }
         set
         {
@@ -683,6 +687,7 @@ public sealed record class UnitWithPercent : ModelBase, IFromRaw<UnitWithPercent
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
+        this.ModelType.Validate();
         _ = this.Name;
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();
@@ -693,7 +698,7 @@ public sealed record class UnitWithPercent : ModelBase, IFromRaw<UnitWithPercent
 
     public UnitWithPercent()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"unit_with_percent\"");
+        this.ModelType = new();
     }
 
 #pragma warning disable CS8618

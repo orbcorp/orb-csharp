@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
-using AdjustmentVariants = Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplaceAdjustmentProperties.AdjustmentVariants;
 
 namespace Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplaceAdjustmentProperties;
 
@@ -12,79 +11,127 @@ namespace Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplaceAdj
 /// The definition of a new adjustment to create and add to the subscription.
 /// </summary>
 [JsonConverter(typeof(AdjustmentConverter))]
-public abstract record class Adjustment
+public record class Adjustment
 {
-    internal Adjustment() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Adjustment(NewPercentageDiscount value) =>
-        new AdjustmentVariants::NewPercentageDiscount(value);
+    public string? Currency
+    {
+        get
+        {
+            return Match<string?>(
+                newPercentageDiscount: (x) => x.Currency,
+                newUsageDiscount: (x) => x.Currency,
+                newAmountDiscount: (x) => x.Currency,
+                newMinimum: (x) => x.Currency,
+                newMaximum: (x) => x.Currency
+            );
+        }
+    }
 
-    public static implicit operator Adjustment(NewUsageDiscount value) =>
-        new AdjustmentVariants::NewUsageDiscount(value);
+    public bool? IsInvoiceLevel
+    {
+        get
+        {
+            return Match<bool?>(
+                newPercentageDiscount: (x) => x.IsInvoiceLevel,
+                newUsageDiscount: (x) => x.IsInvoiceLevel,
+                newAmountDiscount: (x) => x.IsInvoiceLevel,
+                newMinimum: (x) => x.IsInvoiceLevel,
+                newMaximum: (x) => x.IsInvoiceLevel
+            );
+        }
+    }
 
-    public static implicit operator Adjustment(NewAmountDiscount value) =>
-        new AdjustmentVariants::NewAmountDiscount(value);
+    public Adjustment(NewPercentageDiscount value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Adjustment(NewMinimum value) =>
-        new AdjustmentVariants::NewMinimum(value);
+    public Adjustment(NewUsageDiscount value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Adjustment(NewMaximum value) =>
-        new AdjustmentVariants::NewMaximum(value);
+    public Adjustment(NewAmountDiscount value)
+    {
+        Value = value;
+    }
+
+    public Adjustment(NewMinimum value)
+    {
+        Value = value;
+    }
+
+    public Adjustment(NewMaximum value)
+    {
+        Value = value;
+    }
+
+    Adjustment(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Adjustment CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickNewPercentageDiscount([NotNullWhen(true)] out NewPercentageDiscount? value)
     {
-        value = (this as AdjustmentVariants::NewPercentageDiscount)?.Value;
+        value = this.Value as NewPercentageDiscount;
         return value != null;
     }
 
     public bool TryPickNewUsageDiscount([NotNullWhen(true)] out NewUsageDiscount? value)
     {
-        value = (this as AdjustmentVariants::NewUsageDiscount)?.Value;
+        value = this.Value as NewUsageDiscount;
         return value != null;
     }
 
     public bool TryPickNewAmountDiscount([NotNullWhen(true)] out NewAmountDiscount? value)
     {
-        value = (this as AdjustmentVariants::NewAmountDiscount)?.Value;
+        value = this.Value as NewAmountDiscount;
         return value != null;
     }
 
     public bool TryPickNewMinimum([NotNullWhen(true)] out NewMinimum? value)
     {
-        value = (this as AdjustmentVariants::NewMinimum)?.Value;
+        value = this.Value as NewMinimum;
         return value != null;
     }
 
     public bool TryPickNewMaximum([NotNullWhen(true)] out NewMaximum? value)
     {
-        value = (this as AdjustmentVariants::NewMaximum)?.Value;
+        value = this.Value as NewMaximum;
         return value != null;
     }
 
     public void Switch(
-        Action<AdjustmentVariants::NewPercentageDiscount> newPercentageDiscount,
-        Action<AdjustmentVariants::NewUsageDiscount> newUsageDiscount,
-        Action<AdjustmentVariants::NewAmountDiscount> newAmountDiscount,
-        Action<AdjustmentVariants::NewMinimum> newMinimum,
-        Action<AdjustmentVariants::NewMaximum> newMaximum
+        Action<NewPercentageDiscount> newPercentageDiscount,
+        Action<NewUsageDiscount> newUsageDiscount,
+        Action<NewAmountDiscount> newAmountDiscount,
+        Action<NewMinimum> newMinimum,
+        Action<NewMaximum> newMaximum
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case AdjustmentVariants::NewPercentageDiscount inner:
-                newPercentageDiscount(inner);
+            case NewPercentageDiscount value:
+                newPercentageDiscount(value);
                 break;
-            case AdjustmentVariants::NewUsageDiscount inner:
-                newUsageDiscount(inner);
+            case NewUsageDiscount value:
+                newUsageDiscount(value);
                 break;
-            case AdjustmentVariants::NewAmountDiscount inner:
-                newAmountDiscount(inner);
+            case NewAmountDiscount value:
+                newAmountDiscount(value);
                 break;
-            case AdjustmentVariants::NewMinimum inner:
-                newMinimum(inner);
+            case NewMinimum value:
+                newMinimum(value);
                 break;
-            case AdjustmentVariants::NewMaximum inner:
-                newMaximum(inner);
+            case NewMaximum value:
+                newMaximum(value);
                 break;
             default:
                 throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
@@ -92,25 +139,33 @@ public abstract record class Adjustment
     }
 
     public T Match<T>(
-        Func<AdjustmentVariants::NewPercentageDiscount, T> newPercentageDiscount,
-        Func<AdjustmentVariants::NewUsageDiscount, T> newUsageDiscount,
-        Func<AdjustmentVariants::NewAmountDiscount, T> newAmountDiscount,
-        Func<AdjustmentVariants::NewMinimum, T> newMinimum,
-        Func<AdjustmentVariants::NewMaximum, T> newMaximum
+        Func<NewPercentageDiscount, T> newPercentageDiscount,
+        Func<NewUsageDiscount, T> newUsageDiscount,
+        Func<NewAmountDiscount, T> newAmountDiscount,
+        Func<NewMinimum, T> newMinimum,
+        Func<NewMaximum, T> newMaximum
     )
     {
-        return this switch
+        return this.Value switch
         {
-            AdjustmentVariants::NewPercentageDiscount inner => newPercentageDiscount(inner),
-            AdjustmentVariants::NewUsageDiscount inner => newUsageDiscount(inner),
-            AdjustmentVariants::NewAmountDiscount inner => newAmountDiscount(inner),
-            AdjustmentVariants::NewMinimum inner => newMinimum(inner),
-            AdjustmentVariants::NewMaximum inner => newMaximum(inner),
+            NewPercentageDiscount value => newPercentageDiscount(value),
+            NewUsageDiscount value => newUsageDiscount(value),
+            NewAmountDiscount value => newAmountDiscount(value),
+            NewMinimum value => newMinimum(value),
+            NewMaximum value => newMaximum(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment"),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class AdjustmentConverter : JsonConverter<Adjustment>
@@ -146,14 +201,15 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     );
                     if (deserialized != null)
                     {
-                        return new AdjustmentVariants::NewPercentageDiscount(deserialized);
+                        deserialized.Validate();
+                        return new Adjustment(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant AdjustmentVariants::NewPercentageDiscount",
+                            "Data does not match union variant 'NewPercentageDiscount'",
                             e
                         )
                     );
@@ -170,14 +226,15 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     var deserialized = JsonSerializer.Deserialize<NewUsageDiscount>(json, options);
                     if (deserialized != null)
                     {
-                        return new AdjustmentVariants::NewUsageDiscount(deserialized);
+                        deserialized.Validate();
+                        return new Adjustment(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant AdjustmentVariants::NewUsageDiscount",
+                            "Data does not match union variant 'NewUsageDiscount'",
                             e
                         )
                     );
@@ -194,14 +251,15 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     var deserialized = JsonSerializer.Deserialize<NewAmountDiscount>(json, options);
                     if (deserialized != null)
                     {
-                        return new AdjustmentVariants::NewAmountDiscount(deserialized);
+                        deserialized.Validate();
+                        return new Adjustment(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant AdjustmentVariants::NewAmountDiscount",
+                            "Data does not match union variant 'NewAmountDiscount'",
                             e
                         )
                     );
@@ -218,14 +276,15 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     var deserialized = JsonSerializer.Deserialize<NewMinimum>(json, options);
                     if (deserialized != null)
                     {
-                        return new AdjustmentVariants::NewMinimum(deserialized);
+                        deserialized.Validate();
+                        return new Adjustment(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant AdjustmentVariants::NewMinimum",
+                            "Data does not match union variant 'NewMinimum'",
                             e
                         )
                     );
@@ -242,14 +301,15 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     var deserialized = JsonSerializer.Deserialize<NewMaximum>(json, options);
                     if (deserialized != null)
                     {
-                        return new AdjustmentVariants::NewMaximum(deserialized);
+                        deserialized.Validate();
+                        return new Adjustment(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant AdjustmentVariants::NewMaximum",
+                            "Data does not match union variant 'NewMaximum'",
                             e
                         )
                     );
@@ -272,16 +332,7 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
         JsonSerializerOptions options
     )
     {
-        object variant = value switch
-        {
-            AdjustmentVariants::NewPercentageDiscount(var newPercentageDiscount) =>
-                newPercentageDiscount,
-            AdjustmentVariants::NewUsageDiscount(var newUsageDiscount) => newUsageDiscount,
-            AdjustmentVariants::NewAmountDiscount(var newAmountDiscount) => newAmountDiscount,
-            AdjustmentVariants::NewMinimum(var newMinimum) => newMinimum,
-            AdjustmentVariants::NewMaximum(var newMaximum) => newMaximum,
-            _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment"),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

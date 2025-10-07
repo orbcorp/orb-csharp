@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
+using Orb.Models.Customers.CustomerUpdateByExternalIDParamsProperties.TaxConfigurationProperties.NumeralProperties;
 
 namespace Orb.Models.Customers.CustomerUpdateByExternalIDParamsProperties.TaxConfigurationProperties;
 
@@ -32,7 +33,7 @@ public sealed record class Numeral : ModelBase, IFromRaw<Numeral>
         }
     }
 
-    public JsonElement TaxProvider
+    public TaxProvider TaxProvider
     {
         get
         {
@@ -42,7 +43,11 @@ public sealed record class Numeral : ModelBase, IFromRaw<Numeral>
                     new ArgumentOutOfRangeException("tax_provider", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<TaxProvider>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'tax_provider' cannot be null",
+                    new ArgumentNullException("tax_provider")
+                );
         }
         set
         {
@@ -56,11 +61,12 @@ public sealed record class Numeral : ModelBase, IFromRaw<Numeral>
     public override void Validate()
     {
         _ = this.TaxExempt;
+        this.TaxProvider.Validate();
     }
 
     public Numeral()
     {
-        this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"numeral\"");
+        this.TaxProvider = new();
     }
 
 #pragma warning disable CS8618

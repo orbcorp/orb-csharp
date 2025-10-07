@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
-using LedgerCreateEntryByExternalIDResponseVariants = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDResponseVariants;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
@@ -13,50 +12,272 @@ namespace Orb.Models.Customers.Credits.Ledger;
 /// credits within Orb.
 /// </summary>
 [JsonConverter(typeof(LedgerCreateEntryByExternalIDResponseConverter))]
-public abstract record class LedgerCreateEntryByExternalIDResponse
+public record class LedgerCreateEntryByExternalIDResponse
 {
-    internal LedgerCreateEntryByExternalIDResponse() { }
+    public object Value { get; private init; }
 
-    public static implicit operator LedgerCreateEntryByExternalIDResponse(
-        IncrementLedgerEntry value
-    ) => new LedgerCreateEntryByExternalIDResponseVariants::IncrementLedgerEntry(value);
+    public string ID
+    {
+        get
+        {
+            return Match(
+                incrementLedgerEntry: (x) => x.ID,
+                decrementLedgerEntry: (x) => x.ID,
+                expirationChangeLedgerEntry: (x) => x.ID,
+                creditBlockExpiryLedgerEntry: (x) => x.ID,
+                voidLedgerEntry: (x) => x.ID,
+                voidInitiatedLedgerEntry: (x) => x.ID,
+                amendmentLedgerEntry: (x) => x.ID
+            );
+        }
+    }
 
-    public static implicit operator LedgerCreateEntryByExternalIDResponse(
-        DecrementLedgerEntry value
-    ) => new LedgerCreateEntryByExternalIDResponseVariants::DecrementLedgerEntry(value);
+    public double Amount
+    {
+        get
+        {
+            return Match(
+                incrementLedgerEntry: (x) => x.Amount,
+                decrementLedgerEntry: (x) => x.Amount,
+                expirationChangeLedgerEntry: (x) => x.Amount,
+                creditBlockExpiryLedgerEntry: (x) => x.Amount,
+                voidLedgerEntry: (x) => x.Amount,
+                voidInitiatedLedgerEntry: (x) => x.Amount,
+                amendmentLedgerEntry: (x) => x.Amount
+            );
+        }
+    }
 
-    public static implicit operator LedgerCreateEntryByExternalIDResponse(
-        ExpirationChangeLedgerEntry value
-    ) => new LedgerCreateEntryByExternalIDResponseVariants::ExpirationChangeLedgerEntry(value);
+    public DateTime CreatedAt
+    {
+        get
+        {
+            return Match(
+                incrementLedgerEntry: (x) => x.CreatedAt,
+                decrementLedgerEntry: (x) => x.CreatedAt,
+                expirationChangeLedgerEntry: (x) => x.CreatedAt,
+                creditBlockExpiryLedgerEntry: (x) => x.CreatedAt,
+                voidLedgerEntry: (x) => x.CreatedAt,
+                voidInitiatedLedgerEntry: (x) => x.CreatedAt,
+                amendmentLedgerEntry: (x) => x.CreatedAt
+            );
+        }
+    }
 
-    public static implicit operator LedgerCreateEntryByExternalIDResponse(
-        CreditBlockExpiryLedgerEntry value
-    ) => new LedgerCreateEntryByExternalIDResponseVariants::CreditBlockExpiryLedgerEntry(value);
+    public AffectedBlock CreditBlock
+    {
+        get
+        {
+            return Match(
+                incrementLedgerEntry: (x) => x.CreditBlock,
+                decrementLedgerEntry: (x) => x.CreditBlock,
+                expirationChangeLedgerEntry: (x) => x.CreditBlock,
+                creditBlockExpiryLedgerEntry: (x) => x.CreditBlock,
+                voidLedgerEntry: (x) => x.CreditBlock,
+                voidInitiatedLedgerEntry: (x) => x.CreditBlock,
+                amendmentLedgerEntry: (x) => x.CreditBlock
+            );
+        }
+    }
 
-    public static implicit operator LedgerCreateEntryByExternalIDResponse(VoidLedgerEntry value) =>
-        new LedgerCreateEntryByExternalIDResponseVariants::VoidLedgerEntry(value);
+    public string Currency
+    {
+        get
+        {
+            return Match(
+                incrementLedgerEntry: (x) => x.Currency,
+                decrementLedgerEntry: (x) => x.Currency,
+                expirationChangeLedgerEntry: (x) => x.Currency,
+                creditBlockExpiryLedgerEntry: (x) => x.Currency,
+                voidLedgerEntry: (x) => x.Currency,
+                voidInitiatedLedgerEntry: (x) => x.Currency,
+                amendmentLedgerEntry: (x) => x.Currency
+            );
+        }
+    }
 
-    public static implicit operator LedgerCreateEntryByExternalIDResponse(
-        VoidInitiatedLedgerEntry value
-    ) => new LedgerCreateEntryByExternalIDResponseVariants::VoidInitiatedLedgerEntry(value);
+    public CustomerMinified Customer
+    {
+        get
+        {
+            return Match(
+                incrementLedgerEntry: (x) => x.Customer,
+                decrementLedgerEntry: (x) => x.Customer,
+                expirationChangeLedgerEntry: (x) => x.Customer,
+                creditBlockExpiryLedgerEntry: (x) => x.Customer,
+                voidLedgerEntry: (x) => x.Customer,
+                voidInitiatedLedgerEntry: (x) => x.Customer,
+                amendmentLedgerEntry: (x) => x.Customer
+            );
+        }
+    }
 
-    public static implicit operator LedgerCreateEntryByExternalIDResponse(
-        AmendmentLedgerEntry value
-    ) => new LedgerCreateEntryByExternalIDResponseVariants::AmendmentLedgerEntry(value);
+    public string? Description
+    {
+        get
+        {
+            return Match<string?>(
+                incrementLedgerEntry: (x) => x.Description,
+                decrementLedgerEntry: (x) => x.Description,
+                expirationChangeLedgerEntry: (x) => x.Description,
+                creditBlockExpiryLedgerEntry: (x) => x.Description,
+                voidLedgerEntry: (x) => x.Description,
+                voidInitiatedLedgerEntry: (x) => x.Description,
+                amendmentLedgerEntry: (x) => x.Description
+            );
+        }
+    }
+
+    public double EndingBalance
+    {
+        get
+        {
+            return Match(
+                incrementLedgerEntry: (x) => x.EndingBalance,
+                decrementLedgerEntry: (x) => x.EndingBalance,
+                expirationChangeLedgerEntry: (x) => x.EndingBalance,
+                creditBlockExpiryLedgerEntry: (x) => x.EndingBalance,
+                voidLedgerEntry: (x) => x.EndingBalance,
+                voidInitiatedLedgerEntry: (x) => x.EndingBalance,
+                amendmentLedgerEntry: (x) => x.EndingBalance
+            );
+        }
+    }
+
+    public long LedgerSequenceNumber
+    {
+        get
+        {
+            return Match(
+                incrementLedgerEntry: (x) => x.LedgerSequenceNumber,
+                decrementLedgerEntry: (x) => x.LedgerSequenceNumber,
+                expirationChangeLedgerEntry: (x) => x.LedgerSequenceNumber,
+                creditBlockExpiryLedgerEntry: (x) => x.LedgerSequenceNumber,
+                voidLedgerEntry: (x) => x.LedgerSequenceNumber,
+                voidInitiatedLedgerEntry: (x) => x.LedgerSequenceNumber,
+                amendmentLedgerEntry: (x) => x.LedgerSequenceNumber
+            );
+        }
+    }
+
+    public double StartingBalance
+    {
+        get
+        {
+            return Match(
+                incrementLedgerEntry: (x) => x.StartingBalance,
+                decrementLedgerEntry: (x) => x.StartingBalance,
+                expirationChangeLedgerEntry: (x) => x.StartingBalance,
+                creditBlockExpiryLedgerEntry: (x) => x.StartingBalance,
+                voidLedgerEntry: (x) => x.StartingBalance,
+                voidInitiatedLedgerEntry: (x) => x.StartingBalance,
+                amendmentLedgerEntry: (x) => x.StartingBalance
+            );
+        }
+    }
+
+    public DateTime? NewBlockExpiryDate
+    {
+        get
+        {
+            return Match<DateTime?>(
+                incrementLedgerEntry: (_) => null,
+                decrementLedgerEntry: (_) => null,
+                expirationChangeLedgerEntry: (x) => x.NewBlockExpiryDate,
+                creditBlockExpiryLedgerEntry: (_) => null,
+                voidLedgerEntry: (_) => null,
+                voidInitiatedLedgerEntry: (x) => x.NewBlockExpiryDate,
+                amendmentLedgerEntry: (_) => null
+            );
+        }
+    }
+
+    public double? VoidAmount
+    {
+        get
+        {
+            return Match<double?>(
+                incrementLedgerEntry: (_) => null,
+                decrementLedgerEntry: (_) => null,
+                expirationChangeLedgerEntry: (_) => null,
+                creditBlockExpiryLedgerEntry: (_) => null,
+                voidLedgerEntry: (x) => x.VoidAmount,
+                voidInitiatedLedgerEntry: (x) => x.VoidAmount,
+                amendmentLedgerEntry: (_) => null
+            );
+        }
+    }
+
+    public string? VoidReason
+    {
+        get
+        {
+            return Match<string?>(
+                incrementLedgerEntry: (_) => null,
+                decrementLedgerEntry: (_) => null,
+                expirationChangeLedgerEntry: (_) => null,
+                creditBlockExpiryLedgerEntry: (_) => null,
+                voidLedgerEntry: (x) => x.VoidReason,
+                voidInitiatedLedgerEntry: (x) => x.VoidReason,
+                amendmentLedgerEntry: (_) => null
+            );
+        }
+    }
+
+    public LedgerCreateEntryByExternalIDResponse(IncrementLedgerEntry value)
+    {
+        Value = value;
+    }
+
+    public LedgerCreateEntryByExternalIDResponse(DecrementLedgerEntry value)
+    {
+        Value = value;
+    }
+
+    public LedgerCreateEntryByExternalIDResponse(ExpirationChangeLedgerEntry value)
+    {
+        Value = value;
+    }
+
+    public LedgerCreateEntryByExternalIDResponse(CreditBlockExpiryLedgerEntry value)
+    {
+        Value = value;
+    }
+
+    public LedgerCreateEntryByExternalIDResponse(VoidLedgerEntry value)
+    {
+        Value = value;
+    }
+
+    public LedgerCreateEntryByExternalIDResponse(VoidInitiatedLedgerEntry value)
+    {
+        Value = value;
+    }
+
+    public LedgerCreateEntryByExternalIDResponse(AmendmentLedgerEntry value)
+    {
+        Value = value;
+    }
+
+    LedgerCreateEntryByExternalIDResponse(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static LedgerCreateEntryByExternalIDResponse CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickIncrementLedgerEntry([NotNullWhen(true)] out IncrementLedgerEntry? value)
     {
-        value = (
-            this as LedgerCreateEntryByExternalIDResponseVariants::IncrementLedgerEntry
-        )?.Value;
+        value = this.Value as IncrementLedgerEntry;
         return value != null;
     }
 
     public bool TryPickDecrementLedgerEntry([NotNullWhen(true)] out DecrementLedgerEntry? value)
     {
-        value = (
-            this as LedgerCreateEntryByExternalIDResponseVariants::DecrementLedgerEntry
-        )?.Value;
+        value = this.Value as DecrementLedgerEntry;
         return value != null;
     }
 
@@ -64,9 +285,7 @@ public abstract record class LedgerCreateEntryByExternalIDResponse
         [NotNullWhen(true)] out ExpirationChangeLedgerEntry? value
     )
     {
-        value = (
-            this as LedgerCreateEntryByExternalIDResponseVariants::ExpirationChangeLedgerEntry
-        )?.Value;
+        value = this.Value as ExpirationChangeLedgerEntry;
         return value != null;
     }
 
@@ -74,15 +293,13 @@ public abstract record class LedgerCreateEntryByExternalIDResponse
         [NotNullWhen(true)] out CreditBlockExpiryLedgerEntry? value
     )
     {
-        value = (
-            this as LedgerCreateEntryByExternalIDResponseVariants::CreditBlockExpiryLedgerEntry
-        )?.Value;
+        value = this.Value as CreditBlockExpiryLedgerEntry;
         return value != null;
     }
 
     public bool TryPickVoidLedgerEntry([NotNullWhen(true)] out VoidLedgerEntry? value)
     {
-        value = (this as LedgerCreateEntryByExternalIDResponseVariants::VoidLedgerEntry)?.Value;
+        value = this.Value as VoidLedgerEntry;
         return value != null;
     }
 
@@ -90,52 +307,48 @@ public abstract record class LedgerCreateEntryByExternalIDResponse
         [NotNullWhen(true)] out VoidInitiatedLedgerEntry? value
     )
     {
-        value = (
-            this as LedgerCreateEntryByExternalIDResponseVariants::VoidInitiatedLedgerEntry
-        )?.Value;
+        value = this.Value as VoidInitiatedLedgerEntry;
         return value != null;
     }
 
     public bool TryPickAmendmentLedgerEntry([NotNullWhen(true)] out AmendmentLedgerEntry? value)
     {
-        value = (
-            this as LedgerCreateEntryByExternalIDResponseVariants::AmendmentLedgerEntry
-        )?.Value;
+        value = this.Value as AmendmentLedgerEntry;
         return value != null;
     }
 
     public void Switch(
-        Action<LedgerCreateEntryByExternalIDResponseVariants::IncrementLedgerEntry> incrementLedgerEntry,
-        Action<LedgerCreateEntryByExternalIDResponseVariants::DecrementLedgerEntry> decrementLedgerEntry,
-        Action<LedgerCreateEntryByExternalIDResponseVariants::ExpirationChangeLedgerEntry> expirationChangeLedgerEntry,
-        Action<LedgerCreateEntryByExternalIDResponseVariants::CreditBlockExpiryLedgerEntry> creditBlockExpiryLedgerEntry,
-        Action<LedgerCreateEntryByExternalIDResponseVariants::VoidLedgerEntry> voidLedgerEntry,
-        Action<LedgerCreateEntryByExternalIDResponseVariants::VoidInitiatedLedgerEntry> voidInitiatedLedgerEntry,
-        Action<LedgerCreateEntryByExternalIDResponseVariants::AmendmentLedgerEntry> amendmentLedgerEntry
+        Action<IncrementLedgerEntry> incrementLedgerEntry,
+        Action<DecrementLedgerEntry> decrementLedgerEntry,
+        Action<ExpirationChangeLedgerEntry> expirationChangeLedgerEntry,
+        Action<CreditBlockExpiryLedgerEntry> creditBlockExpiryLedgerEntry,
+        Action<VoidLedgerEntry> voidLedgerEntry,
+        Action<VoidInitiatedLedgerEntry> voidInitiatedLedgerEntry,
+        Action<AmendmentLedgerEntry> amendmentLedgerEntry
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case LedgerCreateEntryByExternalIDResponseVariants::IncrementLedgerEntry inner:
-                incrementLedgerEntry(inner);
+            case IncrementLedgerEntry value:
+                incrementLedgerEntry(value);
                 break;
-            case LedgerCreateEntryByExternalIDResponseVariants::DecrementLedgerEntry inner:
-                decrementLedgerEntry(inner);
+            case DecrementLedgerEntry value:
+                decrementLedgerEntry(value);
                 break;
-            case LedgerCreateEntryByExternalIDResponseVariants::ExpirationChangeLedgerEntry inner:
-                expirationChangeLedgerEntry(inner);
+            case ExpirationChangeLedgerEntry value:
+                expirationChangeLedgerEntry(value);
                 break;
-            case LedgerCreateEntryByExternalIDResponseVariants::CreditBlockExpiryLedgerEntry inner:
-                creditBlockExpiryLedgerEntry(inner);
+            case CreditBlockExpiryLedgerEntry value:
+                creditBlockExpiryLedgerEntry(value);
                 break;
-            case LedgerCreateEntryByExternalIDResponseVariants::VoidLedgerEntry inner:
-                voidLedgerEntry(inner);
+            case VoidLedgerEntry value:
+                voidLedgerEntry(value);
                 break;
-            case LedgerCreateEntryByExternalIDResponseVariants::VoidInitiatedLedgerEntry inner:
-                voidInitiatedLedgerEntry(inner);
+            case VoidInitiatedLedgerEntry value:
+                voidInitiatedLedgerEntry(value);
                 break;
-            case LedgerCreateEntryByExternalIDResponseVariants::AmendmentLedgerEntry inner:
-                amendmentLedgerEntry(inner);
+            case AmendmentLedgerEntry value:
+                amendmentLedgerEntry(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
@@ -145,57 +358,41 @@ public abstract record class LedgerCreateEntryByExternalIDResponse
     }
 
     public T Match<T>(
-        Func<
-            LedgerCreateEntryByExternalIDResponseVariants::IncrementLedgerEntry,
-            T
-        > incrementLedgerEntry,
-        Func<
-            LedgerCreateEntryByExternalIDResponseVariants::DecrementLedgerEntry,
-            T
-        > decrementLedgerEntry,
-        Func<
-            LedgerCreateEntryByExternalIDResponseVariants::ExpirationChangeLedgerEntry,
-            T
-        > expirationChangeLedgerEntry,
-        Func<
-            LedgerCreateEntryByExternalIDResponseVariants::CreditBlockExpiryLedgerEntry,
-            T
-        > creditBlockExpiryLedgerEntry,
-        Func<LedgerCreateEntryByExternalIDResponseVariants::VoidLedgerEntry, T> voidLedgerEntry,
-        Func<
-            LedgerCreateEntryByExternalIDResponseVariants::VoidInitiatedLedgerEntry,
-            T
-        > voidInitiatedLedgerEntry,
-        Func<
-            LedgerCreateEntryByExternalIDResponseVariants::AmendmentLedgerEntry,
-            T
-        > amendmentLedgerEntry
+        Func<IncrementLedgerEntry, T> incrementLedgerEntry,
+        Func<DecrementLedgerEntry, T> decrementLedgerEntry,
+        Func<ExpirationChangeLedgerEntry, T> expirationChangeLedgerEntry,
+        Func<CreditBlockExpiryLedgerEntry, T> creditBlockExpiryLedgerEntry,
+        Func<VoidLedgerEntry, T> voidLedgerEntry,
+        Func<VoidInitiatedLedgerEntry, T> voidInitiatedLedgerEntry,
+        Func<AmendmentLedgerEntry, T> amendmentLedgerEntry
     )
     {
-        return this switch
+        return this.Value switch
         {
-            LedgerCreateEntryByExternalIDResponseVariants::IncrementLedgerEntry inner =>
-                incrementLedgerEntry(inner),
-            LedgerCreateEntryByExternalIDResponseVariants::DecrementLedgerEntry inner =>
-                decrementLedgerEntry(inner),
-            LedgerCreateEntryByExternalIDResponseVariants::ExpirationChangeLedgerEntry inner =>
-                expirationChangeLedgerEntry(inner),
-            LedgerCreateEntryByExternalIDResponseVariants::CreditBlockExpiryLedgerEntry inner =>
-                creditBlockExpiryLedgerEntry(inner),
-            LedgerCreateEntryByExternalIDResponseVariants::VoidLedgerEntry inner => voidLedgerEntry(
-                inner
-            ),
-            LedgerCreateEntryByExternalIDResponseVariants::VoidInitiatedLedgerEntry inner =>
-                voidInitiatedLedgerEntry(inner),
-            LedgerCreateEntryByExternalIDResponseVariants::AmendmentLedgerEntry inner =>
-                amendmentLedgerEntry(inner),
+            IncrementLedgerEntry value => incrementLedgerEntry(value),
+            DecrementLedgerEntry value => decrementLedgerEntry(value),
+            ExpirationChangeLedgerEntry value => expirationChangeLedgerEntry(value),
+            CreditBlockExpiryLedgerEntry value => creditBlockExpiryLedgerEntry(value),
+            VoidLedgerEntry value => voidLedgerEntry(value),
+            VoidInitiatedLedgerEntry value => voidInitiatedLedgerEntry(value),
+            AmendmentLedgerEntry value => amendmentLedgerEntry(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of LedgerCreateEntryByExternalIDResponse"
             ),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of LedgerCreateEntryByExternalIDResponse"
+            );
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class LedgerCreateEntryByExternalIDResponseConverter
@@ -232,16 +429,15 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                     );
                     if (deserialized != null)
                     {
-                        return new LedgerCreateEntryByExternalIDResponseVariants::IncrementLedgerEntry(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new LedgerCreateEntryByExternalIDResponse(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant LedgerCreateEntryByExternalIDResponseVariants::IncrementLedgerEntry",
+                            "Data does not match union variant 'IncrementLedgerEntry'",
                             e
                         )
                     );
@@ -261,16 +457,15 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                     );
                     if (deserialized != null)
                     {
-                        return new LedgerCreateEntryByExternalIDResponseVariants::DecrementLedgerEntry(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new LedgerCreateEntryByExternalIDResponse(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant LedgerCreateEntryByExternalIDResponseVariants::DecrementLedgerEntry",
+                            "Data does not match union variant 'DecrementLedgerEntry'",
                             e
                         )
                     );
@@ -290,16 +485,15 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                     );
                     if (deserialized != null)
                     {
-                        return new LedgerCreateEntryByExternalIDResponseVariants::ExpirationChangeLedgerEntry(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new LedgerCreateEntryByExternalIDResponse(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant LedgerCreateEntryByExternalIDResponseVariants::ExpirationChangeLedgerEntry",
+                            "Data does not match union variant 'ExpirationChangeLedgerEntry'",
                             e
                         )
                     );
@@ -319,16 +513,15 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                     );
                     if (deserialized != null)
                     {
-                        return new LedgerCreateEntryByExternalIDResponseVariants::CreditBlockExpiryLedgerEntry(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new LedgerCreateEntryByExternalIDResponse(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant LedgerCreateEntryByExternalIDResponseVariants::CreditBlockExpiryLedgerEntry",
+                            "Data does not match union variant 'CreditBlockExpiryLedgerEntry'",
                             e
                         )
                     );
@@ -345,16 +538,15 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                     var deserialized = JsonSerializer.Deserialize<VoidLedgerEntry>(json, options);
                     if (deserialized != null)
                     {
-                        return new LedgerCreateEntryByExternalIDResponseVariants::VoidLedgerEntry(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new LedgerCreateEntryByExternalIDResponse(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant LedgerCreateEntryByExternalIDResponseVariants::VoidLedgerEntry",
+                            "Data does not match union variant 'VoidLedgerEntry'",
                             e
                         )
                     );
@@ -374,16 +566,15 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                     );
                     if (deserialized != null)
                     {
-                        return new LedgerCreateEntryByExternalIDResponseVariants::VoidInitiatedLedgerEntry(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new LedgerCreateEntryByExternalIDResponse(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant LedgerCreateEntryByExternalIDResponseVariants::VoidInitiatedLedgerEntry",
+                            "Data does not match union variant 'VoidInitiatedLedgerEntry'",
                             e
                         )
                     );
@@ -403,16 +594,15 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                     );
                     if (deserialized != null)
                     {
-                        return new LedgerCreateEntryByExternalIDResponseVariants::AmendmentLedgerEntry(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new LedgerCreateEntryByExternalIDResponse(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant LedgerCreateEntryByExternalIDResponseVariants::AmendmentLedgerEntry",
+                            "Data does not match union variant 'AmendmentLedgerEntry'",
                             e
                         )
                     );
@@ -435,32 +625,7 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
         JsonSerializerOptions options
     )
     {
-        object variant = value switch
-        {
-            LedgerCreateEntryByExternalIDResponseVariants::IncrementLedgerEntry(
-                var incrementLedgerEntry
-            ) => incrementLedgerEntry,
-            LedgerCreateEntryByExternalIDResponseVariants::DecrementLedgerEntry(
-                var decrementLedgerEntry
-            ) => decrementLedgerEntry,
-            LedgerCreateEntryByExternalIDResponseVariants::ExpirationChangeLedgerEntry(
-                var expirationChangeLedgerEntry
-            ) => expirationChangeLedgerEntry,
-            LedgerCreateEntryByExternalIDResponseVariants::CreditBlockExpiryLedgerEntry(
-                var creditBlockExpiryLedgerEntry
-            ) => creditBlockExpiryLedgerEntry,
-            LedgerCreateEntryByExternalIDResponseVariants::VoidLedgerEntry(var voidLedgerEntry) =>
-                voidLedgerEntry,
-            LedgerCreateEntryByExternalIDResponseVariants::VoidInitiatedLedgerEntry(
-                var voidInitiatedLedgerEntry
-            ) => voidInitiatedLedgerEntry,
-            LedgerCreateEntryByExternalIDResponseVariants::AmendmentLedgerEntry(
-                var amendmentLedgerEntry
-            ) => amendmentLedgerEntry,
-            _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of LedgerCreateEntryByExternalIDResponse"
-            ),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
+using Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.DiscountProperties.AmountProperties;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.DiscountProperties;
 
@@ -35,7 +36,7 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
         }
     }
 
-    public JsonElement DiscountType
+    public DiscountType DiscountType
     {
         get
         {
@@ -45,7 +46,11 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
                     new ArgumentOutOfRangeException("discount_type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DiscountType>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'discount_type' cannot be null",
+                    new ArgumentNullException("discount_type")
+                );
         }
         set
         {
@@ -59,11 +64,12 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
     public override void Validate()
     {
         _ = this.AmountDiscount;
+        this.DiscountType.Validate();
     }
 
     public Amount()
     {
-        this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"amount\"");
+        this.DiscountType = new();
     }
 
 #pragma warning disable CS8618

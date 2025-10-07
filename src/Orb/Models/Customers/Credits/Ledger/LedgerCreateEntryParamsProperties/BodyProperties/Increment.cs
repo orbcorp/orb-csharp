@@ -37,7 +37,7 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
         }
     }
 
-    public JsonElement EntryType
+    public EntryType EntryType
     {
         get
         {
@@ -50,7 +50,11 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
                     )
                 );
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<EntryType>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentNullException("entry_type")
+                );
         }
         set
         {
@@ -232,6 +236,7 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
     public override void Validate()
     {
         _ = this.Amount;
+        this.EntryType.Validate();
         _ = this.Currency;
         _ = this.Description;
         _ = this.EffectiveDate;
@@ -249,7 +254,7 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
 
     public Increment()
     {
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"increment\"");
+        this.EntryType = new();
     }
 
 #pragma warning disable CS8618

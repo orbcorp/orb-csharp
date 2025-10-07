@@ -109,7 +109,7 @@ public sealed record class GroupedWithMinMaxThresholds
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public JsonElement ModelType
+    public ModelType ModelType
     {
         get
         {
@@ -119,7 +119,11 @@ public sealed record class GroupedWithMinMaxThresholds
                     new ArgumentOutOfRangeException("model_type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ModelType>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'model_type' cannot be null",
+                    new ArgumentNullException("model_type")
+                );
         }
         set
         {
@@ -469,6 +473,7 @@ public sealed record class GroupedWithMinMaxThresholds
         this.Cadence.Validate();
         this.GroupedWithMinMaxThresholdsConfig.Validate();
         _ = this.ItemID;
+        this.ModelType.Validate();
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -493,9 +498,7 @@ public sealed record class GroupedWithMinMaxThresholds
 
     public GroupedWithMinMaxThresholds()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_min_max_thresholds\""
-        );
+        this.ModelType = new();
     }
 
 #pragma warning disable CS8618

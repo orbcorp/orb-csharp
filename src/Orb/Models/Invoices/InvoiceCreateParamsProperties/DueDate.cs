@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
-using DueDateVariants = Orb.Models.Invoices.InvoiceCreateParamsProperties.DueDateVariants;
 
 namespace Orb.Models.Invoices.InvoiceCreateParamsProperties;
 
@@ -13,58 +12,76 @@ namespace Orb.Models.Invoices.InvoiceCreateParamsProperties;
 /// calculated based on the `net_terms` value.
 /// </summary>
 [JsonConverter(typeof(DueDateConverter))]
-public abstract record class DueDate
+public record class DueDate
 {
-    internal DueDate() { }
+    public object Value { get; private init; }
 
-    public static implicit operator DueDate(DateOnly value) => new DueDateVariants::Date(value);
+    public DueDate(DateOnly value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator DueDate(DateTime value) => new DueDateVariants::DateTime(value);
+    public DueDate(DateTime value)
+    {
+        Value = value;
+    }
+
+    DueDate(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static DueDate CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDate([NotNullWhen(true)] out DateOnly? value)
     {
-        value = (this as DueDateVariants::Date)?.Value;
+        value = this.Value as DateOnly?;
         return value != null;
     }
 
     public bool TryPickDateTime([NotNullWhen(true)] out DateTime? value)
     {
-        value = (this as DueDateVariants::DateTime)?.Value;
+        value = this.Value as DateTime?;
         return value != null;
     }
 
-    public void Switch(
-        Action<DueDateVariants::Date> @date,
-        Action<DueDateVariants::DateTime> @dateTime
-    )
+    public void Switch(Action<DateOnly> @date, Action<DateTime> @dateTime)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case DueDateVariants::Date inner:
-                @date(inner);
+            case DateOnly value:
+                @date(value);
                 break;
-            case DueDateVariants::DateTime inner:
-                @dateTime(inner);
+            case DateTime value:
+                @dateTime(value);
                 break;
             default:
                 throw new OrbInvalidDataException("Data did not match any variant of DueDate");
         }
     }
 
-    public T Match<T>(
-        Func<DueDateVariants::Date, T> @date,
-        Func<DueDateVariants::DateTime, T> @dateTime
-    )
+    public T Match<T>(Func<DateOnly, T> @date, Func<DateTime, T> @dateTime)
     {
-        return this switch
+        return this.Value switch
         {
-            DueDateVariants::Date inner => @date(inner),
-            DueDateVariants::DateTime inner => @dateTime(inner),
+            DateOnly value => @date(value),
+            DateTime value => @dateTime(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of DueDate"),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of DueDate");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class DueDateConverter : JsonConverter<DueDate?>
@@ -79,33 +96,23 @@ sealed class DueDateConverter : JsonConverter<DueDate?>
 
         try
         {
-            return new DueDateVariants::Date(
-                JsonSerializer.Deserialize<DateOnly>(ref reader, options)
-            );
+            return new DueDate(JsonSerializer.Deserialize<DateOnly>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
-                new OrbInvalidDataException(
-                    "Data does not match union variant DueDateVariants::Date",
-                    e
-                )
+                new OrbInvalidDataException("Data does not match union variant 'DateOnly'", e)
             );
         }
 
         try
         {
-            return new DueDateVariants::DateTime(
-                JsonSerializer.Deserialize<DateTime>(ref reader, options)
-            );
+            return new DueDate(JsonSerializer.Deserialize<DateTime>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
-                new OrbInvalidDataException(
-                    "Data does not match union variant DueDateVariants::DateTime",
-                    e
-                )
+                new OrbInvalidDataException("Data does not match union variant 'DateTime'", e)
             );
         }
 
@@ -114,13 +121,7 @@ sealed class DueDateConverter : JsonConverter<DueDate?>
 
     public override void Write(Utf8JsonWriter writer, DueDate? value, JsonSerializerOptions options)
     {
-        object? variant = value switch
-        {
-            null => null,
-            DueDateVariants::Date(var @date) => @date,
-            DueDateVariants::DateTime(var @dateTime) => @dateTime,
-            _ => throw new OrbInvalidDataException("Data did not match any variant of DueDate"),
-        };
+        object? variant = value?.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

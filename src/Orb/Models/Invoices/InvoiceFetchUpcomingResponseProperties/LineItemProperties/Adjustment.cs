@@ -4,35 +4,124 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
-using AdjustmentVariants = Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.LineItemProperties.AdjustmentVariants;
 
 namespace Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.LineItemProperties;
 
 [JsonConverter(typeof(AdjustmentConverter))]
-public abstract record class Adjustment
+public record class Adjustment
 {
-    internal Adjustment() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Adjustment(MonetaryUsageDiscountAdjustment value) =>
-        new AdjustmentVariants::MonetaryUsageDiscountAdjustment(value);
+    public string ID
+    {
+        get
+        {
+            return Match(
+                monetaryUsageDiscount: (x) => x.ID,
+                monetaryAmountDiscount: (x) => x.ID,
+                monetaryPercentageDiscount: (x) => x.ID,
+                monetaryMinimum: (x) => x.ID,
+                monetaryMaximum: (x) => x.ID
+            );
+        }
+    }
 
-    public static implicit operator Adjustment(MonetaryAmountDiscountAdjustment value) =>
-        new AdjustmentVariants::MonetaryAmountDiscountAdjustment(value);
+    public string Amount
+    {
+        get
+        {
+            return Match(
+                monetaryUsageDiscount: (x) => x.Amount,
+                monetaryAmountDiscount: (x) => x.Amount,
+                monetaryPercentageDiscount: (x) => x.Amount,
+                monetaryMinimum: (x) => x.Amount,
+                monetaryMaximum: (x) => x.Amount
+            );
+        }
+    }
 
-    public static implicit operator Adjustment(MonetaryPercentageDiscountAdjustment value) =>
-        new AdjustmentVariants::MonetaryPercentageDiscountAdjustment(value);
+    public bool IsInvoiceLevel
+    {
+        get
+        {
+            return Match(
+                monetaryUsageDiscount: (x) => x.IsInvoiceLevel,
+                monetaryAmountDiscount: (x) => x.IsInvoiceLevel,
+                monetaryPercentageDiscount: (x) => x.IsInvoiceLevel,
+                monetaryMinimum: (x) => x.IsInvoiceLevel,
+                monetaryMaximum: (x) => x.IsInvoiceLevel
+            );
+        }
+    }
 
-    public static implicit operator Adjustment(MonetaryMinimumAdjustment value) =>
-        new AdjustmentVariants::MonetaryMinimumAdjustment(value);
+    public string? Reason
+    {
+        get
+        {
+            return Match<string?>(
+                monetaryUsageDiscount: (x) => x.Reason,
+                monetaryAmountDiscount: (x) => x.Reason,
+                monetaryPercentageDiscount: (x) => x.Reason,
+                monetaryMinimum: (x) => x.Reason,
+                monetaryMaximum: (x) => x.Reason
+            );
+        }
+    }
 
-    public static implicit operator Adjustment(MonetaryMaximumAdjustment value) =>
-        new AdjustmentVariants::MonetaryMaximumAdjustment(value);
+    public string? ReplacesAdjustmentID
+    {
+        get
+        {
+            return Match<string?>(
+                monetaryUsageDiscount: (x) => x.ReplacesAdjustmentID,
+                monetaryAmountDiscount: (x) => x.ReplacesAdjustmentID,
+                monetaryPercentageDiscount: (x) => x.ReplacesAdjustmentID,
+                monetaryMinimum: (x) => x.ReplacesAdjustmentID,
+                monetaryMaximum: (x) => x.ReplacesAdjustmentID
+            );
+        }
+    }
+
+    public Adjustment(MonetaryUsageDiscountAdjustment value)
+    {
+        Value = value;
+    }
+
+    public Adjustment(MonetaryAmountDiscountAdjustment value)
+    {
+        Value = value;
+    }
+
+    public Adjustment(MonetaryPercentageDiscountAdjustment value)
+    {
+        Value = value;
+    }
+
+    public Adjustment(MonetaryMinimumAdjustment value)
+    {
+        Value = value;
+    }
+
+    public Adjustment(MonetaryMaximumAdjustment value)
+    {
+        Value = value;
+    }
+
+    Adjustment(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Adjustment CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickMonetaryUsageDiscount(
         [NotNullWhen(true)] out MonetaryUsageDiscountAdjustment? value
     )
     {
-        value = (this as AdjustmentVariants::MonetaryUsageDiscountAdjustment)?.Value;
+        value = this.Value as MonetaryUsageDiscountAdjustment;
         return value != null;
     }
 
@@ -40,7 +129,7 @@ public abstract record class Adjustment
         [NotNullWhen(true)] out MonetaryAmountDiscountAdjustment? value
     )
     {
-        value = (this as AdjustmentVariants::MonetaryAmountDiscountAdjustment)?.Value;
+        value = this.Value as MonetaryAmountDiscountAdjustment;
         return value != null;
     }
 
@@ -48,46 +137,46 @@ public abstract record class Adjustment
         [NotNullWhen(true)] out MonetaryPercentageDiscountAdjustment? value
     )
     {
-        value = (this as AdjustmentVariants::MonetaryPercentageDiscountAdjustment)?.Value;
+        value = this.Value as MonetaryPercentageDiscountAdjustment;
         return value != null;
     }
 
     public bool TryPickMonetaryMinimum([NotNullWhen(true)] out MonetaryMinimumAdjustment? value)
     {
-        value = (this as AdjustmentVariants::MonetaryMinimumAdjustment)?.Value;
+        value = this.Value as MonetaryMinimumAdjustment;
         return value != null;
     }
 
     public bool TryPickMonetaryMaximum([NotNullWhen(true)] out MonetaryMaximumAdjustment? value)
     {
-        value = (this as AdjustmentVariants::MonetaryMaximumAdjustment)?.Value;
+        value = this.Value as MonetaryMaximumAdjustment;
         return value != null;
     }
 
     public void Switch(
-        Action<AdjustmentVariants::MonetaryUsageDiscountAdjustment> monetaryUsageDiscount,
-        Action<AdjustmentVariants::MonetaryAmountDiscountAdjustment> monetaryAmountDiscount,
-        Action<AdjustmentVariants::MonetaryPercentageDiscountAdjustment> monetaryPercentageDiscount,
-        Action<AdjustmentVariants::MonetaryMinimumAdjustment> monetaryMinimum,
-        Action<AdjustmentVariants::MonetaryMaximumAdjustment> monetaryMaximum
+        Action<MonetaryUsageDiscountAdjustment> monetaryUsageDiscount,
+        Action<MonetaryAmountDiscountAdjustment> monetaryAmountDiscount,
+        Action<MonetaryPercentageDiscountAdjustment> monetaryPercentageDiscount,
+        Action<MonetaryMinimumAdjustment> monetaryMinimum,
+        Action<MonetaryMaximumAdjustment> monetaryMaximum
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case AdjustmentVariants::MonetaryUsageDiscountAdjustment inner:
-                monetaryUsageDiscount(inner);
+            case MonetaryUsageDiscountAdjustment value:
+                monetaryUsageDiscount(value);
                 break;
-            case AdjustmentVariants::MonetaryAmountDiscountAdjustment inner:
-                monetaryAmountDiscount(inner);
+            case MonetaryAmountDiscountAdjustment value:
+                monetaryAmountDiscount(value);
                 break;
-            case AdjustmentVariants::MonetaryPercentageDiscountAdjustment inner:
-                monetaryPercentageDiscount(inner);
+            case MonetaryPercentageDiscountAdjustment value:
+                monetaryPercentageDiscount(value);
                 break;
-            case AdjustmentVariants::MonetaryMinimumAdjustment inner:
-                monetaryMinimum(inner);
+            case MonetaryMinimumAdjustment value:
+                monetaryMinimum(value);
                 break;
-            case AdjustmentVariants::MonetaryMaximumAdjustment inner:
-                monetaryMaximum(inner);
+            case MonetaryMaximumAdjustment value:
+                monetaryMaximum(value);
                 break;
             default:
                 throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
@@ -95,33 +184,33 @@ public abstract record class Adjustment
     }
 
     public T Match<T>(
-        Func<AdjustmentVariants::MonetaryUsageDiscountAdjustment, T> monetaryUsageDiscount,
-        Func<AdjustmentVariants::MonetaryAmountDiscountAdjustment, T> monetaryAmountDiscount,
-        Func<
-            AdjustmentVariants::MonetaryPercentageDiscountAdjustment,
-            T
-        > monetaryPercentageDiscount,
-        Func<AdjustmentVariants::MonetaryMinimumAdjustment, T> monetaryMinimum,
-        Func<AdjustmentVariants::MonetaryMaximumAdjustment, T> monetaryMaximum
+        Func<MonetaryUsageDiscountAdjustment, T> monetaryUsageDiscount,
+        Func<MonetaryAmountDiscountAdjustment, T> monetaryAmountDiscount,
+        Func<MonetaryPercentageDiscountAdjustment, T> monetaryPercentageDiscount,
+        Func<MonetaryMinimumAdjustment, T> monetaryMinimum,
+        Func<MonetaryMaximumAdjustment, T> monetaryMaximum
     )
     {
-        return this switch
+        return this.Value switch
         {
-            AdjustmentVariants::MonetaryUsageDiscountAdjustment inner => monetaryUsageDiscount(
-                inner
-            ),
-            AdjustmentVariants::MonetaryAmountDiscountAdjustment inner => monetaryAmountDiscount(
-                inner
-            ),
-            AdjustmentVariants::MonetaryPercentageDiscountAdjustment inner =>
-                monetaryPercentageDiscount(inner),
-            AdjustmentVariants::MonetaryMinimumAdjustment inner => monetaryMinimum(inner),
-            AdjustmentVariants::MonetaryMaximumAdjustment inner => monetaryMaximum(inner),
+            MonetaryUsageDiscountAdjustment value => monetaryUsageDiscount(value),
+            MonetaryAmountDiscountAdjustment value => monetaryAmountDiscount(value),
+            MonetaryPercentageDiscountAdjustment value => monetaryPercentageDiscount(value),
+            MonetaryMinimumAdjustment value => monetaryMinimum(value),
+            MonetaryMaximumAdjustment value => monetaryMaximum(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment"),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class AdjustmentConverter : JsonConverter<Adjustment>
@@ -157,16 +246,15 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     );
                     if (deserialized != null)
                     {
-                        return new AdjustmentVariants::MonetaryUsageDiscountAdjustment(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Adjustment(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant AdjustmentVariants::MonetaryUsageDiscountAdjustment",
+                            "Data does not match union variant 'MonetaryUsageDiscountAdjustment'",
                             e
                         )
                     );
@@ -186,16 +274,15 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     );
                     if (deserialized != null)
                     {
-                        return new AdjustmentVariants::MonetaryAmountDiscountAdjustment(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Adjustment(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant AdjustmentVariants::MonetaryAmountDiscountAdjustment",
+                            "Data does not match union variant 'MonetaryAmountDiscountAdjustment'",
                             e
                         )
                     );
@@ -216,16 +303,15 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                         );
                     if (deserialized != null)
                     {
-                        return new AdjustmentVariants::MonetaryPercentageDiscountAdjustment(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Adjustment(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant AdjustmentVariants::MonetaryPercentageDiscountAdjustment",
+                            "Data does not match union variant 'MonetaryPercentageDiscountAdjustment'",
                             e
                         )
                     );
@@ -245,14 +331,15 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     );
                     if (deserialized != null)
                     {
-                        return new AdjustmentVariants::MonetaryMinimumAdjustment(deserialized);
+                        deserialized.Validate();
+                        return new Adjustment(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant AdjustmentVariants::MonetaryMinimumAdjustment",
+                            "Data does not match union variant 'MonetaryMinimumAdjustment'",
                             e
                         )
                     );
@@ -272,14 +359,15 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     );
                     if (deserialized != null)
                     {
-                        return new AdjustmentVariants::MonetaryMaximumAdjustment(deserialized);
+                        deserialized.Validate();
+                        return new Adjustment(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant AdjustmentVariants::MonetaryMaximumAdjustment",
+                            "Data does not match union variant 'MonetaryMaximumAdjustment'",
                             e
                         )
                     );
@@ -302,19 +390,7 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
         JsonSerializerOptions options
     )
     {
-        object variant = value switch
-        {
-            AdjustmentVariants::MonetaryUsageDiscountAdjustment(var monetaryUsageDiscount) =>
-                monetaryUsageDiscount,
-            AdjustmentVariants::MonetaryAmountDiscountAdjustment(var monetaryAmountDiscount) =>
-                monetaryAmountDiscount,
-            AdjustmentVariants::MonetaryPercentageDiscountAdjustment(
-                var monetaryPercentageDiscount
-            ) => monetaryPercentageDiscount,
-            AdjustmentVariants::MonetaryMinimumAdjustment(var monetaryMinimum) => monetaryMinimum,
-            AdjustmentVariants::MonetaryMaximumAdjustment(var monetaryMaximum) => monetaryMaximum,
-            _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment"),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

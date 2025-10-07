@@ -5,39 +5,128 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
 using BodyProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties;
-using BodyVariants = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyVariants;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties;
 
 [JsonConverter(typeof(BodyConverter))]
-public abstract record class Body
+public record class Body
 {
-    internal Body() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Body(BodyProperties::Increment value) =>
-        new BodyVariants::Increment(value);
+    public double? Amount
+    {
+        get
+        {
+            return Match<double?>(
+                increment: (x) => x.Amount,
+                decrement: (x) => x.Amount,
+                expirationChange: (x) => x.Amount,
+                void1: (x) => x.Amount,
+                amendment: (x) => x.Amount
+            );
+        }
+    }
 
-    public static implicit operator Body(BodyProperties::Decrement value) =>
-        new BodyVariants::Decrement(value);
+    public string? Currency
+    {
+        get
+        {
+            return Match<string?>(
+                increment: (x) => x.Currency,
+                decrement: (x) => x.Currency,
+                expirationChange: (x) => x.Currency,
+                void1: (x) => x.Currency,
+                amendment: (x) => x.Currency
+            );
+        }
+    }
 
-    public static implicit operator Body(BodyProperties::ExpirationChange value) =>
-        new BodyVariants::ExpirationChange(value);
+    public string? Description
+    {
+        get
+        {
+            return Match<string?>(
+                increment: (x) => x.Description,
+                decrement: (x) => x.Description,
+                expirationChange: (x) => x.Description,
+                void1: (x) => x.Description,
+                amendment: (x) => x.Description
+            );
+        }
+    }
 
-    public static implicit operator Body(BodyProperties::Void value) =>
-        new BodyVariants::Void(value);
+    public DateTime? ExpiryDate
+    {
+        get
+        {
+            return Match<DateTime?>(
+                increment: (x) => x.ExpiryDate,
+                decrement: (_) => null,
+                expirationChange: (x) => x.ExpiryDate,
+                void1: (_) => null,
+                amendment: (_) => null
+            );
+        }
+    }
 
-    public static implicit operator Body(BodyProperties::Amendment value) =>
-        new BodyVariants::Amendment(value);
+    public string? BlockID
+    {
+        get
+        {
+            return Match<string?>(
+                increment: (_) => null,
+                decrement: (_) => null,
+                expirationChange: (x) => x.BlockID,
+                void1: (x) => x.BlockID,
+                amendment: (x) => x.BlockID
+            );
+        }
+    }
+
+    public Body(BodyProperties::Increment value)
+    {
+        Value = value;
+    }
+
+    public Body(BodyProperties::Decrement value)
+    {
+        Value = value;
+    }
+
+    public Body(BodyProperties::ExpirationChange value)
+    {
+        Value = value;
+    }
+
+    public Body(BodyProperties::Void value)
+    {
+        Value = value;
+    }
+
+    public Body(BodyProperties::Amendment value)
+    {
+        Value = value;
+    }
+
+    Body(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Body CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickIncrement([NotNullWhen(true)] out BodyProperties::Increment? value)
     {
-        value = (this as BodyVariants::Increment)?.Value;
+        value = this.Value as BodyProperties::Increment;
         return value != null;
     }
 
     public bool TryPickDecrement([NotNullWhen(true)] out BodyProperties::Decrement? value)
     {
-        value = (this as BodyVariants::Decrement)?.Value;
+        value = this.Value as BodyProperties::Decrement;
         return value != null;
     }
 
@@ -45,46 +134,46 @@ public abstract record class Body
         [NotNullWhen(true)] out BodyProperties::ExpirationChange? value
     )
     {
-        value = (this as BodyVariants::ExpirationChange)?.Value;
+        value = this.Value as BodyProperties::ExpirationChange;
         return value != null;
     }
 
     public bool TryPickVoid([NotNullWhen(true)] out BodyProperties::Void? value)
     {
-        value = (this as BodyVariants::Void)?.Value;
+        value = this.Value as BodyProperties::Void;
         return value != null;
     }
 
     public bool TryPickAmendment([NotNullWhen(true)] out BodyProperties::Amendment? value)
     {
-        value = (this as BodyVariants::Amendment)?.Value;
+        value = this.Value as BodyProperties::Amendment;
         return value != null;
     }
 
     public void Switch(
-        Action<BodyVariants::Increment> increment,
-        Action<BodyVariants::Decrement> decrement,
-        Action<BodyVariants::ExpirationChange> expirationChange,
-        Action<BodyVariants::Void> void1,
-        Action<BodyVariants::Amendment> amendment
+        Action<BodyProperties::Increment> increment,
+        Action<BodyProperties::Decrement> decrement,
+        Action<BodyProperties::ExpirationChange> expirationChange,
+        Action<BodyProperties::Void> void1,
+        Action<BodyProperties::Amendment> amendment
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case BodyVariants::Increment inner:
-                increment(inner);
+            case BodyProperties::Increment value:
+                increment(value);
                 break;
-            case BodyVariants::Decrement inner:
-                decrement(inner);
+            case BodyProperties::Decrement value:
+                decrement(value);
                 break;
-            case BodyVariants::ExpirationChange inner:
-                expirationChange(inner);
+            case BodyProperties::ExpirationChange value:
+                expirationChange(value);
                 break;
-            case BodyVariants::Void inner:
-                void1(inner);
+            case BodyProperties::Void value:
+                void1(value);
                 break;
-            case BodyVariants::Amendment inner:
-                amendment(inner);
+            case BodyProperties::Amendment value:
+                amendment(value);
                 break;
             default:
                 throw new OrbInvalidDataException("Data did not match any variant of Body");
@@ -92,25 +181,33 @@ public abstract record class Body
     }
 
     public T Match<T>(
-        Func<BodyVariants::Increment, T> increment,
-        Func<BodyVariants::Decrement, T> decrement,
-        Func<BodyVariants::ExpirationChange, T> expirationChange,
-        Func<BodyVariants::Void, T> void1,
-        Func<BodyVariants::Amendment, T> amendment
+        Func<BodyProperties::Increment, T> increment,
+        Func<BodyProperties::Decrement, T> decrement,
+        Func<BodyProperties::ExpirationChange, T> expirationChange,
+        Func<BodyProperties::Void, T> void1,
+        Func<BodyProperties::Amendment, T> amendment
     )
     {
-        return this switch
+        return this.Value switch
         {
-            BodyVariants::Increment inner => increment(inner),
-            BodyVariants::Decrement inner => decrement(inner),
-            BodyVariants::ExpirationChange inner => expirationChange(inner),
-            BodyVariants::Void inner => void1(inner),
-            BodyVariants::Amendment inner => amendment(inner),
+            BodyProperties::Increment value => increment(value),
+            BodyProperties::Decrement value => decrement(value),
+            BodyProperties::ExpirationChange value => expirationChange(value),
+            BodyProperties::Void value => void1(value),
+            BodyProperties::Amendment value => amendment(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Body"),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of Body");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class BodyConverter : JsonConverter<Body>
@@ -146,14 +243,15 @@ sealed class BodyConverter : JsonConverter<Body>
                     );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::Increment(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::Increment",
+                            "Data does not match union variant 'BodyProperties::Increment'",
                             e
                         )
                     );
@@ -173,14 +271,15 @@ sealed class BodyConverter : JsonConverter<Body>
                     );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::Decrement(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::Decrement",
+                            "Data does not match union variant 'BodyProperties::Decrement'",
                             e
                         )
                     );
@@ -200,14 +299,15 @@ sealed class BodyConverter : JsonConverter<Body>
                     );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::ExpirationChange(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::ExpirationChange",
+                            "Data does not match union variant 'BodyProperties::ExpirationChange'",
                             e
                         )
                     );
@@ -227,14 +327,15 @@ sealed class BodyConverter : JsonConverter<Body>
                     );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::Void(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::Void",
+                            "Data does not match union variant 'BodyProperties::Void'",
                             e
                         )
                     );
@@ -254,14 +355,15 @@ sealed class BodyConverter : JsonConverter<Body>
                     );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::Amendment(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::Amendment",
+                            "Data does not match union variant 'BodyProperties::Amendment'",
                             e
                         )
                     );
@@ -280,15 +382,7 @@ sealed class BodyConverter : JsonConverter<Body>
 
     public override void Write(Utf8JsonWriter writer, Body value, JsonSerializerOptions options)
     {
-        object variant = value switch
-        {
-            BodyVariants::Increment(var increment) => increment,
-            BodyVariants::Decrement(var decrement) => decrement,
-            BodyVariants::ExpirationChange(var expirationChange) => expirationChange,
-            BodyVariants::Void(var void1) => void1,
-            BodyVariants::Amendment(var amendment) => amendment,
-            _ => throw new OrbInvalidDataException("Data did not match any variant of Body"),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }
