@@ -5,45 +5,58 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
 using Orb.Models.Subscriptions.SubscriptionUsageProperties;
-using SubscriptionUsageVariants = Orb.Models.Subscriptions.SubscriptionUsageVariants;
 
 namespace Orb.Models.Subscriptions;
 
 [JsonConverter(typeof(SubscriptionUsageConverter))]
-public abstract record class SubscriptionUsage
+public record class SubscriptionUsage
 {
-    internal SubscriptionUsage() { }
+    public object Value { get; private init; }
 
-    public static implicit operator SubscriptionUsage(UngroupedSubscriptionUsage value) =>
-        new SubscriptionUsageVariants::UngroupedSubscriptionUsage(value);
+    public SubscriptionUsage(UngroupedSubscriptionUsage value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator SubscriptionUsage(GroupedSubscriptionUsage value) =>
-        new SubscriptionUsageVariants::GroupedSubscriptionUsage(value);
+    public SubscriptionUsage(GroupedSubscriptionUsage value)
+    {
+        Value = value;
+    }
+
+    SubscriptionUsage(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static SubscriptionUsage CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickUngrouped([NotNullWhen(true)] out UngroupedSubscriptionUsage? value)
     {
-        value = (this as SubscriptionUsageVariants::UngroupedSubscriptionUsage)?.Value;
+        value = this.Value as UngroupedSubscriptionUsage;
         return value != null;
     }
 
     public bool TryPickGrouped([NotNullWhen(true)] out GroupedSubscriptionUsage? value)
     {
-        value = (this as SubscriptionUsageVariants::GroupedSubscriptionUsage)?.Value;
+        value = this.Value as GroupedSubscriptionUsage;
         return value != null;
     }
 
     public void Switch(
-        Action<SubscriptionUsageVariants::UngroupedSubscriptionUsage> ungrouped,
-        Action<SubscriptionUsageVariants::GroupedSubscriptionUsage> grouped
+        Action<UngroupedSubscriptionUsage> ungrouped,
+        Action<GroupedSubscriptionUsage> grouped
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case SubscriptionUsageVariants::UngroupedSubscriptionUsage inner:
-                ungrouped(inner);
+            case UngroupedSubscriptionUsage value:
+                ungrouped(value);
                 break;
-            case SubscriptionUsageVariants::GroupedSubscriptionUsage inner:
-                grouped(inner);
+            case GroupedSubscriptionUsage value:
+                grouped(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
@@ -53,21 +66,31 @@ public abstract record class SubscriptionUsage
     }
 
     public T Match<T>(
-        Func<SubscriptionUsageVariants::UngroupedSubscriptionUsage, T> ungrouped,
-        Func<SubscriptionUsageVariants::GroupedSubscriptionUsage, T> grouped
+        Func<UngroupedSubscriptionUsage, T> ungrouped,
+        Func<GroupedSubscriptionUsage, T> grouped
     )
     {
-        return this switch
+        return this.Value switch
         {
-            SubscriptionUsageVariants::UngroupedSubscriptionUsage inner => ungrouped(inner),
-            SubscriptionUsageVariants::GroupedSubscriptionUsage inner => grouped(inner),
+            UngroupedSubscriptionUsage value => ungrouped(value),
+            GroupedSubscriptionUsage value => grouped(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of SubscriptionUsage"
             ),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of SubscriptionUsage"
+            );
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
@@ -88,14 +111,15 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
             );
             if (deserialized != null)
             {
-                return new SubscriptionUsageVariants::UngroupedSubscriptionUsage(deserialized);
+                deserialized.Validate();
+                return new SubscriptionUsage(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
-                    "Data does not match union variant SubscriptionUsageVariants::UngroupedSubscriptionUsage",
+                    "Data does not match union variant 'UngroupedSubscriptionUsage'",
                     e
                 )
             );
@@ -109,14 +133,15 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
             );
             if (deserialized != null)
             {
-                return new SubscriptionUsageVariants::GroupedSubscriptionUsage(deserialized);
+                deserialized.Validate();
+                return new SubscriptionUsage(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
-                    "Data does not match union variant SubscriptionUsageVariants::GroupedSubscriptionUsage",
+                    "Data does not match union variant 'GroupedSubscriptionUsage'",
                     e
                 )
             );
@@ -131,14 +156,7 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
         JsonSerializerOptions options
     )
     {
-        object variant = value switch
-        {
-            SubscriptionUsageVariants::UngroupedSubscriptionUsage(var ungrouped) => ungrouped,
-            SubscriptionUsageVariants::GroupedSubscriptionUsage(var grouped) => grouped,
-            _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of SubscriptionUsage"
-            ),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

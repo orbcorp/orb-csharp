@@ -4,58 +4,97 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
-using DiscountIntervalVariants = Orb.Models.SubscriptionChanges.MutatedSubscriptionProperties.DiscountIntervalVariants;
 
 namespace Orb.Models.SubscriptionChanges.MutatedSubscriptionProperties;
 
 [JsonConverter(typeof(DiscountIntervalConverter))]
-public abstract record class DiscountInterval
+public record class DiscountInterval
 {
-    internal DiscountInterval() { }
+    public object Value { get; private init; }
 
-    public static implicit operator DiscountInterval(AmountDiscountInterval value) =>
-        new DiscountIntervalVariants::AmountDiscountInterval(value);
+    public DateTime? EndDate
+    {
+        get
+        {
+            return Match<DateTime?>(
+                amount: (x) => x.EndDate,
+                percentage: (x) => x.EndDate,
+                usage: (x) => x.EndDate
+            );
+        }
+    }
 
-    public static implicit operator DiscountInterval(PercentageDiscountInterval value) =>
-        new DiscountIntervalVariants::PercentageDiscountInterval(value);
+    public DateTime StartDate
+    {
+        get
+        {
+            return Match(
+                amount: (x) => x.StartDate,
+                percentage: (x) => x.StartDate,
+                usage: (x) => x.StartDate
+            );
+        }
+    }
 
-    public static implicit operator DiscountInterval(UsageDiscountInterval value) =>
-        new DiscountIntervalVariants::UsageDiscountInterval(value);
+    public DiscountInterval(AmountDiscountInterval value)
+    {
+        Value = value;
+    }
+
+    public DiscountInterval(PercentageDiscountInterval value)
+    {
+        Value = value;
+    }
+
+    public DiscountInterval(UsageDiscountInterval value)
+    {
+        Value = value;
+    }
+
+    DiscountInterval(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static DiscountInterval CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickAmount([NotNullWhen(true)] out AmountDiscountInterval? value)
     {
-        value = (this as DiscountIntervalVariants::AmountDiscountInterval)?.Value;
+        value = this.Value as AmountDiscountInterval;
         return value != null;
     }
 
     public bool TryPickPercentage([NotNullWhen(true)] out PercentageDiscountInterval? value)
     {
-        value = (this as DiscountIntervalVariants::PercentageDiscountInterval)?.Value;
+        value = this.Value as PercentageDiscountInterval;
         return value != null;
     }
 
     public bool TryPickUsage([NotNullWhen(true)] out UsageDiscountInterval? value)
     {
-        value = (this as DiscountIntervalVariants::UsageDiscountInterval)?.Value;
+        value = this.Value as UsageDiscountInterval;
         return value != null;
     }
 
     public void Switch(
-        Action<DiscountIntervalVariants::AmountDiscountInterval> amount,
-        Action<DiscountIntervalVariants::PercentageDiscountInterval> percentage,
-        Action<DiscountIntervalVariants::UsageDiscountInterval> usage
+        Action<AmountDiscountInterval> amount,
+        Action<PercentageDiscountInterval> percentage,
+        Action<UsageDiscountInterval> usage
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case DiscountIntervalVariants::AmountDiscountInterval inner:
-                amount(inner);
+            case AmountDiscountInterval value:
+                amount(value);
                 break;
-            case DiscountIntervalVariants::PercentageDiscountInterval inner:
-                percentage(inner);
+            case PercentageDiscountInterval value:
+                percentage(value);
                 break;
-            case DiscountIntervalVariants::UsageDiscountInterval inner:
-                usage(inner);
+            case UsageDiscountInterval value:
+                usage(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
@@ -65,23 +104,31 @@ public abstract record class DiscountInterval
     }
 
     public T Match<T>(
-        Func<DiscountIntervalVariants::AmountDiscountInterval, T> amount,
-        Func<DiscountIntervalVariants::PercentageDiscountInterval, T> percentage,
-        Func<DiscountIntervalVariants::UsageDiscountInterval, T> usage
+        Func<AmountDiscountInterval, T> amount,
+        Func<PercentageDiscountInterval, T> percentage,
+        Func<UsageDiscountInterval, T> usage
     )
     {
-        return this switch
+        return this.Value switch
         {
-            DiscountIntervalVariants::AmountDiscountInterval inner => amount(inner),
-            DiscountIntervalVariants::PercentageDiscountInterval inner => percentage(inner),
-            DiscountIntervalVariants::UsageDiscountInterval inner => usage(inner),
+            AmountDiscountInterval value => amount(value),
+            PercentageDiscountInterval value => percentage(value),
+            UsageDiscountInterval value => usage(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of DiscountInterval"
             ),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of DiscountInterval");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
@@ -117,14 +164,15 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
                     );
                     if (deserialized != null)
                     {
-                        return new DiscountIntervalVariants::AmountDiscountInterval(deserialized);
+                        deserialized.Validate();
+                        return new DiscountInterval(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant DiscountIntervalVariants::AmountDiscountInterval",
+                            "Data does not match union variant 'AmountDiscountInterval'",
                             e
                         )
                     );
@@ -144,16 +192,15 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
                     );
                     if (deserialized != null)
                     {
-                        return new DiscountIntervalVariants::PercentageDiscountInterval(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new DiscountInterval(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant DiscountIntervalVariants::PercentageDiscountInterval",
+                            "Data does not match union variant 'PercentageDiscountInterval'",
                             e
                         )
                     );
@@ -173,14 +220,15 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
                     );
                     if (deserialized != null)
                     {
-                        return new DiscountIntervalVariants::UsageDiscountInterval(deserialized);
+                        deserialized.Validate();
+                        return new DiscountInterval(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant DiscountIntervalVariants::UsageDiscountInterval",
+                            "Data does not match union variant 'UsageDiscountInterval'",
                             e
                         )
                     );
@@ -203,15 +251,7 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
         JsonSerializerOptions options
     )
     {
-        object variant = value switch
-        {
-            DiscountIntervalVariants::AmountDiscountInterval(var amount) => amount,
-            DiscountIntervalVariants::PercentageDiscountInterval(var percentage) => percentage,
-            DiscountIntervalVariants::UsageDiscountInterval(var usage) => usage,
-            _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of DiscountInterval"
-            ),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

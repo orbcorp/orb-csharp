@@ -4,58 +4,85 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
-using InvoiceLevelDiscountVariants = Orb.Models.InvoiceLevelDiscountVariants;
 
 namespace Orb.Models;
 
 [JsonConverter(typeof(InvoiceLevelDiscountConverter))]
-public abstract record class InvoiceLevelDiscount
+public record class InvoiceLevelDiscount
 {
-    internal InvoiceLevelDiscount() { }
+    public object Value { get; private init; }
 
-    public static implicit operator InvoiceLevelDiscount(PercentageDiscount value) =>
-        new InvoiceLevelDiscountVariants::PercentageDiscount(value);
+    public string? Reason
+    {
+        get
+        {
+            return Match<string?>(
+                percentage: (x) => x.Reason,
+                amount: (x) => x.Reason,
+                trial: (x) => x.Reason
+            );
+        }
+    }
 
-    public static implicit operator InvoiceLevelDiscount(AmountDiscount value) =>
-        new InvoiceLevelDiscountVariants::AmountDiscount(value);
+    public InvoiceLevelDiscount(PercentageDiscount value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator InvoiceLevelDiscount(TrialDiscount value) =>
-        new InvoiceLevelDiscountVariants::TrialDiscount(value);
+    public InvoiceLevelDiscount(AmountDiscount value)
+    {
+        Value = value;
+    }
+
+    public InvoiceLevelDiscount(TrialDiscount value)
+    {
+        Value = value;
+    }
+
+    InvoiceLevelDiscount(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static InvoiceLevelDiscount CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickPercentage([NotNullWhen(true)] out PercentageDiscount? value)
     {
-        value = (this as InvoiceLevelDiscountVariants::PercentageDiscount)?.Value;
+        value = this.Value as PercentageDiscount;
         return value != null;
     }
 
     public bool TryPickAmount([NotNullWhen(true)] out AmountDiscount? value)
     {
-        value = (this as InvoiceLevelDiscountVariants::AmountDiscount)?.Value;
+        value = this.Value as AmountDiscount;
         return value != null;
     }
 
     public bool TryPickTrial([NotNullWhen(true)] out TrialDiscount? value)
     {
-        value = (this as InvoiceLevelDiscountVariants::TrialDiscount)?.Value;
+        value = this.Value as TrialDiscount;
         return value != null;
     }
 
     public void Switch(
-        Action<InvoiceLevelDiscountVariants::PercentageDiscount> percentage,
-        Action<InvoiceLevelDiscountVariants::AmountDiscount> amount,
-        Action<InvoiceLevelDiscountVariants::TrialDiscount> trial
+        Action<PercentageDiscount> percentage,
+        Action<AmountDiscount> amount,
+        Action<TrialDiscount> trial
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case InvoiceLevelDiscountVariants::PercentageDiscount inner:
-                percentage(inner);
+            case PercentageDiscount value:
+                percentage(value);
                 break;
-            case InvoiceLevelDiscountVariants::AmountDiscount inner:
-                amount(inner);
+            case AmountDiscount value:
+                amount(value);
                 break;
-            case InvoiceLevelDiscountVariants::TrialDiscount inner:
-                trial(inner);
+            case TrialDiscount value:
+                trial(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
@@ -65,23 +92,33 @@ public abstract record class InvoiceLevelDiscount
     }
 
     public T Match<T>(
-        Func<InvoiceLevelDiscountVariants::PercentageDiscount, T> percentage,
-        Func<InvoiceLevelDiscountVariants::AmountDiscount, T> amount,
-        Func<InvoiceLevelDiscountVariants::TrialDiscount, T> trial
+        Func<PercentageDiscount, T> percentage,
+        Func<AmountDiscount, T> amount,
+        Func<TrialDiscount, T> trial
     )
     {
-        return this switch
+        return this.Value switch
         {
-            InvoiceLevelDiscountVariants::PercentageDiscount inner => percentage(inner),
-            InvoiceLevelDiscountVariants::AmountDiscount inner => amount(inner),
-            InvoiceLevelDiscountVariants::TrialDiscount inner => trial(inner),
+            PercentageDiscount value => percentage(value),
+            AmountDiscount value => amount(value),
+            TrialDiscount value => trial(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of InvoiceLevelDiscount"
             ),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of InvoiceLevelDiscount"
+            );
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
@@ -117,14 +154,15 @@ sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
                     );
                     if (deserialized != null)
                     {
-                        return new InvoiceLevelDiscountVariants::PercentageDiscount(deserialized);
+                        deserialized.Validate();
+                        return new InvoiceLevelDiscount(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant InvoiceLevelDiscountVariants::PercentageDiscount",
+                            "Data does not match union variant 'PercentageDiscount'",
                             e
                         )
                     );
@@ -141,14 +179,15 @@ sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
                     var deserialized = JsonSerializer.Deserialize<AmountDiscount>(json, options);
                     if (deserialized != null)
                     {
-                        return new InvoiceLevelDiscountVariants::AmountDiscount(deserialized);
+                        deserialized.Validate();
+                        return new InvoiceLevelDiscount(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant InvoiceLevelDiscountVariants::AmountDiscount",
+                            "Data does not match union variant 'AmountDiscount'",
                             e
                         )
                     );
@@ -165,14 +204,15 @@ sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
                     var deserialized = JsonSerializer.Deserialize<TrialDiscount>(json, options);
                     if (deserialized != null)
                     {
-                        return new InvoiceLevelDiscountVariants::TrialDiscount(deserialized);
+                        deserialized.Validate();
+                        return new InvoiceLevelDiscount(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant InvoiceLevelDiscountVariants::TrialDiscount",
+                            "Data does not match union variant 'TrialDiscount'",
                             e
                         )
                     );
@@ -195,15 +235,7 @@ sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
         JsonSerializerOptions options
     )
     {
-        object variant = value switch
-        {
-            InvoiceLevelDiscountVariants::PercentageDiscount(var percentage) => percentage,
-            InvoiceLevelDiscountVariants::AmountDiscount(var amount) => amount,
-            InvoiceLevelDiscountVariants::TrialDiscount(var trial) => trial,
-            _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of InvoiceLevelDiscount"
-            ),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

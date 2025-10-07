@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
+using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.DecrementProperties;
 using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties;
@@ -36,7 +37,7 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
         }
     }
 
-    public JsonElement EntryType
+    public EntryType EntryType
     {
         get
         {
@@ -49,7 +50,11 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
                     )
                 );
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<EntryType>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentNullException("entry_type")
+                );
         }
         set
         {
@@ -134,6 +139,7 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
     public override void Validate()
     {
         _ = this.Amount;
+        this.EntryType.Validate();
         _ = this.Currency;
         _ = this.Description;
         if (this.Metadata != null)
@@ -147,7 +153,7 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
 
     public Decrement()
     {
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"decrement\"");
+        this.EntryType = new();
     }
 
 #pragma warning disable CS8618

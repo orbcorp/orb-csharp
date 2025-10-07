@@ -5,71 +5,101 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
 using Orb.Models.Customers.CustomerUpdateParamsProperties.TaxConfigurationProperties;
-using TaxConfigurationVariants = Orb.Models.Customers.CustomerUpdateParamsProperties.TaxConfigurationVariants;
 
 namespace Orb.Models.Customers.CustomerUpdateParamsProperties;
 
 [JsonConverter(typeof(TaxConfigurationConverter))]
-public abstract record class TaxConfiguration
+public record class TaxConfiguration
 {
-    internal TaxConfiguration() { }
+    public object Value { get; private init; }
 
-    public static implicit operator TaxConfiguration(NewAvalaraTaxConfiguration value) =>
-        new TaxConfigurationVariants::NewAvalaraTaxConfiguration(value);
+    public bool TaxExempt
+    {
+        get
+        {
+            return Match(
+                newAvalara: (x) => x.TaxExempt,
+                newTaxJar: (x) => x.TaxExempt,
+                newSphere: (x) => x.TaxExempt,
+                numeral: (x) => x.TaxExempt
+            );
+        }
+    }
 
-    public static implicit operator TaxConfiguration(NewTaxJarConfiguration value) =>
-        new TaxConfigurationVariants::NewTaxJarConfiguration(value);
+    public TaxConfiguration(NewAvalaraTaxConfiguration value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator TaxConfiguration(NewSphereConfiguration value) =>
-        new TaxConfigurationVariants::NewSphereConfiguration(value);
+    public TaxConfiguration(NewTaxJarConfiguration value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator TaxConfiguration(Numeral value) =>
-        new TaxConfigurationVariants::Numeral(value);
+    public TaxConfiguration(NewSphereConfiguration value)
+    {
+        Value = value;
+    }
+
+    public TaxConfiguration(Numeral value)
+    {
+        Value = value;
+    }
+
+    TaxConfiguration(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static TaxConfiguration CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickNewAvalara([NotNullWhen(true)] out NewAvalaraTaxConfiguration? value)
     {
-        value = (this as TaxConfigurationVariants::NewAvalaraTaxConfiguration)?.Value;
+        value = this.Value as NewAvalaraTaxConfiguration;
         return value != null;
     }
 
     public bool TryPickNewTaxJar([NotNullWhen(true)] out NewTaxJarConfiguration? value)
     {
-        value = (this as TaxConfigurationVariants::NewTaxJarConfiguration)?.Value;
+        value = this.Value as NewTaxJarConfiguration;
         return value != null;
     }
 
     public bool TryPickNewSphere([NotNullWhen(true)] out NewSphereConfiguration? value)
     {
-        value = (this as TaxConfigurationVariants::NewSphereConfiguration)?.Value;
+        value = this.Value as NewSphereConfiguration;
         return value != null;
     }
 
     public bool TryPickNumeral([NotNullWhen(true)] out Numeral? value)
     {
-        value = (this as TaxConfigurationVariants::Numeral)?.Value;
+        value = this.Value as Numeral;
         return value != null;
     }
 
     public void Switch(
-        Action<TaxConfigurationVariants::NewAvalaraTaxConfiguration> newAvalara,
-        Action<TaxConfigurationVariants::NewTaxJarConfiguration> newTaxJar,
-        Action<TaxConfigurationVariants::NewSphereConfiguration> newSphere,
-        Action<TaxConfigurationVariants::Numeral> numeral
+        Action<NewAvalaraTaxConfiguration> newAvalara,
+        Action<NewTaxJarConfiguration> newTaxJar,
+        Action<NewSphereConfiguration> newSphere,
+        Action<Numeral> numeral
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case TaxConfigurationVariants::NewAvalaraTaxConfiguration inner:
-                newAvalara(inner);
+            case NewAvalaraTaxConfiguration value:
+                newAvalara(value);
                 break;
-            case TaxConfigurationVariants::NewTaxJarConfiguration inner:
-                newTaxJar(inner);
+            case NewTaxJarConfiguration value:
+                newTaxJar(value);
                 break;
-            case TaxConfigurationVariants::NewSphereConfiguration inner:
-                newSphere(inner);
+            case NewSphereConfiguration value:
+                newSphere(value);
                 break;
-            case TaxConfigurationVariants::Numeral inner:
-                numeral(inner);
+            case Numeral value:
+                numeral(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
@@ -79,25 +109,33 @@ public abstract record class TaxConfiguration
     }
 
     public T Match<T>(
-        Func<TaxConfigurationVariants::NewAvalaraTaxConfiguration, T> newAvalara,
-        Func<TaxConfigurationVariants::NewTaxJarConfiguration, T> newTaxJar,
-        Func<TaxConfigurationVariants::NewSphereConfiguration, T> newSphere,
-        Func<TaxConfigurationVariants::Numeral, T> numeral
+        Func<NewAvalaraTaxConfiguration, T> newAvalara,
+        Func<NewTaxJarConfiguration, T> newTaxJar,
+        Func<NewSphereConfiguration, T> newSphere,
+        Func<Numeral, T> numeral
     )
     {
-        return this switch
+        return this.Value switch
         {
-            TaxConfigurationVariants::NewAvalaraTaxConfiguration inner => newAvalara(inner),
-            TaxConfigurationVariants::NewTaxJarConfiguration inner => newTaxJar(inner),
-            TaxConfigurationVariants::NewSphereConfiguration inner => newSphere(inner),
-            TaxConfigurationVariants::Numeral inner => numeral(inner),
+            NewAvalaraTaxConfiguration value => newAvalara(value),
+            NewTaxJarConfiguration value => newTaxJar(value),
+            NewSphereConfiguration value => newSphere(value),
+            Numeral value => numeral(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of TaxConfiguration"
             ),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of TaxConfiguration");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
@@ -133,16 +171,15 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     );
                     if (deserialized != null)
                     {
-                        return new TaxConfigurationVariants::NewAvalaraTaxConfiguration(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new TaxConfiguration(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant TaxConfigurationVariants::NewAvalaraTaxConfiguration",
+                            "Data does not match union variant 'NewAvalaraTaxConfiguration'",
                             e
                         )
                     );
@@ -162,14 +199,15 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     );
                     if (deserialized != null)
                     {
-                        return new TaxConfigurationVariants::NewTaxJarConfiguration(deserialized);
+                        deserialized.Validate();
+                        return new TaxConfiguration(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant TaxConfigurationVariants::NewTaxJarConfiguration",
+                            "Data does not match union variant 'NewTaxJarConfiguration'",
                             e
                         )
                     );
@@ -189,14 +227,15 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     );
                     if (deserialized != null)
                     {
-                        return new TaxConfigurationVariants::NewSphereConfiguration(deserialized);
+                        deserialized.Validate();
+                        return new TaxConfiguration(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant TaxConfigurationVariants::NewSphereConfiguration",
+                            "Data does not match union variant 'NewSphereConfiguration'",
                             e
                         )
                     );
@@ -213,14 +252,15 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     var deserialized = JsonSerializer.Deserialize<Numeral>(json, options);
                     if (deserialized != null)
                     {
-                        return new TaxConfigurationVariants::Numeral(deserialized);
+                        deserialized.Validate();
+                        return new TaxConfiguration(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant TaxConfigurationVariants::Numeral",
+                            "Data does not match union variant 'Numeral'",
                             e
                         )
                     );
@@ -243,17 +283,7 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
         JsonSerializerOptions options
     )
     {
-        object? variant = value switch
-        {
-            null => null,
-            TaxConfigurationVariants::NewAvalaraTaxConfiguration(var newAvalara) => newAvalara,
-            TaxConfigurationVariants::NewTaxJarConfiguration(var newTaxJar) => newTaxJar,
-            TaxConfigurationVariants::NewSphereConfiguration(var newSphere) => newSphere,
-            TaxConfigurationVariants::Numeral(var numeral) => numeral,
-            _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of TaxConfiguration"
-            ),
-        };
+        object? variant = value?.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

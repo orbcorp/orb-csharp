@@ -5,7 +5,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
 using Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.AddPriceProperties.PriceProperties;
-using PriceVariants = Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.AddPriceProperties.PriceVariants;
 
 namespace Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.AddPriceProperties;
 
@@ -13,123 +12,686 @@ namespace Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.AddPriceProperti
 /// New plan price request body params.
 /// </summary>
 [JsonConverter(typeof(PriceConverter))]
-public abstract record class Price
+public record class Price
 {
-    internal Price() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Price(NewPlanUnitPrice value) =>
-        new PriceVariants::NewPlanUnitPrice(value);
+    public string ItemID
+    {
+        get
+        {
+            return Match(
+                newPlanUnit: (x) => x.ItemID,
+                newPlanTiered: (x) => x.ItemID,
+                newPlanBulk: (x) => x.ItemID,
+                newPlanPackage: (x) => x.ItemID,
+                newPlanMatrix: (x) => x.ItemID,
+                newPlanThresholdTotalAmount: (x) => x.ItemID,
+                newPlanTieredPackage: (x) => x.ItemID,
+                newPlanTieredWithMinimum: (x) => x.ItemID,
+                newPlanGroupedTiered: (x) => x.ItemID,
+                newPlanTieredPackageWithMinimum: (x) => x.ItemID,
+                newPlanPackageWithAllocation: (x) => x.ItemID,
+                newPlanUnitWithPercent: (x) => x.ItemID,
+                newPlanMatrixWithAllocation: (x) => x.ItemID,
+                tieredWithProration: (x) => x.ItemID,
+                newPlanUnitWithProration: (x) => x.ItemID,
+                newPlanGroupedAllocation: (x) => x.ItemID,
+                newPlanBulkWithProration: (x) => x.ItemID,
+                newPlanGroupedWithProratedMinimum: (x) => x.ItemID,
+                newPlanGroupedWithMeteredMinimum: (x) => x.ItemID,
+                groupedWithMinMaxThresholds: (x) => x.ItemID,
+                newPlanMatrixWithDisplayName: (x) => x.ItemID,
+                newPlanGroupedTieredPackage: (x) => x.ItemID,
+                newPlanMaxGroupTieredPackage: (x) => x.ItemID,
+                newPlanScalableMatrixWithUnitPricing: (x) => x.ItemID,
+                newPlanScalableMatrixWithTieredPricing: (x) => x.ItemID,
+                newPlanCumulativeGroupedBulk: (x) => x.ItemID,
+                newPlanMinimumComposite: (x) => x.ItemID,
+                percent: (x) => x.ItemID,
+                eventOutput: (x) => x.ItemID
+            );
+        }
+    }
 
-    public static implicit operator Price(NewPlanTieredPrice value) =>
-        new PriceVariants::NewPlanTieredPrice(value);
+    public string Name
+    {
+        get
+        {
+            return Match(
+                newPlanUnit: (x) => x.Name,
+                newPlanTiered: (x) => x.Name,
+                newPlanBulk: (x) => x.Name,
+                newPlanPackage: (x) => x.Name,
+                newPlanMatrix: (x) => x.Name,
+                newPlanThresholdTotalAmount: (x) => x.Name,
+                newPlanTieredPackage: (x) => x.Name,
+                newPlanTieredWithMinimum: (x) => x.Name,
+                newPlanGroupedTiered: (x) => x.Name,
+                newPlanTieredPackageWithMinimum: (x) => x.Name,
+                newPlanPackageWithAllocation: (x) => x.Name,
+                newPlanUnitWithPercent: (x) => x.Name,
+                newPlanMatrixWithAllocation: (x) => x.Name,
+                tieredWithProration: (x) => x.Name,
+                newPlanUnitWithProration: (x) => x.Name,
+                newPlanGroupedAllocation: (x) => x.Name,
+                newPlanBulkWithProration: (x) => x.Name,
+                newPlanGroupedWithProratedMinimum: (x) => x.Name,
+                newPlanGroupedWithMeteredMinimum: (x) => x.Name,
+                groupedWithMinMaxThresholds: (x) => x.Name,
+                newPlanMatrixWithDisplayName: (x) => x.Name,
+                newPlanGroupedTieredPackage: (x) => x.Name,
+                newPlanMaxGroupTieredPackage: (x) => x.Name,
+                newPlanScalableMatrixWithUnitPricing: (x) => x.Name,
+                newPlanScalableMatrixWithTieredPricing: (x) => x.Name,
+                newPlanCumulativeGroupedBulk: (x) => x.Name,
+                newPlanMinimumComposite: (x) => x.Name,
+                percent: (x) => x.Name,
+                eventOutput: (x) => x.Name
+            );
+        }
+    }
 
-    public static implicit operator Price(NewPlanBulkPrice value) =>
-        new PriceVariants::NewPlanBulkPrice(value);
+    public string? BillableMetricID
+    {
+        get
+        {
+            return Match<string?>(
+                newPlanUnit: (x) => x.BillableMetricID,
+                newPlanTiered: (x) => x.BillableMetricID,
+                newPlanBulk: (x) => x.BillableMetricID,
+                newPlanPackage: (x) => x.BillableMetricID,
+                newPlanMatrix: (x) => x.BillableMetricID,
+                newPlanThresholdTotalAmount: (x) => x.BillableMetricID,
+                newPlanTieredPackage: (x) => x.BillableMetricID,
+                newPlanTieredWithMinimum: (x) => x.BillableMetricID,
+                newPlanGroupedTiered: (x) => x.BillableMetricID,
+                newPlanTieredPackageWithMinimum: (x) => x.BillableMetricID,
+                newPlanPackageWithAllocation: (x) => x.BillableMetricID,
+                newPlanUnitWithPercent: (x) => x.BillableMetricID,
+                newPlanMatrixWithAllocation: (x) => x.BillableMetricID,
+                tieredWithProration: (x) => x.BillableMetricID,
+                newPlanUnitWithProration: (x) => x.BillableMetricID,
+                newPlanGroupedAllocation: (x) => x.BillableMetricID,
+                newPlanBulkWithProration: (x) => x.BillableMetricID,
+                newPlanGroupedWithProratedMinimum: (x) => x.BillableMetricID,
+                newPlanGroupedWithMeteredMinimum: (x) => x.BillableMetricID,
+                groupedWithMinMaxThresholds: (x) => x.BillableMetricID,
+                newPlanMatrixWithDisplayName: (x) => x.BillableMetricID,
+                newPlanGroupedTieredPackage: (x) => x.BillableMetricID,
+                newPlanMaxGroupTieredPackage: (x) => x.BillableMetricID,
+                newPlanScalableMatrixWithUnitPricing: (x) => x.BillableMetricID,
+                newPlanScalableMatrixWithTieredPricing: (x) => x.BillableMetricID,
+                newPlanCumulativeGroupedBulk: (x) => x.BillableMetricID,
+                newPlanMinimumComposite: (x) => x.BillableMetricID,
+                percent: (x) => x.BillableMetricID,
+                eventOutput: (x) => x.BillableMetricID
+            );
+        }
+    }
 
-    public static implicit operator Price(NewPlanPackagePrice value) =>
-        new PriceVariants::NewPlanPackagePrice(value);
+    public bool? BilledInAdvance
+    {
+        get
+        {
+            return Match<bool?>(
+                newPlanUnit: (x) => x.BilledInAdvance,
+                newPlanTiered: (x) => x.BilledInAdvance,
+                newPlanBulk: (x) => x.BilledInAdvance,
+                newPlanPackage: (x) => x.BilledInAdvance,
+                newPlanMatrix: (x) => x.BilledInAdvance,
+                newPlanThresholdTotalAmount: (x) => x.BilledInAdvance,
+                newPlanTieredPackage: (x) => x.BilledInAdvance,
+                newPlanTieredWithMinimum: (x) => x.BilledInAdvance,
+                newPlanGroupedTiered: (x) => x.BilledInAdvance,
+                newPlanTieredPackageWithMinimum: (x) => x.BilledInAdvance,
+                newPlanPackageWithAllocation: (x) => x.BilledInAdvance,
+                newPlanUnitWithPercent: (x) => x.BilledInAdvance,
+                newPlanMatrixWithAllocation: (x) => x.BilledInAdvance,
+                tieredWithProration: (x) => x.BilledInAdvance,
+                newPlanUnitWithProration: (x) => x.BilledInAdvance,
+                newPlanGroupedAllocation: (x) => x.BilledInAdvance,
+                newPlanBulkWithProration: (x) => x.BilledInAdvance,
+                newPlanGroupedWithProratedMinimum: (x) => x.BilledInAdvance,
+                newPlanGroupedWithMeteredMinimum: (x) => x.BilledInAdvance,
+                groupedWithMinMaxThresholds: (x) => x.BilledInAdvance,
+                newPlanMatrixWithDisplayName: (x) => x.BilledInAdvance,
+                newPlanGroupedTieredPackage: (x) => x.BilledInAdvance,
+                newPlanMaxGroupTieredPackage: (x) => x.BilledInAdvance,
+                newPlanScalableMatrixWithUnitPricing: (x) => x.BilledInAdvance,
+                newPlanScalableMatrixWithTieredPricing: (x) => x.BilledInAdvance,
+                newPlanCumulativeGroupedBulk: (x) => x.BilledInAdvance,
+                newPlanMinimumComposite: (x) => x.BilledInAdvance,
+                percent: (x) => x.BilledInAdvance,
+                eventOutput: (x) => x.BilledInAdvance
+            );
+        }
+    }
 
-    public static implicit operator Price(NewPlanMatrixPrice value) =>
-        new PriceVariants::NewPlanMatrixPrice(value);
+    public NewBillingCycleConfiguration? BillingCycleConfiguration
+    {
+        get
+        {
+            return Match<NewBillingCycleConfiguration?>(
+                newPlanUnit: (x) => x.BillingCycleConfiguration,
+                newPlanTiered: (x) => x.BillingCycleConfiguration,
+                newPlanBulk: (x) => x.BillingCycleConfiguration,
+                newPlanPackage: (x) => x.BillingCycleConfiguration,
+                newPlanMatrix: (x) => x.BillingCycleConfiguration,
+                newPlanThresholdTotalAmount: (x) => x.BillingCycleConfiguration,
+                newPlanTieredPackage: (x) => x.BillingCycleConfiguration,
+                newPlanTieredWithMinimum: (x) => x.BillingCycleConfiguration,
+                newPlanGroupedTiered: (x) => x.BillingCycleConfiguration,
+                newPlanTieredPackageWithMinimum: (x) => x.BillingCycleConfiguration,
+                newPlanPackageWithAllocation: (x) => x.BillingCycleConfiguration,
+                newPlanUnitWithPercent: (x) => x.BillingCycleConfiguration,
+                newPlanMatrixWithAllocation: (x) => x.BillingCycleConfiguration,
+                tieredWithProration: (x) => x.BillingCycleConfiguration,
+                newPlanUnitWithProration: (x) => x.BillingCycleConfiguration,
+                newPlanGroupedAllocation: (x) => x.BillingCycleConfiguration,
+                newPlanBulkWithProration: (x) => x.BillingCycleConfiguration,
+                newPlanGroupedWithProratedMinimum: (x) => x.BillingCycleConfiguration,
+                newPlanGroupedWithMeteredMinimum: (x) => x.BillingCycleConfiguration,
+                groupedWithMinMaxThresholds: (x) => x.BillingCycleConfiguration,
+                newPlanMatrixWithDisplayName: (x) => x.BillingCycleConfiguration,
+                newPlanGroupedTieredPackage: (x) => x.BillingCycleConfiguration,
+                newPlanMaxGroupTieredPackage: (x) => x.BillingCycleConfiguration,
+                newPlanScalableMatrixWithUnitPricing: (x) => x.BillingCycleConfiguration,
+                newPlanScalableMatrixWithTieredPricing: (x) => x.BillingCycleConfiguration,
+                newPlanCumulativeGroupedBulk: (x) => x.BillingCycleConfiguration,
+                newPlanMinimumComposite: (x) => x.BillingCycleConfiguration,
+                percent: (x) => x.BillingCycleConfiguration,
+                eventOutput: (x) => x.BillingCycleConfiguration
+            );
+        }
+    }
 
-    public static implicit operator Price(NewPlanThresholdTotalAmountPrice value) =>
-        new PriceVariants::NewPlanThresholdTotalAmountPrice(value);
+    public double? ConversionRate
+    {
+        get
+        {
+            return Match<double?>(
+                newPlanUnit: (x) => x.ConversionRate,
+                newPlanTiered: (x) => x.ConversionRate,
+                newPlanBulk: (x) => x.ConversionRate,
+                newPlanPackage: (x) => x.ConversionRate,
+                newPlanMatrix: (x) => x.ConversionRate,
+                newPlanThresholdTotalAmount: (x) => x.ConversionRate,
+                newPlanTieredPackage: (x) => x.ConversionRate,
+                newPlanTieredWithMinimum: (x) => x.ConversionRate,
+                newPlanGroupedTiered: (x) => x.ConversionRate,
+                newPlanTieredPackageWithMinimum: (x) => x.ConversionRate,
+                newPlanPackageWithAllocation: (x) => x.ConversionRate,
+                newPlanUnitWithPercent: (x) => x.ConversionRate,
+                newPlanMatrixWithAllocation: (x) => x.ConversionRate,
+                tieredWithProration: (x) => x.ConversionRate,
+                newPlanUnitWithProration: (x) => x.ConversionRate,
+                newPlanGroupedAllocation: (x) => x.ConversionRate,
+                newPlanBulkWithProration: (x) => x.ConversionRate,
+                newPlanGroupedWithProratedMinimum: (x) => x.ConversionRate,
+                newPlanGroupedWithMeteredMinimum: (x) => x.ConversionRate,
+                groupedWithMinMaxThresholds: (x) => x.ConversionRate,
+                newPlanMatrixWithDisplayName: (x) => x.ConversionRate,
+                newPlanGroupedTieredPackage: (x) => x.ConversionRate,
+                newPlanMaxGroupTieredPackage: (x) => x.ConversionRate,
+                newPlanScalableMatrixWithUnitPricing: (x) => x.ConversionRate,
+                newPlanScalableMatrixWithTieredPricing: (x) => x.ConversionRate,
+                newPlanCumulativeGroupedBulk: (x) => x.ConversionRate,
+                newPlanMinimumComposite: (x) => x.ConversionRate,
+                percent: (x) => x.ConversionRate,
+                eventOutput: (x) => x.ConversionRate
+            );
+        }
+    }
 
-    public static implicit operator Price(NewPlanTieredPackagePrice value) =>
-        new PriceVariants::NewPlanTieredPackagePrice(value);
+    public string? Currency
+    {
+        get
+        {
+            return Match<string?>(
+                newPlanUnit: (x) => x.Currency,
+                newPlanTiered: (x) => x.Currency,
+                newPlanBulk: (x) => x.Currency,
+                newPlanPackage: (x) => x.Currency,
+                newPlanMatrix: (x) => x.Currency,
+                newPlanThresholdTotalAmount: (x) => x.Currency,
+                newPlanTieredPackage: (x) => x.Currency,
+                newPlanTieredWithMinimum: (x) => x.Currency,
+                newPlanGroupedTiered: (x) => x.Currency,
+                newPlanTieredPackageWithMinimum: (x) => x.Currency,
+                newPlanPackageWithAllocation: (x) => x.Currency,
+                newPlanUnitWithPercent: (x) => x.Currency,
+                newPlanMatrixWithAllocation: (x) => x.Currency,
+                tieredWithProration: (x) => x.Currency,
+                newPlanUnitWithProration: (x) => x.Currency,
+                newPlanGroupedAllocation: (x) => x.Currency,
+                newPlanBulkWithProration: (x) => x.Currency,
+                newPlanGroupedWithProratedMinimum: (x) => x.Currency,
+                newPlanGroupedWithMeteredMinimum: (x) => x.Currency,
+                groupedWithMinMaxThresholds: (x) => x.Currency,
+                newPlanMatrixWithDisplayName: (x) => x.Currency,
+                newPlanGroupedTieredPackage: (x) => x.Currency,
+                newPlanMaxGroupTieredPackage: (x) => x.Currency,
+                newPlanScalableMatrixWithUnitPricing: (x) => x.Currency,
+                newPlanScalableMatrixWithTieredPricing: (x) => x.Currency,
+                newPlanCumulativeGroupedBulk: (x) => x.Currency,
+                newPlanMinimumComposite: (x) => x.Currency,
+                percent: (x) => x.Currency,
+                eventOutput: (x) => x.Currency
+            );
+        }
+    }
 
-    public static implicit operator Price(NewPlanTieredWithMinimumPrice value) =>
-        new PriceVariants::NewPlanTieredWithMinimumPrice(value);
+    public NewDimensionalPriceConfiguration? DimensionalPriceConfiguration
+    {
+        get
+        {
+            return Match<NewDimensionalPriceConfiguration?>(
+                newPlanUnit: (x) => x.DimensionalPriceConfiguration,
+                newPlanTiered: (x) => x.DimensionalPriceConfiguration,
+                newPlanBulk: (x) => x.DimensionalPriceConfiguration,
+                newPlanPackage: (x) => x.DimensionalPriceConfiguration,
+                newPlanMatrix: (x) => x.DimensionalPriceConfiguration,
+                newPlanThresholdTotalAmount: (x) => x.DimensionalPriceConfiguration,
+                newPlanTieredPackage: (x) => x.DimensionalPriceConfiguration,
+                newPlanTieredWithMinimum: (x) => x.DimensionalPriceConfiguration,
+                newPlanGroupedTiered: (x) => x.DimensionalPriceConfiguration,
+                newPlanTieredPackageWithMinimum: (x) => x.DimensionalPriceConfiguration,
+                newPlanPackageWithAllocation: (x) => x.DimensionalPriceConfiguration,
+                newPlanUnitWithPercent: (x) => x.DimensionalPriceConfiguration,
+                newPlanMatrixWithAllocation: (x) => x.DimensionalPriceConfiguration,
+                tieredWithProration: (x) => x.DimensionalPriceConfiguration,
+                newPlanUnitWithProration: (x) => x.DimensionalPriceConfiguration,
+                newPlanGroupedAllocation: (x) => x.DimensionalPriceConfiguration,
+                newPlanBulkWithProration: (x) => x.DimensionalPriceConfiguration,
+                newPlanGroupedWithProratedMinimum: (x) => x.DimensionalPriceConfiguration,
+                newPlanGroupedWithMeteredMinimum: (x) => x.DimensionalPriceConfiguration,
+                groupedWithMinMaxThresholds: (x) => x.DimensionalPriceConfiguration,
+                newPlanMatrixWithDisplayName: (x) => x.DimensionalPriceConfiguration,
+                newPlanGroupedTieredPackage: (x) => x.DimensionalPriceConfiguration,
+                newPlanMaxGroupTieredPackage: (x) => x.DimensionalPriceConfiguration,
+                newPlanScalableMatrixWithUnitPricing: (x) => x.DimensionalPriceConfiguration,
+                newPlanScalableMatrixWithTieredPricing: (x) => x.DimensionalPriceConfiguration,
+                newPlanCumulativeGroupedBulk: (x) => x.DimensionalPriceConfiguration,
+                newPlanMinimumComposite: (x) => x.DimensionalPriceConfiguration,
+                percent: (x) => x.DimensionalPriceConfiguration,
+                eventOutput: (x) => x.DimensionalPriceConfiguration
+            );
+        }
+    }
 
-    public static implicit operator Price(NewPlanGroupedTieredPrice value) =>
-        new PriceVariants::NewPlanGroupedTieredPrice(value);
+    public string? ExternalPriceID
+    {
+        get
+        {
+            return Match<string?>(
+                newPlanUnit: (x) => x.ExternalPriceID,
+                newPlanTiered: (x) => x.ExternalPriceID,
+                newPlanBulk: (x) => x.ExternalPriceID,
+                newPlanPackage: (x) => x.ExternalPriceID,
+                newPlanMatrix: (x) => x.ExternalPriceID,
+                newPlanThresholdTotalAmount: (x) => x.ExternalPriceID,
+                newPlanTieredPackage: (x) => x.ExternalPriceID,
+                newPlanTieredWithMinimum: (x) => x.ExternalPriceID,
+                newPlanGroupedTiered: (x) => x.ExternalPriceID,
+                newPlanTieredPackageWithMinimum: (x) => x.ExternalPriceID,
+                newPlanPackageWithAllocation: (x) => x.ExternalPriceID,
+                newPlanUnitWithPercent: (x) => x.ExternalPriceID,
+                newPlanMatrixWithAllocation: (x) => x.ExternalPriceID,
+                tieredWithProration: (x) => x.ExternalPriceID,
+                newPlanUnitWithProration: (x) => x.ExternalPriceID,
+                newPlanGroupedAllocation: (x) => x.ExternalPriceID,
+                newPlanBulkWithProration: (x) => x.ExternalPriceID,
+                newPlanGroupedWithProratedMinimum: (x) => x.ExternalPriceID,
+                newPlanGroupedWithMeteredMinimum: (x) => x.ExternalPriceID,
+                groupedWithMinMaxThresholds: (x) => x.ExternalPriceID,
+                newPlanMatrixWithDisplayName: (x) => x.ExternalPriceID,
+                newPlanGroupedTieredPackage: (x) => x.ExternalPriceID,
+                newPlanMaxGroupTieredPackage: (x) => x.ExternalPriceID,
+                newPlanScalableMatrixWithUnitPricing: (x) => x.ExternalPriceID,
+                newPlanScalableMatrixWithTieredPricing: (x) => x.ExternalPriceID,
+                newPlanCumulativeGroupedBulk: (x) => x.ExternalPriceID,
+                newPlanMinimumComposite: (x) => x.ExternalPriceID,
+                percent: (x) => x.ExternalPriceID,
+                eventOutput: (x) => x.ExternalPriceID
+            );
+        }
+    }
 
-    public static implicit operator Price(NewPlanTieredPackageWithMinimumPrice value) =>
-        new PriceVariants::NewPlanTieredPackageWithMinimumPrice(value);
+    public double? FixedPriceQuantity
+    {
+        get
+        {
+            return Match<double?>(
+                newPlanUnit: (x) => x.FixedPriceQuantity,
+                newPlanTiered: (x) => x.FixedPriceQuantity,
+                newPlanBulk: (x) => x.FixedPriceQuantity,
+                newPlanPackage: (x) => x.FixedPriceQuantity,
+                newPlanMatrix: (x) => x.FixedPriceQuantity,
+                newPlanThresholdTotalAmount: (x) => x.FixedPriceQuantity,
+                newPlanTieredPackage: (x) => x.FixedPriceQuantity,
+                newPlanTieredWithMinimum: (x) => x.FixedPriceQuantity,
+                newPlanGroupedTiered: (x) => x.FixedPriceQuantity,
+                newPlanTieredPackageWithMinimum: (x) => x.FixedPriceQuantity,
+                newPlanPackageWithAllocation: (x) => x.FixedPriceQuantity,
+                newPlanUnitWithPercent: (x) => x.FixedPriceQuantity,
+                newPlanMatrixWithAllocation: (x) => x.FixedPriceQuantity,
+                tieredWithProration: (x) => x.FixedPriceQuantity,
+                newPlanUnitWithProration: (x) => x.FixedPriceQuantity,
+                newPlanGroupedAllocation: (x) => x.FixedPriceQuantity,
+                newPlanBulkWithProration: (x) => x.FixedPriceQuantity,
+                newPlanGroupedWithProratedMinimum: (x) => x.FixedPriceQuantity,
+                newPlanGroupedWithMeteredMinimum: (x) => x.FixedPriceQuantity,
+                groupedWithMinMaxThresholds: (x) => x.FixedPriceQuantity,
+                newPlanMatrixWithDisplayName: (x) => x.FixedPriceQuantity,
+                newPlanGroupedTieredPackage: (x) => x.FixedPriceQuantity,
+                newPlanMaxGroupTieredPackage: (x) => x.FixedPriceQuantity,
+                newPlanScalableMatrixWithUnitPricing: (x) => x.FixedPriceQuantity,
+                newPlanScalableMatrixWithTieredPricing: (x) => x.FixedPriceQuantity,
+                newPlanCumulativeGroupedBulk: (x) => x.FixedPriceQuantity,
+                newPlanMinimumComposite: (x) => x.FixedPriceQuantity,
+                percent: (x) => x.FixedPriceQuantity,
+                eventOutput: (x) => x.FixedPriceQuantity
+            );
+        }
+    }
 
-    public static implicit operator Price(NewPlanPackageWithAllocationPrice value) =>
-        new PriceVariants::NewPlanPackageWithAllocationPrice(value);
+    public string? InvoiceGroupingKey
+    {
+        get
+        {
+            return Match<string?>(
+                newPlanUnit: (x) => x.InvoiceGroupingKey,
+                newPlanTiered: (x) => x.InvoiceGroupingKey,
+                newPlanBulk: (x) => x.InvoiceGroupingKey,
+                newPlanPackage: (x) => x.InvoiceGroupingKey,
+                newPlanMatrix: (x) => x.InvoiceGroupingKey,
+                newPlanThresholdTotalAmount: (x) => x.InvoiceGroupingKey,
+                newPlanTieredPackage: (x) => x.InvoiceGroupingKey,
+                newPlanTieredWithMinimum: (x) => x.InvoiceGroupingKey,
+                newPlanGroupedTiered: (x) => x.InvoiceGroupingKey,
+                newPlanTieredPackageWithMinimum: (x) => x.InvoiceGroupingKey,
+                newPlanPackageWithAllocation: (x) => x.InvoiceGroupingKey,
+                newPlanUnitWithPercent: (x) => x.InvoiceGroupingKey,
+                newPlanMatrixWithAllocation: (x) => x.InvoiceGroupingKey,
+                tieredWithProration: (x) => x.InvoiceGroupingKey,
+                newPlanUnitWithProration: (x) => x.InvoiceGroupingKey,
+                newPlanGroupedAllocation: (x) => x.InvoiceGroupingKey,
+                newPlanBulkWithProration: (x) => x.InvoiceGroupingKey,
+                newPlanGroupedWithProratedMinimum: (x) => x.InvoiceGroupingKey,
+                newPlanGroupedWithMeteredMinimum: (x) => x.InvoiceGroupingKey,
+                groupedWithMinMaxThresholds: (x) => x.InvoiceGroupingKey,
+                newPlanMatrixWithDisplayName: (x) => x.InvoiceGroupingKey,
+                newPlanGroupedTieredPackage: (x) => x.InvoiceGroupingKey,
+                newPlanMaxGroupTieredPackage: (x) => x.InvoiceGroupingKey,
+                newPlanScalableMatrixWithUnitPricing: (x) => x.InvoiceGroupingKey,
+                newPlanScalableMatrixWithTieredPricing: (x) => x.InvoiceGroupingKey,
+                newPlanCumulativeGroupedBulk: (x) => x.InvoiceGroupingKey,
+                newPlanMinimumComposite: (x) => x.InvoiceGroupingKey,
+                percent: (x) => x.InvoiceGroupingKey,
+                eventOutput: (x) => x.InvoiceGroupingKey
+            );
+        }
+    }
 
-    public static implicit operator Price(NewPlanUnitWithPercentPrice value) =>
-        new PriceVariants::NewPlanUnitWithPercentPrice(value);
+    public NewBillingCycleConfiguration? InvoicingCycleConfiguration
+    {
+        get
+        {
+            return Match<NewBillingCycleConfiguration?>(
+                newPlanUnit: (x) => x.InvoicingCycleConfiguration,
+                newPlanTiered: (x) => x.InvoicingCycleConfiguration,
+                newPlanBulk: (x) => x.InvoicingCycleConfiguration,
+                newPlanPackage: (x) => x.InvoicingCycleConfiguration,
+                newPlanMatrix: (x) => x.InvoicingCycleConfiguration,
+                newPlanThresholdTotalAmount: (x) => x.InvoicingCycleConfiguration,
+                newPlanTieredPackage: (x) => x.InvoicingCycleConfiguration,
+                newPlanTieredWithMinimum: (x) => x.InvoicingCycleConfiguration,
+                newPlanGroupedTiered: (x) => x.InvoicingCycleConfiguration,
+                newPlanTieredPackageWithMinimum: (x) => x.InvoicingCycleConfiguration,
+                newPlanPackageWithAllocation: (x) => x.InvoicingCycleConfiguration,
+                newPlanUnitWithPercent: (x) => x.InvoicingCycleConfiguration,
+                newPlanMatrixWithAllocation: (x) => x.InvoicingCycleConfiguration,
+                tieredWithProration: (x) => x.InvoicingCycleConfiguration,
+                newPlanUnitWithProration: (x) => x.InvoicingCycleConfiguration,
+                newPlanGroupedAllocation: (x) => x.InvoicingCycleConfiguration,
+                newPlanBulkWithProration: (x) => x.InvoicingCycleConfiguration,
+                newPlanGroupedWithProratedMinimum: (x) => x.InvoicingCycleConfiguration,
+                newPlanGroupedWithMeteredMinimum: (x) => x.InvoicingCycleConfiguration,
+                groupedWithMinMaxThresholds: (x) => x.InvoicingCycleConfiguration,
+                newPlanMatrixWithDisplayName: (x) => x.InvoicingCycleConfiguration,
+                newPlanGroupedTieredPackage: (x) => x.InvoicingCycleConfiguration,
+                newPlanMaxGroupTieredPackage: (x) => x.InvoicingCycleConfiguration,
+                newPlanScalableMatrixWithUnitPricing: (x) => x.InvoicingCycleConfiguration,
+                newPlanScalableMatrixWithTieredPricing: (x) => x.InvoicingCycleConfiguration,
+                newPlanCumulativeGroupedBulk: (x) => x.InvoicingCycleConfiguration,
+                newPlanMinimumComposite: (x) => x.InvoicingCycleConfiguration,
+                percent: (x) => x.InvoicingCycleConfiguration,
+                eventOutput: (x) => x.InvoicingCycleConfiguration
+            );
+        }
+    }
 
-    public static implicit operator Price(NewPlanMatrixWithAllocationPrice value) =>
-        new PriceVariants::NewPlanMatrixWithAllocationPrice(value);
+    public string? ReferenceID
+    {
+        get
+        {
+            return Match<string?>(
+                newPlanUnit: (x) => x.ReferenceID,
+                newPlanTiered: (x) => x.ReferenceID,
+                newPlanBulk: (x) => x.ReferenceID,
+                newPlanPackage: (x) => x.ReferenceID,
+                newPlanMatrix: (x) => x.ReferenceID,
+                newPlanThresholdTotalAmount: (x) => x.ReferenceID,
+                newPlanTieredPackage: (x) => x.ReferenceID,
+                newPlanTieredWithMinimum: (x) => x.ReferenceID,
+                newPlanGroupedTiered: (x) => x.ReferenceID,
+                newPlanTieredPackageWithMinimum: (x) => x.ReferenceID,
+                newPlanPackageWithAllocation: (x) => x.ReferenceID,
+                newPlanUnitWithPercent: (x) => x.ReferenceID,
+                newPlanMatrixWithAllocation: (x) => x.ReferenceID,
+                tieredWithProration: (x) => x.ReferenceID,
+                newPlanUnitWithProration: (x) => x.ReferenceID,
+                newPlanGroupedAllocation: (x) => x.ReferenceID,
+                newPlanBulkWithProration: (x) => x.ReferenceID,
+                newPlanGroupedWithProratedMinimum: (x) => x.ReferenceID,
+                newPlanGroupedWithMeteredMinimum: (x) => x.ReferenceID,
+                groupedWithMinMaxThresholds: (x) => x.ReferenceID,
+                newPlanMatrixWithDisplayName: (x) => x.ReferenceID,
+                newPlanGroupedTieredPackage: (x) => x.ReferenceID,
+                newPlanMaxGroupTieredPackage: (x) => x.ReferenceID,
+                newPlanScalableMatrixWithUnitPricing: (x) => x.ReferenceID,
+                newPlanScalableMatrixWithTieredPricing: (x) => x.ReferenceID,
+                newPlanCumulativeGroupedBulk: (x) => x.ReferenceID,
+                newPlanMinimumComposite: (x) => x.ReferenceID,
+                percent: (x) => x.ReferenceID,
+                eventOutput: (x) => x.ReferenceID
+            );
+        }
+    }
 
-    public static implicit operator Price(TieredWithProration value) =>
-        new PriceVariants::TieredWithProration(value);
+    public Price(NewPlanUnitPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Price(NewPlanUnitWithProrationPrice value) =>
-        new PriceVariants::NewPlanUnitWithProrationPrice(value);
+    public Price(NewPlanTieredPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Price(NewPlanGroupedAllocationPrice value) =>
-        new PriceVariants::NewPlanGroupedAllocationPrice(value);
+    public Price(NewPlanBulkPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Price(NewPlanBulkWithProrationPrice value) =>
-        new PriceVariants::NewPlanBulkWithProrationPrice(value);
+    public Price(NewPlanPackagePrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Price(NewPlanGroupedWithProratedMinimumPrice value) =>
-        new PriceVariants::NewPlanGroupedWithProratedMinimumPrice(value);
+    public Price(NewPlanMatrixPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Price(NewPlanGroupedWithMeteredMinimumPrice value) =>
-        new PriceVariants::NewPlanGroupedWithMeteredMinimumPrice(value);
+    public Price(NewPlanThresholdTotalAmountPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Price(GroupedWithMinMaxThresholds value) =>
-        new PriceVariants::GroupedWithMinMaxThresholds(value);
+    public Price(NewPlanTieredPackagePrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Price(NewPlanMatrixWithDisplayNamePrice value) =>
-        new PriceVariants::NewPlanMatrixWithDisplayNamePrice(value);
+    public Price(NewPlanTieredWithMinimumPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Price(NewPlanGroupedTieredPackagePrice value) =>
-        new PriceVariants::NewPlanGroupedTieredPackagePrice(value);
+    public Price(NewPlanGroupedTieredPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Price(NewPlanMaxGroupTieredPackagePrice value) =>
-        new PriceVariants::NewPlanMaxGroupTieredPackagePrice(value);
+    public Price(NewPlanTieredPackageWithMinimumPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Price(NewPlanScalableMatrixWithUnitPricingPrice value) =>
-        new PriceVariants::NewPlanScalableMatrixWithUnitPricingPrice(value);
+    public Price(NewPlanPackageWithAllocationPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Price(NewPlanScalableMatrixWithTieredPricingPrice value) =>
-        new PriceVariants::NewPlanScalableMatrixWithTieredPricingPrice(value);
+    public Price(NewPlanUnitWithPercentPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Price(NewPlanCumulativeGroupedBulkPrice value) =>
-        new PriceVariants::NewPlanCumulativeGroupedBulkPrice(value);
+    public Price(NewPlanMatrixWithAllocationPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Price(NewPlanMinimumCompositePrice value) =>
-        new PriceVariants::NewPlanMinimumCompositePrice(value);
+    public Price(TieredWithProration value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Price(Percent value) => new PriceVariants::Percent(value);
+    public Price(NewPlanUnitWithProrationPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Price(EventOutput value) =>
-        new PriceVariants::EventOutput(value);
+    public Price(NewPlanGroupedAllocationPrice value)
+    {
+        Value = value;
+    }
+
+    public Price(NewPlanBulkWithProrationPrice value)
+    {
+        Value = value;
+    }
+
+    public Price(NewPlanGroupedWithProratedMinimumPrice value)
+    {
+        Value = value;
+    }
+
+    public Price(NewPlanGroupedWithMeteredMinimumPrice value)
+    {
+        Value = value;
+    }
+
+    public Price(GroupedWithMinMaxThresholds value)
+    {
+        Value = value;
+    }
+
+    public Price(NewPlanMatrixWithDisplayNamePrice value)
+    {
+        Value = value;
+    }
+
+    public Price(NewPlanGroupedTieredPackagePrice value)
+    {
+        Value = value;
+    }
+
+    public Price(NewPlanMaxGroupTieredPackagePrice value)
+    {
+        Value = value;
+    }
+
+    public Price(NewPlanScalableMatrixWithUnitPricingPrice value)
+    {
+        Value = value;
+    }
+
+    public Price(NewPlanScalableMatrixWithTieredPricingPrice value)
+    {
+        Value = value;
+    }
+
+    public Price(NewPlanCumulativeGroupedBulkPrice value)
+    {
+        Value = value;
+    }
+
+    public Price(NewPlanMinimumCompositePrice value)
+    {
+        Value = value;
+    }
+
+    public Price(Percent value)
+    {
+        Value = value;
+    }
+
+    public Price(EventOutput value)
+    {
+        Value = value;
+    }
+
+    Price(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Price CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickNewPlanUnit([NotNullWhen(true)] out NewPlanUnitPrice? value)
     {
-        value = (this as PriceVariants::NewPlanUnitPrice)?.Value;
+        value = this.Value as NewPlanUnitPrice;
         return value != null;
     }
 
     public bool TryPickNewPlanTiered([NotNullWhen(true)] out NewPlanTieredPrice? value)
     {
-        value = (this as PriceVariants::NewPlanTieredPrice)?.Value;
+        value = this.Value as NewPlanTieredPrice;
         return value != null;
     }
 
     public bool TryPickNewPlanBulk([NotNullWhen(true)] out NewPlanBulkPrice? value)
     {
-        value = (this as PriceVariants::NewPlanBulkPrice)?.Value;
+        value = this.Value as NewPlanBulkPrice;
         return value != null;
     }
 
     public bool TryPickNewPlanPackage([NotNullWhen(true)] out NewPlanPackagePrice? value)
     {
-        value = (this as PriceVariants::NewPlanPackagePrice)?.Value;
+        value = this.Value as NewPlanPackagePrice;
         return value != null;
     }
 
     public bool TryPickNewPlanMatrix([NotNullWhen(true)] out NewPlanMatrixPrice? value)
     {
-        value = (this as PriceVariants::NewPlanMatrixPrice)?.Value;
+        value = this.Value as NewPlanMatrixPrice;
         return value != null;
     }
 
@@ -137,7 +699,7 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanThresholdTotalAmountPrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanThresholdTotalAmountPrice)?.Value;
+        value = this.Value as NewPlanThresholdTotalAmountPrice;
         return value != null;
     }
 
@@ -145,7 +707,7 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanTieredPackagePrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanTieredPackagePrice)?.Value;
+        value = this.Value as NewPlanTieredPackagePrice;
         return value != null;
     }
 
@@ -153,7 +715,7 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanTieredWithMinimumPrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanTieredWithMinimumPrice)?.Value;
+        value = this.Value as NewPlanTieredWithMinimumPrice;
         return value != null;
     }
 
@@ -161,7 +723,7 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanGroupedTieredPrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanGroupedTieredPrice)?.Value;
+        value = this.Value as NewPlanGroupedTieredPrice;
         return value != null;
     }
 
@@ -169,7 +731,7 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanTieredPackageWithMinimumPrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanTieredPackageWithMinimumPrice)?.Value;
+        value = this.Value as NewPlanTieredPackageWithMinimumPrice;
         return value != null;
     }
 
@@ -177,7 +739,7 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanPackageWithAllocationPrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanPackageWithAllocationPrice)?.Value;
+        value = this.Value as NewPlanPackageWithAllocationPrice;
         return value != null;
     }
 
@@ -185,7 +747,7 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanUnitWithPercentPrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanUnitWithPercentPrice)?.Value;
+        value = this.Value as NewPlanUnitWithPercentPrice;
         return value != null;
     }
 
@@ -193,13 +755,13 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanMatrixWithAllocationPrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanMatrixWithAllocationPrice)?.Value;
+        value = this.Value as NewPlanMatrixWithAllocationPrice;
         return value != null;
     }
 
     public bool TryPickTieredWithProration([NotNullWhen(true)] out TieredWithProration? value)
     {
-        value = (this as PriceVariants::TieredWithProration)?.Value;
+        value = this.Value as TieredWithProration;
         return value != null;
     }
 
@@ -207,7 +769,7 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanUnitWithProrationPrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanUnitWithProrationPrice)?.Value;
+        value = this.Value as NewPlanUnitWithProrationPrice;
         return value != null;
     }
 
@@ -215,7 +777,7 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanGroupedAllocationPrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanGroupedAllocationPrice)?.Value;
+        value = this.Value as NewPlanGroupedAllocationPrice;
         return value != null;
     }
 
@@ -223,7 +785,7 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanBulkWithProrationPrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanBulkWithProrationPrice)?.Value;
+        value = this.Value as NewPlanBulkWithProrationPrice;
         return value != null;
     }
 
@@ -231,7 +793,7 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanGroupedWithProratedMinimumPrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanGroupedWithProratedMinimumPrice)?.Value;
+        value = this.Value as NewPlanGroupedWithProratedMinimumPrice;
         return value != null;
     }
 
@@ -239,7 +801,7 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanGroupedWithMeteredMinimumPrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanGroupedWithMeteredMinimumPrice)?.Value;
+        value = this.Value as NewPlanGroupedWithMeteredMinimumPrice;
         return value != null;
     }
 
@@ -247,7 +809,7 @@ public abstract record class Price
         [NotNullWhen(true)] out GroupedWithMinMaxThresholds? value
     )
     {
-        value = (this as PriceVariants::GroupedWithMinMaxThresholds)?.Value;
+        value = this.Value as GroupedWithMinMaxThresholds;
         return value != null;
     }
 
@@ -255,7 +817,7 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanMatrixWithDisplayNamePrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanMatrixWithDisplayNamePrice)?.Value;
+        value = this.Value as NewPlanMatrixWithDisplayNamePrice;
         return value != null;
     }
 
@@ -263,7 +825,7 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanGroupedTieredPackagePrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanGroupedTieredPackagePrice)?.Value;
+        value = this.Value as NewPlanGroupedTieredPackagePrice;
         return value != null;
     }
 
@@ -271,7 +833,7 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanMaxGroupTieredPackagePrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanMaxGroupTieredPackagePrice)?.Value;
+        value = this.Value as NewPlanMaxGroupTieredPackagePrice;
         return value != null;
     }
 
@@ -279,7 +841,7 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanScalableMatrixWithUnitPricingPrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanScalableMatrixWithUnitPricingPrice)?.Value;
+        value = this.Value as NewPlanScalableMatrixWithUnitPricingPrice;
         return value != null;
     }
 
@@ -287,7 +849,7 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanScalableMatrixWithTieredPricingPrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanScalableMatrixWithTieredPricingPrice)?.Value;
+        value = this.Value as NewPlanScalableMatrixWithTieredPricingPrice;
         return value != null;
     }
 
@@ -295,7 +857,7 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanCumulativeGroupedBulkPrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanCumulativeGroupedBulkPrice)?.Value;
+        value = this.Value as NewPlanCumulativeGroupedBulkPrice;
         return value != null;
     }
 
@@ -303,142 +865,142 @@ public abstract record class Price
         [NotNullWhen(true)] out NewPlanMinimumCompositePrice? value
     )
     {
-        value = (this as PriceVariants::NewPlanMinimumCompositePrice)?.Value;
+        value = this.Value as NewPlanMinimumCompositePrice;
         return value != null;
     }
 
     public bool TryPickPercent([NotNullWhen(true)] out Percent? value)
     {
-        value = (this as PriceVariants::Percent)?.Value;
+        value = this.Value as Percent;
         return value != null;
     }
 
     public bool TryPickEventOutput([NotNullWhen(true)] out EventOutput? value)
     {
-        value = (this as PriceVariants::EventOutput)?.Value;
+        value = this.Value as EventOutput;
         return value != null;
     }
 
     public void Switch(
-        Action<PriceVariants::NewPlanUnitPrice> newPlanUnit,
-        Action<PriceVariants::NewPlanTieredPrice> newPlanTiered,
-        Action<PriceVariants::NewPlanBulkPrice> newPlanBulk,
-        Action<PriceVariants::NewPlanPackagePrice> newPlanPackage,
-        Action<PriceVariants::NewPlanMatrixPrice> newPlanMatrix,
-        Action<PriceVariants::NewPlanThresholdTotalAmountPrice> newPlanThresholdTotalAmount,
-        Action<PriceVariants::NewPlanTieredPackagePrice> newPlanTieredPackage,
-        Action<PriceVariants::NewPlanTieredWithMinimumPrice> newPlanTieredWithMinimum,
-        Action<PriceVariants::NewPlanGroupedTieredPrice> newPlanGroupedTiered,
-        Action<PriceVariants::NewPlanTieredPackageWithMinimumPrice> newPlanTieredPackageWithMinimum,
-        Action<PriceVariants::NewPlanPackageWithAllocationPrice> newPlanPackageWithAllocation,
-        Action<PriceVariants::NewPlanUnitWithPercentPrice> newPlanUnitWithPercent,
-        Action<PriceVariants::NewPlanMatrixWithAllocationPrice> newPlanMatrixWithAllocation,
-        Action<PriceVariants::TieredWithProration> tieredWithProration,
-        Action<PriceVariants::NewPlanUnitWithProrationPrice> newPlanUnitWithProration,
-        Action<PriceVariants::NewPlanGroupedAllocationPrice> newPlanGroupedAllocation,
-        Action<PriceVariants::NewPlanBulkWithProrationPrice> newPlanBulkWithProration,
-        Action<PriceVariants::NewPlanGroupedWithProratedMinimumPrice> newPlanGroupedWithProratedMinimum,
-        Action<PriceVariants::NewPlanGroupedWithMeteredMinimumPrice> newPlanGroupedWithMeteredMinimum,
-        Action<PriceVariants::GroupedWithMinMaxThresholds> groupedWithMinMaxThresholds,
-        Action<PriceVariants::NewPlanMatrixWithDisplayNamePrice> newPlanMatrixWithDisplayName,
-        Action<PriceVariants::NewPlanGroupedTieredPackagePrice> newPlanGroupedTieredPackage,
-        Action<PriceVariants::NewPlanMaxGroupTieredPackagePrice> newPlanMaxGroupTieredPackage,
-        Action<PriceVariants::NewPlanScalableMatrixWithUnitPricingPrice> newPlanScalableMatrixWithUnitPricing,
-        Action<PriceVariants::NewPlanScalableMatrixWithTieredPricingPrice> newPlanScalableMatrixWithTieredPricing,
-        Action<PriceVariants::NewPlanCumulativeGroupedBulkPrice> newPlanCumulativeGroupedBulk,
-        Action<PriceVariants::NewPlanMinimumCompositePrice> newPlanMinimumComposite,
-        Action<PriceVariants::Percent> percent,
-        Action<PriceVariants::EventOutput> eventOutput
+        Action<NewPlanUnitPrice> newPlanUnit,
+        Action<NewPlanTieredPrice> newPlanTiered,
+        Action<NewPlanBulkPrice> newPlanBulk,
+        Action<NewPlanPackagePrice> newPlanPackage,
+        Action<NewPlanMatrixPrice> newPlanMatrix,
+        Action<NewPlanThresholdTotalAmountPrice> newPlanThresholdTotalAmount,
+        Action<NewPlanTieredPackagePrice> newPlanTieredPackage,
+        Action<NewPlanTieredWithMinimumPrice> newPlanTieredWithMinimum,
+        Action<NewPlanGroupedTieredPrice> newPlanGroupedTiered,
+        Action<NewPlanTieredPackageWithMinimumPrice> newPlanTieredPackageWithMinimum,
+        Action<NewPlanPackageWithAllocationPrice> newPlanPackageWithAllocation,
+        Action<NewPlanUnitWithPercentPrice> newPlanUnitWithPercent,
+        Action<NewPlanMatrixWithAllocationPrice> newPlanMatrixWithAllocation,
+        Action<TieredWithProration> tieredWithProration,
+        Action<NewPlanUnitWithProrationPrice> newPlanUnitWithProration,
+        Action<NewPlanGroupedAllocationPrice> newPlanGroupedAllocation,
+        Action<NewPlanBulkWithProrationPrice> newPlanBulkWithProration,
+        Action<NewPlanGroupedWithProratedMinimumPrice> newPlanGroupedWithProratedMinimum,
+        Action<NewPlanGroupedWithMeteredMinimumPrice> newPlanGroupedWithMeteredMinimum,
+        Action<GroupedWithMinMaxThresholds> groupedWithMinMaxThresholds,
+        Action<NewPlanMatrixWithDisplayNamePrice> newPlanMatrixWithDisplayName,
+        Action<NewPlanGroupedTieredPackagePrice> newPlanGroupedTieredPackage,
+        Action<NewPlanMaxGroupTieredPackagePrice> newPlanMaxGroupTieredPackage,
+        Action<NewPlanScalableMatrixWithUnitPricingPrice> newPlanScalableMatrixWithUnitPricing,
+        Action<NewPlanScalableMatrixWithTieredPricingPrice> newPlanScalableMatrixWithTieredPricing,
+        Action<NewPlanCumulativeGroupedBulkPrice> newPlanCumulativeGroupedBulk,
+        Action<NewPlanMinimumCompositePrice> newPlanMinimumComposite,
+        Action<Percent> percent,
+        Action<EventOutput> eventOutput
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case PriceVariants::NewPlanUnitPrice inner:
-                newPlanUnit(inner);
+            case NewPlanUnitPrice value:
+                newPlanUnit(value);
                 break;
-            case PriceVariants::NewPlanTieredPrice inner:
-                newPlanTiered(inner);
+            case NewPlanTieredPrice value:
+                newPlanTiered(value);
                 break;
-            case PriceVariants::NewPlanBulkPrice inner:
-                newPlanBulk(inner);
+            case NewPlanBulkPrice value:
+                newPlanBulk(value);
                 break;
-            case PriceVariants::NewPlanPackagePrice inner:
-                newPlanPackage(inner);
+            case NewPlanPackagePrice value:
+                newPlanPackage(value);
                 break;
-            case PriceVariants::NewPlanMatrixPrice inner:
-                newPlanMatrix(inner);
+            case NewPlanMatrixPrice value:
+                newPlanMatrix(value);
                 break;
-            case PriceVariants::NewPlanThresholdTotalAmountPrice inner:
-                newPlanThresholdTotalAmount(inner);
+            case NewPlanThresholdTotalAmountPrice value:
+                newPlanThresholdTotalAmount(value);
                 break;
-            case PriceVariants::NewPlanTieredPackagePrice inner:
-                newPlanTieredPackage(inner);
+            case NewPlanTieredPackagePrice value:
+                newPlanTieredPackage(value);
                 break;
-            case PriceVariants::NewPlanTieredWithMinimumPrice inner:
-                newPlanTieredWithMinimum(inner);
+            case NewPlanTieredWithMinimumPrice value:
+                newPlanTieredWithMinimum(value);
                 break;
-            case PriceVariants::NewPlanGroupedTieredPrice inner:
-                newPlanGroupedTiered(inner);
+            case NewPlanGroupedTieredPrice value:
+                newPlanGroupedTiered(value);
                 break;
-            case PriceVariants::NewPlanTieredPackageWithMinimumPrice inner:
-                newPlanTieredPackageWithMinimum(inner);
+            case NewPlanTieredPackageWithMinimumPrice value:
+                newPlanTieredPackageWithMinimum(value);
                 break;
-            case PriceVariants::NewPlanPackageWithAllocationPrice inner:
-                newPlanPackageWithAllocation(inner);
+            case NewPlanPackageWithAllocationPrice value:
+                newPlanPackageWithAllocation(value);
                 break;
-            case PriceVariants::NewPlanUnitWithPercentPrice inner:
-                newPlanUnitWithPercent(inner);
+            case NewPlanUnitWithPercentPrice value:
+                newPlanUnitWithPercent(value);
                 break;
-            case PriceVariants::NewPlanMatrixWithAllocationPrice inner:
-                newPlanMatrixWithAllocation(inner);
+            case NewPlanMatrixWithAllocationPrice value:
+                newPlanMatrixWithAllocation(value);
                 break;
-            case PriceVariants::TieredWithProration inner:
-                tieredWithProration(inner);
+            case TieredWithProration value:
+                tieredWithProration(value);
                 break;
-            case PriceVariants::NewPlanUnitWithProrationPrice inner:
-                newPlanUnitWithProration(inner);
+            case NewPlanUnitWithProrationPrice value:
+                newPlanUnitWithProration(value);
                 break;
-            case PriceVariants::NewPlanGroupedAllocationPrice inner:
-                newPlanGroupedAllocation(inner);
+            case NewPlanGroupedAllocationPrice value:
+                newPlanGroupedAllocation(value);
                 break;
-            case PriceVariants::NewPlanBulkWithProrationPrice inner:
-                newPlanBulkWithProration(inner);
+            case NewPlanBulkWithProrationPrice value:
+                newPlanBulkWithProration(value);
                 break;
-            case PriceVariants::NewPlanGroupedWithProratedMinimumPrice inner:
-                newPlanGroupedWithProratedMinimum(inner);
+            case NewPlanGroupedWithProratedMinimumPrice value:
+                newPlanGroupedWithProratedMinimum(value);
                 break;
-            case PriceVariants::NewPlanGroupedWithMeteredMinimumPrice inner:
-                newPlanGroupedWithMeteredMinimum(inner);
+            case NewPlanGroupedWithMeteredMinimumPrice value:
+                newPlanGroupedWithMeteredMinimum(value);
                 break;
-            case PriceVariants::GroupedWithMinMaxThresholds inner:
-                groupedWithMinMaxThresholds(inner);
+            case GroupedWithMinMaxThresholds value:
+                groupedWithMinMaxThresholds(value);
                 break;
-            case PriceVariants::NewPlanMatrixWithDisplayNamePrice inner:
-                newPlanMatrixWithDisplayName(inner);
+            case NewPlanMatrixWithDisplayNamePrice value:
+                newPlanMatrixWithDisplayName(value);
                 break;
-            case PriceVariants::NewPlanGroupedTieredPackagePrice inner:
-                newPlanGroupedTieredPackage(inner);
+            case NewPlanGroupedTieredPackagePrice value:
+                newPlanGroupedTieredPackage(value);
                 break;
-            case PriceVariants::NewPlanMaxGroupTieredPackagePrice inner:
-                newPlanMaxGroupTieredPackage(inner);
+            case NewPlanMaxGroupTieredPackagePrice value:
+                newPlanMaxGroupTieredPackage(value);
                 break;
-            case PriceVariants::NewPlanScalableMatrixWithUnitPricingPrice inner:
-                newPlanScalableMatrixWithUnitPricing(inner);
+            case NewPlanScalableMatrixWithUnitPricingPrice value:
+                newPlanScalableMatrixWithUnitPricing(value);
                 break;
-            case PriceVariants::NewPlanScalableMatrixWithTieredPricingPrice inner:
-                newPlanScalableMatrixWithTieredPricing(inner);
+            case NewPlanScalableMatrixWithTieredPricingPrice value:
+                newPlanScalableMatrixWithTieredPricing(value);
                 break;
-            case PriceVariants::NewPlanCumulativeGroupedBulkPrice inner:
-                newPlanCumulativeGroupedBulk(inner);
+            case NewPlanCumulativeGroupedBulkPrice value:
+                newPlanCumulativeGroupedBulk(value);
                 break;
-            case PriceVariants::NewPlanMinimumCompositePrice inner:
-                newPlanMinimumComposite(inner);
+            case NewPlanMinimumCompositePrice value:
+                newPlanMinimumComposite(value);
                 break;
-            case PriceVariants::Percent inner:
-                percent(inner);
+            case Percent value:
+                percent(value);
                 break;
-            case PriceVariants::EventOutput inner:
-                eventOutput(inner);
+            case EventOutput value:
+                eventOutput(value);
                 break;
             default:
                 throw new OrbInvalidDataException("Data did not match any variant of Price");
@@ -446,107 +1008,86 @@ public abstract record class Price
     }
 
     public T Match<T>(
-        Func<PriceVariants::NewPlanUnitPrice, T> newPlanUnit,
-        Func<PriceVariants::NewPlanTieredPrice, T> newPlanTiered,
-        Func<PriceVariants::NewPlanBulkPrice, T> newPlanBulk,
-        Func<PriceVariants::NewPlanPackagePrice, T> newPlanPackage,
-        Func<PriceVariants::NewPlanMatrixPrice, T> newPlanMatrix,
-        Func<PriceVariants::NewPlanThresholdTotalAmountPrice, T> newPlanThresholdTotalAmount,
-        Func<PriceVariants::NewPlanTieredPackagePrice, T> newPlanTieredPackage,
-        Func<PriceVariants::NewPlanTieredWithMinimumPrice, T> newPlanTieredWithMinimum,
-        Func<PriceVariants::NewPlanGroupedTieredPrice, T> newPlanGroupedTiered,
-        Func<
-            PriceVariants::NewPlanTieredPackageWithMinimumPrice,
-            T
-        > newPlanTieredPackageWithMinimum,
-        Func<PriceVariants::NewPlanPackageWithAllocationPrice, T> newPlanPackageWithAllocation,
-        Func<PriceVariants::NewPlanUnitWithPercentPrice, T> newPlanUnitWithPercent,
-        Func<PriceVariants::NewPlanMatrixWithAllocationPrice, T> newPlanMatrixWithAllocation,
-        Func<PriceVariants::TieredWithProration, T> tieredWithProration,
-        Func<PriceVariants::NewPlanUnitWithProrationPrice, T> newPlanUnitWithProration,
-        Func<PriceVariants::NewPlanGroupedAllocationPrice, T> newPlanGroupedAllocation,
-        Func<PriceVariants::NewPlanBulkWithProrationPrice, T> newPlanBulkWithProration,
-        Func<
-            PriceVariants::NewPlanGroupedWithProratedMinimumPrice,
-            T
-        > newPlanGroupedWithProratedMinimum,
-        Func<
-            PriceVariants::NewPlanGroupedWithMeteredMinimumPrice,
-            T
-        > newPlanGroupedWithMeteredMinimum,
-        Func<PriceVariants::GroupedWithMinMaxThresholds, T> groupedWithMinMaxThresholds,
-        Func<PriceVariants::NewPlanMatrixWithDisplayNamePrice, T> newPlanMatrixWithDisplayName,
-        Func<PriceVariants::NewPlanGroupedTieredPackagePrice, T> newPlanGroupedTieredPackage,
-        Func<PriceVariants::NewPlanMaxGroupTieredPackagePrice, T> newPlanMaxGroupTieredPackage,
-        Func<
-            PriceVariants::NewPlanScalableMatrixWithUnitPricingPrice,
-            T
-        > newPlanScalableMatrixWithUnitPricing,
-        Func<
-            PriceVariants::NewPlanScalableMatrixWithTieredPricingPrice,
-            T
-        > newPlanScalableMatrixWithTieredPricing,
-        Func<PriceVariants::NewPlanCumulativeGroupedBulkPrice, T> newPlanCumulativeGroupedBulk,
-        Func<PriceVariants::NewPlanMinimumCompositePrice, T> newPlanMinimumComposite,
-        Func<PriceVariants::Percent, T> percent,
-        Func<PriceVariants::EventOutput, T> eventOutput
+        Func<NewPlanUnitPrice, T> newPlanUnit,
+        Func<NewPlanTieredPrice, T> newPlanTiered,
+        Func<NewPlanBulkPrice, T> newPlanBulk,
+        Func<NewPlanPackagePrice, T> newPlanPackage,
+        Func<NewPlanMatrixPrice, T> newPlanMatrix,
+        Func<NewPlanThresholdTotalAmountPrice, T> newPlanThresholdTotalAmount,
+        Func<NewPlanTieredPackagePrice, T> newPlanTieredPackage,
+        Func<NewPlanTieredWithMinimumPrice, T> newPlanTieredWithMinimum,
+        Func<NewPlanGroupedTieredPrice, T> newPlanGroupedTiered,
+        Func<NewPlanTieredPackageWithMinimumPrice, T> newPlanTieredPackageWithMinimum,
+        Func<NewPlanPackageWithAllocationPrice, T> newPlanPackageWithAllocation,
+        Func<NewPlanUnitWithPercentPrice, T> newPlanUnitWithPercent,
+        Func<NewPlanMatrixWithAllocationPrice, T> newPlanMatrixWithAllocation,
+        Func<TieredWithProration, T> tieredWithProration,
+        Func<NewPlanUnitWithProrationPrice, T> newPlanUnitWithProration,
+        Func<NewPlanGroupedAllocationPrice, T> newPlanGroupedAllocation,
+        Func<NewPlanBulkWithProrationPrice, T> newPlanBulkWithProration,
+        Func<NewPlanGroupedWithProratedMinimumPrice, T> newPlanGroupedWithProratedMinimum,
+        Func<NewPlanGroupedWithMeteredMinimumPrice, T> newPlanGroupedWithMeteredMinimum,
+        Func<GroupedWithMinMaxThresholds, T> groupedWithMinMaxThresholds,
+        Func<NewPlanMatrixWithDisplayNamePrice, T> newPlanMatrixWithDisplayName,
+        Func<NewPlanGroupedTieredPackagePrice, T> newPlanGroupedTieredPackage,
+        Func<NewPlanMaxGroupTieredPackagePrice, T> newPlanMaxGroupTieredPackage,
+        Func<NewPlanScalableMatrixWithUnitPricingPrice, T> newPlanScalableMatrixWithUnitPricing,
+        Func<NewPlanScalableMatrixWithTieredPricingPrice, T> newPlanScalableMatrixWithTieredPricing,
+        Func<NewPlanCumulativeGroupedBulkPrice, T> newPlanCumulativeGroupedBulk,
+        Func<NewPlanMinimumCompositePrice, T> newPlanMinimumComposite,
+        Func<Percent, T> percent,
+        Func<EventOutput, T> eventOutput
     )
     {
-        return this switch
+        return this.Value switch
         {
-            PriceVariants::NewPlanUnitPrice inner => newPlanUnit(inner),
-            PriceVariants::NewPlanTieredPrice inner => newPlanTiered(inner),
-            PriceVariants::NewPlanBulkPrice inner => newPlanBulk(inner),
-            PriceVariants::NewPlanPackagePrice inner => newPlanPackage(inner),
-            PriceVariants::NewPlanMatrixPrice inner => newPlanMatrix(inner),
-            PriceVariants::NewPlanThresholdTotalAmountPrice inner => newPlanThresholdTotalAmount(
-                inner
+            NewPlanUnitPrice value => newPlanUnit(value),
+            NewPlanTieredPrice value => newPlanTiered(value),
+            NewPlanBulkPrice value => newPlanBulk(value),
+            NewPlanPackagePrice value => newPlanPackage(value),
+            NewPlanMatrixPrice value => newPlanMatrix(value),
+            NewPlanThresholdTotalAmountPrice value => newPlanThresholdTotalAmount(value),
+            NewPlanTieredPackagePrice value => newPlanTieredPackage(value),
+            NewPlanTieredWithMinimumPrice value => newPlanTieredWithMinimum(value),
+            NewPlanGroupedTieredPrice value => newPlanGroupedTiered(value),
+            NewPlanTieredPackageWithMinimumPrice value => newPlanTieredPackageWithMinimum(value),
+            NewPlanPackageWithAllocationPrice value => newPlanPackageWithAllocation(value),
+            NewPlanUnitWithPercentPrice value => newPlanUnitWithPercent(value),
+            NewPlanMatrixWithAllocationPrice value => newPlanMatrixWithAllocation(value),
+            TieredWithProration value => tieredWithProration(value),
+            NewPlanUnitWithProrationPrice value => newPlanUnitWithProration(value),
+            NewPlanGroupedAllocationPrice value => newPlanGroupedAllocation(value),
+            NewPlanBulkWithProrationPrice value => newPlanBulkWithProration(value),
+            NewPlanGroupedWithProratedMinimumPrice value => newPlanGroupedWithProratedMinimum(
+                value
             ),
-            PriceVariants::NewPlanTieredPackagePrice inner => newPlanTieredPackage(inner),
-            PriceVariants::NewPlanTieredWithMinimumPrice inner => newPlanTieredWithMinimum(inner),
-            PriceVariants::NewPlanGroupedTieredPrice inner => newPlanGroupedTiered(inner),
-            PriceVariants::NewPlanTieredPackageWithMinimumPrice inner =>
-                newPlanTieredPackageWithMinimum(inner),
-            PriceVariants::NewPlanPackageWithAllocationPrice inner => newPlanPackageWithAllocation(
-                inner
+            NewPlanGroupedWithMeteredMinimumPrice value => newPlanGroupedWithMeteredMinimum(value),
+            GroupedWithMinMaxThresholds value => groupedWithMinMaxThresholds(value),
+            NewPlanMatrixWithDisplayNamePrice value => newPlanMatrixWithDisplayName(value),
+            NewPlanGroupedTieredPackagePrice value => newPlanGroupedTieredPackage(value),
+            NewPlanMaxGroupTieredPackagePrice value => newPlanMaxGroupTieredPackage(value),
+            NewPlanScalableMatrixWithUnitPricingPrice value => newPlanScalableMatrixWithUnitPricing(
+                value
             ),
-            PriceVariants::NewPlanUnitWithPercentPrice inner => newPlanUnitWithPercent(inner),
-            PriceVariants::NewPlanMatrixWithAllocationPrice inner => newPlanMatrixWithAllocation(
-                inner
-            ),
-            PriceVariants::TieredWithProration inner => tieredWithProration(inner),
-            PriceVariants::NewPlanUnitWithProrationPrice inner => newPlanUnitWithProration(inner),
-            PriceVariants::NewPlanGroupedAllocationPrice inner => newPlanGroupedAllocation(inner),
-            PriceVariants::NewPlanBulkWithProrationPrice inner => newPlanBulkWithProration(inner),
-            PriceVariants::NewPlanGroupedWithProratedMinimumPrice inner =>
-                newPlanGroupedWithProratedMinimum(inner),
-            PriceVariants::NewPlanGroupedWithMeteredMinimumPrice inner =>
-                newPlanGroupedWithMeteredMinimum(inner),
-            PriceVariants::GroupedWithMinMaxThresholds inner => groupedWithMinMaxThresholds(inner),
-            PriceVariants::NewPlanMatrixWithDisplayNamePrice inner => newPlanMatrixWithDisplayName(
-                inner
-            ),
-            PriceVariants::NewPlanGroupedTieredPackagePrice inner => newPlanGroupedTieredPackage(
-                inner
-            ),
-            PriceVariants::NewPlanMaxGroupTieredPackagePrice inner => newPlanMaxGroupTieredPackage(
-                inner
-            ),
-            PriceVariants::NewPlanScalableMatrixWithUnitPricingPrice inner =>
-                newPlanScalableMatrixWithUnitPricing(inner),
-            PriceVariants::NewPlanScalableMatrixWithTieredPricingPrice inner =>
-                newPlanScalableMatrixWithTieredPricing(inner),
-            PriceVariants::NewPlanCumulativeGroupedBulkPrice inner => newPlanCumulativeGroupedBulk(
-                inner
-            ),
-            PriceVariants::NewPlanMinimumCompositePrice inner => newPlanMinimumComposite(inner),
-            PriceVariants::Percent inner => percent(inner),
-            PriceVariants::EventOutput inner => eventOutput(inner),
+            NewPlanScalableMatrixWithTieredPricingPrice value =>
+                newPlanScalableMatrixWithTieredPricing(value),
+            NewPlanCumulativeGroupedBulkPrice value => newPlanCumulativeGroupedBulk(value),
+            NewPlanMinimumCompositePrice value => newPlanMinimumComposite(value),
+            Percent value => percent(value),
+            EventOutput value => eventOutput(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of Price");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class PriceConverter : JsonConverter<Price?>
@@ -579,14 +1120,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     var deserialized = JsonSerializer.Deserialize<NewPlanUnitPrice>(json, options);
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanUnitPrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanUnitPrice",
+                            "Data does not match union variant 'NewPlanUnitPrice'",
                             e
                         )
                     );
@@ -606,14 +1148,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanTieredPrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanTieredPrice",
+                            "Data does not match union variant 'NewPlanTieredPrice'",
                             e
                         )
                     );
@@ -630,14 +1173,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     var deserialized = JsonSerializer.Deserialize<NewPlanBulkPrice>(json, options);
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanBulkPrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanBulkPrice",
+                            "Data does not match union variant 'NewPlanBulkPrice'",
                             e
                         )
                     );
@@ -657,14 +1201,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanPackagePrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanPackagePrice",
+                            "Data does not match union variant 'NewPlanPackagePrice'",
                             e
                         )
                     );
@@ -684,14 +1229,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanMatrixPrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanMatrixPrice",
+                            "Data does not match union variant 'NewPlanMatrixPrice'",
                             e
                         )
                     );
@@ -711,14 +1257,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanThresholdTotalAmountPrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanThresholdTotalAmountPrice",
+                            "Data does not match union variant 'NewPlanThresholdTotalAmountPrice'",
                             e
                         )
                     );
@@ -738,14 +1285,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanTieredPackagePrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanTieredPackagePrice",
+                            "Data does not match union variant 'NewPlanTieredPackagePrice'",
                             e
                         )
                     );
@@ -765,14 +1313,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanTieredWithMinimumPrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanTieredWithMinimumPrice",
+                            "Data does not match union variant 'NewPlanTieredWithMinimumPrice'",
                             e
                         )
                     );
@@ -792,14 +1341,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanGroupedTieredPrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanGroupedTieredPrice",
+                            "Data does not match union variant 'NewPlanGroupedTieredPrice'",
                             e
                         )
                     );
@@ -820,16 +1370,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                         );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanTieredPackageWithMinimumPrice(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanTieredPackageWithMinimumPrice",
+                            "Data does not match union variant 'NewPlanTieredPackageWithMinimumPrice'",
                             e
                         )
                     );
@@ -850,14 +1399,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                         );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanPackageWithAllocationPrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanPackageWithAllocationPrice",
+                            "Data does not match union variant 'NewPlanPackageWithAllocationPrice'",
                             e
                         )
                     );
@@ -877,14 +1427,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanUnitWithPercentPrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanUnitWithPercentPrice",
+                            "Data does not match union variant 'NewPlanUnitWithPercentPrice'",
                             e
                         )
                     );
@@ -904,14 +1455,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanMatrixWithAllocationPrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanMatrixWithAllocationPrice",
+                            "Data does not match union variant 'NewPlanMatrixWithAllocationPrice'",
                             e
                         )
                     );
@@ -931,14 +1483,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::TieredWithProration(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::TieredWithProration",
+                            "Data does not match union variant 'TieredWithProration'",
                             e
                         )
                     );
@@ -958,14 +1511,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanUnitWithProrationPrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanUnitWithProrationPrice",
+                            "Data does not match union variant 'NewPlanUnitWithProrationPrice'",
                             e
                         )
                     );
@@ -985,14 +1539,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanGroupedAllocationPrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanGroupedAllocationPrice",
+                            "Data does not match union variant 'NewPlanGroupedAllocationPrice'",
                             e
                         )
                     );
@@ -1012,14 +1567,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanBulkWithProrationPrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanBulkWithProrationPrice",
+                            "Data does not match union variant 'NewPlanBulkWithProrationPrice'",
                             e
                         )
                     );
@@ -1040,16 +1596,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                         );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanGroupedWithProratedMinimumPrice(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanGroupedWithProratedMinimumPrice",
+                            "Data does not match union variant 'NewPlanGroupedWithProratedMinimumPrice'",
                             e
                         )
                     );
@@ -1070,16 +1625,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                         );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanGroupedWithMeteredMinimumPrice(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanGroupedWithMeteredMinimumPrice",
+                            "Data does not match union variant 'NewPlanGroupedWithMeteredMinimumPrice'",
                             e
                         )
                     );
@@ -1099,14 +1653,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::GroupedWithMinMaxThresholds(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::GroupedWithMinMaxThresholds",
+                            "Data does not match union variant 'GroupedWithMinMaxThresholds'",
                             e
                         )
                     );
@@ -1127,14 +1682,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                         );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanMatrixWithDisplayNamePrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanMatrixWithDisplayNamePrice",
+                            "Data does not match union variant 'NewPlanMatrixWithDisplayNamePrice'",
                             e
                         )
                     );
@@ -1154,14 +1710,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanGroupedTieredPackagePrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanGroupedTieredPackagePrice",
+                            "Data does not match union variant 'NewPlanGroupedTieredPackagePrice'",
                             e
                         )
                     );
@@ -1182,14 +1739,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                         );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanMaxGroupTieredPackagePrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanMaxGroupTieredPackagePrice",
+                            "Data does not match union variant 'NewPlanMaxGroupTieredPackagePrice'",
                             e
                         )
                     );
@@ -1210,16 +1768,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                         );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanScalableMatrixWithUnitPricingPrice(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanScalableMatrixWithUnitPricingPrice",
+                            "Data does not match union variant 'NewPlanScalableMatrixWithUnitPricingPrice'",
                             e
                         )
                     );
@@ -1240,16 +1797,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                         );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanScalableMatrixWithTieredPricingPrice(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanScalableMatrixWithTieredPricingPrice",
+                            "Data does not match union variant 'NewPlanScalableMatrixWithTieredPricingPrice'",
                             e
                         )
                     );
@@ -1270,14 +1826,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                         );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanCumulativeGroupedBulkPrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanCumulativeGroupedBulkPrice",
+                            "Data does not match union variant 'NewPlanCumulativeGroupedBulkPrice'",
                             e
                         )
                     );
@@ -1297,14 +1854,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     );
                     if (deserialized != null)
                     {
-                        return new PriceVariants::NewPlanMinimumCompositePrice(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::NewPlanMinimumCompositePrice",
+                            "Data does not match union variant 'NewPlanMinimumCompositePrice'",
                             e
                         )
                     );
@@ -1321,14 +1879,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     var deserialized = JsonSerializer.Deserialize<Percent>(json, options);
                     if (deserialized != null)
                     {
-                        return new PriceVariants::Percent(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::Percent",
+                            "Data does not match union variant 'Percent'",
                             e
                         )
                     );
@@ -1345,14 +1904,15 @@ sealed class PriceConverter : JsonConverter<Price?>
                     var deserialized = JsonSerializer.Deserialize<EventOutput>(json, options);
                     if (deserialized != null)
                     {
-                        return new PriceVariants::EventOutput(deserialized);
+                        deserialized.Validate();
+                        return new Price(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant PriceVariants::EventOutput",
+                            "Data does not match union variant 'EventOutput'",
                             e
                         )
                     );
@@ -1371,66 +1931,7 @@ sealed class PriceConverter : JsonConverter<Price?>
 
     public override void Write(Utf8JsonWriter writer, Price? value, JsonSerializerOptions options)
     {
-        object? variant = value switch
-        {
-            null => null,
-            PriceVariants::NewPlanUnitPrice(var newPlanUnit) => newPlanUnit,
-            PriceVariants::NewPlanTieredPrice(var newPlanTiered) => newPlanTiered,
-            PriceVariants::NewPlanBulkPrice(var newPlanBulk) => newPlanBulk,
-            PriceVariants::NewPlanPackagePrice(var newPlanPackage) => newPlanPackage,
-            PriceVariants::NewPlanMatrixPrice(var newPlanMatrix) => newPlanMatrix,
-            PriceVariants::NewPlanThresholdTotalAmountPrice(var newPlanThresholdTotalAmount) =>
-                newPlanThresholdTotalAmount,
-            PriceVariants::NewPlanTieredPackagePrice(var newPlanTieredPackage) =>
-                newPlanTieredPackage,
-            PriceVariants::NewPlanTieredWithMinimumPrice(var newPlanTieredWithMinimum) =>
-                newPlanTieredWithMinimum,
-            PriceVariants::NewPlanGroupedTieredPrice(var newPlanGroupedTiered) =>
-                newPlanGroupedTiered,
-            PriceVariants::NewPlanTieredPackageWithMinimumPrice(
-                var newPlanTieredPackageWithMinimum
-            ) => newPlanTieredPackageWithMinimum,
-            PriceVariants::NewPlanPackageWithAllocationPrice(var newPlanPackageWithAllocation) =>
-                newPlanPackageWithAllocation,
-            PriceVariants::NewPlanUnitWithPercentPrice(var newPlanUnitWithPercent) =>
-                newPlanUnitWithPercent,
-            PriceVariants::NewPlanMatrixWithAllocationPrice(var newPlanMatrixWithAllocation) =>
-                newPlanMatrixWithAllocation,
-            PriceVariants::TieredWithProration(var tieredWithProration) => tieredWithProration,
-            PriceVariants::NewPlanUnitWithProrationPrice(var newPlanUnitWithProration) =>
-                newPlanUnitWithProration,
-            PriceVariants::NewPlanGroupedAllocationPrice(var newPlanGroupedAllocation) =>
-                newPlanGroupedAllocation,
-            PriceVariants::NewPlanBulkWithProrationPrice(var newPlanBulkWithProration) =>
-                newPlanBulkWithProration,
-            PriceVariants::NewPlanGroupedWithProratedMinimumPrice(
-                var newPlanGroupedWithProratedMinimum
-            ) => newPlanGroupedWithProratedMinimum,
-            PriceVariants::NewPlanGroupedWithMeteredMinimumPrice(
-                var newPlanGroupedWithMeteredMinimum
-            ) => newPlanGroupedWithMeteredMinimum,
-            PriceVariants::GroupedWithMinMaxThresholds(var groupedWithMinMaxThresholds) =>
-                groupedWithMinMaxThresholds,
-            PriceVariants::NewPlanMatrixWithDisplayNamePrice(var newPlanMatrixWithDisplayName) =>
-                newPlanMatrixWithDisplayName,
-            PriceVariants::NewPlanGroupedTieredPackagePrice(var newPlanGroupedTieredPackage) =>
-                newPlanGroupedTieredPackage,
-            PriceVariants::NewPlanMaxGroupTieredPackagePrice(var newPlanMaxGroupTieredPackage) =>
-                newPlanMaxGroupTieredPackage,
-            PriceVariants::NewPlanScalableMatrixWithUnitPricingPrice(
-                var newPlanScalableMatrixWithUnitPricing
-            ) => newPlanScalableMatrixWithUnitPricing,
-            PriceVariants::NewPlanScalableMatrixWithTieredPricingPrice(
-                var newPlanScalableMatrixWithTieredPricing
-            ) => newPlanScalableMatrixWithTieredPricing,
-            PriceVariants::NewPlanCumulativeGroupedBulkPrice(var newPlanCumulativeGroupedBulk) =>
-                newPlanCumulativeGroupedBulk,
-            PriceVariants::NewPlanMinimumCompositePrice(var newPlanMinimumComposite) =>
-                newPlanMinimumComposite,
-            PriceVariants::Percent(var percent) => percent,
-            PriceVariants::EventOutput(var eventOutput) => eventOutput,
-            _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
-        };
+        object? variant = value?.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

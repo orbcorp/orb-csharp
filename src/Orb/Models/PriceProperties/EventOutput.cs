@@ -518,7 +518,7 @@ public sealed record class EventOutput : ModelBase, IFromRaw<EventOutput>
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public JsonElement ModelType
+    public ModelType ModelType
     {
         get
         {
@@ -528,7 +528,11 @@ public sealed record class EventOutput : ModelBase, IFromRaw<EventOutput>
                     new ArgumentOutOfRangeException("model_type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ModelType>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'model_type' cannot be null",
+                    new ArgumentNullException("model_type")
+                );
         }
         set
         {
@@ -684,6 +688,7 @@ public sealed record class EventOutput : ModelBase, IFromRaw<EventOutput>
         }
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
+        this.ModelType.Validate();
         _ = this.Name;
         _ = this.PlanPhaseOrder;
         this.PriceType.Validate();
@@ -693,7 +698,7 @@ public sealed record class EventOutput : ModelBase, IFromRaw<EventOutput>
 
     public EventOutput()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
+        this.ModelType = new();
     }
 
 #pragma warning disable CS8618

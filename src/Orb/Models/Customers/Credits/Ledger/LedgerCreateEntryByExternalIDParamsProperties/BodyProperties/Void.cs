@@ -65,7 +65,7 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
         }
     }
 
-    public JsonElement EntryType
+    public EntryType EntryType
     {
         get
         {
@@ -78,7 +78,11 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
                     )
                 );
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<EntryType>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentNullException("entry_type")
+                );
         }
         set
         {
@@ -188,6 +192,7 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
     {
         _ = this.Amount;
         _ = this.BlockID;
+        this.EntryType.Validate();
         _ = this.Currency;
         _ = this.Description;
         if (this.Metadata != null)
@@ -202,7 +207,7 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
 
     public Void()
     {
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"void\"");
+        this.EntryType = new();
     }
 
 #pragma warning disable CS8618

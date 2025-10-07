@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
-using InvoiceDateVariants = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.IncrementProperties.InvoiceSettingsProperties.InvoiceDateVariants;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.IncrementProperties.InvoiceSettingsProperties;
 
@@ -14,60 +13,76 @@ namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.
 /// block's effective date.
 /// </summary>
 [JsonConverter(typeof(InvoiceDateConverter))]
-public abstract record class InvoiceDate
+public record class InvoiceDate
 {
-    internal InvoiceDate() { }
+    public object Value { get; private init; }
 
-    public static implicit operator InvoiceDate(DateOnly value) =>
-        new InvoiceDateVariants::Date(value);
+    public InvoiceDate(DateOnly value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator InvoiceDate(DateTime value) =>
-        new InvoiceDateVariants::DateTime(value);
+    public InvoiceDate(DateTime value)
+    {
+        Value = value;
+    }
+
+    InvoiceDate(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static InvoiceDate CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDate([NotNullWhen(true)] out DateOnly? value)
     {
-        value = (this as InvoiceDateVariants::Date)?.Value;
+        value = this.Value as DateOnly?;
         return value != null;
     }
 
     public bool TryPickDateTime([NotNullWhen(true)] out DateTime? value)
     {
-        value = (this as InvoiceDateVariants::DateTime)?.Value;
+        value = this.Value as DateTime?;
         return value != null;
     }
 
-    public void Switch(
-        Action<InvoiceDateVariants::Date> @date,
-        Action<InvoiceDateVariants::DateTime> @dateTime
-    )
+    public void Switch(Action<DateOnly> @date, Action<DateTime> @dateTime)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case InvoiceDateVariants::Date inner:
-                @date(inner);
+            case DateOnly value:
+                @date(value);
                 break;
-            case InvoiceDateVariants::DateTime inner:
-                @dateTime(inner);
+            case DateTime value:
+                @dateTime(value);
                 break;
             default:
                 throw new OrbInvalidDataException("Data did not match any variant of InvoiceDate");
         }
     }
 
-    public T Match<T>(
-        Func<InvoiceDateVariants::Date, T> @date,
-        Func<InvoiceDateVariants::DateTime, T> @dateTime
-    )
+    public T Match<T>(Func<DateOnly, T> @date, Func<DateTime, T> @dateTime)
     {
-        return this switch
+        return this.Value switch
         {
-            InvoiceDateVariants::Date inner => @date(inner),
-            InvoiceDateVariants::DateTime inner => @dateTime(inner),
+            DateOnly value => @date(value),
+            DateTime value => @dateTime(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of InvoiceDate"),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of InvoiceDate");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
@@ -82,33 +97,23 @@ sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
 
         try
         {
-            return new InvoiceDateVariants::Date(
-                JsonSerializer.Deserialize<DateOnly>(ref reader, options)
-            );
+            return new InvoiceDate(JsonSerializer.Deserialize<DateOnly>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
-                new OrbInvalidDataException(
-                    "Data does not match union variant InvoiceDateVariants::Date",
-                    e
-                )
+                new OrbInvalidDataException("Data does not match union variant 'DateOnly'", e)
             );
         }
 
         try
         {
-            return new InvoiceDateVariants::DateTime(
-                JsonSerializer.Deserialize<DateTime>(ref reader, options)
-            );
+            return new InvoiceDate(JsonSerializer.Deserialize<DateTime>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
-                new OrbInvalidDataException(
-                    "Data does not match union variant InvoiceDateVariants::DateTime",
-                    e
-                )
+                new OrbInvalidDataException("Data does not match union variant 'DateTime'", e)
             );
         }
 
@@ -121,13 +126,7 @@ sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
         JsonSerializerOptions options
     )
     {
-        object? variant = value switch
-        {
-            null => null,
-            InvoiceDateVariants::Date(var @date) => @date,
-            InvoiceDateVariants::DateTime(var @dateTime) => @dateTime,
-            _ => throw new OrbInvalidDataException("Data did not match any variant of InvoiceDate"),
-        };
+        object? variant = value?.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

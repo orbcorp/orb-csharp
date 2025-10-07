@@ -5,7 +5,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
 using Orb.Models.Prices.PriceCreateParamsProperties.BodyProperties;
-using BodyVariants = Orb.Models.Prices.PriceCreateParamsProperties.BodyVariants;
 
 namespace Orb.Models.Prices.PriceCreateParamsProperties;
 
@@ -13,110 +12,639 @@ namespace Orb.Models.Prices.PriceCreateParamsProperties;
 /// New floating price request body params.
 /// </summary>
 [JsonConverter(typeof(BodyConverter))]
-public abstract record class Body
+public record class Body
 {
-    internal Body() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Body(NewFloatingUnitPrice value) =>
-        new BodyVariants::NewFloatingUnitPrice(value);
+    public string Currency
+    {
+        get
+        {
+            return Match(
+                newFloatingUnitPrice: (x) => x.Currency,
+                newFloatingTieredPrice: (x) => x.Currency,
+                newFloatingBulkPrice: (x) => x.Currency,
+                newFloatingPackagePrice: (x) => x.Currency,
+                newFloatingMatrixPrice: (x) => x.Currency,
+                newFloatingThresholdTotalAmountPrice: (x) => x.Currency,
+                newFloatingTieredPackagePrice: (x) => x.Currency,
+                newFloatingTieredWithMinimumPrice: (x) => x.Currency,
+                newFloatingGroupedTieredPrice: (x) => x.Currency,
+                newFloatingTieredPackageWithMinimumPrice: (x) => x.Currency,
+                newFloatingPackageWithAllocationPrice: (x) => x.Currency,
+                newFloatingUnitWithPercentPrice: (x) => x.Currency,
+                newFloatingMatrixWithAllocationPrice: (x) => x.Currency,
+                newFloatingTieredWithProrationPrice: (x) => x.Currency,
+                newFloatingUnitWithProrationPrice: (x) => x.Currency,
+                newFloatingGroupedAllocationPrice: (x) => x.Currency,
+                newFloatingBulkWithProrationPrice: (x) => x.Currency,
+                newFloatingGroupedWithProratedMinimumPrice: (x) => x.Currency,
+                newFloatingGroupedWithMeteredMinimumPrice: (x) => x.Currency,
+                groupedWithMinMaxThresholds: (x) => x.Currency,
+                newFloatingMatrixWithDisplayNamePrice: (x) => x.Currency,
+                newFloatingGroupedTieredPackagePrice: (x) => x.Currency,
+                newFloatingMaxGroupTieredPackagePrice: (x) => x.Currency,
+                newFloatingScalableMatrixWithUnitPricingPrice: (x) => x.Currency,
+                newFloatingScalableMatrixWithTieredPricingPrice: (x) => x.Currency,
+                newFloatingCumulativeGroupedBulkPrice: (x) => x.Currency,
+                newFloatingMinimumCompositePrice: (x) => x.Currency,
+                percent: (x) => x.Currency,
+                eventOutput: (x) => x.Currency
+            );
+        }
+    }
 
-    public static implicit operator Body(NewFloatingTieredPrice value) =>
-        new BodyVariants::NewFloatingTieredPrice(value);
+    public string ItemID
+    {
+        get
+        {
+            return Match(
+                newFloatingUnitPrice: (x) => x.ItemID,
+                newFloatingTieredPrice: (x) => x.ItemID,
+                newFloatingBulkPrice: (x) => x.ItemID,
+                newFloatingPackagePrice: (x) => x.ItemID,
+                newFloatingMatrixPrice: (x) => x.ItemID,
+                newFloatingThresholdTotalAmountPrice: (x) => x.ItemID,
+                newFloatingTieredPackagePrice: (x) => x.ItemID,
+                newFloatingTieredWithMinimumPrice: (x) => x.ItemID,
+                newFloatingGroupedTieredPrice: (x) => x.ItemID,
+                newFloatingTieredPackageWithMinimumPrice: (x) => x.ItemID,
+                newFloatingPackageWithAllocationPrice: (x) => x.ItemID,
+                newFloatingUnitWithPercentPrice: (x) => x.ItemID,
+                newFloatingMatrixWithAllocationPrice: (x) => x.ItemID,
+                newFloatingTieredWithProrationPrice: (x) => x.ItemID,
+                newFloatingUnitWithProrationPrice: (x) => x.ItemID,
+                newFloatingGroupedAllocationPrice: (x) => x.ItemID,
+                newFloatingBulkWithProrationPrice: (x) => x.ItemID,
+                newFloatingGroupedWithProratedMinimumPrice: (x) => x.ItemID,
+                newFloatingGroupedWithMeteredMinimumPrice: (x) => x.ItemID,
+                groupedWithMinMaxThresholds: (x) => x.ItemID,
+                newFloatingMatrixWithDisplayNamePrice: (x) => x.ItemID,
+                newFloatingGroupedTieredPackagePrice: (x) => x.ItemID,
+                newFloatingMaxGroupTieredPackagePrice: (x) => x.ItemID,
+                newFloatingScalableMatrixWithUnitPricingPrice: (x) => x.ItemID,
+                newFloatingScalableMatrixWithTieredPricingPrice: (x) => x.ItemID,
+                newFloatingCumulativeGroupedBulkPrice: (x) => x.ItemID,
+                newFloatingMinimumCompositePrice: (x) => x.ItemID,
+                percent: (x) => x.ItemID,
+                eventOutput: (x) => x.ItemID
+            );
+        }
+    }
 
-    public static implicit operator Body(NewFloatingBulkPrice value) =>
-        new BodyVariants::NewFloatingBulkPrice(value);
+    public string Name
+    {
+        get
+        {
+            return Match(
+                newFloatingUnitPrice: (x) => x.Name,
+                newFloatingTieredPrice: (x) => x.Name,
+                newFloatingBulkPrice: (x) => x.Name,
+                newFloatingPackagePrice: (x) => x.Name,
+                newFloatingMatrixPrice: (x) => x.Name,
+                newFloatingThresholdTotalAmountPrice: (x) => x.Name,
+                newFloatingTieredPackagePrice: (x) => x.Name,
+                newFloatingTieredWithMinimumPrice: (x) => x.Name,
+                newFloatingGroupedTieredPrice: (x) => x.Name,
+                newFloatingTieredPackageWithMinimumPrice: (x) => x.Name,
+                newFloatingPackageWithAllocationPrice: (x) => x.Name,
+                newFloatingUnitWithPercentPrice: (x) => x.Name,
+                newFloatingMatrixWithAllocationPrice: (x) => x.Name,
+                newFloatingTieredWithProrationPrice: (x) => x.Name,
+                newFloatingUnitWithProrationPrice: (x) => x.Name,
+                newFloatingGroupedAllocationPrice: (x) => x.Name,
+                newFloatingBulkWithProrationPrice: (x) => x.Name,
+                newFloatingGroupedWithProratedMinimumPrice: (x) => x.Name,
+                newFloatingGroupedWithMeteredMinimumPrice: (x) => x.Name,
+                groupedWithMinMaxThresholds: (x) => x.Name,
+                newFloatingMatrixWithDisplayNamePrice: (x) => x.Name,
+                newFloatingGroupedTieredPackagePrice: (x) => x.Name,
+                newFloatingMaxGroupTieredPackagePrice: (x) => x.Name,
+                newFloatingScalableMatrixWithUnitPricingPrice: (x) => x.Name,
+                newFloatingScalableMatrixWithTieredPricingPrice: (x) => x.Name,
+                newFloatingCumulativeGroupedBulkPrice: (x) => x.Name,
+                newFloatingMinimumCompositePrice: (x) => x.Name,
+                percent: (x) => x.Name,
+                eventOutput: (x) => x.Name
+            );
+        }
+    }
 
-    public static implicit operator Body(NewFloatingPackagePrice value) =>
-        new BodyVariants::NewFloatingPackagePrice(value);
+    public string? BillableMetricID
+    {
+        get
+        {
+            return Match<string?>(
+                newFloatingUnitPrice: (x) => x.BillableMetricID,
+                newFloatingTieredPrice: (x) => x.BillableMetricID,
+                newFloatingBulkPrice: (x) => x.BillableMetricID,
+                newFloatingPackagePrice: (x) => x.BillableMetricID,
+                newFloatingMatrixPrice: (x) => x.BillableMetricID,
+                newFloatingThresholdTotalAmountPrice: (x) => x.BillableMetricID,
+                newFloatingTieredPackagePrice: (x) => x.BillableMetricID,
+                newFloatingTieredWithMinimumPrice: (x) => x.BillableMetricID,
+                newFloatingGroupedTieredPrice: (x) => x.BillableMetricID,
+                newFloatingTieredPackageWithMinimumPrice: (x) => x.BillableMetricID,
+                newFloatingPackageWithAllocationPrice: (x) => x.BillableMetricID,
+                newFloatingUnitWithPercentPrice: (x) => x.BillableMetricID,
+                newFloatingMatrixWithAllocationPrice: (x) => x.BillableMetricID,
+                newFloatingTieredWithProrationPrice: (x) => x.BillableMetricID,
+                newFloatingUnitWithProrationPrice: (x) => x.BillableMetricID,
+                newFloatingGroupedAllocationPrice: (x) => x.BillableMetricID,
+                newFloatingBulkWithProrationPrice: (x) => x.BillableMetricID,
+                newFloatingGroupedWithProratedMinimumPrice: (x) => x.BillableMetricID,
+                newFloatingGroupedWithMeteredMinimumPrice: (x) => x.BillableMetricID,
+                groupedWithMinMaxThresholds: (x) => x.BillableMetricID,
+                newFloatingMatrixWithDisplayNamePrice: (x) => x.BillableMetricID,
+                newFloatingGroupedTieredPackagePrice: (x) => x.BillableMetricID,
+                newFloatingMaxGroupTieredPackagePrice: (x) => x.BillableMetricID,
+                newFloatingScalableMatrixWithUnitPricingPrice: (x) => x.BillableMetricID,
+                newFloatingScalableMatrixWithTieredPricingPrice: (x) => x.BillableMetricID,
+                newFloatingCumulativeGroupedBulkPrice: (x) => x.BillableMetricID,
+                newFloatingMinimumCompositePrice: (x) => x.BillableMetricID,
+                percent: (x) => x.BillableMetricID,
+                eventOutput: (x) => x.BillableMetricID
+            );
+        }
+    }
 
-    public static implicit operator Body(NewFloatingMatrixPrice value) =>
-        new BodyVariants::NewFloatingMatrixPrice(value);
+    public bool? BilledInAdvance
+    {
+        get
+        {
+            return Match<bool?>(
+                newFloatingUnitPrice: (x) => x.BilledInAdvance,
+                newFloatingTieredPrice: (x) => x.BilledInAdvance,
+                newFloatingBulkPrice: (x) => x.BilledInAdvance,
+                newFloatingPackagePrice: (x) => x.BilledInAdvance,
+                newFloatingMatrixPrice: (x) => x.BilledInAdvance,
+                newFloatingThresholdTotalAmountPrice: (x) => x.BilledInAdvance,
+                newFloatingTieredPackagePrice: (x) => x.BilledInAdvance,
+                newFloatingTieredWithMinimumPrice: (x) => x.BilledInAdvance,
+                newFloatingGroupedTieredPrice: (x) => x.BilledInAdvance,
+                newFloatingTieredPackageWithMinimumPrice: (x) => x.BilledInAdvance,
+                newFloatingPackageWithAllocationPrice: (x) => x.BilledInAdvance,
+                newFloatingUnitWithPercentPrice: (x) => x.BilledInAdvance,
+                newFloatingMatrixWithAllocationPrice: (x) => x.BilledInAdvance,
+                newFloatingTieredWithProrationPrice: (x) => x.BilledInAdvance,
+                newFloatingUnitWithProrationPrice: (x) => x.BilledInAdvance,
+                newFloatingGroupedAllocationPrice: (x) => x.BilledInAdvance,
+                newFloatingBulkWithProrationPrice: (x) => x.BilledInAdvance,
+                newFloatingGroupedWithProratedMinimumPrice: (x) => x.BilledInAdvance,
+                newFloatingGroupedWithMeteredMinimumPrice: (x) => x.BilledInAdvance,
+                groupedWithMinMaxThresholds: (x) => x.BilledInAdvance,
+                newFloatingMatrixWithDisplayNamePrice: (x) => x.BilledInAdvance,
+                newFloatingGroupedTieredPackagePrice: (x) => x.BilledInAdvance,
+                newFloatingMaxGroupTieredPackagePrice: (x) => x.BilledInAdvance,
+                newFloatingScalableMatrixWithUnitPricingPrice: (x) => x.BilledInAdvance,
+                newFloatingScalableMatrixWithTieredPricingPrice: (x) => x.BilledInAdvance,
+                newFloatingCumulativeGroupedBulkPrice: (x) => x.BilledInAdvance,
+                newFloatingMinimumCompositePrice: (x) => x.BilledInAdvance,
+                percent: (x) => x.BilledInAdvance,
+                eventOutput: (x) => x.BilledInAdvance
+            );
+        }
+    }
 
-    public static implicit operator Body(NewFloatingThresholdTotalAmountPrice value) =>
-        new BodyVariants::NewFloatingThresholdTotalAmountPrice(value);
+    public NewBillingCycleConfiguration? BillingCycleConfiguration
+    {
+        get
+        {
+            return Match<NewBillingCycleConfiguration?>(
+                newFloatingUnitPrice: (x) => x.BillingCycleConfiguration,
+                newFloatingTieredPrice: (x) => x.BillingCycleConfiguration,
+                newFloatingBulkPrice: (x) => x.BillingCycleConfiguration,
+                newFloatingPackagePrice: (x) => x.BillingCycleConfiguration,
+                newFloatingMatrixPrice: (x) => x.BillingCycleConfiguration,
+                newFloatingThresholdTotalAmountPrice: (x) => x.BillingCycleConfiguration,
+                newFloatingTieredPackagePrice: (x) => x.BillingCycleConfiguration,
+                newFloatingTieredWithMinimumPrice: (x) => x.BillingCycleConfiguration,
+                newFloatingGroupedTieredPrice: (x) => x.BillingCycleConfiguration,
+                newFloatingTieredPackageWithMinimumPrice: (x) => x.BillingCycleConfiguration,
+                newFloatingPackageWithAllocationPrice: (x) => x.BillingCycleConfiguration,
+                newFloatingUnitWithPercentPrice: (x) => x.BillingCycleConfiguration,
+                newFloatingMatrixWithAllocationPrice: (x) => x.BillingCycleConfiguration,
+                newFloatingTieredWithProrationPrice: (x) => x.BillingCycleConfiguration,
+                newFloatingUnitWithProrationPrice: (x) => x.BillingCycleConfiguration,
+                newFloatingGroupedAllocationPrice: (x) => x.BillingCycleConfiguration,
+                newFloatingBulkWithProrationPrice: (x) => x.BillingCycleConfiguration,
+                newFloatingGroupedWithProratedMinimumPrice: (x) => x.BillingCycleConfiguration,
+                newFloatingGroupedWithMeteredMinimumPrice: (x) => x.BillingCycleConfiguration,
+                groupedWithMinMaxThresholds: (x) => x.BillingCycleConfiguration,
+                newFloatingMatrixWithDisplayNamePrice: (x) => x.BillingCycleConfiguration,
+                newFloatingGroupedTieredPackagePrice: (x) => x.BillingCycleConfiguration,
+                newFloatingMaxGroupTieredPackagePrice: (x) => x.BillingCycleConfiguration,
+                newFloatingScalableMatrixWithUnitPricingPrice: (x) => x.BillingCycleConfiguration,
+                newFloatingScalableMatrixWithTieredPricingPrice: (x) => x.BillingCycleConfiguration,
+                newFloatingCumulativeGroupedBulkPrice: (x) => x.BillingCycleConfiguration,
+                newFloatingMinimumCompositePrice: (x) => x.BillingCycleConfiguration,
+                percent: (x) => x.BillingCycleConfiguration,
+                eventOutput: (x) => x.BillingCycleConfiguration
+            );
+        }
+    }
 
-    public static implicit operator Body(NewFloatingTieredPackagePrice value) =>
-        new BodyVariants::NewFloatingTieredPackagePrice(value);
+    public double? ConversionRate
+    {
+        get
+        {
+            return Match<double?>(
+                newFloatingUnitPrice: (x) => x.ConversionRate,
+                newFloatingTieredPrice: (x) => x.ConversionRate,
+                newFloatingBulkPrice: (x) => x.ConversionRate,
+                newFloatingPackagePrice: (x) => x.ConversionRate,
+                newFloatingMatrixPrice: (x) => x.ConversionRate,
+                newFloatingThresholdTotalAmountPrice: (x) => x.ConversionRate,
+                newFloatingTieredPackagePrice: (x) => x.ConversionRate,
+                newFloatingTieredWithMinimumPrice: (x) => x.ConversionRate,
+                newFloatingGroupedTieredPrice: (x) => x.ConversionRate,
+                newFloatingTieredPackageWithMinimumPrice: (x) => x.ConversionRate,
+                newFloatingPackageWithAllocationPrice: (x) => x.ConversionRate,
+                newFloatingUnitWithPercentPrice: (x) => x.ConversionRate,
+                newFloatingMatrixWithAllocationPrice: (x) => x.ConversionRate,
+                newFloatingTieredWithProrationPrice: (x) => x.ConversionRate,
+                newFloatingUnitWithProrationPrice: (x) => x.ConversionRate,
+                newFloatingGroupedAllocationPrice: (x) => x.ConversionRate,
+                newFloatingBulkWithProrationPrice: (x) => x.ConversionRate,
+                newFloatingGroupedWithProratedMinimumPrice: (x) => x.ConversionRate,
+                newFloatingGroupedWithMeteredMinimumPrice: (x) => x.ConversionRate,
+                groupedWithMinMaxThresholds: (x) => x.ConversionRate,
+                newFloatingMatrixWithDisplayNamePrice: (x) => x.ConversionRate,
+                newFloatingGroupedTieredPackagePrice: (x) => x.ConversionRate,
+                newFloatingMaxGroupTieredPackagePrice: (x) => x.ConversionRate,
+                newFloatingScalableMatrixWithUnitPricingPrice: (x) => x.ConversionRate,
+                newFloatingScalableMatrixWithTieredPricingPrice: (x) => x.ConversionRate,
+                newFloatingCumulativeGroupedBulkPrice: (x) => x.ConversionRate,
+                newFloatingMinimumCompositePrice: (x) => x.ConversionRate,
+                percent: (x) => x.ConversionRate,
+                eventOutput: (x) => x.ConversionRate
+            );
+        }
+    }
 
-    public static implicit operator Body(NewFloatingTieredWithMinimumPrice value) =>
-        new BodyVariants::NewFloatingTieredWithMinimumPrice(value);
+    public NewDimensionalPriceConfiguration? DimensionalPriceConfiguration
+    {
+        get
+        {
+            return Match<NewDimensionalPriceConfiguration?>(
+                newFloatingUnitPrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingTieredPrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingBulkPrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingPackagePrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingMatrixPrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingThresholdTotalAmountPrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingTieredPackagePrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingTieredWithMinimumPrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingGroupedTieredPrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingTieredPackageWithMinimumPrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingPackageWithAllocationPrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingUnitWithPercentPrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingMatrixWithAllocationPrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingTieredWithProrationPrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingUnitWithProrationPrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingGroupedAllocationPrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingBulkWithProrationPrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingGroupedWithProratedMinimumPrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingGroupedWithMeteredMinimumPrice: (x) => x.DimensionalPriceConfiguration,
+                groupedWithMinMaxThresholds: (x) => x.DimensionalPriceConfiguration,
+                newFloatingMatrixWithDisplayNamePrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingGroupedTieredPackagePrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingMaxGroupTieredPackagePrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingScalableMatrixWithUnitPricingPrice: (x) =>
+                    x.DimensionalPriceConfiguration,
+                newFloatingScalableMatrixWithTieredPricingPrice: (x) =>
+                    x.DimensionalPriceConfiguration,
+                newFloatingCumulativeGroupedBulkPrice: (x) => x.DimensionalPriceConfiguration,
+                newFloatingMinimumCompositePrice: (x) => x.DimensionalPriceConfiguration,
+                percent: (x) => x.DimensionalPriceConfiguration,
+                eventOutput: (x) => x.DimensionalPriceConfiguration
+            );
+        }
+    }
 
-    public static implicit operator Body(NewFloatingGroupedTieredPrice value) =>
-        new BodyVariants::NewFloatingGroupedTieredPrice(value);
+    public string? ExternalPriceID
+    {
+        get
+        {
+            return Match<string?>(
+                newFloatingUnitPrice: (x) => x.ExternalPriceID,
+                newFloatingTieredPrice: (x) => x.ExternalPriceID,
+                newFloatingBulkPrice: (x) => x.ExternalPriceID,
+                newFloatingPackagePrice: (x) => x.ExternalPriceID,
+                newFloatingMatrixPrice: (x) => x.ExternalPriceID,
+                newFloatingThresholdTotalAmountPrice: (x) => x.ExternalPriceID,
+                newFloatingTieredPackagePrice: (x) => x.ExternalPriceID,
+                newFloatingTieredWithMinimumPrice: (x) => x.ExternalPriceID,
+                newFloatingGroupedTieredPrice: (x) => x.ExternalPriceID,
+                newFloatingTieredPackageWithMinimumPrice: (x) => x.ExternalPriceID,
+                newFloatingPackageWithAllocationPrice: (x) => x.ExternalPriceID,
+                newFloatingUnitWithPercentPrice: (x) => x.ExternalPriceID,
+                newFloatingMatrixWithAllocationPrice: (x) => x.ExternalPriceID,
+                newFloatingTieredWithProrationPrice: (x) => x.ExternalPriceID,
+                newFloatingUnitWithProrationPrice: (x) => x.ExternalPriceID,
+                newFloatingGroupedAllocationPrice: (x) => x.ExternalPriceID,
+                newFloatingBulkWithProrationPrice: (x) => x.ExternalPriceID,
+                newFloatingGroupedWithProratedMinimumPrice: (x) => x.ExternalPriceID,
+                newFloatingGroupedWithMeteredMinimumPrice: (x) => x.ExternalPriceID,
+                groupedWithMinMaxThresholds: (x) => x.ExternalPriceID,
+                newFloatingMatrixWithDisplayNamePrice: (x) => x.ExternalPriceID,
+                newFloatingGroupedTieredPackagePrice: (x) => x.ExternalPriceID,
+                newFloatingMaxGroupTieredPackagePrice: (x) => x.ExternalPriceID,
+                newFloatingScalableMatrixWithUnitPricingPrice: (x) => x.ExternalPriceID,
+                newFloatingScalableMatrixWithTieredPricingPrice: (x) => x.ExternalPriceID,
+                newFloatingCumulativeGroupedBulkPrice: (x) => x.ExternalPriceID,
+                newFloatingMinimumCompositePrice: (x) => x.ExternalPriceID,
+                percent: (x) => x.ExternalPriceID,
+                eventOutput: (x) => x.ExternalPriceID
+            );
+        }
+    }
 
-    public static implicit operator Body(NewFloatingTieredPackageWithMinimumPrice value) =>
-        new BodyVariants::NewFloatingTieredPackageWithMinimumPrice(value);
+    public double? FixedPriceQuantity
+    {
+        get
+        {
+            return Match<double?>(
+                newFloatingUnitPrice: (x) => x.FixedPriceQuantity,
+                newFloatingTieredPrice: (x) => x.FixedPriceQuantity,
+                newFloatingBulkPrice: (x) => x.FixedPriceQuantity,
+                newFloatingPackagePrice: (x) => x.FixedPriceQuantity,
+                newFloatingMatrixPrice: (x) => x.FixedPriceQuantity,
+                newFloatingThresholdTotalAmountPrice: (x) => x.FixedPriceQuantity,
+                newFloatingTieredPackagePrice: (x) => x.FixedPriceQuantity,
+                newFloatingTieredWithMinimumPrice: (x) => x.FixedPriceQuantity,
+                newFloatingGroupedTieredPrice: (x) => x.FixedPriceQuantity,
+                newFloatingTieredPackageWithMinimumPrice: (x) => x.FixedPriceQuantity,
+                newFloatingPackageWithAllocationPrice: (x) => x.FixedPriceQuantity,
+                newFloatingUnitWithPercentPrice: (x) => x.FixedPriceQuantity,
+                newFloatingMatrixWithAllocationPrice: (x) => x.FixedPriceQuantity,
+                newFloatingTieredWithProrationPrice: (x) => x.FixedPriceQuantity,
+                newFloatingUnitWithProrationPrice: (x) => x.FixedPriceQuantity,
+                newFloatingGroupedAllocationPrice: (x) => x.FixedPriceQuantity,
+                newFloatingBulkWithProrationPrice: (x) => x.FixedPriceQuantity,
+                newFloatingGroupedWithProratedMinimumPrice: (x) => x.FixedPriceQuantity,
+                newFloatingGroupedWithMeteredMinimumPrice: (x) => x.FixedPriceQuantity,
+                groupedWithMinMaxThresholds: (x) => x.FixedPriceQuantity,
+                newFloatingMatrixWithDisplayNamePrice: (x) => x.FixedPriceQuantity,
+                newFloatingGroupedTieredPackagePrice: (x) => x.FixedPriceQuantity,
+                newFloatingMaxGroupTieredPackagePrice: (x) => x.FixedPriceQuantity,
+                newFloatingScalableMatrixWithUnitPricingPrice: (x) => x.FixedPriceQuantity,
+                newFloatingScalableMatrixWithTieredPricingPrice: (x) => x.FixedPriceQuantity,
+                newFloatingCumulativeGroupedBulkPrice: (x) => x.FixedPriceQuantity,
+                newFloatingMinimumCompositePrice: (x) => x.FixedPriceQuantity,
+                percent: (x) => x.FixedPriceQuantity,
+                eventOutput: (x) => x.FixedPriceQuantity
+            );
+        }
+    }
 
-    public static implicit operator Body(NewFloatingPackageWithAllocationPrice value) =>
-        new BodyVariants::NewFloatingPackageWithAllocationPrice(value);
+    public string? InvoiceGroupingKey
+    {
+        get
+        {
+            return Match<string?>(
+                newFloatingUnitPrice: (x) => x.InvoiceGroupingKey,
+                newFloatingTieredPrice: (x) => x.InvoiceGroupingKey,
+                newFloatingBulkPrice: (x) => x.InvoiceGroupingKey,
+                newFloatingPackagePrice: (x) => x.InvoiceGroupingKey,
+                newFloatingMatrixPrice: (x) => x.InvoiceGroupingKey,
+                newFloatingThresholdTotalAmountPrice: (x) => x.InvoiceGroupingKey,
+                newFloatingTieredPackagePrice: (x) => x.InvoiceGroupingKey,
+                newFloatingTieredWithMinimumPrice: (x) => x.InvoiceGroupingKey,
+                newFloatingGroupedTieredPrice: (x) => x.InvoiceGroupingKey,
+                newFloatingTieredPackageWithMinimumPrice: (x) => x.InvoiceGroupingKey,
+                newFloatingPackageWithAllocationPrice: (x) => x.InvoiceGroupingKey,
+                newFloatingUnitWithPercentPrice: (x) => x.InvoiceGroupingKey,
+                newFloatingMatrixWithAllocationPrice: (x) => x.InvoiceGroupingKey,
+                newFloatingTieredWithProrationPrice: (x) => x.InvoiceGroupingKey,
+                newFloatingUnitWithProrationPrice: (x) => x.InvoiceGroupingKey,
+                newFloatingGroupedAllocationPrice: (x) => x.InvoiceGroupingKey,
+                newFloatingBulkWithProrationPrice: (x) => x.InvoiceGroupingKey,
+                newFloatingGroupedWithProratedMinimumPrice: (x) => x.InvoiceGroupingKey,
+                newFloatingGroupedWithMeteredMinimumPrice: (x) => x.InvoiceGroupingKey,
+                groupedWithMinMaxThresholds: (x) => x.InvoiceGroupingKey,
+                newFloatingMatrixWithDisplayNamePrice: (x) => x.InvoiceGroupingKey,
+                newFloatingGroupedTieredPackagePrice: (x) => x.InvoiceGroupingKey,
+                newFloatingMaxGroupTieredPackagePrice: (x) => x.InvoiceGroupingKey,
+                newFloatingScalableMatrixWithUnitPricingPrice: (x) => x.InvoiceGroupingKey,
+                newFloatingScalableMatrixWithTieredPricingPrice: (x) => x.InvoiceGroupingKey,
+                newFloatingCumulativeGroupedBulkPrice: (x) => x.InvoiceGroupingKey,
+                newFloatingMinimumCompositePrice: (x) => x.InvoiceGroupingKey,
+                percent: (x) => x.InvoiceGroupingKey,
+                eventOutput: (x) => x.InvoiceGroupingKey
+            );
+        }
+    }
 
-    public static implicit operator Body(NewFloatingUnitWithPercentPrice value) =>
-        new BodyVariants::NewFloatingUnitWithPercentPrice(value);
+    public NewBillingCycleConfiguration? InvoicingCycleConfiguration
+    {
+        get
+        {
+            return Match<NewBillingCycleConfiguration?>(
+                newFloatingUnitPrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingTieredPrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingBulkPrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingPackagePrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingMatrixPrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingThresholdTotalAmountPrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingTieredPackagePrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingTieredWithMinimumPrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingGroupedTieredPrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingTieredPackageWithMinimumPrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingPackageWithAllocationPrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingUnitWithPercentPrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingMatrixWithAllocationPrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingTieredWithProrationPrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingUnitWithProrationPrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingGroupedAllocationPrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingBulkWithProrationPrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingGroupedWithProratedMinimumPrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingGroupedWithMeteredMinimumPrice: (x) => x.InvoicingCycleConfiguration,
+                groupedWithMinMaxThresholds: (x) => x.InvoicingCycleConfiguration,
+                newFloatingMatrixWithDisplayNamePrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingGroupedTieredPackagePrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingMaxGroupTieredPackagePrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingScalableMatrixWithUnitPricingPrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingScalableMatrixWithTieredPricingPrice: (x) =>
+                    x.InvoicingCycleConfiguration,
+                newFloatingCumulativeGroupedBulkPrice: (x) => x.InvoicingCycleConfiguration,
+                newFloatingMinimumCompositePrice: (x) => x.InvoicingCycleConfiguration,
+                percent: (x) => x.InvoicingCycleConfiguration,
+                eventOutput: (x) => x.InvoicingCycleConfiguration
+            );
+        }
+    }
 
-    public static implicit operator Body(NewFloatingMatrixWithAllocationPrice value) =>
-        new BodyVariants::NewFloatingMatrixWithAllocationPrice(value);
+    public Body(NewFloatingUnitPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Body(NewFloatingTieredWithProrationPrice value) =>
-        new BodyVariants::NewFloatingTieredWithProrationPrice(value);
+    public Body(NewFloatingTieredPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Body(NewFloatingUnitWithProrationPrice value) =>
-        new BodyVariants::NewFloatingUnitWithProrationPrice(value);
+    public Body(NewFloatingBulkPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Body(NewFloatingGroupedAllocationPrice value) =>
-        new BodyVariants::NewFloatingGroupedAllocationPrice(value);
+    public Body(NewFloatingPackagePrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Body(NewFloatingBulkWithProrationPrice value) =>
-        new BodyVariants::NewFloatingBulkWithProrationPrice(value);
+    public Body(NewFloatingMatrixPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Body(NewFloatingGroupedWithProratedMinimumPrice value) =>
-        new BodyVariants::NewFloatingGroupedWithProratedMinimumPrice(value);
+    public Body(NewFloatingThresholdTotalAmountPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Body(NewFloatingGroupedWithMeteredMinimumPrice value) =>
-        new BodyVariants::NewFloatingGroupedWithMeteredMinimumPrice(value);
+    public Body(NewFloatingTieredPackagePrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Body(GroupedWithMinMaxThresholds value) =>
-        new BodyVariants::GroupedWithMinMaxThresholds(value);
+    public Body(NewFloatingTieredWithMinimumPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Body(NewFloatingMatrixWithDisplayNamePrice value) =>
-        new BodyVariants::NewFloatingMatrixWithDisplayNamePrice(value);
+    public Body(NewFloatingGroupedTieredPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Body(NewFloatingGroupedTieredPackagePrice value) =>
-        new BodyVariants::NewFloatingGroupedTieredPackagePrice(value);
+    public Body(NewFloatingTieredPackageWithMinimumPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Body(NewFloatingMaxGroupTieredPackagePrice value) =>
-        new BodyVariants::NewFloatingMaxGroupTieredPackagePrice(value);
+    public Body(NewFloatingPackageWithAllocationPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Body(NewFloatingScalableMatrixWithUnitPricingPrice value) =>
-        new BodyVariants::NewFloatingScalableMatrixWithUnitPricingPrice(value);
+    public Body(NewFloatingUnitWithPercentPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Body(NewFloatingScalableMatrixWithTieredPricingPrice value) =>
-        new BodyVariants::NewFloatingScalableMatrixWithTieredPricingPrice(value);
+    public Body(NewFloatingMatrixWithAllocationPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Body(NewFloatingCumulativeGroupedBulkPrice value) =>
-        new BodyVariants::NewFloatingCumulativeGroupedBulkPrice(value);
+    public Body(NewFloatingTieredWithProrationPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Body(NewFloatingMinimumCompositePrice value) =>
-        new BodyVariants::NewFloatingMinimumCompositePrice(value);
+    public Body(NewFloatingUnitWithProrationPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Body(Percent value) => new BodyVariants::Percent(value);
+    public Body(NewFloatingGroupedAllocationPrice value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Body(EventOutput value) => new BodyVariants::EventOutput(value);
+    public Body(NewFloatingBulkWithProrationPrice value)
+    {
+        Value = value;
+    }
+
+    public Body(NewFloatingGroupedWithProratedMinimumPrice value)
+    {
+        Value = value;
+    }
+
+    public Body(NewFloatingGroupedWithMeteredMinimumPrice value)
+    {
+        Value = value;
+    }
+
+    public Body(GroupedWithMinMaxThresholds value)
+    {
+        Value = value;
+    }
+
+    public Body(NewFloatingMatrixWithDisplayNamePrice value)
+    {
+        Value = value;
+    }
+
+    public Body(NewFloatingGroupedTieredPackagePrice value)
+    {
+        Value = value;
+    }
+
+    public Body(NewFloatingMaxGroupTieredPackagePrice value)
+    {
+        Value = value;
+    }
+
+    public Body(NewFloatingScalableMatrixWithUnitPricingPrice value)
+    {
+        Value = value;
+    }
+
+    public Body(NewFloatingScalableMatrixWithTieredPricingPrice value)
+    {
+        Value = value;
+    }
+
+    public Body(NewFloatingCumulativeGroupedBulkPrice value)
+    {
+        Value = value;
+    }
+
+    public Body(NewFloatingMinimumCompositePrice value)
+    {
+        Value = value;
+    }
+
+    public Body(Percent value)
+    {
+        Value = value;
+    }
+
+    public Body(EventOutput value)
+    {
+        Value = value;
+    }
+
+    Body(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Body CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickNewFloatingUnitPrice([NotNullWhen(true)] out NewFloatingUnitPrice? value)
     {
-        value = (this as BodyVariants::NewFloatingUnitPrice)?.Value;
+        value = this.Value as NewFloatingUnitPrice;
         return value != null;
     }
 
     public bool TryPickNewFloatingTieredPrice([NotNullWhen(true)] out NewFloatingTieredPrice? value)
     {
-        value = (this as BodyVariants::NewFloatingTieredPrice)?.Value;
+        value = this.Value as NewFloatingTieredPrice;
         return value != null;
     }
 
     public bool TryPickNewFloatingBulkPrice([NotNullWhen(true)] out NewFloatingBulkPrice? value)
     {
-        value = (this as BodyVariants::NewFloatingBulkPrice)?.Value;
+        value = this.Value as NewFloatingBulkPrice;
         return value != null;
     }
 
@@ -124,13 +652,13 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingPackagePrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingPackagePrice)?.Value;
+        value = this.Value as NewFloatingPackagePrice;
         return value != null;
     }
 
     public bool TryPickNewFloatingMatrixPrice([NotNullWhen(true)] out NewFloatingMatrixPrice? value)
     {
-        value = (this as BodyVariants::NewFloatingMatrixPrice)?.Value;
+        value = this.Value as NewFloatingMatrixPrice;
         return value != null;
     }
 
@@ -138,7 +666,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingThresholdTotalAmountPrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingThresholdTotalAmountPrice)?.Value;
+        value = this.Value as NewFloatingThresholdTotalAmountPrice;
         return value != null;
     }
 
@@ -146,7 +674,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingTieredPackagePrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingTieredPackagePrice)?.Value;
+        value = this.Value as NewFloatingTieredPackagePrice;
         return value != null;
     }
 
@@ -154,7 +682,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingTieredWithMinimumPrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingTieredWithMinimumPrice)?.Value;
+        value = this.Value as NewFloatingTieredWithMinimumPrice;
         return value != null;
     }
 
@@ -162,7 +690,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingGroupedTieredPrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingGroupedTieredPrice)?.Value;
+        value = this.Value as NewFloatingGroupedTieredPrice;
         return value != null;
     }
 
@@ -170,7 +698,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingTieredPackageWithMinimumPrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingTieredPackageWithMinimumPrice)?.Value;
+        value = this.Value as NewFloatingTieredPackageWithMinimumPrice;
         return value != null;
     }
 
@@ -178,7 +706,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingPackageWithAllocationPrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingPackageWithAllocationPrice)?.Value;
+        value = this.Value as NewFloatingPackageWithAllocationPrice;
         return value != null;
     }
 
@@ -186,7 +714,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingUnitWithPercentPrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingUnitWithPercentPrice)?.Value;
+        value = this.Value as NewFloatingUnitWithPercentPrice;
         return value != null;
     }
 
@@ -194,7 +722,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingMatrixWithAllocationPrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingMatrixWithAllocationPrice)?.Value;
+        value = this.Value as NewFloatingMatrixWithAllocationPrice;
         return value != null;
     }
 
@@ -202,7 +730,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingTieredWithProrationPrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingTieredWithProrationPrice)?.Value;
+        value = this.Value as NewFloatingTieredWithProrationPrice;
         return value != null;
     }
 
@@ -210,7 +738,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingUnitWithProrationPrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingUnitWithProrationPrice)?.Value;
+        value = this.Value as NewFloatingUnitWithProrationPrice;
         return value != null;
     }
 
@@ -218,7 +746,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingGroupedAllocationPrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingGroupedAllocationPrice)?.Value;
+        value = this.Value as NewFloatingGroupedAllocationPrice;
         return value != null;
     }
 
@@ -226,7 +754,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingBulkWithProrationPrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingBulkWithProrationPrice)?.Value;
+        value = this.Value as NewFloatingBulkWithProrationPrice;
         return value != null;
     }
 
@@ -234,7 +762,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingGroupedWithProratedMinimumPrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingGroupedWithProratedMinimumPrice)?.Value;
+        value = this.Value as NewFloatingGroupedWithProratedMinimumPrice;
         return value != null;
     }
 
@@ -242,7 +770,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingGroupedWithMeteredMinimumPrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingGroupedWithMeteredMinimumPrice)?.Value;
+        value = this.Value as NewFloatingGroupedWithMeteredMinimumPrice;
         return value != null;
     }
 
@@ -250,7 +778,7 @@ public abstract record class Body
         [NotNullWhen(true)] out GroupedWithMinMaxThresholds? value
     )
     {
-        value = (this as BodyVariants::GroupedWithMinMaxThresholds)?.Value;
+        value = this.Value as GroupedWithMinMaxThresholds;
         return value != null;
     }
 
@@ -258,7 +786,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingMatrixWithDisplayNamePrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingMatrixWithDisplayNamePrice)?.Value;
+        value = this.Value as NewFloatingMatrixWithDisplayNamePrice;
         return value != null;
     }
 
@@ -266,7 +794,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingGroupedTieredPackagePrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingGroupedTieredPackagePrice)?.Value;
+        value = this.Value as NewFloatingGroupedTieredPackagePrice;
         return value != null;
     }
 
@@ -274,7 +802,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingMaxGroupTieredPackagePrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingMaxGroupTieredPackagePrice)?.Value;
+        value = this.Value as NewFloatingMaxGroupTieredPackagePrice;
         return value != null;
     }
 
@@ -282,7 +810,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingScalableMatrixWithUnitPricingPrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingScalableMatrixWithUnitPricingPrice)?.Value;
+        value = this.Value as NewFloatingScalableMatrixWithUnitPricingPrice;
         return value != null;
     }
 
@@ -290,7 +818,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingScalableMatrixWithTieredPricingPrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingScalableMatrixWithTieredPricingPrice)?.Value;
+        value = this.Value as NewFloatingScalableMatrixWithTieredPricingPrice;
         return value != null;
     }
 
@@ -298,7 +826,7 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingCumulativeGroupedBulkPrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingCumulativeGroupedBulkPrice)?.Value;
+        value = this.Value as NewFloatingCumulativeGroupedBulkPrice;
         return value != null;
     }
 
@@ -306,142 +834,142 @@ public abstract record class Body
         [NotNullWhen(true)] out NewFloatingMinimumCompositePrice? value
     )
     {
-        value = (this as BodyVariants::NewFloatingMinimumCompositePrice)?.Value;
+        value = this.Value as NewFloatingMinimumCompositePrice;
         return value != null;
     }
 
     public bool TryPickPercent([NotNullWhen(true)] out Percent? value)
     {
-        value = (this as BodyVariants::Percent)?.Value;
+        value = this.Value as Percent;
         return value != null;
     }
 
     public bool TryPickEventOutput([NotNullWhen(true)] out EventOutput? value)
     {
-        value = (this as BodyVariants::EventOutput)?.Value;
+        value = this.Value as EventOutput;
         return value != null;
     }
 
     public void Switch(
-        Action<BodyVariants::NewFloatingUnitPrice> newFloatingUnitPrice,
-        Action<BodyVariants::NewFloatingTieredPrice> newFloatingTieredPrice,
-        Action<BodyVariants::NewFloatingBulkPrice> newFloatingBulkPrice,
-        Action<BodyVariants::NewFloatingPackagePrice> newFloatingPackagePrice,
-        Action<BodyVariants::NewFloatingMatrixPrice> newFloatingMatrixPrice,
-        Action<BodyVariants::NewFloatingThresholdTotalAmountPrice> newFloatingThresholdTotalAmountPrice,
-        Action<BodyVariants::NewFloatingTieredPackagePrice> newFloatingTieredPackagePrice,
-        Action<BodyVariants::NewFloatingTieredWithMinimumPrice> newFloatingTieredWithMinimumPrice,
-        Action<BodyVariants::NewFloatingGroupedTieredPrice> newFloatingGroupedTieredPrice,
-        Action<BodyVariants::NewFloatingTieredPackageWithMinimumPrice> newFloatingTieredPackageWithMinimumPrice,
-        Action<BodyVariants::NewFloatingPackageWithAllocationPrice> newFloatingPackageWithAllocationPrice,
-        Action<BodyVariants::NewFloatingUnitWithPercentPrice> newFloatingUnitWithPercentPrice,
-        Action<BodyVariants::NewFloatingMatrixWithAllocationPrice> newFloatingMatrixWithAllocationPrice,
-        Action<BodyVariants::NewFloatingTieredWithProrationPrice> newFloatingTieredWithProrationPrice,
-        Action<BodyVariants::NewFloatingUnitWithProrationPrice> newFloatingUnitWithProrationPrice,
-        Action<BodyVariants::NewFloatingGroupedAllocationPrice> newFloatingGroupedAllocationPrice,
-        Action<BodyVariants::NewFloatingBulkWithProrationPrice> newFloatingBulkWithProrationPrice,
-        Action<BodyVariants::NewFloatingGroupedWithProratedMinimumPrice> newFloatingGroupedWithProratedMinimumPrice,
-        Action<BodyVariants::NewFloatingGroupedWithMeteredMinimumPrice> newFloatingGroupedWithMeteredMinimumPrice,
-        Action<BodyVariants::GroupedWithMinMaxThresholds> groupedWithMinMaxThresholds,
-        Action<BodyVariants::NewFloatingMatrixWithDisplayNamePrice> newFloatingMatrixWithDisplayNamePrice,
-        Action<BodyVariants::NewFloatingGroupedTieredPackagePrice> newFloatingGroupedTieredPackagePrice,
-        Action<BodyVariants::NewFloatingMaxGroupTieredPackagePrice> newFloatingMaxGroupTieredPackagePrice,
-        Action<BodyVariants::NewFloatingScalableMatrixWithUnitPricingPrice> newFloatingScalableMatrixWithUnitPricingPrice,
-        Action<BodyVariants::NewFloatingScalableMatrixWithTieredPricingPrice> newFloatingScalableMatrixWithTieredPricingPrice,
-        Action<BodyVariants::NewFloatingCumulativeGroupedBulkPrice> newFloatingCumulativeGroupedBulkPrice,
-        Action<BodyVariants::NewFloatingMinimumCompositePrice> newFloatingMinimumCompositePrice,
-        Action<BodyVariants::Percent> percent,
-        Action<BodyVariants::EventOutput> eventOutput
+        Action<NewFloatingUnitPrice> newFloatingUnitPrice,
+        Action<NewFloatingTieredPrice> newFloatingTieredPrice,
+        Action<NewFloatingBulkPrice> newFloatingBulkPrice,
+        Action<NewFloatingPackagePrice> newFloatingPackagePrice,
+        Action<NewFloatingMatrixPrice> newFloatingMatrixPrice,
+        Action<NewFloatingThresholdTotalAmountPrice> newFloatingThresholdTotalAmountPrice,
+        Action<NewFloatingTieredPackagePrice> newFloatingTieredPackagePrice,
+        Action<NewFloatingTieredWithMinimumPrice> newFloatingTieredWithMinimumPrice,
+        Action<NewFloatingGroupedTieredPrice> newFloatingGroupedTieredPrice,
+        Action<NewFloatingTieredPackageWithMinimumPrice> newFloatingTieredPackageWithMinimumPrice,
+        Action<NewFloatingPackageWithAllocationPrice> newFloatingPackageWithAllocationPrice,
+        Action<NewFloatingUnitWithPercentPrice> newFloatingUnitWithPercentPrice,
+        Action<NewFloatingMatrixWithAllocationPrice> newFloatingMatrixWithAllocationPrice,
+        Action<NewFloatingTieredWithProrationPrice> newFloatingTieredWithProrationPrice,
+        Action<NewFloatingUnitWithProrationPrice> newFloatingUnitWithProrationPrice,
+        Action<NewFloatingGroupedAllocationPrice> newFloatingGroupedAllocationPrice,
+        Action<NewFloatingBulkWithProrationPrice> newFloatingBulkWithProrationPrice,
+        Action<NewFloatingGroupedWithProratedMinimumPrice> newFloatingGroupedWithProratedMinimumPrice,
+        Action<NewFloatingGroupedWithMeteredMinimumPrice> newFloatingGroupedWithMeteredMinimumPrice,
+        Action<GroupedWithMinMaxThresholds> groupedWithMinMaxThresholds,
+        Action<NewFloatingMatrixWithDisplayNamePrice> newFloatingMatrixWithDisplayNamePrice,
+        Action<NewFloatingGroupedTieredPackagePrice> newFloatingGroupedTieredPackagePrice,
+        Action<NewFloatingMaxGroupTieredPackagePrice> newFloatingMaxGroupTieredPackagePrice,
+        Action<NewFloatingScalableMatrixWithUnitPricingPrice> newFloatingScalableMatrixWithUnitPricingPrice,
+        Action<NewFloatingScalableMatrixWithTieredPricingPrice> newFloatingScalableMatrixWithTieredPricingPrice,
+        Action<NewFloatingCumulativeGroupedBulkPrice> newFloatingCumulativeGroupedBulkPrice,
+        Action<NewFloatingMinimumCompositePrice> newFloatingMinimumCompositePrice,
+        Action<Percent> percent,
+        Action<EventOutput> eventOutput
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case BodyVariants::NewFloatingUnitPrice inner:
-                newFloatingUnitPrice(inner);
+            case NewFloatingUnitPrice value:
+                newFloatingUnitPrice(value);
                 break;
-            case BodyVariants::NewFloatingTieredPrice inner:
-                newFloatingTieredPrice(inner);
+            case NewFloatingTieredPrice value:
+                newFloatingTieredPrice(value);
                 break;
-            case BodyVariants::NewFloatingBulkPrice inner:
-                newFloatingBulkPrice(inner);
+            case NewFloatingBulkPrice value:
+                newFloatingBulkPrice(value);
                 break;
-            case BodyVariants::NewFloatingPackagePrice inner:
-                newFloatingPackagePrice(inner);
+            case NewFloatingPackagePrice value:
+                newFloatingPackagePrice(value);
                 break;
-            case BodyVariants::NewFloatingMatrixPrice inner:
-                newFloatingMatrixPrice(inner);
+            case NewFloatingMatrixPrice value:
+                newFloatingMatrixPrice(value);
                 break;
-            case BodyVariants::NewFloatingThresholdTotalAmountPrice inner:
-                newFloatingThresholdTotalAmountPrice(inner);
+            case NewFloatingThresholdTotalAmountPrice value:
+                newFloatingThresholdTotalAmountPrice(value);
                 break;
-            case BodyVariants::NewFloatingTieredPackagePrice inner:
-                newFloatingTieredPackagePrice(inner);
+            case NewFloatingTieredPackagePrice value:
+                newFloatingTieredPackagePrice(value);
                 break;
-            case BodyVariants::NewFloatingTieredWithMinimumPrice inner:
-                newFloatingTieredWithMinimumPrice(inner);
+            case NewFloatingTieredWithMinimumPrice value:
+                newFloatingTieredWithMinimumPrice(value);
                 break;
-            case BodyVariants::NewFloatingGroupedTieredPrice inner:
-                newFloatingGroupedTieredPrice(inner);
+            case NewFloatingGroupedTieredPrice value:
+                newFloatingGroupedTieredPrice(value);
                 break;
-            case BodyVariants::NewFloatingTieredPackageWithMinimumPrice inner:
-                newFloatingTieredPackageWithMinimumPrice(inner);
+            case NewFloatingTieredPackageWithMinimumPrice value:
+                newFloatingTieredPackageWithMinimumPrice(value);
                 break;
-            case BodyVariants::NewFloatingPackageWithAllocationPrice inner:
-                newFloatingPackageWithAllocationPrice(inner);
+            case NewFloatingPackageWithAllocationPrice value:
+                newFloatingPackageWithAllocationPrice(value);
                 break;
-            case BodyVariants::NewFloatingUnitWithPercentPrice inner:
-                newFloatingUnitWithPercentPrice(inner);
+            case NewFloatingUnitWithPercentPrice value:
+                newFloatingUnitWithPercentPrice(value);
                 break;
-            case BodyVariants::NewFloatingMatrixWithAllocationPrice inner:
-                newFloatingMatrixWithAllocationPrice(inner);
+            case NewFloatingMatrixWithAllocationPrice value:
+                newFloatingMatrixWithAllocationPrice(value);
                 break;
-            case BodyVariants::NewFloatingTieredWithProrationPrice inner:
-                newFloatingTieredWithProrationPrice(inner);
+            case NewFloatingTieredWithProrationPrice value:
+                newFloatingTieredWithProrationPrice(value);
                 break;
-            case BodyVariants::NewFloatingUnitWithProrationPrice inner:
-                newFloatingUnitWithProrationPrice(inner);
+            case NewFloatingUnitWithProrationPrice value:
+                newFloatingUnitWithProrationPrice(value);
                 break;
-            case BodyVariants::NewFloatingGroupedAllocationPrice inner:
-                newFloatingGroupedAllocationPrice(inner);
+            case NewFloatingGroupedAllocationPrice value:
+                newFloatingGroupedAllocationPrice(value);
                 break;
-            case BodyVariants::NewFloatingBulkWithProrationPrice inner:
-                newFloatingBulkWithProrationPrice(inner);
+            case NewFloatingBulkWithProrationPrice value:
+                newFloatingBulkWithProrationPrice(value);
                 break;
-            case BodyVariants::NewFloatingGroupedWithProratedMinimumPrice inner:
-                newFloatingGroupedWithProratedMinimumPrice(inner);
+            case NewFloatingGroupedWithProratedMinimumPrice value:
+                newFloatingGroupedWithProratedMinimumPrice(value);
                 break;
-            case BodyVariants::NewFloatingGroupedWithMeteredMinimumPrice inner:
-                newFloatingGroupedWithMeteredMinimumPrice(inner);
+            case NewFloatingGroupedWithMeteredMinimumPrice value:
+                newFloatingGroupedWithMeteredMinimumPrice(value);
                 break;
-            case BodyVariants::GroupedWithMinMaxThresholds inner:
-                groupedWithMinMaxThresholds(inner);
+            case GroupedWithMinMaxThresholds value:
+                groupedWithMinMaxThresholds(value);
                 break;
-            case BodyVariants::NewFloatingMatrixWithDisplayNamePrice inner:
-                newFloatingMatrixWithDisplayNamePrice(inner);
+            case NewFloatingMatrixWithDisplayNamePrice value:
+                newFloatingMatrixWithDisplayNamePrice(value);
                 break;
-            case BodyVariants::NewFloatingGroupedTieredPackagePrice inner:
-                newFloatingGroupedTieredPackagePrice(inner);
+            case NewFloatingGroupedTieredPackagePrice value:
+                newFloatingGroupedTieredPackagePrice(value);
                 break;
-            case BodyVariants::NewFloatingMaxGroupTieredPackagePrice inner:
-                newFloatingMaxGroupTieredPackagePrice(inner);
+            case NewFloatingMaxGroupTieredPackagePrice value:
+                newFloatingMaxGroupTieredPackagePrice(value);
                 break;
-            case BodyVariants::NewFloatingScalableMatrixWithUnitPricingPrice inner:
-                newFloatingScalableMatrixWithUnitPricingPrice(inner);
+            case NewFloatingScalableMatrixWithUnitPricingPrice value:
+                newFloatingScalableMatrixWithUnitPricingPrice(value);
                 break;
-            case BodyVariants::NewFloatingScalableMatrixWithTieredPricingPrice inner:
-                newFloatingScalableMatrixWithTieredPricingPrice(inner);
+            case NewFloatingScalableMatrixWithTieredPricingPrice value:
+                newFloatingScalableMatrixWithTieredPricingPrice(value);
                 break;
-            case BodyVariants::NewFloatingCumulativeGroupedBulkPrice inner:
-                newFloatingCumulativeGroupedBulkPrice(inner);
+            case NewFloatingCumulativeGroupedBulkPrice value:
+                newFloatingCumulativeGroupedBulkPrice(value);
                 break;
-            case BodyVariants::NewFloatingMinimumCompositePrice inner:
-                newFloatingMinimumCompositePrice(inner);
+            case NewFloatingMinimumCompositePrice value:
+                newFloatingMinimumCompositePrice(value);
                 break;
-            case BodyVariants::Percent inner:
-                percent(inner);
+            case Percent value:
+                percent(value);
                 break;
-            case BodyVariants::EventOutput inner:
-                eventOutput(inner);
+            case EventOutput value:
+                eventOutput(value);
                 break;
             default:
                 throw new OrbInvalidDataException("Data did not match any variant of Body");
@@ -449,136 +977,112 @@ public abstract record class Body
     }
 
     public T Match<T>(
-        Func<BodyVariants::NewFloatingUnitPrice, T> newFloatingUnitPrice,
-        Func<BodyVariants::NewFloatingTieredPrice, T> newFloatingTieredPrice,
-        Func<BodyVariants::NewFloatingBulkPrice, T> newFloatingBulkPrice,
-        Func<BodyVariants::NewFloatingPackagePrice, T> newFloatingPackagePrice,
-        Func<BodyVariants::NewFloatingMatrixPrice, T> newFloatingMatrixPrice,
+        Func<NewFloatingUnitPrice, T> newFloatingUnitPrice,
+        Func<NewFloatingTieredPrice, T> newFloatingTieredPrice,
+        Func<NewFloatingBulkPrice, T> newFloatingBulkPrice,
+        Func<NewFloatingPackagePrice, T> newFloatingPackagePrice,
+        Func<NewFloatingMatrixPrice, T> newFloatingMatrixPrice,
+        Func<NewFloatingThresholdTotalAmountPrice, T> newFloatingThresholdTotalAmountPrice,
+        Func<NewFloatingTieredPackagePrice, T> newFloatingTieredPackagePrice,
+        Func<NewFloatingTieredWithMinimumPrice, T> newFloatingTieredWithMinimumPrice,
+        Func<NewFloatingGroupedTieredPrice, T> newFloatingGroupedTieredPrice,
+        Func<NewFloatingTieredPackageWithMinimumPrice, T> newFloatingTieredPackageWithMinimumPrice,
+        Func<NewFloatingPackageWithAllocationPrice, T> newFloatingPackageWithAllocationPrice,
+        Func<NewFloatingUnitWithPercentPrice, T> newFloatingUnitWithPercentPrice,
+        Func<NewFloatingMatrixWithAllocationPrice, T> newFloatingMatrixWithAllocationPrice,
+        Func<NewFloatingTieredWithProrationPrice, T> newFloatingTieredWithProrationPrice,
+        Func<NewFloatingUnitWithProrationPrice, T> newFloatingUnitWithProrationPrice,
+        Func<NewFloatingGroupedAllocationPrice, T> newFloatingGroupedAllocationPrice,
+        Func<NewFloatingBulkWithProrationPrice, T> newFloatingBulkWithProrationPrice,
         Func<
-            BodyVariants::NewFloatingThresholdTotalAmountPrice,
-            T
-        > newFloatingThresholdTotalAmountPrice,
-        Func<BodyVariants::NewFloatingTieredPackagePrice, T> newFloatingTieredPackagePrice,
-        Func<BodyVariants::NewFloatingTieredWithMinimumPrice, T> newFloatingTieredWithMinimumPrice,
-        Func<BodyVariants::NewFloatingGroupedTieredPrice, T> newFloatingGroupedTieredPrice,
-        Func<
-            BodyVariants::NewFloatingTieredPackageWithMinimumPrice,
-            T
-        > newFloatingTieredPackageWithMinimumPrice,
-        Func<
-            BodyVariants::NewFloatingPackageWithAllocationPrice,
-            T
-        > newFloatingPackageWithAllocationPrice,
-        Func<BodyVariants::NewFloatingUnitWithPercentPrice, T> newFloatingUnitWithPercentPrice,
-        Func<
-            BodyVariants::NewFloatingMatrixWithAllocationPrice,
-            T
-        > newFloatingMatrixWithAllocationPrice,
-        Func<
-            BodyVariants::NewFloatingTieredWithProrationPrice,
-            T
-        > newFloatingTieredWithProrationPrice,
-        Func<BodyVariants::NewFloatingUnitWithProrationPrice, T> newFloatingUnitWithProrationPrice,
-        Func<BodyVariants::NewFloatingGroupedAllocationPrice, T> newFloatingGroupedAllocationPrice,
-        Func<BodyVariants::NewFloatingBulkWithProrationPrice, T> newFloatingBulkWithProrationPrice,
-        Func<
-            BodyVariants::NewFloatingGroupedWithProratedMinimumPrice,
+            NewFloatingGroupedWithProratedMinimumPrice,
             T
         > newFloatingGroupedWithProratedMinimumPrice,
         Func<
-            BodyVariants::NewFloatingGroupedWithMeteredMinimumPrice,
+            NewFloatingGroupedWithMeteredMinimumPrice,
             T
         > newFloatingGroupedWithMeteredMinimumPrice,
-        Func<BodyVariants::GroupedWithMinMaxThresholds, T> groupedWithMinMaxThresholds,
+        Func<GroupedWithMinMaxThresholds, T> groupedWithMinMaxThresholds,
+        Func<NewFloatingMatrixWithDisplayNamePrice, T> newFloatingMatrixWithDisplayNamePrice,
+        Func<NewFloatingGroupedTieredPackagePrice, T> newFloatingGroupedTieredPackagePrice,
+        Func<NewFloatingMaxGroupTieredPackagePrice, T> newFloatingMaxGroupTieredPackagePrice,
         Func<
-            BodyVariants::NewFloatingMatrixWithDisplayNamePrice,
-            T
-        > newFloatingMatrixWithDisplayNamePrice,
-        Func<
-            BodyVariants::NewFloatingGroupedTieredPackagePrice,
-            T
-        > newFloatingGroupedTieredPackagePrice,
-        Func<
-            BodyVariants::NewFloatingMaxGroupTieredPackagePrice,
-            T
-        > newFloatingMaxGroupTieredPackagePrice,
-        Func<
-            BodyVariants::NewFloatingScalableMatrixWithUnitPricingPrice,
+            NewFloatingScalableMatrixWithUnitPricingPrice,
             T
         > newFloatingScalableMatrixWithUnitPricingPrice,
         Func<
-            BodyVariants::NewFloatingScalableMatrixWithTieredPricingPrice,
+            NewFloatingScalableMatrixWithTieredPricingPrice,
             T
         > newFloatingScalableMatrixWithTieredPricingPrice,
-        Func<
-            BodyVariants::NewFloatingCumulativeGroupedBulkPrice,
-            T
-        > newFloatingCumulativeGroupedBulkPrice,
-        Func<BodyVariants::NewFloatingMinimumCompositePrice, T> newFloatingMinimumCompositePrice,
-        Func<BodyVariants::Percent, T> percent,
-        Func<BodyVariants::EventOutput, T> eventOutput
+        Func<NewFloatingCumulativeGroupedBulkPrice, T> newFloatingCumulativeGroupedBulkPrice,
+        Func<NewFloatingMinimumCompositePrice, T> newFloatingMinimumCompositePrice,
+        Func<Percent, T> percent,
+        Func<EventOutput, T> eventOutput
     )
     {
-        return this switch
+        return this.Value switch
         {
-            BodyVariants::NewFloatingUnitPrice inner => newFloatingUnitPrice(inner),
-            BodyVariants::NewFloatingTieredPrice inner => newFloatingTieredPrice(inner),
-            BodyVariants::NewFloatingBulkPrice inner => newFloatingBulkPrice(inner),
-            BodyVariants::NewFloatingPackagePrice inner => newFloatingPackagePrice(inner),
-            BodyVariants::NewFloatingMatrixPrice inner => newFloatingMatrixPrice(inner),
-            BodyVariants::NewFloatingThresholdTotalAmountPrice inner =>
-                newFloatingThresholdTotalAmountPrice(inner),
-            BodyVariants::NewFloatingTieredPackagePrice inner => newFloatingTieredPackagePrice(
-                inner
+            NewFloatingUnitPrice value => newFloatingUnitPrice(value),
+            NewFloatingTieredPrice value => newFloatingTieredPrice(value),
+            NewFloatingBulkPrice value => newFloatingBulkPrice(value),
+            NewFloatingPackagePrice value => newFloatingPackagePrice(value),
+            NewFloatingMatrixPrice value => newFloatingMatrixPrice(value),
+            NewFloatingThresholdTotalAmountPrice value => newFloatingThresholdTotalAmountPrice(
+                value
             ),
-            BodyVariants::NewFloatingTieredWithMinimumPrice inner =>
-                newFloatingTieredWithMinimumPrice(inner),
-            BodyVariants::NewFloatingGroupedTieredPrice inner => newFloatingGroupedTieredPrice(
-                inner
+            NewFloatingTieredPackagePrice value => newFloatingTieredPackagePrice(value),
+            NewFloatingTieredWithMinimumPrice value => newFloatingTieredWithMinimumPrice(value),
+            NewFloatingGroupedTieredPrice value => newFloatingGroupedTieredPrice(value),
+            NewFloatingTieredPackageWithMinimumPrice value =>
+                newFloatingTieredPackageWithMinimumPrice(value),
+            NewFloatingPackageWithAllocationPrice value => newFloatingPackageWithAllocationPrice(
+                value
             ),
-            BodyVariants::NewFloatingTieredPackageWithMinimumPrice inner =>
-                newFloatingTieredPackageWithMinimumPrice(inner),
-            BodyVariants::NewFloatingPackageWithAllocationPrice inner =>
-                newFloatingPackageWithAllocationPrice(inner),
-            BodyVariants::NewFloatingUnitWithPercentPrice inner => newFloatingUnitWithPercentPrice(
-                inner
+            NewFloatingUnitWithPercentPrice value => newFloatingUnitWithPercentPrice(value),
+            NewFloatingMatrixWithAllocationPrice value => newFloatingMatrixWithAllocationPrice(
+                value
             ),
-            BodyVariants::NewFloatingMatrixWithAllocationPrice inner =>
-                newFloatingMatrixWithAllocationPrice(inner),
-            BodyVariants::NewFloatingTieredWithProrationPrice inner =>
-                newFloatingTieredWithProrationPrice(inner),
-            BodyVariants::NewFloatingUnitWithProrationPrice inner =>
-                newFloatingUnitWithProrationPrice(inner),
-            BodyVariants::NewFloatingGroupedAllocationPrice inner =>
-                newFloatingGroupedAllocationPrice(inner),
-            BodyVariants::NewFloatingBulkWithProrationPrice inner =>
-                newFloatingBulkWithProrationPrice(inner),
-            BodyVariants::NewFloatingGroupedWithProratedMinimumPrice inner =>
-                newFloatingGroupedWithProratedMinimumPrice(inner),
-            BodyVariants::NewFloatingGroupedWithMeteredMinimumPrice inner =>
-                newFloatingGroupedWithMeteredMinimumPrice(inner),
-            BodyVariants::GroupedWithMinMaxThresholds inner => groupedWithMinMaxThresholds(inner),
-            BodyVariants::NewFloatingMatrixWithDisplayNamePrice inner =>
-                newFloatingMatrixWithDisplayNamePrice(inner),
-            BodyVariants::NewFloatingGroupedTieredPackagePrice inner =>
-                newFloatingGroupedTieredPackagePrice(inner),
-            BodyVariants::NewFloatingMaxGroupTieredPackagePrice inner =>
-                newFloatingMaxGroupTieredPackagePrice(inner),
-            BodyVariants::NewFloatingScalableMatrixWithUnitPricingPrice inner =>
-                newFloatingScalableMatrixWithUnitPricingPrice(inner),
-            BodyVariants::NewFloatingScalableMatrixWithTieredPricingPrice inner =>
-                newFloatingScalableMatrixWithTieredPricingPrice(inner),
-            BodyVariants::NewFloatingCumulativeGroupedBulkPrice inner =>
-                newFloatingCumulativeGroupedBulkPrice(inner),
-            BodyVariants::NewFloatingMinimumCompositePrice inner =>
-                newFloatingMinimumCompositePrice(inner),
-            BodyVariants::Percent inner => percent(inner),
-            BodyVariants::EventOutput inner => eventOutput(inner),
+            NewFloatingTieredWithProrationPrice value => newFloatingTieredWithProrationPrice(value),
+            NewFloatingUnitWithProrationPrice value => newFloatingUnitWithProrationPrice(value),
+            NewFloatingGroupedAllocationPrice value => newFloatingGroupedAllocationPrice(value),
+            NewFloatingBulkWithProrationPrice value => newFloatingBulkWithProrationPrice(value),
+            NewFloatingGroupedWithProratedMinimumPrice value =>
+                newFloatingGroupedWithProratedMinimumPrice(value),
+            NewFloatingGroupedWithMeteredMinimumPrice value =>
+                newFloatingGroupedWithMeteredMinimumPrice(value),
+            GroupedWithMinMaxThresholds value => groupedWithMinMaxThresholds(value),
+            NewFloatingMatrixWithDisplayNamePrice value => newFloatingMatrixWithDisplayNamePrice(
+                value
+            ),
+            NewFloatingGroupedTieredPackagePrice value => newFloatingGroupedTieredPackagePrice(
+                value
+            ),
+            NewFloatingMaxGroupTieredPackagePrice value => newFloatingMaxGroupTieredPackagePrice(
+                value
+            ),
+            NewFloatingScalableMatrixWithUnitPricingPrice value =>
+                newFloatingScalableMatrixWithUnitPricingPrice(value),
+            NewFloatingScalableMatrixWithTieredPricingPrice value =>
+                newFloatingScalableMatrixWithTieredPricingPrice(value),
+            NewFloatingCumulativeGroupedBulkPrice value => newFloatingCumulativeGroupedBulkPrice(
+                value
+            ),
+            NewFloatingMinimumCompositePrice value => newFloatingMinimumCompositePrice(value),
+            Percent value => percent(value),
+            EventOutput value => eventOutput(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Body"),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of Body");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class BodyConverter : JsonConverter<Body>
@@ -614,14 +1118,15 @@ sealed class BodyConverter : JsonConverter<Body>
                     );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingUnitPrice(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingUnitPrice",
+                            "Data does not match union variant 'NewFloatingUnitPrice'",
                             e
                         )
                     );
@@ -641,14 +1146,15 @@ sealed class BodyConverter : JsonConverter<Body>
                     );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingTieredPrice(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingTieredPrice",
+                            "Data does not match union variant 'NewFloatingTieredPrice'",
                             e
                         )
                     );
@@ -668,14 +1174,15 @@ sealed class BodyConverter : JsonConverter<Body>
                     );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingBulkPrice(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingBulkPrice",
+                            "Data does not match union variant 'NewFloatingBulkPrice'",
                             e
                         )
                     );
@@ -695,14 +1202,15 @@ sealed class BodyConverter : JsonConverter<Body>
                     );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingPackagePrice(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingPackagePrice",
+                            "Data does not match union variant 'NewFloatingPackagePrice'",
                             e
                         )
                     );
@@ -722,14 +1230,15 @@ sealed class BodyConverter : JsonConverter<Body>
                     );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingMatrixPrice(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingMatrixPrice",
+                            "Data does not match union variant 'NewFloatingMatrixPrice'",
                             e
                         )
                     );
@@ -750,14 +1259,15 @@ sealed class BodyConverter : JsonConverter<Body>
                         );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingThresholdTotalAmountPrice(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingThresholdTotalAmountPrice",
+                            "Data does not match union variant 'NewFloatingThresholdTotalAmountPrice'",
                             e
                         )
                     );
@@ -777,14 +1287,15 @@ sealed class BodyConverter : JsonConverter<Body>
                     );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingTieredPackagePrice(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingTieredPackagePrice",
+                            "Data does not match union variant 'NewFloatingTieredPackagePrice'",
                             e
                         )
                     );
@@ -805,14 +1316,15 @@ sealed class BodyConverter : JsonConverter<Body>
                         );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingTieredWithMinimumPrice(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingTieredWithMinimumPrice",
+                            "Data does not match union variant 'NewFloatingTieredWithMinimumPrice'",
                             e
                         )
                     );
@@ -832,14 +1344,15 @@ sealed class BodyConverter : JsonConverter<Body>
                     );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingGroupedTieredPrice(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingGroupedTieredPrice",
+                            "Data does not match union variant 'NewFloatingGroupedTieredPrice'",
                             e
                         )
                     );
@@ -860,16 +1373,15 @@ sealed class BodyConverter : JsonConverter<Body>
                         );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingTieredPackageWithMinimumPrice(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingTieredPackageWithMinimumPrice",
+                            "Data does not match union variant 'NewFloatingTieredPackageWithMinimumPrice'",
                             e
                         )
                     );
@@ -890,16 +1402,15 @@ sealed class BodyConverter : JsonConverter<Body>
                         );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingPackageWithAllocationPrice(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingPackageWithAllocationPrice",
+                            "Data does not match union variant 'NewFloatingPackageWithAllocationPrice'",
                             e
                         )
                     );
@@ -919,14 +1430,15 @@ sealed class BodyConverter : JsonConverter<Body>
                     );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingUnitWithPercentPrice(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingUnitWithPercentPrice",
+                            "Data does not match union variant 'NewFloatingUnitWithPercentPrice'",
                             e
                         )
                     );
@@ -947,14 +1459,15 @@ sealed class BodyConverter : JsonConverter<Body>
                         );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingMatrixWithAllocationPrice(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingMatrixWithAllocationPrice",
+                            "Data does not match union variant 'NewFloatingMatrixWithAllocationPrice'",
                             e
                         )
                     );
@@ -975,14 +1488,15 @@ sealed class BodyConverter : JsonConverter<Body>
                         );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingTieredWithProrationPrice(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingTieredWithProrationPrice",
+                            "Data does not match union variant 'NewFloatingTieredWithProrationPrice'",
                             e
                         )
                     );
@@ -1003,14 +1517,15 @@ sealed class BodyConverter : JsonConverter<Body>
                         );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingUnitWithProrationPrice(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingUnitWithProrationPrice",
+                            "Data does not match union variant 'NewFloatingUnitWithProrationPrice'",
                             e
                         )
                     );
@@ -1031,14 +1546,15 @@ sealed class BodyConverter : JsonConverter<Body>
                         );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingGroupedAllocationPrice(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingGroupedAllocationPrice",
+                            "Data does not match union variant 'NewFloatingGroupedAllocationPrice'",
                             e
                         )
                     );
@@ -1059,14 +1575,15 @@ sealed class BodyConverter : JsonConverter<Body>
                         );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingBulkWithProrationPrice(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingBulkWithProrationPrice",
+                            "Data does not match union variant 'NewFloatingBulkWithProrationPrice'",
                             e
                         )
                     );
@@ -1087,16 +1604,15 @@ sealed class BodyConverter : JsonConverter<Body>
                         );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingGroupedWithProratedMinimumPrice(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingGroupedWithProratedMinimumPrice",
+                            "Data does not match union variant 'NewFloatingGroupedWithProratedMinimumPrice'",
                             e
                         )
                     );
@@ -1117,16 +1633,15 @@ sealed class BodyConverter : JsonConverter<Body>
                         );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingGroupedWithMeteredMinimumPrice(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingGroupedWithMeteredMinimumPrice",
+                            "Data does not match union variant 'NewFloatingGroupedWithMeteredMinimumPrice'",
                             e
                         )
                     );
@@ -1146,14 +1661,15 @@ sealed class BodyConverter : JsonConverter<Body>
                     );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::GroupedWithMinMaxThresholds(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::GroupedWithMinMaxThresholds",
+                            "Data does not match union variant 'GroupedWithMinMaxThresholds'",
                             e
                         )
                     );
@@ -1174,16 +1690,15 @@ sealed class BodyConverter : JsonConverter<Body>
                         );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingMatrixWithDisplayNamePrice(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingMatrixWithDisplayNamePrice",
+                            "Data does not match union variant 'NewFloatingMatrixWithDisplayNamePrice'",
                             e
                         )
                     );
@@ -1204,14 +1719,15 @@ sealed class BodyConverter : JsonConverter<Body>
                         );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingGroupedTieredPackagePrice(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingGroupedTieredPackagePrice",
+                            "Data does not match union variant 'NewFloatingGroupedTieredPackagePrice'",
                             e
                         )
                     );
@@ -1232,16 +1748,15 @@ sealed class BodyConverter : JsonConverter<Body>
                         );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingMaxGroupTieredPackagePrice(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingMaxGroupTieredPackagePrice",
+                            "Data does not match union variant 'NewFloatingMaxGroupTieredPackagePrice'",
                             e
                         )
                     );
@@ -1262,16 +1777,15 @@ sealed class BodyConverter : JsonConverter<Body>
                         );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingScalableMatrixWithUnitPricingPrice(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingScalableMatrixWithUnitPricingPrice",
+                            "Data does not match union variant 'NewFloatingScalableMatrixWithUnitPricingPrice'",
                             e
                         )
                     );
@@ -1292,16 +1806,15 @@ sealed class BodyConverter : JsonConverter<Body>
                         );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingScalableMatrixWithTieredPricingPrice(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingScalableMatrixWithTieredPricingPrice",
+                            "Data does not match union variant 'NewFloatingScalableMatrixWithTieredPricingPrice'",
                             e
                         )
                     );
@@ -1322,16 +1835,15 @@ sealed class BodyConverter : JsonConverter<Body>
                         );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingCumulativeGroupedBulkPrice(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingCumulativeGroupedBulkPrice",
+                            "Data does not match union variant 'NewFloatingCumulativeGroupedBulkPrice'",
                             e
                         )
                     );
@@ -1351,14 +1863,15 @@ sealed class BodyConverter : JsonConverter<Body>
                     );
                     if (deserialized != null)
                     {
-                        return new BodyVariants::NewFloatingMinimumCompositePrice(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::NewFloatingMinimumCompositePrice",
+                            "Data does not match union variant 'NewFloatingMinimumCompositePrice'",
                             e
                         )
                     );
@@ -1375,14 +1888,15 @@ sealed class BodyConverter : JsonConverter<Body>
                     var deserialized = JsonSerializer.Deserialize<Percent>(json, options);
                     if (deserialized != null)
                     {
-                        return new BodyVariants::Percent(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::Percent",
+                            "Data does not match union variant 'Percent'",
                             e
                         )
                     );
@@ -1399,14 +1913,15 @@ sealed class BodyConverter : JsonConverter<Body>
                     var deserialized = JsonSerializer.Deserialize<EventOutput>(json, options);
                     if (deserialized != null)
                     {
-                        return new BodyVariants::EventOutput(deserialized);
+                        deserialized.Validate();
+                        return new Body(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant BodyVariants::EventOutput",
+                            "Data does not match union variant 'EventOutput'",
                             e
                         )
                     );
@@ -1425,81 +1940,7 @@ sealed class BodyConverter : JsonConverter<Body>
 
     public override void Write(Utf8JsonWriter writer, Body value, JsonSerializerOptions options)
     {
-        object variant = value switch
-        {
-            BodyVariants::NewFloatingUnitPrice(var newFloatingUnitPrice) => newFloatingUnitPrice,
-            BodyVariants::NewFloatingTieredPrice(var newFloatingTieredPrice) =>
-                newFloatingTieredPrice,
-            BodyVariants::NewFloatingBulkPrice(var newFloatingBulkPrice) => newFloatingBulkPrice,
-            BodyVariants::NewFloatingPackagePrice(var newFloatingPackagePrice) =>
-                newFloatingPackagePrice,
-            BodyVariants::NewFloatingMatrixPrice(var newFloatingMatrixPrice) =>
-                newFloatingMatrixPrice,
-            BodyVariants::NewFloatingThresholdTotalAmountPrice(
-                var newFloatingThresholdTotalAmountPrice
-            ) => newFloatingThresholdTotalAmountPrice,
-            BodyVariants::NewFloatingTieredPackagePrice(var newFloatingTieredPackagePrice) =>
-                newFloatingTieredPackagePrice,
-            BodyVariants::NewFloatingTieredWithMinimumPrice(
-                var newFloatingTieredWithMinimumPrice
-            ) => newFloatingTieredWithMinimumPrice,
-            BodyVariants::NewFloatingGroupedTieredPrice(var newFloatingGroupedTieredPrice) =>
-                newFloatingGroupedTieredPrice,
-            BodyVariants::NewFloatingTieredPackageWithMinimumPrice(
-                var newFloatingTieredPackageWithMinimumPrice
-            ) => newFloatingTieredPackageWithMinimumPrice,
-            BodyVariants::NewFloatingPackageWithAllocationPrice(
-                var newFloatingPackageWithAllocationPrice
-            ) => newFloatingPackageWithAllocationPrice,
-            BodyVariants::NewFloatingUnitWithPercentPrice(var newFloatingUnitWithPercentPrice) =>
-                newFloatingUnitWithPercentPrice,
-            BodyVariants::NewFloatingMatrixWithAllocationPrice(
-                var newFloatingMatrixWithAllocationPrice
-            ) => newFloatingMatrixWithAllocationPrice,
-            BodyVariants::NewFloatingTieredWithProrationPrice(
-                var newFloatingTieredWithProrationPrice
-            ) => newFloatingTieredWithProrationPrice,
-            BodyVariants::NewFloatingUnitWithProrationPrice(
-                var newFloatingUnitWithProrationPrice
-            ) => newFloatingUnitWithProrationPrice,
-            BodyVariants::NewFloatingGroupedAllocationPrice(
-                var newFloatingGroupedAllocationPrice
-            ) => newFloatingGroupedAllocationPrice,
-            BodyVariants::NewFloatingBulkWithProrationPrice(
-                var newFloatingBulkWithProrationPrice
-            ) => newFloatingBulkWithProrationPrice,
-            BodyVariants::NewFloatingGroupedWithProratedMinimumPrice(
-                var newFloatingGroupedWithProratedMinimumPrice
-            ) => newFloatingGroupedWithProratedMinimumPrice,
-            BodyVariants::NewFloatingGroupedWithMeteredMinimumPrice(
-                var newFloatingGroupedWithMeteredMinimumPrice
-            ) => newFloatingGroupedWithMeteredMinimumPrice,
-            BodyVariants::GroupedWithMinMaxThresholds(var groupedWithMinMaxThresholds) =>
-                groupedWithMinMaxThresholds,
-            BodyVariants::NewFloatingMatrixWithDisplayNamePrice(
-                var newFloatingMatrixWithDisplayNamePrice
-            ) => newFloatingMatrixWithDisplayNamePrice,
-            BodyVariants::NewFloatingGroupedTieredPackagePrice(
-                var newFloatingGroupedTieredPackagePrice
-            ) => newFloatingGroupedTieredPackagePrice,
-            BodyVariants::NewFloatingMaxGroupTieredPackagePrice(
-                var newFloatingMaxGroupTieredPackagePrice
-            ) => newFloatingMaxGroupTieredPackagePrice,
-            BodyVariants::NewFloatingScalableMatrixWithUnitPricingPrice(
-                var newFloatingScalableMatrixWithUnitPricingPrice
-            ) => newFloatingScalableMatrixWithUnitPricingPrice,
-            BodyVariants::NewFloatingScalableMatrixWithTieredPricingPrice(
-                var newFloatingScalableMatrixWithTieredPricingPrice
-            ) => newFloatingScalableMatrixWithTieredPricingPrice,
-            BodyVariants::NewFloatingCumulativeGroupedBulkPrice(
-                var newFloatingCumulativeGroupedBulkPrice
-            ) => newFloatingCumulativeGroupedBulkPrice,
-            BodyVariants::NewFloatingMinimumCompositePrice(var newFloatingMinimumCompositePrice) =>
-                newFloatingMinimumCompositePrice,
-            BodyVariants::Percent(var percent) => percent,
-            BodyVariants::EventOutput(var eventOutput) => eventOutput,
-            _ => throw new OrbInvalidDataException("Data did not match any variant of Body"),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

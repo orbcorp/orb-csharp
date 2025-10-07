@@ -23,25 +23,27 @@ public class LedgerServiceTest : TestBase
             new()
             {
                 CustomerID = "customer_id",
-                Body = new BodyProperties::Increment()
-                {
-                    Amount = 0,
-                    Currency = "currency",
-                    Description = "description",
-                    EffectiveDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                    ExpiryDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                    InvoiceSettings = new()
+                Body = new(
+                    new BodyProperties::Increment()
                     {
-                        AutoCollection = true,
-                        NetTerms = 0,
-                        CustomDueDate = DateOnly.Parse("2019-12-27"),
-                        InvoiceDate = DateOnly.Parse("2019-12-27"),
-                        Memo = "memo",
-                        RequireSuccessfulPayment = true,
-                    },
-                    Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                    PerUnitCostBasis = "per_unit_cost_basis",
-                },
+                        Amount = 0,
+                        Currency = "currency",
+                        Description = "description",
+                        EffectiveDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        ExpiryDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        InvoiceSettings = new()
+                        {
+                            AutoCollection = true,
+                            NetTerms = 0,
+                            CustomDueDate = new(DateOnly.Parse("2019-12-27")),
+                            InvoiceDate = new(DateOnly.Parse("2019-12-27")),
+                            Memo = "memo",
+                            RequireSuccessfulPayment = true,
+                        },
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                        PerUnitCostBasis = "per_unit_cost_basis",
+                    }
+                ),
             }
         );
         response.Validate();
@@ -54,7 +56,7 @@ public class LedgerServiceTest : TestBase
             new()
             {
                 ExternalCustomerID = "external_customer_id",
-                Body =
+                Body = new(
                     new global::Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.Increment()
                     {
                         Amount = 0,
@@ -66,14 +68,15 @@ public class LedgerServiceTest : TestBase
                         {
                             AutoCollection = true,
                             NetTerms = 0,
-                            CustomDueDate = DateOnly.Parse("2019-12-27"),
-                            InvoiceDate = DateOnly.Parse("2019-12-27"),
+                            CustomDueDate = new(DateOnly.Parse("2019-12-27")),
+                            InvoiceDate = new(DateOnly.Parse("2019-12-27")),
                             Memo = "memo",
                             RequireSuccessfulPayment = true,
                         },
                         Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         PerUnitCostBasis = "per_unit_cost_basis",
-                    },
+                    }
+                ),
             }
         );
         response.Validate();

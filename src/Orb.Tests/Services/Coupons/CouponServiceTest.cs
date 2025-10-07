@@ -9,7 +9,7 @@ public class CouponServiceTest : TestBase
     public async Task Create_Works()
     {
         var coupon = await this.client.Coupons.Create(
-            new() { Discount = new Percentage(0), RedemptionCode = "HALFOFF" }
+            new() { Discount = new(new Percentage(0)), RedemptionCode = "HALFOFF" }
         );
         coupon.Validate();
     }

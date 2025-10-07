@@ -5,7 +5,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using EndDateVariants = Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.EditProperties.EndDateVariants;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.EditProperties;
 
@@ -14,18 +13,33 @@ namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.Ed
 /// not be updated.
 /// </summary>
 [JsonConverter(typeof(EndDateConverter))]
-public abstract record class EndDate
+public record class EndDate
 {
-    internal EndDate() { }
+    public object Value { get; private init; }
 
-    public static implicit operator EndDate(DateTime value) => new EndDateVariants::DateTime(value);
+    public EndDate(DateTime value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator EndDate(ApiEnum<string, BillingCycleRelativeDate> value) =>
-        new EndDateVariants::BillingCycleRelativeDate(value);
+    public EndDate(ApiEnum<string, BillingCycleRelativeDate> value)
+    {
+        Value = value;
+    }
+
+    EndDate(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static EndDate CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDateTime([NotNullWhen(true)] out DateTime? value)
     {
-        value = (this as EndDateVariants::DateTime)?.Value;
+        value = this.Value as DateTime?;
         return value != null;
     }
 
@@ -33,22 +47,22 @@ public abstract record class EndDate
         [NotNullWhen(true)] out ApiEnum<string, BillingCycleRelativeDate>? value
     )
     {
-        value = (this as EndDateVariants::BillingCycleRelativeDate)?.Value;
+        value = this.Value as ApiEnum<string, BillingCycleRelativeDate>?;
         return value != null;
     }
 
     public void Switch(
-        Action<EndDateVariants::DateTime> @dateTime,
-        Action<EndDateVariants::BillingCycleRelativeDate> billingCycleRelative
+        Action<DateTime> @dateTime,
+        Action<ApiEnum<string, BillingCycleRelativeDate>> billingCycleRelative
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case EndDateVariants::DateTime inner:
-                @dateTime(inner);
+            case DateTime value:
+                @dateTime(value);
                 break;
-            case EndDateVariants::BillingCycleRelativeDate inner:
-                billingCycleRelative(inner);
+            case ApiEnum<string, BillingCycleRelativeDate> value:
+                billingCycleRelative(value);
                 break;
             default:
                 throw new OrbInvalidDataException("Data did not match any variant of EndDate");
@@ -56,19 +70,27 @@ public abstract record class EndDate
     }
 
     public T Match<T>(
-        Func<EndDateVariants::DateTime, T> @dateTime,
-        Func<EndDateVariants::BillingCycleRelativeDate, T> billingCycleRelative
+        Func<DateTime, T> @dateTime,
+        Func<ApiEnum<string, BillingCycleRelativeDate>, T> billingCycleRelative
     )
     {
-        return this switch
+        return this.Value switch
         {
-            EndDateVariants::DateTime inner => @dateTime(inner),
-            EndDateVariants::BillingCycleRelativeDate inner => billingCycleRelative(inner),
+            DateTime value => @dateTime(value),
+            ApiEnum<string, BillingCycleRelativeDate> value => billingCycleRelative(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of EndDate"),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of EndDate");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class EndDateConverter : JsonConverter<EndDate?>
@@ -83,18 +105,18 @@ sealed class EndDateConverter : JsonConverter<EndDate?>
 
         try
         {
-            return new EndDateVariants::BillingCycleRelativeDate(
+            return new EndDate(
                 JsonSerializer.Deserialize<ApiEnum<string, BillingCycleRelativeDate>>(
                     ref reader,
                     options
                 )
             );
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
-                    "Data does not match union variant EndDateVariants::BillingCycleRelativeDate",
+                    "Data does not match union variant 'ApiEnum<string, BillingCycleRelativeDate>'",
                     e
                 )
             );
@@ -102,17 +124,12 @@ sealed class EndDateConverter : JsonConverter<EndDate?>
 
         try
         {
-            return new EndDateVariants::DateTime(
-                JsonSerializer.Deserialize<DateTime>(ref reader, options)
-            );
+            return new EndDate(JsonSerializer.Deserialize<DateTime>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
-                new OrbInvalidDataException(
-                    "Data does not match union variant EndDateVariants::DateTime",
-                    e
-                )
+                new OrbInvalidDataException("Data does not match union variant 'DateTime'", e)
             );
         }
 
@@ -121,14 +138,7 @@ sealed class EndDateConverter : JsonConverter<EndDate?>
 
     public override void Write(Utf8JsonWriter writer, EndDate? value, JsonSerializerOptions options)
     {
-        object? variant = value switch
-        {
-            null => null,
-            EndDateVariants::DateTime(var @dateTime) => @dateTime,
-            EndDateVariants::BillingCycleRelativeDate(var billingCycleRelative) =>
-                billingCycleRelative,
-            _ => throw new OrbInvalidDataException("Data did not match any variant of EndDate"),
-        };
+        object? variant = value?.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

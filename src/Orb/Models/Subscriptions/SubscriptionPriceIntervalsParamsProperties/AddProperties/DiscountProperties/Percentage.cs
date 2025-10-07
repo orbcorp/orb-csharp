@@ -5,13 +5,14 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
+using Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.DiscountProperties.PercentageProperties;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.DiscountProperties;
 
 [JsonConverter(typeof(ModelConverter<Percentage>))]
 public sealed record class Percentage : ModelBase, IFromRaw<Percentage>
 {
-    public JsonElement DiscountType
+    public DiscountType DiscountType
     {
         get
         {
@@ -21,7 +22,11 @@ public sealed record class Percentage : ModelBase, IFromRaw<Percentage>
                     new ArgumentOutOfRangeException("discount_type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DiscountType>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'discount_type' cannot be null",
+                    new ArgumentNullException("discount_type")
+                );
         }
         set
         {
@@ -62,12 +67,13 @@ public sealed record class Percentage : ModelBase, IFromRaw<Percentage>
 
     public override void Validate()
     {
+        this.DiscountType.Validate();
         _ = this.PercentageDiscount;
     }
 
     public Percentage()
     {
-        this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"percentage\"");
+        this.DiscountType = new();
     }
 
 #pragma warning disable CS8618

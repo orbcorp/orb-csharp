@@ -6,7 +6,6 @@ using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
 using Orb.Models.Subscriptions.SubscriptionUpdateTrialParamsProperties.TrialEndDateProperties;
-using TrialEndDateVariants = Orb.Models.Subscriptions.SubscriptionUpdateTrialParamsProperties.TrialEndDateVariants;
 
 namespace Orb.Models.Subscriptions.SubscriptionUpdateTrialParamsProperties;
 
@@ -15,40 +14,54 @@ namespace Orb.Models.Subscriptions.SubscriptionUpdateTrialParamsProperties;
 /// the trial immediately.
 /// </summary>
 [JsonConverter(typeof(TrialEndDateConverter))]
-public abstract record class TrialEndDate
+public record class TrialEndDate
 {
-    internal TrialEndDate() { }
+    public object Value { get; private init; }
 
-    public static implicit operator TrialEndDate(DateTime value) =>
-        new TrialEndDateVariants::DateTime(value);
+    public TrialEndDate(DateTime value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator TrialEndDate(ApiEnum<string, UnionMember1> value) =>
-        new TrialEndDateVariants::UnionMember1(value);
+    public TrialEndDate(ApiEnum<string, UnionMember1> value)
+    {
+        Value = value;
+    }
+
+    TrialEndDate(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static TrialEndDate CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDateTime([NotNullWhen(true)] out DateTime? value)
     {
-        value = (this as TrialEndDateVariants::DateTime)?.Value;
+        value = this.Value as DateTime?;
         return value != null;
     }
 
     public bool TryPickUnionMember1([NotNullWhen(true)] out ApiEnum<string, UnionMember1>? value)
     {
-        value = (this as TrialEndDateVariants::UnionMember1)?.Value;
+        value = this.Value as ApiEnum<string, UnionMember1>?;
         return value != null;
     }
 
     public void Switch(
-        Action<TrialEndDateVariants::DateTime> @dateTime,
-        Action<TrialEndDateVariants::UnionMember1> unionMember1
+        Action<DateTime> @dateTime,
+        Action<ApiEnum<string, UnionMember1>> unionMember1
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case TrialEndDateVariants::DateTime inner:
-                @dateTime(inner);
+            case DateTime value:
+                @dateTime(value);
                 break;
-            case TrialEndDateVariants::UnionMember1 inner:
-                unionMember1(inner);
+            case ApiEnum<string, UnionMember1> value:
+                unionMember1(value);
                 break;
             default:
                 throw new OrbInvalidDataException("Data did not match any variant of TrialEndDate");
@@ -56,21 +69,29 @@ public abstract record class TrialEndDate
     }
 
     public T Match<T>(
-        Func<TrialEndDateVariants::DateTime, T> @dateTime,
-        Func<TrialEndDateVariants::UnionMember1, T> unionMember1
+        Func<DateTime, T> @dateTime,
+        Func<ApiEnum<string, UnionMember1>, T> unionMember1
     )
     {
-        return this switch
+        return this.Value switch
         {
-            TrialEndDateVariants::DateTime inner => @dateTime(inner),
-            TrialEndDateVariants::UnionMember1 inner => unionMember1(inner),
+            DateTime value => @dateTime(value),
+            ApiEnum<string, UnionMember1> value => unionMember1(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of TrialEndDate"
             ),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of TrialEndDate");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class TrialEndDateConverter : JsonConverter<TrialEndDate>
@@ -85,15 +106,15 @@ sealed class TrialEndDateConverter : JsonConverter<TrialEndDate>
 
         try
         {
-            return new TrialEndDateVariants::UnionMember1(
+            return new TrialEndDate(
                 JsonSerializer.Deserialize<ApiEnum<string, UnionMember1>>(ref reader, options)
             );
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
-                    "Data does not match union variant TrialEndDateVariants::UnionMember1",
+                    "Data does not match union variant 'ApiEnum<string, UnionMember1>'",
                     e
                 )
             );
@@ -101,17 +122,12 @@ sealed class TrialEndDateConverter : JsonConverter<TrialEndDate>
 
         try
         {
-            return new TrialEndDateVariants::DateTime(
-                JsonSerializer.Deserialize<DateTime>(ref reader, options)
-            );
+            return new TrialEndDate(JsonSerializer.Deserialize<DateTime>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
-                new OrbInvalidDataException(
-                    "Data does not match union variant TrialEndDateVariants::DateTime",
-                    e
-                )
+                new OrbInvalidDataException("Data does not match union variant 'DateTime'", e)
             );
         }
 
@@ -124,14 +140,7 @@ sealed class TrialEndDateConverter : JsonConverter<TrialEndDate>
         JsonSerializerOptions options
     )
     {
-        object variant = value switch
-        {
-            TrialEndDateVariants::DateTime(var @dateTime) => @dateTime,
-            TrialEndDateVariants::UnionMember1(var unionMember1) => unionMember1,
-            _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of TrialEndDate"
-            ),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

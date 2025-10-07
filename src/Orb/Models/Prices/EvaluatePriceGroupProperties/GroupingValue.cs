@@ -4,58 +4,69 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
-using GroupingValueVariants = Orb.Models.Prices.EvaluatePriceGroupProperties.GroupingValueVariants;
 
 namespace Orb.Models.Prices.EvaluatePriceGroupProperties;
 
 [JsonConverter(typeof(GroupingValueConverter))]
-public abstract record class GroupingValue
+public record class GroupingValue
 {
-    internal GroupingValue() { }
+    public object Value { get; private init; }
 
-    public static implicit operator GroupingValue(string value) =>
-        new GroupingValueVariants::String(value);
+    public GroupingValue(string value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator GroupingValue(double value) =>
-        new GroupingValueVariants::Double(value);
+    public GroupingValue(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator GroupingValue(bool value) =>
-        new GroupingValueVariants::Bool(value);
+    public GroupingValue(bool value)
+    {
+        Value = value;
+    }
+
+    GroupingValue(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static GroupingValue CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as GroupingValueVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as GroupingValueVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickBool([NotNullWhen(true)] out bool? value)
     {
-        value = (this as GroupingValueVariants::Bool)?.Value;
+        value = this.Value as bool?;
         return value != null;
     }
 
-    public void Switch(
-        Action<GroupingValueVariants::String> @string,
-        Action<GroupingValueVariants::Double> @double,
-        Action<GroupingValueVariants::Bool> @bool
-    )
+    public void Switch(Action<string> @string, Action<double> @double, Action<bool> @bool)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case GroupingValueVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
-            case GroupingValueVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case GroupingValueVariants::Bool inner:
-                @bool(inner);
+            case bool value:
+                @bool(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
@@ -64,24 +75,28 @@ public abstract record class GroupingValue
         }
     }
 
-    public T Match<T>(
-        Func<GroupingValueVariants::String, T> @string,
-        Func<GroupingValueVariants::Double, T> @double,
-        Func<GroupingValueVariants::Bool, T> @bool
-    )
+    public T Match<T>(Func<string, T> @string, Func<double, T> @double, Func<bool, T> @bool)
     {
-        return this switch
+        return this.Value switch
         {
-            GroupingValueVariants::String inner => @string(inner),
-            GroupingValueVariants::Double inner => @double(inner),
-            GroupingValueVariants::Bool inner => @bool(inner),
+            string value => @string(value),
+            double value => @double(value),
+            bool value => @bool(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of GroupingValue"
             ),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of GroupingValue");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class GroupingValueConverter : JsonConverter<GroupingValue>
@@ -99,48 +114,35 @@ sealed class GroupingValueConverter : JsonConverter<GroupingValue>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new GroupingValueVariants::String(deserialized);
+                return new GroupingValue(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
-                new OrbInvalidDataException(
-                    "Data does not match union variant GroupingValueVariants::String",
-                    e
-                )
+                new OrbInvalidDataException("Data does not match union variant 'string'", e)
             );
         }
 
         try
         {
-            return new GroupingValueVariants::Double(
-                JsonSerializer.Deserialize<double>(ref reader, options)
-            );
+            return new GroupingValue(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
-                new OrbInvalidDataException(
-                    "Data does not match union variant GroupingValueVariants::Double",
-                    e
-                )
+                new OrbInvalidDataException("Data does not match union variant 'double'", e)
             );
         }
 
         try
         {
-            return new GroupingValueVariants::Bool(
-                JsonSerializer.Deserialize<bool>(ref reader, options)
-            );
+            return new GroupingValue(JsonSerializer.Deserialize<bool>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
-                new OrbInvalidDataException(
-                    "Data does not match union variant GroupingValueVariants::Bool",
-                    e
-                )
+                new OrbInvalidDataException("Data does not match union variant 'bool'", e)
             );
         }
 
@@ -153,15 +155,7 @@ sealed class GroupingValueConverter : JsonConverter<GroupingValue>
         JsonSerializerOptions options
     )
     {
-        object variant = value switch
-        {
-            GroupingValueVariants::String(var @string) => @string,
-            GroupingValueVariants::Double(var @double) => @double,
-            GroupingValueVariants::Bool(var @bool) => @bool,
-            _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of GroupingValue"
-            ),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

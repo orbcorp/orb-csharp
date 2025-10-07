@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
+using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.AmendmentProperties;
 using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties;
@@ -64,7 +65,7 @@ public sealed record class Amendment : ModelBase, IFromRaw<Amendment>
         }
     }
 
-    public JsonElement EntryType
+    public EntryType EntryType
     {
         get
         {
@@ -77,7 +78,11 @@ public sealed record class Amendment : ModelBase, IFromRaw<Amendment>
                     )
                 );
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<EntryType>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentNullException("entry_type")
+                );
         }
         set
         {
@@ -163,6 +168,7 @@ public sealed record class Amendment : ModelBase, IFromRaw<Amendment>
     {
         _ = this.Amount;
         _ = this.BlockID;
+        this.EntryType.Validate();
         _ = this.Currency;
         _ = this.Description;
         if (this.Metadata != null)
@@ -176,7 +182,7 @@ public sealed record class Amendment : ModelBase, IFromRaw<Amendment>
 
     public Amendment()
     {
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"amendment\"");
+        this.EntryType = new();
     }
 
 #pragma warning disable CS8618

@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
-using DataVariants = Orb.Models.Customers.Credits.Ledger.LedgerListPageResponseProperties.DataVariants;
 
 namespace Orb.Models.Customers.Credits.Ledger.LedgerListPageResponseProperties;
 
@@ -13,40 +12,272 @@ namespace Orb.Models.Customers.Credits.Ledger.LedgerListPageResponseProperties;
 /// credits within Orb.
 /// </summary>
 [JsonConverter(typeof(DataConverter))]
-public abstract record class Data
+public record class Data
 {
-    internal Data() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Data(IncrementLedgerEntry value) =>
-        new DataVariants::IncrementLedgerEntry(value);
+    public string ID
+    {
+        get
+        {
+            return Match(
+                incrementLedgerEntry: (x) => x.ID,
+                decrementLedgerEntry: (x) => x.ID,
+                expirationChangeLedgerEntry: (x) => x.ID,
+                creditBlockExpiryLedgerEntry: (x) => x.ID,
+                voidLedgerEntry: (x) => x.ID,
+                voidInitiatedLedgerEntry: (x) => x.ID,
+                amendmentLedgerEntry: (x) => x.ID
+            );
+        }
+    }
 
-    public static implicit operator Data(DecrementLedgerEntry value) =>
-        new DataVariants::DecrementLedgerEntry(value);
+    public double Amount
+    {
+        get
+        {
+            return Match(
+                incrementLedgerEntry: (x) => x.Amount,
+                decrementLedgerEntry: (x) => x.Amount,
+                expirationChangeLedgerEntry: (x) => x.Amount,
+                creditBlockExpiryLedgerEntry: (x) => x.Amount,
+                voidLedgerEntry: (x) => x.Amount,
+                voidInitiatedLedgerEntry: (x) => x.Amount,
+                amendmentLedgerEntry: (x) => x.Amount
+            );
+        }
+    }
 
-    public static implicit operator Data(ExpirationChangeLedgerEntry value) =>
-        new DataVariants::ExpirationChangeLedgerEntry(value);
+    public DateTime CreatedAt
+    {
+        get
+        {
+            return Match(
+                incrementLedgerEntry: (x) => x.CreatedAt,
+                decrementLedgerEntry: (x) => x.CreatedAt,
+                expirationChangeLedgerEntry: (x) => x.CreatedAt,
+                creditBlockExpiryLedgerEntry: (x) => x.CreatedAt,
+                voidLedgerEntry: (x) => x.CreatedAt,
+                voidInitiatedLedgerEntry: (x) => x.CreatedAt,
+                amendmentLedgerEntry: (x) => x.CreatedAt
+            );
+        }
+    }
 
-    public static implicit operator Data(CreditBlockExpiryLedgerEntry value) =>
-        new DataVariants::CreditBlockExpiryLedgerEntry(value);
+    public AffectedBlock CreditBlock
+    {
+        get
+        {
+            return Match(
+                incrementLedgerEntry: (x) => x.CreditBlock,
+                decrementLedgerEntry: (x) => x.CreditBlock,
+                expirationChangeLedgerEntry: (x) => x.CreditBlock,
+                creditBlockExpiryLedgerEntry: (x) => x.CreditBlock,
+                voidLedgerEntry: (x) => x.CreditBlock,
+                voidInitiatedLedgerEntry: (x) => x.CreditBlock,
+                amendmentLedgerEntry: (x) => x.CreditBlock
+            );
+        }
+    }
 
-    public static implicit operator Data(VoidLedgerEntry value) =>
-        new DataVariants::VoidLedgerEntry(value);
+    public string Currency
+    {
+        get
+        {
+            return Match(
+                incrementLedgerEntry: (x) => x.Currency,
+                decrementLedgerEntry: (x) => x.Currency,
+                expirationChangeLedgerEntry: (x) => x.Currency,
+                creditBlockExpiryLedgerEntry: (x) => x.Currency,
+                voidLedgerEntry: (x) => x.Currency,
+                voidInitiatedLedgerEntry: (x) => x.Currency,
+                amendmentLedgerEntry: (x) => x.Currency
+            );
+        }
+    }
 
-    public static implicit operator Data(VoidInitiatedLedgerEntry value) =>
-        new DataVariants::VoidInitiatedLedgerEntry(value);
+    public CustomerMinified Customer
+    {
+        get
+        {
+            return Match(
+                incrementLedgerEntry: (x) => x.Customer,
+                decrementLedgerEntry: (x) => x.Customer,
+                expirationChangeLedgerEntry: (x) => x.Customer,
+                creditBlockExpiryLedgerEntry: (x) => x.Customer,
+                voidLedgerEntry: (x) => x.Customer,
+                voidInitiatedLedgerEntry: (x) => x.Customer,
+                amendmentLedgerEntry: (x) => x.Customer
+            );
+        }
+    }
 
-    public static implicit operator Data(AmendmentLedgerEntry value) =>
-        new DataVariants::AmendmentLedgerEntry(value);
+    public string? Description
+    {
+        get
+        {
+            return Match<string?>(
+                incrementLedgerEntry: (x) => x.Description,
+                decrementLedgerEntry: (x) => x.Description,
+                expirationChangeLedgerEntry: (x) => x.Description,
+                creditBlockExpiryLedgerEntry: (x) => x.Description,
+                voidLedgerEntry: (x) => x.Description,
+                voidInitiatedLedgerEntry: (x) => x.Description,
+                amendmentLedgerEntry: (x) => x.Description
+            );
+        }
+    }
+
+    public double EndingBalance
+    {
+        get
+        {
+            return Match(
+                incrementLedgerEntry: (x) => x.EndingBalance,
+                decrementLedgerEntry: (x) => x.EndingBalance,
+                expirationChangeLedgerEntry: (x) => x.EndingBalance,
+                creditBlockExpiryLedgerEntry: (x) => x.EndingBalance,
+                voidLedgerEntry: (x) => x.EndingBalance,
+                voidInitiatedLedgerEntry: (x) => x.EndingBalance,
+                amendmentLedgerEntry: (x) => x.EndingBalance
+            );
+        }
+    }
+
+    public long LedgerSequenceNumber
+    {
+        get
+        {
+            return Match(
+                incrementLedgerEntry: (x) => x.LedgerSequenceNumber,
+                decrementLedgerEntry: (x) => x.LedgerSequenceNumber,
+                expirationChangeLedgerEntry: (x) => x.LedgerSequenceNumber,
+                creditBlockExpiryLedgerEntry: (x) => x.LedgerSequenceNumber,
+                voidLedgerEntry: (x) => x.LedgerSequenceNumber,
+                voidInitiatedLedgerEntry: (x) => x.LedgerSequenceNumber,
+                amendmentLedgerEntry: (x) => x.LedgerSequenceNumber
+            );
+        }
+    }
+
+    public double StartingBalance
+    {
+        get
+        {
+            return Match(
+                incrementLedgerEntry: (x) => x.StartingBalance,
+                decrementLedgerEntry: (x) => x.StartingBalance,
+                expirationChangeLedgerEntry: (x) => x.StartingBalance,
+                creditBlockExpiryLedgerEntry: (x) => x.StartingBalance,
+                voidLedgerEntry: (x) => x.StartingBalance,
+                voidInitiatedLedgerEntry: (x) => x.StartingBalance,
+                amendmentLedgerEntry: (x) => x.StartingBalance
+            );
+        }
+    }
+
+    public DateTime? NewBlockExpiryDate
+    {
+        get
+        {
+            return Match<DateTime?>(
+                incrementLedgerEntry: (_) => null,
+                decrementLedgerEntry: (_) => null,
+                expirationChangeLedgerEntry: (x) => x.NewBlockExpiryDate,
+                creditBlockExpiryLedgerEntry: (_) => null,
+                voidLedgerEntry: (_) => null,
+                voidInitiatedLedgerEntry: (x) => x.NewBlockExpiryDate,
+                amendmentLedgerEntry: (_) => null
+            );
+        }
+    }
+
+    public double? VoidAmount
+    {
+        get
+        {
+            return Match<double?>(
+                incrementLedgerEntry: (_) => null,
+                decrementLedgerEntry: (_) => null,
+                expirationChangeLedgerEntry: (_) => null,
+                creditBlockExpiryLedgerEntry: (_) => null,
+                voidLedgerEntry: (x) => x.VoidAmount,
+                voidInitiatedLedgerEntry: (x) => x.VoidAmount,
+                amendmentLedgerEntry: (_) => null
+            );
+        }
+    }
+
+    public string? VoidReason
+    {
+        get
+        {
+            return Match<string?>(
+                incrementLedgerEntry: (_) => null,
+                decrementLedgerEntry: (_) => null,
+                expirationChangeLedgerEntry: (_) => null,
+                creditBlockExpiryLedgerEntry: (_) => null,
+                voidLedgerEntry: (x) => x.VoidReason,
+                voidInitiatedLedgerEntry: (x) => x.VoidReason,
+                amendmentLedgerEntry: (_) => null
+            );
+        }
+    }
+
+    public Data(IncrementLedgerEntry value)
+    {
+        Value = value;
+    }
+
+    public Data(DecrementLedgerEntry value)
+    {
+        Value = value;
+    }
+
+    public Data(ExpirationChangeLedgerEntry value)
+    {
+        Value = value;
+    }
+
+    public Data(CreditBlockExpiryLedgerEntry value)
+    {
+        Value = value;
+    }
+
+    public Data(VoidLedgerEntry value)
+    {
+        Value = value;
+    }
+
+    public Data(VoidInitiatedLedgerEntry value)
+    {
+        Value = value;
+    }
+
+    public Data(AmendmentLedgerEntry value)
+    {
+        Value = value;
+    }
+
+    Data(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Data CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickIncrementLedgerEntry([NotNullWhen(true)] out IncrementLedgerEntry? value)
     {
-        value = (this as DataVariants::IncrementLedgerEntry)?.Value;
+        value = this.Value as IncrementLedgerEntry;
         return value != null;
     }
 
     public bool TryPickDecrementLedgerEntry([NotNullWhen(true)] out DecrementLedgerEntry? value)
     {
-        value = (this as DataVariants::DecrementLedgerEntry)?.Value;
+        value = this.Value as DecrementLedgerEntry;
         return value != null;
     }
 
@@ -54,7 +285,7 @@ public abstract record class Data
         [NotNullWhen(true)] out ExpirationChangeLedgerEntry? value
     )
     {
-        value = (this as DataVariants::ExpirationChangeLedgerEntry)?.Value;
+        value = this.Value as ExpirationChangeLedgerEntry;
         return value != null;
     }
 
@@ -62,13 +293,13 @@ public abstract record class Data
         [NotNullWhen(true)] out CreditBlockExpiryLedgerEntry? value
     )
     {
-        value = (this as DataVariants::CreditBlockExpiryLedgerEntry)?.Value;
+        value = this.Value as CreditBlockExpiryLedgerEntry;
         return value != null;
     }
 
     public bool TryPickVoidLedgerEntry([NotNullWhen(true)] out VoidLedgerEntry? value)
     {
-        value = (this as DataVariants::VoidLedgerEntry)?.Value;
+        value = this.Value as VoidLedgerEntry;
         return value != null;
     }
 
@@ -76,48 +307,48 @@ public abstract record class Data
         [NotNullWhen(true)] out VoidInitiatedLedgerEntry? value
     )
     {
-        value = (this as DataVariants::VoidInitiatedLedgerEntry)?.Value;
+        value = this.Value as VoidInitiatedLedgerEntry;
         return value != null;
     }
 
     public bool TryPickAmendmentLedgerEntry([NotNullWhen(true)] out AmendmentLedgerEntry? value)
     {
-        value = (this as DataVariants::AmendmentLedgerEntry)?.Value;
+        value = this.Value as AmendmentLedgerEntry;
         return value != null;
     }
 
     public void Switch(
-        Action<DataVariants::IncrementLedgerEntry> incrementLedgerEntry,
-        Action<DataVariants::DecrementLedgerEntry> decrementLedgerEntry,
-        Action<DataVariants::ExpirationChangeLedgerEntry> expirationChangeLedgerEntry,
-        Action<DataVariants::CreditBlockExpiryLedgerEntry> creditBlockExpiryLedgerEntry,
-        Action<DataVariants::VoidLedgerEntry> voidLedgerEntry,
-        Action<DataVariants::VoidInitiatedLedgerEntry> voidInitiatedLedgerEntry,
-        Action<DataVariants::AmendmentLedgerEntry> amendmentLedgerEntry
+        Action<IncrementLedgerEntry> incrementLedgerEntry,
+        Action<DecrementLedgerEntry> decrementLedgerEntry,
+        Action<ExpirationChangeLedgerEntry> expirationChangeLedgerEntry,
+        Action<CreditBlockExpiryLedgerEntry> creditBlockExpiryLedgerEntry,
+        Action<VoidLedgerEntry> voidLedgerEntry,
+        Action<VoidInitiatedLedgerEntry> voidInitiatedLedgerEntry,
+        Action<AmendmentLedgerEntry> amendmentLedgerEntry
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case DataVariants::IncrementLedgerEntry inner:
-                incrementLedgerEntry(inner);
+            case IncrementLedgerEntry value:
+                incrementLedgerEntry(value);
                 break;
-            case DataVariants::DecrementLedgerEntry inner:
-                decrementLedgerEntry(inner);
+            case DecrementLedgerEntry value:
+                decrementLedgerEntry(value);
                 break;
-            case DataVariants::ExpirationChangeLedgerEntry inner:
-                expirationChangeLedgerEntry(inner);
+            case ExpirationChangeLedgerEntry value:
+                expirationChangeLedgerEntry(value);
                 break;
-            case DataVariants::CreditBlockExpiryLedgerEntry inner:
-                creditBlockExpiryLedgerEntry(inner);
+            case CreditBlockExpiryLedgerEntry value:
+                creditBlockExpiryLedgerEntry(value);
                 break;
-            case DataVariants::VoidLedgerEntry inner:
-                voidLedgerEntry(inner);
+            case VoidLedgerEntry value:
+                voidLedgerEntry(value);
                 break;
-            case DataVariants::VoidInitiatedLedgerEntry inner:
-                voidInitiatedLedgerEntry(inner);
+            case VoidInitiatedLedgerEntry value:
+                voidInitiatedLedgerEntry(value);
                 break;
-            case DataVariants::AmendmentLedgerEntry inner:
-                amendmentLedgerEntry(inner);
+            case AmendmentLedgerEntry value:
+                amendmentLedgerEntry(value);
                 break;
             default:
                 throw new OrbInvalidDataException("Data did not match any variant of Data");
@@ -125,29 +356,37 @@ public abstract record class Data
     }
 
     public T Match<T>(
-        Func<DataVariants::IncrementLedgerEntry, T> incrementLedgerEntry,
-        Func<DataVariants::DecrementLedgerEntry, T> decrementLedgerEntry,
-        Func<DataVariants::ExpirationChangeLedgerEntry, T> expirationChangeLedgerEntry,
-        Func<DataVariants::CreditBlockExpiryLedgerEntry, T> creditBlockExpiryLedgerEntry,
-        Func<DataVariants::VoidLedgerEntry, T> voidLedgerEntry,
-        Func<DataVariants::VoidInitiatedLedgerEntry, T> voidInitiatedLedgerEntry,
-        Func<DataVariants::AmendmentLedgerEntry, T> amendmentLedgerEntry
+        Func<IncrementLedgerEntry, T> incrementLedgerEntry,
+        Func<DecrementLedgerEntry, T> decrementLedgerEntry,
+        Func<ExpirationChangeLedgerEntry, T> expirationChangeLedgerEntry,
+        Func<CreditBlockExpiryLedgerEntry, T> creditBlockExpiryLedgerEntry,
+        Func<VoidLedgerEntry, T> voidLedgerEntry,
+        Func<VoidInitiatedLedgerEntry, T> voidInitiatedLedgerEntry,
+        Func<AmendmentLedgerEntry, T> amendmentLedgerEntry
     )
     {
-        return this switch
+        return this.Value switch
         {
-            DataVariants::IncrementLedgerEntry inner => incrementLedgerEntry(inner),
-            DataVariants::DecrementLedgerEntry inner => decrementLedgerEntry(inner),
-            DataVariants::ExpirationChangeLedgerEntry inner => expirationChangeLedgerEntry(inner),
-            DataVariants::CreditBlockExpiryLedgerEntry inner => creditBlockExpiryLedgerEntry(inner),
-            DataVariants::VoidLedgerEntry inner => voidLedgerEntry(inner),
-            DataVariants::VoidInitiatedLedgerEntry inner => voidInitiatedLedgerEntry(inner),
-            DataVariants::AmendmentLedgerEntry inner => amendmentLedgerEntry(inner),
+            IncrementLedgerEntry value => incrementLedgerEntry(value),
+            DecrementLedgerEntry value => decrementLedgerEntry(value),
+            ExpirationChangeLedgerEntry value => expirationChangeLedgerEntry(value),
+            CreditBlockExpiryLedgerEntry value => creditBlockExpiryLedgerEntry(value),
+            VoidLedgerEntry value => voidLedgerEntry(value),
+            VoidInitiatedLedgerEntry value => voidInitiatedLedgerEntry(value),
+            AmendmentLedgerEntry value => amendmentLedgerEntry(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Data"),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of Data");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class DataConverter : JsonConverter<Data>
@@ -183,14 +422,15 @@ sealed class DataConverter : JsonConverter<Data>
                     );
                     if (deserialized != null)
                     {
-                        return new DataVariants::IncrementLedgerEntry(deserialized);
+                        deserialized.Validate();
+                        return new Data(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant DataVariants::IncrementLedgerEntry",
+                            "Data does not match union variant 'IncrementLedgerEntry'",
                             e
                         )
                     );
@@ -210,14 +450,15 @@ sealed class DataConverter : JsonConverter<Data>
                     );
                     if (deserialized != null)
                     {
-                        return new DataVariants::DecrementLedgerEntry(deserialized);
+                        deserialized.Validate();
+                        return new Data(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant DataVariants::DecrementLedgerEntry",
+                            "Data does not match union variant 'DecrementLedgerEntry'",
                             e
                         )
                     );
@@ -237,14 +478,15 @@ sealed class DataConverter : JsonConverter<Data>
                     );
                     if (deserialized != null)
                     {
-                        return new DataVariants::ExpirationChangeLedgerEntry(deserialized);
+                        deserialized.Validate();
+                        return new Data(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant DataVariants::ExpirationChangeLedgerEntry",
+                            "Data does not match union variant 'ExpirationChangeLedgerEntry'",
                             e
                         )
                     );
@@ -264,14 +506,15 @@ sealed class DataConverter : JsonConverter<Data>
                     );
                     if (deserialized != null)
                     {
-                        return new DataVariants::CreditBlockExpiryLedgerEntry(deserialized);
+                        deserialized.Validate();
+                        return new Data(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant DataVariants::CreditBlockExpiryLedgerEntry",
+                            "Data does not match union variant 'CreditBlockExpiryLedgerEntry'",
                             e
                         )
                     );
@@ -288,14 +531,15 @@ sealed class DataConverter : JsonConverter<Data>
                     var deserialized = JsonSerializer.Deserialize<VoidLedgerEntry>(json, options);
                     if (deserialized != null)
                     {
-                        return new DataVariants::VoidLedgerEntry(deserialized);
+                        deserialized.Validate();
+                        return new Data(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant DataVariants::VoidLedgerEntry",
+                            "Data does not match union variant 'VoidLedgerEntry'",
                             e
                         )
                     );
@@ -315,14 +559,15 @@ sealed class DataConverter : JsonConverter<Data>
                     );
                     if (deserialized != null)
                     {
-                        return new DataVariants::VoidInitiatedLedgerEntry(deserialized);
+                        deserialized.Validate();
+                        return new Data(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant DataVariants::VoidInitiatedLedgerEntry",
+                            "Data does not match union variant 'VoidInitiatedLedgerEntry'",
                             e
                         )
                     );
@@ -342,14 +587,15 @@ sealed class DataConverter : JsonConverter<Data>
                     );
                     if (deserialized != null)
                     {
-                        return new DataVariants::AmendmentLedgerEntry(deserialized);
+                        deserialized.Validate();
+                        return new Data(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant DataVariants::AmendmentLedgerEntry",
+                            "Data does not match union variant 'AmendmentLedgerEntry'",
                             e
                         )
                     );
@@ -368,20 +614,7 @@ sealed class DataConverter : JsonConverter<Data>
 
     public override void Write(Utf8JsonWriter writer, Data value, JsonSerializerOptions options)
     {
-        object variant = value switch
-        {
-            DataVariants::IncrementLedgerEntry(var incrementLedgerEntry) => incrementLedgerEntry,
-            DataVariants::DecrementLedgerEntry(var decrementLedgerEntry) => decrementLedgerEntry,
-            DataVariants::ExpirationChangeLedgerEntry(var expirationChangeLedgerEntry) =>
-                expirationChangeLedgerEntry,
-            DataVariants::CreditBlockExpiryLedgerEntry(var creditBlockExpiryLedgerEntry) =>
-                creditBlockExpiryLedgerEntry,
-            DataVariants::VoidLedgerEntry(var voidLedgerEntry) => voidLedgerEntry,
-            DataVariants::VoidInitiatedLedgerEntry(var voidInitiatedLedgerEntry) =>
-                voidInitiatedLedgerEntry,
-            DataVariants::AmendmentLedgerEntry(var amendmentLedgerEntry) => amendmentLedgerEntry,
-            _ => throw new OrbInvalidDataException("Data did not match any variant of Data"),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }
