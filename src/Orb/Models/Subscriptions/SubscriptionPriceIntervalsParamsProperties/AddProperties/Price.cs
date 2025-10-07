@@ -98,6 +98,8 @@ public abstract record class Price
     public static implicit operator Price(NewFloatingMinimumCompositePrice value) =>
         new PriceVariants::NewFloatingMinimumCompositePrice(value);
 
+    public static implicit operator Price(Percent value) => new PriceVariants::Percent(value);
+
     public static implicit operator Price(EventOutput value) =>
         new PriceVariants::EventOutput(value);
 
@@ -307,6 +309,12 @@ public abstract record class Price
         return value != null;
     }
 
+    public bool TryPickPercent([NotNullWhen(true)] out Percent? value)
+    {
+        value = (this as PriceVariants::Percent)?.Value;
+        return value != null;
+    }
+
     public bool TryPickEventOutput([NotNullWhen(true)] out EventOutput? value)
     {
         value = (this as PriceVariants::EventOutput)?.Value;
@@ -341,6 +349,7 @@ public abstract record class Price
         Action<PriceVariants::NewFloatingScalableMatrixWithTieredPricingPrice> newFloatingScalableMatrixWithTieredPricing,
         Action<PriceVariants::NewFloatingCumulativeGroupedBulkPrice> newFloatingCumulativeGroupedBulk,
         Action<PriceVariants::NewFloatingMinimumCompositePrice> newFloatingMinimumComposite,
+        Action<PriceVariants::Percent> percent,
         Action<PriceVariants::EventOutput> eventOutput
     )
     {
@@ -427,6 +436,9 @@ public abstract record class Price
             case PriceVariants::NewFloatingMinimumCompositePrice inner:
                 newFloatingMinimumComposite(inner);
                 break;
+            case PriceVariants::Percent inner:
+                percent(inner);
+                break;
             case PriceVariants::EventOutput inner:
                 eventOutput(inner);
                 break;
@@ -499,6 +511,7 @@ public abstract record class Price
             T
         > newFloatingCumulativeGroupedBulk,
         Func<PriceVariants::NewFloatingMinimumCompositePrice, T> newFloatingMinimumComposite,
+        Func<PriceVariants::Percent, T> percent,
         Func<PriceVariants::EventOutput, T> eventOutput
     )
     {
@@ -556,6 +569,7 @@ public abstract record class Price
             PriceVariants::NewFloatingMinimumCompositePrice inner => newFloatingMinimumComposite(
                 inner
             ),
+            PriceVariants::Percent inner => percent(inner),
             PriceVariants::EventOutput inner => eventOutput(inner),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };
@@ -1355,6 +1369,30 @@ sealed class PriceConverter : JsonConverter<Price?>
 
                 throw new AggregateException(exceptions);
             }
+            case "percent":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<Percent>(json, options);
+                    if (deserialized != null)
+                    {
+                        return new PriceVariants::Percent(deserialized);
+                    }
+                }
+                catch (JsonException e)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant PriceVariants::Percent",
+                            e
+                        )
+                    );
+                }
+
+                throw new AggregateException(exceptions);
+            }
             case "event_output":
             {
                 List<OrbInvalidDataException> exceptions = [];
@@ -1455,6 +1493,7 @@ sealed class PriceConverter : JsonConverter<Price?>
             ) => newFloatingCumulativeGroupedBulk,
             PriceVariants::NewFloatingMinimumCompositePrice(var newFloatingMinimumComposite) =>
                 newFloatingMinimumComposite,
+            PriceVariants::Percent(var percent) => percent,
             PriceVariants::EventOutput(var eventOutput) => eventOutput,
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };

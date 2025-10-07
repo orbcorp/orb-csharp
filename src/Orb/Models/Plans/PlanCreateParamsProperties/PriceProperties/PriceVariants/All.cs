@@ -491,6 +491,28 @@ public sealed record class NewPlanMinimumCompositePrice(Models::NewPlanMinimumCo
     }
 }
 
+public sealed record class Percent(
+    global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.Percent Value
+)
+    : PriceProperties::Price,
+        IVariant<
+            Percent,
+            global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.Percent
+        >
+{
+    public static Percent From(
+        global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.Percent value
+    )
+    {
+        return new(value);
+    }
+
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
+}
+
 public sealed record class EventOutput(
     global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.EventOutput Value
 )

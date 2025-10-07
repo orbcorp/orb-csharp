@@ -171,6 +171,7 @@ using PackageWithAllocationProperties = Orb.Models.PriceProperties.PackageWithAl
 using PaymentAttemptProperties = Orb.Models.InvoiceProperties.PaymentAttemptProperties;
 using PercentageDiscountIntervalProperties = Orb.Models.PercentageDiscountIntervalProperties;
 using PercentageDiscountProperties = Orb.Models.PercentageDiscountProperties;
+using PercentProperties = Orb.Models.PriceProperties.PercentProperties;
 using PlanCreateParamsProperties = Orb.Models.Plans.PlanCreateParamsProperties;
 using PlanListParamsProperties = Orb.Models.Plans.PlanListParamsProperties;
 using PlanPhaseAmountDiscountAdjustmentProperties = Orb.Models.PlanPhaseAmountDiscountAdjustmentProperties;
@@ -570,6 +571,9 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, MinimumProperties::BillingMode>(),
             new ApiEnumConverter<string, MinimumProperties::Cadence>(),
             new ApiEnumConverter<string, MinimumProperties::PriceType>(),
+            new ApiEnumConverter<string, PercentProperties::BillingMode>(),
+            new ApiEnumConverter<string, PercentProperties::Cadence>(),
+            new ApiEnumConverter<string, PercentProperties::PriceType>(),
             new ApiEnumConverter<string, EventOutputProperties::BillingMode>(),
             new ApiEnumConverter<string, EventOutputProperties::Cadence>(),
             new ApiEnumConverter<string, EventOutputProperties::PriceType>(),
@@ -592,6 +596,10 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<
                 string,
+                global::Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.AddPriceProperties.PriceProperties.PercentProperties.Cadence
+            >(),
+            new ApiEnumConverter<
+                string,
                 global::Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.AddPriceProperties.PriceProperties.EventOutputProperties.Cadence
             >(),
             new ApiEnumConverter<
@@ -601,6 +609,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<
                 string,
                 global::Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.PercentProperties.Cadence
             >(),
             new ApiEnumConverter<
                 string,
@@ -616,6 +628,10 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<
                 string,
+                global::Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties.AddPriceProperties.PriceProperties.PercentProperties.Cadence
+            >(),
+            new ApiEnumConverter<
+                string,
                 global::Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties.AddPriceProperties.PriceProperties.EventOutputProperties.Cadence
             >(),
             new ApiEnumConverter<
@@ -625,6 +641,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<
                 string,
                 global::Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.PercentProperties.Cadence
             >(),
             new ApiEnumConverter<
                 string,
@@ -736,6 +756,10 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<
                 string,
+                global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.PercentProperties.Cadence
+            >(),
+            new ApiEnumConverter<
+                string,
                 global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.EventOutputProperties.Cadence
             >(),
             new ApiEnumConverter<
@@ -750,6 +774,10 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<
                 string,
+                global::Orb.Models.Prices.PriceCreateParamsProperties.BodyProperties.PercentProperties.Cadence
+            >(),
+            new ApiEnumConverter<
+                string,
                 global::Orb.Models.Prices.PriceCreateParamsProperties.BodyProperties.EventOutputProperties.Cadence
             >(),
             new ApiEnumConverter<
@@ -758,11 +786,19 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<
                 string,
+                global::Orb.Models.Prices.PriceEvaluateMultipleParamsProperties.PriceEvaluationProperties.PriceProperties.PercentProperties.Cadence
+            >(),
+            new ApiEnumConverter<
+                string,
                 global::Orb.Models.Prices.PriceEvaluateMultipleParamsProperties.PriceEvaluationProperties.PriceProperties.EventOutputProperties.Cadence
             >(),
             new ApiEnumConverter<
                 string,
                 global::Orb.Models.Prices.PriceEvaluatePreviewEventsParamsProperties.PriceEvaluationProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.Prices.PriceEvaluatePreviewEventsParamsProperties.PriceEvaluationProperties.PriceProperties.PercentProperties.Cadence
             >(),
             new ApiEnumConverter<
                 string,
@@ -940,6 +976,10 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<
                 string,
+                global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.PriceProperties.PercentProperties.Cadence
+            >(),
+            new ApiEnumConverter<
+                string,
                 global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.PriceProperties.EventOutputProperties.Cadence
             >(),
             new ApiEnumConverter<string, ExternalMarketplace>(),
@@ -953,6 +993,10 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<
                 string,
+                global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplacePriceProperties.PriceProperties.PercentProperties.Cadence
+            >(),
+            new ApiEnumConverter<
+                string,
                 global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplacePriceProperties.PriceProperties.EventOutputProperties.Cadence
             >(),
             new ApiEnumConverter<string, SubscriptionListParamsProperties::Status>(),
@@ -963,6 +1007,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<
                 string,
                 global::Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.PriceProperties.PercentProperties.Cadence
             >(),
             new ApiEnumConverter<
                 string,
@@ -983,6 +1031,10 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<
                 string,
+                global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.AddPriceProperties.PriceProperties.PercentProperties.Cadence
+            >(),
+            new ApiEnumConverter<
+                string,
                 global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.AddPriceProperties.PriceProperties.EventOutputProperties.Cadence
             >(),
             new ApiEnumConverter<
@@ -996,6 +1048,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<
                 string,
                 global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.ReplacePriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.ReplacePriceProperties.PriceProperties.PercentProperties.Cadence
             >(),
             new ApiEnumConverter<
                 string,
