@@ -14,7 +14,6 @@ public class InvoiceLineItemServiceTest : TestBase
                 Amount = "12.00",
                 EndDate = DateOnly.Parse("2023-09-22"),
                 InvoiceID = "4khy3nwzktxv7",
-                Name = "Item Name",
                 Quantity = 1,
                 StartDate = DateOnly.Parse("2023-09-22"),
             }
