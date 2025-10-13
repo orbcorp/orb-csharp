@@ -24,6 +24,7 @@ public record class Body
                 newFloatingUnitPrice: (x) => x.Currency,
                 newFloatingTieredPrice: (x) => x.Currency,
                 newFloatingBulkPrice: (x) => x.Currency,
+                bulkWithFilters: (x) => x.Currency,
                 newFloatingPackagePrice: (x) => x.Currency,
                 newFloatingMatrixPrice: (x) => x.Currency,
                 newFloatingThresholdTotalAmountPrice: (x) => x.Currency,
@@ -62,6 +63,7 @@ public record class Body
                 newFloatingUnitPrice: (x) => x.ItemID,
                 newFloatingTieredPrice: (x) => x.ItemID,
                 newFloatingBulkPrice: (x) => x.ItemID,
+                bulkWithFilters: (x) => x.ItemID,
                 newFloatingPackagePrice: (x) => x.ItemID,
                 newFloatingMatrixPrice: (x) => x.ItemID,
                 newFloatingThresholdTotalAmountPrice: (x) => x.ItemID,
@@ -100,6 +102,7 @@ public record class Body
                 newFloatingUnitPrice: (x) => x.Name,
                 newFloatingTieredPrice: (x) => x.Name,
                 newFloatingBulkPrice: (x) => x.Name,
+                bulkWithFilters: (x) => x.Name,
                 newFloatingPackagePrice: (x) => x.Name,
                 newFloatingMatrixPrice: (x) => x.Name,
                 newFloatingThresholdTotalAmountPrice: (x) => x.Name,
@@ -138,6 +141,7 @@ public record class Body
                 newFloatingUnitPrice: (x) => x.BillableMetricID,
                 newFloatingTieredPrice: (x) => x.BillableMetricID,
                 newFloatingBulkPrice: (x) => x.BillableMetricID,
+                bulkWithFilters: (x) => x.BillableMetricID,
                 newFloatingPackagePrice: (x) => x.BillableMetricID,
                 newFloatingMatrixPrice: (x) => x.BillableMetricID,
                 newFloatingThresholdTotalAmountPrice: (x) => x.BillableMetricID,
@@ -176,6 +180,7 @@ public record class Body
                 newFloatingUnitPrice: (x) => x.BilledInAdvance,
                 newFloatingTieredPrice: (x) => x.BilledInAdvance,
                 newFloatingBulkPrice: (x) => x.BilledInAdvance,
+                bulkWithFilters: (x) => x.BilledInAdvance,
                 newFloatingPackagePrice: (x) => x.BilledInAdvance,
                 newFloatingMatrixPrice: (x) => x.BilledInAdvance,
                 newFloatingThresholdTotalAmountPrice: (x) => x.BilledInAdvance,
@@ -214,6 +219,7 @@ public record class Body
                 newFloatingUnitPrice: (x) => x.BillingCycleConfiguration,
                 newFloatingTieredPrice: (x) => x.BillingCycleConfiguration,
                 newFloatingBulkPrice: (x) => x.BillingCycleConfiguration,
+                bulkWithFilters: (x) => x.BillingCycleConfiguration,
                 newFloatingPackagePrice: (x) => x.BillingCycleConfiguration,
                 newFloatingMatrixPrice: (x) => x.BillingCycleConfiguration,
                 newFloatingThresholdTotalAmountPrice: (x) => x.BillingCycleConfiguration,
@@ -252,6 +258,7 @@ public record class Body
                 newFloatingUnitPrice: (x) => x.ConversionRate,
                 newFloatingTieredPrice: (x) => x.ConversionRate,
                 newFloatingBulkPrice: (x) => x.ConversionRate,
+                bulkWithFilters: (x) => x.ConversionRate,
                 newFloatingPackagePrice: (x) => x.ConversionRate,
                 newFloatingMatrixPrice: (x) => x.ConversionRate,
                 newFloatingThresholdTotalAmountPrice: (x) => x.ConversionRate,
@@ -290,6 +297,7 @@ public record class Body
                 newFloatingUnitPrice: (x) => x.DimensionalPriceConfiguration,
                 newFloatingTieredPrice: (x) => x.DimensionalPriceConfiguration,
                 newFloatingBulkPrice: (x) => x.DimensionalPriceConfiguration,
+                bulkWithFilters: (x) => x.DimensionalPriceConfiguration,
                 newFloatingPackagePrice: (x) => x.DimensionalPriceConfiguration,
                 newFloatingMatrixPrice: (x) => x.DimensionalPriceConfiguration,
                 newFloatingThresholdTotalAmountPrice: (x) => x.DimensionalPriceConfiguration,
@@ -330,6 +338,7 @@ public record class Body
                 newFloatingUnitPrice: (x) => x.ExternalPriceID,
                 newFloatingTieredPrice: (x) => x.ExternalPriceID,
                 newFloatingBulkPrice: (x) => x.ExternalPriceID,
+                bulkWithFilters: (x) => x.ExternalPriceID,
                 newFloatingPackagePrice: (x) => x.ExternalPriceID,
                 newFloatingMatrixPrice: (x) => x.ExternalPriceID,
                 newFloatingThresholdTotalAmountPrice: (x) => x.ExternalPriceID,
@@ -368,6 +377,7 @@ public record class Body
                 newFloatingUnitPrice: (x) => x.FixedPriceQuantity,
                 newFloatingTieredPrice: (x) => x.FixedPriceQuantity,
                 newFloatingBulkPrice: (x) => x.FixedPriceQuantity,
+                bulkWithFilters: (x) => x.FixedPriceQuantity,
                 newFloatingPackagePrice: (x) => x.FixedPriceQuantity,
                 newFloatingMatrixPrice: (x) => x.FixedPriceQuantity,
                 newFloatingThresholdTotalAmountPrice: (x) => x.FixedPriceQuantity,
@@ -406,6 +416,7 @@ public record class Body
                 newFloatingUnitPrice: (x) => x.InvoiceGroupingKey,
                 newFloatingTieredPrice: (x) => x.InvoiceGroupingKey,
                 newFloatingBulkPrice: (x) => x.InvoiceGroupingKey,
+                bulkWithFilters: (x) => x.InvoiceGroupingKey,
                 newFloatingPackagePrice: (x) => x.InvoiceGroupingKey,
                 newFloatingMatrixPrice: (x) => x.InvoiceGroupingKey,
                 newFloatingThresholdTotalAmountPrice: (x) => x.InvoiceGroupingKey,
@@ -444,6 +455,7 @@ public record class Body
                 newFloatingUnitPrice: (x) => x.InvoicingCycleConfiguration,
                 newFloatingTieredPrice: (x) => x.InvoicingCycleConfiguration,
                 newFloatingBulkPrice: (x) => x.InvoicingCycleConfiguration,
+                bulkWithFilters: (x) => x.InvoicingCycleConfiguration,
                 newFloatingPackagePrice: (x) => x.InvoicingCycleConfiguration,
                 newFloatingMatrixPrice: (x) => x.InvoicingCycleConfiguration,
                 newFloatingThresholdTotalAmountPrice: (x) => x.InvoicingCycleConfiguration,
@@ -486,6 +498,11 @@ public record class Body
     }
 
     public Body(NewFloatingBulkPrice value)
+    {
+        Value = value;
+    }
+
+    public Body(BulkWithFilters value)
     {
         Value = value;
     }
@@ -645,6 +662,12 @@ public record class Body
     public bool TryPickNewFloatingBulkPrice([NotNullWhen(true)] out NewFloatingBulkPrice? value)
     {
         value = this.Value as NewFloatingBulkPrice;
+        return value != null;
+    }
+
+    public bool TryPickBulkWithFilters([NotNullWhen(true)] out BulkWithFilters? value)
+    {
+        value = this.Value as BulkWithFilters;
         return value != null;
     }
 
@@ -854,6 +877,7 @@ public record class Body
         Action<NewFloatingUnitPrice> newFloatingUnitPrice,
         Action<NewFloatingTieredPrice> newFloatingTieredPrice,
         Action<NewFloatingBulkPrice> newFloatingBulkPrice,
+        Action<BulkWithFilters> bulkWithFilters,
         Action<NewFloatingPackagePrice> newFloatingPackagePrice,
         Action<NewFloatingMatrixPrice> newFloatingMatrixPrice,
         Action<NewFloatingThresholdTotalAmountPrice> newFloatingThresholdTotalAmountPrice,
@@ -892,6 +916,9 @@ public record class Body
                 break;
             case NewFloatingBulkPrice value:
                 newFloatingBulkPrice(value);
+                break;
+            case BulkWithFilters value:
+                bulkWithFilters(value);
                 break;
             case NewFloatingPackagePrice value:
                 newFloatingPackagePrice(value);
@@ -980,6 +1007,7 @@ public record class Body
         Func<NewFloatingUnitPrice, T> newFloatingUnitPrice,
         Func<NewFloatingTieredPrice, T> newFloatingTieredPrice,
         Func<NewFloatingBulkPrice, T> newFloatingBulkPrice,
+        Func<BulkWithFilters, T> bulkWithFilters,
         Func<NewFloatingPackagePrice, T> newFloatingPackagePrice,
         Func<NewFloatingMatrixPrice, T> newFloatingMatrixPrice,
         Func<NewFloatingThresholdTotalAmountPrice, T> newFloatingThresholdTotalAmountPrice,
@@ -1025,6 +1053,7 @@ public record class Body
             NewFloatingUnitPrice value => newFloatingUnitPrice(value),
             NewFloatingTieredPrice value => newFloatingTieredPrice(value),
             NewFloatingBulkPrice value => newFloatingBulkPrice(value),
+            BulkWithFilters value => bulkWithFilters(value),
             NewFloatingPackagePrice value => newFloatingPackagePrice(value),
             NewFloatingMatrixPrice value => newFloatingMatrixPrice(value),
             NewFloatingThresholdTotalAmountPrice value => newFloatingThresholdTotalAmountPrice(
@@ -1183,6 +1212,31 @@ sealed class BodyConverter : JsonConverter<Body>
                     exceptions.Add(
                         new OrbInvalidDataException(
                             "Data does not match union variant 'NewFloatingBulkPrice'",
+                            e
+                        )
+                    );
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "bulk_with_filters":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<BulkWithFilters>(json, options);
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new Body(deserialized);
+                    }
+                }
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'BulkWithFilters'",
                             e
                         )
                     );

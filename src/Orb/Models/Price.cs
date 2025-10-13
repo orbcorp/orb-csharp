@@ -32,6 +32,7 @@ public record class Price
                 unit: (x) => x.ID,
                 tiered: (x) => x.ID,
                 bulk: (x) => x.ID,
+                bulkWithFilters: (x) => x.ID,
                 package: (x) => x.ID,
                 matrix: (x) => x.ID,
                 thresholdTotalAmount: (x) => x.ID,
@@ -70,6 +71,7 @@ public record class Price
                 unit: (x) => x.BillableMetric,
                 tiered: (x) => x.BillableMetric,
                 bulk: (x) => x.BillableMetric,
+                bulkWithFilters: (x) => x.BillableMetric,
                 package: (x) => x.BillableMetric,
                 matrix: (x) => x.BillableMetric,
                 thresholdTotalAmount: (x) => x.BillableMetric,
@@ -108,6 +110,7 @@ public record class Price
                 unit: (x) => x.BillingCycleConfiguration,
                 tiered: (x) => x.BillingCycleConfiguration,
                 bulk: (x) => x.BillingCycleConfiguration,
+                bulkWithFilters: (x) => x.BillingCycleConfiguration,
                 package: (x) => x.BillingCycleConfiguration,
                 matrix: (x) => x.BillingCycleConfiguration,
                 thresholdTotalAmount: (x) => x.BillingCycleConfiguration,
@@ -146,6 +149,7 @@ public record class Price
                 unit: (x) => x.ConversionRate,
                 tiered: (x) => x.ConversionRate,
                 bulk: (x) => x.ConversionRate,
+                bulkWithFilters: (x) => x.ConversionRate,
                 package: (x) => x.ConversionRate,
                 matrix: (x) => x.ConversionRate,
                 thresholdTotalAmount: (x) => x.ConversionRate,
@@ -184,6 +188,7 @@ public record class Price
                 unit: (x) => x.CreatedAt,
                 tiered: (x) => x.CreatedAt,
                 bulk: (x) => x.CreatedAt,
+                bulkWithFilters: (x) => x.CreatedAt,
                 package: (x) => x.CreatedAt,
                 matrix: (x) => x.CreatedAt,
                 thresholdTotalAmount: (x) => x.CreatedAt,
@@ -222,6 +227,7 @@ public record class Price
                 unit: (x) => x.CreditAllocation,
                 tiered: (x) => x.CreditAllocation,
                 bulk: (x) => x.CreditAllocation,
+                bulkWithFilters: (x) => x.CreditAllocation,
                 package: (x) => x.CreditAllocation,
                 matrix: (x) => x.CreditAllocation,
                 thresholdTotalAmount: (x) => x.CreditAllocation,
@@ -260,6 +266,7 @@ public record class Price
                 unit: (x) => x.Currency,
                 tiered: (x) => x.Currency,
                 bulk: (x) => x.Currency,
+                bulkWithFilters: (x) => x.Currency,
                 package: (x) => x.Currency,
                 matrix: (x) => x.Currency,
                 thresholdTotalAmount: (x) => x.Currency,
@@ -298,6 +305,7 @@ public record class Price
                 unit: (x) => x.Discount,
                 tiered: (x) => x.Discount,
                 bulk: (x) => x.Discount,
+                bulkWithFilters: (x) => x.Discount,
                 package: (x) => x.Discount,
                 matrix: (x) => x.Discount,
                 thresholdTotalAmount: (x) => x.Discount,
@@ -336,6 +344,7 @@ public record class Price
                 unit: (x) => x.ExternalPriceID,
                 tiered: (x) => x.ExternalPriceID,
                 bulk: (x) => x.ExternalPriceID,
+                bulkWithFilters: (x) => x.ExternalPriceID,
                 package: (x) => x.ExternalPriceID,
                 matrix: (x) => x.ExternalPriceID,
                 thresholdTotalAmount: (x) => x.ExternalPriceID,
@@ -374,6 +383,7 @@ public record class Price
                 unit: (x) => x.FixedPriceQuantity,
                 tiered: (x) => x.FixedPriceQuantity,
                 bulk: (x) => x.FixedPriceQuantity,
+                bulkWithFilters: (x) => x.FixedPriceQuantity,
                 package: (x) => x.FixedPriceQuantity,
                 matrix: (x) => x.FixedPriceQuantity,
                 thresholdTotalAmount: (x) => x.FixedPriceQuantity,
@@ -412,6 +422,7 @@ public record class Price
                 unit: (x) => x.InvoicingCycleConfiguration,
                 tiered: (x) => x.InvoicingCycleConfiguration,
                 bulk: (x) => x.InvoicingCycleConfiguration,
+                bulkWithFilters: (x) => x.InvoicingCycleConfiguration,
                 package: (x) => x.InvoicingCycleConfiguration,
                 matrix: (x) => x.InvoicingCycleConfiguration,
                 thresholdTotalAmount: (x) => x.InvoicingCycleConfiguration,
@@ -450,6 +461,7 @@ public record class Price
                 unit: (x) => x.Item,
                 tiered: (x) => x.Item,
                 bulk: (x) => x.Item,
+                bulkWithFilters: (x) => x.Item,
                 package: (x) => x.Item,
                 matrix: (x) => x.Item,
                 thresholdTotalAmount: (x) => x.Item,
@@ -488,6 +500,7 @@ public record class Price
                 unit: (x) => x.Maximum,
                 tiered: (x) => x.Maximum,
                 bulk: (x) => x.Maximum,
+                bulkWithFilters: (x) => x.Maximum,
                 package: (x) => x.Maximum,
                 matrix: (x) => x.Maximum,
                 thresholdTotalAmount: (x) => x.Maximum,
@@ -526,6 +539,7 @@ public record class Price
                 unit: (x) => x.MaximumAmount,
                 tiered: (x) => x.MaximumAmount,
                 bulk: (x) => x.MaximumAmount,
+                bulkWithFilters: (x) => x.MaximumAmount,
                 package: (x) => x.MaximumAmount,
                 matrix: (x) => x.MaximumAmount,
                 thresholdTotalAmount: (x) => x.MaximumAmount,
@@ -564,6 +578,7 @@ public record class Price
                 unit: (x) => x.Minimum,
                 tiered: (x) => x.Minimum,
                 bulk: (x) => x.Minimum,
+                bulkWithFilters: (x) => x.Minimum,
                 package: (x) => x.Minimum,
                 matrix: (x) => x.Minimum,
                 thresholdTotalAmount: (x) => x.Minimum,
@@ -602,6 +617,7 @@ public record class Price
                 unit: (x) => x.MinimumAmount,
                 tiered: (x) => x.MinimumAmount,
                 bulk: (x) => x.MinimumAmount,
+                bulkWithFilters: (x) => x.MinimumAmount,
                 package: (x) => x.MinimumAmount,
                 matrix: (x) => x.MinimumAmount,
                 thresholdTotalAmount: (x) => x.MinimumAmount,
@@ -640,6 +656,7 @@ public record class Price
                 unit: (x) => x.Name,
                 tiered: (x) => x.Name,
                 bulk: (x) => x.Name,
+                bulkWithFilters: (x) => x.Name,
                 package: (x) => x.Name,
                 matrix: (x) => x.Name,
                 thresholdTotalAmount: (x) => x.Name,
@@ -678,6 +695,7 @@ public record class Price
                 unit: (x) => x.PlanPhaseOrder,
                 tiered: (x) => x.PlanPhaseOrder,
                 bulk: (x) => x.PlanPhaseOrder,
+                bulkWithFilters: (x) => x.PlanPhaseOrder,
                 package: (x) => x.PlanPhaseOrder,
                 matrix: (x) => x.PlanPhaseOrder,
                 thresholdTotalAmount: (x) => x.PlanPhaseOrder,
@@ -716,6 +734,7 @@ public record class Price
                 unit: (x) => x.ReplacesPriceID,
                 tiered: (x) => x.ReplacesPriceID,
                 bulk: (x) => x.ReplacesPriceID,
+                bulkWithFilters: (x) => x.ReplacesPriceID,
                 package: (x) => x.ReplacesPriceID,
                 matrix: (x) => x.ReplacesPriceID,
                 thresholdTotalAmount: (x) => x.ReplacesPriceID,
@@ -754,6 +773,7 @@ public record class Price
                 unit: (x) => x.DimensionalPriceConfiguration,
                 tiered: (x) => x.DimensionalPriceConfiguration,
                 bulk: (x) => x.DimensionalPriceConfiguration,
+                bulkWithFilters: (x) => x.DimensionalPriceConfiguration,
                 package: (x) => x.DimensionalPriceConfiguration,
                 matrix: (x) => x.DimensionalPriceConfiguration,
                 thresholdTotalAmount: (x) => x.DimensionalPriceConfiguration,
@@ -795,6 +815,11 @@ public record class Price
     }
 
     public Price(PriceProperties::Bulk value)
+    {
+        Value = value;
+    }
+
+    public Price(PriceProperties::BulkWithFilters value)
     {
         Value = value;
     }
@@ -954,6 +979,14 @@ public record class Price
     public bool TryPickBulk([NotNullWhen(true)] out PriceProperties::Bulk? value)
     {
         value = this.Value as PriceProperties::Bulk;
+        return value != null;
+    }
+
+    public bool TryPickBulkWithFilters(
+        [NotNullWhen(true)] out PriceProperties::BulkWithFilters? value
+    )
+    {
+        value = this.Value as PriceProperties::BulkWithFilters;
         return value != null;
     }
 
@@ -1155,6 +1188,7 @@ public record class Price
         Action<PriceProperties::Unit> unit,
         Action<PriceProperties::Tiered> tiered,
         Action<PriceProperties::Bulk> bulk,
+        Action<PriceProperties::BulkWithFilters> bulkWithFilters,
         Action<PriceProperties::Package> package,
         Action<PriceProperties::Matrix> matrix,
         Action<PriceProperties::ThresholdTotalAmount> thresholdTotalAmount,
@@ -1193,6 +1227,9 @@ public record class Price
                 break;
             case PriceProperties::Bulk value:
                 bulk(value);
+                break;
+            case PriceProperties::BulkWithFilters value:
+                bulkWithFilters(value);
                 break;
             case PriceProperties::Package value:
                 package(value);
@@ -1281,6 +1318,7 @@ public record class Price
         Func<PriceProperties::Unit, T> unit,
         Func<PriceProperties::Tiered, T> tiered,
         Func<PriceProperties::Bulk, T> bulk,
+        Func<PriceProperties::BulkWithFilters, T> bulkWithFilters,
         Func<PriceProperties::Package, T> package,
         Func<PriceProperties::Matrix, T> matrix,
         Func<PriceProperties::ThresholdTotalAmount, T> thresholdTotalAmount,
@@ -1314,6 +1352,7 @@ public record class Price
             PriceProperties::Unit value => unit(value),
             PriceProperties::Tiered value => tiered(value),
             PriceProperties::Bulk value => bulk(value),
+            PriceProperties::BulkWithFilters value => bulkWithFilters(value),
             PriceProperties::Package value => package(value),
             PriceProperties::Matrix value => matrix(value),
             PriceProperties::ThresholdTotalAmount value => thresholdTotalAmount(value),
@@ -1458,6 +1497,34 @@ sealed class PriceConverter : JsonConverter<Price>
                     exceptions.Add(
                         new OrbInvalidDataException(
                             "Data does not match union variant 'PriceProperties::Bulk'",
+                            e
+                        )
+                    );
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "bulk_with_filters":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<PriceProperties::BulkWithFilters>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new Price(deserialized);
+                    }
+                }
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'PriceProperties::BulkWithFilters'",
                             e
                         )
                     );
