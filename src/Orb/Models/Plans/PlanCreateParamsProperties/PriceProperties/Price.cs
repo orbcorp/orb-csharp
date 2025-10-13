@@ -24,6 +24,7 @@ public record class Price
                 newPlanUnit: (x) => x.ItemID,
                 newPlanTiered: (x) => x.ItemID,
                 newPlanBulk: (x) => x.ItemID,
+                bulkWithFilters: (x) => x.ItemID,
                 newPlanPackage: (x) => x.ItemID,
                 newPlanMatrix: (x) => x.ItemID,
                 newPlanThresholdTotalAmount: (x) => x.ItemID,
@@ -62,6 +63,7 @@ public record class Price
                 newPlanUnit: (x) => x.Name,
                 newPlanTiered: (x) => x.Name,
                 newPlanBulk: (x) => x.Name,
+                bulkWithFilters: (x) => x.Name,
                 newPlanPackage: (x) => x.Name,
                 newPlanMatrix: (x) => x.Name,
                 newPlanThresholdTotalAmount: (x) => x.Name,
@@ -100,6 +102,7 @@ public record class Price
                 newPlanUnit: (x) => x.BillableMetricID,
                 newPlanTiered: (x) => x.BillableMetricID,
                 newPlanBulk: (x) => x.BillableMetricID,
+                bulkWithFilters: (x) => x.BillableMetricID,
                 newPlanPackage: (x) => x.BillableMetricID,
                 newPlanMatrix: (x) => x.BillableMetricID,
                 newPlanThresholdTotalAmount: (x) => x.BillableMetricID,
@@ -138,6 +141,7 @@ public record class Price
                 newPlanUnit: (x) => x.BilledInAdvance,
                 newPlanTiered: (x) => x.BilledInAdvance,
                 newPlanBulk: (x) => x.BilledInAdvance,
+                bulkWithFilters: (x) => x.BilledInAdvance,
                 newPlanPackage: (x) => x.BilledInAdvance,
                 newPlanMatrix: (x) => x.BilledInAdvance,
                 newPlanThresholdTotalAmount: (x) => x.BilledInAdvance,
@@ -176,6 +180,7 @@ public record class Price
                 newPlanUnit: (x) => x.BillingCycleConfiguration,
                 newPlanTiered: (x) => x.BillingCycleConfiguration,
                 newPlanBulk: (x) => x.BillingCycleConfiguration,
+                bulkWithFilters: (x) => x.BillingCycleConfiguration,
                 newPlanPackage: (x) => x.BillingCycleConfiguration,
                 newPlanMatrix: (x) => x.BillingCycleConfiguration,
                 newPlanThresholdTotalAmount: (x) => x.BillingCycleConfiguration,
@@ -214,6 +219,7 @@ public record class Price
                 newPlanUnit: (x) => x.ConversionRate,
                 newPlanTiered: (x) => x.ConversionRate,
                 newPlanBulk: (x) => x.ConversionRate,
+                bulkWithFilters: (x) => x.ConversionRate,
                 newPlanPackage: (x) => x.ConversionRate,
                 newPlanMatrix: (x) => x.ConversionRate,
                 newPlanThresholdTotalAmount: (x) => x.ConversionRate,
@@ -252,6 +258,7 @@ public record class Price
                 newPlanUnit: (x) => x.Currency,
                 newPlanTiered: (x) => x.Currency,
                 newPlanBulk: (x) => x.Currency,
+                bulkWithFilters: (x) => x.Currency,
                 newPlanPackage: (x) => x.Currency,
                 newPlanMatrix: (x) => x.Currency,
                 newPlanThresholdTotalAmount: (x) => x.Currency,
@@ -290,6 +297,7 @@ public record class Price
                 newPlanUnit: (x) => x.DimensionalPriceConfiguration,
                 newPlanTiered: (x) => x.DimensionalPriceConfiguration,
                 newPlanBulk: (x) => x.DimensionalPriceConfiguration,
+                bulkWithFilters: (x) => x.DimensionalPriceConfiguration,
                 newPlanPackage: (x) => x.DimensionalPriceConfiguration,
                 newPlanMatrix: (x) => x.DimensionalPriceConfiguration,
                 newPlanThresholdTotalAmount: (x) => x.DimensionalPriceConfiguration,
@@ -328,6 +336,7 @@ public record class Price
                 newPlanUnit: (x) => x.ExternalPriceID,
                 newPlanTiered: (x) => x.ExternalPriceID,
                 newPlanBulk: (x) => x.ExternalPriceID,
+                bulkWithFilters: (x) => x.ExternalPriceID,
                 newPlanPackage: (x) => x.ExternalPriceID,
                 newPlanMatrix: (x) => x.ExternalPriceID,
                 newPlanThresholdTotalAmount: (x) => x.ExternalPriceID,
@@ -366,6 +375,7 @@ public record class Price
                 newPlanUnit: (x) => x.FixedPriceQuantity,
                 newPlanTiered: (x) => x.FixedPriceQuantity,
                 newPlanBulk: (x) => x.FixedPriceQuantity,
+                bulkWithFilters: (x) => x.FixedPriceQuantity,
                 newPlanPackage: (x) => x.FixedPriceQuantity,
                 newPlanMatrix: (x) => x.FixedPriceQuantity,
                 newPlanThresholdTotalAmount: (x) => x.FixedPriceQuantity,
@@ -404,6 +414,7 @@ public record class Price
                 newPlanUnit: (x) => x.InvoiceGroupingKey,
                 newPlanTiered: (x) => x.InvoiceGroupingKey,
                 newPlanBulk: (x) => x.InvoiceGroupingKey,
+                bulkWithFilters: (x) => x.InvoiceGroupingKey,
                 newPlanPackage: (x) => x.InvoiceGroupingKey,
                 newPlanMatrix: (x) => x.InvoiceGroupingKey,
                 newPlanThresholdTotalAmount: (x) => x.InvoiceGroupingKey,
@@ -442,6 +453,7 @@ public record class Price
                 newPlanUnit: (x) => x.InvoicingCycleConfiguration,
                 newPlanTiered: (x) => x.InvoicingCycleConfiguration,
                 newPlanBulk: (x) => x.InvoicingCycleConfiguration,
+                bulkWithFilters: (x) => x.InvoicingCycleConfiguration,
                 newPlanPackage: (x) => x.InvoicingCycleConfiguration,
                 newPlanMatrix: (x) => x.InvoicingCycleConfiguration,
                 newPlanThresholdTotalAmount: (x) => x.InvoicingCycleConfiguration,
@@ -480,6 +492,7 @@ public record class Price
                 newPlanUnit: (x) => x.ReferenceID,
                 newPlanTiered: (x) => x.ReferenceID,
                 newPlanBulk: (x) => x.ReferenceID,
+                bulkWithFilters: (x) => x.ReferenceID,
                 newPlanPackage: (x) => x.ReferenceID,
                 newPlanMatrix: (x) => x.ReferenceID,
                 newPlanThresholdTotalAmount: (x) => x.ReferenceID,
@@ -521,6 +534,11 @@ public record class Price
     }
 
     public Price(NewPlanBulkPrice value)
+    {
+        Value = value;
+    }
+
+    public Price(BulkWithFilters value)
     {
         Value = value;
     }
@@ -680,6 +698,12 @@ public record class Price
     public bool TryPickNewPlanBulk([NotNullWhen(true)] out NewPlanBulkPrice? value)
     {
         value = this.Value as NewPlanBulkPrice;
+        return value != null;
+    }
+
+    public bool TryPickBulkWithFilters([NotNullWhen(true)] out BulkWithFilters? value)
+    {
+        value = this.Value as BulkWithFilters;
         return value != null;
     }
 
@@ -885,6 +909,7 @@ public record class Price
         Action<NewPlanUnitPrice> newPlanUnit,
         Action<NewPlanTieredPrice> newPlanTiered,
         Action<NewPlanBulkPrice> newPlanBulk,
+        Action<BulkWithFilters> bulkWithFilters,
         Action<NewPlanPackagePrice> newPlanPackage,
         Action<NewPlanMatrixPrice> newPlanMatrix,
         Action<NewPlanThresholdTotalAmountPrice> newPlanThresholdTotalAmount,
@@ -923,6 +948,9 @@ public record class Price
                 break;
             case NewPlanBulkPrice value:
                 newPlanBulk(value);
+                break;
+            case BulkWithFilters value:
+                bulkWithFilters(value);
                 break;
             case NewPlanPackagePrice value:
                 newPlanPackage(value);
@@ -1011,6 +1039,7 @@ public record class Price
         Func<NewPlanUnitPrice, T> newPlanUnit,
         Func<NewPlanTieredPrice, T> newPlanTiered,
         Func<NewPlanBulkPrice, T> newPlanBulk,
+        Func<BulkWithFilters, T> bulkWithFilters,
         Func<NewPlanPackagePrice, T> newPlanPackage,
         Func<NewPlanMatrixPrice, T> newPlanMatrix,
         Func<NewPlanThresholdTotalAmountPrice, T> newPlanThresholdTotalAmount,
@@ -1044,6 +1073,7 @@ public record class Price
             NewPlanUnitPrice value => newPlanUnit(value),
             NewPlanTieredPrice value => newPlanTiered(value),
             NewPlanBulkPrice value => newPlanBulk(value),
+            BulkWithFilters value => bulkWithFilters(value),
             NewPlanPackagePrice value => newPlanPackage(value),
             NewPlanMatrixPrice value => newPlanMatrix(value),
             NewPlanThresholdTotalAmountPrice value => newPlanThresholdTotalAmount(value),
@@ -1182,6 +1212,31 @@ sealed class PriceConverter : JsonConverter<Price?>
                     exceptions.Add(
                         new OrbInvalidDataException(
                             "Data does not match union variant 'NewPlanBulkPrice'",
+                            e
+                        )
+                    );
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "bulk_with_filters":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<BulkWithFilters>(json, options);
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new Price(deserialized);
+                    }
+                }
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'BulkWithFilters'",
                             e
                         )
                     );

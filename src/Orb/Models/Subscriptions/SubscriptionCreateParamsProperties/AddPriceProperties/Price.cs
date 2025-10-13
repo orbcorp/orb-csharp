@@ -24,6 +24,7 @@ public record class Price
                 newSubscriptionUnit: (x) => x.ItemID,
                 newSubscriptionTiered: (x) => x.ItemID,
                 newSubscriptionBulk: (x) => x.ItemID,
+                bulkWithFilters: (x) => x.ItemID,
                 newSubscriptionPackage: (x) => x.ItemID,
                 newSubscriptionMatrix: (x) => x.ItemID,
                 newSubscriptionThresholdTotalAmount: (x) => x.ItemID,
@@ -62,6 +63,7 @@ public record class Price
                 newSubscriptionUnit: (x) => x.Name,
                 newSubscriptionTiered: (x) => x.Name,
                 newSubscriptionBulk: (x) => x.Name,
+                bulkWithFilters: (x) => x.Name,
                 newSubscriptionPackage: (x) => x.Name,
                 newSubscriptionMatrix: (x) => x.Name,
                 newSubscriptionThresholdTotalAmount: (x) => x.Name,
@@ -100,6 +102,7 @@ public record class Price
                 newSubscriptionUnit: (x) => x.BillableMetricID,
                 newSubscriptionTiered: (x) => x.BillableMetricID,
                 newSubscriptionBulk: (x) => x.BillableMetricID,
+                bulkWithFilters: (x) => x.BillableMetricID,
                 newSubscriptionPackage: (x) => x.BillableMetricID,
                 newSubscriptionMatrix: (x) => x.BillableMetricID,
                 newSubscriptionThresholdTotalAmount: (x) => x.BillableMetricID,
@@ -138,6 +141,7 @@ public record class Price
                 newSubscriptionUnit: (x) => x.BilledInAdvance,
                 newSubscriptionTiered: (x) => x.BilledInAdvance,
                 newSubscriptionBulk: (x) => x.BilledInAdvance,
+                bulkWithFilters: (x) => x.BilledInAdvance,
                 newSubscriptionPackage: (x) => x.BilledInAdvance,
                 newSubscriptionMatrix: (x) => x.BilledInAdvance,
                 newSubscriptionThresholdTotalAmount: (x) => x.BilledInAdvance,
@@ -176,6 +180,7 @@ public record class Price
                 newSubscriptionUnit: (x) => x.BillingCycleConfiguration,
                 newSubscriptionTiered: (x) => x.BillingCycleConfiguration,
                 newSubscriptionBulk: (x) => x.BillingCycleConfiguration,
+                bulkWithFilters: (x) => x.BillingCycleConfiguration,
                 newSubscriptionPackage: (x) => x.BillingCycleConfiguration,
                 newSubscriptionMatrix: (x) => x.BillingCycleConfiguration,
                 newSubscriptionThresholdTotalAmount: (x) => x.BillingCycleConfiguration,
@@ -214,6 +219,7 @@ public record class Price
                 newSubscriptionUnit: (x) => x.ConversionRate,
                 newSubscriptionTiered: (x) => x.ConversionRate,
                 newSubscriptionBulk: (x) => x.ConversionRate,
+                bulkWithFilters: (x) => x.ConversionRate,
                 newSubscriptionPackage: (x) => x.ConversionRate,
                 newSubscriptionMatrix: (x) => x.ConversionRate,
                 newSubscriptionThresholdTotalAmount: (x) => x.ConversionRate,
@@ -252,6 +258,7 @@ public record class Price
                 newSubscriptionUnit: (x) => x.Currency,
                 newSubscriptionTiered: (x) => x.Currency,
                 newSubscriptionBulk: (x) => x.Currency,
+                bulkWithFilters: (x) => x.Currency,
                 newSubscriptionPackage: (x) => x.Currency,
                 newSubscriptionMatrix: (x) => x.Currency,
                 newSubscriptionThresholdTotalAmount: (x) => x.Currency,
@@ -290,6 +297,7 @@ public record class Price
                 newSubscriptionUnit: (x) => x.DimensionalPriceConfiguration,
                 newSubscriptionTiered: (x) => x.DimensionalPriceConfiguration,
                 newSubscriptionBulk: (x) => x.DimensionalPriceConfiguration,
+                bulkWithFilters: (x) => x.DimensionalPriceConfiguration,
                 newSubscriptionPackage: (x) => x.DimensionalPriceConfiguration,
                 newSubscriptionMatrix: (x) => x.DimensionalPriceConfiguration,
                 newSubscriptionThresholdTotalAmount: (x) => x.DimensionalPriceConfiguration,
@@ -330,6 +338,7 @@ public record class Price
                 newSubscriptionUnit: (x) => x.ExternalPriceID,
                 newSubscriptionTiered: (x) => x.ExternalPriceID,
                 newSubscriptionBulk: (x) => x.ExternalPriceID,
+                bulkWithFilters: (x) => x.ExternalPriceID,
                 newSubscriptionPackage: (x) => x.ExternalPriceID,
                 newSubscriptionMatrix: (x) => x.ExternalPriceID,
                 newSubscriptionThresholdTotalAmount: (x) => x.ExternalPriceID,
@@ -368,6 +377,7 @@ public record class Price
                 newSubscriptionUnit: (x) => x.FixedPriceQuantity,
                 newSubscriptionTiered: (x) => x.FixedPriceQuantity,
                 newSubscriptionBulk: (x) => x.FixedPriceQuantity,
+                bulkWithFilters: (x) => x.FixedPriceQuantity,
                 newSubscriptionPackage: (x) => x.FixedPriceQuantity,
                 newSubscriptionMatrix: (x) => x.FixedPriceQuantity,
                 newSubscriptionThresholdTotalAmount: (x) => x.FixedPriceQuantity,
@@ -406,6 +416,7 @@ public record class Price
                 newSubscriptionUnit: (x) => x.InvoiceGroupingKey,
                 newSubscriptionTiered: (x) => x.InvoiceGroupingKey,
                 newSubscriptionBulk: (x) => x.InvoiceGroupingKey,
+                bulkWithFilters: (x) => x.InvoiceGroupingKey,
                 newSubscriptionPackage: (x) => x.InvoiceGroupingKey,
                 newSubscriptionMatrix: (x) => x.InvoiceGroupingKey,
                 newSubscriptionThresholdTotalAmount: (x) => x.InvoiceGroupingKey,
@@ -444,6 +455,7 @@ public record class Price
                 newSubscriptionUnit: (x) => x.InvoicingCycleConfiguration,
                 newSubscriptionTiered: (x) => x.InvoicingCycleConfiguration,
                 newSubscriptionBulk: (x) => x.InvoicingCycleConfiguration,
+                bulkWithFilters: (x) => x.InvoicingCycleConfiguration,
                 newSubscriptionPackage: (x) => x.InvoicingCycleConfiguration,
                 newSubscriptionMatrix: (x) => x.InvoicingCycleConfiguration,
                 newSubscriptionThresholdTotalAmount: (x) => x.InvoicingCycleConfiguration,
@@ -483,6 +495,7 @@ public record class Price
                 newSubscriptionUnit: (x) => x.ReferenceID,
                 newSubscriptionTiered: (x) => x.ReferenceID,
                 newSubscriptionBulk: (x) => x.ReferenceID,
+                bulkWithFilters: (x) => x.ReferenceID,
                 newSubscriptionPackage: (x) => x.ReferenceID,
                 newSubscriptionMatrix: (x) => x.ReferenceID,
                 newSubscriptionThresholdTotalAmount: (x) => x.ReferenceID,
@@ -524,6 +537,11 @@ public record class Price
     }
 
     public Price(NewSubscriptionBulkPrice value)
+    {
+        Value = value;
+    }
+
+    public Price(BulkWithFilters value)
     {
         Value = value;
     }
@@ -685,6 +703,12 @@ public record class Price
     public bool TryPickNewSubscriptionBulk([NotNullWhen(true)] out NewSubscriptionBulkPrice? value)
     {
         value = this.Value as NewSubscriptionBulkPrice;
+        return value != null;
+    }
+
+    public bool TryPickBulkWithFilters([NotNullWhen(true)] out BulkWithFilters? value)
+    {
+        value = this.Value as BulkWithFilters;
         return value != null;
     }
 
@@ -894,6 +918,7 @@ public record class Price
         Action<NewSubscriptionUnitPrice> newSubscriptionUnit,
         Action<NewSubscriptionTieredPrice> newSubscriptionTiered,
         Action<NewSubscriptionBulkPrice> newSubscriptionBulk,
+        Action<BulkWithFilters> bulkWithFilters,
         Action<NewSubscriptionPackagePrice> newSubscriptionPackage,
         Action<NewSubscriptionMatrixPrice> newSubscriptionMatrix,
         Action<NewSubscriptionThresholdTotalAmountPrice> newSubscriptionThresholdTotalAmount,
@@ -932,6 +957,9 @@ public record class Price
                 break;
             case NewSubscriptionBulkPrice value:
                 newSubscriptionBulk(value);
+                break;
+            case BulkWithFilters value:
+                bulkWithFilters(value);
                 break;
             case NewSubscriptionPackagePrice value:
                 newSubscriptionPackage(value);
@@ -1020,6 +1048,7 @@ public record class Price
         Func<NewSubscriptionUnitPrice, T> newSubscriptionUnit,
         Func<NewSubscriptionTieredPrice, T> newSubscriptionTiered,
         Func<NewSubscriptionBulkPrice, T> newSubscriptionBulk,
+        Func<BulkWithFilters, T> bulkWithFilters,
         Func<NewSubscriptionPackagePrice, T> newSubscriptionPackage,
         Func<NewSubscriptionMatrixPrice, T> newSubscriptionMatrix,
         Func<NewSubscriptionThresholdTotalAmountPrice, T> newSubscriptionThresholdTotalAmount,
@@ -1068,6 +1097,7 @@ public record class Price
             NewSubscriptionUnitPrice value => newSubscriptionUnit(value),
             NewSubscriptionTieredPrice value => newSubscriptionTiered(value),
             NewSubscriptionBulkPrice value => newSubscriptionBulk(value),
+            BulkWithFilters value => bulkWithFilters(value),
             NewSubscriptionPackagePrice value => newSubscriptionPackage(value),
             NewSubscriptionMatrixPrice value => newSubscriptionMatrix(value),
             NewSubscriptionThresholdTotalAmountPrice value => newSubscriptionThresholdTotalAmount(
@@ -1226,6 +1256,31 @@ sealed class PriceConverter : JsonConverter<Price?>
                     exceptions.Add(
                         new OrbInvalidDataException(
                             "Data does not match union variant 'NewSubscriptionBulkPrice'",
+                            e
+                        )
+                    );
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "bulk_with_filters":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<BulkWithFilters>(json, options);
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new Price(deserialized);
+                    }
+                }
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'BulkWithFilters'",
                             e
                         )
                     );
