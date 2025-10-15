@@ -114,6 +114,28 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
     }
 
     /// <summary>
+    /// The ID of the Item to be used for the invoice line item. If not provided,
+    /// a default 'Credits' item will be used.
+    /// </summary>
+    public string? ItemID
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("item_id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["item_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
     /// An optional memo to display on the invoice.
     /// </summary>
     public string? Memo
@@ -162,6 +184,7 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
         _ = this.NetTerms;
         this.CustomDueDate?.Validate();
         this.InvoiceDate?.Validate();
+        _ = this.ItemID;
         _ = this.Memo;
         _ = this.RequireSuccessfulPayment;
     }
