@@ -124,7 +124,7 @@ public sealed record class AmountDiscountInterval : ModelBase, IFromRaw<AmountDi
     /// <summary>
     /// The filters that determine which prices this discount interval applies to.
     /// </summary>
-    public required List<TransformPriceFilter> Filters
+    public required List<Filter> Filters
     {
         get
         {
@@ -134,10 +134,7 @@ public sealed record class AmountDiscountInterval : ModelBase, IFromRaw<AmountDi
                     new ArgumentOutOfRangeException("filters", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<List<TransformPriceFilter>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
+            return JsonSerializer.Deserialize<List<Filter>>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'filters' cannot be null",
                     new ArgumentNullException("filters")

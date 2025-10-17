@@ -43,6 +43,29 @@ public sealed record class EventOutputConfig : ModelBase, IFromRaw<EventOutputCo
     }
 
     /// <summary>
+    /// If provided, this amount will be used as the unit rate when an event does
+    /// not have a value for the `unit_rating_key`. If not provided, events missing
+    /// a unit rate will be ignored.
+    /// </summary>
+    public string? DefaultUnitRate
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("default_unit_rate", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["default_unit_rate"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
     /// An optional key in the event data to group by (e.g., event ID). All events
     /// will also be grouped by their unit rate.
     /// </summary>
@@ -67,6 +90,7 @@ public sealed record class EventOutputConfig : ModelBase, IFromRaw<EventOutputCo
     public override void Validate()
     {
         _ = this.UnitRatingKey;
+        _ = this.DefaultUnitRate;
         _ = this.GroupingKey;
     }
 

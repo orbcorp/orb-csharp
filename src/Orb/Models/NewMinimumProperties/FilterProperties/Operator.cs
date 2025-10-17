@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
 
-namespace Orb.Models.TransformPriceFilterProperties;
+namespace Orb.Models.NewMinimumProperties.FilterProperties;
 
 /// <summary>
 /// Should prices that match the filter be included or excluded.

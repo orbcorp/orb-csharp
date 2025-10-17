@@ -61,17 +61,14 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
     /// <summary>
     /// The filters that determine which prices to apply this discount to.
     /// </summary>
-    public List<TransformPriceFilter>? Filters
+    public List<Filter>? Filters
     {
         get
         {
             if (!this.Properties.TryGetValue("filters", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<TransformPriceFilter>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<List<Filter>?>(element, ModelBase.SerializerOptions);
         }
         set
         {

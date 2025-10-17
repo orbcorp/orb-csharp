@@ -174,14 +174,14 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         }
     }
 
-    public required List<TransformPriceFilter>? CompositePriceFilters
+    public required List<CompositePriceFilter>? CompositePriceFilters
     {
         get
         {
             if (!this.Properties.TryGetValue("composite_price_filters", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<TransformPriceFilter>?>(
+            return JsonSerializer.Deserialize<List<CompositePriceFilter>?>(
                 element,
                 ModelBase.SerializerOptions
             );

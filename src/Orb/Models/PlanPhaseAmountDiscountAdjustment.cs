@@ -126,7 +126,7 @@ public sealed record class PlanPhaseAmountDiscountAdjustment
     /// <summary>
     /// The filters that determine which prices to apply this adjustment to.
     /// </summary>
-    public required List<TransformPriceFilter> Filters
+    public required List<Filter> Filters
     {
         get
         {
@@ -136,10 +136,7 @@ public sealed record class PlanPhaseAmountDiscountAdjustment
                     new ArgumentOutOfRangeException("filters", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<List<TransformPriceFilter>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
+            return JsonSerializer.Deserialize<List<Filter>>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'filters' cannot be null",
                     new ArgumentNullException("filters")

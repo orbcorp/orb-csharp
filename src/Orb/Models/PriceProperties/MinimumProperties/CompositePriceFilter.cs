@@ -5,12 +5,12 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.TransformPriceFilterProperties;
+using Orb.Models.PriceProperties.MinimumProperties.CompositePriceFilterProperties;
 
-namespace Orb.Models;
+namespace Orb.Models.PriceProperties.MinimumProperties;
 
-[JsonConverter(typeof(ModelConverter<TransformPriceFilter>))]
-public sealed record class TransformPriceFilter : ModelBase, IFromRaw<TransformPriceFilter>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter>))]
+public sealed record class CompositePriceFilter : ModelBase, IFromRaw<CompositePriceFilter>
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -104,17 +104,17 @@ public sealed record class TransformPriceFilter : ModelBase, IFromRaw<TransformP
         }
     }
 
-    public TransformPriceFilter() { }
+    public CompositePriceFilter() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TransformPriceFilter(Dictionary<string, JsonElement> properties)
+    CompositePriceFilter(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static TransformPriceFilter FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static CompositePriceFilter FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }
