@@ -151,17 +151,14 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
     /// <summary>
     /// A list of filters that determine which prices this adjustment will apply to.
     /// </summary>
-    public List<TransformPriceFilter>? Filters
+    public List<Filter>? Filters
     {
         get
         {
             if (!this.Properties.TryGetValue("filters", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<TransformPriceFilter>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<List<Filter>?>(element, ModelBase.SerializerOptions);
         }
         set
         {

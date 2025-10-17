@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
+using Orb.Models.Customers.Credits.Ledger.AffectedBlockProperties;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
@@ -30,6 +31,27 @@ public sealed record class AffectedBlock : ModelBase, IFromRaw<AffectedBlock>
         set
         {
             this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required List<BlockFilter>? BlockFilters
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("block_filters", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<List<BlockFilter>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["block_filters"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -75,6 +97,10 @@ public sealed record class AffectedBlock : ModelBase, IFromRaw<AffectedBlock>
     public override void Validate()
     {
         _ = this.ID;
+        foreach (var item in this.BlockFilters ?? [])
+        {
+            item.Validate();
+        }
         _ = this.ExpiryDate;
         _ = this.PerUnitCostBasis;
     }

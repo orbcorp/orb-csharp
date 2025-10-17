@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
+using Orb.Models.MaximumProperties;
 
 namespace Orb.Models;
 
@@ -46,7 +47,7 @@ public sealed record class Maximum : ModelBase, IFromRaw<Maximum>
     /// <summary>
     /// The filters that determine which prices to apply this maximum to.
     /// </summary>
-    public required List<TransformPriceFilter> Filters
+    public required List<Filter> Filters
     {
         get
         {
@@ -56,10 +57,7 @@ public sealed record class Maximum : ModelBase, IFromRaw<Maximum>
                     new ArgumentOutOfRangeException("filters", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<List<TransformPriceFilter>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
+            return JsonSerializer.Deserialize<List<Filter>>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'filters' cannot be null",
                     new ArgumentNullException("filters")

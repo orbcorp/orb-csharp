@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
+using Orb.Models.MinimumIntervalProperties;
 
 namespace Orb.Models;
 
@@ -71,7 +72,7 @@ public sealed record class MinimumInterval : ModelBase, IFromRaw<MinimumInterval
     /// <summary>
     /// The filters that determine which prices this minimum interval applies to.
     /// </summary>
-    public required List<TransformPriceFilter> Filters
+    public required List<Filter> Filters
     {
         get
         {
@@ -81,10 +82,7 @@ public sealed record class MinimumInterval : ModelBase, IFromRaw<MinimumInterval
                     new ArgumentOutOfRangeException("filters", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<List<TransformPriceFilter>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
+            return JsonSerializer.Deserialize<List<Filter>>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'filters' cannot be null",
                     new ArgumentNullException("filters")

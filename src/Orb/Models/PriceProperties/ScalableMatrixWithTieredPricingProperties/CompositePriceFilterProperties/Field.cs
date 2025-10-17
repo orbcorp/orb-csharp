@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
 
-namespace Orb.Models.TransformPriceFilterProperties;
+namespace Orb.Models.PriceProperties.ScalableMatrixWithTieredPricingProperties.CompositePriceFilterProperties;
 
 /// <summary>
 /// The property of the price to filter on.
