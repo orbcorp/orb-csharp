@@ -62,6 +62,71 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     }
 
     /// <summary>
+    /// An optional external ID to associate with the payment. Only applicable when
+    /// mark_as_paid is true.
+    /// </summary>
+    public string? PaymentExternalID
+    {
+        get
+        {
+            if (!this.BodyProperties.TryGetValue("payment_external_id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["payment_external_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Optional notes about the payment. Only applicable when mark_as_paid is true.
+    /// </summary>
+    public string? PaymentNotes
+    {
+        get
+        {
+            if (!this.BodyProperties.TryGetValue("payment_notes", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["payment_notes"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// A date string to specify the date the payment was received. Only applicable
+    /// when mark_as_paid is true. If not provided, defaults to the current date.
+    /// </summary>
+    public DateOnly? PaymentReceivedDate
+    {
+        get
+        {
+            if (!this.BodyProperties.TryGetValue("payment_received_date", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<DateOnly?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["payment_received_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
     /// Amount already collected to apply to the customer's balance. If mark_as_paid
     /// is also provided, credit the difference to the customer's balance.
     /// </summary>
