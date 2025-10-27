@@ -201,7 +201,7 @@ public record class Body
 
     public void Validate()
     {
-        if (this.Value is not UnknownVariant)
+        if (this.Value is UnknownVariant)
         {
             throw new OrbInvalidDataException("Data did not match any variant of Body");
         }
