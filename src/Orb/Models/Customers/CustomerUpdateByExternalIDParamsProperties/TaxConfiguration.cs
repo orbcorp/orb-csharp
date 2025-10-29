@@ -21,7 +21,22 @@ public record class TaxConfiguration
                 newAvalara: (x) => x.TaxExempt,
                 newTaxJar: (x) => x.TaxExempt,
                 newSphere: (x) => x.TaxExempt,
-                numeral: (x) => x.TaxExempt
+                numeral: (x) => x.TaxExempt,
+                anrok: (x) => x.TaxExempt
+            );
+        }
+    }
+
+    public bool? AutomaticTaxEnabled
+    {
+        get
+        {
+            return Match<bool?>(
+                newAvalara: (x) => x.AutomaticTaxEnabled,
+                newTaxJar: (x) => x.AutomaticTaxEnabled,
+                newSphere: (x) => x.AutomaticTaxEnabled,
+                numeral: (x) => x.AutomaticTaxEnabled,
+                anrok: (x) => x.AutomaticTaxEnabled
             );
         }
     }
@@ -42,6 +57,11 @@ public record class TaxConfiguration
     }
 
     public TaxConfiguration(Numeral value)
+    {
+        Value = value;
+    }
+
+    public TaxConfiguration(Anrok value)
     {
         Value = value;
     }
@@ -80,11 +100,18 @@ public record class TaxConfiguration
         return value != null;
     }
 
+    public bool TryPickAnrok([NotNullWhen(true)] out Anrok? value)
+    {
+        value = this.Value as Anrok;
+        return value != null;
+    }
+
     public void Switch(
         Action<NewAvalaraTaxConfiguration> newAvalara,
         Action<NewTaxJarConfiguration> newTaxJar,
         Action<NewSphereConfiguration> newSphere,
-        Action<Numeral> numeral
+        Action<Numeral> numeral,
+        Action<Anrok> anrok
     )
     {
         switch (this.Value)
@@ -101,6 +128,9 @@ public record class TaxConfiguration
             case Numeral value:
                 numeral(value);
                 break;
+            case Anrok value:
+                anrok(value);
+                break;
             default:
                 throw new OrbInvalidDataException(
                     "Data did not match any variant of TaxConfiguration"
@@ -112,7 +142,8 @@ public record class TaxConfiguration
         Func<NewAvalaraTaxConfiguration, T> newAvalara,
         Func<NewTaxJarConfiguration, T> newTaxJar,
         Func<NewSphereConfiguration, T> newSphere,
-        Func<Numeral, T> numeral
+        Func<Numeral, T> numeral,
+        Func<Anrok, T> anrok
     )
     {
         return this.Value switch
@@ -121,6 +152,7 @@ public record class TaxConfiguration
             NewTaxJarConfiguration value => newTaxJar(value),
             NewSphereConfiguration value => newSphere(value),
             Numeral value => numeral(value),
+            Anrok value => anrok(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of TaxConfiguration"
             ),
@@ -263,6 +295,28 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                             "Data does not match union variant 'Numeral'",
                             e
                         )
+                    );
+                }
+
+                throw new AggregateException(exceptions);
+            }
+            case "anrok":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<Anrok>(json, options);
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new TaxConfiguration(deserialized);
+                    }
+                }
+                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException("Data does not match union variant 'Anrok'", e)
                     );
                 }
 

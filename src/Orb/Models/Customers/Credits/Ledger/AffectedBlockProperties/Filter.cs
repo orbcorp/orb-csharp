@@ -5,12 +5,12 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.Customers.Credits.Ledger.AffectedBlockProperties.BlockFilterProperties;
+using Orb.Models.Customers.Credits.Ledger.AffectedBlockProperties.FilterProperties;
 
 namespace Orb.Models.Customers.Credits.Ledger.AffectedBlockProperties;
 
-[JsonConverter(typeof(ModelConverter<BlockFilter>))]
-public sealed record class BlockFilter : ModelBase, IFromRaw<BlockFilter>
+[JsonConverter(typeof(ModelConverter<Filter>))]
+public sealed record class Filter : ModelBase, IFromRaw<Filter>
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -104,17 +104,17 @@ public sealed record class BlockFilter : ModelBase, IFromRaw<BlockFilter>
         }
     }
 
-    public BlockFilter() { }
+    public Filter() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    BlockFilter(Dictionary<string, JsonElement> properties)
+    Filter(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static BlockFilter FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Filter FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

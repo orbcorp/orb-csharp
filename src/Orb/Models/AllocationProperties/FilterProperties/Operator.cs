@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
 
-namespace Orb.Models.Customers.Credits.Ledger.AffectedBlockProperties.BlockFilterProperties;
+namespace Orb.Models.AllocationProperties.FilterProperties;
 
 /// <summary>
 /// Should prices that match the filter be included or excluded.

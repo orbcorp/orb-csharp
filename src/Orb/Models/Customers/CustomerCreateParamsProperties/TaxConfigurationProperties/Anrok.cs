@@ -5,12 +5,12 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.Customers.CustomerUpdateParamsProperties.TaxConfigurationProperties.NumeralProperties;
+using Orb.Models.Customers.CustomerCreateParamsProperties.TaxConfigurationProperties.AnrokProperties;
 
-namespace Orb.Models.Customers.CustomerUpdateParamsProperties.TaxConfigurationProperties;
+namespace Orb.Models.Customers.CustomerCreateParamsProperties.TaxConfigurationProperties;
 
-[JsonConverter(typeof(ModelConverter<Numeral>))]
-public sealed record class Numeral : ModelBase, IFromRaw<Numeral>
+[JsonConverter(typeof(ModelConverter<Anrok>))]
+public sealed record class Anrok : ModelBase, IFromRaw<Anrok>
 {
     public required bool TaxExempt
     {
@@ -87,26 +87,26 @@ public sealed record class Numeral : ModelBase, IFromRaw<Numeral>
         _ = this.AutomaticTaxEnabled;
     }
 
-    public Numeral()
+    public Anrok()
     {
         this.TaxProvider = new();
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Numeral(Dictionary<string, JsonElement> properties)
+    Anrok(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static Numeral FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Anrok FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }
 
     [SetsRequiredMembers]
-    public Numeral(bool taxExempt)
+    public Anrok(bool taxExempt)
         : this()
     {
         this.TaxExempt = taxExempt;

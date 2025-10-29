@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Models;
+using Orb.Models.AllocationProperties.FilterProperties;
 using Orb.Models.AmountDiscountProperties;
-using Orb.Models.AmountDiscountProperties.FilterProperties;
 using Orb.Models.BillingCycleConfigurationProperties;
 using Orb.Models.ChangedSubscriptionResourcesProperties.CreatedInvoiceProperties.CustomerBalanceTransactionProperties;
 using Orb.Models.ChangedSubscriptionResourcesProperties.CreatedInvoiceProperties.PaymentAttemptProperties;
@@ -34,7 +34,6 @@ using BackfillRevertResponseProperties = Orb.Models.Events.Backfills.BackfillRev
 using BalanceTransactionCreateParamsProperties = Orb.Models.Customers.BalanceTransactions.BalanceTransactionCreateParamsProperties;
 using BalanceTransactionCreateResponseProperties = Orb.Models.Customers.BalanceTransactions.BalanceTransactionCreateResponseProperties;
 using BillableMetricProperties = Orb.Models.Metrics.BillableMetricProperties;
-using BlockFilterProperties = Orb.Models.Customers.Credits.Ledger.AffectedBlockProperties.BlockFilterProperties;
 using BulkProperties = Orb.Models.PriceProperties.BulkProperties;
 using BulkWithFiltersProperties = Orb.Models.PriceProperties.BulkWithFiltersProperties;
 using BulkWithProrationProperties = Orb.Models.PriceProperties.BulkWithProrationProperties;
@@ -58,7 +57,7 @@ using DiscountProperties = Orb.Models.CreditNoteProperties.LineItemProperties.Di
 using EventOutputProperties = Orb.Models.PriceProperties.EventOutputProperties;
 using ExpirationChangeLedgerEntryProperties = Orb.Models.Customers.Credits.Ledger.ExpirationChangeLedgerEntryProperties;
 using ExternalConnectionProperties = Orb.Models.Items.ItemUpdateParamsProperties.ExternalConnectionProperties;
-using FilterProperties = Orb.Models.AmountDiscountIntervalProperties.FilterProperties;
+using FilterProperties = Orb.Models.AmountDiscountProperties.FilterProperties;
 using GroupedAllocationProperties = Orb.Models.PriceProperties.GroupedAllocationProperties;
 using GroupedTieredPackageProperties = Orb.Models.PriceProperties.GroupedTieredPackageProperties;
 using GroupedTieredProperties = Orb.Models.PriceProperties.GroupedTieredProperties;
@@ -227,12 +226,20 @@ public abstract record class ModelBase
     {
         Converters =
         {
-            new ApiEnumConverter<string, DiscountType>(),
             new ApiEnumConverter<string, Field>(),
             new ApiEnumConverter<string, Operator>(),
-            new ApiEnumConverter<string, AmountDiscountIntervalProperties::DiscountType>(),
+            new ApiEnumConverter<string, DiscountType>(),
             new ApiEnumConverter<string, FilterProperties::Field>(),
             new ApiEnumConverter<string, FilterProperties::Operator>(),
+            new ApiEnumConverter<string, AmountDiscountIntervalProperties::DiscountType>(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.AmountDiscountIntervalProperties.FilterProperties.Field
+            >(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.AmountDiscountIntervalProperties.FilterProperties.Operator
+            >(),
             new ApiEnumConverter<string, DurationUnit>(),
             new ApiEnumConverter<string, BillingCycleRelativeDate>(),
             new ApiEnumConverter<string, Action>(),
@@ -1119,8 +1126,14 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, CostListByExternalIDParamsProperties::ViewMode>(),
             new ApiEnumConverter<string, Status>(),
             new ApiEnumConverter<string, DataProperties::Status>(),
-            new ApiEnumConverter<string, BlockFilterProperties::Field>(),
-            new ApiEnumConverter<string, BlockFilterProperties::Operator>(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.Customers.Credits.Ledger.AffectedBlockProperties.FilterProperties.Field
+            >(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.Customers.Credits.Ledger.AffectedBlockProperties.FilterProperties.Operator
+            >(),
             new ApiEnumConverter<string, EntryStatus>(),
             new ApiEnumConverter<string, EntryType>(),
             new ApiEnumConverter<string, CreditBlockExpiryLedgerEntryProperties::EntryStatus>(),

@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
+using Orb.Models.AllocationProperties;
 
 namespace Orb.Models;
 
@@ -78,11 +79,33 @@ public sealed record class Allocation : ModelBase, IFromRaw<Allocation>
         }
     }
 
+    public List<Filter>? Filters
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("filters", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<List<Filter>?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["filters"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     public override void Validate()
     {
         _ = this.AllowsRollover;
         _ = this.Currency;
         this.CustomExpiration?.Validate();
+        foreach (var item in this.Filters ?? [])
+        {
+            item.Validate();
+        }
     }
 
     public Allocation() { }
