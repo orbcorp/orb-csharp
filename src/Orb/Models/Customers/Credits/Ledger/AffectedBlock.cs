@@ -37,27 +37,6 @@ public sealed record class AffectedBlock : ModelBase, IFromRaw<AffectedBlock>
         }
     }
 
-    public required List<BlockFilter>? BlockFilters
-    {
-        get
-        {
-            if (!this.Properties.TryGetValue("block_filters", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<BlockFilter>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
-        set
-        {
-            this.Properties["block_filters"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
     public required DateTime? ExpiryDate
     {
         get
@@ -70,6 +49,31 @@ public sealed record class AffectedBlock : ModelBase, IFromRaw<AffectedBlock>
         set
         {
             this.Properties["expiry_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required List<Filter> Filters
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("filters", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'filters' cannot be null",
+                    new ArgumentOutOfRangeException("filters", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<List<Filter>>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'filters' cannot be null",
+                    new ArgumentNullException("filters")
+                );
+        }
+        set
+        {
+            this.Properties["filters"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -97,11 +101,11 @@ public sealed record class AffectedBlock : ModelBase, IFromRaw<AffectedBlock>
     public override void Validate()
     {
         _ = this.ID;
-        foreach (var item in this.BlockFilters ?? [])
+        _ = this.ExpiryDate;
+        foreach (var item in this.Filters)
         {
             item.Validate();
         }
-        _ = this.ExpiryDate;
         _ = this.PerUnitCostBasis;
     }
 

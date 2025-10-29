@@ -58,10 +58,33 @@ public sealed record class Numeral : ModelBase, IFromRaw<Numeral>
         }
     }
 
+    /// <summary>
+    /// Whether to automatically calculate tax for this customer. When null, inherits
+    /// from account-level setting. When true or false, overrides the account setting.
+    /// </summary>
+    public bool? AutomaticTaxEnabled
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("automatic_tax_enabled", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["automatic_tax_enabled"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     public override void Validate()
     {
         _ = this.TaxExempt;
         this.TaxProvider.Validate();
+        _ = this.AutomaticTaxEnabled;
     }
 
     public Numeral()

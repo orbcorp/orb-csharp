@@ -655,6 +655,28 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         }
     }
 
+    /// <summary>
+    /// Whether automatic tax calculation is enabled for this customer. This field
+    /// is nullable for backwards compatibility but will always return a boolean value.
+    /// </summary>
+    public bool? AutomaticTaxEnabled
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("automatic_tax_enabled", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["automatic_tax_enabled"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     public ReportingConfiguration? ReportingConfiguration
     {
         get
@@ -706,6 +728,7 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         this.TaxID?.Validate();
         _ = this.Timezone;
         this.AccountingSyncConfiguration?.Validate();
+        _ = this.AutomaticTaxEnabled;
         this.ReportingConfiguration?.Validate();
     }
 
