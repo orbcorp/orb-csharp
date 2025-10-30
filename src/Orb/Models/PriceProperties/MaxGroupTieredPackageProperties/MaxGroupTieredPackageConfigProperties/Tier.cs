@@ -11,8 +11,12 @@ namespace Orb.Models.PriceProperties.MaxGroupTieredPackageProperties.MaxGroupTie
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier>))]
-public sealed record class Tier : ModelBase, IFromRaw<Tier>
+[JsonConverter(
+    typeof(ModelConverter<global::Orb.Models.PriceProperties.MaxGroupTieredPackageProperties.MaxGroupTieredPackageConfigProperties.Tier>)
+)]
+public sealed record class Tier
+    : ModelBase,
+        IFromRaw<global::Orb.Models.PriceProperties.MaxGroupTieredPackageProperties.MaxGroupTieredPackageConfigProperties.Tier>
 {
     /// <summary>
     /// Tier lower bound
@@ -86,7 +90,9 @@ public sealed record class Tier : ModelBase, IFromRaw<Tier>
     }
 #pragma warning restore CS8618
 
-    public static Tier FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static global::Orb.Models.PriceProperties.MaxGroupTieredPackageProperties.MaxGroupTieredPackageConfigProperties.Tier FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
     {
         return new(properties);
     }

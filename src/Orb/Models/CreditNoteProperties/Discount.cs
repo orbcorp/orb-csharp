@@ -9,8 +9,10 @@ using System = System;
 
 namespace Orb.Models.CreditNoteProperties;
 
-[JsonConverter(typeof(ModelConverter<Discount>))]
-public sealed record class Discount : ModelBase, IFromRaw<Discount>
+[JsonConverter(typeof(ModelConverter<global::Orb.Models.CreditNoteProperties.Discount>))]
+public sealed record class Discount
+    : ModelBase,
+        IFromRaw<global::Orb.Models.CreditNoteProperties.Discount>
 {
     public required string AmountApplied
     {
@@ -152,7 +154,9 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
     }
 #pragma warning restore CS8618
 
-    public static Discount FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static global::Orb.Models.CreditNoteProperties.Discount FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
     {
         return new(properties);
     }

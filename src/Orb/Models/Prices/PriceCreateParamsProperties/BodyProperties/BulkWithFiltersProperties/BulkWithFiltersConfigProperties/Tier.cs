@@ -11,8 +11,12 @@ namespace Orb.Models.Prices.PriceCreateParamsProperties.BodyProperties.BulkWithF
 /// <summary>
 /// Configuration for a single bulk pricing tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier>))]
-public sealed record class Tier : ModelBase, IFromRaw<Tier>
+[JsonConverter(
+    typeof(ModelConverter<global::Orb.Models.Prices.PriceCreateParamsProperties.BodyProperties.BulkWithFiltersProperties.BulkWithFiltersConfigProperties.Tier>)
+)]
+public sealed record class Tier
+    : ModelBase,
+        IFromRaw<global::Orb.Models.Prices.PriceCreateParamsProperties.BodyProperties.BulkWithFiltersProperties.BulkWithFiltersConfigProperties.Tier>
 {
     /// <summary>
     /// Amount per unit
@@ -79,7 +83,9 @@ public sealed record class Tier : ModelBase, IFromRaw<Tier>
     }
 #pragma warning restore CS8618
 
-    public static Tier FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static global::Orb.Models.Prices.PriceCreateParamsProperties.BodyProperties.BulkWithFiltersProperties.BulkWithFiltersConfigProperties.Tier FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
     {
         return new(properties);
     }

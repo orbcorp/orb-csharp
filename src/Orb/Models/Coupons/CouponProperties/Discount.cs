@@ -7,7 +7,7 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Coupons.CouponProperties;
 
-[JsonConverter(typeof(DiscountConverter))]
+[JsonConverter(typeof(global::Orb.Models.Coupons.CouponProperties.DiscountConverter))]
 public record class Discount
 {
     public object Value { get; private init; }
@@ -32,7 +32,9 @@ public record class Discount
         Value = value;
     }
 
-    public static Discount CreateUnknownVariant(JsonElement value)
+    public static global::Orb.Models.Coupons.CouponProperties.Discount CreateUnknownVariant(
+        JsonElement value
+    )
     {
         return new(new UnknownVariant(value));
     }
@@ -85,9 +87,9 @@ public record class Discount
     private record struct UnknownVariant(JsonElement value);
 }
 
-sealed class DiscountConverter : JsonConverter<Discount>
+sealed class DiscountConverter : JsonConverter<global::Orb.Models.Coupons.CouponProperties.Discount>
 {
-    public override Discount? Read(
+    public override global::Orb.Models.Coupons.CouponProperties.Discount? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -119,7 +121,9 @@ sealed class DiscountConverter : JsonConverter<Discount>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Discount(deserialized);
+                        return new global::Orb.Models.Coupons.CouponProperties.Discount(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -144,7 +148,9 @@ sealed class DiscountConverter : JsonConverter<Discount>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Discount(deserialized);
+                        return new global::Orb.Models.Coupons.CouponProperties.Discount(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -168,7 +174,11 @@ sealed class DiscountConverter : JsonConverter<Discount>
         }
     }
 
-    public override void Write(Utf8JsonWriter writer, Discount value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Coupons.CouponProperties.Discount value,
+        JsonSerializerOptions options
+    )
     {
         object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);

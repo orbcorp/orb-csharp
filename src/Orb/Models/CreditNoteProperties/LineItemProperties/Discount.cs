@@ -9,8 +9,12 @@ using Orb.Models.CreditNoteProperties.LineItemProperties.DiscountProperties;
 
 namespace Orb.Models.CreditNoteProperties.LineItemProperties;
 
-[JsonConverter(typeof(ModelConverter<Discount>))]
-public sealed record class Discount : ModelBase, IFromRaw<Discount>
+[JsonConverter(
+    typeof(ModelConverter<global::Orb.Models.CreditNoteProperties.LineItemProperties.Discount>)
+)]
+public sealed record class Discount
+    : ModelBase,
+        IFromRaw<global::Orb.Models.CreditNoteProperties.LineItemProperties.Discount>
 {
     public required string ID
     {
@@ -198,7 +202,9 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
     }
 #pragma warning restore CS8618
 
-    public static Discount FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static global::Orb.Models.CreditNoteProperties.LineItemProperties.Discount FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
     {
         return new(properties);
     }

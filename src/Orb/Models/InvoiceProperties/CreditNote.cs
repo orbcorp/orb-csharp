@@ -8,8 +8,10 @@ using Orb.Exceptions;
 
 namespace Orb.Models.InvoiceProperties;
 
-[JsonConverter(typeof(ModelConverter<CreditNote>))]
-public sealed record class CreditNote : ModelBase, IFromRaw<CreditNote>
+[JsonConverter(typeof(ModelConverter<global::Orb.Models.InvoiceProperties.CreditNote>))]
+public sealed record class CreditNote
+    : ModelBase,
+        IFromRaw<global::Orb.Models.InvoiceProperties.CreditNote>
 {
     public required string ID
     {
@@ -203,7 +205,9 @@ public sealed record class CreditNote : ModelBase, IFromRaw<CreditNote>
     }
 #pragma warning restore CS8618
 
-    public static CreditNote FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static global::Orb.Models.InvoiceProperties.CreditNote FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
     {
         return new(properties);
     }

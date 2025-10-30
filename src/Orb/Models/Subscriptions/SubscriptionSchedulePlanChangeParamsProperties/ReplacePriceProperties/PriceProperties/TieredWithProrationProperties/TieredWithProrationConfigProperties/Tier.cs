@@ -11,8 +11,12 @@ namespace Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsPropertie
 /// <summary>
 /// Configuration for a single tiered with proration tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier>))]
-public sealed record class Tier : ModelBase, IFromRaw<Tier>
+[JsonConverter(
+    typeof(ModelConverter<global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.ReplacePriceProperties.PriceProperties.TieredWithProrationProperties.TieredWithProrationConfigProperties.Tier>)
+)]
+public sealed record class Tier
+    : ModelBase,
+        IFromRaw<global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.ReplacePriceProperties.PriceProperties.TieredWithProrationProperties.TieredWithProrationConfigProperties.Tier>
 {
     /// <summary>
     /// Inclusive tier starting value
@@ -86,7 +90,9 @@ public sealed record class Tier : ModelBase, IFromRaw<Tier>
     }
 #pragma warning restore CS8618
 
-    public static Tier FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.ReplacePriceProperties.PriceProperties.TieredWithProrationProperties.TieredWithProrationConfigProperties.Tier FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
     {
         return new(properties);
     }

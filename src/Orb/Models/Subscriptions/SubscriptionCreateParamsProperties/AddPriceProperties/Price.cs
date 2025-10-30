@@ -11,7 +11,9 @@ namespace Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPricePr
 /// <summary>
 /// New subscription price request body params.
 /// </summary>
-[JsonConverter(typeof(PriceConverter))]
+[JsonConverter(
+    typeof(global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.PriceConverter)
+)]
 public record class Price
 {
     public object Value { get; private init; }
@@ -681,7 +683,9 @@ public record class Price
         Value = value;
     }
 
-    public static Price CreateUnknownVariant(JsonElement value)
+    public static global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price CreateUnknownVariant(
+        JsonElement value
+    )
     {
         return new(new UnknownVariant(value));
     }
@@ -1158,9 +1162,10 @@ public record class Price
     private record struct UnknownVariant(JsonElement value);
 }
 
-sealed class PriceConverter : JsonConverter<Price?>
+sealed class PriceConverter
+    : JsonConverter<global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price?>
 {
-    public override Price? Read(
+    public override global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -1192,7 +1197,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1220,7 +1227,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1248,7 +1257,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1273,7 +1284,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1301,7 +1314,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1329,7 +1344,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1358,7 +1375,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1387,7 +1406,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1416,7 +1437,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1445,7 +1468,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1474,7 +1499,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1503,7 +1530,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1532,7 +1561,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1561,7 +1592,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1589,7 +1622,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1618,7 +1653,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1647,7 +1684,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1676,7 +1715,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1705,7 +1746,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1734,7 +1777,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1762,7 +1807,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1791,7 +1838,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1820,7 +1869,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1849,7 +1900,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1878,7 +1931,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1907,7 +1962,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1936,7 +1993,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1965,7 +2024,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -1990,7 +2051,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -2015,7 +2078,9 @@ sealed class PriceConverter : JsonConverter<Price?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Price(deserialized);
+                        return new global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -2039,7 +2104,11 @@ sealed class PriceConverter : JsonConverter<Price?>
         }
     }
 
-    public override void Write(Utf8JsonWriter writer, Price? value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.Price? value,
+        JsonSerializerOptions options
+    )
     {
         object? variant = value?.Value;
         JsonSerializer.Serialize(writer, variant, options);

@@ -11,8 +11,12 @@ namespace Orb.Models.NewFloatingTieredPackageWithMinimumPriceProperties.TieredPa
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier>))]
-public sealed record class Tier : ModelBase, IFromRaw<Tier>
+[JsonConverter(
+    typeof(ModelConverter<global::Orb.Models.NewFloatingTieredPackageWithMinimumPriceProperties.TieredPackageWithMinimumConfigProperties.Tier>)
+)]
+public sealed record class Tier
+    : ModelBase,
+        IFromRaw<global::Orb.Models.NewFloatingTieredPackageWithMinimumPriceProperties.TieredPackageWithMinimumConfigProperties.Tier>
 {
     /// <summary>
     /// Minimum amount
@@ -115,7 +119,9 @@ public sealed record class Tier : ModelBase, IFromRaw<Tier>
     }
 #pragma warning restore CS8618
 
-    public static Tier FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static global::Orb.Models.NewFloatingTieredPackageWithMinimumPriceProperties.TieredPackageWithMinimumConfigProperties.Tier FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
     {
         return new(properties);
     }
