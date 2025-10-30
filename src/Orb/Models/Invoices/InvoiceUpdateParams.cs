@@ -9,12 +9,13 @@ using Orb.Models.Invoices.InvoiceUpdateParamsProperties;
 namespace Orb.Models.Invoices;
 
 /// <summary>
-/// This endpoint allows you to update the `metadata`, `net_terms`, and `due_date`
-/// properties on an invoice. If you pass null for the metadata value, it will clear
-/// any existing metadata for that invoice.
+/// This endpoint allows you to update the `metadata`, `net_terms`, `due_date`, and
+/// `invoice_date` properties on an invoice. If you pass null for the metadata value,
+/// it will clear any existing metadata for that invoice.
 ///
-/// `metadata` can be modified regardless of invoice state. `net_terms` and `due_date`
-/// can only be modified if the invoice is in a `draft` state.
+/// `metadata` can be modified regardless of invoice state. `net_terms`, `due_date`,
+/// and `invoice_date` can only be modified if the invoice is in a `draft` state.
+/// `invoice_date` can only be modified for non-subscription invoices.
 /// </summary>
 public sealed record class InvoiceUpdateParams : ParamsBase
 {
@@ -38,6 +39,27 @@ public sealed record class InvoiceUpdateParams : ParamsBase
         set
         {
             this.BodyProperties["due_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The date of the invoice. Can only be modified for one-off draft invoices.
+    /// </summary>
+    public InvoiceDate? InvoiceDate
+    {
+        get
+        {
+            if (!this.BodyProperties.TryGetValue("invoice_date", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<InvoiceDate?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["invoice_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );

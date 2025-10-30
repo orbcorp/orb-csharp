@@ -12,12 +12,13 @@ public interface IInvoiceService
     Task<Invoice> Create(InvoiceCreateParams parameters);
 
     /// <summary>
-    /// This endpoint allows you to update the `metadata`, `net_terms`, and `due_date`
-    /// properties on an invoice. If you pass null for the metadata value, it will
-    /// clear any existing metadata for that invoice.
+    /// This endpoint allows you to update the `metadata`, `net_terms`, `due_date`,
+    /// and `invoice_date` properties on an invoice. If you pass null for the metadata
+    /// value, it will clear any existing metadata for that invoice.
     ///
-    /// `metadata` can be modified regardless of invoice state. `net_terms` and `due_date`
-    /// can only be modified if the invoice is in a `draft` state.
+    /// `metadata` can be modified regardless of invoice state. `net_terms`, `due_date`,
+    /// and `invoice_date` can only be modified if the invoice is in a `draft` state.
+    /// `invoice_date` can only be modified for non-subscription invoices.
     /// </summary>
     Task<Invoice> Update(InvoiceUpdateParams parameters);
 
