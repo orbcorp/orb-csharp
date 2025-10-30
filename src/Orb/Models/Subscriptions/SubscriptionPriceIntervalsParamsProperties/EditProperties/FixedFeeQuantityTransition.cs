@@ -8,10 +8,12 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.EditProperties;
 
-[JsonConverter(typeof(ModelConverter<FixedFeeQuantityTransition>))]
+[JsonConverter(
+    typeof(ModelConverter<global::Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.EditProperties.FixedFeeQuantityTransition>)
+)]
 public sealed record class FixedFeeQuantityTransition
     : ModelBase,
-        IFromRaw<FixedFeeQuantityTransition>
+        IFromRaw<global::Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.EditProperties.FixedFeeQuantityTransition>
 {
     /// <summary>
     /// The date that the fixed fee quantity transition should take effect.
@@ -77,7 +79,7 @@ public sealed record class FixedFeeQuantityTransition
     }
 #pragma warning restore CS8618
 
-    public static FixedFeeQuantityTransition FromRawUnchecked(
+    public static global::Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.EditProperties.FixedFeeQuantityTransition FromRawUnchecked(
         Dictionary<string, JsonElement> properties
     )
     {

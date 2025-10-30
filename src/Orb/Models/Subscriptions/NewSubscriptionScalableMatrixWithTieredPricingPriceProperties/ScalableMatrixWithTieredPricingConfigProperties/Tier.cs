@@ -11,8 +11,12 @@ namespace Orb.Models.Subscriptions.NewSubscriptionScalableMatrixWithTieredPricin
 /// <summary>
 /// Configuration for a single tier entry with business logic
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier>))]
-public sealed record class Tier : ModelBase, IFromRaw<Tier>
+[JsonConverter(
+    typeof(ModelConverter<global::Orb.Models.Subscriptions.NewSubscriptionScalableMatrixWithTieredPricingPriceProperties.ScalableMatrixWithTieredPricingConfigProperties.Tier>)
+)]
+public sealed record class Tier
+    : ModelBase,
+        IFromRaw<global::Orb.Models.Subscriptions.NewSubscriptionScalableMatrixWithTieredPricingPriceProperties.ScalableMatrixWithTieredPricingConfigProperties.Tier>
 {
     /// <summary>
     /// Tier lower bound
@@ -86,7 +90,9 @@ public sealed record class Tier : ModelBase, IFromRaw<Tier>
     }
 #pragma warning restore CS8618
 
-    public static Tier FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static global::Orb.Models.Subscriptions.NewSubscriptionScalableMatrixWithTieredPricingPriceProperties.ScalableMatrixWithTieredPricingConfigProperties.Tier FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
     {
         return new(properties);
     }

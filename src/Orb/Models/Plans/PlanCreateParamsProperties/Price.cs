@@ -7,8 +7,10 @@ using PriceProperties = Orb.Models.Plans.PlanCreateParamsProperties.PricePropert
 
 namespace Orb.Models.Plans.PlanCreateParamsProperties;
 
-[JsonConverter(typeof(ModelConverter<Price>))]
-public sealed record class Price : ModelBase, IFromRaw<Price>
+[JsonConverter(typeof(ModelConverter<global::Orb.Models.Plans.PlanCreateParamsProperties.Price>))]
+public sealed record class Price
+    : ModelBase,
+        IFromRaw<global::Orb.Models.Plans.PlanCreateParamsProperties.Price>
 {
     /// <summary>
     /// The allocation price to add to the plan.
@@ -96,7 +98,9 @@ public sealed record class Price : ModelBase, IFromRaw<Price>
     }
 #pragma warning restore CS8618
 
-    public static Price FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static global::Orb.Models.Plans.PlanCreateParamsProperties.Price FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
     {
         return new(properties);
     }

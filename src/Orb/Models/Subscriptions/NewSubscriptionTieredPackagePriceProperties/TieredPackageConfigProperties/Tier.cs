@@ -11,8 +11,12 @@ namespace Orb.Models.Subscriptions.NewSubscriptionTieredPackagePriceProperties.T
 /// <summary>
 /// Configuration for a single tier with business logic
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier>))]
-public sealed record class Tier : ModelBase, IFromRaw<Tier>
+[JsonConverter(
+    typeof(ModelConverter<global::Orb.Models.Subscriptions.NewSubscriptionTieredPackagePriceProperties.TieredPackageConfigProperties.Tier>)
+)]
+public sealed record class Tier
+    : ModelBase,
+        IFromRaw<global::Orb.Models.Subscriptions.NewSubscriptionTieredPackagePriceProperties.TieredPackageConfigProperties.Tier>
 {
     /// <summary>
     /// Price per package
@@ -86,7 +90,9 @@ public sealed record class Tier : ModelBase, IFromRaw<Tier>
     }
 #pragma warning restore CS8618
 
-    public static Tier FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static global::Orb.Models.Subscriptions.NewSubscriptionTieredPackagePriceProperties.TieredPackageConfigProperties.Tier FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
     {
         return new(properties);
     }

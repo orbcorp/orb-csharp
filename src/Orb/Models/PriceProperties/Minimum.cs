@@ -10,8 +10,8 @@ using Models = Orb.Models;
 
 namespace Orb.Models.PriceProperties;
 
-[JsonConverter(typeof(ModelConverter<Minimum>))]
-public sealed record class Minimum : ModelBase, IFromRaw<Minimum>
+[JsonConverter(typeof(ModelConverter<global::Orb.Models.PriceProperties.Minimum>))]
+public sealed record class Minimum : ModelBase, IFromRaw<global::Orb.Models.PriceProperties.Minimum>
 {
     public required string ID
     {
@@ -703,7 +703,9 @@ public sealed record class Minimum : ModelBase, IFromRaw<Minimum>
     }
 #pragma warning restore CS8618
 
-    public static Minimum FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static global::Orb.Models.PriceProperties.Minimum FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
     {
         return new(properties);
     }

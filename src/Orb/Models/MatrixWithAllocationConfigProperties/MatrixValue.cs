@@ -11,8 +11,12 @@ namespace Orb.Models.MatrixWithAllocationConfigProperties;
 /// <summary>
 /// Configuration for a single matrix value
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixValue>))]
-public sealed record class MatrixValue : ModelBase, IFromRaw<MatrixValue>
+[JsonConverter(
+    typeof(ModelConverter<global::Orb.Models.MatrixWithAllocationConfigProperties.MatrixValue>)
+)]
+public sealed record class MatrixValue
+    : ModelBase,
+        IFromRaw<global::Orb.Models.MatrixWithAllocationConfigProperties.MatrixValue>
 {
     /// <summary>
     /// One or two matrix keys to filter usage to this Matrix value by. For example,
@@ -91,7 +95,9 @@ public sealed record class MatrixValue : ModelBase, IFromRaw<MatrixValue>
     }
 #pragma warning restore CS8618
 
-    public static MatrixValue FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static global::Orb.Models.MatrixWithAllocationConfigProperties.MatrixValue FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
     {
         return new(properties);
     }

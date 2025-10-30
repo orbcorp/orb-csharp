@@ -73,7 +73,9 @@ public record class Adjustment
         Value = value;
     }
 
-    public static Adjustment CreateUnknownVariant(JsonElement value)
+    public static global::Orb.Models.Plans.PlanCreateParamsProperties.AdjustmentProperties.Adjustment CreateUnknownVariant(
+        JsonElement value
+    )
     {
         return new(new UnknownVariant(value));
     }
@@ -168,9 +170,10 @@ public record class Adjustment
     private record struct UnknownVariant(JsonElement value);
 }
 
-sealed class AdjustmentConverter : JsonConverter<Adjustment>
+sealed class AdjustmentConverter
+    : JsonConverter<global::Orb.Models.Plans.PlanCreateParamsProperties.AdjustmentProperties.Adjustment>
 {
-    public override Adjustment? Read(
+    public override global::Orb.Models.Plans.PlanCreateParamsProperties.AdjustmentProperties.Adjustment? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -202,7 +205,9 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Adjustment(deserialized);
+                        return new global::Orb.Models.Plans.PlanCreateParamsProperties.AdjustmentProperties.Adjustment(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -227,7 +232,9 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Adjustment(deserialized);
+                        return new global::Orb.Models.Plans.PlanCreateParamsProperties.AdjustmentProperties.Adjustment(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -252,7 +259,9 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Adjustment(deserialized);
+                        return new global::Orb.Models.Plans.PlanCreateParamsProperties.AdjustmentProperties.Adjustment(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -277,7 +286,9 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Adjustment(deserialized);
+                        return new global::Orb.Models.Plans.PlanCreateParamsProperties.AdjustmentProperties.Adjustment(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -302,7 +313,9 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Adjustment(deserialized);
+                        return new global::Orb.Models.Plans.PlanCreateParamsProperties.AdjustmentProperties.Adjustment(
+                            deserialized
+                        );
                     }
                 }
                 catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -328,7 +341,7 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
 
     public override void Write(
         Utf8JsonWriter writer,
-        Adjustment value,
+        global::Orb.Models.Plans.PlanCreateParamsProperties.AdjustmentProperties.Adjustment value,
         JsonSerializerOptions options
     )
     {
