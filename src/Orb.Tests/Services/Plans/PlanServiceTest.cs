@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Orb.Models;
 using Orb.Models.CustomExpirationProperties;
 using Orb.Models.NewAllocationPriceProperties;
+using Orb.Models.NewAllocationPriceProperties.FilterProperties;
 using Orb.Models.UnitConversionRateConfigProperties;
 using NewBillingCycleConfigurationProperties = Orb.Models.NewBillingCycleConfigurationProperties;
 using NewPlanUnitPriceProperties = Orb.Models.NewPlanUnitPriceProperties;
@@ -34,6 +35,15 @@ public class PlanServiceTest : TestBase
                                 DurationUnit = DurationUnit.Day,
                             },
                             ExpiresAtEndOfCadence = true,
+                            Filters =
+                            [
+                                new()
+                                {
+                                    Field = Field.ItemID,
+                                    Operator = Operator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
                         },
                         PlanPhaseOrder = 0,
                         Price1 = new(

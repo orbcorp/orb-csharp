@@ -142,6 +142,27 @@ public sealed record class NewAllocationPrice : ModelBase, IFromRaw<NewAllocatio
         }
     }
 
+    /// <summary>
+    /// The filters that determine which items the allocation applies to.
+    /// </summary>
+    public List<Filter>? Filters
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("filters", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<List<Filter>?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["filters"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     public override void Validate()
     {
         _ = this.Amount;
@@ -149,6 +170,10 @@ public sealed record class NewAllocationPrice : ModelBase, IFromRaw<NewAllocatio
         _ = this.Currency;
         this.CustomExpiration?.Validate();
         _ = this.ExpiresAtEndOfCadence;
+        foreach (var item in this.Filters ?? [])
+        {
+            item.Validate();
+        }
     }
 
     public NewAllocationPrice() { }
