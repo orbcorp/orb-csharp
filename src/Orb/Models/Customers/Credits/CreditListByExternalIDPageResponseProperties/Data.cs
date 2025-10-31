@@ -94,6 +94,31 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         }
     }
 
+    public required List<Filter> Filters
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("filters", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'filters' cannot be null",
+                    new ArgumentOutOfRangeException("filters", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<List<Filter>>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'filters' cannot be null",
+                    new ArgumentNullException("filters")
+                );
+        }
+        set
+        {
+            this.Properties["filters"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     public required double? MaximumInitialBalance
     {
         get
@@ -160,6 +185,10 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         _ = this.Balance;
         _ = this.EffectiveDate;
         _ = this.ExpiryDate;
+        foreach (var item in this.Filters)
+        {
+            item.Validate();
+        }
         _ = this.MaximumInitialBalance;
         _ = this.PerUnitCostBasis;
         this.Status.Validate();
