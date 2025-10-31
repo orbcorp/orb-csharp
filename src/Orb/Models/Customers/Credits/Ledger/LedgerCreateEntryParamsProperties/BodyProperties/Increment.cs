@@ -160,6 +160,28 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
     }
 
     /// <summary>
+    /// Optional filter to specify which items this credit block applies to. If not
+    /// specified, the block will apply to all items for the pricing unit.
+    /// </summary>
+    public List<Filter>? Filters
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("filters", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<List<Filter>?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["filters"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
     /// Passing `invoice_settings` automatically generates an invoice for the newly
     /// added credits. If `invoice_settings` is passed, you must specify per_unit_cost_basis,
     /// as the calculation of the invoice total is done on that basis.
@@ -241,6 +263,10 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
         _ = this.Description;
         _ = this.EffectiveDate;
         _ = this.ExpiryDate;
+        foreach (var item in this.Filters ?? [])
+        {
+            item.Validate();
+        }
         this.InvoiceSettings?.Validate();
         if (this.Metadata != null)
         {

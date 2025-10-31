@@ -13,9 +13,8 @@ using Orb.Models.Customers.Credits.TopUps.TopUpCreateResponseProperties;
 using Orb.Models.Customers.CustomerProperties.AccountingSyncConfigurationProperties.AccountingProviderProperties;
 using Orb.Models.Customers.NewAvalaraTaxConfigurationProperties;
 using Orb.Models.Events.Backfills.BackfillCreateResponseProperties;
-using Orb.Models.Invoices.InvoiceCreateParamsProperties.LineItemProperties;
 using Orb.Models.Items.ItemProperties.ExternalConnectionProperties;
-using Orb.Models.NewAllocationPriceProperties;
+using Orb.Models.NewFloatingBulkPriceProperties;
 using Orb.Models.Plans.PlanProperties.TrialConfigProperties;
 using Orb.Models.Subscriptions.SubscriptionCancelParamsProperties;
 using Orb.Models.Subscriptions.SubscriptionCreateParamsProperties;
@@ -69,6 +68,7 @@ using InvoiceListParamsProperties = Orb.Models.Invoices.InvoiceListParamsPropert
 using InvoiceProperties = Orb.Models.InvoiceProperties;
 using LedgerListByExternalIDParamsProperties = Orb.Models.Customers.Credits.Ledger.LedgerListByExternalIDParamsProperties;
 using LedgerListParamsProperties = Orb.Models.Customers.Credits.Ledger.LedgerListParamsProperties;
+using LineItemProperties = Orb.Models.Invoices.InvoiceCreateParamsProperties.LineItemProperties;
 using MatrixProperties = Orb.Models.PriceProperties.MatrixProperties;
 using MatrixSubLineItemProperties = Orb.Models.MatrixSubLineItemProperties;
 using MatrixWithAllocationProperties = Orb.Models.PriceProperties.MatrixWithAllocationProperties;
@@ -82,9 +82,9 @@ using MonetaryMinimumAdjustmentProperties = Orb.Models.MonetaryMinimumAdjustment
 using MonetaryPercentageDiscountAdjustmentProperties = Orb.Models.MonetaryPercentageDiscountAdjustmentProperties;
 using MonetaryUsageDiscountAdjustmentProperties = Orb.Models.MonetaryUsageDiscountAdjustmentProperties;
 using MutatedSubscriptionProperties = Orb.Models.SubscriptionChanges.MutatedSubscriptionProperties;
+using NewAllocationPriceProperties = Orb.Models.NewAllocationPriceProperties;
 using NewAmountDiscountProperties = Orb.Models.NewAmountDiscountProperties;
 using NewBillingCycleConfigurationProperties = Orb.Models.NewBillingCycleConfigurationProperties;
-using NewFloatingBulkPriceProperties = Orb.Models.NewFloatingBulkPriceProperties;
 using NewFloatingBulkWithProrationPriceProperties = Orb.Models.NewFloatingBulkWithProrationPriceProperties;
 using NewFloatingCumulativeGroupedBulkPriceProperties = Orb.Models.NewFloatingCumulativeGroupedBulkPriceProperties;
 using NewFloatingGroupedAllocationPriceProperties = Orb.Models.NewFloatingGroupedAllocationPriceProperties;
@@ -349,7 +349,15 @@ public abstract record class ModelBase
                 string,
                 global::Orb.Models.MonetaryUsageDiscountAdjustmentProperties.FilterProperties.Operator
             >(),
-            new ApiEnumConverter<string, Cadence>(),
+            new ApiEnumConverter<string, NewAllocationPriceProperties::Cadence>(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.NewAllocationPriceProperties.FilterProperties.Field
+            >(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.NewAllocationPriceProperties.FilterProperties.Operator
+            >(),
             new ApiEnumConverter<string, NewAmountDiscountProperties::AdjustmentType>(),
             new ApiEnumConverter<bool, NewAmountDiscountProperties::AppliesToAll>(),
             new ApiEnumConverter<
@@ -362,8 +370,8 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<string, NewAmountDiscountProperties::PriceType>(),
             new ApiEnumConverter<string, NewBillingCycleConfigurationProperties::DurationUnit>(),
-            new ApiEnumConverter<string, NewFloatingBulkPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewFloatingBulkPriceProperties::ModelType>(),
+            new ApiEnumConverter<string, Cadence>(),
+            new ApiEnumConverter<string, ModelType>(),
             new ApiEnumConverter<string, NewFloatingBulkWithProrationPriceProperties::Cadence>(),
             new ApiEnumConverter<string, NewFloatingBulkWithProrationPriceProperties::ModelType>(),
             new ApiEnumConverter<
@@ -1168,7 +1176,23 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, VoidLedgerEntryProperties::EntryType>(),
             new ApiEnumConverter<string, LedgerListParamsProperties::EntryStatus>(),
             new ApiEnumConverter<string, LedgerListParamsProperties::EntryType>(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.IncrementProperties.FilterProperties.Field
+            >(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.IncrementProperties.FilterProperties.Operator
+            >(),
             new ApiEnumConverter<string, VoidProperties::VoidReason>(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.IncrementProperties.FilterProperties.Field
+            >(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.IncrementProperties.FilterProperties.Operator
+            >(),
             new ApiEnumConverter<
                 string,
                 global::Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.VoidProperties.VoidReason
@@ -1226,7 +1250,7 @@ public abstract record class ModelBase
                 global::Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.PaymentAttemptProperties.PaymentProvider
             >(),
             new ApiEnumConverter<string, InvoiceFetchUpcomingResponseProperties::Status>(),
-            new ApiEnumConverter<string, ModelType>(),
+            new ApiEnumConverter<string, LineItemProperties::ModelType>(),
             new ApiEnumConverter<string, InvoiceListParamsProperties::DateType>(),
             new ApiEnumConverter<string, InvoiceListParamsProperties::Status>(),
             new ApiEnumConverter<string, ExternalConnectionName>(),

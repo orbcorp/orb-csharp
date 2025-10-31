@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.IncrementProperties.FilterProperties;
 using BodyProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties;
+using FilterProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.IncrementProperties.FilterProperties;
 
 namespace Orb.Tests.Services.Customers.Credits.Ledger;
 
@@ -31,6 +33,15 @@ public class LedgerServiceTest : TestBase
                         Description = "description",
                         EffectiveDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                         ExpiryDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = Field.ItemID,
+                                Operator = Operator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
                         InvoiceSettings = new()
                         {
                             AutoCollection = true,
@@ -65,6 +76,15 @@ public class LedgerServiceTest : TestBase
                         Description = "description",
                         EffectiveDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
                         ExpiryDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = FilterProperties::Field.ItemID,
+                                Operator = FilterProperties::Operator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
                         InvoiceSettings = new()
                         {
                             AutoCollection = true,
