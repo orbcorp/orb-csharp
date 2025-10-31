@@ -8,11 +8,11 @@ using Orb.Models.ChangedSubscriptionResourcesProperties.CreatedInvoiceProperties
 using Orb.Models.ChangedSubscriptionResourcesProperties.CreatedInvoiceProperties.PaymentAttemptProperties;
 using Orb.Models.CreditNotes.CreditNoteCreateParamsProperties;
 using Orb.Models.Customers.Costs.CostListParamsProperties;
-using Orb.Models.Customers.Credits.CreditListPageResponseProperties.DataProperties;
 using Orb.Models.Customers.Credits.Ledger.AmendmentLedgerEntryProperties;
 using Orb.Models.Customers.Credits.TopUps.TopUpCreateResponseProperties;
 using Orb.Models.Customers.CustomerProperties.AccountingSyncConfigurationProperties.AccountingProviderProperties;
 using Orb.Models.Customers.NewAvalaraTaxConfigurationProperties;
+using Orb.Models.Events.Backfills.BackfillCreateResponseProperties;
 using Orb.Models.Invoices.InvoiceCreateParamsProperties.LineItemProperties;
 using Orb.Models.Items.ItemProperties.ExternalConnectionProperties;
 using Orb.Models.NewAllocationPriceProperties;
@@ -28,7 +28,6 @@ using AlertCreateForSubscriptionParamsProperties = Orb.Models.Alerts.AlertCreate
 using AlertProperties = Orb.Models.Alerts.AlertProperties;
 using AmountDiscountIntervalProperties = Orb.Models.AmountDiscountIntervalProperties;
 using BackfillCloseResponseProperties = Orb.Models.Events.Backfills.BackfillCloseResponseProperties;
-using BackfillCreateResponseProperties = Orb.Models.Events.Backfills.BackfillCreateResponseProperties;
 using BackfillFetchResponseProperties = Orb.Models.Events.Backfills.BackfillFetchResponseProperties;
 using BackfillRevertResponseProperties = Orb.Models.Events.Backfills.BackfillRevertResponseProperties;
 using BalanceTransactionCreateParamsProperties = Orb.Models.Customers.BalanceTransactions.BalanceTransactionCreateParamsProperties;
@@ -50,7 +49,7 @@ using CustomerTaxIDProperties = Orb.Models.CustomerTaxIDProperties;
 using CustomerUpdateByExternalIDParamsProperties = Orb.Models.Customers.CustomerUpdateByExternalIDParamsProperties;
 using CustomerUpdateParamsProperties = Orb.Models.Customers.CustomerUpdateParamsProperties;
 using CustomExpirationProperties = Orb.Models.CustomExpirationProperties;
-using DataProperties = Orb.Models.Customers.Credits.CreditListByExternalIDPageResponseProperties.DataProperties;
+using DataProperties = Orb.Models.Customers.Credits.CreditListPageResponseProperties.DataProperties;
 using DecrementLedgerEntryProperties = Orb.Models.Customers.Credits.Ledger.DecrementLedgerEntryProperties;
 using DiscountOverrideProperties = Orb.Models.Subscriptions.DiscountOverrideProperties;
 using DiscountProperties = Orb.Models.CreditNoteProperties.LineItemProperties.DiscountProperties;
@@ -1124,8 +1123,27 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<string, ViewMode>(),
             new ApiEnumConverter<string, CostListByExternalIDParamsProperties::ViewMode>(),
-            new ApiEnumConverter<string, Status>(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.Customers.Credits.CreditListPageResponseProperties.DataProperties.FilterProperties.Field
+            >(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.Customers.Credits.CreditListPageResponseProperties.DataProperties.FilterProperties.Operator
+            >(),
             new ApiEnumConverter<string, DataProperties::Status>(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.Customers.Credits.CreditListByExternalIDPageResponseProperties.DataProperties.FilterProperties.Field
+            >(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.Customers.Credits.CreditListByExternalIDPageResponseProperties.DataProperties.FilterProperties.Operator
+            >(),
+            new ApiEnumConverter<
+                string,
+                global::Orb.Models.Customers.Credits.CreditListByExternalIDPageResponseProperties.DataProperties.Status
+            >(),
             new ApiEnumConverter<
                 string,
                 global::Orb.Models.Customers.Credits.Ledger.AffectedBlockProperties.FilterProperties.Field
@@ -1186,7 +1204,7 @@ public abstract record class ModelBase
                 global::Orb.Models.Customers.BalanceTransactions.BalanceTransactionListPageResponseProperties.DataProperties.Type
             >(),
             new ApiEnumConverter<string, BalanceTransactionCreateParamsProperties::Type>(),
-            new ApiEnumConverter<string, BackfillCreateResponseProperties::Status>(),
+            new ApiEnumConverter<string, Status>(),
             new ApiEnumConverter<
                 string,
                 global::Orb.Models.Events.Backfills.BackfillListPageResponseProperties.DataProperties.Status
