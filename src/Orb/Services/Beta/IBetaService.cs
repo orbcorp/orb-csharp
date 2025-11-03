@@ -15,18 +15,12 @@ public interface IBetaService
     Task<PlanVersion> CreatePlanVersion(BetaCreatePlanVersionParams parameters);
 
     /// <summary>
-    /// This API endpoint is in beta and its interface may change. It is recommended
-    /// for use only in test mode.
-    ///
     /// This endpoint is used to fetch a plan version. It returns the phases, prices,
     /// and adjustments present on this version of the plan.
     /// </summary>
     Task<PlanVersion> FetchPlanVersion(BetaFetchPlanVersionParams parameters);
 
     /// <summary>
-    /// This API endpoint is in beta and its interface may change. It is recommended
-    /// for use only in test mode.
-    ///
     /// This endpoint allows setting the default version of a plan.
     /// </summary>
     Task<Plan> SetDefaultPlanVersion(BetaSetDefaultPlanVersionParams parameters);

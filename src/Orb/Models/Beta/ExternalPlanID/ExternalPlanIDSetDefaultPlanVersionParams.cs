@@ -9,9 +9,6 @@ using Orb.Exceptions;
 namespace Orb.Models.Beta.ExternalPlanID;
 
 /// <summary>
-/// This API endpoint is in beta and its interface may change. It is recommended for
-/// use only in test mode.
-///
 /// This endpoint allows setting the default version of a plan.
 /// </summary>
 public sealed record class ExternalPlanIDSetDefaultPlanVersionParams : ParamsBase
