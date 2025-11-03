@@ -45,11 +45,11 @@ public class LedgerServiceTest : TestBase
                         InvoiceSettings = new()
                         {
                             AutoCollection = true,
-                            NetTerms = 0,
                             CustomDueDate = new(DateOnly.Parse("2019-12-27")),
                             InvoiceDate = new(DateOnly.Parse("2019-12-27")),
                             ItemID = "item_id",
                             Memo = "memo",
+                            NetTerms = 0,
                             RequireSuccessfulPayment = true,
                         },
                         Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
@@ -88,11 +88,11 @@ public class LedgerServiceTest : TestBase
                         InvoiceSettings = new()
                         {
                             AutoCollection = true,
-                            NetTerms = 0,
                             CustomDueDate = new(DateOnly.Parse("2019-12-27")),
                             InvoiceDate = new(DateOnly.Parse("2019-12-27")),
                             ItemID = "item_id",
                             Memo = "memo",
+                            NetTerms = 0,
                             RequireSuccessfulPayment = true,
                         },
                         Metadata = new Dictionary<string, string?>() { { "foo", "string" } },

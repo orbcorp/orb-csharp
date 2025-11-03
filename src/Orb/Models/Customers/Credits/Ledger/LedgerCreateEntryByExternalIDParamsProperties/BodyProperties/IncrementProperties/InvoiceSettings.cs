@@ -43,32 +43,6 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
     }
 
     /// <summary>
-    /// The net terms determines the due date of the invoice. Due date is calculated
-    /// based on the invoice or issuance date, depending on the account's configured
-    /// due date calculation method. A value of '0' here represents that the invoice
-    /// is due on issue, whereas a value of '30' represents that the customer has
-    /// 30 days to pay the invoice. Do not set this field if you want to set a custom
-    /// due date.
-    /// </summary>
-    public required long? NetTerms
-    {
-        get
-        {
-            if (!this.Properties.TryGetValue("net_terms", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
-        set
-        {
-            this.Properties["net_terms"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
-    /// <summary>
     /// An optional custom due date for the invoice. If not set, the due date will
     /// be calculated based on the `net_terms` value.
     /// </summary>
@@ -157,6 +131,32 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
     }
 
     /// <summary>
+    /// The net terms determines the due date of the invoice. Due date is calculated
+    /// based on the invoice or issuance date, depending on the account's configured
+    /// due date calculation method. A value of '0' here represents that the invoice
+    /// is due on issue, whereas a value of '30' represents that the customer has
+    /// 30 days to pay the invoice. Do not set this field if you want to set a custom
+    /// due date.
+    /// </summary>
+    public long? NetTerms
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("net_terms", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["net_terms"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
     /// If true, the new credit block will require that the corresponding invoice
     /// is paid before it can be drawn down from.
     /// </summary>
@@ -181,11 +181,11 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
     public override void Validate()
     {
         _ = this.AutoCollection;
-        _ = this.NetTerms;
         this.CustomDueDate?.Validate();
         this.InvoiceDate?.Validate();
         _ = this.ItemID;
         _ = this.Memo;
+        _ = this.NetTerms;
         _ = this.RequireSuccessfulPayment;
     }
 
@@ -202,5 +202,12 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
     public static InvoiceSettings FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
+    }
+
+    [SetsRequiredMembers]
+    public InvoiceSettings(bool autoCollection)
+        : this()
+    {
+        this.AutoCollection = autoCollection;
     }
 }
