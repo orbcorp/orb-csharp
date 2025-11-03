@@ -27,6 +27,8 @@ public interface IOrbClient
 
     Uri BaseUrl { get; init; }
 
+    TimeSpan Timeout { get; init; }
+
     string APIKey { get; init; }
 
     string? WebhookSecret { get; init; }
