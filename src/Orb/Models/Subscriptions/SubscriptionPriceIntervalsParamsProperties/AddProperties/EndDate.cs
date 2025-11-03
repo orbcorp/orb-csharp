@@ -90,7 +90,7 @@ public record class EndDate
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class EndDateConverter : JsonConverter<EndDate?>

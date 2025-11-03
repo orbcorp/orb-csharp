@@ -28,7 +28,7 @@ public class DiscountType
         }
     }
 
-    private class Converter : JsonConverter<DiscountType>
+    class Converter : JsonConverter<DiscountType>
     {
         public override DiscountType? Read(
             ref Utf8JsonReader reader,

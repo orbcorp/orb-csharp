@@ -128,7 +128,7 @@ public record class DiscountInterval
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>

@@ -85,7 +85,7 @@ public record class CustomDueDate
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class CustomDueDateConverter : JsonConverter<CustomDueDate?>

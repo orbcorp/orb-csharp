@@ -137,7 +137,7 @@ public record class SubLineItem
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class SubLineItemConverter : JsonConverter<SubLineItem>

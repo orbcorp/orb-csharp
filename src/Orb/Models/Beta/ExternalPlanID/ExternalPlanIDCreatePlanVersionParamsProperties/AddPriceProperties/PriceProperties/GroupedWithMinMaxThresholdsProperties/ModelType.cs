@@ -31,7 +31,7 @@ public class ModelType
         }
     }
 
-    private class Converter : JsonConverter<ModelType>
+    class Converter : JsonConverter<ModelType>
     {
         public override ModelType? Read(
             ref Utf8JsonReader reader,

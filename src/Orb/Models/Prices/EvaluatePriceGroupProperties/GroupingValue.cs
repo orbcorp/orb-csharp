@@ -96,7 +96,7 @@ public record class GroupingValue
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class GroupingValueConverter : JsonConverter<GroupingValue>

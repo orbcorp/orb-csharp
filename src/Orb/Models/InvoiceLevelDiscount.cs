@@ -118,7 +118,7 @@ public record class InvoiceLevelDiscount
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
