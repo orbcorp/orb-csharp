@@ -392,7 +392,7 @@ public record class LedgerCreateEntryResponse
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntryResponse>

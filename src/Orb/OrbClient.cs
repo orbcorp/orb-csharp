@@ -24,37 +24,30 @@ namespace Orb;
 
 public sealed class OrbClient : IOrbClient
 {
-    public HttpClient HttpClient { get; init; } = new();
+    readonly ClientOptions _options = new();
 
-    Lazy<Uri> _baseUrl = new(() =>
-        new Uri(Environment.GetEnvironmentVariable("ORB_BASE_URL") ?? "https://api.withorb.com/v1")
-    );
+    public HttpClient HttpClient
+    {
+        get { return this._options.HttpClient; }
+        init { this._options.HttpClient = value; }
+    }
+
     public Uri BaseUrl
     {
-        get { return _baseUrl.Value; }
-        init { _baseUrl = new(() => value); }
+        get { return this._options.BaseUrl; }
+        init { this._options.BaseUrl = value; }
     }
 
-    Lazy<string> _apiKey = new(() =>
-        Environment.GetEnvironmentVariable("ORB_API_KEY")
-        ?? throw new OrbInvalidDataException(
-            string.Format("{0} cannot be null", nameof(APIKey)),
-            new ArgumentNullException(nameof(APIKey))
-        )
-    );
     public string APIKey
     {
-        get { return _apiKey.Value; }
-        init { _apiKey = new(() => value); }
+        get { return this._options.APIKey; }
+        init { this._options.APIKey = value; }
     }
 
-    Lazy<string?> _webhookSecret = new(() =>
-        Environment.GetEnvironmentVariable("ORB_WEBHOOK_SECRET")
-    );
     public string? WebhookSecret
     {
-        get { return _webhookSecret.Value; }
-        init { _webhookSecret = new(() => value); }
+        get { return this._options.WebhookSecret; }
+        init { this._options.WebhookSecret = value; }
     }
 
     readonly Lazy<ITopLevelService> _topLevel;

@@ -130,7 +130,7 @@ public record class Discount
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class DiscountConverter : JsonConverter<Discount>

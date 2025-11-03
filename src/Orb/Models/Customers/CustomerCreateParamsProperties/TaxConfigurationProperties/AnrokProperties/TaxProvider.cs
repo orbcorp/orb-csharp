@@ -28,7 +28,7 @@ public class TaxProvider
         }
     }
 
-    private class Converter : JsonConverter<TaxProvider>
+    class Converter : JsonConverter<TaxProvider>
     {
         public override TaxProvider? Read(
             ref Utf8JsonReader reader,

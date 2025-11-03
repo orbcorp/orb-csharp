@@ -167,7 +167,7 @@ public record class Adjustment
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class AdjustmentConverter

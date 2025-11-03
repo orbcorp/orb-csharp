@@ -80,7 +80,7 @@ public record class InvoiceDate
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
