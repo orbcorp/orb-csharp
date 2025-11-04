@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
@@ -8,6 +9,11 @@ namespace Orb.Services.CreditNotes;
 
 public sealed class CreditNoteService : ICreditNoteService
 {
+    public ICreditNoteService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new CreditNoteService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public CreditNoteService(IOrbClient client)

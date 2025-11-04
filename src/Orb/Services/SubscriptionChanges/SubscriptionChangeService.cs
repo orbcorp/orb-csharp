@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
@@ -7,6 +8,11 @@ namespace Orb.Services.SubscriptionChanges;
 
 public sealed class SubscriptionChangeService : ISubscriptionChangeService
 {
+    public ISubscriptionChangeService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new SubscriptionChangeService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public SubscriptionChangeService(IOrbClient client)

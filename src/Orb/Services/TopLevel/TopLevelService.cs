@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
@@ -7,6 +8,11 @@ namespace Orb.Services.TopLevel;
 
 public sealed class TopLevelService : ITopLevelService
 {
+    public ITopLevelService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new TopLevelService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public TopLevelService(IOrbClient client)

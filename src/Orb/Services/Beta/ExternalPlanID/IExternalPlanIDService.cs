@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models.Beta;
 using Orb.Models.Beta.ExternalPlanID;
 using Orb.Models.Plans;
@@ -7,6 +9,8 @@ namespace Orb.Services.Beta.ExternalPlanID;
 
 public interface IExternalPlanIDService
 {
+    IExternalPlanIDService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// This endpoint allows the creation of a new plan version for an existing plan.
     /// </summary>

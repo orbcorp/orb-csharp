@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
@@ -9,6 +10,11 @@ namespace Orb.Services.Beta.ExternalPlanID;
 
 public sealed class ExternalPlanIDService : IExternalPlanIDService
 {
+    public IExternalPlanIDService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new ExternalPlanIDService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public ExternalPlanIDService(IOrbClient client)

@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models.Events;
 using Orb.Services.Events.Backfills;
 using Orb.Services.Events.Volume;
@@ -7,6 +9,8 @@ namespace Orb.Services.Events;
 
 public interface IEventService
 {
+    IEventService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     IBackfillService Backfills { get; }
 
     IVolumeService Volume { get; }

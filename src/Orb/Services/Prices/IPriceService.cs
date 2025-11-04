@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models;
 using Orb.Models.Prices;
 using Orb.Services.Prices.ExternalPriceID;
@@ -7,6 +9,8 @@ namespace Orb.Services.Prices;
 
 public interface IPriceService
 {
+    IPriceService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     IExternalPriceIDService ExternalPriceID { get; }
 
     /// <summary>

@@ -1,10 +1,14 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models.SubscriptionChanges;
 
 namespace Orb.Services.SubscriptionChanges;
 
 public interface ISubscriptionChangeService
 {
+    ISubscriptionChangeService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// This endpoint returns a subscription change given an identifier.
     ///

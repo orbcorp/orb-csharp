@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
@@ -7,6 +8,11 @@ namespace Orb.Services.Events.Volume;
 
 public sealed class VolumeService : IVolumeService
 {
+    public IVolumeService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new VolumeService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public VolumeService(IOrbClient client)

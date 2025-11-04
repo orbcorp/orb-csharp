@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
@@ -8,6 +9,13 @@ namespace Orb.Services.DimensionalPriceGroups.ExternalDimensionalPriceGroupID;
 
 public sealed class ExternalDimensionalPriceGroupIDService : IExternalDimensionalPriceGroupIDService
 {
+    public IExternalDimensionalPriceGroupIDService WithOptions(
+        Func<ClientOptions, ClientOptions> modifier
+    )
+    {
+        return new ExternalDimensionalPriceGroupIDService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public ExternalDimensionalPriceGroupIDService(IOrbClient client)

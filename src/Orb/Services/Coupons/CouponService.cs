@@ -9,6 +9,11 @@ namespace Orb.Services.Coupons;
 
 public sealed class CouponService : ICouponService
 {
+    public ICouponService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new CouponService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public CouponService(IOrbClient client)

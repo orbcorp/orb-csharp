@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
@@ -8,6 +9,11 @@ namespace Orb.Services.Subscriptions;
 
 public sealed class SubscriptionService : ISubscriptionService
 {
+    public ISubscriptionService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new SubscriptionService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public SubscriptionService(IOrbClient client)

@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models.Plans;
 using Orb.Models.Plans.ExternalPlanID;
 
@@ -6,6 +8,8 @@ namespace Orb.Services.Plans.ExternalPlanID;
 
 public interface IExternalPlanIDService
 {
+    IExternalPlanIDService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// This endpoint can be used to update the `external_plan_id`, and `metadata`
     /// of an existing plan.

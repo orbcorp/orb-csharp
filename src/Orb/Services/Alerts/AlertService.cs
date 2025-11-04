@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
@@ -7,6 +8,11 @@ namespace Orb.Services.Alerts;
 
 public sealed class AlertService : IAlertService
 {
+    public IAlertService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new AlertService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public AlertService(IOrbClient client)

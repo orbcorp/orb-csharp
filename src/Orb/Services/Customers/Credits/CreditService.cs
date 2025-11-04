@@ -10,6 +10,11 @@ namespace Orb.Services.Customers.Credits;
 
 public sealed class CreditService : ICreditService
 {
+    public ICreditService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new CreditService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public CreditService(IOrbClient client)

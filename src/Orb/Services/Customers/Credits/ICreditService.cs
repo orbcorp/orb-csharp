@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models.Customers.Credits;
 using Orb.Services.Customers.Credits.Ledger;
 using Orb.Services.Customers.Credits.TopUps;
@@ -7,6 +9,8 @@ namespace Orb.Services.Customers.Credits;
 
 public interface ICreditService
 {
+    ICreditService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     ILedgerService Ledger { get; }
 
     ITopUpService TopUps { get; }

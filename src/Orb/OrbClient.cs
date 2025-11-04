@@ -25,7 +25,7 @@ namespace Orb;
 
 public sealed class OrbClient : IOrbClient
 {
-    readonly ClientOptions _options = new();
+    readonly ClientOptions _options;
 
     public HttpClient HttpClient
     {
@@ -61,6 +61,11 @@ public sealed class OrbClient : IOrbClient
     {
         get { return this._options.WebhookSecret; }
         init { this._options.WebhookSecret = value; }
+    }
+
+    public IOrbClient WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new OrbClient(modifier(this._options));
     }
 
     readonly Lazy<ITopLevelService> _topLevel;
@@ -206,6 +211,8 @@ public sealed class OrbClient : IOrbClient
 
     public OrbClient()
     {
+        _options = new();
+
         _topLevel = new(() => new TopLevelService(this));
         _beta = new(() => new BetaService(this));
         _coupons = new(() => new CouponService(this));
@@ -222,5 +229,11 @@ public sealed class OrbClient : IOrbClient
         _alerts = new(() => new AlertService(this));
         _dimensionalPriceGroups = new(() => new DimensionalPriceGroupService(this));
         _subscriptionChanges = new(() => new SubscriptionChangeService(this));
+    }
+
+    public OrbClient(ClientOptions options)
+        : this()
+    {
+        _options = options;
     }
 }

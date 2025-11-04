@@ -1,10 +1,14 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models.Items;
 
 namespace Orb.Services.Items;
 
 public interface IItemService
 {
+    IItemService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// This endpoint is used to create an [Item](/core-concepts#item).
     /// </summary>

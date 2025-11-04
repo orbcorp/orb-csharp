@@ -1,10 +1,14 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models.Customers.BalanceTransactions;
 
 namespace Orb.Services.Customers.BalanceTransactions;
 
 public interface IBalanceTransactionService
 {
+    IBalanceTransactionService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// Creates an immutable balance transaction that updates the customer's balance
     /// and returns back the newly created transaction.

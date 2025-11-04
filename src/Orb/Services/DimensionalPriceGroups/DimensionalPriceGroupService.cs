@@ -9,6 +9,11 @@ namespace Orb.Services.DimensionalPriceGroups;
 
 public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
 {
+    public IDimensionalPriceGroupService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new DimensionalPriceGroupService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public DimensionalPriceGroupService(IOrbClient client)

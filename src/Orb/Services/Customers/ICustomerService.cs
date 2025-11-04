@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models.Customers;
 using Orb.Services.Customers.BalanceTransactions;
 using Orb.Services.Customers.Costs;
@@ -8,6 +10,8 @@ namespace Orb.Services.Customers;
 
 public interface ICustomerService
 {
+    ICustomerService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     ICostService Costs { get; }
 
     ICreditService Credits { get; }

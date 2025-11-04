@@ -10,6 +10,11 @@ namespace Orb.Services.Events;
 
 public sealed class EventService : IEventService
 {
+    public IEventService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new EventService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public EventService(IOrbClient client)

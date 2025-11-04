@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models.Coupons;
 using Orb.Services.Coupons.Subscriptions;
 
@@ -6,6 +8,8 @@ namespace Orb.Services.Coupons;
 
 public interface ICouponService
 {
+    ICouponService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     ISubscriptionService Subscriptions { get; }
 
     /// <summary>

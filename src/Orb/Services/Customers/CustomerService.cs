@@ -11,6 +11,11 @@ namespace Orb.Services.Customers;
 
 public sealed class CustomerService : ICustomerService
 {
+    public ICustomerService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new CustomerService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public CustomerService(IOrbClient client)
