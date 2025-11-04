@@ -113,28 +113,6 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
         }
     }
 
-    /// <summary>
-    /// Whether automatic tax calculation is enabled for this customer. When null,
-    /// inherits from account-level setting. When true or false, overrides the account setting.
-    /// </summary>
-    public bool? AutomaticTaxEnabled
-    {
-        get
-        {
-            if (!this.BodyProperties.TryGetValue("automatic_tax_enabled", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
-        set
-        {
-            this.BodyProperties["automatic_tax_enabled"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
     public AddressInput? BillingAddress
     {
         get
