@@ -32,7 +32,12 @@ public sealed class PriceService : IPriceService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Price>().ConfigureAwait(false);
+        var price = await response.Deserialize<Price>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            price.Validate();
+        }
+        return price;
     }
 
     public async Task<Price> Update(PriceUpdateParams parameters)
@@ -43,7 +48,12 @@ public sealed class PriceService : IPriceService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Price>().ConfigureAwait(false);
+        var price = await response.Deserialize<Price>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            price.Validate();
+        }
+        return price;
     }
 
     public async Task<PriceListPageResponse> List(PriceListParams? parameters = null)
@@ -56,7 +66,12 @@ public sealed class PriceService : IPriceService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<PriceListPageResponse>().ConfigureAwait(false);
+        var page = await response.Deserialize<PriceListPageResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task<PriceEvaluateResponse> Evaluate(PriceEvaluateParams parameters)
@@ -67,7 +82,14 @@ public sealed class PriceService : IPriceService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<PriceEvaluateResponse>().ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<PriceEvaluateResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            deserializedResponse.Validate();
+        }
+        return deserializedResponse;
     }
 
     public async Task<PriceEvaluateMultipleResponse> EvaluateMultiple(
@@ -80,7 +102,14 @@ public sealed class PriceService : IPriceService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<PriceEvaluateMultipleResponse>().ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<PriceEvaluateMultipleResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            deserializedResponse.Validate();
+        }
+        return deserializedResponse;
     }
 
     public async Task<PriceEvaluatePreviewEventsResponse> EvaluatePreviewEvents(
@@ -93,9 +122,14 @@ public sealed class PriceService : IPriceService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response
+        var deserializedResponse = await response
             .Deserialize<PriceEvaluatePreviewEventsResponse>()
             .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            deserializedResponse.Validate();
+        }
+        return deserializedResponse;
     }
 
     public async Task<Price> Fetch(PriceFetchParams parameters)
@@ -106,6 +140,11 @@ public sealed class PriceService : IPriceService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Price>().ConfigureAwait(false);
+        var price = await response.Deserialize<Price>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            price.Validate();
+        }
+        return price;
     }
 }

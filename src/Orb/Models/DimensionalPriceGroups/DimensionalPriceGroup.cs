@@ -191,15 +191,9 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
     {
         _ = this.ID;
         _ = this.BillableMetricID;
-        foreach (var item in this.Dimensions)
-        {
-            _ = item;
-        }
+        _ = this.Dimensions;
         _ = this.ExternalDimensionalPriceGroupID;
-        foreach (var item in this.Metadata.Values)
-        {
-            _ = item;
-        }
+        _ = this.Metadata;
         _ = this.Name;
     }
 

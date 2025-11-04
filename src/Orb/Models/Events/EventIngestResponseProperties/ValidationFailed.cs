@@ -73,10 +73,7 @@ public sealed record class ValidationFailed : ModelBase, IFromRaw<ValidationFail
     public override void Validate()
     {
         _ = this.IdempotencyKey;
-        foreach (var item in this.ValidationErrors)
-        {
-            _ = item;
-        }
+        _ = this.ValidationErrors;
     }
 
     public ValidationFailed() { }

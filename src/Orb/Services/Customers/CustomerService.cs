@@ -47,7 +47,12 @@ public sealed class CustomerService : ICustomerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Customer>().ConfigureAwait(false);
+        var customer = await response.Deserialize<Customer>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            customer.Validate();
+        }
+        return customer;
     }
 
     public async Task<Customer> Update(CustomerUpdateParams parameters)
@@ -58,7 +63,12 @@ public sealed class CustomerService : ICustomerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Customer>().ConfigureAwait(false);
+        var customer = await response.Deserialize<Customer>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            customer.Validate();
+        }
+        return customer;
     }
 
     public async Task<CustomerListPageResponse> List(CustomerListParams? parameters = null)
@@ -71,7 +81,12 @@ public sealed class CustomerService : ICustomerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<CustomerListPageResponse>().ConfigureAwait(false);
+        var page = await response.Deserialize<CustomerListPageResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task Delete(CustomerDeleteParams parameters)
@@ -82,7 +97,6 @@ public sealed class CustomerService : ICustomerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return;
     }
 
     public async Task<Customer> Fetch(CustomerFetchParams parameters)
@@ -93,7 +107,12 @@ public sealed class CustomerService : ICustomerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Customer>().ConfigureAwait(false);
+        var customer = await response.Deserialize<Customer>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            customer.Validate();
+        }
+        return customer;
     }
 
     public async Task<Customer> FetchByExternalID(CustomerFetchByExternalIDParams parameters)
@@ -104,7 +123,12 @@ public sealed class CustomerService : ICustomerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Customer>().ConfigureAwait(false);
+        var customer = await response.Deserialize<Customer>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            customer.Validate();
+        }
+        return customer;
     }
 
     public async Task SyncPaymentMethodsFromGateway(
@@ -117,7 +141,6 @@ public sealed class CustomerService : ICustomerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return;
     }
 
     public async Task SyncPaymentMethodsFromGatewayByExternalCustomerID(
@@ -130,7 +153,6 @@ public sealed class CustomerService : ICustomerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return;
     }
 
     public async Task<Customer> UpdateByExternalID(CustomerUpdateByExternalIDParams parameters)
@@ -141,6 +163,11 @@ public sealed class CustomerService : ICustomerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Customer>().ConfigureAwait(false);
+        var customer = await response.Deserialize<Customer>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            customer.Validate();
+        }
+        return customer;
     }
 }

@@ -126,10 +126,7 @@ public sealed record class UsageDiscount : ModelBase, IFromRaw<UsageDiscount>
     {
         this.DiscountType.Validate();
         _ = this.UsageDiscount1;
-        foreach (var item in this.AppliesToPriceIDs ?? [])
-        {
-            _ = item;
-        }
+        _ = this.AppliesToPriceIDs;
         foreach (var item in this.Filters ?? [])
         {
             item.Validate();

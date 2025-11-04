@@ -147,10 +147,7 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
     {
         _ = this.ID;
         this.Adjustment.Validate();
-        foreach (var item in this.AppliesToPriceIntervalIDs)
-        {
-            _ = item;
-        }
+        _ = this.AppliesToPriceIntervalIDs;
         _ = this.EndDate;
         _ = this.StartDate;
     }

@@ -176,10 +176,7 @@ public sealed record class AmountDiscountInterval : ModelBase, IFromRaw<AmountDi
     public override void Validate()
     {
         _ = this.AmountDiscount;
-        foreach (var item in this.AppliesToPriceIntervalIDs)
-        {
-            _ = item;
-        }
+        _ = this.AppliesToPriceIntervalIDs;
         this.DiscountType.Validate();
         _ = this.EndDate;
         foreach (var item in this.Filters)

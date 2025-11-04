@@ -129,10 +129,7 @@ public sealed record class PercentageDiscount : ModelBase, IFromRaw<PercentageDi
     {
         this.DiscountType.Validate();
         _ = this.PercentageDiscount1;
-        foreach (var item in this.AppliesToPriceIDs ?? [])
-        {
-            _ = item;
-        }
+        _ = this.AppliesToPriceIDs;
         foreach (var item in this.Filters ?? [])
         {
             item.Validate();

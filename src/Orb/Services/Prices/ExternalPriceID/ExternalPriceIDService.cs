@@ -23,7 +23,12 @@ public sealed class ExternalPriceIDService : IExternalPriceIDService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Price>().ConfigureAwait(false);
+        var price = await response.Deserialize<Price>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            price.Validate();
+        }
+        return price;
     }
 
     public async Task<Price> Fetch(ExternalPriceIDFetchParams parameters)
@@ -34,6 +39,11 @@ public sealed class ExternalPriceIDService : IExternalPriceIDService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Price>().ConfigureAwait(false);
+        var price = await response.Deserialize<Price>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            price.Validate();
+        }
+        return price;
     }
 }

@@ -291,10 +291,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
         }
         this.Price.Validate();
         _ = this.StartDate;
-        foreach (var item in this.UsageCustomerIDs ?? [])
-        {
-            _ = item;
-        }
+        _ = this.UsageCustomerIDs;
     }
 
     public PriceInterval() { }

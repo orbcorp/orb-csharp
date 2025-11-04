@@ -22,7 +22,12 @@ public sealed class MetricService : IMetricService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<BillableMetric>().ConfigureAwait(false);
+        var billableMetric = await response.Deserialize<BillableMetric>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            billableMetric.Validate();
+        }
+        return billableMetric;
     }
 
     public async Task<BillableMetric> Update(MetricUpdateParams parameters)
@@ -33,7 +38,12 @@ public sealed class MetricService : IMetricService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<BillableMetric>().ConfigureAwait(false);
+        var billableMetric = await response.Deserialize<BillableMetric>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            billableMetric.Validate();
+        }
+        return billableMetric;
     }
 
     public async Task<MetricListPageResponse> List(MetricListParams? parameters = null)
@@ -46,7 +56,12 @@ public sealed class MetricService : IMetricService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<MetricListPageResponse>().ConfigureAwait(false);
+        var page = await response.Deserialize<MetricListPageResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task<BillableMetric> Fetch(MetricFetchParams parameters)
@@ -57,6 +72,11 @@ public sealed class MetricService : IMetricService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<BillableMetric>().ConfigureAwait(false);
+        var billableMetric = await response.Deserialize<BillableMetric>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            billableMetric.Validate();
+        }
+        return billableMetric;
     }
 }

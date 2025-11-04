@@ -24,7 +24,14 @@ public sealed class BalanceTransactionService : IBalanceTransactionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<BalanceTransactionCreateResponse>().ConfigureAwait(false);
+        var balanceTransaction = await response
+            .Deserialize<BalanceTransactionCreateResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            balanceTransaction.Validate();
+        }
+        return balanceTransaction;
     }
 
     public async Task<BalanceTransactionListPageResponse> List(
@@ -37,8 +44,13 @@ public sealed class BalanceTransactionService : IBalanceTransactionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response
+        var page = await response
             .Deserialize<BalanceTransactionListPageResponse>()
             .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 }

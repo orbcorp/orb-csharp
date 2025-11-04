@@ -138,10 +138,7 @@ public sealed record class MatrixWithAllocationConfig
     {
         _ = this.Allocation;
         _ = this.DefaultUnitAmount;
-        foreach (var item in this.Dimensions)
-        {
-            _ = item;
-        }
+        _ = this.Dimensions;
         foreach (var item in this.MatrixValues)
         {
             item.Validate();

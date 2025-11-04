@@ -195,13 +195,7 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
         this.EntryType.Validate();
         _ = this.Currency;
         _ = this.Description;
-        if (this.Metadata != null)
-        {
-            foreach (var item in this.Metadata.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.Metadata;
         this.VoidReason?.Validate();
     }
 

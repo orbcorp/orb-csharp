@@ -207,10 +207,7 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
             item.Validate();
         }
         this.StartDate?.Validate();
-        foreach (var item in this.UsageCustomerIDs ?? [])
-        {
-            _ = item;
-        }
+        _ = this.UsageCustomerIDs;
     }
 
     public Edit() { }

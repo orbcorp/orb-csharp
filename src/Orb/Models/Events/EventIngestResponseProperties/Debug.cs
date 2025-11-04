@@ -67,14 +67,8 @@ public sealed record class Debug : ModelBase, IFromRaw<Debug>
 
     public override void Validate()
     {
-        foreach (var item in this.Duplicate)
-        {
-            _ = item;
-        }
-        foreach (var item in this.Ingested)
-        {
-            _ = item;
-        }
+        _ = this.Duplicate;
+        _ = this.Ingested;
     }
 
     public Debug() { }

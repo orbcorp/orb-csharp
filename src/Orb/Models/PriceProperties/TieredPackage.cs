@@ -681,10 +681,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
         this.Item.Validate();
         this.Maximum?.Validate();
         _ = this.MaximumAmount;
-        foreach (var item in this.Metadata.Values)
-        {
-            _ = item;
-        }
+        _ = this.Metadata;
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
         this.ModelType.Validate();

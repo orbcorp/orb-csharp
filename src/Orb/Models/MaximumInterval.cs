@@ -152,10 +152,7 @@ public sealed record class MaximumInterval : ModelBase, IFromRaw<MaximumInterval
 
     public override void Validate()
     {
-        foreach (var item in this.AppliesToPriceIntervalIDs)
-        {
-            _ = item;
-        }
+        _ = this.AppliesToPriceIntervalIDs;
         _ = this.EndDate;
         foreach (var item in this.Filters)
         {

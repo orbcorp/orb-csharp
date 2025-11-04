@@ -33,7 +33,14 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<DimensionalPriceGroup>().ConfigureAwait(false);
+        var dimensionalPriceGroup = await response
+            .Deserialize<DimensionalPriceGroup>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            dimensionalPriceGroup.Validate();
+        }
+        return dimensionalPriceGroup;
     }
 
     public async Task<DimensionalPriceGroup> Retrieve(
@@ -46,7 +53,14 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<DimensionalPriceGroup>().ConfigureAwait(false);
+        var dimensionalPriceGroup = await response
+            .Deserialize<DimensionalPriceGroup>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            dimensionalPriceGroup.Validate();
+        }
+        return dimensionalPriceGroup;
     }
 
     public async Task<DimensionalPriceGroup> Update(DimensionalPriceGroupUpdateParams parameters)
@@ -57,7 +71,14 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<DimensionalPriceGroup>().ConfigureAwait(false);
+        var dimensionalPriceGroup = await response
+            .Deserialize<DimensionalPriceGroup>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            dimensionalPriceGroup.Validate();
+        }
+        return dimensionalPriceGroup;
     }
 
     public async Task<DimensionalPriceGroupsModel> List(
@@ -72,6 +93,11 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<DimensionalPriceGroupsModel>().ConfigureAwait(false);
+        var page = await response.Deserialize<DimensionalPriceGroupsModel>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 }

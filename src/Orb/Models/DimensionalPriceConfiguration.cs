@@ -68,10 +68,7 @@ public sealed record class DimensionalPriceConfiguration
 
     public override void Validate()
     {
-        foreach (var item in this.DimensionValues)
-        {
-            _ = item;
-        }
+        _ = this.DimensionValues;
         _ = this.DimensionalPriceGroupID;
     }
 

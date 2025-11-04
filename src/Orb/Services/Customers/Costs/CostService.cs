@@ -22,7 +22,12 @@ public sealed class CostService : ICostService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<CostListResponse>().ConfigureAwait(false);
+        var costs = await response.Deserialize<CostListResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            costs.Validate();
+        }
+        return costs;
     }
 
     public async Task<CostListByExternalIDResponse> ListByExternalID(
@@ -35,6 +40,13 @@ public sealed class CostService : ICostService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<CostListByExternalIDResponse>().ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<CostListByExternalIDResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            deserializedResponse.Validate();
+        }
+        return deserializedResponse;
     }
 }

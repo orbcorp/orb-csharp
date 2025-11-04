@@ -98,10 +98,7 @@ public sealed record class CompositePriceFilter : ModelBase, IFromRaw<CompositeP
     {
         this.Field.Validate();
         this.Operator.Validate();
-        foreach (var item in this.Values)
-        {
-            _ = item;
-        }
+        _ = this.Values;
     }
 
     public CompositePriceFilter() { }

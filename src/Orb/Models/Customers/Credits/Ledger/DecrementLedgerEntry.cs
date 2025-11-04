@@ -390,10 +390,7 @@ public sealed record class DecrementLedgerEntry : ModelBase, IFromRaw<DecrementL
         this.EntryStatus.Validate();
         this.EntryType.Validate();
         _ = this.LedgerSequenceNumber;
-        foreach (var item in this.Metadata.Values)
-        {
-            _ = item;
-        }
+        _ = this.Metadata;
         _ = this.StartingBalance;
         _ = this.EventID;
         _ = this.InvoiceID;

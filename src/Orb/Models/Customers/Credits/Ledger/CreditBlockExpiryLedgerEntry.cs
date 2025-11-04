@@ -338,10 +338,7 @@ public sealed record class CreditBlockExpiryLedgerEntry
         this.EntryStatus.Validate();
         this.EntryType.Validate();
         _ = this.LedgerSequenceNumber;
-        foreach (var item in this.Metadata.Values)
-        {
-            _ = item;
-        }
+        _ = this.Metadata;
         _ = this.StartingBalance;
     }
 

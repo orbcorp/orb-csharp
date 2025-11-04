@@ -142,13 +142,7 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
         this.EntryType.Validate();
         _ = this.Currency;
         _ = this.Description;
-        if (this.Metadata != null)
-        {
-            foreach (var item in this.Metadata.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.Metadata;
     }
 
     public Decrement()

@@ -22,7 +22,12 @@ public sealed class BackfillService : IBackfillService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<BackfillCreateResponse>().ConfigureAwait(false);
+        var backfill = await response.Deserialize<BackfillCreateResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            backfill.Validate();
+        }
+        return backfill;
     }
 
     public async Task<BackfillListPageResponse> List(BackfillListParams? parameters = null)
@@ -35,7 +40,12 @@ public sealed class BackfillService : IBackfillService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<BackfillListPageResponse>().ConfigureAwait(false);
+        var page = await response.Deserialize<BackfillListPageResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task<BackfillCloseResponse> Close(BackfillCloseParams parameters)
@@ -46,7 +56,14 @@ public sealed class BackfillService : IBackfillService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<BackfillCloseResponse>().ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<BackfillCloseResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            deserializedResponse.Validate();
+        }
+        return deserializedResponse;
     }
 
     public async Task<BackfillFetchResponse> Fetch(BackfillFetchParams parameters)
@@ -57,7 +74,14 @@ public sealed class BackfillService : IBackfillService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<BackfillFetchResponse>().ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<BackfillFetchResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            deserializedResponse.Validate();
+        }
+        return deserializedResponse;
     }
 
     public async Task<BackfillRevertResponse> Revert(BackfillRevertParams parameters)
@@ -68,6 +92,13 @@ public sealed class BackfillService : IBackfillService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<BackfillRevertResponse>().ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<BackfillRevertResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            deserializedResponse.Validate();
+        }
+        return deserializedResponse;
     }
 }

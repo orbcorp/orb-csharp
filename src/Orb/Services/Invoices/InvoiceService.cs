@@ -23,7 +23,12 @@ public sealed class InvoiceService : IInvoiceService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Invoice>().ConfigureAwait(false);
+        var invoice = await response.Deserialize<Invoice>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            invoice.Validate();
+        }
+        return invoice;
     }
 
     public async Task<Invoice> Update(InvoiceUpdateParams parameters)
@@ -34,7 +39,12 @@ public sealed class InvoiceService : IInvoiceService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Invoice>().ConfigureAwait(false);
+        var invoice = await response.Deserialize<Invoice>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            invoice.Validate();
+        }
+        return invoice;
     }
 
     public async Task<InvoiceListPageResponse> List(InvoiceListParams? parameters = null)
@@ -47,7 +57,12 @@ public sealed class InvoiceService : IInvoiceService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<InvoiceListPageResponse>().ConfigureAwait(false);
+        var page = await response.Deserialize<InvoiceListPageResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task<Invoice> Fetch(InvoiceFetchParams parameters)
@@ -58,7 +73,12 @@ public sealed class InvoiceService : IInvoiceService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Invoice>().ConfigureAwait(false);
+        var invoice = await response.Deserialize<Invoice>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            invoice.Validate();
+        }
+        return invoice;
     }
 
     public async Task<InvoiceFetchUpcomingResponse> FetchUpcoming(
@@ -71,7 +91,14 @@ public sealed class InvoiceService : IInvoiceService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<InvoiceFetchUpcomingResponse>().ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<InvoiceFetchUpcomingResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            deserializedResponse.Validate();
+        }
+        return deserializedResponse;
     }
 
     public async Task<Invoice> Issue(InvoiceIssueParams parameters)
@@ -82,7 +109,12 @@ public sealed class InvoiceService : IInvoiceService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Invoice>().ConfigureAwait(false);
+        var invoice = await response.Deserialize<Invoice>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            invoice.Validate();
+        }
+        return invoice;
     }
 
     public async Task<Invoice> MarkPaid(InvoiceMarkPaidParams parameters)
@@ -93,7 +125,12 @@ public sealed class InvoiceService : IInvoiceService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Invoice>().ConfigureAwait(false);
+        var invoice = await response.Deserialize<Invoice>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            invoice.Validate();
+        }
+        return invoice;
     }
 
     public async Task<Invoice> Pay(InvoicePayParams parameters)
@@ -104,7 +141,12 @@ public sealed class InvoiceService : IInvoiceService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Invoice>().ConfigureAwait(false);
+        var invoice = await response.Deserialize<Invoice>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            invoice.Validate();
+        }
+        return invoice;
     }
 
     public async Task<Invoice> Void(InvoiceVoidParams parameters)
@@ -115,6 +157,11 @@ public sealed class InvoiceService : IInvoiceService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Invoice>().ConfigureAwait(false);
+        var invoice = await response.Deserialize<Invoice>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            invoice.Validate();
+        }
+        return invoice;
     }
 }

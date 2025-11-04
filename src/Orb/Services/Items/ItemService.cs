@@ -22,7 +22,12 @@ public sealed class ItemService : IItemService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Item>().ConfigureAwait(false);
+        var item = await response.Deserialize<Item>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            item.Validate();
+        }
+        return item;
     }
 
     public async Task<Item> Update(ItemUpdateParams parameters)
@@ -33,7 +38,12 @@ public sealed class ItemService : IItemService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Item>().ConfigureAwait(false);
+        var item = await response.Deserialize<Item>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            item.Validate();
+        }
+        return item;
     }
 
     public async Task<ItemListPageResponse> List(ItemListParams? parameters = null)
@@ -46,7 +56,12 @@ public sealed class ItemService : IItemService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<ItemListPageResponse>().ConfigureAwait(false);
+        var page = await response.Deserialize<ItemListPageResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task<Item> Archive(ItemArchiveParams parameters)
@@ -57,7 +72,12 @@ public sealed class ItemService : IItemService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Item>().ConfigureAwait(false);
+        var item = await response.Deserialize<Item>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            item.Validate();
+        }
+        return item;
     }
 
     public async Task<Item> Fetch(ItemFetchParams parameters)
@@ -68,6 +88,11 @@ public sealed class ItemService : IItemService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Item>().ConfigureAwait(false);
+        var item = await response.Deserialize<Item>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            item.Validate();
+        }
+        return item;
     }
 }

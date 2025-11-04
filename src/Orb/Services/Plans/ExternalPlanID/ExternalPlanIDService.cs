@@ -23,7 +23,12 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Plan>().ConfigureAwait(false);
+        var plan = await response.Deserialize<Plan>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            plan.Validate();
+        }
+        return plan;
     }
 
     public async Task<Plan> Fetch(ExternalPlanIDFetchParams parameters)
@@ -34,6 +39,11 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Plan>().ConfigureAwait(false);
+        var plan = await response.Deserialize<Plan>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            plan.Validate();
+        }
+        return plan;
     }
 }

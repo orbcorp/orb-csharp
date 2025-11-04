@@ -324,10 +324,7 @@ public sealed record class Add : ModelBase, IFromRaw<Add>
         _ = this.MinimumAmount;
         this.Price?.Validate();
         _ = this.PriceID;
-        foreach (var item in this.UsageCustomerIDs ?? [])
-        {
-            _ = item;
-        }
+        _ = this.UsageCustomerIDs;
     }
 
     public Add() { }

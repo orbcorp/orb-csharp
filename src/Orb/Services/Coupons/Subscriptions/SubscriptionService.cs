@@ -23,8 +23,13 @@ public sealed class SubscriptionService : ISubscriptionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response
+        var page = await response
             .Deserialize<Subscriptions::SubscriptionsModel>()
             .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 }

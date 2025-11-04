@@ -23,7 +23,12 @@ public sealed class CreditNoteService : ICreditNoteService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<CreditNote>().ConfigureAwait(false);
+        var creditNote = await response.Deserialize<CreditNote>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            creditNote.Validate();
+        }
+        return creditNote;
     }
 
     public async Task<CreditNoteListPageResponse> List(CreditNoteListParams? parameters = null)
@@ -36,7 +41,12 @@ public sealed class CreditNoteService : ICreditNoteService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<CreditNoteListPageResponse>().ConfigureAwait(false);
+        var page = await response.Deserialize<CreditNoteListPageResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task<CreditNote> Fetch(CreditNoteFetchParams parameters)
@@ -47,6 +57,11 @@ public sealed class CreditNoteService : ICreditNoteService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<CreditNote>().ConfigureAwait(false);
+        var creditNote = await response.Deserialize<CreditNote>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            creditNote.Validate();
+        }
+        return creditNote;
     }
 }

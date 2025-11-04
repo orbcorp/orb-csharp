@@ -22,6 +22,13 @@ public sealed class InvoiceLineItemService : IInvoiceLineItemService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<InvoiceLineItemCreateResponse>().ConfigureAwait(false);
+        var invoiceLineItem = await response
+            .Deserialize<InvoiceLineItemCreateResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            invoiceLineItem.Validate();
+        }
+        return invoiceLineItem;
     }
 }

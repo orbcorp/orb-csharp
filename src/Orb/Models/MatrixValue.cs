@@ -72,10 +72,7 @@ public sealed record class MatrixValue : ModelBase, IFromRaw<MatrixValue>
 
     public override void Validate()
     {
-        foreach (var item in this.DimensionValues)
-        {
-            _ = item;
-        }
+        _ = this.DimensionValues;
         _ = this.UnitAmount;
     }
 
