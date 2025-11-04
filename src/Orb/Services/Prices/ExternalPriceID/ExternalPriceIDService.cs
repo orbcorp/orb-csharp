@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
@@ -8,6 +9,11 @@ namespace Orb.Services.Prices.ExternalPriceID;
 
 public sealed class ExternalPriceIDService : IExternalPriceIDService
 {
+    public IExternalPriceIDService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new ExternalPriceIDService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public ExternalPriceIDService(IOrbClient client)

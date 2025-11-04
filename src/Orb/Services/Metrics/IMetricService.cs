@@ -1,10 +1,14 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models.Metrics;
 
 namespace Orb.Services.Metrics;
 
 public interface IMetricService
 {
+    IMetricService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// This endpoint is used to create a [metric](/core-concepts###metric) using
     /// a SQL string. See [SQL support](/extensibility/advanced-metrics#sql-support)

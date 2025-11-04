@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
@@ -7,6 +8,11 @@ namespace Orb.Services.Customers.BalanceTransactions;
 
 public sealed class BalanceTransactionService : IBalanceTransactionService
 {
+    public IBalanceTransactionService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new BalanceTransactionService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public BalanceTransactionService(IOrbClient client)

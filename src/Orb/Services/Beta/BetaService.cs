@@ -10,6 +10,11 @@ namespace Orb.Services.Beta;
 
 public sealed class BetaService : IBetaService
 {
+    public IBetaService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new BetaService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public BetaService(IOrbClient client)

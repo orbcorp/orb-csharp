@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
@@ -7,6 +8,11 @@ namespace Orb.Services.Events.Backfills;
 
 public sealed class BackfillService : IBackfillService
 {
+    public IBackfillService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new BackfillService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public BackfillService(IOrbClient client)

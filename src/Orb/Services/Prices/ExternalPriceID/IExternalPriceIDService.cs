@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models;
 using Orb.Models.Prices.ExternalPriceID;
 
@@ -6,6 +8,8 @@ namespace Orb.Services.Prices.ExternalPriceID;
 
 public interface IExternalPriceIDService
 {
+    IExternalPriceIDService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// This endpoint allows you to update the `metadata` property on a price. If
     /// you pass null for the metadata value, it will clear any existing metadata

@@ -1,10 +1,14 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models.Customers.Credits.Ledger;
 
 namespace Orb.Services.Customers.Credits.Ledger;
 
 public interface ILedgerService
 {
+    ILedgerService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// The credits ledger provides _auditing_ functionality over Orb's credits system
     /// with a list of actions that have taken place to modify a customer's credit

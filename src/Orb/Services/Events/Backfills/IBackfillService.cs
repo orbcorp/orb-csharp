@@ -1,10 +1,14 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models.Events.Backfills;
 
 namespace Orb.Services.Events.Backfills;
 
 public interface IBackfillService
 {
+    IBackfillService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// Creating the backfill enables adding or replacing past events, even those
     /// that are older than the ingestion grace period. Performing a backfill in

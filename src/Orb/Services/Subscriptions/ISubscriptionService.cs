@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models.SubscriptionChanges;
 using Orb.Models.Subscriptions;
 
@@ -6,6 +8,8 @@ namespace Orb.Services.Subscriptions;
 
 public interface ISubscriptionService
 {
+    ISubscriptionService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// A subscription represents the purchase of a plan by a customer. The customer
     /// is identified by either the `customer_id` or the `external_customer_id`, and

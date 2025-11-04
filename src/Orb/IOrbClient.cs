@@ -35,6 +35,8 @@ public interface IOrbClient
 
     string? WebhookSecret { get; init; }
 
+    IOrbClient WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     ITopLevelService TopLevel { get; }
 
     IBetaService Beta { get; }

@@ -1,10 +1,14 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models.Customers.Costs;
 
 namespace Orb.Services.Customers.Costs;
 
 public interface ICostService
 {
+    ICostService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// This endpoint is used to fetch a day-by-day snapshot of a customer's costs
     /// in Orb, calculated by applying pricing information to the underlying usage

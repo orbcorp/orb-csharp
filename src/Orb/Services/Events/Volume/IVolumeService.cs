@@ -1,10 +1,14 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models.Events.Volume;
 
 namespace Orb.Services.Events.Volume;
 
 public interface IVolumeService
 {
+    IVolumeService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// This endpoint returns the event volume for an account in a [paginated list format](/api-reference/pagination).
     ///

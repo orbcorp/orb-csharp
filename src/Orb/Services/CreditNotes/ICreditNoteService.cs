@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models;
 using Orb.Models.CreditNotes;
 
@@ -6,6 +8,8 @@ namespace Orb.Services.CreditNotes;
 
 public interface ICreditNoteService
 {
+    ICreditNoteService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// This endpoint is used to create a single [`Credit Note`](/invoicing/credit-notes).
     ///

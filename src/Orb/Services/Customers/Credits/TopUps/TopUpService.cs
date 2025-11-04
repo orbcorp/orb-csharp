@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
@@ -7,6 +8,11 @@ namespace Orb.Services.Customers.Credits.TopUps;
 
 public sealed class TopUpService : ITopUpService
 {
+    public ITopUpService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new TopUpService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public TopUpService(IOrbClient client)

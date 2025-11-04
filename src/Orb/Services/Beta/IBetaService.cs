@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models.Beta;
 using Orb.Models.Plans;
 using Orb.Services.Beta.ExternalPlanID;
@@ -7,6 +9,8 @@ namespace Orb.Services.Beta;
 
 public interface IBetaService
 {
+    IBetaService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     IExternalPlanIDService ExternalPlanID { get; }
 
     /// <summary>

@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models;
 using Orb.Models.Invoices;
 
@@ -6,6 +8,8 @@ namespace Orb.Services.Invoices;
 
 public interface IInvoiceService
 {
+    IInvoiceService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// This endpoint is used to create a one-off invoice for a customer.
     /// </summary>

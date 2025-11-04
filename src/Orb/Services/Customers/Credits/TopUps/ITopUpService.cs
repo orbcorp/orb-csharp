@@ -1,10 +1,14 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models.Customers.Credits.TopUps;
 
 namespace Orb.Services.Customers.Credits.TopUps;
 
 public interface ITopUpService
 {
+    ITopUpService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// This endpoint allows you to create a new top-up for a specified customer's
     /// balance. While this top-up is active, the customer's balance will added in

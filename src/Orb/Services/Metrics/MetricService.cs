@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
@@ -7,6 +8,11 @@ namespace Orb.Services.Metrics;
 
 public sealed class MetricService : IMetricService
 {
+    public IMetricService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new MetricService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public MetricService(IOrbClient client)

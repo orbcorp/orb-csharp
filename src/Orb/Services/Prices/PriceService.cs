@@ -10,6 +10,11 @@ namespace Orb.Services.Prices;
 
 public sealed class PriceService : IPriceService
 {
+    public IPriceService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new PriceService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public PriceService(IOrbClient client)

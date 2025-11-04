@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
@@ -8,6 +9,11 @@ namespace Orb.Services.Invoices;
 
 public sealed class InvoiceService : IInvoiceService
 {
+    public IInvoiceService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new InvoiceService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public InvoiceService(IOrbClient client)

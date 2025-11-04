@@ -9,6 +9,11 @@ namespace Orb.Services.Plans;
 
 public sealed class PlanService : IPlanService
 {
+    public IPlanService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new PlanService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public PlanService(IOrbClient client)

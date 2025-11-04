@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models.DimensionalPriceGroups;
 using Orb.Services.DimensionalPriceGroups.ExternalDimensionalPriceGroupID;
 
@@ -6,6 +8,8 @@ namespace Orb.Services.DimensionalPriceGroups;
 
 public interface IDimensionalPriceGroupService
 {
+    IDimensionalPriceGroupService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     IExternalDimensionalPriceGroupIDService ExternalDimensionalPriceGroupID { get; }
 
     /// <summary>

@@ -1,10 +1,14 @@
+using System;
 using System.Threading.Tasks;
+using Orb.Core;
 using Orb.Models.Alerts;
 
 namespace Orb.Services.Alerts;
 
 public interface IAlertService
 {
+    IAlertService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// This endpoint retrieves an alert by its ID.
     /// </summary>

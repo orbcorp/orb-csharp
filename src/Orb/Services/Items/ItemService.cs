@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
@@ -7,6 +8,11 @@ namespace Orb.Services.Items;
 
 public sealed class ItemService : IItemService
 {
+    public IItemService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new ItemService(this._client.WithOptions(modifier));
+    }
+
     readonly IOrbClient _client;
 
     public ItemService(IOrbClient client)
