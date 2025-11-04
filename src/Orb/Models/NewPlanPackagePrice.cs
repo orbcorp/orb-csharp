@@ -474,13 +474,7 @@ public sealed record class NewPlanPackagePrice : ModelBase, IFromRaw<NewPlanPack
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
-        if (this.Metadata != null)
-        {
-            foreach (var item in this.Metadata.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.Metadata;
         _ = this.ReferenceID;
     }
 

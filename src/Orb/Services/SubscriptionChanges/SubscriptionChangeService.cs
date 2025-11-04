@@ -24,9 +24,14 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response
+        var subscriptionChange = await response
             .Deserialize<SubscriptionChangeRetrieveResponse>()
             .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            subscriptionChange.Validate();
+        }
+        return subscriptionChange;
     }
 
     public async Task<SubscriptionChangeApplyResponse> Apply(
@@ -39,7 +44,14 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<SubscriptionChangeApplyResponse>().ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<SubscriptionChangeApplyResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            deserializedResponse.Validate();
+        }
+        return deserializedResponse;
     }
 
     public async Task<SubscriptionChangeCancelResponse> Cancel(
@@ -52,6 +64,13 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<SubscriptionChangeCancelResponse>().ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<SubscriptionChangeCancelResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            deserializedResponse.Validate();
+        }
+        return deserializedResponse;
     }
 }

@@ -336,10 +336,7 @@ public sealed record class AmendmentLedgerEntry : ModelBase, IFromRaw<AmendmentL
         this.EntryStatus.Validate();
         this.EntryType.Validate();
         _ = this.LedgerSequenceNumber;
-        foreach (var item in this.Metadata.Values)
-        {
-            _ = item;
-        }
+        _ = this.Metadata;
         _ = this.StartingBalance;
     }
 

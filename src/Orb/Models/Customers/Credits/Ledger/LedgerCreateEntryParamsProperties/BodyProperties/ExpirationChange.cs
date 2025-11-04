@@ -220,13 +220,7 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
         _ = this.Currency;
         _ = this.Description;
         _ = this.ExpiryDate;
-        if (this.Metadata != null)
-        {
-            foreach (var item in this.Metadata.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.Metadata;
     }
 
     public ExpirationChange()

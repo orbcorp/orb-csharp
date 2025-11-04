@@ -375,10 +375,7 @@ public sealed record class VoidLedgerEntry : ModelBase, IFromRaw<VoidLedgerEntry
         this.EntryStatus.Validate();
         this.EntryType.Validate();
         _ = this.LedgerSequenceNumber;
-        foreach (var item in this.Metadata.Values)
-        {
-            _ = item;
-        }
+        _ = this.Metadata;
         _ = this.StartingBalance;
         _ = this.VoidAmount;
         _ = this.VoidReason;

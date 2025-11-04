@@ -31,7 +31,12 @@ public sealed class CouponService : ICouponService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Coupon>().ConfigureAwait(false);
+        var coupon = await response.Deserialize<Coupon>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            coupon.Validate();
+        }
+        return coupon;
     }
 
     public async Task<CouponListPageResponse> List(CouponListParams? parameters = null)
@@ -44,7 +49,12 @@ public sealed class CouponService : ICouponService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<CouponListPageResponse>().ConfigureAwait(false);
+        var page = await response.Deserialize<CouponListPageResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task<Coupon> Archive(CouponArchiveParams parameters)
@@ -55,7 +65,12 @@ public sealed class CouponService : ICouponService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Coupon>().ConfigureAwait(false);
+        var coupon = await response.Deserialize<Coupon>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            coupon.Validate();
+        }
+        return coupon;
     }
 
     public async Task<Coupon> Fetch(CouponFetchParams parameters)
@@ -66,6 +81,11 @@ public sealed class CouponService : ICouponService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Coupon>().ConfigureAwait(false);
+        var coupon = await response.Deserialize<Coupon>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            coupon.Validate();
+        }
+        return coupon;
     }
 }

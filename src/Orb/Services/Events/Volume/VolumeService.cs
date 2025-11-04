@@ -22,6 +22,11 @@ public sealed class VolumeService : IVolumeService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<EventVolumes>().ConfigureAwait(false);
+        var eventVolumes = await response.Deserialize<EventVolumes>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            eventVolumes.Validate();
+        }
+        return eventVolumes;
     }
 }

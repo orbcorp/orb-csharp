@@ -31,7 +31,12 @@ public sealed class PlanService : IPlanService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Plan>().ConfigureAwait(false);
+        var plan = await response.Deserialize<Plan>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            plan.Validate();
+        }
+        return plan;
     }
 
     public async Task<Plan> Update(PlanUpdateParams parameters)
@@ -42,7 +47,12 @@ public sealed class PlanService : IPlanService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Plan>().ConfigureAwait(false);
+        var plan = await response.Deserialize<Plan>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            plan.Validate();
+        }
+        return plan;
     }
 
     public async Task<PlanListPageResponse> List(PlanListParams? parameters = null)
@@ -55,7 +65,12 @@ public sealed class PlanService : IPlanService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<PlanListPageResponse>().ConfigureAwait(false);
+        var page = await response.Deserialize<PlanListPageResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task<Plan> Fetch(PlanFetchParams parameters)
@@ -66,6 +81,11 @@ public sealed class PlanService : IPlanService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Plan>().ConfigureAwait(false);
+        var plan = await response.Deserialize<Plan>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            plan.Validate();
+        }
+        return plan;
     }
 }

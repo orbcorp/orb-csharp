@@ -142,10 +142,7 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
     public override void Validate()
     {
         this.DiscountType.Validate();
-        foreach (var item in this.AppliesToPriceIDs ?? [])
-        {
-            _ = item;
-        }
+        _ = this.AppliesToPriceIDs;
         foreach (var item in this.Filters ?? [])
         {
             item.Validate();

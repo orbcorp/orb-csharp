@@ -101,10 +101,7 @@ public sealed record class Filter : ModelBase, IFromRaw<Filter>
     {
         this.Field.Validate();
         this.Operator.Validate();
-        foreach (var item in this.Values)
-        {
-            _ = item;
-        }
+        _ = this.Values;
     }
 
     public Filter() { }

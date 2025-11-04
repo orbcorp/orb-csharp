@@ -701,10 +701,7 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
     public override void Validate()
     {
         _ = this.ID;
-        foreach (var item in this.AdditionalEmails)
-        {
-            _ = item;
-        }
+        _ = this.AdditionalEmails;
         _ = this.AutoCollection;
         _ = this.AutoIssuance;
         _ = this.Balance;
@@ -716,10 +713,7 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         _ = this.ExemptFromAutomatedTax;
         _ = this.ExternalCustomerID;
         this.Hierarchy.Validate();
-        foreach (var item in this.Metadata.Values)
-        {
-            _ = item;
-        }
+        _ = this.Metadata;
         _ = this.Name;
         this.PaymentProvider?.Validate();
         _ = this.PaymentProviderID;

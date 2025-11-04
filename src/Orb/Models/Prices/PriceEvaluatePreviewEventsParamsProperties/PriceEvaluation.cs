@@ -124,10 +124,7 @@ public sealed record class PriceEvaluation : ModelBase, IFromRaw<PriceEvaluation
     {
         _ = this.ExternalPriceID;
         _ = this.Filter;
-        foreach (var item in this.GroupingKeys ?? [])
-        {
-            _ = item;
-        }
+        _ = this.GroupingKeys;
         this.Price?.Validate();
         _ = this.PriceID;
     }

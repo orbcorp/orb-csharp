@@ -39,7 +39,14 @@ public sealed class EventService : IEventService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<EventUpdateResponse>().ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<EventUpdateResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            deserializedResponse.Validate();
+        }
+        return deserializedResponse;
     }
 
     public async Task<EventDeprecateResponse> Deprecate(EventDeprecateParams parameters)
@@ -50,7 +57,14 @@ public sealed class EventService : IEventService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<EventDeprecateResponse>().ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<EventDeprecateResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            deserializedResponse.Validate();
+        }
+        return deserializedResponse;
     }
 
     public async Task<EventIngestResponse> Ingest(EventIngestParams parameters)
@@ -61,7 +75,14 @@ public sealed class EventService : IEventService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<EventIngestResponse>().ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<EventIngestResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            deserializedResponse.Validate();
+        }
+        return deserializedResponse;
     }
 
     public async Task<EventSearchResponse> Search(EventSearchParams parameters)
@@ -72,6 +93,13 @@ public sealed class EventService : IEventService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<EventSearchResponse>().ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<EventSearchResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            deserializedResponse.Validate();
+        }
+        return deserializedResponse;
     }
 }

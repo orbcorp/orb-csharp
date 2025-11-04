@@ -173,10 +173,7 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
     {
         _ = this.EventName;
         _ = this.IdempotencyKey;
-        foreach (var item in this.Properties1.Values)
-        {
-            _ = item;
-        }
+        _ = this.Properties1;
         _ = this.Timestamp;
         _ = this.CustomerID;
         _ = this.ExternalCustomerID;

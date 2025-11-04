@@ -1159,10 +1159,7 @@ public sealed record class Invoice : ModelBase, IFromRaw<Invoice>
         this.Maximum?.Validate();
         _ = this.MaximumAmount;
         _ = this.Memo;
-        foreach (var item in this.Metadata.Values)
-        {
-            _ = item;
-        }
+        _ = this.Metadata;
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
         _ = this.PaidAt;

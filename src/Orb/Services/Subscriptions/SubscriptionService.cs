@@ -25,7 +25,14 @@ public sealed class SubscriptionService : ISubscriptionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<MutatedSubscription>().ConfigureAwait(false);
+        var mutatedSubscription = await response
+            .Deserialize<MutatedSubscription>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            mutatedSubscription.Validate();
+        }
+        return mutatedSubscription;
     }
 
     public async Task<Subscription> Update(SubscriptionUpdateParams parameters)
@@ -36,7 +43,12 @@ public sealed class SubscriptionService : ISubscriptionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Subscription>().ConfigureAwait(false);
+        var subscription = await response.Deserialize<Subscription>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            subscription.Validate();
+        }
+        return subscription;
     }
 
     public async Task<SubscriptionsModel> List(SubscriptionListParams? parameters = null)
@@ -49,7 +61,12 @@ public sealed class SubscriptionService : ISubscriptionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<SubscriptionsModel>().ConfigureAwait(false);
+        var page = await response.Deserialize<SubscriptionsModel>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task<MutatedSubscription> Cancel(SubscriptionCancelParams parameters)
@@ -60,7 +77,14 @@ public sealed class SubscriptionService : ISubscriptionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<MutatedSubscription>().ConfigureAwait(false);
+        var mutatedSubscription = await response
+            .Deserialize<MutatedSubscription>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            mutatedSubscription.Validate();
+        }
+        return mutatedSubscription;
     }
 
     public async Task<Subscription> Fetch(SubscriptionFetchParams parameters)
@@ -71,7 +95,12 @@ public sealed class SubscriptionService : ISubscriptionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Subscription>().ConfigureAwait(false);
+        var subscription = await response.Deserialize<Subscription>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            subscription.Validate();
+        }
+        return subscription;
     }
 
     public async Task<SubscriptionFetchCostsResponse> FetchCosts(
@@ -84,7 +113,14 @@ public sealed class SubscriptionService : ISubscriptionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<SubscriptionFetchCostsResponse>().ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<SubscriptionFetchCostsResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            deserializedResponse.Validate();
+        }
+        return deserializedResponse;
     }
 
     public async Task<SubscriptionFetchSchedulePageResponse> FetchSchedule(
@@ -97,9 +133,14 @@ public sealed class SubscriptionService : ISubscriptionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response
+        var page = await response
             .Deserialize<SubscriptionFetchSchedulePageResponse>()
             .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task<SubscriptionUsage> FetchUsage(SubscriptionFetchUsageParams parameters)
@@ -110,7 +151,14 @@ public sealed class SubscriptionService : ISubscriptionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<SubscriptionUsage>().ConfigureAwait(false);
+        var subscriptionUsage = await response
+            .Deserialize<SubscriptionUsage>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            subscriptionUsage.Validate();
+        }
+        return subscriptionUsage;
     }
 
     public async Task<MutatedSubscription> PriceIntervals(
@@ -123,7 +171,14 @@ public sealed class SubscriptionService : ISubscriptionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<MutatedSubscription>().ConfigureAwait(false);
+        var mutatedSubscription = await response
+            .Deserialize<MutatedSubscription>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            mutatedSubscription.Validate();
+        }
+        return mutatedSubscription;
     }
 
     public async Task<MutatedSubscription> RedeemCoupon(SubscriptionRedeemCouponParams parameters)
@@ -134,7 +189,14 @@ public sealed class SubscriptionService : ISubscriptionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<MutatedSubscription>().ConfigureAwait(false);
+        var mutatedSubscription = await response
+            .Deserialize<MutatedSubscription>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            mutatedSubscription.Validate();
+        }
+        return mutatedSubscription;
     }
 
     public async Task<MutatedSubscription> SchedulePlanChange(
@@ -147,7 +209,14 @@ public sealed class SubscriptionService : ISubscriptionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<MutatedSubscription>().ConfigureAwait(false);
+        var mutatedSubscription = await response
+            .Deserialize<MutatedSubscription>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            mutatedSubscription.Validate();
+        }
+        return mutatedSubscription;
     }
 
     public async Task<MutatedSubscription> TriggerPhase(SubscriptionTriggerPhaseParams parameters)
@@ -158,7 +227,14 @@ public sealed class SubscriptionService : ISubscriptionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<MutatedSubscription>().ConfigureAwait(false);
+        var mutatedSubscription = await response
+            .Deserialize<MutatedSubscription>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            mutatedSubscription.Validate();
+        }
+        return mutatedSubscription;
     }
 
     public async Task<MutatedSubscription> UnscheduleCancellation(
@@ -171,7 +247,14 @@ public sealed class SubscriptionService : ISubscriptionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<MutatedSubscription>().ConfigureAwait(false);
+        var mutatedSubscription = await response
+            .Deserialize<MutatedSubscription>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            mutatedSubscription.Validate();
+        }
+        return mutatedSubscription;
     }
 
     public async Task<MutatedSubscription> UnscheduleFixedFeeQuantityUpdates(
@@ -184,7 +267,14 @@ public sealed class SubscriptionService : ISubscriptionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<MutatedSubscription>().ConfigureAwait(false);
+        var mutatedSubscription = await response
+            .Deserialize<MutatedSubscription>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            mutatedSubscription.Validate();
+        }
+        return mutatedSubscription;
     }
 
     public async Task<MutatedSubscription> UnschedulePendingPlanChanges(
@@ -197,7 +287,14 @@ public sealed class SubscriptionService : ISubscriptionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<MutatedSubscription>().ConfigureAwait(false);
+        var mutatedSubscription = await response
+            .Deserialize<MutatedSubscription>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            mutatedSubscription.Validate();
+        }
+        return mutatedSubscription;
     }
 
     public async Task<MutatedSubscription> UpdateFixedFeeQuantity(
@@ -210,7 +307,14 @@ public sealed class SubscriptionService : ISubscriptionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<MutatedSubscription>().ConfigureAwait(false);
+        var mutatedSubscription = await response
+            .Deserialize<MutatedSubscription>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            mutatedSubscription.Validate();
+        }
+        return mutatedSubscription;
     }
 
     public async Task<MutatedSubscription> UpdateTrial(SubscriptionUpdateTrialParams parameters)
@@ -221,6 +325,13 @@ public sealed class SubscriptionService : ISubscriptionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<MutatedSubscription>().ConfigureAwait(false);
+        var mutatedSubscription = await response
+            .Deserialize<MutatedSubscription>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            mutatedSubscription.Validate();
+        }
+        return mutatedSubscription;
     }
 }

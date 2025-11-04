@@ -205,10 +205,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         _ = this.Deprecated;
         _ = this.EventName;
         _ = this.ExternalCustomerID;
-        foreach (var item in this.Properties1.Values)
-        {
-            _ = item;
-        }
+        _ = this.Properties1;
         _ = this.Timestamp;
     }
 

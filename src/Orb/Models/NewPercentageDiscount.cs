@@ -219,14 +219,8 @@ public sealed record class NewPercentageDiscount : ModelBase, IFromRaw<NewPercen
         this.AdjustmentType.Validate();
         _ = this.PercentageDiscount;
         this.AppliesToAll?.Validate();
-        foreach (var item in this.AppliesToItemIDs ?? [])
-        {
-            _ = item;
-        }
-        foreach (var item in this.AppliesToPriceIDs ?? [])
-        {
-            _ = item;
-        }
+        _ = this.AppliesToItemIDs;
+        _ = this.AppliesToPriceIDs;
         _ = this.Currency;
         foreach (var item in this.Filters ?? [])
         {

@@ -182,10 +182,7 @@ public sealed record class Discount
     {
         _ = this.ID;
         _ = this.AmountApplied;
-        foreach (var item in this.AppliesToPriceIDs)
-        {
-            _ = item;
-        }
+        _ = this.AppliesToPriceIDs;
         this.DiscountType.Validate();
         _ = this.PercentageDiscount;
         _ = this.AmountDiscount;

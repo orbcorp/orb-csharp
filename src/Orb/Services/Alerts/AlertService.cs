@@ -22,7 +22,12 @@ public sealed class AlertService : IAlertService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Alert>().ConfigureAwait(false);
+        var alert = await response.Deserialize<Alert>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            alert.Validate();
+        }
+        return alert;
     }
 
     public async Task<Alert> Update(AlertUpdateParams parameters)
@@ -33,7 +38,12 @@ public sealed class AlertService : IAlertService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Alert>().ConfigureAwait(false);
+        var alert = await response.Deserialize<Alert>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            alert.Validate();
+        }
+        return alert;
     }
 
     public async Task<AlertListPageResponse> List(AlertListParams? parameters = null)
@@ -46,7 +56,12 @@ public sealed class AlertService : IAlertService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<AlertListPageResponse>().ConfigureAwait(false);
+        var page = await response.Deserialize<AlertListPageResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task<Alert> CreateForCustomer(AlertCreateForCustomerParams parameters)
@@ -57,7 +72,12 @@ public sealed class AlertService : IAlertService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Alert>().ConfigureAwait(false);
+        var alert = await response.Deserialize<Alert>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            alert.Validate();
+        }
+        return alert;
     }
 
     public async Task<Alert> CreateForExternalCustomer(
@@ -70,7 +90,12 @@ public sealed class AlertService : IAlertService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Alert>().ConfigureAwait(false);
+        var alert = await response.Deserialize<Alert>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            alert.Validate();
+        }
+        return alert;
     }
 
     public async Task<Alert> CreateForSubscription(AlertCreateForSubscriptionParams parameters)
@@ -81,7 +106,12 @@ public sealed class AlertService : IAlertService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Alert>().ConfigureAwait(false);
+        var alert = await response.Deserialize<Alert>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            alert.Validate();
+        }
+        return alert;
     }
 
     public async Task<Alert> Disable(AlertDisableParams parameters)
@@ -92,7 +122,12 @@ public sealed class AlertService : IAlertService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Alert>().ConfigureAwait(false);
+        var alert = await response.Deserialize<Alert>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            alert.Validate();
+        }
+        return alert;
     }
 
     public async Task<Alert> Enable(AlertEnableParams parameters)
@@ -103,6 +138,11 @@ public sealed class AlertService : IAlertService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<Alert>().ConfigureAwait(false);
+        var alert = await response.Deserialize<Alert>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            alert.Validate();
+        }
+        return alert;
     }
 }

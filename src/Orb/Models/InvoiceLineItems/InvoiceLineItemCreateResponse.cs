@@ -621,10 +621,7 @@ public sealed record class InvoiceLineItemCreateResponse
         {
             item.Validate();
         }
-        foreach (var item in this.UsageCustomerIDs ?? [])
-        {
-            _ = item;
-        }
+        _ = this.UsageCustomerIDs;
     }
 
     public InvoiceLineItemCreateResponse() { }

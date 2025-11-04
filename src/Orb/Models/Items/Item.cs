@@ -195,10 +195,7 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
         {
             item.Validate();
         }
-        foreach (var item in this.Metadata.Values)
-        {
-            _ = item;
-        }
+        _ = this.Metadata;
         _ = this.Name;
         _ = this.ArchivedAt;
     }

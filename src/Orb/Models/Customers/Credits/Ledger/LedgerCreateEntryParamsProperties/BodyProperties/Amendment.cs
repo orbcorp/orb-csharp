@@ -171,13 +171,7 @@ public sealed record class Amendment : ModelBase, IFromRaw<Amendment>
         this.EntryType.Validate();
         _ = this.Currency;
         _ = this.Description;
-        if (this.Metadata != null)
-        {
-            foreach (var item in this.Metadata.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.Metadata;
     }
 
     public Amendment()

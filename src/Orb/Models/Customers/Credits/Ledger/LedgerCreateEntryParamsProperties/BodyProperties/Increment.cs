@@ -268,13 +268,7 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
             item.Validate();
         }
         this.InvoiceSettings?.Validate();
-        if (this.Metadata != null)
-        {
-            foreach (var item in this.Metadata.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.Metadata;
         _ = this.PerUnitCostBasis;
     }
 

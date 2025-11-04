@@ -22,7 +22,12 @@ public sealed class TopUpService : ITopUpService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<TopUpCreateResponse>().ConfigureAwait(false);
+        var topUp = await response.Deserialize<TopUpCreateResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            topUp.Validate();
+        }
+        return topUp;
     }
 
     public async Task<TopUpListPageResponse> List(TopUpListParams parameters)
@@ -33,7 +38,12 @@ public sealed class TopUpService : ITopUpService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<TopUpListPageResponse>().ConfigureAwait(false);
+        var page = await response.Deserialize<TopUpListPageResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task Delete(TopUpDeleteParams parameters)
@@ -44,7 +54,6 @@ public sealed class TopUpService : ITopUpService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return;
     }
 
     public async Task<TopUpCreateByExternalIDResponse> CreateByExternalID(
@@ -57,7 +66,14 @@ public sealed class TopUpService : ITopUpService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<TopUpCreateByExternalIDResponse>().ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<TopUpCreateByExternalIDResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            deserializedResponse.Validate();
+        }
+        return deserializedResponse;
     }
 
     public async Task DeleteByExternalID(TopUpDeleteByExternalIDParams parameters)
@@ -68,7 +84,6 @@ public sealed class TopUpService : ITopUpService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return;
     }
 
     public async Task<TopUpListByExternalIDPageResponse> ListByExternalID(
@@ -81,8 +96,13 @@ public sealed class TopUpService : ITopUpService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response
+        var page = await response
             .Deserialize<TopUpListByExternalIDPageResponse>()
             .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 }

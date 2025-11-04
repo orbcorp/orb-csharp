@@ -55,10 +55,7 @@ public sealed record class CustomerHierarchyConfig : ModelBase, IFromRaw<Custome
 
     public override void Validate()
     {
-        foreach (var item in this.ChildCustomerIDs ?? [])
-        {
-            _ = item;
-        }
+        _ = this.ChildCustomerIDs;
         _ = this.ParentCustomerID;
     }
 

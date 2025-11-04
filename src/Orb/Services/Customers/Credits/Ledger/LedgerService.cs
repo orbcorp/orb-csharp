@@ -22,7 +22,12 @@ public sealed class LedgerService : ILedgerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<LedgerListPageResponse>().ConfigureAwait(false);
+        var page = await response.Deserialize<LedgerListPageResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task<LedgerCreateEntryResponse> CreateEntry(LedgerCreateEntryParams parameters)
@@ -33,7 +38,14 @@ public sealed class LedgerService : ILedgerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<LedgerCreateEntryResponse>().ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<LedgerCreateEntryResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            deserializedResponse.Validate();
+        }
+        return deserializedResponse;
     }
 
     public async Task<LedgerCreateEntryByExternalIDResponse> CreateEntryByExternalID(
@@ -46,9 +58,14 @@ public sealed class LedgerService : ILedgerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response
+        var deserializedResponse = await response
             .Deserialize<LedgerCreateEntryByExternalIDResponse>()
             .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            deserializedResponse.Validate();
+        }
+        return deserializedResponse;
     }
 
     public async Task<LedgerListByExternalIDPageResponse> ListByExternalID(
@@ -61,8 +78,13 @@ public sealed class LedgerService : ILedgerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response
+        var page = await response
             .Deserialize<LedgerListByExternalIDPageResponse>()
             .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 }

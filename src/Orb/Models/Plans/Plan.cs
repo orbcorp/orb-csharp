@@ -602,10 +602,7 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
         _ = this.InvoicingCurrency;
         this.Maximum?.Validate();
         _ = this.MaximumAmount;
-        foreach (var item in this.Metadata.Values)
-        {
-            _ = item;
-        }
+        _ = this.Metadata;
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
         _ = this.Name;

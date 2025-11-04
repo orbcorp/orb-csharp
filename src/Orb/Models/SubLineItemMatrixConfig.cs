@@ -41,10 +41,7 @@ public sealed record class SubLineItemMatrixConfig : ModelBase, IFromRaw<SubLine
 
     public override void Validate()
     {
-        foreach (var item in this.DimensionValues)
-        {
-            _ = item;
-        }
+        _ = this.DimensionValues;
     }
 
     public SubLineItemMatrixConfig() { }

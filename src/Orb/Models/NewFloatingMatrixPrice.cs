@@ -458,13 +458,7 @@ public sealed record class NewFloatingMatrixPrice : ModelBase, IFromRaw<NewFloat
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
-        if (this.Metadata != null)
-        {
-            foreach (var item in this.Metadata.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.Metadata;
     }
 
     public NewFloatingMatrixPrice() { }

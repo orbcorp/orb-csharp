@@ -25,7 +25,14 @@ public sealed class ExternalDimensionalPriceGroupIDService : IExternalDimensiona
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<DimensionalPriceGroup>().ConfigureAwait(false);
+        var dimensionalPriceGroup = await response
+            .Deserialize<DimensionalPriceGroup>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            dimensionalPriceGroup.Validate();
+        }
+        return dimensionalPriceGroup;
     }
 
     public async Task<DimensionalPriceGroup> Update(
@@ -38,6 +45,13 @@ public sealed class ExternalDimensionalPriceGroupIDService : IExternalDimensiona
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<DimensionalPriceGroup>().ConfigureAwait(false);
+        var dimensionalPriceGroup = await response
+            .Deserialize<DimensionalPriceGroup>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            dimensionalPriceGroup.Validate();
+        }
+        return dimensionalPriceGroup;
     }
 }

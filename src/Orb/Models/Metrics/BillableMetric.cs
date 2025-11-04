@@ -179,10 +179,7 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
         _ = this.ID;
         _ = this.Description;
         this.Item.Validate();
-        foreach (var item in this.Metadata.Values)
-        {
-            _ = item;
-        }
+        _ = this.Metadata;
         _ = this.Name;
         this.Status.Validate();
     }

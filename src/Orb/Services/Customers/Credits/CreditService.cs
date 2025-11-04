@@ -39,7 +39,12 @@ public sealed class CreditService : ICreditService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<CreditListPageResponse>().ConfigureAwait(false);
+        var page = await response.Deserialize<CreditListPageResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task<CreditListByExternalIDPageResponse> ListByExternalID(
@@ -52,8 +57,13 @@ public sealed class CreditService : ICreditService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response
+        var page = await response
             .Deserialize<CreditListByExternalIDPageResponse>()
             .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 }

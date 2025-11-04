@@ -675,10 +675,7 @@ public sealed record class Minimum : ModelBase, IFromRaw<global::Orb.Models.Pric
         this.Item.Validate();
         this.Maximum?.Validate();
         _ = this.MaximumAmount;
-        foreach (var item in this.Metadata.Values)
-        {
-            _ = item;
-        }
+        _ = this.Metadata;
         this.Minimum1?.Validate();
         _ = this.MinimumAmount;
         this.MinimumConfig.Validate();

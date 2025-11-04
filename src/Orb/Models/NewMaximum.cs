@@ -220,14 +220,8 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
         this.AdjustmentType.Validate();
         _ = this.MaximumAmount;
         this.AppliesToAll?.Validate();
-        foreach (var item in this.AppliesToItemIDs ?? [])
-        {
-            _ = item;
-        }
-        foreach (var item in this.AppliesToPriceIDs ?? [])
-        {
-            _ = item;
-        }
+        _ = this.AppliesToItemIDs;
+        _ = this.AppliesToPriceIDs;
         _ = this.Currency;
         foreach (var item in this.Filters ?? [])
         {

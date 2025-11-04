@@ -102,10 +102,7 @@ public sealed record class Maximum : ModelBase, IFromRaw<Maximum>
 
     public override void Validate()
     {
-        foreach (var item in this.AppliesToPriceIDs)
-        {
-            _ = item;
-        }
+        _ = this.AppliesToPriceIDs;
         foreach (var item in this.Filters)
         {
             item.Validate();

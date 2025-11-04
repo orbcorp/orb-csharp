@@ -129,10 +129,7 @@ public sealed record class AmountDiscount : ModelBase, IFromRaw<AmountDiscount>
     {
         _ = this.AmountDiscount1;
         this.DiscountType.Validate();
-        foreach (var item in this.AppliesToPriceIDs ?? [])
-        {
-            _ = item;
-        }
+        _ = this.AppliesToPriceIDs;
         foreach (var item in this.Filters ?? [])
         {
             item.Validate();

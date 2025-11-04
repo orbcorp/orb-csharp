@@ -107,10 +107,7 @@ public sealed record class MatrixConfig : ModelBase, IFromRaw<MatrixConfig>
     public override void Validate()
     {
         _ = this.DefaultUnitAmount;
-        foreach (var item in this.Dimensions)
-        {
-            _ = item;
-        }
+        _ = this.Dimensions;
         foreach (var item in this.MatrixValues)
         {
             item.Validate();

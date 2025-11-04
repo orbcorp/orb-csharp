@@ -78,10 +78,7 @@ public sealed record class MatrixValue
 
     public override void Validate()
     {
-        foreach (var item in this.DimensionValues)
-        {
-            _ = item;
-        }
+        _ = this.DimensionValues;
         _ = this.UnitAmount;
     }
 

@@ -142,10 +142,7 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
     public override void Validate()
     {
         _ = this.EventName;
-        foreach (var item in this.Properties1.Values)
-        {
-            _ = item;
-        }
+        _ = this.Properties1;
         _ = this.Timestamp;
         _ = this.CustomerID;
         _ = this.ExternalCustomerID;
