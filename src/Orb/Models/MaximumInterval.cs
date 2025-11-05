@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -19,7 +20,7 @@ public sealed record class MaximumInterval : ModelBase, IFromRaw<MaximumInterval
         get
         {
             if (
-                !this.Properties.TryGetValue(
+                !this._properties.TryGetValue(
                     "applies_to_price_interval_ids",
                     out JsonElement element
                 )
@@ -38,9 +39,9 @@ public sealed record class MaximumInterval : ModelBase, IFromRaw<MaximumInterval
                     new System::ArgumentNullException("applies_to_price_interval_ids")
                 );
         }
-        set
+        init
         {
-            this.Properties["applies_to_price_interval_ids"] = JsonSerializer.SerializeToElement(
+            this._properties["applies_to_price_interval_ids"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -54,7 +55,7 @@ public sealed record class MaximumInterval : ModelBase, IFromRaw<MaximumInterval
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out JsonElement element))
+            if (!this._properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -62,9 +63,9 @@ public sealed record class MaximumInterval : ModelBase, IFromRaw<MaximumInterval
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["end_date"] = JsonSerializer.SerializeToElement(
+            this._properties["end_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -78,7 +79,7 @@ public sealed record class MaximumInterval : ModelBase, IFromRaw<MaximumInterval
     {
         get
         {
-            if (!this.Properties.TryGetValue("filters", out JsonElement element))
+            if (!this._properties.TryGetValue("filters", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'filters' cannot be null",
                     new System::ArgumentOutOfRangeException("filters", "Missing required argument")
@@ -90,9 +91,9 @@ public sealed record class MaximumInterval : ModelBase, IFromRaw<MaximumInterval
                     new System::ArgumentNullException("filters")
                 );
         }
-        set
+        init
         {
-            this.Properties["filters"] = JsonSerializer.SerializeToElement(
+            this._properties["filters"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -107,7 +108,7 @@ public sealed record class MaximumInterval : ModelBase, IFromRaw<MaximumInterval
     {
         get
         {
-            if (!this.Properties.TryGetValue("maximum_amount", out JsonElement element))
+            if (!this._properties.TryGetValue("maximum_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'maximum_amount' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -122,9 +123,9 @@ public sealed record class MaximumInterval : ModelBase, IFromRaw<MaximumInterval
                     new System::ArgumentNullException("maximum_amount")
                 );
         }
-        set
+        init
         {
-            this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(
+            this._properties["maximum_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -138,7 +139,7 @@ public sealed record class MaximumInterval : ModelBase, IFromRaw<MaximumInterval
     {
         get
         {
-            if (!this.Properties.TryGetValue("start_date", out JsonElement element))
+            if (!this._properties.TryGetValue("start_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'start_date' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -152,9 +153,9 @@ public sealed record class MaximumInterval : ModelBase, IFromRaw<MaximumInterval
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["start_date"] = JsonSerializer.SerializeToElement(
+            this._properties["start_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -175,17 +176,24 @@ public sealed record class MaximumInterval : ModelBase, IFromRaw<MaximumInterval
 
     public MaximumInterval() { }
 
+    public MaximumInterval(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    MaximumInterval(Dictionary<string, JsonElement> properties)
+    MaximumInterval(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static MaximumInterval FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static MaximumInterval FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
@@ -199,7 +207,7 @@ public sealed record class Filter3 : ModelBase, IFromRaw<Filter3>
     {
         get
         {
-            if (!this.Properties.TryGetValue("field", out JsonElement element))
+            if (!this._properties.TryGetValue("field", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'field' cannot be null",
                     new System::ArgumentOutOfRangeException("field", "Missing required argument")
@@ -210,9 +218,9 @@ public sealed record class Filter3 : ModelBase, IFromRaw<Filter3>
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["field"] = JsonSerializer.SerializeToElement(
+            this._properties["field"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -226,7 +234,7 @@ public sealed record class Filter3 : ModelBase, IFromRaw<Filter3>
     {
         get
         {
-            if (!this.Properties.TryGetValue("operator", out JsonElement element))
+            if (!this._properties.TryGetValue("operator", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'operator' cannot be null",
                     new System::ArgumentOutOfRangeException("operator", "Missing required argument")
@@ -237,9 +245,9 @@ public sealed record class Filter3 : ModelBase, IFromRaw<Filter3>
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["operator"] = JsonSerializer.SerializeToElement(
+            this._properties["operator"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -253,7 +261,7 @@ public sealed record class Filter3 : ModelBase, IFromRaw<Filter3>
     {
         get
         {
-            if (!this.Properties.TryGetValue("values", out JsonElement element))
+            if (!this._properties.TryGetValue("values", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'values' cannot be null",
                     new System::ArgumentOutOfRangeException("values", "Missing required argument")
@@ -265,9 +273,9 @@ public sealed record class Filter3 : ModelBase, IFromRaw<Filter3>
                     new System::ArgumentNullException("values")
                 );
         }
-        set
+        init
         {
-            this.Properties["values"] = JsonSerializer.SerializeToElement(
+            this._properties["values"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -283,17 +291,22 @@ public sealed record class Filter3 : ModelBase, IFromRaw<Filter3>
 
     public Filter3() { }
 
+    public Filter3(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter3(Dictionary<string, JsonElement> properties)
+    Filter3(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Filter3 FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Filter3 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -13,9 +15,13 @@ namespace Orb.Models.Beta;
 /// </summary>
 public sealed record class BetaSetDefaultPlanVersionParams : ParamsBase
 {
-    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
+    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    {
+        get { return this._bodyProperties.Freeze(); }
+    }
 
-    public required string PlanID;
+    public required string PlanID { get; init; }
 
     /// <summary>
     /// Plan version to set as the default.
@@ -24,7 +30,7 @@ public sealed record class BetaSetDefaultPlanVersionParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("version", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("version", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'version' cannot be null",
                     new ArgumentOutOfRangeException("version", "Missing required argument")
@@ -32,13 +38,53 @@ public sealed record class BetaSetDefaultPlanVersionParams : ParamsBase
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["version"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["version"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public BetaSetDefaultPlanVersionParams() { }
+
+    public BetaSetDefaultPlanVersionParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BetaSetDefaultPlanVersionParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties,
+        FrozenDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+#pragma warning restore CS8618
+
+    public static BetaSetDefaultPlanVersionParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties),
+            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+        );
     }
 
     public override Uri Url(IOrbClient client)

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -20,7 +21,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new ArgumentOutOfRangeException("id", "Missing required argument")
@@ -32,9 +33,9 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
                     new ArgumentNullException("id")
                 );
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -49,7 +50,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
     {
         get
         {
-            if (!this.Properties.TryGetValue("billable_metric_id", out JsonElement element))
+            if (!this._properties.TryGetValue("billable_metric_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'billable_metric_id' cannot be null",
                     new ArgumentOutOfRangeException(
@@ -64,9 +65,9 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
                     new ArgumentNullException("billable_metric_id")
                 );
         }
-        set
+        init
         {
-            this.Properties["billable_metric_id"] = JsonSerializer.SerializeToElement(
+            this._properties["billable_metric_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -80,7 +81,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
     {
         get
         {
-            if (!this.Properties.TryGetValue("dimensions", out JsonElement element))
+            if (!this._properties.TryGetValue("dimensions", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'dimensions' cannot be null",
                     new ArgumentOutOfRangeException("dimensions", "Missing required argument")
@@ -92,9 +93,9 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
                     new ArgumentNullException("dimensions")
                 );
         }
-        set
+        init
         {
-            this.Properties["dimensions"] = JsonSerializer.SerializeToElement(
+            this._properties["dimensions"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -109,7 +110,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
         get
         {
             if (
-                !this.Properties.TryGetValue(
+                !this._properties.TryGetValue(
                     "external_dimensional_price_group_id",
                     out JsonElement element
                 )
@@ -118,9 +119,9 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["external_dimensional_price_group_id"] =
+            this._properties["external_dimensional_price_group_id"] =
                 JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
@@ -135,7 +136,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
     {
         get
         {
-            if (!this.Properties.TryGetValue("metadata", out JsonElement element))
+            if (!this._properties.TryGetValue("metadata", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'metadata' cannot be null",
                     new ArgumentOutOfRangeException("metadata", "Missing required argument")
@@ -150,9 +151,9 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
                     new ArgumentNullException("metadata")
                 );
         }
-        set
+        init
         {
-            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+            this._properties["metadata"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -166,7 +167,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out JsonElement element))
+            if (!this._properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
                     new ArgumentOutOfRangeException("name", "Missing required argument")
@@ -178,9 +179,9 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
                     new ArgumentNullException("name")
                 );
         }
-        set
+        init
         {
-            this.Properties["name"] = JsonSerializer.SerializeToElement(
+            this._properties["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -199,16 +200,23 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
 
     public DimensionalPriceGroup() { }
 
+    public DimensionalPriceGroup(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DimensionalPriceGroup(Dictionary<string, JsonElement> properties)
+    DimensionalPriceGroup(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static DimensionalPriceGroup FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static DimensionalPriceGroup FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

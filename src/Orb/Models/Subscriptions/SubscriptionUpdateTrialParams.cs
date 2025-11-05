@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
@@ -30,9 +31,13 @@ namespace Orb.Models.Subscriptions;
 /// </summary>
 public sealed record class SubscriptionUpdateTrialParams : ParamsBase
 {
-    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
+    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    {
+        get { return this._bodyProperties.Freeze(); }
+    }
 
-    public required string SubscriptionID;
+    public required string SubscriptionID { get; init; }
 
     /// <summary>
     /// The new date that the trial should end, or the literal string `immediate`
@@ -42,7 +47,7 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("trial_end_date", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("trial_end_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'trial_end_date' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -57,9 +62,9 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
                     new System::ArgumentNullException("trial_end_date")
                 );
         }
-        set
+        init
         {
-            this.BodyProperties["trial_end_date"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["trial_end_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -74,18 +79,58 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("shift", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("shift", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["shift"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["shift"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public SubscriptionUpdateTrialParams() { }
+
+    public SubscriptionUpdateTrialParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionUpdateTrialParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties,
+        FrozenDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+#pragma warning restore CS8618
+
+    public static SubscriptionUpdateTrialParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties),
+            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+        );
     }
 
     public override System::Uri Url(IOrbClient client)

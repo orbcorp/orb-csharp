@@ -1,3 +1,6 @@
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -105,7 +108,7 @@ namespace Orb.Models.Customers.Costs;
 /// </summary>
 public sealed record class CostListByExternalIDParams : ParamsBase
 {
-    public required string ExternalCustomerID;
+    public required string ExternalCustomerID { get; init; }
 
     /// <summary>
     /// The currency or custom pricing unit to use.
@@ -114,14 +117,14 @@ public sealed record class CostListByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("currency", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("currency", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.QueryProperties["currency"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["currency"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -135,7 +138,7 @@ public sealed record class CostListByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("timeframe_end", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("timeframe_end", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -143,9 +146,9 @@ public sealed record class CostListByExternalIDParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.QueryProperties["timeframe_end"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["timeframe_end"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -159,7 +162,7 @@ public sealed record class CostListByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("timeframe_start", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("timeframe_start", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -167,9 +170,9 @@ public sealed record class CostListByExternalIDParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.QueryProperties["timeframe_start"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["timeframe_start"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -185,7 +188,7 @@ public sealed record class CostListByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("view_mode", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("view_mode", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<string, ViewModeModel>?>(
@@ -193,13 +196,47 @@ public sealed record class CostListByExternalIDParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.QueryProperties["view_mode"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["view_mode"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public CostListByExternalIDParams() { }
+
+    public CostListByExternalIDParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CostListByExternalIDParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+    }
+#pragma warning restore CS8618
+
+    public static CostListByExternalIDParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties)
+        );
     }
 
     public override System::Uri Url(IOrbClient client)

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -15,7 +16,7 @@ public sealed record class TopLevelPingResponse : ModelBase, IFromRaw<TopLevelPi
     {
         get
         {
-            if (!this.Properties.TryGetValue("response", out JsonElement element))
+            if (!this._properties.TryGetValue("response", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'response' cannot be null",
                     new ArgumentOutOfRangeException("response", "Missing required argument")
@@ -27,9 +28,9 @@ public sealed record class TopLevelPingResponse : ModelBase, IFromRaw<TopLevelPi
                     new ArgumentNullException("response")
                 );
         }
-        set
+        init
         {
-            this.Properties["response"] = JsonSerializer.SerializeToElement(
+            this._properties["response"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -43,17 +44,24 @@ public sealed record class TopLevelPingResponse : ModelBase, IFromRaw<TopLevelPi
 
     public TopLevelPingResponse() { }
 
+    public TopLevelPingResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TopLevelPingResponse(Dictionary<string, JsonElement> properties)
+    TopLevelPingResponse(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static TopLevelPingResponse FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static TopLevelPingResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]

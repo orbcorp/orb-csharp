@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
 using Orb.Core;
@@ -10,7 +13,7 @@ namespace Orb.Models.Customers.Credits.TopUps;
 /// </summary>
 public sealed record class TopUpListByExternalIDParams : ParamsBase
 {
-    public required string ExternalCustomerID;
+    public required string ExternalCustomerID { get; init; }
 
     /// <summary>
     /// Cursor for pagination. This can be populated by the `next_cursor` value returned
@@ -20,14 +23,14 @@ public sealed record class TopUpListByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("cursor", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("cursor", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["cursor"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -41,18 +44,52 @@ public sealed record class TopUpListByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("limit", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("limit", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["limit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public TopUpListByExternalIDParams() { }
+
+    public TopUpListByExternalIDParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TopUpListByExternalIDParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+    }
+#pragma warning restore CS8618
+
+    public static TopUpListByExternalIDParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties)
+        );
     }
 
     public override Uri Url(IOrbClient client)

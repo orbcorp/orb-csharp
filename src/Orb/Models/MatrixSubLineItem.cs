@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -18,7 +19,7 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out JsonElement element))
+            if (!this._properties.TryGetValue("amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amount' cannot be null",
                     new System::ArgumentOutOfRangeException("amount", "Missing required argument")
@@ -30,9 +31,9 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
                     new System::ArgumentNullException("amount")
                 );
         }
-        set
+        init
         {
-            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+            this._properties["amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -43,7 +44,7 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
     {
         get
         {
-            if (!this.Properties.TryGetValue("grouping", out JsonElement element))
+            if (!this._properties.TryGetValue("grouping", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<SubLineItemGrouping?>(
@@ -51,9 +52,9 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["grouping"] = JsonSerializer.SerializeToElement(
+            this._properties["grouping"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -64,7 +65,7 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
     {
         get
         {
-            if (!this.Properties.TryGetValue("matrix_config", out JsonElement element))
+            if (!this._properties.TryGetValue("matrix_config", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'matrix_config' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -82,9 +83,9 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
                     new System::ArgumentNullException("matrix_config")
                 );
         }
-        set
+        init
         {
-            this.Properties["matrix_config"] = JsonSerializer.SerializeToElement(
+            this._properties["matrix_config"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -95,7 +96,7 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out JsonElement element))
+            if (!this._properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
                     new System::ArgumentOutOfRangeException("name", "Missing required argument")
@@ -107,9 +108,9 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
                     new System::ArgumentNullException("name")
                 );
         }
-        set
+        init
         {
-            this.Properties["name"] = JsonSerializer.SerializeToElement(
+            this._properties["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -120,7 +121,7 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
     {
         get
         {
-            if (!this.Properties.TryGetValue("quantity", out JsonElement element))
+            if (!this._properties.TryGetValue("quantity", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'quantity' cannot be null",
                     new System::ArgumentOutOfRangeException("quantity", "Missing required argument")
@@ -128,9 +129,9 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["quantity"] = JsonSerializer.SerializeToElement(
+            this._properties["quantity"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -141,7 +142,7 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
     {
         get
         {
-            if (!this.Properties.TryGetValue("type", out JsonElement element))
+            if (!this._properties.TryGetValue("type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'type' cannot be null",
                     new System::ArgumentOutOfRangeException("type", "Missing required argument")
@@ -152,9 +153,9 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["type"] = JsonSerializer.SerializeToElement(
+            this._properties["type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -168,14 +169,14 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
     {
         get
         {
-            if (!this.Properties.TryGetValue("scaled_quantity", out JsonElement element))
+            if (!this._properties.TryGetValue("scaled_quantity", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["scaled_quantity"] = JsonSerializer.SerializeToElement(
+            this._properties["scaled_quantity"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -195,17 +196,24 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
 
     public MatrixSubLineItem() { }
 
+    public MatrixSubLineItem(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    MatrixSubLineItem(Dictionary<string, JsonElement> properties)
+    MatrixSubLineItem(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static MatrixSubLineItem FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static MatrixSubLineItem FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

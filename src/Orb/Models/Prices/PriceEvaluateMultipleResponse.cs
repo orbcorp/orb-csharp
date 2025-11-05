@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -17,7 +18,7 @@ public sealed record class PriceEvaluateMultipleResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("data", out JsonElement element))
+            if (!this._properties.TryGetValue("data", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'data' cannot be null",
                     new ArgumentOutOfRangeException("data", "Missing required argument")
@@ -29,9 +30,9 @@ public sealed record class PriceEvaluateMultipleResponse
                     new ArgumentNullException("data")
                 );
         }
-        set
+        init
         {
-            this.Properties["data"] = JsonSerializer.SerializeToElement(
+            this._properties["data"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -48,19 +49,24 @@ public sealed record class PriceEvaluateMultipleResponse
 
     public PriceEvaluateMultipleResponse() { }
 
+    public PriceEvaluateMultipleResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PriceEvaluateMultipleResponse(Dictionary<string, JsonElement> properties)
+    PriceEvaluateMultipleResponse(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static PriceEvaluateMultipleResponse FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]
@@ -81,7 +87,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
     {
         get
         {
-            if (!this.Properties.TryGetValue("currency", out JsonElement element))
+            if (!this._properties.TryGetValue("currency", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'currency' cannot be null",
                     new ArgumentOutOfRangeException("currency", "Missing required argument")
@@ -93,9 +99,9 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
                     new ArgumentNullException("currency")
                 );
         }
-        set
+        init
         {
-            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+            this._properties["currency"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -109,7 +115,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
     {
         get
         {
-            if (!this.Properties.TryGetValue("price_groups", out JsonElement element))
+            if (!this._properties.TryGetValue("price_groups", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'price_groups' cannot be null",
                     new ArgumentOutOfRangeException("price_groups", "Missing required argument")
@@ -124,9 +130,9 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
                     new ArgumentNullException("price_groups")
                 );
         }
-        set
+        init
         {
-            this.Properties["price_groups"] = JsonSerializer.SerializeToElement(
+            this._properties["price_groups"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -140,14 +146,14 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_price_id", out JsonElement element))
+            if (!this._properties.TryGetValue("external_price_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(
+            this._properties["external_price_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -161,14 +167,14 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
     {
         get
         {
-            if (!this.Properties.TryGetValue("inline_price_index", out JsonElement element))
+            if (!this._properties.TryGetValue("inline_price_index", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["inline_price_index"] = JsonSerializer.SerializeToElement(
+            this._properties["inline_price_index"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -182,14 +188,14 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
     {
         get
         {
-            if (!this.Properties.TryGetValue("price_id", out JsonElement element))
+            if (!this._properties.TryGetValue("price_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["price_id"] = JsonSerializer.SerializeToElement(
+            this._properties["price_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -210,16 +216,21 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
 
     public Data() { }
 
+    public Data(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Data(Dictionary<string, JsonElement> properties)
+    Data(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Data FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

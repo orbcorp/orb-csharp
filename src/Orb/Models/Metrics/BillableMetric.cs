@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -21,7 +22,7 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new System::ArgumentOutOfRangeException("id", "Missing required argument")
@@ -33,9 +34,9 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
                     new System::ArgumentNullException("id")
                 );
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -46,14 +47,14 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
     {
         get
         {
-            if (!this.Properties.TryGetValue("description", out JsonElement element))
+            if (!this._properties.TryGetValue("description", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["description"] = JsonSerializer.SerializeToElement(
+            this._properties["description"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -69,7 +70,7 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
     {
         get
         {
-            if (!this.Properties.TryGetValue("item", out JsonElement element))
+            if (!this._properties.TryGetValue("item", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'item' cannot be null",
                     new System::ArgumentOutOfRangeException("item", "Missing required argument")
@@ -81,9 +82,9 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
                     new System::ArgumentNullException("item")
                 );
         }
-        set
+        init
         {
-            this.Properties["item"] = JsonSerializer.SerializeToElement(
+            this._properties["item"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -100,7 +101,7 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
     {
         get
         {
-            if (!this.Properties.TryGetValue("metadata", out JsonElement element))
+            if (!this._properties.TryGetValue("metadata", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'metadata' cannot be null",
                     new System::ArgumentOutOfRangeException("metadata", "Missing required argument")
@@ -115,9 +116,9 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
                     new System::ArgumentNullException("metadata")
                 );
         }
-        set
+        init
         {
-            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+            this._properties["metadata"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -128,7 +129,7 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out JsonElement element))
+            if (!this._properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
                     new System::ArgumentOutOfRangeException("name", "Missing required argument")
@@ -140,9 +141,9 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
                     new System::ArgumentNullException("name")
                 );
         }
-        set
+        init
         {
-            this.Properties["name"] = JsonSerializer.SerializeToElement(
+            this._properties["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -153,7 +154,7 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
     {
         get
         {
-            if (!this.Properties.TryGetValue("status", out JsonElement element))
+            if (!this._properties.TryGetValue("status", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'status' cannot be null",
                     new System::ArgumentOutOfRangeException("status", "Missing required argument")
@@ -164,9 +165,9 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["status"] = JsonSerializer.SerializeToElement(
+            this._properties["status"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -185,17 +186,24 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
 
     public BillableMetric() { }
 
+    public BillableMetric(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    BillableMetric(Dictionary<string, JsonElement> properties)
+    BillableMetric(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static BillableMetric FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static BillableMetric FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

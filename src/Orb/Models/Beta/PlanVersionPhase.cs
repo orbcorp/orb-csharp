@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -15,7 +16,7 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new System::ArgumentOutOfRangeException("id", "Missing required argument")
@@ -27,9 +28,9 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
                     new System::ArgumentNullException("id")
                 );
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -40,14 +41,14 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
     {
         get
         {
-            if (!this.Properties.TryGetValue("description", out JsonElement element))
+            if (!this._properties.TryGetValue("description", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["description"] = JsonSerializer.SerializeToElement(
+            this._properties["description"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -62,14 +63,14 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
     {
         get
         {
-            if (!this.Properties.TryGetValue("duration", out JsonElement element))
+            if (!this._properties.TryGetValue("duration", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["duration"] = JsonSerializer.SerializeToElement(
+            this._properties["duration"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -80,7 +81,7 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
     {
         get
         {
-            if (!this.Properties.TryGetValue("duration_unit", out JsonElement element))
+            if (!this._properties.TryGetValue("duration_unit", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<
@@ -88,9 +89,9 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
                 global::Orb.Models.Beta.DurationUnit
             >?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["duration_unit"] = JsonSerializer.SerializeToElement(
+            this._properties["duration_unit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -101,7 +102,7 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out JsonElement element))
+            if (!this._properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
                     new System::ArgumentOutOfRangeException("name", "Missing required argument")
@@ -113,9 +114,9 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
                     new System::ArgumentNullException("name")
                 );
         }
-        set
+        init
         {
-            this.Properties["name"] = JsonSerializer.SerializeToElement(
+            this._properties["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -129,7 +130,7 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
     {
         get
         {
-            if (!this.Properties.TryGetValue("order", out JsonElement element))
+            if (!this._properties.TryGetValue("order", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'order' cannot be null",
                     new System::ArgumentOutOfRangeException("order", "Missing required argument")
@@ -137,9 +138,9 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["order"] = JsonSerializer.SerializeToElement(
+            this._properties["order"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -158,17 +159,24 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
 
     public PlanVersionPhase() { }
 
+    public PlanVersionPhase(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PlanVersionPhase(Dictionary<string, JsonElement> properties)
+    PlanVersionPhase(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static PlanVersionPhase FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static PlanVersionPhase FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -17,7 +18,7 @@ public sealed record class TieredConversionRateConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("conversion_rate_type", out JsonElement element))
+            if (!this._properties.TryGetValue("conversion_rate_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'conversion_rate_type' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -31,9 +32,9 @@ public sealed record class TieredConversionRateConfig
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["conversion_rate_type"] = JsonSerializer.SerializeToElement(
+            this._properties["conversion_rate_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -44,7 +45,7 @@ public sealed record class TieredConversionRateConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("tiered_config", out JsonElement element))
+            if (!this._properties.TryGetValue("tiered_config", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tiered_config' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -62,9 +63,9 @@ public sealed record class TieredConversionRateConfig
                     new System::ArgumentNullException("tiered_config")
                 );
         }
-        set
+        init
         {
-            this.Properties["tiered_config"] = JsonSerializer.SerializeToElement(
+            this._properties["tiered_config"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -79,19 +80,24 @@ public sealed record class TieredConversionRateConfig
 
     public TieredConversionRateConfig() { }
 
+    public TieredConversionRateConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TieredConversionRateConfig(Dictionary<string, JsonElement> properties)
+    TieredConversionRateConfig(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static TieredConversionRateConfig FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -20,7 +21,7 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new System::ArgumentOutOfRangeException("id", "Missing required argument")
@@ -32,9 +33,9 @@ public sealed record class InvoiceLineItemCreateResponse
                     new System::ArgumentNullException("id")
                 );
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -49,7 +50,7 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("adjusted_subtotal", out JsonElement element))
+            if (!this._properties.TryGetValue("adjusted_subtotal", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'adjusted_subtotal' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -64,9 +65,9 @@ public sealed record class InvoiceLineItemCreateResponse
                     new System::ArgumentNullException("adjusted_subtotal")
                 );
         }
-        set
+        init
         {
-            this.Properties["adjusted_subtotal"] = JsonSerializer.SerializeToElement(
+            this._properties["adjusted_subtotal"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -82,7 +83,7 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("adjustments", out JsonElement element))
+            if (!this._properties.TryGetValue("adjustments", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'adjustments' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -100,9 +101,9 @@ public sealed record class InvoiceLineItemCreateResponse
                     new System::ArgumentNullException("adjustments")
                 );
         }
-        set
+        init
         {
-            this.Properties["adjustments"] = JsonSerializer.SerializeToElement(
+            this._properties["adjustments"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -117,7 +118,7 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out JsonElement element))
+            if (!this._properties.TryGetValue("amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amount' cannot be null",
                     new System::ArgumentOutOfRangeException("amount", "Missing required argument")
@@ -129,9 +130,9 @@ public sealed record class InvoiceLineItemCreateResponse
                     new System::ArgumentNullException("amount")
                 );
         }
-        set
+        init
         {
-            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+            this._properties["amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -145,7 +146,7 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("credits_applied", out JsonElement element))
+            if (!this._properties.TryGetValue("credits_applied", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'credits_applied' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -160,9 +161,9 @@ public sealed record class InvoiceLineItemCreateResponse
                     new System::ArgumentNullException("credits_applied")
                 );
         }
-        set
+        init
         {
-            this.Properties["credits_applied"] = JsonSerializer.SerializeToElement(
+            this._properties["credits_applied"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -176,14 +177,14 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("discount", out JsonElement element))
+            if (!this._properties.TryGetValue("discount", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Discount1?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["discount"] = JsonSerializer.SerializeToElement(
+            this._properties["discount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -197,7 +198,7 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out JsonElement element))
+            if (!this._properties.TryGetValue("end_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'end_date' cannot be null",
                     new System::ArgumentOutOfRangeException("end_date", "Missing required argument")
@@ -208,9 +209,9 @@ public sealed record class InvoiceLineItemCreateResponse
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["end_date"] = JsonSerializer.SerializeToElement(
+            this._properties["end_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -224,14 +225,14 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("filter", out JsonElement element))
+            if (!this._properties.TryGetValue("filter", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["filter"] = JsonSerializer.SerializeToElement(
+            this._properties["filter"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -247,14 +248,14 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("grouping", out JsonElement element))
+            if (!this._properties.TryGetValue("grouping", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["grouping"] = JsonSerializer.SerializeToElement(
+            this._properties["grouping"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -268,14 +269,14 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("maximum", out JsonElement element))
+            if (!this._properties.TryGetValue("maximum", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Maximum?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["maximum"] = JsonSerializer.SerializeToElement(
+            this._properties["maximum"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -289,14 +290,14 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("maximum_amount", out JsonElement element))
+            if (!this._properties.TryGetValue("maximum_amount", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["maximum_amount"] = JsonSerializer.SerializeToElement(
+            this._properties["maximum_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -310,14 +311,14 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("minimum", out JsonElement element))
+            if (!this._properties.TryGetValue("minimum", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Minimum?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["minimum"] = JsonSerializer.SerializeToElement(
+            this._properties["minimum"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -331,14 +332,14 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("minimum_amount", out JsonElement element))
+            if (!this._properties.TryGetValue("minimum_amount", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(
+            this._properties["minimum_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -352,7 +353,7 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out JsonElement element))
+            if (!this._properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
                     new System::ArgumentOutOfRangeException("name", "Missing required argument")
@@ -364,9 +365,9 @@ public sealed record class InvoiceLineItemCreateResponse
                     new System::ArgumentNullException("name")
                 );
         }
-        set
+        init
         {
-            this.Properties["name"] = JsonSerializer.SerializeToElement(
+            this._properties["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -380,7 +381,7 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("partially_invoiced_amount", out JsonElement element))
+            if (!this._properties.TryGetValue("partially_invoiced_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'partially_invoiced_amount' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -395,9 +396,9 @@ public sealed record class InvoiceLineItemCreateResponse
                     new System::ArgumentNullException("partially_invoiced_amount")
                 );
         }
-        set
+        init
         {
-            this.Properties["partially_invoiced_amount"] = JsonSerializer.SerializeToElement(
+            this._properties["partially_invoiced_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -419,7 +420,7 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("price", out JsonElement element))
+            if (!this._properties.TryGetValue("price", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'price' cannot be null",
                     new System::ArgumentOutOfRangeException("price", "Missing required argument")
@@ -431,9 +432,9 @@ public sealed record class InvoiceLineItemCreateResponse
                     new System::ArgumentNullException("price")
                 );
         }
-        set
+        init
         {
-            this.Properties["price"] = JsonSerializer.SerializeToElement(
+            this._properties["price"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -447,7 +448,7 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("quantity", out JsonElement element))
+            if (!this._properties.TryGetValue("quantity", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'quantity' cannot be null",
                     new System::ArgumentOutOfRangeException("quantity", "Missing required argument")
@@ -455,9 +456,9 @@ public sealed record class InvoiceLineItemCreateResponse
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["quantity"] = JsonSerializer.SerializeToElement(
+            this._properties["quantity"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -471,7 +472,7 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("start_date", out JsonElement element))
+            if (!this._properties.TryGetValue("start_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'start_date' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -485,9 +486,9 @@ public sealed record class InvoiceLineItemCreateResponse
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["start_date"] = JsonSerializer.SerializeToElement(
+            this._properties["start_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -501,7 +502,7 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("sub_line_items", out JsonElement element))
+            if (!this._properties.TryGetValue("sub_line_items", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'sub_line_items' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -518,9 +519,9 @@ public sealed record class InvoiceLineItemCreateResponse
                     new System::ArgumentNullException("sub_line_items")
                 );
         }
-        set
+        init
         {
-            this.Properties["sub_line_items"] = JsonSerializer.SerializeToElement(
+            this._properties["sub_line_items"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -534,7 +535,7 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("subtotal", out JsonElement element))
+            if (!this._properties.TryGetValue("subtotal", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'subtotal' cannot be null",
                     new System::ArgumentOutOfRangeException("subtotal", "Missing required argument")
@@ -546,9 +547,9 @@ public sealed record class InvoiceLineItemCreateResponse
                     new System::ArgumentNullException("subtotal")
                 );
         }
-        set
+        init
         {
-            this.Properties["subtotal"] = JsonSerializer.SerializeToElement(
+            this._properties["subtotal"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -563,7 +564,7 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("tax_amounts", out JsonElement element))
+            if (!this._properties.TryGetValue("tax_amounts", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tax_amounts' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -578,9 +579,9 @@ public sealed record class InvoiceLineItemCreateResponse
                     new System::ArgumentNullException("tax_amounts")
                 );
         }
-        set
+        init
         {
-            this.Properties["tax_amounts"] = JsonSerializer.SerializeToElement(
+            this._properties["tax_amounts"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -594,14 +595,14 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("usage_customer_ids", out JsonElement element))
+            if (!this._properties.TryGetValue("usage_customer_ids", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["usage_customer_ids"] = JsonSerializer.SerializeToElement(
+            this._properties["usage_customer_ids"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -645,19 +646,24 @@ public sealed record class InvoiceLineItemCreateResponse
 
     public InvoiceLineItemCreateResponse() { }
 
+    public InvoiceLineItemCreateResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    InvoiceLineItemCreateResponse(Dictionary<string, JsonElement> properties)
+    InvoiceLineItemCreateResponse(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static InvoiceLineItemCreateResponse FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

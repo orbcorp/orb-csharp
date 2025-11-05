@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -15,7 +16,7 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new System::ArgumentOutOfRangeException("id", "Missing required argument")
@@ -27,9 +28,9 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
                     new System::ArgumentNullException("id")
                 );
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -43,7 +44,7 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out JsonElement element))
+            if (!this._properties.TryGetValue("amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amount' cannot be null",
                     new System::ArgumentOutOfRangeException("amount", "Missing required argument")
@@ -55,9 +56,9 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
                     new System::ArgumentNullException("amount")
                 );
         }
-        set
+        init
         {
-            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+            this._properties["amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -72,7 +73,7 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
     {
         get
         {
-            if (!this.Properties.TryGetValue("currency", out JsonElement element))
+            if (!this._properties.TryGetValue("currency", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'currency' cannot be null",
                     new System::ArgumentOutOfRangeException("currency", "Missing required argument")
@@ -84,9 +85,9 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
                     new System::ArgumentNullException("currency")
                 );
         }
-        set
+        init
         {
-            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+            this._properties["currency"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -100,7 +101,7 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
     {
         get
         {
-            if (!this.Properties.TryGetValue("invoice_settings", out JsonElement element))
+            if (!this._properties.TryGetValue("invoice_settings", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'invoice_settings' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -118,9 +119,9 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
                     new System::ArgumentNullException("invoice_settings")
                 );
         }
-        set
+        init
         {
-            this.Properties["invoice_settings"] = JsonSerializer.SerializeToElement(
+            this._properties["invoice_settings"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -134,7 +135,7 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
     {
         get
         {
-            if (!this.Properties.TryGetValue("per_unit_cost_basis", out JsonElement element))
+            if (!this._properties.TryGetValue("per_unit_cost_basis", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'per_unit_cost_basis' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -149,9 +150,9 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
                     new System::ArgumentNullException("per_unit_cost_basis")
                 );
         }
-        set
+        init
         {
-            this.Properties["per_unit_cost_basis"] = JsonSerializer.SerializeToElement(
+            this._properties["per_unit_cost_basis"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -166,7 +167,7 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
     {
         get
         {
-            if (!this.Properties.TryGetValue("threshold", out JsonElement element))
+            if (!this._properties.TryGetValue("threshold", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'threshold' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -181,9 +182,9 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
                     new System::ArgumentNullException("threshold")
                 );
         }
-        set
+        init
         {
-            this.Properties["threshold"] = JsonSerializer.SerializeToElement(
+            this._properties["threshold"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -198,14 +199,14 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
     {
         get
         {
-            if (!this.Properties.TryGetValue("expires_after", out JsonElement element))
+            if (!this._properties.TryGetValue("expires_after", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["expires_after"] = JsonSerializer.SerializeToElement(
+            this._properties["expires_after"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -219,7 +220,7 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
     {
         get
         {
-            if (!this.Properties.TryGetValue("expires_after_unit", out JsonElement element))
+            if (!this._properties.TryGetValue("expires_after_unit", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<string, ExpiresAfterUnit1>?>(
@@ -227,9 +228,9 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["expires_after_unit"] = JsonSerializer.SerializeToElement(
+            this._properties["expires_after_unit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -250,17 +251,24 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
 
     public TopUpCreateResponse() { }
 
+    public TopUpCreateResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TopUpCreateResponse(Dictionary<string, JsonElement> properties)
+    TopUpCreateResponse(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static TopUpCreateResponse FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static TopUpCreateResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

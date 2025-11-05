@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -17,7 +18,7 @@ public sealed record class FixedFeeQuantityScheduleEntry
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out JsonElement element))
+            if (!this._properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -25,9 +26,9 @@ public sealed record class FixedFeeQuantityScheduleEntry
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["end_date"] = JsonSerializer.SerializeToElement(
+            this._properties["end_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -38,7 +39,7 @@ public sealed record class FixedFeeQuantityScheduleEntry
     {
         get
         {
-            if (!this.Properties.TryGetValue("price_id", out JsonElement element))
+            if (!this._properties.TryGetValue("price_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'price_id' cannot be null",
                     new System::ArgumentOutOfRangeException("price_id", "Missing required argument")
@@ -50,9 +51,9 @@ public sealed record class FixedFeeQuantityScheduleEntry
                     new System::ArgumentNullException("price_id")
                 );
         }
-        set
+        init
         {
-            this.Properties["price_id"] = JsonSerializer.SerializeToElement(
+            this._properties["price_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -63,7 +64,7 @@ public sealed record class FixedFeeQuantityScheduleEntry
     {
         get
         {
-            if (!this.Properties.TryGetValue("quantity", out JsonElement element))
+            if (!this._properties.TryGetValue("quantity", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'quantity' cannot be null",
                     new System::ArgumentOutOfRangeException("quantity", "Missing required argument")
@@ -71,9 +72,9 @@ public sealed record class FixedFeeQuantityScheduleEntry
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["quantity"] = JsonSerializer.SerializeToElement(
+            this._properties["quantity"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -84,7 +85,7 @@ public sealed record class FixedFeeQuantityScheduleEntry
     {
         get
         {
-            if (!this.Properties.TryGetValue("start_date", out JsonElement element))
+            if (!this._properties.TryGetValue("start_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'start_date' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -98,9 +99,9 @@ public sealed record class FixedFeeQuantityScheduleEntry
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["start_date"] = JsonSerializer.SerializeToElement(
+            this._properties["start_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -117,18 +118,23 @@ public sealed record class FixedFeeQuantityScheduleEntry
 
     public FixedFeeQuantityScheduleEntry() { }
 
+    public FixedFeeQuantityScheduleEntry(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FixedFeeQuantityScheduleEntry(Dictionary<string, JsonElement> properties)
+    FixedFeeQuantityScheduleEntry(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static FixedFeeQuantityScheduleEntry FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

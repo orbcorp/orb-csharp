@@ -1,4 +1,6 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -13,9 +15,13 @@ namespace Orb.Models.Alerts;
 /// </summary>
 public sealed record class AlertUpdateParams : ParamsBase
 {
-    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
+    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    {
+        get { return this._bodyProperties.Freeze(); }
+    }
 
-    public required string AlertConfigurationID;
+    public required string AlertConfigurationID { get; init; }
 
     /// <summary>
     /// The thresholds that define the values at which the alert will be triggered.
@@ -24,7 +30,7 @@ public sealed record class AlertUpdateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("thresholds", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("thresholds", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'thresholds' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -39,13 +45,53 @@ public sealed record class AlertUpdateParams : ParamsBase
                     new System::ArgumentNullException("thresholds")
                 );
         }
-        set
+        init
         {
-            this.BodyProperties["thresholds"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["thresholds"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public AlertUpdateParams() { }
+
+    public AlertUpdateParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AlertUpdateParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties,
+        FrozenDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+#pragma warning restore CS8618
+
+    public static AlertUpdateParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties),
+            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+        );
     }
 
     public override System::Uri Url(IOrbClient client)

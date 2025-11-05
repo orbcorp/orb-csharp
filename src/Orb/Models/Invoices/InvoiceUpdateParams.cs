@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
@@ -21,9 +22,13 @@ namespace Orb.Models.Invoices;
 /// </summary>
 public sealed record class InvoiceUpdateParams : ParamsBase
 {
-    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
+    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    {
+        get { return this._bodyProperties.Freeze(); }
+    }
 
-    public required string InvoiceID;
+    public required string InvoiceID { get; init; }
 
     /// <summary>
     /// An optional custom due date for the invoice. If not set, the due date will
@@ -33,14 +38,14 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("due_date", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("due_date", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<DueDateModel?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["due_date"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["due_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -54,14 +59,14 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("invoice_date", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("invoice_date", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<InvoiceDate?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["invoice_date"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["invoice_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -77,7 +82,7 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("metadata", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
@@ -85,9 +90,9 @@ public sealed record class InvoiceUpdateParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["metadata"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -106,18 +111,58 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("net_terms", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("net_terms", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["net_terms"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["net_terms"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public InvoiceUpdateParams() { }
+
+    public InvoiceUpdateParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    InvoiceUpdateParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties,
+        FrozenDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+#pragma warning restore CS8618
+
+    public static InvoiceUpdateParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties),
+            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+        );
     }
 
     public override System::Uri Url(IOrbClient client)

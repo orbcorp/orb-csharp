@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -21,7 +22,7 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
     {
         get
         {
-            if (!this.Properties.TryGetValue("tiers", out JsonElement element))
+            if (!this._properties.TryGetValue("tiers", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tiers' cannot be null",
                     new System::ArgumentOutOfRangeException("tiers", "Missing required argument")
@@ -33,9 +34,9 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
                     new System::ArgumentNullException("tiers")
                 );
         }
-        set
+        init
         {
-            this.Properties["tiers"] = JsonSerializer.SerializeToElement(
+            this._properties["tiers"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -52,17 +53,22 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
 
     public TieredConfig() { }
 
+    public TieredConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TieredConfig(Dictionary<string, JsonElement> properties)
+    TieredConfig(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static TieredConfig FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static TieredConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]

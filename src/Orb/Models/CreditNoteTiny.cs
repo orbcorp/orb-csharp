@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -18,7 +19,7 @@ public sealed record class CreditNoteTiny : ModelBase, IFromRaw<CreditNoteTiny>
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new System::ArgumentOutOfRangeException("id", "Missing required argument")
@@ -30,9 +31,9 @@ public sealed record class CreditNoteTiny : ModelBase, IFromRaw<CreditNoteTiny>
                     new System::ArgumentNullException("id")
                 );
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -46,17 +47,24 @@ public sealed record class CreditNoteTiny : ModelBase, IFromRaw<CreditNoteTiny>
 
     public CreditNoteTiny() { }
 
+    public CreditNoteTiny(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CreditNoteTiny(Dictionary<string, JsonElement> properties)
+    CreditNoteTiny(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static CreditNoteTiny FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static CreditNoteTiny FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]

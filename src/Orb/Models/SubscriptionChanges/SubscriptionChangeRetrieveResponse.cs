@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -22,7 +23,7 @@ public sealed record class SubscriptionChangeRetrieveResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new System::ArgumentOutOfRangeException("id", "Missing required argument")
@@ -34,9 +35,9 @@ public sealed record class SubscriptionChangeRetrieveResponse
                     new System::ArgumentNullException("id")
                 );
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -50,7 +51,7 @@ public sealed record class SubscriptionChangeRetrieveResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("expiration_time", out JsonElement element))
+            if (!this._properties.TryGetValue("expiration_time", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'expiration_time' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -64,9 +65,9 @@ public sealed record class SubscriptionChangeRetrieveResponse
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["expiration_time"] = JsonSerializer.SerializeToElement(
+            this._properties["expiration_time"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -77,7 +78,7 @@ public sealed record class SubscriptionChangeRetrieveResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("status", out JsonElement element))
+            if (!this._properties.TryGetValue("status", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'status' cannot be null",
                     new System::ArgumentOutOfRangeException("status", "Missing required argument")
@@ -87,9 +88,9 @@ public sealed record class SubscriptionChangeRetrieveResponse
                 ApiEnum<string, global::Orb.Models.SubscriptionChanges.StatusModel>
             >(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["status"] = JsonSerializer.SerializeToElement(
+            this._properties["status"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -100,7 +101,7 @@ public sealed record class SubscriptionChangeRetrieveResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("subscription", out JsonElement element))
+            if (!this._properties.TryGetValue("subscription", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<MutatedSubscription?>(
@@ -108,9 +109,9 @@ public sealed record class SubscriptionChangeRetrieveResponse
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["subscription"] = JsonSerializer.SerializeToElement(
+            this._properties["subscription"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -124,7 +125,7 @@ public sealed record class SubscriptionChangeRetrieveResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("applied_at", out JsonElement element))
+            if (!this._properties.TryGetValue("applied_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -132,9 +133,9 @@ public sealed record class SubscriptionChangeRetrieveResponse
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["applied_at"] = JsonSerializer.SerializeToElement(
+            this._properties["applied_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -148,7 +149,7 @@ public sealed record class SubscriptionChangeRetrieveResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("cancelled_at", out JsonElement element))
+            if (!this._properties.TryGetValue("cancelled_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -156,9 +157,9 @@ public sealed record class SubscriptionChangeRetrieveResponse
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["cancelled_at"] = JsonSerializer.SerializeToElement(
+            this._properties["cancelled_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -177,19 +178,24 @@ public sealed record class SubscriptionChangeRetrieveResponse
 
     public SubscriptionChangeRetrieveResponse() { }
 
+    public SubscriptionChangeRetrieveResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    SubscriptionChangeRetrieveResponse(Dictionary<string, JsonElement> properties)
+    SubscriptionChangeRetrieveResponse(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static SubscriptionChangeRetrieveResponse FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

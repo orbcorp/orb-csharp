@@ -1,3 +1,6 @@
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
 using Orb.Core;
@@ -29,7 +32,7 @@ namespace Orb.Models.Customers.BalanceTransactions;
 /// </summary>
 public sealed record class BalanceTransactionListParams : ParamsBase
 {
-    public required string CustomerID;
+    public required string CustomerID { get; init; }
 
     /// <summary>
     /// Cursor for pagination. This can be populated by the `next_cursor` value returned
@@ -39,14 +42,14 @@ public sealed record class BalanceTransactionListParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("cursor", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("cursor", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["cursor"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -60,14 +63,14 @@ public sealed record class BalanceTransactionListParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("limit", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("limit", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["limit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -78,7 +81,7 @@ public sealed record class BalanceTransactionListParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("operation_time[gt]", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("operation_time[gt]", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -86,9 +89,9 @@ public sealed record class BalanceTransactionListParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.QueryProperties["operation_time[gt]"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["operation_time[gt]"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -99,7 +102,7 @@ public sealed record class BalanceTransactionListParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("operation_time[gte]", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("operation_time[gte]", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -107,9 +110,9 @@ public sealed record class BalanceTransactionListParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.QueryProperties["operation_time[gte]"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["operation_time[gte]"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -120,7 +123,7 @@ public sealed record class BalanceTransactionListParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("operation_time[lt]", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("operation_time[lt]", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -128,9 +131,9 @@ public sealed record class BalanceTransactionListParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.QueryProperties["operation_time[lt]"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["operation_time[lt]"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -141,7 +144,7 @@ public sealed record class BalanceTransactionListParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("operation_time[lte]", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("operation_time[lte]", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -149,13 +152,47 @@ public sealed record class BalanceTransactionListParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.QueryProperties["operation_time[lte]"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["operation_time[lte]"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public BalanceTransactionListParams() { }
+
+    public BalanceTransactionListParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BalanceTransactionListParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+    }
+#pragma warning restore CS8618
+
+    public static BalanceTransactionListParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties)
+        );
     }
 
     public override System::Uri Url(IOrbClient client)

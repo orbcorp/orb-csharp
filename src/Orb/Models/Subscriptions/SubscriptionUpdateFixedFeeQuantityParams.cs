@@ -1,4 +1,6 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -25,9 +27,13 @@ namespace Orb.Models.Subscriptions;
 /// </summary>
 public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
 {
-    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
+    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    {
+        get { return this._bodyProperties.Freeze(); }
+    }
 
-    public required string SubscriptionID;
+    public required string SubscriptionID { get; init; }
 
     /// <summary>
     /// Price for which the quantity should be updated. Must be a fixed fee.
@@ -36,7 +42,7 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("price_id", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("price_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'price_id' cannot be null",
                     new System::ArgumentOutOfRangeException("price_id", "Missing required argument")
@@ -48,9 +54,9 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
                     new System::ArgumentNullException("price_id")
                 );
         }
-        set
+        init
         {
-            this.BodyProperties["price_id"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["price_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -61,7 +67,7 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("quantity", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("quantity", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'quantity' cannot be null",
                     new System::ArgumentOutOfRangeException("quantity", "Missing required argument")
@@ -69,9 +75,9 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["quantity"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["quantity"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -88,7 +94,7 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
         get
         {
             if (
-                !this.BodyProperties.TryGetValue(
+                !this._bodyProperties.TryGetValue(
                     "allow_invoice_credit_or_void",
                     out JsonElement element
                 )
@@ -97,12 +103,10 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["allow_invoice_credit_or_void"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            this._bodyProperties["allow_invoice_credit_or_void"] =
+                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
 
@@ -115,7 +119,7 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("change_option", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("change_option", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<string, ChangeOption1>?>(
@@ -123,9 +127,9 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.BodyProperties["change_option"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["change_option"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -141,7 +145,7 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("effective_date", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("effective_date", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateOnly?>(
@@ -149,13 +153,53 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.BodyProperties["effective_date"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["effective_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public SubscriptionUpdateFixedFeeQuantityParams() { }
+
+    public SubscriptionUpdateFixedFeeQuantityParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionUpdateFixedFeeQuantityParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties,
+        FrozenDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+#pragma warning restore CS8618
+
+    public static SubscriptionUpdateFixedFeeQuantityParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties),
+            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+        );
     }
 
     public override System::Uri Url(IOrbClient client)

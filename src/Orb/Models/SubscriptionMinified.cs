@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -15,7 +16,7 @@ public sealed record class SubscriptionMinified : ModelBase, IFromRaw<Subscripti
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new System::ArgumentOutOfRangeException("id", "Missing required argument")
@@ -27,9 +28,9 @@ public sealed record class SubscriptionMinified : ModelBase, IFromRaw<Subscripti
                     new System::ArgumentNullException("id")
                 );
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -43,17 +44,24 @@ public sealed record class SubscriptionMinified : ModelBase, IFromRaw<Subscripti
 
     public SubscriptionMinified() { }
 
+    public SubscriptionMinified(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    SubscriptionMinified(Dictionary<string, JsonElement> properties)
+    SubscriptionMinified(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static SubscriptionMinified FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static SubscriptionMinified FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]

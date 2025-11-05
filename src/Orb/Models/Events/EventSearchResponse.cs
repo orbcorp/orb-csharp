@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -15,7 +16,7 @@ public sealed record class EventSearchResponse : ModelBase, IFromRaw<EventSearch
     {
         get
         {
-            if (!this.Properties.TryGetValue("data", out JsonElement element))
+            if (!this._properties.TryGetValue("data", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'data' cannot be null",
                     new ArgumentOutOfRangeException("data", "Missing required argument")
@@ -27,9 +28,9 @@ public sealed record class EventSearchResponse : ModelBase, IFromRaw<EventSearch
                     new ArgumentNullException("data")
                 );
         }
-        set
+        init
         {
-            this.Properties["data"] = JsonSerializer.SerializeToElement(
+            this._properties["data"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -46,17 +47,24 @@ public sealed record class EventSearchResponse : ModelBase, IFromRaw<EventSearch
 
     public EventSearchResponse() { }
 
+    public EventSearchResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    EventSearchResponse(Dictionary<string, JsonElement> properties)
+    EventSearchResponse(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static EventSearchResponse FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static EventSearchResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]
@@ -84,7 +92,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new ArgumentOutOfRangeException("id", "Missing required argument")
@@ -96,9 +104,9 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
                     new ArgumentNullException("id")
                 );
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -112,14 +120,14 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
     {
         get
         {
-            if (!this.Properties.TryGetValue("customer_id", out JsonElement element))
+            if (!this._properties.TryGetValue("customer_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["customer_id"] = JsonSerializer.SerializeToElement(
+            this._properties["customer_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -133,7 +141,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
     {
         get
         {
-            if (!this.Properties.TryGetValue("deprecated", out JsonElement element))
+            if (!this._properties.TryGetValue("deprecated", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'deprecated' cannot be null",
                     new ArgumentOutOfRangeException("deprecated", "Missing required argument")
@@ -141,9 +149,9 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["deprecated"] = JsonSerializer.SerializeToElement(
+            this._properties["deprecated"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -157,7 +165,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
     {
         get
         {
-            if (!this.Properties.TryGetValue("event_name", out JsonElement element))
+            if (!this._properties.TryGetValue("event_name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'event_name' cannot be null",
                     new ArgumentOutOfRangeException("event_name", "Missing required argument")
@@ -169,9 +177,9 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
                     new ArgumentNullException("event_name")
                 );
         }
-        set
+        init
         {
-            this.Properties["event_name"] = JsonSerializer.SerializeToElement(
+            this._properties["event_name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -185,14 +193,14 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_customer_id", out JsonElement element))
+            if (!this._properties.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["external_customer_id"] = JsonSerializer.SerializeToElement(
+            this._properties["external_customer_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -207,7 +215,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
     {
         get
         {
-            if (!this.Properties.TryGetValue("properties", out JsonElement element))
+            if (!this._properties.TryGetValue("properties", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'properties' cannot be null",
                     new ArgumentOutOfRangeException("properties", "Missing required argument")
@@ -222,9 +230,9 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
                     new ArgumentNullException("properties")
                 );
         }
-        set
+        init
         {
-            this.Properties["properties"] = JsonSerializer.SerializeToElement(
+            this._properties["properties"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -240,7 +248,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
     {
         get
         {
-            if (!this.Properties.TryGetValue("timestamp", out JsonElement element))
+            if (!this._properties.TryGetValue("timestamp", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'timestamp' cannot be null",
                     new ArgumentOutOfRangeException("timestamp", "Missing required argument")
@@ -248,9 +256,9 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["timestamp"] = JsonSerializer.SerializeToElement(
+            this._properties["timestamp"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -270,16 +278,21 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
 
     public Data() { }
 
+    public Data(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Data(Dictionary<string, JsonElement> properties)
+    Data(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Data FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -21,7 +22,7 @@ public sealed record class BulkTier : ModelBase, IFromRaw<BulkTier>
     {
         get
         {
-            if (!this.Properties.TryGetValue("unit_amount", out JsonElement element))
+            if (!this._properties.TryGetValue("unit_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'unit_amount' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -36,9 +37,9 @@ public sealed record class BulkTier : ModelBase, IFromRaw<BulkTier>
                     new System::ArgumentNullException("unit_amount")
                 );
         }
-        set
+        init
         {
-            this.Properties["unit_amount"] = JsonSerializer.SerializeToElement(
+            this._properties["unit_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -52,14 +53,14 @@ public sealed record class BulkTier : ModelBase, IFromRaw<BulkTier>
     {
         get
         {
-            if (!this.Properties.TryGetValue("maximum_units", out JsonElement element))
+            if (!this._properties.TryGetValue("maximum_units", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["maximum_units"] = JsonSerializer.SerializeToElement(
+            this._properties["maximum_units"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -74,17 +75,22 @@ public sealed record class BulkTier : ModelBase, IFromRaw<BulkTier>
 
     public BulkTier() { }
 
+    public BulkTier(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    BulkTier(Dictionary<string, JsonElement> properties)
+    BulkTier(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static BulkTier FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static BulkTier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -19,7 +20,7 @@ public sealed record class TopUpInvoiceSettings : ModelBase, IFromRaw<TopUpInvoi
     {
         get
         {
-            if (!this.Properties.TryGetValue("auto_collection", out JsonElement element))
+            if (!this._properties.TryGetValue("auto_collection", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'auto_collection' cannot be null",
                     new ArgumentOutOfRangeException("auto_collection", "Missing required argument")
@@ -27,9 +28,9 @@ public sealed record class TopUpInvoiceSettings : ModelBase, IFromRaw<TopUpInvoi
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["auto_collection"] = JsonSerializer.SerializeToElement(
+            this._properties["auto_collection"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -45,7 +46,7 @@ public sealed record class TopUpInvoiceSettings : ModelBase, IFromRaw<TopUpInvoi
     {
         get
         {
-            if (!this.Properties.TryGetValue("net_terms", out JsonElement element))
+            if (!this._properties.TryGetValue("net_terms", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'net_terms' cannot be null",
                     new ArgumentOutOfRangeException("net_terms", "Missing required argument")
@@ -53,9 +54,9 @@ public sealed record class TopUpInvoiceSettings : ModelBase, IFromRaw<TopUpInvoi
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["net_terms"] = JsonSerializer.SerializeToElement(
+            this._properties["net_terms"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -69,14 +70,14 @@ public sealed record class TopUpInvoiceSettings : ModelBase, IFromRaw<TopUpInvoi
     {
         get
         {
-            if (!this.Properties.TryGetValue("memo", out JsonElement element))
+            if (!this._properties.TryGetValue("memo", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["memo"] = JsonSerializer.SerializeToElement(
+            this._properties["memo"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -93,14 +94,16 @@ public sealed record class TopUpInvoiceSettings : ModelBase, IFromRaw<TopUpInvoi
     {
         get
         {
-            if (!this.Properties.TryGetValue("require_successful_payment", out JsonElement element))
+            if (
+                !this._properties.TryGetValue("require_successful_payment", out JsonElement element)
+            )
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["require_successful_payment"] = JsonSerializer.SerializeToElement(
+            this._properties["require_successful_payment"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -117,16 +120,23 @@ public sealed record class TopUpInvoiceSettings : ModelBase, IFromRaw<TopUpInvoi
 
     public TopUpInvoiceSettings() { }
 
+    public TopUpInvoiceSettings(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TopUpInvoiceSettings(Dictionary<string, JsonElement> properties)
+    TopUpInvoiceSettings(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static TopUpInvoiceSettings FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static TopUpInvoiceSettings FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

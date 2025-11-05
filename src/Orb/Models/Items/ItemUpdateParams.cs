@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
@@ -15,15 +16,19 @@ namespace Orb.Models.Items;
 /// </summary>
 public sealed record class ItemUpdateParams : ParamsBase
 {
-    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
+    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    {
+        get { return this._bodyProperties.Freeze(); }
+    }
 
-    public required string ItemID;
+    public required string ItemID { get; init; }
 
     public List<ExternalConnection>? ExternalConnections
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("external_connections", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("external_connections", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<ExternalConnection>?>(
@@ -31,9 +36,9 @@ public sealed record class ItemUpdateParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.BodyProperties["external_connections"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["external_connections"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -49,7 +54,7 @@ public sealed record class ItemUpdateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("metadata", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
@@ -57,9 +62,9 @@ public sealed record class ItemUpdateParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["metadata"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -70,18 +75,58 @@ public sealed record class ItemUpdateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("name", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("name", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["name"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public ItemUpdateParams() { }
+
+    public ItemUpdateParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ItemUpdateParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties,
+        FrozenDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+#pragma warning restore CS8618
+
+    public static ItemUpdateParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties),
+            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+        );
     }
 
     public override System::Uri Url(IOrbClient client)
@@ -127,7 +172,7 @@ public sealed record class ExternalConnection : ModelBase, IFromRaw<ExternalConn
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_connection_name", out JsonElement element))
+            if (!this._properties.TryGetValue("external_connection_name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'external_connection_name' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -141,9 +186,9 @@ public sealed record class ExternalConnection : ModelBase, IFromRaw<ExternalConn
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["external_connection_name"] = JsonSerializer.SerializeToElement(
+            this._properties["external_connection_name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -157,7 +202,7 @@ public sealed record class ExternalConnection : ModelBase, IFromRaw<ExternalConn
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_entity_id", out JsonElement element))
+            if (!this._properties.TryGetValue("external_entity_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'external_entity_id' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -172,9 +217,9 @@ public sealed record class ExternalConnection : ModelBase, IFromRaw<ExternalConn
                     new System::ArgumentNullException("external_entity_id")
                 );
         }
-        set
+        init
         {
-            this.Properties["external_entity_id"] = JsonSerializer.SerializeToElement(
+            this._properties["external_entity_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -189,17 +234,24 @@ public sealed record class ExternalConnection : ModelBase, IFromRaw<ExternalConn
 
     public ExternalConnection() { }
 
+    public ExternalConnection(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ExternalConnection(Dictionary<string, JsonElement> properties)
+    ExternalConnection(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static ExternalConnection FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static ExternalConnection FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -15,7 +16,7 @@ public sealed record class NewAccountingSyncConfiguration
     {
         get
         {
-            if (!this.Properties.TryGetValue("accounting_providers", out JsonElement element))
+            if (!this._properties.TryGetValue("accounting_providers", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<AccountingProviderConfig>?>(
@@ -23,9 +24,9 @@ public sealed record class NewAccountingSyncConfiguration
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["accounting_providers"] = JsonSerializer.SerializeToElement(
+            this._properties["accounting_providers"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -36,14 +37,14 @@ public sealed record class NewAccountingSyncConfiguration
     {
         get
         {
-            if (!this.Properties.TryGetValue("excluded", out JsonElement element))
+            if (!this._properties.TryGetValue("excluded", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["excluded"] = JsonSerializer.SerializeToElement(
+            this._properties["excluded"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -61,18 +62,23 @@ public sealed record class NewAccountingSyncConfiguration
 
     public NewAccountingSyncConfiguration() { }
 
+    public NewAccountingSyncConfiguration(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    NewAccountingSyncConfiguration(Dictionary<string, JsonElement> properties)
+    NewAccountingSyncConfiguration(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static NewAccountingSyncConfiguration FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

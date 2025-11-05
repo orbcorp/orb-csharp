@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -23,7 +24,7 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new System::ArgumentOutOfRangeException("id", "Missing required argument")
@@ -35,9 +36,9 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
                     new System::ArgumentNullException("id")
                 );
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -51,7 +52,7 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
     {
         get
         {
-            if (!this.Properties.TryGetValue("created_at", out JsonElement element))
+            if (!this._properties.TryGetValue("created_at", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'created_at' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -65,9 +66,9 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["created_at"] = JsonSerializer.SerializeToElement(
+            this._properties["created_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -82,7 +83,7 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_connections", out JsonElement element))
+            if (!this._properties.TryGetValue("external_connections", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'external_connections' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -100,9 +101,9 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
                     new System::ArgumentNullException("external_connections")
                 );
         }
-        set
+        init
         {
-            this.Properties["external_connections"] = JsonSerializer.SerializeToElement(
+            this._properties["external_connections"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -119,7 +120,7 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
     {
         get
         {
-            if (!this.Properties.TryGetValue("metadata", out JsonElement element))
+            if (!this._properties.TryGetValue("metadata", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'metadata' cannot be null",
                     new System::ArgumentOutOfRangeException("metadata", "Missing required argument")
@@ -134,9 +135,9 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
                     new System::ArgumentNullException("metadata")
                 );
         }
-        set
+        init
         {
-            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+            this._properties["metadata"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -150,7 +151,7 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out JsonElement element))
+            if (!this._properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
                     new System::ArgumentOutOfRangeException("name", "Missing required argument")
@@ -162,9 +163,9 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
                     new System::ArgumentNullException("name")
                 );
         }
-        set
+        init
         {
-            this.Properties["name"] = JsonSerializer.SerializeToElement(
+            this._properties["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -178,7 +179,7 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
     {
         get
         {
-            if (!this.Properties.TryGetValue("archived_at", out JsonElement element))
+            if (!this._properties.TryGetValue("archived_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -186,9 +187,9 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["archived_at"] = JsonSerializer.SerializeToElement(
+            this._properties["archived_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -210,17 +211,22 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
 
     public Item() { }
 
+    public Item(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Item(Dictionary<string, JsonElement> properties)
+    Item(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Item FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Item FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
@@ -238,7 +244,7 @@ public sealed record class ExternalConnectionModel : ModelBase, IFromRaw<Externa
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_connection_name", out JsonElement element))
+            if (!this._properties.TryGetValue("external_connection_name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'external_connection_name' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -252,9 +258,9 @@ public sealed record class ExternalConnectionModel : ModelBase, IFromRaw<Externa
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["external_connection_name"] = JsonSerializer.SerializeToElement(
+            this._properties["external_connection_name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -268,7 +274,7 @@ public sealed record class ExternalConnectionModel : ModelBase, IFromRaw<Externa
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_entity_id", out JsonElement element))
+            if (!this._properties.TryGetValue("external_entity_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'external_entity_id' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -283,9 +289,9 @@ public sealed record class ExternalConnectionModel : ModelBase, IFromRaw<Externa
                     new System::ArgumentNullException("external_entity_id")
                 );
         }
-        set
+        init
         {
-            this.Properties["external_entity_id"] = JsonSerializer.SerializeToElement(
+            this._properties["external_entity_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -300,19 +306,24 @@ public sealed record class ExternalConnectionModel : ModelBase, IFromRaw<Externa
 
     public ExternalConnectionModel() { }
 
+    public ExternalConnectionModel(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ExternalConnectionModel(Dictionary<string, JsonElement> properties)
+    ExternalConnectionModel(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static ExternalConnectionModel FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

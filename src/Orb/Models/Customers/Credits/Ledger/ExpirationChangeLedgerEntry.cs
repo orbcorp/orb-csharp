@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -17,7 +18,7 @@ public sealed record class ExpirationChangeLedgerEntry
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new System::ArgumentOutOfRangeException("id", "Missing required argument")
@@ -29,9 +30,9 @@ public sealed record class ExpirationChangeLedgerEntry
                     new System::ArgumentNullException("id")
                 );
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -42,7 +43,7 @@ public sealed record class ExpirationChangeLedgerEntry
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out JsonElement element))
+            if (!this._properties.TryGetValue("amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amount' cannot be null",
                     new System::ArgumentOutOfRangeException("amount", "Missing required argument")
@@ -50,9 +51,9 @@ public sealed record class ExpirationChangeLedgerEntry
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+            this._properties["amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -63,7 +64,7 @@ public sealed record class ExpirationChangeLedgerEntry
     {
         get
         {
-            if (!this.Properties.TryGetValue("created_at", out JsonElement element))
+            if (!this._properties.TryGetValue("created_at", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'created_at' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -77,9 +78,9 @@ public sealed record class ExpirationChangeLedgerEntry
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["created_at"] = JsonSerializer.SerializeToElement(
+            this._properties["created_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -90,7 +91,7 @@ public sealed record class ExpirationChangeLedgerEntry
     {
         get
         {
-            if (!this.Properties.TryGetValue("credit_block", out JsonElement element))
+            if (!this._properties.TryGetValue("credit_block", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'credit_block' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -105,9 +106,9 @@ public sealed record class ExpirationChangeLedgerEntry
                     new System::ArgumentNullException("credit_block")
                 );
         }
-        set
+        init
         {
-            this.Properties["credit_block"] = JsonSerializer.SerializeToElement(
+            this._properties["credit_block"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -118,7 +119,7 @@ public sealed record class ExpirationChangeLedgerEntry
     {
         get
         {
-            if (!this.Properties.TryGetValue("currency", out JsonElement element))
+            if (!this._properties.TryGetValue("currency", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'currency' cannot be null",
                     new System::ArgumentOutOfRangeException("currency", "Missing required argument")
@@ -130,9 +131,9 @@ public sealed record class ExpirationChangeLedgerEntry
                     new System::ArgumentNullException("currency")
                 );
         }
-        set
+        init
         {
-            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+            this._properties["currency"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -143,7 +144,7 @@ public sealed record class ExpirationChangeLedgerEntry
     {
         get
         {
-            if (!this.Properties.TryGetValue("customer", out JsonElement element))
+            if (!this._properties.TryGetValue("customer", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'customer' cannot be null",
                     new System::ArgumentOutOfRangeException("customer", "Missing required argument")
@@ -158,9 +159,9 @@ public sealed record class ExpirationChangeLedgerEntry
                     new System::ArgumentNullException("customer")
                 );
         }
-        set
+        init
         {
-            this.Properties["customer"] = JsonSerializer.SerializeToElement(
+            this._properties["customer"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -171,14 +172,14 @@ public sealed record class ExpirationChangeLedgerEntry
     {
         get
         {
-            if (!this.Properties.TryGetValue("description", out JsonElement element))
+            if (!this._properties.TryGetValue("description", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["description"] = JsonSerializer.SerializeToElement(
+            this._properties["description"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -189,7 +190,7 @@ public sealed record class ExpirationChangeLedgerEntry
     {
         get
         {
-            if (!this.Properties.TryGetValue("ending_balance", out JsonElement element))
+            if (!this._properties.TryGetValue("ending_balance", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'ending_balance' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -200,9 +201,9 @@ public sealed record class ExpirationChangeLedgerEntry
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["ending_balance"] = JsonSerializer.SerializeToElement(
+            this._properties["ending_balance"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -213,7 +214,7 @@ public sealed record class ExpirationChangeLedgerEntry
     {
         get
         {
-            if (!this.Properties.TryGetValue("entry_status", out JsonElement element))
+            if (!this._properties.TryGetValue("entry_status", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'entry_status' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -227,9 +228,9 @@ public sealed record class ExpirationChangeLedgerEntry
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["entry_status"] = JsonSerializer.SerializeToElement(
+            this._properties["entry_status"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -240,7 +241,7 @@ public sealed record class ExpirationChangeLedgerEntry
     {
         get
         {
-            if (!this.Properties.TryGetValue("entry_type", out JsonElement element))
+            if (!this._properties.TryGetValue("entry_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'entry_type' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -254,9 +255,9 @@ public sealed record class ExpirationChangeLedgerEntry
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["entry_type"] = JsonSerializer.SerializeToElement(
+            this._properties["entry_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -267,7 +268,7 @@ public sealed record class ExpirationChangeLedgerEntry
     {
         get
         {
-            if (!this.Properties.TryGetValue("ledger_sequence_number", out JsonElement element))
+            if (!this._properties.TryGetValue("ledger_sequence_number", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'ledger_sequence_number' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -278,9 +279,9 @@ public sealed record class ExpirationChangeLedgerEntry
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["ledger_sequence_number"] = JsonSerializer.SerializeToElement(
+            this._properties["ledger_sequence_number"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -297,7 +298,7 @@ public sealed record class ExpirationChangeLedgerEntry
     {
         get
         {
-            if (!this.Properties.TryGetValue("metadata", out JsonElement element))
+            if (!this._properties.TryGetValue("metadata", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'metadata' cannot be null",
                     new System::ArgumentOutOfRangeException("metadata", "Missing required argument")
@@ -312,9 +313,9 @@ public sealed record class ExpirationChangeLedgerEntry
                     new System::ArgumentNullException("metadata")
                 );
         }
-        set
+        init
         {
-            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+            this._properties["metadata"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -325,7 +326,7 @@ public sealed record class ExpirationChangeLedgerEntry
     {
         get
         {
-            if (!this.Properties.TryGetValue("new_block_expiry_date", out JsonElement element))
+            if (!this._properties.TryGetValue("new_block_expiry_date", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -333,9 +334,9 @@ public sealed record class ExpirationChangeLedgerEntry
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["new_block_expiry_date"] = JsonSerializer.SerializeToElement(
+            this._properties["new_block_expiry_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -346,7 +347,7 @@ public sealed record class ExpirationChangeLedgerEntry
     {
         get
         {
-            if (!this.Properties.TryGetValue("starting_balance", out JsonElement element))
+            if (!this._properties.TryGetValue("starting_balance", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'starting_balance' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -357,9 +358,9 @@ public sealed record class ExpirationChangeLedgerEntry
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["starting_balance"] = JsonSerializer.SerializeToElement(
+            this._properties["starting_balance"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -386,19 +387,24 @@ public sealed record class ExpirationChangeLedgerEntry
 
     public ExpirationChangeLedgerEntry() { }
 
+    public ExpirationChangeLedgerEntry(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ExpirationChangeLedgerEntry(Dictionary<string, JsonElement> properties)
+    ExpirationChangeLedgerEntry(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static ExpirationChangeLedgerEntry FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

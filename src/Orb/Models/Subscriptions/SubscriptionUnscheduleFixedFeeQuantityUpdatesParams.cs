@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -16,9 +18,13 @@ namespace Orb.Models.Subscriptions;
 /// </summary>
 public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams : ParamsBase
 {
-    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
+    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    {
+        get { return this._bodyProperties.Freeze(); }
+    }
 
-    public required string SubscriptionID;
+    public required string SubscriptionID { get; init; }
 
     /// <summary>
     /// Price for which the updates should be cleared. Must be a fixed fee.
@@ -27,7 +33,7 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("price_id", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("price_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'price_id' cannot be null",
                     new ArgumentOutOfRangeException("price_id", "Missing required argument")
@@ -39,13 +45,53 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
                     new ArgumentNullException("price_id")
                 );
         }
-        set
+        init
         {
-            this.BodyProperties["price_id"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["price_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public SubscriptionUnscheduleFixedFeeQuantityUpdatesParams() { }
+
+    public SubscriptionUnscheduleFixedFeeQuantityUpdatesParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionUnscheduleFixedFeeQuantityUpdatesParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties,
+        FrozenDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+#pragma warning restore CS8618
+
+    public static SubscriptionUnscheduleFixedFeeQuantityUpdatesParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties),
+            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+        );
     }
 
     public override Uri Url(IOrbClient client)

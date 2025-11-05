@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -44,7 +46,11 @@ namespace Orb.Models.Events.Backfills;
 /// </summary>
 public sealed record class BackfillCreateParams : ParamsBase
 {
-    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
+    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    {
+        get { return this._bodyProperties.Freeze(); }
+    }
 
     /// <summary>
     /// The (exclusive) end of the usage timeframe affected by this backfill. By default,
@@ -55,7 +61,7 @@ public sealed record class BackfillCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("timeframe_end", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("timeframe_end", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'timeframe_end' cannot be null",
                     new ArgumentOutOfRangeException("timeframe_end", "Missing required argument")
@@ -63,9 +69,9 @@ public sealed record class BackfillCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -81,7 +87,7 @@ public sealed record class BackfillCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("timeframe_start", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("timeframe_start", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'timeframe_start' cannot be null",
                     new ArgumentOutOfRangeException("timeframe_start", "Missing required argument")
@@ -89,9 +95,9 @@ public sealed record class BackfillCreateParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -107,14 +113,14 @@ public sealed record class BackfillCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("close_time", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("close_time", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["close_time"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["close_time"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -129,14 +135,14 @@ public sealed record class BackfillCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("customer_id", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("customer_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["customer_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -151,14 +157,14 @@ public sealed record class BackfillCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("deprecation_filter", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("deprecation_filter", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["deprecation_filter"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["deprecation_filter"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -173,14 +179,14 @@ public sealed record class BackfillCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("external_customer_id", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -196,19 +202,62 @@ public sealed record class BackfillCreateParams : ParamsBase
         get
         {
             if (
-                !this.BodyProperties.TryGetValue("replace_existing_events", out JsonElement element)
+                !this._bodyProperties.TryGetValue(
+                    "replace_existing_events",
+                    out JsonElement element
+                )
             )
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["replace_existing_events"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["replace_existing_events"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public BackfillCreateParams() { }
+
+    public BackfillCreateParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BackfillCreateParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties,
+        FrozenDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+#pragma warning restore CS8618
+
+    public static BackfillCreateParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties),
+            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+        );
     }
 
     public override Uri Url(IOrbClient client)
