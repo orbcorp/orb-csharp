@@ -1,3 +1,6 @@
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -19,7 +22,7 @@ public sealed record class PlanListParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[gt]", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("created_at[gt]", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -27,9 +30,9 @@ public sealed record class PlanListParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.QueryProperties["created_at[gt]"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["created_at[gt]"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -40,7 +43,7 @@ public sealed record class PlanListParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[gte]", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("created_at[gte]", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -48,9 +51,9 @@ public sealed record class PlanListParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.QueryProperties["created_at[gte]"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["created_at[gte]"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -61,7 +64,7 @@ public sealed record class PlanListParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[lt]", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("created_at[lt]", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -69,9 +72,9 @@ public sealed record class PlanListParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.QueryProperties["created_at[lt]"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["created_at[lt]"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -82,7 +85,7 @@ public sealed record class PlanListParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[lte]", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("created_at[lte]", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -90,9 +93,9 @@ public sealed record class PlanListParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.QueryProperties["created_at[lte]"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["created_at[lte]"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -107,14 +110,14 @@ public sealed record class PlanListParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("cursor", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("cursor", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.QueryProperties["cursor"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["cursor"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -128,14 +131,14 @@ public sealed record class PlanListParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("limit", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("limit", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.QueryProperties["limit"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["limit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -149,7 +152,7 @@ public sealed record class PlanListParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("status", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("status", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<
@@ -157,13 +160,47 @@ public sealed record class PlanListParams : ParamsBase
                 global::Orb.Models.Plans.StatusModel
             >?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.QueryProperties["status"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["status"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public PlanListParams() { }
+
+    public PlanListParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PlanListParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+    }
+#pragma warning restore CS8618
+
+    public static PlanListParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties)
+        );
     }
 
     public override System::Uri Url(IOrbClient client)

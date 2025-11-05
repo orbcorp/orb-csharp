@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -18,7 +19,7 @@ public sealed record class TaxAmount : ModelBase, IFromRaw<TaxAmount>
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out JsonElement element))
+            if (!this._properties.TryGetValue("amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amount' cannot be null",
                     new System::ArgumentOutOfRangeException("amount", "Missing required argument")
@@ -30,9 +31,9 @@ public sealed record class TaxAmount : ModelBase, IFromRaw<TaxAmount>
                     new System::ArgumentNullException("amount")
                 );
         }
-        set
+        init
         {
-            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+            this._properties["amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -46,7 +47,7 @@ public sealed record class TaxAmount : ModelBase, IFromRaw<TaxAmount>
     {
         get
         {
-            if (!this.Properties.TryGetValue("tax_rate_description", out JsonElement element))
+            if (!this._properties.TryGetValue("tax_rate_description", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tax_rate_description' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -61,9 +62,9 @@ public sealed record class TaxAmount : ModelBase, IFromRaw<TaxAmount>
                     new System::ArgumentNullException("tax_rate_description")
                 );
         }
-        set
+        init
         {
-            this.Properties["tax_rate_description"] = JsonSerializer.SerializeToElement(
+            this._properties["tax_rate_description"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -77,14 +78,14 @@ public sealed record class TaxAmount : ModelBase, IFromRaw<TaxAmount>
     {
         get
         {
-            if (!this.Properties.TryGetValue("tax_rate_percentage", out JsonElement element))
+            if (!this._properties.TryGetValue("tax_rate_percentage", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["tax_rate_percentage"] = JsonSerializer.SerializeToElement(
+            this._properties["tax_rate_percentage"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -100,16 +101,21 @@ public sealed record class TaxAmount : ModelBase, IFromRaw<TaxAmount>
 
     public TaxAmount() { }
 
+    public TaxAmount(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TaxAmount(Dictionary<string, JsonElement> properties)
+    TaxAmount(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static TaxAmount FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static TaxAmount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

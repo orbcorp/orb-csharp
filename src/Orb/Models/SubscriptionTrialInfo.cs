@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -14,7 +15,7 @@ public sealed record class SubscriptionTrialInfo : ModelBase, IFromRaw<Subscript
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out JsonElement element))
+            if (!this._properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -22,9 +23,9 @@ public sealed record class SubscriptionTrialInfo : ModelBase, IFromRaw<Subscript
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["end_date"] = JsonSerializer.SerializeToElement(
+            this._properties["end_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -38,17 +39,24 @@ public sealed record class SubscriptionTrialInfo : ModelBase, IFromRaw<Subscript
 
     public SubscriptionTrialInfo() { }
 
+    public SubscriptionTrialInfo(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    SubscriptionTrialInfo(Dictionary<string, JsonElement> properties)
+    SubscriptionTrialInfo(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static SubscriptionTrialInfo FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static SubscriptionTrialInfo FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]

@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -35,9 +37,13 @@ namespace Orb.Models.Prices;
 /// </summary>
 public sealed record class PriceEvaluateParams : ParamsBase
 {
-    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
+    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    {
+        get { return this._bodyProperties.Freeze(); }
+    }
 
-    public required string PriceID;
+    public required string PriceID { get; init; }
 
     /// <summary>
     /// The exclusive upper bound for event timestamps
@@ -46,7 +52,7 @@ public sealed record class PriceEvaluateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("timeframe_end", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("timeframe_end", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'timeframe_end' cannot be null",
                     new ArgumentOutOfRangeException("timeframe_end", "Missing required argument")
@@ -54,9 +60,9 @@ public sealed record class PriceEvaluateParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -70,7 +76,7 @@ public sealed record class PriceEvaluateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("timeframe_start", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("timeframe_start", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'timeframe_start' cannot be null",
                     new ArgumentOutOfRangeException("timeframe_start", "Missing required argument")
@@ -78,9 +84,9 @@ public sealed record class PriceEvaluateParams : ParamsBase
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -94,14 +100,14 @@ public sealed record class PriceEvaluateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("customer_id", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("customer_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["customer_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -115,14 +121,14 @@ public sealed record class PriceEvaluateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("external_customer_id", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -137,14 +143,14 @@ public sealed record class PriceEvaluateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("filter", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("filter", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["filter"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["filter"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -159,18 +165,58 @@ public sealed record class PriceEvaluateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("grouping_keys", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("grouping_keys", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["grouping_keys"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["grouping_keys"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public PriceEvaluateParams() { }
+
+    public PriceEvaluateParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PriceEvaluateParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties,
+        FrozenDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+#pragma warning restore CS8618
+
+    public static PriceEvaluateParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties),
+            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+        );
     }
 
     public override Uri Url(IOrbClient client)

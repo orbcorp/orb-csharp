@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
@@ -15,7 +16,11 @@ namespace Orb.Models.Invoices;
 /// </summary>
 public sealed record class InvoiceCreateParams : ParamsBase
 {
-    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
+    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    {
+        get { return this._bodyProperties.Freeze(); }
+    }
 
     /// <summary>
     /// An ISO 4217 currency string. Must be the same as the customer's currency
@@ -25,7 +30,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("currency", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("currency", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'currency' cannot be null",
                     new System::ArgumentOutOfRangeException("currency", "Missing required argument")
@@ -37,9 +42,9 @@ public sealed record class InvoiceCreateParams : ParamsBase
                     new System::ArgumentNullException("currency")
                 );
         }
-        set
+        init
         {
-            this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["currency"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -54,7 +59,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("invoice_date", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("invoice_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'invoice_date' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -68,9 +73,9 @@ public sealed record class InvoiceCreateParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.BodyProperties["invoice_date"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["invoice_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -81,7 +86,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("line_items", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("line_items", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'line_items' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -99,9 +104,9 @@ public sealed record class InvoiceCreateParams : ParamsBase
                     new System::ArgumentNullException("line_items")
                 );
         }
-        set
+        init
         {
-            this.BodyProperties["line_items"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["line_items"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -116,14 +121,14 @@ public sealed record class InvoiceCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("customer_id", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("customer_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["customer_id"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["customer_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -137,14 +142,14 @@ public sealed record class InvoiceCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("discount", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("discount", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Discount1?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["discount"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["discount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -159,14 +164,14 @@ public sealed record class InvoiceCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("due_date", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("due_date", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<DueDate?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["due_date"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["due_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -181,14 +186,14 @@ public sealed record class InvoiceCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("external_customer_id", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -203,14 +208,14 @@ public sealed record class InvoiceCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("memo", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("memo", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["memo"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["memo"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -226,7 +231,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("metadata", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
@@ -234,9 +239,9 @@ public sealed record class InvoiceCreateParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["metadata"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -255,14 +260,14 @@ public sealed record class InvoiceCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("net_terms", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("net_terms", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["net_terms"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["net_terms"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -278,18 +283,58 @@ public sealed record class InvoiceCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("will_auto_issue", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("will_auto_issue", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["will_auto_issue"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["will_auto_issue"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public InvoiceCreateParams() { }
+
+    public InvoiceCreateParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    InvoiceCreateParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties,
+        FrozenDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+#pragma warning restore CS8618
+
+    public static InvoiceCreateParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties),
+            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+        );
     }
 
     public override System::Uri Url(IOrbClient client)
@@ -329,7 +374,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.Inv
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out JsonElement element))
+            if (!this._properties.TryGetValue("end_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'end_date' cannot be null",
                     new System::ArgumentOutOfRangeException("end_date", "Missing required argument")
@@ -340,9 +385,9 @@ public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.Inv
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["end_date"] = JsonSerializer.SerializeToElement(
+            this._properties["end_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -353,7 +398,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.Inv
     {
         get
         {
-            if (!this.Properties.TryGetValue("item_id", out JsonElement element))
+            if (!this._properties.TryGetValue("item_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'item_id' cannot be null",
                     new System::ArgumentOutOfRangeException("item_id", "Missing required argument")
@@ -365,9 +410,9 @@ public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.Inv
                     new System::ArgumentNullException("item_id")
                 );
         }
-        set
+        init
         {
-            this.Properties["item_id"] = JsonSerializer.SerializeToElement(
+            this._properties["item_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -378,7 +423,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.Inv
     {
         get
         {
-            if (!this.Properties.TryGetValue("model_type", out JsonElement element))
+            if (!this._properties.TryGetValue("model_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'model_type' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -391,9 +436,9 @@ public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.Inv
                 ApiEnum<string, global::Orb.Models.Invoices.ModelType>
             >(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["model_type"] = JsonSerializer.SerializeToElement(
+            this._properties["model_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -407,7 +452,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.Inv
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out JsonElement element))
+            if (!this._properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
                     new System::ArgumentOutOfRangeException("name", "Missing required argument")
@@ -419,9 +464,9 @@ public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.Inv
                     new System::ArgumentNullException("name")
                 );
         }
-        set
+        init
         {
-            this.Properties["name"] = JsonSerializer.SerializeToElement(
+            this._properties["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -435,7 +480,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.Inv
     {
         get
         {
-            if (!this.Properties.TryGetValue("quantity", out JsonElement element))
+            if (!this._properties.TryGetValue("quantity", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'quantity' cannot be null",
                     new System::ArgumentOutOfRangeException("quantity", "Missing required argument")
@@ -443,9 +488,9 @@ public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.Inv
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["quantity"] = JsonSerializer.SerializeToElement(
+            this._properties["quantity"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -459,7 +504,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.Inv
     {
         get
         {
-            if (!this.Properties.TryGetValue("start_date", out JsonElement element))
+            if (!this._properties.TryGetValue("start_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'start_date' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -473,9 +518,9 @@ public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.Inv
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["start_date"] = JsonSerializer.SerializeToElement(
+            this._properties["start_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -489,7 +534,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.Inv
     {
         get
         {
-            if (!this.Properties.TryGetValue("unit_config", out JsonElement element))
+            if (!this._properties.TryGetValue("unit_config", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'unit_config' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -504,9 +549,9 @@ public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.Inv
                     new System::ArgumentNullException("unit_config")
                 );
         }
-        set
+        init
         {
-            this.Properties["unit_config"] = JsonSerializer.SerializeToElement(
+            this._properties["unit_config"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -526,19 +571,24 @@ public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.Inv
 
     public LineItem() { }
 
+    public LineItem(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    LineItem(Dictionary<string, JsonElement> properties)
+    LineItem(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static global::Orb.Models.Invoices.LineItem FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

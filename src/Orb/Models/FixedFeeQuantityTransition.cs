@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -17,7 +18,7 @@ public sealed record class FixedFeeQuantityTransition
     {
         get
         {
-            if (!this.Properties.TryGetValue("effective_date", out JsonElement element))
+            if (!this._properties.TryGetValue("effective_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'effective_date' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -31,9 +32,9 @@ public sealed record class FixedFeeQuantityTransition
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["effective_date"] = JsonSerializer.SerializeToElement(
+            this._properties["effective_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -44,7 +45,7 @@ public sealed record class FixedFeeQuantityTransition
     {
         get
         {
-            if (!this.Properties.TryGetValue("price_id", out JsonElement element))
+            if (!this._properties.TryGetValue("price_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'price_id' cannot be null",
                     new System::ArgumentOutOfRangeException("price_id", "Missing required argument")
@@ -56,9 +57,9 @@ public sealed record class FixedFeeQuantityTransition
                     new System::ArgumentNullException("price_id")
                 );
         }
-        set
+        init
         {
-            this.Properties["price_id"] = JsonSerializer.SerializeToElement(
+            this._properties["price_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -69,7 +70,7 @@ public sealed record class FixedFeeQuantityTransition
     {
         get
         {
-            if (!this.Properties.TryGetValue("quantity", out JsonElement element))
+            if (!this._properties.TryGetValue("quantity", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'quantity' cannot be null",
                     new System::ArgumentOutOfRangeException("quantity", "Missing required argument")
@@ -77,9 +78,9 @@ public sealed record class FixedFeeQuantityTransition
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["quantity"] = JsonSerializer.SerializeToElement(
+            this._properties["quantity"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -95,18 +96,23 @@ public sealed record class FixedFeeQuantityTransition
 
     public FixedFeeQuantityTransition() { }
 
+    public FixedFeeQuantityTransition(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FixedFeeQuantityTransition(Dictionary<string, JsonElement> properties)
+    FixedFeeQuantityTransition(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static FixedFeeQuantityTransition FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -21,7 +22,7 @@ public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
     {
         get
         {
-            if (!this.Properties.TryGetValue("package_amount", out JsonElement element))
+            if (!this._properties.TryGetValue("package_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'package_amount' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -36,9 +37,9 @@ public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
                     new System::ArgumentNullException("package_amount")
                 );
         }
-        set
+        init
         {
-            this.Properties["package_amount"] = JsonSerializer.SerializeToElement(
+            this._properties["package_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -53,7 +54,7 @@ public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
     {
         get
         {
-            if (!this.Properties.TryGetValue("package_size", out JsonElement element))
+            if (!this._properties.TryGetValue("package_size", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'package_size' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -64,9 +65,9 @@ public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["package_size"] = JsonSerializer.SerializeToElement(
+            this._properties["package_size"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -81,16 +82,23 @@ public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
 
     public PackageConfig() { }
 
+    public PackageConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PackageConfig(Dictionary<string, JsonElement> properties)
+    PackageConfig(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static PackageConfig FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static PackageConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

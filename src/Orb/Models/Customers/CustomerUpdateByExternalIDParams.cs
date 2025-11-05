@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
@@ -17,16 +18,20 @@ namespace Orb.Models.Customers;
 /// </summary>
 public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
 {
-    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
+    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    {
+        get { return this._bodyProperties.Freeze(); }
+    }
 
-    public required string ID;
+    public required string ID { get; init; }
 
     public NewAccountingSyncConfiguration? AccountingSyncConfiguration
     {
         get
         {
             if (
-                !this.BodyProperties.TryGetValue(
+                !this._bodyProperties.TryGetValue(
                     "accounting_sync_configuration",
                     out JsonElement element
                 )
@@ -38,9 +43,9 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.BodyProperties["accounting_sync_configuration"] =
+            this._bodyProperties["accounting_sync_configuration"] =
                 JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
@@ -54,14 +59,14 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("additional_emails", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("additional_emails", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["additional_emails"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["additional_emails"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -77,14 +82,14 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("auto_collection", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("auto_collection", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["auto_collection"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["auto_collection"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -101,14 +106,14 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("auto_issuance", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("auto_issuance", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["auto_issuance"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["auto_issuance"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -119,14 +124,14 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("billing_address", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("billing_address", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<AddressInput?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["billing_address"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["billing_address"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -141,14 +146,14 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("currency", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("currency", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["currency"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -162,14 +167,14 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("email", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("email", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["email"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["email"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -180,14 +185,14 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("email_delivery", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("email_delivery", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["email_delivery"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["email_delivery"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -204,14 +209,14 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("external_customer_id", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["external_customer_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -225,7 +230,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("hierarchy", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("hierarchy", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<CustomerHierarchyConfig?>(
@@ -233,9 +238,9 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.BodyProperties["hierarchy"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["hierarchy"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -251,7 +256,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("metadata", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
@@ -259,9 +264,9 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.BodyProperties["metadata"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["metadata"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -275,14 +280,14 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("name", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("name", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["name"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -300,7 +305,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("payment_provider", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("payment_provider", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<string, PaymentProvider1>?>(
@@ -308,9 +313,9 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.BodyProperties["payment_provider"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["payment_provider"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -325,14 +330,14 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("payment_provider_id", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("payment_provider_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["payment_provider_id"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["payment_provider_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -344,7 +349,10 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
         get
         {
             if (
-                !this.BodyProperties.TryGetValue("reporting_configuration", out JsonElement element)
+                !this._bodyProperties.TryGetValue(
+                    "reporting_configuration",
+                    out JsonElement element
+                )
             )
                 return null;
 
@@ -353,9 +361,9 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.BodyProperties["reporting_configuration"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["reporting_configuration"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -366,14 +374,14 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("shipping_address", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("shipping_address", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<AddressInput?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["shipping_address"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["shipping_address"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -384,7 +392,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("tax_configuration", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("tax_configuration", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<TaxConfiguration1?>(
@@ -392,9 +400,9 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.BodyProperties["tax_configuration"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["tax_configuration"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -510,18 +518,58 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("tax_id", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("tax_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<CustomerTaxID?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["tax_id"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["tax_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public CustomerUpdateByExternalIDParams() { }
+
+    public CustomerUpdateByExternalIDParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CustomerUpdateByExternalIDParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties,
+        FrozenDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+#pragma warning restore CS8618
+
+    public static CustomerUpdateByExternalIDParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties),
+            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+        );
     }
 
     public override System::Uri Url(IOrbClient client)
@@ -961,7 +1009,7 @@ public sealed record class Numeral1 : ModelBase, IFromRaw<Numeral1>
     {
         get
         {
-            if (!this.Properties.TryGetValue("tax_exempt", out JsonElement element))
+            if (!this._properties.TryGetValue("tax_exempt", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tax_exempt' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -972,9 +1020,9 @@ public sealed record class Numeral1 : ModelBase, IFromRaw<Numeral1>
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["tax_exempt"] = JsonSerializer.SerializeToElement(
+            this._properties["tax_exempt"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -985,7 +1033,7 @@ public sealed record class Numeral1 : ModelBase, IFromRaw<Numeral1>
     {
         get
         {
-            if (!this.Properties.TryGetValue("tax_provider", out JsonElement element))
+            if (!this._properties.TryGetValue("tax_provider", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tax_provider' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -1000,9 +1048,9 @@ public sealed record class Numeral1 : ModelBase, IFromRaw<Numeral1>
                     new System::ArgumentNullException("tax_provider")
                 );
         }
-        set
+        init
         {
-            this.Properties["tax_provider"] = JsonSerializer.SerializeToElement(
+            this._properties["tax_provider"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1017,14 +1065,14 @@ public sealed record class Numeral1 : ModelBase, IFromRaw<Numeral1>
     {
         get
         {
-            if (!this.Properties.TryGetValue("automatic_tax_enabled", out JsonElement element))
+            if (!this._properties.TryGetValue("automatic_tax_enabled", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["automatic_tax_enabled"] = JsonSerializer.SerializeToElement(
+            this._properties["automatic_tax_enabled"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1043,17 +1091,24 @@ public sealed record class Numeral1 : ModelBase, IFromRaw<Numeral1>
         this.TaxProvider = new();
     }
 
+    public Numeral1(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+
+        this.TaxProvider = new();
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Numeral1(Dictionary<string, JsonElement> properties)
+    Numeral1(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Numeral1 FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Numeral1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]
@@ -1116,7 +1171,7 @@ public sealed record class Anrok1 : ModelBase, IFromRaw<Anrok1>
     {
         get
         {
-            if (!this.Properties.TryGetValue("tax_exempt", out JsonElement element))
+            if (!this._properties.TryGetValue("tax_exempt", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tax_exempt' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -1127,9 +1182,9 @@ public sealed record class Anrok1 : ModelBase, IFromRaw<Anrok1>
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["tax_exempt"] = JsonSerializer.SerializeToElement(
+            this._properties["tax_exempt"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1140,7 +1195,7 @@ public sealed record class Anrok1 : ModelBase, IFromRaw<Anrok1>
     {
         get
         {
-            if (!this.Properties.TryGetValue("tax_provider", out JsonElement element))
+            if (!this._properties.TryGetValue("tax_provider", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tax_provider' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -1155,9 +1210,9 @@ public sealed record class Anrok1 : ModelBase, IFromRaw<Anrok1>
                     new System::ArgumentNullException("tax_provider")
                 );
         }
-        set
+        init
         {
-            this.Properties["tax_provider"] = JsonSerializer.SerializeToElement(
+            this._properties["tax_provider"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1172,14 +1227,14 @@ public sealed record class Anrok1 : ModelBase, IFromRaw<Anrok1>
     {
         get
         {
-            if (!this.Properties.TryGetValue("automatic_tax_enabled", out JsonElement element))
+            if (!this._properties.TryGetValue("automatic_tax_enabled", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["automatic_tax_enabled"] = JsonSerializer.SerializeToElement(
+            this._properties["automatic_tax_enabled"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1198,17 +1253,24 @@ public sealed record class Anrok1 : ModelBase, IFromRaw<Anrok1>
         this.TaxProvider = new();
     }
 
+    public Anrok1(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+
+        this.TaxProvider = new();
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Anrok1(Dictionary<string, JsonElement> properties)
+    Anrok1(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Anrok1 FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Anrok1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]

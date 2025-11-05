@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -17,7 +18,7 @@ public sealed record class NewReportingConfiguration
     {
         get
         {
-            if (!this.Properties.TryGetValue("exempt", out JsonElement element))
+            if (!this._properties.TryGetValue("exempt", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'exempt' cannot be null",
                     new ArgumentOutOfRangeException("exempt", "Missing required argument")
@@ -25,9 +26,9 @@ public sealed record class NewReportingConfiguration
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["exempt"] = JsonSerializer.SerializeToElement(
+            this._properties["exempt"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -41,19 +42,24 @@ public sealed record class NewReportingConfiguration
 
     public NewReportingConfiguration() { }
 
+    public NewReportingConfiguration(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    NewReportingConfiguration(Dictionary<string, JsonElement> properties)
+    NewReportingConfiguration(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static NewReportingConfiguration FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]

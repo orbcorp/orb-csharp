@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -17,7 +18,7 @@ public sealed record class DimensionalPriceGroupsModel
     {
         get
         {
-            if (!this.Properties.TryGetValue("data", out JsonElement element))
+            if (!this._properties.TryGetValue("data", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'data' cannot be null",
                     new ArgumentOutOfRangeException("data", "Missing required argument")
@@ -32,9 +33,9 @@ public sealed record class DimensionalPriceGroupsModel
                     new ArgumentNullException("data")
                 );
         }
-        set
+        init
         {
-            this.Properties["data"] = JsonSerializer.SerializeToElement(
+            this._properties["data"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -45,7 +46,7 @@ public sealed record class DimensionalPriceGroupsModel
     {
         get
         {
-            if (!this.Properties.TryGetValue("pagination_metadata", out JsonElement element))
+            if (!this._properties.TryGetValue("pagination_metadata", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'pagination_metadata' cannot be null",
                     new ArgumentOutOfRangeException(
@@ -63,9 +64,9 @@ public sealed record class DimensionalPriceGroupsModel
                     new ArgumentNullException("pagination_metadata")
                 );
         }
-        set
+        init
         {
-            this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(
+            this._properties["pagination_metadata"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -83,18 +84,23 @@ public sealed record class DimensionalPriceGroupsModel
 
     public DimensionalPriceGroupsModel() { }
 
+    public DimensionalPriceGroupsModel(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DimensionalPriceGroupsModel(Dictionary<string, JsonElement> properties)
+    DimensionalPriceGroupsModel(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static DimensionalPriceGroupsModel FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

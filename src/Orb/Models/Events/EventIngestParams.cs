@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
@@ -176,13 +177,17 @@ namespace Orb.Models.Events;
 /// </summary>
 public sealed record class EventIngestParams : ParamsBase
 {
-    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
+    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    {
+        get { return this._bodyProperties.Freeze(); }
+    }
 
     public required List<Event> Events
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("events", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("events", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'events' cannot be null",
                     new ArgumentOutOfRangeException("events", "Missing required argument")
@@ -194,9 +199,9 @@ public sealed record class EventIngestParams : ParamsBase
                     new ArgumentNullException("events")
                 );
         }
-        set
+        init
         {
-            this.BodyProperties["events"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["events"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -211,14 +216,14 @@ public sealed record class EventIngestParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("backfill_id", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("backfill_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.QueryProperties["backfill_id"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["backfill_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -232,18 +237,58 @@ public sealed record class EventIngestParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("debug", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("debug", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.QueryProperties["debug"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["debug"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public EventIngestParams() { }
+
+    public EventIngestParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    EventIngestParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties,
+        FrozenDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+#pragma warning restore CS8618
+
+    public static EventIngestParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties),
+            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+        );
     }
 
     public override Uri Url(IOrbClient client)
@@ -283,7 +328,7 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
     {
         get
         {
-            if (!this.Properties.TryGetValue("event_name", out JsonElement element))
+            if (!this._properties.TryGetValue("event_name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'event_name' cannot be null",
                     new ArgumentOutOfRangeException("event_name", "Missing required argument")
@@ -295,9 +340,9 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
                     new ArgumentNullException("event_name")
                 );
         }
-        set
+        init
         {
-            this.Properties["event_name"] = JsonSerializer.SerializeToElement(
+            this._properties["event_name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -313,7 +358,7 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
     {
         get
         {
-            if (!this.Properties.TryGetValue("idempotency_key", out JsonElement element))
+            if (!this._properties.TryGetValue("idempotency_key", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'idempotency_key' cannot be null",
                     new ArgumentOutOfRangeException("idempotency_key", "Missing required argument")
@@ -325,9 +370,9 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
                     new ArgumentNullException("idempotency_key")
                 );
         }
-        set
+        init
         {
-            this.Properties["idempotency_key"] = JsonSerializer.SerializeToElement(
+            this._properties["idempotency_key"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -342,7 +387,7 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
     {
         get
         {
-            if (!this.Properties.TryGetValue("properties", out JsonElement element))
+            if (!this._properties.TryGetValue("properties", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'properties' cannot be null",
                     new ArgumentOutOfRangeException("properties", "Missing required argument")
@@ -357,9 +402,9 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
                     new ArgumentNullException("properties")
                 );
         }
-        set
+        init
         {
-            this.Properties["properties"] = JsonSerializer.SerializeToElement(
+            this._properties["properties"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -375,7 +420,7 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
     {
         get
         {
-            if (!this.Properties.TryGetValue("timestamp", out JsonElement element))
+            if (!this._properties.TryGetValue("timestamp", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'timestamp' cannot be null",
                     new ArgumentOutOfRangeException("timestamp", "Missing required argument")
@@ -383,9 +428,9 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["timestamp"] = JsonSerializer.SerializeToElement(
+            this._properties["timestamp"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -399,14 +444,14 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
     {
         get
         {
-            if (!this.Properties.TryGetValue("customer_id", out JsonElement element))
+            if (!this._properties.TryGetValue("customer_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["customer_id"] = JsonSerializer.SerializeToElement(
+            this._properties["customer_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -420,14 +465,14 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_customer_id", out JsonElement element))
+            if (!this._properties.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["external_customer_id"] = JsonSerializer.SerializeToElement(
+            this._properties["external_customer_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -446,16 +491,21 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
 
     public Event() { }
 
+    public Event(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Event(Dictionary<string, JsonElement> properties)
+    Event(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Event FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Event FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

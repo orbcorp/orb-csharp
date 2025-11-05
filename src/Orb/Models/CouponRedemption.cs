@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -15,7 +16,7 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
     {
         get
         {
-            if (!this.Properties.TryGetValue("coupon_id", out JsonElement element))
+            if (!this._properties.TryGetValue("coupon_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'coupon_id' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -30,9 +31,9 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
                     new System::ArgumentNullException("coupon_id")
                 );
         }
-        set
+        init
         {
-            this.Properties["coupon_id"] = JsonSerializer.SerializeToElement(
+            this._properties["coupon_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -43,7 +44,7 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out JsonElement element))
+            if (!this._properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -51,9 +52,9 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["end_date"] = JsonSerializer.SerializeToElement(
+            this._properties["end_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -64,7 +65,7 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
     {
         get
         {
-            if (!this.Properties.TryGetValue("start_date", out JsonElement element))
+            if (!this._properties.TryGetValue("start_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'start_date' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -78,9 +79,9 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["start_date"] = JsonSerializer.SerializeToElement(
+            this._properties["start_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -96,16 +97,23 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
 
     public CouponRedemption() { }
 
+    public CouponRedemption(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CouponRedemption(Dictionary<string, JsonElement> properties)
+    CouponRedemption(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static CouponRedemption FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static CouponRedemption FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

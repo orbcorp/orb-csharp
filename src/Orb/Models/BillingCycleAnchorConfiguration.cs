@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -23,7 +24,7 @@ public sealed record class BillingCycleAnchorConfiguration
     {
         get
         {
-            if (!this.Properties.TryGetValue("day", out JsonElement element))
+            if (!this._properties.TryGetValue("day", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'day' cannot be null",
                     new System::ArgumentOutOfRangeException("day", "Missing required argument")
@@ -31,9 +32,9 @@ public sealed record class BillingCycleAnchorConfiguration
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["day"] = JsonSerializer.SerializeToElement(
+            this._properties["day"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -48,14 +49,14 @@ public sealed record class BillingCycleAnchorConfiguration
     {
         get
         {
-            if (!this.Properties.TryGetValue("month", out JsonElement element))
+            if (!this._properties.TryGetValue("month", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["month"] = JsonSerializer.SerializeToElement(
+            this._properties["month"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -70,14 +71,14 @@ public sealed record class BillingCycleAnchorConfiguration
     {
         get
         {
-            if (!this.Properties.TryGetValue("year", out JsonElement element))
+            if (!this._properties.TryGetValue("year", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["year"] = JsonSerializer.SerializeToElement(
+            this._properties["year"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -93,19 +94,24 @@ public sealed record class BillingCycleAnchorConfiguration
 
     public BillingCycleAnchorConfiguration() { }
 
+    public BillingCycleAnchorConfiguration(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    BillingCycleAnchorConfiguration(Dictionary<string, JsonElement> properties)
+    BillingCycleAnchorConfiguration(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static BillingCycleAnchorConfiguration FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]

@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -21,7 +22,7 @@ public sealed record class Tier26 : ModelBase, IFromRaw<Tier26>
     {
         get
         {
-            if (!this.Properties.TryGetValue("first_unit", out JsonElement element))
+            if (!this._properties.TryGetValue("first_unit", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'first_unit' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -32,9 +33,9 @@ public sealed record class Tier26 : ModelBase, IFromRaw<Tier26>
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["first_unit"] = JsonSerializer.SerializeToElement(
+            this._properties["first_unit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -48,7 +49,7 @@ public sealed record class Tier26 : ModelBase, IFromRaw<Tier26>
     {
         get
         {
-            if (!this.Properties.TryGetValue("unit_amount", out JsonElement element))
+            if (!this._properties.TryGetValue("unit_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'unit_amount' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -63,9 +64,9 @@ public sealed record class Tier26 : ModelBase, IFromRaw<Tier26>
                     new System::ArgumentNullException("unit_amount")
                 );
         }
-        set
+        init
         {
-            this.Properties["unit_amount"] = JsonSerializer.SerializeToElement(
+            this._properties["unit_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -80,14 +81,14 @@ public sealed record class Tier26 : ModelBase, IFromRaw<Tier26>
     {
         get
         {
-            if (!this.Properties.TryGetValue("last_unit", out JsonElement element))
+            if (!this._properties.TryGetValue("last_unit", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["last_unit"] = JsonSerializer.SerializeToElement(
+            this._properties["last_unit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -103,16 +104,21 @@ public sealed record class Tier26 : ModelBase, IFromRaw<Tier26>
 
     public Tier26() { }
 
+    public Tier26(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier26(Dictionary<string, JsonElement> properties)
+    Tier26(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Tier26 FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Tier26 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

@@ -1,5 +1,9 @@
 using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
+using System.Text.Json;
 using Orb.Core;
 
 namespace Orb.Models.Beta.ExternalPlanID;
@@ -10,9 +14,43 @@ namespace Orb.Models.Beta.ExternalPlanID;
 /// </summary>
 public sealed record class ExternalPlanIDFetchPlanVersionParams : ParamsBase
 {
-    public required string ExternalPlanID;
+    public required string ExternalPlanID { get; init; }
 
-    public required string Version;
+    public required string Version { get; init; }
+
+    public ExternalPlanIDFetchPlanVersionParams() { }
+
+    public ExternalPlanIDFetchPlanVersionParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ExternalPlanIDFetchPlanVersionParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+    }
+#pragma warning restore CS8618
+
+    public static ExternalPlanIDFetchPlanVersionParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties)
+        );
+    }
 
     public override Uri Url(IOrbClient client)
     {

@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -25,7 +27,11 @@ namespace Orb.Models.Events;
 /// </summary>
 public sealed record class EventSearchParams : ParamsBase
 {
-    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
+    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    {
+        get { return this._bodyProperties.Freeze(); }
+    }
 
     /// <summary>
     /// This is an explicit array of IDs to filter by. Note that an event's ID is
@@ -37,7 +43,7 @@ public sealed record class EventSearchParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("event_ids", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("event_ids", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'event_ids' cannot be null",
                     new ArgumentOutOfRangeException("event_ids", "Missing required argument")
@@ -49,9 +55,9 @@ public sealed record class EventSearchParams : ParamsBase
                     new ArgumentNullException("event_ids")
                 );
         }
-        set
+        init
         {
-            this.BodyProperties["event_ids"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["event_ids"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -66,14 +72,14 @@ public sealed record class EventSearchParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("timeframe_end", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("timeframe_end", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -88,18 +94,58 @@ public sealed record class EventSearchParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("timeframe_start", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("timeframe_start", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public EventSearchParams() { }
+
+    public EventSearchParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    EventSearchParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties,
+        FrozenDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+#pragma warning restore CS8618
+
+    public static EventSearchParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties),
+            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+        );
     }
 
     public override Uri Url(IOrbClient client)

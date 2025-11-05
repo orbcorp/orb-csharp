@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -15,7 +16,7 @@ public sealed record class AccountingProviderConfig : ModelBase, IFromRaw<Accoun
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_provider_id", out JsonElement element))
+            if (!this._properties.TryGetValue("external_provider_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'external_provider_id' cannot be null",
                     new ArgumentOutOfRangeException(
@@ -30,9 +31,9 @@ public sealed record class AccountingProviderConfig : ModelBase, IFromRaw<Accoun
                     new ArgumentNullException("external_provider_id")
                 );
         }
-        set
+        init
         {
-            this.Properties["external_provider_id"] = JsonSerializer.SerializeToElement(
+            this._properties["external_provider_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -43,7 +44,7 @@ public sealed record class AccountingProviderConfig : ModelBase, IFromRaw<Accoun
     {
         get
         {
-            if (!this.Properties.TryGetValue("provider_type", out JsonElement element))
+            if (!this._properties.TryGetValue("provider_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'provider_type' cannot be null",
                     new ArgumentOutOfRangeException("provider_type", "Missing required argument")
@@ -55,9 +56,9 @@ public sealed record class AccountingProviderConfig : ModelBase, IFromRaw<Accoun
                     new ArgumentNullException("provider_type")
                 );
         }
-        set
+        init
         {
-            this.Properties["provider_type"] = JsonSerializer.SerializeToElement(
+            this._properties["provider_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -72,18 +73,23 @@ public sealed record class AccountingProviderConfig : ModelBase, IFromRaw<Accoun
 
     public AccountingProviderConfig() { }
 
+    public AccountingProviderConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AccountingProviderConfig(Dictionary<string, JsonElement> properties)
+    AccountingProviderConfig(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static AccountingProviderConfig FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

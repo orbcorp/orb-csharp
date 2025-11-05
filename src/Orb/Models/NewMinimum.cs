@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -15,7 +16,7 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
     {
         get
         {
-            if (!this.Properties.TryGetValue("adjustment_type", out JsonElement element))
+            if (!this._properties.TryGetValue("adjustment_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'adjustment_type' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -29,9 +30,9 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["adjustment_type"] = JsonSerializer.SerializeToElement(
+            this._properties["adjustment_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -45,7 +46,7 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
     {
         get
         {
-            if (!this.Properties.TryGetValue("item_id", out JsonElement element))
+            if (!this._properties.TryGetValue("item_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'item_id' cannot be null",
                     new System::ArgumentOutOfRangeException("item_id", "Missing required argument")
@@ -57,9 +58,9 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
                     new System::ArgumentNullException("item_id")
                 );
         }
-        set
+        init
         {
-            this.Properties["item_id"] = JsonSerializer.SerializeToElement(
+            this._properties["item_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -70,7 +71,7 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
     {
         get
         {
-            if (!this.Properties.TryGetValue("minimum_amount", out JsonElement element))
+            if (!this._properties.TryGetValue("minimum_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'minimum_amount' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -85,9 +86,9 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
                     new System::ArgumentNullException("minimum_amount")
                 );
         }
-        set
+        init
         {
-            this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(
+            this._properties["minimum_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -101,7 +102,7 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
     {
         get
         {
-            if (!this.Properties.TryGetValue("applies_to_all", out JsonElement element))
+            if (!this._properties.TryGetValue("applies_to_all", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<bool, AppliesToAll1>?>(
@@ -109,9 +110,9 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["applies_to_all"] = JsonSerializer.SerializeToElement(
+            this._properties["applies_to_all"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -125,14 +126,14 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
     {
         get
         {
-            if (!this.Properties.TryGetValue("applies_to_item_ids", out JsonElement element))
+            if (!this._properties.TryGetValue("applies_to_item_ids", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["applies_to_item_ids"] = JsonSerializer.SerializeToElement(
+            this._properties["applies_to_item_ids"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -146,14 +147,14 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
     {
         get
         {
-            if (!this.Properties.TryGetValue("applies_to_price_ids", out JsonElement element))
+            if (!this._properties.TryGetValue("applies_to_price_ids", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(
+            this._properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -167,14 +168,14 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
     {
         get
         {
-            if (!this.Properties.TryGetValue("currency", out JsonElement element))
+            if (!this._properties.TryGetValue("currency", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+            this._properties["currency"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -188,7 +189,7 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
     {
         get
         {
-            if (!this.Properties.TryGetValue("filters", out JsonElement element))
+            if (!this._properties.TryGetValue("filters", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<Filter14>?>(
@@ -196,9 +197,9 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["filters"] = JsonSerializer.SerializeToElement(
+            this._properties["filters"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -213,14 +214,14 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
     {
         get
         {
-            if (!this.Properties.TryGetValue("is_invoice_level", out JsonElement element))
+            if (!this._properties.TryGetValue("is_invoice_level", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["is_invoice_level"] = JsonSerializer.SerializeToElement(
+            this._properties["is_invoice_level"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -234,7 +235,7 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
     {
         get
         {
-            if (!this.Properties.TryGetValue("price_type", out JsonElement element))
+            if (!this._properties.TryGetValue("price_type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<string, PriceType1>?>(
@@ -242,9 +243,9 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["price_type"] = JsonSerializer.SerializeToElement(
+            this._properties["price_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -270,17 +271,22 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
 
     public NewMinimum() { }
 
+    public NewMinimum(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    NewMinimum(Dictionary<string, JsonElement> properties)
+    NewMinimum(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static NewMinimum FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static NewMinimum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
@@ -379,7 +385,7 @@ public sealed record class Filter14 : ModelBase, IFromRaw<Filter14>
     {
         get
         {
-            if (!this.Properties.TryGetValue("field", out JsonElement element))
+            if (!this._properties.TryGetValue("field", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'field' cannot be null",
                     new System::ArgumentOutOfRangeException("field", "Missing required argument")
@@ -390,9 +396,9 @@ public sealed record class Filter14 : ModelBase, IFromRaw<Filter14>
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["field"] = JsonSerializer.SerializeToElement(
+            this._properties["field"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -406,7 +412,7 @@ public sealed record class Filter14 : ModelBase, IFromRaw<Filter14>
     {
         get
         {
-            if (!this.Properties.TryGetValue("operator", out JsonElement element))
+            if (!this._properties.TryGetValue("operator", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'operator' cannot be null",
                     new System::ArgumentOutOfRangeException("operator", "Missing required argument")
@@ -417,9 +423,9 @@ public sealed record class Filter14 : ModelBase, IFromRaw<Filter14>
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["operator"] = JsonSerializer.SerializeToElement(
+            this._properties["operator"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -433,7 +439,7 @@ public sealed record class Filter14 : ModelBase, IFromRaw<Filter14>
     {
         get
         {
-            if (!this.Properties.TryGetValue("values", out JsonElement element))
+            if (!this._properties.TryGetValue("values", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'values' cannot be null",
                     new System::ArgumentOutOfRangeException("values", "Missing required argument")
@@ -445,9 +451,9 @@ public sealed record class Filter14 : ModelBase, IFromRaw<Filter14>
                     new System::ArgumentNullException("values")
                 );
         }
-        set
+        init
         {
-            this.Properties["values"] = JsonSerializer.SerializeToElement(
+            this._properties["values"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -463,17 +469,22 @@ public sealed record class Filter14 : ModelBase, IFromRaw<Filter14>
 
     public Filter14() { }
 
+    public Filter14(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter14(Dictionary<string, JsonElement> properties)
+    Filter14(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Filter14 FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Filter14 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

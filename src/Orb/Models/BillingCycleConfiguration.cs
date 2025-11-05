@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -17,7 +18,7 @@ public sealed record class BillingCycleConfiguration
     {
         get
         {
-            if (!this.Properties.TryGetValue("duration", out JsonElement element))
+            if (!this._properties.TryGetValue("duration", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'duration' cannot be null",
                     new System::ArgumentOutOfRangeException("duration", "Missing required argument")
@@ -25,9 +26,9 @@ public sealed record class BillingCycleConfiguration
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["duration"] = JsonSerializer.SerializeToElement(
+            this._properties["duration"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -38,7 +39,7 @@ public sealed record class BillingCycleConfiguration
     {
         get
         {
-            if (!this.Properties.TryGetValue("duration_unit", out JsonElement element))
+            if (!this._properties.TryGetValue("duration_unit", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'duration_unit' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -52,9 +53,9 @@ public sealed record class BillingCycleConfiguration
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["duration_unit"] = JsonSerializer.SerializeToElement(
+            this._properties["duration_unit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -69,19 +70,24 @@ public sealed record class BillingCycleConfiguration
 
     public BillingCycleConfiguration() { }
 
+    public BillingCycleConfiguration(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    BillingCycleConfiguration(Dictionary<string, JsonElement> properties)
+    BillingCycleConfiguration(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static BillingCycleConfiguration FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

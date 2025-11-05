@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -17,7 +18,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new System::ArgumentOutOfRangeException("id", "Missing required argument")
@@ -29,9 +30,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     new System::ArgumentNullException("id")
                 );
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -45,14 +46,14 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("active_plan_phase_order", out JsonElement element))
+            if (!this._properties.TryGetValue("active_plan_phase_order", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["active_plan_phase_order"] = JsonSerializer.SerializeToElement(
+            this._properties["active_plan_phase_order"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -67,7 +68,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("adjustment_intervals", out JsonElement element))
+            if (!this._properties.TryGetValue("adjustment_intervals", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'adjustment_intervals' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -85,9 +86,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     new System::ArgumentNullException("adjustment_intervals")
                 );
         }
-        set
+        init
         {
-            this.Properties["adjustment_intervals"] = JsonSerializer.SerializeToElement(
+            this._properties["adjustment_intervals"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -103,14 +104,14 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("auto_collection", out JsonElement element))
+            if (!this._properties.TryGetValue("auto_collection", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["auto_collection"] = JsonSerializer.SerializeToElement(
+            this._properties["auto_collection"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -122,7 +123,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (
-                !this.Properties.TryGetValue(
+                !this._properties.TryGetValue(
                     "billing_cycle_anchor_configuration",
                     out JsonElement element
                 )
@@ -144,9 +145,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     new System::ArgumentNullException("billing_cycle_anchor_configuration")
                 );
         }
-        set
+        init
         {
-            this.Properties["billing_cycle_anchor_configuration"] =
+            this._properties["billing_cycle_anchor_configuration"] =
                 JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
@@ -161,7 +162,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("billing_cycle_day", out JsonElement element))
+            if (!this._properties.TryGetValue("billing_cycle_day", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'billing_cycle_day' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -172,9 +173,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["billing_cycle_day"] = JsonSerializer.SerializeToElement(
+            this._properties["billing_cycle_day"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -185,7 +186,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("created_at", out JsonElement element))
+            if (!this._properties.TryGetValue("created_at", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'created_at' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -199,9 +200,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["created_at"] = JsonSerializer.SerializeToElement(
+            this._properties["created_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -218,7 +219,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (
-                !this.Properties.TryGetValue(
+                !this._properties.TryGetValue(
                     "current_billing_period_end_date",
                     out JsonElement element
                 )
@@ -230,9 +231,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["current_billing_period_end_date"] = JsonSerializer.SerializeToElement(
+            this._properties["current_billing_period_end_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -249,7 +250,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (
-                !this.Properties.TryGetValue(
+                !this._properties.TryGetValue(
                     "current_billing_period_start_date",
                     out JsonElement element
                 )
@@ -261,9 +262,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["current_billing_period_start_date"] =
+            this._properties["current_billing_period_start_date"] =
                 JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
@@ -289,7 +290,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("customer", out JsonElement element))
+            if (!this._properties.TryGetValue("customer", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'customer' cannot be null",
                     new System::ArgumentOutOfRangeException("customer", "Missing required argument")
@@ -301,9 +302,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     new System::ArgumentNullException("customer")
                 );
         }
-        set
+        init
         {
-            this.Properties["customer"] = JsonSerializer.SerializeToElement(
+            this._properties["customer"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -318,14 +319,14 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("default_invoice_memo", out JsonElement element))
+            if (!this._properties.TryGetValue("default_invoice_memo", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["default_invoice_memo"] = JsonSerializer.SerializeToElement(
+            this._properties["default_invoice_memo"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -340,7 +341,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("discount_intervals", out JsonElement element))
+            if (!this._properties.TryGetValue("discount_intervals", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'discount_intervals' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -358,9 +359,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     new System::ArgumentNullException("discount_intervals")
                 );
         }
-        set
+        init
         {
-            this.Properties["discount_intervals"] = JsonSerializer.SerializeToElement(
+            this._properties["discount_intervals"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -374,7 +375,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out JsonElement element))
+            if (!this._properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -382,9 +383,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["end_date"] = JsonSerializer.SerializeToElement(
+            this._properties["end_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -396,7 +397,10 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (
-                !this.Properties.TryGetValue("fixed_fee_quantity_schedule", out JsonElement element)
+                !this._properties.TryGetValue(
+                    "fixed_fee_quantity_schedule",
+                    out JsonElement element
+                )
             )
                 throw new OrbInvalidDataException(
                     "'fixed_fee_quantity_schedule' cannot be null",
@@ -415,9 +419,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     new System::ArgumentNullException("fixed_fee_quantity_schedule")
                 );
         }
-        set
+        init
         {
-            this.Properties["fixed_fee_quantity_schedule"] = JsonSerializer.SerializeToElement(
+            this._properties["fixed_fee_quantity_schedule"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -428,14 +432,14 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("invoicing_threshold", out JsonElement element))
+            if (!this._properties.TryGetValue("invoicing_threshold", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["invoicing_threshold"] = JsonSerializer.SerializeToElement(
+            this._properties["invoicing_threshold"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -450,7 +454,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("maximum_intervals", out JsonElement element))
+            if (!this._properties.TryGetValue("maximum_intervals", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'maximum_intervals' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -468,9 +472,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     new System::ArgumentNullException("maximum_intervals")
                 );
         }
-        set
+        init
         {
-            this.Properties["maximum_intervals"] = JsonSerializer.SerializeToElement(
+            this._properties["maximum_intervals"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -487,7 +491,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("metadata", out JsonElement element))
+            if (!this._properties.TryGetValue("metadata", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'metadata' cannot be null",
                     new System::ArgumentOutOfRangeException("metadata", "Missing required argument")
@@ -502,9 +506,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     new System::ArgumentNullException("metadata")
                 );
         }
-        set
+        init
         {
-            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+            this._properties["metadata"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -519,7 +523,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("minimum_intervals", out JsonElement element))
+            if (!this._properties.TryGetValue("minimum_intervals", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'minimum_intervals' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -537,9 +541,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     new System::ArgumentNullException("minimum_intervals")
                 );
         }
-        set
+        init
         {
-            this.Properties["minimum_intervals"] = JsonSerializer.SerializeToElement(
+            this._properties["minimum_intervals"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -553,7 +557,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out JsonElement element))
+            if (!this._properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
                     new System::ArgumentOutOfRangeException("name", "Missing required argument")
@@ -565,9 +569,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     new System::ArgumentNullException("name")
                 );
         }
-        set
+        init
         {
-            this.Properties["name"] = JsonSerializer.SerializeToElement(
+            this._properties["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -584,7 +588,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("net_terms", out JsonElement element))
+            if (!this._properties.TryGetValue("net_terms", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'net_terms' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -595,9 +599,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["net_terms"] = JsonSerializer.SerializeToElement(
+            this._properties["net_terms"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -612,7 +616,10 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         get
         {
             if (
-                !this.Properties.TryGetValue("pending_subscription_change", out JsonElement element)
+                !this._properties.TryGetValue(
+                    "pending_subscription_change",
+                    out JsonElement element
+                )
             )
                 return null;
 
@@ -621,9 +628,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["pending_subscription_change"] = JsonSerializer.SerializeToElement(
+            this._properties["pending_subscription_change"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -639,14 +646,14 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("plan", out JsonElement element))
+            if (!this._properties.TryGetValue("plan", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Plans::Plan?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["plan"] = JsonSerializer.SerializeToElement(
+            this._properties["plan"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -660,7 +667,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("price_intervals", out JsonElement element))
+            if (!this._properties.TryGetValue("price_intervals", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'price_intervals' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -678,9 +685,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     new System::ArgumentNullException("price_intervals")
                 );
         }
-        set
+        init
         {
-            this.Properties["price_intervals"] = JsonSerializer.SerializeToElement(
+            this._properties["price_intervals"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -691,7 +698,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("redeemed_coupon", out JsonElement element))
+            if (!this._properties.TryGetValue("redeemed_coupon", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<CouponRedemption?>(
@@ -699,9 +706,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["redeemed_coupon"] = JsonSerializer.SerializeToElement(
+            this._properties["redeemed_coupon"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -715,7 +722,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("start_date", out JsonElement element))
+            if (!this._properties.TryGetValue("start_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'start_date' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -729,9 +736,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["start_date"] = JsonSerializer.SerializeToElement(
+            this._properties["start_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -742,7 +749,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("status", out JsonElement element))
+            if (!this._properties.TryGetValue("status", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'status' cannot be null",
                     new System::ArgumentOutOfRangeException("status", "Missing required argument")
@@ -752,9 +759,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                 ApiEnum<string, global::Orb.Models.SubscriptionChanges.Status>
             >(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["status"] = JsonSerializer.SerializeToElement(
+            this._properties["status"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -765,7 +772,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("trial_info", out JsonElement element))
+            if (!this._properties.TryGetValue("trial_info", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'trial_info' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -783,9 +790,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                     new System::ArgumentNullException("trial_info")
                 );
         }
-        set
+        init
         {
-            this.Properties["trial_info"] = JsonSerializer.SerializeToElement(
+            this._properties["trial_info"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -801,7 +808,7 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         get
         {
-            if (!this.Properties.TryGetValue("changed_resources", out JsonElement element))
+            if (!this._properties.TryGetValue("changed_resources", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ChangedSubscriptionResources?>(
@@ -809,9 +816,9 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["changed_resources"] = JsonSerializer.SerializeToElement(
+            this._properties["changed_resources"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -870,17 +877,24 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
 
     public MutatedSubscription() { }
 
+    public MutatedSubscription(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    MutatedSubscription(Dictionary<string, JsonElement> properties)
+    MutatedSubscription(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static MutatedSubscription FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static MutatedSubscription FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

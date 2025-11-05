@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -18,7 +19,7 @@ public sealed record class EventUpdateResponse : ModelBase, IFromRaw<EventUpdate
     {
         get
         {
-            if (!this.Properties.TryGetValue("amended", out JsonElement element))
+            if (!this._properties.TryGetValue("amended", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amended' cannot be null",
                     new ArgumentOutOfRangeException("amended", "Missing required argument")
@@ -30,9 +31,9 @@ public sealed record class EventUpdateResponse : ModelBase, IFromRaw<EventUpdate
                     new ArgumentNullException("amended")
                 );
         }
-        set
+        init
         {
-            this.Properties["amended"] = JsonSerializer.SerializeToElement(
+            this._properties["amended"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -46,17 +47,24 @@ public sealed record class EventUpdateResponse : ModelBase, IFromRaw<EventUpdate
 
     public EventUpdateResponse() { }
 
+    public EventUpdateResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    EventUpdateResponse(Dictionary<string, JsonElement> properties)
+    EventUpdateResponse(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static EventUpdateResponse FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static EventUpdateResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]

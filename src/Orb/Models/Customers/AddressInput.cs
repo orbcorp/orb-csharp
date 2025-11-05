@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -13,14 +14,14 @@ public sealed record class AddressInput : ModelBase, IFromRaw<AddressInput>
     {
         get
         {
-            if (!this.Properties.TryGetValue("city", out JsonElement element))
+            if (!this._properties.TryGetValue("city", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["city"] = JsonSerializer.SerializeToElement(
+            this._properties["city"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -31,14 +32,14 @@ public sealed record class AddressInput : ModelBase, IFromRaw<AddressInput>
     {
         get
         {
-            if (!this.Properties.TryGetValue("country", out JsonElement element))
+            if (!this._properties.TryGetValue("country", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["country"] = JsonSerializer.SerializeToElement(
+            this._properties["country"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -49,14 +50,14 @@ public sealed record class AddressInput : ModelBase, IFromRaw<AddressInput>
     {
         get
         {
-            if (!this.Properties.TryGetValue("line1", out JsonElement element))
+            if (!this._properties.TryGetValue("line1", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["line1"] = JsonSerializer.SerializeToElement(
+            this._properties["line1"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -67,14 +68,14 @@ public sealed record class AddressInput : ModelBase, IFromRaw<AddressInput>
     {
         get
         {
-            if (!this.Properties.TryGetValue("line2", out JsonElement element))
+            if (!this._properties.TryGetValue("line2", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["line2"] = JsonSerializer.SerializeToElement(
+            this._properties["line2"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -85,14 +86,14 @@ public sealed record class AddressInput : ModelBase, IFromRaw<AddressInput>
     {
         get
         {
-            if (!this.Properties.TryGetValue("postal_code", out JsonElement element))
+            if (!this._properties.TryGetValue("postal_code", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["postal_code"] = JsonSerializer.SerializeToElement(
+            this._properties["postal_code"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -103,14 +104,14 @@ public sealed record class AddressInput : ModelBase, IFromRaw<AddressInput>
     {
         get
         {
-            if (!this.Properties.TryGetValue("state", out JsonElement element))
+            if (!this._properties.TryGetValue("state", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["state"] = JsonSerializer.SerializeToElement(
+            this._properties["state"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -129,16 +130,21 @@ public sealed record class AddressInput : ModelBase, IFromRaw<AddressInput>
 
     public AddressInput() { }
 
+    public AddressInput(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AddressInput(Dictionary<string, JsonElement> properties)
+    AddressInput(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static AddressInput FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static AddressInput FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

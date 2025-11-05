@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
@@ -16,13 +17,17 @@ namespace Orb.Models.Coupons;
 /// </summary>
 public sealed record class CouponCreateParams : ParamsBase
 {
-    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
+    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    {
+        get { return this._bodyProperties.Freeze(); }
+    }
 
     public required global::Orb.Models.Coupons.Discount Discount
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("discount", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("discount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'discount' cannot be null",
                     new System::ArgumentOutOfRangeException("discount", "Missing required argument")
@@ -37,9 +42,9 @@ public sealed record class CouponCreateParams : ParamsBase
                     new System::ArgumentNullException("discount")
                 );
         }
-        set
+        init
         {
-            this.BodyProperties["discount"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["discount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -53,7 +58,7 @@ public sealed record class CouponCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("redemption_code", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("redemption_code", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'redemption_code' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -68,9 +73,9 @@ public sealed record class CouponCreateParams : ParamsBase
                     new System::ArgumentNullException("redemption_code")
                 );
         }
-        set
+        init
         {
-            this.BodyProperties["redemption_code"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["redemption_code"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -85,14 +90,14 @@ public sealed record class CouponCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("duration_in_months", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("duration_in_months", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["duration_in_months"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["duration_in_months"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -107,18 +112,58 @@ public sealed record class CouponCreateParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("max_redemptions", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("max_redemptions", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["max_redemptions"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["max_redemptions"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public CouponCreateParams() { }
+
+    public CouponCreateParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CouponCreateParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties,
+        FrozenDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+#pragma warning restore CS8618
+
+    public static CouponCreateParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties),
+            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+        );
     }
 
     public override System::Uri Url(IOrbClient client)
@@ -318,7 +363,7 @@ public sealed record class Percentage : ModelBase, IFromRaw<Percentage>
     {
         get
         {
-            if (!this.Properties.TryGetValue("discount_type", out JsonElement element))
+            if (!this._properties.TryGetValue("discount_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'discount_type' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -336,9 +381,9 @@ public sealed record class Percentage : ModelBase, IFromRaw<Percentage>
                     new System::ArgumentNullException("discount_type")
                 );
         }
-        set
+        init
         {
-            this.Properties["discount_type"] = JsonSerializer.SerializeToElement(
+            this._properties["discount_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -349,7 +394,7 @@ public sealed record class Percentage : ModelBase, IFromRaw<Percentage>
     {
         get
         {
-            if (!this.Properties.TryGetValue("percentage_discount", out JsonElement element))
+            if (!this._properties.TryGetValue("percentage_discount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'percentage_discount' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -360,9 +405,9 @@ public sealed record class Percentage : ModelBase, IFromRaw<Percentage>
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["percentage_discount"] = JsonSerializer.SerializeToElement(
+            this._properties["percentage_discount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -380,17 +425,24 @@ public sealed record class Percentage : ModelBase, IFromRaw<Percentage>
         this.DiscountType = new();
     }
 
+    public Percentage(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+
+        this.DiscountType = new();
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Percentage(Dictionary<string, JsonElement> properties)
+    Percentage(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Percentage FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Percentage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]
@@ -455,7 +507,7 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount_discount", out JsonElement element))
+            if (!this._properties.TryGetValue("amount_discount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amount_discount' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -470,9 +522,9 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
                     new System::ArgumentNullException("amount_discount")
                 );
         }
-        set
+        init
         {
-            this.Properties["amount_discount"] = JsonSerializer.SerializeToElement(
+            this._properties["amount_discount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -483,7 +535,7 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
     {
         get
         {
-            if (!this.Properties.TryGetValue("discount_type", out JsonElement element))
+            if (!this._properties.TryGetValue("discount_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'discount_type' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -501,9 +553,9 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
                     new System::ArgumentNullException("discount_type")
                 );
         }
-        set
+        init
         {
-            this.Properties["discount_type"] = JsonSerializer.SerializeToElement(
+            this._properties["discount_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -521,17 +573,24 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
         this.DiscountType = new();
     }
 
+    public Amount(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+
+        this.DiscountType = new();
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Amount(Dictionary<string, JsonElement> properties)
+    Amount(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Amount FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Amount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]

@@ -1,4 +1,6 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -19,9 +21,13 @@ namespace Orb.Models.Alerts;
 /// </summary>
 public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
 {
-    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
+    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    {
+        get { return this._bodyProperties.Freeze(); }
+    }
 
-    public required string ExternalCustomerID;
+    public required string ExternalCustomerID { get; init; }
 
     /// <summary>
     /// The case sensitive currency or custom pricing unit to use for this alert.
@@ -30,7 +36,7 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("currency", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("currency", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'currency' cannot be null",
                     new System::ArgumentOutOfRangeException("currency", "Missing required argument")
@@ -42,9 +48,9 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
                     new System::ArgumentNullException("currency")
                 );
         }
-        set
+        init
         {
-            this.BodyProperties["currency"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["currency"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -58,7 +64,7 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("type", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'type' cannot be null",
                     new System::ArgumentOutOfRangeException("type", "Missing required argument")
@@ -69,9 +75,9 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.BodyProperties["type"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -85,7 +91,7 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("thresholds", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("thresholds", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<Threshold>?>(
@@ -93,13 +99,53 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.BodyProperties["thresholds"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["thresholds"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public AlertCreateForExternalCustomerParams() { }
+
+    public AlertCreateForExternalCustomerParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AlertCreateForExternalCustomerParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties,
+        FrozenDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+#pragma warning restore CS8618
+
+    public static AlertCreateForExternalCustomerParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties),
+            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+        );
     }
 
     public override System::Uri Url(IOrbClient client)

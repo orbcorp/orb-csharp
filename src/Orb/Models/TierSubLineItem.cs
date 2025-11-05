@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -18,7 +19,7 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out JsonElement element))
+            if (!this._properties.TryGetValue("amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amount' cannot be null",
                     new System::ArgumentOutOfRangeException("amount", "Missing required argument")
@@ -30,9 +31,9 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
                     new System::ArgumentNullException("amount")
                 );
         }
-        set
+        init
         {
-            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+            this._properties["amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -43,7 +44,7 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
     {
         get
         {
-            if (!this.Properties.TryGetValue("grouping", out JsonElement element))
+            if (!this._properties.TryGetValue("grouping", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<SubLineItemGrouping?>(
@@ -51,9 +52,9 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["grouping"] = JsonSerializer.SerializeToElement(
+            this._properties["grouping"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -64,7 +65,7 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out JsonElement element))
+            if (!this._properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
                     new System::ArgumentOutOfRangeException("name", "Missing required argument")
@@ -76,9 +77,9 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
                     new System::ArgumentNullException("name")
                 );
         }
-        set
+        init
         {
-            this.Properties["name"] = JsonSerializer.SerializeToElement(
+            this._properties["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -89,7 +90,7 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
     {
         get
         {
-            if (!this.Properties.TryGetValue("quantity", out JsonElement element))
+            if (!this._properties.TryGetValue("quantity", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'quantity' cannot be null",
                     new System::ArgumentOutOfRangeException("quantity", "Missing required argument")
@@ -97,9 +98,9 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["quantity"] = JsonSerializer.SerializeToElement(
+            this._properties["quantity"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -110,7 +111,7 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
     {
         get
         {
-            if (!this.Properties.TryGetValue("tier_config", out JsonElement element))
+            if (!this._properties.TryGetValue("tier_config", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tier_config' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -125,9 +126,9 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
                     new System::ArgumentNullException("tier_config")
                 );
         }
-        set
+        init
         {
-            this.Properties["tier_config"] = JsonSerializer.SerializeToElement(
+            this._properties["tier_config"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -138,7 +139,7 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
     {
         get
         {
-            if (!this.Properties.TryGetValue("type", out JsonElement element))
+            if (!this._properties.TryGetValue("type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'type' cannot be null",
                     new System::ArgumentOutOfRangeException("type", "Missing required argument")
@@ -149,9 +150,9 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["type"] = JsonSerializer.SerializeToElement(
+            this._properties["type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -170,17 +171,24 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
 
     public TierSubLineItem() { }
 
+    public TierSubLineItem(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TierSubLineItem(Dictionary<string, JsonElement> properties)
+    TierSubLineItem(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static TierSubLineItem FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static TierSubLineItem FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
@@ -191,7 +199,7 @@ public sealed record class TierConfig : ModelBase, IFromRaw<TierConfig>
     {
         get
         {
-            if (!this.Properties.TryGetValue("first_unit", out JsonElement element))
+            if (!this._properties.TryGetValue("first_unit", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'first_unit' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -202,9 +210,9 @@ public sealed record class TierConfig : ModelBase, IFromRaw<TierConfig>
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["first_unit"] = JsonSerializer.SerializeToElement(
+            this._properties["first_unit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -215,14 +223,14 @@ public sealed record class TierConfig : ModelBase, IFromRaw<TierConfig>
     {
         get
         {
-            if (!this.Properties.TryGetValue("last_unit", out JsonElement element))
+            if (!this._properties.TryGetValue("last_unit", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["last_unit"] = JsonSerializer.SerializeToElement(
+            this._properties["last_unit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -233,7 +241,7 @@ public sealed record class TierConfig : ModelBase, IFromRaw<TierConfig>
     {
         get
         {
-            if (!this.Properties.TryGetValue("unit_amount", out JsonElement element))
+            if (!this._properties.TryGetValue("unit_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'unit_amount' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -248,9 +256,9 @@ public sealed record class TierConfig : ModelBase, IFromRaw<TierConfig>
                     new System::ArgumentNullException("unit_amount")
                 );
         }
-        set
+        init
         {
-            this.Properties["unit_amount"] = JsonSerializer.SerializeToElement(
+            this._properties["unit_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -266,17 +274,22 @@ public sealed record class TierConfig : ModelBase, IFromRaw<TierConfig>
 
     public TierConfig() { }
 
+    public TierConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TierConfig(Dictionary<string, JsonElement> properties)
+    TierConfig(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static TierConfig FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static TierConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -23,7 +24,7 @@ public sealed record class MatrixWithAllocationConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("allocation", out JsonElement element))
+            if (!this._properties.TryGetValue("allocation", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'allocation' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -38,9 +39,9 @@ public sealed record class MatrixWithAllocationConfig
                     new System::ArgumentNullException("allocation")
                 );
         }
-        set
+        init
         {
-            this.Properties["allocation"] = JsonSerializer.SerializeToElement(
+            this._properties["allocation"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -54,7 +55,7 @@ public sealed record class MatrixWithAllocationConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("default_unit_amount", out JsonElement element))
+            if (!this._properties.TryGetValue("default_unit_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'default_unit_amount' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -69,9 +70,9 @@ public sealed record class MatrixWithAllocationConfig
                     new System::ArgumentNullException("default_unit_amount")
                 );
         }
-        set
+        init
         {
-            this.Properties["default_unit_amount"] = JsonSerializer.SerializeToElement(
+            this._properties["default_unit_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -85,7 +86,7 @@ public sealed record class MatrixWithAllocationConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("dimensions", out JsonElement element))
+            if (!this._properties.TryGetValue("dimensions", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'dimensions' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -100,9 +101,9 @@ public sealed record class MatrixWithAllocationConfig
                     new System::ArgumentNullException("dimensions")
                 );
         }
-        set
+        init
         {
-            this.Properties["dimensions"] = JsonSerializer.SerializeToElement(
+            this._properties["dimensions"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -116,7 +117,7 @@ public sealed record class MatrixWithAllocationConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("matrix_values", out JsonElement element))
+            if (!this._properties.TryGetValue("matrix_values", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'matrix_values' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -134,9 +135,9 @@ public sealed record class MatrixWithAllocationConfig
                     new System::ArgumentNullException("matrix_values")
                 );
         }
-        set
+        init
         {
-            this.Properties["matrix_values"] = JsonSerializer.SerializeToElement(
+            this._properties["matrix_values"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -156,19 +157,24 @@ public sealed record class MatrixWithAllocationConfig
 
     public MatrixWithAllocationConfig() { }
 
+    public MatrixWithAllocationConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    MatrixWithAllocationConfig(Dictionary<string, JsonElement> properties)
+    MatrixWithAllocationConfig(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static MatrixWithAllocationConfig FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
@@ -187,7 +193,7 @@ public sealed record class MatrixValueModel : ModelBase, IFromRaw<MatrixValueMod
     {
         get
         {
-            if (!this.Properties.TryGetValue("dimension_values", out JsonElement element))
+            if (!this._properties.TryGetValue("dimension_values", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'dimension_values' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -202,9 +208,9 @@ public sealed record class MatrixValueModel : ModelBase, IFromRaw<MatrixValueMod
                     new System::ArgumentNullException("dimension_values")
                 );
         }
-        set
+        init
         {
-            this.Properties["dimension_values"] = JsonSerializer.SerializeToElement(
+            this._properties["dimension_values"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -218,7 +224,7 @@ public sealed record class MatrixValueModel : ModelBase, IFromRaw<MatrixValueMod
     {
         get
         {
-            if (!this.Properties.TryGetValue("unit_amount", out JsonElement element))
+            if (!this._properties.TryGetValue("unit_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'unit_amount' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -233,9 +239,9 @@ public sealed record class MatrixValueModel : ModelBase, IFromRaw<MatrixValueMod
                     new System::ArgumentNullException("unit_amount")
                 );
         }
-        set
+        init
         {
-            this.Properties["unit_amount"] = JsonSerializer.SerializeToElement(
+            this._properties["unit_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -250,16 +256,23 @@ public sealed record class MatrixValueModel : ModelBase, IFromRaw<MatrixValueMod
 
     public MatrixValueModel() { }
 
+    public MatrixValueModel(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    MatrixValueModel(Dictionary<string, JsonElement> properties)
+    MatrixValueModel(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static MatrixValueModel FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static MatrixValueModel FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

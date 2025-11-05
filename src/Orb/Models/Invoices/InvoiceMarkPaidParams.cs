@@ -1,4 +1,6 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -14,9 +16,13 @@ namespace Orb.Models.Invoices;
 /// </summary>
 public sealed record class InvoiceMarkPaidParams : ParamsBase
 {
-    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
+    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    {
+        get { return this._bodyProperties.Freeze(); }
+    }
 
-    public required string InvoiceID;
+    public required string InvoiceID { get; init; }
 
     /// <summary>
     /// A date string to specify the date of the payment.
@@ -25,7 +31,7 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("payment_received_date", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("payment_received_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'payment_received_date' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -39,9 +45,9 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.BodyProperties["payment_received_date"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["payment_received_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -55,14 +61,14 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("external_id", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("external_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["external_id"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["external_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -76,18 +82,58 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("notes", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("notes", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["notes"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["notes"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public InvoiceMarkPaidParams() { }
+
+    public InvoiceMarkPaidParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    InvoiceMarkPaidParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties,
+        FrozenDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+#pragma warning restore CS8618
+
+    public static InvoiceMarkPaidParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties),
+            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+        );
     }
 
     public override System::Uri Url(IOrbClient client)

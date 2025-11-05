@@ -1,3 +1,6 @@
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
 using Orb.Core;
@@ -12,7 +15,7 @@ namespace Orb.Models.Alerts;
 /// </summary>
 public sealed record class AlertDisableParams : ParamsBase
 {
-    public required string AlertConfigurationID;
+    public required string AlertConfigurationID { get; init; }
 
     /// <summary>
     /// Used to update the status of a plan alert scoped to this subscription_id
@@ -21,18 +24,52 @@ public sealed record class AlertDisableParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("subscription_id", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("subscription_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.QueryProperties["subscription_id"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["subscription_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public AlertDisableParams() { }
+
+    public AlertDisableParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AlertDisableParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+    }
+#pragma warning restore CS8618
+
+    public static AlertDisableParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties)
+        );
     }
 
     public override System::Uri Url(IOrbClient client)

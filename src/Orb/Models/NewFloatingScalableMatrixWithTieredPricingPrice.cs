@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -20,7 +21,7 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("cadence", out JsonElement element))
+            if (!this._properties.TryGetValue("cadence", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'cadence' cannot be null",
                     new System::ArgumentOutOfRangeException("cadence", "Missing required argument")
@@ -31,9 +32,9 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["cadence"] = JsonSerializer.SerializeToElement(
+            this._properties["cadence"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -47,7 +48,7 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("currency", out JsonElement element))
+            if (!this._properties.TryGetValue("currency", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'currency' cannot be null",
                     new System::ArgumentOutOfRangeException("currency", "Missing required argument")
@@ -59,9 +60,9 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
                     new System::ArgumentNullException("currency")
                 );
         }
-        set
+        init
         {
-            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+            this._properties["currency"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -75,7 +76,7 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("item_id", out JsonElement element))
+            if (!this._properties.TryGetValue("item_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'item_id' cannot be null",
                     new System::ArgumentOutOfRangeException("item_id", "Missing required argument")
@@ -87,9 +88,9 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
                     new System::ArgumentNullException("item_id")
                 );
         }
-        set
+        init
         {
-            this.Properties["item_id"] = JsonSerializer.SerializeToElement(
+            this._properties["item_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -103,7 +104,7 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("model_type", out JsonElement element))
+            if (!this._properties.TryGetValue("model_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'model_type' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -117,9 +118,9 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["model_type"] = JsonSerializer.SerializeToElement(
+            this._properties["model_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -133,7 +134,7 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out JsonElement element))
+            if (!this._properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
                     new System::ArgumentOutOfRangeException("name", "Missing required argument")
@@ -145,9 +146,9 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
                     new System::ArgumentNullException("name")
                 );
         }
-        set
+        init
         {
-            this.Properties["name"] = JsonSerializer.SerializeToElement(
+            this._properties["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -162,7 +163,7 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
         get
         {
             if (
-                !this.Properties.TryGetValue(
+                !this._properties.TryGetValue(
                     "scalable_matrix_with_tiered_pricing_config",
                     out JsonElement element
                 )
@@ -184,9 +185,9 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
                     new System::ArgumentNullException("scalable_matrix_with_tiered_pricing_config")
                 );
         }
-        set
+        init
         {
-            this.Properties["scalable_matrix_with_tiered_pricing_config"] =
+            this._properties["scalable_matrix_with_tiered_pricing_config"] =
                 JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
@@ -198,14 +199,14 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("billable_metric_id", out JsonElement element))
+            if (!this._properties.TryGetValue("billable_metric_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["billable_metric_id"] = JsonSerializer.SerializeToElement(
+            this._properties["billable_metric_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -220,14 +221,14 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("billed_in_advance", out JsonElement element))
+            if (!this._properties.TryGetValue("billed_in_advance", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["billed_in_advance"] = JsonSerializer.SerializeToElement(
+            this._properties["billed_in_advance"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -242,7 +243,10 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
         get
         {
             if (
-                !this.Properties.TryGetValue("billing_cycle_configuration", out JsonElement element)
+                !this._properties.TryGetValue(
+                    "billing_cycle_configuration",
+                    out JsonElement element
+                )
             )
                 return null;
 
@@ -251,9 +255,9 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["billing_cycle_configuration"] = JsonSerializer.SerializeToElement(
+            this._properties["billing_cycle_configuration"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -267,14 +271,14 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("conversion_rate", out JsonElement element))
+            if (!this._properties.TryGetValue("conversion_rate", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["conversion_rate"] = JsonSerializer.SerializeToElement(
+            this._properties["conversion_rate"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -288,7 +292,7 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("conversion_rate_config", out JsonElement element))
+            if (!this._properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ConversionRateConfig14?>(
@@ -296,9 +300,9 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["conversion_rate_config"] = JsonSerializer.SerializeToElement(
+            this._properties["conversion_rate_config"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -313,7 +317,7 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
         get
         {
             if (
-                !this.Properties.TryGetValue(
+                !this._properties.TryGetValue(
                     "dimensional_price_configuration",
                     out JsonElement element
                 )
@@ -325,9 +329,9 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["dimensional_price_configuration"] = JsonSerializer.SerializeToElement(
+            this._properties["dimensional_price_configuration"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -341,14 +345,14 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_price_id", out JsonElement element))
+            if (!this._properties.TryGetValue("external_price_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(
+            this._properties["external_price_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -362,14 +366,14 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("fixed_price_quantity", out JsonElement element))
+            if (!this._properties.TryGetValue("fixed_price_quantity", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["fixed_price_quantity"] = JsonSerializer.SerializeToElement(
+            this._properties["fixed_price_quantity"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -383,14 +387,14 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("invoice_grouping_key", out JsonElement element))
+            if (!this._properties.TryGetValue("invoice_grouping_key", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["invoice_grouping_key"] = JsonSerializer.SerializeToElement(
+            this._properties["invoice_grouping_key"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -406,7 +410,7 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
         get
         {
             if (
-                !this.Properties.TryGetValue(
+                !this._properties.TryGetValue(
                     "invoicing_cycle_configuration",
                     out JsonElement element
                 )
@@ -418,9 +422,9 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["invoicing_cycle_configuration"] = JsonSerializer.SerializeToElement(
+            this._properties["invoicing_cycle_configuration"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -436,7 +440,7 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("metadata", out JsonElement element))
+            if (!this._properties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
@@ -444,9 +448,9 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+            this._properties["metadata"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -476,19 +480,28 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
 
     public NewFloatingScalableMatrixWithTieredPricingPrice() { }
 
+    public NewFloatingScalableMatrixWithTieredPricingPrice(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    NewFloatingScalableMatrixWithTieredPricingPrice(Dictionary<string, JsonElement> properties)
+    NewFloatingScalableMatrixWithTieredPricingPrice(
+        FrozenDictionary<string, JsonElement> properties
+    )
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static NewFloatingScalableMatrixWithTieredPricingPrice FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
@@ -611,7 +624,7 @@ public sealed record class ScalableMatrixWithTieredPricingConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("first_dimension", out JsonElement element))
+            if (!this._properties.TryGetValue("first_dimension", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'first_dimension' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -626,9 +639,9 @@ public sealed record class ScalableMatrixWithTieredPricingConfig
                     new System::ArgumentNullException("first_dimension")
                 );
         }
-        set
+        init
         {
-            this.Properties["first_dimension"] = JsonSerializer.SerializeToElement(
+            this._properties["first_dimension"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -642,7 +655,7 @@ public sealed record class ScalableMatrixWithTieredPricingConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("matrix_scaling_factors", out JsonElement element))
+            if (!this._properties.TryGetValue("matrix_scaling_factors", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'matrix_scaling_factors' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -660,9 +673,9 @@ public sealed record class ScalableMatrixWithTieredPricingConfig
                     new System::ArgumentNullException("matrix_scaling_factors")
                 );
         }
-        set
+        init
         {
-            this.Properties["matrix_scaling_factors"] = JsonSerializer.SerializeToElement(
+            this._properties["matrix_scaling_factors"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -676,7 +689,7 @@ public sealed record class ScalableMatrixWithTieredPricingConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("tiers", out JsonElement element))
+            if (!this._properties.TryGetValue("tiers", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tiers' cannot be null",
                     new System::ArgumentOutOfRangeException("tiers", "Missing required argument")
@@ -688,9 +701,9 @@ public sealed record class ScalableMatrixWithTieredPricingConfig
                     new System::ArgumentNullException("tiers")
                 );
         }
-        set
+        init
         {
-            this.Properties["tiers"] = JsonSerializer.SerializeToElement(
+            this._properties["tiers"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -704,14 +717,14 @@ public sealed record class ScalableMatrixWithTieredPricingConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("second_dimension", out JsonElement element))
+            if (!this._properties.TryGetValue("second_dimension", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["second_dimension"] = JsonSerializer.SerializeToElement(
+            this._properties["second_dimension"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -734,19 +747,26 @@ public sealed record class ScalableMatrixWithTieredPricingConfig
 
     public ScalableMatrixWithTieredPricingConfig() { }
 
+    public ScalableMatrixWithTieredPricingConfig(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ScalableMatrixWithTieredPricingConfig(Dictionary<string, JsonElement> properties)
+    ScalableMatrixWithTieredPricingConfig(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static ScalableMatrixWithTieredPricingConfig FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
@@ -763,7 +783,7 @@ public sealed record class MatrixScalingFactor : ModelBase, IFromRaw<MatrixScali
     {
         get
         {
-            if (!this.Properties.TryGetValue("first_dimension_value", out JsonElement element))
+            if (!this._properties.TryGetValue("first_dimension_value", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'first_dimension_value' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -778,9 +798,9 @@ public sealed record class MatrixScalingFactor : ModelBase, IFromRaw<MatrixScali
                     new System::ArgumentNullException("first_dimension_value")
                 );
         }
-        set
+        init
         {
-            this.Properties["first_dimension_value"] = JsonSerializer.SerializeToElement(
+            this._properties["first_dimension_value"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -794,7 +814,7 @@ public sealed record class MatrixScalingFactor : ModelBase, IFromRaw<MatrixScali
     {
         get
         {
-            if (!this.Properties.TryGetValue("scaling_factor", out JsonElement element))
+            if (!this._properties.TryGetValue("scaling_factor", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'scaling_factor' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -809,9 +829,9 @@ public sealed record class MatrixScalingFactor : ModelBase, IFromRaw<MatrixScali
                     new System::ArgumentNullException("scaling_factor")
                 );
         }
-        set
+        init
         {
-            this.Properties["scaling_factor"] = JsonSerializer.SerializeToElement(
+            this._properties["scaling_factor"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -825,14 +845,14 @@ public sealed record class MatrixScalingFactor : ModelBase, IFromRaw<MatrixScali
     {
         get
         {
-            if (!this.Properties.TryGetValue("second_dimension_value", out JsonElement element))
+            if (!this._properties.TryGetValue("second_dimension_value", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["second_dimension_value"] = JsonSerializer.SerializeToElement(
+            this._properties["second_dimension_value"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -848,17 +868,24 @@ public sealed record class MatrixScalingFactor : ModelBase, IFromRaw<MatrixScali
 
     public MatrixScalingFactor() { }
 
+    public MatrixScalingFactor(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    MatrixScalingFactor(Dictionary<string, JsonElement> properties)
+    MatrixScalingFactor(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static MatrixScalingFactor FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static MatrixScalingFactor FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
@@ -875,7 +902,7 @@ public sealed record class Tier3 : ModelBase, IFromRaw<Tier3>
     {
         get
         {
-            if (!this.Properties.TryGetValue("tier_lower_bound", out JsonElement element))
+            if (!this._properties.TryGetValue("tier_lower_bound", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tier_lower_bound' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -890,9 +917,9 @@ public sealed record class Tier3 : ModelBase, IFromRaw<Tier3>
                     new System::ArgumentNullException("tier_lower_bound")
                 );
         }
-        set
+        init
         {
-            this.Properties["tier_lower_bound"] = JsonSerializer.SerializeToElement(
+            this._properties["tier_lower_bound"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -906,7 +933,7 @@ public sealed record class Tier3 : ModelBase, IFromRaw<Tier3>
     {
         get
         {
-            if (!this.Properties.TryGetValue("unit_amount", out JsonElement element))
+            if (!this._properties.TryGetValue("unit_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'unit_amount' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -921,9 +948,9 @@ public sealed record class Tier3 : ModelBase, IFromRaw<Tier3>
                     new System::ArgumentNullException("unit_amount")
                 );
         }
-        set
+        init
         {
-            this.Properties["unit_amount"] = JsonSerializer.SerializeToElement(
+            this._properties["unit_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -938,17 +965,22 @@ public sealed record class Tier3 : ModelBase, IFromRaw<Tier3>
 
     public Tier3() { }
 
+    public Tier3(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier3(Dictionary<string, JsonElement> properties)
+    Tier3(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Tier3 FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Tier3 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

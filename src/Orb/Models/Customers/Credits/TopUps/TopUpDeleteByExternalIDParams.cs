@@ -1,5 +1,9 @@
 using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
+using System.Text.Json;
 using Orb.Core;
 
 namespace Orb.Models.Customers.Credits.TopUps;
@@ -10,9 +14,43 @@ namespace Orb.Models.Customers.Credits.TopUps;
 /// </summary>
 public sealed record class TopUpDeleteByExternalIDParams : ParamsBase
 {
-    public required string ExternalCustomerID;
+    public required string ExternalCustomerID { get; init; }
 
-    public required string TopUpID;
+    public required string TopUpID { get; init; }
+
+    public TopUpDeleteByExternalIDParams() { }
+
+    public TopUpDeleteByExternalIDParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TopUpDeleteByExternalIDParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+    }
+#pragma warning restore CS8618
+
+    public static TopUpDeleteByExternalIDParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties)
+        );
+    }
 
     public override Uri Url(IOrbClient client)
     {

@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -19,7 +20,7 @@ public sealed record class Minimum : ModelBase, IFromRaw<Minimum>
     {
         get
         {
-            if (!this.Properties.TryGetValue("applies_to_price_ids", out JsonElement element))
+            if (!this._properties.TryGetValue("applies_to_price_ids", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'applies_to_price_ids' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -34,9 +35,9 @@ public sealed record class Minimum : ModelBase, IFromRaw<Minimum>
                     new System::ArgumentNullException("applies_to_price_ids")
                 );
         }
-        set
+        init
         {
-            this.Properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(
+            this._properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -50,7 +51,7 @@ public sealed record class Minimum : ModelBase, IFromRaw<Minimum>
     {
         get
         {
-            if (!this.Properties.TryGetValue("filters", out JsonElement element))
+            if (!this._properties.TryGetValue("filters", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'filters' cannot be null",
                     new System::ArgumentOutOfRangeException("filters", "Missing required argument")
@@ -62,9 +63,9 @@ public sealed record class Minimum : ModelBase, IFromRaw<Minimum>
                     new System::ArgumentNullException("filters")
                 );
         }
-        set
+        init
         {
-            this.Properties["filters"] = JsonSerializer.SerializeToElement(
+            this._properties["filters"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -78,7 +79,7 @@ public sealed record class Minimum : ModelBase, IFromRaw<Minimum>
     {
         get
         {
-            if (!this.Properties.TryGetValue("minimum_amount", out JsonElement element))
+            if (!this._properties.TryGetValue("minimum_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'minimum_amount' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -93,9 +94,9 @@ public sealed record class Minimum : ModelBase, IFromRaw<Minimum>
                     new System::ArgumentNullException("minimum_amount")
                 );
         }
-        set
+        init
         {
-            this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(
+            this._properties["minimum_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -114,17 +115,22 @@ public sealed record class Minimum : ModelBase, IFromRaw<Minimum>
 
     public Minimum() { }
 
+    public Minimum(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Minimum(Dictionary<string, JsonElement> properties)
+    Minimum(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Minimum FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Minimum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
@@ -138,7 +144,7 @@ public sealed record class Filter4 : ModelBase, IFromRaw<Filter4>
     {
         get
         {
-            if (!this.Properties.TryGetValue("field", out JsonElement element))
+            if (!this._properties.TryGetValue("field", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'field' cannot be null",
                     new System::ArgumentOutOfRangeException("field", "Missing required argument")
@@ -149,9 +155,9 @@ public sealed record class Filter4 : ModelBase, IFromRaw<Filter4>
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["field"] = JsonSerializer.SerializeToElement(
+            this._properties["field"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -165,7 +171,7 @@ public sealed record class Filter4 : ModelBase, IFromRaw<Filter4>
     {
         get
         {
-            if (!this.Properties.TryGetValue("operator", out JsonElement element))
+            if (!this._properties.TryGetValue("operator", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'operator' cannot be null",
                     new System::ArgumentOutOfRangeException("operator", "Missing required argument")
@@ -176,9 +182,9 @@ public sealed record class Filter4 : ModelBase, IFromRaw<Filter4>
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["operator"] = JsonSerializer.SerializeToElement(
+            this._properties["operator"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -192,7 +198,7 @@ public sealed record class Filter4 : ModelBase, IFromRaw<Filter4>
     {
         get
         {
-            if (!this.Properties.TryGetValue("values", out JsonElement element))
+            if (!this._properties.TryGetValue("values", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'values' cannot be null",
                     new System::ArgumentOutOfRangeException("values", "Missing required argument")
@@ -204,9 +210,9 @@ public sealed record class Filter4 : ModelBase, IFromRaw<Filter4>
                     new System::ArgumentNullException("values")
                 );
         }
-        set
+        init
         {
-            this.Properties["values"] = JsonSerializer.SerializeToElement(
+            this._properties["values"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -222,17 +228,22 @@ public sealed record class Filter4 : ModelBase, IFromRaw<Filter4>
 
     public Filter4() { }
 
+    public Filter4(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter4(Dictionary<string, JsonElement> properties)
+    Filter4(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Filter4 FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Filter4 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

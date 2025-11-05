@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -15,7 +16,7 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new System::ArgumentOutOfRangeException("id", "Missing required argument")
@@ -27,9 +28,9 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
                     new System::ArgumentNullException("id")
                 );
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -40,7 +41,7 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
     {
         get
         {
-            if (!this.Properties.TryGetValue("adjustment", out JsonElement element))
+            if (!this._properties.TryGetValue("adjustment", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'adjustment' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -55,9 +56,9 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
                     new System::ArgumentNullException("adjustment")
                 );
         }
-        set
+        init
         {
-            this.Properties["adjustment"] = JsonSerializer.SerializeToElement(
+            this._properties["adjustment"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -72,7 +73,7 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
         get
         {
             if (
-                !this.Properties.TryGetValue(
+                !this._properties.TryGetValue(
                     "applies_to_price_interval_ids",
                     out JsonElement element
                 )
@@ -91,9 +92,9 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
                     new System::ArgumentNullException("applies_to_price_interval_ids")
                 );
         }
-        set
+        init
         {
-            this.Properties["applies_to_price_interval_ids"] = JsonSerializer.SerializeToElement(
+            this._properties["applies_to_price_interval_ids"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -107,7 +108,7 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out JsonElement element))
+            if (!this._properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTime?>(
@@ -115,9 +116,9 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["end_date"] = JsonSerializer.SerializeToElement(
+            this._properties["end_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -131,7 +132,7 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
     {
         get
         {
-            if (!this.Properties.TryGetValue("start_date", out JsonElement element))
+            if (!this._properties.TryGetValue("start_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'start_date' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -145,9 +146,9 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["start_date"] = JsonSerializer.SerializeToElement(
+            this._properties["start_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -165,17 +166,24 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
 
     public AdjustmentInterval() { }
 
+    public AdjustmentInterval(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AdjustmentInterval(Dictionary<string, JsonElement> properties)
+    AdjustmentInterval(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static AdjustmentInterval FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static AdjustmentInterval FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

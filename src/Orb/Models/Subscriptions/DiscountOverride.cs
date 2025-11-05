@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -15,7 +16,7 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
     {
         get
         {
-            if (!this.Properties.TryGetValue("discount_type", out JsonElement element))
+            if (!this._properties.TryGetValue("discount_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'discount_type' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -28,9 +29,9 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
                 ApiEnum<string, global::Orb.Models.Subscriptions.DiscountType2>
             >(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["discount_type"] = JsonSerializer.SerializeToElement(
+            this._properties["discount_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -44,14 +45,14 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount_discount", out JsonElement element))
+            if (!this._properties.TryGetValue("amount_discount", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["amount_discount"] = JsonSerializer.SerializeToElement(
+            this._properties["amount_discount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -66,14 +67,14 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
     {
         get
         {
-            if (!this.Properties.TryGetValue("percentage_discount", out JsonElement element))
+            if (!this._properties.TryGetValue("percentage_discount", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["percentage_discount"] = JsonSerializer.SerializeToElement(
+            this._properties["percentage_discount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -88,14 +89,14 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
     {
         get
         {
-            if (!this.Properties.TryGetValue("usage_discount", out JsonElement element))
+            if (!this._properties.TryGetValue("usage_discount", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["usage_discount"] = JsonSerializer.SerializeToElement(
+            this._properties["usage_discount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -112,17 +113,24 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
 
     public DiscountOverride() { }
 
+    public DiscountOverride(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DiscountOverride(Dictionary<string, JsonElement> properties)
+    DiscountOverride(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static DiscountOverride FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static DiscountOverride FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]

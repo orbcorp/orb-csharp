@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -18,7 +19,7 @@ public sealed record class EvaluatePriceGroup : ModelBase, IFromRaw<EvaluatePric
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out JsonElement element))
+            if (!this._properties.TryGetValue("amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amount' cannot be null",
                     new System::ArgumentOutOfRangeException("amount", "Missing required argument")
@@ -30,9 +31,9 @@ public sealed record class EvaluatePriceGroup : ModelBase, IFromRaw<EvaluatePric
                     new System::ArgumentNullException("amount")
                 );
         }
-        set
+        init
         {
-            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+            this._properties["amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -46,7 +47,7 @@ public sealed record class EvaluatePriceGroup : ModelBase, IFromRaw<EvaluatePric
     {
         get
         {
-            if (!this.Properties.TryGetValue("grouping_values", out JsonElement element))
+            if (!this._properties.TryGetValue("grouping_values", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'grouping_values' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -64,9 +65,9 @@ public sealed record class EvaluatePriceGroup : ModelBase, IFromRaw<EvaluatePric
                     new System::ArgumentNullException("grouping_values")
                 );
         }
-        set
+        init
         {
-            this.Properties["grouping_values"] = JsonSerializer.SerializeToElement(
+            this._properties["grouping_values"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -80,7 +81,7 @@ public sealed record class EvaluatePriceGroup : ModelBase, IFromRaw<EvaluatePric
     {
         get
         {
-            if (!this.Properties.TryGetValue("quantity", out JsonElement element))
+            if (!this._properties.TryGetValue("quantity", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'quantity' cannot be null",
                     new System::ArgumentOutOfRangeException("quantity", "Missing required argument")
@@ -88,9 +89,9 @@ public sealed record class EvaluatePriceGroup : ModelBase, IFromRaw<EvaluatePric
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["quantity"] = JsonSerializer.SerializeToElement(
+            this._properties["quantity"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -109,17 +110,24 @@ public sealed record class EvaluatePriceGroup : ModelBase, IFromRaw<EvaluatePric
 
     public EvaluatePriceGroup() { }
 
+    public EvaluatePriceGroup(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    EvaluatePriceGroup(Dictionary<string, JsonElement> properties)
+    EvaluatePriceGroup(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static EvaluatePriceGroup FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static EvaluatePriceGroup FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

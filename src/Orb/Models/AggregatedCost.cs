@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -15,7 +16,7 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
     {
         get
         {
-            if (!this.Properties.TryGetValue("per_price_costs", out JsonElement element))
+            if (!this._properties.TryGetValue("per_price_costs", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'per_price_costs' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -33,9 +34,9 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
                     new System::ArgumentNullException("per_price_costs")
                 );
         }
-        set
+        init
         {
-            this.Properties["per_price_costs"] = JsonSerializer.SerializeToElement(
+            this._properties["per_price_costs"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -49,7 +50,7 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
     {
         get
         {
-            if (!this.Properties.TryGetValue("subtotal", out JsonElement element))
+            if (!this._properties.TryGetValue("subtotal", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'subtotal' cannot be null",
                     new System::ArgumentOutOfRangeException("subtotal", "Missing required argument")
@@ -61,9 +62,9 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
                     new System::ArgumentNullException("subtotal")
                 );
         }
-        set
+        init
         {
-            this.Properties["subtotal"] = JsonSerializer.SerializeToElement(
+            this._properties["subtotal"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -74,7 +75,7 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
     {
         get
         {
-            if (!this.Properties.TryGetValue("timeframe_end", out JsonElement element))
+            if (!this._properties.TryGetValue("timeframe_end", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'timeframe_end' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -88,9 +89,9 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["timeframe_end"] = JsonSerializer.SerializeToElement(
+            this._properties["timeframe_end"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -101,7 +102,7 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
     {
         get
         {
-            if (!this.Properties.TryGetValue("timeframe_start", out JsonElement element))
+            if (!this._properties.TryGetValue("timeframe_start", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'timeframe_start' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -115,9 +116,9 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["timeframe_start"] = JsonSerializer.SerializeToElement(
+            this._properties["timeframe_start"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -131,7 +132,7 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
     {
         get
         {
-            if (!this.Properties.TryGetValue("total", out JsonElement element))
+            if (!this._properties.TryGetValue("total", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'total' cannot be null",
                     new System::ArgumentOutOfRangeException("total", "Missing required argument")
@@ -143,9 +144,9 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
                     new System::ArgumentNullException("total")
                 );
         }
-        set
+        init
         {
-            this.Properties["total"] = JsonSerializer.SerializeToElement(
+            this._properties["total"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -166,16 +167,23 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
 
     public AggregatedCost() { }
 
+    public AggregatedCost(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AggregatedCost(Dictionary<string, JsonElement> properties)
+    AggregatedCost(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static AggregatedCost FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static AggregatedCost FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -20,7 +21,7 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("cadence", out JsonElement element))
+            if (!this._properties.TryGetValue("cadence", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'cadence' cannot be null",
                     new System::ArgumentOutOfRangeException("cadence", "Missing required argument")
@@ -30,9 +31,9 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
                 ApiEnum<string, global::Orb.Models.Subscriptions.Cadence40>
             >(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["cadence"] = JsonSerializer.SerializeToElement(
+            this._properties["cadence"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -46,7 +47,7 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("item_id", out JsonElement element))
+            if (!this._properties.TryGetValue("item_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'item_id' cannot be null",
                     new System::ArgumentOutOfRangeException("item_id", "Missing required argument")
@@ -58,9 +59,9 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
                     new System::ArgumentNullException("item_id")
                 );
         }
-        set
+        init
         {
-            this.Properties["item_id"] = JsonSerializer.SerializeToElement(
+            this._properties["item_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -74,7 +75,7 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("model_type", out JsonElement element))
+            if (!this._properties.TryGetValue("model_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'model_type' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -87,9 +88,9 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
                 ApiEnum<string, global::Orb.Models.Subscriptions.ModelType40>
             >(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["model_type"] = JsonSerializer.SerializeToElement(
+            this._properties["model_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -103,7 +104,7 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out JsonElement element))
+            if (!this._properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
                     new System::ArgumentOutOfRangeException("name", "Missing required argument")
@@ -115,9 +116,9 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
                     new System::ArgumentNullException("name")
                 );
         }
-        set
+        init
         {
-            this.Properties["name"] = JsonSerializer.SerializeToElement(
+            this._properties["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -132,7 +133,7 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
         get
         {
             if (
-                !this.Properties.TryGetValue(
+                !this._properties.TryGetValue(
                     "threshold_total_amount_config",
                     out JsonElement element
                 )
@@ -154,9 +155,9 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
                     new System::ArgumentNullException("threshold_total_amount_config")
                 );
         }
-        set
+        init
         {
-            this.Properties["threshold_total_amount_config"] = JsonSerializer.SerializeToElement(
+            this._properties["threshold_total_amount_config"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -170,14 +171,14 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("billable_metric_id", out JsonElement element))
+            if (!this._properties.TryGetValue("billable_metric_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["billable_metric_id"] = JsonSerializer.SerializeToElement(
+            this._properties["billable_metric_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -192,14 +193,14 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("billed_in_advance", out JsonElement element))
+            if (!this._properties.TryGetValue("billed_in_advance", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["billed_in_advance"] = JsonSerializer.SerializeToElement(
+            this._properties["billed_in_advance"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -214,7 +215,10 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
         get
         {
             if (
-                !this.Properties.TryGetValue("billing_cycle_configuration", out JsonElement element)
+                !this._properties.TryGetValue(
+                    "billing_cycle_configuration",
+                    out JsonElement element
+                )
             )
                 return null;
 
@@ -223,9 +227,9 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["billing_cycle_configuration"] = JsonSerializer.SerializeToElement(
+            this._properties["billing_cycle_configuration"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -239,14 +243,14 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("conversion_rate", out JsonElement element))
+            if (!this._properties.TryGetValue("conversion_rate", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["conversion_rate"] = JsonSerializer.SerializeToElement(
+            this._properties["conversion_rate"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -260,7 +264,7 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("conversion_rate_config", out JsonElement element))
+            if (!this._properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<global::Orb.Models.Subscriptions.ConversionRateConfig40?>(
@@ -268,9 +272,9 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["conversion_rate_config"] = JsonSerializer.SerializeToElement(
+            this._properties["conversion_rate_config"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -285,14 +289,14 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("currency", out JsonElement element))
+            if (!this._properties.TryGetValue("currency", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+            this._properties["currency"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -307,7 +311,7 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
         get
         {
             if (
-                !this.Properties.TryGetValue(
+                !this._properties.TryGetValue(
                     "dimensional_price_configuration",
                     out JsonElement element
                 )
@@ -319,9 +323,9 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["dimensional_price_configuration"] = JsonSerializer.SerializeToElement(
+            this._properties["dimensional_price_configuration"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -335,14 +339,14 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_price_id", out JsonElement element))
+            if (!this._properties.TryGetValue("external_price_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["external_price_id"] = JsonSerializer.SerializeToElement(
+            this._properties["external_price_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -356,14 +360,14 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("fixed_price_quantity", out JsonElement element))
+            if (!this._properties.TryGetValue("fixed_price_quantity", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["fixed_price_quantity"] = JsonSerializer.SerializeToElement(
+            this._properties["fixed_price_quantity"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -377,14 +381,14 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("invoice_grouping_key", out JsonElement element))
+            if (!this._properties.TryGetValue("invoice_grouping_key", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["invoice_grouping_key"] = JsonSerializer.SerializeToElement(
+            this._properties["invoice_grouping_key"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -400,7 +404,7 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
         get
         {
             if (
-                !this.Properties.TryGetValue(
+                !this._properties.TryGetValue(
                     "invoicing_cycle_configuration",
                     out JsonElement element
                 )
@@ -412,9 +416,9 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["invoicing_cycle_configuration"] = JsonSerializer.SerializeToElement(
+            this._properties["invoicing_cycle_configuration"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -430,7 +434,7 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("metadata", out JsonElement element))
+            if (!this._properties.TryGetValue("metadata", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
@@ -438,9 +442,9 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+            this._properties["metadata"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -455,14 +459,14 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("reference_id", out JsonElement element))
+            if (!this._properties.TryGetValue("reference_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["reference_id"] = JsonSerializer.SerializeToElement(
+            this._properties["reference_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -493,19 +497,26 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
 
     public NewSubscriptionThresholdTotalAmountPrice() { }
 
+    public NewSubscriptionThresholdTotalAmountPrice(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    NewSubscriptionThresholdTotalAmountPrice(Dictionary<string, JsonElement> properties)
+    NewSubscriptionThresholdTotalAmountPrice(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static NewSubscriptionThresholdTotalAmountPrice FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
@@ -633,7 +644,7 @@ public sealed record class ThresholdTotalAmountConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("consumption_table", out JsonElement element))
+            if (!this._properties.TryGetValue("consumption_table", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'consumption_table' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -650,9 +661,9 @@ public sealed record class ThresholdTotalAmountConfig
                     new System::ArgumentNullException("consumption_table")
                 );
         }
-        set
+        init
         {
-            this.Properties["consumption_table"] = JsonSerializer.SerializeToElement(
+            this._properties["consumption_table"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -666,14 +677,14 @@ public sealed record class ThresholdTotalAmountConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("prorate", out JsonElement element))
+            if (!this._properties.TryGetValue("prorate", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["prorate"] = JsonSerializer.SerializeToElement(
+            this._properties["prorate"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -691,19 +702,24 @@ public sealed record class ThresholdTotalAmountConfig
 
     public ThresholdTotalAmountConfig() { }
 
+    public ThresholdTotalAmountConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ThresholdTotalAmountConfig(Dictionary<string, JsonElement> properties)
+    ThresholdTotalAmountConfig(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]
@@ -731,7 +747,7 @@ public sealed record class ConsumptionTable
     {
         get
         {
-            if (!this.Properties.TryGetValue("threshold", out JsonElement element))
+            if (!this._properties.TryGetValue("threshold", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'threshold' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -746,9 +762,9 @@ public sealed record class ConsumptionTable
                     new System::ArgumentNullException("threshold")
                 );
         }
-        set
+        init
         {
-            this.Properties["threshold"] = JsonSerializer.SerializeToElement(
+            this._properties["threshold"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -762,7 +778,7 @@ public sealed record class ConsumptionTable
     {
         get
         {
-            if (!this.Properties.TryGetValue("total_amount", out JsonElement element))
+            if (!this._properties.TryGetValue("total_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'total_amount' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -777,9 +793,9 @@ public sealed record class ConsumptionTable
                     new System::ArgumentNullException("total_amount")
                 );
         }
-        set
+        init
         {
-            this.Properties["total_amount"] = JsonSerializer.SerializeToElement(
+            this._properties["total_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -794,19 +810,24 @@ public sealed record class ConsumptionTable
 
     public ConsumptionTable() { }
 
+    public ConsumptionTable(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ConsumptionTable(Dictionary<string, JsonElement> properties)
+    ConsumptionTable(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static global::Orb.Models.Subscriptions.ConsumptionTable FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
