@@ -1,23 +1,26 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
+using System = System;
 
 namespace Orb.Models;
 
 [JsonConverter(typeof(ModelConverter<SubscriptionTrialInfo>))]
 public sealed record class SubscriptionTrialInfo : ModelBase, IFromRaw<SubscriptionTrialInfo>
 {
-    public required DateTime? EndDate
+    public required System::DateTime? EndDate
     {
         get
         {
             if (!this.Properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -49,7 +52,7 @@ public sealed record class SubscriptionTrialInfo : ModelBase, IFromRaw<Subscript
     }
 
     [SetsRequiredMembers]
-    public SubscriptionTrialInfo(DateTime? endDate)
+    public SubscriptionTrialInfo(System::DateTime? endDate)
         : this()
     {
         this.EndDate = endDate;

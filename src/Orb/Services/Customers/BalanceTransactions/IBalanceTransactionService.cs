@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Orb.Core;
-using Orb.Models.Customers.BalanceTransactions;
+using BalanceTransactions = Orb.Models.Customers.BalanceTransactions;
 
 namespace Orb.Services.Customers.BalanceTransactions;
 
@@ -13,7 +13,9 @@ public interface IBalanceTransactionService
     /// Creates an immutable balance transaction that updates the customer's balance
     /// and returns back the newly created transaction.
     /// </summary>
-    Task<BalanceTransactionCreateResponse> Create(BalanceTransactionCreateParams parameters);
+    Task<BalanceTransactions::BalanceTransactionCreateResponse> Create(
+        BalanceTransactions::BalanceTransactionCreateParams parameters
+    );
 
     /// <summary>
     /// ## The customer balance
@@ -38,5 +40,7 @@ public interface IBalanceTransactionService
     /// order for a single customer, providing a complete audit trail of all adjustments
     /// and invoice applications.
     /// </summary>
-    Task<BalanceTransactionListPageResponse> List(BalanceTransactionListParams parameters);
+    Task<BalanceTransactions::BalanceTransactionListPageResponse> List(
+        BalanceTransactions::BalanceTransactionListParams parameters
+    );
 }

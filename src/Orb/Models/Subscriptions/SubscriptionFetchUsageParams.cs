@@ -1,8 +1,9 @@
-using System;
 using System.Net.Http;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Models.Subscriptions.SubscriptionFetchUsageParamsProperties;
+using Orb.Exceptions;
+using System = System;
 
 namespace Orb.Models.Subscriptions;
 
@@ -283,14 +284,17 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     /// <summary>
     /// Usage returned is exclusive of `timeframe_end`.
     /// </summary>
-    public DateTime? TimeframeEnd
+    public System::DateTime? TimeframeEnd
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("timeframe_end", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -304,14 +308,17 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     /// <summary>
     /// Usage returned is inclusive of `timeframe_start`.
     /// </summary>
-    public DateTime? TimeframeStart
+    public System::DateTime? TimeframeStart
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("timeframe_start", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -327,14 +334,14 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     /// period, or incremental day-by-day usage. If your customer has minimums or
     /// discounts, it's strongly recommended that you use the default cumulative behavior.
     /// </summary>
-    public ApiEnum<string, ViewMode>? ViewMode
+    public ApiEnum<string, ViewModeModel>? ViewMode
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("view_mode", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ViewMode>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, ViewModeModel>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -348,9 +355,9 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscriptions/{0}/usage", this.SubscriptionID)
         )
@@ -366,5 +373,98 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+/// <summary>
+/// This determines the windowing of usage reporting.
+/// </summary>
+[JsonConverter(typeof(GranularityConverter))]
+public enum Granularity
+{
+    Day,
+}
+
+sealed class GranularityConverter : JsonConverter<Granularity>
+{
+    public override Granularity Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "day" => Granularity.Day,
+            _ => (Granularity)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        Granularity value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Granularity.Day => "day",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Controls whether Orb returns cumulative usage since the start of the billing period,
+/// or incremental day-by-day usage. If your customer has minimums or discounts, it's
+/// strongly recommended that you use the default cumulative behavior.
+/// </summary>
+[JsonConverter(typeof(ViewModeModelConverter))]
+public enum ViewModeModel
+{
+    Periodic,
+    Cumulative,
+}
+
+sealed class ViewModeModelConverter : JsonConverter<ViewModeModel>
+{
+    public override ViewModeModel Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "periodic" => ViewModeModel.Periodic,
+            "cumulative" => ViewModeModel.Cumulative,
+            _ => (ViewModeModel)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ViewModeModel value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ViewModeModel.Periodic => "periodic",
+                ViewModeModel.Cumulative => "cumulative",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

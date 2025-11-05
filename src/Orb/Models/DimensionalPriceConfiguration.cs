@@ -1,10 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
+using System = System;
 
 namespace Orb.Models;
 
@@ -20,13 +20,16 @@ public sealed record class DimensionalPriceConfiguration
             if (!this.Properties.TryGetValue("dimension_values", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'dimension_values' cannot be null",
-                    new ArgumentOutOfRangeException("dimension_values", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "dimension_values",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'dimension_values' cannot be null",
-                    new ArgumentNullException("dimension_values")
+                    new System::ArgumentNullException("dimension_values")
                 );
         }
         set
@@ -45,7 +48,7 @@ public sealed record class DimensionalPriceConfiguration
             if (!this.Properties.TryGetValue("dimensional_price_group_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'dimensional_price_group_id' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "dimensional_price_group_id",
                         "Missing required argument"
                     )
@@ -54,7 +57,7 @@ public sealed record class DimensionalPriceConfiguration
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'dimensional_price_group_id' cannot be null",
-                    new ArgumentNullException("dimensional_price_group_id")
+                    new System::ArgumentNullException("dimensional_price_group_id")
                 );
         }
         set

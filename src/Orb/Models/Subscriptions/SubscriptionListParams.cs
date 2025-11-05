@@ -1,9 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Models.Subscriptions.SubscriptionListParamsProperties;
+using Orb.Exceptions;
+using System = System;
 
 namespace Orb.Models.Subscriptions;
 
@@ -18,14 +19,17 @@ namespace Orb.Models.Subscriptions;
 /// </summary>
 public sealed record class SubscriptionListParams : ParamsBase
 {
-    public DateTime? CreatedAtGt
+    public System::DateTime? CreatedAtGt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -36,14 +40,17 @@ public sealed record class SubscriptionListParams : ParamsBase
         }
     }
 
-    public DateTime? CreatedAtGte
+    public System::DateTime? CreatedAtGte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -54,14 +61,17 @@ public sealed record class SubscriptionListParams : ParamsBase
         }
     }
 
-    public DateTime? CreatedAtLt
+    public System::DateTime? CreatedAtLt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -72,14 +82,17 @@ public sealed record class SubscriptionListParams : ParamsBase
         }
     }
 
-    public DateTime? CreatedAtLte
+    public System::DateTime? CreatedAtLte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -205,17 +218,17 @@ public sealed record class SubscriptionListParams : ParamsBase
         }
     }
 
-    public ApiEnum<string, Status>? Status
+    public ApiEnum<string, global::Orb.Models.Subscriptions.Status>? Status
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("status", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Status>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<ApiEnum<
+                string,
+                global::Orb.Models.Subscriptions.Status
+            >?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -226,9 +239,9 @@ public sealed record class SubscriptionListParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/subscriptions")
+        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/subscriptions")
         {
             Query = this.QueryString(client),
         }.Uri;
@@ -241,5 +254,52 @@ public sealed record class SubscriptionListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+[JsonConverter(typeof(global::Orb.Models.Subscriptions.StatusConverter))]
+public enum Status
+{
+    Active,
+    Ended,
+    Upcoming,
+}
+
+sealed class StatusConverter : JsonConverter<global::Orb.Models.Subscriptions.Status>
+{
+    public override global::Orb.Models.Subscriptions.Status Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "active" => global::Orb.Models.Subscriptions.Status.Active,
+            "ended" => global::Orb.Models.Subscriptions.Status.Ended,
+            "upcoming" => global::Orb.Models.Subscriptions.Status.Upcoming,
+            _ => (global::Orb.Models.Subscriptions.Status)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Subscriptions.Status value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.Subscriptions.Status.Active => "active",
+                global::Orb.Models.Subscriptions.Status.Ended => "ended",
+                global::Orb.Models.Subscriptions.Status.Upcoming => "upcoming",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

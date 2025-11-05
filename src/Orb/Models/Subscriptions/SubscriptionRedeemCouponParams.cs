@@ -1,11 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.Subscriptions.SubscriptionRedeemCouponParamsProperties;
+using System = System;
 
 namespace Orb.Models.Subscriptions;
 
@@ -25,7 +25,10 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("change_option", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'change_option' cannot be null",
-                    new ArgumentOutOfRangeException("change_option", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "change_option",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, ChangeOption>>(
@@ -74,14 +77,17 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     /// The date that the coupon discount should take effect. This parameter can only
     /// be passed if the `change_option` is `requested_date`.
     /// </summary>
-    public DateTime? ChangeDate
+    public System::DateTime? ChangeDate
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("change_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -134,9 +140,9 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscriptions/{0}/redeem_coupon", this.SubscriptionID)
         )
@@ -161,5 +167,52 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+[JsonConverter(typeof(ChangeOptionConverter))]
+public enum ChangeOption
+{
+    RequestedDate,
+    EndOfSubscriptionTerm,
+    Immediate,
+}
+
+sealed class ChangeOptionConverter : JsonConverter<ChangeOption>
+{
+    public override ChangeOption Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "requested_date" => ChangeOption.RequestedDate,
+            "end_of_subscription_term" => ChangeOption.EndOfSubscriptionTerm,
+            "immediate" => ChangeOption.Immediate,
+            _ => (ChangeOption)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ChangeOption value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ChangeOption.RequestedDate => "requested_date",
+                ChangeOption.EndOfSubscriptionTerm => "end_of_subscription_term",
+                ChangeOption.Immediate => "immediate",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

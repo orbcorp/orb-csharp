@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.NewFloatingMinimumCompositePriceProperties;
+using System = System;
 
 namespace Orb.Models;
 
@@ -17,17 +16,17 @@ public sealed record class NewFloatingMinimumCompositePrice
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, Cadence> Cadence
+    public required ApiEnum<string, Cadence12> Cadence
     {
         get
         {
             if (!this.Properties.TryGetValue("cadence", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'cadence' cannot be null",
-                    new ArgumentOutOfRangeException("cadence", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("cadence", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Cadence>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, Cadence12>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -51,13 +50,13 @@ public sealed record class NewFloatingMinimumCompositePrice
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'currency' cannot be null",
-                    new ArgumentOutOfRangeException("currency", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("currency", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'currency' cannot be null",
-                    new ArgumentNullException("currency")
+                    new System::ArgumentNullException("currency")
                 );
         }
         set
@@ -79,13 +78,13 @@ public sealed record class NewFloatingMinimumCompositePrice
             if (!this.Properties.TryGetValue("item_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'item_id' cannot be null",
-                    new ArgumentOutOfRangeException("item_id", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("item_id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'item_id' cannot be null",
-                    new ArgumentNullException("item_id")
+                    new System::ArgumentNullException("item_id")
                 );
         }
         set
@@ -107,13 +106,16 @@ public sealed record class NewFloatingMinimumCompositePrice
             if (!this.Properties.TryGetValue("minimum_config", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'minimum_config' cannot be null",
-                    new ArgumentOutOfRangeException("minimum_config", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "minimum_config",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<MinimumConfig>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'minimum_config' cannot be null",
-                    new ArgumentNullException("minimum_config")
+                    new System::ArgumentNullException("minimum_config")
                 );
         }
         set
@@ -128,17 +130,20 @@ public sealed record class NewFloatingMinimumCompositePrice
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public required ApiEnum<string, ModelType> ModelType
+    public required ApiEnum<string, ModelType11> ModelType
     {
         get
         {
             if (!this.Properties.TryGetValue("model_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'model_type' cannot be null",
-                    new ArgumentOutOfRangeException("model_type", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "model_type",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ModelType>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, ModelType11>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -162,13 +167,13 @@ public sealed record class NewFloatingMinimumCompositePrice
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentNullException("name")
+                    new System::ArgumentNullException("name")
                 );
         }
         set
@@ -273,14 +278,14 @@ public sealed record class NewFloatingMinimumCompositePrice
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public ConversionRateConfig? ConversionRateConfig
+    public ConversionRateConfig11? ConversionRateConfig
     {
         get
         {
             if (!this.Properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ConversionRateConfig?>(
+            return JsonSerializer.Deserialize<ConversionRateConfig11?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -478,5 +483,379 @@ public sealed record class NewFloatingMinimumCompositePrice
     )
     {
         return new(properties);
+    }
+}
+
+/// <summary>
+/// The cadence to bill for this price on.
+/// </summary>
+[JsonConverter(typeof(Cadence12Converter))]
+public enum Cadence12
+{
+    Annual,
+    SemiAnnual,
+    Monthly,
+    Quarterly,
+    OneTime,
+    Custom,
+}
+
+sealed class Cadence12Converter : JsonConverter<Cadence12>
+{
+    public override Cadence12 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "annual" => Cadence12.Annual,
+            "semi_annual" => Cadence12.SemiAnnual,
+            "monthly" => Cadence12.Monthly,
+            "quarterly" => Cadence12.Quarterly,
+            "one_time" => Cadence12.OneTime,
+            "custom" => Cadence12.Custom,
+            _ => (Cadence12)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        Cadence12 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Cadence12.Annual => "annual",
+                Cadence12.SemiAnnual => "semi_annual",
+                Cadence12.Monthly => "monthly",
+                Cadence12.Quarterly => "quarterly",
+                Cadence12.OneTime => "one_time",
+                Cadence12.Custom => "custom",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Configuration for minimum pricing
+/// </summary>
+[JsonConverter(typeof(ModelConverter<MinimumConfig>))]
+public sealed record class MinimumConfig : ModelBase, IFromRaw<MinimumConfig>
+{
+    /// <summary>
+    /// The minimum amount to apply
+    /// </summary>
+    public required string MinimumAmount
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("minimum_amount", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'minimum_amount' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "minimum_amount",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'minimum_amount' cannot be null",
+                    new System::ArgumentNullException("minimum_amount")
+                );
+        }
+        set
+        {
+            this.Properties["minimum_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// If true, subtotals from this price are prorated based on the service period
+    /// </summary>
+    public bool? Prorated
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("prorated", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["prorated"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.MinimumAmount;
+        _ = this.Prorated;
+    }
+
+    public MinimumConfig() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MinimumConfig(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static MinimumConfig FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+
+    [SetsRequiredMembers]
+    public MinimumConfig(string minimumAmount)
+        : this()
+    {
+        this.MinimumAmount = minimumAmount;
+    }
+}
+
+/// <summary>
+/// The pricing model type
+/// </summary>
+[JsonConverter(typeof(ModelType11Converter))]
+public enum ModelType11
+{
+    Minimum,
+}
+
+sealed class ModelType11Converter : JsonConverter<ModelType11>
+{
+    public override ModelType11 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "minimum" => ModelType11.Minimum,
+            _ => (ModelType11)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ModelType11 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ModelType11.Minimum => "minimum",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(ConversionRateConfig11Converter))]
+public record class ConversionRateConfig11
+{
+    public object Value { get; private init; }
+
+    public ConversionRateConfig11(UnitConversionRateConfig value)
+    {
+        Value = value;
+    }
+
+    public ConversionRateConfig11(TieredConversionRateConfig value)
+    {
+        Value = value;
+    }
+
+    ConversionRateConfig11(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static ConversionRateConfig11 CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
+    {
+        value = this.Value as UnitConversionRateConfig;
+        return value != null;
+    }
+
+    public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
+    {
+        value = this.Value as TieredConversionRateConfig;
+        return value != null;
+    }
+
+    public void Switch(
+        System::Action<UnitConversionRateConfig> unit,
+        System::Action<TieredConversionRateConfig> tiered
+    )
+    {
+        switch (this.Value)
+        {
+            case UnitConversionRateConfig value:
+                unit(value);
+                break;
+            case TieredConversionRateConfig value:
+                tiered(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of ConversionRateConfig11"
+                );
+        }
+    }
+
+    public T Match<T>(
+        System::Func<UnitConversionRateConfig, T> unit,
+        System::Func<TieredConversionRateConfig, T> tiered
+    )
+    {
+        return this.Value switch
+        {
+            UnitConversionRateConfig value => unit(value),
+            TieredConversionRateConfig value => tiered(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of ConversionRateConfig11"
+            ),
+        };
+    }
+
+    public void Validate()
+    {
+        if (this.Value is UnknownVariant)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of ConversionRateConfig11"
+            );
+        }
+    }
+
+    record struct UnknownVariant(JsonElement value);
+}
+
+sealed class ConversionRateConfig11Converter : JsonConverter<ConversionRateConfig11>
+{
+    public override ConversionRateConfig11? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? conversionRateType;
+        try
+        {
+            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+        }
+        catch
+        {
+            conversionRateType = null;
+        }
+
+        switch (conversionRateType)
+        {
+            case "unit":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new ConversionRateConfig11(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'UnitConversionRateConfig'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "tiered":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new ConversionRateConfig11(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'TieredConversionRateConfig'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            default:
+            {
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ConversionRateConfig11 value,
+        JsonSerializerOptions options
+    )
+    {
+        object variant = value.Value;
+        JsonSerializer.Serialize(writer, variant, options);
     }
 }

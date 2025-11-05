@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.NewFloatingGroupedAllocationPriceProperties;
+using System = System;
 
 namespace Orb.Models;
 
@@ -17,17 +16,17 @@ public sealed record class NewFloatingGroupedAllocationPrice
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, Cadence> Cadence
+    public required ApiEnum<string, Cadence3> Cadence
     {
         get
         {
             if (!this.Properties.TryGetValue("cadence", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'cadence' cannot be null",
-                    new ArgumentOutOfRangeException("cadence", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("cadence", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Cadence>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, Cadence3>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -51,13 +50,13 @@ public sealed record class NewFloatingGroupedAllocationPrice
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'currency' cannot be null",
-                    new ArgumentOutOfRangeException("currency", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("currency", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'currency' cannot be null",
-                    new ArgumentNullException("currency")
+                    new System::ArgumentNullException("currency")
                 );
         }
         set
@@ -79,7 +78,7 @@ public sealed record class NewFloatingGroupedAllocationPrice
             if (!this.Properties.TryGetValue("grouped_allocation_config", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'grouped_allocation_config' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "grouped_allocation_config",
                         "Missing required argument"
                     )
@@ -91,7 +90,7 @@ public sealed record class NewFloatingGroupedAllocationPrice
                 )
                 ?? throw new OrbInvalidDataException(
                     "'grouped_allocation_config' cannot be null",
-                    new ArgumentNullException("grouped_allocation_config")
+                    new System::ArgumentNullException("grouped_allocation_config")
                 );
         }
         set
@@ -113,13 +112,13 @@ public sealed record class NewFloatingGroupedAllocationPrice
             if (!this.Properties.TryGetValue("item_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'item_id' cannot be null",
-                    new ArgumentOutOfRangeException("item_id", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("item_id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'item_id' cannot be null",
-                    new ArgumentNullException("item_id")
+                    new System::ArgumentNullException("item_id")
                 );
         }
         set
@@ -134,17 +133,20 @@ public sealed record class NewFloatingGroupedAllocationPrice
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public required ApiEnum<string, ModelType> ModelType
+    public required ApiEnum<string, ModelType2> ModelType
     {
         get
         {
             if (!this.Properties.TryGetValue("model_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'model_type' cannot be null",
-                    new ArgumentOutOfRangeException("model_type", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "model_type",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ModelType>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, ModelType2>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -168,13 +170,13 @@ public sealed record class NewFloatingGroupedAllocationPrice
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentNullException("name")
+                    new System::ArgumentNullException("name")
                 );
         }
         set
@@ -279,14 +281,14 @@ public sealed record class NewFloatingGroupedAllocationPrice
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public ConversionRateConfig? ConversionRateConfig
+    public ConversionRateConfig2? ConversionRateConfig
     {
         get
         {
             if (!this.Properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ConversionRateConfig?>(
+            return JsonSerializer.Deserialize<ConversionRateConfig2?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -484,5 +486,412 @@ public sealed record class NewFloatingGroupedAllocationPrice
     )
     {
         return new(properties);
+    }
+}
+
+/// <summary>
+/// The cadence to bill for this price on.
+/// </summary>
+[JsonConverter(typeof(Cadence3Converter))]
+public enum Cadence3
+{
+    Annual,
+    SemiAnnual,
+    Monthly,
+    Quarterly,
+    OneTime,
+    Custom,
+}
+
+sealed class Cadence3Converter : JsonConverter<Cadence3>
+{
+    public override Cadence3 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "annual" => Cadence3.Annual,
+            "semi_annual" => Cadence3.SemiAnnual,
+            "monthly" => Cadence3.Monthly,
+            "quarterly" => Cadence3.Quarterly,
+            "one_time" => Cadence3.OneTime,
+            "custom" => Cadence3.Custom,
+            _ => (Cadence3)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Cadence3 value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Cadence3.Annual => "annual",
+                Cadence3.SemiAnnual => "semi_annual",
+                Cadence3.Monthly => "monthly",
+                Cadence3.Quarterly => "quarterly",
+                Cadence3.OneTime => "one_time",
+                Cadence3.Custom => "custom",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Configuration for grouped_allocation pricing
+/// </summary>
+[JsonConverter(typeof(ModelConverter<GroupedAllocationConfig>))]
+public sealed record class GroupedAllocationConfig : ModelBase, IFromRaw<GroupedAllocationConfig>
+{
+    /// <summary>
+    /// Usage allocation per group
+    /// </summary>
+    public required string Allocation
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("allocation", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'allocation' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "allocation",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'allocation' cannot be null",
+                    new System::ArgumentNullException("allocation")
+                );
+        }
+        set
+        {
+            this.Properties["allocation"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// How to determine the groups that should each be allocated some quantity
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("grouping_key", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'grouping_key' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "grouping_key",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'grouping_key' cannot be null",
+                    new System::ArgumentNullException("grouping_key")
+                );
+        }
+        set
+        {
+            this.Properties["grouping_key"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Unit rate for post-allocation
+    /// </summary>
+    public required string OverageUnitRate
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("overage_unit_rate", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'overage_unit_rate' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "overage_unit_rate",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'overage_unit_rate' cannot be null",
+                    new System::ArgumentNullException("overage_unit_rate")
+                );
+        }
+        set
+        {
+            this.Properties["overage_unit_rate"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.Allocation;
+        _ = this.GroupingKey;
+        _ = this.OverageUnitRate;
+    }
+
+    public GroupedAllocationConfig() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    GroupedAllocationConfig(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static GroupedAllocationConfig FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
+    {
+        return new(properties);
+    }
+}
+
+/// <summary>
+/// The pricing model type
+/// </summary>
+[JsonConverter(typeof(ModelType2Converter))]
+public enum ModelType2
+{
+    GroupedAllocation,
+}
+
+sealed class ModelType2Converter : JsonConverter<ModelType2>
+{
+    public override ModelType2 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "grouped_allocation" => ModelType2.GroupedAllocation,
+            _ => (ModelType2)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ModelType2 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ModelType2.GroupedAllocation => "grouped_allocation",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(ConversionRateConfig2Converter))]
+public record class ConversionRateConfig2
+{
+    public object Value { get; private init; }
+
+    public ConversionRateConfig2(UnitConversionRateConfig value)
+    {
+        Value = value;
+    }
+
+    public ConversionRateConfig2(TieredConversionRateConfig value)
+    {
+        Value = value;
+    }
+
+    ConversionRateConfig2(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static ConversionRateConfig2 CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
+    {
+        value = this.Value as UnitConversionRateConfig;
+        return value != null;
+    }
+
+    public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
+    {
+        value = this.Value as TieredConversionRateConfig;
+        return value != null;
+    }
+
+    public void Switch(
+        System::Action<UnitConversionRateConfig> unit,
+        System::Action<TieredConversionRateConfig> tiered
+    )
+    {
+        switch (this.Value)
+        {
+            case UnitConversionRateConfig value:
+                unit(value);
+                break;
+            case TieredConversionRateConfig value:
+                tiered(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of ConversionRateConfig2"
+                );
+        }
+    }
+
+    public T Match<T>(
+        System::Func<UnitConversionRateConfig, T> unit,
+        System::Func<TieredConversionRateConfig, T> tiered
+    )
+    {
+        return this.Value switch
+        {
+            UnitConversionRateConfig value => unit(value),
+            TieredConversionRateConfig value => tiered(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of ConversionRateConfig2"
+            ),
+        };
+    }
+
+    public void Validate()
+    {
+        if (this.Value is UnknownVariant)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of ConversionRateConfig2"
+            );
+        }
+    }
+
+    record struct UnknownVariant(JsonElement value);
+}
+
+sealed class ConversionRateConfig2Converter : JsonConverter<ConversionRateConfig2>
+{
+    public override ConversionRateConfig2? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? conversionRateType;
+        try
+        {
+            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+        }
+        catch
+        {
+            conversionRateType = null;
+        }
+
+        switch (conversionRateType)
+        {
+            case "unit":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new ConversionRateConfig2(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'UnitConversionRateConfig'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "tiered":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new ConversionRateConfig2(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'TieredConversionRateConfig'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            default:
+            {
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ConversionRateConfig2 value,
+        JsonSerializerOptions options
+    )
+    {
+        object variant = value.Value;
+        JsonSerializer.Serialize(writer, variant, options);
     }
 }

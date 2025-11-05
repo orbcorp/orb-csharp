@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Orb.Models.Customers.BalanceTransactions.BalanceTransactionCreateParamsProperties;
+using Orb.Models.Customers.BalanceTransactions;
 
 namespace Orb.Tests.Services.Customers.BalanceTransactions;
 

@@ -1,12 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Orb.Models;
-using Orb.Models.CustomExpirationProperties;
-using Orb.Models.NewAllocationPriceProperties;
-using Orb.Models.NewAllocationPriceProperties.FilterProperties;
-using Orb.Models.UnitConversionRateConfigProperties;
-using NewBillingCycleConfigurationProperties = Orb.Models.NewBillingCycleConfigurationProperties;
-using NewPlanUnitPriceProperties = Orb.Models.NewPlanUnitPriceProperties;
 
 namespace Orb.Tests.Services.Plans;
 
@@ -32,15 +26,15 @@ public class PlanServiceTest : TestBase
                             CustomExpiration = new()
                             {
                                 Duration = 0,
-                                DurationUnit = DurationUnit.Day,
+                                DurationUnit = DurationUnitModel.Day,
                             },
                             ExpiresAtEndOfCadence = true,
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Field.ItemID,
-                                    Operator = Operator.Includes,
+                                    Field = Field11.ItemID,
+                                    Operator = Operator11.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -49,9 +43,9 @@ public class PlanServiceTest : TestBase
                         Price1 = new(
                             new NewPlanUnitPrice()
                             {
-                                Cadence = NewPlanUnitPriceProperties::Cadence.Annual,
+                                Cadence = Cadence48.Annual,
                                 ItemID = "item_id",
-                                ModelType = NewPlanUnitPriceProperties::ModelType.Unit,
+                                ModelType = ModelType47.Unit,
                                 Name = "Annual fee",
                                 UnitConfig = new("unit_amount"),
                                 BillableMetricID = "billable_metric_id",
@@ -59,14 +53,13 @@ public class PlanServiceTest : TestBase
                                 BillingCycleConfiguration = new()
                                 {
                                     Duration = 0,
-                                    DurationUnit =
-                                        NewBillingCycleConfigurationProperties::DurationUnit.Day,
+                                    DurationUnit = DurationUnit1.Day,
                                 },
                                 ConversionRate = 0,
                                 ConversionRateConfig = new(
                                     new UnitConversionRateConfig()
                                     {
-                                        ConversionRateType = ConversionRateType.Unit,
+                                        ConversionRateType = ConversionRateTypeModel.Unit,
                                         UnitConfig = new("unit_amount"),
                                     }
                                 ),
@@ -84,8 +77,7 @@ public class PlanServiceTest : TestBase
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
-                                    DurationUnit =
-                                        NewBillingCycleConfigurationProperties::DurationUnit.Day,
+                                    DurationUnit = DurationUnit1.Day,
                                 },
                                 Metadata = new Dictionary<string, string?>()
                                 {

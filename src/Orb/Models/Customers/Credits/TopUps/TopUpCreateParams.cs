@@ -1,11 +1,12 @@
-using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.Customers.Credits.TopUps.TopUpCreateParamsProperties;
+using System = System;
 
 namespace Orb.Models.Customers.Credits.TopUps;
 
@@ -33,13 +34,13 @@ public sealed record class TopUpCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amount' cannot be null",
-                    new ArgumentOutOfRangeException("amount", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("amount", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'amount' cannot be null",
-                    new ArgumentNullException("amount")
+                    new System::ArgumentNullException("amount")
                 );
         }
         set
@@ -62,13 +63,13 @@ public sealed record class TopUpCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("currency", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'currency' cannot be null",
-                    new ArgumentOutOfRangeException("currency", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("currency", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'currency' cannot be null",
-                    new ArgumentNullException("currency")
+                    new System::ArgumentNullException("currency")
                 );
         }
         set
@@ -90,13 +91,16 @@ public sealed record class TopUpCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("invoice_settings", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'invoice_settings' cannot be null",
-                    new ArgumentOutOfRangeException("invoice_settings", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "invoice_settings",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<InvoiceSettings>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'invoice_settings' cannot be null",
-                    new ArgumentNullException("invoice_settings")
+                    new System::ArgumentNullException("invoice_settings")
                 );
         }
         set
@@ -118,7 +122,7 @@ public sealed record class TopUpCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("per_unit_cost_basis", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'per_unit_cost_basis' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "per_unit_cost_basis",
                         "Missing required argument"
                     )
@@ -127,7 +131,7 @@ public sealed record class TopUpCreateParams : ParamsBase
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'per_unit_cost_basis' cannot be null",
-                    new ArgumentNullException("per_unit_cost_basis")
+                    new System::ArgumentNullException("per_unit_cost_basis")
                 );
         }
         set
@@ -150,13 +154,16 @@ public sealed record class TopUpCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("threshold", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'threshold' cannot be null",
-                    new ArgumentOutOfRangeException("threshold", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "threshold",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'threshold' cannot be null",
-                    new ArgumentNullException("threshold")
+                    new System::ArgumentNullException("threshold")
                 );
         }
         set
@@ -172,14 +179,17 @@ public sealed record class TopUpCreateParams : ParamsBase
     /// The date from which the top-up is active. If unspecified, the top-up is active
     /// immediately.             This should not be more than 10 days in the past.
     /// </summary>
-    public DateTime? ActiveFrom
+    public System::DateTime? ActiveFrom
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("active_from", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -236,9 +246,9 @@ public sealed record class TopUpCreateParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/customers/{0}/credits/top_ups", this.CustomerID)
         )
@@ -263,5 +273,184 @@ public sealed record class TopUpCreateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+/// <summary>
+/// Settings for invoices generated by triggered top-ups.
+/// </summary>
+[JsonConverter(typeof(ModelConverter<InvoiceSettings>))]
+public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings>
+{
+    /// <summary>
+    /// Whether the credits purchase invoice should auto collect with the customer's
+    /// saved payment method.
+    /// </summary>
+    public required bool AutoCollection
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("auto_collection", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'auto_collection' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "auto_collection",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["auto_collection"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The net terms determines the difference between the invoice date and the issue
+    /// date for the invoice. If you intend the invoice to be due on issue, set this
+    /// to 0.
+    /// </summary>
+    public required long NetTerms
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("net_terms", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'net_terms' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "net_terms",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["net_terms"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// An optional memo to display on the invoice.
+    /// </summary>
+    public string? Memo
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("memo", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["memo"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// When true, credit blocks created by this top-up will require that the corresponding
+    /// invoice is paid before they are drawn down from. If any topup block is pending
+    /// payment, further automatic top-ups will be paused until the invoice is paid
+    /// or voided.
+    /// </summary>
+    public bool? RequireSuccessfulPayment
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("require_successful_payment", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["require_successful_payment"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.AutoCollection;
+        _ = this.NetTerms;
+        _ = this.Memo;
+        _ = this.RequireSuccessfulPayment;
+    }
+
+    public InvoiceSettings() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    InvoiceSettings(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static InvoiceSettings FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+/// <summary>
+/// The unit of expires_after.
+/// </summary>
+[JsonConverter(typeof(ExpiresAfterUnitConverter))]
+public enum ExpiresAfterUnit
+{
+    Day,
+    Month,
+}
+
+sealed class ExpiresAfterUnitConverter : JsonConverter<ExpiresAfterUnit>
+{
+    public override ExpiresAfterUnit Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "day" => ExpiresAfterUnit.Day,
+            "month" => ExpiresAfterUnit.Month,
+            _ => (ExpiresAfterUnit)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ExpiresAfterUnit value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ExpiresAfterUnit.Day => "day",
+                ExpiresAfterUnit.Month => "month",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

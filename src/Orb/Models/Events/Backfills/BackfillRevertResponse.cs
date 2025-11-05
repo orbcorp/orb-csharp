@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.Events.Backfills.BackfillRevertResponseProperties;
+using System = System;
 
 namespace Orb.Models.Events.Backfills;
 
@@ -23,13 +22,13 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentNullException("id")
+                    new System::ArgumentNullException("id")
                 );
         }
         set
@@ -45,14 +44,17 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
     /// If in the future, the time at which the backfill will automatically close.
     /// If in the past, the time at which the backfill was closed.
     /// </summary>
-    public required DateTime? CloseTime
+    public required System::DateTime? CloseTime
     {
         get
         {
             if (!this.Properties.TryGetValue("close_time", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -63,17 +65,23 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
         }
     }
 
-    public required DateTime CreatedAt
+    public required System::DateTime CreatedAt
     {
         get
         {
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'created_at' cannot be null",
-                    new ArgumentOutOfRangeException("created_at", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "created_at",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -116,7 +124,10 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
             if (!this.Properties.TryGetValue("events_ingested", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'events_ingested' cannot be null",
-                    new ArgumentOutOfRangeException("events_ingested", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "events_ingested",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
@@ -142,7 +153,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
             if (!this.Properties.TryGetValue("replace_existing_events", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'replace_existing_events' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "replace_existing_events",
                         "Missing required argument"
                     )
@@ -162,14 +173,17 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
     /// <summary>
     /// The time at which this backfill was reverted.
     /// </summary>
-    public required DateTime? RevertedAt
+    public required System::DateTime? RevertedAt
     {
         get
         {
             if (!this.Properties.TryGetValue("reverted_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -183,17 +197,17 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
     /// <summary>
     /// The status of the backfill.
     /// </summary>
-    public required ApiEnum<string, Status> Status
+    public required ApiEnum<string, Status3> Status
     {
         get
         {
             if (!this.Properties.TryGetValue("status", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'status' cannot be null",
-                    new ArgumentOutOfRangeException("status", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("status", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Status>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, Status3>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -207,17 +221,23 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
         }
     }
 
-    public required DateTime TimeframeEnd
+    public required System::DateTime TimeframeEnd
     {
         get
         {
             if (!this.Properties.TryGetValue("timeframe_end", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'timeframe_end' cannot be null",
-                    new ArgumentOutOfRangeException("timeframe_end", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "timeframe_end",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -228,17 +248,23 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
         }
     }
 
-    public required DateTime TimeframeStart
+    public required System::DateTime TimeframeStart
     {
         get
         {
             if (!this.Properties.TryGetValue("timeframe_start", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'timeframe_start' cannot be null",
-                    new ArgumentOutOfRangeException("timeframe_start", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "timeframe_start",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -301,5 +327,54 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
     )
     {
         return new(properties);
+    }
+}
+
+/// <summary>
+/// The status of the backfill.
+/// </summary>
+[JsonConverter(typeof(Status3Converter))]
+public enum Status3
+{
+    Pending,
+    Reflected,
+    PendingRevert,
+    Reverted,
+}
+
+sealed class Status3Converter : JsonConverter<Status3>
+{
+    public override Status3 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "pending" => Status3.Pending,
+            "reflected" => Status3.Reflected,
+            "pending_revert" => Status3.PendingRevert,
+            "reverted" => Status3.Reverted,
+            _ => (Status3)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Status3 value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Status3.Pending => "pending",
+                Status3.Reflected => "reflected",
+                Status3.PendingRevert => "pending_revert",
+                Status3.Reverted => "reverted",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

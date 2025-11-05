@@ -1,8 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Orb.Models.Subscriptions.SubscriptionCancelParamsProperties;
-using Orb.Models.Subscriptions.SubscriptionRedeemCouponParamsProperties;
-using SubscriptionSchedulePlanChangeParamsProperties = Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties;
+using Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Services.Subscriptions;
 
@@ -105,8 +103,7 @@ public class SubscriptionServiceTest : TestBase
             new()
             {
                 SubscriptionID = "subscription_id",
-                ChangeOption =
-                    SubscriptionSchedulePlanChangeParamsProperties::ChangeOption.RequestedDate,
+                ChangeOption = ChangeOptionModel.RequestedDate,
             }
         );
         mutatedSubscription.Validate();

@@ -1,9 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Models.Invoices.InvoiceListParamsProperties;
+using Orb.Exceptions;
+using System = System;
 
 namespace Orb.Models.Invoices;
 
@@ -138,14 +139,17 @@ public sealed record class InvoiceListParams : ParamsBase
         }
     }
 
-    public DateOnly? DueDate
+    public System::DateOnly? DueDate
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("due_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateOnly?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateOnly?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -180,14 +184,17 @@ public sealed record class InvoiceListParams : ParamsBase
         }
     }
 
-    public DateOnly? DueDateGt
+    public System::DateOnly? DueDateGt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("due_date[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateOnly?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateOnly?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -198,14 +205,17 @@ public sealed record class InvoiceListParams : ParamsBase
         }
     }
 
-    public DateOnly? DueDateLt
+    public System::DateOnly? DueDateLt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("due_date[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateOnly?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateOnly?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -234,14 +244,17 @@ public sealed record class InvoiceListParams : ParamsBase
         }
     }
 
-    public DateTime? InvoiceDateGt
+    public System::DateTime? InvoiceDateGt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("invoice_date[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -252,14 +265,17 @@ public sealed record class InvoiceListParams : ParamsBase
         }
     }
 
-    public DateTime? InvoiceDateGte
+    public System::DateTime? InvoiceDateGte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("invoice_date[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -270,14 +286,17 @@ public sealed record class InvoiceListParams : ParamsBase
         }
     }
 
-    public DateTime? InvoiceDateLt
+    public System::DateTime? InvoiceDateLt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("invoice_date[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -288,14 +307,17 @@ public sealed record class InvoiceListParams : ParamsBase
         }
     }
 
-    public DateTime? InvoiceDateLte
+    public System::DateTime? InvoiceDateLte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("invoice_date[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -345,17 +367,16 @@ public sealed record class InvoiceListParams : ParamsBase
         }
     }
 
-    public List<ApiEnum<string, Status>>? Status
+    public List<ApiEnum<string, global::Orb.Models.Invoices.Status>>? Status
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("status", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<ApiEnum<string, Status>>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<List<
+                ApiEnum<string, global::Orb.Models.Invoices.Status>
+            >?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -384,9 +405,9 @@ public sealed record class InvoiceListParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/invoices")
+        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/invoices")
         {
             Query = this.QueryString(client),
         }.Uri;
@@ -399,5 +420,98 @@ public sealed record class InvoiceListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+[JsonConverter(typeof(DateTypeConverter))]
+public enum DateType
+{
+    DueDate,
+    InvoiceDate,
+}
+
+sealed class DateTypeConverter : JsonConverter<DateType>
+{
+    public override DateType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "due_date" => DateType.DueDate,
+            "invoice_date" => DateType.InvoiceDate,
+            _ => (DateType)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, DateType value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                DateType.DueDate => "due_date",
+                DateType.InvoiceDate => "invoice_date",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(global::Orb.Models.Invoices.StatusConverter))]
+public enum Status
+{
+    Draft,
+    Issued,
+    Paid,
+    Synced,
+    Void,
+}
+
+sealed class StatusConverter : JsonConverter<global::Orb.Models.Invoices.Status>
+{
+    public override global::Orb.Models.Invoices.Status Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "draft" => global::Orb.Models.Invoices.Status.Draft,
+            "issued" => global::Orb.Models.Invoices.Status.Issued,
+            "paid" => global::Orb.Models.Invoices.Status.Paid,
+            "synced" => global::Orb.Models.Invoices.Status.Synced,
+            "void" => global::Orb.Models.Invoices.Status.Void,
+            _ => (global::Orb.Models.Invoices.Status)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Invoices.Status value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.Invoices.Status.Draft => "draft",
+                global::Orb.Models.Invoices.Status.Issued => "issued",
+                global::Orb.Models.Invoices.Status.Paid => "paid",
+                global::Orb.Models.Invoices.Status.Synced => "synced",
+                global::Orb.Models.Invoices.Status.Void => "void",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

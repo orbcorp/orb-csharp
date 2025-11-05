@@ -1,6 +1,6 @@
-using System;
 using System.Net.Http;
 using Orb.Core;
+using System = System;
 
 namespace Orb.Models.Invoices;
 
@@ -11,9 +11,9 @@ public sealed record class InvoiceFetchParams : ParamsBase
 {
     public required string InvoiceID;
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/') + string.Format("/invoices/{0}", this.InvoiceID)
         )
         {

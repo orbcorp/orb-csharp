@@ -1,10 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
+using System = System;
 
 namespace Orb.Models.Invoices;
 
@@ -21,20 +21,23 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     /// <summary>
     /// A date string to specify the date of the payment.
     /// </summary>
-    public required DateOnly PaymentReceivedDate
+    public required System::DateOnly PaymentReceivedDate
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("payment_received_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'payment_received_date' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "payment_received_date",
                         "Missing required argument"
                     )
                 );
 
-            return JsonSerializer.Deserialize<DateOnly>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateOnly>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -87,9 +90,9 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/invoices/{0}/mark_paid", this.InvoiceID)
         )

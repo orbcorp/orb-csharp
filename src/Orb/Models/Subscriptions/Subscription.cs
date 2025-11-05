@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -6,8 +5,8 @@ using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
 using Orb.Models.Customers;
-using Orb.Models.Plans;
-using Orb.Models.Subscriptions.SubscriptionProperties;
+using Plans = Orb.Models.Plans;
+using System = System;
 
 namespace Orb.Models.Subscriptions;
 
@@ -41,13 +40,13 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentNullException("id")
+                    new System::ArgumentNullException("id")
                 );
         }
         set
@@ -91,7 +90,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
             if (!this.Properties.TryGetValue("adjustment_intervals", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'adjustment_intervals' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "adjustment_intervals",
                         "Missing required argument"
                     )
@@ -103,7 +102,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
                 )
                 ?? throw new OrbInvalidDataException(
                     "'adjustment_intervals' cannot be null",
-                    new ArgumentNullException("adjustment_intervals")
+                    new System::ArgumentNullException("adjustment_intervals")
                 );
         }
         set
@@ -150,7 +149,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
             )
                 throw new OrbInvalidDataException(
                     "'billing_cycle_anchor_configuration' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "billing_cycle_anchor_configuration",
                         "Missing required argument"
                     )
@@ -162,7 +161,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
                 )
                 ?? throw new OrbInvalidDataException(
                     "'billing_cycle_anchor_configuration' cannot be null",
-                    new ArgumentNullException("billing_cycle_anchor_configuration")
+                    new System::ArgumentNullException("billing_cycle_anchor_configuration")
                 );
         }
         set
@@ -185,7 +184,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
             if (!this.Properties.TryGetValue("billing_cycle_day", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'billing_cycle_day' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "billing_cycle_day",
                         "Missing required argument"
                     )
@@ -202,17 +201,23 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
         }
     }
 
-    public required DateTime CreatedAt
+    public required System::DateTime CreatedAt
     {
         get
         {
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'created_at' cannot be null",
-                    new ArgumentOutOfRangeException("created_at", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "created_at",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -228,7 +233,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
     /// that the instant returned is not part of the billing period. Set to null
     /// for subscriptions that are not currently active.
     /// </summary>
-    public required DateTime? CurrentBillingPeriodEndDate
+    public required System::DateTime? CurrentBillingPeriodEndDate
     {
         get
         {
@@ -240,7 +245,10 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
             )
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -256,7 +264,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
     /// the instant returned is exactly the beginning of the billing period. Set
     /// to null if the subscription is not currently active.
     /// </summary>
-    public required DateTime? CurrentBillingPeriodStartDate
+    public required System::DateTime? CurrentBillingPeriodStartDate
     {
         get
         {
@@ -268,7 +276,10 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
             )
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -301,13 +312,13 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
             if (!this.Properties.TryGetValue("customer", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'customer' cannot be null",
-                    new ArgumentOutOfRangeException("customer", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("customer", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<Customer>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'customer' cannot be null",
-                    new ArgumentNullException("customer")
+                    new System::ArgumentNullException("customer")
                 );
         }
         set
@@ -352,7 +363,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
             if (!this.Properties.TryGetValue("discount_intervals", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'discount_intervals' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "discount_intervals",
                         "Missing required argument"
                     )
@@ -364,7 +375,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
                 )
                 ?? throw new OrbInvalidDataException(
                     "'discount_intervals' cannot be null",
-                    new ArgumentNullException("discount_intervals")
+                    new System::ArgumentNullException("discount_intervals")
                 );
         }
         set
@@ -379,14 +390,17 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
     /// <summary>
     /// The date Orb stops billing for this subscription.
     /// </summary>
-    public required DateTime? EndDate
+    public required System::DateTime? EndDate
     {
         get
         {
             if (!this.Properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -406,7 +420,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
             )
                 throw new OrbInvalidDataException(
                     "'fixed_fee_quantity_schedule' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "fixed_fee_quantity_schedule",
                         "Missing required argument"
                     )
@@ -418,7 +432,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
                 )
                 ?? throw new OrbInvalidDataException(
                     "'fixed_fee_quantity_schedule' cannot be null",
-                    new ArgumentNullException("fixed_fee_quantity_schedule")
+                    new System::ArgumentNullException("fixed_fee_quantity_schedule")
                 );
         }
         set
@@ -459,7 +473,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
             if (!this.Properties.TryGetValue("maximum_intervals", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'maximum_intervals' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "maximum_intervals",
                         "Missing required argument"
                     )
@@ -471,7 +485,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
                 )
                 ?? throw new OrbInvalidDataException(
                     "'maximum_intervals' cannot be null",
-                    new ArgumentNullException("maximum_intervals")
+                    new System::ArgumentNullException("maximum_intervals")
                 );
         }
         set
@@ -496,7 +510,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
             if (!this.Properties.TryGetValue("metadata", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'metadata' cannot be null",
-                    new ArgumentOutOfRangeException("metadata", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("metadata", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<Dictionary<string, string>>(
@@ -505,7 +519,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
                 )
                 ?? throw new OrbInvalidDataException(
                     "'metadata' cannot be null",
-                    new ArgumentNullException("metadata")
+                    new System::ArgumentNullException("metadata")
                 );
         }
         set
@@ -528,7 +542,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
             if (!this.Properties.TryGetValue("minimum_intervals", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'minimum_intervals' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "minimum_intervals",
                         "Missing required argument"
                     )
@@ -540,7 +554,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
                 )
                 ?? throw new OrbInvalidDataException(
                     "'minimum_intervals' cannot be null",
-                    new ArgumentNullException("minimum_intervals")
+                    new System::ArgumentNullException("minimum_intervals")
                 );
         }
         set
@@ -562,13 +576,13 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentNullException("name")
+                    new System::ArgumentNullException("name")
                 );
         }
         set
@@ -593,7 +607,10 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
             if (!this.Properties.TryGetValue("net_terms", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'net_terms' cannot be null",
-                    new ArgumentOutOfRangeException("net_terms", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "net_terms",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
@@ -638,14 +655,14 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
     /// can be subscribed to by a customer. Plans define the billing behavior of the
     /// subscription. You can see more about how to configure prices in the [Price resource](/reference/price).
     /// </summary>
-    public required Plan? Plan
+    public required Plans::Plan? Plan
     {
         get
         {
             if (!this.Properties.TryGetValue("plan", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Plan?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<Plans::Plan?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -666,7 +683,10 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
             if (!this.Properties.TryGetValue("price_intervals", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'price_intervals' cannot be null",
-                    new ArgumentOutOfRangeException("price_intervals", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "price_intervals",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<PriceInterval>>(
@@ -675,7 +695,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
                 )
                 ?? throw new OrbInvalidDataException(
                     "'price_intervals' cannot be null",
-                    new ArgumentNullException("price_intervals")
+                    new System::ArgumentNullException("price_intervals")
                 );
         }
         set
@@ -711,17 +731,23 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
     /// <summary>
     /// The date Orb starts billing for this subscription.
     /// </summary>
-    public required DateTime StartDate
+    public required System::DateTime StartDate
     {
         get
         {
             if (!this.Properties.TryGetValue("start_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'start_date' cannot be null",
-                    new ArgumentOutOfRangeException("start_date", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "start_date",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -732,20 +758,19 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
         }
     }
 
-    public required ApiEnum<string, Status> Status
+    public required ApiEnum<string, global::Orb.Models.Subscriptions.StatusModel> Status
     {
         get
         {
             if (!this.Properties.TryGetValue("status", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'status' cannot be null",
-                    new ArgumentOutOfRangeException("status", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("status", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Status>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, global::Orb.Models.Subscriptions.StatusModel>
+            >(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -763,7 +788,10 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
             if (!this.Properties.TryGetValue("trial_info", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'trial_info' cannot be null",
-                    new ArgumentOutOfRangeException("trial_info", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "trial_info",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<SubscriptionTrialInfo>(
@@ -772,7 +800,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
                 )
                 ?? throw new OrbInvalidDataException(
                     "'trial_info' cannot be null",
-                    new ArgumentNullException("trial_info")
+                    new System::ArgumentNullException("trial_info")
                 );
         }
         set
@@ -846,5 +874,304 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
     public static Subscription FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
+    }
+}
+
+[JsonConverter(typeof(DiscountIntervalConverter))]
+public record class DiscountInterval
+{
+    public object Value { get; private init; }
+
+    public System::DateTime? EndDate
+    {
+        get
+        {
+            return Match<System::DateTime?>(
+                amount: (x) => x.EndDate,
+                percentage: (x) => x.EndDate,
+                usage: (x) => x.EndDate
+            );
+        }
+    }
+
+    public System::DateTime StartDate
+    {
+        get
+        {
+            return Match(
+                amount: (x) => x.StartDate,
+                percentage: (x) => x.StartDate,
+                usage: (x) => x.StartDate
+            );
+        }
+    }
+
+    public DiscountInterval(AmountDiscountInterval value)
+    {
+        Value = value;
+    }
+
+    public DiscountInterval(PercentageDiscountInterval value)
+    {
+        Value = value;
+    }
+
+    public DiscountInterval(UsageDiscountInterval value)
+    {
+        Value = value;
+    }
+
+    DiscountInterval(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static DiscountInterval CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickAmount([NotNullWhen(true)] out AmountDiscountInterval? value)
+    {
+        value = this.Value as AmountDiscountInterval;
+        return value != null;
+    }
+
+    public bool TryPickPercentage([NotNullWhen(true)] out PercentageDiscountInterval? value)
+    {
+        value = this.Value as PercentageDiscountInterval;
+        return value != null;
+    }
+
+    public bool TryPickUsage([NotNullWhen(true)] out UsageDiscountInterval? value)
+    {
+        value = this.Value as UsageDiscountInterval;
+        return value != null;
+    }
+
+    public void Switch(
+        System::Action<AmountDiscountInterval> amount,
+        System::Action<PercentageDiscountInterval> percentage,
+        System::Action<UsageDiscountInterval> usage
+    )
+    {
+        switch (this.Value)
+        {
+            case AmountDiscountInterval value:
+                amount(value);
+                break;
+            case PercentageDiscountInterval value:
+                percentage(value);
+                break;
+            case UsageDiscountInterval value:
+                usage(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of DiscountInterval"
+                );
+        }
+    }
+
+    public T Match<T>(
+        System::Func<AmountDiscountInterval, T> amount,
+        System::Func<PercentageDiscountInterval, T> percentage,
+        System::Func<UsageDiscountInterval, T> usage
+    )
+    {
+        return this.Value switch
+        {
+            AmountDiscountInterval value => amount(value),
+            PercentageDiscountInterval value => percentage(value),
+            UsageDiscountInterval value => usage(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of DiscountInterval"
+            ),
+        };
+    }
+
+    public void Validate()
+    {
+        if (this.Value is UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of DiscountInterval");
+        }
+    }
+
+    record struct UnknownVariant(JsonElement value);
+}
+
+sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
+{
+    public override DiscountInterval? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? discountType;
+        try
+        {
+            discountType = json.GetProperty("discount_type").GetString();
+        }
+        catch
+        {
+            discountType = null;
+        }
+
+        switch (discountType)
+        {
+            case "amount":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<AmountDiscountInterval>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new DiscountInterval(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'AmountDiscountInterval'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "percentage":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<PercentageDiscountInterval>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new DiscountInterval(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'PercentageDiscountInterval'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "usage":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<UsageDiscountInterval>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new DiscountInterval(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'UsageDiscountInterval'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            default:
+            {
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        DiscountInterval value,
+        JsonSerializerOptions options
+    )
+    {
+        object variant = value.Value;
+        JsonSerializer.Serialize(writer, variant, options);
+    }
+}
+
+[JsonConverter(typeof(global::Orb.Models.Subscriptions.StatusModelConverter))]
+public enum StatusModel
+{
+    Active,
+    Ended,
+    Upcoming,
+}
+
+sealed class StatusModelConverter : JsonConverter<global::Orb.Models.Subscriptions.StatusModel>
+{
+    public override global::Orb.Models.Subscriptions.StatusModel Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "active" => global::Orb.Models.Subscriptions.StatusModel.Active,
+            "ended" => global::Orb.Models.Subscriptions.StatusModel.Ended,
+            "upcoming" => global::Orb.Models.Subscriptions.StatusModel.Upcoming,
+            _ => (global::Orb.Models.Subscriptions.StatusModel)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Subscriptions.StatusModel value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.Subscriptions.StatusModel.Active => "active",
+                global::Orb.Models.Subscriptions.StatusModel.Ended => "ended",
+                global::Orb.Models.Subscriptions.StatusModel.Upcoming => "upcoming",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

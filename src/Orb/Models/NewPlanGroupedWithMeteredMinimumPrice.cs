@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.NewPlanGroupedWithMeteredMinimumPriceProperties;
+using System = System;
 
 namespace Orb.Models;
 
@@ -17,17 +16,17 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, Cadence> Cadence
+    public required ApiEnum<string, Cadence32> Cadence
     {
         get
         {
             if (!this.Properties.TryGetValue("cadence", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'cadence' cannot be null",
-                    new ArgumentOutOfRangeException("cadence", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("cadence", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Cadence>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, Cadence32>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -44,7 +43,7 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
     /// <summary>
     /// Configuration for grouped_with_metered_minimum pricing
     /// </summary>
-    public required GroupedWithMeteredMinimumConfig GroupedWithMeteredMinimumConfig
+    public required GroupedWithMeteredMinimumConfigModel GroupedWithMeteredMinimumConfig
     {
         get
         {
@@ -56,19 +55,19 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
             )
                 throw new OrbInvalidDataException(
                     "'grouped_with_metered_minimum_config' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "grouped_with_metered_minimum_config",
                         "Missing required argument"
                     )
                 );
 
-            return JsonSerializer.Deserialize<GroupedWithMeteredMinimumConfig>(
+            return JsonSerializer.Deserialize<GroupedWithMeteredMinimumConfigModel>(
                     element,
                     ModelBase.SerializerOptions
                 )
                 ?? throw new OrbInvalidDataException(
                     "'grouped_with_metered_minimum_config' cannot be null",
-                    new ArgumentNullException("grouped_with_metered_minimum_config")
+                    new System::ArgumentNullException("grouped_with_metered_minimum_config")
                 );
         }
         set
@@ -88,13 +87,13 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
             if (!this.Properties.TryGetValue("item_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'item_id' cannot be null",
-                    new ArgumentOutOfRangeException("item_id", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("item_id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'item_id' cannot be null",
-                    new ArgumentNullException("item_id")
+                    new System::ArgumentNullException("item_id")
                 );
         }
         set
@@ -109,17 +108,20 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public required ApiEnum<string, ModelType> ModelType
+    public required ApiEnum<string, ModelType31> ModelType
     {
         get
         {
             if (!this.Properties.TryGetValue("model_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'model_type' cannot be null",
-                    new ArgumentOutOfRangeException("model_type", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "model_type",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ModelType>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, ModelType31>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -143,13 +145,13 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentNullException("name")
+                    new System::ArgumentNullException("name")
                 );
         }
         set
@@ -254,14 +256,14 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public ConversionRateConfig? ConversionRateConfig
+    public ConversionRateConfig31? ConversionRateConfig
     {
         get
         {
             if (!this.Properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ConversionRateConfig?>(
+            return JsonSerializer.Deserialize<ConversionRateConfig31?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -504,5 +506,708 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
     )
     {
         return new(properties);
+    }
+}
+
+/// <summary>
+/// The cadence to bill for this price on.
+/// </summary>
+[JsonConverter(typeof(Cadence32Converter))]
+public enum Cadence32
+{
+    Annual,
+    SemiAnnual,
+    Monthly,
+    Quarterly,
+    OneTime,
+    Custom,
+}
+
+sealed class Cadence32Converter : JsonConverter<Cadence32>
+{
+    public override Cadence32 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "annual" => Cadence32.Annual,
+            "semi_annual" => Cadence32.SemiAnnual,
+            "monthly" => Cadence32.Monthly,
+            "quarterly" => Cadence32.Quarterly,
+            "one_time" => Cadence32.OneTime,
+            "custom" => Cadence32.Custom,
+            _ => (Cadence32)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        Cadence32 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Cadence32.Annual => "annual",
+                Cadence32.SemiAnnual => "semi_annual",
+                Cadence32.Monthly => "monthly",
+                Cadence32.Quarterly => "quarterly",
+                Cadence32.OneTime => "one_time",
+                Cadence32.Custom => "custom",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Configuration for grouped_with_metered_minimum pricing
+/// </summary>
+[JsonConverter(typeof(ModelConverter<GroupedWithMeteredMinimumConfigModel>))]
+public sealed record class GroupedWithMeteredMinimumConfigModel
+    : ModelBase,
+        IFromRaw<GroupedWithMeteredMinimumConfigModel>
+{
+    /// <summary>
+    /// Used to partition the usage into groups. The minimum amount is applied to
+    /// each group.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("grouping_key", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'grouping_key' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "grouping_key",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'grouping_key' cannot be null",
+                    new System::ArgumentNullException("grouping_key")
+                );
+        }
+        set
+        {
+            this.Properties["grouping_key"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The minimum amount to charge per group per unit
+    /// </summary>
+    public required string MinimumUnitAmount
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("minimum_unit_amount", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'minimum_unit_amount' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "minimum_unit_amount",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'minimum_unit_amount' cannot be null",
+                    new System::ArgumentNullException("minimum_unit_amount")
+                );
+        }
+        set
+        {
+            this.Properties["minimum_unit_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Used to determine the unit rate
+    /// </summary>
+    public required string PricingKey
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("pricing_key", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'pricing_key' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "pricing_key",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'pricing_key' cannot be null",
+                    new System::ArgumentNullException("pricing_key")
+                );
+        }
+        set
+        {
+            this.Properties["pricing_key"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Scale the unit rates by the scaling factor.
+    /// </summary>
+    public required List<ScalingFactorModel> ScalingFactors
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("scaling_factors", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'scaling_factors' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "scaling_factors",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<List<ScalingFactorModel>>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'scaling_factors' cannot be null",
+                    new System::ArgumentNullException("scaling_factors")
+                );
+        }
+        set
+        {
+            this.Properties["scaling_factors"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Used to determine the unit rate scaling factor
+    /// </summary>
+    public required string ScalingKey
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("scaling_key", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'scaling_key' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "scaling_key",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'scaling_key' cannot be null",
+                    new System::ArgumentNullException("scaling_key")
+                );
+        }
+        set
+        {
+            this.Properties["scaling_key"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Apply per unit pricing to each pricing value. The minimum amount is applied
+    /// any unmatched usage.
+    /// </summary>
+    public required List<UnitAmount1> UnitAmounts
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("unit_amounts", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'unit_amounts' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "unit_amounts",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<List<UnitAmount1>>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'unit_amounts' cannot be null",
+                    new System::ArgumentNullException("unit_amounts")
+                );
+        }
+        set
+        {
+            this.Properties["unit_amounts"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.GroupingKey;
+        _ = this.MinimumUnitAmount;
+        _ = this.PricingKey;
+        foreach (var item in this.ScalingFactors)
+        {
+            item.Validate();
+        }
+        _ = this.ScalingKey;
+        foreach (var item in this.UnitAmounts)
+        {
+            item.Validate();
+        }
+    }
+
+    public GroupedWithMeteredMinimumConfigModel() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    GroupedWithMeteredMinimumConfigModel(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static GroupedWithMeteredMinimumConfigModel FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
+    {
+        return new(properties);
+    }
+}
+
+/// <summary>
+/// Configuration for a scaling factor
+/// </summary>
+[JsonConverter(typeof(ModelConverter<ScalingFactorModel>))]
+public sealed record class ScalingFactorModel : ModelBase, IFromRaw<ScalingFactorModel>
+{
+    /// <summary>
+    /// Scaling factor
+    /// </summary>
+    public required string ScalingFactor
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("scaling_factor", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'scaling_factor' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "scaling_factor",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'scaling_factor' cannot be null",
+                    new System::ArgumentNullException("scaling_factor")
+                );
+        }
+        set
+        {
+            this.Properties["scaling_factor"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Scaling value
+    /// </summary>
+    public required string ScalingValue
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("scaling_value", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'scaling_value' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "scaling_value",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'scaling_value' cannot be null",
+                    new System::ArgumentNullException("scaling_value")
+                );
+        }
+        set
+        {
+            this.Properties["scaling_value"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.ScalingFactor;
+        _ = this.ScalingValue;
+    }
+
+    public ScalingFactorModel() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ScalingFactorModel(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static ScalingFactorModel FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+/// <summary>
+/// Configuration for a unit amount
+/// </summary>
+[JsonConverter(typeof(ModelConverter<UnitAmount1>))]
+public sealed record class UnitAmount1 : ModelBase, IFromRaw<UnitAmount1>
+{
+    /// <summary>
+    /// Pricing value
+    /// </summary>
+    public required string PricingValue
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("pricing_value", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'pricing_value' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "pricing_value",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'pricing_value' cannot be null",
+                    new System::ArgumentNullException("pricing_value")
+                );
+        }
+        set
+        {
+            this.Properties["pricing_value"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Per unit amount
+    /// </summary>
+    public required string UnitAmount
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("unit_amount", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'unit_amount' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "unit_amount",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'unit_amount' cannot be null",
+                    new System::ArgumentNullException("unit_amount")
+                );
+        }
+        set
+        {
+            this.Properties["unit_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.PricingValue;
+        _ = this.UnitAmount;
+    }
+
+    public UnitAmount1() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    UnitAmount1(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static UnitAmount1 FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+/// <summary>
+/// The pricing model type
+/// </summary>
+[JsonConverter(typeof(ModelType31Converter))]
+public enum ModelType31
+{
+    GroupedWithMeteredMinimum,
+}
+
+sealed class ModelType31Converter : JsonConverter<ModelType31>
+{
+    public override ModelType31 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "grouped_with_metered_minimum" => ModelType31.GroupedWithMeteredMinimum,
+            _ => (ModelType31)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ModelType31 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ModelType31.GroupedWithMeteredMinimum => "grouped_with_metered_minimum",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(ConversionRateConfig31Converter))]
+public record class ConversionRateConfig31
+{
+    public object Value { get; private init; }
+
+    public ConversionRateConfig31(UnitConversionRateConfig value)
+    {
+        Value = value;
+    }
+
+    public ConversionRateConfig31(TieredConversionRateConfig value)
+    {
+        Value = value;
+    }
+
+    ConversionRateConfig31(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static ConversionRateConfig31 CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
+    {
+        value = this.Value as UnitConversionRateConfig;
+        return value != null;
+    }
+
+    public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
+    {
+        value = this.Value as TieredConversionRateConfig;
+        return value != null;
+    }
+
+    public void Switch(
+        System::Action<UnitConversionRateConfig> unit,
+        System::Action<TieredConversionRateConfig> tiered
+    )
+    {
+        switch (this.Value)
+        {
+            case UnitConversionRateConfig value:
+                unit(value);
+                break;
+            case TieredConversionRateConfig value:
+                tiered(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of ConversionRateConfig31"
+                );
+        }
+    }
+
+    public T Match<T>(
+        System::Func<UnitConversionRateConfig, T> unit,
+        System::Func<TieredConversionRateConfig, T> tiered
+    )
+    {
+        return this.Value switch
+        {
+            UnitConversionRateConfig value => unit(value),
+            TieredConversionRateConfig value => tiered(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of ConversionRateConfig31"
+            ),
+        };
+    }
+
+    public void Validate()
+    {
+        if (this.Value is UnknownVariant)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of ConversionRateConfig31"
+            );
+        }
+    }
+
+    record struct UnknownVariant(JsonElement value);
+}
+
+sealed class ConversionRateConfig31Converter : JsonConverter<ConversionRateConfig31>
+{
+    public override ConversionRateConfig31? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? conversionRateType;
+        try
+        {
+            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+        }
+        catch
+        {
+            conversionRateType = null;
+        }
+
+        switch (conversionRateType)
+        {
+            case "unit":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new ConversionRateConfig31(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'UnitConversionRateConfig'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "tiered":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new ConversionRateConfig31(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'TieredConversionRateConfig'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            default:
+            {
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ConversionRateConfig31 value,
+        JsonSerializerOptions options
+    )
+    {
+        object variant = value.Value;
+        JsonSerializer.Serialize(writer, variant, options);
     }
 }

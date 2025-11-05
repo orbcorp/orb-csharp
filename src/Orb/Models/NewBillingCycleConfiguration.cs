@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.NewBillingCycleConfigurationProperties;
+using System = System;
 
 namespace Orb.Models;
 
@@ -24,7 +23,7 @@ public sealed record class NewBillingCycleConfiguration
             if (!this.Properties.TryGetValue("duration", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'duration' cannot be null",
-                    new ArgumentOutOfRangeException("duration", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("duration", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
@@ -41,17 +40,20 @@ public sealed record class NewBillingCycleConfiguration
     /// <summary>
     /// The unit of billing period duration.
     /// </summary>
-    public required ApiEnum<string, DurationUnit> DurationUnit
+    public required ApiEnum<string, DurationUnit1> DurationUnit
     {
         get
         {
             if (!this.Properties.TryGetValue("duration_unit", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'duration_unit' cannot be null",
-                    new ArgumentOutOfRangeException("duration_unit", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "duration_unit",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, DurationUnit>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, DurationUnit1>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -86,5 +88,52 @@ public sealed record class NewBillingCycleConfiguration
     )
     {
         return new(properties);
+    }
+}
+
+/// <summary>
+/// The unit of billing period duration.
+/// </summary>
+[JsonConverter(typeof(DurationUnit1Converter))]
+public enum DurationUnit1
+{
+    Day,
+    Month,
+}
+
+sealed class DurationUnit1Converter : JsonConverter<DurationUnit1>
+{
+    public override DurationUnit1 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "day" => DurationUnit1.Day,
+            "month" => DurationUnit1.Month,
+            _ => (DurationUnit1)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        DurationUnit1 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                DurationUnit1.Day => "day",
+                DurationUnit1.Month => "month",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

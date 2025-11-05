@@ -2,7 +2,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
-using Orb.Models.Customers.Credits.Ledger;
+using Ledger = Orb.Models.Customers.Credits.Ledger;
 
 namespace Orb.Services.Customers.Credits.Ledger;
 
@@ -20,15 +20,17 @@ public sealed class LedgerService : ILedgerService
         _client = client;
     }
 
-    public async Task<LedgerListPageResponse> List(LedgerListParams parameters)
+    public async Task<Ledger::LedgerListPageResponse> List(Ledger::LedgerListParams parameters)
     {
-        HttpRequest<LedgerListParams> request = new()
+        HttpRequest<Ledger::LedgerListParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var page = await response.Deserialize<LedgerListPageResponse>().ConfigureAwait(false);
+        var page = await response
+            .Deserialize<Ledger::LedgerListPageResponse>()
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             page.Validate();
@@ -36,16 +38,18 @@ public sealed class LedgerService : ILedgerService
         return page;
     }
 
-    public async Task<LedgerCreateEntryResponse> CreateEntry(LedgerCreateEntryParams parameters)
+    public async Task<Ledger::LedgerCreateEntryResponse> CreateEntry(
+        Ledger::LedgerCreateEntryParams parameters
+    )
     {
-        HttpRequest<LedgerCreateEntryParams> request = new()
+        HttpRequest<Ledger::LedgerCreateEntryParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
         var deserializedResponse = await response
-            .Deserialize<LedgerCreateEntryResponse>()
+            .Deserialize<Ledger::LedgerCreateEntryResponse>()
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -54,18 +58,18 @@ public sealed class LedgerService : ILedgerService
         return deserializedResponse;
     }
 
-    public async Task<LedgerCreateEntryByExternalIDResponse> CreateEntryByExternalID(
-        LedgerCreateEntryByExternalIDParams parameters
+    public async Task<Ledger::LedgerCreateEntryByExternalIDResponse> CreateEntryByExternalID(
+        Ledger::LedgerCreateEntryByExternalIDParams parameters
     )
     {
-        HttpRequest<LedgerCreateEntryByExternalIDParams> request = new()
+        HttpRequest<Ledger::LedgerCreateEntryByExternalIDParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
         var deserializedResponse = await response
-            .Deserialize<LedgerCreateEntryByExternalIDResponse>()
+            .Deserialize<Ledger::LedgerCreateEntryByExternalIDResponse>()
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -74,18 +78,18 @@ public sealed class LedgerService : ILedgerService
         return deserializedResponse;
     }
 
-    public async Task<LedgerListByExternalIDPageResponse> ListByExternalID(
-        LedgerListByExternalIDParams parameters
+    public async Task<Ledger::LedgerListByExternalIDPageResponse> ListByExternalID(
+        Ledger::LedgerListByExternalIDParams parameters
     )
     {
-        HttpRequest<LedgerListByExternalIDParams> request = new()
+        HttpRequest<Ledger::LedgerListByExternalIDParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
         var page = await response
-            .Deserialize<LedgerListByExternalIDPageResponse>()
+            .Deserialize<Ledger::LedgerListByExternalIDPageResponse>()
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {

@@ -13,7 +13,7 @@ public sealed record class CreditNoteListPageResponse
     : ModelBase,
         IFromRaw<CreditNoteListPageResponse>
 {
-    public required List<CreditNote> Data
+    public required List<CreditNoteModel> Data
     {
         get
         {
@@ -23,7 +23,7 @@ public sealed record class CreditNoteListPageResponse
                     new ArgumentOutOfRangeException("data", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<List<CreditNote>>(
+            return JsonSerializer.Deserialize<List<CreditNoteModel>>(
                     element,
                     ModelBase.SerializerOptions
                 )

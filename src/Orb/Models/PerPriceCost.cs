@@ -1,10 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
+using System = System;
 
 namespace Orb.Models;
 
@@ -21,13 +21,13 @@ public sealed record class PerPriceCost : ModelBase, IFromRaw<PerPriceCost>
             if (!this.Properties.TryGetValue("price", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'price' cannot be null",
-                    new ArgumentOutOfRangeException("price", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("price", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'price' cannot be null",
-                    new ArgumentNullException("price")
+                    new System::ArgumentNullException("price")
                 );
         }
         set
@@ -49,13 +49,13 @@ public sealed record class PerPriceCost : ModelBase, IFromRaw<PerPriceCost>
             if (!this.Properties.TryGetValue("price_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'price_id' cannot be null",
-                    new ArgumentOutOfRangeException("price_id", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("price_id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'price_id' cannot be null",
-                    new ArgumentNullException("price_id")
+                    new System::ArgumentNullException("price_id")
                 );
         }
         set
@@ -77,13 +77,13 @@ public sealed record class PerPriceCost : ModelBase, IFromRaw<PerPriceCost>
             if (!this.Properties.TryGetValue("subtotal", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'subtotal' cannot be null",
-                    new ArgumentOutOfRangeException("subtotal", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("subtotal", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'subtotal' cannot be null",
-                    new ArgumentNullException("subtotal")
+                    new System::ArgumentNullException("subtotal")
                 );
         }
         set
@@ -105,13 +105,13 @@ public sealed record class PerPriceCost : ModelBase, IFromRaw<PerPriceCost>
             if (!this.Properties.TryGetValue("total", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'total' cannot be null",
-                    new ArgumentOutOfRangeException("total", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("total", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'total' cannot be null",
-                    new ArgumentNullException("total")
+                    new System::ArgumentNullException("total")
                 );
         }
         set

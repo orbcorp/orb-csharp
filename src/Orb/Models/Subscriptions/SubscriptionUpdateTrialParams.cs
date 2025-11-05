@@ -1,11 +1,12 @@
-using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.Subscriptions.SubscriptionUpdateTrialParamsProperties;
+using System = System;
 
 namespace Orb.Models.Subscriptions;
 
@@ -44,13 +45,16 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("trial_end_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'trial_end_date' cannot be null",
-                    new ArgumentOutOfRangeException("trial_end_date", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "trial_end_date",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<TrialEndDate>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'trial_end_date' cannot be null",
-                    new ArgumentNullException("trial_end_date")
+                    new System::ArgumentNullException("trial_end_date")
                 );
         }
         set
@@ -84,9 +88,9 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscriptions/{0}/update_trial", this.SubscriptionID)
         )
@@ -111,5 +115,187 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+/// <summary>
+/// The new date that the trial should end, or the literal string `immediate` to end
+/// the trial immediately.
+/// </summary>
+[JsonConverter(typeof(TrialEndDateConverter))]
+public record class TrialEndDate
+{
+    public object Value { get; private init; }
+
+    public TrialEndDate(System::DateTime value)
+    {
+        Value = value;
+    }
+
+    public TrialEndDate(ApiEnum<string, UnionMember1> value)
+    {
+        Value = value;
+    }
+
+    TrialEndDate(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static TrialEndDate CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTime? value)
+    {
+        value = this.Value as System::DateTime?;
+        return value != null;
+    }
+
+    public bool TryPickUnionMember1([NotNullWhen(true)] out ApiEnum<string, UnionMember1>? value)
+    {
+        value = this.Value as ApiEnum<string, UnionMember1>?;
+        return value != null;
+    }
+
+    public void Switch(
+        System::Action<System::DateTime> @dateTime,
+        System::Action<ApiEnum<string, UnionMember1>> unionMember1
+    )
+    {
+        switch (this.Value)
+        {
+            case System::DateTime value:
+                @dateTime(value);
+                break;
+            case ApiEnum<string, UnionMember1> value:
+                unionMember1(value);
+                break;
+            default:
+                throw new OrbInvalidDataException("Data did not match any variant of TrialEndDate");
+        }
+    }
+
+    public T Match<T>(
+        System::Func<System::DateTime, T> @dateTime,
+        System::Func<ApiEnum<string, UnionMember1>, T> unionMember1
+    )
+    {
+        return this.Value switch
+        {
+            System::DateTime value => @dateTime(value),
+            ApiEnum<string, UnionMember1> value => unionMember1(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of TrialEndDate"
+            ),
+        };
+    }
+
+    public void Validate()
+    {
+        if (this.Value is UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of TrialEndDate");
+        }
+    }
+
+    record struct UnknownVariant(JsonElement value);
+}
+
+sealed class TrialEndDateConverter : JsonConverter<TrialEndDate>
+{
+    public override TrialEndDate? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        List<OrbInvalidDataException> exceptions = [];
+
+        try
+        {
+            return new TrialEndDate(
+                JsonSerializer.Deserialize<ApiEnum<string, UnionMember1>>(ref reader, options)
+            );
+        }
+        catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
+        {
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant 'ApiEnum<string, UnionMember1>'",
+                    e
+                )
+            );
+        }
+
+        try
+        {
+            return new TrialEndDate(
+                JsonSerializer.Deserialize<System::DateTime>(ref reader, options)
+            );
+        }
+        catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
+        {
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant 'System::DateTime'",
+                    e
+                )
+            );
+        }
+
+        throw new System::AggregateException(exceptions);
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        TrialEndDate value,
+        JsonSerializerOptions options
+    )
+    {
+        object variant = value.Value;
+        JsonSerializer.Serialize(writer, variant, options);
+    }
+}
+
+[JsonConverter(typeof(UnionMember1Converter))]
+public enum UnionMember1
+{
+    Immediate,
+}
+
+sealed class UnionMember1Converter : JsonConverter<UnionMember1>
+{
+    public override UnionMember1 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "immediate" => UnionMember1.Immediate,
+            _ => (UnionMember1)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        UnionMember1 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                UnionMember1.Immediate => "immediate",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

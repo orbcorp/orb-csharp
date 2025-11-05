@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using Orb.Core;
-using Orb.Models.SubscriptionChanges;
 using Orb.Models.Subscriptions;
+using SubscriptionChanges = Orb.Models.SubscriptionChanges;
 
 namespace Orb.Services.Subscriptions;
 
@@ -205,7 +205,9 @@ public interface ISubscriptionService
     /// E.g. pass in `10.00` to issue an invoice when usage amounts hit \$10.00 for
     /// a subscription that invoices in USD.
     /// </summary>
-    Task<MutatedSubscription> Create(SubscriptionCreateParams? parameters = null);
+    Task<SubscriptionChanges::MutatedSubscription> Create(
+        SubscriptionCreateParams? parameters = null
+    );
 
     /// <summary>
     /// This endpoint can be used to update the `metadata`, `net terms`, `auto_collection`,
@@ -280,7 +282,7 @@ public interface ISubscriptionService
     /// invoice and generate a new one based on the new dates for the subscription.
     /// See the section on [cancellation behaviors](/product-catalog/creating-subscriptions#cancellation-behaviors).
     /// </summary>
-    Task<MutatedSubscription> Cancel(SubscriptionCancelParams parameters);
+    Task<SubscriptionChanges::MutatedSubscription> Cancel(SubscriptionCancelParams parameters);
 
     /// <summary>
     /// This endpoint is used to fetch a [Subscription](/core-concepts##subscription)
@@ -520,12 +522,16 @@ public interface ISubscriptionService
     /// The existing list of transitions can be retrieved using the `fixed_fee_quantity_transitions`
     /// property on a subscription’s serialized price intervals.
     /// </summary>
-    Task<MutatedSubscription> PriceIntervals(SubscriptionPriceIntervalsParams parameters);
+    Task<SubscriptionChanges::MutatedSubscription> PriceIntervals(
+        SubscriptionPriceIntervalsParams parameters
+    );
 
     /// <summary>
     /// Redeem a coupon effective at a given time.
     /// </summary>
-    Task<MutatedSubscription> RedeemCoupon(SubscriptionRedeemCouponParams parameters);
+    Task<SubscriptionChanges::MutatedSubscription> RedeemCoupon(
+        SubscriptionRedeemCouponParams parameters
+    );
 
     /// <summary>
     /// This endpoint can be used to change an existing subscription's plan. It returns
@@ -689,13 +695,17 @@ public interface ISubscriptionService
     /// difference in any fixed fees when making a plan change, adjusting the customer
     /// balance as needed. For details on this behavior, see [Modifying subscriptions](/product-catalog/modifying-subscriptions#prorations-for-in-advance-fees).
     /// </summary>
-    Task<MutatedSubscription> SchedulePlanChange(SubscriptionSchedulePlanChangeParams parameters);
+    Task<SubscriptionChanges::MutatedSubscription> SchedulePlanChange(
+        SubscriptionSchedulePlanChangeParams parameters
+    );
 
     /// <summary>
     /// Manually trigger a phase, effective the given date (or the current time, if
     /// not specified).
     /// </summary>
-    Task<MutatedSubscription> TriggerPhase(SubscriptionTriggerPhaseParams parameters);
+    Task<SubscriptionChanges::MutatedSubscription> TriggerPhase(
+        SubscriptionTriggerPhaseParams parameters
+    );
 
     /// <summary>
     /// This endpoint can be used to unschedule any pending cancellations for a subscription.
@@ -704,7 +714,7 @@ public interface ISubscriptionService
     /// cancellation. This operation will turn on auto-renew, ensuring that the subscription
     /// does not end at the currently scheduled cancellation time.
     /// </summary>
-    Task<MutatedSubscription> UnscheduleCancellation(
+    Task<SubscriptionChanges::MutatedSubscription> UnscheduleCancellation(
         SubscriptionUnscheduleCancellationParams parameters
     );
 
@@ -715,7 +725,7 @@ public interface ISubscriptionService
     /// If there are no updates scheduled, a request validation error will be returned
     /// with a 400 status code.
     /// </summary>
-    Task<MutatedSubscription> UnscheduleFixedFeeQuantityUpdates(
+    Task<SubscriptionChanges::MutatedSubscription> UnscheduleFixedFeeQuantityUpdates(
         SubscriptionUnscheduleFixedFeeQuantityUpdatesParams parameters
     );
 
@@ -723,7 +733,7 @@ public interface ISubscriptionService
     /// This endpoint can be used to unschedule any pending plan changes on an existing
     /// subscription. When called, all upcoming plan changes will be unscheduled.
     /// </summary>
-    Task<MutatedSubscription> UnschedulePendingPlanChanges(
+    Task<SubscriptionChanges::MutatedSubscription> UnschedulePendingPlanChanges(
         SubscriptionUnschedulePendingPlanChangesParams parameters
     );
 
@@ -741,7 +751,7 @@ public interface ISubscriptionService
     /// If the fee is an in-advance fixed fee, it will also issue an immediate invoice
     /// for the difference for the remainder of the billing period.
     /// </summary>
-    Task<MutatedSubscription> UpdateFixedFeeQuantity(
+    Task<SubscriptionChanges::MutatedSubscription> UpdateFixedFeeQuantity(
         SubscriptionUpdateFixedFeeQuantityParams parameters
     );
 
@@ -765,5 +775,7 @@ public interface ISubscriptionService
     /// price was added, that change will be pushed back by the same amount of time
     /// the trial is extended).
     /// </summary>
-    Task<MutatedSubscription> UpdateTrial(SubscriptionUpdateTrialParams parameters);
+    Task<SubscriptionChanges::MutatedSubscription> UpdateTrial(
+        SubscriptionUpdateTrialParams parameters
+    );
 }

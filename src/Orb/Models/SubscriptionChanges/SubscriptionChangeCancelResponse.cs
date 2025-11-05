@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.SubscriptionChanges.SubscriptionChangeCancelResponseProperties;
+using System = System;
 
 namespace Orb.Models.SubscriptionChanges;
 
@@ -26,13 +25,13 @@ public sealed record class SubscriptionChangeCancelResponse
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentNullException("id")
+                    new System::ArgumentNullException("id")
                 );
         }
         set
@@ -47,17 +46,23 @@ public sealed record class SubscriptionChangeCancelResponse
     /// <summary>
     /// Subscription change will be cancelled at this time and can no longer be applied.
     /// </summary>
-    public required DateTime ExpirationTime
+    public required System::DateTime ExpirationTime
     {
         get
         {
             if (!this.Properties.TryGetValue("expiration_time", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'expiration_time' cannot be null",
-                    new ArgumentOutOfRangeException("expiration_time", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "expiration_time",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -68,17 +73,17 @@ public sealed record class SubscriptionChangeCancelResponse
         }
     }
 
-    public required ApiEnum<string, Status> Status
+    public required ApiEnum<string, Status2> Status
     {
         get
         {
             if (!this.Properties.TryGetValue("status", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'status' cannot be null",
-                    new ArgumentOutOfRangeException("status", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("status", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Status>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, Status2>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -116,14 +121,17 @@ public sealed record class SubscriptionChangeCancelResponse
     /// <summary>
     /// When this change was applied.
     /// </summary>
-    public DateTime? AppliedAt
+    public System::DateTime? AppliedAt
     {
         get
         {
             if (!this.Properties.TryGetValue("applied_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -137,14 +145,17 @@ public sealed record class SubscriptionChangeCancelResponse
     /// <summary>
     /// When this change was cancelled.
     /// </summary>
-    public DateTime? CancelledAt
+    public System::DateTime? CancelledAt
     {
         get
         {
             if (!this.Properties.TryGetValue("cancelled_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -180,5 +191,48 @@ public sealed record class SubscriptionChangeCancelResponse
     )
     {
         return new(properties);
+    }
+}
+
+[JsonConverter(typeof(Status2Converter))]
+public enum Status2
+{
+    Pending,
+    Applied,
+    Cancelled,
+}
+
+sealed class Status2Converter : JsonConverter<Status2>
+{
+    public override Status2 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "pending" => Status2.Pending,
+            "applied" => Status2.Applied,
+            "cancelled" => Status2.Cancelled,
+            _ => (Status2)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Status2 value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Status2.Pending => "pending",
+                Status2.Applied => "applied",
+                Status2.Cancelled => "cancelled",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

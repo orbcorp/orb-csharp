@@ -1,9 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using Orb.Core;
+using System = System;
 
 namespace Orb.Models.Invoices;
 
@@ -45,9 +45,9 @@ public sealed record class InvoiceIssueParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/invoices/{0}/issue", this.InvoiceID)
         )

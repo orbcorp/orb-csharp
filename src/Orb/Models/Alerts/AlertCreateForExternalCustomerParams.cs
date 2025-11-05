@@ -1,11 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using AlertCreateForExternalCustomerParamsProperties = Orb.Models.Alerts.AlertCreateForExternalCustomerParamsProperties;
+using System = System;
 
 namespace Orb.Models.Alerts;
 
@@ -33,13 +33,13 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("currency", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'currency' cannot be null",
-                    new ArgumentOutOfRangeException("currency", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("currency", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'currency' cannot be null",
-                    new ArgumentNullException("currency")
+                    new System::ArgumentNullException("currency")
                 );
         }
         set
@@ -54,19 +54,20 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
     /// <summary>
     /// The type of alert to create. This must be a valid alert type.
     /// </summary>
-    public required ApiEnum<string, AlertCreateForExternalCustomerParamsProperties::Type> Type
+    public required ApiEnum<string, global::Orb.Models.Alerts.TypeModel> Type
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'type' cannot be null",
-                    new ArgumentOutOfRangeException("type", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<
-                ApiEnum<string, AlertCreateForExternalCustomerParamsProperties::Type>
-            >(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ApiEnum<string, global::Orb.Models.Alerts.TypeModel>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -101,9 +102,9 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/alerts/external_customer_id/{0}", this.ExternalCustomerID)
         )
@@ -128,5 +129,62 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+/// <summary>
+/// The type of alert to create. This must be a valid alert type.
+/// </summary>
+[JsonConverter(typeof(global::Orb.Models.Alerts.TypeModelConverter))]
+public enum TypeModel
+{
+    CreditBalanceDepleted,
+    CreditBalanceDropped,
+    CreditBalanceRecovered,
+}
+
+sealed class TypeModelConverter : JsonConverter<global::Orb.Models.Alerts.TypeModel>
+{
+    public override global::Orb.Models.Alerts.TypeModel Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "credit_balance_depleted" => global::Orb.Models.Alerts.TypeModel.CreditBalanceDepleted,
+            "credit_balance_dropped" => global::Orb.Models.Alerts.TypeModel.CreditBalanceDropped,
+            "credit_balance_recovered" => global::Orb
+                .Models
+                .Alerts
+                .TypeModel
+                .CreditBalanceRecovered,
+            _ => (global::Orb.Models.Alerts.TypeModel)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Alerts.TypeModel value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.Alerts.TypeModel.CreditBalanceDepleted =>
+                    "credit_balance_depleted",
+                global::Orb.Models.Alerts.TypeModel.CreditBalanceDropped =>
+                    "credit_balance_dropped",
+                global::Orb.Models.Alerts.TypeModel.CreditBalanceRecovered =>
+                    "credit_balance_recovered",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

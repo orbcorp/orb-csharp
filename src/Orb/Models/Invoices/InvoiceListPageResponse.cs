@@ -1,10 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
+using System = System;
 
 namespace Orb.Models.Invoices;
 
@@ -18,13 +18,13 @@ public sealed record class InvoiceListPageResponse : ModelBase, IFromRaw<Invoice
             if (!this.Properties.TryGetValue("data", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'data' cannot be null",
-                    new ArgumentOutOfRangeException("data", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("data", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<List<Invoice>>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'data' cannot be null",
-                    new ArgumentNullException("data")
+                    new System::ArgumentNullException("data")
                 );
         }
         set
@@ -43,7 +43,7 @@ public sealed record class InvoiceListPageResponse : ModelBase, IFromRaw<Invoice
             if (!this.Properties.TryGetValue("pagination_metadata", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'pagination_metadata' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "pagination_metadata",
                         "Missing required argument"
                     )
@@ -55,7 +55,7 @@ public sealed record class InvoiceListPageResponse : ModelBase, IFromRaw<Invoice
                 )
                 ?? throw new OrbInvalidDataException(
                     "'pagination_metadata' cannot be null",
-                    new ArgumentNullException("pagination_metadata")
+                    new System::ArgumentNullException("pagination_metadata")
                 );
         }
         set

@@ -1,28 +1,30 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.UsageDiscountProperties;
+using System = System;
 
 namespace Orb.Models;
 
 [JsonConverter(typeof(ModelConverter<UsageDiscount>))]
 public sealed record class UsageDiscount : ModelBase, IFromRaw<UsageDiscount>
 {
-    public required ApiEnum<string, DiscountType> DiscountType
+    public required ApiEnum<string, DiscountType7> DiscountType
     {
         get
         {
             if (!this.Properties.TryGetValue("discount_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'discount_type' cannot be null",
-                    new ArgumentOutOfRangeException("discount_type", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "discount_type",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, DiscountType>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, DiscountType7>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -47,7 +49,10 @@ public sealed record class UsageDiscount : ModelBase, IFromRaw<UsageDiscount>
             if (!this.Properties.TryGetValue("usage_discount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'usage_discount' cannot be null",
-                    new ArgumentOutOfRangeException("usage_discount", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "usage_discount",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
@@ -86,14 +91,17 @@ public sealed record class UsageDiscount : ModelBase, IFromRaw<UsageDiscount>
     /// <summary>
     /// The filters that determine which prices to apply this discount to.
     /// </summary>
-    public List<Filter>? Filters
+    public List<Filter26>? Filters
     {
         get
         {
             if (!this.Properties.TryGetValue("filters", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<Filter>?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<List<Filter26>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -147,5 +155,253 @@ public sealed record class UsageDiscount : ModelBase, IFromRaw<UsageDiscount>
     public static UsageDiscount FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
+    }
+}
+
+[JsonConverter(typeof(DiscountType7Converter))]
+public enum DiscountType7
+{
+    Usage,
+}
+
+sealed class DiscountType7Converter : JsonConverter<DiscountType7>
+{
+    public override DiscountType7 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "usage" => DiscountType7.Usage,
+            _ => (DiscountType7)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        DiscountType7 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                DiscountType7.Usage => "usage",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<Filter26>))]
+public sealed record class Filter26 : ModelBase, IFromRaw<Filter26>
+{
+    /// <summary>
+    /// The property of the price to filter on.
+    /// </summary>
+    public required ApiEnum<string, Field55> Field
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("field", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentOutOfRangeException("field", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<ApiEnum<string, Field55>>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["field"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<string, Operator55> Operator
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("operator", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentOutOfRangeException("operator", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<ApiEnum<string, Operator55>>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["operator"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required List<string> Values
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("values", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'values' cannot be null",
+                    new System::ArgumentOutOfRangeException("values", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'values' cannot be null",
+                    new System::ArgumentNullException("values")
+                );
+        }
+        set
+        {
+            this.Properties["values"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public Filter26() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Filter26(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static Filter26 FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+/// <summary>
+/// The property of the price to filter on.
+/// </summary>
+[JsonConverter(typeof(Field55Converter))]
+public enum Field55
+{
+    PriceID,
+    ItemID,
+    PriceType,
+    Currency,
+    PricingUnitID,
+}
+
+sealed class Field55Converter : JsonConverter<Field55>
+{
+    public override Field55 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "price_id" => Field55.PriceID,
+            "item_id" => Field55.ItemID,
+            "price_type" => Field55.PriceType,
+            "currency" => Field55.Currency,
+            "pricing_unit_id" => Field55.PricingUnitID,
+            _ => (Field55)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Field55 value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Field55.PriceID => "price_id",
+                Field55.ItemID => "item_id",
+                Field55.PriceType => "price_type",
+                Field55.Currency => "currency",
+                Field55.PricingUnitID => "pricing_unit_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(typeof(Operator55Converter))]
+public enum Operator55
+{
+    Includes,
+    Excludes,
+}
+
+sealed class Operator55Converter : JsonConverter<Operator55>
+{
+    public override Operator55 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" => Operator55.Includes,
+            "excludes" => Operator55.Excludes,
+            _ => (Operator55)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        Operator55 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Operator55.Includes => "includes",
+                Operator55.Excludes => "excludes",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

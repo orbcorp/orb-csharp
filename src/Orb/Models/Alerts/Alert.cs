@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using AlertProperties = Orb.Models.Alerts.AlertProperties;
+using System = System;
 
 namespace Orb.Models.Alerts;
 
@@ -28,13 +27,13 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentNullException("id")
+                    new System::ArgumentNullException("id")
                 );
         }
         set
@@ -49,17 +48,23 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
     /// <summary>
     /// The creation time of the resource in Orb.
     /// </summary>
-    public required DateTime CreatedAt
+    public required System::DateTime CreatedAt
     {
         get
         {
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'created_at' cannot be null",
-                    new ArgumentOutOfRangeException("created_at", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "created_at",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -125,7 +130,7 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
             if (!this.Properties.TryGetValue("enabled", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'enabled' cannot be null",
-                    new ArgumentOutOfRangeException("enabled", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("enabled", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
@@ -142,17 +147,14 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
     /// <summary>
     /// The metric the alert applies to.
     /// </summary>
-    public required AlertProperties::Metric? Metric
+    public required Metric? Metric
     {
         get
         {
             if (!this.Properties.TryGetValue("metric", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<AlertProperties::Metric?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<Metric?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -166,17 +168,14 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
     /// <summary>
     /// The plan the alert applies to.
     /// </summary>
-    public required AlertProperties::Plan? Plan
+    public required Plan? Plan
     {
         get
         {
             if (!this.Properties.TryGetValue("plan", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<AlertProperties::Plan?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<Plan?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -238,17 +237,17 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
     /// <summary>
     /// The type of alert. This must be a valid alert type.
     /// </summary>
-    public required ApiEnum<string, AlertProperties::Type> Type
+    public required ApiEnum<string, global::Orb.Models.Alerts.Type2> Type
     {
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'type' cannot be null",
-                    new ArgumentOutOfRangeException("type", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, AlertProperties::Type>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, global::Orb.Models.Alerts.Type2>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -265,14 +264,14 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
     /// <summary>
     /// The current status of the alert. This field is only present for credit balance alerts.
     /// </summary>
-    public List<AlertProperties::BalanceAlertStatus>? BalanceAlertStatus
+    public List<BalanceAlertStatus>? BalanceAlertStatus
     {
         get
         {
             if (!this.Properties.TryGetValue("balance_alert_status", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<AlertProperties::BalanceAlertStatus>?>(
+            return JsonSerializer.Deserialize<List<BalanceAlertStatus>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -318,6 +317,318 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
 #pragma warning restore CS8618
 
     public static Alert FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+/// <summary>
+/// The metric the alert applies to.
+/// </summary>
+[JsonConverter(typeof(ModelConverter<Metric>))]
+public sealed record class Metric : ModelBase, IFromRaw<Metric>
+{
+    public required string ID
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new System::ArgumentNullException("id")
+                );
+        }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.ID;
+    }
+
+    public Metric() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Metric(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static Metric FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+
+    [SetsRequiredMembers]
+    public Metric(string id)
+        : this()
+    {
+        this.ID = id;
+    }
+}
+
+/// <summary>
+/// The plan the alert applies to.
+/// </summary>
+[JsonConverter(typeof(ModelConverter<Plan>))]
+public sealed record class Plan : ModelBase, IFromRaw<Plan>
+{
+    public required string? ID
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// An optional user-defined ID for this plan resource, used throughout the system
+    /// as an alias for this Plan. Use this field to identify a plan by an existing
+    /// identifier in your system.
+    /// </summary>
+    public required string? ExternalPlanID
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("external_plan_id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["external_plan_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required string? Name
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("name", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required string PlanVersion
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("plan_version", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'plan_version' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "plan_version",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'plan_version' cannot be null",
+                    new System::ArgumentNullException("plan_version")
+                );
+        }
+        set
+        {
+            this.Properties["plan_version"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.ExternalPlanID;
+        _ = this.Name;
+        _ = this.PlanVersion;
+    }
+
+    public Plan() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Plan(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static Plan FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+/// <summary>
+/// The type of alert. This must be a valid alert type.
+/// </summary>
+[JsonConverter(typeof(global::Orb.Models.Alerts.Type2Converter))]
+public enum Type2
+{
+    CreditBalanceDepleted,
+    CreditBalanceDropped,
+    CreditBalanceRecovered,
+    UsageExceeded,
+    CostExceeded,
+}
+
+sealed class Type2Converter : JsonConverter<global::Orb.Models.Alerts.Type2>
+{
+    public override global::Orb.Models.Alerts.Type2 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "credit_balance_depleted" => global::Orb.Models.Alerts.Type2.CreditBalanceDepleted,
+            "credit_balance_dropped" => global::Orb.Models.Alerts.Type2.CreditBalanceDropped,
+            "credit_balance_recovered" => global::Orb.Models.Alerts.Type2.CreditBalanceRecovered,
+            "usage_exceeded" => global::Orb.Models.Alerts.Type2.UsageExceeded,
+            "cost_exceeded" => global::Orb.Models.Alerts.Type2.CostExceeded,
+            _ => (global::Orb.Models.Alerts.Type2)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Alerts.Type2 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.Alerts.Type2.CreditBalanceDepleted => "credit_balance_depleted",
+                global::Orb.Models.Alerts.Type2.CreditBalanceDropped => "credit_balance_dropped",
+                global::Orb.Models.Alerts.Type2.CreditBalanceRecovered =>
+                    "credit_balance_recovered",
+                global::Orb.Models.Alerts.Type2.UsageExceeded => "usage_exceeded",
+                global::Orb.Models.Alerts.Type2.CostExceeded => "cost_exceeded",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Alert status is used to determine if an alert is currently in-alert or not.
+/// </summary>
+[JsonConverter(typeof(ModelConverter<BalanceAlertStatus>))]
+public sealed record class BalanceAlertStatus : ModelBase, IFromRaw<BalanceAlertStatus>
+{
+    /// <summary>
+    /// Whether the alert is currently in-alert or not.
+    /// </summary>
+    public required bool InAlert
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("in_alert", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'in_alert' cannot be null",
+                    new System::ArgumentOutOfRangeException("in_alert", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["in_alert"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The value of the threshold that defines the alert status.
+    /// </summary>
+    public required double ThresholdValue
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("threshold_value", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'threshold_value' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "threshold_value",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["threshold_value"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.InAlert;
+        _ = this.ThresholdValue;
+    }
+
+    public BalanceAlertStatus() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BalanceAlertStatus(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static BalanceAlertStatus FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

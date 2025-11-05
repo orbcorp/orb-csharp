@@ -5,13 +5,14 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
+using Models = Orb.Models;
 
 namespace Orb.Models.Prices;
 
 [JsonConverter(typeof(ModelConverter<PriceListPageResponse>))]
 public sealed record class PriceListPageResponse : ModelBase, IFromRaw<PriceListPageResponse>
 {
-    public required List<Price> Data
+    public required List<Models::Price> Data
     {
         get
         {
@@ -21,7 +22,10 @@ public sealed record class PriceListPageResponse : ModelBase, IFromRaw<PriceList
                     new ArgumentOutOfRangeException("data", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<List<Price>>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<List<Models::Price>>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
                 ?? throw new OrbInvalidDataException(
                     "'data' cannot be null",
                     new ArgumentNullException("data")
@@ -36,7 +40,7 @@ public sealed record class PriceListPageResponse : ModelBase, IFromRaw<PriceList
         }
     }
 
-    public required PaginationMetadata PaginationMetadata
+    public required Models::PaginationMetadata PaginationMetadata
     {
         get
         {
@@ -49,7 +53,7 @@ public sealed record class PriceListPageResponse : ModelBase, IFromRaw<PriceList
                     )
                 );
 
-            return JsonSerializer.Deserialize<PaginationMetadata>(
+            return JsonSerializer.Deserialize<Models::PaginationMetadata>(
                     element,
                     ModelBase.SerializerOptions
                 )

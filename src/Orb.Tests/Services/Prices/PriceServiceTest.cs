@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Orb.Models;
-using Orb.Models.NewBillingCycleConfigurationProperties;
-using Orb.Models.NewFloatingUnitPriceProperties;
-using Orb.Models.UnitConversionRateConfigProperties;
+using Models = Orb.Models;
 
 namespace Orb.Tests.Services.Prices;
 
@@ -17,12 +14,12 @@ public class PriceServiceTest : TestBase
             new()
             {
                 Body = new(
-                    new NewFloatingUnitPrice()
+                    new Models::NewFloatingUnitPrice()
                     {
-                        Cadence = Cadence.Annual,
+                        Cadence = Models::Cadence23.Annual,
                         Currency = "currency",
                         ItemID = "item_id",
-                        ModelType = ModelType.Unit,
+                        ModelType = Models::ModelType22.Unit,
                         Name = "Annual fee",
                         UnitConfig = new("unit_amount"),
                         BillableMetricID = "billable_metric_id",
@@ -30,13 +27,13 @@ public class PriceServiceTest : TestBase
                         BillingCycleConfiguration = new()
                         {
                             Duration = 0,
-                            DurationUnit = DurationUnit.Day,
+                            DurationUnit = Models::DurationUnit1.Day,
                         },
                         ConversionRate = 0,
                         ConversionRateConfig = new(
-                            new UnitConversionRateConfig()
+                            new Models::UnitConversionRateConfig()
                             {
-                                ConversionRateType = ConversionRateType.Unit,
+                                ConversionRateType = Models::ConversionRateTypeModel.Unit,
                                 UnitConfig = new("unit_amount"),
                             }
                         ),
@@ -52,7 +49,7 @@ public class PriceServiceTest : TestBase
                         InvoicingCycleConfiguration = new()
                         {
                             Duration = 0,
-                            DurationUnit = DurationUnit.Day,
+                            DurationUnit = Models::DurationUnit1.Day,
                         },
                         Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                     }

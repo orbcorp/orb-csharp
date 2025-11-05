@@ -1,10 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.Subscriptions.SubscriptionUsageProperties;
+using System = System;
 
 namespace Orb.Models.Subscriptions;
 
@@ -46,8 +46,8 @@ public record class SubscriptionUsage
     }
 
     public void Switch(
-        Action<UngroupedSubscriptionUsage> ungrouped,
-        Action<GroupedSubscriptionUsage> grouped
+        System::Action<UngroupedSubscriptionUsage> ungrouped,
+        System::Action<GroupedSubscriptionUsage> grouped
     )
     {
         switch (this.Value)
@@ -66,8 +66,8 @@ public record class SubscriptionUsage
     }
 
     public T Match<T>(
-        Func<UngroupedSubscriptionUsage, T> ungrouped,
-        Func<GroupedSubscriptionUsage, T> grouped
+        System::Func<UngroupedSubscriptionUsage, T> ungrouped,
+        System::Func<GroupedSubscriptionUsage, T> grouped
     )
     {
         return this.Value switch
@@ -97,7 +97,7 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
 {
     public override SubscriptionUsage? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -115,7 +115,7 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
                 return new SubscriptionUsage(deserialized);
             }
         }
-        catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
@@ -137,7 +137,7 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
                 return new SubscriptionUsage(deserialized);
             }
         }
-        catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
@@ -147,7 +147,7 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
             );
         }
 
-        throw new AggregateException(exceptions);
+        throw new System::AggregateException(exceptions);
     }
 
     public override void Write(
@@ -158,5 +158,925 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
     {
         object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<UngroupedSubscriptionUsage>))]
+public sealed record class UngroupedSubscriptionUsage
+    : ModelBase,
+        IFromRaw<UngroupedSubscriptionUsage>
+{
+    public required List<Data> Data
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("data", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'data' cannot be null",
+                    new System::ArgumentOutOfRangeException("data", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<List<Data>>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'data' cannot be null",
+                    new System::ArgumentNullException("data")
+                );
+        }
+        set
+        {
+            this.Properties["data"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        foreach (var item in this.Data)
+        {
+            item.Validate();
+        }
+    }
+
+    public UngroupedSubscriptionUsage() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    UngroupedSubscriptionUsage(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static UngroupedSubscriptionUsage FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
+    {
+        return new(properties);
+    }
+
+    [SetsRequiredMembers]
+    public UngroupedSubscriptionUsage(List<Data> data)
+        : this()
+    {
+        this.Data = data;
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<Data>))]
+public sealed record class Data : ModelBase, IFromRaw<Data>
+{
+    public required BillableMetric BillableMetric
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("billable_metric", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'billable_metric' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "billable_metric",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<BillableMetric>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'billable_metric' cannot be null",
+                    new System::ArgumentNullException("billable_metric")
+                );
+        }
+        set
+        {
+            this.Properties["billable_metric"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required List<UsageModel> Usage
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("usage", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'usage' cannot be null",
+                    new System::ArgumentOutOfRangeException("usage", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<List<UsageModel>>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'usage' cannot be null",
+                    new System::ArgumentNullException("usage")
+                );
+        }
+        set
+        {
+            this.Properties["usage"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required ApiEnum<string, ViewMode1> ViewMode
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("view_mode", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'view_mode' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "view_mode",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<ApiEnum<string, ViewMode1>>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["view_mode"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        this.BillableMetric.Validate();
+        foreach (var item in this.Usage)
+        {
+            item.Validate();
+        }
+        this.ViewMode.Validate();
+    }
+
+    public Data() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Data(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static Data FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<BillableMetric>))]
+public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
+{
+    public required string ID
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new System::ArgumentNullException("id")
+                );
+        }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required string Name
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("name", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new System::ArgumentNullException("name")
+                );
+        }
+        set
+        {
+            this.Properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.Name;
+    }
+
+    public BillableMetric() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BillableMetric(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static BillableMetric FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<UsageModel>))]
+public sealed record class UsageModel : ModelBase, IFromRaw<UsageModel>
+{
+    public required double Quantity
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("quantity", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'quantity' cannot be null",
+                    new System::ArgumentOutOfRangeException("quantity", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["quantity"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required System::DateTime TimeframeEnd
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("timeframe_end", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'timeframe_end' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "timeframe_end",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["timeframe_end"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required System::DateTime TimeframeStart
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("timeframe_start", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'timeframe_start' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "timeframe_start",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["timeframe_start"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.Quantity;
+        _ = this.TimeframeEnd;
+        _ = this.TimeframeStart;
+    }
+
+    public UsageModel() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    UsageModel(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static UsageModel FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+[JsonConverter(typeof(ViewMode1Converter))]
+public enum ViewMode1
+{
+    Periodic,
+    Cumulative,
+}
+
+sealed class ViewMode1Converter : JsonConverter<ViewMode1>
+{
+    public override ViewMode1 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "periodic" => ViewMode1.Periodic,
+            "cumulative" => ViewMode1.Cumulative,
+            _ => (ViewMode1)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ViewMode1 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ViewMode1.Periodic => "periodic",
+                ViewMode1.Cumulative => "cumulative",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<GroupedSubscriptionUsage>))]
+public sealed record class GroupedSubscriptionUsage : ModelBase, IFromRaw<GroupedSubscriptionUsage>
+{
+    public required List<DataModel> Data
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("data", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'data' cannot be null",
+                    new System::ArgumentOutOfRangeException("data", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<List<DataModel>>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'data' cannot be null",
+                    new System::ArgumentNullException("data")
+                );
+        }
+        set
+        {
+            this.Properties["data"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public PaginationMetadata? PaginationMetadata
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("pagination_metadata", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<PaginationMetadata?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["pagination_metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        foreach (var item in this.Data)
+        {
+            item.Validate();
+        }
+        this.PaginationMetadata?.Validate();
+    }
+
+    public GroupedSubscriptionUsage() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    GroupedSubscriptionUsage(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static GroupedSubscriptionUsage FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
+    {
+        return new(properties);
+    }
+
+    [SetsRequiredMembers]
+    public GroupedSubscriptionUsage(List<DataModel> data)
+        : this()
+    {
+        this.Data = data;
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<DataModel>))]
+public sealed record class DataModel : ModelBase, IFromRaw<DataModel>
+{
+    public required BillableMetricModel BillableMetric
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("billable_metric", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'billable_metric' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "billable_metric",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<BillableMetricModel>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billable_metric' cannot be null",
+                    new System::ArgumentNullException("billable_metric")
+                );
+        }
+        set
+        {
+            this.Properties["billable_metric"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required MetricGroup MetricGroup
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("metric_group", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'metric_group' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "metric_group",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<MetricGroup>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'metric_group' cannot be null",
+                    new System::ArgumentNullException("metric_group")
+                );
+        }
+        set
+        {
+            this.Properties["metric_group"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required List<Usage1> Usage
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("usage", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'usage' cannot be null",
+                    new System::ArgumentOutOfRangeException("usage", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<List<Usage1>>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'usage' cannot be null",
+                    new System::ArgumentNullException("usage")
+                );
+        }
+        set
+        {
+            this.Properties["usage"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required ApiEnum<string, ViewMode2> ViewMode
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("view_mode", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'view_mode' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "view_mode",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<ApiEnum<string, ViewMode2>>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["view_mode"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        this.BillableMetric.Validate();
+        this.MetricGroup.Validate();
+        foreach (var item in this.Usage)
+        {
+            item.Validate();
+        }
+        this.ViewMode.Validate();
+    }
+
+    public DataModel() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    DataModel(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static DataModel FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<BillableMetricModel>))]
+public sealed record class BillableMetricModel : ModelBase, IFromRaw<BillableMetricModel>
+{
+    public required string ID
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new System::ArgumentNullException("id")
+                );
+        }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required string Name
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("name", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new System::ArgumentNullException("name")
+                );
+        }
+        set
+        {
+            this.Properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.Name;
+    }
+
+    public BillableMetricModel() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BillableMetricModel(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static BillableMetricModel FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<MetricGroup>))]
+public sealed record class MetricGroup : ModelBase, IFromRaw<MetricGroup>
+{
+    public required string PropertyKey
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("property_key", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'property_key' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "property_key",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'property_key' cannot be null",
+                    new System::ArgumentNullException("property_key")
+                );
+        }
+        set
+        {
+            this.Properties["property_key"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required string PropertyValue
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("property_value", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'property_value' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "property_value",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'property_value' cannot be null",
+                    new System::ArgumentNullException("property_value")
+                );
+        }
+        set
+        {
+            this.Properties["property_value"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.PropertyKey;
+        _ = this.PropertyValue;
+    }
+
+    public MetricGroup() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MetricGroup(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static MetricGroup FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<Usage1>))]
+public sealed record class Usage1 : ModelBase, IFromRaw<Usage1>
+{
+    public required double Quantity
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("quantity", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'quantity' cannot be null",
+                    new System::ArgumentOutOfRangeException("quantity", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["quantity"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required System::DateTime TimeframeEnd
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("timeframe_end", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'timeframe_end' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "timeframe_end",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["timeframe_end"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required System::DateTime TimeframeStart
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("timeframe_start", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'timeframe_start' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "timeframe_start",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["timeframe_start"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.Quantity;
+        _ = this.TimeframeEnd;
+        _ = this.TimeframeStart;
+    }
+
+    public Usage1() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Usage1(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static Usage1 FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+[JsonConverter(typeof(ViewMode2Converter))]
+public enum ViewMode2
+{
+    Periodic,
+    Cumulative,
+}
+
+sealed class ViewMode2Converter : JsonConverter<ViewMode2>
+{
+    public override ViewMode2 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "periodic" => ViewMode2.Periodic,
+            "cumulative" => ViewMode2.Cumulative,
+            _ => (ViewMode2)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ViewMode2 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ViewMode2.Periodic => "periodic",
+                ViewMode2.Cumulative => "cumulative",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

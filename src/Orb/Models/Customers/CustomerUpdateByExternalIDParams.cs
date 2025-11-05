@@ -1,10 +1,12 @@
-using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Models.Customers.CustomerUpdateByExternalIDParamsProperties;
+using Orb.Exceptions;
+using System = System;
 
 namespace Orb.Models.Customers;
 
@@ -294,14 +296,14 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// `bill.com`, `netsuite`), any product mappings must first be configured with
     /// the Orb team.
     /// </summary>
-    public ApiEnum<string, PaymentProvider>? PaymentProvider
+    public ApiEnum<string, PaymentProvider1>? PaymentProvider
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("payment_provider", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, PaymentProvider>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, PaymentProvider1>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -378,14 +380,14 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
         }
     }
 
-    public TaxConfiguration? TaxConfiguration
+    public TaxConfiguration1? TaxConfiguration
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("tax_configuration", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<TaxConfiguration?>(
+            return JsonSerializer.Deserialize<TaxConfiguration1?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -522,9 +524,9 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/customers/external_customer_id/{0}", this.ID)
         )
@@ -548,6 +550,716 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
         foreach (var item in this.HeaderProperties)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+        }
+    }
+}
+
+/// <summary>
+/// This is used for creating charges or invoices in an external system via Orb. When
+/// not in test mode: - the connection must first be configured in the Orb webapp.
+///  - if the provider is an invoicing provider (`stripe_invoice`, `quickbooks`, `bill.com`,
+/// `netsuite`), any product mappings must first be configured with the Orb team.
+/// </summary>
+[JsonConverter(typeof(PaymentProvider1Converter))]
+public enum PaymentProvider1
+{
+    Quickbooks,
+    BillCom,
+    StripeCharge,
+    StripeInvoice,
+    Netsuite,
+}
+
+sealed class PaymentProvider1Converter : JsonConverter<PaymentProvider1>
+{
+    public override PaymentProvider1 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "quickbooks" => PaymentProvider1.Quickbooks,
+            "bill.com" => PaymentProvider1.BillCom,
+            "stripe_charge" => PaymentProvider1.StripeCharge,
+            "stripe_invoice" => PaymentProvider1.StripeInvoice,
+            "netsuite" => PaymentProvider1.Netsuite,
+            _ => (PaymentProvider1)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        PaymentProvider1 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                PaymentProvider1.Quickbooks => "quickbooks",
+                PaymentProvider1.BillCom => "bill.com",
+                PaymentProvider1.StripeCharge => "stripe_charge",
+                PaymentProvider1.StripeInvoice => "stripe_invoice",
+                PaymentProvider1.Netsuite => "netsuite",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(TaxConfiguration1Converter))]
+public record class TaxConfiguration1
+{
+    public object Value { get; private init; }
+
+    public bool TaxExempt
+    {
+        get
+        {
+            return Match(
+                newAvalara: (x) => x.TaxExempt,
+                newTaxJar: (x) => x.TaxExempt,
+                newSphere: (x) => x.TaxExempt,
+                numeral: (x) => x.TaxExempt,
+                anrok: (x) => x.TaxExempt
+            );
+        }
+    }
+
+    public bool? AutomaticTaxEnabled
+    {
+        get
+        {
+            return Match<bool?>(
+                newAvalara: (x) => x.AutomaticTaxEnabled,
+                newTaxJar: (x) => x.AutomaticTaxEnabled,
+                newSphere: (x) => x.AutomaticTaxEnabled,
+                numeral: (x) => x.AutomaticTaxEnabled,
+                anrok: (x) => x.AutomaticTaxEnabled
+            );
+        }
+    }
+
+    public TaxConfiguration1(NewAvalaraTaxConfiguration value)
+    {
+        Value = value;
+    }
+
+    public TaxConfiguration1(NewTaxJarConfiguration value)
+    {
+        Value = value;
+    }
+
+    public TaxConfiguration1(NewSphereConfiguration value)
+    {
+        Value = value;
+    }
+
+    public TaxConfiguration1(Numeral1 value)
+    {
+        Value = value;
+    }
+
+    public TaxConfiguration1(Anrok1 value)
+    {
+        Value = value;
+    }
+
+    TaxConfiguration1(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static TaxConfiguration1 CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickNewAvalara([NotNullWhen(true)] out NewAvalaraTaxConfiguration? value)
+    {
+        value = this.Value as NewAvalaraTaxConfiguration;
+        return value != null;
+    }
+
+    public bool TryPickNewTaxJar([NotNullWhen(true)] out NewTaxJarConfiguration? value)
+    {
+        value = this.Value as NewTaxJarConfiguration;
+        return value != null;
+    }
+
+    public bool TryPickNewSphere([NotNullWhen(true)] out NewSphereConfiguration? value)
+    {
+        value = this.Value as NewSphereConfiguration;
+        return value != null;
+    }
+
+    public bool TryPickNumeral([NotNullWhen(true)] out Numeral1? value)
+    {
+        value = this.Value as Numeral1;
+        return value != null;
+    }
+
+    public bool TryPickAnrok([NotNullWhen(true)] out Anrok1? value)
+    {
+        value = this.Value as Anrok1;
+        return value != null;
+    }
+
+    public void Switch(
+        System::Action<NewAvalaraTaxConfiguration> newAvalara,
+        System::Action<NewTaxJarConfiguration> newTaxJar,
+        System::Action<NewSphereConfiguration> newSphere,
+        System::Action<Numeral1> numeral,
+        System::Action<Anrok1> anrok
+    )
+    {
+        switch (this.Value)
+        {
+            case NewAvalaraTaxConfiguration value:
+                newAvalara(value);
+                break;
+            case NewTaxJarConfiguration value:
+                newTaxJar(value);
+                break;
+            case NewSphereConfiguration value:
+                newSphere(value);
+                break;
+            case Numeral1 value:
+                numeral(value);
+                break;
+            case Anrok1 value:
+                anrok(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of TaxConfiguration1"
+                );
+        }
+    }
+
+    public T Match<T>(
+        System::Func<NewAvalaraTaxConfiguration, T> newAvalara,
+        System::Func<NewTaxJarConfiguration, T> newTaxJar,
+        System::Func<NewSphereConfiguration, T> newSphere,
+        System::Func<Numeral1, T> numeral,
+        System::Func<Anrok1, T> anrok
+    )
+    {
+        return this.Value switch
+        {
+            NewAvalaraTaxConfiguration value => newAvalara(value),
+            NewTaxJarConfiguration value => newTaxJar(value),
+            NewSphereConfiguration value => newSphere(value),
+            Numeral1 value => numeral(value),
+            Anrok1 value => anrok(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of TaxConfiguration1"
+            ),
+        };
+    }
+
+    public void Validate()
+    {
+        if (this.Value is UnknownVariant)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of TaxConfiguration1"
+            );
+        }
+    }
+
+    record struct UnknownVariant(JsonElement value);
+}
+
+sealed class TaxConfiguration1Converter : JsonConverter<TaxConfiguration1?>
+{
+    public override TaxConfiguration1? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? taxProvider;
+        try
+        {
+            taxProvider = json.GetProperty("tax_provider").GetString();
+        }
+        catch
+        {
+            taxProvider = null;
+        }
+
+        switch (taxProvider)
+        {
+            case "avalara":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<NewAvalaraTaxConfiguration>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new TaxConfiguration1(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'NewAvalaraTaxConfiguration'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "taxjar":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<NewTaxJarConfiguration>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new TaxConfiguration1(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'NewTaxJarConfiguration'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "sphere":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<NewSphereConfiguration>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new TaxConfiguration1(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'NewSphereConfiguration'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "numeral":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<Numeral1>(json, options);
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new TaxConfiguration1(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'Numeral1'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "anrok":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<Anrok1>(json, options);
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new TaxConfiguration1(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException("Data does not match union variant 'Anrok1'", e)
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            default:
+            {
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        TaxConfiguration1? value,
+        JsonSerializerOptions options
+    )
+    {
+        object? variant = value?.Value;
+        JsonSerializer.Serialize(writer, variant, options);
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<Numeral1>))]
+public sealed record class Numeral1 : ModelBase, IFromRaw<Numeral1>
+{
+    public required bool TaxExempt
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("tax_exempt", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'tax_exempt' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "tax_exempt",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["tax_exempt"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public TaxProvider3 TaxProvider
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("tax_provider", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'tax_provider' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "tax_provider",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<TaxProvider3>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'tax_provider' cannot be null",
+                    new System::ArgumentNullException("tax_provider")
+                );
+        }
+        set
+        {
+            this.Properties["tax_provider"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Whether to automatically calculate tax for this customer. When null, inherits
+    /// from account-level setting. When true or false, overrides the account setting.
+    /// </summary>
+    public bool? AutomaticTaxEnabled
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("automatic_tax_enabled", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["automatic_tax_enabled"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.TaxExempt;
+        this.TaxProvider.Validate();
+        _ = this.AutomaticTaxEnabled;
+    }
+
+    public Numeral1()
+    {
+        this.TaxProvider = new();
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Numeral1(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static Numeral1 FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+
+    [SetsRequiredMembers]
+    public Numeral1(bool taxExempt)
+        : this()
+    {
+        this.TaxExempt = taxExempt;
+    }
+}
+
+[JsonConverter(typeof(Converter))]
+public class TaxProvider3
+{
+    public JsonElement Json { get; private init; }
+
+    public TaxProvider3()
+    {
+        Json = JsonSerializer.Deserialize<JsonElement>("\"numeral\"");
+    }
+
+    TaxProvider3(JsonElement json)
+    {
+        Json = json;
+    }
+
+    public void Validate()
+    {
+        if (JsonElement.DeepEquals(this.Json, new TaxProvider3().Json))
+        {
+            throw new OrbInvalidDataException("Invalid constant given for 'TaxProvider3'");
+        }
+    }
+
+    class Converter : JsonConverter<TaxProvider3>
+    {
+        public override TaxProvider3? Read(
+            ref Utf8JsonReader reader,
+            System::Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            TaxProvider3 value,
+            JsonSerializerOptions options
+        )
+        {
+            JsonSerializer.Serialize(writer, value.Json, options);
+        }
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<Anrok1>))]
+public sealed record class Anrok1 : ModelBase, IFromRaw<Anrok1>
+{
+    public required bool TaxExempt
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("tax_exempt", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'tax_exempt' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "tax_exempt",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["tax_exempt"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public TaxProvider4 TaxProvider
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("tax_provider", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'tax_provider' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "tax_provider",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<TaxProvider4>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'tax_provider' cannot be null",
+                    new System::ArgumentNullException("tax_provider")
+                );
+        }
+        set
+        {
+            this.Properties["tax_provider"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Whether to automatically calculate tax for this customer. When null, inherits
+    /// from account-level setting. When true or false, overrides the account setting.
+    /// </summary>
+    public bool? AutomaticTaxEnabled
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("automatic_tax_enabled", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["automatic_tax_enabled"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.TaxExempt;
+        this.TaxProvider.Validate();
+        _ = this.AutomaticTaxEnabled;
+    }
+
+    public Anrok1()
+    {
+        this.TaxProvider = new();
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Anrok1(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static Anrok1 FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+
+    [SetsRequiredMembers]
+    public Anrok1(bool taxExempt)
+        : this()
+    {
+        this.TaxExempt = taxExempt;
+    }
+}
+
+[JsonConverter(typeof(Converter))]
+public class TaxProvider4
+{
+    public JsonElement Json { get; private init; }
+
+    public TaxProvider4()
+    {
+        Json = JsonSerializer.Deserialize<JsonElement>("\"anrok\"");
+    }
+
+    TaxProvider4(JsonElement json)
+    {
+        Json = json;
+    }
+
+    public void Validate()
+    {
+        if (JsonElement.DeepEquals(this.Json, new TaxProvider4().Json))
+        {
+            throw new OrbInvalidDataException("Invalid constant given for 'TaxProvider4'");
+        }
+    }
+
+    class Converter : JsonConverter<TaxProvider4>
+    {
+        public override TaxProvider4? Read(
+            ref Utf8JsonReader reader,
+            System::Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            TaxProvider4 value,
+            JsonSerializerOptions options
+        )
+        {
+            JsonSerializer.Serialize(writer, value.Json, options);
         }
     }
 }

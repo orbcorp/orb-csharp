@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using Orb.Core;
-using Orb.Models;
 using Orb.Models.Prices.ExternalPriceID;
+using Models = Orb.Models;
 
 namespace Orb.Services.Prices.ExternalPriceID;
 
@@ -15,12 +15,12 @@ public interface IExternalPriceIDService
     /// you pass null for the metadata value, it will clear any existing metadata
     /// for that price.
     /// </summary>
-    Task<Price> Update(ExternalPriceIDUpdateParams parameters);
+    Task<Models::Price> Update(ExternalPriceIDUpdateParams parameters);
 
     /// <summary>
     /// This endpoint returns a price given an external price id. See the [price
     /// creation API](/api-reference/price/create-price) for more information about
     /// external price aliases.
     /// </summary>
-    Task<Price> Fetch(ExternalPriceIDFetchParams parameters);
+    Task<Models::Price> Fetch(ExternalPriceIDFetchParams parameters);
 }

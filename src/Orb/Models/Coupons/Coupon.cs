@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using CouponProperties = Orb.Models.Coupons.CouponProperties;
+using System = System;
 
 namespace Orb.Models.Coupons;
 
@@ -29,13 +28,13 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentNullException("id")
+                    new System::ArgumentNullException("id")
                 );
         }
         set
@@ -51,14 +50,17 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
     /// An archived coupon can no longer be redeemed. Active coupons will have a
     /// value of null for `archived_at`; this field will be non-null for archived coupons.
     /// </summary>
-    public required DateTime? ArchivedAt
+    public required System::DateTime? ArchivedAt
     {
         get
         {
             if (!this.Properties.TryGetValue("archived_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -69,23 +71,23 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
         }
     }
 
-    public required CouponProperties::Discount Discount
+    public required global::Orb.Models.Coupons.DiscountModel Discount
     {
         get
         {
             if (!this.Properties.TryGetValue("discount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'discount' cannot be null",
-                    new ArgumentOutOfRangeException("discount", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("discount", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<CouponProperties::Discount>(
+            return JsonSerializer.Deserialize<global::Orb.Models.Coupons.DiscountModel>(
                     element,
                     ModelBase.SerializerOptions
                 )
                 ?? throw new OrbInvalidDataException(
                     "'discount' cannot be null",
-                    new ArgumentNullException("discount")
+                    new System::ArgumentNullException("discount")
                 );
         }
         set
@@ -151,13 +153,16 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
             if (!this.Properties.TryGetValue("redemption_code", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'redemption_code' cannot be null",
-                    new ArgumentOutOfRangeException("redemption_code", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "redemption_code",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'redemption_code' cannot be null",
-                    new ArgumentNullException("redemption_code")
+                    new System::ArgumentNullException("redemption_code")
                 );
         }
         set
@@ -179,7 +184,10 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
             if (!this.Properties.TryGetValue("times_redeemed", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'times_redeemed' cannot be null",
-                    new ArgumentOutOfRangeException("times_redeemed", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "times_redeemed",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
@@ -217,5 +225,189 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
     public static Coupon FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
+    }
+}
+
+[JsonConverter(typeof(DiscountModelConverter))]
+public record class DiscountModel
+{
+    public object Value { get; private init; }
+
+    public string? Reason
+    {
+        get { return Match<string?>(percentage: (x) => x.Reason, amount: (x) => x.Reason); }
+    }
+
+    public DiscountModel(PercentageDiscount value)
+    {
+        Value = value;
+    }
+
+    public DiscountModel(AmountDiscount value)
+    {
+        Value = value;
+    }
+
+    DiscountModel(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static global::Orb.Models.Coupons.DiscountModel CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickPercentage([NotNullWhen(true)] out PercentageDiscount? value)
+    {
+        value = this.Value as PercentageDiscount;
+        return value != null;
+    }
+
+    public bool TryPickAmount([NotNullWhen(true)] out AmountDiscount? value)
+    {
+        value = this.Value as AmountDiscount;
+        return value != null;
+    }
+
+    public void Switch(
+        System::Action<PercentageDiscount> percentage,
+        System::Action<AmountDiscount> amount
+    )
+    {
+        switch (this.Value)
+        {
+            case PercentageDiscount value:
+                percentage(value);
+                break;
+            case AmountDiscount value:
+                amount(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of DiscountModel"
+                );
+        }
+    }
+
+    public T Match<T>(
+        System::Func<PercentageDiscount, T> percentage,
+        System::Func<AmountDiscount, T> amount
+    )
+    {
+        return this.Value switch
+        {
+            PercentageDiscount value => percentage(value),
+            AmountDiscount value => amount(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of DiscountModel"
+            ),
+        };
+    }
+
+    public void Validate()
+    {
+        if (this.Value is UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of DiscountModel");
+        }
+    }
+
+    record struct UnknownVariant(JsonElement value);
+}
+
+sealed class DiscountModelConverter : JsonConverter<global::Orb.Models.Coupons.DiscountModel>
+{
+    public override global::Orb.Models.Coupons.DiscountModel? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? discountType;
+        try
+        {
+            discountType = json.GetProperty("discount_type").GetString();
+        }
+        catch
+        {
+            discountType = null;
+        }
+
+        switch (discountType)
+        {
+            case "percentage":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<PercentageDiscount>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new global::Orb.Models.Coupons.DiscountModel(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'PercentageDiscount'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "amount":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<AmountDiscount>(json, options);
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new global::Orb.Models.Coupons.DiscountModel(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'AmountDiscount'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            default:
+            {
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Coupons.DiscountModel value,
+        JsonSerializerOptions options
+    )
+    {
+        object variant = value.Value;
+        JsonSerializer.Serialize(writer, variant, options);
     }
 }

@@ -2,8 +2,8 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
-using Orb.Models;
 using Orb.Models.CreditNotes;
+using Models = Orb.Models;
 
 namespace Orb.Services.CreditNotes;
 
@@ -21,7 +21,7 @@ public sealed class CreditNoteService : ICreditNoteService
         _client = client;
     }
 
-    public async Task<CreditNote> Create(CreditNoteCreateParams parameters)
+    public async Task<Models::CreditNoteModel> Create(CreditNoteCreateParams parameters)
     {
         HttpRequest<CreditNoteCreateParams> request = new()
         {
@@ -29,7 +29,9 @@ public sealed class CreditNoteService : ICreditNoteService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var creditNote = await response.Deserialize<CreditNote>().ConfigureAwait(false);
+        var creditNote = await response
+            .Deserialize<Models::CreditNoteModel>()
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             creditNote.Validate();
@@ -55,7 +57,7 @@ public sealed class CreditNoteService : ICreditNoteService
         return page;
     }
 
-    public async Task<CreditNote> Fetch(CreditNoteFetchParams parameters)
+    public async Task<Models::CreditNoteModel> Fetch(CreditNoteFetchParams parameters)
     {
         HttpRequest<CreditNoteFetchParams> request = new()
         {
@@ -63,7 +65,9 @@ public sealed class CreditNoteService : ICreditNoteService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var creditNote = await response.Deserialize<CreditNote>().ConfigureAwait(false);
+        var creditNote = await response
+            .Deserialize<Models::CreditNoteModel>()
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             creditNote.Validate();

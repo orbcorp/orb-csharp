@@ -2,8 +2,8 @@ using System;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Beta;
-using Orb.Models.Plans;
 using Orb.Services.Beta.ExternalPlanID;
+using Plans = Orb.Models.Plans;
 
 namespace Orb.Services.Beta;
 
@@ -27,5 +27,5 @@ public interface IBetaService
     /// <summary>
     /// This endpoint allows setting the default version of a plan.
     /// </summary>
-    Task<Plan> SetDefaultPlanVersion(BetaSetDefaultPlanVersionParams parameters);
+    Task<Plans::Plan> SetDefaultPlanVersion(BetaSetDefaultPlanVersionParams parameters);
 }

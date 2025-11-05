@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Orb.Models.CreditNotes.CreditNoteCreateParamsProperties;
+using Orb.Models.CreditNotes;
 
 namespace Orb.Tests.Services.CreditNotes;
 

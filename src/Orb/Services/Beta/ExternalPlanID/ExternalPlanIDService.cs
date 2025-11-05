@@ -3,8 +3,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Beta;
-using Orb.Models.Beta.ExternalPlanID;
-using Orb.Models.Plans;
+using ExternalPlanID = Orb.Models.Beta.ExternalPlanID;
+using Plans = Orb.Models.Plans;
 
 namespace Orb.Services.Beta.ExternalPlanID;
 
@@ -23,10 +23,10 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
     }
 
     public async Task<PlanVersion> CreatePlanVersion(
-        ExternalPlanIDCreatePlanVersionParams parameters
+        ExternalPlanID::ExternalPlanIDCreatePlanVersionParams parameters
     )
     {
-        HttpRequest<ExternalPlanIDCreatePlanVersionParams> request = new()
+        HttpRequest<ExternalPlanID::ExternalPlanIDCreatePlanVersionParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -40,9 +40,11 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
         return planVersion;
     }
 
-    public async Task<PlanVersion> FetchPlanVersion(ExternalPlanIDFetchPlanVersionParams parameters)
+    public async Task<PlanVersion> FetchPlanVersion(
+        ExternalPlanID::ExternalPlanIDFetchPlanVersionParams parameters
+    )
     {
-        HttpRequest<ExternalPlanIDFetchPlanVersionParams> request = new()
+        HttpRequest<ExternalPlanID::ExternalPlanIDFetchPlanVersionParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -56,17 +58,17 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
         return planVersion;
     }
 
-    public async Task<Plan> SetDefaultPlanVersion(
-        ExternalPlanIDSetDefaultPlanVersionParams parameters
+    public async Task<Plans::Plan> SetDefaultPlanVersion(
+        ExternalPlanID::ExternalPlanIDSetDefaultPlanVersionParams parameters
     )
     {
-        HttpRequest<ExternalPlanIDSetDefaultPlanVersionParams> request = new()
+        HttpRequest<ExternalPlanID::ExternalPlanIDSetDefaultPlanVersionParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var plan = await response.Deserialize<Plan>().ConfigureAwait(false);
+        var plan = await response.Deserialize<Plans::Plan>().ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             plan.Validate();

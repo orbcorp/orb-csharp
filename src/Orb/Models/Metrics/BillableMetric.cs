@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -6,7 +5,7 @@ using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
 using Orb.Models.Items;
-using Orb.Models.Metrics.BillableMetricProperties;
+using System = System;
 
 namespace Orb.Models.Metrics;
 
@@ -25,13 +24,13 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentNullException("id")
+                    new System::ArgumentNullException("id")
                 );
         }
         set
@@ -73,13 +72,13 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
             if (!this.Properties.TryGetValue("item", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'item' cannot be null",
-                    new ArgumentOutOfRangeException("item", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("item", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<Item>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'item' cannot be null",
-                    new ArgumentNullException("item")
+                    new System::ArgumentNullException("item")
                 );
         }
         set
@@ -104,7 +103,7 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
             if (!this.Properties.TryGetValue("metadata", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'metadata' cannot be null",
-                    new ArgumentOutOfRangeException("metadata", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("metadata", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<Dictionary<string, string>>(
@@ -113,7 +112,7 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
                 )
                 ?? throw new OrbInvalidDataException(
                     "'metadata' cannot be null",
-                    new ArgumentNullException("metadata")
+                    new System::ArgumentNullException("metadata")
                 );
         }
         set
@@ -132,13 +131,13 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentNullException("name")
+                    new System::ArgumentNullException("name")
                 );
         }
         set
@@ -150,17 +149,17 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
         }
     }
 
-    public required ApiEnum<string, Status> Status
+    public required ApiEnum<string, global::Orb.Models.Metrics.Status> Status
     {
         get
         {
             if (!this.Properties.TryGetValue("status", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'status' cannot be null",
-                    new ArgumentOutOfRangeException("status", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("status", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Status>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, global::Orb.Models.Metrics.Status>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -197,5 +196,52 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
     public static BillableMetric FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
+    }
+}
+
+[JsonConverter(typeof(global::Orb.Models.Metrics.StatusConverter))]
+public enum Status
+{
+    Active,
+    Draft,
+    Archived,
+}
+
+sealed class StatusConverter : JsonConverter<global::Orb.Models.Metrics.Status>
+{
+    public override global::Orb.Models.Metrics.Status Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "active" => global::Orb.Models.Metrics.Status.Active,
+            "draft" => global::Orb.Models.Metrics.Status.Draft,
+            "archived" => global::Orb.Models.Metrics.Status.Archived,
+            _ => (global::Orb.Models.Metrics.Status)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Metrics.Status value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.Metrics.Status.Active => "active",
+                global::Orb.Models.Metrics.Status.Draft => "draft",
+                global::Orb.Models.Metrics.Status.Archived => "archived",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

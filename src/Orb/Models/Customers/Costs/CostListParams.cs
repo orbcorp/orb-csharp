@@ -1,8 +1,9 @@
-using System;
 using System.Net.Http;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Models.Customers.Costs.CostListParamsProperties;
+using Orb.Exceptions;
+using System = System;
 
 namespace Orb.Models.Customers.Costs;
 
@@ -130,14 +131,17 @@ public sealed record class CostListParams : ParamsBase
     /// <summary>
     /// Costs returned are exclusive of `timeframe_end`.
     /// </summary>
-    public DateTime? TimeframeEnd
+    public System::DateTime? TimeframeEnd
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("timeframe_end", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -151,14 +155,17 @@ public sealed record class CostListParams : ParamsBase
     /// <summary>
     /// Costs returned are inclusive of `timeframe_start`.
     /// </summary>
-    public DateTime? TimeframeStart
+    public System::DateTime? TimeframeStart
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("timeframe_start", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -195,9 +202,9 @@ public sealed record class CostListParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/customers/{0}/costs", this.CustomerID)
         )
@@ -213,5 +220,50 @@ public sealed record class CostListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+/// <summary>
+/// Controls whether Orb returns cumulative costs since the start of the billing period,
+/// or incremental day-by-day costs. If your customer has minimums or discounts, it's
+/// strongly recommended that you use the default cumulative behavior.
+/// </summary>
+[JsonConverter(typeof(ViewModeConverter))]
+public enum ViewMode
+{
+    Periodic,
+    Cumulative,
+}
+
+sealed class ViewModeConverter : JsonConverter<ViewMode>
+{
+    public override ViewMode Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "periodic" => ViewMode.Periodic,
+            "cumulative" => ViewMode.Cumulative,
+            _ => (ViewMode)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, ViewMode value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ViewMode.Periodic => "periodic",
+                ViewMode.Cumulative => "cumulative",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

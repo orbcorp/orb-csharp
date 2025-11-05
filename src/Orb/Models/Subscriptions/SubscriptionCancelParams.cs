@@ -1,11 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.Subscriptions.SubscriptionCancelParamsProperties;
+using System = System;
 
 namespace Orb.Models.Subscriptions;
 
@@ -77,7 +77,10 @@ public sealed record class SubscriptionCancelParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("cancel_option", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'cancel_option' cannot be null",
-                    new ArgumentOutOfRangeException("cancel_option", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "cancel_option",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CancelOption>>(
@@ -126,14 +129,17 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     /// The date that the cancellation should take effect. This parameter can only
     /// be passed if the `cancel_option` is `requested_date`.
     /// </summary>
-    public DateTime? CancellationDate
+    public System::DateTime? CancellationDate
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("cancellation_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -144,9 +150,9 @@ public sealed record class SubscriptionCancelParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscriptions/{0}/cancel", this.SubscriptionID)
         )
@@ -171,5 +177,55 @@ public sealed record class SubscriptionCancelParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+/// <summary>
+/// Determines the timing of subscription cancellation
+/// </summary>
+[JsonConverter(typeof(CancelOptionConverter))]
+public enum CancelOption
+{
+    EndOfSubscriptionTerm,
+    Immediate,
+    RequestedDate,
+}
+
+sealed class CancelOptionConverter : JsonConverter<CancelOption>
+{
+    public override CancelOption Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "end_of_subscription_term" => CancelOption.EndOfSubscriptionTerm,
+            "immediate" => CancelOption.Immediate,
+            "requested_date" => CancelOption.RequestedDate,
+            _ => (CancelOption)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        CancelOption value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                CancelOption.EndOfSubscriptionTerm => "end_of_subscription_term",
+                CancelOption.Immediate => "immediate",
+                CancelOption.RequestedDate => "requested_date",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }
