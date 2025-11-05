@@ -47,7 +47,7 @@ public class PlanServiceTest : TestBase
                                 ItemID = "item_id",
                                 ModelType = ModelType47.Unit,
                                 Name = "Annual fee",
-                                UnitConfig = new("unit_amount"),
+                                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                                 BillableMetricID = "billable_metric_id",
                                 BilledInAdvance = true,
                                 BillingCycleConfiguration = new()

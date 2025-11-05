@@ -162,6 +162,29 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
     }
 
     /// <summary>
+    /// If true, ending an in-arrears price interval mid-cycle will defer billing
+    /// the final line itemuntil the next scheduled invoice. If false, it will be
+    /// billed on its end date. If not provided, behaviorwill follow account default.
+    /// </summary>
+    public bool? CanDeferBilling
+    {
+        get
+        {
+            if (!this._bodyProperties.TryGetValue("can_defer_billing", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._bodyProperties["can_defer_billing"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
     /// A list of price intervals to edit on the subscription.
     /// </summary>
     public List<Edit>? Edit
@@ -8336,6 +8359,29 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
     }
 
     /// <summary>
+    /// If true, ending an in-arrears price interval mid-cycle will defer billing
+    /// the final line itemuntil the next scheduled invoice. If false, it will be
+    /// billed on its end date. If not provided, behaviorwill follow account default.
+    /// </summary>
+    public bool? CanDeferBilling
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("can_defer_billing", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["can_defer_billing"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
     /// The updated end date of this price interval. If not specified, the end date
     /// will not be updated.
     /// </summary>
@@ -8463,6 +8509,7 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
     {
         _ = this.PriceIntervalID;
         _ = this.BillingCycleDay;
+        _ = this.CanDeferBilling;
         this.EndDate?.Validate();
         _ = this.Filter;
         foreach (var item in this.FixedFeeQuantityTransitions ?? [])
