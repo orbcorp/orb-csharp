@@ -1,10 +1,12 @@
-using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Models.Invoices.InvoiceUpdateParamsProperties;
+using Orb.Exceptions;
+using System = System;
 
 namespace Orb.Models.Invoices;
 
@@ -27,14 +29,14 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     /// An optional custom due date for the invoice. If not set, the due date will
     /// be calculated based on the `net_terms` value.
     /// </summary>
-    public DueDate? DueDate
+    public DueDateModel? DueDate
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("due_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DueDate?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DueDateModel?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -118,9 +120,9 @@ public sealed record class InvoiceUpdateParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/') + string.Format("/invoices/{0}", this.InvoiceID)
         )
         {
@@ -144,5 +146,284 @@ public sealed record class InvoiceUpdateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+/// <summary>
+/// An optional custom due date for the invoice. If not set, the due date will be
+/// calculated based on the `net_terms` value.
+/// </summary>
+[JsonConverter(typeof(DueDateModelConverter))]
+public record class DueDateModel
+{
+    public object Value { get; private init; }
+
+    public DueDateModel(System::DateOnly value)
+    {
+        Value = value;
+    }
+
+    public DueDateModel(System::DateTime value)
+    {
+        Value = value;
+    }
+
+    DueDateModel(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static DueDateModel CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickDate([NotNullWhen(true)] out System::DateOnly? value)
+    {
+        value = this.Value as System::DateOnly?;
+        return value != null;
+    }
+
+    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTime? value)
+    {
+        value = this.Value as System::DateTime?;
+        return value != null;
+    }
+
+    public void Switch(
+        System::Action<System::DateOnly> @date,
+        System::Action<System::DateTime> @dateTime
+    )
+    {
+        switch (this.Value)
+        {
+            case System::DateOnly value:
+                @date(value);
+                break;
+            case System::DateTime value:
+                @dateTime(value);
+                break;
+            default:
+                throw new OrbInvalidDataException("Data did not match any variant of DueDateModel");
+        }
+    }
+
+    public T Match<T>(
+        System::Func<System::DateOnly, T> @date,
+        System::Func<System::DateTime, T> @dateTime
+    )
+    {
+        return this.Value switch
+        {
+            System::DateOnly value => @date(value),
+            System::DateTime value => @dateTime(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of DueDateModel"
+            ),
+        };
+    }
+
+    public void Validate()
+    {
+        if (this.Value is UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of DueDateModel");
+        }
+    }
+
+    record struct UnknownVariant(JsonElement value);
+}
+
+sealed class DueDateModelConverter : JsonConverter<DueDateModel?>
+{
+    public override DueDateModel? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        List<OrbInvalidDataException> exceptions = [];
+
+        try
+        {
+            return new DueDateModel(
+                JsonSerializer.Deserialize<System::DateOnly>(ref reader, options)
+            );
+        }
+        catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
+        {
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant 'System::DateOnly'",
+                    e
+                )
+            );
+        }
+
+        try
+        {
+            return new DueDateModel(
+                JsonSerializer.Deserialize<System::DateTime>(ref reader, options)
+            );
+        }
+        catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
+        {
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant 'System::DateTime'",
+                    e
+                )
+            );
+        }
+
+        throw new System::AggregateException(exceptions);
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        DueDateModel? value,
+        JsonSerializerOptions options
+    )
+    {
+        object? variant = value?.Value;
+        JsonSerializer.Serialize(writer, variant, options);
+    }
+}
+
+/// <summary>
+/// The date of the invoice. Can only be modified for one-off draft invoices.
+/// </summary>
+[JsonConverter(typeof(InvoiceDateConverter))]
+public record class InvoiceDate
+{
+    public object Value { get; private init; }
+
+    public InvoiceDate(System::DateOnly value)
+    {
+        Value = value;
+    }
+
+    public InvoiceDate(System::DateTime value)
+    {
+        Value = value;
+    }
+
+    InvoiceDate(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static InvoiceDate CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickDate([NotNullWhen(true)] out System::DateOnly? value)
+    {
+        value = this.Value as System::DateOnly?;
+        return value != null;
+    }
+
+    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTime? value)
+    {
+        value = this.Value as System::DateTime?;
+        return value != null;
+    }
+
+    public void Switch(
+        System::Action<System::DateOnly> @date,
+        System::Action<System::DateTime> @dateTime
+    )
+    {
+        switch (this.Value)
+        {
+            case System::DateOnly value:
+                @date(value);
+                break;
+            case System::DateTime value:
+                @dateTime(value);
+                break;
+            default:
+                throw new OrbInvalidDataException("Data did not match any variant of InvoiceDate");
+        }
+    }
+
+    public T Match<T>(
+        System::Func<System::DateOnly, T> @date,
+        System::Func<System::DateTime, T> @dateTime
+    )
+    {
+        return this.Value switch
+        {
+            System::DateOnly value => @date(value),
+            System::DateTime value => @dateTime(value),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of InvoiceDate"),
+        };
+    }
+
+    public void Validate()
+    {
+        if (this.Value is UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of InvoiceDate");
+        }
+    }
+
+    record struct UnknownVariant(JsonElement value);
+}
+
+sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
+{
+    public override InvoiceDate? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        List<OrbInvalidDataException> exceptions = [];
+
+        try
+        {
+            return new InvoiceDate(
+                JsonSerializer.Deserialize<System::DateOnly>(ref reader, options)
+            );
+        }
+        catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
+        {
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant 'System::DateOnly'",
+                    e
+                )
+            );
+        }
+
+        try
+        {
+            return new InvoiceDate(
+                JsonSerializer.Deserialize<System::DateTime>(ref reader, options)
+            );
+        }
+        catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
+        {
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant 'System::DateTime'",
+                    e
+                )
+            );
+        }
+
+        throw new System::AggregateException(exceptions);
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        InvoiceDate? value,
+        JsonSerializerOptions options
+    )
+    {
+        object? variant = value?.Value;
+        JsonSerializer.Serialize(writer, variant, options);
     }
 }

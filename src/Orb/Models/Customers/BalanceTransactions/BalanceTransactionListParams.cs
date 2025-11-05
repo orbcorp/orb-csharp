@@ -1,7 +1,7 @@
-using System;
 using System.Net.Http;
 using System.Text.Json;
 using Orb.Core;
+using System = System;
 
 namespace Orb.Models.Customers.BalanceTransactions;
 
@@ -74,14 +74,17 @@ public sealed record class BalanceTransactionListParams : ParamsBase
         }
     }
 
-    public DateTime? OperationTimeGt
+    public System::DateTime? OperationTimeGt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("operation_time[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -92,14 +95,17 @@ public sealed record class BalanceTransactionListParams : ParamsBase
         }
     }
 
-    public DateTime? OperationTimeGte
+    public System::DateTime? OperationTimeGte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("operation_time[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -110,14 +116,17 @@ public sealed record class BalanceTransactionListParams : ParamsBase
         }
     }
 
-    public DateTime? OperationTimeLt
+    public System::DateTime? OperationTimeLt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("operation_time[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -128,14 +137,17 @@ public sealed record class BalanceTransactionListParams : ParamsBase
         }
     }
 
-    public DateTime? OperationTimeLte
+    public System::DateTime? OperationTimeLte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("operation_time[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -146,9 +158,9 @@ public sealed record class BalanceTransactionListParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/customers/{0}/balance_transactions", this.CustomerID)
         )

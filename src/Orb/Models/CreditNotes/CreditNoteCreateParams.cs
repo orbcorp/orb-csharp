@@ -1,11 +1,12 @@
-using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.CreditNotes.CreditNoteCreateParamsProperties;
+using System = System;
 
 namespace Orb.Models.CreditNotes;
 
@@ -40,20 +41,26 @@ public sealed record class CreditNoteCreateParams : ParamsBase
 {
     public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
 
-    public required List<LineItem> LineItems
+    public required List<global::Orb.Models.CreditNotes.LineItem> LineItems
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("line_items", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'line_items' cannot be null",
-                    new ArgumentOutOfRangeException("line_items", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "line_items",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<List<LineItem>>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<List<global::Orb.Models.CreditNotes.LineItem>>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
                 ?? throw new OrbInvalidDataException(
                     "'line_items' cannot be null",
-                    new ArgumentNullException("line_items")
+                    new System::ArgumentNullException("line_items")
                 );
         }
         set
@@ -68,20 +75,19 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     /// <summary>
     /// An optional reason for the credit note.
     /// </summary>
-    public required ApiEnum<string, Reason> Reason
+    public required ApiEnum<string, global::Orb.Models.CreditNotes.Reason> Reason
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("reason", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'reason' cannot be null",
-                    new ArgumentOutOfRangeException("reason", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("reason", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Reason>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, global::Orb.Models.CreditNotes.Reason>
+            >(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -99,14 +105,17 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     /// items will use their original invoice line item service periods. This date
     /// is inclusive.
     /// </summary>
-    public DateOnly? EndDate
+    public System::DateOnly? EndDate
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateOnly?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateOnly?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -145,14 +154,17 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     /// items will use their original invoice line item service periods. This date
     /// is inclusive.
     /// </summary>
-    public DateOnly? StartDate
+    public System::DateOnly? StartDate
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("start_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateOnly?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateOnly?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -163,9 +175,9 @@ public sealed record class CreditNoteCreateParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/credit_notes")
+        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/credit_notes")
         {
             Query = this.QueryString(client),
         }.Uri;
@@ -187,5 +199,202 @@ public sealed record class CreditNoteCreateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<global::Orb.Models.CreditNotes.LineItem>))]
+public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.CreditNotes.LineItem>
+{
+    /// <summary>
+    /// The total amount in the invoice's currency to credit this line item.
+    /// </summary>
+    public required string Amount
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("amount", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new System::ArgumentOutOfRangeException("amount", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new System::ArgumentNullException("amount")
+                );
+        }
+        set
+        {
+            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The ID of the line item to credit.
+    /// </summary>
+    public required string InvoiceLineItemID
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("invoice_line_item_id", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'invoice_line_item_id' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "invoice_line_item_id",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'invoice_line_item_id' cannot be null",
+                    new System::ArgumentNullException("invoice_line_item_id")
+                );
+        }
+        set
+        {
+            this.Properties["invoice_line_item_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// A date string to specify this line item's credit note service period end
+    /// date in the customer's timezone. If provided, this will be used for this specific
+    /// line item. If not provided, will use the global end_date if available, otherwise
+    /// defaults to the original invoice line item's end date. This date is inclusive.
+    /// </summary>
+    public System::DateOnly? EndDate
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("end_date", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<System::DateOnly?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["end_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// A date string to specify this line item's credit note service period start
+    /// date in the customer's timezone. If provided, this will be used for this specific
+    /// line item. If not provided, will use the global start_date if available,
+    /// otherwise defaults to the original invoice line item's start date. This date
+    /// is inclusive.
+    /// </summary>
+    public System::DateOnly? StartDate
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("start_date", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<System::DateOnly?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["start_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.Amount;
+        _ = this.InvoiceLineItemID;
+        _ = this.EndDate;
+        _ = this.StartDate;
+    }
+
+    public LineItem() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    LineItem(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static global::Orb.Models.CreditNotes.LineItem FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
+    {
+        return new(properties);
+    }
+}
+
+/// <summary>
+/// An optional reason for the credit note.
+/// </summary>
+[JsonConverter(typeof(global::Orb.Models.CreditNotes.ReasonConverter))]
+public enum Reason
+{
+    Duplicate,
+    Fraudulent,
+    OrderChange,
+    ProductUnsatisfactory,
+}
+
+sealed class ReasonConverter : JsonConverter<global::Orb.Models.CreditNotes.Reason>
+{
+    public override global::Orb.Models.CreditNotes.Reason Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "duplicate" => global::Orb.Models.CreditNotes.Reason.Duplicate,
+            "fraudulent" => global::Orb.Models.CreditNotes.Reason.Fraudulent,
+            "order_change" => global::Orb.Models.CreditNotes.Reason.OrderChange,
+            "product_unsatisfactory" => global::Orb.Models.CreditNotes.Reason.ProductUnsatisfactory,
+            _ => (global::Orb.Models.CreditNotes.Reason)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.CreditNotes.Reason value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.CreditNotes.Reason.Duplicate => "duplicate",
+                global::Orb.Models.CreditNotes.Reason.Fraudulent => "fraudulent",
+                global::Orb.Models.CreditNotes.Reason.OrderChange => "order_change",
+                global::Orb.Models.CreditNotes.Reason.ProductUnsatisfactory =>
+                    "product_unsatisfactory",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

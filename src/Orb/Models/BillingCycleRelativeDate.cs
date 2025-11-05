@@ -1,7 +1,7 @@
-using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
+using System = System;
 
 namespace Orb.Models;
 
@@ -16,7 +16,7 @@ sealed class BillingCycleRelativeDateConverter : JsonConverter<BillingCycleRelat
 {
     public override BillingCycleRelativeDate Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {

@@ -1,11 +1,12 @@
-using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties;
+using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
@@ -103,13 +104,13 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("body", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'body' cannot be null",
-                    new ArgumentOutOfRangeException("body", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("body", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<Body>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'body' cannot be null",
-                    new ArgumentNullException("body")
+                    new System::ArgumentNullException("body")
                 );
         }
         set
@@ -121,9 +122,9 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/customers/{0}/credits/ledger_entry", this.CustomerID)
         )
@@ -147,6 +148,2419 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
         foreach (var item in this.HeaderProperties)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+        }
+    }
+}
+
+[JsonConverter(typeof(BodyConverter))]
+public record class Body
+{
+    public object Value { get; private init; }
+
+    public double? Amount
+    {
+        get
+        {
+            return Match<double?>(
+                increment: (x) => x.Amount,
+                decrement: (x) => x.Amount,
+                expirationChange: (x) => x.Amount,
+                void1: (x) => x.Amount,
+                amendment: (x) => x.Amount
+            );
+        }
+    }
+
+    public string? Currency
+    {
+        get
+        {
+            return Match<string?>(
+                increment: (x) => x.Currency,
+                decrement: (x) => x.Currency,
+                expirationChange: (x) => x.Currency,
+                void1: (x) => x.Currency,
+                amendment: (x) => x.Currency
+            );
+        }
+    }
+
+    public string? Description
+    {
+        get
+        {
+            return Match<string?>(
+                increment: (x) => x.Description,
+                decrement: (x) => x.Description,
+                expirationChange: (x) => x.Description,
+                void1: (x) => x.Description,
+                amendment: (x) => x.Description
+            );
+        }
+    }
+
+    public System::DateTime? ExpiryDate
+    {
+        get
+        {
+            return Match<System::DateTime?>(
+                increment: (x) => x.ExpiryDate,
+                decrement: (_) => null,
+                expirationChange: (x) => x.ExpiryDate,
+                void1: (_) => null,
+                amendment: (_) => null
+            );
+        }
+    }
+
+    public string? BlockID
+    {
+        get
+        {
+            return Match<string?>(
+                increment: (_) => null,
+                decrement: (_) => null,
+                expirationChange: (x) => x.BlockID,
+                void1: (x) => x.BlockID,
+                amendment: (x) => x.BlockID
+            );
+        }
+    }
+
+    public Body(Increment value)
+    {
+        Value = value;
+    }
+
+    public Body(Decrement value)
+    {
+        Value = value;
+    }
+
+    public Body(ExpirationChange value)
+    {
+        Value = value;
+    }
+
+    public Body(Void value)
+    {
+        Value = value;
+    }
+
+    public Body(Amendment value)
+    {
+        Value = value;
+    }
+
+    Body(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Body CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickIncrement([NotNullWhen(true)] out Increment? value)
+    {
+        value = this.Value as Increment;
+        return value != null;
+    }
+
+    public bool TryPickDecrement([NotNullWhen(true)] out Decrement? value)
+    {
+        value = this.Value as Decrement;
+        return value != null;
+    }
+
+    public bool TryPickExpirationChange([NotNullWhen(true)] out ExpirationChange? value)
+    {
+        value = this.Value as ExpirationChange;
+        return value != null;
+    }
+
+    public bool TryPickVoid([NotNullWhen(true)] out Void? value)
+    {
+        value = this.Value as Void;
+        return value != null;
+    }
+
+    public bool TryPickAmendment([NotNullWhen(true)] out Amendment? value)
+    {
+        value = this.Value as Amendment;
+        return value != null;
+    }
+
+    public void Switch(
+        System::Action<Increment> increment,
+        System::Action<Decrement> decrement,
+        System::Action<ExpirationChange> expirationChange,
+        System::Action<Void> void1,
+        System::Action<Amendment> amendment
+    )
+    {
+        switch (this.Value)
+        {
+            case Increment value:
+                increment(value);
+                break;
+            case Decrement value:
+                decrement(value);
+                break;
+            case ExpirationChange value:
+                expirationChange(value);
+                break;
+            case Void value:
+                void1(value);
+                break;
+            case Amendment value:
+                amendment(value);
+                break;
+            default:
+                throw new OrbInvalidDataException("Data did not match any variant of Body");
+        }
+    }
+
+    public T Match<T>(
+        System::Func<Increment, T> increment,
+        System::Func<Decrement, T> decrement,
+        System::Func<ExpirationChange, T> expirationChange,
+        System::Func<Void, T> void1,
+        System::Func<Amendment, T> amendment
+    )
+    {
+        return this.Value switch
+        {
+            Increment value => increment(value),
+            Decrement value => decrement(value),
+            ExpirationChange value => expirationChange(value),
+            Void value => void1(value),
+            Amendment value => amendment(value),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of Body"),
+        };
+    }
+
+    public void Validate()
+    {
+        if (this.Value is UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of Body");
+        }
+    }
+
+    record struct UnknownVariant(JsonElement value);
+}
+
+sealed class BodyConverter : JsonConverter<Body>
+{
+    public override Body? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? entryType;
+        try
+        {
+            entryType = json.GetProperty("entry_type").GetString();
+        }
+        catch
+        {
+            entryType = null;
+        }
+
+        switch (entryType)
+        {
+            case "increment":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<Increment>(json, options);
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new Body(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'Increment'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "decrement":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<Decrement>(json, options);
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new Body(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'Decrement'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "expiration_change":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<ExpirationChange>(json, options);
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new Body(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'ExpirationChange'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "void":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<Void>(json, options);
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new Body(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException("Data does not match union variant 'Void'", e)
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "amendment":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<Amendment>(json, options);
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new Body(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'Amendment'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            default:
+            {
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
+            }
+        }
+    }
+
+    public override void Write(Utf8JsonWriter writer, Body value, JsonSerializerOptions options)
+    {
+        object variant = value.Value;
+        JsonSerializer.Serialize(writer, variant, options);
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<Increment>))]
+public sealed record class Increment : ModelBase, IFromRaw<Increment>
+{
+    /// <summary>
+    /// The number of credits to effect. Note that this is required for increment,
+    /// decrement, void, or undo operations.
+    /// </summary>
+    public required double Amount
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("amount", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new System::ArgumentOutOfRangeException("amount", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public EntryTypeModel EntryType
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("entry_type", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "entry_type",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<EntryTypeModel>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentNullException("entry_type")
+                );
+        }
+        set
+        {
+            this.Properties["entry_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The currency or custom pricing unit to use for this ledger entry. If this
+    /// is a real-world currency, it must match the customer's invoicing currency.
+    /// </summary>
+    public string? Currency
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("currency", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Optional metadata that can be specified when adding ledger results via the
+    /// API. For example, this can be used to note an increment refers to trial credits,
+    /// or for noting corrections as a result of an incident, etc.
+    /// </summary>
+    public string? Description
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("description", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["description"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// An ISO 8601 format date that denotes when this credit balance should become
+    /// available for use.
+    /// </summary>
+    public System::DateTime? EffectiveDate
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("effective_date", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["effective_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// An ISO 8601 format date that denotes when this credit balance should expire.
+    /// </summary>
+    public System::DateTime? ExpiryDate
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("expiry_date", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["expiry_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Optional filter to specify which items this credit block applies to. If not
+    /// specified, the block will apply to all items for the pricing unit.
+    /// </summary>
+    public List<global::Orb.Models.Customers.Credits.Ledger.Filter>? Filters
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("filters", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<List<global::Orb.Models.Customers.Credits.Ledger.Filter>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["filters"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Passing `invoice_settings` automatically generates an invoice for the newly
+    /// added credits. If `invoice_settings` is passed, you must specify per_unit_cost_basis,
+    /// as the calculation of the invoice total is done on that basis.
+    /// </summary>
+    public InvoiceSettings? InvoiceSettings
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("invoice_settings", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<InvoiceSettings?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["invoice_settings"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// User-specified key/value pairs for the resource. Individual keys can be removed
+    /// by setting the value to `null`, and the entire metadata mapping can be cleared
+    /// by setting `metadata` to `null`.
+    /// </summary>
+    public Dictionary<string, string?>? Metadata
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("metadata", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Can only be specified when entry_type=increment. How much, in the customer's
+    /// currency, a customer paid for a single credit in this block
+    /// </summary>
+    public string? PerUnitCostBasis
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("per_unit_cost_basis", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["per_unit_cost_basis"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.Amount;
+        this.EntryType.Validate();
+        _ = this.Currency;
+        _ = this.Description;
+        _ = this.EffectiveDate;
+        _ = this.ExpiryDate;
+        foreach (var item in this.Filters ?? [])
+        {
+            item.Validate();
+        }
+        this.InvoiceSettings?.Validate();
+        _ = this.Metadata;
+        _ = this.PerUnitCostBasis;
+    }
+
+    public Increment()
+    {
+        this.EntryType = new();
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Increment(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static Increment FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+
+    [SetsRequiredMembers]
+    public Increment(double amount)
+        : this()
+    {
+        this.Amount = amount;
+    }
+}
+
+[JsonConverter(typeof(Converter))]
+public class EntryTypeModel
+{
+    public JsonElement Json { get; private init; }
+
+    public EntryTypeModel()
+    {
+        Json = JsonSerializer.Deserialize<JsonElement>("\"increment\"");
+    }
+
+    EntryTypeModel(JsonElement json)
+    {
+        Json = json;
+    }
+
+    public void Validate()
+    {
+        if (JsonElement.DeepEquals(this.Json, new EntryTypeModel().Json))
+        {
+            throw new OrbInvalidDataException("Invalid constant given for 'EntryTypeModel'");
+        }
+    }
+
+    class Converter : JsonConverter<EntryTypeModel>
+    {
+        public override EntryTypeModel? Read(
+            ref Utf8JsonReader reader,
+            System::Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            EntryTypeModel value,
+            JsonSerializerOptions options
+        )
+        {
+            JsonSerializer.Serialize(writer, value.Json, options);
+        }
+    }
+}
+
+/// <summary>
+/// A PriceFilter that only allows item_id field for block filters.
+/// </summary>
+[JsonConverter(typeof(ModelConverter<global::Orb.Models.Customers.Credits.Ledger.Filter>))]
+public sealed record class Filter
+    : ModelBase,
+        IFromRaw<global::Orb.Models.Customers.Credits.Ledger.Filter>
+{
+    /// <summary>
+    /// The property of the price the block applies to. Only item_id is supported.
+    /// </summary>
+    public required ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Field> Field
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("field", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentOutOfRangeException("field", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Field>
+            >(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["field"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Operator> Operator
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("operator", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentOutOfRangeException("operator", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Operator>
+            >(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["operator"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required List<string> Values
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("values", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'values' cannot be null",
+                    new System::ArgumentOutOfRangeException("values", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'values' cannot be null",
+                    new System::ArgumentNullException("values")
+                );
+        }
+        set
+        {
+            this.Properties["values"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public Filter() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Filter(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static global::Orb.Models.Customers.Credits.Ledger.Filter FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
+    {
+        return new(properties);
+    }
+}
+
+/// <summary>
+/// The property of the price the block applies to. Only item_id is supported.
+/// </summary>
+[JsonConverter(typeof(global::Orb.Models.Customers.Credits.Ledger.FieldConverter))]
+public enum Field
+{
+    ItemID,
+}
+
+sealed class FieldConverter : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.Field>
+{
+    public override global::Orb.Models.Customers.Credits.Ledger.Field Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "item_id" => global::Orb.Models.Customers.Credits.Ledger.Field.ItemID,
+            _ => (global::Orb.Models.Customers.Credits.Ledger.Field)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Customers.Credits.Ledger.Field value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.Customers.Credits.Ledger.Field.ItemID => "item_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(typeof(global::Orb.Models.Customers.Credits.Ledger.OperatorConverter))]
+public enum Operator
+{
+    Includes,
+    Excludes,
+}
+
+sealed class OperatorConverter : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.Operator>
+{
+    public override global::Orb.Models.Customers.Credits.Ledger.Operator Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" => global::Orb.Models.Customers.Credits.Ledger.Operator.Includes,
+            "excludes" => global::Orb.Models.Customers.Credits.Ledger.Operator.Excludes,
+            _ => (global::Orb.Models.Customers.Credits.Ledger.Operator)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Customers.Credits.Ledger.Operator value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.Customers.Credits.Ledger.Operator.Includes => "includes",
+                global::Orb.Models.Customers.Credits.Ledger.Operator.Excludes => "excludes",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Passing `invoice_settings` automatically generates an invoice for the newly added
+/// credits. If `invoice_settings` is passed, you must specify per_unit_cost_basis,
+/// as the calculation of the invoice total is done on that basis.
+/// </summary>
+[JsonConverter(typeof(ModelConverter<InvoiceSettings>))]
+public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings>
+{
+    /// <summary>
+    /// Whether the credits purchase invoice should auto collect with the customer's
+    /// saved payment method.
+    /// </summary>
+    public required bool AutoCollection
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("auto_collection", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'auto_collection' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "auto_collection",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["auto_collection"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// An optional custom due date for the invoice. If not set, the due date will
+    /// be calculated based on the `net_terms` value.
+    /// </summary>
+    public CustomDueDate? CustomDueDate
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("custom_due_date", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<CustomDueDate?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["custom_due_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// An ISO 8601 format date that denotes when this invoice should be dated in
+    /// the customer's timezone. If not provided, the invoice date will default to
+    /// the credit block's effective date.
+    /// </summary>
+    public InvoiceDate? InvoiceDate
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("invoice_date", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<InvoiceDate?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["invoice_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The ID of the Item to be used for the invoice line item. If not provided,
+    /// a default 'Credits' item will be used.
+    /// </summary>
+    public string? ItemID
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("item_id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["item_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// An optional memo to display on the invoice.
+    /// </summary>
+    public string? Memo
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("memo", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["memo"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The net terms determines the due date of the invoice. Due date is calculated
+    /// based on the invoice or issuance date, depending on the account's configured
+    /// due date calculation method. A value of '0' here represents that the invoice
+    /// is due on issue, whereas a value of '30' represents that the customer has
+    /// 30 days to pay the invoice. Do not set this field if you want to set a custom
+    /// due date.
+    /// </summary>
+    public long? NetTerms
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("net_terms", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["net_terms"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// If true, the new credit block will require that the corresponding invoice
+    /// is paid before it can be drawn down from.
+    /// </summary>
+    public bool? RequireSuccessfulPayment
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("require_successful_payment", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["require_successful_payment"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.AutoCollection;
+        this.CustomDueDate?.Validate();
+        this.InvoiceDate?.Validate();
+        _ = this.ItemID;
+        _ = this.Memo;
+        _ = this.NetTerms;
+        _ = this.RequireSuccessfulPayment;
+    }
+
+    public InvoiceSettings() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    InvoiceSettings(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static InvoiceSettings FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+
+    [SetsRequiredMembers]
+    public InvoiceSettings(bool autoCollection)
+        : this()
+    {
+        this.AutoCollection = autoCollection;
+    }
+}
+
+/// <summary>
+/// An optional custom due date for the invoice. If not set, the due date will be
+/// calculated based on the `net_terms` value.
+/// </summary>
+[JsonConverter(typeof(CustomDueDateConverter))]
+public record class CustomDueDate
+{
+    public object Value { get; private init; }
+
+    public CustomDueDate(System::DateOnly value)
+    {
+        Value = value;
+    }
+
+    public CustomDueDate(System::DateTime value)
+    {
+        Value = value;
+    }
+
+    CustomDueDate(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static CustomDueDate CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickDate([NotNullWhen(true)] out System::DateOnly? value)
+    {
+        value = this.Value as System::DateOnly?;
+        return value != null;
+    }
+
+    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTime? value)
+    {
+        value = this.Value as System::DateTime?;
+        return value != null;
+    }
+
+    public void Switch(
+        System::Action<System::DateOnly> @date,
+        System::Action<System::DateTime> @dateTime
+    )
+    {
+        switch (this.Value)
+        {
+            case System::DateOnly value:
+                @date(value);
+                break;
+            case System::DateTime value:
+                @dateTime(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of CustomDueDate"
+                );
+        }
+    }
+
+    public T Match<T>(
+        System::Func<System::DateOnly, T> @date,
+        System::Func<System::DateTime, T> @dateTime
+    )
+    {
+        return this.Value switch
+        {
+            System::DateOnly value => @date(value),
+            System::DateTime value => @dateTime(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of CustomDueDate"
+            ),
+        };
+    }
+
+    public void Validate()
+    {
+        if (this.Value is UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of CustomDueDate");
+        }
+    }
+
+    record struct UnknownVariant(JsonElement value);
+}
+
+sealed class CustomDueDateConverter : JsonConverter<CustomDueDate?>
+{
+    public override CustomDueDate? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        List<OrbInvalidDataException> exceptions = [];
+
+        try
+        {
+            return new CustomDueDate(
+                JsonSerializer.Deserialize<System::DateOnly>(ref reader, options)
+            );
+        }
+        catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
+        {
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant 'System::DateOnly'",
+                    e
+                )
+            );
+        }
+
+        try
+        {
+            return new CustomDueDate(
+                JsonSerializer.Deserialize<System::DateTime>(ref reader, options)
+            );
+        }
+        catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
+        {
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant 'System::DateTime'",
+                    e
+                )
+            );
+        }
+
+        throw new System::AggregateException(exceptions);
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        CustomDueDate? value,
+        JsonSerializerOptions options
+    )
+    {
+        object? variant = value?.Value;
+        JsonSerializer.Serialize(writer, variant, options);
+    }
+}
+
+/// <summary>
+/// An ISO 8601 format date that denotes when this invoice should be dated in the
+/// customer's timezone. If not provided, the invoice date will default to the credit
+/// block's effective date.
+/// </summary>
+[JsonConverter(typeof(InvoiceDateConverter))]
+public record class InvoiceDate
+{
+    public object Value { get; private init; }
+
+    public InvoiceDate(System::DateOnly value)
+    {
+        Value = value;
+    }
+
+    public InvoiceDate(System::DateTime value)
+    {
+        Value = value;
+    }
+
+    InvoiceDate(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static InvoiceDate CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickDate([NotNullWhen(true)] out System::DateOnly? value)
+    {
+        value = this.Value as System::DateOnly?;
+        return value != null;
+    }
+
+    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTime? value)
+    {
+        value = this.Value as System::DateTime?;
+        return value != null;
+    }
+
+    public void Switch(
+        System::Action<System::DateOnly> @date,
+        System::Action<System::DateTime> @dateTime
+    )
+    {
+        switch (this.Value)
+        {
+            case System::DateOnly value:
+                @date(value);
+                break;
+            case System::DateTime value:
+                @dateTime(value);
+                break;
+            default:
+                throw new OrbInvalidDataException("Data did not match any variant of InvoiceDate");
+        }
+    }
+
+    public T Match<T>(
+        System::Func<System::DateOnly, T> @date,
+        System::Func<System::DateTime, T> @dateTime
+    )
+    {
+        return this.Value switch
+        {
+            System::DateOnly value => @date(value),
+            System::DateTime value => @dateTime(value),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of InvoiceDate"),
+        };
+    }
+
+    public void Validate()
+    {
+        if (this.Value is UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of InvoiceDate");
+        }
+    }
+
+    record struct UnknownVariant(JsonElement value);
+}
+
+sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
+{
+    public override InvoiceDate? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        List<OrbInvalidDataException> exceptions = [];
+
+        try
+        {
+            return new InvoiceDate(
+                JsonSerializer.Deserialize<System::DateOnly>(ref reader, options)
+            );
+        }
+        catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
+        {
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant 'System::DateOnly'",
+                    e
+                )
+            );
+        }
+
+        try
+        {
+            return new InvoiceDate(
+                JsonSerializer.Deserialize<System::DateTime>(ref reader, options)
+            );
+        }
+        catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
+        {
+            exceptions.Add(
+                new OrbInvalidDataException(
+                    "Data does not match union variant 'System::DateTime'",
+                    e
+                )
+            );
+        }
+
+        throw new System::AggregateException(exceptions);
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        InvoiceDate? value,
+        JsonSerializerOptions options
+    )
+    {
+        object? variant = value?.Value;
+        JsonSerializer.Serialize(writer, variant, options);
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<Decrement>))]
+public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
+{
+    /// <summary>
+    /// The number of credits to effect. Note that this is required for increment,
+    /// decrement, void, or undo operations.
+    /// </summary>
+    public required double Amount
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("amount", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new System::ArgumentOutOfRangeException("amount", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public EntryType1 EntryType
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("entry_type", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "entry_type",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<EntryType1>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentNullException("entry_type")
+                );
+        }
+        set
+        {
+            this.Properties["entry_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The currency or custom pricing unit to use for this ledger entry. If this
+    /// is a real-world currency, it must match the customer's invoicing currency.
+    /// </summary>
+    public string? Currency
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("currency", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Optional metadata that can be specified when adding ledger results via the
+    /// API. For example, this can be used to note an increment refers to trial credits,
+    /// or for noting corrections as a result of an incident, etc.
+    /// </summary>
+    public string? Description
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("description", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["description"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// User-specified key/value pairs for the resource. Individual keys can be removed
+    /// by setting the value to `null`, and the entire metadata mapping can be cleared
+    /// by setting `metadata` to `null`.
+    /// </summary>
+    public Dictionary<string, string?>? Metadata
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("metadata", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.Amount;
+        this.EntryType.Validate();
+        _ = this.Currency;
+        _ = this.Description;
+        _ = this.Metadata;
+    }
+
+    public Decrement()
+    {
+        this.EntryType = new();
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Decrement(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static Decrement FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+
+    [SetsRequiredMembers]
+    public Decrement(double amount)
+        : this()
+    {
+        this.Amount = amount;
+    }
+}
+
+[JsonConverter(typeof(Converter))]
+public class EntryType1
+{
+    public JsonElement Json { get; private init; }
+
+    public EntryType1()
+    {
+        Json = JsonSerializer.Deserialize<JsonElement>("\"decrement\"");
+    }
+
+    EntryType1(JsonElement json)
+    {
+        Json = json;
+    }
+
+    public void Validate()
+    {
+        if (JsonElement.DeepEquals(this.Json, new EntryType1().Json))
+        {
+            throw new OrbInvalidDataException("Invalid constant given for 'EntryType1'");
+        }
+    }
+
+    class Converter : JsonConverter<EntryType1>
+    {
+        public override EntryType1? Read(
+            ref Utf8JsonReader reader,
+            System::Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            EntryType1 value,
+            JsonSerializerOptions options
+        )
+        {
+            JsonSerializer.Serialize(writer, value.Json, options);
+        }
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<ExpirationChange>))]
+public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChange>
+{
+    public EntryType2 EntryType
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("entry_type", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "entry_type",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<EntryType2>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentNullException("entry_type")
+                );
+        }
+        set
+        {
+            this.Properties["entry_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// A future date (specified in YYYY-MM-DD format) used for expiration change,
+    /// denoting when credits transferred (as part of a partial block expiration)
+    /// should expire.
+    /// </summary>
+    public required System::DateOnly TargetExpiryDate
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("target_expiry_date", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'target_expiry_date' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "target_expiry_date",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<System::DateOnly>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["target_expiry_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The number of credits to effect. Note that this is required for increment,
+    /// decrement, void, or undo operations.
+    /// </summary>
+    public double? Amount
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("amount", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The ID of the block affected by an expiration_change, used to differentiate
+    /// between multiple blocks with the same `expiry_date`.
+    /// </summary>
+    public string? BlockID
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("block_id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["block_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The currency or custom pricing unit to use for this ledger entry. If this
+    /// is a real-world currency, it must match the customer's invoicing currency.
+    /// </summary>
+    public string? Currency
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("currency", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Optional metadata that can be specified when adding ledger results via the
+    /// API. For example, this can be used to note an increment refers to trial credits,
+    /// or for noting corrections as a result of an incident, etc.
+    /// </summary>
+    public string? Description
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("description", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["description"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// An ISO 8601 format date that identifies the origination credit block to expire
+    /// </summary>
+    public System::DateTime? ExpiryDate
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("expiry_date", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["expiry_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// User-specified key/value pairs for the resource. Individual keys can be removed
+    /// by setting the value to `null`, and the entire metadata mapping can be cleared
+    /// by setting `metadata` to `null`.
+    /// </summary>
+    public Dictionary<string, string?>? Metadata
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("metadata", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        this.EntryType.Validate();
+        _ = this.TargetExpiryDate;
+        _ = this.Amount;
+        _ = this.BlockID;
+        _ = this.Currency;
+        _ = this.Description;
+        _ = this.ExpiryDate;
+        _ = this.Metadata;
+    }
+
+    public ExpirationChange()
+    {
+        this.EntryType = new();
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ExpirationChange(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static ExpirationChange FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+
+    [SetsRequiredMembers]
+    public ExpirationChange(System::DateOnly targetExpiryDate)
+        : this()
+    {
+        this.TargetExpiryDate = targetExpiryDate;
+    }
+}
+
+[JsonConverter(typeof(Converter))]
+public class EntryType2
+{
+    public JsonElement Json { get; private init; }
+
+    public EntryType2()
+    {
+        Json = JsonSerializer.Deserialize<JsonElement>("\"expiration_change\"");
+    }
+
+    EntryType2(JsonElement json)
+    {
+        Json = json;
+    }
+
+    public void Validate()
+    {
+        if (JsonElement.DeepEquals(this.Json, new EntryType2().Json))
+        {
+            throw new OrbInvalidDataException("Invalid constant given for 'EntryType2'");
+        }
+    }
+
+    class Converter : JsonConverter<EntryType2>
+    {
+        public override EntryType2? Read(
+            ref Utf8JsonReader reader,
+            System::Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            EntryType2 value,
+            JsonSerializerOptions options
+        )
+        {
+            JsonSerializer.Serialize(writer, value.Json, options);
+        }
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<Void>))]
+public sealed record class Void : ModelBase, IFromRaw<Void>
+{
+    /// <summary>
+    /// The number of credits to effect. Note that this is required for increment,
+    /// decrement, void, or undo operations.
+    /// </summary>
+    public required double Amount
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("amount", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new System::ArgumentOutOfRangeException("amount", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The ID of the block to void.
+    /// </summary>
+    public required string BlockID
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("block_id", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'block_id' cannot be null",
+                    new System::ArgumentOutOfRangeException("block_id", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'block_id' cannot be null",
+                    new System::ArgumentNullException("block_id")
+                );
+        }
+        set
+        {
+            this.Properties["block_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public EntryType3 EntryType
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("entry_type", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "entry_type",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<EntryType3>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentNullException("entry_type")
+                );
+        }
+        set
+        {
+            this.Properties["entry_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The currency or custom pricing unit to use for this ledger entry. If this
+    /// is a real-world currency, it must match the customer's invoicing currency.
+    /// </summary>
+    public string? Currency
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("currency", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Optional metadata that can be specified when adding ledger results via the
+    /// API. For example, this can be used to note an increment refers to trial credits,
+    /// or for noting corrections as a result of an incident, etc.
+    /// </summary>
+    public string? Description
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("description", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["description"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// User-specified key/value pairs for the resource. Individual keys can be removed
+    /// by setting the value to `null`, and the entire metadata mapping can be cleared
+    /// by setting `metadata` to `null`.
+    /// </summary>
+    public Dictionary<string, string?>? Metadata
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("metadata", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Can only be specified when `entry_type=void`. The reason for the void.
+    /// </summary>
+    public ApiEnum<string, VoidReason>? VoidReason
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("void_reason", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<ApiEnum<string, VoidReason>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["void_reason"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.Amount;
+        _ = this.BlockID;
+        this.EntryType.Validate();
+        _ = this.Currency;
+        _ = this.Description;
+        _ = this.Metadata;
+        this.VoidReason?.Validate();
+    }
+
+    public Void()
+    {
+        this.EntryType = new();
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Void(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static Void FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+[JsonConverter(typeof(Converter))]
+public class EntryType3
+{
+    public JsonElement Json { get; private init; }
+
+    public EntryType3()
+    {
+        Json = JsonSerializer.Deserialize<JsonElement>("\"void\"");
+    }
+
+    EntryType3(JsonElement json)
+    {
+        Json = json;
+    }
+
+    public void Validate()
+    {
+        if (JsonElement.DeepEquals(this.Json, new EntryType3().Json))
+        {
+            throw new OrbInvalidDataException("Invalid constant given for 'EntryType3'");
+        }
+    }
+
+    class Converter : JsonConverter<EntryType3>
+    {
+        public override EntryType3? Read(
+            ref Utf8JsonReader reader,
+            System::Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            EntryType3 value,
+            JsonSerializerOptions options
+        )
+        {
+            JsonSerializer.Serialize(writer, value.Json, options);
+        }
+    }
+}
+
+/// <summary>
+/// Can only be specified when `entry_type=void`. The reason for the void.
+/// </summary>
+[JsonConverter(typeof(VoidReasonConverter))]
+public enum VoidReason
+{
+    Refund,
+}
+
+sealed class VoidReasonConverter : JsonConverter<VoidReason>
+{
+    public override VoidReason Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "refund" => VoidReason.Refund,
+            _ => (VoidReason)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        VoidReason value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                VoidReason.Refund => "refund",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<Amendment>))]
+public sealed record class Amendment : ModelBase, IFromRaw<Amendment>
+{
+    /// <summary>
+    /// The number of credits to effect. Note that this is required for increment,
+    /// decrement or void operations.
+    /// </summary>
+    public required double Amount
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("amount", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'amount' cannot be null",
+                    new System::ArgumentOutOfRangeException("amount", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The ID of the block to reverse a decrement from.
+    /// </summary>
+    public required string BlockID
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("block_id", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'block_id' cannot be null",
+                    new System::ArgumentOutOfRangeException("block_id", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'block_id' cannot be null",
+                    new System::ArgumentNullException("block_id")
+                );
+        }
+        set
+        {
+            this.Properties["block_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public EntryType4 EntryType
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("entry_type", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "entry_type",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<EntryType4>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentNullException("entry_type")
+                );
+        }
+        set
+        {
+            this.Properties["entry_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The currency or custom pricing unit to use for this ledger entry. If this
+    /// is a real-world currency, it must match the customer's invoicing currency.
+    /// </summary>
+    public string? Currency
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("currency", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Optional metadata that can be specified when adding ledger results via the
+    /// API. For example, this can be used to note an increment refers to trial credits,
+    /// or for noting corrections as a result of an incident, etc.
+    /// </summary>
+    public string? Description
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("description", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["description"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// User-specified key/value pairs for the resource. Individual keys can be removed
+    /// by setting the value to `null`, and the entire metadata mapping can be cleared
+    /// by setting `metadata` to `null`.
+    /// </summary>
+    public Dictionary<string, string?>? Metadata
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("metadata", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.Amount;
+        _ = this.BlockID;
+        this.EntryType.Validate();
+        _ = this.Currency;
+        _ = this.Description;
+        _ = this.Metadata;
+    }
+
+    public Amendment()
+    {
+        this.EntryType = new();
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Amendment(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static Amendment FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+[JsonConverter(typeof(Converter))]
+public class EntryType4
+{
+    public JsonElement Json { get; private init; }
+
+    public EntryType4()
+    {
+        Json = JsonSerializer.Deserialize<JsonElement>("\"amendment\"");
+    }
+
+    EntryType4(JsonElement json)
+    {
+        Json = json;
+    }
+
+    public void Validate()
+    {
+        if (JsonElement.DeepEquals(this.Json, new EntryType4().Json))
+        {
+            throw new OrbInvalidDataException("Invalid constant given for 'EntryType4'");
+        }
+    }
+
+    class Converter : JsonConverter<EntryType4>
+    {
+        public override EntryType4? Read(
+            ref Utf8JsonReader reader,
+            System::Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            EntryType4 value,
+            JsonSerializerOptions options
+        )
+        {
+            JsonSerializer.Serialize(writer, value.Json, options);
         }
     }
 }

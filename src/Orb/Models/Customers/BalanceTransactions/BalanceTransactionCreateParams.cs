@@ -1,11 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using BalanceTransactionCreateParamsProperties = Orb.Models.Customers.BalanceTransactions.BalanceTransactionCreateParamsProperties;
+using System = System;
 
 namespace Orb.Models.Customers.BalanceTransactions;
 
@@ -26,13 +26,13 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
             if (!this.BodyProperties.TryGetValue("amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amount' cannot be null",
-                    new ArgumentOutOfRangeException("amount", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("amount", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'amount' cannot be null",
-                    new ArgumentNullException("amount")
+                    new System::ArgumentNullException("amount")
                 );
         }
         set
@@ -44,18 +44,18 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
         }
     }
 
-    public required ApiEnum<string, BalanceTransactionCreateParamsProperties::Type> Type
+    public required ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Type> Type
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'type' cannot be null",
-                    new ArgumentOutOfRangeException("type", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("type", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, BalanceTransactionCreateParamsProperties::Type>
+                ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Type>
             >(element, ModelBase.SerializerOptions);
         }
         set
@@ -88,9 +88,9 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/customers/{0}/balance_transactions", this.CustomerID)
         )
@@ -115,5 +115,49 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+[JsonConverter(typeof(global::Orb.Models.Customers.BalanceTransactions.TypeConverter))]
+public enum Type
+{
+    Increment,
+    Decrement,
+}
+
+sealed class TypeConverter : JsonConverter<global::Orb.Models.Customers.BalanceTransactions.Type>
+{
+    public override global::Orb.Models.Customers.BalanceTransactions.Type Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "increment" => global::Orb.Models.Customers.BalanceTransactions.Type.Increment,
+            "decrement" => global::Orb.Models.Customers.BalanceTransactions.Type.Decrement,
+            _ => (global::Orb.Models.Customers.BalanceTransactions.Type)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Customers.BalanceTransactions.Type value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.Customers.BalanceTransactions.Type.Increment => "increment",
+                global::Orb.Models.Customers.BalanceTransactions.Type.Decrement => "decrement",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

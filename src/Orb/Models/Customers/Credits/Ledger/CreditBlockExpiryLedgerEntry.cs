@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.Customers.Credits.Ledger.CreditBlockExpiryLedgerEntryProperties;
+using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
@@ -21,13 +20,13 @@ public sealed record class CreditBlockExpiryLedgerEntry
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentNullException("id")
+                    new System::ArgumentNullException("id")
                 );
         }
         set
@@ -46,7 +45,7 @@ public sealed record class CreditBlockExpiryLedgerEntry
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amount' cannot be null",
-                    new ArgumentOutOfRangeException("amount", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("amount", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
@@ -60,17 +59,23 @@ public sealed record class CreditBlockExpiryLedgerEntry
         }
     }
 
-    public required DateTime CreatedAt
+    public required System::DateTime CreatedAt
     {
         get
         {
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'created_at' cannot be null",
-                    new ArgumentOutOfRangeException("created_at", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "created_at",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -88,13 +93,16 @@ public sealed record class CreditBlockExpiryLedgerEntry
             if (!this.Properties.TryGetValue("credit_block", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'credit_block' cannot be null",
-                    new ArgumentOutOfRangeException("credit_block", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "credit_block",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<AffectedBlock>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'credit_block' cannot be null",
-                    new ArgumentNullException("credit_block")
+                    new System::ArgumentNullException("credit_block")
                 );
         }
         set
@@ -113,13 +121,13 @@ public sealed record class CreditBlockExpiryLedgerEntry
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'currency' cannot be null",
-                    new ArgumentOutOfRangeException("currency", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("currency", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'currency' cannot be null",
-                    new ArgumentNullException("currency")
+                    new System::ArgumentNullException("currency")
                 );
         }
         set
@@ -138,7 +146,7 @@ public sealed record class CreditBlockExpiryLedgerEntry
             if (!this.Properties.TryGetValue("customer", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'customer' cannot be null",
-                    new ArgumentOutOfRangeException("customer", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("customer", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<CustomerMinified>(
@@ -147,7 +155,7 @@ public sealed record class CreditBlockExpiryLedgerEntry
                 )
                 ?? throw new OrbInvalidDataException(
                     "'customer' cannot be null",
-                    new ArgumentNullException("customer")
+                    new System::ArgumentNullException("customer")
                 );
         }
         set
@@ -184,7 +192,10 @@ public sealed record class CreditBlockExpiryLedgerEntry
             if (!this.Properties.TryGetValue("ending_balance", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'ending_balance' cannot be null",
-                    new ArgumentOutOfRangeException("ending_balance", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "ending_balance",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
@@ -198,17 +209,20 @@ public sealed record class CreditBlockExpiryLedgerEntry
         }
     }
 
-    public required ApiEnum<string, EntryStatus> EntryStatus
+    public required ApiEnum<string, EntryStatus2> EntryStatus
     {
         get
         {
             if (!this.Properties.TryGetValue("entry_status", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'entry_status' cannot be null",
-                    new ArgumentOutOfRangeException("entry_status", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "entry_status",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, EntryStatus>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, EntryStatus2>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -222,17 +236,20 @@ public sealed record class CreditBlockExpiryLedgerEntry
         }
     }
 
-    public required ApiEnum<string, EntryType> EntryType
+    public required ApiEnum<string, EntryType12> EntryType
     {
         get
         {
             if (!this.Properties.TryGetValue("entry_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'entry_type' cannot be null",
-                    new ArgumentOutOfRangeException("entry_type", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "entry_type",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, EntryType>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, EntryType12>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -253,7 +270,7 @@ public sealed record class CreditBlockExpiryLedgerEntry
             if (!this.Properties.TryGetValue("ledger_sequence_number", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'ledger_sequence_number' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "ledger_sequence_number",
                         "Missing required argument"
                     )
@@ -283,7 +300,7 @@ public sealed record class CreditBlockExpiryLedgerEntry
             if (!this.Properties.TryGetValue("metadata", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'metadata' cannot be null",
-                    new ArgumentOutOfRangeException("metadata", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("metadata", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<Dictionary<string, string>>(
@@ -292,7 +309,7 @@ public sealed record class CreditBlockExpiryLedgerEntry
                 )
                 ?? throw new OrbInvalidDataException(
                     "'metadata' cannot be null",
-                    new ArgumentNullException("metadata")
+                    new System::ArgumentNullException("metadata")
                 );
         }
         set
@@ -311,7 +328,10 @@ public sealed record class CreditBlockExpiryLedgerEntry
             if (!this.Properties.TryGetValue("starting_balance", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'starting_balance' cannot be null",
-                    new ArgumentOutOfRangeException("starting_balance", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "starting_balance",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
@@ -357,5 +377,90 @@ public sealed record class CreditBlockExpiryLedgerEntry
     )
     {
         return new(properties);
+    }
+}
+
+[JsonConverter(typeof(EntryStatus2Converter))]
+public enum EntryStatus2
+{
+    Committed,
+    Pending,
+}
+
+sealed class EntryStatus2Converter : JsonConverter<EntryStatus2>
+{
+    public override EntryStatus2 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "committed" => EntryStatus2.Committed,
+            "pending" => EntryStatus2.Pending,
+            _ => (EntryStatus2)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        EntryStatus2 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                EntryStatus2.Committed => "committed",
+                EntryStatus2.Pending => "pending",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(EntryType12Converter))]
+public enum EntryType12
+{
+    CreditBlockExpiry,
+}
+
+sealed class EntryType12Converter : JsonConverter<EntryType12>
+{
+    public override EntryType12 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "credit_block_expiry" => EntryType12.CreditBlockExpiry,
+            _ => (EntryType12)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        EntryType12 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                EntryType12.CreditBlockExpiry => "credit_block_expiry",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

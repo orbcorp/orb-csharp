@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.SubscriptionChanges.SubscriptionChangeRetrieveResponseProperties;
+using System = System;
 
 namespace Orb.Models.SubscriptionChanges;
 
@@ -26,13 +25,13 @@ public sealed record class SubscriptionChangeRetrieveResponse
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentNullException("id")
+                    new System::ArgumentNullException("id")
                 );
         }
         set
@@ -47,17 +46,23 @@ public sealed record class SubscriptionChangeRetrieveResponse
     /// <summary>
     /// Subscription change will be cancelled at this time and can no longer be applied.
     /// </summary>
-    public required DateTime ExpirationTime
+    public required System::DateTime ExpirationTime
     {
         get
         {
             if (!this.Properties.TryGetValue("expiration_time", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'expiration_time' cannot be null",
-                    new ArgumentOutOfRangeException("expiration_time", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "expiration_time",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -68,20 +73,19 @@ public sealed record class SubscriptionChangeRetrieveResponse
         }
     }
 
-    public required ApiEnum<string, Status> Status
+    public required ApiEnum<string, global::Orb.Models.SubscriptionChanges.StatusModel> Status
     {
         get
         {
             if (!this.Properties.TryGetValue("status", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'status' cannot be null",
-                    new ArgumentOutOfRangeException("status", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("status", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Status>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, global::Orb.Models.SubscriptionChanges.StatusModel>
+            >(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -116,14 +120,17 @@ public sealed record class SubscriptionChangeRetrieveResponse
     /// <summary>
     /// When this change was applied.
     /// </summary>
-    public DateTime? AppliedAt
+    public System::DateTime? AppliedAt
     {
         get
         {
             if (!this.Properties.TryGetValue("applied_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -137,14 +144,17 @@ public sealed record class SubscriptionChangeRetrieveResponse
     /// <summary>
     /// When this change was cancelled.
     /// </summary>
-    public DateTime? CancelledAt
+    public System::DateTime? CancelledAt
     {
         get
         {
             if (!this.Properties.TryGetValue("cancelled_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -180,5 +190,53 @@ public sealed record class SubscriptionChangeRetrieveResponse
     )
     {
         return new(properties);
+    }
+}
+
+[JsonConverter(typeof(global::Orb.Models.SubscriptionChanges.StatusModelConverter))]
+public enum StatusModel
+{
+    Pending,
+    Applied,
+    Cancelled,
+}
+
+sealed class StatusModelConverter
+    : JsonConverter<global::Orb.Models.SubscriptionChanges.StatusModel>
+{
+    public override global::Orb.Models.SubscriptionChanges.StatusModel Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "pending" => global::Orb.Models.SubscriptionChanges.StatusModel.Pending,
+            "applied" => global::Orb.Models.SubscriptionChanges.StatusModel.Applied,
+            "cancelled" => global::Orb.Models.SubscriptionChanges.StatusModel.Cancelled,
+            _ => (global::Orb.Models.SubscriptionChanges.StatusModel)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.SubscriptionChanges.StatusModel value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.SubscriptionChanges.StatusModel.Pending => "pending",
+                global::Orb.Models.SubscriptionChanges.StatusModel.Applied => "applied",
+                global::Orb.Models.SubscriptionChanges.StatusModel.Cancelled => "cancelled",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

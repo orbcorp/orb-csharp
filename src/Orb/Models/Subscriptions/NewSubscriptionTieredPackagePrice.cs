@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.Subscriptions.NewSubscriptionTieredPackagePriceProperties;
+using System = System;
 
 namespace Orb.Models.Subscriptions;
 
@@ -17,20 +16,19 @@ public sealed record class NewSubscriptionTieredPackagePrice
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, Cadence> Cadence
+    public required ApiEnum<string, global::Orb.Models.Subscriptions.Cadence41> Cadence
     {
         get
         {
             if (!this.Properties.TryGetValue("cadence", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'cadence' cannot be null",
-                    new ArgumentOutOfRangeException("cadence", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("cadence", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Cadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, global::Orb.Models.Subscriptions.Cadence41>
+            >(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -51,13 +49,13 @@ public sealed record class NewSubscriptionTieredPackagePrice
             if (!this.Properties.TryGetValue("item_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'item_id' cannot be null",
-                    new ArgumentOutOfRangeException("item_id", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("item_id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'item_id' cannot be null",
-                    new ArgumentNullException("item_id")
+                    new System::ArgumentNullException("item_id")
                 );
         }
         set
@@ -72,20 +70,22 @@ public sealed record class NewSubscriptionTieredPackagePrice
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public required ApiEnum<string, ModelType> ModelType
+    public required ApiEnum<string, global::Orb.Models.Subscriptions.ModelType41> ModelType
     {
         get
         {
             if (!this.Properties.TryGetValue("model_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'model_type' cannot be null",
-                    new ArgumentOutOfRangeException("model_type", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "model_type",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ModelType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, global::Orb.Models.Subscriptions.ModelType41>
+            >(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -106,13 +106,13 @@ public sealed record class NewSubscriptionTieredPackagePrice
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentNullException("name")
+                    new System::ArgumentNullException("name")
                 );
         }
         set
@@ -127,26 +127,26 @@ public sealed record class NewSubscriptionTieredPackagePrice
     /// <summary>
     /// Configuration for tiered_package pricing
     /// </summary>
-    public required TieredPackageConfig TieredPackageConfig
+    public required global::Orb.Models.Subscriptions.TieredPackageConfig TieredPackageConfig
     {
         get
         {
             if (!this.Properties.TryGetValue("tiered_package_config", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tiered_package_config' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "tiered_package_config",
                         "Missing required argument"
                     )
                 );
 
-            return JsonSerializer.Deserialize<TieredPackageConfig>(
+            return JsonSerializer.Deserialize<global::Orb.Models.Subscriptions.TieredPackageConfig>(
                     element,
                     ModelBase.SerializerOptions
                 )
                 ?? throw new OrbInvalidDataException(
                     "'tiered_package_config' cannot be null",
-                    new ArgumentNullException("tiered_package_config")
+                    new System::ArgumentNullException("tiered_package_config")
                 );
         }
         set
@@ -251,14 +251,14 @@ public sealed record class NewSubscriptionTieredPackagePrice
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public ConversionRateConfig? ConversionRateConfig
+    public global::Orb.Models.Subscriptions.ConversionRateConfig41? ConversionRateConfig
     {
         get
         {
             if (!this.Properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ConversionRateConfig?>(
+            return JsonSerializer.Deserialize<global::Orb.Models.Subscriptions.ConversionRateConfig41?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -501,5 +501,488 @@ public sealed record class NewSubscriptionTieredPackagePrice
     )
     {
         return new(properties);
+    }
+}
+
+/// <summary>
+/// The cadence to bill for this price on.
+/// </summary>
+[JsonConverter(typeof(global::Orb.Models.Subscriptions.Cadence41Converter))]
+public enum Cadence41
+{
+    Annual,
+    SemiAnnual,
+    Monthly,
+    Quarterly,
+    OneTime,
+    Custom,
+}
+
+sealed class Cadence41Converter : JsonConverter<global::Orb.Models.Subscriptions.Cadence41>
+{
+    public override global::Orb.Models.Subscriptions.Cadence41 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "annual" => global::Orb.Models.Subscriptions.Cadence41.Annual,
+            "semi_annual" => global::Orb.Models.Subscriptions.Cadence41.SemiAnnual,
+            "monthly" => global::Orb.Models.Subscriptions.Cadence41.Monthly,
+            "quarterly" => global::Orb.Models.Subscriptions.Cadence41.Quarterly,
+            "one_time" => global::Orb.Models.Subscriptions.Cadence41.OneTime,
+            "custom" => global::Orb.Models.Subscriptions.Cadence41.Custom,
+            _ => (global::Orb.Models.Subscriptions.Cadence41)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Subscriptions.Cadence41 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.Subscriptions.Cadence41.Annual => "annual",
+                global::Orb.Models.Subscriptions.Cadence41.SemiAnnual => "semi_annual",
+                global::Orb.Models.Subscriptions.Cadence41.Monthly => "monthly",
+                global::Orb.Models.Subscriptions.Cadence41.Quarterly => "quarterly",
+                global::Orb.Models.Subscriptions.Cadence41.OneTime => "one_time",
+                global::Orb.Models.Subscriptions.Cadence41.Custom => "custom",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// The pricing model type
+/// </summary>
+[JsonConverter(typeof(global::Orb.Models.Subscriptions.ModelType41Converter))]
+public enum ModelType41
+{
+    TieredPackage,
+}
+
+sealed class ModelType41Converter : JsonConverter<global::Orb.Models.Subscriptions.ModelType41>
+{
+    public override global::Orb.Models.Subscriptions.ModelType41 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "tiered_package" => global::Orb.Models.Subscriptions.ModelType41.TieredPackage,
+            _ => (global::Orb.Models.Subscriptions.ModelType41)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Subscriptions.ModelType41 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.Subscriptions.ModelType41.TieredPackage => "tiered_package",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Configuration for tiered_package pricing
+/// </summary>
+[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.TieredPackageConfig>))]
+public sealed record class TieredPackageConfig
+    : ModelBase,
+        IFromRaw<global::Orb.Models.Subscriptions.TieredPackageConfig>
+{
+    /// <summary>
+    /// Package size
+    /// </summary>
+    public required string PackageSize
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("package_size", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'package_size' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "package_size",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'package_size' cannot be null",
+                    new System::ArgumentNullException("package_size")
+                );
+        }
+        set
+        {
+            this.Properties["package_size"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Apply tiered pricing after rounding up the quantity to the package size. Tiers
+    /// are defined using exclusive lower bounds. The tier bounds are defined based
+    /// on the total quantity rather than the number of packages, so they must be
+    /// multiples of the package size.
+    /// </summary>
+    public required List<global::Orb.Models.Subscriptions.Tier13> Tiers
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("tiers", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'tiers' cannot be null",
+                    new System::ArgumentOutOfRangeException("tiers", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<List<global::Orb.Models.Subscriptions.Tier13>>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'tiers' cannot be null",
+                    new System::ArgumentNullException("tiers")
+                );
+        }
+        set
+        {
+            this.Properties["tiers"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.PackageSize;
+        foreach (var item in this.Tiers)
+        {
+            item.Validate();
+        }
+    }
+
+    public TieredPackageConfig() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TieredPackageConfig(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static global::Orb.Models.Subscriptions.TieredPackageConfig FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
+    {
+        return new(properties);
+    }
+}
+
+/// <summary>
+/// Configuration for a single tier with business logic
+/// </summary>
+[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.Tier13>))]
+public sealed record class Tier13 : ModelBase, IFromRaw<global::Orb.Models.Subscriptions.Tier13>
+{
+    /// <summary>
+    /// Price per package
+    /// </summary>
+    public required string PerUnit
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("per_unit", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'per_unit' cannot be null",
+                    new System::ArgumentOutOfRangeException("per_unit", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'per_unit' cannot be null",
+                    new System::ArgumentNullException("per_unit")
+                );
+        }
+        set
+        {
+            this.Properties["per_unit"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Tier lower bound
+    /// </summary>
+    public required string TierLowerBound
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("tier_lower_bound", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'tier_lower_bound' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "tier_lower_bound",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'tier_lower_bound' cannot be null",
+                    new System::ArgumentNullException("tier_lower_bound")
+                );
+        }
+        set
+        {
+            this.Properties["tier_lower_bound"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.PerUnit;
+        _ = this.TierLowerBound;
+    }
+
+    public Tier13() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Tier13(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static global::Orb.Models.Subscriptions.Tier13 FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
+    {
+        return new(properties);
+    }
+}
+
+[JsonConverter(typeof(global::Orb.Models.Subscriptions.ConversionRateConfig41Converter))]
+public record class ConversionRateConfig41
+{
+    public object Value { get; private init; }
+
+    public ConversionRateConfig41(UnitConversionRateConfig value)
+    {
+        Value = value;
+    }
+
+    public ConversionRateConfig41(TieredConversionRateConfig value)
+    {
+        Value = value;
+    }
+
+    ConversionRateConfig41(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static global::Orb.Models.Subscriptions.ConversionRateConfig41 CreateUnknownVariant(
+        JsonElement value
+    )
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
+    {
+        value = this.Value as UnitConversionRateConfig;
+        return value != null;
+    }
+
+    public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
+    {
+        value = this.Value as TieredConversionRateConfig;
+        return value != null;
+    }
+
+    public void Switch(
+        System::Action<UnitConversionRateConfig> unit,
+        System::Action<TieredConversionRateConfig> tiered
+    )
+    {
+        switch (this.Value)
+        {
+            case UnitConversionRateConfig value:
+                unit(value);
+                break;
+            case TieredConversionRateConfig value:
+                tiered(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of ConversionRateConfig41"
+                );
+        }
+    }
+
+    public T Match<T>(
+        System::Func<UnitConversionRateConfig, T> unit,
+        System::Func<TieredConversionRateConfig, T> tiered
+    )
+    {
+        return this.Value switch
+        {
+            UnitConversionRateConfig value => unit(value),
+            TieredConversionRateConfig value => tiered(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of ConversionRateConfig41"
+            ),
+        };
+    }
+
+    public void Validate()
+    {
+        if (this.Value is UnknownVariant)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of ConversionRateConfig41"
+            );
+        }
+    }
+
+    record struct UnknownVariant(JsonElement value);
+}
+
+sealed class ConversionRateConfig41Converter
+    : JsonConverter<global::Orb.Models.Subscriptions.ConversionRateConfig41>
+{
+    public override global::Orb.Models.Subscriptions.ConversionRateConfig41? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? conversionRateType;
+        try
+        {
+            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+        }
+        catch
+        {
+            conversionRateType = null;
+        }
+
+        switch (conversionRateType)
+        {
+            case "unit":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new global::Orb.Models.Subscriptions.ConversionRateConfig41(
+                            deserialized
+                        );
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'UnitConversionRateConfig'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "tiered":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new global::Orb.Models.Subscriptions.ConversionRateConfig41(
+                            deserialized
+                        );
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'TieredConversionRateConfig'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            default:
+            {
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Subscriptions.ConversionRateConfig41 value,
+        JsonSerializerOptions options
+    )
+    {
+        object variant = value.Value;
+        JsonSerializer.Serialize(writer, variant, options);
     }
 }

@@ -2,9 +2,9 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
-using Orb.Models;
 using Orb.Models.Prices;
 using Orb.Services.Prices.ExternalPriceID;
+using Models = Orb.Models;
 
 namespace Orb.Services.Prices;
 
@@ -29,7 +29,7 @@ public sealed class PriceService : IPriceService
         get { return _externalPriceID.Value; }
     }
 
-    public async Task<Price> Create(PriceCreateParams parameters)
+    public async Task<Models::Price> Create(PriceCreateParams parameters)
     {
         HttpRequest<PriceCreateParams> request = new()
         {
@@ -37,7 +37,7 @@ public sealed class PriceService : IPriceService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var price = await response.Deserialize<Price>().ConfigureAwait(false);
+        var price = await response.Deserialize<Models::Price>().ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             price.Validate();
@@ -45,7 +45,7 @@ public sealed class PriceService : IPriceService
         return price;
     }
 
-    public async Task<Price> Update(PriceUpdateParams parameters)
+    public async Task<Models::Price> Update(PriceUpdateParams parameters)
     {
         HttpRequest<PriceUpdateParams> request = new()
         {
@@ -53,7 +53,7 @@ public sealed class PriceService : IPriceService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var price = await response.Deserialize<Price>().ConfigureAwait(false);
+        var price = await response.Deserialize<Models::Price>().ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             price.Validate();
@@ -137,7 +137,7 @@ public sealed class PriceService : IPriceService
         return deserializedResponse;
     }
 
-    public async Task<Price> Fetch(PriceFetchParams parameters)
+    public async Task<Models::Price> Fetch(PriceFetchParams parameters)
     {
         HttpRequest<PriceFetchParams> request = new()
         {
@@ -145,7 +145,7 @@ public sealed class PriceService : IPriceService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var price = await response.Deserialize<Price>().ConfigureAwait(false);
+        var price = await response.Deserialize<Models::Price>().ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             price.Validate();

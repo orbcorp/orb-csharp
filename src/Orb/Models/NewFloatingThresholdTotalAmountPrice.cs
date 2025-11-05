@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.NewFloatingThresholdTotalAmountPriceProperties;
+using System = System;
 
 namespace Orb.Models;
 
@@ -17,17 +16,17 @@ public sealed record class NewFloatingThresholdTotalAmountPrice
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, Cadence> Cadence
+    public required ApiEnum<string, Cadence17> Cadence
     {
         get
         {
             if (!this.Properties.TryGetValue("cadence", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'cadence' cannot be null",
-                    new ArgumentOutOfRangeException("cadence", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("cadence", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Cadence>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, Cadence17>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -51,13 +50,13 @@ public sealed record class NewFloatingThresholdTotalAmountPrice
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'currency' cannot be null",
-                    new ArgumentOutOfRangeException("currency", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("currency", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'currency' cannot be null",
-                    new ArgumentNullException("currency")
+                    new System::ArgumentNullException("currency")
                 );
         }
         set
@@ -79,13 +78,13 @@ public sealed record class NewFloatingThresholdTotalAmountPrice
             if (!this.Properties.TryGetValue("item_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'item_id' cannot be null",
-                    new ArgumentOutOfRangeException("item_id", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("item_id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'item_id' cannot be null",
-                    new ArgumentNullException("item_id")
+                    new System::ArgumentNullException("item_id")
                 );
         }
         set
@@ -100,17 +99,20 @@ public sealed record class NewFloatingThresholdTotalAmountPrice
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public required ApiEnum<string, ModelType> ModelType
+    public required ApiEnum<string, ModelType16> ModelType
     {
         get
         {
             if (!this.Properties.TryGetValue("model_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'model_type' cannot be null",
-                    new ArgumentOutOfRangeException("model_type", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "model_type",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ModelType>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, ModelType16>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -134,13 +136,13 @@ public sealed record class NewFloatingThresholdTotalAmountPrice
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentNullException("name")
+                    new System::ArgumentNullException("name")
                 );
         }
         set
@@ -167,7 +169,7 @@ public sealed record class NewFloatingThresholdTotalAmountPrice
             )
                 throw new OrbInvalidDataException(
                     "'threshold_total_amount_config' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "threshold_total_amount_config",
                         "Missing required argument"
                     )
@@ -179,7 +181,7 @@ public sealed record class NewFloatingThresholdTotalAmountPrice
                 )
                 ?? throw new OrbInvalidDataException(
                     "'threshold_total_amount_config' cannot be null",
-                    new ArgumentNullException("threshold_total_amount_config")
+                    new System::ArgumentNullException("threshold_total_amount_config")
                 );
         }
         set
@@ -284,14 +286,14 @@ public sealed record class NewFloatingThresholdTotalAmountPrice
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public ConversionRateConfig? ConversionRateConfig
+    public ConversionRateConfig16? ConversionRateConfig
     {
         get
         {
             if (!this.Properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ConversionRateConfig?>(
+            return JsonSerializer.Deserialize<ConversionRateConfig16?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -489,5 +491,480 @@ public sealed record class NewFloatingThresholdTotalAmountPrice
     )
     {
         return new(properties);
+    }
+}
+
+/// <summary>
+/// The cadence to bill for this price on.
+/// </summary>
+[JsonConverter(typeof(Cadence17Converter))]
+public enum Cadence17
+{
+    Annual,
+    SemiAnnual,
+    Monthly,
+    Quarterly,
+    OneTime,
+    Custom,
+}
+
+sealed class Cadence17Converter : JsonConverter<Cadence17>
+{
+    public override Cadence17 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "annual" => Cadence17.Annual,
+            "semi_annual" => Cadence17.SemiAnnual,
+            "monthly" => Cadence17.Monthly,
+            "quarterly" => Cadence17.Quarterly,
+            "one_time" => Cadence17.OneTime,
+            "custom" => Cadence17.Custom,
+            _ => (Cadence17)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        Cadence17 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Cadence17.Annual => "annual",
+                Cadence17.SemiAnnual => "semi_annual",
+                Cadence17.Monthly => "monthly",
+                Cadence17.Quarterly => "quarterly",
+                Cadence17.OneTime => "one_time",
+                Cadence17.Custom => "custom",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// The pricing model type
+/// </summary>
+[JsonConverter(typeof(ModelType16Converter))]
+public enum ModelType16
+{
+    ThresholdTotalAmount,
+}
+
+sealed class ModelType16Converter : JsonConverter<ModelType16>
+{
+    public override ModelType16 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "threshold_total_amount" => ModelType16.ThresholdTotalAmount,
+            _ => (ModelType16)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ModelType16 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ModelType16.ThresholdTotalAmount => "threshold_total_amount",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Configuration for threshold_total_amount pricing
+/// </summary>
+[JsonConverter(typeof(ModelConverter<ThresholdTotalAmountConfig>))]
+public sealed record class ThresholdTotalAmountConfig
+    : ModelBase,
+        IFromRaw<ThresholdTotalAmountConfig>
+{
+    /// <summary>
+    /// When the quantity consumed passes a provided threshold, the configured total
+    /// will be charged
+    /// </summary>
+    public required List<ConsumptionTable> ConsumptionTable
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("consumption_table", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'consumption_table' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "consumption_table",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<List<ConsumptionTable>>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'consumption_table' cannot be null",
+                    new System::ArgumentNullException("consumption_table")
+                );
+        }
+        set
+        {
+            this.Properties["consumption_table"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// If true, the unit price will be prorated to the billing period
+    /// </summary>
+    public bool? Prorate
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("prorate", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["prorate"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        foreach (var item in this.ConsumptionTable)
+        {
+            item.Validate();
+        }
+        _ = this.Prorate;
+    }
+
+    public ThresholdTotalAmountConfig() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ThresholdTotalAmountConfig(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static ThresholdTotalAmountConfig FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
+    {
+        return new(properties);
+    }
+
+    [SetsRequiredMembers]
+    public ThresholdTotalAmountConfig(List<ConsumptionTable> consumptionTable)
+        : this()
+    {
+        this.ConsumptionTable = consumptionTable;
+    }
+}
+
+/// <summary>
+/// Configuration for a single threshold
+/// </summary>
+[JsonConverter(typeof(ModelConverter<ConsumptionTable>))]
+public sealed record class ConsumptionTable : ModelBase, IFromRaw<ConsumptionTable>
+{
+    /// <summary>
+    /// Quantity threshold
+    /// </summary>
+    public required string Threshold
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("threshold", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'threshold' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "threshold",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'threshold' cannot be null",
+                    new System::ArgumentNullException("threshold")
+                );
+        }
+        set
+        {
+            this.Properties["threshold"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Total amount for this threshold
+    /// </summary>
+    public required string TotalAmount
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("total_amount", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'total_amount' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "total_amount",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'total_amount' cannot be null",
+                    new System::ArgumentNullException("total_amount")
+                );
+        }
+        set
+        {
+            this.Properties["total_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.Threshold;
+        _ = this.TotalAmount;
+    }
+
+    public ConsumptionTable() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ConsumptionTable(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static ConsumptionTable FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+[JsonConverter(typeof(ConversionRateConfig16Converter))]
+public record class ConversionRateConfig16
+{
+    public object Value { get; private init; }
+
+    public ConversionRateConfig16(UnitConversionRateConfig value)
+    {
+        Value = value;
+    }
+
+    public ConversionRateConfig16(TieredConversionRateConfig value)
+    {
+        Value = value;
+    }
+
+    ConversionRateConfig16(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static ConversionRateConfig16 CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
+    {
+        value = this.Value as UnitConversionRateConfig;
+        return value != null;
+    }
+
+    public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
+    {
+        value = this.Value as TieredConversionRateConfig;
+        return value != null;
+    }
+
+    public void Switch(
+        System::Action<UnitConversionRateConfig> unit,
+        System::Action<TieredConversionRateConfig> tiered
+    )
+    {
+        switch (this.Value)
+        {
+            case UnitConversionRateConfig value:
+                unit(value);
+                break;
+            case TieredConversionRateConfig value:
+                tiered(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of ConversionRateConfig16"
+                );
+        }
+    }
+
+    public T Match<T>(
+        System::Func<UnitConversionRateConfig, T> unit,
+        System::Func<TieredConversionRateConfig, T> tiered
+    )
+    {
+        return this.Value switch
+        {
+            UnitConversionRateConfig value => unit(value),
+            TieredConversionRateConfig value => tiered(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of ConversionRateConfig16"
+            ),
+        };
+    }
+
+    public void Validate()
+    {
+        if (this.Value is UnknownVariant)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of ConversionRateConfig16"
+            );
+        }
+    }
+
+    record struct UnknownVariant(JsonElement value);
+}
+
+sealed class ConversionRateConfig16Converter : JsonConverter<ConversionRateConfig16>
+{
+    public override ConversionRateConfig16? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? conversionRateType;
+        try
+        {
+            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+        }
+        catch
+        {
+            conversionRateType = null;
+        }
+
+        switch (conversionRateType)
+        {
+            case "unit":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new ConversionRateConfig16(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'UnitConversionRateConfig'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "tiered":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new ConversionRateConfig16(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'TieredConversionRateConfig'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            default:
+            {
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ConversionRateConfig16 value,
+        JsonSerializerOptions options
+    )
+    {
+        object variant = value.Value;
+        JsonSerializer.Serialize(writer, variant, options);
     }
 }

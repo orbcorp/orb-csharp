@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using OtherSubLineItemProperties = Orb.Models.OtherSubLineItemProperties;
+using System = System;
 
 namespace Orb.Models;
 
@@ -22,13 +21,13 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amount' cannot be null",
-                    new ArgumentOutOfRangeException("amount", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("amount", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'amount' cannot be null",
-                    new ArgumentNullException("amount")
+                    new System::ArgumentNullException("amount")
                 );
         }
         set
@@ -68,13 +67,13 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentNullException("name")
+                    new System::ArgumentNullException("name")
                 );
         }
         set
@@ -93,7 +92,7 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
             if (!this.Properties.TryGetValue("quantity", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'quantity' cannot be null",
-                    new ArgumentOutOfRangeException("quantity", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("quantity", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
@@ -107,17 +106,17 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
         }
     }
 
-    public required ApiEnum<string, OtherSubLineItemProperties::Type> Type
+    public required ApiEnum<string, Type4> Type
     {
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'type' cannot be null",
-                    new ArgumentOutOfRangeException("type", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, OtherSubLineItemProperties::Type>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, Type4>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -153,5 +152,42 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
     public static OtherSubLineItem FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
+    }
+}
+
+[JsonConverter(typeof(Type4Converter))]
+public enum Type4
+{
+    Null,
+}
+
+sealed class Type4Converter : JsonConverter<Type4>
+{
+    public override Type4 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "'null'" => Type4.Null,
+            _ => (Type4)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Type4 value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Type4.Null => "'null'",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.BillingCycleConfigurationProperties;
+using System = System;
 
 namespace Orb.Models;
 
@@ -21,7 +20,7 @@ public sealed record class BillingCycleConfiguration
             if (!this.Properties.TryGetValue("duration", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'duration' cannot be null",
-                    new ArgumentOutOfRangeException("duration", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("duration", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
@@ -42,7 +41,10 @@ public sealed record class BillingCycleConfiguration
             if (!this.Properties.TryGetValue("duration_unit", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'duration_unit' cannot be null",
-                    new ArgumentOutOfRangeException("duration_unit", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "duration_unit",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, DurationUnit>>(
@@ -80,5 +82,49 @@ public sealed record class BillingCycleConfiguration
     )
     {
         return new(properties);
+    }
+}
+
+[JsonConverter(typeof(DurationUnitConverter))]
+public enum DurationUnit
+{
+    Day,
+    Month,
+}
+
+sealed class DurationUnitConverter : JsonConverter<DurationUnit>
+{
+    public override DurationUnit Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "day" => DurationUnit.Day,
+            "month" => DurationUnit.Month,
+            _ => (DurationUnit)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        DurationUnit value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                DurationUnit.Day => "day",
+                DurationUnit.Month => "month",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

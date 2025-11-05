@@ -1,10 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
+using System = System;
 
 namespace Orb.Models;
 
@@ -17,20 +17,20 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
     /// </summary>
-    public required List<Tier> Tiers
+    public required List<Tier26> Tiers
     {
         get
         {
             if (!this.Properties.TryGetValue("tiers", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tiers' cannot be null",
-                    new ArgumentOutOfRangeException("tiers", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("tiers", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<List<Tier>>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<List<Tier26>>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'tiers' cannot be null",
-                    new ArgumentNullException("tiers")
+                    new System::ArgumentNullException("tiers")
                 );
         }
         set
@@ -66,7 +66,7 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
     }
 
     [SetsRequiredMembers]
-    public TieredConfig(List<Tier> tiers)
+    public TieredConfig(List<Tier26> tiers)
         : this()
     {
         this.Tiers = tiers;

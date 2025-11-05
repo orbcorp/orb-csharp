@@ -2,8 +2,8 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
-using Orb.Models;
-using Orb.Models.Invoices;
+using Invoices = Orb.Models.Invoices;
+using Models = Orb.Models;
 
 namespace Orb.Services.Invoices;
 
@@ -21,15 +21,15 @@ public sealed class InvoiceService : IInvoiceService
         _client = client;
     }
 
-    public async Task<Invoice> Create(InvoiceCreateParams parameters)
+    public async Task<Models::Invoice> Create(Invoices::InvoiceCreateParams parameters)
     {
-        HttpRequest<InvoiceCreateParams> request = new()
+        HttpRequest<Invoices::InvoiceCreateParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var invoice = await response.Deserialize<Invoice>().ConfigureAwait(false);
+        var invoice = await response.Deserialize<Models::Invoice>().ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             invoice.Validate();
@@ -37,15 +37,15 @@ public sealed class InvoiceService : IInvoiceService
         return invoice;
     }
 
-    public async Task<Invoice> Update(InvoiceUpdateParams parameters)
+    public async Task<Models::Invoice> Update(Invoices::InvoiceUpdateParams parameters)
     {
-        HttpRequest<InvoiceUpdateParams> request = new()
+        HttpRequest<Invoices::InvoiceUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var invoice = await response.Deserialize<Invoice>().ConfigureAwait(false);
+        var invoice = await response.Deserialize<Models::Invoice>().ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             invoice.Validate();
@@ -53,17 +53,21 @@ public sealed class InvoiceService : IInvoiceService
         return invoice;
     }
 
-    public async Task<InvoiceListPageResponse> List(InvoiceListParams? parameters = null)
+    public async Task<Invoices::InvoiceListPageResponse> List(
+        Invoices::InvoiceListParams? parameters = null
+    )
     {
         parameters ??= new();
 
-        HttpRequest<InvoiceListParams> request = new()
+        HttpRequest<Invoices::InvoiceListParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var page = await response.Deserialize<InvoiceListPageResponse>().ConfigureAwait(false);
+        var page = await response
+            .Deserialize<Invoices::InvoiceListPageResponse>()
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             page.Validate();
@@ -71,15 +75,15 @@ public sealed class InvoiceService : IInvoiceService
         return page;
     }
 
-    public async Task<Invoice> Fetch(InvoiceFetchParams parameters)
+    public async Task<Models::Invoice> Fetch(Invoices::InvoiceFetchParams parameters)
     {
-        HttpRequest<InvoiceFetchParams> request = new()
+        HttpRequest<Invoices::InvoiceFetchParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var invoice = await response.Deserialize<Invoice>().ConfigureAwait(false);
+        var invoice = await response.Deserialize<Models::Invoice>().ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             invoice.Validate();
@@ -87,18 +91,18 @@ public sealed class InvoiceService : IInvoiceService
         return invoice;
     }
 
-    public async Task<InvoiceFetchUpcomingResponse> FetchUpcoming(
-        InvoiceFetchUpcomingParams parameters
+    public async Task<Invoices::InvoiceFetchUpcomingResponse> FetchUpcoming(
+        Invoices::InvoiceFetchUpcomingParams parameters
     )
     {
-        HttpRequest<InvoiceFetchUpcomingParams> request = new()
+        HttpRequest<Invoices::InvoiceFetchUpcomingParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
         var deserializedResponse = await response
-            .Deserialize<InvoiceFetchUpcomingResponse>()
+            .Deserialize<Invoices::InvoiceFetchUpcomingResponse>()
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -107,15 +111,15 @@ public sealed class InvoiceService : IInvoiceService
         return deserializedResponse;
     }
 
-    public async Task<Invoice> Issue(InvoiceIssueParams parameters)
+    public async Task<Models::Invoice> Issue(Invoices::InvoiceIssueParams parameters)
     {
-        HttpRequest<InvoiceIssueParams> request = new()
+        HttpRequest<Invoices::InvoiceIssueParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var invoice = await response.Deserialize<Invoice>().ConfigureAwait(false);
+        var invoice = await response.Deserialize<Models::Invoice>().ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             invoice.Validate();
@@ -123,15 +127,15 @@ public sealed class InvoiceService : IInvoiceService
         return invoice;
     }
 
-    public async Task<Invoice> MarkPaid(InvoiceMarkPaidParams parameters)
+    public async Task<Models::Invoice> MarkPaid(Invoices::InvoiceMarkPaidParams parameters)
     {
-        HttpRequest<InvoiceMarkPaidParams> request = new()
+        HttpRequest<Invoices::InvoiceMarkPaidParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var invoice = await response.Deserialize<Invoice>().ConfigureAwait(false);
+        var invoice = await response.Deserialize<Models::Invoice>().ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             invoice.Validate();
@@ -139,15 +143,15 @@ public sealed class InvoiceService : IInvoiceService
         return invoice;
     }
 
-    public async Task<Invoice> Pay(InvoicePayParams parameters)
+    public async Task<Models::Invoice> Pay(Invoices::InvoicePayParams parameters)
     {
-        HttpRequest<InvoicePayParams> request = new()
+        HttpRequest<Invoices::InvoicePayParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var invoice = await response.Deserialize<Invoice>().ConfigureAwait(false);
+        var invoice = await response.Deserialize<Models::Invoice>().ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             invoice.Validate();
@@ -155,15 +159,15 @@ public sealed class InvoiceService : IInvoiceService
         return invoice;
     }
 
-    public async Task<Invoice> Void(InvoiceVoidParams parameters)
+    public async Task<Models::Invoice> Void(Invoices::InvoiceVoidParams parameters)
     {
-        HttpRequest<InvoiceVoidParams> request = new()
+        HttpRequest<Invoices::InvoiceVoidParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var invoice = await response.Deserialize<Invoice>().ConfigureAwait(false);
+        var invoice = await response.Deserialize<Models::Invoice>().ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             invoice.Validate();

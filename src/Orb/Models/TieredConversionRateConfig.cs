@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.TieredConversionRateConfigProperties;
+using System = System;
 
 namespace Orb.Models;
 
@@ -21,7 +20,7 @@ public sealed record class TieredConversionRateConfig
             if (!this.Properties.TryGetValue("conversion_rate_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'conversion_rate_type' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "conversion_rate_type",
                         "Missing required argument"
                     )
@@ -48,7 +47,10 @@ public sealed record class TieredConversionRateConfig
             if (!this.Properties.TryGetValue("tiered_config", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tiered_config' cannot be null",
-                    new ArgumentOutOfRangeException("tiered_config", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "tiered_config",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<ConversionRateTieredConfig>(
@@ -57,7 +59,7 @@ public sealed record class TieredConversionRateConfig
                 )
                 ?? throw new OrbInvalidDataException(
                     "'tiered_config' cannot be null",
-                    new ArgumentNullException("tiered_config")
+                    new System::ArgumentNullException("tiered_config")
                 );
         }
         set
@@ -90,5 +92,46 @@ public sealed record class TieredConversionRateConfig
     )
     {
         return new(properties);
+    }
+}
+
+[JsonConverter(typeof(ConversionRateTypeConverter))]
+public enum ConversionRateType
+{
+    Tiered,
+}
+
+sealed class ConversionRateTypeConverter : JsonConverter<ConversionRateType>
+{
+    public override ConversionRateType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "tiered" => ConversionRateType.Tiered,
+            _ => (ConversionRateType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ConversionRateType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ConversionRateType.Tiered => "tiered",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

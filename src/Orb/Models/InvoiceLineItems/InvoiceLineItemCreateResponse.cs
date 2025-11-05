@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.InvoiceLineItems.InvoiceLineItemCreateResponseProperties;
+using System = System;
 
 namespace Orb.Models.InvoiceLineItems;
 
@@ -24,13 +23,13 @@ public sealed record class InvoiceLineItemCreateResponse
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentNullException("id")
+                    new System::ArgumentNullException("id")
                 );
         }
         set
@@ -53,7 +52,7 @@ public sealed record class InvoiceLineItemCreateResponse
             if (!this.Properties.TryGetValue("adjusted_subtotal", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'adjusted_subtotal' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "adjusted_subtotal",
                         "Missing required argument"
                     )
@@ -62,7 +61,7 @@ public sealed record class InvoiceLineItemCreateResponse
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'adjusted_subtotal' cannot be null",
-                    new ArgumentNullException("adjusted_subtotal")
+                    new System::ArgumentNullException("adjusted_subtotal")
                 );
         }
         set
@@ -79,23 +78,26 @@ public sealed record class InvoiceLineItemCreateResponse
     /// on invoice calculations (ie. usage discounts -> amount discounts -> percentage
     /// discounts -> minimums -> maximums).
     /// </summary>
-    public required List<Adjustment> Adjustments
+    public required List<global::Orb.Models.InvoiceLineItems.Adjustment> Adjustments
     {
         get
         {
             if (!this.Properties.TryGetValue("adjustments", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'adjustments' cannot be null",
-                    new ArgumentOutOfRangeException("adjustments", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "adjustments",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<List<Adjustment>>(
+            return JsonSerializer.Deserialize<List<global::Orb.Models.InvoiceLineItems.Adjustment>>(
                     element,
                     ModelBase.SerializerOptions
                 )
                 ?? throw new OrbInvalidDataException(
                     "'adjustments' cannot be null",
-                    new ArgumentNullException("adjustments")
+                    new System::ArgumentNullException("adjustments")
                 );
         }
         set
@@ -118,13 +120,13 @@ public sealed record class InvoiceLineItemCreateResponse
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amount' cannot be null",
-                    new ArgumentOutOfRangeException("amount", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("amount", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'amount' cannot be null",
-                    new ArgumentNullException("amount")
+                    new System::ArgumentNullException("amount")
                 );
         }
         set
@@ -146,13 +148,16 @@ public sealed record class InvoiceLineItemCreateResponse
             if (!this.Properties.TryGetValue("credits_applied", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'credits_applied' cannot be null",
-                    new ArgumentOutOfRangeException("credits_applied", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "credits_applied",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'credits_applied' cannot be null",
-                    new ArgumentNullException("credits_applied")
+                    new System::ArgumentNullException("credits_applied")
                 );
         }
         set
@@ -167,14 +172,14 @@ public sealed record class InvoiceLineItemCreateResponse
     /// <summary>
     /// This field is deprecated in favor of `adjustments`
     /// </summary>
-    public required Discount? Discount
+    public required Discount1? Discount
     {
         get
         {
             if (!this.Properties.TryGetValue("discount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Discount?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<Discount1?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -188,17 +193,20 @@ public sealed record class InvoiceLineItemCreateResponse
     /// <summary>
     /// The end date of the range of time applied for this line item's price.
     /// </summary>
-    public required DateTime EndDate
+    public required System::DateTime EndDate
     {
         get
         {
             if (!this.Properties.TryGetValue("end_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'end_date' cannot be null",
-                    new ArgumentOutOfRangeException("end_date", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("end_date", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -347,13 +355,13 @@ public sealed record class InvoiceLineItemCreateResponse
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentNullException("name")
+                    new System::ArgumentNullException("name")
                 );
         }
         set
@@ -375,7 +383,7 @@ public sealed record class InvoiceLineItemCreateResponse
             if (!this.Properties.TryGetValue("partially_invoiced_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'partially_invoiced_amount' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "partially_invoiced_amount",
                         "Missing required argument"
                     )
@@ -384,7 +392,7 @@ public sealed record class InvoiceLineItemCreateResponse
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'partially_invoiced_amount' cannot be null",
-                    new ArgumentNullException("partially_invoiced_amount")
+                    new System::ArgumentNullException("partially_invoiced_amount")
                 );
         }
         set
@@ -414,13 +422,13 @@ public sealed record class InvoiceLineItemCreateResponse
             if (!this.Properties.TryGetValue("price", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'price' cannot be null",
-                    new ArgumentOutOfRangeException("price", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("price", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'price' cannot be null",
-                    new ArgumentNullException("price")
+                    new System::ArgumentNullException("price")
                 );
         }
         set
@@ -442,7 +450,7 @@ public sealed record class InvoiceLineItemCreateResponse
             if (!this.Properties.TryGetValue("quantity", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'quantity' cannot be null",
-                    new ArgumentOutOfRangeException("quantity", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("quantity", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
@@ -459,17 +467,23 @@ public sealed record class InvoiceLineItemCreateResponse
     /// <summary>
     /// The start date of the range of time applied for this line item's price.
     /// </summary>
-    public required DateTime StartDate
+    public required System::DateTime StartDate
     {
         get
         {
             if (!this.Properties.TryGetValue("start_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'start_date' cannot be null",
-                    new ArgumentOutOfRangeException("start_date", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "start_date",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -483,23 +497,25 @@ public sealed record class InvoiceLineItemCreateResponse
     /// <summary>
     /// For complex pricing structures, the line item can be broken down further in `sub_line_items`.
     /// </summary>
-    public required List<SubLineItem> SubLineItems
+    public required List<global::Orb.Models.InvoiceLineItems.SubLineItem> SubLineItems
     {
         get
         {
             if (!this.Properties.TryGetValue("sub_line_items", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'sub_line_items' cannot be null",
-                    new ArgumentOutOfRangeException("sub_line_items", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "sub_line_items",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<List<SubLineItem>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
+            return JsonSerializer.Deserialize<
+                    List<global::Orb.Models.InvoiceLineItems.SubLineItem>
+                >(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'sub_line_items' cannot be null",
-                    new ArgumentNullException("sub_line_items")
+                    new System::ArgumentNullException("sub_line_items")
                 );
         }
         set
@@ -521,13 +537,13 @@ public sealed record class InvoiceLineItemCreateResponse
             if (!this.Properties.TryGetValue("subtotal", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'subtotal' cannot be null",
-                    new ArgumentOutOfRangeException("subtotal", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("subtotal", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'subtotal' cannot be null",
-                    new ArgumentNullException("subtotal")
+                    new System::ArgumentNullException("subtotal")
                 );
         }
         set
@@ -550,13 +566,16 @@ public sealed record class InvoiceLineItemCreateResponse
             if (!this.Properties.TryGetValue("tax_amounts", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tax_amounts' cannot be null",
-                    new ArgumentOutOfRangeException("tax_amounts", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "tax_amounts",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<TaxAmount>>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'tax_amounts' cannot be null",
-                    new ArgumentNullException("tax_amounts")
+                    new System::ArgumentNullException("tax_amounts")
                 );
         }
         set
@@ -639,5 +658,654 @@ public sealed record class InvoiceLineItemCreateResponse
     )
     {
         return new(properties);
+    }
+}
+
+[JsonConverter(typeof(global::Orb.Models.InvoiceLineItems.AdjustmentConverter))]
+public record class Adjustment
+{
+    public object Value { get; private init; }
+
+    public string ID
+    {
+        get
+        {
+            return Match(
+                monetaryUsageDiscount: (x) => x.ID,
+                monetaryAmountDiscount: (x) => x.ID,
+                monetaryPercentageDiscount: (x) => x.ID,
+                monetaryMinimum: (x) => x.ID,
+                monetaryMaximum: (x) => x.ID
+            );
+        }
+    }
+
+    public string Amount
+    {
+        get
+        {
+            return Match(
+                monetaryUsageDiscount: (x) => x.Amount,
+                monetaryAmountDiscount: (x) => x.Amount,
+                monetaryPercentageDiscount: (x) => x.Amount,
+                monetaryMinimum: (x) => x.Amount,
+                monetaryMaximum: (x) => x.Amount
+            );
+        }
+    }
+
+    public bool IsInvoiceLevel
+    {
+        get
+        {
+            return Match(
+                monetaryUsageDiscount: (x) => x.IsInvoiceLevel,
+                monetaryAmountDiscount: (x) => x.IsInvoiceLevel,
+                monetaryPercentageDiscount: (x) => x.IsInvoiceLevel,
+                monetaryMinimum: (x) => x.IsInvoiceLevel,
+                monetaryMaximum: (x) => x.IsInvoiceLevel
+            );
+        }
+    }
+
+    public string? Reason
+    {
+        get
+        {
+            return Match<string?>(
+                monetaryUsageDiscount: (x) => x.Reason,
+                monetaryAmountDiscount: (x) => x.Reason,
+                monetaryPercentageDiscount: (x) => x.Reason,
+                monetaryMinimum: (x) => x.Reason,
+                monetaryMaximum: (x) => x.Reason
+            );
+        }
+    }
+
+    public string? ReplacesAdjustmentID
+    {
+        get
+        {
+            return Match<string?>(
+                monetaryUsageDiscount: (x) => x.ReplacesAdjustmentID,
+                monetaryAmountDiscount: (x) => x.ReplacesAdjustmentID,
+                monetaryPercentageDiscount: (x) => x.ReplacesAdjustmentID,
+                monetaryMinimum: (x) => x.ReplacesAdjustmentID,
+                monetaryMaximum: (x) => x.ReplacesAdjustmentID
+            );
+        }
+    }
+
+    public Adjustment(MonetaryUsageDiscountAdjustment value)
+    {
+        Value = value;
+    }
+
+    public Adjustment(MonetaryAmountDiscountAdjustment value)
+    {
+        Value = value;
+    }
+
+    public Adjustment(MonetaryPercentageDiscountAdjustment value)
+    {
+        Value = value;
+    }
+
+    public Adjustment(MonetaryMinimumAdjustment value)
+    {
+        Value = value;
+    }
+
+    public Adjustment(MonetaryMaximumAdjustment value)
+    {
+        Value = value;
+    }
+
+    Adjustment(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static global::Orb.Models.InvoiceLineItems.Adjustment CreateUnknownVariant(
+        JsonElement value
+    )
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickMonetaryUsageDiscount(
+        [NotNullWhen(true)] out MonetaryUsageDiscountAdjustment? value
+    )
+    {
+        value = this.Value as MonetaryUsageDiscountAdjustment;
+        return value != null;
+    }
+
+    public bool TryPickMonetaryAmountDiscount(
+        [NotNullWhen(true)] out MonetaryAmountDiscountAdjustment? value
+    )
+    {
+        value = this.Value as MonetaryAmountDiscountAdjustment;
+        return value != null;
+    }
+
+    public bool TryPickMonetaryPercentageDiscount(
+        [NotNullWhen(true)] out MonetaryPercentageDiscountAdjustment? value
+    )
+    {
+        value = this.Value as MonetaryPercentageDiscountAdjustment;
+        return value != null;
+    }
+
+    public bool TryPickMonetaryMinimum([NotNullWhen(true)] out MonetaryMinimumAdjustment? value)
+    {
+        value = this.Value as MonetaryMinimumAdjustment;
+        return value != null;
+    }
+
+    public bool TryPickMonetaryMaximum([NotNullWhen(true)] out MonetaryMaximumAdjustment? value)
+    {
+        value = this.Value as MonetaryMaximumAdjustment;
+        return value != null;
+    }
+
+    public void Switch(
+        System::Action<MonetaryUsageDiscountAdjustment> monetaryUsageDiscount,
+        System::Action<MonetaryAmountDiscountAdjustment> monetaryAmountDiscount,
+        System::Action<MonetaryPercentageDiscountAdjustment> monetaryPercentageDiscount,
+        System::Action<MonetaryMinimumAdjustment> monetaryMinimum,
+        System::Action<MonetaryMaximumAdjustment> monetaryMaximum
+    )
+    {
+        switch (this.Value)
+        {
+            case MonetaryUsageDiscountAdjustment value:
+                monetaryUsageDiscount(value);
+                break;
+            case MonetaryAmountDiscountAdjustment value:
+                monetaryAmountDiscount(value);
+                break;
+            case MonetaryPercentageDiscountAdjustment value:
+                monetaryPercentageDiscount(value);
+                break;
+            case MonetaryMinimumAdjustment value:
+                monetaryMinimum(value);
+                break;
+            case MonetaryMaximumAdjustment value:
+                monetaryMaximum(value);
+                break;
+            default:
+                throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
+        }
+    }
+
+    public T Match<T>(
+        System::Func<MonetaryUsageDiscountAdjustment, T> monetaryUsageDiscount,
+        System::Func<MonetaryAmountDiscountAdjustment, T> monetaryAmountDiscount,
+        System::Func<MonetaryPercentageDiscountAdjustment, T> monetaryPercentageDiscount,
+        System::Func<MonetaryMinimumAdjustment, T> monetaryMinimum,
+        System::Func<MonetaryMaximumAdjustment, T> monetaryMaximum
+    )
+    {
+        return this.Value switch
+        {
+            MonetaryUsageDiscountAdjustment value => monetaryUsageDiscount(value),
+            MonetaryAmountDiscountAdjustment value => monetaryAmountDiscount(value),
+            MonetaryPercentageDiscountAdjustment value => monetaryPercentageDiscount(value),
+            MonetaryMinimumAdjustment value => monetaryMinimum(value),
+            MonetaryMaximumAdjustment value => monetaryMaximum(value),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment"),
+        };
+    }
+
+    public void Validate()
+    {
+        if (this.Value is UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
+        }
+    }
+
+    record struct UnknownVariant(JsonElement value);
+}
+
+sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.InvoiceLineItems.Adjustment>
+{
+    public override global::Orb.Models.InvoiceLineItems.Adjustment? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? adjustmentType;
+        try
+        {
+            adjustmentType = json.GetProperty("adjustment_type").GetString();
+        }
+        catch
+        {
+            adjustmentType = null;
+        }
+
+        switch (adjustmentType)
+        {
+            case "usage_discount":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<MonetaryUsageDiscountAdjustment>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new global::Orb.Models.InvoiceLineItems.Adjustment(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'MonetaryUsageDiscountAdjustment'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "amount_discount":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<MonetaryAmountDiscountAdjustment>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new global::Orb.Models.InvoiceLineItems.Adjustment(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'MonetaryAmountDiscountAdjustment'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "percentage_discount":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<MonetaryPercentageDiscountAdjustment>(
+                            json,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new global::Orb.Models.InvoiceLineItems.Adjustment(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'MonetaryPercentageDiscountAdjustment'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "minimum":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<MonetaryMinimumAdjustment>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new global::Orb.Models.InvoiceLineItems.Adjustment(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'MonetaryMinimumAdjustment'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "maximum":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<MonetaryMaximumAdjustment>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new global::Orb.Models.InvoiceLineItems.Adjustment(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'MonetaryMaximumAdjustment'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            default:
+            {
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.InvoiceLineItems.Adjustment value,
+        JsonSerializerOptions options
+    )
+    {
+        object variant = value.Value;
+        JsonSerializer.Serialize(writer, variant, options);
+    }
+}
+
+[JsonConverter(typeof(global::Orb.Models.InvoiceLineItems.SubLineItemConverter))]
+public record class SubLineItem
+{
+    public object Value { get; private init; }
+
+    public string Amount
+    {
+        get
+        {
+            return Match(matrix: (x) => x.Amount, tier: (x) => x.Amount, other: (x) => x.Amount);
+        }
+    }
+
+    public SubLineItemGrouping? Grouping
+    {
+        get
+        {
+            return Match<SubLineItemGrouping?>(
+                matrix: (x) => x.Grouping,
+                tier: (x) => x.Grouping,
+                other: (x) => x.Grouping
+            );
+        }
+    }
+
+    public string Name
+    {
+        get { return Match(matrix: (x) => x.Name, tier: (x) => x.Name, other: (x) => x.Name); }
+    }
+
+    public double Quantity
+    {
+        get
+        {
+            return Match(
+                matrix: (x) => x.Quantity,
+                tier: (x) => x.Quantity,
+                other: (x) => x.Quantity
+            );
+        }
+    }
+
+    public SubLineItem(MatrixSubLineItem value)
+    {
+        Value = value;
+    }
+
+    public SubLineItem(TierSubLineItem value)
+    {
+        Value = value;
+    }
+
+    public SubLineItem(OtherSubLineItem value)
+    {
+        Value = value;
+    }
+
+    SubLineItem(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static global::Orb.Models.InvoiceLineItems.SubLineItem CreateUnknownVariant(
+        JsonElement value
+    )
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickMatrix([NotNullWhen(true)] out MatrixSubLineItem? value)
+    {
+        value = this.Value as MatrixSubLineItem;
+        return value != null;
+    }
+
+    public bool TryPickTier([NotNullWhen(true)] out TierSubLineItem? value)
+    {
+        value = this.Value as TierSubLineItem;
+        return value != null;
+    }
+
+    public bool TryPickOther([NotNullWhen(true)] out OtherSubLineItem? value)
+    {
+        value = this.Value as OtherSubLineItem;
+        return value != null;
+    }
+
+    public void Switch(
+        System::Action<MatrixSubLineItem> matrix,
+        System::Action<TierSubLineItem> tier,
+        System::Action<OtherSubLineItem> other
+    )
+    {
+        switch (this.Value)
+        {
+            case MatrixSubLineItem value:
+                matrix(value);
+                break;
+            case TierSubLineItem value:
+                tier(value);
+                break;
+            case OtherSubLineItem value:
+                other(value);
+                break;
+            default:
+                throw new OrbInvalidDataException("Data did not match any variant of SubLineItem");
+        }
+    }
+
+    public T Match<T>(
+        System::Func<MatrixSubLineItem, T> matrix,
+        System::Func<TierSubLineItem, T> tier,
+        System::Func<OtherSubLineItem, T> other
+    )
+    {
+        return this.Value switch
+        {
+            MatrixSubLineItem value => matrix(value),
+            TierSubLineItem value => tier(value),
+            OtherSubLineItem value => other(value),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of SubLineItem"),
+        };
+    }
+
+    public void Validate()
+    {
+        if (this.Value is UnknownVariant)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of SubLineItem");
+        }
+    }
+
+    record struct UnknownVariant(JsonElement value);
+}
+
+sealed class SubLineItemConverter : JsonConverter<global::Orb.Models.InvoiceLineItems.SubLineItem>
+{
+    public override global::Orb.Models.InvoiceLineItems.SubLineItem? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? type;
+        try
+        {
+            type = json.GetProperty("type").GetString();
+        }
+        catch
+        {
+            type = null;
+        }
+
+        switch (type)
+        {
+            case "matrix":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<MatrixSubLineItem>(json, options);
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new global::Orb.Models.InvoiceLineItems.SubLineItem(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'MatrixSubLineItem'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "tier":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<TierSubLineItem>(json, options);
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new global::Orb.Models.InvoiceLineItems.SubLineItem(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'TierSubLineItem'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "'null'":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<OtherSubLineItem>(json, options);
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new global::Orb.Models.InvoiceLineItems.SubLineItem(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'OtherSubLineItem'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            default:
+            {
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.InvoiceLineItems.SubLineItem value,
+        JsonSerializerOptions options
+    )
+    {
+        object variant = value.Value;
+        JsonSerializer.Serialize(writer, variant, options);
     }
 }

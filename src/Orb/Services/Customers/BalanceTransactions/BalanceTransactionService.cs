@@ -2,7 +2,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
-using Orb.Models.Customers.BalanceTransactions;
+using BalanceTransactions = Orb.Models.Customers.BalanceTransactions;
 
 namespace Orb.Services.Customers.BalanceTransactions;
 
@@ -20,18 +20,18 @@ public sealed class BalanceTransactionService : IBalanceTransactionService
         _client = client;
     }
 
-    public async Task<BalanceTransactionCreateResponse> Create(
-        BalanceTransactionCreateParams parameters
+    public async Task<BalanceTransactions::BalanceTransactionCreateResponse> Create(
+        BalanceTransactions::BalanceTransactionCreateParams parameters
     )
     {
-        HttpRequest<BalanceTransactionCreateParams> request = new()
+        HttpRequest<BalanceTransactions::BalanceTransactionCreateParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
         var balanceTransaction = await response
-            .Deserialize<BalanceTransactionCreateResponse>()
+            .Deserialize<BalanceTransactions::BalanceTransactionCreateResponse>()
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -40,18 +40,18 @@ public sealed class BalanceTransactionService : IBalanceTransactionService
         return balanceTransaction;
     }
 
-    public async Task<BalanceTransactionListPageResponse> List(
-        BalanceTransactionListParams parameters
+    public async Task<BalanceTransactions::BalanceTransactionListPageResponse> List(
+        BalanceTransactions::BalanceTransactionListParams parameters
     )
     {
-        HttpRequest<BalanceTransactionListParams> request = new()
+        HttpRequest<BalanceTransactions::BalanceTransactionListParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
         var page = await response
-            .Deserialize<BalanceTransactionListPageResponse>()
+            .Deserialize<BalanceTransactions::BalanceTransactionListPageResponse>()
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {

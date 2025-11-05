@@ -1,10 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
+using System = System;
 
 namespace Orb.Models;
 
@@ -18,7 +18,7 @@ public sealed record class PaginationMetadata : ModelBase, IFromRaw<PaginationMe
             if (!this.Properties.TryGetValue("has_more", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'has_more' cannot be null",
-                    new ArgumentOutOfRangeException("has_more", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("has_more", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);

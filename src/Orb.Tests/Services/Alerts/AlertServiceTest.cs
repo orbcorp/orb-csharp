@@ -1,7 +1,5 @@
 using System.Threading.Tasks;
-using Orb.Models.Alerts.AlertCreateForCustomerParamsProperties;
-using AlertCreateForExternalCustomerParamsProperties = Orb.Models.Alerts.AlertCreateForExternalCustomerParamsProperties;
-using AlertCreateForSubscriptionParamsProperties = Orb.Models.Alerts.AlertCreateForSubscriptionParamsProperties;
+using Orb.Models.Alerts;
 
 namespace Orb.Tests.Services.Alerts;
 
@@ -52,7 +50,7 @@ public class AlertServiceTest : TestBase
             {
                 ExternalCustomerID = "external_customer_id",
                 Currency = "currency",
-                Type = AlertCreateForExternalCustomerParamsProperties::Type.CreditBalanceDepleted,
+                Type = TypeModel.CreditBalanceDepleted,
             }
         );
         alert.Validate();
@@ -66,7 +64,7 @@ public class AlertServiceTest : TestBase
             {
                 SubscriptionID = "subscription_id",
                 Thresholds = [new(0)],
-                Type = AlertCreateForSubscriptionParamsProperties::Type.UsageExceeded,
+                Type = Type1.UsageExceeded,
             }
         );
         alert.Validate();

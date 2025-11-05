@@ -3,8 +3,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Beta;
-using Orb.Models.Plans;
 using Orb.Services.Beta.ExternalPlanID;
+using Plans = Orb.Models.Plans;
 
 namespace Orb.Services.Beta;
 
@@ -61,7 +61,7 @@ public sealed class BetaService : IBetaService
         return planVersion;
     }
 
-    public async Task<Plan> SetDefaultPlanVersion(BetaSetDefaultPlanVersionParams parameters)
+    public async Task<Plans::Plan> SetDefaultPlanVersion(BetaSetDefaultPlanVersionParams parameters)
     {
         HttpRequest<BetaSetDefaultPlanVersionParams> request = new()
         {
@@ -69,7 +69,7 @@ public sealed class BetaService : IBetaService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var plan = await response.Deserialize<Plan>().ConfigureAwait(false);
+        var plan = await response.Deserialize<Plans::Plan>().ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             plan.Validate();

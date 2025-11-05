@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.Customers.Credits.TopUps.TopUpCreateResponseProperties;
+using System = System;
 
 namespace Orb.Models.Customers.Credits.TopUps;
 
@@ -19,13 +18,13 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentNullException("id")
+                    new System::ArgumentNullException("id")
                 );
         }
         set
@@ -47,13 +46,13 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
             if (!this.Properties.TryGetValue("amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amount' cannot be null",
-                    new ArgumentOutOfRangeException("amount", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("amount", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'amount' cannot be null",
-                    new ArgumentNullException("amount")
+                    new System::ArgumentNullException("amount")
                 );
         }
         set
@@ -76,13 +75,13 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
             if (!this.Properties.TryGetValue("currency", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'currency' cannot be null",
-                    new ArgumentOutOfRangeException("currency", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("currency", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'currency' cannot be null",
-                    new ArgumentNullException("currency")
+                    new System::ArgumentNullException("currency")
                 );
         }
         set
@@ -104,7 +103,10 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
             if (!this.Properties.TryGetValue("invoice_settings", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'invoice_settings' cannot be null",
-                    new ArgumentOutOfRangeException("invoice_settings", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "invoice_settings",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<TopUpInvoiceSettings>(
@@ -113,7 +115,7 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
                 )
                 ?? throw new OrbInvalidDataException(
                     "'invoice_settings' cannot be null",
-                    new ArgumentNullException("invoice_settings")
+                    new System::ArgumentNullException("invoice_settings")
                 );
         }
         set
@@ -135,7 +137,7 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
             if (!this.Properties.TryGetValue("per_unit_cost_basis", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'per_unit_cost_basis' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "per_unit_cost_basis",
                         "Missing required argument"
                     )
@@ -144,7 +146,7 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'per_unit_cost_basis' cannot be null",
-                    new ArgumentNullException("per_unit_cost_basis")
+                    new System::ArgumentNullException("per_unit_cost_basis")
                 );
         }
         set
@@ -167,13 +169,16 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
             if (!this.Properties.TryGetValue("threshold", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'threshold' cannot be null",
-                    new ArgumentOutOfRangeException("threshold", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "threshold",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'threshold' cannot be null",
-                    new ArgumentNullException("threshold")
+                    new System::ArgumentNullException("threshold")
                 );
         }
         set
@@ -210,14 +215,14 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
     /// <summary>
     /// The unit of expires_after.
     /// </summary>
-    public ApiEnum<string, ExpiresAfterUnit>? ExpiresAfterUnit
+    public ApiEnum<string, ExpiresAfterUnit1>? ExpiresAfterUnit
     {
         get
         {
             if (!this.Properties.TryGetValue("expires_after_unit", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ExpiresAfterUnit>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, ExpiresAfterUnit1>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -256,5 +261,52 @@ public sealed record class TopUpCreateResponse : ModelBase, IFromRaw<TopUpCreate
     public static TopUpCreateResponse FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
+    }
+}
+
+/// <summary>
+/// The unit of expires_after.
+/// </summary>
+[JsonConverter(typeof(ExpiresAfterUnit1Converter))]
+public enum ExpiresAfterUnit1
+{
+    Day,
+    Month,
+}
+
+sealed class ExpiresAfterUnit1Converter : JsonConverter<ExpiresAfterUnit1>
+{
+    public override ExpiresAfterUnit1 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "day" => ExpiresAfterUnit1.Day,
+            "month" => ExpiresAfterUnit1.Month,
+            _ => (ExpiresAfterUnit1)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ExpiresAfterUnit1 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ExpiresAfterUnit1.Day => "day",
+                ExpiresAfterUnit1.Month => "month",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

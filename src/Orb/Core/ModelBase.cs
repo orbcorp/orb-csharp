@@ -1,219 +1,24 @@
 using System.Collections.Generic;
 using System.Text.Json;
-using Orb.Models;
-using Orb.Models.AllocationProperties.FilterProperties;
-using Orb.Models.AmountDiscountProperties;
-using Orb.Models.BillingCycleConfigurationProperties;
-using Orb.Models.ChangedSubscriptionResourcesProperties.CreatedInvoiceProperties.CustomerBalanceTransactionProperties;
-using Orb.Models.ChangedSubscriptionResourcesProperties.CreatedInvoiceProperties.PaymentAttemptProperties;
-using Orb.Models.CreditNotes.CreditNoteCreateParamsProperties;
-using Orb.Models.Customers.Costs.CostListParamsProperties;
-using Orb.Models.Customers.Credits.Ledger.AmendmentLedgerEntryProperties;
-using Orb.Models.Customers.Credits.TopUps.TopUpCreateResponseProperties;
-using Orb.Models.Customers.CustomerProperties.AccountingSyncConfigurationProperties.AccountingProviderProperties;
-using Orb.Models.Customers.NewAvalaraTaxConfigurationProperties;
-using Orb.Models.Events.Backfills.BackfillCreateResponseProperties;
-using Orb.Models.Items.ItemProperties.ExternalConnectionProperties;
-using Orb.Models.NewFloatingBulkPriceProperties;
-using Orb.Models.Plans.PlanProperties.TrialConfigProperties;
-using Orb.Models.Subscriptions.SubscriptionCancelParamsProperties;
-using Orb.Models.Subscriptions.SubscriptionCreateParamsProperties;
-using Orb.Models.Subscriptions.SubscriptionRedeemCouponParamsProperties;
-using Orb.Models.Subscriptions.SubscriptionUpdateTrialParamsProperties.TrialEndDateProperties;
-using Orb.Models.TieredConversionRateConfigProperties;
-using AlertCreateForCustomerParamsProperties = Orb.Models.Alerts.AlertCreateForCustomerParamsProperties;
-using AlertCreateForExternalCustomerParamsProperties = Orb.Models.Alerts.AlertCreateForExternalCustomerParamsProperties;
-using AlertCreateForSubscriptionParamsProperties = Orb.Models.Alerts.AlertCreateForSubscriptionParamsProperties;
-using AlertProperties = Orb.Models.Alerts.AlertProperties;
-using AmountDiscountIntervalProperties = Orb.Models.AmountDiscountIntervalProperties;
-using BackfillCloseResponseProperties = Orb.Models.Events.Backfills.BackfillCloseResponseProperties;
-using BackfillFetchResponseProperties = Orb.Models.Events.Backfills.BackfillFetchResponseProperties;
-using BackfillRevertResponseProperties = Orb.Models.Events.Backfills.BackfillRevertResponseProperties;
-using BalanceTransactionCreateParamsProperties = Orb.Models.Customers.BalanceTransactions.BalanceTransactionCreateParamsProperties;
-using BalanceTransactionCreateResponseProperties = Orb.Models.Customers.BalanceTransactions.BalanceTransactionCreateResponseProperties;
-using BillableMetricProperties = Orb.Models.Metrics.BillableMetricProperties;
-using BulkProperties = Orb.Models.PriceProperties.BulkProperties;
-using BulkWithFiltersProperties = Orb.Models.PriceProperties.BulkWithFiltersProperties;
-using BulkWithProrationProperties = Orb.Models.PriceProperties.BulkWithProrationProperties;
-using CompositePriceFilterProperties = Orb.Models.PriceProperties.UnitProperties.CompositePriceFilterProperties;
-using CostListByExternalIDParamsProperties = Orb.Models.Customers.Costs.CostListByExternalIDParamsProperties;
-using CreatedInvoiceProperties = Orb.Models.ChangedSubscriptionResourcesProperties.CreatedInvoiceProperties;
-using CreditBlockExpiryLedgerEntryProperties = Orb.Models.Customers.Credits.Ledger.CreditBlockExpiryLedgerEntryProperties;
-using CreditNoteProperties = Orb.Models.CreditNoteProperties;
-using CumulativeGroupedBulkProperties = Orb.Models.PriceProperties.CumulativeGroupedBulkProperties;
-using CustomerBalanceTransactionProperties = Orb.Models.InvoiceProperties.CustomerBalanceTransactionProperties;
-using CustomerCreateParamsProperties = Orb.Models.Customers.CustomerCreateParamsProperties;
-using CustomerProperties = Orb.Models.Customers.CustomerProperties;
-using CustomerTaxIDProperties = Orb.Models.CustomerTaxIDProperties;
-using CustomerUpdateByExternalIDParamsProperties = Orb.Models.Customers.CustomerUpdateByExternalIDParamsProperties;
-using CustomerUpdateParamsProperties = Orb.Models.Customers.CustomerUpdateParamsProperties;
-using CustomExpirationProperties = Orb.Models.CustomExpirationProperties;
-using DataProperties = Orb.Models.Customers.Credits.CreditListPageResponseProperties.DataProperties;
-using DecrementLedgerEntryProperties = Orb.Models.Customers.Credits.Ledger.DecrementLedgerEntryProperties;
-using DiscountOverrideProperties = Orb.Models.Subscriptions.DiscountOverrideProperties;
-using DiscountProperties = Orb.Models.CreditNoteProperties.LineItemProperties.DiscountProperties;
-using EventOutputProperties = Orb.Models.PriceProperties.EventOutputProperties;
-using ExpirationChangeLedgerEntryProperties = Orb.Models.Customers.Credits.Ledger.ExpirationChangeLedgerEntryProperties;
-using ExternalConnectionProperties = Orb.Models.Items.ItemUpdateParamsProperties.ExternalConnectionProperties;
-using FilterProperties = Orb.Models.AmountDiscountProperties.FilterProperties;
-using GroupedAllocationProperties = Orb.Models.PriceProperties.GroupedAllocationProperties;
-using GroupedTieredPackageProperties = Orb.Models.PriceProperties.GroupedTieredPackageProperties;
-using GroupedTieredProperties = Orb.Models.PriceProperties.GroupedTieredProperties;
-using GroupedWithMeteredMinimumProperties = Orb.Models.PriceProperties.GroupedWithMeteredMinimumProperties;
-using GroupedWithMinMaxThresholdsProperties = Orb.Models.PriceProperties.GroupedWithMinMaxThresholdsProperties;
-using GroupedWithProratedMinimumProperties = Orb.Models.PriceProperties.GroupedWithProratedMinimumProperties;
-using IncrementLedgerEntryProperties = Orb.Models.Customers.Credits.Ledger.IncrementLedgerEntryProperties;
-using InvoiceFetchUpcomingResponseProperties = Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties;
-using InvoiceListParamsProperties = Orb.Models.Invoices.InvoiceListParamsProperties;
-using InvoiceProperties = Orb.Models.InvoiceProperties;
-using LedgerListByExternalIDParamsProperties = Orb.Models.Customers.Credits.Ledger.LedgerListByExternalIDParamsProperties;
-using LedgerListParamsProperties = Orb.Models.Customers.Credits.Ledger.LedgerListParamsProperties;
-using LineItemProperties = Orb.Models.Invoices.InvoiceCreateParamsProperties.LineItemProperties;
-using MatrixProperties = Orb.Models.PriceProperties.MatrixProperties;
-using MatrixSubLineItemProperties = Orb.Models.MatrixSubLineItemProperties;
-using MatrixWithAllocationProperties = Orb.Models.PriceProperties.MatrixWithAllocationProperties;
-using MatrixWithDisplayNameProperties = Orb.Models.PriceProperties.MatrixWithDisplayNameProperties;
-using MaxGroupTieredPackageProperties = Orb.Models.PriceProperties.MaxGroupTieredPackageProperties;
-using MaximumAmountAdjustmentProperties = Orb.Models.CreditNoteProperties.MaximumAmountAdjustmentProperties;
-using MinimumProperties = Orb.Models.PriceProperties.MinimumProperties;
-using MonetaryAmountDiscountAdjustmentProperties = Orb.Models.MonetaryAmountDiscountAdjustmentProperties;
-using MonetaryMaximumAdjustmentProperties = Orb.Models.MonetaryMaximumAdjustmentProperties;
-using MonetaryMinimumAdjustmentProperties = Orb.Models.MonetaryMinimumAdjustmentProperties;
-using MonetaryPercentageDiscountAdjustmentProperties = Orb.Models.MonetaryPercentageDiscountAdjustmentProperties;
-using MonetaryUsageDiscountAdjustmentProperties = Orb.Models.MonetaryUsageDiscountAdjustmentProperties;
-using MutatedSubscriptionProperties = Orb.Models.SubscriptionChanges.MutatedSubscriptionProperties;
-using NewAllocationPriceProperties = Orb.Models.NewAllocationPriceProperties;
-using NewAmountDiscountProperties = Orb.Models.NewAmountDiscountProperties;
-using NewBillingCycleConfigurationProperties = Orb.Models.NewBillingCycleConfigurationProperties;
-using NewFloatingBulkWithProrationPriceProperties = Orb.Models.NewFloatingBulkWithProrationPriceProperties;
-using NewFloatingCumulativeGroupedBulkPriceProperties = Orb.Models.NewFloatingCumulativeGroupedBulkPriceProperties;
-using NewFloatingGroupedAllocationPriceProperties = Orb.Models.NewFloatingGroupedAllocationPriceProperties;
-using NewFloatingGroupedTieredPackagePriceProperties = Orb.Models.NewFloatingGroupedTieredPackagePriceProperties;
-using NewFloatingGroupedTieredPriceProperties = Orb.Models.NewFloatingGroupedTieredPriceProperties;
-using NewFloatingGroupedWithMeteredMinimumPriceProperties = Orb.Models.NewFloatingGroupedWithMeteredMinimumPriceProperties;
-using NewFloatingGroupedWithProratedMinimumPriceProperties = Orb.Models.NewFloatingGroupedWithProratedMinimumPriceProperties;
-using NewFloatingMatrixPriceProperties = Orb.Models.NewFloatingMatrixPriceProperties;
-using NewFloatingMatrixWithAllocationPriceProperties = Orb.Models.NewFloatingMatrixWithAllocationPriceProperties;
-using NewFloatingMatrixWithDisplayNamePriceProperties = Orb.Models.NewFloatingMatrixWithDisplayNamePriceProperties;
-using NewFloatingMaxGroupTieredPackagePriceProperties = Orb.Models.NewFloatingMaxGroupTieredPackagePriceProperties;
-using NewFloatingMinimumCompositePriceProperties = Orb.Models.NewFloatingMinimumCompositePriceProperties;
-using NewFloatingPackagePriceProperties = Orb.Models.NewFloatingPackagePriceProperties;
-using NewFloatingPackageWithAllocationPriceProperties = Orb.Models.NewFloatingPackageWithAllocationPriceProperties;
-using NewFloatingScalableMatrixWithTieredPricingPriceProperties = Orb.Models.NewFloatingScalableMatrixWithTieredPricingPriceProperties;
-using NewFloatingScalableMatrixWithUnitPricingPriceProperties = Orb.Models.NewFloatingScalableMatrixWithUnitPricingPriceProperties;
-using NewFloatingThresholdTotalAmountPriceProperties = Orb.Models.NewFloatingThresholdTotalAmountPriceProperties;
-using NewFloatingTieredPackagePriceProperties = Orb.Models.NewFloatingTieredPackagePriceProperties;
-using NewFloatingTieredPackageWithMinimumPriceProperties = Orb.Models.NewFloatingTieredPackageWithMinimumPriceProperties;
-using NewFloatingTieredPriceProperties = Orb.Models.NewFloatingTieredPriceProperties;
-using NewFloatingTieredWithMinimumPriceProperties = Orb.Models.NewFloatingTieredWithMinimumPriceProperties;
-using NewFloatingTieredWithProrationPriceProperties = Orb.Models.NewFloatingTieredWithProrationPriceProperties;
-using NewFloatingUnitPriceProperties = Orb.Models.NewFloatingUnitPriceProperties;
-using NewFloatingUnitWithPercentPriceProperties = Orb.Models.NewFloatingUnitWithPercentPriceProperties;
-using NewFloatingUnitWithProrationPriceProperties = Orb.Models.NewFloatingUnitWithProrationPriceProperties;
-using NewMaximumProperties = Orb.Models.NewMaximumProperties;
-using NewMinimumProperties = Orb.Models.NewMinimumProperties;
-using NewPercentageDiscountProperties = Orb.Models.NewPercentageDiscountProperties;
-using NewPlanBulkPriceProperties = Orb.Models.NewPlanBulkPriceProperties;
-using NewPlanBulkWithProrationPriceProperties = Orb.Models.NewPlanBulkWithProrationPriceProperties;
-using NewPlanCumulativeGroupedBulkPriceProperties = Orb.Models.NewPlanCumulativeGroupedBulkPriceProperties;
-using NewPlanGroupedAllocationPriceProperties = Orb.Models.NewPlanGroupedAllocationPriceProperties;
-using NewPlanGroupedTieredPackagePriceProperties = Orb.Models.NewPlanGroupedTieredPackagePriceProperties;
-using NewPlanGroupedTieredPriceProperties = Orb.Models.NewPlanGroupedTieredPriceProperties;
-using NewPlanGroupedWithMeteredMinimumPriceProperties = Orb.Models.NewPlanGroupedWithMeteredMinimumPriceProperties;
-using NewPlanGroupedWithProratedMinimumPriceProperties = Orb.Models.NewPlanGroupedWithProratedMinimumPriceProperties;
-using NewPlanMatrixPriceProperties = Orb.Models.NewPlanMatrixPriceProperties;
-using NewPlanMatrixWithAllocationPriceProperties = Orb.Models.NewPlanMatrixWithAllocationPriceProperties;
-using NewPlanMatrixWithDisplayNamePriceProperties = Orb.Models.NewPlanMatrixWithDisplayNamePriceProperties;
-using NewPlanMaxGroupTieredPackagePriceProperties = Orb.Models.NewPlanMaxGroupTieredPackagePriceProperties;
-using NewPlanMinimumCompositePriceProperties = Orb.Models.NewPlanMinimumCompositePriceProperties;
-using NewPlanPackagePriceProperties = Orb.Models.NewPlanPackagePriceProperties;
-using NewPlanPackageWithAllocationPriceProperties = Orb.Models.NewPlanPackageWithAllocationPriceProperties;
-using NewPlanScalableMatrixWithTieredPricingPriceProperties = Orb.Models.NewPlanScalableMatrixWithTieredPricingPriceProperties;
-using NewPlanScalableMatrixWithUnitPricingPriceProperties = Orb.Models.NewPlanScalableMatrixWithUnitPricingPriceProperties;
-using NewPlanThresholdTotalAmountPriceProperties = Orb.Models.NewPlanThresholdTotalAmountPriceProperties;
-using NewPlanTieredPackagePriceProperties = Orb.Models.NewPlanTieredPackagePriceProperties;
-using NewPlanTieredPackageWithMinimumPriceProperties = Orb.Models.NewPlanTieredPackageWithMinimumPriceProperties;
-using NewPlanTieredPriceProperties = Orb.Models.NewPlanTieredPriceProperties;
-using NewPlanTieredWithMinimumPriceProperties = Orb.Models.NewPlanTieredWithMinimumPriceProperties;
-using NewPlanUnitPriceProperties = Orb.Models.NewPlanUnitPriceProperties;
-using NewPlanUnitWithPercentPriceProperties = Orb.Models.NewPlanUnitWithPercentPriceProperties;
-using NewPlanUnitWithProrationPriceProperties = Orb.Models.NewPlanUnitWithProrationPriceProperties;
-using NewSphereConfigurationProperties = Orb.Models.Customers.NewSphereConfigurationProperties;
-using NewSubscriptionBulkPriceProperties = Orb.Models.Subscriptions.NewSubscriptionBulkPriceProperties;
-using NewSubscriptionBulkWithProrationPriceProperties = Orb.Models.Subscriptions.NewSubscriptionBulkWithProrationPriceProperties;
-using NewSubscriptionCumulativeGroupedBulkPriceProperties = Orb.Models.Subscriptions.NewSubscriptionCumulativeGroupedBulkPriceProperties;
-using NewSubscriptionGroupedAllocationPriceProperties = Orb.Models.Subscriptions.NewSubscriptionGroupedAllocationPriceProperties;
-using NewSubscriptionGroupedTieredPackagePriceProperties = Orb.Models.Subscriptions.NewSubscriptionGroupedTieredPackagePriceProperties;
-using NewSubscriptionGroupedTieredPriceProperties = Orb.Models.Subscriptions.NewSubscriptionGroupedTieredPriceProperties;
-using NewSubscriptionGroupedWithMeteredMinimumPriceProperties = Orb.Models.Subscriptions.NewSubscriptionGroupedWithMeteredMinimumPriceProperties;
-using NewSubscriptionGroupedWithProratedMinimumPriceProperties = Orb.Models.Subscriptions.NewSubscriptionGroupedWithProratedMinimumPriceProperties;
-using NewSubscriptionMatrixPriceProperties = Orb.Models.Subscriptions.NewSubscriptionMatrixPriceProperties;
-using NewSubscriptionMatrixWithAllocationPriceProperties = Orb.Models.Subscriptions.NewSubscriptionMatrixWithAllocationPriceProperties;
-using NewSubscriptionMatrixWithDisplayNamePriceProperties = Orb.Models.Subscriptions.NewSubscriptionMatrixWithDisplayNamePriceProperties;
-using NewSubscriptionMaxGroupTieredPackagePriceProperties = Orb.Models.Subscriptions.NewSubscriptionMaxGroupTieredPackagePriceProperties;
-using NewSubscriptionMinimumCompositePriceProperties = Orb.Models.Subscriptions.NewSubscriptionMinimumCompositePriceProperties;
-using NewSubscriptionPackagePriceProperties = Orb.Models.Subscriptions.NewSubscriptionPackagePriceProperties;
-using NewSubscriptionPackageWithAllocationPriceProperties = Orb.Models.Subscriptions.NewSubscriptionPackageWithAllocationPriceProperties;
-using NewSubscriptionScalableMatrixWithTieredPricingPriceProperties = Orb.Models.Subscriptions.NewSubscriptionScalableMatrixWithTieredPricingPriceProperties;
-using NewSubscriptionScalableMatrixWithUnitPricingPriceProperties = Orb.Models.Subscriptions.NewSubscriptionScalableMatrixWithUnitPricingPriceProperties;
-using NewSubscriptionThresholdTotalAmountPriceProperties = Orb.Models.Subscriptions.NewSubscriptionThresholdTotalAmountPriceProperties;
-using NewSubscriptionTieredPackagePriceProperties = Orb.Models.Subscriptions.NewSubscriptionTieredPackagePriceProperties;
-using NewSubscriptionTieredPackageWithMinimumPriceProperties = Orb.Models.Subscriptions.NewSubscriptionTieredPackageWithMinimumPriceProperties;
-using NewSubscriptionTieredPriceProperties = Orb.Models.Subscriptions.NewSubscriptionTieredPriceProperties;
-using NewSubscriptionTieredWithMinimumPriceProperties = Orb.Models.Subscriptions.NewSubscriptionTieredWithMinimumPriceProperties;
-using NewSubscriptionUnitPriceProperties = Orb.Models.Subscriptions.NewSubscriptionUnitPriceProperties;
-using NewSubscriptionUnitWithPercentPriceProperties = Orb.Models.Subscriptions.NewSubscriptionUnitWithPercentPriceProperties;
-using NewSubscriptionUnitWithProrationPriceProperties = Orb.Models.Subscriptions.NewSubscriptionUnitWithProrationPriceProperties;
-using NewTaxJarConfigurationProperties = Orb.Models.Customers.NewTaxJarConfigurationProperties;
-using NewUsageDiscountProperties = Orb.Models.NewUsageDiscountProperties;
-using OtherSubLineItemProperties = Orb.Models.OtherSubLineItemProperties;
-using PackageProperties = Orb.Models.PriceProperties.PackageProperties;
-using PackageWithAllocationProperties = Orb.Models.PriceProperties.PackageWithAllocationProperties;
-using PaymentAttemptProperties = Orb.Models.InvoiceProperties.PaymentAttemptProperties;
-using PercentageDiscountIntervalProperties = Orb.Models.PercentageDiscountIntervalProperties;
-using PercentageDiscountProperties = Orb.Models.PercentageDiscountProperties;
-using PercentProperties = Orb.Models.PriceProperties.PercentProperties;
-using PlanCreateParamsProperties = Orb.Models.Plans.PlanCreateParamsProperties;
-using PlanListParamsProperties = Orb.Models.Plans.PlanListParamsProperties;
-using PlanPhaseAmountDiscountAdjustmentProperties = Orb.Models.PlanPhaseAmountDiscountAdjustmentProperties;
-using PlanPhaseMaximumAdjustmentProperties = Orb.Models.PlanPhaseMaximumAdjustmentProperties;
-using PlanPhaseMinimumAdjustmentProperties = Orb.Models.PlanPhaseMinimumAdjustmentProperties;
-using PlanPhasePercentageDiscountAdjustmentProperties = Orb.Models.PlanPhasePercentageDiscountAdjustmentProperties;
-using PlanPhaseProperties = Orb.Models.Plans.PlanProperties.PlanPhaseProperties;
-using PlanPhaseUsageDiscountAdjustmentProperties = Orb.Models.PlanPhaseUsageDiscountAdjustmentProperties;
-using PlanProperties = Orb.Models.Plans.PlanProperties;
-using PlanVersionPhaseProperties = Orb.Models.Beta.PlanVersionPhaseProperties;
-using ScalableMatrixWithTieredPricingProperties = Orb.Models.PriceProperties.ScalableMatrixWithTieredPricingProperties;
-using ScalableMatrixWithUnitPricingProperties = Orb.Models.PriceProperties.ScalableMatrixWithUnitPricingProperties;
-using SubscriptionChangeApplyResponseProperties = Orb.Models.SubscriptionChanges.SubscriptionChangeApplyResponseProperties;
-using SubscriptionChangeCancelResponseProperties = Orb.Models.SubscriptionChanges.SubscriptionChangeCancelResponseProperties;
-using SubscriptionChangeRetrieveResponseProperties = Orb.Models.SubscriptionChanges.SubscriptionChangeRetrieveResponseProperties;
-using SubscriptionFetchCostsParamsProperties = Orb.Models.Subscriptions.SubscriptionFetchCostsParamsProperties;
-using SubscriptionFetchUsageParamsProperties = Orb.Models.Subscriptions.SubscriptionFetchUsageParamsProperties;
-using SubscriptionListParamsProperties = Orb.Models.Subscriptions.SubscriptionListParamsProperties;
-using SubscriptionProperties = Orb.Models.Subscriptions.SubscriptionProperties;
-using SubscriptionSchedulePlanChangeParamsProperties = Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties;
-using SubscriptionUpdateFixedFeeQuantityParamsProperties = Orb.Models.Subscriptions.SubscriptionUpdateFixedFeeQuantityParamsProperties;
-using ThresholdTotalAmountProperties = Orb.Models.PriceProperties.ThresholdTotalAmountProperties;
-using TieredPackageProperties = Orb.Models.PriceProperties.TieredPackageProperties;
-using TieredPackageWithMinimumProperties = Orb.Models.PriceProperties.TieredPackageWithMinimumProperties;
-using TieredProperties = Orb.Models.PriceProperties.TieredProperties;
-using TieredWithMinimumProperties = Orb.Models.PriceProperties.TieredWithMinimumProperties;
-using TieredWithProrationProperties = Orb.Models.PriceProperties.TieredWithProrationProperties;
-using TierSubLineItemProperties = Orb.Models.TierSubLineItemProperties;
-using TopUpCreateByExternalIDParamsProperties = Orb.Models.Customers.Credits.TopUps.TopUpCreateByExternalIDParamsProperties;
-using TopUpCreateByExternalIDResponseProperties = Orb.Models.Customers.Credits.TopUps.TopUpCreateByExternalIDResponseProperties;
-using TopUpCreateParamsProperties = Orb.Models.Customers.Credits.TopUps.TopUpCreateParamsProperties;
-using TrialDiscountProperties = Orb.Models.TrialDiscountProperties;
-using UnitConversionRateConfigProperties = Orb.Models.UnitConversionRateConfigProperties;
-using UnitProperties = Orb.Models.PriceProperties.UnitProperties;
-using UnitWithPercentProperties = Orb.Models.PriceProperties.UnitWithPercentProperties;
-using UnitWithProrationProperties = Orb.Models.PriceProperties.UnitWithProrationProperties;
-using UsageDiscountIntervalProperties = Orb.Models.UsageDiscountIntervalProperties;
-using UsageDiscountProperties = Orb.Models.UsageDiscountProperties;
-using VoidInitiatedLedgerEntryProperties = Orb.Models.Customers.Credits.Ledger.VoidInitiatedLedgerEntryProperties;
-using VoidLedgerEntryProperties = Orb.Models.Customers.Credits.Ledger.VoidLedgerEntryProperties;
-using VoidProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.VoidProperties;
+using Orb.Models.Alerts;
+using Orb.Models.Beta;
+using Orb.Models.CreditNotes;
+using Orb.Models.Customers;
+using Orb.Models.Customers.Costs;
+using Orb.Models.Customers.Credits.TopUps;
+using Orb.Models.Items;
+using Orb.Models.Metrics;
+using Backfills = Orb.Models.Events.Backfills;
+using BalanceTransactions = Orb.Models.Customers.BalanceTransactions;
+using Credits = Orb.Models.Customers.Credits;
+using ExternalPlanID = Orb.Models.Beta.ExternalPlanID;
+using Invoices = Orb.Models.Invoices;
+using Ledger = Orb.Models.Customers.Credits.Ledger;
+using Models = Orb.Models;
+using Plans = Orb.Models.Plans;
+using Prices = Orb.Models.Prices;
+using SubscriptionChanges = Orb.Models.SubscriptionChanges;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Core;
 
@@ -225,1400 +30,584 @@ public abstract record class ModelBase
     {
         Converters =
         {
-            new ApiEnumConverter<string, Field>(),
-            new ApiEnumConverter<string, Operator>(),
-            new ApiEnumConverter<string, DiscountType>(),
-            new ApiEnumConverter<string, FilterProperties::Field>(),
-            new ApiEnumConverter<string, FilterProperties::Operator>(),
-            new ApiEnumConverter<string, AmountDiscountIntervalProperties::DiscountType>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.AmountDiscountIntervalProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.AmountDiscountIntervalProperties.FilterProperties.Operator
-            >(),
+            new ApiEnumConverter<string, Models::Field>(),
+            new ApiEnumConverter<string, Models::Operator>(),
+            new ApiEnumConverter<string, Models::DiscountType>(),
+            new ApiEnumConverter<string, Models::FieldModel>(),
+            new ApiEnumConverter<string, Models::OperatorModel>(),
+            new ApiEnumConverter<string, Models::DiscountTypeModel>(),
+            new ApiEnumConverter<string, Models::Field1>(),
+            new ApiEnumConverter<string, Models::Operator1>(),
+            new ApiEnumConverter<string, Models::DurationUnit>(),
+            new ApiEnumConverter<string, Models::BillingCycleRelativeDate>(),
+            new ApiEnumConverter<string, Models::Action>(),
+            new ApiEnumConverter<string, Models::Type>(),
+            new ApiEnumConverter<string, Models::InvoiceSource>(),
+            new ApiEnumConverter<string, Models::PaymentProvider>(),
+            new ApiEnumConverter<string, Models::Status>(),
+            new ApiEnumConverter<string, Models::DiscountType1>(),
+            new ApiEnumConverter<string, Models::DiscountType2>(),
+            new ApiEnumConverter<string, Models::Reason>(),
+            new ApiEnumConverter<string, Models::TypeModel>(),
+            new ApiEnumConverter<string, Models::DiscountType3>(),
+            new ApiEnumConverter<string, Models::DurationUnitModel>(),
+            new ApiEnumConverter<string, Models::Country>(),
+            new ApiEnumConverter<string, Models::Type1>(),
+            new ApiEnumConverter<string, Models::ActionModel>(),
+            new ApiEnumConverter<string, Models::Type2>(),
+            new ApiEnumConverter<string, Models::InvoiceSourceModel>(),
+            new ApiEnumConverter<string, Models::PaymentProviderModel>(),
+            new ApiEnumConverter<string, Models::StatusModel>(),
+            new ApiEnumConverter<string, Models::Type3>(),
+            new ApiEnumConverter<string, Models::Field2>(),
+            new ApiEnumConverter<string, Models::Operator2>(),
+            new ApiEnumConverter<string, Models::Field3>(),
+            new ApiEnumConverter<string, Models::Operator3>(),
+            new ApiEnumConverter<string, Models::Field4>(),
+            new ApiEnumConverter<string, Models::Operator4>(),
+            new ApiEnumConverter<string, Models::Field5>(),
+            new ApiEnumConverter<string, Models::Operator5>(),
+            new ApiEnumConverter<string, Models::AdjustmentType>(),
+            new ApiEnumConverter<string, Models::Field6>(),
+            new ApiEnumConverter<string, Models::Operator6>(),
+            new ApiEnumConverter<string, Models::AdjustmentTypeModel>(),
+            new ApiEnumConverter<string, Models::Field7>(),
+            new ApiEnumConverter<string, Models::Operator7>(),
+            new ApiEnumConverter<string, Models::AdjustmentType1>(),
+            new ApiEnumConverter<string, Models::Field8>(),
+            new ApiEnumConverter<string, Models::Operator8>(),
+            new ApiEnumConverter<string, Models::AdjustmentType2>(),
+            new ApiEnumConverter<string, Models::Field9>(),
+            new ApiEnumConverter<string, Models::Operator9>(),
+            new ApiEnumConverter<string, Models::AdjustmentType3>(),
+            new ApiEnumConverter<string, Models::Field10>(),
+            new ApiEnumConverter<string, Models::Operator10>(),
+            new ApiEnumConverter<string, Models::Cadence>(),
+            new ApiEnumConverter<string, Models::Field11>(),
+            new ApiEnumConverter<string, Models::Operator11>(),
+            new ApiEnumConverter<string, Models::AdjustmentType4>(),
+            new ApiEnumConverter<bool, Models::AppliesToAll>(),
+            new ApiEnumConverter<string, Models::Field12>(),
+            new ApiEnumConverter<string, Models::Operator12>(),
+            new ApiEnumConverter<string, Models::PriceType>(),
+            new ApiEnumConverter<string, Models::DurationUnit1>(),
+            new ApiEnumConverter<string, Models::CadenceModel>(),
+            new ApiEnumConverter<string, Models::ModelType>(),
+            new ApiEnumConverter<string, Models::Cadence1>(),
+            new ApiEnumConverter<string, Models::ModelTypeModel>(),
+            new ApiEnumConverter<string, Models::Cadence2>(),
+            new ApiEnumConverter<string, Models::ModelType1>(),
+            new ApiEnumConverter<string, Models::Cadence3>(),
+            new ApiEnumConverter<string, Models::ModelType2>(),
+            new ApiEnumConverter<string, Models::Cadence4>(),
+            new ApiEnumConverter<string, Models::ModelType3>(),
+            new ApiEnumConverter<string, Models::Cadence5>(),
+            new ApiEnumConverter<string, Models::ModelType4>(),
+            new ApiEnumConverter<string, Models::Cadence6>(),
+            new ApiEnumConverter<string, Models::ModelType5>(),
+            new ApiEnumConverter<string, Models::Cadence7>(),
+            new ApiEnumConverter<string, Models::ModelType6>(),
+            new ApiEnumConverter<string, Models::Cadence8>(),
+            new ApiEnumConverter<string, Models::ModelType7>(),
+            new ApiEnumConverter<string, Models::Cadence9>(),
+            new ApiEnumConverter<string, Models::ModelType8>(),
+            new ApiEnumConverter<string, Models::Cadence10>(),
+            new ApiEnumConverter<string, Models::ModelType9>(),
+            new ApiEnumConverter<string, Models::Cadence11>(),
+            new ApiEnumConverter<string, Models::ModelType10>(),
+            new ApiEnumConverter<string, Models::Cadence12>(),
+            new ApiEnumConverter<string, Models::ModelType11>(),
+            new ApiEnumConverter<string, Models::Cadence13>(),
+            new ApiEnumConverter<string, Models::ModelType12>(),
+            new ApiEnumConverter<string, Models::Cadence14>(),
+            new ApiEnumConverter<string, Models::ModelType13>(),
+            new ApiEnumConverter<string, Models::Cadence15>(),
+            new ApiEnumConverter<string, Models::ModelType14>(),
+            new ApiEnumConverter<string, Models::Cadence16>(),
+            new ApiEnumConverter<string, Models::ModelType15>(),
+            new ApiEnumConverter<string, Models::Cadence17>(),
+            new ApiEnumConverter<string, Models::ModelType16>(),
+            new ApiEnumConverter<string, Models::Cadence18>(),
+            new ApiEnumConverter<string, Models::ModelType17>(),
+            new ApiEnumConverter<string, Models::Cadence19>(),
+            new ApiEnumConverter<string, Models::ModelType18>(),
+            new ApiEnumConverter<string, Models::Cadence20>(),
+            new ApiEnumConverter<string, Models::ModelType19>(),
+            new ApiEnumConverter<string, Models::Cadence21>(),
+            new ApiEnumConverter<string, Models::ModelType20>(),
+            new ApiEnumConverter<string, Models::Cadence22>(),
+            new ApiEnumConverter<string, Models::ModelType21>(),
+            new ApiEnumConverter<string, Models::Cadence23>(),
+            new ApiEnumConverter<string, Models::ModelType22>(),
+            new ApiEnumConverter<string, Models::Cadence24>(),
+            new ApiEnumConverter<string, Models::ModelType23>(),
+            new ApiEnumConverter<string, Models::Cadence25>(),
+            new ApiEnumConverter<string, Models::ModelType24>(),
+            new ApiEnumConverter<string, Models::AdjustmentType5>(),
+            new ApiEnumConverter<bool, Models::AppliesToAllModel>(),
+            new ApiEnumConverter<string, Models::Field13>(),
+            new ApiEnumConverter<string, Models::Operator13>(),
+            new ApiEnumConverter<string, Models::PriceTypeModel>(),
+            new ApiEnumConverter<string, Models::AdjustmentType6>(),
+            new ApiEnumConverter<bool, Models::AppliesToAll1>(),
+            new ApiEnumConverter<string, Models::Field14>(),
+            new ApiEnumConverter<string, Models::Operator14>(),
+            new ApiEnumConverter<string, Models::PriceType1>(),
+            new ApiEnumConverter<string, Models::AdjustmentType7>(),
+            new ApiEnumConverter<bool, Models::AppliesToAll2>(),
+            new ApiEnumConverter<string, Models::Field15>(),
+            new ApiEnumConverter<string, Models::Operator15>(),
+            new ApiEnumConverter<string, Models::PriceType2>(),
+            new ApiEnumConverter<string, Models::Cadence26>(),
+            new ApiEnumConverter<string, Models::ModelType25>(),
+            new ApiEnumConverter<string, Models::Cadence27>(),
+            new ApiEnumConverter<string, Models::ModelType26>(),
+            new ApiEnumConverter<string, Models::Cadence28>(),
+            new ApiEnumConverter<string, Models::ModelType27>(),
+            new ApiEnumConverter<string, Models::Cadence29>(),
+            new ApiEnumConverter<string, Models::ModelType28>(),
+            new ApiEnumConverter<string, Models::Cadence30>(),
+            new ApiEnumConverter<string, Models::ModelType29>(),
+            new ApiEnumConverter<string, Models::Cadence31>(),
+            new ApiEnumConverter<string, Models::ModelType30>(),
+            new ApiEnumConverter<string, Models::Cadence32>(),
+            new ApiEnumConverter<string, Models::ModelType31>(),
+            new ApiEnumConverter<string, Models::Cadence33>(),
+            new ApiEnumConverter<string, Models::ModelType32>(),
+            new ApiEnumConverter<string, Models::Cadence34>(),
+            new ApiEnumConverter<string, Models::ModelType33>(),
+            new ApiEnumConverter<string, Models::Cadence35>(),
+            new ApiEnumConverter<string, Models::ModelType34>(),
+            new ApiEnumConverter<string, Models::Cadence36>(),
+            new ApiEnumConverter<string, Models::ModelType35>(),
+            new ApiEnumConverter<string, Models::Cadence37>(),
+            new ApiEnumConverter<string, Models::ModelType36>(),
+            new ApiEnumConverter<string, Models::Cadence38>(),
+            new ApiEnumConverter<string, Models::ModelType37>(),
+            new ApiEnumConverter<string, Models::Cadence39>(),
+            new ApiEnumConverter<string, Models::ModelType38>(),
+            new ApiEnumConverter<string, Models::Cadence40>(),
+            new ApiEnumConverter<string, Models::ModelType39>(),
+            new ApiEnumConverter<string, Models::Cadence41>(),
+            new ApiEnumConverter<string, Models::ModelType40>(),
+            new ApiEnumConverter<string, Models::Cadence42>(),
+            new ApiEnumConverter<string, Models::ModelType41>(),
+            new ApiEnumConverter<string, Models::Cadence43>(),
+            new ApiEnumConverter<string, Models::ModelType42>(),
+            new ApiEnumConverter<string, Models::Cadence44>(),
+            new ApiEnumConverter<string, Models::ModelType43>(),
+            new ApiEnumConverter<string, Models::Cadence45>(),
+            new ApiEnumConverter<string, Models::ModelType44>(),
+            new ApiEnumConverter<string, Models::Cadence46>(),
+            new ApiEnumConverter<string, Models::ModelType45>(),
+            new ApiEnumConverter<string, Models::Cadence47>(),
+            new ApiEnumConverter<string, Models::ModelType46>(),
+            new ApiEnumConverter<string, Models::Cadence48>(),
+            new ApiEnumConverter<string, Models::ModelType47>(),
+            new ApiEnumConverter<string, Models::Cadence49>(),
+            new ApiEnumConverter<string, Models::ModelType48>(),
+            new ApiEnumConverter<string, Models::Cadence50>(),
+            new ApiEnumConverter<string, Models::ModelType49>(),
+            new ApiEnumConverter<string, Models::AdjustmentType8>(),
+            new ApiEnumConverter<bool, Models::AppliesToAll3>(),
+            new ApiEnumConverter<string, Models::Field16>(),
+            new ApiEnumConverter<string, Models::Operator16>(),
+            new ApiEnumConverter<string, Models::PriceType3>(),
+            new ApiEnumConverter<string, Models::Type4>(),
+            new ApiEnumConverter<string, Models::DiscountType4>(),
+            new ApiEnumConverter<string, Models::Field17>(),
+            new ApiEnumConverter<string, Models::Operator17>(),
+            new ApiEnumConverter<string, Models::DiscountType5>(),
+            new ApiEnumConverter<string, Models::Field18>(),
+            new ApiEnumConverter<string, Models::Operator18>(),
+            new ApiEnumConverter<string, Models::AdjustmentType9>(),
+            new ApiEnumConverter<string, Models::Field19>(),
+            new ApiEnumConverter<string, Models::Operator19>(),
+            new ApiEnumConverter<string, Models::AdjustmentType10>(),
+            new ApiEnumConverter<string, Models::Field20>(),
+            new ApiEnumConverter<string, Models::Operator20>(),
+            new ApiEnumConverter<string, Models::AdjustmentType11>(),
+            new ApiEnumConverter<string, Models::Field21>(),
+            new ApiEnumConverter<string, Models::Operator21>(),
+            new ApiEnumConverter<string, Models::AdjustmentType12>(),
+            new ApiEnumConverter<string, Models::Field22>(),
+            new ApiEnumConverter<string, Models::Operator22>(),
+            new ApiEnumConverter<string, Models::AdjustmentType13>(),
+            new ApiEnumConverter<string, Models::Field23>(),
+            new ApiEnumConverter<string, Models::Operator23>(),
+            new ApiEnumConverter<string, Models::BillingMode>(),
+            new ApiEnumConverter<string, Models::Cadence51>(),
+            new ApiEnumConverter<string, Models::Field24>(),
+            new ApiEnumConverter<string, Models::Operator24>(),
+            new ApiEnumConverter<string, Models::PriceType4>(),
+            new ApiEnumConverter<string, Models::BillingModeModel>(),
+            new ApiEnumConverter<string, Models::Cadence52>(),
+            new ApiEnumConverter<string, Models::Field25>(),
+            new ApiEnumConverter<string, Models::Operator25>(),
+            new ApiEnumConverter<string, Models::PriceType5>(),
+            new ApiEnumConverter<string, Models::BillingMode1>(),
+            new ApiEnumConverter<string, Models::Cadence53>(),
+            new ApiEnumConverter<string, Models::Field26>(),
+            new ApiEnumConverter<string, Models::Operator26>(),
+            new ApiEnumConverter<string, Models::PriceType6>(),
+            new ApiEnumConverter<string, Models::BillingMode2>(),
+            new ApiEnumConverter<string, Models::Cadence54>(),
+            new ApiEnumConverter<string, Models::Field27>(),
+            new ApiEnumConverter<string, Models::Operator27>(),
+            new ApiEnumConverter<string, Models::PriceType7>(),
+            new ApiEnumConverter<string, Models::BillingMode3>(),
+            new ApiEnumConverter<string, Models::Cadence55>(),
+            new ApiEnumConverter<string, Models::Field28>(),
+            new ApiEnumConverter<string, Models::Operator28>(),
+            new ApiEnumConverter<string, Models::PriceType8>(),
+            new ApiEnumConverter<string, Models::BillingMode4>(),
+            new ApiEnumConverter<string, Models::Cadence56>(),
+            new ApiEnumConverter<string, Models::Field29>(),
+            new ApiEnumConverter<string, Models::Operator29>(),
+            new ApiEnumConverter<string, Models::PriceType9>(),
+            new ApiEnumConverter<string, Models::BillingMode5>(),
+            new ApiEnumConverter<string, Models::Cadence57>(),
+            new ApiEnumConverter<string, Models::Field30>(),
+            new ApiEnumConverter<string, Models::Operator30>(),
+            new ApiEnumConverter<string, Models::PriceType10>(),
+            new ApiEnumConverter<string, Models::BillingMode6>(),
+            new ApiEnumConverter<string, Models::Cadence58>(),
+            new ApiEnumConverter<string, Models::Field31>(),
+            new ApiEnumConverter<string, Models::Operator31>(),
+            new ApiEnumConverter<string, Models::PriceType11>(),
+            new ApiEnumConverter<string, Models::BillingMode7>(),
+            new ApiEnumConverter<string, Models::Cadence59>(),
+            new ApiEnumConverter<string, Models::Field32>(),
+            new ApiEnumConverter<string, Models::Operator32>(),
+            new ApiEnumConverter<string, Models::PriceType12>(),
+            new ApiEnumConverter<string, Models::BillingMode8>(),
+            new ApiEnumConverter<string, Models::Cadence60>(),
+            new ApiEnumConverter<string, Models::Field33>(),
+            new ApiEnumConverter<string, Models::Operator33>(),
+            new ApiEnumConverter<string, Models::PriceType13>(),
+            new ApiEnumConverter<string, Models::BillingMode9>(),
+            new ApiEnumConverter<string, Models::Cadence61>(),
+            new ApiEnumConverter<string, Models::Field34>(),
+            new ApiEnumConverter<string, Models::Operator34>(),
+            new ApiEnumConverter<string, Models::PriceType14>(),
+            new ApiEnumConverter<string, Models::BillingMode10>(),
+            new ApiEnumConverter<string, Models::Cadence62>(),
+            new ApiEnumConverter<string, Models::Field35>(),
+            new ApiEnumConverter<string, Models::Operator35>(),
+            new ApiEnumConverter<string, Models::PriceType15>(),
+            new ApiEnumConverter<string, Models::BillingMode11>(),
+            new ApiEnumConverter<string, Models::Cadence63>(),
+            new ApiEnumConverter<string, Models::Field36>(),
+            new ApiEnumConverter<string, Models::Operator36>(),
+            new ApiEnumConverter<string, Models::PriceType16>(),
+            new ApiEnumConverter<string, Models::BillingMode12>(),
+            new ApiEnumConverter<string, Models::Cadence64>(),
+            new ApiEnumConverter<string, Models::Field37>(),
+            new ApiEnumConverter<string, Models::Operator37>(),
+            new ApiEnumConverter<string, Models::PriceType17>(),
+            new ApiEnumConverter<string, Models::BillingMode13>(),
+            new ApiEnumConverter<string, Models::Cadence65>(),
+            new ApiEnumConverter<string, Models::Field38>(),
+            new ApiEnumConverter<string, Models::Operator38>(),
+            new ApiEnumConverter<string, Models::PriceType18>(),
+            new ApiEnumConverter<string, Models::BillingMode14>(),
+            new ApiEnumConverter<string, Models::Cadence66>(),
+            new ApiEnumConverter<string, Models::Field39>(),
+            new ApiEnumConverter<string, Models::Operator39>(),
+            new ApiEnumConverter<string, Models::PriceType19>(),
+            new ApiEnumConverter<string, Models::BillingMode15>(),
+            new ApiEnumConverter<string, Models::Cadence67>(),
+            new ApiEnumConverter<string, Models::Field40>(),
+            new ApiEnumConverter<string, Models::Operator40>(),
+            new ApiEnumConverter<string, Models::PriceType20>(),
+            new ApiEnumConverter<string, Models::BillingMode16>(),
+            new ApiEnumConverter<string, Models::Cadence68>(),
+            new ApiEnumConverter<string, Models::Field41>(),
+            new ApiEnumConverter<string, Models::Operator41>(),
+            new ApiEnumConverter<string, Models::PriceType21>(),
+            new ApiEnumConverter<string, Models::BillingMode17>(),
+            new ApiEnumConverter<string, Models::Cadence69>(),
+            new ApiEnumConverter<string, Models::Field42>(),
+            new ApiEnumConverter<string, Models::Operator42>(),
+            new ApiEnumConverter<string, Models::PriceType22>(),
+            new ApiEnumConverter<string, Models::BillingMode18>(),
+            new ApiEnumConverter<string, Models::Cadence70>(),
+            new ApiEnumConverter<string, Models::Field43>(),
+            new ApiEnumConverter<string, Models::Operator43>(),
+            new ApiEnumConverter<string, Models::PriceType23>(),
+            new ApiEnumConverter<string, Models::BillingMode19>(),
+            new ApiEnumConverter<string, Models::Cadence71>(),
+            new ApiEnumConverter<string, Models::Field44>(),
+            new ApiEnumConverter<string, Models::Operator44>(),
+            new ApiEnumConverter<string, Models::PriceType24>(),
+            new ApiEnumConverter<string, Models::BillingMode20>(),
+            new ApiEnumConverter<string, Models::Cadence72>(),
+            new ApiEnumConverter<string, Models::Field45>(),
+            new ApiEnumConverter<string, Models::Operator45>(),
+            new ApiEnumConverter<string, Models::PriceType25>(),
+            new ApiEnumConverter<string, Models::BillingMode21>(),
+            new ApiEnumConverter<string, Models::Cadence73>(),
+            new ApiEnumConverter<string, Models::Field46>(),
+            new ApiEnumConverter<string, Models::Operator46>(),
+            new ApiEnumConverter<string, Models::PriceType26>(),
+            new ApiEnumConverter<string, Models::BillingMode22>(),
+            new ApiEnumConverter<string, Models::Cadence74>(),
+            new ApiEnumConverter<string, Models::Field47>(),
+            new ApiEnumConverter<string, Models::Operator47>(),
+            new ApiEnumConverter<string, Models::PriceType27>(),
+            new ApiEnumConverter<string, Models::BillingMode23>(),
+            new ApiEnumConverter<string, Models::Cadence75>(),
+            new ApiEnumConverter<string, Models::Field48>(),
+            new ApiEnumConverter<string, Models::Operator48>(),
+            new ApiEnumConverter<string, Models::PriceType28>(),
+            new ApiEnumConverter<string, Models::BillingMode24>(),
+            new ApiEnumConverter<string, Models::Cadence76>(),
+            new ApiEnumConverter<string, Models::Field49>(),
+            new ApiEnumConverter<string, Models::Operator49>(),
+            new ApiEnumConverter<string, Models::PriceType29>(),
+            new ApiEnumConverter<string, Models::BillingMode25>(),
+            new ApiEnumConverter<string, Models::Cadence77>(),
+            new ApiEnumConverter<string, Models::Field50>(),
+            new ApiEnumConverter<string, Models::Operator50>(),
+            new ApiEnumConverter<string, Models::PriceType30>(),
+            new ApiEnumConverter<string, Models::BillingMode26>(),
+            new ApiEnumConverter<string, Models::Cadence78>(),
+            new ApiEnumConverter<string, Models::Field51>(),
+            new ApiEnumConverter<string, Models::Operator51>(),
+            new ApiEnumConverter<string, Models::PriceType31>(),
+            new ApiEnumConverter<string, Models::BillingMode27>(),
+            new ApiEnumConverter<string, Models::Cadence79>(),
+            new ApiEnumConverter<string, Models::Field52>(),
+            new ApiEnumConverter<string, Models::Operator52>(),
+            new ApiEnumConverter<string, Models::PriceType32>(),
+            new ApiEnumConverter<string, Models::BillingMode28>(),
+            new ApiEnumConverter<string, Models::Cadence80>(),
+            new ApiEnumConverter<string, Models::Field53>(),
+            new ApiEnumConverter<string, Models::Operator53>(),
+            new ApiEnumConverter<string, Models::PriceType33>(),
+            new ApiEnumConverter<string, Models::Type5>(),
+            new ApiEnumConverter<string, Models::ConversionRateType>(),
+            new ApiEnumConverter<string, Models::DiscountType6>(),
+            new ApiEnumConverter<string, Models::Field54>(),
+            new ApiEnumConverter<string, Models::Operator54>(),
+            new ApiEnumConverter<string, Models::ConversionRateTypeModel>(),
+            new ApiEnumConverter<string, Models::DiscountType7>(),
+            new ApiEnumConverter<string, Models::Field55>(),
+            new ApiEnumConverter<string, Models::Operator55>(),
+            new ApiEnumConverter<string, Models::DiscountType8>(),
+            new ApiEnumConverter<string, Models::Field56>(),
+            new ApiEnumConverter<string, Models::Operator56>(),
             new ApiEnumConverter<string, DurationUnit>(),
-            new ApiEnumConverter<string, BillingCycleRelativeDate>(),
-            new ApiEnumConverter<string, Action>(),
-            new ApiEnumConverter<string, Type>(),
-            new ApiEnumConverter<string, CreatedInvoiceProperties::InvoiceSource>(),
-            new ApiEnumConverter<string, PaymentProvider>(),
-            new ApiEnumConverter<string, CreatedInvoiceProperties::Status>(),
-            new ApiEnumConverter<string, DiscountProperties::DiscountType>(),
-            new ApiEnumConverter<string, MaximumAmountAdjustmentProperties::DiscountType>(),
-            new ApiEnumConverter<string, CreditNoteProperties::Reason>(),
-            new ApiEnumConverter<string, CreditNoteProperties::Type>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.CreditNoteProperties.DiscountProperties.DiscountType
-            >(),
-            new ApiEnumConverter<string, CustomExpirationProperties::DurationUnit>(),
-            new ApiEnumConverter<string, CustomerTaxIDProperties::Country>(),
-            new ApiEnumConverter<string, CustomerTaxIDProperties::Type>(),
-            new ApiEnumConverter<string, CustomerBalanceTransactionProperties::Action>(),
-            new ApiEnumConverter<string, CustomerBalanceTransactionProperties::Type>(),
-            new ApiEnumConverter<string, InvoiceProperties::InvoiceSource>(),
-            new ApiEnumConverter<string, PaymentAttemptProperties::PaymentProvider>(),
-            new ApiEnumConverter<string, InvoiceProperties::Status>(),
-            new ApiEnumConverter<string, MatrixSubLineItemProperties::Type>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.MaximumProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.MaximumProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.MaximumIntervalProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.MaximumIntervalProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.MinimumProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.MinimumProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.MinimumIntervalProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.MinimumIntervalProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<
-                string,
-                MonetaryAmountDiscountAdjustmentProperties::AdjustmentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.MonetaryAmountDiscountAdjustmentProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.MonetaryAmountDiscountAdjustmentProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, MonetaryMaximumAdjustmentProperties::AdjustmentType>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.MonetaryMaximumAdjustmentProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.MonetaryMaximumAdjustmentProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, MonetaryMinimumAdjustmentProperties::AdjustmentType>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.MonetaryMinimumAdjustmentProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.MonetaryMinimumAdjustmentProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<
-                string,
-                MonetaryPercentageDiscountAdjustmentProperties::AdjustmentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.MonetaryPercentageDiscountAdjustmentProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.MonetaryPercentageDiscountAdjustmentProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<
-                string,
-                MonetaryUsageDiscountAdjustmentProperties::AdjustmentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.MonetaryUsageDiscountAdjustmentProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.MonetaryUsageDiscountAdjustmentProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, NewAllocationPriceProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.NewAllocationPriceProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.NewAllocationPriceProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, NewAmountDiscountProperties::AdjustmentType>(),
-            new ApiEnumConverter<bool, NewAmountDiscountProperties::AppliesToAll>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.NewAmountDiscountProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.NewAmountDiscountProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, NewAmountDiscountProperties::PriceType>(),
-            new ApiEnumConverter<string, NewBillingCycleConfigurationProperties::DurationUnit>(),
             new ApiEnumConverter<string, Cadence>(),
-            new ApiEnumConverter<string, ModelType>(),
-            new ApiEnumConverter<string, NewFloatingBulkWithProrationPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewFloatingBulkWithProrationPriceProperties::ModelType>(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingCumulativeGroupedBulkPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingCumulativeGroupedBulkPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<string, NewFloatingGroupedAllocationPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewFloatingGroupedAllocationPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewFloatingGroupedTieredPackagePriceProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingGroupedTieredPackagePriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<string, NewFloatingGroupedTieredPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewFloatingGroupedTieredPriceProperties::ModelType>(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingGroupedWithMeteredMinimumPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingGroupedWithMeteredMinimumPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingGroupedWithProratedMinimumPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingGroupedWithProratedMinimumPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<string, NewFloatingMatrixPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewFloatingMatrixPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewFloatingMatrixWithAllocationPriceProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingMatrixWithAllocationPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingMatrixWithDisplayNamePriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingMatrixWithDisplayNamePriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingMaxGroupTieredPackagePriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingMaxGroupTieredPackagePriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<string, NewFloatingMinimumCompositePriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewFloatingMinimumCompositePriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewFloatingPackagePriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewFloatingPackagePriceProperties::ModelType>(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingPackageWithAllocationPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingPackageWithAllocationPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingScalableMatrixWithTieredPricingPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingScalableMatrixWithTieredPricingPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingScalableMatrixWithUnitPricingPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingScalableMatrixWithUnitPricingPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<string, NewFloatingThresholdTotalAmountPriceProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingThresholdTotalAmountPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<string, NewFloatingTieredPackagePriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewFloatingTieredPackagePriceProperties::ModelType>(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingTieredPackageWithMinimumPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingTieredPackageWithMinimumPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<string, NewFloatingTieredPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewFloatingTieredPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewFloatingTieredWithMinimumPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewFloatingTieredWithMinimumPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewFloatingTieredWithProrationPriceProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                NewFloatingTieredWithProrationPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<string, NewFloatingUnitPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewFloatingUnitPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewFloatingUnitWithPercentPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewFloatingUnitWithPercentPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewFloatingUnitWithProrationPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewFloatingUnitWithProrationPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewMaximumProperties::AdjustmentType>(),
-            new ApiEnumConverter<bool, NewMaximumProperties::AppliesToAll>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.NewMaximumProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.NewMaximumProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, NewMaximumProperties::PriceType>(),
-            new ApiEnumConverter<string, NewMinimumProperties::AdjustmentType>(),
-            new ApiEnumConverter<bool, NewMinimumProperties::AppliesToAll>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.NewMinimumProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.NewMinimumProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, NewMinimumProperties::PriceType>(),
-            new ApiEnumConverter<string, NewPercentageDiscountProperties::AdjustmentType>(),
-            new ApiEnumConverter<bool, NewPercentageDiscountProperties::AppliesToAll>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.NewPercentageDiscountProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.NewPercentageDiscountProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, NewPercentageDiscountProperties::PriceType>(),
-            new ApiEnumConverter<string, NewPlanBulkPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanBulkPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewPlanBulkWithProrationPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanBulkWithProrationPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewPlanCumulativeGroupedBulkPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanCumulativeGroupedBulkPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewPlanGroupedAllocationPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanGroupedAllocationPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewPlanGroupedTieredPackagePriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanGroupedTieredPackagePriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewPlanGroupedTieredPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanGroupedTieredPriceProperties::ModelType>(),
-            new ApiEnumConverter<
-                string,
-                NewPlanGroupedWithMeteredMinimumPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewPlanGroupedWithMeteredMinimumPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewPlanGroupedWithProratedMinimumPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewPlanGroupedWithProratedMinimumPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<string, NewPlanMatrixPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanMatrixPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewPlanMatrixWithAllocationPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanMatrixWithAllocationPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewPlanMatrixWithDisplayNamePriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanMatrixWithDisplayNamePriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewPlanMaxGroupTieredPackagePriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanMaxGroupTieredPackagePriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewPlanMinimumCompositePriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanMinimumCompositePriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewPlanPackagePriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanPackagePriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewPlanPackageWithAllocationPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanPackageWithAllocationPriceProperties::ModelType>(),
-            new ApiEnumConverter<
-                string,
-                NewPlanScalableMatrixWithTieredPricingPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewPlanScalableMatrixWithTieredPricingPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewPlanScalableMatrixWithUnitPricingPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewPlanScalableMatrixWithUnitPricingPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<string, NewPlanThresholdTotalAmountPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanThresholdTotalAmountPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewPlanTieredPackagePriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanTieredPackagePriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewPlanTieredPackageWithMinimumPriceProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                NewPlanTieredPackageWithMinimumPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<string, NewPlanTieredPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanTieredPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewPlanTieredWithMinimumPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanTieredWithMinimumPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewPlanUnitPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanUnitPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewPlanUnitWithPercentPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanUnitWithPercentPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewPlanUnitWithProrationPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewPlanUnitWithProrationPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewUsageDiscountProperties::AdjustmentType>(),
-            new ApiEnumConverter<bool, NewUsageDiscountProperties::AppliesToAll>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.NewUsageDiscountProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.NewUsageDiscountProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, NewUsageDiscountProperties::PriceType>(),
-            new ApiEnumConverter<string, OtherSubLineItemProperties::Type>(),
-            new ApiEnumConverter<string, PercentageDiscountProperties::DiscountType>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PercentageDiscountProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PercentageDiscountProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, PercentageDiscountIntervalProperties::DiscountType>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PercentageDiscountIntervalProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PercentageDiscountIntervalProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<
-                string,
-                PlanPhaseAmountDiscountAdjustmentProperties::AdjustmentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PlanPhaseAmountDiscountAdjustmentProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PlanPhaseAmountDiscountAdjustmentProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, PlanPhaseMaximumAdjustmentProperties::AdjustmentType>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PlanPhaseMaximumAdjustmentProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PlanPhaseMaximumAdjustmentProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, PlanPhaseMinimumAdjustmentProperties::AdjustmentType>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PlanPhaseMinimumAdjustmentProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PlanPhaseMinimumAdjustmentProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<
-                string,
-                PlanPhasePercentageDiscountAdjustmentProperties::AdjustmentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PlanPhasePercentageDiscountAdjustmentProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PlanPhasePercentageDiscountAdjustmentProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<
-                string,
-                PlanPhaseUsageDiscountAdjustmentProperties::AdjustmentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PlanPhaseUsageDiscountAdjustmentProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PlanPhaseUsageDiscountAdjustmentProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, UnitProperties::BillingMode>(),
-            new ApiEnumConverter<string, UnitProperties::Cadence>(),
-            new ApiEnumConverter<string, CompositePriceFilterProperties::Field>(),
-            new ApiEnumConverter<string, CompositePriceFilterProperties::Operator>(),
-            new ApiEnumConverter<string, UnitProperties::PriceType>(),
-            new ApiEnumConverter<string, TieredProperties::BillingMode>(),
-            new ApiEnumConverter<string, TieredProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.TieredProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.TieredProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, TieredProperties::PriceType>(),
-            new ApiEnumConverter<string, BulkProperties::BillingMode>(),
-            new ApiEnumConverter<string, BulkProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.BulkProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.BulkProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, BulkProperties::PriceType>(),
-            new ApiEnumConverter<string, BulkWithFiltersProperties::BillingMode>(),
-            new ApiEnumConverter<string, BulkWithFiltersProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.BulkWithFiltersProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.BulkWithFiltersProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, BulkWithFiltersProperties::PriceType>(),
-            new ApiEnumConverter<string, PackageProperties::BillingMode>(),
-            new ApiEnumConverter<string, PackageProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.PackageProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.PackageProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, PackageProperties::PriceType>(),
-            new ApiEnumConverter<string, MatrixProperties::BillingMode>(),
-            new ApiEnumConverter<string, MatrixProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.MatrixProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.MatrixProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, MatrixProperties::PriceType>(),
-            new ApiEnumConverter<string, ThresholdTotalAmountProperties::BillingMode>(),
-            new ApiEnumConverter<string, ThresholdTotalAmountProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.ThresholdTotalAmountProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.ThresholdTotalAmountProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, ThresholdTotalAmountProperties::PriceType>(),
-            new ApiEnumConverter<string, TieredPackageProperties::BillingMode>(),
-            new ApiEnumConverter<string, TieredPackageProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.TieredPackageProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.TieredPackageProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, TieredPackageProperties::PriceType>(),
-            new ApiEnumConverter<string, TieredWithMinimumProperties::BillingMode>(),
-            new ApiEnumConverter<string, TieredWithMinimumProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.TieredWithMinimumProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.TieredWithMinimumProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, TieredWithMinimumProperties::PriceType>(),
-            new ApiEnumConverter<string, GroupedTieredProperties::BillingMode>(),
-            new ApiEnumConverter<string, GroupedTieredProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.GroupedTieredProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.GroupedTieredProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, GroupedTieredProperties::PriceType>(),
-            new ApiEnumConverter<string, TieredPackageWithMinimumProperties::BillingMode>(),
-            new ApiEnumConverter<string, TieredPackageWithMinimumProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.TieredPackageWithMinimumProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.TieredPackageWithMinimumProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, TieredPackageWithMinimumProperties::PriceType>(),
-            new ApiEnumConverter<string, PackageWithAllocationProperties::BillingMode>(),
-            new ApiEnumConverter<string, PackageWithAllocationProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.PackageWithAllocationProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.PackageWithAllocationProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, PackageWithAllocationProperties::PriceType>(),
-            new ApiEnumConverter<string, UnitWithPercentProperties::BillingMode>(),
-            new ApiEnumConverter<string, UnitWithPercentProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.UnitWithPercentProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.UnitWithPercentProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, UnitWithPercentProperties::PriceType>(),
-            new ApiEnumConverter<string, MatrixWithAllocationProperties::BillingMode>(),
-            new ApiEnumConverter<string, MatrixWithAllocationProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.MatrixWithAllocationProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.MatrixWithAllocationProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, MatrixWithAllocationProperties::PriceType>(),
-            new ApiEnumConverter<string, TieredWithProrationProperties::BillingMode>(),
-            new ApiEnumConverter<string, TieredWithProrationProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.TieredWithProrationProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.TieredWithProrationProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, TieredWithProrationProperties::PriceType>(),
-            new ApiEnumConverter<string, UnitWithProrationProperties::BillingMode>(),
-            new ApiEnumConverter<string, UnitWithProrationProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.UnitWithProrationProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.UnitWithProrationProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, UnitWithProrationProperties::PriceType>(),
-            new ApiEnumConverter<string, GroupedAllocationProperties::BillingMode>(),
-            new ApiEnumConverter<string, GroupedAllocationProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.GroupedAllocationProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.GroupedAllocationProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, GroupedAllocationProperties::PriceType>(),
-            new ApiEnumConverter<string, BulkWithProrationProperties::BillingMode>(),
-            new ApiEnumConverter<string, BulkWithProrationProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.BulkWithProrationProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.BulkWithProrationProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, BulkWithProrationProperties::PriceType>(),
-            new ApiEnumConverter<string, GroupedWithProratedMinimumProperties::BillingMode>(),
-            new ApiEnumConverter<string, GroupedWithProratedMinimumProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.GroupedWithProratedMinimumProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.GroupedWithProratedMinimumProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, GroupedWithProratedMinimumProperties::PriceType>(),
-            new ApiEnumConverter<string, GroupedWithMeteredMinimumProperties::BillingMode>(),
-            new ApiEnumConverter<string, GroupedWithMeteredMinimumProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.GroupedWithMeteredMinimumProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.GroupedWithMeteredMinimumProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, GroupedWithMeteredMinimumProperties::PriceType>(),
-            new ApiEnumConverter<string, GroupedWithMinMaxThresholdsProperties::BillingMode>(),
-            new ApiEnumConverter<string, GroupedWithMinMaxThresholdsProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.GroupedWithMinMaxThresholdsProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.GroupedWithMinMaxThresholdsProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, GroupedWithMinMaxThresholdsProperties::PriceType>(),
-            new ApiEnumConverter<string, MatrixWithDisplayNameProperties::BillingMode>(),
-            new ApiEnumConverter<string, MatrixWithDisplayNameProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.MatrixWithDisplayNameProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.MatrixWithDisplayNameProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, MatrixWithDisplayNameProperties::PriceType>(),
-            new ApiEnumConverter<string, GroupedTieredPackageProperties::BillingMode>(),
-            new ApiEnumConverter<string, GroupedTieredPackageProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.GroupedTieredPackageProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.GroupedTieredPackageProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, GroupedTieredPackageProperties::PriceType>(),
-            new ApiEnumConverter<string, MaxGroupTieredPackageProperties::BillingMode>(),
-            new ApiEnumConverter<string, MaxGroupTieredPackageProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.MaxGroupTieredPackageProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.MaxGroupTieredPackageProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, MaxGroupTieredPackageProperties::PriceType>(),
-            new ApiEnumConverter<string, ScalableMatrixWithUnitPricingProperties::BillingMode>(),
-            new ApiEnumConverter<string, ScalableMatrixWithUnitPricingProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.ScalableMatrixWithUnitPricingProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.ScalableMatrixWithUnitPricingProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, ScalableMatrixWithUnitPricingProperties::PriceType>(),
-            new ApiEnumConverter<string, ScalableMatrixWithTieredPricingProperties::BillingMode>(),
-            new ApiEnumConverter<string, ScalableMatrixWithTieredPricingProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.ScalableMatrixWithTieredPricingProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.ScalableMatrixWithTieredPricingProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, ScalableMatrixWithTieredPricingProperties::PriceType>(),
-            new ApiEnumConverter<string, CumulativeGroupedBulkProperties::BillingMode>(),
-            new ApiEnumConverter<string, CumulativeGroupedBulkProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.CumulativeGroupedBulkProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.CumulativeGroupedBulkProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, CumulativeGroupedBulkProperties::PriceType>(),
-            new ApiEnumConverter<string, MinimumProperties::BillingMode>(),
-            new ApiEnumConverter<string, MinimumProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.MinimumProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.MinimumProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, MinimumProperties::PriceType>(),
-            new ApiEnumConverter<string, PercentProperties::BillingMode>(),
-            new ApiEnumConverter<string, PercentProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.PercentProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.PercentProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, PercentProperties::PriceType>(),
-            new ApiEnumConverter<string, EventOutputProperties::BillingMode>(),
-            new ApiEnumConverter<string, EventOutputProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.EventOutputProperties.CompositePriceFilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.PriceProperties.EventOutputProperties.CompositePriceFilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, EventOutputProperties::PriceType>(),
-            new ApiEnumConverter<string, TierSubLineItemProperties::Type>(),
-            new ApiEnumConverter<string, ConversionRateType>(),
-            new ApiEnumConverter<string, TrialDiscountProperties::DiscountType>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.TrialDiscountProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.TrialDiscountProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, UnitConversionRateConfigProperties::ConversionRateType>(),
-            new ApiEnumConverter<string, UsageDiscountProperties::DiscountType>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.UsageDiscountProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.UsageDiscountProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, UsageDiscountIntervalProperties::DiscountType>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.UsageDiscountIntervalProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.UsageDiscountIntervalProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, PlanVersionPhaseProperties::DurationUnit>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.AddPriceProperties.PriceProperties.BulkWithFiltersProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.AddPriceProperties.PriceProperties.TieredWithProrationProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.AddPriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.AddPriceProperties.PriceProperties.PercentProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.AddPriceProperties.PriceProperties.EventOutputProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.BulkWithFiltersProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.TieredWithProrationProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.PercentProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.BetaCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.EventOutputProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties.AddPriceProperties.PriceProperties.BulkWithFiltersProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties.AddPriceProperties.PriceProperties.TieredWithProrationProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties.AddPriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties.AddPriceProperties.PriceProperties.PercentProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties.AddPriceProperties.PriceProperties.EventOutputProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.BulkWithFiltersProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.TieredWithProrationProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.PercentProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Beta.ExternalPlanID.ExternalPlanIDCreatePlanVersionParamsProperties.ReplacePriceProperties.PriceProperties.EventOutputProperties.Cadence
-            >(),
+            new ApiEnumConverter<string, CadenceModel>(),
+            new ApiEnumConverter<string, Cadence1>(),
+            new ApiEnumConverter<string, Cadence2>(),
+            new ApiEnumConverter<string, Cadence3>(),
+            new ApiEnumConverter<string, Cadence4>(),
+            new ApiEnumConverter<string, Cadence5>(),
+            new ApiEnumConverter<string, Cadence6>(),
+            new ApiEnumConverter<string, Cadence7>(),
+            new ApiEnumConverter<string, Cadence8>(),
+            new ApiEnumConverter<string, ExternalPlanID::Cadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::CadenceModel>(),
+            new ApiEnumConverter<string, ExternalPlanID::Cadence1>(),
+            new ApiEnumConverter<string, ExternalPlanID::Cadence2>(),
+            new ApiEnumConverter<string, ExternalPlanID::Cadence3>(),
+            new ApiEnumConverter<string, ExternalPlanID::Cadence4>(),
+            new ApiEnumConverter<string, ExternalPlanID::Cadence5>(),
+            new ApiEnumConverter<string, ExternalPlanID::Cadence6>(),
+            new ApiEnumConverter<string, ExternalPlanID::Cadence7>(),
+            new ApiEnumConverter<string, ExternalPlanID::Cadence8>(),
             new ApiEnumConverter<string, Reason>(),
-            new ApiEnumConverter<string, CustomerProperties::PaymentProvider>(),
+            new ApiEnumConverter<string, PaymentProvider2>(),
             new ApiEnumConverter<string, ProviderType>(),
-            new ApiEnumConverter<string, TaxProvider>(),
-            new ApiEnumConverter<string, NewSphereConfigurationProperties::TaxProvider>(),
-            new ApiEnumConverter<string, NewTaxJarConfigurationProperties::TaxProvider>(),
-            new ApiEnumConverter<string, CustomerCreateParamsProperties::PaymentProvider>(),
-            new ApiEnumConverter<string, CustomerUpdateParamsProperties::PaymentProvider>(),
-            new ApiEnumConverter<
-                string,
-                CustomerUpdateByExternalIDParamsProperties::PaymentProvider
-            >(),
+            new ApiEnumConverter<string, TaxProvider5>(),
+            new ApiEnumConverter<string, TaxProvider6>(),
+            new ApiEnumConverter<string, TaxProvider7>(),
+            new ApiEnumConverter<string, PaymentProvider>(),
+            new ApiEnumConverter<string, PaymentProviderModel>(),
+            new ApiEnumConverter<string, PaymentProvider1>(),
             new ApiEnumConverter<string, ViewMode>(),
-            new ApiEnumConverter<string, CostListByExternalIDParamsProperties::ViewMode>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Customers.Credits.CreditListPageResponseProperties.DataProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Customers.Credits.CreditListPageResponseProperties.DataProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, DataProperties::Status>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Customers.Credits.CreditListByExternalIDPageResponseProperties.DataProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Customers.Credits.CreditListByExternalIDPageResponseProperties.DataProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Customers.Credits.CreditListByExternalIDPageResponseProperties.DataProperties.Status
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Customers.Credits.Ledger.AffectedBlockProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Customers.Credits.Ledger.AffectedBlockProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, EntryStatus>(),
-            new ApiEnumConverter<string, EntryType>(),
-            new ApiEnumConverter<string, CreditBlockExpiryLedgerEntryProperties::EntryStatus>(),
-            new ApiEnumConverter<string, CreditBlockExpiryLedgerEntryProperties::EntryType>(),
-            new ApiEnumConverter<string, DecrementLedgerEntryProperties::EntryStatus>(),
-            new ApiEnumConverter<string, DecrementLedgerEntryProperties::EntryType>(),
-            new ApiEnumConverter<string, ExpirationChangeLedgerEntryProperties::EntryStatus>(),
-            new ApiEnumConverter<string, ExpirationChangeLedgerEntryProperties::EntryType>(),
-            new ApiEnumConverter<string, IncrementLedgerEntryProperties::EntryStatus>(),
-            new ApiEnumConverter<string, IncrementLedgerEntryProperties::EntryType>(),
-            new ApiEnumConverter<string, VoidInitiatedLedgerEntryProperties::EntryStatus>(),
-            new ApiEnumConverter<string, VoidInitiatedLedgerEntryProperties::EntryType>(),
-            new ApiEnumConverter<string, VoidLedgerEntryProperties::EntryStatus>(),
-            new ApiEnumConverter<string, VoidLedgerEntryProperties::EntryType>(),
-            new ApiEnumConverter<string, LedgerListParamsProperties::EntryStatus>(),
-            new ApiEnumConverter<string, LedgerListParamsProperties::EntryType>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.IncrementProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.IncrementProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<string, VoidProperties::VoidReason>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.IncrementProperties.FilterProperties.Field
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.IncrementProperties.FilterProperties.Operator
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.VoidProperties.VoidReason
-            >(),
-            new ApiEnumConverter<string, LedgerListByExternalIDParamsProperties::EntryStatus>(),
-            new ApiEnumConverter<string, LedgerListByExternalIDParamsProperties::EntryType>(),
+            new ApiEnumConverter<string, ViewModeModel>(),
+            new ApiEnumConverter<string, Credits::Field>(),
+            new ApiEnumConverter<string, Credits::Operator>(),
+            new ApiEnumConverter<string, Credits::Status>(),
+            new ApiEnumConverter<string, Credits::FieldModel>(),
+            new ApiEnumConverter<string, Credits::OperatorModel>(),
+            new ApiEnumConverter<string, Credits::StatusModel>(),
+            new ApiEnumConverter<string, Ledger::Field1>(),
+            new ApiEnumConverter<string, Ledger::Operator1>(),
+            new ApiEnumConverter<string, Ledger::EntryStatus1>(),
+            new ApiEnumConverter<string, Ledger::EntryType11>(),
+            new ApiEnumConverter<string, Ledger::EntryStatus2>(),
+            new ApiEnumConverter<string, Ledger::EntryType12>(),
+            new ApiEnumConverter<string, Ledger::EntryStatus3>(),
+            new ApiEnumConverter<string, Ledger::EntryType13>(),
+            new ApiEnumConverter<string, Ledger::EntryStatus4>(),
+            new ApiEnumConverter<string, Ledger::EntryType14>(),
+            new ApiEnumConverter<string, Ledger::EntryStatus5>(),
+            new ApiEnumConverter<string, Ledger::EntryType15>(),
+            new ApiEnumConverter<string, Ledger::EntryStatus6>(),
+            new ApiEnumConverter<string, Ledger::EntryType16>(),
+            new ApiEnumConverter<string, Ledger::EntryStatus7>(),
+            new ApiEnumConverter<string, Ledger::EntryType17>(),
+            new ApiEnumConverter<string, Ledger::EntryStatus>(),
+            new ApiEnumConverter<string, Ledger::EntryType>(),
+            new ApiEnumConverter<string, Ledger::Field>(),
+            new ApiEnumConverter<string, Ledger::Operator>(),
+            new ApiEnumConverter<string, Ledger::VoidReason>(),
+            new ApiEnumConverter<string, Ledger::FieldModel>(),
+            new ApiEnumConverter<string, Ledger::OperatorModel>(),
+            new ApiEnumConverter<string, Ledger::VoidReasonModel>(),
+            new ApiEnumConverter<string, Ledger::EntryStatusModel>(),
+            new ApiEnumConverter<string, Ledger::EntryType10>(),
+            new ApiEnumConverter<string, ExpiresAfterUnit1>(),
+            new ApiEnumConverter<string, ExpiresAfterUnit2>(),
+            new ApiEnumConverter<string, ExpiresAfterUnit3>(),
+            new ApiEnumConverter<string, ExpiresAfterUnit4>(),
             new ApiEnumConverter<string, ExpiresAfterUnit>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Customers.Credits.TopUps.TopUpListPageResponseProperties.DataProperties.ExpiresAfterUnit
-            >(),
-            new ApiEnumConverter<
-                string,
-                TopUpCreateByExternalIDResponseProperties::ExpiresAfterUnit
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Customers.Credits.TopUps.TopUpListByExternalIDPageResponseProperties.DataProperties.ExpiresAfterUnit
-            >(),
-            new ApiEnumConverter<string, TopUpCreateParamsProperties::ExpiresAfterUnit>(),
-            new ApiEnumConverter<
-                string,
-                TopUpCreateByExternalIDParamsProperties::ExpiresAfterUnit
-            >(),
-            new ApiEnumConverter<string, BalanceTransactionCreateResponseProperties::Action>(),
-            new ApiEnumConverter<string, BalanceTransactionCreateResponseProperties::Type>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Customers.BalanceTransactions.BalanceTransactionListPageResponseProperties.DataProperties.Action
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Customers.BalanceTransactions.BalanceTransactionListPageResponseProperties.DataProperties.Type
-            >(),
-            new ApiEnumConverter<string, BalanceTransactionCreateParamsProperties::Type>(),
-            new ApiEnumConverter<string, Status>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Events.Backfills.BackfillListPageResponseProperties.DataProperties.Status
-            >(),
-            new ApiEnumConverter<string, BackfillCloseResponseProperties::Status>(),
-            new ApiEnumConverter<string, BackfillFetchResponseProperties::Status>(),
-            new ApiEnumConverter<string, BackfillRevertResponseProperties::Status>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.CustomerBalanceTransactionProperties.Action
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.CustomerBalanceTransactionProperties.Type
-            >(),
-            new ApiEnumConverter<string, InvoiceFetchUpcomingResponseProperties::InvoiceSource>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Invoices.InvoiceFetchUpcomingResponseProperties.PaymentAttemptProperties.PaymentProvider
-            >(),
-            new ApiEnumConverter<string, InvoiceFetchUpcomingResponseProperties::Status>(),
-            new ApiEnumConverter<string, LineItemProperties::ModelType>(),
-            new ApiEnumConverter<string, InvoiceListParamsProperties::DateType>(),
-            new ApiEnumConverter<string, InvoiceListParamsProperties::Status>(),
+            new ApiEnumConverter<string, ExpiresAfterUnitModel>(),
+            new ApiEnumConverter<string, BalanceTransactions::Action>(),
+            new ApiEnumConverter<string, BalanceTransactions::TypeModel>(),
+            new ApiEnumConverter<string, BalanceTransactions::ActionModel>(),
+            new ApiEnumConverter<string, BalanceTransactions::Type1>(),
+            new ApiEnumConverter<string, BalanceTransactions::Type>(),
+            new ApiEnumConverter<string, Backfills::Status>(),
+            new ApiEnumConverter<string, Backfills::StatusModel>(),
+            new ApiEnumConverter<string, Backfills::Status1>(),
+            new ApiEnumConverter<string, Backfills::Status2>(),
+            new ApiEnumConverter<string, Backfills::Status3>(),
+            new ApiEnumConverter<string, Invoices::Action>(),
+            new ApiEnumConverter<string, Invoices::Type>(),
+            new ApiEnumConverter<string, Invoices::InvoiceSource>(),
+            new ApiEnumConverter<string, Invoices::PaymentProvider>(),
+            new ApiEnumConverter<string, Invoices::StatusModel>(),
+            new ApiEnumConverter<string, Invoices::ModelType>(),
+            new ApiEnumConverter<string, Invoices::DateType>(),
+            new ApiEnumConverter<string, Invoices::Status>(),
+            new ApiEnumConverter<string, ExternalConnectionNameModel>(),
             new ApiEnumConverter<string, ExternalConnectionName>(),
-            new ApiEnumConverter<string, ExternalConnectionProperties::ExternalConnectionName>(),
-            new ApiEnumConverter<string, BillableMetricProperties::Status>(),
-            new ApiEnumConverter<string, PlanPhaseProperties::DurationUnit>(),
-            new ApiEnumConverter<string, PlanProperties::Status>(),
-            new ApiEnumConverter<string, TrialPeriodUnit>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.BulkWithFiltersProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.TieredWithProrationProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.PercentProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Plans.PlanCreateParamsProperties.PriceProperties.PriceProperties.EventOutputProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Plans.PlanCreateParamsProperties.PlanPhaseProperties.DurationUnit
-            >(),
-            new ApiEnumConverter<string, PlanCreateParamsProperties::Status>(),
-            new ApiEnumConverter<string, PlanListParamsProperties::Status>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Prices.PriceCreateParamsProperties.BodyProperties.BulkWithFiltersProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Prices.PriceCreateParamsProperties.BodyProperties.GroupedWithMinMaxThresholdsProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Prices.PriceCreateParamsProperties.BodyProperties.PercentProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Prices.PriceCreateParamsProperties.BodyProperties.EventOutputProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Prices.PriceEvaluateMultipleParamsProperties.PriceEvaluationProperties.PriceProperties.BulkWithFiltersProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Prices.PriceEvaluateMultipleParamsProperties.PriceEvaluationProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Prices.PriceEvaluateMultipleParamsProperties.PriceEvaluationProperties.PriceProperties.PercentProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Prices.PriceEvaluateMultipleParamsProperties.PriceEvaluationProperties.PriceProperties.EventOutputProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Prices.PriceEvaluatePreviewEventsParamsProperties.PriceEvaluationProperties.PriceProperties.BulkWithFiltersProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Prices.PriceEvaluatePreviewEventsParamsProperties.PriceEvaluationProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Prices.PriceEvaluatePreviewEventsParamsProperties.PriceEvaluationProperties.PriceProperties.PercentProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Prices.PriceEvaluatePreviewEventsParamsProperties.PriceEvaluationProperties.PriceProperties.EventOutputProperties.Cadence
-            >(),
-            new ApiEnumConverter<string, DiscountOverrideProperties::DiscountType>(),
-            new ApiEnumConverter<string, NewSubscriptionBulkPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewSubscriptionBulkPriceProperties::ModelType>(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionBulkWithProrationPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionBulkWithProrationPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionCumulativeGroupedBulkPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionCumulativeGroupedBulkPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionGroupedAllocationPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionGroupedAllocationPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionGroupedTieredPackagePriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionGroupedTieredPackagePriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<string, NewSubscriptionGroupedTieredPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewSubscriptionGroupedTieredPriceProperties::ModelType>(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionGroupedWithMeteredMinimumPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionGroupedWithMeteredMinimumPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionGroupedWithProratedMinimumPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionGroupedWithProratedMinimumPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<string, NewSubscriptionMatrixPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewSubscriptionMatrixPriceProperties::ModelType>(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionMatrixWithAllocationPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionMatrixWithAllocationPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionMatrixWithDisplayNamePriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionMatrixWithDisplayNamePriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionMaxGroupTieredPackagePriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionMaxGroupTieredPackagePriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<string, NewSubscriptionMinimumCompositePriceProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionMinimumCompositePriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<string, NewSubscriptionPackagePriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewSubscriptionPackagePriceProperties::ModelType>(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionPackageWithAllocationPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionPackageWithAllocationPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionScalableMatrixWithTieredPricingPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionScalableMatrixWithTieredPricingPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionScalableMatrixWithUnitPricingPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionScalableMatrixWithUnitPricingPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionThresholdTotalAmountPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionThresholdTotalAmountPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<string, NewSubscriptionTieredPackagePriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewSubscriptionTieredPackagePriceProperties::ModelType>(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionTieredPackageWithMinimumPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionTieredPackageWithMinimumPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<string, NewSubscriptionTieredPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewSubscriptionTieredPriceProperties::ModelType>(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionTieredWithMinimumPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionTieredWithMinimumPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<string, NewSubscriptionUnitPriceProperties::Cadence>(),
-            new ApiEnumConverter<string, NewSubscriptionUnitPriceProperties::ModelType>(),
-            new ApiEnumConverter<string, NewSubscriptionUnitWithPercentPriceProperties::Cadence>(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionUnitWithPercentPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionUnitWithProrationPriceProperties::Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                NewSubscriptionUnitWithProrationPriceProperties::ModelType
-            >(),
-            new ApiEnumConverter<string, SubscriptionProperties::Status>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionUsageProperties.UngroupedSubscriptionUsageProperties.DataProperties.ViewMode
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionUsageProperties.GroupedSubscriptionUsageProperties.DataProperties.ViewMode
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.PriceProperties.BulkWithFiltersProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.PriceProperties.TieredWithProrationProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.PriceProperties.PercentProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.AddPriceProperties.PriceProperties.EventOutputProperties.Cadence
-            >(),
-            new ApiEnumConverter<string, ExternalMarketplace>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplacePriceProperties.PriceProperties.BulkWithFiltersProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplacePriceProperties.PriceProperties.TieredWithProrationProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplacePriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplacePriceProperties.PriceProperties.PercentProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionCreateParamsProperties.ReplacePriceProperties.PriceProperties.EventOutputProperties.Cadence
-            >(),
-            new ApiEnumConverter<string, SubscriptionListParamsProperties::Status>(),
-            new ApiEnumConverter<string, CancelOption>(),
-            new ApiEnumConverter<string, SubscriptionFetchCostsParamsProperties::ViewMode>(),
-            new ApiEnumConverter<string, SubscriptionFetchUsageParamsProperties::Granularity>(),
-            new ApiEnumConverter<string, SubscriptionFetchUsageParamsProperties::ViewMode>(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.PriceProperties.BulkWithFiltersProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.PriceProperties.PercentProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionPriceIntervalsParamsProperties.AddProperties.PriceProperties.EventOutputProperties.Cadence
-            >(),
-            new ApiEnumConverter<string, ChangeOption>(),
-            new ApiEnumConverter<
-                string,
-                SubscriptionSchedulePlanChangeParamsProperties::ChangeOption
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.AddPriceProperties.PriceProperties.BulkWithFiltersProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.AddPriceProperties.PriceProperties.TieredWithProrationProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.AddPriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.AddPriceProperties.PriceProperties.PercentProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.AddPriceProperties.PriceProperties.EventOutputProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                SubscriptionSchedulePlanChangeParamsProperties::BillingCycleAlignment
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.ReplacePriceProperties.PriceProperties.BulkWithFiltersProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.ReplacePriceProperties.PriceProperties.TieredWithProrationProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.ReplacePriceProperties.PriceProperties.GroupedWithMinMaxThresholdsProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.ReplacePriceProperties.PriceProperties.PercentProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Orb.Models.Subscriptions.SubscriptionSchedulePlanChangeParamsProperties.ReplacePriceProperties.PriceProperties.EventOutputProperties.Cadence
-            >(),
-            new ApiEnumConverter<
-                string,
-                SubscriptionUpdateFixedFeeQuantityParamsProperties::ChangeOption
-            >(),
-            new ApiEnumConverter<string, UnionMember1>(),
-            new ApiEnumConverter<string, AlertProperties::Type>(),
-            new ApiEnumConverter<string, AlertCreateForCustomerParamsProperties::Type>(),
-            new ApiEnumConverter<string, AlertCreateForExternalCustomerParamsProperties::Type>(),
-            new ApiEnumConverter<string, AlertCreateForSubscriptionParamsProperties::Type>(),
-            new ApiEnumConverter<string, MutatedSubscriptionProperties::Status>(),
-            new ApiEnumConverter<string, SubscriptionChangeRetrieveResponseProperties::Status>(),
-            new ApiEnumConverter<string, SubscriptionChangeApplyResponseProperties::Status>(),
-            new ApiEnumConverter<string, SubscriptionChangeCancelResponseProperties::Status>(),
+            new ApiEnumConverter<string, Status>(),
+            new ApiEnumConverter<string, Plans::DurationUnitModel>(),
+            new ApiEnumConverter<string, Plans::Status1>(),
+            new ApiEnumConverter<string, Plans::TrialPeriodUnit>(),
+            new ApiEnumConverter<string, Plans::Cadence>(),
+            new ApiEnumConverter<string, Plans::CadenceModel>(),
+            new ApiEnumConverter<string, Plans::Cadence1>(),
+            new ApiEnumConverter<string, Plans::Cadence2>(),
+            new ApiEnumConverter<string, Plans::Cadence3>(),
+            new ApiEnumConverter<string, Plans::DurationUnit>(),
+            new ApiEnumConverter<string, Plans::Status>(),
+            new ApiEnumConverter<string, Plans::StatusModel>(),
+            new ApiEnumConverter<string, Prices::Cadence>(),
+            new ApiEnumConverter<string, Prices::CadenceModel>(),
+            new ApiEnumConverter<string, Prices::Cadence1>(),
+            new ApiEnumConverter<string, Prices::Cadence2>(),
+            new ApiEnumConverter<string, Prices::Cadence3>(),
+            new ApiEnumConverter<string, Prices::Cadence4>(),
+            new ApiEnumConverter<string, Prices::Cadence5>(),
+            new ApiEnumConverter<string, Prices::Cadence6>(),
+            new ApiEnumConverter<string, Prices::Cadence7>(),
+            new ApiEnumConverter<string, Prices::Cadence8>(),
+            new ApiEnumConverter<string, Prices::Cadence9>(),
+            new ApiEnumConverter<string, Prices::Cadence10>(),
+            new ApiEnumConverter<string, Subscriptions::DiscountType2>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence23>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType23>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence24>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType24>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence25>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType25>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence26>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType26>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence27>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType27>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence28>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType28>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence29>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType29>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence30>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType30>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence31>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType31>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence32>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType32>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence33>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType33>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence34>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType34>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence35>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType35>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence36>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType36>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence37>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType37>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence38>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType38>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence39>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType39>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence40>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType40>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence41>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType41>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence42>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType42>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence43>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType43>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence44>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType44>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence45>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType45>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence46>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType46>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence47>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType47>(),
+            new ApiEnumConverter<string, Subscriptions::StatusModel>(),
+            new ApiEnumConverter<string, Subscriptions::ViewMode1>(),
+            new ApiEnumConverter<string, Subscriptions::ViewMode2>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence>(),
+            new ApiEnumConverter<string, Subscriptions::CadenceModel>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence1>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence2>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence3>(),
+            new ApiEnumConverter<string, Subscriptions::ExternalMarketplace>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence4>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence5>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence6>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence7>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence8>(),
+            new ApiEnumConverter<string, Subscriptions::Status>(),
+            new ApiEnumConverter<string, Subscriptions::CancelOption>(),
+            new ApiEnumConverter<string, Subscriptions::ViewMode>(),
+            new ApiEnumConverter<string, Subscriptions::Granularity>(),
+            new ApiEnumConverter<string, Subscriptions::ViewModeModel>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence9>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence10>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence11>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence12>(),
+            new ApiEnumConverter<string, Subscriptions::ChangeOption>(),
+            new ApiEnumConverter<string, Subscriptions::ChangeOptionModel>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence13>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence14>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence15>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence16>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence17>(),
+            new ApiEnumConverter<string, Subscriptions::BillingCycleAlignment>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence18>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence19>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence20>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence21>(),
+            new ApiEnumConverter<string, Subscriptions::Cadence22>(),
+            new ApiEnumConverter<string, Subscriptions::ChangeOption1>(),
+            new ApiEnumConverter<string, Subscriptions::UnionMember1>(),
+            new ApiEnumConverter<string, Type2>(),
+            new ApiEnumConverter<string, Type>(),
+            new ApiEnumConverter<string, TypeModel>(),
+            new ApiEnumConverter<string, Type1>(),
+            new ApiEnumConverter<string, SubscriptionChanges::Status>(),
+            new ApiEnumConverter<string, SubscriptionChanges::StatusModel>(),
+            new ApiEnumConverter<string, SubscriptionChanges::Status1>(),
+            new ApiEnumConverter<string, SubscriptionChanges::Status2>(),
         },
     };
 

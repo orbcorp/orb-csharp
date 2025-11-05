@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.SubscriptionChanges;
-using Orb.Models.Subscriptions;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Services.Subscriptions;
 
@@ -21,11 +21,13 @@ public sealed class SubscriptionService : ISubscriptionService
         _client = client;
     }
 
-    public async Task<MutatedSubscription> Create(SubscriptionCreateParams? parameters = null)
+    public async Task<MutatedSubscription> Create(
+        Subscriptions::SubscriptionCreateParams? parameters = null
+    )
     {
         parameters ??= new();
 
-        HttpRequest<SubscriptionCreateParams> request = new()
+        HttpRequest<Subscriptions::SubscriptionCreateParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -41,15 +43,19 @@ public sealed class SubscriptionService : ISubscriptionService
         return mutatedSubscription;
     }
 
-    public async Task<Subscription> Update(SubscriptionUpdateParams parameters)
+    public async Task<Subscriptions::Subscription> Update(
+        Subscriptions::SubscriptionUpdateParams parameters
+    )
     {
-        HttpRequest<SubscriptionUpdateParams> request = new()
+        HttpRequest<Subscriptions::SubscriptionUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var subscription = await response.Deserialize<Subscription>().ConfigureAwait(false);
+        var subscription = await response
+            .Deserialize<Subscriptions::Subscription>()
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             subscription.Validate();
@@ -57,17 +63,21 @@ public sealed class SubscriptionService : ISubscriptionService
         return subscription;
     }
 
-    public async Task<SubscriptionsModel> List(SubscriptionListParams? parameters = null)
+    public async Task<Subscriptions::SubscriptionsModel> List(
+        Subscriptions::SubscriptionListParams? parameters = null
+    )
     {
         parameters ??= new();
 
-        HttpRequest<SubscriptionListParams> request = new()
+        HttpRequest<Subscriptions::SubscriptionListParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var page = await response.Deserialize<SubscriptionsModel>().ConfigureAwait(false);
+        var page = await response
+            .Deserialize<Subscriptions::SubscriptionsModel>()
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             page.Validate();
@@ -75,9 +85,11 @@ public sealed class SubscriptionService : ISubscriptionService
         return page;
     }
 
-    public async Task<MutatedSubscription> Cancel(SubscriptionCancelParams parameters)
+    public async Task<MutatedSubscription> Cancel(
+        Subscriptions::SubscriptionCancelParams parameters
+    )
     {
-        HttpRequest<SubscriptionCancelParams> request = new()
+        HttpRequest<Subscriptions::SubscriptionCancelParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -93,15 +105,19 @@ public sealed class SubscriptionService : ISubscriptionService
         return mutatedSubscription;
     }
 
-    public async Task<Subscription> Fetch(SubscriptionFetchParams parameters)
+    public async Task<Subscriptions::Subscription> Fetch(
+        Subscriptions::SubscriptionFetchParams parameters
+    )
     {
-        HttpRequest<SubscriptionFetchParams> request = new()
+        HttpRequest<Subscriptions::SubscriptionFetchParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var subscription = await response.Deserialize<Subscription>().ConfigureAwait(false);
+        var subscription = await response
+            .Deserialize<Subscriptions::Subscription>()
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             subscription.Validate();
@@ -109,18 +125,18 @@ public sealed class SubscriptionService : ISubscriptionService
         return subscription;
     }
 
-    public async Task<SubscriptionFetchCostsResponse> FetchCosts(
-        SubscriptionFetchCostsParams parameters
+    public async Task<Subscriptions::SubscriptionFetchCostsResponse> FetchCosts(
+        Subscriptions::SubscriptionFetchCostsParams parameters
     )
     {
-        HttpRequest<SubscriptionFetchCostsParams> request = new()
+        HttpRequest<Subscriptions::SubscriptionFetchCostsParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
         var deserializedResponse = await response
-            .Deserialize<SubscriptionFetchCostsResponse>()
+            .Deserialize<Subscriptions::SubscriptionFetchCostsResponse>()
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -129,18 +145,18 @@ public sealed class SubscriptionService : ISubscriptionService
         return deserializedResponse;
     }
 
-    public async Task<SubscriptionFetchSchedulePageResponse> FetchSchedule(
-        SubscriptionFetchScheduleParams parameters
+    public async Task<Subscriptions::SubscriptionFetchSchedulePageResponse> FetchSchedule(
+        Subscriptions::SubscriptionFetchScheduleParams parameters
     )
     {
-        HttpRequest<SubscriptionFetchScheduleParams> request = new()
+        HttpRequest<Subscriptions::SubscriptionFetchScheduleParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
         var page = await response
-            .Deserialize<SubscriptionFetchSchedulePageResponse>()
+            .Deserialize<Subscriptions::SubscriptionFetchSchedulePageResponse>()
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -149,16 +165,18 @@ public sealed class SubscriptionService : ISubscriptionService
         return page;
     }
 
-    public async Task<SubscriptionUsage> FetchUsage(SubscriptionFetchUsageParams parameters)
+    public async Task<Subscriptions::SubscriptionUsage> FetchUsage(
+        Subscriptions::SubscriptionFetchUsageParams parameters
+    )
     {
-        HttpRequest<SubscriptionFetchUsageParams> request = new()
+        HttpRequest<Subscriptions::SubscriptionFetchUsageParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
         var subscriptionUsage = await response
-            .Deserialize<SubscriptionUsage>()
+            .Deserialize<Subscriptions::SubscriptionUsage>()
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -168,10 +186,10 @@ public sealed class SubscriptionService : ISubscriptionService
     }
 
     public async Task<MutatedSubscription> PriceIntervals(
-        SubscriptionPriceIntervalsParams parameters
+        Subscriptions::SubscriptionPriceIntervalsParams parameters
     )
     {
-        HttpRequest<SubscriptionPriceIntervalsParams> request = new()
+        HttpRequest<Subscriptions::SubscriptionPriceIntervalsParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -187,9 +205,11 @@ public sealed class SubscriptionService : ISubscriptionService
         return mutatedSubscription;
     }
 
-    public async Task<MutatedSubscription> RedeemCoupon(SubscriptionRedeemCouponParams parameters)
+    public async Task<MutatedSubscription> RedeemCoupon(
+        Subscriptions::SubscriptionRedeemCouponParams parameters
+    )
     {
-        HttpRequest<SubscriptionRedeemCouponParams> request = new()
+        HttpRequest<Subscriptions::SubscriptionRedeemCouponParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -206,10 +226,10 @@ public sealed class SubscriptionService : ISubscriptionService
     }
 
     public async Task<MutatedSubscription> SchedulePlanChange(
-        SubscriptionSchedulePlanChangeParams parameters
+        Subscriptions::SubscriptionSchedulePlanChangeParams parameters
     )
     {
-        HttpRequest<SubscriptionSchedulePlanChangeParams> request = new()
+        HttpRequest<Subscriptions::SubscriptionSchedulePlanChangeParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -225,9 +245,11 @@ public sealed class SubscriptionService : ISubscriptionService
         return mutatedSubscription;
     }
 
-    public async Task<MutatedSubscription> TriggerPhase(SubscriptionTriggerPhaseParams parameters)
+    public async Task<MutatedSubscription> TriggerPhase(
+        Subscriptions::SubscriptionTriggerPhaseParams parameters
+    )
     {
-        HttpRequest<SubscriptionTriggerPhaseParams> request = new()
+        HttpRequest<Subscriptions::SubscriptionTriggerPhaseParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -244,10 +266,10 @@ public sealed class SubscriptionService : ISubscriptionService
     }
 
     public async Task<MutatedSubscription> UnscheduleCancellation(
-        SubscriptionUnscheduleCancellationParams parameters
+        Subscriptions::SubscriptionUnscheduleCancellationParams parameters
     )
     {
-        HttpRequest<SubscriptionUnscheduleCancellationParams> request = new()
+        HttpRequest<Subscriptions::SubscriptionUnscheduleCancellationParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -264,14 +286,11 @@ public sealed class SubscriptionService : ISubscriptionService
     }
 
     public async Task<MutatedSubscription> UnscheduleFixedFeeQuantityUpdates(
-        SubscriptionUnscheduleFixedFeeQuantityUpdatesParams parameters
+        Subscriptions::SubscriptionUnscheduleFixedFeeQuantityUpdatesParams parameters
     )
     {
-        HttpRequest<SubscriptionUnscheduleFixedFeeQuantityUpdatesParams> request = new()
-        {
-            Method = HttpMethod.Post,
-            Params = parameters,
-        };
+        HttpRequest<Subscriptions::SubscriptionUnscheduleFixedFeeQuantityUpdatesParams> request =
+            new() { Method = HttpMethod.Post, Params = parameters };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
         var mutatedSubscription = await response
             .Deserialize<MutatedSubscription>()
@@ -284,10 +303,10 @@ public sealed class SubscriptionService : ISubscriptionService
     }
 
     public async Task<MutatedSubscription> UnschedulePendingPlanChanges(
-        SubscriptionUnschedulePendingPlanChangesParams parameters
+        Subscriptions::SubscriptionUnschedulePendingPlanChangesParams parameters
     )
     {
-        HttpRequest<SubscriptionUnschedulePendingPlanChangesParams> request = new()
+        HttpRequest<Subscriptions::SubscriptionUnschedulePendingPlanChangesParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -304,10 +323,10 @@ public sealed class SubscriptionService : ISubscriptionService
     }
 
     public async Task<MutatedSubscription> UpdateFixedFeeQuantity(
-        SubscriptionUpdateFixedFeeQuantityParams parameters
+        Subscriptions::SubscriptionUpdateFixedFeeQuantityParams parameters
     )
     {
-        HttpRequest<SubscriptionUpdateFixedFeeQuantityParams> request = new()
+        HttpRequest<Subscriptions::SubscriptionUpdateFixedFeeQuantityParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -323,9 +342,11 @@ public sealed class SubscriptionService : ISubscriptionService
         return mutatedSubscription;
     }
 
-    public async Task<MutatedSubscription> UpdateTrial(SubscriptionUpdateTrialParams parameters)
+    public async Task<MutatedSubscription> UpdateTrial(
+        Subscriptions::SubscriptionUpdateTrialParams parameters
+    )
     {
-        HttpRequest<SubscriptionUpdateTrialParams> request = new()
+        HttpRequest<Subscriptions::SubscriptionUpdateTrialParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,

@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using MatrixWithAllocationConfigProperties = Orb.Models.MatrixWithAllocationConfigProperties;
+using System = System;
 
 namespace Orb.Models;
 
@@ -27,13 +26,16 @@ public sealed record class MatrixWithAllocationConfig
             if (!this.Properties.TryGetValue("allocation", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'allocation' cannot be null",
-                    new ArgumentOutOfRangeException("allocation", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "allocation",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'allocation' cannot be null",
-                    new ArgumentNullException("allocation")
+                    new System::ArgumentNullException("allocation")
                 );
         }
         set
@@ -55,7 +57,7 @@ public sealed record class MatrixWithAllocationConfig
             if (!this.Properties.TryGetValue("default_unit_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'default_unit_amount' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "default_unit_amount",
                         "Missing required argument"
                     )
@@ -64,7 +66,7 @@ public sealed record class MatrixWithAllocationConfig
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'default_unit_amount' cannot be null",
-                    new ArgumentNullException("default_unit_amount")
+                    new System::ArgumentNullException("default_unit_amount")
                 );
         }
         set
@@ -86,13 +88,16 @@ public sealed record class MatrixWithAllocationConfig
             if (!this.Properties.TryGetValue("dimensions", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'dimensions' cannot be null",
-                    new ArgumentOutOfRangeException("dimensions", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "dimensions",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<List<string?>>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'dimensions' cannot be null",
-                    new ArgumentNullException("dimensions")
+                    new System::ArgumentNullException("dimensions")
                 );
         }
         set
@@ -107,22 +112,26 @@ public sealed record class MatrixWithAllocationConfig
     /// <summary>
     /// Matrix values configuration
     /// </summary>
-    public required List<MatrixWithAllocationConfigProperties::MatrixValue> MatrixValues
+    public required List<MatrixValueModel> MatrixValues
     {
         get
         {
             if (!this.Properties.TryGetValue("matrix_values", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'matrix_values' cannot be null",
-                    new ArgumentOutOfRangeException("matrix_values", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "matrix_values",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<
-                    List<MatrixWithAllocationConfigProperties::MatrixValue>
-                >(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<List<MatrixValueModel>>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
                 ?? throw new OrbInvalidDataException(
                     "'matrix_values' cannot be null",
-                    new ArgumentNullException("matrix_values")
+                    new System::ArgumentNullException("matrix_values")
                 );
         }
         set
@@ -158,6 +167,98 @@ public sealed record class MatrixWithAllocationConfig
     public static MatrixWithAllocationConfig FromRawUnchecked(
         Dictionary<string, JsonElement> properties
     )
+    {
+        return new(properties);
+    }
+}
+
+/// <summary>
+/// Configuration for a single matrix value
+/// </summary>
+[JsonConverter(typeof(ModelConverter<MatrixValueModel>))]
+public sealed record class MatrixValueModel : ModelBase, IFromRaw<MatrixValueModel>
+{
+    /// <summary>
+    /// One or two matrix keys to filter usage to this Matrix value by. For example,
+    /// ["region", "tier"] could be used to filter cloud usage by a cloud region and
+    /// an instance tier.
+    /// </summary>
+    public required List<string?> DimensionValues
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("dimension_values", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'dimension_values' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "dimension_values",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<List<string?>>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'dimension_values' cannot be null",
+                    new System::ArgumentNullException("dimension_values")
+                );
+        }
+        set
+        {
+            this.Properties["dimension_values"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Unit price for the specified dimension_values
+    /// </summary>
+    public required string UnitAmount
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("unit_amount", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'unit_amount' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "unit_amount",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'unit_amount' cannot be null",
+                    new System::ArgumentNullException("unit_amount")
+                );
+        }
+        set
+        {
+            this.Properties["unit_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.DimensionValues;
+        _ = this.UnitAmount;
+    }
+
+    public MatrixValueModel() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MatrixValueModel(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static MatrixValueModel FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

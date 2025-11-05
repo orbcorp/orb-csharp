@@ -1,8 +1,9 @@
-using System;
 using System.Net.Http;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Models.Customers.Credits.Ledger.LedgerListByExternalIDParamsProperties;
+using Orb.Exceptions;
+using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
@@ -77,14 +78,17 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
 {
     public required string ExternalCustomerID;
 
-    public DateTime? CreatedAtGt
+    public System::DateTime? CreatedAtGt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -95,14 +99,17 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
         }
     }
 
-    public DateTime? CreatedAtGte
+    public System::DateTime? CreatedAtGte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -113,14 +120,17 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
         }
     }
 
-    public DateTime? CreatedAtLt
+    public System::DateTime? CreatedAtLt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -131,14 +141,17 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
         }
     }
 
-    public DateTime? CreatedAtLte
+    public System::DateTime? CreatedAtLte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -192,14 +205,14 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
         }
     }
 
-    public ApiEnum<string, EntryStatus>? EntryStatus
+    public ApiEnum<string, EntryStatusModel>? EntryStatus
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("entry_status", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, EntryStatus>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, EntryStatusModel>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -213,14 +226,14 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
         }
     }
 
-    public ApiEnum<string, EntryType>? EntryType
+    public ApiEnum<string, EntryType10>? EntryType
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("entry_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, EntryType>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, EntryType10>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -273,9 +286,9 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format(
                     "/customers/external_customer_id/{0}/credits/ledger",
@@ -294,5 +307,108 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+[JsonConverter(typeof(EntryStatusModelConverter))]
+public enum EntryStatusModel
+{
+    Committed,
+    Pending,
+}
+
+sealed class EntryStatusModelConverter : JsonConverter<EntryStatusModel>
+{
+    public override EntryStatusModel Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "committed" => EntryStatusModel.Committed,
+            "pending" => EntryStatusModel.Pending,
+            _ => (EntryStatusModel)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        EntryStatusModel value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                EntryStatusModel.Committed => "committed",
+                EntryStatusModel.Pending => "pending",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(EntryType10Converter))]
+public enum EntryType10
+{
+    Increment,
+    Decrement,
+    ExpirationChange,
+    CreditBlockExpiry,
+    Void,
+    VoidInitiated,
+    Amendment,
+}
+
+sealed class EntryType10Converter : JsonConverter<EntryType10>
+{
+    public override EntryType10 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "increment" => EntryType10.Increment,
+            "decrement" => EntryType10.Decrement,
+            "expiration_change" => EntryType10.ExpirationChange,
+            "credit_block_expiry" => EntryType10.CreditBlockExpiry,
+            "void" => EntryType10.Void,
+            "void_initiated" => EntryType10.VoidInitiated,
+            "amendment" => EntryType10.Amendment,
+            _ => (EntryType10)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        EntryType10 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                EntryType10.Increment => "increment",
+                EntryType10.Decrement => "decrement",
+                EntryType10.ExpirationChange => "expiration_change",
+                EntryType10.CreditBlockExpiry => "credit_block_expiry",
+                EntryType10.Void => "void",
+                EntryType10.VoidInitiated => "void_initiated",
+                EntryType10.Amendment => "amendment",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

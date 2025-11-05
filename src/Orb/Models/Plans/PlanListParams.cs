@@ -1,8 +1,9 @@
-using System;
 using System.Net.Http;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Models.Plans.PlanListParamsProperties;
+using Orb.Exceptions;
+using System = System;
 
 namespace Orb.Models.Plans;
 
@@ -14,14 +15,17 @@ namespace Orb.Models.Plans;
 /// </summary>
 public sealed record class PlanListParams : ParamsBase
 {
-    public DateTime? CreatedAtGt
+    public System::DateTime? CreatedAtGt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -32,14 +36,17 @@ public sealed record class PlanListParams : ParamsBase
         }
     }
 
-    public DateTime? CreatedAtGte
+    public System::DateTime? CreatedAtGte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -50,14 +57,17 @@ public sealed record class PlanListParams : ParamsBase
         }
     }
 
-    public DateTime? CreatedAtLt
+    public System::DateTime? CreatedAtLt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -68,14 +78,17 @@ public sealed record class PlanListParams : ParamsBase
         }
     }
 
-    public DateTime? CreatedAtLte
+    public System::DateTime? CreatedAtLte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -132,17 +145,17 @@ public sealed record class PlanListParams : ParamsBase
     /// <summary>
     /// The plan status to filter to ('active', 'archived', or 'draft').
     /// </summary>
-    public ApiEnum<string, Status>? Status
+    public ApiEnum<string, global::Orb.Models.Plans.StatusModel>? Status
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("status", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Status>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<ApiEnum<
+                string,
+                global::Orb.Models.Plans.StatusModel
+            >?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -153,9 +166,9 @@ public sealed record class PlanListParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/plans")
+        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/plans")
         {
             Query = this.QueryString(client),
         }.Uri;
@@ -168,5 +181,55 @@ public sealed record class PlanListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+/// <summary>
+/// The plan status to filter to ('active', 'archived', or 'draft').
+/// </summary>
+[JsonConverter(typeof(global::Orb.Models.Plans.StatusModelConverter))]
+public enum StatusModel
+{
+    Active,
+    Archived,
+    Draft,
+}
+
+sealed class StatusModelConverter : JsonConverter<global::Orb.Models.Plans.StatusModel>
+{
+    public override global::Orb.Models.Plans.StatusModel Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "active" => global::Orb.Models.Plans.StatusModel.Active,
+            "archived" => global::Orb.Models.Plans.StatusModel.Archived,
+            "draft" => global::Orb.Models.Plans.StatusModel.Draft,
+            _ => (global::Orb.Models.Plans.StatusModel)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Plans.StatusModel value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.Plans.StatusModel.Active => "active",
+                global::Orb.Models.Plans.StatusModel.Archived => "archived",
+                global::Orb.Models.Plans.StatusModel.Draft => "draft",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

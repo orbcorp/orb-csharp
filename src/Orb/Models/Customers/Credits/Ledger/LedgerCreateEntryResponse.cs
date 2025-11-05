@@ -1,9 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Exceptions;
+using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
@@ -48,7 +48,7 @@ public record class LedgerCreateEntryResponse
         }
     }
 
-    public DateTime CreatedAt
+    public System::DateTime CreatedAt
     {
         get
         {
@@ -176,11 +176,11 @@ public record class LedgerCreateEntryResponse
         }
     }
 
-    public DateTime? NewBlockExpiryDate
+    public System::DateTime? NewBlockExpiryDate
     {
         get
         {
-            return Match<DateTime?>(
+            return Match<System::DateTime?>(
                 incrementLedgerEntry: (_) => null,
                 decrementLedgerEntry: (_) => null,
                 expirationChangeLedgerEntry: (x) => x.NewBlockExpiryDate,
@@ -318,13 +318,13 @@ public record class LedgerCreateEntryResponse
     }
 
     public void Switch(
-        Action<IncrementLedgerEntry> incrementLedgerEntry,
-        Action<DecrementLedgerEntry> decrementLedgerEntry,
-        Action<ExpirationChangeLedgerEntry> expirationChangeLedgerEntry,
-        Action<CreditBlockExpiryLedgerEntry> creditBlockExpiryLedgerEntry,
-        Action<VoidLedgerEntry> voidLedgerEntry,
-        Action<VoidInitiatedLedgerEntry> voidInitiatedLedgerEntry,
-        Action<AmendmentLedgerEntry> amendmentLedgerEntry
+        System::Action<IncrementLedgerEntry> incrementLedgerEntry,
+        System::Action<DecrementLedgerEntry> decrementLedgerEntry,
+        System::Action<ExpirationChangeLedgerEntry> expirationChangeLedgerEntry,
+        System::Action<CreditBlockExpiryLedgerEntry> creditBlockExpiryLedgerEntry,
+        System::Action<VoidLedgerEntry> voidLedgerEntry,
+        System::Action<VoidInitiatedLedgerEntry> voidInitiatedLedgerEntry,
+        System::Action<AmendmentLedgerEntry> amendmentLedgerEntry
     )
     {
         switch (this.Value)
@@ -358,13 +358,13 @@ public record class LedgerCreateEntryResponse
     }
 
     public T Match<T>(
-        Func<IncrementLedgerEntry, T> incrementLedgerEntry,
-        Func<DecrementLedgerEntry, T> decrementLedgerEntry,
-        Func<ExpirationChangeLedgerEntry, T> expirationChangeLedgerEntry,
-        Func<CreditBlockExpiryLedgerEntry, T> creditBlockExpiryLedgerEntry,
-        Func<VoidLedgerEntry, T> voidLedgerEntry,
-        Func<VoidInitiatedLedgerEntry, T> voidInitiatedLedgerEntry,
-        Func<AmendmentLedgerEntry, T> amendmentLedgerEntry
+        System::Func<IncrementLedgerEntry, T> incrementLedgerEntry,
+        System::Func<DecrementLedgerEntry, T> decrementLedgerEntry,
+        System::Func<ExpirationChangeLedgerEntry, T> expirationChangeLedgerEntry,
+        System::Func<CreditBlockExpiryLedgerEntry, T> creditBlockExpiryLedgerEntry,
+        System::Func<VoidLedgerEntry, T> voidLedgerEntry,
+        System::Func<VoidInitiatedLedgerEntry, T> voidInitiatedLedgerEntry,
+        System::Func<AmendmentLedgerEntry, T> amendmentLedgerEntry
     )
     {
         return this.Value switch
@@ -399,7 +399,7 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
 {
     public override LedgerCreateEntryResponse? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -432,7 +432,8 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                         return new LedgerCreateEntryResponse(deserialized);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
@@ -442,7 +443,7 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     );
                 }
 
-                throw new AggregateException(exceptions);
+                throw new System::AggregateException(exceptions);
             }
             case "decrement":
             {
@@ -460,7 +461,8 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                         return new LedgerCreateEntryResponse(deserialized);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
@@ -470,7 +472,7 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     );
                 }
 
-                throw new AggregateException(exceptions);
+                throw new System::AggregateException(exceptions);
             }
             case "expiration_change":
             {
@@ -488,7 +490,8 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                         return new LedgerCreateEntryResponse(deserialized);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
@@ -498,7 +501,7 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     );
                 }
 
-                throw new AggregateException(exceptions);
+                throw new System::AggregateException(exceptions);
             }
             case "credit_block_expiry":
             {
@@ -516,7 +519,8 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                         return new LedgerCreateEntryResponse(deserialized);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
@@ -526,7 +530,7 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     );
                 }
 
-                throw new AggregateException(exceptions);
+                throw new System::AggregateException(exceptions);
             }
             case "void":
             {
@@ -541,7 +545,8 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                         return new LedgerCreateEntryResponse(deserialized);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
@@ -551,7 +556,7 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     );
                 }
 
-                throw new AggregateException(exceptions);
+                throw new System::AggregateException(exceptions);
             }
             case "void_initiated":
             {
@@ -569,7 +574,8 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                         return new LedgerCreateEntryResponse(deserialized);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
@@ -579,7 +585,7 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     );
                 }
 
-                throw new AggregateException(exceptions);
+                throw new System::AggregateException(exceptions);
             }
             case "amendment":
             {
@@ -597,7 +603,8 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                         return new LedgerCreateEntryResponse(deserialized);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is OrbInvalidDataException)
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
@@ -607,7 +614,7 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     );
                 }
 
-                throw new AggregateException(exceptions);
+                throw new System::AggregateException(exceptions);
             }
             default:
             {

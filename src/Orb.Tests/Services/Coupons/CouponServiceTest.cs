@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Orb.Models.Coupons.CouponCreateParamsProperties.DiscountProperties;
+using Orb.Models.Coupons;
 
 namespace Orb.Tests.Services.Coupons;
 

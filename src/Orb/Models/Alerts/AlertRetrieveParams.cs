@@ -1,6 +1,6 @@
-using System;
 using System.Net.Http;
 using Orb.Core;
+using System = System;
 
 namespace Orb.Models.Alerts;
 
@@ -11,9 +11,9 @@ public sealed record class AlertRetrieveParams : ParamsBase
 {
     public required string AlertID;
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/') + string.Format("/alerts/{0}", this.AlertID)
         )
         {

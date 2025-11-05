@@ -1,10 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
+using System = System;
 
 namespace Orb.Models;
 
@@ -24,13 +24,16 @@ public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
             if (!this.Properties.TryGetValue("package_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'package_amount' cannot be null",
-                    new ArgumentOutOfRangeException("package_amount", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "package_amount",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'package_amount' cannot be null",
-                    new ArgumentNullException("package_amount")
+                    new System::ArgumentNullException("package_amount")
                 );
         }
         set
@@ -53,7 +56,10 @@ public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
             if (!this.Properties.TryGetValue("package_size", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'package_size' cannot be null",
-                    new ArgumentOutOfRangeException("package_size", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "package_size",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);

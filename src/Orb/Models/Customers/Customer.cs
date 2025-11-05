@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.Customers.CustomerProperties;
+using System = System;
 
 namespace Orb.Models.Customers;
 
@@ -36,13 +35,13 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentNullException("id")
+                    new System::ArgumentNullException("id")
                 );
         }
         set
@@ -61,7 +60,7 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
             if (!this.Properties.TryGetValue("additional_emails", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'additional_emails' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "additional_emails",
                         "Missing required argument"
                     )
@@ -70,7 +69,7 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
             return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'additional_emails' cannot be null",
-                    new ArgumentNullException("additional_emails")
+                    new System::ArgumentNullException("additional_emails")
                 );
         }
         set
@@ -89,7 +88,10 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
             if (!this.Properties.TryGetValue("auto_collection", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'auto_collection' cannot be null",
-                    new ArgumentOutOfRangeException("auto_collection", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "auto_collection",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
@@ -136,13 +138,13 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
             if (!this.Properties.TryGetValue("balance", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'balance' cannot be null",
-                    new ArgumentOutOfRangeException("balance", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("balance", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'balance' cannot be null",
-                    new ArgumentNullException("balance")
+                    new System::ArgumentNullException("balance")
                 );
         }
         set
@@ -172,17 +174,23 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         }
     }
 
-    public required DateTime CreatedAt
+    public required System::DateTime CreatedAt
     {
         get
         {
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'created_at' cannot be null",
-                    new ArgumentOutOfRangeException("created_at", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "created_at",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -223,13 +231,13 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
             if (!this.Properties.TryGetValue("email", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'email' cannot be null",
-                    new ArgumentOutOfRangeException("email", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("email", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'email' cannot be null",
-                    new ArgumentNullException("email")
+                    new System::ArgumentNullException("email")
                 );
         }
         set
@@ -248,7 +256,10 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
             if (!this.Properties.TryGetValue("email_delivery", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'email_delivery' cannot be null",
-                    new ArgumentOutOfRangeException("email_delivery", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "email_delivery",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
@@ -313,13 +324,16 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
             if (!this.Properties.TryGetValue("hierarchy", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'hierarchy' cannot be null",
-                    new ArgumentOutOfRangeException("hierarchy", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "hierarchy",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<Hierarchy>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'hierarchy' cannot be null",
-                    new ArgumentNullException("hierarchy")
+                    new System::ArgumentNullException("hierarchy")
                 );
         }
         set
@@ -344,7 +358,7 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
             if (!this.Properties.TryGetValue("metadata", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'metadata' cannot be null",
-                    new ArgumentOutOfRangeException("metadata", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("metadata", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<Dictionary<string, string>>(
@@ -353,7 +367,7 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
                 )
                 ?? throw new OrbInvalidDataException(
                     "'metadata' cannot be null",
-                    new ArgumentNullException("metadata")
+                    new System::ArgumentNullException("metadata")
                 );
         }
         set
@@ -375,13 +389,13 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentNullException("name")
+                    new System::ArgumentNullException("name")
                 );
         }
         set
@@ -397,14 +411,14 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
     /// This is used for creating charges or invoices in an external system via Orb.
     /// When not in test mode, the connection must first be configured in the Orb webapp.
     /// </summary>
-    public required ApiEnum<string, PaymentProvider>? PaymentProvider
+    public required ApiEnum<string, PaymentProvider2>? PaymentProvider
     {
         get
         {
             if (!this.Properties.TryGetValue("payment_provider", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, PaymentProvider>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, PaymentProvider2>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -611,13 +625,13 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
             if (!this.Properties.TryGetValue("timezone", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'timezone' cannot be null",
-                    new ArgumentOutOfRangeException("timezone", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("timezone", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'timezone' cannot be null",
-                    new ArgumentNullException("timezone")
+                    new System::ArgumentNullException("timezone")
                 );
         }
         set
@@ -739,5 +753,394 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
     public static Customer FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
+    }
+}
+
+/// <summary>
+/// The hierarchical relationships for this customer.
+/// </summary>
+[JsonConverter(typeof(ModelConverter<Hierarchy>))]
+public sealed record class Hierarchy : ModelBase, IFromRaw<Hierarchy>
+{
+    public required List<CustomerMinified> Children
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("children", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'children' cannot be null",
+                    new System::ArgumentOutOfRangeException("children", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<List<CustomerMinified>>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'children' cannot be null",
+                    new System::ArgumentNullException("children")
+                );
+        }
+        set
+        {
+            this.Properties["children"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required CustomerMinified? Parent
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("parent", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<CustomerMinified?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["parent"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        foreach (var item in this.Children)
+        {
+            item.Validate();
+        }
+        this.Parent?.Validate();
+    }
+
+    public Hierarchy() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Hierarchy(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static Hierarchy FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+/// <summary>
+/// This is used for creating charges or invoices in an external system via Orb. When
+/// not in test mode, the connection must first be configured in the Orb webapp.
+/// </summary>
+[JsonConverter(typeof(PaymentProvider2Converter))]
+public enum PaymentProvider2
+{
+    Quickbooks,
+    BillCom,
+    StripeCharge,
+    StripeInvoice,
+    Netsuite,
+}
+
+sealed class PaymentProvider2Converter : JsonConverter<PaymentProvider2>
+{
+    public override PaymentProvider2 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "quickbooks" => PaymentProvider2.Quickbooks,
+            "bill.com" => PaymentProvider2.BillCom,
+            "stripe_charge" => PaymentProvider2.StripeCharge,
+            "stripe_invoice" => PaymentProvider2.StripeInvoice,
+            "netsuite" => PaymentProvider2.Netsuite,
+            _ => (PaymentProvider2)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        PaymentProvider2 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                PaymentProvider2.Quickbooks => "quickbooks",
+                PaymentProvider2.BillCom => "bill.com",
+                PaymentProvider2.StripeCharge => "stripe_charge",
+                PaymentProvider2.StripeInvoice => "stripe_invoice",
+                PaymentProvider2.Netsuite => "netsuite",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<AccountingSyncConfiguration>))]
+public sealed record class AccountingSyncConfiguration
+    : ModelBase,
+        IFromRaw<AccountingSyncConfiguration>
+{
+    public required List<AccountingProvider> AccountingProviders
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("accounting_providers", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'accounting_providers' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "accounting_providers",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<List<AccountingProvider>>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'accounting_providers' cannot be null",
+                    new System::ArgumentNullException("accounting_providers")
+                );
+        }
+        set
+        {
+            this.Properties["accounting_providers"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required bool Excluded
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("excluded", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'excluded' cannot be null",
+                    new System::ArgumentOutOfRangeException("excluded", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["excluded"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        foreach (var item in this.AccountingProviders)
+        {
+            item.Validate();
+        }
+        _ = this.Excluded;
+    }
+
+    public AccountingSyncConfiguration() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AccountingSyncConfiguration(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static AccountingSyncConfiguration FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
+    {
+        return new(properties);
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<AccountingProvider>))]
+public sealed record class AccountingProvider : ModelBase, IFromRaw<AccountingProvider>
+{
+    public required string? ExternalProviderID
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("external_provider_id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["external_provider_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required ApiEnum<string, ProviderType> ProviderType
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("provider_type", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'provider_type' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "provider_type",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<ApiEnum<string, ProviderType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["provider_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.ExternalProviderID;
+        this.ProviderType.Validate();
+    }
+
+    public AccountingProvider() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AccountingProvider(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static AccountingProvider FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+[JsonConverter(typeof(ProviderTypeConverter))]
+public enum ProviderType
+{
+    Quickbooks,
+    Netsuite,
+}
+
+sealed class ProviderTypeConverter : JsonConverter<ProviderType>
+{
+    public override ProviderType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "quickbooks" => ProviderType.Quickbooks,
+            "netsuite" => ProviderType.Netsuite,
+            _ => (ProviderType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ProviderType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ProviderType.Quickbooks => "quickbooks",
+                ProviderType.Netsuite => "netsuite",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<ReportingConfiguration>))]
+public sealed record class ReportingConfiguration : ModelBase, IFromRaw<ReportingConfiguration>
+{
+    public required bool Exempt
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("exempt", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'exempt' cannot be null",
+                    new System::ArgumentOutOfRangeException("exempt", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["exempt"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.Exempt;
+    }
+
+    public ReportingConfiguration() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ReportingConfiguration(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static ReportingConfiguration FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
+    {
+        return new(properties);
+    }
+
+    [SetsRequiredMembers]
+    public ReportingConfiguration(bool exempt)
+        : this()
+    {
+        this.Exempt = exempt;
     }
 }

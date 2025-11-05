@@ -1,10 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
+using System = System;
 
 namespace Orb.Models;
 
@@ -22,13 +22,13 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentNullException("id")
+                    new System::ArgumentNullException("id")
                 );
         }
         set
@@ -50,7 +50,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
             if (!this.Properties.TryGetValue("billing_cycle_day", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'billing_cycle_day' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "billing_cycle_day",
                         "Missing required argument"
                     )
@@ -72,7 +72,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     /// that the instant returned is exactly the end of the billing period. Set to
     /// null if this price interval is not currently active.
     /// </summary>
-    public required DateTime? CurrentBillingPeriodEndDate
+    public required System::DateTime? CurrentBillingPeriodEndDate
     {
         get
         {
@@ -84,7 +84,10 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
             )
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -100,7 +103,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     /// the instant returned is exactly the beginning of the billing period. Set
     /// to null if this price interval is not currently active.
     /// </summary>
-    public required DateTime? CurrentBillingPeriodStartDate
+    public required System::DateTime? CurrentBillingPeriodStartDate
     {
         get
         {
@@ -112,7 +115,10 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
             )
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -125,14 +131,17 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     /// The end date of the price interval. This is the date that Orb stops billing
     /// for this price.
     /// </summary>
-    public required DateTime? EndDate
+    public required System::DateTime? EndDate
     {
         get
         {
             if (!this.Properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -212,13 +221,13 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
             if (!this.Properties.TryGetValue("price", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'price' cannot be null",
-                    new ArgumentOutOfRangeException("price", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("price", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'price' cannot be null",
-                    new ArgumentNullException("price")
+                    new System::ArgumentNullException("price")
                 );
         }
         set
@@ -234,17 +243,23 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     /// The start date of the price interval. This is the date that Orb starts billing
     /// for this price.
     /// </summary>
-    public required DateTime StartDate
+    public required System::DateTime StartDate
     {
         get
         {
             if (!this.Properties.TryGetValue("start_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'start_date' cannot be null",
-                    new ArgumentOutOfRangeException("start_date", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "start_date",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {

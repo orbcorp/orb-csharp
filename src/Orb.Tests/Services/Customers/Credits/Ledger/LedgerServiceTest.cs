@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties.IncrementProperties.FilterProperties;
-using BodyProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryParamsProperties.BodyProperties;
-using FilterProperties = Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.IncrementProperties.FilterProperties;
+using Ledger = Orb.Models.Customers.Credits.Ledger;
 
 namespace Orb.Tests.Services.Customers.Credits.Ledger;
 
@@ -26,7 +24,7 @@ public class LedgerServiceTest : TestBase
             {
                 CustomerID = "customer_id",
                 Body = new(
-                    new BodyProperties::Increment()
+                    new Ledger::Increment()
                     {
                         Amount = 0,
                         Currency = "currency",
@@ -37,8 +35,8 @@ public class LedgerServiceTest : TestBase
                         [
                             new()
                             {
-                                Field = Field.ItemID,
-                                Operator = Operator.Includes,
+                                Field = Ledger::Field.ItemID,
+                                Operator = Ledger::Operator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -69,7 +67,7 @@ public class LedgerServiceTest : TestBase
             {
                 ExternalCustomerID = "external_customer_id",
                 Body = new(
-                    new global::Orb.Models.Customers.Credits.Ledger.LedgerCreateEntryByExternalIDParamsProperties.BodyProperties.Increment()
+                    new Ledger::IncrementModel()
                     {
                         Amount = 0,
                         Currency = "currency",
@@ -80,8 +78,8 @@ public class LedgerServiceTest : TestBase
                         [
                             new()
                             {
-                                Field = FilterProperties::Field.ItemID,
-                                Operator = FilterProperties::Operator.Includes,
+                                Field = Ledger::FieldModel.ItemID,
+                                Operator = Ledger::OperatorModel.Includes,
                                 Values = ["string"],
                             },
                         ],

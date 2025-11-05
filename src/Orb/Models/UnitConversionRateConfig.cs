@@ -1,31 +1,30 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.UnitConversionRateConfigProperties;
+using System = System;
 
 namespace Orb.Models;
 
 [JsonConverter(typeof(ModelConverter<UnitConversionRateConfig>))]
 public sealed record class UnitConversionRateConfig : ModelBase, IFromRaw<UnitConversionRateConfig>
 {
-    public required ApiEnum<string, ConversionRateType> ConversionRateType
+    public required ApiEnum<string, ConversionRateTypeModel> ConversionRateType
     {
         get
         {
             if (!this.Properties.TryGetValue("conversion_rate_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'conversion_rate_type' cannot be null",
-                    new ArgumentOutOfRangeException(
+                    new System::ArgumentOutOfRangeException(
                         "conversion_rate_type",
                         "Missing required argument"
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ConversionRateType>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, ConversionRateTypeModel>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -46,7 +45,10 @@ public sealed record class UnitConversionRateConfig : ModelBase, IFromRaw<UnitCo
             if (!this.Properties.TryGetValue("unit_config", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'unit_config' cannot be null",
-                    new ArgumentOutOfRangeException("unit_config", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "unit_config",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<ConversionRateUnitConfig>(
@@ -55,7 +57,7 @@ public sealed record class UnitConversionRateConfig : ModelBase, IFromRaw<UnitCo
                 )
                 ?? throw new OrbInvalidDataException(
                     "'unit_config' cannot be null",
-                    new ArgumentNullException("unit_config")
+                    new System::ArgumentNullException("unit_config")
                 );
         }
         set
@@ -88,5 +90,46 @@ public sealed record class UnitConversionRateConfig : ModelBase, IFromRaw<UnitCo
     )
     {
         return new(properties);
+    }
+}
+
+[JsonConverter(typeof(ConversionRateTypeModelConverter))]
+public enum ConversionRateTypeModel
+{
+    Unit,
+}
+
+sealed class ConversionRateTypeModelConverter : JsonConverter<ConversionRateTypeModel>
+{
+    public override ConversionRateTypeModel Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "unit" => ConversionRateTypeModel.Unit,
+            _ => (ConversionRateTypeModel)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ConversionRateTypeModel value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ConversionRateTypeModel.Unit => "unit",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

@@ -1,8 +1,9 @@
-using System;
 using System.Net.Http;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Models.Customers.Credits.Ledger.LedgerListParamsProperties;
+using Orb.Exceptions;
+using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
@@ -77,14 +78,17 @@ public sealed record class LedgerListParams : ParamsBase
 {
     public required string CustomerID;
 
-    public DateTime? CreatedAtGt
+    public System::DateTime? CreatedAtGt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -95,14 +99,17 @@ public sealed record class LedgerListParams : ParamsBase
         }
     }
 
-    public DateTime? CreatedAtGte
+    public System::DateTime? CreatedAtGte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -113,14 +120,17 @@ public sealed record class LedgerListParams : ParamsBase
         }
     }
 
-    public DateTime? CreatedAtLt
+    public System::DateTime? CreatedAtLt
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -131,14 +141,17 @@ public sealed record class LedgerListParams : ParamsBase
         }
     }
 
-    public DateTime? CreatedAtLte
+    public System::DateTime? CreatedAtLte
     {
         get
         {
             if (!this.QueryProperties.TryGetValue("created_at[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<System::DateTime?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -273,9 +286,9 @@ public sealed record class LedgerListParams : ParamsBase
         }
     }
 
-    public override Uri Url(IOrbClient client)
+    public override System::Uri Url(IOrbClient client)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/customers/{0}/credits/ledger", this.CustomerID)
         )
@@ -291,5 +304,108 @@ public sealed record class LedgerListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+[JsonConverter(typeof(EntryStatusConverter))]
+public enum EntryStatus
+{
+    Committed,
+    Pending,
+}
+
+sealed class EntryStatusConverter : JsonConverter<EntryStatus>
+{
+    public override EntryStatus Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "committed" => EntryStatus.Committed,
+            "pending" => EntryStatus.Pending,
+            _ => (EntryStatus)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        EntryStatus value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                EntryStatus.Committed => "committed",
+                EntryStatus.Pending => "pending",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(EntryTypeConverter))]
+public enum EntryType
+{
+    Increment,
+    Decrement,
+    ExpirationChange,
+    CreditBlockExpiry,
+    Void,
+    VoidInitiated,
+    Amendment,
+}
+
+sealed class EntryTypeConverter : JsonConverter<EntryType>
+{
+    public override EntryType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "increment" => EntryType.Increment,
+            "decrement" => EntryType.Decrement,
+            "expiration_change" => EntryType.ExpirationChange,
+            "credit_block_expiry" => EntryType.CreditBlockExpiry,
+            "void" => EntryType.Void,
+            "void_initiated" => EntryType.VoidInitiated,
+            "amendment" => EntryType.Amendment,
+            _ => (EntryType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        EntryType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                EntryType.Increment => "increment",
+                EntryType.Decrement => "decrement",
+                EntryType.ExpirationChange => "expiration_change",
+                EntryType.CreditBlockExpiry => "credit_block_expiry",
+                EntryType.Void => "void",
+                EntryType.VoidInitiated => "void_initiated",
+                EntryType.Amendment => "amendment",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

@@ -1,28 +1,30 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.NewUsageDiscountProperties;
+using System = System;
 
 namespace Orb.Models;
 
 [JsonConverter(typeof(ModelConverter<NewUsageDiscount>))]
 public sealed record class NewUsageDiscount : ModelBase, IFromRaw<NewUsageDiscount>
 {
-    public required ApiEnum<string, AdjustmentType> AdjustmentType
+    public required ApiEnum<string, AdjustmentType8> AdjustmentType
     {
         get
         {
             if (!this.Properties.TryGetValue("adjustment_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'adjustment_type' cannot be null",
-                    new ArgumentOutOfRangeException("adjustment_type", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "adjustment_type",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, AdjustmentType>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, AdjustmentType8>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -43,7 +45,10 @@ public sealed record class NewUsageDiscount : ModelBase, IFromRaw<NewUsageDiscou
             if (!this.Properties.TryGetValue("usage_discount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'usage_discount' cannot be null",
-                    new ArgumentOutOfRangeException("usage_discount", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "usage_discount",
+                        "Missing required argument"
+                    )
                 );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
@@ -60,14 +65,14 @@ public sealed record class NewUsageDiscount : ModelBase, IFromRaw<NewUsageDiscou
     /// <summary>
     /// If set, the adjustment will apply to every price on the subscription.
     /// </summary>
-    public ApiEnum<bool, AppliesToAll>? AppliesToAll
+    public ApiEnum<bool, AppliesToAll3>? AppliesToAll
     {
         get
         {
             if (!this.Properties.TryGetValue("applies_to_all", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<bool, AppliesToAll>?>(
+            return JsonSerializer.Deserialize<ApiEnum<bool, AppliesToAll3>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -147,14 +152,17 @@ public sealed record class NewUsageDiscount : ModelBase, IFromRaw<NewUsageDiscou
     /// <summary>
     /// A list of filters that determine which prices this adjustment will apply to.
     /// </summary>
-    public List<Filter>? Filters
+    public List<Filter16>? Filters
     {
         get
         {
             if (!this.Properties.TryGetValue("filters", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<Filter>?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<List<Filter16>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -190,14 +198,14 @@ public sealed record class NewUsageDiscount : ModelBase, IFromRaw<NewUsageDiscou
     /// <summary>
     /// If set, only prices of the specified type will have the adjustment applied.
     /// </summary>
-    public ApiEnum<string, PriceType>? PriceType
+    public ApiEnum<string, PriceType3>? PriceType
     {
         get
         {
             if (!this.Properties.TryGetValue("price_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, PriceType>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, PriceType3>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -240,5 +248,353 @@ public sealed record class NewUsageDiscount : ModelBase, IFromRaw<NewUsageDiscou
     public static NewUsageDiscount FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
+    }
+}
+
+[JsonConverter(typeof(AdjustmentType8Converter))]
+public enum AdjustmentType8
+{
+    UsageDiscount,
+}
+
+sealed class AdjustmentType8Converter : JsonConverter<AdjustmentType8>
+{
+    public override AdjustmentType8 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "usage_discount" => AdjustmentType8.UsageDiscount,
+            _ => (AdjustmentType8)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        AdjustmentType8 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                AdjustmentType8.UsageDiscount => "usage_discount",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// If set, the adjustment will apply to every price on the subscription.
+/// </summary>
+[JsonConverter(typeof(AppliesToAll3Converter))]
+public enum AppliesToAll3
+{
+    True,
+}
+
+sealed class AppliesToAll3Converter : JsonConverter<AppliesToAll3>
+{
+    public override AppliesToAll3 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<bool>(ref reader, options) switch
+        {
+            true => AppliesToAll3.True,
+            _ => (AppliesToAll3)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        AppliesToAll3 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                AppliesToAll3.True => true,
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<Filter16>))]
+public sealed record class Filter16 : ModelBase, IFromRaw<Filter16>
+{
+    /// <summary>
+    /// The property of the price to filter on.
+    /// </summary>
+    public required ApiEnum<string, Field16> Field
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("field", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentOutOfRangeException("field", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<ApiEnum<string, Field16>>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["field"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<string, Operator16> Operator
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("operator", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentOutOfRangeException("operator", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<ApiEnum<string, Operator16>>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["operator"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required List<string> Values
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("values", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'values' cannot be null",
+                    new System::ArgumentOutOfRangeException("values", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'values' cannot be null",
+                    new System::ArgumentNullException("values")
+                );
+        }
+        set
+        {
+            this.Properties["values"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public Filter16() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Filter16(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static Filter16 FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+/// <summary>
+/// The property of the price to filter on.
+/// </summary>
+[JsonConverter(typeof(Field16Converter))]
+public enum Field16
+{
+    PriceID,
+    ItemID,
+    PriceType,
+    Currency,
+    PricingUnitID,
+}
+
+sealed class Field16Converter : JsonConverter<Field16>
+{
+    public override Field16 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "price_id" => Field16.PriceID,
+            "item_id" => Field16.ItemID,
+            "price_type" => Field16.PriceType,
+            "currency" => Field16.Currency,
+            "pricing_unit_id" => Field16.PricingUnitID,
+            _ => (Field16)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Field16 value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Field16.PriceID => "price_id",
+                Field16.ItemID => "item_id",
+                Field16.PriceType => "price_type",
+                Field16.Currency => "currency",
+                Field16.PricingUnitID => "pricing_unit_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(typeof(Operator16Converter))]
+public enum Operator16
+{
+    Includes,
+    Excludes,
+}
+
+sealed class Operator16Converter : JsonConverter<Operator16>
+{
+    public override Operator16 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" => Operator16.Includes,
+            "excludes" => Operator16.Excludes,
+            _ => (Operator16)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        Operator16 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Operator16.Includes => "includes",
+                Operator16.Excludes => "excludes",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// If set, only prices of the specified type will have the adjustment applied.
+/// </summary>
+[JsonConverter(typeof(PriceType3Converter))]
+public enum PriceType3
+{
+    Usage,
+    FixedInAdvance,
+    FixedInArrears,
+    Fixed,
+    InArrears,
+}
+
+sealed class PriceType3Converter : JsonConverter<PriceType3>
+{
+    public override PriceType3 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "usage" => PriceType3.Usage,
+            "fixed_in_advance" => PriceType3.FixedInAdvance,
+            "fixed_in_arrears" => PriceType3.FixedInArrears,
+            "fixed" => PriceType3.Fixed,
+            "in_arrears" => PriceType3.InArrears,
+            _ => (PriceType3)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        PriceType3 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                PriceType3.Usage => "usage",
+                PriceType3.FixedInAdvance => "fixed_in_advance",
+                PriceType3.FixedInArrears => "fixed_in_arrears",
+                PriceType3.Fixed => "fixed",
+                PriceType3.InArrears => "in_arrears",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

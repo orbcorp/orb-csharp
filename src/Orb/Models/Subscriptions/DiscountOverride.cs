@@ -1,31 +1,32 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.Subscriptions.DiscountOverrideProperties;
+using System = System;
 
 namespace Orb.Models.Subscriptions;
 
 [JsonConverter(typeof(ModelConverter<DiscountOverride>))]
 public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverride>
 {
-    public required ApiEnum<string, DiscountType> DiscountType
+    public required ApiEnum<string, global::Orb.Models.Subscriptions.DiscountType2> DiscountType
     {
         get
         {
             if (!this.Properties.TryGetValue("discount_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'discount_type' cannot be null",
-                    new ArgumentOutOfRangeException("discount_type", "Missing required argument")
+                    new System::ArgumentOutOfRangeException(
+                        "discount_type",
+                        "Missing required argument"
+                    )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, DiscountType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, global::Orb.Models.Subscriptions.DiscountType2>
+            >(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -125,9 +126,58 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
     }
 
     [SetsRequiredMembers]
-    public DiscountOverride(ApiEnum<string, DiscountType> discountType)
+    public DiscountOverride(
+        ApiEnum<string, global::Orb.Models.Subscriptions.DiscountType2> discountType
+    )
         : this()
     {
         this.DiscountType = discountType;
+    }
+}
+
+[JsonConverter(typeof(global::Orb.Models.Subscriptions.DiscountType2Converter))]
+public enum DiscountType2
+{
+    Percentage,
+    Usage,
+    Amount,
+}
+
+sealed class DiscountType2Converter : JsonConverter<global::Orb.Models.Subscriptions.DiscountType2>
+{
+    public override global::Orb.Models.Subscriptions.DiscountType2 Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "percentage" => global::Orb.Models.Subscriptions.DiscountType2.Percentage,
+            "usage" => global::Orb.Models.Subscriptions.DiscountType2.Usage,
+            "amount" => global::Orb.Models.Subscriptions.DiscountType2.Amount,
+            _ => (global::Orb.Models.Subscriptions.DiscountType2)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Subscriptions.DiscountType2 value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.Subscriptions.DiscountType2.Percentage => "percentage",
+                global::Orb.Models.Subscriptions.DiscountType2.Usage => "usage",
+                global::Orb.Models.Subscriptions.DiscountType2.Amount => "amount",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.Beta.PlanVersionPhaseProperties;
+using System = System;
 
 namespace Orb.Models.Beta;
 
@@ -19,13 +18,13 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
             if (!this.Properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new ArgumentNullException("id")
+                    new System::ArgumentNullException("id")
                 );
         }
         set
@@ -77,17 +76,17 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
         }
     }
 
-    public required ApiEnum<string, DurationUnit>? DurationUnit
+    public required ApiEnum<string, global::Orb.Models.Beta.DurationUnit>? DurationUnit
     {
         get
         {
             if (!this.Properties.TryGetValue("duration_unit", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, DurationUnit>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<ApiEnum<
+                string,
+                global::Orb.Models.Beta.DurationUnit
+            >?>(element, ModelBase.SerializerOptions);
         }
         set
         {
@@ -105,13 +104,13 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentOutOfRangeException("name", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'name' cannot be null",
-                    new ArgumentNullException("name")
+                    new System::ArgumentNullException("name")
                 );
         }
         set
@@ -133,7 +132,7 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
             if (!this.Properties.TryGetValue("order", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'order' cannot be null",
-                    new ArgumentOutOfRangeException("order", "Missing required argument")
+                    new System::ArgumentOutOfRangeException("order", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
@@ -170,5 +169,58 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
     public static PlanVersionPhase FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
+    }
+}
+
+[JsonConverter(typeof(global::Orb.Models.Beta.DurationUnitConverter))]
+public enum DurationUnit
+{
+    Daily,
+    Monthly,
+    Quarterly,
+    SemiAnnual,
+    Annual,
+}
+
+sealed class DurationUnitConverter : JsonConverter<global::Orb.Models.Beta.DurationUnit>
+{
+    public override global::Orb.Models.Beta.DurationUnit Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "daily" => global::Orb.Models.Beta.DurationUnit.Daily,
+            "monthly" => global::Orb.Models.Beta.DurationUnit.Monthly,
+            "quarterly" => global::Orb.Models.Beta.DurationUnit.Quarterly,
+            "semi_annual" => global::Orb.Models.Beta.DurationUnit.SemiAnnual,
+            "annual" => global::Orb.Models.Beta.DurationUnit.Annual,
+            _ => (global::Orb.Models.Beta.DurationUnit)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Beta.DurationUnit value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.Beta.DurationUnit.Daily => "daily",
+                global::Orb.Models.Beta.DurationUnit.Monthly => "monthly",
+                global::Orb.Models.Beta.DurationUnit.Quarterly => "quarterly",
+                global::Orb.Models.Beta.DurationUnit.SemiAnnual => "semi_annual",
+                global::Orb.Models.Beta.DurationUnit.Annual => "annual",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }
