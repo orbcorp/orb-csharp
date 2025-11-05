@@ -155,10 +155,7 @@ using System;
 
 var customer = await client
     .WithOptions(options =>
-        options with
-        {
-            Timeout = TimeSpan.FromSeconds(42)
-        }
+        options with { Timeout = TimeSpan.FromSeconds(42) }
     )
     .Customers.Create(parameters);
 
@@ -197,10 +194,7 @@ using System;
 
 var customer = await client
     .WithOptions(options =>
-        options with
-        {
-            ResponseValidation = true
-        }
+        options with { ResponseValidation = true }
     )
     .Customers.Create(parameters);
 
