@@ -69,6 +69,35 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     }
 
     /// <summary>
+    /// For in-arrears prices. If true, and the price interval ends mid-cycle, the
+    /// final line item will be deferred to the next scheduled invoice instead of
+    /// being billed mid-cycle.
+    /// </summary>
+    public required bool CanDeferBilling
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("can_defer_billing", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'can_defer_billing' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "can_defer_billing",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["can_defer_billing"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
     /// The end of the current billing period. This is an exclusive timestamp, such
     /// that the instant returned is exactly the end of the billing period. Set to
     /// null if this price interval is not currently active.
@@ -297,6 +326,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     {
         _ = this.ID;
         _ = this.BillingCycleDay;
+        _ = this.CanDeferBilling;
         _ = this.CurrentBillingPeriodEndDate;
         _ = this.CurrentBillingPeriodStartDate;
         _ = this.EndDate;

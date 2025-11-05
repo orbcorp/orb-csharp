@@ -43,12 +43,34 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
         }
     }
 
+    /// <summary>
+    /// If true, subtotals from this price are prorated based on the service period
+    /// </summary>
+    public bool? Prorated
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("prorated", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["prorated"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     public override void Validate()
     {
         foreach (var item in this.Tiers)
         {
             item.Validate();
         }
+        _ = this.Prorated;
     }
 
     public TieredConfig() { }

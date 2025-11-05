@@ -46,9 +46,31 @@ public sealed record class UnitConfig : ModelBase, IFromRaw<UnitConfig>
         }
     }
 
+    /// <summary>
+    /// If true, subtotals from this price are prorated based on the service period
+    /// </summary>
+    public bool? Prorated
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("prorated", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["prorated"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     public override void Validate()
     {
         _ = this.UnitAmount;
+        _ = this.Prorated;
     }
 
     public UnitConfig() { }
