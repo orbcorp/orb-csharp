@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Plans;
@@ -28,15 +29,20 @@ public sealed class PlanService : IPlanService
         get { return _externalPlanID.Value; }
     }
 
-    public async Task<Plan> Create(PlanCreateParams parameters)
+    public async Task<Plan> Create(
+        PlanCreateParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<PlanCreateParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var plan = await response.Deserialize<Plan>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var plan = await response.Deserialize<Plan>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             plan.Validate();
@@ -44,15 +50,20 @@ public sealed class PlanService : IPlanService
         return plan;
     }
 
-    public async Task<Plan> Update(PlanUpdateParams parameters)
+    public async Task<Plan> Update(
+        PlanUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<PlanUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var plan = await response.Deserialize<Plan>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var plan = await response.Deserialize<Plan>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             plan.Validate();
@@ -60,7 +71,10 @@ public sealed class PlanService : IPlanService
         return plan;
     }
 
-    public async Task<PlanListPageResponse> List(PlanListParams? parameters = null)
+    public async Task<PlanListPageResponse> List(
+        PlanListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
     {
         parameters ??= new();
 
@@ -69,8 +83,12 @@ public sealed class PlanService : IPlanService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var page = await response.Deserialize<PlanListPageResponse>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var page = await response
+            .Deserialize<PlanListPageResponse>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             page.Validate();
@@ -78,15 +96,20 @@ public sealed class PlanService : IPlanService
         return page;
     }
 
-    public async Task<Plan> Fetch(PlanFetchParams parameters)
+    public async Task<Plan> Fetch(
+        PlanFetchParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<PlanFetchParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var plan = await response.Deserialize<Plan>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var plan = await response.Deserialize<Plan>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             plan.Validate();

@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Beta;
@@ -29,15 +30,22 @@ public sealed class BetaService : IBetaService
         get { return _externalPlanID.Value; }
     }
 
-    public async Task<PlanVersion> CreatePlanVersion(BetaCreatePlanVersionParams parameters)
+    public async Task<PlanVersion> CreatePlanVersion(
+        BetaCreatePlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<BetaCreatePlanVersionParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var planVersion = await response.Deserialize<PlanVersion>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var planVersion = await response
+            .Deserialize<PlanVersion>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             planVersion.Validate();
@@ -45,15 +53,22 @@ public sealed class BetaService : IBetaService
         return planVersion;
     }
 
-    public async Task<PlanVersion> FetchPlanVersion(BetaFetchPlanVersionParams parameters)
+    public async Task<PlanVersion> FetchPlanVersion(
+        BetaFetchPlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<BetaFetchPlanVersionParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var planVersion = await response.Deserialize<PlanVersion>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var planVersion = await response
+            .Deserialize<PlanVersion>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             planVersion.Validate();
@@ -61,15 +76,20 @@ public sealed class BetaService : IBetaService
         return planVersion;
     }
 
-    public async Task<Plans::Plan> SetDefaultPlanVersion(BetaSetDefaultPlanVersionParams parameters)
+    public async Task<Plans::Plan> SetDefaultPlanVersion(
+        BetaSetDefaultPlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<BetaSetDefaultPlanVersionParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var plan = await response.Deserialize<Plans::Plan>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var plan = await response.Deserialize<Plans::Plan>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             plan.Validate();

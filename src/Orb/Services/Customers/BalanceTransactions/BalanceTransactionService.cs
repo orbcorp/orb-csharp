@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using BalanceTransactions = Orb.Models.Customers.BalanceTransactions;
@@ -21,7 +22,8 @@ public sealed class BalanceTransactionService : IBalanceTransactionService
     }
 
     public async Task<BalanceTransactions::BalanceTransactionCreateResponse> Create(
-        BalanceTransactions::BalanceTransactionCreateParams parameters
+        BalanceTransactions::BalanceTransactionCreateParams parameters,
+        CancellationToken cancellationToken = default
     )
     {
         HttpRequest<BalanceTransactions::BalanceTransactionCreateParams> request = new()
@@ -29,9 +31,11 @@ public sealed class BalanceTransactionService : IBalanceTransactionService
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var balanceTransaction = await response
-            .Deserialize<BalanceTransactions::BalanceTransactionCreateResponse>()
+            .Deserialize<BalanceTransactions::BalanceTransactionCreateResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -41,7 +45,8 @@ public sealed class BalanceTransactionService : IBalanceTransactionService
     }
 
     public async Task<BalanceTransactions::BalanceTransactionListPageResponse> List(
-        BalanceTransactions::BalanceTransactionListParams parameters
+        BalanceTransactions::BalanceTransactionListParams parameters,
+        CancellationToken cancellationToken = default
     )
     {
         HttpRequest<BalanceTransactions::BalanceTransactionListParams> request = new()
@@ -49,9 +54,11 @@ public sealed class BalanceTransactionService : IBalanceTransactionService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var page = await response
-            .Deserialize<BalanceTransactions::BalanceTransactionListPageResponse>()
+            .Deserialize<BalanceTransactions::BalanceTransactionListPageResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {

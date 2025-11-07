@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Events.Volume;
@@ -22,5 +23,8 @@ public interface IVolumeService
     /// timestamp is passed in for either start or end time, the response includes
     /// the hours the timestamp falls in.
     /// </summary>
-    Task<EventVolumes> List(VolumeListParams parameters);
+    Task<EventVolumes> List(
+        VolumeListParams parameters,
+        CancellationToken cancellationToken = default
+    );
 }

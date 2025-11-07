@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.DimensionalPriceGroups;
@@ -30,16 +31,21 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
         get { return _externalDimensionalPriceGroupID.Value; }
     }
 
-    public async Task<DimensionalPriceGroup> Create(DimensionalPriceGroupCreateParams parameters)
+    public async Task<DimensionalPriceGroup> Create(
+        DimensionalPriceGroupCreateParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<DimensionalPriceGroupCreateParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var dimensionalPriceGroup = await response
-            .Deserialize<DimensionalPriceGroup>()
+            .Deserialize<DimensionalPriceGroup>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -49,7 +55,8 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
     }
 
     public async Task<DimensionalPriceGroup> Retrieve(
-        DimensionalPriceGroupRetrieveParams parameters
+        DimensionalPriceGroupRetrieveParams parameters,
+        CancellationToken cancellationToken = default
     )
     {
         HttpRequest<DimensionalPriceGroupRetrieveParams> request = new()
@@ -57,9 +64,11 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var dimensionalPriceGroup = await response
-            .Deserialize<DimensionalPriceGroup>()
+            .Deserialize<DimensionalPriceGroup>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -68,16 +77,21 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
         return dimensionalPriceGroup;
     }
 
-    public async Task<DimensionalPriceGroup> Update(DimensionalPriceGroupUpdateParams parameters)
+    public async Task<DimensionalPriceGroup> Update(
+        DimensionalPriceGroupUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<DimensionalPriceGroupUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var dimensionalPriceGroup = await response
-            .Deserialize<DimensionalPriceGroup>()
+            .Deserialize<DimensionalPriceGroup>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -87,7 +101,8 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
     }
 
     public async Task<DimensionalPriceGroupsModel> List(
-        DimensionalPriceGroupListParams? parameters = null
+        DimensionalPriceGroupListParams? parameters = null,
+        CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
@@ -97,8 +112,12 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var page = await response.Deserialize<DimensionalPriceGroupsModel>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var page = await response
+            .Deserialize<DimensionalPriceGroupsModel>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             page.Validate();

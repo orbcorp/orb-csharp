@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Coupons;
@@ -28,15 +29,20 @@ public sealed class CouponService : ICouponService
         get { return _subscriptions.Value; }
     }
 
-    public async Task<Coupon> Create(CouponCreateParams parameters)
+    public async Task<Coupon> Create(
+        CouponCreateParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<CouponCreateParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var coupon = await response.Deserialize<Coupon>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var coupon = await response.Deserialize<Coupon>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             coupon.Validate();
@@ -44,7 +50,10 @@ public sealed class CouponService : ICouponService
         return coupon;
     }
 
-    public async Task<CouponListPageResponse> List(CouponListParams? parameters = null)
+    public async Task<CouponListPageResponse> List(
+        CouponListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
     {
         parameters ??= new();
 
@@ -53,8 +62,12 @@ public sealed class CouponService : ICouponService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var page = await response.Deserialize<CouponListPageResponse>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var page = await response
+            .Deserialize<CouponListPageResponse>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             page.Validate();
@@ -62,15 +75,20 @@ public sealed class CouponService : ICouponService
         return page;
     }
 
-    public async Task<Coupon> Archive(CouponArchiveParams parameters)
+    public async Task<Coupon> Archive(
+        CouponArchiveParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<CouponArchiveParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var coupon = await response.Deserialize<Coupon>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var coupon = await response.Deserialize<Coupon>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             coupon.Validate();
@@ -78,15 +96,20 @@ public sealed class CouponService : ICouponService
         return coupon;
     }
 
-    public async Task<Coupon> Fetch(CouponFetchParams parameters)
+    public async Task<Coupon> Fetch(
+        CouponFetchParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<CouponFetchParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var coupon = await response.Deserialize<Coupon>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var coupon = await response.Deserialize<Coupon>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             coupon.Validate();

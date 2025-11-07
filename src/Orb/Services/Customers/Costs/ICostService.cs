@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Customers.Costs;
@@ -108,7 +109,10 @@ public interface ICostService
     /// with the `grouping_key` and `secondary_grouping_key` based on the matrix price
     /// definition, for each `grouping_value` and `secondary_grouping_value` available.
     /// </summary>
-    Task<CostListResponse> List(CostListParams parameters);
+    Task<CostListResponse> List(
+        CostListParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint is used to fetch a day-by-day snapshot of a customer's costs
@@ -209,5 +213,8 @@ public interface ICostService
     /// with the `grouping_key` and `secondary_grouping_key` based on the matrix price
     /// definition, for each `grouping_value` and `secondary_grouping_value` available.
     /// </summary>
-    Task<CostListByExternalIDResponse> ListByExternalID(CostListByExternalIDParams parameters);
+    Task<CostListByExternalIDResponse> ListByExternalID(
+        CostListByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    );
 }

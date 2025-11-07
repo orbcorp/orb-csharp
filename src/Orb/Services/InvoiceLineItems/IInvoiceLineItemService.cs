@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.InvoiceLineItems;
@@ -22,5 +23,8 @@ public interface IInvoiceLineItemService
     /// item is looked up by ID for association,   but the provided `name` is used
     /// for the line item (not the item's name).
     /// </summary>
-    Task<InvoiceLineItemCreateResponse> Create(InvoiceLineItemCreateParams parameters);
+    Task<InvoiceLineItemCreateResponse> Create(
+        InvoiceLineItemCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Customers.Credits;
@@ -24,7 +25,10 @@ public interface ICreditService
     /// Note that `currency` defaults to credits if not specified. To use a real
     /// world currency, set `currency` to an ISO 4217 string.
     /// </summary>
-    Task<CreditListPageResponse> List(CreditListParams parameters);
+    Task<CreditListPageResponse> List(
+        CreditListParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// Returns a paginated list of unexpired, non-zero credit blocks for a customer.
@@ -36,6 +40,7 @@ public interface ICreditService
     /// world currency, set `currency` to an ISO 4217 string.
     /// </summary>
     Task<CreditListByExternalIDPageResponse> ListByExternalID(
-        CreditListByExternalIDParams parameters
+        CreditListByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
     );
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Prices;
@@ -29,15 +30,22 @@ public sealed class PriceService : IPriceService
         get { return _externalPriceID.Value; }
     }
 
-    public async Task<Models::Price> Create(PriceCreateParams parameters)
+    public async Task<Models::Price> Create(
+        PriceCreateParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<PriceCreateParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var price = await response.Deserialize<Models::Price>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var price = await response
+            .Deserialize<Models::Price>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             price.Validate();
@@ -45,15 +53,22 @@ public sealed class PriceService : IPriceService
         return price;
     }
 
-    public async Task<Models::Price> Update(PriceUpdateParams parameters)
+    public async Task<Models::Price> Update(
+        PriceUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<PriceUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var price = await response.Deserialize<Models::Price>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var price = await response
+            .Deserialize<Models::Price>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             price.Validate();
@@ -61,7 +76,10 @@ public sealed class PriceService : IPriceService
         return price;
     }
 
-    public async Task<PriceListPageResponse> List(PriceListParams? parameters = null)
+    public async Task<PriceListPageResponse> List(
+        PriceListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
     {
         parameters ??= new();
 
@@ -70,8 +88,12 @@ public sealed class PriceService : IPriceService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var page = await response.Deserialize<PriceListPageResponse>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var page = await response
+            .Deserialize<PriceListPageResponse>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             page.Validate();
@@ -79,16 +101,21 @@ public sealed class PriceService : IPriceService
         return page;
     }
 
-    public async Task<PriceEvaluateResponse> Evaluate(PriceEvaluateParams parameters)
+    public async Task<PriceEvaluateResponse> Evaluate(
+        PriceEvaluateParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<PriceEvaluateParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var deserializedResponse = await response
-            .Deserialize<PriceEvaluateResponse>()
+            .Deserialize<PriceEvaluateResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -98,7 +125,8 @@ public sealed class PriceService : IPriceService
     }
 
     public async Task<PriceEvaluateMultipleResponse> EvaluateMultiple(
-        PriceEvaluateMultipleParams parameters
+        PriceEvaluateMultipleParams parameters,
+        CancellationToken cancellationToken = default
     )
     {
         HttpRequest<PriceEvaluateMultipleParams> request = new()
@@ -106,9 +134,11 @@ public sealed class PriceService : IPriceService
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var deserializedResponse = await response
-            .Deserialize<PriceEvaluateMultipleResponse>()
+            .Deserialize<PriceEvaluateMultipleResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -118,7 +148,8 @@ public sealed class PriceService : IPriceService
     }
 
     public async Task<PriceEvaluatePreviewEventsResponse> EvaluatePreviewEvents(
-        PriceEvaluatePreviewEventsParams parameters
+        PriceEvaluatePreviewEventsParams parameters,
+        CancellationToken cancellationToken = default
     )
     {
         HttpRequest<PriceEvaluatePreviewEventsParams> request = new()
@@ -126,9 +157,11 @@ public sealed class PriceService : IPriceService
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var deserializedResponse = await response
-            .Deserialize<PriceEvaluatePreviewEventsResponse>()
+            .Deserialize<PriceEvaluatePreviewEventsResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -137,15 +170,22 @@ public sealed class PriceService : IPriceService
         return deserializedResponse;
     }
 
-    public async Task<Models::Price> Fetch(PriceFetchParams parameters)
+    public async Task<Models::Price> Fetch(
+        PriceFetchParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<PriceFetchParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var price = await response.Deserialize<Models::Price>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var price = await response
+            .Deserialize<Models::Price>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             price.Validate();

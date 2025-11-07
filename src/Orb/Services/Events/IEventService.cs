@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Events;
@@ -56,7 +57,10 @@ public interface IEventService
     /// 100 events can be amended for a single customer in a 100 day period. For
     /// higher volume   updates, consider using the [event backfill](create-backfill) endpoint.
     /// </summary>
-    Task<EventUpdateResponse> Update(EventUpdateParams parameters);
+    Task<EventUpdateResponse> Update(
+        EventUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint is used to deprecate a single usage event with a given `event_id`.
@@ -95,7 +99,10 @@ public interface IEventService
     /// customer in a 100 day period. For higher volume   updates, consider using
     /// the [event backfill](create-backfill) endpoint.
     /// </summary>
-    Task<EventDeprecateResponse> Deprecate(EventDeprecateParams parameters);
+    Task<EventDeprecateResponse> Deprecate(
+        EventDeprecateParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// Orb's event ingestion model and API is designed around two core principles:
@@ -269,7 +276,10 @@ public interface IEventService
     ///
     /// ```json {   "validation_failed": [] } ```
     /// </summary>
-    Task<EventIngestResponse> Ingest(EventIngestParams parameters);
+    Task<EventIngestResponse> Ingest(
+        EventIngestParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint returns a filtered set of events for an account in a [paginated
@@ -287,5 +297,8 @@ public interface IEventService
     /// By default, Orb will not throw a `404` if no events matched, Orb will return
     /// an empty array for `data` instead.
     /// </summary>
-    Task<EventSearchResponse> Search(EventSearchParams parameters);
+    Task<EventSearchResponse> Search(
+        EventSearchParams parameters,
+        CancellationToken cancellationToken = default
+    );
 }

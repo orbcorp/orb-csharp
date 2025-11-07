@@ -164,7 +164,10 @@ public sealed class OrbClient : IOrbClient
         get { return _subscriptionChanges.Value; }
     }
 
-    public async Task<HttpResponse> Execute<T>(HttpRequest<T> request)
+    public async Task<HttpResponse> Execute<T>(
+        HttpRequest<T> request,
+        CancellationToken cancellationToken = default
+    )
         where T : ParamsBase
     {
         using HttpRequestMessage requestMessage = new(request.Method, request.Params.Url(this))
@@ -172,7 +175,11 @@ public sealed class OrbClient : IOrbClient
             Content = request.Params.BodyContent(),
         };
         request.Params.AddHeadersToRequest(requestMessage, this);
-        using CancellationTokenSource cts = new(this.Timeout);
+        using CancellationTokenSource timeoutCts = new(this.Timeout);
+        using var cts = CancellationTokenSource.CreateLinkedTokenSource(
+            timeoutCts.Token,
+            cancellationToken
+        );
         HttpResponseMessage responseMessage;
         try
         {
@@ -194,7 +201,7 @@ public sealed class OrbClient : IOrbClient
             {
                 throw OrbExceptionFactory.CreateApiException(
                     responseMessage.StatusCode,
-                    await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false)
+                    await responseMessage.Content.ReadAsStringAsync(cts.Token).ConfigureAwait(false)
                 );
             }
             catch (HttpRequestException e)
@@ -206,7 +213,7 @@ public sealed class OrbClient : IOrbClient
                 responseMessage.Dispose();
             }
         }
-        return new() { Message = responseMessage };
+        return new() { Message = responseMessage, CancellationToken = cts.Token };
     }
 
     public OrbClient()

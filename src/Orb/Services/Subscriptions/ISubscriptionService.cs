@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Subscriptions;
@@ -206,14 +207,18 @@ public interface ISubscriptionService
     /// a subscription that invoices in USD.
     /// </summary>
     Task<SubscriptionChanges::MutatedSubscription> Create(
-        SubscriptionCreateParams? parameters = null
+        SubscriptionCreateParams? parameters = null,
+        CancellationToken cancellationToken = default
     );
 
     /// <summary>
     /// This endpoint can be used to update the `metadata`, `net terms`, `auto_collection`,
     /// `invoicing_threshold`, and `default_invoice_memo` properties on a subscription.
     /// </summary>
-    Task<Subscription> Update(SubscriptionUpdateParams parameters);
+    Task<Subscription> Update(
+        SubscriptionUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint returns a list of all subscriptions for an account as a [paginated](/api-reference/pagination)
@@ -224,7 +229,10 @@ public interface ISubscriptionService
     /// customer_id or external_customer_id query parameters. To filter subscriptions
     /// for multiple customers, use the customer_id[] or external_customer_id[] query parameters.
     /// </summary>
-    Task<SubscriptionsModel> List(SubscriptionListParams? parameters = null);
+    Task<SubscriptionsModel> List(
+        SubscriptionListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint can be used to cancel an existing subscription. It returns the
@@ -282,13 +290,19 @@ public interface ISubscriptionService
     /// invoice and generate a new one based on the new dates for the subscription.
     /// See the section on [cancellation behaviors](/product-catalog/creating-subscriptions#cancellation-behaviors).
     /// </summary>
-    Task<SubscriptionChanges::MutatedSubscription> Cancel(SubscriptionCancelParams parameters);
+    Task<SubscriptionChanges::MutatedSubscription> Cancel(
+        SubscriptionCancelParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint is used to fetch a [Subscription](/core-concepts##subscription)
     /// given an identifier.
     /// </summary>
-    Task<Subscription> Fetch(SubscriptionFetchParams parameters);
+    Task<Subscription> Fetch(
+        SubscriptionFetchParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint is used to fetch a day-by-day snapshot of a subscription's costs
@@ -301,7 +315,10 @@ public interface ISubscriptionService
     /// costs to a specific subscription for the customer (e.g. to de-aggregate costs
     /// when a customer's subscription has started and stopped on the same day).
     /// </summary>
-    Task<SubscriptionFetchCostsResponse> FetchCosts(SubscriptionFetchCostsParams parameters);
+    Task<SubscriptionFetchCostsResponse> FetchCosts(
+        SubscriptionFetchCostsParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint returns a [paginated](/api-reference/pagination) list of all
@@ -310,7 +327,8 @@ public interface ISubscriptionService
     /// plan changes.
     /// </summary>
     Task<SubscriptionFetchSchedulePageResponse> FetchSchedule(
-        SubscriptionFetchScheduleParams parameters
+        SubscriptionFetchScheduleParams parameters,
+        CancellationToken cancellationToken = default
     );
 
     /// <summary>
@@ -449,7 +467,10 @@ public interface ISubscriptionService
     /// - `first_dimension_key`: `region` - `first_dimension_value`: `us-east-1` -
     /// `second_dimension_key`: `provider` - `second_dimension_value`: `aws`
     /// </summary>
-    Task<SubscriptionUsage> FetchUsage(SubscriptionFetchUsageParams parameters);
+    Task<SubscriptionUsage> FetchUsage(
+        SubscriptionFetchUsageParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint is used to add and edit subscription [price intervals](/api-reference/price-interval/add-or-edit-price-intervals).
@@ -523,14 +544,16 @@ public interface ISubscriptionService
     /// property on a subscription’s serialized price intervals.
     /// </summary>
     Task<SubscriptionChanges::MutatedSubscription> PriceIntervals(
-        SubscriptionPriceIntervalsParams parameters
+        SubscriptionPriceIntervalsParams parameters,
+        CancellationToken cancellationToken = default
     );
 
     /// <summary>
     /// Redeem a coupon effective at a given time.
     /// </summary>
     Task<SubscriptionChanges::MutatedSubscription> RedeemCoupon(
-        SubscriptionRedeemCouponParams parameters
+        SubscriptionRedeemCouponParams parameters,
+        CancellationToken cancellationToken = default
     );
 
     /// <summary>
@@ -696,7 +719,8 @@ public interface ISubscriptionService
     /// balance as needed. For details on this behavior, see [Modifying subscriptions](/product-catalog/modifying-subscriptions#prorations-for-in-advance-fees).
     /// </summary>
     Task<SubscriptionChanges::MutatedSubscription> SchedulePlanChange(
-        SubscriptionSchedulePlanChangeParams parameters
+        SubscriptionSchedulePlanChangeParams parameters,
+        CancellationToken cancellationToken = default
     );
 
     /// <summary>
@@ -704,7 +728,8 @@ public interface ISubscriptionService
     /// not specified).
     /// </summary>
     Task<SubscriptionChanges::MutatedSubscription> TriggerPhase(
-        SubscriptionTriggerPhaseParams parameters
+        SubscriptionTriggerPhaseParams parameters,
+        CancellationToken cancellationToken = default
     );
 
     /// <summary>
@@ -715,7 +740,8 @@ public interface ISubscriptionService
     /// does not end at the currently scheduled cancellation time.
     /// </summary>
     Task<SubscriptionChanges::MutatedSubscription> UnscheduleCancellation(
-        SubscriptionUnscheduleCancellationParams parameters
+        SubscriptionUnscheduleCancellationParams parameters,
+        CancellationToken cancellationToken = default
     );
 
     /// <summary>
@@ -726,7 +752,8 @@ public interface ISubscriptionService
     /// with a 400 status code.
     /// </summary>
     Task<SubscriptionChanges::MutatedSubscription> UnscheduleFixedFeeQuantityUpdates(
-        SubscriptionUnscheduleFixedFeeQuantityUpdatesParams parameters
+        SubscriptionUnscheduleFixedFeeQuantityUpdatesParams parameters,
+        CancellationToken cancellationToken = default
     );
 
     /// <summary>
@@ -734,7 +761,8 @@ public interface ISubscriptionService
     /// subscription. When called, all upcoming plan changes will be unscheduled.
     /// </summary>
     Task<SubscriptionChanges::MutatedSubscription> UnschedulePendingPlanChanges(
-        SubscriptionUnschedulePendingPlanChangesParams parameters
+        SubscriptionUnschedulePendingPlanChangesParams parameters,
+        CancellationToken cancellationToken = default
     );
 
     /// <summary>
@@ -752,7 +780,8 @@ public interface ISubscriptionService
     /// for the difference for the remainder of the billing period.
     /// </summary>
     Task<SubscriptionChanges::MutatedSubscription> UpdateFixedFeeQuantity(
-        SubscriptionUpdateFixedFeeQuantityParams parameters
+        SubscriptionUpdateFixedFeeQuantityParams parameters,
+        CancellationToken cancellationToken = default
     );
 
     /// <summary>
@@ -776,6 +805,7 @@ public interface ISubscriptionService
     /// the trial is extended).
     /// </summary>
     Task<SubscriptionChanges::MutatedSubscription> UpdateTrial(
-        SubscriptionUpdateTrialParams parameters
+        SubscriptionUpdateTrialParams parameters,
+        CancellationToken cancellationToken = default
     );
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.SubscriptionChanges;
@@ -21,7 +22,8 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
     }
 
     public async Task<SubscriptionChangeRetrieveResponse> Retrieve(
-        SubscriptionChangeRetrieveParams parameters
+        SubscriptionChangeRetrieveParams parameters,
+        CancellationToken cancellationToken = default
     )
     {
         HttpRequest<SubscriptionChangeRetrieveParams> request = new()
@@ -29,9 +31,11 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var subscriptionChange = await response
-            .Deserialize<SubscriptionChangeRetrieveResponse>()
+            .Deserialize<SubscriptionChangeRetrieveResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -41,7 +45,8 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
     }
 
     public async Task<SubscriptionChangeApplyResponse> Apply(
-        SubscriptionChangeApplyParams parameters
+        SubscriptionChangeApplyParams parameters,
+        CancellationToken cancellationToken = default
     )
     {
         HttpRequest<SubscriptionChangeApplyParams> request = new()
@@ -49,9 +54,11 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var deserializedResponse = await response
-            .Deserialize<SubscriptionChangeApplyResponse>()
+            .Deserialize<SubscriptionChangeApplyResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -61,7 +68,8 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
     }
 
     public async Task<SubscriptionChangeCancelResponse> Cancel(
-        SubscriptionChangeCancelParams parameters
+        SubscriptionChangeCancelParams parameters,
+        CancellationToken cancellationToken = default
     )
     {
         HttpRequest<SubscriptionChangeCancelParams> request = new()
@@ -69,9 +77,11 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var deserializedResponse = await response
-            .Deserialize<SubscriptionChangeCancelResponse>()
+            .Deserialize<SubscriptionChangeCancelResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {

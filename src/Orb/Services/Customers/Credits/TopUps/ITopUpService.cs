@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Customers.Credits.TopUps;
@@ -17,18 +18,24 @@ public interface ITopUpService
     /// If a top-up already exists for this customer in the same currency, the existing
     /// top-up will be replaced.
     /// </summary>
-    Task<TopUpCreateResponse> Create(TopUpCreateParams parameters);
+    Task<TopUpCreateResponse> Create(
+        TopUpCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// List top-ups
     /// </summary>
-    Task<TopUpListPageResponse> List(TopUpListParams parameters);
+    Task<TopUpListPageResponse> List(
+        TopUpListParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This deactivates the top-up and voids any invoices associated with pending
     /// credit blocks purchased through the top-up.
     /// </summary>
-    Task Delete(TopUpDeleteParams parameters);
+    Task Delete(TopUpDeleteParams parameters, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// This endpoint allows you to create a new top-up for a specified customer's
@@ -39,19 +46,24 @@ public interface ITopUpService
     /// top-up will be replaced.
     /// </summary>
     Task<TopUpCreateByExternalIDResponse> CreateByExternalID(
-        TopUpCreateByExternalIDParams parameters
+        TopUpCreateByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
     );
 
     /// <summary>
     /// This deactivates the top-up and voids any invoices associated with pending
     /// credit blocks purchased through the top-up.
     /// </summary>
-    Task DeleteByExternalID(TopUpDeleteByExternalIDParams parameters);
+    Task DeleteByExternalID(
+        TopUpDeleteByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// List top-ups by external ID
     /// </summary>
     Task<TopUpListByExternalIDPageResponse> ListByExternalID(
-        TopUpListByExternalIDParams parameters
+        TopUpListByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
     );
 }
