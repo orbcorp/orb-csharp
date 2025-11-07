@@ -135,6 +135,42 @@ false
 
 ## Network options
 
+### Retries
+
+The SDK automatically retries 2 times by default, with a short exponential backoff between requests.
+
+Only the following error types are retried:
+
+- Connection errors (for example, due to a network connectivity problem)
+- 408 Request Timeout
+- 409 Conflict
+- 429 Rate Limit
+- 5xx Internal
+
+The API may also explicitly instruct the SDK to retry or not retry a request.
+
+To set a custom number of retries, configure the client using the `MaxRetries` method:
+
+```csharp
+using Orb;
+
+OrbClient client = new() { MaxRetries = 3 };
+```
+
+Or configure a single method call using [`WithOptions`](#modifying-configuration):
+
+```csharp
+using System;
+
+var customer = await client
+    .WithOptions(options =>
+        options with { MaxRetries = 3 }
+    )
+    .Customers.Create(parameters);
+
+Console.WriteLine(customer);
+```
+
 ### Timeouts
 
 Requests time out after 1 minute by default.
