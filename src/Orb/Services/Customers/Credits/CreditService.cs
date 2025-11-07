@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Customers.Credits;
@@ -36,15 +37,22 @@ public sealed class CreditService : ICreditService
         get { return _topUps.Value; }
     }
 
-    public async Task<CreditListPageResponse> List(CreditListParams parameters)
+    public async Task<CreditListPageResponse> List(
+        CreditListParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<CreditListParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var page = await response.Deserialize<CreditListPageResponse>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var page = await response
+            .Deserialize<CreditListPageResponse>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             page.Validate();
@@ -53,7 +61,8 @@ public sealed class CreditService : ICreditService
     }
 
     public async Task<CreditListByExternalIDPageResponse> ListByExternalID(
-        CreditListByExternalIDParams parameters
+        CreditListByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
     )
     {
         HttpRequest<CreditListByExternalIDParams> request = new()
@@ -61,9 +70,11 @@ public sealed class CreditService : ICreditService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var page = await response
-            .Deserialize<CreditListByExternalIDPageResponse>()
+            .Deserialize<CreditListByExternalIDPageResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {

@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Events;
@@ -36,16 +37,21 @@ public sealed class EventService : IEventService
         get { return _volume.Value; }
     }
 
-    public async Task<EventUpdateResponse> Update(EventUpdateParams parameters)
+    public async Task<EventUpdateResponse> Update(
+        EventUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<EventUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var deserializedResponse = await response
-            .Deserialize<EventUpdateResponse>()
+            .Deserialize<EventUpdateResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -54,16 +60,21 @@ public sealed class EventService : IEventService
         return deserializedResponse;
     }
 
-    public async Task<EventDeprecateResponse> Deprecate(EventDeprecateParams parameters)
+    public async Task<EventDeprecateResponse> Deprecate(
+        EventDeprecateParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<EventDeprecateParams> request = new()
         {
             Method = HttpMethod.Put,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var deserializedResponse = await response
-            .Deserialize<EventDeprecateResponse>()
+            .Deserialize<EventDeprecateResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -72,16 +83,21 @@ public sealed class EventService : IEventService
         return deserializedResponse;
     }
 
-    public async Task<EventIngestResponse> Ingest(EventIngestParams parameters)
+    public async Task<EventIngestResponse> Ingest(
+        EventIngestParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<EventIngestParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var deserializedResponse = await response
-            .Deserialize<EventIngestResponse>()
+            .Deserialize<EventIngestResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -90,16 +106,21 @@ public sealed class EventService : IEventService
         return deserializedResponse;
     }
 
-    public async Task<EventSearchResponse> Search(EventSearchParams parameters)
+    public async Task<EventSearchResponse> Search(
+        EventSearchParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<EventSearchParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var deserializedResponse = await response
-            .Deserialize<EventSearchResponse>()
+            .Deserialize<EventSearchResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {

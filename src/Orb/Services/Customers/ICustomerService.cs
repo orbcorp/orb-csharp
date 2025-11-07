@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Customers;
@@ -29,7 +30,10 @@ public interface ICustomerService
     /// can be configured by setting   `external_customer_id` * [Timezone localization](/essentials/timezones)
     /// can be configured on a per-customer basis by   setting the `timezone` parameter
     /// </summary>
-    Task<Customer> Create(CustomerCreateParams parameters);
+    Task<Customer> Create(
+        CustomerCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint can be used to update the `payment_provider`, `payment_provider_id`,
@@ -37,7 +41,10 @@ public interface ICustomerService
     /// `shipping_address`, `billing_address`, and `additional_emails` of an existing
     /// customer. Other fields on a customer are currently immutable.
     /// </summary>
-    Task<Customer> Update(CustomerUpdateParams parameters);
+    Task<Customer> Update(
+        CustomerUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint returns a list of all customers for an account. The list of
@@ -46,7 +53,10 @@ public interface ICustomerService
     ///
     /// See [Customer](/core-concepts##customer) for an overview of the customer model.
     /// </summary>
-    Task<CustomerListPageResponse> List(CustomerListParams? parameters = null);
+    Task<CustomerListPageResponse> List(
+        CustomerListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This performs a deletion of this customer, its subscriptions, and its invoices,
@@ -62,7 +72,7 @@ public interface ICustomerService
     /// customer on subsequent GET requests while deletion is in process will reflect
     /// its deletion.
     /// </summary>
-    Task Delete(CustomerDeleteParams parameters);
+    Task Delete(CustomerDeleteParams parameters, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// This endpoint is used to fetch customer details given an identifier. If the
@@ -72,7 +82,10 @@ public interface ICustomerService
     /// See the [Customer resource](/core-concepts#customer) for a full discussion
     /// of the Customer model.
     /// </summary>
-    Task<Customer> Fetch(CustomerFetchParams parameters);
+    Task<Customer> Fetch(
+        CustomerFetchParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint is used to fetch customer details given an `external_customer_id`
@@ -80,7 +93,10 @@ public interface ICustomerService
     ///
     /// Note that the resource and semantics of this endpoint exactly mirror [Get Customer](fetch-customer).
     /// </summary>
-    Task<Customer> FetchByExternalID(CustomerFetchByExternalIDParams parameters);
+    Task<Customer> FetchByExternalID(
+        CustomerFetchByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// Sync Orb's payment methods for the customer with their gateway.
@@ -90,7 +106,10 @@ public interface ICustomerService
     ///
     /// **Note**: This functionality is currently only available for Stripe.
     /// </summary>
-    Task SyncPaymentMethodsFromGateway(CustomerSyncPaymentMethodsFromGatewayParams parameters);
+    Task SyncPaymentMethodsFromGateway(
+        CustomerSyncPaymentMethodsFromGatewayParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// Sync Orb's payment methods for the customer with their gateway.
@@ -101,7 +120,8 @@ public interface ICustomerService
     /// **Note**: This functionality is currently only available for Stripe.
     /// </summary>
     Task SyncPaymentMethodsFromGatewayByExternalCustomerID(
-        CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams parameters
+        CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams parameters,
+        CancellationToken cancellationToken = default
     );
 
     /// <summary>
@@ -109,5 +129,8 @@ public interface ICustomerService
     /// (see [Customer ID Aliases](/events-and-metrics/customer-aliases)). Note that
     /// the resource and semantics of this endpoint exactly mirror [Update Customer](update-customer).
     /// </summary>
-    Task<Customer> UpdateByExternalID(CustomerUpdateByExternalIDParams parameters);
+    Task<Customer> UpdateByExternalID(
+        CustomerUpdateByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    );
 }

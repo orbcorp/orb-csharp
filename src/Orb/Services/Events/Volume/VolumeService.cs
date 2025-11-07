@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Events.Volume;
@@ -20,15 +21,22 @@ public sealed class VolumeService : IVolumeService
         _client = client;
     }
 
-    public async Task<EventVolumes> List(VolumeListParams parameters)
+    public async Task<EventVolumes> List(
+        VolumeListParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<VolumeListParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var eventVolumes = await response.Deserialize<EventVolumes>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var eventVolumes = await response
+            .Deserialize<EventVolumes>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             eventVolumes.Validate();

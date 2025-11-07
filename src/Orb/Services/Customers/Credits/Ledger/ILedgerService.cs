@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Ledger = Orb.Models.Customers.Credits.Ledger;
@@ -79,7 +80,10 @@ public interface ILedgerService
     /// a correction, this entry will be added to the ledger to indicate the adjustment
     /// of credits.
     /// </summary>
-    Task<Ledger::LedgerListPageResponse> List(Ledger::LedgerListParams parameters);
+    Task<Ledger::LedgerListPageResponse> List(
+        Ledger::LedgerListParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint allows you to create a new ledger entry for a specified customer's
@@ -165,7 +169,10 @@ public interface ILedgerService
     /// block that was originally decremented from, and `amount` indicates how many
     /// credits to return to the customer, up to the block's initial balance.
     /// </summary>
-    Task<Ledger::LedgerCreateEntryResponse> CreateEntry(Ledger::LedgerCreateEntryParams parameters);
+    Task<Ledger::LedgerCreateEntryResponse> CreateEntry(
+        Ledger::LedgerCreateEntryParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint allows you to create a new ledger entry for a specified customer's
@@ -252,7 +259,8 @@ public interface ILedgerService
     /// credits to return to the customer, up to the block's initial balance.
     /// </summary>
     Task<Ledger::LedgerCreateEntryByExternalIDResponse> CreateEntryByExternalID(
-        Ledger::LedgerCreateEntryByExternalIDParams parameters
+        Ledger::LedgerCreateEntryByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
     );
 
     /// <summary>
@@ -326,6 +334,7 @@ public interface ILedgerService
     /// of credits.
     /// </summary>
     Task<Ledger::LedgerListByExternalIDPageResponse> ListByExternalID(
-        Ledger::LedgerListByExternalIDParams parameters
+        Ledger::LedgerListByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
     );
 }

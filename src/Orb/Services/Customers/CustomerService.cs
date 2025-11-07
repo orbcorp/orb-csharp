@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Customers;
@@ -44,15 +45,22 @@ public sealed class CustomerService : ICustomerService
         get { return _balanceTransactions.Value; }
     }
 
-    public async Task<Customer> Create(CustomerCreateParams parameters)
+    public async Task<Customer> Create(
+        CustomerCreateParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<CustomerCreateParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var customer = await response.Deserialize<Customer>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var customer = await response
+            .Deserialize<Customer>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             customer.Validate();
@@ -60,15 +68,22 @@ public sealed class CustomerService : ICustomerService
         return customer;
     }
 
-    public async Task<Customer> Update(CustomerUpdateParams parameters)
+    public async Task<Customer> Update(
+        CustomerUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<CustomerUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var customer = await response.Deserialize<Customer>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var customer = await response
+            .Deserialize<Customer>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             customer.Validate();
@@ -76,7 +91,10 @@ public sealed class CustomerService : ICustomerService
         return customer;
     }
 
-    public async Task<CustomerListPageResponse> List(CustomerListParams? parameters = null)
+    public async Task<CustomerListPageResponse> List(
+        CustomerListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
     {
         parameters ??= new();
 
@@ -85,8 +103,12 @@ public sealed class CustomerService : ICustomerService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var page = await response.Deserialize<CustomerListPageResponse>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var page = await response
+            .Deserialize<CustomerListPageResponse>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             page.Validate();
@@ -94,25 +116,37 @@ public sealed class CustomerService : ICustomerService
         return page;
     }
 
-    public async Task Delete(CustomerDeleteParams parameters)
+    public async Task Delete(
+        CustomerDeleteParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<CustomerDeleteParams> request = new()
         {
             Method = HttpMethod.Delete,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
     }
 
-    public async Task<Customer> Fetch(CustomerFetchParams parameters)
+    public async Task<Customer> Fetch(
+        CustomerFetchParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<CustomerFetchParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var customer = await response.Deserialize<Customer>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var customer = await response
+            .Deserialize<Customer>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             customer.Validate();
@@ -120,15 +154,22 @@ public sealed class CustomerService : ICustomerService
         return customer;
     }
 
-    public async Task<Customer> FetchByExternalID(CustomerFetchByExternalIDParams parameters)
+    public async Task<Customer> FetchByExternalID(
+        CustomerFetchByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<CustomerFetchByExternalIDParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var customer = await response.Deserialize<Customer>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var customer = await response
+            .Deserialize<Customer>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             customer.Validate();
@@ -137,7 +178,8 @@ public sealed class CustomerService : ICustomerService
     }
 
     public async Task SyncPaymentMethodsFromGateway(
-        CustomerSyncPaymentMethodsFromGatewayParams parameters
+        CustomerSyncPaymentMethodsFromGatewayParams parameters,
+        CancellationToken cancellationToken = default
     )
     {
         HttpRequest<CustomerSyncPaymentMethodsFromGatewayParams> request = new()
@@ -145,11 +187,14 @@ public sealed class CustomerService : ICustomerService
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
     }
 
     public async Task SyncPaymentMethodsFromGatewayByExternalCustomerID(
-        CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams parameters
+        CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams parameters,
+        CancellationToken cancellationToken = default
     )
     {
         HttpRequest<CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams> request = new()
@@ -157,18 +202,27 @@ public sealed class CustomerService : ICustomerService
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
     }
 
-    public async Task<Customer> UpdateByExternalID(CustomerUpdateByExternalIDParams parameters)
+    public async Task<Customer> UpdateByExternalID(
+        CustomerUpdateByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<CustomerUpdateByExternalIDParams> request = new()
         {
             Method = HttpMethod.Put,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var customer = await response.Deserialize<Customer>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var customer = await response
+            .Deserialize<Customer>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             customer.Validate();

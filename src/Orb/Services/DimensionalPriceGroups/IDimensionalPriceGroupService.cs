@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.DimensionalPriceGroups;
@@ -22,22 +23,34 @@ public interface IDimensionalPriceGroupService
     /// widget. We can create a price group with a dimension "color" and two prices:
     /// one that charges \$10 per red widget and one that charges \$20 per blue widget.
     /// </summary>
-    Task<DimensionalPriceGroup> Create(DimensionalPriceGroupCreateParams parameters);
+    Task<DimensionalPriceGroup> Create(
+        DimensionalPriceGroupCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// Fetch dimensional price group
     /// </summary>
-    Task<DimensionalPriceGroup> Retrieve(DimensionalPriceGroupRetrieveParams parameters);
+    Task<DimensionalPriceGroup> Retrieve(
+        DimensionalPriceGroupRetrieveParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint can be used to update the `external_dimensional_price_group_id`
     /// and `metadata` of an existing dimensional price group. Other fields on a
     /// dimensional price group are currently immutable.
     /// </summary>
-    Task<DimensionalPriceGroup> Update(DimensionalPriceGroupUpdateParams parameters);
+    Task<DimensionalPriceGroup> Update(
+        DimensionalPriceGroupUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// List dimensional price groups
     /// </summary>
-    Task<DimensionalPriceGroupsModel> List(DimensionalPriceGroupListParams? parameters = null);
+    Task<DimensionalPriceGroupsModel> List(
+        DimensionalPriceGroupListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 }

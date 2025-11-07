@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using BalanceTransactions = Orb.Models.Customers.BalanceTransactions;
@@ -14,7 +15,8 @@ public interface IBalanceTransactionService
     /// and returns back the newly created transaction.
     /// </summary>
     Task<BalanceTransactions::BalanceTransactionCreateResponse> Create(
-        BalanceTransactions::BalanceTransactionCreateParams parameters
+        BalanceTransactions::BalanceTransactionCreateParams parameters,
+        CancellationToken cancellationToken = default
     );
 
     /// <summary>
@@ -41,6 +43,7 @@ public interface IBalanceTransactionService
     /// and invoice applications.
     /// </summary>
     Task<BalanceTransactions::BalanceTransactionListPageResponse> List(
-        BalanceTransactions::BalanceTransactionListParams parameters
+        BalanceTransactions::BalanceTransactionListParams parameters,
+        CancellationToken cancellationToken = default
     );
 }

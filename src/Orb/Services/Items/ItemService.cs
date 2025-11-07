@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Items;
@@ -20,15 +21,20 @@ public sealed class ItemService : IItemService
         _client = client;
     }
 
-    public async Task<Item> Create(ItemCreateParams parameters)
+    public async Task<Item> Create(
+        ItemCreateParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<ItemCreateParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var item = await response.Deserialize<Item>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var item = await response.Deserialize<Item>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             item.Validate();
@@ -36,15 +42,20 @@ public sealed class ItemService : IItemService
         return item;
     }
 
-    public async Task<Item> Update(ItemUpdateParams parameters)
+    public async Task<Item> Update(
+        ItemUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<ItemUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var item = await response.Deserialize<Item>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var item = await response.Deserialize<Item>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             item.Validate();
@@ -52,7 +63,10 @@ public sealed class ItemService : IItemService
         return item;
     }
 
-    public async Task<ItemListPageResponse> List(ItemListParams? parameters = null)
+    public async Task<ItemListPageResponse> List(
+        ItemListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
     {
         parameters ??= new();
 
@@ -61,8 +75,12 @@ public sealed class ItemService : IItemService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var page = await response.Deserialize<ItemListPageResponse>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var page = await response
+            .Deserialize<ItemListPageResponse>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             page.Validate();
@@ -70,15 +88,20 @@ public sealed class ItemService : IItemService
         return page;
     }
 
-    public async Task<Item> Archive(ItemArchiveParams parameters)
+    public async Task<Item> Archive(
+        ItemArchiveParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<ItemArchiveParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var item = await response.Deserialize<Item>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var item = await response.Deserialize<Item>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             item.Validate();
@@ -86,15 +109,20 @@ public sealed class ItemService : IItemService
         return item;
     }
 
-    public async Task<Item> Fetch(ItemFetchParams parameters)
+    public async Task<Item> Fetch(
+        ItemFetchParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<ItemFetchParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var item = await response.Deserialize<Item>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var item = await response.Deserialize<Item>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             item.Validate();

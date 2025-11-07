@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Events.Backfills;
@@ -47,7 +48,10 @@ public interface IBackfillService
     /// You may not have multiple backfills in a pending or pending_revert state with
     /// overlapping timeframes.
     /// </summary>
-    Task<BackfillCreateResponse> Create(BackfillCreateParams parameters);
+    Task<BackfillCreateResponse> Create(
+        BackfillCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint returns a list of all backfills in a list format.
@@ -57,7 +61,10 @@ public interface IBackfillService
     /// which lets the caller retrieve the next page of results if they exist. More
     /// information about pagination can be found in the [Pagination-metadata schema](pagination).
     /// </summary>
-    Task<BackfillListPageResponse> List(BackfillListParams? parameters = null);
+    Task<BackfillListPageResponse> List(
+        BackfillListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// Closing a backfill makes the updated usage visible in Orb. Upon closing a
@@ -65,12 +72,18 @@ public interface IBackfillService
     /// and usage graphs. Once all of the updates are complete, the backfill's status
     /// will transition to `reflected`.
     /// </summary>
-    Task<BackfillCloseResponse> Close(BackfillCloseParams parameters);
+    Task<BackfillCloseResponse> Close(
+        BackfillCloseParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint is used to fetch a backfill given an identifier.
     /// </summary>
-    Task<BackfillFetchResponse> Fetch(BackfillFetchParams parameters);
+    Task<BackfillFetchResponse> Fetch(
+        BackfillFetchParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// Reverting a backfill undoes all the effects of closing the backfill. If the
@@ -81,5 +94,8 @@ public interface IBackfillService
     /// If a backfill is reverted before its closed, no usage will be updated as a
     /// result of the backfill and it will immediately transition to `reverted`.
     /// </summary>
-    Task<BackfillRevertResponse> Revert(BackfillRevertParams parameters);
+    Task<BackfillRevertResponse> Revert(
+        BackfillRevertParams parameters,
+        CancellationToken cancellationToken = default
+    );
 }

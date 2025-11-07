@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Metrics;
@@ -20,15 +21,22 @@ public sealed class MetricService : IMetricService
         _client = client;
     }
 
-    public async Task<BillableMetric> Create(MetricCreateParams parameters)
+    public async Task<BillableMetric> Create(
+        MetricCreateParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<MetricCreateParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var billableMetric = await response.Deserialize<BillableMetric>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var billableMetric = await response
+            .Deserialize<BillableMetric>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             billableMetric.Validate();
@@ -36,15 +44,22 @@ public sealed class MetricService : IMetricService
         return billableMetric;
     }
 
-    public async Task<BillableMetric> Update(MetricUpdateParams parameters)
+    public async Task<BillableMetric> Update(
+        MetricUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<MetricUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var billableMetric = await response.Deserialize<BillableMetric>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var billableMetric = await response
+            .Deserialize<BillableMetric>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             billableMetric.Validate();
@@ -52,7 +67,10 @@ public sealed class MetricService : IMetricService
         return billableMetric;
     }
 
-    public async Task<MetricListPageResponse> List(MetricListParams? parameters = null)
+    public async Task<MetricListPageResponse> List(
+        MetricListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
     {
         parameters ??= new();
 
@@ -61,8 +79,12 @@ public sealed class MetricService : IMetricService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var page = await response.Deserialize<MetricListPageResponse>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var page = await response
+            .Deserialize<MetricListPageResponse>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             page.Validate();
@@ -70,15 +92,22 @@ public sealed class MetricService : IMetricService
         return page;
     }
 
-    public async Task<BillableMetric> Fetch(MetricFetchParams parameters)
+    public async Task<BillableMetric> Fetch(
+        MetricFetchParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<MetricFetchParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var billableMetric = await response.Deserialize<BillableMetric>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var billableMetric = await response
+            .Deserialize<BillableMetric>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             billableMetric.Validate();

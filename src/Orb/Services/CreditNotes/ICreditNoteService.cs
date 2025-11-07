@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.CreditNotes;
@@ -37,18 +38,27 @@ public interface ICreditNoteService
     /// cover both the start date and end date completely (from start of start_date
     /// to end of end_date).
     /// </summary>
-    Task<Models::CreditNoteModel> Create(CreditNoteCreateParams parameters);
+    Task<Models::CreditNoteModel> Create(
+        CreditNoteCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// Get a paginated list of CreditNotes. Users can also filter by customer_id,
     /// subscription_id, or external_customer_id. The credit notes will be returned
     /// in reverse chronological order by `creation_time`.
     /// </summary>
-    Task<CreditNoteListPageResponse> List(CreditNoteListParams? parameters = null);
+    Task<CreditNoteListPageResponse> List(
+        CreditNoteListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint is used to fetch a single [`Credit Note`](/invoicing/credit-notes)
     /// given an identifier.
     /// </summary>
-    Task<Models::CreditNoteModel> Fetch(CreditNoteFetchParams parameters);
+    Task<Models::CreditNoteModel> Fetch(
+        CreditNoteFetchParams parameters,
+        CancellationToken cancellationToken = default
+    );
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Beta.ExternalPlanID;
@@ -14,16 +15,25 @@ public interface IExternalPlanIDService
     /// <summary>
     /// This endpoint allows the creation of a new plan version for an existing plan.
     /// </summary>
-    Task<Beta::PlanVersion> CreatePlanVersion(ExternalPlanIDCreatePlanVersionParams parameters);
+    Task<Beta::PlanVersion> CreatePlanVersion(
+        ExternalPlanIDCreatePlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint is used to fetch a plan version. It returns the phases, prices,
     /// and adjustments present on this version of the plan.
     /// </summary>
-    Task<Beta::PlanVersion> FetchPlanVersion(ExternalPlanIDFetchPlanVersionParams parameters);
+    Task<Beta::PlanVersion> FetchPlanVersion(
+        ExternalPlanIDFetchPlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint allows setting the default version of a plan.
     /// </summary>
-    Task<Plans::Plan> SetDefaultPlanVersion(ExternalPlanIDSetDefaultPlanVersionParams parameters);
+    Task<Plans::Plan> SetDefaultPlanVersion(
+        ExternalPlanIDSetDefaultPlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    );
 }

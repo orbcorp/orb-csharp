@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Coupons.Subscriptions;
@@ -16,5 +17,8 @@ public interface ISubscriptionService
     /// from the most recently created subscription. For a full discussion of the
     /// subscription resource, see [Subscription](/core-concepts#subscription).
     /// </summary>
-    Task<Subscriptions::SubscriptionsModel> List(SubscriptionListParams parameters);
+    Task<Subscriptions::SubscriptionsModel> List(
+        SubscriptionListParams parameters,
+        CancellationToken cancellationToken = default
+    );
 }

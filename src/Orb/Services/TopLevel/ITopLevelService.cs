@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.TopLevel;
@@ -17,5 +18,8 @@ public interface ITopLevelService
     ///
     /// This API does not have any side-effects or return any Orb resources.
     /// </summary>
-    Task<TopLevelPingResponse> Ping(TopLevelPingParams? parameters = null);
+    Task<TopLevelPingResponse> Ping(
+        TopLevelPingParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 }

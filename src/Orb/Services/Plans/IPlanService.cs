@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Plans;
@@ -15,7 +16,7 @@ public interface IPlanService
     /// <summary>
     /// This endpoint allows creation of plans including their prices.
     /// </summary>
-    Task<Plan> Create(PlanCreateParams parameters);
+    Task<Plan> Create(PlanCreateParams parameters, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// This endpoint can be used to update the `external_plan_id`, and `metadata`
@@ -23,7 +24,7 @@ public interface IPlanService
     ///
     /// Other fields on a plan are currently immutable.
     /// </summary>
-    Task<Plan> Update(PlanUpdateParams parameters);
+    Task<Plan> Update(PlanUpdateParams parameters, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// This endpoint returns a list of all [plans](/core-concepts#plan-and-price)
@@ -31,7 +32,10 @@ public interface IPlanService
     /// the most recently created plan. The response also includes [`pagination_metadata`](/api-reference/pagination),
     /// which lets the caller retrieve the next page of results if they exist.
     /// </summary>
-    Task<PlanListPageResponse> List(PlanListParams? parameters = null);
+    Task<PlanListPageResponse> List(
+        PlanListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint is used to fetch [plan](/core-concepts#plan-and-price) details
@@ -48,5 +52,5 @@ public interface IPlanService
     /// ## Phases Orb supports plan phases, also known as contract ramps. For plans
     /// with phases, the serialized prices refer to all prices across all phases.
     /// </summary>
-    Task<Plan> Fetch(PlanFetchParams parameters);
+    Task<Plan> Fetch(PlanFetchParams parameters, CancellationToken cancellationToken = default);
 }

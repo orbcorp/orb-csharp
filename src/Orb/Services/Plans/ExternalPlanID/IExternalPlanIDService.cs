@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Plans;
@@ -16,7 +17,10 @@ public interface IExternalPlanIDService
     ///
     /// Other fields on a plan are currently immutable.
     /// </summary>
-    Task<Plan> Update(ExternalPlanIDUpdateParams parameters);
+    Task<Plan> Update(
+        ExternalPlanIDUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// This endpoint is used to fetch [plan](/core-concepts##plan-and-price) details
@@ -34,5 +38,8 @@ public interface IExternalPlanIDService
     /// that is present. A detailed explanation of price types can be found in the
     /// [Price schema](/core-concepts#plan-and-price). "
     /// </summary>
-    Task<Plan> Fetch(ExternalPlanIDFetchParams parameters);
+    Task<Plan> Fetch(
+        ExternalPlanIDFetchParams parameters,
+        CancellationToken cancellationToken = default
+    );
 }

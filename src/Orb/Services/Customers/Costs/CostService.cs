@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Customers.Costs;
@@ -20,15 +21,22 @@ public sealed class CostService : ICostService
         _client = client;
     }
 
-    public async Task<CostListResponse> List(CostListParams parameters)
+    public async Task<CostListResponse> List(
+        CostListParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<CostListParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var costs = await response.Deserialize<CostListResponse>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var costs = await response
+            .Deserialize<CostListResponse>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             costs.Validate();
@@ -37,7 +45,8 @@ public sealed class CostService : ICostService
     }
 
     public async Task<CostListByExternalIDResponse> ListByExternalID(
-        CostListByExternalIDParams parameters
+        CostListByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
     )
     {
         HttpRequest<CostListByExternalIDParams> request = new()
@@ -45,9 +54,11 @@ public sealed class CostService : ICostService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var deserializedResponse = await response
-            .Deserialize<CostListByExternalIDResponse>()
+            .Deserialize<CostListByExternalIDResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
