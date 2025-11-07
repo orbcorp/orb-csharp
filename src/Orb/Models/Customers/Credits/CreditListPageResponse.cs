@@ -314,11 +314,14 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
     }
 }
 
+/// <summary>
+/// A PriceFilter that only allows item_id field for block filters.
+/// </summary>
 [JsonConverter(typeof(ModelConverter<global::Orb.Models.Customers.Credits.Filter>))]
 public sealed record class Filter : ModelBase, IFromRaw<global::Orb.Models.Customers.Credits.Filter>
 {
     /// <summary>
-    /// The property of the price to filter on.
+    /// The property of the price the block applies to. Only item_id is supported.
     /// </summary>
     public required ApiEnum<string, global::Orb.Models.Customers.Credits.Field> Field
     {
@@ -428,16 +431,12 @@ public sealed record class Filter : ModelBase, IFromRaw<global::Orb.Models.Custo
 }
 
 /// <summary>
-/// The property of the price to filter on.
+/// The property of the price the block applies to. Only item_id is supported.
 /// </summary>
 [JsonConverter(typeof(global::Orb.Models.Customers.Credits.FieldConverter))]
 public enum Field
 {
-    PriceID,
     ItemID,
-    PriceType,
-    Currency,
-    PricingUnitID,
 }
 
 sealed class FieldConverter : JsonConverter<global::Orb.Models.Customers.Credits.Field>
@@ -450,11 +449,7 @@ sealed class FieldConverter : JsonConverter<global::Orb.Models.Customers.Credits
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => global::Orb.Models.Customers.Credits.Field.PriceID,
             "item_id" => global::Orb.Models.Customers.Credits.Field.ItemID,
-            "price_type" => global::Orb.Models.Customers.Credits.Field.PriceType,
-            "currency" => global::Orb.Models.Customers.Credits.Field.Currency,
-            "pricing_unit_id" => global::Orb.Models.Customers.Credits.Field.PricingUnitID,
             _ => (global::Orb.Models.Customers.Credits.Field)(-1),
         };
     }
@@ -469,11 +464,7 @@ sealed class FieldConverter : JsonConverter<global::Orb.Models.Customers.Credits
             writer,
             value switch
             {
-                global::Orb.Models.Customers.Credits.Field.PriceID => "price_id",
                 global::Orb.Models.Customers.Credits.Field.ItemID => "item_id",
-                global::Orb.Models.Customers.Credits.Field.PriceType => "price_type",
-                global::Orb.Models.Customers.Credits.Field.Currency => "currency",
-                global::Orb.Models.Customers.Credits.Field.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
