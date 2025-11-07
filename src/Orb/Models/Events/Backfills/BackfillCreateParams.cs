@@ -43,6 +43,9 @@ namespace Orb.Models.Events.Backfills;
 /// using [computed properties](/extensibility/advanced-metrics#computed-properties).
 /// The expressiveness of computed properties allows you to deprecate existing events
 /// based on both a period of time and specific property values.
+///
+/// You may not have multiple backfills in a pending or pending_revert state with
+/// overlapping timeframes.
 /// </summary>
 public sealed record class BackfillCreateParams : ParamsBase
 {
