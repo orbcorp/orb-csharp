@@ -382,6 +382,26 @@ public record class LedgerCreateEntryResponse
         };
     }
 
+    public static implicit operator LedgerCreateEntryResponse(IncrementLedgerEntry value) =>
+        new(value);
+
+    public static implicit operator LedgerCreateEntryResponse(DecrementLedgerEntry value) =>
+        new(value);
+
+    public static implicit operator LedgerCreateEntryResponse(ExpirationChangeLedgerEntry value) =>
+        new(value);
+
+    public static implicit operator LedgerCreateEntryResponse(CreditBlockExpiryLedgerEntry value) =>
+        new(value);
+
+    public static implicit operator LedgerCreateEntryResponse(VoidLedgerEntry value) => new(value);
+
+    public static implicit operator LedgerCreateEntryResponse(VoidInitiatedLedgerEntry value) =>
+        new(value);
+
+    public static implicit operator LedgerCreateEntryResponse(AmendmentLedgerEntry value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)

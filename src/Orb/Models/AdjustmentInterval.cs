@@ -382,6 +382,19 @@ public record class Adjustment
         };
     }
 
+    public static implicit operator Adjustment(PlanPhaseUsageDiscountAdjustment value) =>
+        new(value);
+
+    public static implicit operator Adjustment(PlanPhaseAmountDiscountAdjustment value) =>
+        new(value);
+
+    public static implicit operator Adjustment(PlanPhasePercentageDiscountAdjustment value) =>
+        new(value);
+
+    public static implicit operator Adjustment(PlanPhaseMinimumAdjustment value) => new(value);
+
+    public static implicit operator Adjustment(PlanPhaseMaximumAdjustment value) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)

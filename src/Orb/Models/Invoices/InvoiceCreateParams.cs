@@ -705,6 +705,10 @@ public record class DueDate
         };
     }
 
+    public static implicit operator DueDate(System::DateOnly value) => new(value);
+
+    public static implicit operator DueDate(System::DateTime value) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)

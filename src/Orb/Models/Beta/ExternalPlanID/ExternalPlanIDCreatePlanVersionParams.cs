@@ -531,6 +531,26 @@ public record class Adjustment
         };
     }
 
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Adjustment(
+        NewPercentageDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Adjustment(
+        NewUsageDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Adjustment(
+        NewAmountDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Adjustment(
+        NewMinimum value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Adjustment(
+        NewMaximum value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -1946,6 +1966,126 @@ public record class Price
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };
     }
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanUnitPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanTieredPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanBulkPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        global::Orb.Models.Beta.ExternalPlanID.BulkWithFilters value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanPackagePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanMatrixPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanThresholdTotalAmountPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanTieredPackagePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanTieredWithMinimumPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanGroupedTieredPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanTieredPackageWithMinimumPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanPackageWithAllocationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanUnitWithPercentPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanMatrixWithAllocationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        global::Orb.Models.Beta.ExternalPlanID.TieredWithProration value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanUnitWithProrationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanGroupedAllocationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanBulkWithProrationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanGroupedWithProratedMinimumPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanGroupedWithMeteredMinimumPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholds value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanMatrixWithDisplayNamePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanGroupedTieredPackagePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanMaxGroupTieredPackagePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanScalableMatrixWithUnitPricingPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanScalableMatrixWithTieredPricingPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanCumulativeGroupedBulkPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        NewPlanMinimumCompositePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        global::Orb.Models.Beta.ExternalPlanID.Percent value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.Price(
+        global::Orb.Models.Beta.ExternalPlanID.EventOutput value
+    ) => new(value);
 
     public void Validate()
     {
@@ -3879,6 +4019,14 @@ public record class ConversionRateConfig
         };
     }
 
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -4881,6 +5029,14 @@ public record class ConversionRateConfigModel
         };
     }
 
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfigModel(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfigModel(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -5870,6 +6026,14 @@ public record class ConversionRateConfig1
         };
     }
 
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig1(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig1(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -6755,6 +6919,14 @@ public record class ConversionRateConfig2
             ),
         };
     }
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig2(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig2(
+        TieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {
@@ -7696,6 +7868,14 @@ public record class ConversionRateConfig3
         };
     }
 
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig3(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig3(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -8272,6 +8452,26 @@ public record class AdjustmentModel
             ),
         };
     }
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.AdjustmentModel(
+        NewPercentageDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.AdjustmentModel(
+        NewUsageDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.AdjustmentModel(
+        NewAmountDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.AdjustmentModel(
+        NewMinimum value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.AdjustmentModel(
+        NewMaximum value
+    ) => new(value);
 
     public void Validate()
     {
@@ -9744,6 +9944,126 @@ public record class PriceModel
             _ => throw new OrbInvalidDataException("Data did not match any variant of PriceModel"),
         };
     }
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanUnitPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanTieredPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanBulkPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        global::Orb.Models.Beta.ExternalPlanID.BulkWithFiltersModel value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanPackagePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanMatrixPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanThresholdTotalAmountPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanTieredPackagePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanTieredWithMinimumPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanGroupedTieredPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanTieredPackageWithMinimumPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanPackageWithAllocationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanUnitWithPercentPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanMatrixWithAllocationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationModel value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanUnitWithProrationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanGroupedAllocationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanBulkWithProrationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanGroupedWithProratedMinimumPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanGroupedWithMeteredMinimumPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsModel value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanMatrixWithDisplayNamePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanGroupedTieredPackagePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanMaxGroupTieredPackagePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanScalableMatrixWithUnitPricingPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanScalableMatrixWithTieredPricingPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanCumulativeGroupedBulkPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        NewPlanMinimumCompositePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        global::Orb.Models.Beta.ExternalPlanID.PercentModel value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.PriceModel(
+        global::Orb.Models.Beta.ExternalPlanID.EventOutputModel value
+    ) => new(value);
 
     public void Validate()
     {
@@ -11676,6 +11996,14 @@ public record class ConversionRateConfig4
         };
     }
 
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig4(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig4(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -12678,6 +13006,14 @@ public record class ConversionRateConfig5
         };
     }
 
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig5(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig5(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -13669,6 +14005,14 @@ public record class ConversionRateConfig6
         };
     }
 
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig6(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig6(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -14554,6 +14898,14 @@ public record class ConversionRateConfig7
             ),
         };
     }
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig7(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig7(
+        TieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {
@@ -15496,6 +15848,14 @@ public record class ConversionRateConfig8
             ),
         };
     }
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig8(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig8(
+        TieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {

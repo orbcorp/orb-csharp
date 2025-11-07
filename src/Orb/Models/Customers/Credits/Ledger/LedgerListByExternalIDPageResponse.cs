@@ -477,6 +477,34 @@ public record class DataModel
         };
     }
 
+    public static implicit operator global::Orb.Models.Customers.Credits.Ledger.DataModel(
+        IncrementLedgerEntry value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Customers.Credits.Ledger.DataModel(
+        DecrementLedgerEntry value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Customers.Credits.Ledger.DataModel(
+        ExpirationChangeLedgerEntry value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Customers.Credits.Ledger.DataModel(
+        CreditBlockExpiryLedgerEntry value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Customers.Credits.Ledger.DataModel(
+        VoidLedgerEntry value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Customers.Credits.Ledger.DataModel(
+        VoidInitiatedLedgerEntry value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Customers.Credits.Ledger.DataModel(
+        AmendmentLedgerEntry value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)

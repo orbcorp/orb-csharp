@@ -2912,6 +2912,19 @@ public record class Adjustment1
         };
     }
 
+    public static implicit operator Adjustment1(MonetaryUsageDiscountAdjustment value) =>
+        new(value);
+
+    public static implicit operator Adjustment1(MonetaryAmountDiscountAdjustment value) =>
+        new(value);
+
+    public static implicit operator Adjustment1(MonetaryPercentageDiscountAdjustment value) =>
+        new(value);
+
+    public static implicit operator Adjustment1(MonetaryMinimumAdjustment value) => new(value);
+
+    public static implicit operator Adjustment1(MonetaryMaximumAdjustment value) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -3235,6 +3248,12 @@ public record class SubLineItemModel
             ),
         };
     }
+
+    public static implicit operator SubLineItemModel(MatrixSubLineItem value) => new(value);
+
+    public static implicit operator SubLineItemModel(TierSubLineItem value) => new(value);
+
+    public static implicit operator SubLineItemModel(OtherSubLineItem value) => new(value);
 
     public void Validate()
     {

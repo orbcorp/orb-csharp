@@ -237,6 +237,10 @@ public record class TrialEndDate
         };
     }
 
+    public static implicit operator TrialEndDate(System::DateTime value) => new(value);
+
+    public static implicit operator TrialEndDate(ApiEnum<string, UnionMember1> value) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)

@@ -864,6 +864,26 @@ public record class Adjustment
         };
     }
 
+    public static implicit operator global::Orb.Models.InvoiceLineItems.Adjustment(
+        MonetaryUsageDiscountAdjustment value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.InvoiceLineItems.Adjustment(
+        MonetaryAmountDiscountAdjustment value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.InvoiceLineItems.Adjustment(
+        MonetaryPercentageDiscountAdjustment value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.InvoiceLineItems.Adjustment(
+        MonetaryMinimumAdjustment value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.InvoiceLineItems.Adjustment(
+        MonetaryMaximumAdjustment value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -1185,6 +1205,18 @@ public record class SubLineItem
             _ => throw new OrbInvalidDataException("Data did not match any variant of SubLineItem"),
         };
     }
+
+    public static implicit operator global::Orb.Models.InvoiceLineItems.SubLineItem(
+        MatrixSubLineItem value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.InvoiceLineItems.SubLineItem(
+        TierSubLineItem value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.InvoiceLineItems.SubLineItem(
+        OtherSubLineItem value
+    ) => new(value);
 
     public void Validate()
     {

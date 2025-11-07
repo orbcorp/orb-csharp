@@ -685,6 +685,14 @@ public record class ConversionRateConfig45
         };
     }
 
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig45(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig45(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)

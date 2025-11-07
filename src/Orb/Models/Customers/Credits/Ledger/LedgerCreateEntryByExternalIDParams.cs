@@ -389,6 +389,16 @@ public record class BodyModel
         };
     }
 
+    public static implicit operator BodyModel(IncrementModel value) => new(value);
+
+    public static implicit operator BodyModel(DecrementModel value) => new(value);
+
+    public static implicit operator BodyModel(ExpirationChangeModel value) => new(value);
+
+    public static implicit operator BodyModel(VoidModel value) => new(value);
+
+    public static implicit operator BodyModel(AmendmentModel value) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -1431,6 +1441,10 @@ public record class CustomDueDateModel
         };
     }
 
+    public static implicit operator CustomDueDateModel(System::DateOnly value) => new(value);
+
+    public static implicit operator CustomDueDateModel(System::DateTime value) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -1576,6 +1590,10 @@ public record class InvoiceDateModel
             ),
         };
     }
+
+    public static implicit operator InvoiceDateModel(System::DateOnly value) => new(value);
+
+    public static implicit operator InvoiceDateModel(System::DateTime value) => new(value);
 
     public void Validate()
     {

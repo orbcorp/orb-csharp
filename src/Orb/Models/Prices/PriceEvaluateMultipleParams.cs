@@ -1465,6 +1465,119 @@ public record class Price
         };
     }
 
+    public static implicit operator global::Orb.Models.Prices.Price(NewFloatingUnitPrice value) =>
+        new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(NewFloatingTieredPrice value) =>
+        new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(NewFloatingBulkPrice value) =>
+        new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(BulkWithFiltersModel value) =>
+        new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingPackagePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(NewFloatingMatrixPrice value) =>
+        new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingThresholdTotalAmountPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingTieredPackagePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingTieredWithMinimumPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingGroupedTieredPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingTieredPackageWithMinimumPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingPackageWithAllocationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingUnitWithPercentPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingMatrixWithAllocationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingTieredWithProrationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingUnitWithProrationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingGroupedAllocationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingBulkWithProrationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingGroupedWithProratedMinimumPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingGroupedWithMeteredMinimumPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        GroupedWithMinMaxThresholdsModel value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingMatrixWithDisplayNamePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingGroupedTieredPackagePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingMaxGroupTieredPackagePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingScalableMatrixWithUnitPricingPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingScalableMatrixWithTieredPricingPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingCumulativeGroupedBulkPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(
+        NewFloatingMinimumCompositePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(PercentModel value) =>
+        new(value);
+
+    public static implicit operator global::Orb.Models.Prices.Price(EventOutputModel value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -3373,6 +3486,14 @@ public record class ConversionRateConfig3
         };
     }
 
+    public static implicit operator global::Orb.Models.Prices.ConversionRateConfig3(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.ConversionRateConfig3(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -4335,6 +4456,14 @@ public record class ConversionRateConfig4
         };
     }
 
+    public static implicit operator global::Orb.Models.Prices.ConversionRateConfig4(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.ConversionRateConfig4(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -5189,6 +5318,14 @@ public record class ConversionRateConfig5
             ),
         };
     }
+
+    public static implicit operator global::Orb.Models.Prices.ConversionRateConfig5(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.ConversionRateConfig5(
+        TieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {
@@ -6100,6 +6237,14 @@ public record class ConversionRateConfig6
             ),
         };
     }
+
+    public static implicit operator global::Orb.Models.Prices.ConversionRateConfig6(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.ConversionRateConfig6(
+        TieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {

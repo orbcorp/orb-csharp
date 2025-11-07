@@ -1107,6 +1107,12 @@ public record class ConversionRateConfig5
         };
     }
 
+    public static implicit operator ConversionRateConfig5(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig5(TieredConversionRateConfig value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)

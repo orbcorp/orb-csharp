@@ -40,52 +40,45 @@ public class PlanServiceTest : TestBase
                             ],
                         },
                         PlanPhaseOrder = 0,
-                        Price1 = new(
-                            new NewPlanUnitPrice()
+                        Price1 = new NewPlanUnitPrice()
+                        {
+                            Cadence = Cadence48.Annual,
+                            ItemID = "item_id",
+                            ModelType = ModelType47.Unit,
+                            Name = "Annual fee",
+                            UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                            BillableMetricID = "billable_metric_id",
+                            BilledInAdvance = true,
+                            BillingCycleConfiguration = new()
                             {
-                                Cadence = Cadence48.Annual,
-                                ItemID = "item_id",
-                                ModelType = ModelType47.Unit,
-                                Name = "Annual fee",
-                                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
-                                BillableMetricID = "billable_metric_id",
-                                BilledInAdvance = true,
-                                BillingCycleConfiguration = new()
-                                {
-                                    Duration = 0,
-                                    DurationUnit = DurationUnit1.Day,
-                                },
-                                ConversionRate = 0,
-                                ConversionRateConfig = new(
-                                    new UnitConversionRateConfig()
-                                    {
-                                        ConversionRateType = ConversionRateTypeModel.Unit,
-                                        UnitConfig = new("unit_amount"),
-                                    }
-                                ),
-                                Currency = "currency",
-                                DimensionalPriceConfiguration = new()
-                                {
-                                    DimensionValues = ["string"],
-                                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                                    ExternalDimensionalPriceGroupID =
-                                        "external_dimensional_price_group_id",
-                                },
-                                ExternalPriceID = "external_price_id",
-                                FixedPriceQuantity = 0,
-                                InvoiceGroupingKey = "x",
-                                InvoicingCycleConfiguration = new()
-                                {
-                                    Duration = 0,
-                                    DurationUnit = DurationUnit1.Day,
-                                },
-                                Metadata = new Dictionary<string, string?>()
-                                {
-                                    { "foo", "string" },
-                                },
-                                ReferenceID = "reference_id",
-                            }
-                        ),
+                                Duration = 0,
+                                DurationUnit = DurationUnit1.Day,
+                            },
+                            ConversionRate = 0,
+                            ConversionRateConfig = new UnitConversionRateConfig()
+                            {
+                                ConversionRateType = ConversionRateTypeModel.Unit,
+                                UnitConfig = new("unit_amount"),
+                            },
+                            Currency = "currency",
+                            DimensionalPriceConfiguration = new()
+                            {
+                                DimensionValues = ["string"],
+                                DimensionalPriceGroupID = "dimensional_price_group_id",
+                                ExternalDimensionalPriceGroupID =
+                                    "external_dimensional_price_group_id",
+                            },
+                            ExternalPriceID = "external_price_id",
+                            FixedPriceQuantity = 0,
+                            InvoiceGroupingKey = "x",
+                            InvoicingCycleConfiguration = new()
+                            {
+                                Duration = 0,
+                                DurationUnit = DurationUnit1.Day,
+                            },
+                            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                            ReferenceID = "reference_id",
+                        },
                     },
                 ],
             }

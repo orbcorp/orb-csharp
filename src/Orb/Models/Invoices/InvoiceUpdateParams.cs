@@ -268,6 +268,10 @@ public record class DueDateModel
         };
     }
 
+    public static implicit operator DueDateModel(System::DateOnly value) => new(value);
+
+    public static implicit operator DueDateModel(System::DateTime value) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -405,6 +409,10 @@ public record class InvoiceDate
             _ => throw new OrbInvalidDataException("Data did not match any variant of InvoiceDate"),
         };
     }
+
+    public static implicit operator InvoiceDate(System::DateOnly value) => new(value);
+
+    public static implicit operator InvoiceDate(System::DateTime value) => new(value);
 
     public void Validate()
     {

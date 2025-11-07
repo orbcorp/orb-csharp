@@ -386,6 +386,16 @@ public record class Body
         };
     }
 
+    public static implicit operator Body(Increment value) => new(value);
+
+    public static implicit operator Body(Decrement value) => new(value);
+
+    public static implicit operator Body(ExpirationChange value) => new(value);
+
+    public static implicit operator Body(Void value) => new(value);
+
+    public static implicit operator Body(Amendment value) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -1405,6 +1415,10 @@ public record class CustomDueDate
         };
     }
 
+    public static implicit operator CustomDueDate(System::DateOnly value) => new(value);
+
+    public static implicit operator CustomDueDate(System::DateTime value) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -1544,6 +1558,10 @@ public record class InvoiceDate
             _ => throw new OrbInvalidDataException("Data did not match any variant of InvoiceDate"),
         };
     }
+
+    public static implicit operator InvoiceDate(System::DateOnly value) => new(value);
+
+    public static implicit operator InvoiceDate(System::DateTime value) => new(value);
 
     public void Validate()
     {

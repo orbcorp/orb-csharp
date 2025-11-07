@@ -311,6 +311,14 @@ public record class DiscountModel
         };
     }
 
+    public static implicit operator global::Orb.Models.Coupons.DiscountModel(
+        PercentageDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Coupons.DiscountModel(
+        AmountDiscount value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)

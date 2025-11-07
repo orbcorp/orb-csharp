@@ -23,37 +23,35 @@ public class LedgerServiceTest : TestBase
             new()
             {
                 CustomerID = "customer_id",
-                Body = new(
-                    new Ledger::Increment()
-                    {
-                        Amount = 0,
-                        Currency = "currency",
-                        Description = "description",
-                        EffectiveDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                        ExpiryDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                        Filters =
-                        [
-                            new()
-                            {
-                                Field = Ledger::Field.ItemID,
-                                Operator = Ledger::Operator.Includes,
-                                Values = ["string"],
-                            },
-                        ],
-                        InvoiceSettings = new()
+                Body = new Ledger::Increment()
+                {
+                    Amount = 0,
+                    Currency = "currency",
+                    Description = "description",
+                    EffectiveDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                    ExpiryDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                    Filters =
+                    [
+                        new()
                         {
-                            AutoCollection = true,
-                            CustomDueDate = new(DateOnly.Parse("2019-12-27")),
-                            InvoiceDate = new(DateOnly.Parse("2019-12-27")),
-                            ItemID = "item_id",
-                            Memo = "memo",
-                            NetTerms = 0,
-                            RequireSuccessfulPayment = true,
+                            Field = Ledger::Field.ItemID,
+                            Operator = Ledger::Operator.Includes,
+                            Values = ["string"],
                         },
-                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                        PerUnitCostBasis = "per_unit_cost_basis",
-                    }
-                ),
+                    ],
+                    InvoiceSettings = new()
+                    {
+                        AutoCollection = true,
+                        CustomDueDate = DateOnly.Parse("2019-12-27"),
+                        InvoiceDate = DateOnly.Parse("2019-12-27"),
+                        ItemID = "item_id",
+                        Memo = "memo",
+                        NetTerms = 0,
+                        RequireSuccessfulPayment = true,
+                    },
+                    Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                    PerUnitCostBasis = "per_unit_cost_basis",
+                },
             }
         );
         response.Validate();
@@ -66,37 +64,35 @@ public class LedgerServiceTest : TestBase
             new()
             {
                 ExternalCustomerID = "external_customer_id",
-                Body = new(
-                    new Ledger::IncrementModel()
-                    {
-                        Amount = 0,
-                        Currency = "currency",
-                        Description = "description",
-                        EffectiveDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                        ExpiryDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                        Filters =
-                        [
-                            new()
-                            {
-                                Field = Ledger::FieldModel.ItemID,
-                                Operator = Ledger::OperatorModel.Includes,
-                                Values = ["string"],
-                            },
-                        ],
-                        InvoiceSettings = new()
+                Body = new Ledger::IncrementModel()
+                {
+                    Amount = 0,
+                    Currency = "currency",
+                    Description = "description",
+                    EffectiveDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                    ExpiryDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                    Filters =
+                    [
+                        new()
                         {
-                            AutoCollection = true,
-                            CustomDueDate = new(DateOnly.Parse("2019-12-27")),
-                            InvoiceDate = new(DateOnly.Parse("2019-12-27")),
-                            ItemID = "item_id",
-                            Memo = "memo",
-                            NetTerms = 0,
-                            RequireSuccessfulPayment = true,
+                            Field = Ledger::FieldModel.ItemID,
+                            Operator = Ledger::OperatorModel.Includes,
+                            Values = ["string"],
                         },
-                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                        PerUnitCostBasis = "per_unit_cost_basis",
-                    }
-                ),
+                    ],
+                    InvoiceSettings = new()
+                    {
+                        AutoCollection = true,
+                        CustomDueDate = DateOnly.Parse("2019-12-27"),
+                        InvoiceDate = DateOnly.Parse("2019-12-27"),
+                        ItemID = "item_id",
+                        Memo = "memo",
+                        NetTerms = 0,
+                        RequireSuccessfulPayment = true,
+                    },
+                    Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                    PerUnitCostBasis = "per_unit_cost_basis",
+                },
             }
         );
         response.Validate();
