@@ -131,6 +131,11 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["events"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -176,6 +181,11 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["price_evaluations"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -486,6 +496,11 @@ public sealed record class PriceEvaluationModel : ModelBase, IFromRaw<PriceEvalu
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["grouping_keys"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

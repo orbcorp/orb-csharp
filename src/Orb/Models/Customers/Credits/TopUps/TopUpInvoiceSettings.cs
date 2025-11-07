@@ -103,6 +103,11 @@ public sealed record class TopUpInvoiceSettings : ModelBase, IFromRaw<TopUpInvoi
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["require_successful_payment"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

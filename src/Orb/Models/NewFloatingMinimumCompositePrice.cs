@@ -605,6 +605,11 @@ public sealed record class MinimumConfig : ModelBase, IFromRaw<MinimumConfig>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["prorated"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

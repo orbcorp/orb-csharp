@@ -427,6 +427,11 @@ public sealed record class CreditNoteModel : ModelBase, IFromRaw<CreditNoteModel
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["discounts"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -695,6 +700,11 @@ public sealed record class LineItemModel : ModelBase, IFromRaw<LineItemModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["discounts"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

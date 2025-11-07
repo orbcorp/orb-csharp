@@ -221,6 +221,11 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["is_invoice_level"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

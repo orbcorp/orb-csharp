@@ -104,6 +104,11 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["add"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -128,6 +133,11 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["add_adjustments"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -198,6 +208,11 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["edit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -222,6 +237,11 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["edit_adjustments"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -8626,6 +8646,11 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["start_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -9157,6 +9182,11 @@ public sealed record class EditAdjustment : ModelBase, IFromRaw<EditAdjustment>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["start_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

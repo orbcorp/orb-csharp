@@ -244,6 +244,11 @@ public sealed record class EventIngestParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._queryProperties["debug"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

@@ -14908,6 +14908,11 @@ public sealed record class TieredWithMinimumConfig1 : ModelBase, IFromRaw<Tiered
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["hide_zero_amount_tiers"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -14929,6 +14934,11 @@ public sealed record class TieredWithMinimumConfig1 : ModelBase, IFromRaw<Tiered
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["prorate"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -43779,6 +43789,11 @@ public sealed record class MinimumConfig1 : ModelBase, IFromRaw<MinimumConfig1>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["prorated"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

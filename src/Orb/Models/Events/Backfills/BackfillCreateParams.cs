@@ -216,6 +216,11 @@ public sealed record class BackfillCreateParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["replace_existing_events"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
