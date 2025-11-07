@@ -1553,6 +1553,85 @@ public record class PriceModel
         };
     }
 
+    public static implicit operator PriceModel(NewPlanUnitPrice value) => new(value);
+
+    public static implicit operator PriceModel(NewPlanTieredPrice value) => new(value);
+
+    public static implicit operator PriceModel(NewPlanBulkPrice value) => new(value);
+
+    public static implicit operator PriceModel(global::Orb.Models.Plans.BulkWithFilters value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewPlanPackagePrice value) => new(value);
+
+    public static implicit operator PriceModel(NewPlanMatrixPrice value) => new(value);
+
+    public static implicit operator PriceModel(NewPlanThresholdTotalAmountPrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewPlanTieredPackagePrice value) => new(value);
+
+    public static implicit operator PriceModel(NewPlanTieredWithMinimumPrice value) => new(value);
+
+    public static implicit operator PriceModel(NewPlanGroupedTieredPrice value) => new(value);
+
+    public static implicit operator PriceModel(NewPlanTieredPackageWithMinimumPrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewPlanPackageWithAllocationPrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewPlanUnitWithPercentPrice value) => new(value);
+
+    public static implicit operator PriceModel(NewPlanMatrixWithAllocationPrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(
+        global::Orb.Models.Plans.TieredWithProration value
+    ) => new(value);
+
+    public static implicit operator PriceModel(NewPlanUnitWithProrationPrice value) => new(value);
+
+    public static implicit operator PriceModel(NewPlanGroupedAllocationPrice value) => new(value);
+
+    public static implicit operator PriceModel(NewPlanBulkWithProrationPrice value) => new(value);
+
+    public static implicit operator PriceModel(NewPlanGroupedWithProratedMinimumPrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewPlanGroupedWithMeteredMinimumPrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(
+        global::Orb.Models.Plans.GroupedWithMinMaxThresholds value
+    ) => new(value);
+
+    public static implicit operator PriceModel(NewPlanMatrixWithDisplayNamePrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewPlanGroupedTieredPackagePrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewPlanMaxGroupTieredPackagePrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewPlanScalableMatrixWithUnitPricingPrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewPlanScalableMatrixWithTieredPricingPrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewPlanCumulativeGroupedBulkPrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewPlanMinimumCompositePrice value) => new(value);
+
+    public static implicit operator PriceModel(global::Orb.Models.Plans.Percent value) =>
+        new(value);
+
+    public static implicit operator PriceModel(global::Orb.Models.Plans.EventOutput value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -3476,6 +3555,14 @@ public record class ConversionRateConfig
         };
     }
 
+    public static implicit operator global::Orb.Models.Plans.ConversionRateConfig(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Plans.ConversionRateConfig(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -4465,6 +4552,14 @@ public record class ConversionRateConfigModel
         };
     }
 
+    public static implicit operator global::Orb.Models.Plans.ConversionRateConfigModel(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Plans.ConversionRateConfigModel(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -5442,6 +5537,14 @@ public record class ConversionRateConfig1
         };
     }
 
+    public static implicit operator global::Orb.Models.Plans.ConversionRateConfig1(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Plans.ConversionRateConfig1(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -6317,6 +6420,14 @@ public record class ConversionRateConfig2
             ),
         };
     }
+
+    public static implicit operator global::Orb.Models.Plans.ConversionRateConfig2(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Plans.ConversionRateConfig2(
+        TieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {
@@ -7248,6 +7359,14 @@ public record class ConversionRateConfig3
         };
     }
 
+    public static implicit operator global::Orb.Models.Plans.ConversionRateConfig3(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Plans.ConversionRateConfig3(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -7608,6 +7727,24 @@ public record class AdjustmentModel
             ),
         };
     }
+
+    public static implicit operator global::Orb.Models.Plans.AdjustmentModel(
+        NewPercentageDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Plans.AdjustmentModel(
+        NewUsageDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Plans.AdjustmentModel(
+        NewAmountDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Plans.AdjustmentModel(NewMinimum value) =>
+        new(value);
+
+    public static implicit operator global::Orb.Models.Plans.AdjustmentModel(NewMaximum value) =>
+        new(value);
 
     public void Validate()
     {

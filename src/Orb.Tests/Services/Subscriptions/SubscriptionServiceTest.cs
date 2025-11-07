@@ -166,7 +166,7 @@ public class SubscriptionServiceTest : TestBase
             new()
             {
                 SubscriptionID = "subscription_id",
-                TrialEndDate = new(DateTime.Parse("2017-07-21T17:32:28Z")),
+                TrialEndDate = DateTime.Parse("2017-07-21T17:32:28Z"),
             }
         );
         mutatedSubscription.Validate();

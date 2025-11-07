@@ -13,47 +13,43 @@ public class PriceServiceTest : TestBase
         var price = await this.client.Prices.Create(
             new()
             {
-                Body = new(
-                    new Models::NewFloatingUnitPrice()
+                Body = new Models::NewFloatingUnitPrice()
+                {
+                    Cadence = Models::Cadence23.Annual,
+                    Currency = "currency",
+                    ItemID = "item_id",
+                    ModelType = Models::ModelType22.Unit,
+                    Name = "Annual fee",
+                    UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                    BillableMetricID = "billable_metric_id",
+                    BilledInAdvance = true,
+                    BillingCycleConfiguration = new()
                     {
-                        Cadence = Models::Cadence23.Annual,
-                        Currency = "currency",
-                        ItemID = "item_id",
-                        ModelType = Models::ModelType22.Unit,
-                        Name = "Annual fee",
-                        UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
-                        BillableMetricID = "billable_metric_id",
-                        BilledInAdvance = true,
-                        BillingCycleConfiguration = new()
-                        {
-                            Duration = 0,
-                            DurationUnit = Models::DurationUnit1.Day,
-                        },
-                        ConversionRate = 0,
-                        ConversionRateConfig = new(
-                            new Models::UnitConversionRateConfig()
-                            {
-                                ConversionRateType = Models::ConversionRateTypeModel.Unit,
-                                UnitConfig = new("unit_amount"),
-                            }
-                        ),
-                        DimensionalPriceConfiguration = new()
-                        {
-                            DimensionValues = ["string"],
-                            DimensionalPriceGroupID = "dimensional_price_group_id",
-                            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                        },
-                        ExternalPriceID = "external_price_id",
-                        FixedPriceQuantity = 0,
-                        InvoiceGroupingKey = "x",
-                        InvoicingCycleConfiguration = new()
-                        {
-                            Duration = 0,
-                            DurationUnit = Models::DurationUnit1.Day,
-                        },
-                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                    }
-                ),
+                        Duration = 0,
+                        DurationUnit = Models::DurationUnit1.Day,
+                    },
+                    ConversionRate = 0,
+                    ConversionRateConfig = new Models::UnitConversionRateConfig()
+                    {
+                        ConversionRateType = Models::ConversionRateTypeModel.Unit,
+                        UnitConfig = new("unit_amount"),
+                    },
+                    DimensionalPriceConfiguration = new()
+                    {
+                        DimensionValues = ["string"],
+                        DimensionalPriceGroupID = "dimensional_price_group_id",
+                        ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                    },
+                    ExternalPriceID = "external_price_id",
+                    FixedPriceQuantity = 0,
+                    InvoiceGroupingKey = "x",
+                    InvoicingCycleConfiguration = new()
+                    {
+                        Duration = 0,
+                        DurationUnit = Models::DurationUnit1.Day,
+                    },
+                    Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                },
             }
         );
         price.Validate();

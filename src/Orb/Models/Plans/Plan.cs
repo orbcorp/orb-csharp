@@ -856,6 +856,26 @@ public record class Adjustment1
         };
     }
 
+    public static implicit operator global::Orb.Models.Plans.Adjustment1(
+        PlanPhaseUsageDiscountAdjustment value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Plans.Adjustment1(
+        PlanPhaseAmountDiscountAdjustment value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Plans.Adjustment1(
+        PlanPhasePercentageDiscountAdjustment value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Plans.Adjustment1(
+        PlanPhaseMinimumAdjustment value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Plans.Adjustment1(
+        PlanPhaseMaximumAdjustment value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)

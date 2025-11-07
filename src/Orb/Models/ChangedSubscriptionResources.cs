@@ -3117,6 +3117,19 @@ public record class AdjustmentModel
         };
     }
 
+    public static implicit operator AdjustmentModel(MonetaryUsageDiscountAdjustment value) =>
+        new(value);
+
+    public static implicit operator AdjustmentModel(MonetaryAmountDiscountAdjustment value) =>
+        new(value);
+
+    public static implicit operator AdjustmentModel(MonetaryPercentageDiscountAdjustment value) =>
+        new(value);
+
+    public static implicit operator AdjustmentModel(MonetaryMinimumAdjustment value) => new(value);
+
+    public static implicit operator AdjustmentModel(MonetaryMaximumAdjustment value) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -3436,6 +3449,12 @@ public record class SubLineItem
             _ => throw new OrbInvalidDataException("Data did not match any variant of SubLineItem"),
         };
     }
+
+    public static implicit operator SubLineItem(MatrixSubLineItem value) => new(value);
+
+    public static implicit operator SubLineItem(TierSubLineItem value) => new(value);
+
+    public static implicit operator SubLineItem(OtherSubLineItem value) => new(value);
 
     public void Validate()
     {

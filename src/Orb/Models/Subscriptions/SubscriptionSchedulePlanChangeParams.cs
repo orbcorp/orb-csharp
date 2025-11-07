@@ -1213,6 +1213,16 @@ public record class Adjustment2
         };
     }
 
+    public static implicit operator Adjustment2(NewPercentageDiscount value) => new(value);
+
+    public static implicit operator Adjustment2(NewUsageDiscount value) => new(value);
+
+    public static implicit operator Adjustment2(NewAmountDiscount value) => new(value);
+
+    public static implicit operator Adjustment2(NewMinimum value) => new(value);
+
+    public static implicit operator Adjustment2(NewMaximum value) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -2829,6 +2839,85 @@ public record class Price2
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price2"),
         };
     }
+
+    public static implicit operator Price2(NewSubscriptionUnitPrice value) => new(value);
+
+    public static implicit operator Price2(NewSubscriptionTieredPrice value) => new(value);
+
+    public static implicit operator Price2(NewSubscriptionBulkPrice value) => new(value);
+
+    public static implicit operator Price2(BulkWithFilters2 value) => new(value);
+
+    public static implicit operator Price2(NewSubscriptionPackagePrice value) => new(value);
+
+    public static implicit operator Price2(NewSubscriptionMatrixPrice value) => new(value);
+
+    public static implicit operator Price2(NewSubscriptionThresholdTotalAmountPrice value) =>
+        new(value);
+
+    public static implicit operator Price2(NewSubscriptionTieredPackagePrice value) => new(value);
+
+    public static implicit operator Price2(NewSubscriptionTieredWithMinimumPrice value) =>
+        new(value);
+
+    public static implicit operator Price2(NewSubscriptionGroupedTieredPrice value) => new(value);
+
+    public static implicit operator Price2(NewSubscriptionTieredPackageWithMinimumPrice value) =>
+        new(value);
+
+    public static implicit operator Price2(NewSubscriptionPackageWithAllocationPrice value) =>
+        new(value);
+
+    public static implicit operator Price2(NewSubscriptionUnitWithPercentPrice value) => new(value);
+
+    public static implicit operator Price2(NewSubscriptionMatrixWithAllocationPrice value) =>
+        new(value);
+
+    public static implicit operator Price2(TieredWithProration1 value) => new(value);
+
+    public static implicit operator Price2(NewSubscriptionUnitWithProrationPrice value) =>
+        new(value);
+
+    public static implicit operator Price2(NewSubscriptionGroupedAllocationPrice value) =>
+        new(value);
+
+    public static implicit operator Price2(NewSubscriptionBulkWithProrationPrice value) =>
+        new(value);
+
+    public static implicit operator Price2(NewSubscriptionGroupedWithProratedMinimumPrice value) =>
+        new(value);
+
+    public static implicit operator Price2(NewSubscriptionGroupedWithMeteredMinimumPrice value) =>
+        new(value);
+
+    public static implicit operator Price2(GroupedWithMinMaxThresholds2 value) => new(value);
+
+    public static implicit operator Price2(NewSubscriptionMatrixWithDisplayNamePrice value) =>
+        new(value);
+
+    public static implicit operator Price2(NewSubscriptionGroupedTieredPackagePrice value) =>
+        new(value);
+
+    public static implicit operator Price2(NewSubscriptionMaxGroupTieredPackagePrice value) =>
+        new(value);
+
+    public static implicit operator Price2(
+        NewSubscriptionScalableMatrixWithUnitPricingPrice value
+    ) => new(value);
+
+    public static implicit operator Price2(
+        NewSubscriptionScalableMatrixWithTieredPricingPrice value
+    ) => new(value);
+
+    public static implicit operator Price2(NewSubscriptionCumulativeGroupedBulkPrice value) =>
+        new(value);
+
+    public static implicit operator Price2(NewSubscriptionMinimumCompositePrice value) =>
+        new(value);
+
+    public static implicit operator Price2(Percent2 value) => new(value);
+
+    public static implicit operator Price2(EventOutput2 value) => new(value);
 
     public void Validate()
     {
@@ -4753,6 +4842,14 @@ public record class ConversionRateConfig13
         };
     }
 
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig13(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig13(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -5749,6 +5846,14 @@ public record class ConversionRateConfig14
         };
     }
 
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig14(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig14(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -6734,6 +6839,14 @@ public record class ConversionRateConfig15
         };
     }
 
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig15(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig15(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -7610,6 +7723,14 @@ public record class ConversionRateConfig16
             ),
         };
     }
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig16(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig16(
+        TieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {
@@ -8545,6 +8666,14 @@ public record class ConversionRateConfig17
         };
     }
 
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig17(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig17(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -9100,6 +9229,16 @@ public record class Adjustment3
             _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment3"),
         };
     }
+
+    public static implicit operator Adjustment3(NewPercentageDiscount value) => new(value);
+
+    public static implicit operator Adjustment3(NewUsageDiscount value) => new(value);
+
+    public static implicit operator Adjustment3(NewAmountDiscount value) => new(value);
+
+    public static implicit operator Adjustment3(NewMinimum value) => new(value);
+
+    public static implicit operator Adjustment3(NewMaximum value) => new(value);
 
     public void Validate()
     {
@@ -10702,6 +10841,85 @@ public record class Price3
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price3"),
         };
     }
+
+    public static implicit operator Price3(NewSubscriptionUnitPrice value) => new(value);
+
+    public static implicit operator Price3(NewSubscriptionTieredPrice value) => new(value);
+
+    public static implicit operator Price3(NewSubscriptionBulkPrice value) => new(value);
+
+    public static implicit operator Price3(BulkWithFilters3 value) => new(value);
+
+    public static implicit operator Price3(NewSubscriptionPackagePrice value) => new(value);
+
+    public static implicit operator Price3(NewSubscriptionMatrixPrice value) => new(value);
+
+    public static implicit operator Price3(NewSubscriptionThresholdTotalAmountPrice value) =>
+        new(value);
+
+    public static implicit operator Price3(NewSubscriptionTieredPackagePrice value) => new(value);
+
+    public static implicit operator Price3(NewSubscriptionTieredWithMinimumPrice value) =>
+        new(value);
+
+    public static implicit operator Price3(NewSubscriptionGroupedTieredPrice value) => new(value);
+
+    public static implicit operator Price3(NewSubscriptionTieredPackageWithMinimumPrice value) =>
+        new(value);
+
+    public static implicit operator Price3(NewSubscriptionPackageWithAllocationPrice value) =>
+        new(value);
+
+    public static implicit operator Price3(NewSubscriptionUnitWithPercentPrice value) => new(value);
+
+    public static implicit operator Price3(NewSubscriptionMatrixWithAllocationPrice value) =>
+        new(value);
+
+    public static implicit operator Price3(TieredWithProration2 value) => new(value);
+
+    public static implicit operator Price3(NewSubscriptionUnitWithProrationPrice value) =>
+        new(value);
+
+    public static implicit operator Price3(NewSubscriptionGroupedAllocationPrice value) =>
+        new(value);
+
+    public static implicit operator Price3(NewSubscriptionBulkWithProrationPrice value) =>
+        new(value);
+
+    public static implicit operator Price3(NewSubscriptionGroupedWithProratedMinimumPrice value) =>
+        new(value);
+
+    public static implicit operator Price3(NewSubscriptionGroupedWithMeteredMinimumPrice value) =>
+        new(value);
+
+    public static implicit operator Price3(GroupedWithMinMaxThresholds3 value) => new(value);
+
+    public static implicit operator Price3(NewSubscriptionMatrixWithDisplayNamePrice value) =>
+        new(value);
+
+    public static implicit operator Price3(NewSubscriptionGroupedTieredPackagePrice value) =>
+        new(value);
+
+    public static implicit operator Price3(NewSubscriptionMaxGroupTieredPackagePrice value) =>
+        new(value);
+
+    public static implicit operator Price3(
+        NewSubscriptionScalableMatrixWithUnitPricingPrice value
+    ) => new(value);
+
+    public static implicit operator Price3(
+        NewSubscriptionScalableMatrixWithTieredPricingPrice value
+    ) => new(value);
+
+    public static implicit operator Price3(NewSubscriptionCumulativeGroupedBulkPrice value) =>
+        new(value);
+
+    public static implicit operator Price3(NewSubscriptionMinimumCompositePrice value) =>
+        new(value);
+
+    public static implicit operator Price3(Percent3 value) => new(value);
+
+    public static implicit operator Price3(EventOutput3 value) => new(value);
 
     public void Validate()
     {
@@ -12626,6 +12844,14 @@ public record class ConversionRateConfig18
         };
     }
 
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig18(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig18(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -13622,6 +13848,14 @@ public record class ConversionRateConfig19
         };
     }
 
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig19(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig19(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -14607,6 +14841,14 @@ public record class ConversionRateConfig20
         };
     }
 
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig20(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig20(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -15483,6 +15725,14 @@ public record class ConversionRateConfig21
             ),
         };
     }
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig21(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig21(
+        TieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {
@@ -16417,6 +16667,14 @@ public record class ConversionRateConfig22
             ),
         };
     }
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig22(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig22(
+        TieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {

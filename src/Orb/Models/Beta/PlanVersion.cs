@@ -393,6 +393,26 @@ public record class Adjustment1
         };
     }
 
+    public static implicit operator global::Orb.Models.Beta.Adjustment1(
+        Models::PlanPhaseUsageDiscountAdjustment value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.Adjustment1(
+        Models::PlanPhaseAmountDiscountAdjustment value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.Adjustment1(
+        Models::PlanPhasePercentageDiscountAdjustment value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.Adjustment1(
+        Models::PlanPhaseMinimumAdjustment value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.Adjustment1(
+        Models::PlanPhaseMaximumAdjustment value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)

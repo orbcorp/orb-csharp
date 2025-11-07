@@ -220,6 +220,12 @@ public record class GroupingValue
         };
     }
 
+    public static implicit operator GroupingValue(string value) => new(value);
+
+    public static implicit operator GroupingValue(double value) => new(value);
+
+    public static implicit operator GroupingValue(bool value) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)

@@ -846,6 +846,17 @@ public record class TaxConfiguration
         };
     }
 
+    public static implicit operator TaxConfiguration(NewAvalaraTaxConfiguration value) =>
+        new(value);
+
+    public static implicit operator TaxConfiguration(NewTaxJarConfiguration value) => new(value);
+
+    public static implicit operator TaxConfiguration(NewSphereConfiguration value) => new(value);
+
+    public static implicit operator TaxConfiguration(Numeral value) => new(value);
+
+    public static implicit operator TaxConfiguration(Anrok value) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)

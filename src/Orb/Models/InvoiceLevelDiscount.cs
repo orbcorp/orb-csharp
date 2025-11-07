@@ -108,6 +108,12 @@ public record class InvoiceLevelDiscount
         };
     }
 
+    public static implicit operator InvoiceLevelDiscount(PercentageDiscount value) => new(value);
+
+    public static implicit operator InvoiceLevelDiscount(AmountDiscount value) => new(value);
+
+    public static implicit operator InvoiceLevelDiscount(TrialDiscount value) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)

@@ -713,6 +713,11 @@ public record class StartDate
         };
     }
 
+    public static implicit operator StartDate(System::DateTime value) => new(value);
+
+    public static implicit operator StartDate(ApiEnum<string, BillingCycleRelativeDate> value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -865,6 +870,15 @@ public record class Discount
             _ => throw new OrbInvalidDataException("Data did not match any variant of Discount"),
         };
     }
+
+    public static implicit operator global::Orb.Models.Subscriptions.Discount(Amount value) =>
+        new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Discount(Percentage value) =>
+        new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Discount(Usage value) =>
+        new(value);
 
     public void Validate()
     {
@@ -1521,6 +1535,11 @@ public record class EndDate
             _ => throw new OrbInvalidDataException("Data did not match any variant of EndDate"),
         };
     }
+
+    public static implicit operator EndDate(System::DateTime value) => new(value);
+
+    public static implicit operator EndDate(ApiEnum<string, BillingCycleRelativeDate> value) =>
+        new(value);
 
     public void Validate()
     {
@@ -2754,6 +2773,78 @@ public record class Price1
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price1"),
         };
     }
+
+    public static implicit operator Price1(NewFloatingUnitPrice value) => new(value);
+
+    public static implicit operator Price1(NewFloatingTieredPrice value) => new(value);
+
+    public static implicit operator Price1(NewFloatingBulkPrice value) => new(value);
+
+    public static implicit operator Price1(BulkWithFilters1 value) => new(value);
+
+    public static implicit operator Price1(NewFloatingPackagePrice value) => new(value);
+
+    public static implicit operator Price1(NewFloatingMatrixPrice value) => new(value);
+
+    public static implicit operator Price1(NewFloatingThresholdTotalAmountPrice value) =>
+        new(value);
+
+    public static implicit operator Price1(NewFloatingTieredPackagePrice value) => new(value);
+
+    public static implicit operator Price1(NewFloatingTieredWithMinimumPrice value) => new(value);
+
+    public static implicit operator Price1(NewFloatingGroupedTieredPrice value) => new(value);
+
+    public static implicit operator Price1(NewFloatingTieredPackageWithMinimumPrice value) =>
+        new(value);
+
+    public static implicit operator Price1(NewFloatingPackageWithAllocationPrice value) =>
+        new(value);
+
+    public static implicit operator Price1(NewFloatingUnitWithPercentPrice value) => new(value);
+
+    public static implicit operator Price1(NewFloatingMatrixWithAllocationPrice value) =>
+        new(value);
+
+    public static implicit operator Price1(NewFloatingTieredWithProrationPrice value) => new(value);
+
+    public static implicit operator Price1(NewFloatingUnitWithProrationPrice value) => new(value);
+
+    public static implicit operator Price1(NewFloatingGroupedAllocationPrice value) => new(value);
+
+    public static implicit operator Price1(NewFloatingBulkWithProrationPrice value) => new(value);
+
+    public static implicit operator Price1(NewFloatingGroupedWithProratedMinimumPrice value) =>
+        new(value);
+
+    public static implicit operator Price1(NewFloatingGroupedWithMeteredMinimumPrice value) =>
+        new(value);
+
+    public static implicit operator Price1(GroupedWithMinMaxThresholds1 value) => new(value);
+
+    public static implicit operator Price1(NewFloatingMatrixWithDisplayNamePrice value) =>
+        new(value);
+
+    public static implicit operator Price1(NewFloatingGroupedTieredPackagePrice value) =>
+        new(value);
+
+    public static implicit operator Price1(NewFloatingMaxGroupTieredPackagePrice value) =>
+        new(value);
+
+    public static implicit operator Price1(NewFloatingScalableMatrixWithUnitPricingPrice value) =>
+        new(value);
+
+    public static implicit operator Price1(NewFloatingScalableMatrixWithTieredPricingPrice value) =>
+        new(value);
+
+    public static implicit operator Price1(NewFloatingCumulativeGroupedBulkPrice value) =>
+        new(value);
+
+    public static implicit operator Price1(NewFloatingMinimumCompositePrice value) => new(value);
+
+    public static implicit operator Price1(Percent1 value) => new(value);
+
+    public static implicit operator Price1(EventOutput1 value) => new(value);
 
     public void Validate()
     {
@@ -4658,6 +4749,14 @@ public record class ConversionRateConfig9
         };
     }
 
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig9(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig9(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -5626,6 +5725,14 @@ public record class ConversionRateConfig10
         };
     }
 
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig10(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig10(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -6485,6 +6592,14 @@ public record class ConversionRateConfig11
             ),
         };
     }
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig11(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig11(
+        TieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {
@@ -7403,6 +7518,14 @@ public record class ConversionRateConfig12
         };
     }
 
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig12(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig12(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -7746,6 +7869,12 @@ public record class StartDateModel
         };
     }
 
+    public static implicit operator StartDateModel(System::DateTime value) => new(value);
+
+    public static implicit operator StartDateModel(
+        ApiEnum<string, BillingCycleRelativeDate> value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -7967,6 +8096,26 @@ public record class Adjustment1
             _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment1"),
         };
     }
+
+    public static implicit operator global::Orb.Models.Subscriptions.Adjustment1(
+        NewPercentageDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Adjustment1(
+        NewUsageDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Adjustment1(
+        NewAmountDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Adjustment1(
+        NewMinimum value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Adjustment1(
+        NewMaximum value
+    ) => new(value);
 
     public void Validate()
     {
@@ -8230,6 +8379,11 @@ public record class EndDateModel
             ),
         };
     }
+
+    public static implicit operator EndDateModel(System::DateTime value) => new(value);
+
+    public static implicit operator EndDateModel(ApiEnum<string, BillingCycleRelativeDate> value) =>
+        new(value);
 
     public void Validate()
     {
@@ -8622,6 +8776,11 @@ public record class EndDate1
         };
     }
 
+    public static implicit operator EndDate1(System::DateTime value) => new(value);
+
+    public static implicit operator EndDate1(ApiEnum<string, BillingCycleRelativeDate> value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -8851,6 +9010,11 @@ public record class StartDate1
             _ => throw new OrbInvalidDataException("Data did not match any variant of StartDate1"),
         };
     }
+
+    public static implicit operator StartDate1(System::DateTime value) => new(value);
+
+    public static implicit operator StartDate1(ApiEnum<string, BillingCycleRelativeDate> value) =>
+        new(value);
 
     public void Validate()
     {
@@ -9111,6 +9275,11 @@ public record class EndDate2
         };
     }
 
+    public static implicit operator EndDate2(System::DateTime value) => new(value);
+
+    public static implicit operator EndDate2(ApiEnum<string, BillingCycleRelativeDate> value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -9252,6 +9421,11 @@ public record class StartDate2
             _ => throw new OrbInvalidDataException("Data did not match any variant of StartDate2"),
         };
     }
+
+    public static implicit operator StartDate2(System::DateTime value) => new(value);
+
+    public static implicit operator StartDate2(ApiEnum<string, BillingCycleRelativeDate> value) =>
+        new(value);
 
     public void Validate()
     {

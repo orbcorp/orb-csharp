@@ -1002,6 +1002,13 @@ public record class DiscountInterval
         };
     }
 
+    public static implicit operator DiscountInterval(AmountDiscountInterval value) => new(value);
+
+    public static implicit operator DiscountInterval(PercentageDiscountInterval value) =>
+        new(value);
+
+    public static implicit operator DiscountInterval(UsageDiscountInterval value) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)

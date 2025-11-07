@@ -122,6 +122,14 @@ public record class Discount1
         };
     }
 
+    public static implicit operator Discount1(PercentageDiscount value) => new(value);
+
+    public static implicit operator Discount1(TrialDiscount value) => new(value);
+
+    public static implicit operator Discount1(UsageDiscount value) => new(value);
+
+    public static implicit operator Discount1(AmountDiscount value) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)

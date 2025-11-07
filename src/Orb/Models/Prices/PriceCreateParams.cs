@@ -1244,6 +1244,74 @@ public record class Body
         };
     }
 
+    public static implicit operator Body(NewFloatingUnitPrice value) => new(value);
+
+    public static implicit operator Body(NewFloatingTieredPrice value) => new(value);
+
+    public static implicit operator Body(NewFloatingBulkPrice value) => new(value);
+
+    public static implicit operator Body(global::Orb.Models.Prices.BulkWithFilters value) =>
+        new(value);
+
+    public static implicit operator Body(NewFloatingPackagePrice value) => new(value);
+
+    public static implicit operator Body(NewFloatingMatrixPrice value) => new(value);
+
+    public static implicit operator Body(NewFloatingThresholdTotalAmountPrice value) => new(value);
+
+    public static implicit operator Body(NewFloatingTieredPackagePrice value) => new(value);
+
+    public static implicit operator Body(NewFloatingTieredWithMinimumPrice value) => new(value);
+
+    public static implicit operator Body(NewFloatingGroupedTieredPrice value) => new(value);
+
+    public static implicit operator Body(NewFloatingTieredPackageWithMinimumPrice value) =>
+        new(value);
+
+    public static implicit operator Body(NewFloatingPackageWithAllocationPrice value) => new(value);
+
+    public static implicit operator Body(NewFloatingUnitWithPercentPrice value) => new(value);
+
+    public static implicit operator Body(NewFloatingMatrixWithAllocationPrice value) => new(value);
+
+    public static implicit operator Body(NewFloatingTieredWithProrationPrice value) => new(value);
+
+    public static implicit operator Body(NewFloatingUnitWithProrationPrice value) => new(value);
+
+    public static implicit operator Body(NewFloatingGroupedAllocationPrice value) => new(value);
+
+    public static implicit operator Body(NewFloatingBulkWithProrationPrice value) => new(value);
+
+    public static implicit operator Body(NewFloatingGroupedWithProratedMinimumPrice value) =>
+        new(value);
+
+    public static implicit operator Body(NewFloatingGroupedWithMeteredMinimumPrice value) =>
+        new(value);
+
+    public static implicit operator Body(
+        global::Orb.Models.Prices.GroupedWithMinMaxThresholds value
+    ) => new(value);
+
+    public static implicit operator Body(NewFloatingMatrixWithDisplayNamePrice value) => new(value);
+
+    public static implicit operator Body(NewFloatingGroupedTieredPackagePrice value) => new(value);
+
+    public static implicit operator Body(NewFloatingMaxGroupTieredPackagePrice value) => new(value);
+
+    public static implicit operator Body(NewFloatingScalableMatrixWithUnitPricingPrice value) =>
+        new(value);
+
+    public static implicit operator Body(NewFloatingScalableMatrixWithTieredPricingPrice value) =>
+        new(value);
+
+    public static implicit operator Body(NewFloatingCumulativeGroupedBulkPrice value) => new(value);
+
+    public static implicit operator Body(NewFloatingMinimumCompositePrice value) => new(value);
+
+    public static implicit operator Body(global::Orb.Models.Prices.Percent value) => new(value);
+
+    public static implicit operator Body(global::Orb.Models.Prices.EventOutput value) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -3160,6 +3228,14 @@ public record class ConversionRateConfig
         };
     }
 
+    public static implicit operator global::Orb.Models.Prices.ConversionRateConfig(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.ConversionRateConfig(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -4119,6 +4195,14 @@ public record class ConversionRateConfigModel
         };
     }
 
+    public static implicit operator global::Orb.Models.Prices.ConversionRateConfigModel(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.ConversionRateConfigModel(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -4981,6 +5065,14 @@ public record class ConversionRateConfig1
             ),
         };
     }
+
+    public static implicit operator global::Orb.Models.Prices.ConversionRateConfig1(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.ConversionRateConfig1(
+        TieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {
@@ -5894,6 +5986,14 @@ public record class ConversionRateConfig2
             ),
         };
     }
+
+    public static implicit operator global::Orb.Models.Prices.ConversionRateConfig2(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Prices.ConversionRateConfig2(
+        TieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {

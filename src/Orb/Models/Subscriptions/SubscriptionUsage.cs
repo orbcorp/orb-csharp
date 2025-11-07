@@ -81,6 +81,11 @@ public record class SubscriptionUsage
         };
     }
 
+    public static implicit operator SubscriptionUsage(UngroupedSubscriptionUsage value) =>
+        new(value);
+
+    public static implicit operator SubscriptionUsage(GroupedSubscriptionUsage value) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)

@@ -1318,6 +1318,24 @@ public record class Adjustment
         };
     }
 
+    public static implicit operator global::Orb.Models.Subscriptions.Adjustment(
+        NewPercentageDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Adjustment(
+        NewUsageDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Adjustment(
+        NewAmountDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Adjustment(NewMinimum value) =>
+        new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Adjustment(NewMaximum value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -2949,6 +2967,126 @@ public record class Price
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };
     }
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionUnitPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionTieredPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionBulkPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        global::Orb.Models.Subscriptions.BulkWithFilters value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionPackagePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionMatrixPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionThresholdTotalAmountPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionTieredPackagePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionTieredWithMinimumPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionGroupedTieredPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionTieredPackageWithMinimumPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionPackageWithAllocationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionUnitWithPercentPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionMatrixWithAllocationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        global::Orb.Models.Subscriptions.TieredWithProration value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionUnitWithProrationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionGroupedAllocationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionBulkWithProrationPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionGroupedWithProratedMinimumPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionGroupedWithMeteredMinimumPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        global::Orb.Models.Subscriptions.GroupedWithMinMaxThresholds value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionMatrixWithDisplayNamePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionGroupedTieredPackagePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionMaxGroupTieredPackagePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionScalableMatrixWithUnitPricingPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionScalableMatrixWithTieredPricingPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionCumulativeGroupedBulkPrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        NewSubscriptionMinimumCompositePrice value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        global::Orb.Models.Subscriptions.Percent value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.Price(
+        global::Orb.Models.Subscriptions.EventOutput value
+    ) => new(value);
 
     public void Validate()
     {
@@ -4892,6 +5030,14 @@ public record class ConversionRateConfig
         };
     }
 
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -5892,6 +6038,14 @@ public record class ConversionRateConfigModel
         };
     }
 
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfigModel(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfigModel(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -6881,6 +7035,14 @@ public record class ConversionRateConfig1
         };
     }
 
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig1(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig1(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -7764,6 +7926,14 @@ public record class ConversionRateConfig2
             ),
         };
     }
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig2(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig2(
+        TieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {
@@ -8705,6 +8875,14 @@ public record class ConversionRateConfig3
         };
     }
 
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig3(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig3(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -9262,6 +9440,26 @@ public record class AdjustmentModel
             ),
         };
     }
+
+    public static implicit operator global::Orb.Models.Subscriptions.AdjustmentModel(
+        NewPercentageDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.AdjustmentModel(
+        NewUsageDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.AdjustmentModel(
+        NewAmountDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.AdjustmentModel(
+        NewMinimum value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.AdjustmentModel(
+        NewMaximum value
+    ) => new(value);
 
     public void Validate()
     {
@@ -10863,6 +11061,92 @@ public record class PriceModel
             _ => throw new OrbInvalidDataException("Data did not match any variant of PriceModel"),
         };
     }
+
+    public static implicit operator PriceModel(NewSubscriptionUnitPrice value) => new(value);
+
+    public static implicit operator PriceModel(NewSubscriptionTieredPrice value) => new(value);
+
+    public static implicit operator PriceModel(NewSubscriptionBulkPrice value) => new(value);
+
+    public static implicit operator PriceModel(BulkWithFiltersModel value) => new(value);
+
+    public static implicit operator PriceModel(NewSubscriptionPackagePrice value) => new(value);
+
+    public static implicit operator PriceModel(NewSubscriptionMatrixPrice value) => new(value);
+
+    public static implicit operator PriceModel(NewSubscriptionThresholdTotalAmountPrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewSubscriptionTieredPackagePrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewSubscriptionTieredWithMinimumPrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewSubscriptionGroupedTieredPrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(
+        NewSubscriptionTieredPackageWithMinimumPrice value
+    ) => new(value);
+
+    public static implicit operator PriceModel(NewSubscriptionPackageWithAllocationPrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewSubscriptionUnitWithPercentPrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewSubscriptionMatrixWithAllocationPrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(TieredWithProrationModel value) => new(value);
+
+    public static implicit operator PriceModel(NewSubscriptionUnitWithProrationPrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewSubscriptionGroupedAllocationPrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewSubscriptionBulkWithProrationPrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(
+        NewSubscriptionGroupedWithProratedMinimumPrice value
+    ) => new(value);
+
+    public static implicit operator PriceModel(
+        NewSubscriptionGroupedWithMeteredMinimumPrice value
+    ) => new(value);
+
+    public static implicit operator PriceModel(GroupedWithMinMaxThresholdsModel value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewSubscriptionMatrixWithDisplayNamePrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewSubscriptionGroupedTieredPackagePrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewSubscriptionMaxGroupTieredPackagePrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(
+        NewSubscriptionScalableMatrixWithUnitPricingPrice value
+    ) => new(value);
+
+    public static implicit operator PriceModel(
+        NewSubscriptionScalableMatrixWithTieredPricingPrice value
+    ) => new(value);
+
+    public static implicit operator PriceModel(NewSubscriptionCumulativeGroupedBulkPrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(NewSubscriptionMinimumCompositePrice value) =>
+        new(value);
+
+    public static implicit operator PriceModel(PercentModel value) => new(value);
+
+    public static implicit operator PriceModel(EventOutputModel value) => new(value);
 
     public void Validate()
     {
@@ -12798,6 +13082,14 @@ public record class ConversionRateConfig4
         };
     }
 
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig4(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig4(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -13796,6 +14088,14 @@ public record class ConversionRateConfig5
         };
     }
 
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig5(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig5(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -14783,6 +15083,14 @@ public record class ConversionRateConfig6
         };
     }
 
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig6(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig6(
+        TieredConversionRateConfig value
+    ) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -15662,6 +15970,14 @@ public record class ConversionRateConfig7
             ),
         };
     }
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig7(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig7(
+        TieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {
@@ -16598,6 +16914,14 @@ public record class ConversionRateConfig8
             ),
         };
     }
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig8(
+        UnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig8(
+        TieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {

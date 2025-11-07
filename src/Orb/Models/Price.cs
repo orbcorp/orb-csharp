@@ -1356,6 +1356,66 @@ public record class Price
         };
     }
 
+    public static implicit operator Price(Unit value) => new(value);
+
+    public static implicit operator Price(Tiered value) => new(value);
+
+    public static implicit operator Price(Bulk value) => new(value);
+
+    public static implicit operator Price(BulkWithFilters value) => new(value);
+
+    public static implicit operator Price(Package value) => new(value);
+
+    public static implicit operator Price(Matrix value) => new(value);
+
+    public static implicit operator Price(ThresholdTotalAmount value) => new(value);
+
+    public static implicit operator Price(TieredPackage value) => new(value);
+
+    public static implicit operator Price(TieredWithMinimum value) => new(value);
+
+    public static implicit operator Price(GroupedTiered value) => new(value);
+
+    public static implicit operator Price(TieredPackageWithMinimum value) => new(value);
+
+    public static implicit operator Price(PackageWithAllocation value) => new(value);
+
+    public static implicit operator Price(UnitWithPercent value) => new(value);
+
+    public static implicit operator Price(MatrixWithAllocation value) => new(value);
+
+    public static implicit operator Price(TieredWithProration value) => new(value);
+
+    public static implicit operator Price(UnitWithProration value) => new(value);
+
+    public static implicit operator Price(GroupedAllocation value) => new(value);
+
+    public static implicit operator Price(BulkWithProration value) => new(value);
+
+    public static implicit operator Price(GroupedWithProratedMinimum value) => new(value);
+
+    public static implicit operator Price(GroupedWithMeteredMinimum value) => new(value);
+
+    public static implicit operator Price(GroupedWithMinMaxThresholds value) => new(value);
+
+    public static implicit operator Price(MatrixWithDisplayName value) => new(value);
+
+    public static implicit operator Price(GroupedTieredPackage value) => new(value);
+
+    public static implicit operator Price(MaxGroupTieredPackage value) => new(value);
+
+    public static implicit operator Price(ScalableMatrixWithUnitPricing value) => new(value);
+
+    public static implicit operator Price(ScalableMatrixWithTieredPricing value) => new(value);
+
+    public static implicit operator Price(CumulativeGroupedBulk value) => new(value);
+
+    public static implicit operator Price(MinimumModel value) => new(value);
+
+    public static implicit operator Price(Percent value) => new(value);
+
+    public static implicit operator Price(EventOutput value) => new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -3321,6 +3381,12 @@ public record class ConversionRateConfig50
         };
     }
 
+    public static implicit operator ConversionRateConfig50(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig50(TieredConversionRateConfig value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -4637,6 +4703,12 @@ public record class ConversionRateConfig51
         };
     }
 
+    public static implicit operator ConversionRateConfig51(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig51(TieredConversionRateConfig value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -5950,6 +6022,12 @@ public record class ConversionRateConfig52
             ),
         };
     }
+
+    public static implicit operator ConversionRateConfig52(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig52(TieredConversionRateConfig value) =>
+        new(value);
 
     public void Validate()
     {
@@ -7554,6 +7632,12 @@ public record class ConversionRateConfig53
         };
     }
 
+    public static implicit operator ConversionRateConfig53(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig53(TieredConversionRateConfig value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -8868,6 +8952,12 @@ public record class ConversionRateConfig54
         };
     }
 
+    public static implicit operator ConversionRateConfig54(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig54(TieredConversionRateConfig value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -10181,6 +10271,12 @@ public record class ConversionRateConfig55
             ),
         };
     }
+
+    public static implicit operator ConversionRateConfig55(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig55(TieredConversionRateConfig value) =>
+        new(value);
 
     public void Validate()
     {
@@ -11505,6 +11601,12 @@ public record class ConversionRateConfig56
             ),
         };
     }
+
+    public static implicit operator ConversionRateConfig56(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig56(TieredConversionRateConfig value) =>
+        new(value);
 
     public void Validate()
     {
@@ -13025,6 +13127,12 @@ public record class ConversionRateConfig57
         };
     }
 
+    public static implicit operator ConversionRateConfig57(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig57(TieredConversionRateConfig value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -14537,6 +14645,12 @@ public record class ConversionRateConfig58
             ),
         };
     }
+
+    public static implicit operator ConversionRateConfig58(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig58(TieredConversionRateConfig value) =>
+        new(value);
 
     public void Validate()
     {
@@ -16101,6 +16215,12 @@ public record class ConversionRateConfig59
         };
     }
 
+    public static implicit operator ConversionRateConfig59(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig59(TieredConversionRateConfig value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -17614,6 +17734,12 @@ public record class ConversionRateConfig60
             ),
         };
     }
+
+    public static implicit operator ConversionRateConfig60(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig60(TieredConversionRateConfig value) =>
+        new(value);
 
     public void Validate()
     {
@@ -19159,6 +19285,12 @@ public record class ConversionRateConfig61
         };
     }
 
+    public static implicit operator ConversionRateConfig61(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig61(TieredConversionRateConfig value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -20609,6 +20741,12 @@ public record class ConversionRateConfig62
         };
     }
 
+    public static implicit operator ConversionRateConfig62(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig62(TieredConversionRateConfig value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -22027,6 +22165,12 @@ public record class ConversionRateConfig63
         };
     }
 
+    public static implicit operator ConversionRateConfig63(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig63(TieredConversionRateConfig value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -23350,6 +23494,12 @@ public record class ConversionRateConfig64
             ),
         };
     }
+
+    public static implicit operator ConversionRateConfig64(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig64(TieredConversionRateConfig value) =>
+        new(value);
 
     public void Validate()
     {
@@ -24841,6 +24991,12 @@ public record class ConversionRateConfig65
         };
     }
 
+    public static implicit operator ConversionRateConfig65(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig65(TieredConversionRateConfig value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -26231,6 +26387,12 @@ public record class ConversionRateConfig66
             ),
         };
     }
+
+    public static implicit operator ConversionRateConfig66(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig66(TieredConversionRateConfig value) =>
+        new(value);
 
     public void Validate()
     {
@@ -27846,6 +28008,12 @@ public record class ConversionRateConfig67
         };
     }
 
+    public static implicit operator ConversionRateConfig67(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig67(TieredConversionRateConfig value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -29169,6 +29337,12 @@ public record class ConversionRateConfig68
             ),
         };
     }
+
+    public static implicit operator ConversionRateConfig68(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig68(TieredConversionRateConfig value) =>
+        new(value);
 
     public void Validate()
     {
@@ -30621,6 +30795,12 @@ public record class ConversionRateConfig69
             ),
         };
     }
+
+    public static implicit operator ConversionRateConfig69(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig69(TieredConversionRateConfig value) =>
+        new(value);
 
     public void Validate()
     {
@@ -32379,6 +32559,12 @@ public record class ConversionRateConfig70
         };
     }
 
+    public static implicit operator ConversionRateConfig70(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig70(TieredConversionRateConfig value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -33865,6 +34051,12 @@ public record class ConversionRateConfig71
             ),
         };
     }
+
+    public static implicit operator ConversionRateConfig71(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig71(TieredConversionRateConfig value) =>
+        new(value);
 
     public void Validate()
     {
@@ -35422,6 +35614,12 @@ public record class ConversionRateConfig72
         };
     }
 
+    public static implicit operator ConversionRateConfig72(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig72(TieredConversionRateConfig value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -36969,6 +37167,12 @@ public record class ConversionRateConfig73
             ),
         };
     }
+
+    public static implicit operator ConversionRateConfig73(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig73(TieredConversionRateConfig value) =>
+        new(value);
 
     public void Validate()
     {
@@ -38519,6 +38723,12 @@ public record class ConversionRateConfig74
             ),
         };
     }
+
+    public static implicit operator ConversionRateConfig74(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig74(TieredConversionRateConfig value) =>
+        new(value);
 
     public void Validate()
     {
@@ -40143,6 +40353,12 @@ public record class ConversionRateConfig75
             ),
         };
     }
+
+    public static implicit operator ConversionRateConfig75(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig75(TieredConversionRateConfig value) =>
+        new(value);
 
     public void Validate()
     {
@@ -41843,6 +42059,12 @@ public record class ConversionRateConfig76
         };
     }
 
+    public static implicit operator ConversionRateConfig76(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig76(TieredConversionRateConfig value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -43388,6 +43610,12 @@ public record class ConversionRateConfig77
         };
     }
 
+    public static implicit operator ConversionRateConfig77(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig77(TieredConversionRateConfig value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -44796,6 +45024,12 @@ public record class ConversionRateConfig78
         };
     }
 
+    public static implicit operator ConversionRateConfig78(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig78(TieredConversionRateConfig value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value is UnknownVariant)
@@ -46177,6 +46411,12 @@ public record class ConversionRateConfig79
             ),
         };
     }
+
+    public static implicit operator ConversionRateConfig79(UnitConversionRateConfig value) =>
+        new(value);
+
+    public static implicit operator ConversionRateConfig79(TieredConversionRateConfig value) =>
+        new(value);
 
     public void Validate()
     {
