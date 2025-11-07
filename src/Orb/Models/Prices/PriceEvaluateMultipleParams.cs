@@ -165,6 +165,11 @@ public sealed record class PriceEvaluateMultipleParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["price_evaluations"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -300,6 +305,11 @@ public sealed record class PriceEvaluation : ModelBase, IFromRaw<PriceEvaluation
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["grouping_keys"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

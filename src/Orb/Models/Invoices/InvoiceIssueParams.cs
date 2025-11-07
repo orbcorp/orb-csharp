@@ -44,6 +44,11 @@ public sealed record class InvoiceIssueParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["synchronous"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

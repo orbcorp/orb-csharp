@@ -172,6 +172,11 @@ public sealed record class PriceEvaluateParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["grouping_keys"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

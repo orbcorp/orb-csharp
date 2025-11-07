@@ -189,6 +189,11 @@ public sealed record class NewUsageDiscount : ModelBase, IFromRaw<NewUsageDiscou
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["is_invoice_level"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

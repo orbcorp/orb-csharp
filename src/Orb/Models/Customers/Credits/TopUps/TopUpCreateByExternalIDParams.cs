@@ -430,6 +430,11 @@ public sealed record class InvoiceSettingsModel : ModelBase, IFromRaw<InvoiceSet
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["require_successful_payment"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

@@ -86,6 +86,11 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["shift"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

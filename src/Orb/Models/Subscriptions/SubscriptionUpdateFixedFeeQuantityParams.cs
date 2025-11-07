@@ -129,6 +129,11 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["change_option"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

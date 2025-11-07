@@ -671,6 +671,11 @@ public sealed record class TieredWithMinimumConfigModel
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["hide_zero_amount_tiers"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -692,6 +697,11 @@ public sealed record class TieredWithMinimumConfigModel
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["prorate"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

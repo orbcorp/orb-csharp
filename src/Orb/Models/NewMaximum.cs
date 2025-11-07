@@ -193,6 +193,11 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["is_invoice_level"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

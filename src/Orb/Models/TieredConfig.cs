@@ -57,6 +57,11 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["prorated"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

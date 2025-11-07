@@ -138,6 +138,11 @@ public sealed record class PlanListParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._queryProperties["limit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -162,6 +167,11 @@ public sealed record class PlanListParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._queryProperties["status"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

@@ -275,6 +275,11 @@ public sealed record class SubscriptionCreateParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["align_billing_with_subscription_start_date"] =
                 JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }

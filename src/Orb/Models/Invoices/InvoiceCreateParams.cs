@@ -290,6 +290,11 @@ public sealed record class InvoiceCreateParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["will_auto_issue"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

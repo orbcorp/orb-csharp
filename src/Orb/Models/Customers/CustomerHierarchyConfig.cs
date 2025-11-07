@@ -25,6 +25,11 @@ public sealed record class CustomerHierarchyConfig : ModelBase, IFromRaw<Custome
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["child_customer_ids"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

@@ -93,6 +93,11 @@ public sealed record class Allocation : ModelBase, IFromRaw<Allocation>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["filters"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
