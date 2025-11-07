@@ -94,17 +94,17 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
         );
     }
 
-    public override Uri Url(IOrbClient client)
+    public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format(
                     "/subscriptions/{0}/unschedule_fixed_fee_quantity_updates",
                     this.SubscriptionID
                 )
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
@@ -117,9 +117,9 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
         );
     }
 
-    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, options);
         foreach (var item in this.HeaderProperties)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
