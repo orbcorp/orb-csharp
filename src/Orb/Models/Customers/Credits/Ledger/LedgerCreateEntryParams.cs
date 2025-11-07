@@ -167,14 +167,14 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
         );
     }
 
-    public override System::Uri Url(IOrbClient client)
+    public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/customers/{0}/credits/ledger_entry", this.CustomerID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
@@ -187,9 +187,9 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
         );
     }
 
-    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, options);
         foreach (var item in this.HeaderProperties)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

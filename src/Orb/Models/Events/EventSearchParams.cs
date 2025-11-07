@@ -148,11 +148,11 @@ public sealed record class EventSearchParams : ParamsBase
         );
     }
 
-    public override Uri Url(IOrbClient client)
+    public override Uri Url(ClientOptions options)
     {
-        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/events/search")
+        return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/events/search")
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
@@ -165,9 +165,9 @@ public sealed record class EventSearchParams : ParamsBase
         );
     }
 
-    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, options);
         foreach (var item in this.HeaderProperties)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

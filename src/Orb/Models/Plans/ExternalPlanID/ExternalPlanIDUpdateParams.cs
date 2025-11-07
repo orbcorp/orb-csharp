@@ -114,14 +114,14 @@ public sealed record class ExternalPlanIDUpdateParams : ParamsBase
         );
     }
 
-    public override Uri Url(IOrbClient client)
+    public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/plans/external_plan_id/{0}", this.OtherExternalPlanID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
@@ -134,9 +134,9 @@ public sealed record class ExternalPlanIDUpdateParams : ParamsBase
         );
     }
 
-    internal override void AddHeadersToRequest(HttpRequestMessage request, IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, options);
         foreach (var item in this.HeaderProperties)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
