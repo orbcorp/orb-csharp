@@ -21,6 +21,8 @@ public struct ClientOptions()
 
     public TimeSpan Timeout { get; set; } = TimeSpan.FromMinutes(1);
 
+    public int MaxRetries { get; set; } = 2;
+
     Lazy<string> _apiKey = new(() =>
         Environment.GetEnvironmentVariable("ORB_API_KEY")
         ?? throw new OrbInvalidDataException(

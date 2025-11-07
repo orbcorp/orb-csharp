@@ -32,6 +32,8 @@ public interface IOrbClient
 
     TimeSpan Timeout { get; init; }
 
+    int MaxRetries { get; init; }
+
     string APIKey { get; init; }
 
     string? WebhookSecret { get; init; }
