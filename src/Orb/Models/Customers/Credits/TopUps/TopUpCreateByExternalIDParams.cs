@@ -13,11 +13,11 @@ namespace Orb.Models.Customers.Credits.TopUps;
 
 /// <summary>
 /// This endpoint allows you to create a new top-up for a specified customer's balance.
-/// While this top-up is active, the customer's balance will added in increments of
-/// the specified amount whenever the balance reaches the specified threshold.
+/// While this top-up is active, the customer's balance will added in increments
+/// of the specified amount whenever the balance reaches the specified threshold.
 ///
-/// If a top-up already exists for this customer in the same currency, the existing
-/// top-up will be replaced.
+/// <para>If a top-up already exists for this customer in the same currency, the existing
+/// top-up will be replaced.</para>
 /// </summary>
 public sealed record class TopUpCreateByExternalIDParams : ParamsBase
 {
@@ -58,8 +58,8 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     }
 
     /// <summary>
-    /// The currency or custom pricing unit to use for this top-up. If this is a
-    /// real-world currency, it must match the customer's invoicing currency.
+    /// The currency or custom pricing unit to use for this top-up. If this is a real-world
+    /// currency, it must match the customer's invoicing currency.
     /// </summary>
     public required string Currency
     {
@@ -362,9 +362,9 @@ public sealed record class InvoiceSettingsModel : ModelBase, IFromRaw<InvoiceSet
     }
 
     /// <summary>
-    /// The net terms determines the difference between the invoice date and the issue
-    /// date for the invoice. If you intend the invoice to be due on issue, set this
-    /// to 0.
+    /// The net terms determines the difference between the invoice date and the
+    /// issue date for the invoice. If you intend the invoice to be due on issue,
+    /// set this to 0.
     /// </summary>
     public required long NetTerms
     {

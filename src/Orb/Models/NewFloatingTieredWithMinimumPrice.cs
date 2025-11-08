@@ -235,7 +235,8 @@ public sealed record class NewFloatingTieredWithMinimumPrice
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -610,8 +611,8 @@ sealed class ModelType20Converter : JsonConverter<ModelType20>
 public sealed record class TieredWithMinimumConfig : ModelBase, IFromRaw<TieredWithMinimumConfig>
 {
     /// <summary>
-    /// Tiered pricing with a minimum amount dependent on the volume tier. Tiers are
-    /// defined using exclusive lower bounds.
+    /// Tiered pricing with a minimum amount dependent on the volume tier. Tiers
+    /// are defined using exclusive lower bounds.
     /// </summary>
     public required List<Tier6> Tiers
     {

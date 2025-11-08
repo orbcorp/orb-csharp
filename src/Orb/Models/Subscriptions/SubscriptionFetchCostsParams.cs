@@ -16,10 +16,10 @@ namespace Orb.Models.Subscriptions;
 /// the [subscription usage endpoint](fetch-subscription-usage) to fetch usage per
 /// metric, in usage units rather than a currency).
 ///
-/// The semantics of this endpoint exactly mirror those of [fetching a customer's
+/// <para>The semantics of this endpoint exactly mirror those of [fetching a customer's
 /// costs](fetch-customer-costs). Use this endpoint to limit your analysis of costs
-/// to a specific subscription for the customer (e.g. to de-aggregate costs when a
-/// customer's subscription has started and stopped on the same day).
+/// to a specific subscription for the customer (e.g. to de-aggregate costs when
+/// a customer's subscription has started and stopped on the same day).</para>
 /// </summary>
 public sealed record class SubscriptionFetchCostsParams : ParamsBase
 {
@@ -176,9 +176,9 @@ public sealed record class SubscriptionFetchCostsParams : ParamsBase
 }
 
 /// <summary>
-/// Controls whether Orb returns cumulative costs since the start of the billing period,
-/// or incremental day-by-day costs. If your customer has minimums or discounts, it's
-/// strongly recommended that you use the default cumulative behavior.
+/// Controls whether Orb returns cumulative costs since the start of the billing
+/// period, or incremental day-by-day costs. If your customer has minimums or discounts,
+/// it's strongly recommended that you use the default cumulative behavior.
 /// </summary>
 [JsonConverter(typeof(ViewModeConverter))]
 public enum ViewMode

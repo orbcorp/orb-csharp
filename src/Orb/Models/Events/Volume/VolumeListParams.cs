@@ -12,15 +12,15 @@ namespace Orb.Models.Events.Volume;
 /// <summary>
 /// This endpoint returns the event volume for an account in a [paginated list format](/api-reference/pagination).
 ///
-/// The event volume is aggregated by the hour and the [timestamp](/api-reference/event/ingest-events)
+/// <para>The event volume is aggregated by the hour and the [timestamp](/api-reference/event/ingest-events)
 /// field is used to determine which hour an event is associated with. Note, this
 /// means that late-arriving events increment the volume count for the hour window
-/// the timestamp is in, not the latest hour window.
+/// the timestamp is in, not the latest hour window.</para>
 ///
-/// Each item in the response contains the count of events aggregated by the hour
-/// where the start and end time are hour-aligned and in UTC. When a specific timestamp
-/// is passed in for either start or end time, the response includes the hours the
-/// timestamp falls in.
+/// <para>Each item in the response contains the count of events aggregated by the
+/// hour where the start and end time are hour-aligned and in UTC. When a specific
+/// timestamp is passed in for either start or end time, the response includes the
+/// hours the timestamp falls in.</para>
 /// </summary>
 public sealed record class VolumeListParams : ParamsBase
 {
@@ -99,9 +99,9 @@ public sealed record class VolumeListParams : ParamsBase
     }
 
     /// <summary>
-    /// The end of the timeframe, exclusive, in which to return event volume. If
-    /// not specified, the current time is used. All datetime values are converted
-    /// to UTC time.If the specified time isn't hour-aligned, the response includes
+    /// The end of the timeframe, exclusive, in which to return event volume. If not
+    /// specified, the current time is used. All datetime values are converted to
+    /// UTC time.If the specified time isn't hour-aligned, the response includes
     /// the event volumecount for the hour the time falls in.
     /// </summary>
     public DateTime? TimeframeEnd

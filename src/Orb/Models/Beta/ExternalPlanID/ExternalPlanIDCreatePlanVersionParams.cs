@@ -3216,7 +3216,8 @@ public sealed record class BulkWithFilters
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -3290,8 +3291,8 @@ public sealed record class BulkWithFilters
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
@@ -4348,7 +4349,8 @@ public sealed record class TieredWithProration
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -4422,8 +4424,8 @@ public sealed record class TieredWithProration
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
@@ -4789,7 +4791,8 @@ public sealed record class TieredWithProrationConfig
         IFromRaw<global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConfig>
 {
     /// <summary>
-    /// Tiers for rating based on total usage quantities into the specified tier with proration
+    /// Tiers for rating based on total usage quantities into the specified tier
+    /// with proration
     /// </summary>
     public required List<global::Orb.Models.Beta.ExternalPlanID.TierModel> Tiers
     {
@@ -5358,7 +5361,8 @@ public sealed record class GroupedWithMinMaxThresholds
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -5432,8 +5436,8 @@ public sealed record class GroupedWithMinMaxThresholds
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
@@ -6350,7 +6354,8 @@ public sealed record class Percent
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -6424,8 +6429,8 @@ public sealed record class Percent
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
@@ -7244,7 +7249,8 @@ public sealed record class EventOutput
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -7318,8 +7324,8 @@ public sealed record class EventOutput
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
@@ -11194,7 +11200,8 @@ public sealed record class BulkWithFiltersModel
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -11268,8 +11275,8 @@ public sealed record class BulkWithFiltersModel
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
@@ -12327,7 +12334,8 @@ public sealed record class TieredWithProrationModel
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -12401,8 +12409,8 @@ public sealed record class TieredWithProrationModel
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
@@ -12767,7 +12775,8 @@ public sealed record class TieredWithProrationConfigModel
         IFromRaw<global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConfigModel>
 {
     /// <summary>
-    /// Tiers for rating based on total usage quantities into the specified tier with proration
+    /// Tiers for rating based on total usage quantities into the specified tier
+    /// with proration
     /// </summary>
     public required List<global::Orb.Models.Beta.ExternalPlanID.Tier2> Tiers
     {
@@ -13335,7 +13344,8 @@ public sealed record class GroupedWithMinMaxThresholdsModel
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -13409,8 +13419,8 @@ public sealed record class GroupedWithMinMaxThresholdsModel
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
@@ -14329,7 +14339,8 @@ public sealed record class PercentModel
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -14403,8 +14414,8 @@ public sealed record class PercentModel
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
@@ -15223,7 +15234,8 @@ public sealed record class EventOutputModel
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -15297,8 +15309,8 @@ public sealed record class EventOutputModel
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {

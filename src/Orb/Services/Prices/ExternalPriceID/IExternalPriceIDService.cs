@@ -22,9 +22,9 @@ public interface IExternalPriceIDService
     );
 
     /// <summary>
-    /// This endpoint returns a price given an external price id. See the [price
-    /// creation API](/api-reference/price/create-price) for more information about
-    /// external price aliases.
+    /// This endpoint returns a price given an external price id. See the [price creation
+    /// API](/api-reference/price/create-price) for more information about external
+    /// price aliases.
     /// </summary>
     Task<Models::Price> Fetch(
         ExternalPriceIDFetchParams parameters,

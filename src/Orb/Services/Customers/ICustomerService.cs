@@ -24,11 +24,11 @@ public interface ICustomerService
     /// billing relationship. See [Customer](/core-concepts##customer) for an overview
     /// of the customer resource.
     ///
-    /// This endpoint is critical in the following Orb functionality: * Automated
+    /// <para>This endpoint is critical in the following Orb functionality: * Automated
     /// charges can be configured by setting `payment_provider` and `payment_provider_id`
     /// to automatically   issue invoices * [Customer ID Aliases](/events-and-metrics/customer-aliases)
     /// can be configured by setting   `external_customer_id` * [Timezone localization](/essentials/timezones)
-    /// can be configured on a per-customer basis by   setting the `timezone` parameter
+    /// can be configured on a per-customer basis by   setting the `timezone` parameter</para>
     /// </summary>
     Task<Customer> Create(
         CustomerCreateParams parameters,
@@ -51,7 +51,7 @@ public interface ICustomerService
     /// customers is ordered starting from the most recently created customer. This
     /// endpoint follows Orb's [standardized pagination format](/api-reference/pagination).
     ///
-    /// See [Customer](/core-concepts##customer) for an overview of the customer model.
+    /// <para>See [Customer](/core-concepts##customer) for an overview of the customer model.</para>
     /// </summary>
     Task<CustomerListPageResponse> List(
         CustomerListParams? parameters = null,
@@ -65,12 +65,12 @@ public interface ICustomerService
     /// is a _soft_ deletion, but the data will be inaccessible through the API and
     /// Orb dashboard.
     ///
-    /// For a hard-deletion, please reach out to the Orb team directly.
+    /// <para>For a hard-deletion, please reach out to the Orb team directly.</para>
     ///
-    /// **Note**: This operation happens asynchronously and can be expected to take
-    /// a few minutes to propagate to related resources. However, querying for the
-    /// customer on subsequent GET requests while deletion is in process will reflect
-    /// its deletion.
+    /// <para>**Note**: This operation happens asynchronously and can be expected
+    /// to take a few minutes to propagate to related resources. However, querying
+    /// for the customer on subsequent GET requests while deletion is in process will
+    /// reflect its deletion.</para>
     /// </summary>
     Task Delete(CustomerDeleteParams parameters, CancellationToken cancellationToken = default);
 
@@ -79,8 +79,8 @@ public interface ICustomerService
     /// `Customer` is in the process of being deleted, only the properties `id` and
     /// `deleted: true` will be returned.
     ///
-    /// See the [Customer resource](/core-concepts#customer) for a full discussion
-    /// of the Customer model.
+    /// <para>See the [Customer resource](/core-concepts#customer) for a full discussion
+    /// of the Customer model.</para>
     /// </summary>
     Task<Customer> Fetch(
         CustomerFetchParams parameters,
@@ -91,7 +91,8 @@ public interface ICustomerService
     /// This endpoint is used to fetch customer details given an `external_customer_id`
     /// (see [Customer ID Aliases](/events-and-metrics/customer-aliases)).
     ///
-    /// Note that the resource and semantics of this endpoint exactly mirror [Get Customer](fetch-customer).
+    /// <para>Note that the resource and semantics of this endpoint exactly mirror
+    /// [Get Customer](fetch-customer).</para>
     /// </summary>
     Task<Customer> FetchByExternalID(
         CustomerFetchByExternalIDParams parameters,
@@ -101,10 +102,11 @@ public interface ICustomerService
     /// <summary>
     /// Sync Orb's payment methods for the customer with their gateway.
     ///
-    /// This method can be called before taking an action that may cause the customer
-    /// to be charged, ensuring that the most up-to-date payment method is charged.
+    /// <para>This method can be called before taking an action that may cause the
+    /// customer to be charged, ensuring that the most up-to-date payment method
+    /// is charged.</para>
     ///
-    /// **Note**: This functionality is currently only available for Stripe.
+    /// <para>**Note**: This functionality is currently only available for Stripe.</para>
     /// </summary>
     Task SyncPaymentMethodsFromGateway(
         CustomerSyncPaymentMethodsFromGatewayParams parameters,
@@ -114,10 +116,11 @@ public interface ICustomerService
     /// <summary>
     /// Sync Orb's payment methods for the customer with their gateway.
     ///
-    /// This method can be called before taking an action that may cause the customer
-    /// to be charged, ensuring that the most up-to-date payment method is charged.
+    /// <para>This method can be called before taking an action that may cause the
+    /// customer to be charged, ensuring that the most up-to-date payment method
+    /// is charged.</para>
     ///
-    /// **Note**: This functionality is currently only available for Stripe.
+    /// <para>**Note**: This functionality is currently only available for Stripe.</para>
     /// </summary>
     Task SyncPaymentMethodsFromGatewayByExternalCustomerID(
         CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams parameters,

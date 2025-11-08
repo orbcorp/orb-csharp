@@ -14,8 +14,8 @@ public interface ICouponService
     ISubscriptionService Subscriptions { get; }
 
     /// <summary>
-    /// This endpoint allows the creation of coupons, which can then be redeemed at
-    /// subscription creation or plan change.
+    /// This endpoint allows the creation of coupons, which can then be redeemed
+    /// at subscription creation or plan change.
     /// </summary>
     Task<Coupon> Create(
         CouponCreateParams parameters,
@@ -25,10 +25,10 @@ public interface ICouponService
     /// <summary>
     /// This endpoint returns a list of all coupons for an account in a list format.
     ///
-    /// The list of coupons is ordered starting from the most recently created coupon.
-    /// The response also includes `pagination_metadata`, which lets the caller retrieve
-    /// the next page of results if they exist. More information about pagination
-    /// can be found in the Pagination-metadata schema.
+    /// <para>The list of coupons is ordered starting from the most recently created
+    /// coupon. The response also includes `pagination_metadata`, which lets the caller
+    /// retrieve the next page of results if they exist. More information about pagination
+    /// can be found in the Pagination-metadata schema.</para>
     /// </summary>
     Task<CouponListPageResponse> List(
         CouponListParams? parameters = null,

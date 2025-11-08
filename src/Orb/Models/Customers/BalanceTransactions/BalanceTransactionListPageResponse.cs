@@ -260,8 +260,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
     }
 
     /// <summary>
-    /// The new value of the customer's balance prior to the transaction, in the
-    /// customer's currency.
+    /// The new value of the customer's balance prior to the transaction, in the customer's currency.
     /// </summary>
     public required string EndingBalance
     {

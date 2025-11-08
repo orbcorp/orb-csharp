@@ -130,8 +130,8 @@ public sealed record class PercentageDiscountInterval
     }
 
     /// <summary>
-    /// Only available if discount_type is `percentage`.This is a number between 0
-    /// and 1.
+    /// Only available if discount_type is `percentage`.This is a number between
+    /// 0 and 1.
     /// </summary>
     public required double PercentageDiscount
     {

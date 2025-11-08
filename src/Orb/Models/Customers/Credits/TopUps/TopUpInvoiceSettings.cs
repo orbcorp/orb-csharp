@@ -38,9 +38,9 @@ public sealed record class TopUpInvoiceSettings : ModelBase, IFromRaw<TopUpInvoi
     }
 
     /// <summary>
-    /// The net terms determines the difference between the invoice date and the issue
-    /// date for the invoice. If you intend the invoice to be due on issue, set this
-    /// to 0.
+    /// The net terms determines the difference between the invoice date and the
+    /// issue date for the invoice. If you intend the invoice to be due on issue,
+    /// set this to 0.
     /// </summary>
     public required long NetTerms
     {

@@ -12,8 +12,8 @@ using System = System;
 namespace Orb.Models.Customers.BalanceTransactions;
 
 /// <summary>
-/// Creates an immutable balance transaction that updates the customer's balance and
-/// returns back the newly created transaction.
+/// Creates an immutable balance transaction that updates the customer's balance
+/// and returns back the newly created transaction.
 /// </summary>
 public sealed record class BalanceTransactionCreateParams : ParamsBase
 {

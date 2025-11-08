@@ -13,8 +13,7 @@ namespace Orb.Models.Coupons;
 /// A coupon represents a reusable discount configuration that can be applied either
 /// as a fixed or percentage amount to an invoice or subscription. Coupons are activated
 /// using a redemption code, which applies the discount to a subscription or invoice.
-/// The duration of a coupon determines how long it remains available for use by
-/// end users.
+/// The duration of a coupon determines how long it remains available for use by end users.
 /// </summary>
 [JsonConverter(typeof(ModelConverter<Coupon>))]
 public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
@@ -48,8 +47,8 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
     }
 
     /// <summary>
-    /// An archived coupon can no longer be redeemed. Active coupons will have a
-    /// value of null for `archived_at`; this field will be non-null for archived coupons.
+    /// An archived coupon can no longer be redeemed. Active coupons will have a value
+    /// of null for `archived_at`; this field will be non-null for archived coupons.
     /// </summary>
     public required System::DateTime? ArchivedAt
     {

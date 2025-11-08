@@ -12,7 +12,7 @@ namespace Orb.Models.Customers;
 /// This endpoint is used to fetch customer details given an `external_customer_id`
 /// (see [Customer ID Aliases](/events-and-metrics/customer-aliases)).
 ///
-/// Note that the resource and semantics of this endpoint exactly mirror [Get Customer](fetch-customer).
+/// <para>Note that the resource and semantics of this endpoint exactly mirror [Get Customer](fetch-customer).</para>
 /// </summary>
 public sealed record class CustomerFetchByExternalIDParams : ParamsBase
 {

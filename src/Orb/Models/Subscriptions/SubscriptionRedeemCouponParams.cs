@@ -78,8 +78,8 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     }
 
     /// <summary>
-    /// The date that the coupon discount should take effect. This parameter can only
-    /// be passed if the `change_option` is `requested_date`.
+    /// The date that the coupon discount should take effect. This parameter can
+    /// only be passed if the `change_option` is `requested_date`.
     /// </summary>
     public System::DateTime? ChangeDate
     {

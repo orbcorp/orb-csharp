@@ -27,7 +27,8 @@ public sealed record class ExternalDimensionalPriceGroupIDUpdateParams : ParamsB
     /// <summary>
     /// An optional user-defined ID for this dimensional price group resource, used
     /// throughout the system as an alias for this dimensional price group. Use this
-    /// field to identify a dimensional price group by an existing identifier in your system.
+    /// field to identify a dimensional price group by an existing identifier in
+    /// your system.
     /// </summary>
     public string? ExternalDimensionalPriceGroupID1
     {

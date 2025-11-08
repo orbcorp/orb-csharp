@@ -68,8 +68,8 @@ public sealed record class NewAllocationPrice : ModelBase, IFromRaw<NewAllocatio
     }
 
     /// <summary>
-    /// An ISO 4217 currency string or a custom pricing unit identifier in which
-    /// to bill this price.
+    /// An ISO 4217 currency string or a custom pricing unit identifier in which to
+    /// bill this price.
     /// </summary>
     public required string Currency
     {

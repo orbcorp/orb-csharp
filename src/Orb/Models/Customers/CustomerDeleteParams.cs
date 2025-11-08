@@ -14,11 +14,12 @@ namespace Orb.Models.Customers;
 /// invoices cannot be deleted. This operation is irreversible. Note that this is
 /// a _soft_ deletion, but the data will be inaccessible through the API and Orb dashboard.
 ///
-/// For a hard-deletion, please reach out to the Orb team directly.
+/// <para>For a hard-deletion, please reach out to the Orb team directly.</para>
 ///
-/// **Note**: This operation happens asynchronously and can be expected to take a
-/// few minutes to propagate to related resources. However, querying for the customer
-/// on subsequent GET requests while deletion is in process will reflect its deletion.
+/// <para>**Note**: This operation happens asynchronously and can be expected to
+/// take a few minutes to propagate to related resources. However, querying for the
+/// customer on subsequent GET requests while deletion is in process will reflect
+/// its deletion.</para>
 /// </summary>
 public sealed record class CustomerDeleteParams : ParamsBase
 {

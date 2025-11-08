@@ -18,10 +18,11 @@ public interface IDimensionalPriceGroupService
     /// by a set of dimensions. Prices in a price group must specify the partition
     /// used to derive their usage.
     ///
-    /// For example, suppose we have a billable metric that measures the number of
-    /// widgets used and we want to charge differently depending on the color of the
-    /// widget. We can create a price group with a dimension "color" and two prices:
-    /// one that charges \$10 per red widget and one that charges \$20 per blue widget.
+    /// <para>For example, suppose we have a billable metric that measures the number
+    /// of widgets used and we want to charge differently depending on the color of
+    /// the widget. We can create a price group with a dimension "color" and two
+    /// prices: one that charges \$10 per red widget and one that charges \$20 per
+    /// blue widget.</para>
     /// </summary>
     Task<DimensionalPriceGroup> Create(
         DimensionalPriceGroupCreateParams parameters,
@@ -38,8 +39,8 @@ public interface IDimensionalPriceGroupService
 
     /// <summary>
     /// This endpoint can be used to update the `external_dimensional_price_group_id`
-    /// and `metadata` of an existing dimensional price group. Other fields on a
-    /// dimensional price group are currently immutable.
+    /// and `metadata` of an existing dimensional price group. Other fields on a dimensional
+    /// price group are currently immutable.
     /// </summary>
     Task<DimensionalPriceGroup> Update(
         DimensionalPriceGroupUpdateParams parameters,

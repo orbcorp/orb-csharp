@@ -10,8 +10,8 @@ using System = System;
 namespace Orb.Models;
 
 /// <summary>
-/// The [Credit Note](/invoicing/credit-notes) resource represents a credit that has
-/// been applied to a particular invoice.
+/// The [Credit Note](/invoicing/credit-notes) resource represents a credit that
+/// has been applied to a particular invoice.
 /// </summary>
 [JsonConverter(typeof(ModelConverter<CreditNoteModel>))]
 public sealed record class CreditNoteModel : ModelBase, IFromRaw<CreditNoteModel>

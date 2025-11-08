@@ -15,159 +15,159 @@ namespace Orb.Models.Subscriptions;
 /// This endpoint can be used to change an existing subscription's plan. It returns
 /// the serialized updated subscription object.
 ///
-/// The body parameter `change_option` determines when the plan change occurs. Orb
-/// supports three options: - `end_of_subscription_term`: changes the plan at the
-/// end of the existing plan's term.     - Issuing this plan change request for a
-/// monthly subscription will keep the existing plan active until the start
-/// of the subsequent month. Issuing this plan change request for a yearly subscription
-/// will keep the existing plan active for       the full year. Charges incurred
-/// in the remaining period will be invoiced as normal.     - Example: The plan is
-/// billed monthly on the 1st of the month, the request is made on January 15th, so
-/// the plan will be       changed on February 1st, and invoice will be issued on
-/// February 1st for the last month of the original plan. - `immediate`: changes the
-/// plan immediately.     - Subscriptions that have their plan changed with this option
+/// <para>The body parameter `change_option` determines when the plan change occurs.
+/// Orb supports three options: - `end_of_subscription_term`: changes the plan at
+/// the end of the existing plan's term.     - Issuing this plan change request for
+/// a monthly subscription will keep the existing plan active until the start
+///    of the subsequent month. Issuing this plan change request for a yearly subscription
+/// will keep the existing plan active for       the full year. Charges incurred in
+/// the remaining period will be invoiced as normal.     - Example: The plan is billed
+/// monthly on the 1st of the month, the request is made on January 15th, so the
+/// plan will be       changed on February 1st, and invoice will be issued on February
+/// 1st for the last month of the original plan. - `immediate`: changes the plan
+/// immediately.     - Subscriptions that have their plan changed with this option
 /// will move to the new plan immediately, and be invoiced       immediately.
-/// - This invoice will include any usage fees incurred in the billing period up to
-/// the change, along with any prorated       recurring fees for the billing period,
+///  - This invoice will include any usage fees incurred in the billing period up
+/// to the change, along with any prorated       recurring fees for the billing period,
 /// if applicable.     - Example: The plan is billed monthly on the 1st of the month,
 /// the request is made on January 15th, so the plan will be       changed on January
-/// 15th, and an invoice will be issued for the partial month, from January 1 to January
-/// 15, on the       original plan. - `requested_date`: changes the plan on the requested
-/// date (`change_date`).     - If no timezone is provided, the customer's timezone
-/// is used. The `change_date` body parameter is required if this option       is
-/// chosen.     - Example: The plan is billed monthly on the 1st of the month, the
-/// request is made on January 15th, with a requested       `change_date` of February
-/// 15th, so the plan will be changed on February 15th, and invoices will be issued
-/// on February 1st       and February 15th.
+/// 15th, and an invoice will be issued for the partial month, from January 1 to
+/// January 15, on the       original plan. - `requested_date`: changes the plan on
+/// the requested date (`change_date`).     - If no timezone is provided, the customer's
+/// timezone is used. The `change_date` body parameter is required if this option
+///       is chosen.     - Example: The plan is billed monthly on the 1st of the
+/// month, the request is made on January 15th, with a requested       `change_date`
+/// of February 15th, so the plan will be changed on February 15th, and invoices
+/// will be issued on February 1st       and February 15th.</para>
 ///
-/// Note that one of `plan_id` or `external_plan_id` is required in the request body
-/// for this operation.
+/// <para>Note that one of `plan_id` or `external_plan_id` is required in the request
+/// body for this operation.</para>
 ///
-/// ## Customize your customer's subscriptions
+/// <para>## Customize your customer's subscriptions</para>
 ///
-/// Prices and adjustments in a plan can be added, removed, or replaced on the subscription
-/// when you schedule the plan change. This is useful when a customer has prices
-/// that differ from the default prices for a specific plan.
+/// <para>Prices and adjustments in a plan can be added, removed, or replaced on the
+/// subscription when you schedule the plan change. This is useful when a customer
+/// has prices that differ from the default prices for a specific plan.</para>
 ///
-/// <Note> This feature is only available for accounts that have migrated to Subscription
-/// Overrides Version 2. You can find your Subscription Overrides Version at the
-/// bottom of your [Plans page](https://app.withorb.com/plans) </Note>
+/// <para><Note> This feature is only available for accounts that have migrated to
+/// Subscription Overrides Version 2. You can find your Subscription Overrides Version
+/// at the bottom of your [Plans page](https://app.withorb.com/plans) </Note></para>
 ///
-/// ### Adding Prices
+/// <para>### Adding Prices</para>
 ///
-/// To add prices, provide a list of objects with the key `add_prices`. An object
+/// <para>To add prices, provide a list of objects with the key `add_prices`. An object
 /// in the list must specify an existing add-on price with a `price_id` or `external_price_id`
 /// field, or create a new add-on price by including an object with the key `price`,
 /// identical to what would be used in the request body for the [create price endpoint](/api-reference/price/create-price).
 /// See the [Price resource](/product-catalog/price-configuration) for the specification
-/// of different price model configurations possible in this object.
+/// of different price model configurations possible in this object.</para>
 ///
-/// If the plan has phases, each object in the list must include a number with `plan_phase_order`
-/// key to indicate which phase the price should be added to.
+/// <para>If the plan has phases, each object in the list must include a number with
+/// `plan_phase_order` key to indicate which phase the price should be added to.</para>
 ///
-/// An object in the list can specify an optional `start_date` and optional `end_date`.
-/// If `start_date` is unspecified, the start of the phase / plan change time will
-/// be used. If `end_date` is unspecified, it will finish at the end of the phase
-/// / have no end time.
+/// <para>An object in the list can specify an optional `start_date` and optional
+/// `end_date`. If `start_date` is unspecified, the start of the phase / plan change
+/// time will be used. If `end_date` is unspecified, it will finish at the end of
+/// the phase / have no end time.</para>
 ///
-/// An object in the list can specify an optional `minimum_amount`, `maximum_amount`,
-/// or `discounts`. This will create adjustments which apply only to this price.
+/// <para>An object in the list can specify an optional `minimum_amount`, `maximum_amount`,
+/// or `discounts`. This will create adjustments which apply only to this price.</para>
 ///
-/// Additionally, an object in the list can specify an optional `reference_id`. This
-/// ID can be used to reference this price when [adding an adjustment](#adding-adjustments)
+/// <para>Additionally, an object in the list can specify an optional `reference_id`.
+/// This ID can be used to reference this price when [adding an adjustment](#adding-adjustments)
 /// in the same API call. However the ID is _transient_ and cannot be used to refer
-/// to the price in future API calls.
+/// to the price in future API calls.</para>
 ///
-/// ### Removing Prices
+/// <para>### Removing Prices</para>
 ///
-/// To remove prices, provide a list of objects with the key `remove_prices`. An
-/// object in the list must specify a plan price with either a `price_id` or `external_price_id` field.
+/// <para>To remove prices, provide a list of objects with the key `remove_prices`.
+/// An object in the list must specify a plan price with either a `price_id` or `external_price_id` field.</para>
 ///
-/// ### Replacing Prices
+/// <para>### Replacing Prices</para>
 ///
-/// To replace prices, provide a list of objects with the key `replace_prices`. An
-/// object in the list must specify a plan price to replace with the `replaces_price_id`
-/// key, and it must specify a price to replace it with by either referencing an existing
-/// add-on price with a `price_id` or `external_price_id` field, or by creating a
-/// new add-on price by including an object with the key `price`, identical to what
-/// would be used in the request body for the [create price endpoint](/api-reference/price/create-price).
+/// <para>To replace prices, provide a list of objects with the key `replace_prices`.
+/// An object in the list must specify a plan price to replace with the `replaces_price_id`
+/// key, and it must specify a price to replace it with by either referencing an
+/// existing add-on price with a `price_id` or `external_price_id` field, or by creating
+/// a new add-on price by including an object with the key `price`, identical to
+/// what would be used in the request body for the [create price endpoint](/api-reference/price/create-price).
 /// See the [Price resource](/product-catalog/price-configuration) for the specification
-/// of different price model configurations possible in this object.
+/// of different price model configurations possible in this object.</para>
 ///
-/// For fixed fees, an object in the list can supply a `fixed_price_quantity` instead
-/// of a `price`, `price_id`, or `external_price_id` field. This will update only
-/// the quantity for the price, similar to the [Update price quantity](/api-reference/subscription/update-price-quantity) endpoint.
+/// <para>For fixed fees, an object in the list can supply a `fixed_price_quantity`
+/// instead of a `price`, `price_id`, or `external_price_id` field. This will update
+/// only the quantity for the price, similar to the [Update price quantity](/api-reference/subscription/update-price-quantity) endpoint.</para>
 ///
-/// The replacement price will have the same phase, if applicable, and the same start
-/// and end dates as the price it replaces.
+/// <para>The replacement price will have the same phase, if applicable, and the
+/// same start and end dates as the price it replaces.</para>
 ///
-/// An object in the list can specify an optional `minimum_amount`, `maximum_amount`,
-/// or `discounts`. This will create adjustments which apply only to this price.
+/// <para>An object in the list can specify an optional `minimum_amount`, `maximum_amount`,
+/// or `discounts`. This will create adjustments which apply only to this price.</para>
 ///
-/// Additionally, an object in the list can specify an optional `reference_id`. This
-/// ID can be used to reference the replacement price when [adding an adjustment](#adding-adjustments)
+/// <para>Additionally, an object in the list can specify an optional `reference_id`.
+/// This ID can be used to reference the replacement price when [adding an adjustment](#adding-adjustments)
 /// in the same API call. However the ID is _transient_ and cannot be used to refer
-/// to the price in future API calls.
+/// to the price in future API calls.</para>
 ///
-/// ### Adding adjustments
+/// <para>### Adding adjustments</para>
 ///
-/// To add adjustments, provide a list of objects with the key `add_adjustments`.
+/// <para>To add adjustments, provide a list of objects with the key `add_adjustments`.
 /// An object in the list must include an object with the key `adjustment`, identical
-/// to the adjustment object in the [add/edit price intervals endpoint](/api-reference/price-interval/add-or-edit-price-intervals).
+/// to the adjustment object in the [add/edit price intervals endpoint](/api-reference/price-interval/add-or-edit-price-intervals).</para>
 ///
-/// If the plan has phases, each object in the list must include a number with `plan_phase_order`
-/// key to indicate which phase the adjustment should be added to.
+/// <para>If the plan has phases, each object in the list must include a number with
+/// `plan_phase_order` key to indicate which phase the adjustment should be added to.</para>
 ///
-/// An object in the list can specify an optional `start_date` and optional `end_date`.
-/// If `start_date` is unspecified, the start of the phase / plan change time will
-/// be used. If `end_date` is unspecified, it will finish at the end of the phase
-/// / have no end time.
+/// <para>An object in the list can specify an optional `start_date` and optional
+/// `end_date`. If `start_date` is unspecified, the start of the phase / plan change
+/// time will be used. If `end_date` is unspecified, it will finish at the end of
+/// the phase / have no end time.</para>
 ///
-/// ### Removing adjustments
+/// <para>### Removing adjustments</para>
 ///
-/// To remove adjustments, provide a list of objects with the key `remove_adjustments`.
+/// <para>To remove adjustments, provide a list of objects with the key `remove_adjustments`.
 /// An object in the list must include a key, `adjustment_id`, with the ID of the
-/// adjustment to be removed.
+/// adjustment to be removed.</para>
 ///
-/// ### Replacing adjustments
+/// <para>### Replacing adjustments</para>
 ///
-/// To replace adjustments, provide a list of objects with the key `replace_adjustments`.
+/// <para>To replace adjustments, provide a list of objects with the key `replace_adjustments`.
 /// An object in the list must specify a plan adjustment to replace with the `replaces_adjustment_id`
 /// key, and it must specify an adjustment to replace it with by including an object
 /// with the key `adjustment`, identical to the adjustment object in the [add/edit
-/// price intervals endpoint](/api-reference/price-interval/add-or-edit-price-intervals).
+/// price intervals endpoint](/api-reference/price-interval/add-or-edit-price-intervals).</para>
 ///
-/// The replacement adjustment will have the same phase, if applicable, and the same
-/// start and end dates as the adjustment it replaces.
+/// <para>The replacement adjustment will have the same phase, if applicable, and
+/// the same start and end dates as the adjustment it replaces.</para>
 ///
-/// ## Price overrides (DEPRECATED)
+/// <para>## Price overrides (DEPRECATED)</para>
 ///
-/// <Note> Price overrides are being phased out in favor adding/removing/replacing
-/// prices. (See [Customize your customer's subscriptions](/api-reference/subscription/schedule-plan-change)) </Note>
+/// <para><Note> Price overrides are being phased out in favor adding/removing/replacing
+/// prices. (See [Customize your customer's subscriptions](/api-reference/subscription/schedule-plan-change)) </Note></para>
 ///
-/// Price overrides are used to update some or all prices in a plan for the specific
-/// subscription being created. This is useful when a new customer has negotiated
-/// a rate that is unique to the customer.
+/// <para>Price overrides are used to update some or all prices in a plan for the
+/// specific subscription being created. This is useful when a new customer has negotiated
+/// a rate that is unique to the customer.</para>
 ///
-/// To override prices, provide a list of objects with the key `price_overrides`.
+/// <para>To override prices, provide a list of objects with the key `price_overrides`.
 /// The price object in the list of overrides is expected to contain the existing
 /// price id, the `model_type` and configuration. (See the [Price resource](/product-catalog/price-configuration)
 /// for the specification of different price model configurations.) The numerical
-/// values can be updated, but the billable metric, cadence, type, and name of a price
-/// can not be overridden.
+/// values can be updated, but the billable metric, cadence, type, and name of a
+/// price can not be overridden.</para>
 ///
-/// ### Maximums, and minimums Price overrides are used to update some or all prices
-/// in the target plan. Minimums and maximums, much like price overrides, can be
-/// useful when a new customer has negotiated a new or different minimum or maximum
-/// spend cap than the default for the plan. The request format for maximums and
-/// minimums is the same as those in [subscription creation](create-subscription).
+/// <para>### Maximums, and minimums Price overrides are used to update some or all
+/// prices in the target plan. Minimums and maximums, much like price overrides, can
+/// be useful when a new customer has negotiated a new or different minimum or maximum
+/// spend cap than the default for the plan. The request format for maximums and minimums
+/// is the same as those in [subscription creation](create-subscription).</para>
 ///
-/// ## Scheduling multiple plan changes When scheduling multiple plan changes with
-/// the same date, the latest plan change on that day takes effect.
+/// <para>## Scheduling multiple plan changes When scheduling multiple plan changes
+/// with the same date, the latest plan change on that day takes effect.</para>
 ///
-/// ## Prorations for in-advance fees By default, Orb calculates the prorated difference
-/// in any fixed fees when making a plan change, adjusting the customer balance as
-/// needed. For details on this behavior, see [Modifying subscriptions](/product-catalog/modifying-subscriptions#prorations-for-in-advance-fees).
+/// <para>## Prorations for in-advance fees By default, Orb calculates the prorated
+/// difference in any fixed fees when making a plan change, adjusting the customer
+/// balance as needed. For details on this behavior, see [Modifying subscriptions](/product-catalog/modifying-subscriptions#prorations-for-in-advance-fees).</para>
 /// </summary>
 public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
 {
@@ -540,9 +540,9 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     }
 
     /// <summary>
-    /// The net terms determines the difference between the invoice date and the issue
-    /// date for the invoice. If you intend the invoice to be due on issue, set this
-    /// to 0. If not provided, this defaults to the value specified in the plan.
+    /// The net terms determines the difference between the invoice date and the
+    /// issue date for the invoice. If you intend the invoice to be due on issue,
+    /// set this to 0. If not provided, this defaults to the value specified in the plan.
     /// </summary>
     public long? NetTerms
     {
@@ -754,8 +754,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     }
 
     /// <summary>
-    /// The duration of the trial period in days. If not provided, this defaults
-    /// to the value specified in the plan. If `0` is provided, the trial on the plan
+    /// The duration of the trial period in days. If not provided, this defaults to
+    /// the value specified in the plan. If `0` is provided, the trial on the plan
     /// will be skipped.
     /// </summary>
     public long? TrialDurationDays
@@ -1001,8 +1001,8 @@ public sealed record class AddAdjustment1 : ModelBase, IFromRaw<AddAdjustment1>
 
     /// <summary>
     /// The start date of the adjustment interval. This is the date that the adjustment
-    /// will start affecting prices on the subscription. If null, the adjustment
-    /// will start when the phase or subscription starts.
+    /// will start affecting prices on the subscription. If null, the adjustment will
+    /// start when the phase or subscription starts.
     /// </summary>
     public System::DateTime? StartDate
     {
@@ -1461,9 +1461,8 @@ public sealed record class AddPriceModel : ModelBase, IFromRaw<AddPriceModel>
     }
 
     /// <summary>
-    /// The end date of the price interval. This is the date that the price will
-    /// stop billing on the subscription. If null, billing will end when the phase
-    /// or subscription ends.
+    /// The end date of the price interval. This is the date that the price will stop
+    /// billing on the subscription. If null, billing will end when the phase or subscription ends.
     /// </summary>
     public System::DateTime? EndDate
     {
@@ -4045,7 +4044,8 @@ public sealed record class BulkWithFilters2 : ModelBase, IFromRaw<BulkWithFilter
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -4119,8 +4119,8 @@ public sealed record class BulkWithFilters2 : ModelBase, IFromRaw<BulkWithFilter
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
@@ -5169,7 +5169,8 @@ public sealed record class TieredWithProration1 : ModelBase, IFromRaw<TieredWith
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -5243,8 +5244,8 @@ public sealed record class TieredWithProration1 : ModelBase, IFromRaw<TieredWith
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
@@ -5607,7 +5608,8 @@ public sealed record class TieredWithProrationConfig1
         IFromRaw<TieredWithProrationConfig1>
 {
     /// <summary>
-    /// Tiers for rating based on total usage quantities into the specified tier with proration
+    /// Tiers for rating based on total usage quantities into the specified tier
+    /// with proration
     /// </summary>
     public required List<global::Orb.Models.Subscriptions.Tier5> Tiers
     {
@@ -6173,7 +6175,8 @@ public sealed record class GroupedWithMinMaxThresholds2
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -6247,8 +6250,8 @@ public sealed record class GroupedWithMinMaxThresholds2
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
@@ -7158,7 +7161,8 @@ public sealed record class Percent2 : ModelBase, IFromRaw<Percent2>
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -7232,8 +7236,8 @@ public sealed record class Percent2 : ModelBase, IFromRaw<Percent2>
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
@@ -8046,7 +8050,8 @@ public sealed record class EventOutput2 : ModelBase, IFromRaw<EventOutput2>
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -8120,8 +8125,8 @@ public sealed record class EventOutput2 : ModelBase, IFromRaw<EventOutput2>
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
@@ -8792,9 +8797,9 @@ sealed class ConversionRateConfig17Converter
 }
 
 /// <summary>
-/// Reset billing periods to be aligned with the plan change's effective date or
-/// start of the month. Defaults to `unchanged` which keeps subscription's existing
-/// billing cycle alignment.
+/// Reset billing periods to be aligned with the plan change's effective date or start
+/// of the month. Defaults to `unchanged` which keeps subscription's existing billing
+/// cycle alignment.
 /// </summary>
 [JsonConverter(typeof(BillingCycleAlignmentConverter))]
 public enum BillingCycleAlignment
@@ -12047,7 +12052,8 @@ public sealed record class BulkWithFilters3 : ModelBase, IFromRaw<BulkWithFilter
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -12121,8 +12127,8 @@ public sealed record class BulkWithFilters3 : ModelBase, IFromRaw<BulkWithFilter
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
@@ -13171,7 +13177,8 @@ public sealed record class TieredWithProration2 : ModelBase, IFromRaw<TieredWith
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -13245,8 +13252,8 @@ public sealed record class TieredWithProration2 : ModelBase, IFromRaw<TieredWith
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
@@ -13609,7 +13616,8 @@ public sealed record class TieredWithProrationConfig2
         IFromRaw<TieredWithProrationConfig2>
 {
     /// <summary>
-    /// Tiers for rating based on total usage quantities into the specified tier with proration
+    /// Tiers for rating based on total usage quantities into the specified tier
+    /// with proration
     /// </summary>
     public required List<global::Orb.Models.Subscriptions.Tier7> Tiers
     {
@@ -14175,7 +14183,8 @@ public sealed record class GroupedWithMinMaxThresholds3
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -14249,8 +14258,8 @@ public sealed record class GroupedWithMinMaxThresholds3
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
@@ -15160,7 +15169,8 @@ public sealed record class Percent3 : ModelBase, IFromRaw<Percent3>
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -15234,8 +15244,8 @@ public sealed record class Percent3 : ModelBase, IFromRaw<Percent3>
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
@@ -16048,7 +16058,8 @@ public sealed record class EventOutput3 : ModelBase, IFromRaw<EventOutput3>
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -16122,8 +16133,8 @@ public sealed record class EventOutput3 : ModelBase, IFromRaw<EventOutput3>
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {

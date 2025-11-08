@@ -13,7 +13,7 @@ namespace Orb.Models.Customers;
 /// is ordered starting from the most recently created customer. This endpoint follows
 /// Orb's [standardized pagination format](/api-reference/pagination).
 ///
-/// See [Customer](/core-concepts##customer) for an overview of the customer model.
+/// <para>See [Customer](/core-concepts##customer) for an overview of the customer model.</para>
 /// </summary>
 public sealed record class CustomerListParams : ParamsBase
 {

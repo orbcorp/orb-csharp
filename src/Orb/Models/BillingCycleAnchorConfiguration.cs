@@ -42,8 +42,8 @@ public sealed record class BillingCycleAnchorConfiguration
     }
 
     /// <summary>
-    /// The month on which the billing cycle is anchored (e.g. a quarterly price
-    /// anchored in February would have cycles starting February, May, August, and November).
+    /// The month on which the billing cycle is anchored (e.g. a quarterly price anchored
+    /// in February would have cycles starting February, May, August, and November).
     /// </summary>
     public long? Month
     {

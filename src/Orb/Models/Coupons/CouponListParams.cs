@@ -11,10 +11,10 @@ namespace Orb.Models.Coupons;
 /// <summary>
 /// This endpoint returns a list of all coupons for an account in a list format.
 ///
-/// The list of coupons is ordered starting from the most recently created coupon.
-/// The response also includes `pagination_metadata`, which lets the caller retrieve
-/// the next page of results if they exist. More information about pagination can
-/// be found in the Pagination-metadata schema.
+/// <para>The list of coupons is ordered starting from the most recently created
+/// coupon. The response also includes `pagination_metadata`, which lets the caller
+/// retrieve the next page of results if they exist. More information about pagination
+/// can be found in the Pagination-metadata schema.</para>
 /// </summary>
 public sealed record class CouponListParams : ParamsBase
 {

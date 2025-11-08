@@ -14,14 +14,14 @@ namespace Orb.Models.InvoiceLineItems;
 /// This creates a one-off fixed fee invoice line item on an Invoice. This can only
 /// be done for invoices that are in a `draft` status.
 ///
-/// The behavior depends on which parameters are provided: - If `item_id` is provided
-/// without `name`: The item is looked up by ID, and the item's name   is used for
-/// the line item. - If `name` is provided without `item_id`: An item with the given
-/// name is searched for in the account.   If found, that item is used. If not found,
-/// a new item is created with that name.   The new item's name is used for the line
-/// item. - If both `item_id` and `name` are provided: The item is looked up by ID
-/// for association,   but the provided `name` is used for the line item (not the
-/// item's name).
+/// <para>The behavior depends on which parameters are provided: - If `item_id` is
+/// provided without `name`: The item is looked up by ID, and the item's name   is
+/// used for the line item. - If `name` is provided without `item_id`: An item with
+/// the given name is searched for in the account.   If found, that item is used.
+/// If not found, a new item is created with that name.   The new item's name is used
+/// for the line item. - If both `item_id` and `name` are provided: The item is looked
+/// up by ID for association,   but the provided `name` is used for the line item
+/// (not the item's name).</para>
 /// </summary>
 public sealed record class InvoiceLineItemCreateParams : ParamsBase
 {
@@ -160,10 +160,10 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// The id of the item to associate with this line item. If provided without `name`,
-    /// the item's name will be used for the price/line item. If provided with `name`,
-    /// the item will be associated but `name` will be used for the line item. At
-    /// least one of `name` or `item_id` must be provided.
+    /// The id of the item to associate with this line item. If provided without
+    /// `name`, the item's name will be used for the price/line item. If provided
+    /// with `name`, the item will be associated but `name` will be used for the line
+    /// item. At least one of `name` or `item_id` must be provided.
     /// </summary>
     public string? ItemID
     {

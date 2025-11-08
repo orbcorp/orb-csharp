@@ -236,7 +236,8 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
