@@ -14,8 +14,8 @@ namespace Orb.Models.Events.Backfills;
 /// of the backfill are undone. Once all effects are undone, the backfill will transition
 /// to `reverted`.
 ///
-/// If a backfill is reverted before its closed, no usage will be updated as a result
-/// of the backfill and it will immediately transition to `reverted`.
+/// <para>If a backfill is reverted before its closed, no usage will be updated as
+/// a result of the backfill and it will immediately transition to `reverted`.</para>
 /// </summary>
 public sealed record class BackfillRevertParams : ParamsBase
 {

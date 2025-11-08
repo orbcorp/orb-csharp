@@ -186,8 +186,8 @@ public sealed record class MatrixValueModel : ModelBase, IFromRaw<MatrixValueMod
 {
     /// <summary>
     /// One or two matrix keys to filter usage to this Matrix value by. For example,
-    /// ["region", "tier"] could be used to filter cloud usage by a cloud region and
-    /// an instance tier.
+    /// ["region", "tier"] could be used to filter cloud usage by a cloud region
+    /// and an instance tier.
     /// </summary>
     public required List<string?> DimensionValues
     {

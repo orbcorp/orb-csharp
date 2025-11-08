@@ -13,7 +13,7 @@ namespace Orb.Models.Alerts;
 /// [Alerts within Orb](/product-catalog/configuring-alerts) monitor spending, usage,
 /// or credit balance and trigger webhooks when a threshold is exceeded.
 ///
-/// Alerts created through the API can be scoped to either customers or subscriptions.
+/// <para>Alerts created through the API can be scoped to either customers or subscriptions.</para>
 /// </summary>
 [JsonConverter(typeof(ModelConverter<Alert>))]
 public sealed record class Alert : ModelBase, IFromRaw<Alert>

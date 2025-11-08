@@ -15,128 +15,128 @@ namespace Orb.Models.Subscriptions;
 /// combined with optional query parameters, this endpoint is a powerful way to build
 /// visualizations on top of Orb's event data and metrics.
 ///
-/// With no query parameters specified, this endpoint returns usage for the subscription's
-/// _current billing period_ across each billable metric that participates in the
-/// subscription. Usage quantities returned are the result of evaluating the metric
-/// definition for the entirety of the customer's billing period.
+/// <para>With no query parameters specified, this endpoint returns usage for the
+/// subscription's _current billing period_ across each billable metric that participates
+/// in the subscription. Usage quantities returned are the result of evaluating the
+/// metric definition for the entirety of the customer's billing period.</para>
 ///
-/// ### Default response shape Orb returns a `data` array with an object corresponding
+/// <para>### Default response shape Orb returns a `data` array with an object corresponding
 /// to each billable metric. Nested within this object is a `usage` array which has
 /// a `quantity` value and a corresponding `timeframe_start` and `timeframe_end`.
-///  The `quantity` value represents the calculated usage value for the billable
-/// metric over the specified timeframe (inclusive of the `timeframe_start` timestamp
-/// and exclusive of the `timeframe_end` timestamp).
+///  The `quantity` value represents the calculated usage value for the billable metric
+/// over the specified timeframe (inclusive of the `timeframe_start` timestamp and
+/// exclusive of the `timeframe_end` timestamp).</para>
 ///
-/// Orb will include _every_ window in the response starting from the beginning of
-/// the billing period, even when there were no events (and therefore no usage) in
-/// the window. This increases the size of the response but prevents the caller from
-/// filling in gaps and handling cumbersome time-based logic.
+/// <para>Orb will include _every_ window in the response starting from the beginning
+/// of the billing period, even when there were no events (and therefore no usage)
+/// in the window. This increases the size of the response but prevents the caller
+/// from filling in gaps and handling cumbersome time-based logic.</para>
 ///
-/// The query parameters in this endpoint serve to override this behavior and provide
-/// some key functionality, as listed below. Note that this functionality can also
-/// be used _in conjunction_ with each other, e.g. to display grouped usage on a
-/// custom timeframe.
+/// <para>The query parameters in this endpoint serve to override this behavior and
+/// provide some key functionality, as listed below. Note that this functionality
+/// can also be used _in conjunction_ with each other, e.g. to display grouped usage
+/// on a custom timeframe.</para>
 ///
-/// ## Custom timeframe In order to view usage for a custom timeframe rather than
-/// the current billing period, specify a `timeframe_start` and `timeframe_end`.
+/// <para>## Custom timeframe In order to view usage for a custom timeframe rather
+/// than the current billing period, specify a `timeframe_start` and `timeframe_end`.
 /// This will calculate quantities for usage incurred between timeframe_start (inclusive)
-/// and timeframe_end (exclusive), i.e. `[timeframe_start, timeframe_end)`.
+/// and timeframe_end (exclusive), i.e. `[timeframe_start, timeframe_end)`.</para>
 ///
-/// Note: - These timestamps must be specified in ISO 8601 format and UTC timezone,
-/// e.g. `2022-02-01T05:00:00Z`. - Both parameters must be specified if either is specified.
+/// <para>Note: - These timestamps must be specified in ISO 8601 format and UTC timezone,
+/// e.g. `2022-02-01T05:00:00Z`. - Both parameters must be specified if either is specified.</para>
 ///
-/// ## Grouping by custom attributes In order to view a single metric grouped by a
-/// specific _attribute_ that each event is tagged with (e.g. `cluster`), you must
-/// additionally specify a `billable_metric_id` and a `group_by` key. The `group_by`
-/// key denotes the event property on which to group.
+/// <para>## Grouping by custom attributes In order to view a single metric grouped
+/// by a specific _attribute_ that each event is tagged with (e.g. `cluster`), you
+/// must additionally specify a `billable_metric_id` and a `group_by` key. The `group_by`
+/// key denotes the event property on which to group.</para>
 ///
-/// When returning grouped usage, only usage for `billable_metric_id` is  returned,
+/// <para>When returning grouped usage, only usage for `billable_metric_id` is  returned,
 /// and a separate object in the `data` array is returned for each value of the `group_by`
-/// key present in your events. The `quantity` value is the result of evaluating
-/// the billable metric for events filtered to a single value of the `group_by` key.
+/// key present in your events. The `quantity` value is the result of evaluating the
+/// billable metric for events filtered to a single value of the `group_by` key.</para>
 ///
-/// Orb expects that events that match the billable metric will contain values in
-/// the `properties` dictionary that correspond to the `group_by` key specified.
+/// <para>Orb expects that events that match the billable metric will contain values
+/// in the `properties` dictionary that correspond to the `group_by` key specified.
 /// By default, Orb will not return a `null` group (i.e. events that match the metric
 /// but do not have the key set). Currently, it is only possible to view usage grouped
-/// by a single attribute at a time.
+/// by a single attribute at a time.</para>
 ///
-///  When viewing grouped usage, Orb uses pagination to limit the response size to
-/// 1000 groups by default. If there are more  groups for a given subscription, pagination
-/// metadata in the response can be used to fetch all of the data.
+/// <para> When viewing grouped usage, Orb uses pagination to limit the response size
+/// to 1000 groups by default. If there are more  groups for a given subscription,
+/// pagination metadata in the response can be used to fetch all of the data.</para>
 ///
-/// The following example shows usage for an "API Requests" billable metric grouped
-/// by `region`. Note the extra `metric_group` dictionary in the response, which
-/// provides metadata about the group:
+/// <para>The following example shows usage for an "API Requests" billable metric
+/// grouped by `region`. Note the extra `metric_group` dictionary in the response,
+/// which provides metadata about the group:</para>
 ///
-/// ```json {     "data": [         {             "usage": [                 {
-///                  "quantity": 0.19291,                     "timeframe_start":
+/// <para>```json {     "data": [         {             "usage": [
+///  {                     "quantity": 0.19291,                     "timeframe_start":
 /// "2021-10-01T07:00:00Z",                     "timeframe_end": "2021-10-02T07:00:00Z",
 ///                 },                 ...             ],             "metric_group":
 /// {                 "property_key": "region",                 "property_value":
 /// "asia/pacific"             },             "billable_metric": {
-///  "id": "Fe9pbpMk86xpwdGB",                 "name": "API Requests"
-///  },             "view_mode": "periodic"         },         ...     ] } ```
+///   "id": "Fe9pbpMk86xpwdGB",                 "name": "API Requests"
+///  },             "view_mode": "periodic"         },         ...     ] } ```</para>
 ///
-/// ## Windowed usage The `granularity` parameter can be used to _window_ the usage
-/// `quantity` value into periods. When not specified, usage is returned for the
-/// entirety of the time range.
+/// <para>## Windowed usage The `granularity` parameter can be used to _window_ the
+/// usage `quantity` value into periods. When not specified, usage is returned for
+/// the entirety of the time range.</para>
 ///
-/// When `granularity = day` is specified with a timeframe longer than a day, Orb
-/// will return a `quantity` value for each full day between `timeframe_start` and
-/// `timeframe_end`. Note that the days are demarcated by the _customer's local midnight_.
+/// <para>When `granularity = day` is specified with a timeframe longer than a day,
+/// Orb will return a `quantity` value for each full day between `timeframe_start`
+/// and `timeframe_end`. Note that the days are demarcated by the _customer's local midnight_.</para>
 ///
-/// For example, with `timeframe_start = 2022-02-01T05:00:00Z`, `timeframe_end = 2022-02-04T01:00:00Z`
-/// and `granularity=day`, the following windows will be returned for a customer in
-/// the `America/Los_Angeles` timezone since local midnight is `08:00` UTC: - `[2022-02-01T05:00:00Z,
-/// 2022-02-01T08:00:00Z)` - `[2022-02-01T08:00:00, 2022-02-02T08:00:00Z)` - `[2022-02-02T08:00:00,
-/// 2022-02-03T08:00:00Z)` - `[2022-02-03T08:00:00, 2022-02-04T01:00:00Z)`
+/// <para>For example, with `timeframe_start = 2022-02-01T05:00:00Z`, `timeframe_end
+/// = 2022-02-04T01:00:00Z` and `granularity=day`, the following windows will be
+/// returned for a customer in the `America/Los_Angeles` timezone since local midnight
+/// is `08:00` UTC: - `[2022-02-01T05:00:00Z, 2022-02-01T08:00:00Z)` - `[2022-02-01T08:00:00,
+/// 2022-02-02T08:00:00Z)` - `[2022-02-02T08:00:00, 2022-02-03T08:00:00Z)` - `[2022-02-03T08:00:00, 2022-02-04T01:00:00Z)`</para>
 ///
-/// ```json {     "data": [         {             "billable_metric": {
-///       "id": "Q8w89wjTtBdejXKsm",                 "name": "API Requests"
-///       },             "usage": [                 {                     "quantity":
+/// <para>```json {     "data": [         {             "billable_metric": {
+///            "id": "Q8w89wjTtBdejXKsm",                 "name": "API Requests"
+///             },             "usage": [                 {                     "quantity":
 /// 0,                     "timeframe_end": "2022-02-01T08:00:00+00:00",
-///            "timeframe_start": "2022-02-01T05:00:00+00:00"                 },
-///                 {
+///             "timeframe_start": "2022-02-01T05:00:00+00:00"                 },
+///                 {</para>
 ///
-///                     "quantity": 0,                     "timeframe_end": "2022-02-02T08:00:00+00:00",
-///                     "timeframe_start": "2022-02-01T08:00:00+00:00"
-///      },                 {                     "quantity": 0,
-///    "timeframe_end": "2022-02-03T08:00:00+00:00",                     "timeframe_start":
-/// "2022-02-02T08:00:00+00:00"                 },                 {
-///        "quantity": 0,                     "timeframe_end": "2022-02-04T01:00:00+00:00",
-///                     "timeframe_start": "2022-02-03T08:00:00+00:00"
-///      }             ],             "view_mode": "periodic"         },
-/// ...     ] } ```
+/// <para>                    "quantity": 0,                     "timeframe_end":
+/// "2022-02-02T08:00:00+00:00",                     "timeframe_start": "2022-02-01T08:00:00+00:00"
+///                 },                 {                     "quantity": 0,
+///                "timeframe_end": "2022-02-03T08:00:00+00:00",
+///     "timeframe_start": "2022-02-02T08:00:00+00:00"                 },
+///         {                     "quantity": 0,                     "timeframe_end":
+/// "2022-02-04T01:00:00+00:00",                     "timeframe_start": "2022-02-03T08:00:00+00:00"
+///                 }             ],             "view_mode": "periodic"
+/// },         ...     ] } ```</para>
 ///
-/// ## Decomposable vs. non-decomposable metrics Billable metrics fall into one of
-/// two categories: decomposable and non-decomposable. A decomposable billable metric,
-/// such as a sum or a count, can be displayed and aggregated across arbitrary timescales.
-/// On the other hand, a non-decomposable metric is not meaningful when only a slice
-/// of the billing window is considered.
+/// <para>## Decomposable vs. non-decomposable metrics Billable metrics fall into
+/// one of two categories: decomposable and non-decomposable. A decomposable billable
+/// metric, such as a sum or a count, can be displayed and aggregated across arbitrary
+/// timescales. On the other hand, a non-decomposable metric is not meaningful when
+/// only a slice of the billing window is considered.</para>
 ///
-/// As an example, if we have a billable metric that's defined to count unique users,
-/// displaying a graph of unique users for each day is not representative of the
-/// billable metric value over the month (days could have an overlapping set of 'unique'
-/// users). Instead, what's useful for any given day is the number of unique users
-/// in the billing period so far, which are the _cumulative_ unique users.
+/// <para>As an example, if we have a billable metric that's defined to count unique
+/// users, displaying a graph of unique users for each day is not representative of
+/// the billable metric value over the month (days could have an overlapping set of
+/// 'unique' users). Instead, what's useful for any given day is the number of unique
+/// users in the billing period so far, which are the _cumulative_ unique users.</para>
 ///
-/// Accordingly, this endpoint returns treats these two types of metrics differently
+/// <para>Accordingly, this endpoint returns treats these two types of metrics differently
 /// when `group_by` is specified: - Decomposable metrics can be grouped by any event
 /// property. - Non-decomposable metrics can only be grouped by the corresponding
 /// price's invoice grouping key. If no invoice grouping key is present, the metric
-/// does not support `group_by`.
+/// does not support `group_by`.</para>
 ///
-/// ## Matrix prices When a billable metric is attached to a price that uses matrix
-/// pricing, it's important to view usage grouped by those matrix dimensions. In
-/// this case, use the query parameters `first_dimension_key`, `first_dimension_value`
-/// and `second_dimension_key`, `second_dimension_value` while filtering to a specific `billable_metric_id`.
+/// <para>## Matrix prices When a billable metric is attached to a price that uses
+/// matrix pricing, it's important to view usage grouped by those matrix dimensions.
+/// In this case, use the query parameters `first_dimension_key`, `first_dimension_value`
+/// and `second_dimension_key`, `second_dimension_value` while filtering to a specific `billable_metric_id`.</para>
 ///
-/// For example, if your compute metric has a separate unit price (i.e. a matrix pricing
-/// model) per `region` and `provider`, your request might provide the following parameters:
+/// <para>For example, if your compute metric has a separate unit price (i.e. a matrix
+/// pricing model) per `region` and `provider`, your request might provide the following parameters:</para>
 ///
-/// - `first_dimension_key`: `region` - `first_dimension_value`: `us-east-1` - `second_dimension_key`:
-/// `provider` - `second_dimension_value`: `aws`
+/// <para>- `first_dimension_key`: `region` - `first_dimension_value`: `us-east-1`
+/// - `second_dimension_key`: `provider` - `second_dimension_value`: `aws`</para>
 /// </summary>
 public sealed record class SubscriptionFetchUsageParams : ParamsBase
 {
@@ -463,9 +463,9 @@ sealed class GranularityConverter : JsonConverter<Granularity>
 }
 
 /// <summary>
-/// Controls whether Orb returns cumulative usage since the start of the billing period,
-/// or incremental day-by-day usage. If your customer has minimums or discounts, it's
-/// strongly recommended that you use the default cumulative behavior.
+/// Controls whether Orb returns cumulative usage since the start of the billing
+/// period, or incremental day-by-day usage. If your customer has minimums or discounts,
+/// it's strongly recommended that you use the default cumulative behavior.
 /// </summary>
 [JsonConverter(typeof(ViewModeModelConverter))]
 public enum ViewModeModel

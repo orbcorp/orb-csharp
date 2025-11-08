@@ -17,26 +17,27 @@ namespace Orb.Models.Prices;
 /// using [computed properties](/extensibility/advanced-metrics#computed-properties),
 /// supporting the following workflows:
 ///
-/// 1. Showing detailed usage and costs to the end customer. 2. Auditing subtotals
-/// on invoice line items.
+/// <para>1. Showing detailed usage and costs to the end customer. 2. Auditing subtotals
+/// on invoice line items.</para>
 ///
-/// For these workflows, the expressiveness of computed properties in both the filters
-/// and grouping is critical. For example, if you'd like to show your customer their
-/// usage grouped by hour and another property, you can do so with the following `grouping_keys`:
-/// `["hour_floor_timestamp_millis(timestamp_millis)", "my_property"]`. If you'd
-/// like to examine a customer's usage for a specific property value, you can do
-/// so with the following `filter`: `my_property = 'foo' AND my_other_property = 'bar'`.
+/// <para>For these workflows, the expressiveness of computed properties in both
+/// the filters and grouping is critical. For example, if you'd like to show your
+/// customer their usage grouped by hour and another property, you can do so with
+/// the following `grouping_keys`: `["hour_floor_timestamp_millis(timestamp_millis)",
+/// "my_property"]`. If you'd like to examine a customer's usage for a specific property
+/// value, you can do so with the following `filter`: `my_property = 'foo' AND my_other_property
+/// = 'bar'`.</para>
 ///
-/// Prices may either reference existing prices in your Orb account or be defined
-/// inline in the request body. Up to 100 prices can be evaluated in a single request.
+/// <para>Prices may either reference existing prices in your Orb account or be defined
+/// inline in the request body. Up to 100 prices can be evaluated in a single request.</para>
 ///
-/// Prices are evaluated on ingested events and the start of the time range must be
-/// no more than 100 days ago. To evaluate based off a set of provided events, the
-/// [evaluate preview events](/api-reference/price/evaluate-preview-events) endpoint
-/// can be used instead.
+/// <para>Prices are evaluated on ingested events and the start of the time range
+/// must be no more than 100 days ago. To evaluate based off a set of provided events,
+/// the [evaluate preview events](/api-reference/price/evaluate-preview-events) endpoint
+/// can be used instead.</para>
 ///
-/// Note that this is a POST endpoint rather than a GET endpoint because it employs
-/// a JSON body rather than query parameters.
+/// <para>Note that this is a POST endpoint rather than a GET endpoint because it
+/// employs a JSON body rather than query parameters.</para>
 /// </summary>
 public sealed record class PriceEvaluateMultipleParams : ParamsBase
 {
@@ -2747,7 +2748,8 @@ public sealed record class BulkWithFiltersModel : ModelBase, IFromRaw<BulkWithFi
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -3848,7 +3850,8 @@ public sealed record class GroupedWithMinMaxThresholdsModel
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -4813,7 +4816,8 @@ public sealed record class PercentModel : ModelBase, IFromRaw<PercentModel>
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -5676,7 +5680,8 @@ public sealed record class EventOutputModel : ModelBase, IFromRaw<EventOutputMod
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {

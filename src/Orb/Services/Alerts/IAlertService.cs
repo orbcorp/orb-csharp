@@ -29,13 +29,14 @@ public interface IAlertService
     /// <summary>
     /// This endpoint returns a list of alerts within Orb.
     ///
-    /// The request must specify one of `customer_id`, `external_customer_id`, or `subscription_id`.
+    /// <para>The request must specify one of `customer_id`, `external_customer_id`,
+    /// or `subscription_id`.</para>
     ///
-    /// If querying by subscription_id, the endpoint will return the subscription
-    /// level alerts as well as the plan level alerts associated with the subscription.
+    /// <para>If querying by subscription_id, the endpoint will return the subscription
+    /// level alerts as well as the plan level alerts associated with the subscription.</para>
     ///
-    /// The list of alerts is ordered starting from the most recently created alert.
-    /// This endpoint follows Orb's [standardized pagination format](/api-reference/pagination).
+    /// <para>The list of alerts is ordered starting from the most recently created
+    /// alert. This endpoint follows Orb's [standardized pagination format](/api-reference/pagination).</para>
     /// </summary>
     Task<Alerts::AlertListPageResponse> List(
         Alerts::AlertListParams? parameters = null,
@@ -73,15 +74,15 @@ public interface IAlertService
     /// <summary>
     /// This endpoint is used to create alerts at the subscription level.
     ///
-    /// Subscription level alerts can be one of two types: `usage_exceeded` or `cost_exceeded`.
-    /// A `usage_exceeded` alert is scoped to a particular metric and is triggered
-    /// when the usage of that metric exceeds predefined thresholds during the current
-    /// billing cycle. A `cost_exceeded` alert is triggered when the total amount
-    /// due during the current billing cycle surpasses predefined thresholds. `cost_exceeded`
-    /// alerts do not include burndown of pre-purchase credits. Each subscription
-    /// can have one `cost_exceeded` alert and one `usage_exceeded` alert per metric
-    /// that is a part of the subscription. Alerts are triggered based on usage or
-    /// cost conditions met during the current billing cycle.
+    /// <para>Subscription level alerts can be one of two types: `usage_exceeded`
+    /// or `cost_exceeded`. A `usage_exceeded` alert is scoped to a particular metric
+    /// and is triggered when the usage of that metric exceeds predefined thresholds
+    /// during the current billing cycle. A `cost_exceeded` alert is triggered when
+    /// the total amount due during the current billing cycle surpasses predefined
+    /// thresholds. `cost_exceeded` alerts do not include burndown of pre-purchase
+    /// credits. Each subscription can have one `cost_exceeded` alert and one `usage_exceeded`
+    /// alert per metric that is a part of the subscription. Alerts are triggered
+    /// based on usage or cost conditions met during the current billing cycle.</para>
     /// </summary>
     Task<Alerts::Alert> CreateForSubscription(
         Alerts::AlertCreateForSubscriptionParams parameters,
@@ -90,8 +91,8 @@ public interface IAlertService
 
     /// <summary>
     /// This endpoint allows you to disable an alert. To disable a plan-level alert
-    /// for a specific subscription, you must include the `subscription_id`. The
-    /// `subscription_id` is not required for customer or subscription level alerts.
+    /// for a specific subscription, you must include the `subscription_id`. The `subscription_id`
+    /// is not required for customer or subscription level alerts.
     /// </summary>
     Task<Alerts::Alert> Disable(
         Alerts::AlertDisableParams parameters,
@@ -100,8 +101,8 @@ public interface IAlertService
 
     /// <summary>
     /// This endpoint allows you to enable an alert. To enable a plan-level alert
-    /// for a specific subscription, you must include the `subscription_id`. The
-    /// `subscription_id` is not required for customer or subscription level alerts.
+    /// for a specific subscription, you must include the `subscription_id`. The `subscription_id`
+    /// is not required for customer or subscription level alerts.
     /// </summary>
     Task<Alerts::Alert> Enable(
         Alerts::AlertEnableParams parameters,

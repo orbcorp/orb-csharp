@@ -17,17 +17,19 @@ namespace Orb.Models.Subscriptions;
 /// trial end date must be on or after the subscription's start date on the current
 /// plan, and on or before the subscription end date).
 ///
-/// In order to retroactively remove a trial completely, the end date can be set to
-/// the transition date of the subscription to this plan (or, if this is the first
-/// plan for this subscription, the subscription's start date). In order to end a
-/// trial immediately, the keyword `immediate` can be provided as the trial end date.
+/// <para>In order to retroactively remove a trial completely, the end date can be
+/// set to the transition date of the subscription to this plan (or, if this is the
+/// first plan for this subscription, the subscription's start date). In order to
+/// end a trial immediately, the keyword `immediate` can be provided as the trial
+/// end date.</para>
 ///
-/// By default, Orb will shift only the trial end date (and price intervals that start
-/// or end on the previous trial end date), and leave all other future price intervals
-/// untouched. If the `shift` parameter is set to `true`, Orb will shift all subsequent
-/// price and adjustment intervals by the same amount as the trial end date shift
-/// (so, e.g., if a plan change is scheduled or an add-on price was added, that change
-/// will be pushed back by the same amount of time the trial is extended).
+/// <para>By default, Orb will shift only the trial end date (and price intervals
+/// that start or end on the previous trial end date), and leave all other future
+/// price intervals untouched. If the `shift` parameter is set to `true`, Orb will
+/// shift all subsequent price and adjustment intervals by the same amount as the
+/// trial end date shift (so, e.g., if a plan change is scheduled or an add-on price
+/// was added, that change will be pushed back by the same amount of time the trial
+/// is extended).</para>
 /// </summary>
 public sealed record class SubscriptionUpdateTrialParams : ParamsBase
 {
@@ -169,8 +171,8 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
 }
 
 /// <summary>
-/// The new date that the trial should end, or the literal string `immediate` to end
-/// the trial immediately.
+/// The new date that the trial should end, or the literal string `immediate` to
+/// end the trial immediately.
 /// </summary>
 [JsonConverter(typeof(TrialEndDateConverter))]
 public record class TrialEndDate

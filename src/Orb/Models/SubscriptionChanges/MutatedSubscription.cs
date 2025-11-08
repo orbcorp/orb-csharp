@@ -211,8 +211,8 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
 
     /// <summary>
     /// The end of the current billing period. This is an exclusive timestamp, such
-    /// that the instant returned is not part of the billing period. Set to null
-    /// for subscriptions that are not currently active.
+    /// that the instant returned is not part of the billing period. Set to null for
+    /// subscriptions that are not currently active.
     /// </summary>
     public required System::DateTime? CurrentBillingPeriodEndDate
     {
@@ -242,8 +242,8 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
 
     /// <summary>
     /// The start date of the current billing period. This is an inclusive timestamp;
-    /// the instant returned is exactly the beginning of the billing period. Set
-    /// to null if the subscription is not currently active.
+    /// the instant returned is exactly the beginning of the billing period. Set to
+    /// null if the subscription is not currently active.
     /// </summary>
     public required System::DateTime? CurrentBillingPeriodStartDate
     {
@@ -272,19 +272,19 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     /// <summary>
     /// A customer is a buyer of your products, and the other party to the billing relationship.
     ///
-    /// In Orb, customers are assigned system generated identifiers automatically,
+    /// <para>In Orb, customers are assigned system generated identifiers automatically,
     /// but it's often desirable to have these match existing identifiers in your
     /// system. To avoid having to denormalize Orb ID information, you can pass in
     /// an `external_customer_id` with your own identifier. See [Customer ID Aliases](/events-and-metrics/customer-aliases)
-    /// for further information about how these aliases work in Orb.
+    /// for further information about how these aliases work in Orb.</para>
     ///
-    /// In addition to having an identifier in your system, a customer may exist
-    /// in a payment provider solution like Stripe. Use the `payment_provider_id`
-    /// and the `payment_provider` enum field to express this mapping.
+    /// <para>In addition to having an identifier in your system, a customer may
+    /// exist in a payment provider solution like Stripe. Use the `payment_provider_id`
+    /// and the `payment_provider` enum field to express this mapping.</para>
     ///
-    /// A customer also has a timezone (from the standard [IANA timezone database](https://www.iana.org/time-zones)),
+    /// <para>A customer also has a timezone (from the standard [IANA timezone database](https://www.iana.org/time-zones)),
     /// which defaults to your account's timezone. See [Timezone localization](/essentials/timezones)
-    /// for information on what this timezone parameter influences within Orb.
+    /// for information on what this timezone parameter influences within Orb.</para>
     /// </summary>
     public required Customer Customer
     {
@@ -581,8 +581,8 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     /// <summary>
     /// Determines the difference between the invoice issue date for subscription
     /// invoices as the date that they are due. A value of `0` here represents that
-    /// the invoice is due on issue, whereas a value of `30` represents that the
-    /// customer has a month to pay the invoice.
+    /// the invoice is due on issue, whereas a value of `30` represents that the customer
+    /// has a month to pay the invoice.
     /// </summary>
     public required long NetTerms
     {
@@ -639,8 +639,8 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
 
     /// <summary>
     /// The [Plan](/core-concepts#plan-and-price) resource represents a plan that
-    /// can be subscribed to by a customer. Plans define the billing behavior of the
-    /// subscription. You can see more about how to configure prices in the [Price resource](/reference/price).
+    /// can be subscribed to by a customer. Plans define the billing behavior of
+    /// the subscription. You can see more about how to configure prices in the [Price resource](/reference/price).
     /// </summary>
     public required Plans::Plan? Plan
     {

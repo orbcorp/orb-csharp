@@ -238,7 +238,8 @@ public sealed record class NewFloatingTieredWithProrationPrice
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -615,7 +616,8 @@ public sealed record class TieredWithProrationConfig
         IFromRaw<TieredWithProrationConfig>
 {
     /// <summary>
-    /// Tiers for rating based on total usage quantities into the specified tier with proration
+    /// Tiers for rating based on total usage quantities into the specified tier
+    /// with proration
     /// </summary>
     public required List<Tier7> Tiers
     {

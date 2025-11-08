@@ -17,16 +17,16 @@ namespace Orb.Models.Prices;
 /// and group results using [computed properties](/extensibility/advanced-metrics#computed-properties)
 /// to analyze pricing across different dimensions.
 ///
-/// Prices may either reference existing prices in your Orb account or be defined
+/// <para>Prices may either reference existing prices in your Orb account or be defined
 /// inline in the request body. The endpoint has the following limitations: 1. Up
 /// to 100 prices can be evaluated in a single request. 2. Up to 500 preview events
-/// can be provided in a single request.
+/// can be provided in a single request.</para>
 ///
-/// A top-level customer_id is required to evaluate the preview events. Additionally,
-/// all events without a customer_id will have the top-level customer_id added.
+/// <para>A top-level customer_id is required to evaluate the preview events. Additionally,
+/// all events without a customer_id will have the top-level customer_id added.</para>
 ///
-/// Note that this is a POST endpoint rather than a GET endpoint because it employs
-/// a JSON body rather than query parameters.
+/// <para>Note that this is a POST endpoint rather than a GET endpoint because it
+/// employs a JSON body rather than query parameters.</para>
 /// </summary>
 public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
 {
@@ -2899,7 +2899,8 @@ public sealed record class BulkWithFilters1 : ModelBase, IFromRaw<BulkWithFilter
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -3998,7 +3999,8 @@ public sealed record class GroupedWithMinMaxThresholds1
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -4958,7 +4960,8 @@ public sealed record class Percent1 : ModelBase, IFromRaw<Percent1>
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -5821,7 +5824,8 @@ public sealed record class EventOutput1 : ModelBase, IFromRaw<EventOutput1>
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {

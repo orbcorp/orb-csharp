@@ -11,10 +11,10 @@ namespace Orb.Models.Customers;
 /// <summary>
 /// Sync Orb's payment methods for the customer with their gateway.
 ///
-/// This method can be called before taking an action that may cause the customer
-/// to be charged, ensuring that the most up-to-date payment method is charged.
+/// <para>This method can be called before taking an action that may cause the customer
+/// to be charged, ensuring that the most up-to-date payment method is charged.</para>
 ///
-/// **Note**: This functionality is currently only available for Stripe.
+/// <para>**Note**: This functionality is currently only available for Stripe.</para>
 /// </summary>
 public sealed record class CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams
     : ParamsBase

@@ -15,9 +15,9 @@ namespace Orb.Models.Subscriptions;
 /// list, ordered starting from the most recently created subscription. For a full
 /// discussion of the subscription resource, see [Subscription](/core-concepts##subscription).
 ///
-/// Subscriptions can be filtered for a specific customer by using either the customer_id
-/// or external_customer_id query parameters. To filter subscriptions for multiple
-/// customers, use the customer_id[] or external_customer_id[] query parameters.
+/// <para>Subscriptions can be filtered for a specific customer by using either the
+/// customer_id or external_customer_id query parameters. To filter subscriptions
+/// for multiple customers, use the customer_id[] or external_customer_id[] query parameters.</para>
 /// </summary>
 public sealed record class SubscriptionListParams : ParamsBase
 {

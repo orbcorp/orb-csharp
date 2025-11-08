@@ -76,9 +76,9 @@ public sealed record class EventSearchResponse : ModelBase, IFromRaw<EventSearch
 }
 
 /// <summary>
-/// The [Event](/core-concepts#event) resource represents a usage event that has
-/// been created for a customer. Events are the core of Orb's usage-based billing
-/// model, and are used to calculate the usage charges for a given billing period.
+/// The [Event](/core-concepts#event) resource represents a usage event that has been
+/// created for a customer. Events are the core of Orb's usage-based billing model,
+/// and are used to calculate the usage charges for a given billing period.
 /// </summary>
 [JsonConverter(typeof(ModelConverter<Data>))]
 public sealed record class Data : ModelBase, IFromRaw<Data>

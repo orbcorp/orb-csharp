@@ -14,8 +14,8 @@ namespace Orb.Models.Alerts;
 /// <summary>
 ///  This endpoint creates a new alert to monitor a customer's credit balance. There
 /// are three types of alerts that can be scoped to  customers: `credit_balance_depleted`,
-/// `credit_balance_dropped`, and `credit_balance_recovered`. Customers can have
-/// a maximum  of one of each type of alert per [credit balance currency](/product-catalog/prepurchase).
+/// `credit_balance_dropped`, and `credit_balance_recovered`. Customers can have a
+/// maximum  of one of each type of alert per [credit balance currency](/product-catalog/prepurchase).
 /// `credit_balance_dropped` alerts require a list of thresholds to be provided while
 /// `credit_balance_depleted`  and `credit_balance_recovered` alerts do not require thresholds.
 /// </summary>

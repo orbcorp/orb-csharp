@@ -120,8 +120,8 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     /// <summary>
     /// Determines the difference between the invoice issue date for subscription
     /// invoices as the date that they are due. A value of `0` here represents that
-    /// the invoice is due on issue, whereas a value of `30` represents that the
-    /// customer has a month to pay the invoice.
+    /// the invoice is due on issue, whereas a value of `30` represents that the customer
+    /// has a month to pay the invoice.
     /// </summary>
     public long? NetTerms
     {

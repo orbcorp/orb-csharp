@@ -11,18 +11,18 @@ using System = System;
 namespace Orb.Models.Invoices;
 
 /// <summary>
-/// This endpoint returns a list of all [`Invoice`](/core-concepts#invoice)s for
-/// an account in a list format.
+/// This endpoint returns a list of all [`Invoice`](/core-concepts#invoice)s for an
+/// account in a list format.
 ///
-/// The list of invoices is ordered starting from the most recently issued invoice
-/// date. The response also includes [`pagination_metadata`](/api-reference/pagination),
-/// which lets the caller retrieve the next page of results if they exist.
+/// <para>The list of invoices is ordered starting from the most recently issued
+/// invoice date. The response also includes [`pagination_metadata`](/api-reference/pagination),
+/// which lets the caller retrieve the next page of results if they exist.</para>
 ///
-/// By default, this only returns invoices that are `issued`, `paid`, or `synced`.
+/// <para>By default, this only returns invoices that are `issued`, `paid`, or `synced`.</para>
 ///
-/// When fetching any `draft` invoices, this returns the last-computed invoice values
-/// for each draft invoice, which may not always be up-to-date since Orb regularly
-/// refreshes invoices asynchronously.
+/// <para>When fetching any `draft` invoices, this returns the last-computed invoice
+/// values for each draft invoice, which may not always be up-to-date since Orb regularly
+/// refreshes invoices asynchronously.</para>
 /// </summary>
 public sealed record class InvoiceListParams : ParamsBase
 {

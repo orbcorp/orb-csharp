@@ -15,21 +15,22 @@ namespace Orb.Models.Subscriptions;
 /// A [subscription](/core-concepts#subscription) represents the purchase of a plan
 /// by a customer.
 ///
-/// By default, subscriptions begin on the day that they're created and renew automatically
-/// for each billing cycle at the cadence that's configured in the plan definition.
+/// <para>By default, subscriptions begin on the day that they're created and renew
+/// automatically for each billing cycle at the cadence that's configured in the
+/// plan definition.</para>
 ///
-/// Subscriptions also default to **beginning of month alignment**, which means the
-/// first invoice issued for the subscription will have pro-rated charges between
+/// <para>Subscriptions also default to **beginning of month alignment**, which means
+/// the first invoice issued for the subscription will have pro-rated charges between
 /// the `start_date` and the first of the following month. Subsequent billing periods
 /// will always start and end on a month boundary (e.g. subsequent month starts for
-/// monthly billing).
+/// monthly billing).</para>
 ///
-/// Depending on the plan configuration, any _flat_ recurring fees will be billed
+/// <para>Depending on the plan configuration, any _flat_ recurring fees will be billed
 /// either at the beginning (in-advance) or end (in-arrears) of each billing cycle.
 /// Plans default to **in-advance billing**. Usage-based fees are billed in arrears
 /// as usage is accumulated. In the normal course of events, you can expect an invoice
 /// to contain usage-based charges for the previous period, and a recurring fee for
-/// the following period.
+/// the following period.</para>
 /// </summary>
 [JsonConverter(typeof(ModelConverter<Subscription>))]
 public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
@@ -231,8 +232,8 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
 
     /// <summary>
     /// The end of the current billing period. This is an exclusive timestamp, such
-    /// that the instant returned is not part of the billing period. Set to null
-    /// for subscriptions that are not currently active.
+    /// that the instant returned is not part of the billing period. Set to null for
+    /// subscriptions that are not currently active.
     /// </summary>
     public required System::DateTime? CurrentBillingPeriodEndDate
     {
@@ -262,8 +263,8 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
 
     /// <summary>
     /// The start date of the current billing period. This is an inclusive timestamp;
-    /// the instant returned is exactly the beginning of the billing period. Set
-    /// to null if the subscription is not currently active.
+    /// the instant returned is exactly the beginning of the billing period. Set to
+    /// null if the subscription is not currently active.
     /// </summary>
     public required System::DateTime? CurrentBillingPeriodStartDate
     {
@@ -292,19 +293,19 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
     /// <summary>
     /// A customer is a buyer of your products, and the other party to the billing relationship.
     ///
-    /// In Orb, customers are assigned system generated identifiers automatically,
+    /// <para>In Orb, customers are assigned system generated identifiers automatically,
     /// but it's often desirable to have these match existing identifiers in your
     /// system. To avoid having to denormalize Orb ID information, you can pass in
     /// an `external_customer_id` with your own identifier. See [Customer ID Aliases](/events-and-metrics/customer-aliases)
-    /// for further information about how these aliases work in Orb.
+    /// for further information about how these aliases work in Orb.</para>
     ///
-    /// In addition to having an identifier in your system, a customer may exist
-    /// in a payment provider solution like Stripe. Use the `payment_provider_id`
-    /// and the `payment_provider` enum field to express this mapping.
+    /// <para>In addition to having an identifier in your system, a customer may
+    /// exist in a payment provider solution like Stripe. Use the `payment_provider_id`
+    /// and the `payment_provider` enum field to express this mapping.</para>
     ///
-    /// A customer also has a timezone (from the standard [IANA timezone database](https://www.iana.org/time-zones)),
+    /// <para>A customer also has a timezone (from the standard [IANA timezone database](https://www.iana.org/time-zones)),
     /// which defaults to your account's timezone. See [Timezone localization](/essentials/timezones)
-    /// for information on what this timezone parameter influences within Orb.
+    /// for information on what this timezone parameter influences within Orb.</para>
     /// </summary>
     public required Customer Customer
     {
@@ -601,8 +602,8 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
     /// <summary>
     /// Determines the difference between the invoice issue date for subscription
     /// invoices as the date that they are due. A value of `0` here represents that
-    /// the invoice is due on issue, whereas a value of `30` represents that the
-    /// customer has a month to pay the invoice.
+    /// the invoice is due on issue, whereas a value of `30` represents that the customer
+    /// has a month to pay the invoice.
     /// </summary>
     public required long NetTerms
     {
@@ -659,8 +660,8 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
 
     /// <summary>
     /// The [Plan](/core-concepts#plan-and-price) resource represents a plan that
-    /// can be subscribed to by a customer. Plans define the billing behavior of the
-    /// subscription. You can see more about how to configure prices in the [Price resource](/reference/price).
+    /// can be subscribed to by a customer. Plans define the billing behavior of
+    /// the subscription. You can see more about how to configure prices in the [Price resource](/reference/price).
     /// </summary>
     public required Plans::Plan? Plan
     {

@@ -236,7 +236,8 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -642,8 +643,8 @@ public sealed record class TieredPackageWithMinimumConfig
     }
 
     /// <summary>
-    /// Apply tiered pricing after rounding up the quantity to the package size. Tiers
-    /// are defined using exclusive lower bounds.
+    /// Apply tiered pricing after rounding up the quantity to the package size.
+    /// Tiers are defined using exclusive lower bounds.
     /// </summary>
     public required List<Tier5> Tiers
     {

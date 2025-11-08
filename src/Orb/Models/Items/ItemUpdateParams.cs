@@ -159,8 +159,8 @@ public sealed record class ItemUpdateParams : ParamsBase
 }
 
 /// <summary>
-/// Represents a connection between an Item and an external system for invoicing or
-/// tax calculation purposes.
+/// Represents a connection between an Item and an external system for invoicing
+/// or tax calculation purposes.
 /// </summary>
 [JsonConverter(typeof(ModelConverter<ExternalConnection>))]
 public sealed record class ExternalConnection : ModelBase, IFromRaw<ExternalConnection>

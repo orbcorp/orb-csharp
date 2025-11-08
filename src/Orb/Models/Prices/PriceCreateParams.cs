@@ -17,11 +17,11 @@ namespace Orb.Models.Prices;
 /// associated with a specific plan and can instead be individually added to subscriptions,
 /// including subscriptions on different plans.
 ///
-/// An `external_price_id` can be optionally specified as an alias to allow ergonomic
-/// interaction with prices in the Orb API.
+/// <para>An `external_price_id` can be optionally specified as an alias to allow
+/// ergonomic interaction with prices in the Orb API.</para>
 ///
-/// See the [Price resource](/product-catalog/price-configuration) for the specification
-/// of different price model configurations possible in this endpoint.
+/// <para>See the [Price resource](/product-catalog/price-configuration) for the
+/// specification of different price model configurations possible in this endpoint.</para>
 /// </summary>
 public sealed record class PriceCreateParams : ParamsBase
 {
@@ -2479,7 +2479,8 @@ public sealed record class BulkWithFilters
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -3579,7 +3580,8 @@ public sealed record class GroupedWithMinMaxThresholds
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -4546,7 +4548,8 @@ public sealed record class Percent : ModelBase, IFromRaw<global::Orb.Models.Pric
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -5413,7 +5416,8 @@ public sealed record class EventOutput : ModelBase, IFromRaw<global::Orb.Models.
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {

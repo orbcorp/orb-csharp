@@ -9,8 +9,8 @@ using Orb.Core;
 namespace Orb.Models.Coupons;
 
 /// <summary>
-/// This endpoint allows a coupon to be archived. Archived coupons can no longer
-/// be redeemed, and will be hidden from lists of active coupons. Additionally, once
+/// This endpoint allows a coupon to be archived. Archived coupons can no longer be
+/// redeemed, and will be hidden from lists of active coupons. Additionally, once
 /// a coupon is archived, its redemption code can be reused for a different coupon.
 /// </summary>
 public sealed record class CouponArchiveParams : ParamsBase

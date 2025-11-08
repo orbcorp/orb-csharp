@@ -95,8 +95,8 @@ public sealed record class MonetaryAmountDiscountAdjustment
     }
 
     /// <summary>
-    /// The amount by which to discount the prices this adjustment applies to in
-    /// a given billing period.
+    /// The amount by which to discount the prices this adjustment applies to in a
+    /// given billing period.
     /// </summary>
     public required string AmountDiscount
     {

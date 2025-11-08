@@ -11,14 +11,14 @@ namespace Orb.Models;
 
 /// <summary>
 /// The Price resource represents a price that can be billed on a subscription, resulting
-/// in a charge on an invoice in the form of an invoice line item. Prices take a
-/// quantity and determine an amount to bill.
+/// in a charge on an invoice in the form of an invoice line item. Prices take a quantity
+/// and determine an amount to bill.
 ///
-/// Orb supports a few different pricing models out of the box. Each of these models
-/// is serialized differently in a given Price object. The model_type field determines
-/// the key for the configuration object that is present.
+/// <para>Orb supports a few different pricing models out of the box. Each of these
+/// models is serialized differently in a given Price object. The model_type field
+/// determines the key for the configuration object that is present.</para>
 ///
-/// For more on the types of prices, see [the core concepts documentation](/core-concepts#plan-and-price)
+/// <para>For more on the types of prices, see [the core concepts documentation](/core-concepts#plan-and-price)</para>
 /// </summary>
 [JsonConverter(typeof(PriceConverter))]
 public record class Price
@@ -13378,10 +13378,10 @@ public sealed record class TieredPackageConfig1 : ModelBase, IFromRaw<TieredPack
     }
 
     /// <summary>
-    /// Apply tiered pricing after rounding up the quantity to the package size. Tiers
-    /// are defined using exclusive lower bounds. The tier bounds are defined based
-    /// on the total quantity rather than the number of packages, so they must be
-    /// multiples of the package size.
+    /// Apply tiered pricing after rounding up the quantity to the package size.
+    /// Tiers are defined using exclusive lower bounds. The tier bounds are defined
+    /// based on the total quantity rather than the number of packages, so they must
+    /// be multiples of the package size.
     /// </summary>
     public required List<Tier17> Tiers
     {
@@ -14866,8 +14866,8 @@ sealed class PriceType12Converter : JsonConverter<PriceType12>
 public sealed record class TieredWithMinimumConfig1 : ModelBase, IFromRaw<TieredWithMinimumConfig1>
 {
     /// <summary>
-    /// Tiered pricing with a minimum amount dependent on the volume tier. Tiers are
-    /// defined using exclusive lower bounds.
+    /// Tiered pricing with a minimum amount dependent on the volume tier. Tiers
+    /// are defined using exclusive lower bounds.
     /// </summary>
     public required List<Tier18> Tiers
     {
@@ -17994,8 +17994,8 @@ public sealed record class TieredPackageWithMinimumConfig1
     }
 
     /// <summary>
-    /// Apply tiered pricing after rounding up the quantity to the package size. Tiers
-    /// are defined using exclusive lower bounds.
+    /// Apply tiered pricing after rounding up the quantity to the package size.
+    /// Tiers are defined using exclusive lower bounds.
     /// </summary>
     public required List<Tier20> Tiers
     {
@@ -23727,7 +23727,8 @@ public sealed record class TieredWithProrationConfigModel
         IFromRaw<TieredWithProrationConfigModel>
 {
     /// <summary>
-    /// Tiers for rating based on total usage quantities into the specified tier with proration
+    /// Tiers for rating based on total usage quantities into the specified tier
+    /// with proration
     /// </summary>
     public required List<Tier21> Tiers
     {
@@ -35813,8 +35814,8 @@ public sealed record class GroupedTieredPackageConfig1
     }
 
     /// <summary>
-    /// Apply tiered pricing after rounding up the quantity to the package size. Tiers
-    /// are defined using exclusive lower bounds.
+    /// Apply tiered pricing after rounding up the quantity to the package size.
+    /// Tiers are defined using exclusive lower bounds.
     /// </summary>
     public required List<Tier23> Tiers
     {

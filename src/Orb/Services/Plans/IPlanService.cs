@@ -22,7 +22,7 @@ public interface IPlanService
     /// This endpoint can be used to update the `external_plan_id`, and `metadata`
     /// of an existing plan.
     ///
-    /// Other fields on a plan are currently immutable.
+    /// <para>Other fields on a plan are currently immutable.</para>
     /// </summary>
     Task<Plan> Update(PlanUpdateParams parameters, CancellationToken cancellationToken = default);
 
@@ -43,14 +43,14 @@ public interface IPlanService
     /// in the plan and their configuration, as well as the product that the plan
     /// is attached to.
     ///
-    /// ## Serialized prices Orb supports a few different pricing models out of the
-    /// box. Each of these models is serialized differently in a given [Price](/core-concepts#plan-and-price)
+    /// <para>## Serialized prices Orb supports a few different pricing models out
+    /// of the box. Each of these models is serialized differently in a given [Price](/core-concepts#plan-and-price)
     /// object. The `model_type` field determines the key for the configuration object
     /// that is present. A detailed explanation of price types can be found in the
-    /// [Price schema](/core-concepts#plan-and-price).
+    /// [Price schema](/core-concepts#plan-and-price).</para>
     ///
-    /// ## Phases Orb supports plan phases, also known as contract ramps. For plans
-    /// with phases, the serialized prices refer to all prices across all phases.
+    /// <para>## Phases Orb supports plan phases, also known as contract ramps. For
+    /// plans with phases, the serialized prices refer to all prices across all phases.</para>
     /// </summary>
     Task<Plan> Fetch(PlanFetchParams parameters, CancellationToken cancellationToken = default);
 }

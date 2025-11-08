@@ -203,7 +203,8 @@ public sealed record class NewSubscriptionTieredPackagePrice
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
@@ -277,8 +278,8 @@ public sealed record class NewSubscriptionTieredPackagePrice
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
@@ -656,10 +657,10 @@ public sealed record class TieredPackageConfig
     }
 
     /// <summary>
-    /// Apply tiered pricing after rounding up the quantity to the package size. Tiers
-    /// are defined using exclusive lower bounds. The tier bounds are defined based
-    /// on the total quantity rather than the number of packages, so they must be
-    /// multiples of the package size.
+    /// Apply tiered pricing after rounding up the quantity to the package size.
+    /// Tiers are defined using exclusive lower bounds. The tier bounds are defined
+    /// based on the total quantity rather than the number of packages, so they must
+    /// be multiples of the package size.
     /// </summary>
     public required List<global::Orb.Models.Subscriptions.Tier13> Tiers
     {

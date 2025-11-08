@@ -15,8 +15,8 @@ public interface ITopUpService
     /// balance. While this top-up is active, the customer's balance will added in
     /// increments of the specified amount whenever the balance reaches the specified threshold.
     ///
-    /// If a top-up already exists for this customer in the same currency, the existing
-    /// top-up will be replaced.
+    /// <para>If a top-up already exists for this customer in the same currency,
+    /// the existing top-up will be replaced.</para>
     /// </summary>
     Task<TopUpCreateResponse> Create(
         TopUpCreateParams parameters,
@@ -42,8 +42,8 @@ public interface ITopUpService
     /// balance. While this top-up is active, the customer's balance will added in
     /// increments of the specified amount whenever the balance reaches the specified threshold.
     ///
-    /// If a top-up already exists for this customer in the same currency, the existing
-    /// top-up will be replaced.
+    /// <para>If a top-up already exists for this customer in the same currency,
+    /// the existing top-up will be replaced.</para>
     /// </summary>
     Task<TopUpCreateByExternalIDResponse> CreateByExternalID(
         TopUpCreateByExternalIDParams parameters,

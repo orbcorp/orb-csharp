@@ -76,8 +76,8 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
     }
 
     /// <summary>
-    /// A list of external connections for this item, used to sync with external
-    /// invoicing and tax systems.
+    /// A list of external connections for this item, used to sync with external invoicing
+    /// and tax systems.
     /// </summary>
     public required List<ExternalConnectionModel> ExternalConnections
     {
@@ -231,8 +231,8 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
 }
 
 /// <summary>
-/// Represents a connection between an Item and an external system for invoicing or
-/// tax calculation purposes.
+/// Represents a connection between an Item and an external system for invoicing
+/// or tax calculation purposes.
 /// </summary>
 [JsonConverter(typeof(ModelConverter<ExternalConnectionModel>))]
 public sealed record class ExternalConnectionModel : ModelBase, IFromRaw<ExternalConnectionModel>

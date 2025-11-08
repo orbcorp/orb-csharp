@@ -23,8 +23,8 @@ public sealed record class InvoiceCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// An ISO 4217 currency string. Must be the same as the customer's currency
-    /// if it is set.
+    /// An ISO 4217 currency string. Must be the same as the customer's currency if
+    /// it is set.
     /// </summary>
     public required string Currency
     {
@@ -179,8 +179,8 @@ public sealed record class InvoiceCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// The `external_customer_id` of the `Customer` to create this invoice for. One
-    /// of `customer_id` and `external_customer_id` are required.
+    /// The `external_customer_id` of the `Customer` to create this invoice for.
+    /// One of `customer_id` and `external_customer_id` are required.
     /// </summary>
     public string? ExternalCustomerID
     {

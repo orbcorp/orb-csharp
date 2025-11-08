@@ -13,8 +13,8 @@ namespace Orb.Models.Subscriptions;
 /// <summary>
 /// This endpoint can be used to clear scheduled updates to the quantity for a fixed fee.
 ///
-/// If there are no updates scheduled, a request validation error will be returned
-/// with a 400 status code.
+/// <para>If there are no updates scheduled, a request validation error will be returned
+/// with a 400 status code.</para>
 /// </summary>
 public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams : ParamsBase
 {

@@ -11,11 +11,11 @@ namespace Orb.Models.Customers.Credits;
 /// <summary>
 /// Returns a paginated list of unexpired, non-zero credit blocks for a customer.
 ///
-/// If `include_all_blocks` is set to `true`, all credit blocks (including expired
-/// and depleted blocks) will be included in the response.
+/// <para>If `include_all_blocks` is set to `true`, all credit blocks (including
+/// expired and depleted blocks) will be included in the response.</para>
 ///
-/// Note that `currency` defaults to credits if not specified. To use a real world
-/// currency, set `currency` to an ISO 4217 string.
+/// <para>Note that `currency` defaults to credits if not specified. To use a real
+/// world currency, set `currency` to an ISO 4217 string.</para>
 /// </summary>
 public sealed record class CreditListByExternalIDParams : ParamsBase
 {
@@ -65,8 +65,8 @@ public sealed record class CreditListByExternalIDParams : ParamsBase
     }
 
     /// <summary>
-    /// If set to True, all expired and depleted blocks, as well as active block will
-    /// be returned.
+    /// If set to True, all expired and depleted blocks, as well as active block
+    /// will be returned.
     /// </summary>
     public bool? IncludeAllBlocks
     {

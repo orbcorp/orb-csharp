@@ -225,8 +225,8 @@ public sealed record class MonetaryUsageDiscountAdjustment
     }
 
     /// <summary>
-    /// The number of usage units by which to discount the price this adjustment
-    /// applies to in a given billing period.
+    /// The number of usage units by which to discount the price this adjustment applies
+    /// to in a given billing period.
     /// </summary>
     public required double UsageDiscount
     {

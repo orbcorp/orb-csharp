@@ -163,8 +163,8 @@ public sealed record class DataModel
     }
 
     /// <summary>
-    /// The currency or custom pricing unit to use for this top-up. If this is a
-    /// real-world currency, it must match the customer's invoicing currency.
+    /// The currency or custom pricing unit to use for this top-up. If this is a real-world
+    /// currency, it must match the customer's invoicing currency.
     /// </summary>
     public required string Currency
     {

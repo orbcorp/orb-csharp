@@ -13,8 +13,8 @@ namespace Orb.Models.Customers;
 /// is in the process of being deleted, only the properties `id` and `deleted: true`
 /// will be returned.
 ///
-/// See the [Customer resource](/core-concepts#customer) for a full discussion of
-/// the Customer model.
+/// <para>See the [Customer resource](/core-concepts#customer) for a full discussion
+/// of the Customer model.</para>
 /// </summary>
 public sealed record class CustomerFetchParams : ParamsBase
 {

@@ -11,13 +11,14 @@ namespace Orb.Models.Alerts;
 /// <summary>
 /// This endpoint returns a list of alerts within Orb.
 ///
-/// The request must specify one of `customer_id`, `external_customer_id`, or `subscription_id`.
+/// <para>The request must specify one of `customer_id`, `external_customer_id`,
+/// or `subscription_id`.</para>
 ///
-/// If querying by subscription_id, the endpoint will return the subscription level
-/// alerts as well as the plan level alerts associated with the subscription.
+/// <para>If querying by subscription_id, the endpoint will return the subscription
+/// level alerts as well as the plan level alerts associated with the subscription.</para>
 ///
-/// The list of alerts is ordered starting from the most recently created alert.
-/// This endpoint follows Orb's [standardized pagination format](/api-reference/pagination).
+/// <para>The list of alerts is ordered starting from the most recently created alert.
+/// This endpoint follows Orb's [standardized pagination format](/api-reference/pagination).</para>
 /// </summary>
 public sealed record class AlertListParams : ParamsBase
 {

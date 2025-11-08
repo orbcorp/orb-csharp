@@ -15,25 +15,25 @@ namespace Orb.Models.Prices;
 /// functionality, such as multiple prices, inline price definitions, and querying
 /// over preview events.
 ///
-/// This endpoint is used to evaluate the output of a price for a given customer
-/// and time range. It enables filtering and grouping the output using [computed
-/// properties](/extensibility/advanced-metrics#computed-properties), supporting
-/// the following workflows:
+/// <para>This endpoint is used to evaluate the output of a price for a given customer
+/// and time range. It enables filtering and grouping the output using [computed properties](/extensibility/advanced-metrics#computed-properties),
+/// supporting the following workflows:</para>
 ///
-/// 1. Showing detailed usage and costs to the end customer. 2. Auditing subtotals
-/// on invoice line items.
+/// <para>1. Showing detailed usage and costs to the end customer. 2. Auditing subtotals
+/// on invoice line items.</para>
 ///
-/// For these workflows, the expressiveness of computed properties in both the filters
-/// and grouping is critical. For example, if you'd like to show your customer their
-/// usage grouped by hour and another property, you can do so with the following `grouping_keys`:
-/// `["hour_floor_timestamp_millis(timestamp_millis)", "my_property"]`. If you'd
-/// like to examine a customer's usage for a specific property value, you can do
-/// so with the following `filter`: `my_property = 'foo' AND my_other_property = 'bar'`.
+/// <para>For these workflows, the expressiveness of computed properties in both
+/// the filters and grouping is critical. For example, if you'd like to show your
+/// customer their usage grouped by hour and another property, you can do so with
+/// the following `grouping_keys`: `["hour_floor_timestamp_millis(timestamp_millis)",
+/// "my_property"]`. If you'd like to examine a customer's usage for a specific property
+/// value, you can do so with the following `filter`: `my_property = 'foo' AND my_other_property
+/// = 'bar'`.</para>
 ///
-/// By default, the start of the time range must be no more than 100 days ago and
-/// the length of the results must be no greater than 1000. Note that this is a POST
-/// endpoint rather than a GET endpoint because it employs a JSON body rather than
-/// query parameters.
+/// <para>By default, the start of the time range must be no more than 100 days ago
+/// and the length of the results must be no greater than 1000. Note that this is
+/// a POST endpoint rather than a GET endpoint because it employs a JSON body rather
+/// than query parameters.</para>
 /// </summary>
 public sealed record class PriceEvaluateParams : ParamsBase
 {

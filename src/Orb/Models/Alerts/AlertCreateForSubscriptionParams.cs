@@ -14,15 +14,15 @@ namespace Orb.Models.Alerts;
 /// <summary>
 /// This endpoint is used to create alerts at the subscription level.
 ///
-/// Subscription level alerts can be one of two types: `usage_exceeded` or `cost_exceeded`.
+/// <para>Subscription level alerts can be one of two types: `usage_exceeded` or `cost_exceeded`.
 /// A `usage_exceeded` alert is scoped to a particular metric and is triggered when
 /// the usage of that metric exceeds predefined thresholds during the current billing
-/// cycle. A `cost_exceeded` alert is triggered when the total amount due during
-/// the current billing cycle surpasses predefined thresholds. `cost_exceeded` alerts
+/// cycle. A `cost_exceeded` alert is triggered when the total amount due during the
+/// current billing cycle surpasses predefined thresholds. `cost_exceeded` alerts
 /// do not include burndown of pre-purchase credits. Each subscription can have one
 /// `cost_exceeded` alert and one `usage_exceeded` alert per metric that is a part
 /// of the subscription. Alerts are triggered based on usage or cost conditions met
-/// during the current billing cycle.
+/// during the current billing cycle.</para>
 /// </summary>
 public sealed record class AlertCreateForSubscriptionParams : ParamsBase
 {

@@ -44,7 +44,8 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
 
     /// <summary>
     /// The billable metric associated with this dimensional price group. All prices
-    /// associated with this dimensional price group will be computed using this billable metric.
+    /// associated with this dimensional price group will be computed using this
+    /// billable metric.
     /// </summary>
     public required string BillableMetricID
     {

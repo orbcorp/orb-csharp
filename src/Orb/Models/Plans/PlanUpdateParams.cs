@@ -13,7 +13,7 @@ namespace Orb.Models.Plans;
 /// This endpoint can be used to update the `external_plan_id`, and `metadata` of
 /// an existing plan.
 ///
-/// Other fields on a plan are currently immutable.
+/// <para>Other fields on a plan are currently immutable.</para>
 /// </summary>
 public sealed record class PlanUpdateParams : ParamsBase
 {

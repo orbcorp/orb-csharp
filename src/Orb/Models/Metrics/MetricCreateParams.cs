@@ -12,8 +12,8 @@ namespace Orb.Models.Metrics;
 
 /// <summary>
 /// This endpoint is used to create a [metric](/core-concepts###metric) using a SQL
-/// string. See [SQL support](/extensibility/advanced-metrics#sql-support) for a
-/// description of constructing SQL queries with examples.
+/// string. See [SQL support](/extensibility/advanced-metrics#sql-support) for a description
+/// of constructing SQL queries with examples.
 /// </summary>
 public sealed record class MetricCreateParams : ParamsBase
 {

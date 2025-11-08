@@ -16,7 +16,7 @@ public interface ITopLevelService
     /// particularly useful for checking that your environment is set up properly,
     /// and is a great choice for connectors and integrations.
     ///
-    /// This API does not have any side-effects or return any Orb resources.
+    /// <para>This API does not have any side-effects or return any Orb resources.</para>
     /// </summary>
     Task<TopLevelPingResponse> Ping(
         TopLevelPingParams? parameters = null,

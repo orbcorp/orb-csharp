@@ -10,8 +10,8 @@ using System = System;
 namespace Orb.Models.SubscriptionChanges;
 
 /// <summary>
-/// A subscription change represents a desired new subscription / pending change
-/// to an existing subscription. It is a way to first preview the effects on the subscription
+/// A subscription change represents a desired new subscription / pending change to
+/// an existing subscription. It is a way to first preview the effects on the subscription
 /// as well as any changes/creation of invoices (see `subscription.changed_resources`).
 /// </summary>
 [JsonConverter(typeof(ModelConverter<SubscriptionChangeApplyResponse>))]

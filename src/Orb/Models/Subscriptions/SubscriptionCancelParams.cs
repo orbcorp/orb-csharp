@@ -12,56 +12,56 @@ using System = System;
 namespace Orb.Models.Subscriptions;
 
 /// <summary>
-/// This endpoint can be used to cancel an existing subscription. It returns the
-/// serialized subscription object with an `end_date` parameter that signifies when
-/// the subscription will transition to an ended state.
+/// This endpoint can be used to cancel an existing subscription. It returns the serialized
+/// subscription object with an `end_date` parameter that signifies when the subscription
+/// will transition to an ended state.
 ///
-/// The body parameter `cancel_option` determines the cancellation behavior. Orb
-/// supports three cancellation options: - `end_of_subscription_term`: stops the
-/// subscription from auto-renewing. Subscriptions that have been cancelled with
-///  this option can still incur charges for the remainder of their term:     - Issuing
+/// <para>The body parameter `cancel_option` determines the cancellation behavior.
+/// Orb supports three cancellation options: - `end_of_subscription_term`: stops
+/// the subscription from auto-renewing. Subscriptions that have been cancelled with
+///   this option can still incur charges for the remainder of their term:     - Issuing
 /// this cancellation request for a monthly subscription will keep the subscription
 /// active until the start       of the subsequent month, and potentially issue an
 /// invoice for any usage charges incurred in the intervening       period.     -
-/// Issuing this cancellation request for a quarterly subscription will keep the
-/// subscription active until the end       of the quarter and potentially issue an
-/// invoice for any usage charges incurred in the intervening period.     - Issuing
-/// this cancellation request for a yearly subscription will keep the subscription
-/// active for the full       year. For example, a yearly subscription starting on
-/// 2021-11-01 and cancelled on 2021-12-08 will remain active       until 2022-11-01
-/// and potentially issue charges in the intervening months for any recurring monthly
-/// usage       charges in its plan.     - **Note**: If a subscription's plan contains
-/// prices with difference cadences, the end of term date will be       determined
-/// by the largest cadence value. For example, cancelling end of term for a subscription
-/// with a       quarterly fixed fee with a monthly usage fee will result in the subscription
-/// ending at the end of the quarter.
+/// Issuing this cancellation request for a quarterly subscription will keep the subscription
+/// active until the end       of the quarter and potentially issue an invoice for
+/// any usage charges incurred in the intervening period.     - Issuing this cancellation
+/// request for a yearly subscription will keep the subscription active for the full
+///       year. For example, a yearly subscription starting on 2021-11-01 and cancelled
+/// on 2021-12-08 will remain active       until 2022-11-01 and potentially issue
+/// charges in the intervening months for any recurring monthly usage       charges
+/// in its plan.     - **Note**: If a subscription's plan contains prices with difference
+/// cadences, the end of term date will be       determined by the largest cadence
+/// value. For example, cancelling end of term for a subscription with a       quarterly
+/// fixed fee with a monthly usage fee will result in the subscription ending at the
+/// end of the quarter.</para>
 ///
-/// - `immediate`: ends the subscription immediately, setting the `end_date` to the
-/// current time:     - Subscriptions that have been cancelled with this option will
-/// be invoiced immediately. This invoice will       include any usage fees incurred
+/// <para>- `immediate`: ends the subscription immediately, setting the `end_date`
+/// to the current time:     - Subscriptions that have been cancelled with this option
+/// will be invoiced immediately. This invoice will       include any usage fees incurred
 /// in the billing period up to the cancellation, along with any prorated       recurring
 /// fees for the billing period, if applicable.     - **Note**: If the subscription
 /// has a recurring fee that was paid in-advance, the prorated amount for the
-///   remaining time period will be added to the [customer's balance](list-balance-transactions)
-/// upon immediate       cancellation. However, if the customer is ineligible to use
-/// the customer balance, the subscription cannot be       cancelled immediately.
+///    remaining time period will be added to the [customer's balance](list-balance-transactions)
+/// upon immediate       cancellation. However, if the customer is ineligible to
+/// use the customer balance, the subscription cannot be       cancelled immediately.</para>
 ///
-/// - `requested_date`: ends the subscription on a specified date, which requires
+/// <para>- `requested_date`: ends the subscription on a specified date, which requires
 /// a `cancellation_date` to be passed in.   If no timezone is provided, the customer's
 /// timezone is used.  For example, a subscription starting on January 1st   with
 /// a monthly price can be set to be cancelled on the first of any month after January
 /// 1st (e.g. March 1st, April   1st, May 1st). A subscription with multiple prices
-/// with different cadences defines the "term" to be the highest   cadence of the prices.
+/// with different cadences defines the "term" to be the highest   cadence of the prices.</para>
 ///
-/// Upcoming subscriptions are only eligible for immediate cancellation, which will
-/// set the `end_date` equal to the `start_date` upon cancellation.
+/// <para>Upcoming subscriptions are only eligible for immediate cancellation, which
+/// will set the `end_date` equal to the `start_date` upon cancellation.</para>
 ///
-/// ## Backdated cancellations Orb allows you to cancel a subscription in the past
-/// as long as there are no paid invoices between the `requested_date` and the current
-/// time. If the cancellation is after the latest issued invoice, Orb will generate
-/// a balance refund for the current period. If the cancellation is before the most
-/// recently issued invoice, Orb will void the intervening invoice and generate a
-/// new one based on the new dates for the subscription. See the section on [cancellation behaviors](/product-catalog/creating-subscriptions#cancellation-behaviors).
+/// <para>## Backdated cancellations Orb allows you to cancel a subscription in the
+/// past as long as there are no paid invoices between the `requested_date` and the
+/// current time. If the cancellation is after the latest issued invoice, Orb will
+/// generate a balance refund for the current period. If the cancellation is before
+/// the most recently issued invoice, Orb will void the intervening invoice and generate
+/// a new one based on the new dates for the subscription. See the section on [cancellation behaviors](/product-catalog/creating-subscriptions#cancellation-behaviors).</para>
 /// </summary>
 public sealed record class SubscriptionCancelParams : ParamsBase
 {
