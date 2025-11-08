@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Net.Http;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.Json;
@@ -165,6 +166,7 @@ public abstract record class ParamsBase
         request.Headers.Add("X-Stainless-Arch", GetOSArch());
         request.Headers.Add("X-Stainless-Lang", "csharp");
         request.Headers.Add("X-Stainless-OS", GetOS());
+        request.Headers.Add("X-Stainless-Package-Version", GetPackageVersion());
 
         if (options.APIKey != null)
         {
@@ -202,4 +204,11 @@ public abstract record class ParamsBase
         }
         return $"Other:{RuntimeInformation.OSDescription}";
     }
+
+    static string GetPackageVersion() =>
+        Assembly
+            .GetExecutingAssembly()
+            .GetCustomAttribute<AssemblyInformationalVersionAttribute>()
+            ?.InformationalVersion
+        ?? "unknown";
 }
