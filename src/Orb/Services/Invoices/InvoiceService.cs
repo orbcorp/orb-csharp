@@ -3,8 +3,8 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
-using Invoices = Orb.Models.Invoices;
-using Models = Orb.Models;
+using Orb.Models;
+using Orb.Models.Invoices;
 
 namespace Orb.Services.Invoices;
 
@@ -22,12 +22,12 @@ public sealed class InvoiceService : IInvoiceService
         _client = client;
     }
 
-    public async Task<Models::Invoice> Create(
-        Invoices::InvoiceCreateParams parameters,
+    public async Task<Invoice> Create(
+        InvoiceCreateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Invoices::InvoiceCreateParams> request = new()
+        HttpRequest<InvoiceCreateParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -35,9 +35,7 @@ public sealed class InvoiceService : IInvoiceService
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
-        var invoice = await response
-            .Deserialize<Models::Invoice>(cancellationToken)
-            .ConfigureAwait(false);
+        var invoice = await response.Deserialize<Invoice>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             invoice.Validate();
@@ -45,12 +43,12 @@ public sealed class InvoiceService : IInvoiceService
         return invoice;
     }
 
-    public async Task<Models::Invoice> Update(
-        Invoices::InvoiceUpdateParams parameters,
+    public async Task<Invoice> Update(
+        InvoiceUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Invoices::InvoiceUpdateParams> request = new()
+        HttpRequest<InvoiceUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
             Params = parameters,
@@ -58,9 +56,7 @@ public sealed class InvoiceService : IInvoiceService
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
-        var invoice = await response
-            .Deserialize<Models::Invoice>(cancellationToken)
-            .ConfigureAwait(false);
+        var invoice = await response.Deserialize<Invoice>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             invoice.Validate();
@@ -68,14 +64,14 @@ public sealed class InvoiceService : IInvoiceService
         return invoice;
     }
 
-    public async Task<Invoices::InvoiceListPageResponse> List(
-        Invoices::InvoiceListParams? parameters = null,
+    public async Task<InvoiceListPageResponse> List(
+        InvoiceListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
 
-        HttpRequest<Invoices::InvoiceListParams> request = new()
+        HttpRequest<InvoiceListParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -84,7 +80,7 @@ public sealed class InvoiceService : IInvoiceService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var page = await response
-            .Deserialize<Invoices::InvoiceListPageResponse>(cancellationToken)
+            .Deserialize<InvoiceListPageResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -93,12 +89,12 @@ public sealed class InvoiceService : IInvoiceService
         return page;
     }
 
-    public async Task<Models::Invoice> Fetch(
-        Invoices::InvoiceFetchParams parameters,
+    public async Task<Invoice> Fetch(
+        InvoiceFetchParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Invoices::InvoiceFetchParams> request = new()
+        HttpRequest<InvoiceFetchParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -106,9 +102,7 @@ public sealed class InvoiceService : IInvoiceService
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
-        var invoice = await response
-            .Deserialize<Models::Invoice>(cancellationToken)
-            .ConfigureAwait(false);
+        var invoice = await response.Deserialize<Invoice>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             invoice.Validate();
@@ -116,12 +110,12 @@ public sealed class InvoiceService : IInvoiceService
         return invoice;
     }
 
-    public async Task<Invoices::InvoiceFetchUpcomingResponse> FetchUpcoming(
-        Invoices::InvoiceFetchUpcomingParams parameters,
+    public async Task<InvoiceFetchUpcomingResponse> FetchUpcoming(
+        InvoiceFetchUpcomingParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Invoices::InvoiceFetchUpcomingParams> request = new()
+        HttpRequest<InvoiceFetchUpcomingParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -130,7 +124,7 @@ public sealed class InvoiceService : IInvoiceService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var deserializedResponse = await response
-            .Deserialize<Invoices::InvoiceFetchUpcomingResponse>(cancellationToken)
+            .Deserialize<InvoiceFetchUpcomingResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -139,12 +133,12 @@ public sealed class InvoiceService : IInvoiceService
         return deserializedResponse;
     }
 
-    public async Task<Models::Invoice> Issue(
-        Invoices::InvoiceIssueParams parameters,
+    public async Task<Invoice> Issue(
+        InvoiceIssueParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Invoices::InvoiceIssueParams> request = new()
+        HttpRequest<InvoiceIssueParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -152,9 +146,7 @@ public sealed class InvoiceService : IInvoiceService
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
-        var invoice = await response
-            .Deserialize<Models::Invoice>(cancellationToken)
-            .ConfigureAwait(false);
+        var invoice = await response.Deserialize<Invoice>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             invoice.Validate();
@@ -162,12 +154,12 @@ public sealed class InvoiceService : IInvoiceService
         return invoice;
     }
 
-    public async Task<Models::Invoice> MarkPaid(
-        Invoices::InvoiceMarkPaidParams parameters,
+    public async Task<Invoice> MarkPaid(
+        InvoiceMarkPaidParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Invoices::InvoiceMarkPaidParams> request = new()
+        HttpRequest<InvoiceMarkPaidParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -175,9 +167,7 @@ public sealed class InvoiceService : IInvoiceService
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
-        var invoice = await response
-            .Deserialize<Models::Invoice>(cancellationToken)
-            .ConfigureAwait(false);
+        var invoice = await response.Deserialize<Invoice>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             invoice.Validate();
@@ -185,12 +175,12 @@ public sealed class InvoiceService : IInvoiceService
         return invoice;
     }
 
-    public async Task<Models::Invoice> Pay(
-        Invoices::InvoicePayParams parameters,
+    public async Task<Invoice> Pay(
+        InvoicePayParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Invoices::InvoicePayParams> request = new()
+        HttpRequest<InvoicePayParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -198,9 +188,7 @@ public sealed class InvoiceService : IInvoiceService
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
-        var invoice = await response
-            .Deserialize<Models::Invoice>(cancellationToken)
-            .ConfigureAwait(false);
+        var invoice = await response.Deserialize<Invoice>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             invoice.Validate();
@@ -208,12 +196,12 @@ public sealed class InvoiceService : IInvoiceService
         return invoice;
     }
 
-    public async Task<Models::Invoice> Void(
-        Invoices::InvoiceVoidParams parameters,
+    public async Task<Invoice> Void(
+        InvoiceVoidParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Invoices::InvoiceVoidParams> request = new()
+        HttpRequest<InvoiceVoidParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -221,9 +209,7 @@ public sealed class InvoiceService : IInvoiceService
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
-        var invoice = await response
-            .Deserialize<Models::Invoice>(cancellationToken)
-            .ConfigureAwait(false);
+        var invoice = await response.Deserialize<Invoice>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             invoice.Validate();

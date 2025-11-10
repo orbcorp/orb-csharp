@@ -3,8 +3,8 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Models;
 using Orb.Models.Prices.ExternalPriceID;
-using Models = Orb.Models;
 
 namespace Orb.Services.Prices.ExternalPriceID;
 
@@ -22,7 +22,7 @@ public sealed class ExternalPriceIDService : IExternalPriceIDService
         _client = client;
     }
 
-    public async Task<Models::Price> Update(
+    public async Task<Price> Update(
         ExternalPriceIDUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -35,9 +35,7 @@ public sealed class ExternalPriceIDService : IExternalPriceIDService
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
-        var price = await response
-            .Deserialize<Models::Price>(cancellationToken)
-            .ConfigureAwait(false);
+        var price = await response.Deserialize<Price>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             price.Validate();
@@ -45,7 +43,7 @@ public sealed class ExternalPriceIDService : IExternalPriceIDService
         return price;
     }
 
-    public async Task<Models::Price> Fetch(
+    public async Task<Price> Fetch(
         ExternalPriceIDFetchParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -58,9 +56,7 @@ public sealed class ExternalPriceIDService : IExternalPriceIDService
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
-        var price = await response
-            .Deserialize<Models::Price>(cancellationToken)
-            .ConfigureAwait(false);
+        var price = await response.Deserialize<Price>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             price.Validate();

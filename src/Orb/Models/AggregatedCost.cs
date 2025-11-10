@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -5,7 +6,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using System = System;
 
 namespace Orb.Models;
 
@@ -19,10 +19,7 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
             if (!this._properties.TryGetValue("per_price_costs", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'per_price_costs' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "per_price_costs",
-                        "Missing required argument"
-                    )
+                    new ArgumentOutOfRangeException("per_price_costs", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<List<PerPriceCost>>(
@@ -31,7 +28,7 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
                 )
                 ?? throw new OrbInvalidDataException(
                     "'per_price_costs' cannot be null",
-                    new System::ArgumentNullException("per_price_costs")
+                    new ArgumentNullException("per_price_costs")
                 );
         }
         init
@@ -53,13 +50,13 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
             if (!this._properties.TryGetValue("subtotal", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'subtotal' cannot be null",
-                    new System::ArgumentOutOfRangeException("subtotal", "Missing required argument")
+                    new ArgumentOutOfRangeException("subtotal", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'subtotal' cannot be null",
-                    new System::ArgumentNullException("subtotal")
+                    new ArgumentNullException("subtotal")
                 );
         }
         init
@@ -71,23 +68,17 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
         }
     }
 
-    public required System::DateTime TimeframeEnd
+    public required DateTime TimeframeEnd
     {
         get
         {
             if (!this._properties.TryGetValue("timeframe_end", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'timeframe_end' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "timeframe_end",
-                        "Missing required argument"
-                    )
+                    new ArgumentOutOfRangeException("timeframe_end", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -98,23 +89,17 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
         }
     }
 
-    public required System::DateTime TimeframeStart
+    public required DateTime TimeframeStart
     {
         get
         {
             if (!this._properties.TryGetValue("timeframe_start", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'timeframe_start' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "timeframe_start",
-                        "Missing required argument"
-                    )
+                    new ArgumentOutOfRangeException("timeframe_start", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -135,13 +120,13 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
             if (!this._properties.TryGetValue("total", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'total' cannot be null",
-                    new System::ArgumentOutOfRangeException("total", "Missing required argument")
+                    new ArgumentOutOfRangeException("total", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'total' cannot be null",
-                    new System::ArgumentNullException("total")
+                    new ArgumentNullException("total")
                 );
         }
         init

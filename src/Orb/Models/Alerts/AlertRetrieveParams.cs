@@ -1,10 +1,10 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
 using Orb.Core;
-using System = System;
 
 namespace Orb.Models.Alerts;
 
@@ -49,9 +49,9 @@ public sealed record class AlertRetrieveParams : ParamsBase
         );
     }
 
-    public override System::Uri Url(ClientOptions options)
+    public override Uri Url(ClientOptions options)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/alerts/{0}", this.AlertID)
         )
         {

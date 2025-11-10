@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
-using Ledger = Orb.Models.Customers.Credits.Ledger;
+using Orb.Models.Customers.Credits.Ledger;
 
 namespace Orb.Services.Customers.Credits.Ledger;
 
@@ -21,12 +21,12 @@ public sealed class LedgerService : ILedgerService
         _client = client;
     }
 
-    public async Task<Ledger::LedgerListPageResponse> List(
-        Ledger::LedgerListParams parameters,
+    public async Task<LedgerListPageResponse> List(
+        LedgerListParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Ledger::LedgerListParams> request = new()
+        HttpRequest<LedgerListParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -35,7 +35,7 @@ public sealed class LedgerService : ILedgerService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var page = await response
-            .Deserialize<Ledger::LedgerListPageResponse>(cancellationToken)
+            .Deserialize<LedgerListPageResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -44,12 +44,12 @@ public sealed class LedgerService : ILedgerService
         return page;
     }
 
-    public async Task<Ledger::LedgerCreateEntryResponse> CreateEntry(
-        Ledger::LedgerCreateEntryParams parameters,
+    public async Task<LedgerCreateEntryResponse> CreateEntry(
+        LedgerCreateEntryParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Ledger::LedgerCreateEntryParams> request = new()
+        HttpRequest<LedgerCreateEntryParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -58,7 +58,7 @@ public sealed class LedgerService : ILedgerService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var deserializedResponse = await response
-            .Deserialize<Ledger::LedgerCreateEntryResponse>(cancellationToken)
+            .Deserialize<LedgerCreateEntryResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -67,12 +67,12 @@ public sealed class LedgerService : ILedgerService
         return deserializedResponse;
     }
 
-    public async Task<Ledger::LedgerCreateEntryByExternalIDResponse> CreateEntryByExternalID(
-        Ledger::LedgerCreateEntryByExternalIDParams parameters,
+    public async Task<LedgerCreateEntryByExternalIDResponse> CreateEntryByExternalID(
+        LedgerCreateEntryByExternalIDParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Ledger::LedgerCreateEntryByExternalIDParams> request = new()
+        HttpRequest<LedgerCreateEntryByExternalIDParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -81,7 +81,7 @@ public sealed class LedgerService : ILedgerService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var deserializedResponse = await response
-            .Deserialize<Ledger::LedgerCreateEntryByExternalIDResponse>(cancellationToken)
+            .Deserialize<LedgerCreateEntryByExternalIDResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -90,12 +90,12 @@ public sealed class LedgerService : ILedgerService
         return deserializedResponse;
     }
 
-    public async Task<Ledger::LedgerListByExternalIDPageResponse> ListByExternalID(
-        Ledger::LedgerListByExternalIDParams parameters,
+    public async Task<LedgerListByExternalIDPageResponse> ListByExternalID(
+        LedgerListByExternalIDParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Ledger::LedgerListByExternalIDParams> request = new()
+        HttpRequest<LedgerListByExternalIDParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -104,7 +104,7 @@ public sealed class LedgerService : ILedgerService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var page = await response
-            .Deserialize<Ledger::LedgerListByExternalIDPageResponse>(cancellationToken)
+            .Deserialize<LedgerListByExternalIDPageResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {

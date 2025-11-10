@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -5,7 +6,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using System = System;
 
 namespace Orb.Models;
 
@@ -23,13 +23,13 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
             if (!this._properties.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'id' cannot be null",
-                    new System::ArgumentNullException("id")
+                    new ArgumentNullException("id")
                 );
         }
         init
@@ -51,7 +51,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
             if (!this._properties.TryGetValue("billing_cycle_day", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'billing_cycle_day' cannot be null",
-                    new System::ArgumentOutOfRangeException(
+                    new ArgumentOutOfRangeException(
                         "billing_cycle_day",
                         "Missing required argument"
                     )
@@ -80,7 +80,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
             if (!this._properties.TryGetValue("can_defer_billing", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'can_defer_billing' cannot be null",
-                    new System::ArgumentOutOfRangeException(
+                    new ArgumentOutOfRangeException(
                         "can_defer_billing",
                         "Missing required argument"
                     )
@@ -102,7 +102,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     /// that the instant returned is exactly the end of the billing period. Set to
     /// null if this price interval is not currently active.
     /// </summary>
-    public required System::DateTime? CurrentBillingPeriodEndDate
+    public required DateTime? CurrentBillingPeriodEndDate
     {
         get
         {
@@ -114,10 +114,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
             )
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -133,7 +130,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     /// the instant returned is exactly the beginning of the billing period. Set to
     /// null if this price interval is not currently active.
     /// </summary>
-    public required System::DateTime? CurrentBillingPeriodStartDate
+    public required DateTime? CurrentBillingPeriodStartDate
     {
         get
         {
@@ -145,10 +142,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
             )
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -161,17 +155,14 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     /// The end date of the price interval. This is the date that Orb stops billing
     /// for this price.
     /// </summary>
-    public required System::DateTime? EndDate
+    public required DateTime? EndDate
     {
         get
         {
             if (!this._properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -251,13 +242,13 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
             if (!this._properties.TryGetValue("price", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'price' cannot be null",
-                    new System::ArgumentOutOfRangeException("price", "Missing required argument")
+                    new ArgumentOutOfRangeException("price", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'price' cannot be null",
-                    new System::ArgumentNullException("price")
+                    new ArgumentNullException("price")
                 );
         }
         init
@@ -273,23 +264,17 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     /// The start date of the price interval. This is the date that Orb starts billing
     /// for this price.
     /// </summary>
-    public required System::DateTime StartDate
+    public required DateTime StartDate
     {
         get
         {
             if (!this._properties.TryGetValue("start_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'start_date' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "start_date",
-                        "Missing required argument"
-                    )
+                    new ArgumentOutOfRangeException("start_date", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
         init
         {

@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
-using Alerts = Orb.Models.Alerts;
+using Orb.Models.Alerts;
 
 namespace Orb.Services.Alerts;
 
@@ -21,12 +21,12 @@ public sealed class AlertService : IAlertService
         _client = client;
     }
 
-    public async Task<Alerts::Alert> Retrieve(
-        Alerts::AlertRetrieveParams parameters,
+    public async Task<Alert> Retrieve(
+        AlertRetrieveParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Alerts::AlertRetrieveParams> request = new()
+        HttpRequest<AlertRetrieveParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -34,9 +34,7 @@ public sealed class AlertService : IAlertService
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
-        var alert = await response
-            .Deserialize<Alerts::Alert>(cancellationToken)
-            .ConfigureAwait(false);
+        var alert = await response.Deserialize<Alert>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             alert.Validate();
@@ -44,12 +42,12 @@ public sealed class AlertService : IAlertService
         return alert;
     }
 
-    public async Task<Alerts::Alert> Update(
-        Alerts::AlertUpdateParams parameters,
+    public async Task<Alert> Update(
+        AlertUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Alerts::AlertUpdateParams> request = new()
+        HttpRequest<AlertUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
             Params = parameters,
@@ -57,9 +55,7 @@ public sealed class AlertService : IAlertService
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
-        var alert = await response
-            .Deserialize<Alerts::Alert>(cancellationToken)
-            .ConfigureAwait(false);
+        var alert = await response.Deserialize<Alert>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             alert.Validate();
@@ -67,14 +63,14 @@ public sealed class AlertService : IAlertService
         return alert;
     }
 
-    public async Task<Alerts::AlertListPageResponse> List(
-        Alerts::AlertListParams? parameters = null,
+    public async Task<AlertListPageResponse> List(
+        AlertListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
 
-        HttpRequest<Alerts::AlertListParams> request = new()
+        HttpRequest<AlertListParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -83,7 +79,7 @@ public sealed class AlertService : IAlertService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var page = await response
-            .Deserialize<Alerts::AlertListPageResponse>(cancellationToken)
+            .Deserialize<AlertListPageResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -92,12 +88,12 @@ public sealed class AlertService : IAlertService
         return page;
     }
 
-    public async Task<Alerts::Alert> CreateForCustomer(
-        Alerts::AlertCreateForCustomerParams parameters,
+    public async Task<Alert> CreateForCustomer(
+        AlertCreateForCustomerParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Alerts::AlertCreateForCustomerParams> request = new()
+        HttpRequest<AlertCreateForCustomerParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -105,9 +101,7 @@ public sealed class AlertService : IAlertService
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
-        var alert = await response
-            .Deserialize<Alerts::Alert>(cancellationToken)
-            .ConfigureAwait(false);
+        var alert = await response.Deserialize<Alert>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             alert.Validate();
@@ -115,12 +109,12 @@ public sealed class AlertService : IAlertService
         return alert;
     }
 
-    public async Task<Alerts::Alert> CreateForExternalCustomer(
-        Alerts::AlertCreateForExternalCustomerParams parameters,
+    public async Task<Alert> CreateForExternalCustomer(
+        AlertCreateForExternalCustomerParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Alerts::AlertCreateForExternalCustomerParams> request = new()
+        HttpRequest<AlertCreateForExternalCustomerParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -128,9 +122,7 @@ public sealed class AlertService : IAlertService
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
-        var alert = await response
-            .Deserialize<Alerts::Alert>(cancellationToken)
-            .ConfigureAwait(false);
+        var alert = await response.Deserialize<Alert>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             alert.Validate();
@@ -138,12 +130,12 @@ public sealed class AlertService : IAlertService
         return alert;
     }
 
-    public async Task<Alerts::Alert> CreateForSubscription(
-        Alerts::AlertCreateForSubscriptionParams parameters,
+    public async Task<Alert> CreateForSubscription(
+        AlertCreateForSubscriptionParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Alerts::AlertCreateForSubscriptionParams> request = new()
+        HttpRequest<AlertCreateForSubscriptionParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -151,9 +143,7 @@ public sealed class AlertService : IAlertService
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
-        var alert = await response
-            .Deserialize<Alerts::Alert>(cancellationToken)
-            .ConfigureAwait(false);
+        var alert = await response.Deserialize<Alert>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             alert.Validate();
@@ -161,12 +151,12 @@ public sealed class AlertService : IAlertService
         return alert;
     }
 
-    public async Task<Alerts::Alert> Disable(
-        Alerts::AlertDisableParams parameters,
+    public async Task<Alert> Disable(
+        AlertDisableParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Alerts::AlertDisableParams> request = new()
+        HttpRequest<AlertDisableParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -174,9 +164,7 @@ public sealed class AlertService : IAlertService
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
-        var alert = await response
-            .Deserialize<Alerts::Alert>(cancellationToken)
-            .ConfigureAwait(false);
+        var alert = await response.Deserialize<Alert>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             alert.Validate();
@@ -184,12 +172,12 @@ public sealed class AlertService : IAlertService
         return alert;
     }
 
-    public async Task<Alerts::Alert> Enable(
-        Alerts::AlertEnableParams parameters,
+    public async Task<Alert> Enable(
+        AlertEnableParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Alerts::AlertEnableParams> request = new()
+        HttpRequest<AlertEnableParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -197,9 +185,7 @@ public sealed class AlertService : IAlertService
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
-        var alert = await response
-            .Deserialize<Alerts::Alert>(cancellationToken)
-            .ConfigureAwait(false);
+        var alert = await response.Deserialize<Alert>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             alert.Validate();

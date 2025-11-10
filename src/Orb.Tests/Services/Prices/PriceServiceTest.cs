@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Models = Orb.Models;
+using Orb.Models;
 
 namespace Orb.Tests.Services.Prices;
 
@@ -13,12 +13,12 @@ public class PriceServiceTest : TestBase
         var price = await this.client.Prices.Create(
             new()
             {
-                Body = new Models::NewFloatingUnitPrice()
+                Body = new NewFloatingUnitPrice()
                 {
-                    Cadence = Models::Cadence23.Annual,
+                    Cadence = Cadence23.Annual,
                     Currency = "currency",
                     ItemID = "item_id",
-                    ModelType = Models::ModelType22.Unit,
+                    ModelType = ModelType22.Unit,
                     Name = "Annual fee",
                     UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                     BillableMetricID = "billable_metric_id",
@@ -26,12 +26,12 @@ public class PriceServiceTest : TestBase
                     BillingCycleConfiguration = new()
                     {
                         Duration = 0,
-                        DurationUnit = Models::DurationUnit1.Day,
+                        DurationUnit = DurationUnit1.Day,
                     },
                     ConversionRate = 0,
-                    ConversionRateConfig = new Models::UnitConversionRateConfig()
+                    ConversionRateConfig = new UnitConversionRateConfig()
                     {
-                        ConversionRateType = Models::ConversionRateTypeModel.Unit,
+                        ConversionRateType = ConversionRateTypeModel.Unit,
                         UnitConfig = new("unit_amount"),
                     },
                     DimensionalPriceConfiguration = new()
@@ -46,7 +46,7 @@ public class PriceServiceTest : TestBase
                     InvoicingCycleConfiguration = new()
                     {
                         Duration = 0,
-                        DurationUnit = Models::DurationUnit1.Day,
+                        DurationUnit = DurationUnit1.Day,
                     },
                     Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 },

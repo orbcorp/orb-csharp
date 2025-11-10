@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Ledger = Orb.Models.Customers.Credits.Ledger;
+using Orb.Models.Customers.Credits.Ledger;
 
 namespace Orb.Tests.Services.Customers.Credits.Ledger;
 
@@ -23,7 +23,7 @@ public class LedgerServiceTest : TestBase
             new()
             {
                 CustomerID = "customer_id",
-                Body = new Ledger::Increment()
+                Body = new Increment()
                 {
                     Amount = 0,
                     Currency = "currency",
@@ -34,8 +34,8 @@ public class LedgerServiceTest : TestBase
                     [
                         new()
                         {
-                            Field = Ledger::Field.ItemID,
-                            Operator = Ledger::Operator.Includes,
+                            Field = Field.ItemID,
+                            Operator = Operator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -64,7 +64,7 @@ public class LedgerServiceTest : TestBase
             new()
             {
                 ExternalCustomerID = "external_customer_id",
-                Body = new Ledger::IncrementModel()
+                Body = new IncrementModel()
                 {
                     Amount = 0,
                     Currency = "currency",
@@ -75,8 +75,8 @@ public class LedgerServiceTest : TestBase
                     [
                         new()
                         {
-                            Field = Ledger::FieldModel.ItemID,
-                            Operator = Ledger::OperatorModel.Includes,
+                            Field = FieldModel.ItemID,
+                            Operator = OperatorModel.Includes,
                             Values = ["string"],
                         },
                     ],

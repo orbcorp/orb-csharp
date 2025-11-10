@@ -2,8 +2,8 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
-using Invoices = Orb.Models.Invoices;
-using Models = Orb.Models;
+using Orb.Models;
+using Orb.Models.Invoices;
 
 namespace Orb.Services.Invoices;
 
@@ -14,8 +14,8 @@ public interface IInvoiceService
     /// <summary>
     /// This endpoint is used to create a one-off invoice for a customer.
     /// </summary>
-    Task<Models::Invoice> Create(
-        Invoices::InvoiceCreateParams parameters,
+    Task<Invoice> Create(
+        InvoiceCreateParams parameters,
         CancellationToken cancellationToken = default
     );
 
@@ -28,8 +28,8 @@ public interface IInvoiceService
     /// `due_date`, and `invoice_date` can only be modified if the invoice is in a
     /// `draft` state. `invoice_date` can only be modified for non-subscription invoices.</para>
     /// </summary>
-    Task<Models::Invoice> Update(
-        Invoices::InvoiceUpdateParams parameters,
+    Task<Invoice> Update(
+        InvoiceUpdateParams parameters,
         CancellationToken cancellationToken = default
     );
 
@@ -47,8 +47,8 @@ public interface IInvoiceService
     /// values for each draft invoice, which may not always be up-to-date since Orb
     /// regularly refreshes invoices asynchronously.</para>
     /// </summary>
-    Task<Invoices::InvoiceListPageResponse> List(
-        Invoices::InvoiceListParams? parameters = null,
+    Task<InvoiceListPageResponse> List(
+        InvoiceListParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 
@@ -56,8 +56,8 @@ public interface IInvoiceService
     /// This endpoint is used to fetch an [`Invoice`](/core-concepts#invoice) given
     /// an identifier.
     /// </summary>
-    Task<Models::Invoice> Fetch(
-        Invoices::InvoiceFetchParams parameters,
+    Task<Invoice> Fetch(
+        InvoiceFetchParams parameters,
         CancellationToken cancellationToken = default
     );
 
@@ -65,8 +65,8 @@ public interface IInvoiceService
     /// This endpoint can be used to fetch the upcoming [invoice](/core-concepts#invoice)
     /// for the current billing period given a subscription.
     /// </summary>
-    Task<Invoices::InvoiceFetchUpcomingResponse> FetchUpcoming(
-        Invoices::InvoiceFetchUpcomingParams parameters,
+    Task<InvoiceFetchUpcomingResponse> FetchUpcoming(
+        InvoiceFetchUpcomingParams parameters,
         CancellationToken cancellationToken = default
     );
 
@@ -78,8 +78,8 @@ public interface IInvoiceService
     /// sending emails, auto-collecting payment, syncing the invoice to external
     /// providers, etc).
     /// </summary>
-    Task<Models::Invoice> Issue(
-        Invoices::InvoiceIssueParams parameters,
+    Task<Invoice> Issue(
+        InvoiceIssueParams parameters,
         CancellationToken cancellationToken = default
     );
 
@@ -87,8 +87,8 @@ public interface IInvoiceService
     /// This endpoint allows an invoice's status to be set to the `paid` status. This
     /// can only be done to invoices that are in the `issued` or `synced` status.
     /// </summary>
-    Task<Models::Invoice> MarkPaid(
-        Invoices::InvoiceMarkPaidParams parameters,
+    Task<Invoice> MarkPaid(
+        InvoiceMarkPaidParams parameters,
         CancellationToken cancellationToken = default
     );
 
@@ -96,10 +96,7 @@ public interface IInvoiceService
     /// This endpoint collects payment for an invoice using the customer's default
     /// payment method. This action can only be taken on invoices with status "issued".
     /// </summary>
-    Task<Models::Invoice> Pay(
-        Invoices::InvoicePayParams parameters,
-        CancellationToken cancellationToken = default
-    );
+    Task<Invoice> Pay(InvoicePayParams parameters, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// This endpoint allows an invoice's status to be set to the `void` status. This
@@ -114,8 +111,5 @@ public interface IInvoiceService
     /// is not yet paid, the credit block will be voided. If the invoice was created
     /// due to a top-up, the top-up will be disabled.</para>
     /// </summary>
-    Task<Models::Invoice> Void(
-        Invoices::InvoiceVoidParams parameters,
-        CancellationToken cancellationToken = default
-    );
+    Task<Invoice> Void(InvoiceVoidParams parameters, CancellationToken cancellationToken = default);
 }

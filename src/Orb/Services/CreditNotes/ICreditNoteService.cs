@@ -2,8 +2,8 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Models;
 using Orb.Models.CreditNotes;
-using Models = Orb.Models;
 
 namespace Orb.Services.CreditNotes;
 
@@ -38,7 +38,7 @@ public interface ICreditNoteService
     /// will cover both the start date and end date completely (from start of start_date
     /// to end of end_date).</para>
     /// </summary>
-    Task<Models::CreditNoteModel> Create(
+    Task<CreditNoteModel> Create(
         CreditNoteCreateParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -57,7 +57,7 @@ public interface ICreditNoteService
     /// This endpoint is used to fetch a single [`Credit Note`](/invoicing/credit-notes)
     /// given an identifier.
     /// </summary>
-    Task<Models::CreditNoteModel> Fetch(
+    Task<CreditNoteModel> Fetch(
         CreditNoteFetchParams parameters,
         CancellationToken cancellationToken = default
     );

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -5,7 +6,6 @@ using System.Net.Http;
 using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
-using System = System;
 
 namespace Orb.Models.Invoices;
 
@@ -22,16 +22,13 @@ public sealed record class InvoiceFetchUpcomingParams : ParamsBase
             if (!this._queryProperties.TryGetValue("subscription_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'subscription_id' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "subscription_id",
-                        "Missing required argument"
-                    )
+                    new ArgumentOutOfRangeException("subscription_id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'subscription_id' cannot be null",
-                    new System::ArgumentNullException("subscription_id")
+                    new ArgumentNullException("subscription_id")
                 );
         }
         init
@@ -77,11 +74,9 @@ public sealed record class InvoiceFetchUpcomingParams : ParamsBase
         );
     }
 
-    public override System::Uri Url(ClientOptions options)
+    public override Uri Url(ClientOptions options)
     {
-        return new System::UriBuilder(
-            options.BaseUrl.ToString().TrimEnd('/') + "/invoices/upcoming"
-        )
+        return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/invoices/upcoming")
         {
             Query = this.QueryString(options),
         }.Uri;

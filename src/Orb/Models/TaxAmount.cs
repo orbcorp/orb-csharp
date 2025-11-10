@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -5,7 +6,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using System = System;
 
 namespace Orb.Models;
 
@@ -22,13 +22,13 @@ public sealed record class TaxAmount : ModelBase, IFromRaw<TaxAmount>
             if (!this._properties.TryGetValue("amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amount' cannot be null",
-                    new System::ArgumentOutOfRangeException("amount", "Missing required argument")
+                    new ArgumentOutOfRangeException("amount", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'amount' cannot be null",
-                    new System::ArgumentNullException("amount")
+                    new ArgumentNullException("amount")
                 );
         }
         init
@@ -50,7 +50,7 @@ public sealed record class TaxAmount : ModelBase, IFromRaw<TaxAmount>
             if (!this._properties.TryGetValue("tax_rate_description", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tax_rate_description' cannot be null",
-                    new System::ArgumentOutOfRangeException(
+                    new ArgumentOutOfRangeException(
                         "tax_rate_description",
                         "Missing required argument"
                     )
@@ -59,7 +59,7 @@ public sealed record class TaxAmount : ModelBase, IFromRaw<TaxAmount>
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'tax_rate_description' cannot be null",
-                    new System::ArgumentNullException("tax_rate_description")
+                    new ArgumentNullException("tax_rate_description")
                 );
         }
         init

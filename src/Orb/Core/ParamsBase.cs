@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.Json;
-using Web = System.Web;
+using System.Web;
 
 namespace Orb.Core;
 
@@ -163,9 +163,9 @@ public abstract record class ParamsBase
                     sb.Append('&');
                 }
                 first = false;
-                sb.Append(Web::HttpUtility.UrlEncode(key));
+                sb.Append(HttpUtility.UrlEncode(key));
                 sb.Append('=');
-                sb.Append(Web::HttpUtility.UrlEncode(value));
+                sb.Append(HttpUtility.UrlEncode(value));
             }
         }
         return sb.ToString();

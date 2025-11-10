@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -5,7 +6,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using System = System;
 
 namespace Orb.Models;
 
@@ -27,16 +27,13 @@ public sealed record class MatrixWithAllocationConfig
             if (!this._properties.TryGetValue("allocation", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'allocation' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "allocation",
-                        "Missing required argument"
-                    )
+                    new ArgumentOutOfRangeException("allocation", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'allocation' cannot be null",
-                    new System::ArgumentNullException("allocation")
+                    new ArgumentNullException("allocation")
                 );
         }
         init
@@ -58,7 +55,7 @@ public sealed record class MatrixWithAllocationConfig
             if (!this._properties.TryGetValue("default_unit_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'default_unit_amount' cannot be null",
-                    new System::ArgumentOutOfRangeException(
+                    new ArgumentOutOfRangeException(
                         "default_unit_amount",
                         "Missing required argument"
                     )
@@ -67,7 +64,7 @@ public sealed record class MatrixWithAllocationConfig
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'default_unit_amount' cannot be null",
-                    new System::ArgumentNullException("default_unit_amount")
+                    new ArgumentNullException("default_unit_amount")
                 );
         }
         init
@@ -89,16 +86,13 @@ public sealed record class MatrixWithAllocationConfig
             if (!this._properties.TryGetValue("dimensions", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'dimensions' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "dimensions",
-                        "Missing required argument"
-                    )
+                    new ArgumentOutOfRangeException("dimensions", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<List<string?>>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'dimensions' cannot be null",
-                    new System::ArgumentNullException("dimensions")
+                    new ArgumentNullException("dimensions")
                 );
         }
         init
@@ -120,10 +114,7 @@ public sealed record class MatrixWithAllocationConfig
             if (!this._properties.TryGetValue("matrix_values", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'matrix_values' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "matrix_values",
-                        "Missing required argument"
-                    )
+                    new ArgumentOutOfRangeException("matrix_values", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<List<MatrixValueModel>>(
@@ -132,7 +123,7 @@ public sealed record class MatrixWithAllocationConfig
                 )
                 ?? throw new OrbInvalidDataException(
                     "'matrix_values' cannot be null",
-                    new System::ArgumentNullException("matrix_values")
+                    new ArgumentNullException("matrix_values")
                 );
         }
         init
@@ -196,16 +187,13 @@ public sealed record class MatrixValueModel : ModelBase, IFromRaw<MatrixValueMod
             if (!this._properties.TryGetValue("dimension_values", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'dimension_values' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "dimension_values",
-                        "Missing required argument"
-                    )
+                    new ArgumentOutOfRangeException("dimension_values", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<List<string?>>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'dimension_values' cannot be null",
-                    new System::ArgumentNullException("dimension_values")
+                    new ArgumentNullException("dimension_values")
                 );
         }
         init
@@ -227,16 +215,13 @@ public sealed record class MatrixValueModel : ModelBase, IFromRaw<MatrixValueMod
             if (!this._properties.TryGetValue("unit_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'unit_amount' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "unit_amount",
-                        "Missing required argument"
-                    )
+                    new ArgumentOutOfRangeException("unit_amount", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'unit_amount' cannot be null",
-                    new System::ArgumentNullException("unit_amount")
+                    new ArgumentNullException("unit_amount")
                 );
         }
         init
