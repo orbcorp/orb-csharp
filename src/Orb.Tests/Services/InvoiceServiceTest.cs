@@ -1,0 +1,94 @@
+using System;
+using System.Threading.Tasks;
+using Orb.Models.Invoices;
+
+namespace Orb.Tests.Services;
+
+public class InvoiceServiceTest : TestBase
+{
+    [Fact]
+    public async Task Create_Works()
+    {
+        var invoice = await this.client.Invoices.Create(
+            new()
+            {
+                Currency = "USD",
+                InvoiceDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                LineItems =
+                [
+                    new()
+                    {
+                        EndDate = DateOnly.Parse("2023-09-22"),
+                        ItemID = "4khy3nwzktxv7",
+                        ModelType = ModelType.Unit,
+                        Name = "Line Item Name",
+                        Quantity = 1,
+                        StartDate = DateOnly.Parse("2023-09-22"),
+                        UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                    },
+                ],
+            }
+        );
+        invoice.Validate();
+    }
+
+    [Fact]
+    public async Task Update_Works()
+    {
+        var invoice = await this.client.Invoices.Update(new() { InvoiceID = "invoice_id" });
+        invoice.Validate();
+    }
+
+    [Fact]
+    public async Task List_Works()
+    {
+        var page = await this.client.Invoices.List();
+        page.Validate();
+    }
+
+    [Fact]
+    public async Task Fetch_Works()
+    {
+        var invoice = await this.client.Invoices.Fetch(new() { InvoiceID = "invoice_id" });
+        invoice.Validate();
+    }
+
+    [Fact]
+    public async Task FetchUpcoming_Works()
+    {
+        var response = await this.client.Invoices.FetchUpcoming(
+            new() { SubscriptionID = "subscription_id" }
+        );
+        response.Validate();
+    }
+
+    [Fact]
+    public async Task Issue_Works()
+    {
+        var invoice = await this.client.Invoices.Issue(new() { InvoiceID = "invoice_id" });
+        invoice.Validate();
+    }
+
+    [Fact]
+    public async Task MarkPaid_Works()
+    {
+        var invoice = await this.client.Invoices.MarkPaid(
+            new() { InvoiceID = "invoice_id", PaymentReceivedDate = DateOnly.Parse("2023-09-22") }
+        );
+        invoice.Validate();
+    }
+
+    [Fact]
+    public async Task Pay_Works()
+    {
+        var invoice = await this.client.Invoices.Pay(new() { InvoiceID = "invoice_id" });
+        invoice.Validate();
+    }
+
+    [Fact]
+    public async Task Void_Works()
+    {
+        var invoice = await this.client.Invoices.Void(new() { InvoiceID = "invoice_id" });
+        invoice.Validate();
+    }
+}

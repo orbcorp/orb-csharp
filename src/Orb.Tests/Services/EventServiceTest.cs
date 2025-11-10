@@ -1,0 +1,67 @@
+using System;
+using System.Collections.Generic;
+using System.Text.Json;
+using System.Threading.Tasks;
+
+namespace Orb.Tests.Services;
+
+public class EventServiceTest : TestBase
+{
+    [Fact]
+    public async Task Update_Works()
+    {
+        var event1 = await this.client.Events.Update(
+            new()
+            {
+                EventID = "event_id",
+                EventName = "event_name",
+                Properties = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Timestamp = DateTime.Parse("2020-12-09T16:09:53Z"),
+            }
+        );
+        event1.Validate();
+    }
+
+    [Fact]
+    public async Task Deprecate_Works()
+    {
+        var response = await this.client.Events.Deprecate(new() { EventID = "event_id" });
+        response.Validate();
+    }
+
+    [Fact]
+    public async Task Ingest_Works()
+    {
+        var response = await this.client.Events.Ingest(
+            new()
+            {
+                Events =
+                [
+                    new()
+                    {
+                        EventName = "event_name",
+                        IdempotencyKey = "idempotency_key",
+                        Properties1 = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Timestamp = DateTime.Parse("2020-12-09T16:09:53Z"),
+                        CustomerID = "customer_id",
+                        ExternalCustomerID = "external_customer_id",
+                    },
+                ],
+            }
+        );
+        response.Validate();
+    }
+
+    [Fact]
+    public async Task Search_Works()
+    {
+        var response = await this.client.Events.Search(new() { EventIDs = ["string"] });
+        response.Validate();
+    }
+}

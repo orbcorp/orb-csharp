@@ -3,22 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
-using Orb.Services.Alerts;
-using Orb.Services.Beta;
-using Orb.Services.Coupons;
-using Orb.Services.CreditNotes;
-using Orb.Services.Customers;
-using Orb.Services.DimensionalPriceGroups;
-using Orb.Services.Events;
-using Orb.Services.InvoiceLineItems;
-using Orb.Services.Invoices;
-using Orb.Services.Items;
-using Orb.Services.Metrics;
-using Orb.Services.Plans;
-using Orb.Services.Prices;
-using Orb.Services.SubscriptionChanges;
-using Orb.Services.Subscriptions;
-using Orb.Services.TopLevel;
+using Orb.Services;
 
 namespace Orb;
 

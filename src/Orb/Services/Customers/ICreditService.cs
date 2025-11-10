@@ -1,0 +1,45 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Orb.Core;
+using Orb.Models.Customers.Credits;
+using Orb.Services.Customers.Credits;
+
+namespace Orb.Services.Customers;
+
+public interface ICreditService
+{
+    ICreditService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    ILedgerService Ledger { get; }
+
+    ITopUpService TopUps { get; }
+
+    /// <summary>
+    /// Returns a paginated list of unexpired, non-zero credit blocks for a customer.
+    ///
+    /// <para>If `include_all_blocks` is set to `true`, all credit blocks (including
+    /// expired and depleted blocks) will be included in the response.</para>
+    ///
+    /// <para>Note that `currency` defaults to credits if not specified. To use a
+    /// real world currency, set `currency` to an ISO 4217 string.</para>
+    /// </summary>
+    Task<CreditListPageResponse> List(
+        CreditListParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a paginated list of unexpired, non-zero credit blocks for a customer.
+    ///
+    /// <para>If `include_all_blocks` is set to `true`, all credit blocks (including
+    /// expired and depleted blocks) will be included in the response.</para>
+    ///
+    /// <para>Note that `currency` defaults to credits if not specified. To use a
+    /// real world currency, set `currency` to an ISO 4217 string.</para>
+    /// </summary>
+    Task<CreditListByExternalIDPageResponse> ListByExternalID(
+        CreditListByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    );
+}
