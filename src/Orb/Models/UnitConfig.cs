@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -5,7 +6,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using System = System;
 
 namespace Orb.Models;
 
@@ -25,16 +25,13 @@ public sealed record class UnitConfig : ModelBase, IFromRaw<UnitConfig>
             if (!this._properties.TryGetValue("unit_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'unit_amount' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "unit_amount",
-                        "Missing required argument"
-                    )
+                    new ArgumentOutOfRangeException("unit_amount", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'unit_amount' cannot be null",
-                    new System::ArgumentNullException("unit_amount")
+                    new ArgumentNullException("unit_amount")
                 );
         }
         init

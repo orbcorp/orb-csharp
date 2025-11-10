@@ -3,8 +3,8 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Models;
 using Orb.Models.CreditNotes;
-using Models = Orb.Models;
 
 namespace Orb.Services.CreditNotes;
 
@@ -22,7 +22,7 @@ public sealed class CreditNoteService : ICreditNoteService
         _client = client;
     }
 
-    public async Task<Models::CreditNoteModel> Create(
+    public async Task<CreditNoteModel> Create(
         CreditNoteCreateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -36,7 +36,7 @@ public sealed class CreditNoteService : ICreditNoteService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var creditNote = await response
-            .Deserialize<Models::CreditNoteModel>(cancellationToken)
+            .Deserialize<CreditNoteModel>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -70,7 +70,7 @@ public sealed class CreditNoteService : ICreditNoteService
         return page;
     }
 
-    public async Task<Models::CreditNoteModel> Fetch(
+    public async Task<CreditNoteModel> Fetch(
         CreditNoteFetchParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -84,7 +84,7 @@ public sealed class CreditNoteService : ICreditNoteService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var creditNote = await response
-            .Deserialize<Models::CreditNoteModel>(cancellationToken)
+            .Deserialize<CreditNoteModel>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {

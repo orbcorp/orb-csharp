@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -5,7 +6,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using System = System;
 
 namespace Orb.Models.Invoices;
 
@@ -19,13 +19,13 @@ public sealed record class InvoiceListPageResponse : ModelBase, IFromRaw<Invoice
             if (!this._properties.TryGetValue("data", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'data' cannot be null",
-                    new System::ArgumentOutOfRangeException("data", "Missing required argument")
+                    new ArgumentOutOfRangeException("data", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<List<Invoice>>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'data' cannot be null",
-                    new System::ArgumentNullException("data")
+                    new ArgumentNullException("data")
                 );
         }
         init
@@ -44,7 +44,7 @@ public sealed record class InvoiceListPageResponse : ModelBase, IFromRaw<Invoice
             if (!this._properties.TryGetValue("pagination_metadata", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'pagination_metadata' cannot be null",
-                    new System::ArgumentOutOfRangeException(
+                    new ArgumentOutOfRangeException(
                         "pagination_metadata",
                         "Missing required argument"
                     )
@@ -56,7 +56,7 @@ public sealed record class InvoiceListPageResponse : ModelBase, IFromRaw<Invoice
                 )
                 ?? throw new OrbInvalidDataException(
                     "'pagination_metadata' cannot be null",
-                    new System::ArgumentNullException("pagination_metadata")
+                    new ArgumentNullException("pagination_metadata")
                 );
         }
         init

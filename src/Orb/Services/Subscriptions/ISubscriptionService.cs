@@ -2,8 +2,8 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Models.SubscriptionChanges;
 using Orb.Models.Subscriptions;
-using SubscriptionChanges = Orb.Models.SubscriptionChanges;
 
 namespace Orb.Services.Subscriptions;
 
@@ -208,7 +208,7 @@ public interface ISubscriptionService
     /// a subscription. E.g. pass in `10.00` to issue an invoice when usage amounts
     /// hit \$10.00 for a subscription that invoices in USD.</para>
     /// </summary>
-    Task<SubscriptionChanges::MutatedSubscription> Create(
+    Task<MutatedSubscription> Create(
         SubscriptionCreateParams? parameters = null,
         CancellationToken cancellationToken = default
     );
@@ -292,7 +292,7 @@ public interface ISubscriptionService
     /// invoice and generate a new one based on the new dates for the subscription.
     /// See the section on [cancellation behaviors](/product-catalog/creating-subscriptions#cancellation-behaviors).</para>
     /// </summary>
-    Task<SubscriptionChanges::MutatedSubscription> Cancel(
+    Task<MutatedSubscription> Cancel(
         SubscriptionCancelParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -544,7 +544,7 @@ public interface ISubscriptionService
     /// The existing list of transitions can be retrieved using the `fixed_fee_quantity_transitions`
     /// property on a subscription’s serialized price intervals.</para>
     /// </summary>
-    Task<SubscriptionChanges::MutatedSubscription> PriceIntervals(
+    Task<MutatedSubscription> PriceIntervals(
         SubscriptionPriceIntervalsParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -552,7 +552,7 @@ public interface ISubscriptionService
     /// <summary>
     /// Redeem a coupon effective at a given time.
     /// </summary>
-    Task<SubscriptionChanges::MutatedSubscription> RedeemCoupon(
+    Task<MutatedSubscription> RedeemCoupon(
         SubscriptionRedeemCouponParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -720,7 +720,7 @@ public interface ISubscriptionService
     /// difference in any fixed fees when making a plan change, adjusting the customer
     /// balance as needed. For details on this behavior, see [Modifying subscriptions](/product-catalog/modifying-subscriptions#prorations-for-in-advance-fees).</para>
     /// </summary>
-    Task<SubscriptionChanges::MutatedSubscription> SchedulePlanChange(
+    Task<MutatedSubscription> SchedulePlanChange(
         SubscriptionSchedulePlanChangeParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -729,7 +729,7 @@ public interface ISubscriptionService
     /// Manually trigger a phase, effective the given date (or the current time,
     /// if not specified).
     /// </summary>
-    Task<SubscriptionChanges::MutatedSubscription> TriggerPhase(
+    Task<MutatedSubscription> TriggerPhase(
         SubscriptionTriggerPhaseParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -741,7 +741,7 @@ public interface ISubscriptionService
     /// future cancellation. This operation will turn on auto-renew, ensuring that
     /// the subscription does not end at the currently scheduled cancellation time.</para>
     /// </summary>
-    Task<SubscriptionChanges::MutatedSubscription> UnscheduleCancellation(
+    Task<MutatedSubscription> UnscheduleCancellation(
         SubscriptionUnscheduleCancellationParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -753,7 +753,7 @@ public interface ISubscriptionService
     /// <para>If there are no updates scheduled, a request validation error will be
     /// returned with a 400 status code.</para>
     /// </summary>
-    Task<SubscriptionChanges::MutatedSubscription> UnscheduleFixedFeeQuantityUpdates(
+    Task<MutatedSubscription> UnscheduleFixedFeeQuantityUpdates(
         SubscriptionUnscheduleFixedFeeQuantityUpdatesParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -762,7 +762,7 @@ public interface ISubscriptionService
     /// This endpoint can be used to unschedule any pending plan changes on an existing
     /// subscription. When called, all upcoming plan changes will be unscheduled.
     /// </summary>
-    Task<SubscriptionChanges::MutatedSubscription> UnschedulePendingPlanChanges(
+    Task<MutatedSubscription> UnschedulePendingPlanChanges(
         SubscriptionUnschedulePendingPlanChangesParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -781,7 +781,7 @@ public interface ISubscriptionService
     /// <para>If the fee is an in-advance fixed fee, it will also issue an immediate
     /// invoice for the difference for the remainder of the billing period.</para>
     /// </summary>
-    Task<SubscriptionChanges::MutatedSubscription> UpdateFixedFeeQuantity(
+    Task<MutatedSubscription> UpdateFixedFeeQuantity(
         SubscriptionUpdateFixedFeeQuantityParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -806,7 +806,7 @@ public interface ISubscriptionService
     /// add-on price was added, that change will be pushed back by the same amount
     /// of time the trial is extended).</para>
     /// </summary>
-    Task<SubscriptionChanges::MutatedSubscription> UpdateTrial(
+    Task<MutatedSubscription> UpdateTrial(
         SubscriptionUpdateTrialParams parameters,
         CancellationToken cancellationToken = default
     );

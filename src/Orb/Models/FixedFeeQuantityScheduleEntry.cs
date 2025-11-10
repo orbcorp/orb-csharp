@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -5,7 +6,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using System = System;
 
 namespace Orb.Models;
 
@@ -14,17 +14,14 @@ public sealed record class FixedFeeQuantityScheduleEntry
     : ModelBase,
         IFromRaw<FixedFeeQuantityScheduleEntry>
 {
-    public required System::DateTime? EndDate
+    public required DateTime? EndDate
     {
         get
         {
             if (!this._properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -42,13 +39,13 @@ public sealed record class FixedFeeQuantityScheduleEntry
             if (!this._properties.TryGetValue("price_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'price_id' cannot be null",
-                    new System::ArgumentOutOfRangeException("price_id", "Missing required argument")
+                    new ArgumentOutOfRangeException("price_id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'price_id' cannot be null",
-                    new System::ArgumentNullException("price_id")
+                    new ArgumentNullException("price_id")
                 );
         }
         init
@@ -67,7 +64,7 @@ public sealed record class FixedFeeQuantityScheduleEntry
             if (!this._properties.TryGetValue("quantity", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'quantity' cannot be null",
-                    new System::ArgumentOutOfRangeException("quantity", "Missing required argument")
+                    new ArgumentOutOfRangeException("quantity", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
@@ -81,23 +78,17 @@ public sealed record class FixedFeeQuantityScheduleEntry
         }
     }
 
-    public required System::DateTime StartDate
+    public required DateTime StartDate
     {
         get
         {
             if (!this._properties.TryGetValue("start_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'start_date' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "start_date",
-                        "Missing required argument"
-                    )
+                    new ArgumentOutOfRangeException("start_date", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
         init
         {

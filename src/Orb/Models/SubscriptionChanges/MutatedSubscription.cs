@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
 using Orb.Models.Customers;
-using Plans = Orb.Models.Plans;
+using Orb.Models.Plans;
 using System = System;
 
 namespace Orb.Models.SubscriptionChanges;
@@ -642,14 +642,14 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     /// can be subscribed to by a customer. Plans define the billing behavior of
     /// the subscription. You can see more about how to configure prices in the [Price resource](/reference/price).
     /// </summary>
-    public required Plans::Plan? Plan
+    public required Plan? Plan
     {
         get
         {
             if (!this._properties.TryGetValue("plan", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Plans::Plan?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<Plan?>(element, ModelBase.SerializerOptions);
         }
         init
         {

@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Invoices = Orb.Models.Invoices;
+using Orb.Models.Invoices;
 
 namespace Orb.Tests.Services.Invoices;
 
@@ -20,7 +20,7 @@ public class InvoiceServiceTest : TestBase
                     {
                         EndDate = DateOnly.Parse("2023-09-22"),
                         ItemID = "4khy3nwzktxv7",
-                        ModelType = Invoices::ModelType.Unit,
+                        ModelType = ModelType.Unit,
                         Name = "Line Item Name",
                         Quantity = 1,
                         StartDate = DateOnly.Parse("2023-09-22"),

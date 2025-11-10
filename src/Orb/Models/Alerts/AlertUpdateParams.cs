@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -6,7 +7,6 @@ using System.Text;
 using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
-using System = System;
 
 namespace Orb.Models.Alerts;
 
@@ -33,16 +33,13 @@ public sealed record class AlertUpdateParams : ParamsBase
             if (!this._bodyProperties.TryGetValue("thresholds", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'thresholds' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "thresholds",
-                        "Missing required argument"
-                    )
+                    new ArgumentOutOfRangeException("thresholds", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<List<Threshold>>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'thresholds' cannot be null",
-                    new System::ArgumentNullException("thresholds")
+                    new ArgumentNullException("thresholds")
                 );
         }
         init
@@ -94,9 +91,9 @@ public sealed record class AlertUpdateParams : ParamsBase
         );
     }
 
-    public override System::Uri Url(ClientOptions options)
+    public override Uri Url(ClientOptions options)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/alerts/{0}", this.AlertConfigurationID)
         )

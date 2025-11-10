@@ -1,10 +1,10 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
 using Orb.Core;
-using System = System;
 
 namespace Orb.Models.Alerts;
 
@@ -22,17 +22,14 @@ namespace Orb.Models.Alerts;
 /// </summary>
 public sealed record class AlertListParams : ParamsBase
 {
-    public System::DateTime? CreatedAtGt
+    public DateTime? CreatedAtGt
     {
         get
         {
             if (!this._queryProperties.TryGetValue("created_at[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -43,17 +40,14 @@ public sealed record class AlertListParams : ParamsBase
         }
     }
 
-    public System::DateTime? CreatedAtGte
+    public DateTime? CreatedAtGte
     {
         get
         {
             if (!this._queryProperties.TryGetValue("created_at[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -64,17 +58,14 @@ public sealed record class AlertListParams : ParamsBase
         }
     }
 
-    public System::DateTime? CreatedAtLt
+    public DateTime? CreatedAtLt
     {
         get
         {
             if (!this._queryProperties.TryGetValue("created_at[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -85,17 +76,14 @@ public sealed record class AlertListParams : ParamsBase
         }
     }
 
-    public System::DateTime? CreatedAtLte
+    public DateTime? CreatedAtLte
     {
         get
         {
             if (!this._queryProperties.TryGetValue("created_at[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -251,9 +239,9 @@ public sealed record class AlertListParams : ParamsBase
         );
     }
 
-    public override System::Uri Url(ClientOptions options)
+    public override Uri Url(ClientOptions options)
     {
-        return new System::UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/alerts")
+        return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/alerts")
         {
             Query = this.QueryString(options),
         }.Uri;

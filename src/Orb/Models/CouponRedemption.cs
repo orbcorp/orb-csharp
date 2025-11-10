@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -5,7 +6,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
 using Orb.Exceptions;
-using System = System;
 
 namespace Orb.Models;
 
@@ -19,16 +19,13 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
             if (!this._properties.TryGetValue("coupon_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'coupon_id' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "coupon_id",
-                        "Missing required argument"
-                    )
+                    new ArgumentOutOfRangeException("coupon_id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'coupon_id' cannot be null",
-                    new System::ArgumentNullException("coupon_id")
+                    new ArgumentNullException("coupon_id")
                 );
         }
         init
@@ -40,17 +37,14 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
         }
     }
 
-    public required System::DateTime? EndDate
+    public required DateTime? EndDate
     {
         get
         {
             if (!this._properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -61,23 +55,17 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
         }
     }
 
-    public required System::DateTime StartDate
+    public required DateTime StartDate
     {
         get
         {
             if (!this._properties.TryGetValue("start_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'start_date' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "start_date",
-                        "Missing required argument"
-                    )
+                    new ArgumentOutOfRangeException("start_date", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
         init
         {

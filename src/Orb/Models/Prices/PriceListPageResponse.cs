@@ -41,7 +41,7 @@ public sealed record class PriceListPageResponse : ModelBase, IFromRaw<PriceList
         }
     }
 
-    public required Models::PaginationMetadata PaginationMetadata
+    public required PaginationMetadata PaginationMetadata
     {
         get
         {
@@ -54,7 +54,7 @@ public sealed record class PriceListPageResponse : ModelBase, IFromRaw<PriceList
                     )
                 );
 
-            return JsonSerializer.Deserialize<Models::PaginationMetadata>(
+            return JsonSerializer.Deserialize<PaginationMetadata>(
                     element,
                     ModelBase.SerializerOptions
                 )

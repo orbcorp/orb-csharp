@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
-using Ledger = Orb.Models.Customers.Credits.Ledger;
+using Orb.Models.Customers.Credits.Ledger;
 
 namespace Orb.Services.Customers.Credits.Ledger;
 
@@ -81,8 +81,8 @@ public interface ILedgerService
     /// of a correction, this entry will be added to the ledger to indicate the adjustment
     /// of credits.</para>
     /// </summary>
-    Task<Ledger::LedgerListPageResponse> List(
-        Ledger::LedgerListParams parameters,
+    Task<LedgerListPageResponse> List(
+        LedgerListParams parameters,
         CancellationToken cancellationToken = default
     );
 
@@ -172,8 +172,8 @@ public interface ILedgerService
     /// the block that was originally decremented from, and `amount` indicates how
     /// many credits to return to the customer, up to the block's initial balance.</para>
     /// </summary>
-    Task<Ledger::LedgerCreateEntryResponse> CreateEntry(
-        Ledger::LedgerCreateEntryParams parameters,
+    Task<LedgerCreateEntryResponse> CreateEntry(
+        LedgerCreateEntryParams parameters,
         CancellationToken cancellationToken = default
     );
 
@@ -263,8 +263,8 @@ public interface ILedgerService
     /// the block that was originally decremented from, and `amount` indicates how
     /// many credits to return to the customer, up to the block's initial balance.</para>
     /// </summary>
-    Task<Ledger::LedgerCreateEntryByExternalIDResponse> CreateEntryByExternalID(
-        Ledger::LedgerCreateEntryByExternalIDParams parameters,
+    Task<LedgerCreateEntryByExternalIDResponse> CreateEntryByExternalID(
+        LedgerCreateEntryByExternalIDParams parameters,
         CancellationToken cancellationToken = default
     );
 
@@ -339,8 +339,8 @@ public interface ILedgerService
     /// of a correction, this entry will be added to the ledger to indicate the adjustment
     /// of credits.</para>
     /// </summary>
-    Task<Ledger::LedgerListByExternalIDPageResponse> ListByExternalID(
-        Ledger::LedgerListByExternalIDParams parameters,
+    Task<LedgerListByExternalIDPageResponse> ListByExternalID(
+        LedgerListByExternalIDParams parameters,
         CancellationToken cancellationToken = default
     );
 }

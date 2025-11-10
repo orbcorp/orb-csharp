@@ -1,19 +1,19 @@
 using System.Collections.Generic;
 using System.Text.Json;
-using Orb.Models.Alerts;
 using Orb.Models.Beta;
 using Orb.Models.CreditNotes;
 using Orb.Models.Customers;
+using Orb.Models.Customers.BalanceTransactions;
 using Orb.Models.Customers.Costs;
+using Orb.Models.Customers.Credits.Ledger;
 using Orb.Models.Customers.Credits.TopUps;
 using Orb.Models.Items;
 using Orb.Models.Metrics;
+using Alerts = Orb.Models.Alerts;
 using Backfills = Orb.Models.Events.Backfills;
-using BalanceTransactions = Orb.Models.Customers.BalanceTransactions;
 using Credits = Orb.Models.Customers.Credits;
 using ExternalPlanID = Orb.Models.Beta.ExternalPlanID;
 using Invoices = Orb.Models.Invoices;
-using Ledger = Orb.Models.Customers.Credits.Ledger;
 using Models = Orb.Models;
 using Plans = Orb.Models.Plans;
 using Prices = Orb.Models.Prices;
@@ -440,43 +440,43 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Credits::FieldModel>(),
             new ApiEnumConverter<string, Credits::OperatorModel>(),
             new ApiEnumConverter<string, Credits::StatusModel>(),
-            new ApiEnumConverter<string, Ledger::Field1>(),
-            new ApiEnumConverter<string, Ledger::Operator1>(),
-            new ApiEnumConverter<string, Ledger::EntryStatus1>(),
-            new ApiEnumConverter<string, Ledger::EntryType11>(),
-            new ApiEnumConverter<string, Ledger::EntryStatus2>(),
-            new ApiEnumConverter<string, Ledger::EntryType12>(),
-            new ApiEnumConverter<string, Ledger::EntryStatus3>(),
-            new ApiEnumConverter<string, Ledger::EntryType13>(),
-            new ApiEnumConverter<string, Ledger::EntryStatus4>(),
-            new ApiEnumConverter<string, Ledger::EntryType14>(),
-            new ApiEnumConverter<string, Ledger::EntryStatus5>(),
-            new ApiEnumConverter<string, Ledger::EntryType15>(),
-            new ApiEnumConverter<string, Ledger::EntryStatus6>(),
-            new ApiEnumConverter<string, Ledger::EntryType16>(),
-            new ApiEnumConverter<string, Ledger::EntryStatus7>(),
-            new ApiEnumConverter<string, Ledger::EntryType17>(),
-            new ApiEnumConverter<string, Ledger::EntryStatus>(),
-            new ApiEnumConverter<string, Ledger::EntryType>(),
-            new ApiEnumConverter<string, Ledger::Field>(),
-            new ApiEnumConverter<string, Ledger::Operator>(),
-            new ApiEnumConverter<string, Ledger::VoidReason>(),
-            new ApiEnumConverter<string, Ledger::FieldModel>(),
-            new ApiEnumConverter<string, Ledger::OperatorModel>(),
-            new ApiEnumConverter<string, Ledger::VoidReasonModel>(),
-            new ApiEnumConverter<string, Ledger::EntryStatusModel>(),
-            new ApiEnumConverter<string, Ledger::EntryType10>(),
+            new ApiEnumConverter<string, Field1>(),
+            new ApiEnumConverter<string, Operator1>(),
+            new ApiEnumConverter<string, EntryStatus1>(),
+            new ApiEnumConverter<string, EntryType11>(),
+            new ApiEnumConverter<string, EntryStatus2>(),
+            new ApiEnumConverter<string, EntryType12>(),
+            new ApiEnumConverter<string, EntryStatus3>(),
+            new ApiEnumConverter<string, EntryType13>(),
+            new ApiEnumConverter<string, EntryStatus4>(),
+            new ApiEnumConverter<string, EntryType14>(),
+            new ApiEnumConverter<string, EntryStatus5>(),
+            new ApiEnumConverter<string, EntryType15>(),
+            new ApiEnumConverter<string, EntryStatus6>(),
+            new ApiEnumConverter<string, EntryType16>(),
+            new ApiEnumConverter<string, EntryStatus7>(),
+            new ApiEnumConverter<string, EntryType17>(),
+            new ApiEnumConverter<string, EntryStatus>(),
+            new ApiEnumConverter<string, EntryType>(),
+            new ApiEnumConverter<string, Field>(),
+            new ApiEnumConverter<string, Operator>(),
+            new ApiEnumConverter<string, VoidReason>(),
+            new ApiEnumConverter<string, FieldModel>(),
+            new ApiEnumConverter<string, OperatorModel>(),
+            new ApiEnumConverter<string, VoidReasonModel>(),
+            new ApiEnumConverter<string, EntryStatusModel>(),
+            new ApiEnumConverter<string, EntryType10>(),
             new ApiEnumConverter<string, ExpiresAfterUnit1>(),
             new ApiEnumConverter<string, ExpiresAfterUnit2>(),
             new ApiEnumConverter<string, ExpiresAfterUnit3>(),
             new ApiEnumConverter<string, ExpiresAfterUnit4>(),
             new ApiEnumConverter<string, ExpiresAfterUnit>(),
             new ApiEnumConverter<string, ExpiresAfterUnitModel>(),
-            new ApiEnumConverter<string, BalanceTransactions::Action>(),
-            new ApiEnumConverter<string, BalanceTransactions::TypeModel>(),
-            new ApiEnumConverter<string, BalanceTransactions::ActionModel>(),
-            new ApiEnumConverter<string, BalanceTransactions::Type1>(),
-            new ApiEnumConverter<string, BalanceTransactions::Type>(),
+            new ApiEnumConverter<string, Action>(),
+            new ApiEnumConverter<string, TypeModel>(),
+            new ApiEnumConverter<string, ActionModel>(),
+            new ApiEnumConverter<string, Type1>(),
+            new ApiEnumConverter<string, Type>(),
             new ApiEnumConverter<string, Backfills::Status>(),
             new ApiEnumConverter<string, Backfills::StatusModel>(),
             new ApiEnumConverter<string, Backfills::Status1>(),
@@ -605,10 +605,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Subscriptions::Cadence22>(),
             new ApiEnumConverter<string, Subscriptions::ChangeOption1>(),
             new ApiEnumConverter<string, Subscriptions::UnionMember1>(),
-            new ApiEnumConverter<string, Type2>(),
-            new ApiEnumConverter<string, Type>(),
-            new ApiEnumConverter<string, TypeModel>(),
-            new ApiEnumConverter<string, Type1>(),
+            new ApiEnumConverter<string, Alerts::Type2>(),
+            new ApiEnumConverter<string, Alerts::Type>(),
+            new ApiEnumConverter<string, Alerts::TypeModel>(),
+            new ApiEnumConverter<string, Alerts::Type1>(),
             new ApiEnumConverter<string, SubscriptionChanges::Status>(),
             new ApiEnumConverter<string, SubscriptionChanges::StatusModel>(),
             new ApiEnumConverter<string, SubscriptionChanges::Status1>(),

@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
-using BalanceTransactions = Orb.Models.Customers.BalanceTransactions;
+using Orb.Models.Customers.BalanceTransactions;
 
 namespace Orb.Services.Customers.BalanceTransactions;
 
@@ -21,12 +21,12 @@ public sealed class BalanceTransactionService : IBalanceTransactionService
         _client = client;
     }
 
-    public async Task<BalanceTransactions::BalanceTransactionCreateResponse> Create(
-        BalanceTransactions::BalanceTransactionCreateParams parameters,
+    public async Task<BalanceTransactionCreateResponse> Create(
+        BalanceTransactionCreateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<BalanceTransactions::BalanceTransactionCreateParams> request = new()
+        HttpRequest<BalanceTransactionCreateParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -35,7 +35,7 @@ public sealed class BalanceTransactionService : IBalanceTransactionService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var balanceTransaction = await response
-            .Deserialize<BalanceTransactions::BalanceTransactionCreateResponse>(cancellationToken)
+            .Deserialize<BalanceTransactionCreateResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -44,12 +44,12 @@ public sealed class BalanceTransactionService : IBalanceTransactionService
         return balanceTransaction;
     }
 
-    public async Task<BalanceTransactions::BalanceTransactionListPageResponse> List(
-        BalanceTransactions::BalanceTransactionListParams parameters,
+    public async Task<BalanceTransactionListPageResponse> List(
+        BalanceTransactionListParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<BalanceTransactions::BalanceTransactionListParams> request = new()
+        HttpRequest<BalanceTransactionListParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -58,7 +58,7 @@ public sealed class BalanceTransactionService : IBalanceTransactionService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var page = await response
-            .Deserialize<BalanceTransactions::BalanceTransactionListPageResponse>(cancellationToken)
+            .Deserialize<BalanceTransactionListPageResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {

@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.SubscriptionChanges;
-using Subscriptions = Orb.Models.Subscriptions;
+using Orb.Models.Subscriptions;
 
 namespace Orb.Services.Subscriptions;
 
@@ -23,13 +23,13 @@ public sealed class SubscriptionService : ISubscriptionService
     }
 
     public async Task<MutatedSubscription> Create(
-        Subscriptions::SubscriptionCreateParams? parameters = null,
+        SubscriptionCreateParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
 
-        HttpRequest<Subscriptions::SubscriptionCreateParams> request = new()
+        HttpRequest<SubscriptionCreateParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -47,12 +47,12 @@ public sealed class SubscriptionService : ISubscriptionService
         return mutatedSubscription;
     }
 
-    public async Task<Subscriptions::Subscription> Update(
-        Subscriptions::SubscriptionUpdateParams parameters,
+    public async Task<Subscription> Update(
+        SubscriptionUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Subscriptions::SubscriptionUpdateParams> request = new()
+        HttpRequest<SubscriptionUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
             Params = parameters,
@@ -61,7 +61,7 @@ public sealed class SubscriptionService : ISubscriptionService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var subscription = await response
-            .Deserialize<Subscriptions::Subscription>(cancellationToken)
+            .Deserialize<Subscription>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -70,14 +70,14 @@ public sealed class SubscriptionService : ISubscriptionService
         return subscription;
     }
 
-    public async Task<Subscriptions::SubscriptionsModel> List(
-        Subscriptions::SubscriptionListParams? parameters = null,
+    public async Task<SubscriptionsModel> List(
+        SubscriptionListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
 
-        HttpRequest<Subscriptions::SubscriptionListParams> request = new()
+        HttpRequest<SubscriptionListParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -86,7 +86,7 @@ public sealed class SubscriptionService : ISubscriptionService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var page = await response
-            .Deserialize<Subscriptions::SubscriptionsModel>(cancellationToken)
+            .Deserialize<SubscriptionsModel>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -96,11 +96,11 @@ public sealed class SubscriptionService : ISubscriptionService
     }
 
     public async Task<MutatedSubscription> Cancel(
-        Subscriptions::SubscriptionCancelParams parameters,
+        SubscriptionCancelParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Subscriptions::SubscriptionCancelParams> request = new()
+        HttpRequest<SubscriptionCancelParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -118,12 +118,12 @@ public sealed class SubscriptionService : ISubscriptionService
         return mutatedSubscription;
     }
 
-    public async Task<Subscriptions::Subscription> Fetch(
-        Subscriptions::SubscriptionFetchParams parameters,
+    public async Task<Subscription> Fetch(
+        SubscriptionFetchParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Subscriptions::SubscriptionFetchParams> request = new()
+        HttpRequest<SubscriptionFetchParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -132,7 +132,7 @@ public sealed class SubscriptionService : ISubscriptionService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var subscription = await response
-            .Deserialize<Subscriptions::Subscription>(cancellationToken)
+            .Deserialize<Subscription>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -141,12 +141,12 @@ public sealed class SubscriptionService : ISubscriptionService
         return subscription;
     }
 
-    public async Task<Subscriptions::SubscriptionFetchCostsResponse> FetchCosts(
-        Subscriptions::SubscriptionFetchCostsParams parameters,
+    public async Task<SubscriptionFetchCostsResponse> FetchCosts(
+        SubscriptionFetchCostsParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Subscriptions::SubscriptionFetchCostsParams> request = new()
+        HttpRequest<SubscriptionFetchCostsParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -155,7 +155,7 @@ public sealed class SubscriptionService : ISubscriptionService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var deserializedResponse = await response
-            .Deserialize<Subscriptions::SubscriptionFetchCostsResponse>(cancellationToken)
+            .Deserialize<SubscriptionFetchCostsResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -164,12 +164,12 @@ public sealed class SubscriptionService : ISubscriptionService
         return deserializedResponse;
     }
 
-    public async Task<Subscriptions::SubscriptionFetchSchedulePageResponse> FetchSchedule(
-        Subscriptions::SubscriptionFetchScheduleParams parameters,
+    public async Task<SubscriptionFetchSchedulePageResponse> FetchSchedule(
+        SubscriptionFetchScheduleParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Subscriptions::SubscriptionFetchScheduleParams> request = new()
+        HttpRequest<SubscriptionFetchScheduleParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -178,7 +178,7 @@ public sealed class SubscriptionService : ISubscriptionService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var page = await response
-            .Deserialize<Subscriptions::SubscriptionFetchSchedulePageResponse>(cancellationToken)
+            .Deserialize<SubscriptionFetchSchedulePageResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -187,12 +187,12 @@ public sealed class SubscriptionService : ISubscriptionService
         return page;
     }
 
-    public async Task<Subscriptions::SubscriptionUsage> FetchUsage(
-        Subscriptions::SubscriptionFetchUsageParams parameters,
+    public async Task<SubscriptionUsage> FetchUsage(
+        SubscriptionFetchUsageParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Subscriptions::SubscriptionFetchUsageParams> request = new()
+        HttpRequest<SubscriptionFetchUsageParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -201,7 +201,7 @@ public sealed class SubscriptionService : ISubscriptionService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var subscriptionUsage = await response
-            .Deserialize<Subscriptions::SubscriptionUsage>(cancellationToken)
+            .Deserialize<SubscriptionUsage>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -211,11 +211,11 @@ public sealed class SubscriptionService : ISubscriptionService
     }
 
     public async Task<MutatedSubscription> PriceIntervals(
-        Subscriptions::SubscriptionPriceIntervalsParams parameters,
+        SubscriptionPriceIntervalsParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Subscriptions::SubscriptionPriceIntervalsParams> request = new()
+        HttpRequest<SubscriptionPriceIntervalsParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -234,11 +234,11 @@ public sealed class SubscriptionService : ISubscriptionService
     }
 
     public async Task<MutatedSubscription> RedeemCoupon(
-        Subscriptions::SubscriptionRedeemCouponParams parameters,
+        SubscriptionRedeemCouponParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Subscriptions::SubscriptionRedeemCouponParams> request = new()
+        HttpRequest<SubscriptionRedeemCouponParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -257,11 +257,11 @@ public sealed class SubscriptionService : ISubscriptionService
     }
 
     public async Task<MutatedSubscription> SchedulePlanChange(
-        Subscriptions::SubscriptionSchedulePlanChangeParams parameters,
+        SubscriptionSchedulePlanChangeParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Subscriptions::SubscriptionSchedulePlanChangeParams> request = new()
+        HttpRequest<SubscriptionSchedulePlanChangeParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -280,11 +280,11 @@ public sealed class SubscriptionService : ISubscriptionService
     }
 
     public async Task<MutatedSubscription> TriggerPhase(
-        Subscriptions::SubscriptionTriggerPhaseParams parameters,
+        SubscriptionTriggerPhaseParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Subscriptions::SubscriptionTriggerPhaseParams> request = new()
+        HttpRequest<SubscriptionTriggerPhaseParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -303,11 +303,11 @@ public sealed class SubscriptionService : ISubscriptionService
     }
 
     public async Task<MutatedSubscription> UnscheduleCancellation(
-        Subscriptions::SubscriptionUnscheduleCancellationParams parameters,
+        SubscriptionUnscheduleCancellationParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Subscriptions::SubscriptionUnscheduleCancellationParams> request = new()
+        HttpRequest<SubscriptionUnscheduleCancellationParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -326,12 +326,15 @@ public sealed class SubscriptionService : ISubscriptionService
     }
 
     public async Task<MutatedSubscription> UnscheduleFixedFeeQuantityUpdates(
-        Subscriptions::SubscriptionUnscheduleFixedFeeQuantityUpdatesParams parameters,
+        SubscriptionUnscheduleFixedFeeQuantityUpdatesParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Subscriptions::SubscriptionUnscheduleFixedFeeQuantityUpdatesParams> request =
-            new() { Method = HttpMethod.Post, Params = parameters };
+        HttpRequest<SubscriptionUnscheduleFixedFeeQuantityUpdatesParams> request = new()
+        {
+            Method = HttpMethod.Post,
+            Params = parameters,
+        };
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
@@ -346,11 +349,11 @@ public sealed class SubscriptionService : ISubscriptionService
     }
 
     public async Task<MutatedSubscription> UnschedulePendingPlanChanges(
-        Subscriptions::SubscriptionUnschedulePendingPlanChangesParams parameters,
+        SubscriptionUnschedulePendingPlanChangesParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Subscriptions::SubscriptionUnschedulePendingPlanChangesParams> request = new()
+        HttpRequest<SubscriptionUnschedulePendingPlanChangesParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -369,11 +372,11 @@ public sealed class SubscriptionService : ISubscriptionService
     }
 
     public async Task<MutatedSubscription> UpdateFixedFeeQuantity(
-        Subscriptions::SubscriptionUpdateFixedFeeQuantityParams parameters,
+        SubscriptionUpdateFixedFeeQuantityParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Subscriptions::SubscriptionUpdateFixedFeeQuantityParams> request = new()
+        HttpRequest<SubscriptionUpdateFixedFeeQuantityParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -392,11 +395,11 @@ public sealed class SubscriptionService : ISubscriptionService
     }
 
     public async Task<MutatedSubscription> UpdateTrial(
-        Subscriptions::SubscriptionUpdateTrialParams parameters,
+        SubscriptionUpdateTrialParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Subscriptions::SubscriptionUpdateTrialParams> request = new()
+        HttpRequest<SubscriptionUpdateTrialParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,

@@ -4,8 +4,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Beta;
-using ExternalPlanID = Orb.Models.Beta.ExternalPlanID;
-using Plans = Orb.Models.Plans;
+using Orb.Models.Beta.ExternalPlanID;
+using Orb.Models.Plans;
 
 namespace Orb.Services.Beta.ExternalPlanID;
 
@@ -24,11 +24,11 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
     }
 
     public async Task<PlanVersion> CreatePlanVersion(
-        ExternalPlanID::ExternalPlanIDCreatePlanVersionParams parameters,
+        ExternalPlanIDCreatePlanVersionParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<ExternalPlanID::ExternalPlanIDCreatePlanVersionParams> request = new()
+        HttpRequest<ExternalPlanIDCreatePlanVersionParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -47,11 +47,11 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
     }
 
     public async Task<PlanVersion> FetchPlanVersion(
-        ExternalPlanID::ExternalPlanIDFetchPlanVersionParams parameters,
+        ExternalPlanIDFetchPlanVersionParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<ExternalPlanID::ExternalPlanIDFetchPlanVersionParams> request = new()
+        HttpRequest<ExternalPlanIDFetchPlanVersionParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -69,12 +69,12 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
         return planVersion;
     }
 
-    public async Task<Plans::Plan> SetDefaultPlanVersion(
-        ExternalPlanID::ExternalPlanIDSetDefaultPlanVersionParams parameters,
+    public async Task<Plan> SetDefaultPlanVersion(
+        ExternalPlanIDSetDefaultPlanVersionParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<ExternalPlanID::ExternalPlanIDSetDefaultPlanVersionParams> request = new()
+        HttpRequest<ExternalPlanIDSetDefaultPlanVersionParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -82,7 +82,7 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
-        var plan = await response.Deserialize<Plans::Plan>(cancellationToken).ConfigureAwait(false);
+        var plan = await response.Deserialize<Plan>(cancellationToken).ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             plan.Validate();
