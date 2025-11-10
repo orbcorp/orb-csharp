@@ -1148,9 +1148,7 @@ public class DiscountType
             )
         )
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Subscriptions.DiscountType'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'DiscountType'");
         }
     }
 
@@ -1301,9 +1299,7 @@ public class DiscountTypeModel
             )
         )
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Subscriptions.DiscountTypeModel'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'DiscountTypeModel'");
         }
     }
 
@@ -1454,9 +1450,7 @@ public class DiscountType1
             )
         )
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Subscriptions.DiscountType1'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'DiscountType1'");
         }
     }
 
@@ -4668,9 +4662,7 @@ public class ModelType9
             )
         )
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Subscriptions.ModelType9'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType9'");
         }
     }
 
@@ -5645,9 +5637,7 @@ public class ModelType10
             )
         )
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Subscriptions.ModelType10'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType10'");
         }
     }
 
@@ -6449,9 +6439,7 @@ public class ModelType11
             )
         )
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Subscriptions.ModelType11'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType11'");
         }
     }
 
@@ -7440,9 +7428,7 @@ public class ModelType12
             )
         )
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Subscriptions.ModelType12'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType12'");
         }
     }
 

@@ -3918,9 +3918,7 @@ public class ModelType
             )
         )
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ExternalPlanID.ModelType'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType'");
         }
     }
 
@@ -4752,9 +4750,7 @@ public class ModelTypeModel
             )
         )
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ExternalPlanID.ModelTypeModel'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelTypeModel'");
         }
     }
 
@@ -5928,9 +5924,7 @@ public class ModelType1
             )
         )
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ExternalPlanID.ModelType1'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType1'");
         }
     }
 
@@ -6756,9 +6750,7 @@ public class ModelType2
             )
         )
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ExternalPlanID.ModelType2'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType2'");
         }
     }
 
@@ -7772,9 +7764,7 @@ public class ModelType3
             )
         )
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ExternalPlanID.ModelType3'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType3'");
         }
     }
 
@@ -11901,9 +11891,7 @@ public class ModelType4
             )
         )
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ExternalPlanID.ModelType4'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType4'");
         }
     }
 
@@ -12736,9 +12724,7 @@ public class ModelType5
             )
         )
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ExternalPlanID.ModelType5'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType5'");
         }
     }
 
@@ -13913,9 +13899,7 @@ public class ModelType6
             )
         )
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ExternalPlanID.ModelType6'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType6'");
         }
     }
 
@@ -14741,9 +14725,7 @@ public class ModelType7
             )
         )
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ExternalPlanID.ModelType7'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType7'");
         }
     }
 
@@ -15759,9 +15741,7 @@ public class ModelType8
             )
         )
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ExternalPlanID.ModelType8'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType8'");
         }
     }
 

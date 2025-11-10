@@ -3127,9 +3127,7 @@ public class ModelType
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Prices.ModelType().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Prices.ModelType'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType'");
         }
     }
 
@@ -4095,9 +4093,7 @@ public class ModelTypeModel
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Prices.ModelTypeModel().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Prices.ModelTypeModel'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelTypeModel'");
         }
     }
 
@@ -4900,9 +4896,7 @@ public class ModelType1
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Prices.ModelType1().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Prices.ModelType1'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType1'");
         }
     }
 
@@ -5889,9 +5883,7 @@ public class ModelType2
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Prices.ModelType2().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Prices.ModelType2'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType2'");
         }
     }
 
