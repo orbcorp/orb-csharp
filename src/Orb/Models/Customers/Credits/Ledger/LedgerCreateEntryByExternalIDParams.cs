@@ -906,7 +906,7 @@ public class EntryType5
     {
         if (JsonElement.DeepEquals(this.Json, new EntryType5().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'EntryType5'");
+            throw new OrbInvalidDataException("Invalid value given for 'EntryType5'");
         }
     }
 
@@ -1859,7 +1859,7 @@ public class EntryType6
     {
         if (JsonElement.DeepEquals(this.Json, new EntryType6().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'EntryType6'");
+            throw new OrbInvalidDataException("Invalid value given for 'EntryType6'");
         }
     }
 
@@ -2153,7 +2153,7 @@ public class EntryType7
     {
         if (JsonElement.DeepEquals(this.Json, new EntryType7().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'EntryType7'");
+            throw new OrbInvalidDataException("Invalid value given for 'EntryType7'");
         }
     }
 
@@ -2414,7 +2414,7 @@ public class EntryType8
     {
         if (JsonElement.DeepEquals(this.Json, new EntryType8().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'EntryType8'");
+            throw new OrbInvalidDataException("Invalid value given for 'EntryType8'");
         }
     }
 
@@ -2696,7 +2696,7 @@ public class EntryType9
     {
         if (JsonElement.DeepEquals(this.Json, new EntryType9().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'EntryType9'");
+            throw new OrbInvalidDataException("Invalid value given for 'EntryType9'");
         }
     }
 

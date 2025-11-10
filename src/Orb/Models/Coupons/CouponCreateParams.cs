@@ -477,9 +477,7 @@ public class DiscountType
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Coupons.DiscountType().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Coupons.DiscountType'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'DiscountType'");
         }
     }
 
@@ -630,9 +628,7 @@ public class DiscountTypeModel
             )
         )
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Coupons.DiscountTypeModel'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'DiscountTypeModel'");
         }
     }
 

@@ -1150,7 +1150,7 @@ public class TaxProvider3
     {
         if (JsonElement.DeepEquals(this.Json, new TaxProvider3().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'TaxProvider3'");
+            throw new OrbInvalidDataException("Invalid value given for 'TaxProvider3'");
         }
     }
 
@@ -1312,7 +1312,7 @@ public class TaxProvider4
     {
         if (JsonElement.DeepEquals(this.Json, new TaxProvider4().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'TaxProvider4'");
+            throw new OrbInvalidDataException("Invalid value given for 'TaxProvider4'");
         }
     }
 

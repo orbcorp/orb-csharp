@@ -3521,7 +3521,7 @@ public class ModelType50
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType50().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType50'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType50'");
         }
     }
 
@@ -4843,7 +4843,7 @@ public class ModelType51
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType51().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType51'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType51'");
         }
     }
 
@@ -6163,7 +6163,7 @@ public class ModelType52
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType52().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType52'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType52'");
         }
     }
 
@@ -7772,7 +7772,7 @@ public class ModelType53
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType53().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType53'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType53'");
         }
     }
 
@@ -9092,7 +9092,7 @@ public class ModelType54
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType54().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType54'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType54'");
         }
     }
 
@@ -10412,7 +10412,7 @@ public class ModelType55
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType55().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType55'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType55'");
         }
     }
 
@@ -11742,7 +11742,7 @@ public class ModelType56
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType56().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType56'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType56'");
         }
     }
 
@@ -13267,7 +13267,7 @@ public class ModelType57
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType57().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType57'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType57'");
         }
     }
 
@@ -14786,7 +14786,7 @@ public class ModelType58
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType58().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType58'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType58'");
         }
     }
 
@@ -16557,7 +16557,7 @@ public class ModelType59
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType59().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType59'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType59'");
         }
     }
 
@@ -17885,7 +17885,7 @@ public class ModelType60
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType60().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType60'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType60'");
         }
     }
 
@@ -19435,7 +19435,7 @@ public class ModelType61
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType61().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType61'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType61'");
         }
     }
 
@@ -20891,7 +20891,7 @@ public class ModelType62
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType62().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType62'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType62'");
         }
     }
 
@@ -22315,7 +22315,7 @@ public class ModelType63
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType63().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType63'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType63'");
         }
     }
 
@@ -23645,7 +23645,7 @@ public class ModelType64
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType64().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType64'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType64'");
         }
     }
 
@@ -25142,7 +25142,7 @@ public class ModelType65
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType65().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType65'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType65'");
         }
     }
 
@@ -26668,7 +26668,7 @@ public class ModelType66
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType66().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType66'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType66'");
         }
     }
 
@@ -28159,7 +28159,7 @@ public class ModelType67
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType67().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType67'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType67'");
         }
     }
 
@@ -29617,7 +29617,7 @@ public class ModelType68
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType68().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType68'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType68'");
         }
     }
 
@@ -31380,7 +31380,7 @@ public class ModelType69
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType69().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType69'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType69'");
         }
     }
 
@@ -32873,7 +32873,7 @@ public class ModelType70
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType70().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType70'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType70'");
         }
     }
 
@@ -34435,7 +34435,7 @@ public class ModelType71
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType71().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType71'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType71'");
         }
     }
 
@@ -35989,7 +35989,7 @@ public class ModelType72
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType72().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType72'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType72'");
         }
     }
 
@@ -37545,7 +37545,7 @@ public class ModelType73
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType73().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType73'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType73'");
         }
     }
 
@@ -38875,7 +38875,7 @@ public class ModelType74
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType74().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType74'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType74'");
         }
     }
 
@@ -40505,7 +40505,7 @@ public class ModelType75
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType75().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType75'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType75'");
         }
     }
 
@@ -42441,7 +42441,7 @@ public class ModelType76
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType76().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType76'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType76'");
         }
     }
 
@@ -43860,7 +43860,7 @@ public class ModelType77
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType77().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType77'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType77'");
         }
     }
 
@@ -45180,7 +45180,7 @@ public class ModelType78
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType78().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType78'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType78'");
         }
     }
 
@@ -46687,7 +46687,7 @@ public class ModelType79
     {
         if (JsonElement.DeepEquals(this.Json, new ModelType79().Json))
         {
-            throw new OrbInvalidDataException("Invalid constant given for 'ModelType79'");
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType79'");
         }
     }
 

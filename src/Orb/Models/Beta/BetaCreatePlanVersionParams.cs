@@ -3882,9 +3882,7 @@ public class ModelType
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Beta.ModelType().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ModelType'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType'");
         }
     }
 
@@ -4706,9 +4704,7 @@ public class ModelTypeModel
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Beta.ModelTypeModel().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ModelTypeModel'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelTypeModel'");
         }
     }
 
@@ -5867,9 +5863,7 @@ public class ModelType1
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Beta.ModelType1().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ModelType1'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType1'");
         }
     }
 
@@ -6685,9 +6679,7 @@ public class ModelType2
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Beta.ModelType2().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ModelType2'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType2'");
         }
     }
 
@@ -7691,9 +7683,7 @@ public class ModelType3
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Beta.ModelType3().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ModelType3'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType3'");
         }
     }
 
@@ -11693,9 +11683,7 @@ public class ModelType4
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Beta.ModelType4().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ModelType4'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType4'");
         }
     }
 
@@ -12516,9 +12504,7 @@ public class ModelType5
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Beta.ModelType5().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ModelType5'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType5'");
         }
     }
 
@@ -13679,9 +13665,7 @@ public class ModelType6
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Beta.ModelType6().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ModelType6'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType6'");
         }
     }
 
@@ -14495,9 +14479,7 @@ public class ModelType7
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Beta.ModelType7().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ModelType7'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType7'");
         }
     }
 
@@ -15497,9 +15479,7 @@ public class ModelType8
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Beta.ModelType8().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Beta.ModelType8'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType8'");
         }
     }
 

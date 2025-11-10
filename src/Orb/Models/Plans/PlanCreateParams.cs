@@ -3459,9 +3459,7 @@ public class ModelType
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Plans.ModelType().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Plans.ModelType'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType'");
         }
     }
 
@@ -4283,9 +4281,7 @@ public class ModelTypeModel
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Plans.ModelTypeModel().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Plans.ModelTypeModel'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelTypeModel'");
         }
     }
 
@@ -5444,9 +5440,7 @@ public class ModelType1
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Plans.ModelType1().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Plans.ModelType1'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType1'");
         }
     }
 
@@ -6262,9 +6256,7 @@ public class ModelType2
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Plans.ModelType2().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Plans.ModelType2'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType2'");
         }
     }
 
@@ -7268,9 +7260,7 @@ public class ModelType3
     {
         if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Plans.ModelType3().Json))
         {
-            throw new OrbInvalidDataException(
-                "Invalid constant given for 'global::Orb.Models.Plans.ModelType3'"
-            );
+            throw new OrbInvalidDataException("Invalid value given for 'ModelType3'");
         }
     }
 
