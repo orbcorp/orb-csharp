@@ -190,7 +190,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
     /// <summary>
     /// The creation time of this transaction.
     /// </summary>
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -203,7 +203,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );

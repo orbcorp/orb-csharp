@@ -246,14 +246,14 @@ public sealed record class InvoiceListParams : ParamsBase
         }
     }
 
-    public System::DateTime? InvoiceDateGt
+    public System::DateTimeOffset? InvoiceDateGt
     {
         get
         {
             if (!this._queryProperties.TryGetValue("invoice_date[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -267,14 +267,14 @@ public sealed record class InvoiceListParams : ParamsBase
         }
     }
 
-    public System::DateTime? InvoiceDateGte
+    public System::DateTimeOffset? InvoiceDateGte
     {
         get
         {
             if (!this._queryProperties.TryGetValue("invoice_date[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -288,14 +288,14 @@ public sealed record class InvoiceListParams : ParamsBase
         }
     }
 
-    public System::DateTime? InvoiceDateLt
+    public System::DateTimeOffset? InvoiceDateLt
     {
         get
         {
             if (!this._queryProperties.TryGetValue("invoice_date[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -309,14 +309,14 @@ public sealed record class InvoiceListParams : ParamsBase
         }
     }
 
-    public System::DateTime? InvoiceDateLte
+    public System::DateTimeOffset? InvoiceDateLte
     {
         get
         {
             if (!this._queryProperties.TryGetValue("invoice_date[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );

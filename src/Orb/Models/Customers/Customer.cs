@@ -175,7 +175,7 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -188,7 +188,7 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );

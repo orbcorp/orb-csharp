@@ -184,14 +184,14 @@ public sealed record class TopUpCreateParams : ParamsBase
     /// The date from which the top-up is active. If unspecified, the top-up is active
     /// immediately.             This should not be more than 10 days in the past.
     /// </summary>
-    public System::DateTime? ActiveFrom
+    public System::DateTimeOffset? ActiveFrom
     {
         get
         {
             if (!this._bodyProperties.TryGetValue("active_from", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );

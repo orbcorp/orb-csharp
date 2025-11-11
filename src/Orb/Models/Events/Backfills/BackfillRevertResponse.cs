@@ -45,14 +45,14 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
     /// If in the future, the time at which the backfill will automatically close.
     /// If in the past, the time at which the backfill was closed.
     /// </summary>
-    public required System::DateTime? CloseTime
+    public required System::DateTimeOffset? CloseTime
     {
         get
         {
             if (!this._properties.TryGetValue("close_time", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -66,7 +66,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -79,7 +79,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -174,14 +174,14 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
     /// <summary>
     /// The time at which this backfill was reverted.
     /// </summary>
-    public required System::DateTime? RevertedAt
+    public required System::DateTimeOffset? RevertedAt
     {
         get
         {
             if (!this._properties.TryGetValue("reverted_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -222,7 +222,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
         }
     }
 
-    public required System::DateTime TimeframeEnd
+    public required System::DateTimeOffset TimeframeEnd
     {
         get
         {
@@ -235,7 +235,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -249,7 +249,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
         }
     }
 
-    public required System::DateTime TimeframeStart
+    public required System::DateTimeOffset TimeframeStart
     {
         get
         {
@@ -262,7 +262,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );

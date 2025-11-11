@@ -50,7 +50,7 @@ public sealed record class PriceEvaluateMultipleParams : ParamsBase
     /// <summary>
     /// The exclusive upper bound for event timestamps
     /// </summary>
-    public required System::DateTime TimeframeEnd
+    public required System::DateTimeOffset TimeframeEnd
     {
         get
         {
@@ -63,7 +63,7 @@ public sealed record class PriceEvaluateMultipleParams : ParamsBase
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -80,7 +80,7 @@ public sealed record class PriceEvaluateMultipleParams : ParamsBase
     /// <summary>
     /// The inclusive lower bound for event timestamps
     /// </summary>
-    public required System::DateTime TimeframeStart
+    public required System::DateTimeOffset TimeframeStart
     {
         get
         {
@@ -93,7 +93,7 @@ public sealed record class PriceEvaluateMultipleParams : ParamsBase
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );

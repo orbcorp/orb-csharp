@@ -81,14 +81,14 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     /// The date that the coupon discount should take effect. This parameter can
     /// only be passed if the `change_option` is `requested_date`.
     /// </summary>
-    public System::DateTime? ChangeDate
+    public System::DateTimeOffset? ChangeDate
     {
         get
         {
             if (!this._bodyProperties.TryGetValue("change_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );

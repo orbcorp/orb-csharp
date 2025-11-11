@@ -249,11 +249,11 @@ public record class BodyModel
         }
     }
 
-    public System::DateTime? ExpiryDate
+    public System::DateTimeOffset? ExpiryDate
     {
         get
         {
-            return Match<System::DateTime?>(
+            return Match<System::DateTimeOffset?>(
                 increment: (x) => x.ExpiryDate,
                 decrement: (_) => null,
                 expirationChange: (x) => x.ExpiryDate,
@@ -691,14 +691,14 @@ public sealed record class IncrementModel : ModelBase, IFromRaw<IncrementModel>
     /// An ISO 8601 format date that denotes when this credit balance should become
     /// available for use.
     /// </summary>
-    public System::DateTime? EffectiveDate
+    public System::DateTimeOffset? EffectiveDate
     {
         get
         {
             if (!this._properties.TryGetValue("effective_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -715,14 +715,14 @@ public sealed record class IncrementModel : ModelBase, IFromRaw<IncrementModel>
     /// <summary>
     /// An ISO 8601 format date that denotes when this credit balance should expire.
     /// </summary>
-    public System::DateTime? ExpiryDate
+    public System::DateTimeOffset? ExpiryDate
     {
         get
         {
             if (!this._properties.TryGetValue("expiry_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1386,7 +1386,7 @@ public record class CustomDueDateModel
         Value = value;
     }
 
-    public CustomDueDateModel(System::DateTime value)
+    public CustomDueDateModel(System::DateTimeOffset value)
     {
         Value = value;
     }
@@ -1407,15 +1407,15 @@ public record class CustomDueDateModel
         return value != null;
     }
 
-    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTime? value)
+    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTimeOffset? value)
     {
-        value = this.Value as System::DateTime?;
+        value = this.Value as System::DateTimeOffset?;
         return value != null;
     }
 
     public void Switch(
         System::Action<System::DateOnly> @date,
-        System::Action<System::DateTime> @dateTime
+        System::Action<System::DateTimeOffset> @dateTime
     )
     {
         switch (this.Value)
@@ -1423,7 +1423,7 @@ public record class CustomDueDateModel
             case System::DateOnly value:
                 @date(value);
                 break;
-            case System::DateTime value:
+            case System::DateTimeOffset value:
                 @dateTime(value);
                 break;
             default:
@@ -1435,13 +1435,13 @@ public record class CustomDueDateModel
 
     public T Match<T>(
         System::Func<System::DateOnly, T> @date,
-        System::Func<System::DateTime, T> @dateTime
+        System::Func<System::DateTimeOffset, T> @dateTime
     )
     {
         return this.Value switch
         {
             System::DateOnly value => @date(value),
-            System::DateTime value => @dateTime(value),
+            System::DateTimeOffset value => @dateTime(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of CustomDueDateModel"
             ),
@@ -1450,7 +1450,7 @@ public record class CustomDueDateModel
 
     public static implicit operator CustomDueDateModel(System::DateOnly value) => new(value);
 
-    public static implicit operator CustomDueDateModel(System::DateTime value) => new(value);
+    public static implicit operator CustomDueDateModel(System::DateTimeOffset value) => new(value);
 
     public void Validate()
     {
@@ -1494,14 +1494,14 @@ sealed class CustomDueDateModelConverter : JsonConverter<CustomDueDateModel?>
         try
         {
             return new CustomDueDateModel(
-                JsonSerializer.Deserialize<System::DateTime>(ref reader, options)
+                JsonSerializer.Deserialize<System::DateTimeOffset>(ref reader, options)
             );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateTime'",
+                    "Data does not match union variant 'System::DateTimeOffset'",
                     e
                 )
             );
@@ -1536,7 +1536,7 @@ public record class InvoiceDateModel
         Value = value;
     }
 
-    public InvoiceDateModel(System::DateTime value)
+    public InvoiceDateModel(System::DateTimeOffset value)
     {
         Value = value;
     }
@@ -1557,15 +1557,15 @@ public record class InvoiceDateModel
         return value != null;
     }
 
-    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTime? value)
+    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTimeOffset? value)
     {
-        value = this.Value as System::DateTime?;
+        value = this.Value as System::DateTimeOffset?;
         return value != null;
     }
 
     public void Switch(
         System::Action<System::DateOnly> @date,
-        System::Action<System::DateTime> @dateTime
+        System::Action<System::DateTimeOffset> @dateTime
     )
     {
         switch (this.Value)
@@ -1573,7 +1573,7 @@ public record class InvoiceDateModel
             case System::DateOnly value:
                 @date(value);
                 break;
-            case System::DateTime value:
+            case System::DateTimeOffset value:
                 @dateTime(value);
                 break;
             default:
@@ -1585,13 +1585,13 @@ public record class InvoiceDateModel
 
     public T Match<T>(
         System::Func<System::DateOnly, T> @date,
-        System::Func<System::DateTime, T> @dateTime
+        System::Func<System::DateTimeOffset, T> @dateTime
     )
     {
         return this.Value switch
         {
             System::DateOnly value => @date(value),
-            System::DateTime value => @dateTime(value),
+            System::DateTimeOffset value => @dateTime(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of InvoiceDateModel"
             ),
@@ -1600,7 +1600,7 @@ public record class InvoiceDateModel
 
     public static implicit operator InvoiceDateModel(System::DateOnly value) => new(value);
 
-    public static implicit operator InvoiceDateModel(System::DateTime value) => new(value);
+    public static implicit operator InvoiceDateModel(System::DateTimeOffset value) => new(value);
 
     public void Validate()
     {
@@ -1642,14 +1642,14 @@ sealed class InvoiceDateModelConverter : JsonConverter<InvoiceDateModel?>
         try
         {
             return new InvoiceDateModel(
-                JsonSerializer.Deserialize<System::DateTime>(ref reader, options)
+                JsonSerializer.Deserialize<System::DateTimeOffset>(ref reader, options)
             );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateTime'",
+                    "Data does not match union variant 'System::DateTimeOffset'",
                     e
                 )
             );
@@ -2040,14 +2040,14 @@ public sealed record class ExpirationChangeModel : ModelBase, IFromRaw<Expiratio
     /// <summary>
     /// An ISO 8601 format date that identifies the origination credit block to expire
     /// </summary>
-    public System::DateTime? ExpiryDate
+    public System::DateTimeOffset? ExpiryDate
     {
         get
         {
             if (!this._properties.TryGetValue("expiry_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );

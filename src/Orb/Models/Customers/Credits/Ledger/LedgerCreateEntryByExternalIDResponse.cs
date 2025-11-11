@@ -48,7 +48,7 @@ public record class LedgerCreateEntryByExternalIDResponse
         }
     }
 
-    public System::DateTime CreatedAt
+    public System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -176,11 +176,11 @@ public record class LedgerCreateEntryByExternalIDResponse
         }
     }
 
-    public System::DateTime? NewBlockExpiryDate
+    public System::DateTimeOffset? NewBlockExpiryDate
     {
         get
         {
-            return Match<System::DateTime?>(
+            return Match<System::DateTimeOffset?>(
                 incrementLedgerEntry: (_) => null,
                 decrementLedgerEntry: (_) => null,
                 expirationChangeLedgerEntry: (x) => x.NewBlockExpiryDate,

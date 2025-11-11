@@ -48,7 +48,7 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
     /// <summary>
     /// The time at which the item was created.
     /// </summary>
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -61,7 +61,7 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -175,14 +175,14 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
     /// <summary>
     /// The time at which the item was archived. If null, the item is not archived.
     /// </summary>
-    public System::DateTime? ArchivedAt
+    public System::DateTimeOffset? ArchivedAt
     {
         get
         {
             if (!this._properties.TryGetValue("archived_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );

@@ -65,14 +65,17 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
         }
     }
 
-    public DateTime? StartDateGt
+    public DateTimeOffset? StartDateGt
     {
         get
         {
             if (!this._queryProperties.TryGetValue("start_date[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -83,14 +86,17 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
         }
     }
 
-    public DateTime? StartDateGte
+    public DateTimeOffset? StartDateGte
     {
         get
         {
             if (!this._queryProperties.TryGetValue("start_date[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -101,14 +107,17 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
         }
     }
 
-    public DateTime? StartDateLt
+    public DateTimeOffset? StartDateLt
     {
         get
         {
             if (!this._queryProperties.TryGetValue("start_date[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -119,14 +128,17 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
         }
     }
 
-    public DateTime? StartDateLte
+    public DateTimeOffset? StartDateLte
     {
         get
         {
             if (!this._queryProperties.TryGetValue("start_date[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {

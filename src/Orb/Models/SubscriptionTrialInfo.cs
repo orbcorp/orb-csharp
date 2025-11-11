@@ -11,14 +11,17 @@ namespace Orb.Models;
 [JsonConverter(typeof(ModelConverter<SubscriptionTrialInfo>))]
 public sealed record class SubscriptionTrialInfo : ModelBase, IFromRaw<SubscriptionTrialInfo>
 {
-    public required DateTime? EndDate
+    public required DateTimeOffset? EndDate
     {
         get
         {
             if (!this._properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -57,7 +60,7 @@ public sealed record class SubscriptionTrialInfo : ModelBase, IFromRaw<Subscript
     }
 
     [SetsRequiredMembers]
-    public SubscriptionTrialInfo(DateTime? endDate)
+    public SubscriptionTrialInfo(DateTimeOffset? endDate)
         : this()
     {
         this.EndDate = endDate;

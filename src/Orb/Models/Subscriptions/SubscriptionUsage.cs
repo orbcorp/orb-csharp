@@ -458,7 +458,7 @@ public sealed record class UsageModel : ModelBase, IFromRaw<UsageModel>
         }
     }
 
-    public required System::DateTime TimeframeEnd
+    public required System::DateTimeOffset TimeframeEnd
     {
         get
         {
@@ -471,7 +471,7 @@ public sealed record class UsageModel : ModelBase, IFromRaw<UsageModel>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -485,7 +485,7 @@ public sealed record class UsageModel : ModelBase, IFromRaw<UsageModel>
         }
     }
 
-    public required System::DateTime TimeframeStart
+    public required System::DateTimeOffset TimeframeStart
     {
         get
         {
@@ -498,7 +498,7 @@ public sealed record class UsageModel : ModelBase, IFromRaw<UsageModel>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1010,7 +1010,7 @@ public sealed record class Usage1 : ModelBase, IFromRaw<Usage1>
         }
     }
 
-    public required System::DateTime TimeframeEnd
+    public required System::DateTimeOffset TimeframeEnd
     {
         get
         {
@@ -1023,7 +1023,7 @@ public sealed record class Usage1 : ModelBase, IFromRaw<Usage1>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1037,7 +1037,7 @@ public sealed record class Usage1 : ModelBase, IFromRaw<Usage1>
         }
     }
 
-    public required System::DateTime TimeframeStart
+    public required System::DateTimeOffset TimeframeStart
     {
         get
         {
@@ -1050,7 +1050,7 @@ public sealed record class Usage1 : ModelBase, IFromRaw<Usage1>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );

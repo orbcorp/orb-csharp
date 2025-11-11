@@ -151,14 +151,14 @@ public sealed record class DataModel : ModelBase, IFromRaw<DataModel>
         }
     }
 
-    public required System::DateTime? EffectiveDate
+    public required System::DateTimeOffset? EffectiveDate
     {
         get
         {
             if (!this._properties.TryGetValue("effective_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -172,14 +172,14 @@ public sealed record class DataModel : ModelBase, IFromRaw<DataModel>
         }
     }
 
-    public required System::DateTime? ExpiryDate
+    public required System::DateTimeOffset? ExpiryDate
     {
         get
         {
             if (!this._properties.TryGetValue("expiry_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );

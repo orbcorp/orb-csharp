@@ -58,7 +58,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -71,7 +71,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -320,7 +320,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
         }
     }
 
-    public required System::DateTime NewBlockExpiryDate
+    public required System::DateTimeOffset NewBlockExpiryDate
     {
         get
         {
@@ -333,7 +333,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );

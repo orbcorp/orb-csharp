@@ -17,14 +17,17 @@ namespace Orb.Models.Customers;
 /// </summary>
 public sealed record class CustomerListParams : ParamsBase
 {
-    public DateTime? CreatedAtGt
+    public DateTimeOffset? CreatedAtGt
     {
         get
         {
             if (!this._queryProperties.TryGetValue("created_at[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -35,14 +38,17 @@ public sealed record class CustomerListParams : ParamsBase
         }
     }
 
-    public DateTime? CreatedAtGte
+    public DateTimeOffset? CreatedAtGte
     {
         get
         {
             if (!this._queryProperties.TryGetValue("created_at[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -53,14 +59,17 @@ public sealed record class CustomerListParams : ParamsBase
         }
     }
 
-    public DateTime? CreatedAtLt
+    public DateTimeOffset? CreatedAtLt
     {
         get
         {
             if (!this._queryProperties.TryGetValue("created_at[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -71,14 +80,17 @@ public sealed record class CustomerListParams : ParamsBase
         }
     }
 
-    public DateTime? CreatedAtLte
+    public DateTimeOffset? CreatedAtLte
     {
         get
         {
             if (!this._queryProperties.TryGetValue("created_at[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {

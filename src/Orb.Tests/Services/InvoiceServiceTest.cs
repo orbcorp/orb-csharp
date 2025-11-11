@@ -13,7 +13,7 @@ public class InvoiceServiceTest : TestBase
             new()
             {
                 Currency = "USD",
-                InvoiceDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                InvoiceDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 LineItems =
                 [
                     new()

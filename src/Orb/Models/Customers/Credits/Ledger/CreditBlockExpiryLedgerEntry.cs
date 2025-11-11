@@ -60,7 +60,7 @@ public sealed record class CreditBlockExpiryLedgerEntry
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -73,7 +73,7 @@ public sealed record class CreditBlockExpiryLedgerEntry
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );

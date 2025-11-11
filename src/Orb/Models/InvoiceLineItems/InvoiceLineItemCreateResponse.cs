@@ -194,7 +194,7 @@ public sealed record class InvoiceLineItemCreateResponse
     /// <summary>
     /// The end date of the range of time applied for this line item's price.
     /// </summary>
-    public required System::DateTime EndDate
+    public required System::DateTimeOffset EndDate
     {
         get
         {
@@ -204,7 +204,7 @@ public sealed record class InvoiceLineItemCreateResponse
                     new System::ArgumentOutOfRangeException("end_date", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -468,7 +468,7 @@ public sealed record class InvoiceLineItemCreateResponse
     /// <summary>
     /// The start date of the range of time applied for this line item's price.
     /// </summary>
-    public required System::DateTime StartDate
+    public required System::DateTimeOffset StartDate
     {
         get
         {
@@ -481,7 +481,7 @@ public sealed record class InvoiceLineItemCreateResponse
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );

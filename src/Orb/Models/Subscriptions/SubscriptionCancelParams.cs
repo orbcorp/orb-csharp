@@ -133,14 +133,14 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     /// The date that the cancellation should take effect. This parameter can only
     /// be passed if the `cancel_option` is `requested_date`.
     /// </summary>
-    public System::DateTime? CancellationDate
+    public System::DateTimeOffset? CancellationDate
     {
         get
         {
             if (!this._bodyProperties.TryGetValue("cancellation_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );

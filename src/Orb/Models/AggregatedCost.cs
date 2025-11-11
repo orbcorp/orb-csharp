@@ -68,7 +68,7 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
         }
     }
 
-    public required DateTime TimeframeEnd
+    public required DateTimeOffset TimeframeEnd
     {
         get
         {
@@ -78,7 +78,7 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
                     new ArgumentOutOfRangeException("timeframe_end", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -89,7 +89,7 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
         }
     }
 
-    public required DateTime TimeframeStart
+    public required DateTimeOffset TimeframeStart
     {
         get
         {
@@ -99,7 +99,7 @@ public sealed record class AggregatedCost : ModelBase, IFromRaw<AggregatedCost>
                     new ArgumentOutOfRangeException("timeframe_start", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
         }
         init
         {

@@ -19,7 +19,7 @@ public class EventServiceTest : TestBase
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
-                Timestamp = DateTime.Parse("2020-12-09T16:09:53Z"),
+                Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
             }
         );
         event1.Validate();
@@ -48,7 +48,7 @@ public class EventServiceTest : TestBase
                         {
                             { "foo", JsonSerializer.SerializeToElement("bar") },
                         },
-                        Timestamp = DateTime.Parse("2020-12-09T16:09:53Z"),
+                        Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
                         CustomerID = "customer_id",
                         ExternalCustomerID = "external_customer_id",
                     },

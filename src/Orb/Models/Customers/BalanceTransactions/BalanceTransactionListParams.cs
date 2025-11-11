@@ -81,14 +81,17 @@ public sealed record class BalanceTransactionListParams : ParamsBase
         }
     }
 
-    public DateTime? OperationTimeGt
+    public DateTimeOffset? OperationTimeGt
     {
         get
         {
             if (!this._queryProperties.TryGetValue("operation_time[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -99,14 +102,17 @@ public sealed record class BalanceTransactionListParams : ParamsBase
         }
     }
 
-    public DateTime? OperationTimeGte
+    public DateTimeOffset? OperationTimeGte
     {
         get
         {
             if (!this._queryProperties.TryGetValue("operation_time[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -117,14 +123,17 @@ public sealed record class BalanceTransactionListParams : ParamsBase
         }
     }
 
-    public DateTime? OperationTimeLt
+    public DateTimeOffset? OperationTimeLt
     {
         get
         {
             if (!this._queryProperties.TryGetValue("operation_time[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -135,14 +144,17 @@ public sealed record class BalanceTransactionListParams : ParamsBase
         }
     }
 
-    public DateTime? OperationTimeLte
+    public DateTimeOffset? OperationTimeLte
     {
         get
         {
             if (!this._queryProperties.TryGetValue("operation_time[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {

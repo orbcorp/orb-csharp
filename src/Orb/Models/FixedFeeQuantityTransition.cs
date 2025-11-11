@@ -14,7 +14,7 @@ public sealed record class FixedFeeQuantityTransition
     : ModelBase,
         IFromRaw<FixedFeeQuantityTransition>
 {
-    public required DateTime EffectiveDate
+    public required DateTimeOffset EffectiveDate
     {
         get
         {
@@ -24,7 +24,7 @@ public sealed record class FixedFeeQuantityTransition
                     new ArgumentOutOfRangeException("effective_date", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
         }
         init
         {

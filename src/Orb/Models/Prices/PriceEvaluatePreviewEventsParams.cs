@@ -39,7 +39,7 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     /// <summary>
     /// The exclusive upper bound for event timestamps
     /// </summary>
-    public required System::DateTime TimeframeEnd
+    public required System::DateTimeOffset TimeframeEnd
     {
         get
         {
@@ -52,7 +52,7 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -69,7 +69,7 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     /// <summary>
     /// The inclusive lower bound for event timestamps
     /// </summary>
-    public required System::DateTime TimeframeStart
+    public required System::DateTimeOffset TimeframeStart
     {
         get
         {
@@ -82,7 +82,7 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -336,7 +336,7 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
     /// the time that usage was recorded, and is particularly important to attribute
     /// usage to a given billing period.
     /// </summary>
-    public required System::DateTime Timestamp
+    public required System::DateTimeOffset Timestamp
     {
         get
         {
@@ -349,7 +349,7 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
