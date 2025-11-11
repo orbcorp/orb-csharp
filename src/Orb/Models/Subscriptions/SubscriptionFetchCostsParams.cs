@@ -49,14 +49,14 @@ public sealed record class SubscriptionFetchCostsParams : ParamsBase
     /// <summary>
     /// Costs returned are exclusive of `timeframe_end`.
     /// </summary>
-    public System::DateTime? TimeframeEnd
+    public System::DateTimeOffset? TimeframeEnd
     {
         get
         {
             if (!this._queryProperties.TryGetValue("timeframe_end", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -73,14 +73,14 @@ public sealed record class SubscriptionFetchCostsParams : ParamsBase
     /// <summary>
     /// Costs returned are inclusive of `timeframe_start`.
     /// </summary>
-    public System::DateTime? TimeframeStart
+    public System::DateTimeOffset? TimeframeStart
     {
         get
         {
             if (!this._queryProperties.TryGetValue("timeframe_start", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );

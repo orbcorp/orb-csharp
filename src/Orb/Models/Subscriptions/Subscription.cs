@@ -203,7 +203,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -216,7 +216,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -235,7 +235,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
     /// that the instant returned is not part of the billing period. Set to null for
     /// subscriptions that are not currently active.
     /// </summary>
-    public required System::DateTime? CurrentBillingPeriodEndDate
+    public required System::DateTimeOffset? CurrentBillingPeriodEndDate
     {
         get
         {
@@ -247,7 +247,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
             )
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -266,7 +266,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
     /// the instant returned is exactly the beginning of the billing period. Set to
     /// null if the subscription is not currently active.
     /// </summary>
-    public required System::DateTime? CurrentBillingPeriodStartDate
+    public required System::DateTimeOffset? CurrentBillingPeriodStartDate
     {
         get
         {
@@ -278,7 +278,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
             )
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -392,14 +392,14 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
     /// <summary>
     /// The date Orb stops billing for this subscription.
     /// </summary>
-    public required System::DateTime? EndDate
+    public required System::DateTimeOffset? EndDate
     {
         get
         {
             if (!this._properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -739,7 +739,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
     /// <summary>
     /// The date Orb starts billing for this subscription.
     /// </summary>
-    public required System::DateTime StartDate
+    public required System::DateTimeOffset StartDate
     {
         get
         {
@@ -752,7 +752,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -895,11 +895,11 @@ public record class DiscountInterval
 {
     public object Value { get; private init; }
 
-    public System::DateTime? EndDate
+    public System::DateTimeOffset? EndDate
     {
         get
         {
-            return Match<System::DateTime?>(
+            return Match<System::DateTimeOffset?>(
                 amount: (x) => x.EndDate,
                 percentage: (x) => x.EndDate,
                 usage: (x) => x.EndDate
@@ -907,7 +907,7 @@ public record class DiscountInterval
         }
     }
 
-    public System::DateTime StartDate
+    public System::DateTimeOffset StartDate
     {
         get
         {

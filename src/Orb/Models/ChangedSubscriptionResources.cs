@@ -299,7 +299,7 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
     /// <summary>
     /// The creation time of the resource in Orb.
     /// </summary>
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -312,7 +312,7 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -636,14 +636,14 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
     /// When the invoice payment is due. The due date is null if the invoice is not
     /// yet finalized.
     /// </summary>
-    public required System::DateTime? DueDate
+    public required System::DateTimeOffset? DueDate
     {
         get
         {
             if (!this._properties.TryGetValue("due_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -662,14 +662,14 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
     /// will be eligible to be issued, otherwise it will be `null`. If `auto-issue`
     /// is true, the invoice will automatically begin issuing at this time.
     /// </summary>
-    public required System::DateTime? EligibleToIssueAt
+    public required System::DateTimeOffset? EligibleToIssueAt
     {
         get
         {
             if (!this._properties.TryGetValue("eligible_to_issue_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -708,7 +708,7 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
     /// <summary>
     /// The scheduled date of the invoice
     /// </summary>
-    public required System::DateTime InvoiceDate
+    public required System::DateTimeOffset InvoiceDate
     {
         get
         {
@@ -721,7 +721,7 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -847,14 +847,14 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
     /// If the invoice failed to issue, this will be the last time it failed to issue
     /// (even if it is now in a different state.)
     /// </summary>
-    public required System::DateTime? IssueFailedAt
+    public required System::DateTimeOffset? IssueFailedAt
     {
         get
         {
             if (!this._properties.TryGetValue("issue_failed_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -872,14 +872,14 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
     /// If the invoice has been issued, this will be the time it transitioned to
     /// `issued` (even if it is now in a different state.)
     /// </summary>
-    public required System::DateTime? IssuedAt
+    public required System::DateTimeOffset? IssuedAt
     {
         get
         {
             if (!this._properties.TryGetValue("issued_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1055,14 +1055,14 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
     /// If the invoice has a status of `paid`, this gives a timestamp when the invoice
     /// was paid.
     /// </summary>
-    public required System::DateTime? PaidAt
+    public required System::DateTimeOffset? PaidAt
     {
         get
         {
             if (!this._properties.TryGetValue("paid_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1114,14 +1114,14 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
     /// If payment was attempted on this invoice but failed, this will be the time
     /// of the most recent attempt.
     /// </summary>
-    public required System::DateTime? PaymentFailedAt
+    public required System::DateTimeOffset? PaymentFailedAt
     {
         get
         {
             if (!this._properties.TryGetValue("payment_failed_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1140,14 +1140,14 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
     /// the most recent attempt. This field is especially useful for delayed-notification
     /// payment mechanisms (like bank transfers), where payment can take 3 days or more.
     /// </summary>
-    public required System::DateTime? PaymentStartedAt
+    public required System::DateTimeOffset? PaymentStartedAt
     {
         get
         {
             if (!this._properties.TryGetValue("payment_started_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1165,14 +1165,14 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
     /// If the invoice is in draft, this timestamp will reflect when the invoice is
     /// scheduled to be issued.
     /// </summary>
-    public required System::DateTime? ScheduledIssueAt
+    public required System::DateTimeOffset? ScheduledIssueAt
     {
         get
         {
             if (!this._properties.TryGetValue("scheduled_issue_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1282,14 +1282,14 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
     /// provider sync was attempted. This field will always be `null` for invoices
     /// using Orb Invoicing.
     /// </summary>
-    public required System::DateTime? SyncFailedAt
+    public required System::DateTimeOffset? SyncFailedAt
     {
         get
         {
             if (!this._properties.TryGetValue("sync_failed_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1335,14 +1335,14 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
     /// If the invoice has a status of `void`, this gives a timestamp when the invoice
     /// was voided.
     /// </summary>
-    public required System::DateTime? VoidedAt
+    public required System::DateTimeOffset? VoidedAt
     {
         get
         {
             if (!this._properties.TryGetValue("voided_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1497,14 +1497,14 @@ public sealed record class AutoCollection : ModelBase, IFromRaw<AutoCollection>
     /// the next attempt will occur. If dunning has been exhausted, or auto-collection
     /// is not enabled for this invoice, this field will be `null`.
     /// </summary>
-    public required System::DateTime? NextAttemptAt
+    public required System::DateTimeOffset? NextAttemptAt
     {
         get
         {
             if (!this._properties.TryGetValue("next_attempt_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1547,14 +1547,14 @@ public sealed record class AutoCollection : ModelBase, IFromRaw<AutoCollection>
     /// or if dunning has been exhausted (`previously_attempted_at` is non-null, but
     /// `next_attempt_time` is null).
     /// </summary>
-    public required System::DateTime? PreviouslyAttemptedAt
+    public required System::DateTimeOffset? PreviouslyAttemptedAt
     {
         get
         {
             if (!this._properties.TryGetValue("previously_attempted_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1755,14 +1755,14 @@ public sealed record class CreditNote : ModelBase, IFromRaw<CreditNote>
     /// If the credit note has a status of `void`, this gives a timestamp when the
     /// credit note was voided.
     /// </summary>
-    public required System::DateTime? VoidedAt
+    public required System::DateTimeOffset? VoidedAt
     {
         get
         {
             if (!this._properties.TryGetValue("voided_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1896,7 +1896,7 @@ public sealed record class CustomerBalanceTransaction
     /// <summary>
     /// The creation time of this transaction.
     /// </summary>
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -1909,7 +1909,7 @@ public sealed record class CustomerBalanceTransaction
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2445,7 +2445,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
     /// <summary>
     /// The end date of the range of time applied for this line item's price.
     /// </summary>
-    public required System::DateTime EndDate
+    public required System::DateTimeOffset EndDate
     {
         get
         {
@@ -2455,7 +2455,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
                     new System::ArgumentOutOfRangeException("end_date", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2719,7 +2719,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
     /// <summary>
     /// The start date of the range of time applied for this line item's price.
     /// </summary>
-    public required System::DateTime StartDate
+    public required System::DateTimeOffset StartDate
     {
         get
         {
@@ -2732,7 +2732,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -3648,7 +3648,7 @@ public sealed record class PaymentAttempt : ModelBase, IFromRaw<PaymentAttempt>
     /// <summary>
     /// The time at which the payment attempt was created.
     /// </summary>
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -3661,7 +3661,7 @@ public sealed record class PaymentAttempt : ModelBase, IFromRaw<PaymentAttempt>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );

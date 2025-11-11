@@ -55,7 +55,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
     /// Optional invoice date to set. Must be in the past, if not set, `invoice_date`
     /// is set to the current time in the customer's timezone.
     /// </summary>
-    public required System::DateTime InvoiceDate
+    public required System::DateTimeOffset InvoiceDate
     {
         get
         {
@@ -68,7 +68,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -652,7 +652,7 @@ public record class DueDate
         Value = value;
     }
 
-    public DueDate(System::DateTime value)
+    public DueDate(System::DateTimeOffset value)
     {
         Value = value;
     }
@@ -673,15 +673,15 @@ public record class DueDate
         return value != null;
     }
 
-    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTime? value)
+    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTimeOffset? value)
     {
-        value = this.Value as System::DateTime?;
+        value = this.Value as System::DateTimeOffset?;
         return value != null;
     }
 
     public void Switch(
         System::Action<System::DateOnly> @date,
-        System::Action<System::DateTime> @dateTime
+        System::Action<System::DateTimeOffset> @dateTime
     )
     {
         switch (this.Value)
@@ -689,7 +689,7 @@ public record class DueDate
             case System::DateOnly value:
                 @date(value);
                 break;
-            case System::DateTime value:
+            case System::DateTimeOffset value:
                 @dateTime(value);
                 break;
             default:
@@ -699,20 +699,20 @@ public record class DueDate
 
     public T Match<T>(
         System::Func<System::DateOnly, T> @date,
-        System::Func<System::DateTime, T> @dateTime
+        System::Func<System::DateTimeOffset, T> @dateTime
     )
     {
         return this.Value switch
         {
             System::DateOnly value => @date(value),
-            System::DateTime value => @dateTime(value),
+            System::DateTimeOffset value => @dateTime(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of DueDate"),
         };
     }
 
     public static implicit operator DueDate(System::DateOnly value) => new(value);
 
-    public static implicit operator DueDate(System::DateTime value) => new(value);
+    public static implicit operator DueDate(System::DateTimeOffset value) => new(value);
 
     public void Validate()
     {
@@ -751,13 +751,15 @@ sealed class DueDateConverter : JsonConverter<DueDate?>
 
         try
         {
-            return new DueDate(JsonSerializer.Deserialize<System::DateTime>(ref reader, options));
+            return new DueDate(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(ref reader, options)
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateTime'",
+                    "Data does not match union variant 'System::DateTimeOffset'",
                     e
                 )
             );

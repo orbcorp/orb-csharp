@@ -76,8 +76,8 @@ public class PriceServiceTest : TestBase
             new()
             {
                 PriceID = "price_id",
-                TimeframeEnd = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                TimeframeStart = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             }
         );
         response.Validate();
@@ -89,8 +89,8 @@ public class PriceServiceTest : TestBase
         var response = await this.client.Prices.EvaluateMultiple(
             new()
             {
-                TimeframeEnd = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                TimeframeStart = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             }
         );
         response.Validate();
@@ -102,8 +102,8 @@ public class PriceServiceTest : TestBase
         var response = await this.client.Prices.EvaluatePreviewEvents(
             new()
             {
-                TimeframeEnd = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                TimeframeStart = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             }
         );
         response.Validate();

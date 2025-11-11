@@ -47,7 +47,7 @@ public sealed record class CreditNoteModel : ModelBase, IFromRaw<CreditNoteModel
     /// <summary>
     /// The creation time of the resource in Orb.
     /// </summary>
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -60,7 +60,7 @@ public sealed record class CreditNoteModel : ModelBase, IFromRaw<CreditNoteModel
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -389,14 +389,14 @@ public sealed record class CreditNoteModel : ModelBase, IFromRaw<CreditNoteModel
     /// <summary>
     /// The time at which the credit note was voided in Orb, if applicable.
     /// </summary>
-    public required System::DateTime? VoidedAt
+    public required System::DateTimeOffset? VoidedAt
     {
         get
         {
             if (!this._properties.TryGetValue("voided_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -715,14 +715,14 @@ public sealed record class LineItemModel : ModelBase, IFromRaw<LineItemModel>
     /// <summary>
     /// The end time of the service period for this credit note line item.
     /// </summary>
-    public System::DateTime? EndTimeExclusive
+    public System::DateTimeOffset? EndTimeExclusive
     {
         get
         {
             if (!this._properties.TryGetValue("end_time_exclusive", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -739,14 +739,14 @@ public sealed record class LineItemModel : ModelBase, IFromRaw<LineItemModel>
     /// <summary>
     /// The start time of the service period for this credit note line item.
     /// </summary>
-    public System::DateTime? StartTimeInclusive
+    public System::DateTimeOffset? StartTimeInclusive
     {
         get
         {
             if (!this._properties.TryGetValue("start_time_inclusive", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );

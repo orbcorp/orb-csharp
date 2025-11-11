@@ -208,7 +208,7 @@ public record class DueDateModel
         Value = value;
     }
 
-    public DueDateModel(System::DateTime value)
+    public DueDateModel(System::DateTimeOffset value)
     {
         Value = value;
     }
@@ -229,15 +229,15 @@ public record class DueDateModel
         return value != null;
     }
 
-    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTime? value)
+    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTimeOffset? value)
     {
-        value = this.Value as System::DateTime?;
+        value = this.Value as System::DateTimeOffset?;
         return value != null;
     }
 
     public void Switch(
         System::Action<System::DateOnly> @date,
-        System::Action<System::DateTime> @dateTime
+        System::Action<System::DateTimeOffset> @dateTime
     )
     {
         switch (this.Value)
@@ -245,7 +245,7 @@ public record class DueDateModel
             case System::DateOnly value:
                 @date(value);
                 break;
-            case System::DateTime value:
+            case System::DateTimeOffset value:
                 @dateTime(value);
                 break;
             default:
@@ -255,13 +255,13 @@ public record class DueDateModel
 
     public T Match<T>(
         System::Func<System::DateOnly, T> @date,
-        System::Func<System::DateTime, T> @dateTime
+        System::Func<System::DateTimeOffset, T> @dateTime
     )
     {
         return this.Value switch
         {
             System::DateOnly value => @date(value),
-            System::DateTime value => @dateTime(value),
+            System::DateTimeOffset value => @dateTime(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of DueDateModel"
             ),
@@ -270,7 +270,7 @@ public record class DueDateModel
 
     public static implicit operator DueDateModel(System::DateOnly value) => new(value);
 
-    public static implicit operator DueDateModel(System::DateTime value) => new(value);
+    public static implicit operator DueDateModel(System::DateTimeOffset value) => new(value);
 
     public void Validate()
     {
@@ -312,14 +312,14 @@ sealed class DueDateModelConverter : JsonConverter<DueDateModel?>
         try
         {
             return new DueDateModel(
-                JsonSerializer.Deserialize<System::DateTime>(ref reader, options)
+                JsonSerializer.Deserialize<System::DateTimeOffset>(ref reader, options)
             );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateTime'",
+                    "Data does not match union variant 'System::DateTimeOffset'",
                     e
                 )
             );
@@ -352,7 +352,7 @@ public record class InvoiceDate
         Value = value;
     }
 
-    public InvoiceDate(System::DateTime value)
+    public InvoiceDate(System::DateTimeOffset value)
     {
         Value = value;
     }
@@ -373,15 +373,15 @@ public record class InvoiceDate
         return value != null;
     }
 
-    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTime? value)
+    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTimeOffset? value)
     {
-        value = this.Value as System::DateTime?;
+        value = this.Value as System::DateTimeOffset?;
         return value != null;
     }
 
     public void Switch(
         System::Action<System::DateOnly> @date,
-        System::Action<System::DateTime> @dateTime
+        System::Action<System::DateTimeOffset> @dateTime
     )
     {
         switch (this.Value)
@@ -389,7 +389,7 @@ public record class InvoiceDate
             case System::DateOnly value:
                 @date(value);
                 break;
-            case System::DateTime value:
+            case System::DateTimeOffset value:
                 @dateTime(value);
                 break;
             default:
@@ -399,20 +399,20 @@ public record class InvoiceDate
 
     public T Match<T>(
         System::Func<System::DateOnly, T> @date,
-        System::Func<System::DateTime, T> @dateTime
+        System::Func<System::DateTimeOffset, T> @dateTime
     )
     {
         return this.Value switch
         {
             System::DateOnly value => @date(value),
-            System::DateTime value => @dateTime(value),
+            System::DateTimeOffset value => @dateTime(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of InvoiceDate"),
         };
     }
 
     public static implicit operator InvoiceDate(System::DateOnly value) => new(value);
 
-    public static implicit operator InvoiceDate(System::DateTime value) => new(value);
+    public static implicit operator InvoiceDate(System::DateTimeOffset value) => new(value);
 
     public void Validate()
     {
@@ -454,14 +454,14 @@ sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
         try
         {
             return new InvoiceDate(
-                JsonSerializer.Deserialize<System::DateTime>(ref reader, options)
+                JsonSerializer.Deserialize<System::DateTimeOffset>(ref reader, options)
             );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateTime'",
+                    "Data does not match union variant 'System::DateTimeOffset'",
                     e
                 )
             );

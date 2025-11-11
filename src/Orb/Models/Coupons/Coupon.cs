@@ -50,14 +50,14 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
     /// An archived coupon can no longer be redeemed. Active coupons will have a value
     /// of null for `archived_at`; this field will be non-null for archived coupons.
     /// </summary>
-    public required System::DateTime? ArchivedAt
+    public required System::DateTimeOffset? ArchivedAt
     {
         get
         {
             if (!this._properties.TryGetValue("archived_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );

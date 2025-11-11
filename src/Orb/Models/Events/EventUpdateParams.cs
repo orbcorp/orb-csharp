@@ -125,7 +125,7 @@ public sealed record class EventUpdateParams : ParamsBase
     /// the time that usage was recorded, and is particularly important to attribute
     /// usage to a given billing period.
     /// </summary>
-    public required DateTime Timestamp
+    public required DateTimeOffset Timestamp
     {
         get
         {
@@ -135,7 +135,7 @@ public sealed record class EventUpdateParams : ParamsBase
                     new ArgumentOutOfRangeException("timestamp", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
         }
         init
         {

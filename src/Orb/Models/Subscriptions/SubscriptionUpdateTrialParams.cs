@@ -179,7 +179,7 @@ public record class TrialEndDate
 {
     public object Value { get; private init; }
 
-    public TrialEndDate(System::DateTime value)
+    public TrialEndDate(System::DateTimeOffset value)
     {
         Value = value;
     }
@@ -199,9 +199,9 @@ public record class TrialEndDate
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTime? value)
+    public bool TryPickDateTimeOffset([NotNullWhen(true)] out System::DateTimeOffset? value)
     {
-        value = this.Value as System::DateTime?;
+        value = this.Value as System::DateTimeOffset?;
         return value != null;
     }
 
@@ -212,14 +212,14 @@ public record class TrialEndDate
     }
 
     public void Switch(
-        System::Action<System::DateTime> @dateTime,
+        System::Action<System::DateTimeOffset> @dateTimeOffset,
         System::Action<ApiEnum<string, UnionMember1>> unionMember1
     )
     {
         switch (this.Value)
         {
-            case System::DateTime value:
-                @dateTime(value);
+            case System::DateTimeOffset value:
+                @dateTimeOffset(value);
                 break;
             case ApiEnum<string, UnionMember1> value:
                 unionMember1(value);
@@ -230,13 +230,13 @@ public record class TrialEndDate
     }
 
     public T Match<T>(
-        System::Func<System::DateTime, T> @dateTime,
+        System::Func<System::DateTimeOffset, T> @dateTimeOffset,
         System::Func<ApiEnum<string, UnionMember1>, T> unionMember1
     )
     {
         return this.Value switch
         {
-            System::DateTime value => @dateTime(value),
+            System::DateTimeOffset value => @dateTimeOffset(value),
             ApiEnum<string, UnionMember1> value => unionMember1(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of TrialEndDate"
@@ -244,7 +244,7 @@ public record class TrialEndDate
         };
     }
 
-    public static implicit operator TrialEndDate(System::DateTime value) => new(value);
+    public static implicit operator TrialEndDate(System::DateTimeOffset value) => new(value);
 
     public static implicit operator TrialEndDate(ApiEnum<string, UnionMember1> value) => new(value);
 
@@ -288,14 +288,14 @@ sealed class TrialEndDateConverter : JsonConverter<TrialEndDate>
         try
         {
             return new TrialEndDate(
-                JsonSerializer.Deserialize<System::DateTime>(ref reader, options)
+                JsonSerializer.Deserialize<System::DateTimeOffset>(ref reader, options)
             );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateTime'",
+                    "Data does not match union variant 'System::DateTimeOffset'",
                     e
                 )
             );

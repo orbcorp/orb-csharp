@@ -668,7 +668,7 @@ public record class StartDate
 {
     public object Value { get; private init; }
 
-    public StartDate(System::DateTime value)
+    public StartDate(System::DateTimeOffset value)
     {
         Value = value;
     }
@@ -688,9 +688,9 @@ public record class StartDate
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTime? value)
+    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTimeOffset? value)
     {
-        value = this.Value as System::DateTime?;
+        value = this.Value as System::DateTimeOffset?;
         return value != null;
     }
 
@@ -703,13 +703,13 @@ public record class StartDate
     }
 
     public void Switch(
-        System::Action<System::DateTime> @dateTime,
+        System::Action<System::DateTimeOffset> @dateTime,
         System::Action<ApiEnum<string, BillingCycleRelativeDate>> billingCycleRelative
     )
     {
         switch (this.Value)
         {
-            case System::DateTime value:
+            case System::DateTimeOffset value:
                 @dateTime(value);
                 break;
             case ApiEnum<string, BillingCycleRelativeDate> value:
@@ -721,19 +721,19 @@ public record class StartDate
     }
 
     public T Match<T>(
-        System::Func<System::DateTime, T> @dateTime,
+        System::Func<System::DateTimeOffset, T> @dateTime,
         System::Func<ApiEnum<string, BillingCycleRelativeDate>, T> billingCycleRelative
     )
     {
         return this.Value switch
         {
-            System::DateTime value => @dateTime(value),
+            System::DateTimeOffset value => @dateTime(value),
             ApiEnum<string, BillingCycleRelativeDate> value => billingCycleRelative(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of StartDate"),
         };
     }
 
-    public static implicit operator StartDate(System::DateTime value) => new(value);
+    public static implicit operator StartDate(System::DateTimeOffset value) => new(value);
 
     public static implicit operator StartDate(ApiEnum<string, BillingCycleRelativeDate> value) =>
         new(value);
@@ -780,13 +780,15 @@ sealed class StartDateConverter : JsonConverter<StartDate>
 
         try
         {
-            return new StartDate(JsonSerializer.Deserialize<System::DateTime>(ref reader, options));
+            return new StartDate(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(ref reader, options)
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateTime'",
+                    "Data does not match union variant 'System::DateTimeOffset'",
                     e
                 )
             );
@@ -1485,7 +1487,7 @@ public record class EndDate
 {
     public object Value { get; private init; }
 
-    public EndDate(System::DateTime value)
+    public EndDate(System::DateTimeOffset value)
     {
         Value = value;
     }
@@ -1505,9 +1507,9 @@ public record class EndDate
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTime? value)
+    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTimeOffset? value)
     {
-        value = this.Value as System::DateTime?;
+        value = this.Value as System::DateTimeOffset?;
         return value != null;
     }
 
@@ -1520,13 +1522,13 @@ public record class EndDate
     }
 
     public void Switch(
-        System::Action<System::DateTime> @dateTime,
+        System::Action<System::DateTimeOffset> @dateTime,
         System::Action<ApiEnum<string, BillingCycleRelativeDate>> billingCycleRelative
     )
     {
         switch (this.Value)
         {
-            case System::DateTime value:
+            case System::DateTimeOffset value:
                 @dateTime(value);
                 break;
             case ApiEnum<string, BillingCycleRelativeDate> value:
@@ -1538,19 +1540,19 @@ public record class EndDate
     }
 
     public T Match<T>(
-        System::Func<System::DateTime, T> @dateTime,
+        System::Func<System::DateTimeOffset, T> @dateTime,
         System::Func<ApiEnum<string, BillingCycleRelativeDate>, T> billingCycleRelative
     )
     {
         return this.Value switch
         {
-            System::DateTime value => @dateTime(value),
+            System::DateTimeOffset value => @dateTime(value),
             ApiEnum<string, BillingCycleRelativeDate> value => billingCycleRelative(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of EndDate"),
         };
     }
 
-    public static implicit operator EndDate(System::DateTime value) => new(value);
+    public static implicit operator EndDate(System::DateTimeOffset value) => new(value);
 
     public static implicit operator EndDate(ApiEnum<string, BillingCycleRelativeDate> value) =>
         new(value);
@@ -1597,13 +1599,15 @@ sealed class EndDateConverter : JsonConverter<EndDate?>
 
         try
         {
-            return new EndDate(JsonSerializer.Deserialize<System::DateTime>(ref reader, options));
+            return new EndDate(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(ref reader, options)
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateTime'",
+                    "Data does not match union variant 'System::DateTimeOffset'",
                     e
                 )
             );
@@ -1627,7 +1631,7 @@ public sealed record class FixedFeeQuantityTransition
     /// <summary>
     /// The date that the fixed fee quantity transition should take effect.
     /// </summary>
-    public required System::DateTime EffectiveDate
+    public required System::DateTimeOffset EffectiveDate
     {
         get
         {
@@ -1640,7 +1644,7 @@ public sealed record class FixedFeeQuantityTransition
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -7810,7 +7814,7 @@ public record class StartDateModel
 {
     public object Value { get; private init; }
 
-    public StartDateModel(System::DateTime value)
+    public StartDateModel(System::DateTimeOffset value)
     {
         Value = value;
     }
@@ -7830,9 +7834,9 @@ public record class StartDateModel
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTime? value)
+    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTimeOffset? value)
     {
-        value = this.Value as System::DateTime?;
+        value = this.Value as System::DateTimeOffset?;
         return value != null;
     }
 
@@ -7845,13 +7849,13 @@ public record class StartDateModel
     }
 
     public void Switch(
-        System::Action<System::DateTime> @dateTime,
+        System::Action<System::DateTimeOffset> @dateTime,
         System::Action<ApiEnum<string, BillingCycleRelativeDate>> billingCycleRelative
     )
     {
         switch (this.Value)
         {
-            case System::DateTime value:
+            case System::DateTimeOffset value:
                 @dateTime(value);
                 break;
             case ApiEnum<string, BillingCycleRelativeDate> value:
@@ -7865,13 +7869,13 @@ public record class StartDateModel
     }
 
     public T Match<T>(
-        System::Func<System::DateTime, T> @dateTime,
+        System::Func<System::DateTimeOffset, T> @dateTime,
         System::Func<ApiEnum<string, BillingCycleRelativeDate>, T> billingCycleRelative
     )
     {
         return this.Value switch
         {
-            System::DateTime value => @dateTime(value),
+            System::DateTimeOffset value => @dateTime(value),
             ApiEnum<string, BillingCycleRelativeDate> value => billingCycleRelative(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of StartDateModel"
@@ -7879,7 +7883,7 @@ public record class StartDateModel
         };
     }
 
-    public static implicit operator StartDateModel(System::DateTime value) => new(value);
+    public static implicit operator StartDateModel(System::DateTimeOffset value) => new(value);
 
     public static implicit operator StartDateModel(
         ApiEnum<string, BillingCycleRelativeDate> value
@@ -7928,14 +7932,14 @@ sealed class StartDateModelConverter : JsonConverter<StartDateModel>
         try
         {
             return new StartDateModel(
-                JsonSerializer.Deserialize<System::DateTime>(ref reader, options)
+                JsonSerializer.Deserialize<System::DateTimeOffset>(ref reader, options)
             );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateTime'",
+                    "Data does not match union variant 'System::DateTimeOffset'",
                     e
                 )
             );
@@ -8323,7 +8327,7 @@ public record class EndDateModel
 {
     public object Value { get; private init; }
 
-    public EndDateModel(System::DateTime value)
+    public EndDateModel(System::DateTimeOffset value)
     {
         Value = value;
     }
@@ -8343,9 +8347,9 @@ public record class EndDateModel
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTime? value)
+    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTimeOffset? value)
     {
-        value = this.Value as System::DateTime?;
+        value = this.Value as System::DateTimeOffset?;
         return value != null;
     }
 
@@ -8358,13 +8362,13 @@ public record class EndDateModel
     }
 
     public void Switch(
-        System::Action<System::DateTime> @dateTime,
+        System::Action<System::DateTimeOffset> @dateTime,
         System::Action<ApiEnum<string, BillingCycleRelativeDate>> billingCycleRelative
     )
     {
         switch (this.Value)
         {
-            case System::DateTime value:
+            case System::DateTimeOffset value:
                 @dateTime(value);
                 break;
             case ApiEnum<string, BillingCycleRelativeDate> value:
@@ -8376,13 +8380,13 @@ public record class EndDateModel
     }
 
     public T Match<T>(
-        System::Func<System::DateTime, T> @dateTime,
+        System::Func<System::DateTimeOffset, T> @dateTime,
         System::Func<ApiEnum<string, BillingCycleRelativeDate>, T> billingCycleRelative
     )
     {
         return this.Value switch
         {
-            System::DateTime value => @dateTime(value),
+            System::DateTimeOffset value => @dateTime(value),
             ApiEnum<string, BillingCycleRelativeDate> value => billingCycleRelative(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of EndDateModel"
@@ -8390,7 +8394,7 @@ public record class EndDateModel
         };
     }
 
-    public static implicit operator EndDateModel(System::DateTime value) => new(value);
+    public static implicit operator EndDateModel(System::DateTimeOffset value) => new(value);
 
     public static implicit operator EndDateModel(ApiEnum<string, BillingCycleRelativeDate> value) =>
         new(value);
@@ -8438,14 +8442,14 @@ sealed class EndDateModelConverter : JsonConverter<EndDateModel?>
         try
         {
             return new EndDateModel(
-                JsonSerializer.Deserialize<System::DateTime>(ref reader, options)
+                JsonSerializer.Deserialize<System::DateTimeOffset>(ref reader, options)
             );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateTime'",
+                    "Data does not match union variant 'System::DateTimeOffset'",
                     e
                 )
             );
@@ -8726,7 +8730,7 @@ public record class EndDate1
 {
     public object Value { get; private init; }
 
-    public EndDate1(System::DateTime value)
+    public EndDate1(System::DateTimeOffset value)
     {
         Value = value;
     }
@@ -8746,9 +8750,9 @@ public record class EndDate1
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTime? value)
+    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTimeOffset? value)
     {
-        value = this.Value as System::DateTime?;
+        value = this.Value as System::DateTimeOffset?;
         return value != null;
     }
 
@@ -8761,13 +8765,13 @@ public record class EndDate1
     }
 
     public void Switch(
-        System::Action<System::DateTime> @dateTime,
+        System::Action<System::DateTimeOffset> @dateTime,
         System::Action<ApiEnum<string, BillingCycleRelativeDate>> billingCycleRelative
     )
     {
         switch (this.Value)
         {
-            case System::DateTime value:
+            case System::DateTimeOffset value:
                 @dateTime(value);
                 break;
             case ApiEnum<string, BillingCycleRelativeDate> value:
@@ -8779,19 +8783,19 @@ public record class EndDate1
     }
 
     public T Match<T>(
-        System::Func<System::DateTime, T> @dateTime,
+        System::Func<System::DateTimeOffset, T> @dateTime,
         System::Func<ApiEnum<string, BillingCycleRelativeDate>, T> billingCycleRelative
     )
     {
         return this.Value switch
         {
-            System::DateTime value => @dateTime(value),
+            System::DateTimeOffset value => @dateTime(value),
             ApiEnum<string, BillingCycleRelativeDate> value => billingCycleRelative(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of EndDate1"),
         };
     }
 
-    public static implicit operator EndDate1(System::DateTime value) => new(value);
+    public static implicit operator EndDate1(System::DateTimeOffset value) => new(value);
 
     public static implicit operator EndDate1(ApiEnum<string, BillingCycleRelativeDate> value) =>
         new(value);
@@ -8838,13 +8842,15 @@ sealed class EndDate1Converter : JsonConverter<EndDate1?>
 
         try
         {
-            return new EndDate1(JsonSerializer.Deserialize<System::DateTime>(ref reader, options));
+            return new EndDate1(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(ref reader, options)
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateTime'",
+                    "Data does not match union variant 'System::DateTimeOffset'",
                     e
                 )
             );
@@ -8872,7 +8878,7 @@ public sealed record class FixedFeeQuantityTransitionModel
     /// <summary>
     /// The date that the fixed fee quantity transition should take effect.
     /// </summary>
-    public required System::DateTime EffectiveDate
+    public required System::DateTimeOffset EffectiveDate
     {
         get
         {
@@ -8885,7 +8891,7 @@ public sealed record class FixedFeeQuantityTransitionModel
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -8961,7 +8967,7 @@ public record class StartDate1
 {
     public object Value { get; private init; }
 
-    public StartDate1(System::DateTime value)
+    public StartDate1(System::DateTimeOffset value)
     {
         Value = value;
     }
@@ -8981,9 +8987,9 @@ public record class StartDate1
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTime? value)
+    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTimeOffset? value)
     {
-        value = this.Value as System::DateTime?;
+        value = this.Value as System::DateTimeOffset?;
         return value != null;
     }
 
@@ -8996,13 +9002,13 @@ public record class StartDate1
     }
 
     public void Switch(
-        System::Action<System::DateTime> @dateTime,
+        System::Action<System::DateTimeOffset> @dateTime,
         System::Action<ApiEnum<string, BillingCycleRelativeDate>> billingCycleRelative
     )
     {
         switch (this.Value)
         {
-            case System::DateTime value:
+            case System::DateTimeOffset value:
                 @dateTime(value);
                 break;
             case ApiEnum<string, BillingCycleRelativeDate> value:
@@ -9014,19 +9020,19 @@ public record class StartDate1
     }
 
     public T Match<T>(
-        System::Func<System::DateTime, T> @dateTime,
+        System::Func<System::DateTimeOffset, T> @dateTime,
         System::Func<ApiEnum<string, BillingCycleRelativeDate>, T> billingCycleRelative
     )
     {
         return this.Value switch
         {
-            System::DateTime value => @dateTime(value),
+            System::DateTimeOffset value => @dateTime(value),
             ApiEnum<string, BillingCycleRelativeDate> value => billingCycleRelative(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of StartDate1"),
         };
     }
 
-    public static implicit operator StartDate1(System::DateTime value) => new(value);
+    public static implicit operator StartDate1(System::DateTimeOffset value) => new(value);
 
     public static implicit operator StartDate1(ApiEnum<string, BillingCycleRelativeDate> value) =>
         new(value);
@@ -9074,14 +9080,14 @@ sealed class StartDate1Converter : JsonConverter<StartDate1>
         try
         {
             return new StartDate1(
-                JsonSerializer.Deserialize<System::DateTime>(ref reader, options)
+                JsonSerializer.Deserialize<System::DateTimeOffset>(ref reader, options)
             );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateTime'",
+                    "Data does not match union variant 'System::DateTimeOffset'",
                     e
                 )
             );
@@ -9230,7 +9236,7 @@ public record class EndDate2
 {
     public object Value { get; private init; }
 
-    public EndDate2(System::DateTime value)
+    public EndDate2(System::DateTimeOffset value)
     {
         Value = value;
     }
@@ -9250,9 +9256,9 @@ public record class EndDate2
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTime? value)
+    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTimeOffset? value)
     {
-        value = this.Value as System::DateTime?;
+        value = this.Value as System::DateTimeOffset?;
         return value != null;
     }
 
@@ -9265,13 +9271,13 @@ public record class EndDate2
     }
 
     public void Switch(
-        System::Action<System::DateTime> @dateTime,
+        System::Action<System::DateTimeOffset> @dateTime,
         System::Action<ApiEnum<string, BillingCycleRelativeDate>> billingCycleRelative
     )
     {
         switch (this.Value)
         {
-            case System::DateTime value:
+            case System::DateTimeOffset value:
                 @dateTime(value);
                 break;
             case ApiEnum<string, BillingCycleRelativeDate> value:
@@ -9283,19 +9289,19 @@ public record class EndDate2
     }
 
     public T Match<T>(
-        System::Func<System::DateTime, T> @dateTime,
+        System::Func<System::DateTimeOffset, T> @dateTime,
         System::Func<ApiEnum<string, BillingCycleRelativeDate>, T> billingCycleRelative
     )
     {
         return this.Value switch
         {
-            System::DateTime value => @dateTime(value),
+            System::DateTimeOffset value => @dateTime(value),
             ApiEnum<string, BillingCycleRelativeDate> value => billingCycleRelative(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of EndDate2"),
         };
     }
 
-    public static implicit operator EndDate2(System::DateTime value) => new(value);
+    public static implicit operator EndDate2(System::DateTimeOffset value) => new(value);
 
     public static implicit operator EndDate2(ApiEnum<string, BillingCycleRelativeDate> value) =>
         new(value);
@@ -9342,13 +9348,15 @@ sealed class EndDate2Converter : JsonConverter<EndDate2?>
 
         try
         {
-            return new EndDate2(JsonSerializer.Deserialize<System::DateTime>(ref reader, options));
+            return new EndDate2(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(ref reader, options)
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateTime'",
+                    "Data does not match union variant 'System::DateTimeOffset'",
                     e
                 )
             );
@@ -9377,7 +9385,7 @@ public record class StartDate2
 {
     public object Value { get; private init; }
 
-    public StartDate2(System::DateTime value)
+    public StartDate2(System::DateTimeOffset value)
     {
         Value = value;
     }
@@ -9397,9 +9405,9 @@ public record class StartDate2
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTime? value)
+    public bool TryPickDateTime([NotNullWhen(true)] out System::DateTimeOffset? value)
     {
-        value = this.Value as System::DateTime?;
+        value = this.Value as System::DateTimeOffset?;
         return value != null;
     }
 
@@ -9412,13 +9420,13 @@ public record class StartDate2
     }
 
     public void Switch(
-        System::Action<System::DateTime> @dateTime,
+        System::Action<System::DateTimeOffset> @dateTime,
         System::Action<ApiEnum<string, BillingCycleRelativeDate>> billingCycleRelative
     )
     {
         switch (this.Value)
         {
-            case System::DateTime value:
+            case System::DateTimeOffset value:
                 @dateTime(value);
                 break;
             case ApiEnum<string, BillingCycleRelativeDate> value:
@@ -9430,19 +9438,19 @@ public record class StartDate2
     }
 
     public T Match<T>(
-        System::Func<System::DateTime, T> @dateTime,
+        System::Func<System::DateTimeOffset, T> @dateTime,
         System::Func<ApiEnum<string, BillingCycleRelativeDate>, T> billingCycleRelative
     )
     {
         return this.Value switch
         {
-            System::DateTime value => @dateTime(value),
+            System::DateTimeOffset value => @dateTime(value),
             ApiEnum<string, BillingCycleRelativeDate> value => billingCycleRelative(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of StartDate2"),
         };
     }
 
-    public static implicit operator StartDate2(System::DateTime value) => new(value);
+    public static implicit operator StartDate2(System::DateTimeOffset value) => new(value);
 
     public static implicit operator StartDate2(ApiEnum<string, BillingCycleRelativeDate> value) =>
         new(value);
@@ -9490,14 +9498,14 @@ sealed class StartDate2Converter : JsonConverter<StartDate2>
         try
         {
             return new StartDate2(
-                JsonSerializer.Deserialize<System::DateTime>(ref reader, options)
+                JsonSerializer.Deserialize<System::DateTimeOffset>(ref reader, options)
             );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             exceptions.Add(
                 new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateTime'",
+                    "Data does not match union variant 'System::DateTimeOffset'",
                     e
                 )
             );

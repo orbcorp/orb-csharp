@@ -181,7 +181,7 @@ public record class Price
         }
     }
 
-    public System::DateTime CreatedAt
+    public System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -2470,7 +2470,7 @@ public sealed record class Unit : ModelBase, IFromRaw<Unit>
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -2483,7 +2483,7 @@ public sealed record class Unit : ModelBase, IFromRaw<Unit>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -3790,7 +3790,7 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -3803,7 +3803,7 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -5143,7 +5143,7 @@ public sealed record class Bulk : ModelBase, IFromRaw<Bulk>
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -5156,7 +5156,7 @@ public sealed record class Bulk : ModelBase, IFromRaw<Bulk>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -6466,7 +6466,7 @@ public sealed record class BulkWithFilters : ModelBase, IFromRaw<BulkWithFilters
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -6479,7 +6479,7 @@ public sealed record class BulkWithFilters : ModelBase, IFromRaw<BulkWithFilters
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -8041,7 +8041,7 @@ public sealed record class Package : ModelBase, IFromRaw<Package>
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -8054,7 +8054,7 @@ public sealed record class Package : ModelBase, IFromRaw<Package>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -9361,7 +9361,7 @@ public sealed record class Matrix : ModelBase, IFromRaw<Matrix>
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -9374,7 +9374,7 @@ public sealed record class Matrix : ModelBase, IFromRaw<Matrix>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -10681,7 +10681,7 @@ public sealed record class ThresholdTotalAmount : ModelBase, IFromRaw<ThresholdT
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -10694,7 +10694,7 @@ public sealed record class ThresholdTotalAmount : ModelBase, IFromRaw<ThresholdT
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -12211,7 +12211,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -12224,7 +12224,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -13728,7 +13728,7 @@ public sealed record class TieredWithMinimum : ModelBase, IFromRaw<TieredWithMin
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -13741,7 +13741,7 @@ public sealed record class TieredWithMinimum : ModelBase, IFromRaw<TieredWithMin
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -15309,7 +15309,7 @@ public sealed record class GroupedTiered : ModelBase, IFromRaw<GroupedTiered>
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -15322,7 +15322,7 @@ public sealed record class GroupedTiered : ModelBase, IFromRaw<GroupedTiered>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -16826,7 +16826,7 @@ public sealed record class TieredPackageWithMinimum : ModelBase, IFromRaw<Tiered
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -16839,7 +16839,7 @@ public sealed record class TieredPackageWithMinimum : ModelBase, IFromRaw<Tiered
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -18374,7 +18374,7 @@ public sealed record class PackageWithAllocation : ModelBase, IFromRaw<PackageWi
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -18387,7 +18387,7 @@ public sealed record class PackageWithAllocation : ModelBase, IFromRaw<PackageWi
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -19835,7 +19835,7 @@ public sealed record class UnitWithPercent : ModelBase, IFromRaw<UnitWithPercent
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -19848,7 +19848,7 @@ public sealed record class UnitWithPercent : ModelBase, IFromRaw<UnitWithPercent
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -21254,7 +21254,7 @@ public sealed record class MatrixWithAllocation : ModelBase, IFromRaw<MatrixWith
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -21267,7 +21267,7 @@ public sealed record class MatrixWithAllocation : ModelBase, IFromRaw<MatrixWith
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -22584,7 +22584,7 @@ public sealed record class TieredWithProration : ModelBase, IFromRaw<TieredWithP
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -22597,7 +22597,7 @@ public sealed record class TieredWithProration : ModelBase, IFromRaw<TieredWithP
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -24084,7 +24084,7 @@ public sealed record class UnitWithProration : ModelBase, IFromRaw<UnitWithProra
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -24097,7 +24097,7 @@ public sealed record class UnitWithProration : ModelBase, IFromRaw<UnitWithProra
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -25483,7 +25483,7 @@ public sealed record class GroupedAllocation : ModelBase, IFromRaw<GroupedAlloca
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -25496,7 +25496,7 @@ public sealed record class GroupedAllocation : ModelBase, IFromRaw<GroupedAlloca
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -26973,7 +26973,7 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -26986,7 +26986,7 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -28430,7 +28430,7 @@ public sealed record class GroupedWithProratedMinimum
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -28443,7 +28443,7 @@ public sealed record class GroupedWithProratedMinimum
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -29888,7 +29888,7 @@ public sealed record class GroupedWithMeteredMinimum
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -29901,7 +29901,7 @@ public sealed record class GroupedWithMeteredMinimum
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -31651,7 +31651,7 @@ public sealed record class GroupedWithMinMaxThresholds
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -31664,7 +31664,7 @@ public sealed record class GroupedWithMinMaxThresholds
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -33142,7 +33142,7 @@ public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWit
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -33155,7 +33155,7 @@ public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWit
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -34704,7 +34704,7 @@ public sealed record class GroupedTieredPackage : ModelBase, IFromRaw<GroupedTie
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -34717,7 +34717,7 @@ public sealed record class GroupedTieredPackage : ModelBase, IFromRaw<GroupedTie
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -36258,7 +36258,7 @@ public sealed record class MaxGroupTieredPackage : ModelBase, IFromRaw<MaxGroupT
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -36271,7 +36271,7 @@ public sealed record class MaxGroupTieredPackage : ModelBase, IFromRaw<MaxGroupT
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -37816,7 +37816,7 @@ public sealed record class ScalableMatrixWithUnitPricing
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -37829,7 +37829,7 @@ public sealed record class ScalableMatrixWithUnitPricing
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -39446,7 +39446,7 @@ public sealed record class ScalableMatrixWithTieredPricing
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -39459,7 +39459,7 @@ public sealed record class ScalableMatrixWithTieredPricing
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -41149,7 +41149,7 @@ public sealed record class CumulativeGroupedBulk : ModelBase, IFromRaw<Cumulativ
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -41162,7 +41162,7 @@ public sealed record class CumulativeGroupedBulk : ModelBase, IFromRaw<Cumulativ
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -42710,7 +42710,7 @@ public sealed record class MinimumModel : ModelBase, IFromRaw<MinimumModel>
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -42723,7 +42723,7 @@ public sealed record class MinimumModel : ModelBase, IFromRaw<MinimumModel>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -44129,7 +44129,7 @@ public sealed record class Percent : ModelBase, IFromRaw<Percent>
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -44142,7 +44142,7 @@ public sealed record class Percent : ModelBase, IFromRaw<Percent>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -45514,7 +45514,7 @@ public sealed record class EventOutput : ModelBase, IFromRaw<EventOutput>
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -45527,7 +45527,7 @@ public sealed record class EventOutput : ModelBase, IFromRaw<EventOutput>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );

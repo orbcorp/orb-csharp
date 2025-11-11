@@ -82,14 +82,14 @@ public sealed record class LedgerListParams : ParamsBase
 {
     public required string CustomerID { get; init; }
 
-    public System::DateTime? CreatedAtGt
+    public System::DateTimeOffset? CreatedAtGt
     {
         get
         {
             if (!this._queryProperties.TryGetValue("created_at[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -103,14 +103,14 @@ public sealed record class LedgerListParams : ParamsBase
         }
     }
 
-    public System::DateTime? CreatedAtGte
+    public System::DateTimeOffset? CreatedAtGte
     {
         get
         {
             if (!this._queryProperties.TryGetValue("created_at[gte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -124,14 +124,14 @@ public sealed record class LedgerListParams : ParamsBase
         }
     }
 
-    public System::DateTime? CreatedAtLt
+    public System::DateTimeOffset? CreatedAtLt
     {
         get
         {
             if (!this._queryProperties.TryGetValue("created_at[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -145,14 +145,14 @@ public sealed record class LedgerListParams : ParamsBase
         }
     }
 
-    public System::DateTime? CreatedAtLte
+    public System::DateTimeOffset? CreatedAtLte
     {
         get
         {
             if (!this._queryProperties.TryGetValue("created_at[lte]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );

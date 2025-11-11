@@ -14,14 +14,17 @@ public sealed record class FixedFeeQuantityScheduleEntry
     : ModelBase,
         IFromRaw<FixedFeeQuantityScheduleEntry>
 {
-    public required DateTime? EndDate
+    public required DateTimeOffset? EndDate
     {
         get
         {
             if (!this._properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -78,7 +81,7 @@ public sealed record class FixedFeeQuantityScheduleEntry
         }
     }
 
-    public required DateTime StartDate
+    public required DateTimeOffset StartDate
     {
         get
         {
@@ -88,7 +91,7 @@ public sealed record class FixedFeeQuantityScheduleEntry
                     new ArgumentOutOfRangeException("start_date", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
         }
         init
         {

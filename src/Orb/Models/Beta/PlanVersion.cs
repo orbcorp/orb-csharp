@@ -52,7 +52,7 @@ public sealed record class PlanVersion : ModelBase, IFromRaw<PlanVersion>
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -65,7 +65,7 @@ public sealed record class PlanVersion : ModelBase, IFromRaw<PlanVersion>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );

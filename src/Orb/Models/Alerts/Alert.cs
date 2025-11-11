@@ -49,7 +49,7 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
     /// <summary>
     /// The creation time of the resource in Orb.
     /// </summary>
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -62,7 +62,7 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );

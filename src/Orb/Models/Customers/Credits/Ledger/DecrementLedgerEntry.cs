@@ -58,7 +58,7 @@ public sealed record class DecrementLedgerEntry : ModelBase, IFromRaw<DecrementL
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -71,7 +71,7 @@ public sealed record class DecrementLedgerEntry : ModelBase, IFromRaw<DecrementL
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );

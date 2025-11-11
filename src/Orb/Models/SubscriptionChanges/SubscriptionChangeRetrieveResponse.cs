@@ -47,7 +47,7 @@ public sealed record class SubscriptionChangeRetrieveResponse
     /// <summary>
     /// Subscription change will be cancelled at this time and can no longer be applied.
     /// </summary>
-    public required System::DateTime ExpirationTime
+    public required System::DateTimeOffset ExpirationTime
     {
         get
         {
@@ -60,7 +60,7 @@ public sealed record class SubscriptionChangeRetrieveResponse
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -121,14 +121,14 @@ public sealed record class SubscriptionChangeRetrieveResponse
     /// <summary>
     /// When this change was applied.
     /// </summary>
-    public System::DateTime? AppliedAt
+    public System::DateTimeOffset? AppliedAt
     {
         get
         {
             if (!this._properties.TryGetValue("applied_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -145,14 +145,14 @@ public sealed record class SubscriptionChangeRetrieveResponse
     /// <summary>
     /// When this change was cancelled.
     /// </summary>
-    public System::DateTime? CancelledAt
+    public System::DateTimeOffset? CancelledAt
     {
         get
         {
             if (!this._properties.TryGetValue("cancelled_at", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );

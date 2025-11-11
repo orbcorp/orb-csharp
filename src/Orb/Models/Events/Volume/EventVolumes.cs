@@ -107,7 +107,7 @@ public sealed record class Data : ModelBase, IFromRaw<global::Orb.Models.Events.
         }
     }
 
-    public required DateTime TimeframeEnd
+    public required DateTimeOffset TimeframeEnd
     {
         get
         {
@@ -117,7 +117,7 @@ public sealed record class Data : ModelBase, IFromRaw<global::Orb.Models.Events.
                     new ArgumentOutOfRangeException("timeframe_end", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -128,7 +128,7 @@ public sealed record class Data : ModelBase, IFromRaw<global::Orb.Models.Events.
         }
     }
 
-    public required DateTime TimeframeStart
+    public required DateTimeOffset TimeframeStart
     {
         get
         {
@@ -138,7 +138,7 @@ public sealed record class Data : ModelBase, IFromRaw<global::Orb.Models.Events.
                     new ArgumentOutOfRangeException("timeframe_start", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
         }
         init
         {

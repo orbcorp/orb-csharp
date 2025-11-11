@@ -118,7 +118,7 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -131,7 +131,7 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1512,7 +1512,7 @@ public sealed record class Product : ModelBase, IFromRaw<Product>
         }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
@@ -1525,7 +1525,7 @@ public sealed record class Product : ModelBase, IFromRaw<Product>
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );

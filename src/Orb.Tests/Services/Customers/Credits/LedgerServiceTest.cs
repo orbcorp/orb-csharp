@@ -28,8 +28,8 @@ public class LedgerServiceTest : TestBase
                     Amount = 0,
                     Currency = "currency",
                     Description = "description",
-                    EffectiveDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                    ExpiryDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                    EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
                         new()
@@ -69,8 +69,8 @@ public class LedgerServiceTest : TestBase
                     Amount = 0,
                     Currency = "currency",
                     Description = "description",
-                    EffectiveDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
-                    ExpiryDate = DateTime.Parse("2019-12-27T18:11:19.117Z"),
+                    EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
                         new()

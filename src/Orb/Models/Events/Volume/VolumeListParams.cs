@@ -29,7 +29,7 @@ public sealed record class VolumeListParams : ParamsBase
     /// datetime values are converted to UTC time. If the specified time isn't hour-aligned,
     /// the response includes the event volume count for the hour the time falls in.
     /// </summary>
-    public required DateTime TimeframeStart
+    public required DateTimeOffset TimeframeStart
     {
         get
         {
@@ -39,7 +39,7 @@ public sealed record class VolumeListParams : ParamsBase
                     new ArgumentOutOfRangeException("timeframe_start", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -104,14 +104,17 @@ public sealed record class VolumeListParams : ParamsBase
     /// UTC time.If the specified time isn't hour-aligned, the response includes
     /// the event volumecount for the hour the time falls in.
     /// </summary>
-    public DateTime? TimeframeEnd
+    public DateTimeOffset? TimeframeEnd
     {
         get
         {
             if (!this._queryProperties.TryGetValue("timeframe_end", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {

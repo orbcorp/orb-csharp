@@ -69,14 +69,17 @@ public sealed record class EventSearchParams : ParamsBase
     /// The end of the timeframe, exclusive, in which to search events. If not specified,
     /// the current time is used.
     /// </summary>
-    public DateTime? TimeframeEnd
+    public DateTimeOffset? TimeframeEnd
     {
         get
         {
             if (!this._bodyProperties.TryGetValue("timeframe_end", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -91,14 +94,17 @@ public sealed record class EventSearchParams : ParamsBase
     /// The start of the timeframe, inclusive, in which to search events. If not specified,
     /// the one week ago is used.
     /// </summary>
-    public DateTime? TimeframeStart
+    public DateTimeOffset? TimeframeStart
     {
         get
         {
             if (!this._bodyProperties.TryGetValue("timeframe_start", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {

@@ -48,7 +48,7 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// <summary>
     /// The exclusive upper bound for event timestamps
     /// </summary>
-    public required DateTime TimeframeEnd
+    public required DateTimeOffset TimeframeEnd
     {
         get
         {
@@ -58,7 +58,7 @@ public sealed record class PriceEvaluateParams : ParamsBase
                     new ArgumentOutOfRangeException("timeframe_end", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -72,7 +72,7 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// <summary>
     /// The inclusive lower bound for event timestamps
     /// </summary>
-    public required DateTime TimeframeStart
+    public required DateTimeOffset TimeframeStart
     {
         get
         {
@@ -82,7 +82,7 @@ public sealed record class PriceEvaluateParams : ParamsBase
                     new ArgumentOutOfRangeException("timeframe_start", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
         }
         init
         {

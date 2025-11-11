@@ -37,14 +37,14 @@ public sealed record class AffectedBlock : ModelBase, IFromRaw<AffectedBlock>
         }
     }
 
-    public required System::DateTime? ExpiryDate
+    public required System::DateTimeOffset? ExpiryDate
     {
         get
         {
             if (!this._properties.TryGetValue("expiry_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );

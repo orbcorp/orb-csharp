@@ -364,14 +364,14 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     /// be passed if the `change_option` is `requested_date`. If a date with no time
     /// is passed, the plan change will happen at midnight in the customer's timezone.
     /// </summary>
-    public System::DateTime? ChangeDate
+    public System::DateTimeOffset? ChangeDate
     {
         get
         {
             if (!this._bodyProperties.TryGetValue("change_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -957,14 +957,14 @@ public sealed record class AddAdjustment1 : ModelBase, IFromRaw<AddAdjustment1>
     /// The end date of the adjustment interval. This is the date that the adjustment
     /// will stop affecting prices on the subscription.
     /// </summary>
-    public System::DateTime? EndDate
+    public System::DateTimeOffset? EndDate
     {
         get
         {
             if (!this._properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1004,14 +1004,14 @@ public sealed record class AddAdjustment1 : ModelBase, IFromRaw<AddAdjustment1>
     /// will start affecting prices on the subscription. If null, the adjustment will
     /// start when the phase or subscription starts.
     /// </summary>
-    public System::DateTime? StartDate
+    public System::DateTimeOffset? StartDate
     {
         get
         {
             if (!this._properties.TryGetValue("start_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1464,14 +1464,14 @@ public sealed record class AddPriceModel : ModelBase, IFromRaw<AddPriceModel>
     /// The end date of the price interval. This is the date that the price will stop
     /// billing on the subscription. If null, billing will end when the phase or subscription ends.
     /// </summary>
-    public System::DateTime? EndDate
+    public System::DateTimeOffset? EndDate
     {
         get
         {
             if (!this._properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1618,14 +1618,14 @@ public sealed record class AddPriceModel : ModelBase, IFromRaw<AddPriceModel>
     /// start billing on the subscription. If null, billing will start when the phase
     /// or subscription starts.
     /// </summary>
-    public System::DateTime? StartDate
+    public System::DateTimeOffset? StartDate
     {
         get
         {
             if (!this._properties.TryGetValue("start_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );

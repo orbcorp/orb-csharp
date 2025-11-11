@@ -78,14 +78,14 @@ public sealed record class UsageDiscountInterval : ModelBase, IFromRaw<UsageDisc
     /// <summary>
     /// The end date of the discount interval.
     /// </summary>
-    public required System::DateTime? EndDate
+    public required System::DateTimeOffset? EndDate
     {
         get
         {
             if (!this._properties.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateTime?>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -130,7 +130,7 @@ public sealed record class UsageDiscountInterval : ModelBase, IFromRaw<UsageDisc
     /// <summary>
     /// The start date of the discount interval.
     /// </summary>
-    public required System::DateTime StartDate
+    public required System::DateTimeOffset StartDate
     {
         get
         {
@@ -143,7 +143,7 @@ public sealed record class UsageDiscountInterval : ModelBase, IFromRaw<UsageDisc
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateTime>(
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
                 element,
                 ModelBase.SerializerOptions
             );

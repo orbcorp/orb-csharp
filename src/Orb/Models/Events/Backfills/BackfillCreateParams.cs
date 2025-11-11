@@ -60,7 +60,7 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// default, Orb allows backfills up to 31 days in duration at a time. Reach
     /// out to discuss extending this limit and your use case.
     /// </summary>
-    public required DateTime TimeframeEnd
+    public required DateTimeOffset TimeframeEnd
     {
         get
         {
@@ -70,7 +70,7 @@ public sealed record class BackfillCreateParams : ParamsBase
                     new ArgumentOutOfRangeException("timeframe_end", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -86,7 +86,7 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// default, Orb allows backfills up to 31 days in duration at a time. Reach
     /// out to discuss extending this limit and your use case.
     /// </summary>
-    public required DateTime TimeframeStart
+    public required DateTimeOffset TimeframeStart
     {
         get
         {
@@ -96,7 +96,7 @@ public sealed record class BackfillCreateParams : ParamsBase
                     new ArgumentOutOfRangeException("timeframe_start", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -112,14 +112,17 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// backfill will automatically begin reflecting throughout Orb at the close
     /// time. If not specified, it will default to 1 day after the creation of the backfill.
     /// </summary>
-    public DateTime? CloseTime
+    public DateTimeOffset? CloseTime
     {
         get
         {
             if (!this._bodyProperties.TryGetValue("close_time", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateTime?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<DateTimeOffset?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
