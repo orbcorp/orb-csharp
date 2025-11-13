@@ -17,7 +17,7 @@ public sealed record class NewPlanMatrixWithDisplayNamePrice
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, Cadence36> Cadence
+    public required ApiEnum<string, NewPlanMatrixWithDisplayNamePriceCadence> Cadence
     {
         get
         {
@@ -27,10 +27,9 @@ public sealed record class NewPlanMatrixWithDisplayNamePrice
                     new System::ArgumentOutOfRangeException("cadence", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Cadence36>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, NewPlanMatrixWithDisplayNamePriceCadence>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -72,7 +71,7 @@ public sealed record class NewPlanMatrixWithDisplayNamePrice
     /// <summary>
     /// Configuration for matrix_with_display_name pricing
     /// </summary>
-    public required MatrixWithDisplayNameConfigModel MatrixWithDisplayNameConfig
+    public required NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig MatrixWithDisplayNameConfig
     {
         get
         {
@@ -90,7 +89,7 @@ public sealed record class NewPlanMatrixWithDisplayNamePrice
                     )
                 );
 
-            return JsonSerializer.Deserialize<MatrixWithDisplayNameConfigModel>(
+            return JsonSerializer.Deserialize<NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -111,7 +110,7 @@ public sealed record class NewPlanMatrixWithDisplayNamePrice
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public required ApiEnum<string, ModelType35> ModelType
+    public required ApiEnum<string, NewPlanMatrixWithDisplayNamePriceModelType> ModelType
     {
         get
         {
@@ -124,10 +123,9 @@ public sealed record class NewPlanMatrixWithDisplayNamePrice
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ModelType35>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, NewPlanMatrixWithDisplayNamePriceModelType>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -263,14 +261,14 @@ public sealed record class NewPlanMatrixWithDisplayNamePrice
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public ConversionRateConfig35? ConversionRateConfig
+    public NewPlanMatrixWithDisplayNamePriceConversionRateConfig? ConversionRateConfig
     {
         get
         {
             if (!this._properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ConversionRateConfig35?>(
+            return JsonSerializer.Deserialize<NewPlanMatrixWithDisplayNamePriceConversionRateConfig?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -524,8 +522,8 @@ public sealed record class NewPlanMatrixWithDisplayNamePrice
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(Cadence36Converter))]
-public enum Cadence36
+[JsonConverter(typeof(NewPlanMatrixWithDisplayNamePriceCadenceConverter))]
+public enum NewPlanMatrixWithDisplayNamePriceCadence
 {
     Annual,
     SemiAnnual,
@@ -535,9 +533,10 @@ public enum Cadence36
     Custom,
 }
 
-sealed class Cadence36Converter : JsonConverter<Cadence36>
+sealed class NewPlanMatrixWithDisplayNamePriceCadenceConverter
+    : JsonConverter<NewPlanMatrixWithDisplayNamePriceCadence>
 {
-    public override Cadence36 Read(
+    public override NewPlanMatrixWithDisplayNamePriceCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -545,19 +544,19 @@ sealed class Cadence36Converter : JsonConverter<Cadence36>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => Cadence36.Annual,
-            "semi_annual" => Cadence36.SemiAnnual,
-            "monthly" => Cadence36.Monthly,
-            "quarterly" => Cadence36.Quarterly,
-            "one_time" => Cadence36.OneTime,
-            "custom" => Cadence36.Custom,
-            _ => (Cadence36)(-1),
+            "annual" => NewPlanMatrixWithDisplayNamePriceCadence.Annual,
+            "semi_annual" => NewPlanMatrixWithDisplayNamePriceCadence.SemiAnnual,
+            "monthly" => NewPlanMatrixWithDisplayNamePriceCadence.Monthly,
+            "quarterly" => NewPlanMatrixWithDisplayNamePriceCadence.Quarterly,
+            "one_time" => NewPlanMatrixWithDisplayNamePriceCadence.OneTime,
+            "custom" => NewPlanMatrixWithDisplayNamePriceCadence.Custom,
+            _ => (NewPlanMatrixWithDisplayNamePriceCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Cadence36 value,
+        NewPlanMatrixWithDisplayNamePriceCadence value,
         JsonSerializerOptions options
     )
     {
@@ -565,12 +564,12 @@ sealed class Cadence36Converter : JsonConverter<Cadence36>
             writer,
             value switch
             {
-                Cadence36.Annual => "annual",
-                Cadence36.SemiAnnual => "semi_annual",
-                Cadence36.Monthly => "monthly",
-                Cadence36.Quarterly => "quarterly",
-                Cadence36.OneTime => "one_time",
-                Cadence36.Custom => "custom",
+                NewPlanMatrixWithDisplayNamePriceCadence.Annual => "annual",
+                NewPlanMatrixWithDisplayNamePriceCadence.SemiAnnual => "semi_annual",
+                NewPlanMatrixWithDisplayNamePriceCadence.Monthly => "monthly",
+                NewPlanMatrixWithDisplayNamePriceCadence.Quarterly => "quarterly",
+                NewPlanMatrixWithDisplayNamePriceCadence.OneTime => "one_time",
+                NewPlanMatrixWithDisplayNamePriceCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -583,10 +582,12 @@ sealed class Cadence36Converter : JsonConverter<Cadence36>
 /// <summary>
 /// Configuration for matrix_with_display_name pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixWithDisplayNameConfigModel>))]
-public sealed record class MatrixWithDisplayNameConfigModel
+[JsonConverter(
+    typeof(ModelConverter<NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig>)
+)]
+public sealed record class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig
     : ModelBase,
-        IFromRaw<MatrixWithDisplayNameConfigModel>
+        IFromRaw<NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig>
 {
     /// <summary>
     /// Used to determine the unit rate
@@ -662,22 +663,26 @@ public sealed record class MatrixWithDisplayNameConfigModel
         }
     }
 
-    public MatrixWithDisplayNameConfigModel() { }
+    public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig() { }
 
-    public MatrixWithDisplayNameConfigModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    MatrixWithDisplayNameConfigModel(FrozenDictionary<string, JsonElement> properties)
+    NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig(
+        FrozenDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static MatrixWithDisplayNameConfigModel FromRawUnchecked(
+    public static NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -815,15 +820,16 @@ public sealed record class UnitAmount2 : ModelBase, IFromRaw<UnitAmount2>
 /// <summary>
 /// The pricing model type
 /// </summary>
-[JsonConverter(typeof(ModelType35Converter))]
-public enum ModelType35
+[JsonConverter(typeof(NewPlanMatrixWithDisplayNamePriceModelTypeConverter))]
+public enum NewPlanMatrixWithDisplayNamePriceModelType
 {
     MatrixWithDisplayName,
 }
 
-sealed class ModelType35Converter : JsonConverter<ModelType35>
+sealed class NewPlanMatrixWithDisplayNamePriceModelTypeConverter
+    : JsonConverter<NewPlanMatrixWithDisplayNamePriceModelType>
 {
-    public override ModelType35 Read(
+    public override NewPlanMatrixWithDisplayNamePriceModelType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -831,14 +837,15 @@ sealed class ModelType35Converter : JsonConverter<ModelType35>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "matrix_with_display_name" => ModelType35.MatrixWithDisplayName,
-            _ => (ModelType35)(-1),
+            "matrix_with_display_name" =>
+                NewPlanMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
+            _ => (NewPlanMatrixWithDisplayNamePriceModelType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ModelType35 value,
+        NewPlanMatrixWithDisplayNamePriceModelType value,
         JsonSerializerOptions options
     )
     {
@@ -846,7 +853,8 @@ sealed class ModelType35Converter : JsonConverter<ModelType35>
             writer,
             value switch
             {
-                ModelType35.MatrixWithDisplayName => "matrix_with_display_name",
+                NewPlanMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName =>
+                    "matrix_with_display_name",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -856,90 +864,98 @@ sealed class ModelType35Converter : JsonConverter<ModelType35>
     }
 }
 
-[JsonConverter(typeof(ConversionRateConfig35Converter))]
-public record class ConversionRateConfig35
+[JsonConverter(typeof(NewPlanMatrixWithDisplayNamePriceConversionRateConfigConverter))]
+public record class NewPlanMatrixWithDisplayNamePriceConversionRateConfig
 {
     public object Value { get; private init; }
 
-    public ConversionRateConfig35(UnitConversionRateConfig value)
+    public NewPlanMatrixWithDisplayNamePriceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    )
     {
         Value = value;
     }
 
-    public ConversionRateConfig35(TieredConversionRateConfig value)
+    public NewPlanMatrixWithDisplayNamePriceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    )
     {
         Value = value;
     }
 
-    ConversionRateConfig35(UnknownVariant value)
+    NewPlanMatrixWithDisplayNamePriceConversionRateConfig(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static ConversionRateConfig35 CreateUnknownVariant(JsonElement value)
+    public static NewPlanMatrixWithDisplayNamePriceConversionRateConfig CreateUnknownVariant(
+        JsonElement value
+    )
     {
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
-        value = this.Value as UnitConversionRateConfig;
+        value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
-    public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
-        value = this.Value as TieredConversionRateConfig;
+        value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
     public void Switch(
-        System::Action<UnitConversionRateConfig> unit,
-        System::Action<TieredConversionRateConfig> tiered
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
     )
     {
         switch (this.Value)
         {
-            case UnitConversionRateConfig value:
+            case SharedUnitConversionRateConfig value:
                 unit(value);
                 break;
-            case TieredConversionRateConfig value:
+            case SharedTieredConversionRateConfig value:
                 tiered(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of ConversionRateConfig35"
+                    "Data did not match any variant of NewPlanMatrixWithDisplayNamePriceConversionRateConfig"
                 );
         }
     }
 
     public T Match<T>(
-        System::Func<UnitConversionRateConfig, T> unit,
-        System::Func<TieredConversionRateConfig, T> tiered
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
     )
     {
         return this.Value switch
         {
-            UnitConversionRateConfig value => unit(value),
-            TieredConversionRateConfig value => tiered(value),
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig35"
+                "Data did not match any variant of NewPlanMatrixWithDisplayNamePriceConversionRateConfig"
             ),
         };
     }
 
-    public static implicit operator ConversionRateConfig35(UnitConversionRateConfig value) =>
-        new(value);
+    public static implicit operator NewPlanMatrixWithDisplayNamePriceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
 
-    public static implicit operator ConversionRateConfig35(TieredConversionRateConfig value) =>
-        new(value);
+    public static implicit operator NewPlanMatrixWithDisplayNamePriceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {
         if (this.Value is UnknownVariant)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig35"
+                "Data did not match any variant of NewPlanMatrixWithDisplayNamePriceConversionRateConfig"
             );
         }
     }
@@ -947,9 +963,10 @@ public record class ConversionRateConfig35
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class ConversionRateConfig35Converter : JsonConverter<ConversionRateConfig35>
+sealed class NewPlanMatrixWithDisplayNamePriceConversionRateConfigConverter
+    : JsonConverter<NewPlanMatrixWithDisplayNamePriceConversionRateConfig>
 {
-    public override ConversionRateConfig35? Read(
+    public override NewPlanMatrixWithDisplayNamePriceConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -974,14 +991,16 @@ sealed class ConversionRateConfig35Converter : JsonConverter<ConversionRateConfi
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new ConversionRateConfig35(deserialized);
+                        return new NewPlanMatrixWithDisplayNamePriceConversionRateConfig(
+                            deserialized
+                        );
                     }
                 }
                 catch (System::Exception e)
@@ -989,7 +1008,7 @@ sealed class ConversionRateConfig35Converter : JsonConverter<ConversionRateConfi
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'UnitConversionRateConfig'",
+                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
                             e
                         )
                     );
@@ -1003,14 +1022,16 @@ sealed class ConversionRateConfig35Converter : JsonConverter<ConversionRateConfi
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new ConversionRateConfig35(deserialized);
+                        return new NewPlanMatrixWithDisplayNamePriceConversionRateConfig(
+                            deserialized
+                        );
                     }
                 }
                 catch (System::Exception e)
@@ -1018,7 +1039,7 @@ sealed class ConversionRateConfig35Converter : JsonConverter<ConversionRateConfi
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'TieredConversionRateConfig'",
+                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
                             e
                         )
                     );
@@ -1037,7 +1058,7 @@ sealed class ConversionRateConfig35Converter : JsonConverter<ConversionRateConfi
 
     public override void Write(
         Utf8JsonWriter writer,
-        ConversionRateConfig35 value,
+        NewPlanMatrixWithDisplayNamePriceConversionRateConfig value,
         JsonSerializerOptions options
     )
     {

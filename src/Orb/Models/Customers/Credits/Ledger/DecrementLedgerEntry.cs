@@ -208,7 +208,7 @@ public sealed record class DecrementLedgerEntry : ModelBase, IFromRaw<DecrementL
         }
     }
 
-    public required ApiEnum<string, EntryStatus3> EntryStatus
+    public required ApiEnum<string, DecrementLedgerEntryEntryStatus> EntryStatus
     {
         get
         {
@@ -221,7 +221,7 @@ public sealed record class DecrementLedgerEntry : ModelBase, IFromRaw<DecrementL
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, EntryStatus3>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, DecrementLedgerEntryEntryStatus>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -235,7 +235,7 @@ public sealed record class DecrementLedgerEntry : ModelBase, IFromRaw<DecrementL
         }
     }
 
-    public required ApiEnum<string, EntryType13> EntryType
+    public required ApiEnum<string, DecrementLedgerEntryEntryType> EntryType
     {
         get
         {
@@ -248,7 +248,7 @@ public sealed record class DecrementLedgerEntry : ModelBase, IFromRaw<DecrementL
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, EntryType13>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, DecrementLedgerEntryEntryType>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -441,16 +441,17 @@ public sealed record class DecrementLedgerEntry : ModelBase, IFromRaw<DecrementL
     }
 }
 
-[JsonConverter(typeof(EntryStatus3Converter))]
-public enum EntryStatus3
+[JsonConverter(typeof(DecrementLedgerEntryEntryStatusConverter))]
+public enum DecrementLedgerEntryEntryStatus
 {
     Committed,
     Pending,
 }
 
-sealed class EntryStatus3Converter : JsonConverter<EntryStatus3>
+sealed class DecrementLedgerEntryEntryStatusConverter
+    : JsonConverter<DecrementLedgerEntryEntryStatus>
 {
-    public override EntryStatus3 Read(
+    public override DecrementLedgerEntryEntryStatus Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -458,15 +459,15 @@ sealed class EntryStatus3Converter : JsonConverter<EntryStatus3>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "committed" => EntryStatus3.Committed,
-            "pending" => EntryStatus3.Pending,
-            _ => (EntryStatus3)(-1),
+            "committed" => DecrementLedgerEntryEntryStatus.Committed,
+            "pending" => DecrementLedgerEntryEntryStatus.Pending,
+            _ => (DecrementLedgerEntryEntryStatus)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        EntryStatus3 value,
+        DecrementLedgerEntryEntryStatus value,
         JsonSerializerOptions options
     )
     {
@@ -474,8 +475,8 @@ sealed class EntryStatus3Converter : JsonConverter<EntryStatus3>
             writer,
             value switch
             {
-                EntryStatus3.Committed => "committed",
-                EntryStatus3.Pending => "pending",
+                DecrementLedgerEntryEntryStatus.Committed => "committed",
+                DecrementLedgerEntryEntryStatus.Pending => "pending",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -485,15 +486,15 @@ sealed class EntryStatus3Converter : JsonConverter<EntryStatus3>
     }
 }
 
-[JsonConverter(typeof(EntryType13Converter))]
-public enum EntryType13
+[JsonConverter(typeof(DecrementLedgerEntryEntryTypeConverter))]
+public enum DecrementLedgerEntryEntryType
 {
     Decrement,
 }
 
-sealed class EntryType13Converter : JsonConverter<EntryType13>
+sealed class DecrementLedgerEntryEntryTypeConverter : JsonConverter<DecrementLedgerEntryEntryType>
 {
-    public override EntryType13 Read(
+    public override DecrementLedgerEntryEntryType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -501,14 +502,14 @@ sealed class EntryType13Converter : JsonConverter<EntryType13>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "decrement" => EntryType13.Decrement,
-            _ => (EntryType13)(-1),
+            "decrement" => DecrementLedgerEntryEntryType.Decrement,
+            _ => (DecrementLedgerEntryEntryType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        EntryType13 value,
+        DecrementLedgerEntryEntryType value,
         JsonSerializerOptions options
     )
     {
@@ -516,7 +517,7 @@ sealed class EntryType13Converter : JsonConverter<EntryType13>
             writer,
             value switch
             {
-                EntryType13.Decrement => "decrement",
+                DecrementLedgerEntryEntryType.Decrement => "decrement",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

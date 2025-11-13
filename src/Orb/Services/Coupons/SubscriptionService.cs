@@ -26,7 +26,7 @@ public sealed class SubscriptionService : global::Orb.Services.Coupons.ISubscrip
         _client = client;
     }
 
-    public async Task<Subscriptions::SubscriptionsModel> List(
+    public async Task<Subscriptions::SubscriptionSubscriptions> List(
         SubscriptionListParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -40,7 +40,7 @@ public sealed class SubscriptionService : global::Orb.Services.Coupons.ISubscrip
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var page = await response
-            .Deserialize<Subscriptions::SubscriptionsModel>(cancellationToken)
+            .Deserialize<Subscriptions::SubscriptionSubscriptions>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {

@@ -256,7 +256,7 @@ public sealed record class DataModel : ModelBase, IFromRaw<DataModel>
         }
     }
 
-    public required ApiEnum<string, global::Orb.Models.Customers.Credits.StatusModel> Status
+    public required ApiEnum<string, DataModelStatus> Status
     {
         get
         {
@@ -266,9 +266,10 @@ public sealed record class DataModel : ModelBase, IFromRaw<DataModel>
                     new System::ArgumentOutOfRangeException("status", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.StatusModel>
-            >(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ApiEnum<string, DataModelStatus>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -326,7 +327,7 @@ public sealed record class FilterModel
     /// <summary>
     /// The property of the price the block applies to. Only item_id is supported.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Customers.Credits.FieldModel> Field
+    public required ApiEnum<string, global::Orb.Models.Customers.Credits.FilterModelField> Field
     {
         get
         {
@@ -337,7 +338,7 @@ public sealed record class FilterModel
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.FieldModel>
+                ApiEnum<string, global::Orb.Models.Customers.Credits.FilterModelField>
             >(element, ModelBase.SerializerOptions);
         }
         init
@@ -352,7 +353,10 @@ public sealed record class FilterModel
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Customers.Credits.OperatorModel> Operator
+    public required ApiEnum<
+        string,
+        global::Orb.Models.Customers.Credits.FilterModelOperator
+    > Operator
     {
         get
         {
@@ -363,7 +367,7 @@ public sealed record class FilterModel
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.OperatorModel>
+                ApiEnum<string, global::Orb.Models.Customers.Credits.FilterModelOperator>
             >(element, ModelBase.SerializerOptions);
         }
         init
@@ -436,15 +440,16 @@ public sealed record class FilterModel
 /// <summary>
 /// The property of the price the block applies to. Only item_id is supported.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Customers.Credits.FieldModelConverter))]
-public enum FieldModel
+[JsonConverter(typeof(global::Orb.Models.Customers.Credits.FilterModelFieldConverter))]
+public enum FilterModelField
 {
     ItemID,
 }
 
-sealed class FieldModelConverter : JsonConverter<global::Orb.Models.Customers.Credits.FieldModel>
+sealed class FilterModelFieldConverter
+    : JsonConverter<global::Orb.Models.Customers.Credits.FilterModelField>
 {
-    public override global::Orb.Models.Customers.Credits.FieldModel Read(
+    public override global::Orb.Models.Customers.Credits.FilterModelField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -452,14 +457,14 @@ sealed class FieldModelConverter : JsonConverter<global::Orb.Models.Customers.Cr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "item_id" => global::Orb.Models.Customers.Credits.FieldModel.ItemID,
-            _ => (global::Orb.Models.Customers.Credits.FieldModel)(-1),
+            "item_id" => global::Orb.Models.Customers.Credits.FilterModelField.ItemID,
+            _ => (global::Orb.Models.Customers.Credits.FilterModelField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Customers.Credits.FieldModel value,
+        global::Orb.Models.Customers.Credits.FilterModelField value,
         JsonSerializerOptions options
     )
     {
@@ -467,7 +472,7 @@ sealed class FieldModelConverter : JsonConverter<global::Orb.Models.Customers.Cr
             writer,
             value switch
             {
-                global::Orb.Models.Customers.Credits.FieldModel.ItemID => "item_id",
+                global::Orb.Models.Customers.Credits.FilterModelField.ItemID => "item_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -480,17 +485,17 @@ sealed class FieldModelConverter : JsonConverter<global::Orb.Models.Customers.Cr
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Customers.Credits.OperatorModelConverter))]
-public enum OperatorModel
+[JsonConverter(typeof(global::Orb.Models.Customers.Credits.FilterModelOperatorConverter))]
+public enum FilterModelOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class OperatorModelConverter
-    : JsonConverter<global::Orb.Models.Customers.Credits.OperatorModel>
+sealed class FilterModelOperatorConverter
+    : JsonConverter<global::Orb.Models.Customers.Credits.FilterModelOperator>
 {
-    public override global::Orb.Models.Customers.Credits.OperatorModel Read(
+    public override global::Orb.Models.Customers.Credits.FilterModelOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -498,15 +503,15 @@ sealed class OperatorModelConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => global::Orb.Models.Customers.Credits.OperatorModel.Includes,
-            "excludes" => global::Orb.Models.Customers.Credits.OperatorModel.Excludes,
-            _ => (global::Orb.Models.Customers.Credits.OperatorModel)(-1),
+            "includes" => global::Orb.Models.Customers.Credits.FilterModelOperator.Includes,
+            "excludes" => global::Orb.Models.Customers.Credits.FilterModelOperator.Excludes,
+            _ => (global::Orb.Models.Customers.Credits.FilterModelOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Customers.Credits.OperatorModel value,
+        global::Orb.Models.Customers.Credits.FilterModelOperator value,
         JsonSerializerOptions options
     )
     {
@@ -514,8 +519,8 @@ sealed class OperatorModelConverter
             writer,
             value switch
             {
-                global::Orb.Models.Customers.Credits.OperatorModel.Includes => "includes",
-                global::Orb.Models.Customers.Credits.OperatorModel.Excludes => "excludes",
+                global::Orb.Models.Customers.Credits.FilterModelOperator.Includes => "includes",
+                global::Orb.Models.Customers.Credits.FilterModelOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -525,16 +530,16 @@ sealed class OperatorModelConverter
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Customers.Credits.StatusModelConverter))]
-public enum StatusModel
+[JsonConverter(typeof(DataModelStatusConverter))]
+public enum DataModelStatus
 {
     Active,
     PendingPayment,
 }
 
-sealed class StatusModelConverter : JsonConverter<global::Orb.Models.Customers.Credits.StatusModel>
+sealed class DataModelStatusConverter : JsonConverter<DataModelStatus>
 {
-    public override global::Orb.Models.Customers.Credits.StatusModel Read(
+    public override DataModelStatus Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -542,15 +547,15 @@ sealed class StatusModelConverter : JsonConverter<global::Orb.Models.Customers.C
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "active" => global::Orb.Models.Customers.Credits.StatusModel.Active,
-            "pending_payment" => global::Orb.Models.Customers.Credits.StatusModel.PendingPayment,
-            _ => (global::Orb.Models.Customers.Credits.StatusModel)(-1),
+            "active" => DataModelStatus.Active,
+            "pending_payment" => DataModelStatus.PendingPayment,
+            _ => (DataModelStatus)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Customers.Credits.StatusModel value,
+        DataModelStatus value,
         JsonSerializerOptions options
     )
     {
@@ -558,9 +563,8 @@ sealed class StatusModelConverter : JsonConverter<global::Orb.Models.Customers.C
             writer,
             value switch
             {
-                global::Orb.Models.Customers.Credits.StatusModel.Active => "active",
-                global::Orb.Models.Customers.Credits.StatusModel.PendingPayment =>
-                    "pending_payment",
+                DataModelStatus.Active => "active",
+                DataModelStatus.PendingPayment => "pending_payment",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

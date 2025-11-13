@@ -972,7 +972,7 @@ public sealed record class InvoiceFetchUpcomingResponse
         }
     }
 
-    public required ApiEnum<string, global::Orb.Models.Invoices.StatusModel> Status
+    public required ApiEnum<string, InvoiceFetchUpcomingResponseStatus> Status
     {
         get
         {
@@ -982,9 +982,10 @@ public sealed record class InvoiceFetchUpcomingResponse
                     new System::ArgumentOutOfRangeException("status", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Invoices.StatusModel>
-            >(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ApiEnum<string, InvoiceFetchUpcomingResponseStatus>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -2231,14 +2232,17 @@ public sealed record class LineItemModel
     /// <summary>
     /// This field is deprecated in favor of `adjustments`
     /// </summary>
-    public required Discount1? Discount
+    public required SharedDiscount? Discount
     {
         get
         {
             if (!this._properties.TryGetValue("discount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Discount1?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<SharedDiscount?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -3667,8 +3671,8 @@ sealed class PaymentProviderConverter : JsonConverter<global::Orb.Models.Invoice
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Invoices.StatusModelConverter))]
-public enum StatusModel
+[JsonConverter(typeof(InvoiceFetchUpcomingResponseStatusConverter))]
+public enum InvoiceFetchUpcomingResponseStatus
 {
     Issued,
     Paid,
@@ -3677,9 +3681,10 @@ public enum StatusModel
     Draft,
 }
 
-sealed class StatusModelConverter : JsonConverter<global::Orb.Models.Invoices.StatusModel>
+sealed class InvoiceFetchUpcomingResponseStatusConverter
+    : JsonConverter<InvoiceFetchUpcomingResponseStatus>
 {
-    public override global::Orb.Models.Invoices.StatusModel Read(
+    public override InvoiceFetchUpcomingResponseStatus Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -3687,18 +3692,18 @@ sealed class StatusModelConverter : JsonConverter<global::Orb.Models.Invoices.St
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "issued" => global::Orb.Models.Invoices.StatusModel.Issued,
-            "paid" => global::Orb.Models.Invoices.StatusModel.Paid,
-            "synced" => global::Orb.Models.Invoices.StatusModel.Synced,
-            "void" => global::Orb.Models.Invoices.StatusModel.Void,
-            "draft" => global::Orb.Models.Invoices.StatusModel.Draft,
-            _ => (global::Orb.Models.Invoices.StatusModel)(-1),
+            "issued" => InvoiceFetchUpcomingResponseStatus.Issued,
+            "paid" => InvoiceFetchUpcomingResponseStatus.Paid,
+            "synced" => InvoiceFetchUpcomingResponseStatus.Synced,
+            "void" => InvoiceFetchUpcomingResponseStatus.Void,
+            "draft" => InvoiceFetchUpcomingResponseStatus.Draft,
+            _ => (InvoiceFetchUpcomingResponseStatus)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Invoices.StatusModel value,
+        InvoiceFetchUpcomingResponseStatus value,
         JsonSerializerOptions options
     )
     {
@@ -3706,11 +3711,11 @@ sealed class StatusModelConverter : JsonConverter<global::Orb.Models.Invoices.St
             writer,
             value switch
             {
-                global::Orb.Models.Invoices.StatusModel.Issued => "issued",
-                global::Orb.Models.Invoices.StatusModel.Paid => "paid",
-                global::Orb.Models.Invoices.StatusModel.Synced => "synced",
-                global::Orb.Models.Invoices.StatusModel.Void => "void",
-                global::Orb.Models.Invoices.StatusModel.Draft => "draft",
+                InvoiceFetchUpcomingResponseStatus.Issued => "issued",
+                InvoiceFetchUpcomingResponseStatus.Paid => "paid",
+                InvoiceFetchUpcomingResponseStatus.Synced => "synced",
+                InvoiceFetchUpcomingResponseStatus.Void => "void",
+                InvoiceFetchUpcomingResponseStatus.Draft => "draft",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

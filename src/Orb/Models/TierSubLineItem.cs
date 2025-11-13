@@ -135,7 +135,7 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
         }
     }
 
-    public required ApiEnum<string, Type5> Type
+    public required ApiEnum<string, TierSubLineItemType> Type
     {
         get
         {
@@ -145,7 +145,7 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
                     new System::ArgumentOutOfRangeException("type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Type5>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, TierSubLineItemType>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -293,15 +293,15 @@ public sealed record class TierConfig : ModelBase, IFromRaw<TierConfig>
     }
 }
 
-[JsonConverter(typeof(Type5Converter))]
-public enum Type5
+[JsonConverter(typeof(TierSubLineItemTypeConverter))]
+public enum TierSubLineItemType
 {
     Tier,
 }
 
-sealed class Type5Converter : JsonConverter<Type5>
+sealed class TierSubLineItemTypeConverter : JsonConverter<TierSubLineItemType>
 {
-    public override Type5 Read(
+    public override TierSubLineItemType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -309,18 +309,22 @@ sealed class Type5Converter : JsonConverter<Type5>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "tier" => Type5.Tier,
-            _ => (Type5)(-1),
+            "tier" => TierSubLineItemType.Tier,
+            _ => (TierSubLineItemType)(-1),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Type5 value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        TierSubLineItemType value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                Type5.Tier => "tier",
+                TierSubLineItemType.Tier => "tier",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

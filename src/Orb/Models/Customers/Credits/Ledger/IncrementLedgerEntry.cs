@@ -208,7 +208,7 @@ public sealed record class IncrementLedgerEntry : ModelBase, IFromRaw<IncrementL
         }
     }
 
-    public required ApiEnum<string, EntryStatus5> EntryStatus
+    public required ApiEnum<string, IncrementLedgerEntryEntryStatus> EntryStatus
     {
         get
         {
@@ -221,7 +221,7 @@ public sealed record class IncrementLedgerEntry : ModelBase, IFromRaw<IncrementL
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, EntryStatus5>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, IncrementLedgerEntryEntryStatus>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -235,7 +235,7 @@ public sealed record class IncrementLedgerEntry : ModelBase, IFromRaw<IncrementL
         }
     }
 
-    public required ApiEnum<string, EntryType15> EntryType
+    public required ApiEnum<string, IncrementLedgerEntryEntryType> EntryType
     {
         get
         {
@@ -248,7 +248,7 @@ public sealed record class IncrementLedgerEntry : ModelBase, IFromRaw<IncrementL
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, EntryType15>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, IncrementLedgerEntryEntryType>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -409,16 +409,17 @@ public sealed record class IncrementLedgerEntry : ModelBase, IFromRaw<IncrementL
     }
 }
 
-[JsonConverter(typeof(EntryStatus5Converter))]
-public enum EntryStatus5
+[JsonConverter(typeof(IncrementLedgerEntryEntryStatusConverter))]
+public enum IncrementLedgerEntryEntryStatus
 {
     Committed,
     Pending,
 }
 
-sealed class EntryStatus5Converter : JsonConverter<EntryStatus5>
+sealed class IncrementLedgerEntryEntryStatusConverter
+    : JsonConverter<IncrementLedgerEntryEntryStatus>
 {
-    public override EntryStatus5 Read(
+    public override IncrementLedgerEntryEntryStatus Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -426,15 +427,15 @@ sealed class EntryStatus5Converter : JsonConverter<EntryStatus5>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "committed" => EntryStatus5.Committed,
-            "pending" => EntryStatus5.Pending,
-            _ => (EntryStatus5)(-1),
+            "committed" => IncrementLedgerEntryEntryStatus.Committed,
+            "pending" => IncrementLedgerEntryEntryStatus.Pending,
+            _ => (IncrementLedgerEntryEntryStatus)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        EntryStatus5 value,
+        IncrementLedgerEntryEntryStatus value,
         JsonSerializerOptions options
     )
     {
@@ -442,8 +443,8 @@ sealed class EntryStatus5Converter : JsonConverter<EntryStatus5>
             writer,
             value switch
             {
-                EntryStatus5.Committed => "committed",
-                EntryStatus5.Pending => "pending",
+                IncrementLedgerEntryEntryStatus.Committed => "committed",
+                IncrementLedgerEntryEntryStatus.Pending => "pending",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -453,15 +454,15 @@ sealed class EntryStatus5Converter : JsonConverter<EntryStatus5>
     }
 }
 
-[JsonConverter(typeof(EntryType15Converter))]
-public enum EntryType15
+[JsonConverter(typeof(IncrementLedgerEntryEntryTypeConverter))]
+public enum IncrementLedgerEntryEntryType
 {
     Increment,
 }
 
-sealed class EntryType15Converter : JsonConverter<EntryType15>
+sealed class IncrementLedgerEntryEntryTypeConverter : JsonConverter<IncrementLedgerEntryEntryType>
 {
-    public override EntryType15 Read(
+    public override IncrementLedgerEntryEntryType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -469,14 +470,14 @@ sealed class EntryType15Converter : JsonConverter<EntryType15>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "increment" => EntryType15.Increment,
-            _ => (EntryType15)(-1),
+            "increment" => IncrementLedgerEntryEntryType.Increment,
+            _ => (IncrementLedgerEntryEntryType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        EntryType15 value,
+        IncrementLedgerEntryEntryType value,
         JsonSerializerOptions options
     )
     {
@@ -484,7 +485,7 @@ sealed class EntryType15Converter : JsonConverter<EntryType15>
             writer,
             value switch
             {
-                EntryType15.Increment => "increment",
+                IncrementLedgerEntryEntryType.Increment => "increment",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

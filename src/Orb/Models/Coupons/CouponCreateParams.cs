@@ -534,7 +534,7 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
         }
     }
 
-    public global::Orb.Models.Coupons.DiscountTypeModel DiscountType
+    public AmountDiscountType DiscountType
     {
         get
         {
@@ -547,7 +547,7 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
                     )
                 );
 
-            return JsonSerializer.Deserialize<global::Orb.Models.Coupons.DiscountTypeModel>(
+            return JsonSerializer.Deserialize<AmountDiscountType>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -605,36 +605,31 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
 }
 
 [JsonConverter(typeof(Converter))]
-public class DiscountTypeModel
+public class AmountDiscountType
 {
     public JsonElement Json { get; private init; }
 
-    public DiscountTypeModel()
+    public AmountDiscountType()
     {
         Json = JsonSerializer.Deserialize<JsonElement>("\"amount\"");
     }
 
-    DiscountTypeModel(JsonElement json)
+    AmountDiscountType(JsonElement json)
     {
         Json = json;
     }
 
     public void Validate()
     {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new global::Orb.Models.Coupons.DiscountTypeModel().Json
-            )
-        )
+        if (JsonElement.DeepEquals(this.Json, new AmountDiscountType().Json))
         {
-            throw new OrbInvalidDataException("Invalid value given for 'DiscountTypeModel'");
+            throw new OrbInvalidDataException("Invalid value given for 'AmountDiscountType'");
         }
     }
 
-    class Converter : JsonConverter<global::Orb.Models.Coupons.DiscountTypeModel>
+    class Converter : JsonConverter<AmountDiscountType>
     {
-        public override global::Orb.Models.Coupons.DiscountTypeModel? Read(
+        public override AmountDiscountType? Read(
             ref Utf8JsonReader reader,
             System::Type typeToConvert,
             JsonSerializerOptions options
@@ -645,7 +640,7 @@ public class DiscountTypeModel
 
         public override void Write(
             Utf8JsonWriter writer,
-            global::Orb.Models.Coupons.DiscountTypeModel value,
+            AmountDiscountType value,
             JsonSerializerOptions options
         )
         {

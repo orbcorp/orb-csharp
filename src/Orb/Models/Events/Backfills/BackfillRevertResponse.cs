@@ -198,7 +198,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
     /// <summary>
     /// The status of the backfill.
     /// </summary>
-    public required ApiEnum<string, Status3> Status
+    public required ApiEnum<string, BackfillRevertResponseStatus> Status
     {
         get
         {
@@ -208,7 +208,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
                     new System::ArgumentOutOfRangeException("status", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Status3>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, BackfillRevertResponseStatus>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -339,8 +339,8 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
 /// <summary>
 /// The status of the backfill.
 /// </summary>
-[JsonConverter(typeof(Status3Converter))]
-public enum Status3
+[JsonConverter(typeof(BackfillRevertResponseStatusConverter))]
+public enum BackfillRevertResponseStatus
 {
     Pending,
     Reflected,
@@ -348,9 +348,9 @@ public enum Status3
     Reverted,
 }
 
-sealed class Status3Converter : JsonConverter<Status3>
+sealed class BackfillRevertResponseStatusConverter : JsonConverter<BackfillRevertResponseStatus>
 {
-    public override Status3 Read(
+    public override BackfillRevertResponseStatus Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -358,24 +358,28 @@ sealed class Status3Converter : JsonConverter<Status3>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "pending" => Status3.Pending,
-            "reflected" => Status3.Reflected,
-            "pending_revert" => Status3.PendingRevert,
-            "reverted" => Status3.Reverted,
-            _ => (Status3)(-1),
+            "pending" => BackfillRevertResponseStatus.Pending,
+            "reflected" => BackfillRevertResponseStatus.Reflected,
+            "pending_revert" => BackfillRevertResponseStatus.PendingRevert,
+            "reverted" => BackfillRevertResponseStatus.Reverted,
+            _ => (BackfillRevertResponseStatus)(-1),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Status3 value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        BackfillRevertResponseStatus value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                Status3.Pending => "pending",
-                Status3.Reflected => "reflected",
-                Status3.PendingRevert => "pending_revert",
-                Status3.Reverted => "reverted",
+                BackfillRevertResponseStatus.Pending => "pending",
+                BackfillRevertResponseStatus.Reflected => "reflected",
+                BackfillRevertResponseStatus.PendingRevert => "pending_revert",
+                BackfillRevertResponseStatus.Reverted => "reverted",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

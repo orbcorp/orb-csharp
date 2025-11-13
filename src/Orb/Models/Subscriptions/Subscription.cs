@@ -766,7 +766,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
         }
     }
 
-    public required ApiEnum<string, global::Orb.Models.Subscriptions.StatusModel> Status
+    public required ApiEnum<string, SubscriptionStatus> Status
     {
         get
         {
@@ -776,9 +776,10 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
                     new System::ArgumentOutOfRangeException("status", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Subscriptions.StatusModel>
-            >(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ApiEnum<string, SubscriptionStatus>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -1149,17 +1150,17 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Subscriptions.StatusModelConverter))]
-public enum StatusModel
+[JsonConverter(typeof(SubscriptionStatusConverter))]
+public enum SubscriptionStatus
 {
     Active,
     Ended,
     Upcoming,
 }
 
-sealed class StatusModelConverter : JsonConverter<global::Orb.Models.Subscriptions.StatusModel>
+sealed class SubscriptionStatusConverter : JsonConverter<SubscriptionStatus>
 {
-    public override global::Orb.Models.Subscriptions.StatusModel Read(
+    public override SubscriptionStatus Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1167,16 +1168,16 @@ sealed class StatusModelConverter : JsonConverter<global::Orb.Models.Subscriptio
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "active" => global::Orb.Models.Subscriptions.StatusModel.Active,
-            "ended" => global::Orb.Models.Subscriptions.StatusModel.Ended,
-            "upcoming" => global::Orb.Models.Subscriptions.StatusModel.Upcoming,
-            _ => (global::Orb.Models.Subscriptions.StatusModel)(-1),
+            "active" => SubscriptionStatus.Active,
+            "ended" => SubscriptionStatus.Ended,
+            "upcoming" => SubscriptionStatus.Upcoming,
+            _ => (SubscriptionStatus)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Subscriptions.StatusModel value,
+        SubscriptionStatus value,
         JsonSerializerOptions options
     )
     {
@@ -1184,9 +1185,9 @@ sealed class StatusModelConverter : JsonConverter<global::Orb.Models.Subscriptio
             writer,
             value switch
             {
-                global::Orb.Models.Subscriptions.StatusModel.Active => "active",
-                global::Orb.Models.Subscriptions.StatusModel.Ended => "ended",
-                global::Orb.Models.Subscriptions.StatusModel.Upcoming => "upcoming",
+                SubscriptionStatus.Active => "active",
+                SubscriptionStatus.Ended => "ended",
+                SubscriptionStatus.Upcoming => "upcoming",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

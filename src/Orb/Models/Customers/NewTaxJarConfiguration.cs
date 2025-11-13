@@ -36,7 +36,7 @@ public sealed record class NewTaxJarConfiguration : ModelBase, IFromRaw<NewTaxJa
         }
     }
 
-    public required ApiEnum<string, TaxProvider7> TaxProvider
+    public required ApiEnum<string, NewTaxJarConfigurationTaxProvider> TaxProvider
     {
         get
         {
@@ -49,7 +49,7 @@ public sealed record class NewTaxJarConfiguration : ModelBase, IFromRaw<NewTaxJa
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, TaxProvider7>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, NewTaxJarConfigurationTaxProvider>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -115,15 +115,16 @@ public sealed record class NewTaxJarConfiguration : ModelBase, IFromRaw<NewTaxJa
     }
 }
 
-[JsonConverter(typeof(TaxProvider7Converter))]
-public enum TaxProvider7
+[JsonConverter(typeof(NewTaxJarConfigurationTaxProviderConverter))]
+public enum NewTaxJarConfigurationTaxProvider
 {
     Taxjar,
 }
 
-sealed class TaxProvider7Converter : JsonConverter<TaxProvider7>
+sealed class NewTaxJarConfigurationTaxProviderConverter
+    : JsonConverter<NewTaxJarConfigurationTaxProvider>
 {
-    public override TaxProvider7 Read(
+    public override NewTaxJarConfigurationTaxProvider Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -131,14 +132,14 @@ sealed class TaxProvider7Converter : JsonConverter<TaxProvider7>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "taxjar" => TaxProvider7.Taxjar,
-            _ => (TaxProvider7)(-1),
+            "taxjar" => NewTaxJarConfigurationTaxProvider.Taxjar,
+            _ => (NewTaxJarConfigurationTaxProvider)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        TaxProvider7 value,
+        NewTaxJarConfigurationTaxProvider value,
         JsonSerializerOptions options
     )
     {
@@ -146,7 +147,7 @@ sealed class TaxProvider7Converter : JsonConverter<TaxProvider7>
             writer,
             value switch
             {
-                TaxProvider7.Taxjar => "taxjar",
+                NewTaxJarConfigurationTaxProvider.Taxjar => "taxjar",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

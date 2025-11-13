@@ -210,7 +210,7 @@ public sealed record class CreditBlockExpiryLedgerEntry
         }
     }
 
-    public required ApiEnum<string, EntryStatus2> EntryStatus
+    public required ApiEnum<string, CreditBlockExpiryLedgerEntryEntryStatus> EntryStatus
     {
         get
         {
@@ -223,10 +223,9 @@ public sealed record class CreditBlockExpiryLedgerEntry
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, EntryStatus2>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, CreditBlockExpiryLedgerEntryEntryStatus>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -237,7 +236,7 @@ public sealed record class CreditBlockExpiryLedgerEntry
         }
     }
 
-    public required ApiEnum<string, EntryType12> EntryType
+    public required ApiEnum<string, CreditBlockExpiryLedgerEntryEntryType> EntryType
     {
         get
         {
@@ -250,10 +249,9 @@ public sealed record class CreditBlockExpiryLedgerEntry
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, EntryType12>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, CreditBlockExpiryLedgerEntryEntryType>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -386,16 +384,17 @@ public sealed record class CreditBlockExpiryLedgerEntry
     }
 }
 
-[JsonConverter(typeof(EntryStatus2Converter))]
-public enum EntryStatus2
+[JsonConverter(typeof(CreditBlockExpiryLedgerEntryEntryStatusConverter))]
+public enum CreditBlockExpiryLedgerEntryEntryStatus
 {
     Committed,
     Pending,
 }
 
-sealed class EntryStatus2Converter : JsonConverter<EntryStatus2>
+sealed class CreditBlockExpiryLedgerEntryEntryStatusConverter
+    : JsonConverter<CreditBlockExpiryLedgerEntryEntryStatus>
 {
-    public override EntryStatus2 Read(
+    public override CreditBlockExpiryLedgerEntryEntryStatus Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -403,15 +402,15 @@ sealed class EntryStatus2Converter : JsonConverter<EntryStatus2>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "committed" => EntryStatus2.Committed,
-            "pending" => EntryStatus2.Pending,
-            _ => (EntryStatus2)(-1),
+            "committed" => CreditBlockExpiryLedgerEntryEntryStatus.Committed,
+            "pending" => CreditBlockExpiryLedgerEntryEntryStatus.Pending,
+            _ => (CreditBlockExpiryLedgerEntryEntryStatus)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        EntryStatus2 value,
+        CreditBlockExpiryLedgerEntryEntryStatus value,
         JsonSerializerOptions options
     )
     {
@@ -419,8 +418,8 @@ sealed class EntryStatus2Converter : JsonConverter<EntryStatus2>
             writer,
             value switch
             {
-                EntryStatus2.Committed => "committed",
-                EntryStatus2.Pending => "pending",
+                CreditBlockExpiryLedgerEntryEntryStatus.Committed => "committed",
+                CreditBlockExpiryLedgerEntryEntryStatus.Pending => "pending",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -430,15 +429,16 @@ sealed class EntryStatus2Converter : JsonConverter<EntryStatus2>
     }
 }
 
-[JsonConverter(typeof(EntryType12Converter))]
-public enum EntryType12
+[JsonConverter(typeof(CreditBlockExpiryLedgerEntryEntryTypeConverter))]
+public enum CreditBlockExpiryLedgerEntryEntryType
 {
     CreditBlockExpiry,
 }
 
-sealed class EntryType12Converter : JsonConverter<EntryType12>
+sealed class CreditBlockExpiryLedgerEntryEntryTypeConverter
+    : JsonConverter<CreditBlockExpiryLedgerEntryEntryType>
 {
-    public override EntryType12 Read(
+    public override CreditBlockExpiryLedgerEntryEntryType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -446,14 +446,14 @@ sealed class EntryType12Converter : JsonConverter<EntryType12>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "credit_block_expiry" => EntryType12.CreditBlockExpiry,
-            _ => (EntryType12)(-1),
+            "credit_block_expiry" => CreditBlockExpiryLedgerEntryEntryType.CreditBlockExpiry,
+            _ => (CreditBlockExpiryLedgerEntryEntryType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        EntryType12 value,
+        CreditBlockExpiryLedgerEntryEntryType value,
         JsonSerializerOptions options
     )
     {
@@ -461,7 +461,7 @@ sealed class EntryType12Converter : JsonConverter<EntryType12>
             writer,
             value switch
             {
-                EntryType12.CreditBlockExpiry => "credit_block_expiry",
+                CreditBlockExpiryLedgerEntryEntryType.CreditBlockExpiry => "credit_block_expiry",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

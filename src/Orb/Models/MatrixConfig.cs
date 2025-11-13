@@ -77,7 +77,7 @@ public sealed record class MatrixConfig : ModelBase, IFromRaw<MatrixConfig>
     /// <summary>
     /// Matrix values configuration
     /// </summary>
-    public required List<MatrixValue> MatrixValues
+    public required List<SharedMatrixValue> MatrixValues
     {
         get
         {
@@ -87,7 +87,7 @@ public sealed record class MatrixConfig : ModelBase, IFromRaw<MatrixConfig>
                     new ArgumentOutOfRangeException("matrix_values", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<List<MatrixValue>>(
+            return JsonSerializer.Deserialize<List<SharedMatrixValue>>(
                     element,
                     ModelBase.SerializerOptions
                 )

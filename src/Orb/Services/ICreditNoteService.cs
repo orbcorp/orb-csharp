@@ -38,7 +38,7 @@ public interface ICreditNoteService
     /// will cover both the start date and end date completely (from start of start_date
     /// to end of end_date).</para>
     /// </summary>
-    Task<CreditNoteModel> Create(
+    Task<SharedCreditNote> Create(
         CreditNoteCreateParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -57,7 +57,7 @@ public interface ICreditNoteService
     /// This endpoint is used to fetch a single [`Credit Note`](/invoicing/credit-notes)
     /// given an identifier.
     /// </summary>
-    Task<CreditNoteModel> Fetch(
+    Task<SharedCreditNote> Fetch(
         CreditNoteFetchParams parameters,
         CancellationToken cancellationToken = default
     );

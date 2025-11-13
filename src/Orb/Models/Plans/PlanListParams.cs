@@ -153,17 +153,17 @@ public sealed record class PlanListParams : ParamsBase
     /// <summary>
     /// The plan status to filter to ('active', 'archived', or 'draft').
     /// </summary>
-    public ApiEnum<string, global::Orb.Models.Plans.StatusModel>? Status
+    public ApiEnum<string, StatusModel>? Status
     {
         get
         {
             if (!this._queryProperties.TryGetValue("status", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<
-                string,
-                global::Orb.Models.Plans.StatusModel
-            >?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ApiEnum<string, StatusModel>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -234,7 +234,7 @@ public sealed record class PlanListParams : ParamsBase
 /// <summary>
 /// The plan status to filter to ('active', 'archived', or 'draft').
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Plans.StatusModelConverter))]
+[JsonConverter(typeof(StatusModelConverter))]
 public enum StatusModel
 {
     Active,
@@ -242,9 +242,9 @@ public enum StatusModel
     Draft,
 }
 
-sealed class StatusModelConverter : JsonConverter<global::Orb.Models.Plans.StatusModel>
+sealed class StatusModelConverter : JsonConverter<StatusModel>
 {
-    public override global::Orb.Models.Plans.StatusModel Read(
+    public override StatusModel Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -252,16 +252,16 @@ sealed class StatusModelConverter : JsonConverter<global::Orb.Models.Plans.Statu
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "active" => global::Orb.Models.Plans.StatusModel.Active,
-            "archived" => global::Orb.Models.Plans.StatusModel.Archived,
-            "draft" => global::Orb.Models.Plans.StatusModel.Draft,
-            _ => (global::Orb.Models.Plans.StatusModel)(-1),
+            "active" => StatusModel.Active,
+            "archived" => StatusModel.Archived,
+            "draft" => StatusModel.Draft,
+            _ => (StatusModel)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Plans.StatusModel value,
+        StatusModel value,
         JsonSerializerOptions options
     )
     {
@@ -269,9 +269,9 @@ sealed class StatusModelConverter : JsonConverter<global::Orb.Models.Plans.Statu
             writer,
             value switch
             {
-                global::Orb.Models.Plans.StatusModel.Active => "active",
-                global::Orb.Models.Plans.StatusModel.Archived => "archived",
-                global::Orb.Models.Plans.StatusModel.Draft => "draft",
+                StatusModel.Active => "active",
+                StatusModel.Archived => "archived",
+                StatusModel.Draft => "draft",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

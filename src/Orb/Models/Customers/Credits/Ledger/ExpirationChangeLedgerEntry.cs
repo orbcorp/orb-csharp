@@ -210,7 +210,7 @@ public sealed record class ExpirationChangeLedgerEntry
         }
     }
 
-    public required ApiEnum<string, EntryStatus4> EntryStatus
+    public required ApiEnum<string, ExpirationChangeLedgerEntryEntryStatus> EntryStatus
     {
         get
         {
@@ -223,10 +223,9 @@ public sealed record class ExpirationChangeLedgerEntry
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, EntryStatus4>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, ExpirationChangeLedgerEntryEntryStatus>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -237,7 +236,7 @@ public sealed record class ExpirationChangeLedgerEntry
         }
     }
 
-    public required ApiEnum<string, EntryType14> EntryType
+    public required ApiEnum<string, ExpirationChangeLedgerEntryEntryType> EntryType
     {
         get
         {
@@ -250,10 +249,9 @@ public sealed record class ExpirationChangeLedgerEntry
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, EntryType14>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, ExpirationChangeLedgerEntryEntryType>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -408,16 +406,17 @@ public sealed record class ExpirationChangeLedgerEntry
     }
 }
 
-[JsonConverter(typeof(EntryStatus4Converter))]
-public enum EntryStatus4
+[JsonConverter(typeof(ExpirationChangeLedgerEntryEntryStatusConverter))]
+public enum ExpirationChangeLedgerEntryEntryStatus
 {
     Committed,
     Pending,
 }
 
-sealed class EntryStatus4Converter : JsonConverter<EntryStatus4>
+sealed class ExpirationChangeLedgerEntryEntryStatusConverter
+    : JsonConverter<ExpirationChangeLedgerEntryEntryStatus>
 {
-    public override EntryStatus4 Read(
+    public override ExpirationChangeLedgerEntryEntryStatus Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -425,15 +424,15 @@ sealed class EntryStatus4Converter : JsonConverter<EntryStatus4>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "committed" => EntryStatus4.Committed,
-            "pending" => EntryStatus4.Pending,
-            _ => (EntryStatus4)(-1),
+            "committed" => ExpirationChangeLedgerEntryEntryStatus.Committed,
+            "pending" => ExpirationChangeLedgerEntryEntryStatus.Pending,
+            _ => (ExpirationChangeLedgerEntryEntryStatus)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        EntryStatus4 value,
+        ExpirationChangeLedgerEntryEntryStatus value,
         JsonSerializerOptions options
     )
     {
@@ -441,8 +440,8 @@ sealed class EntryStatus4Converter : JsonConverter<EntryStatus4>
             writer,
             value switch
             {
-                EntryStatus4.Committed => "committed",
-                EntryStatus4.Pending => "pending",
+                ExpirationChangeLedgerEntryEntryStatus.Committed => "committed",
+                ExpirationChangeLedgerEntryEntryStatus.Pending => "pending",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -452,15 +451,16 @@ sealed class EntryStatus4Converter : JsonConverter<EntryStatus4>
     }
 }
 
-[JsonConverter(typeof(EntryType14Converter))]
-public enum EntryType14
+[JsonConverter(typeof(ExpirationChangeLedgerEntryEntryTypeConverter))]
+public enum ExpirationChangeLedgerEntryEntryType
 {
     ExpirationChange,
 }
 
-sealed class EntryType14Converter : JsonConverter<EntryType14>
+sealed class ExpirationChangeLedgerEntryEntryTypeConverter
+    : JsonConverter<ExpirationChangeLedgerEntryEntryType>
 {
-    public override EntryType14 Read(
+    public override ExpirationChangeLedgerEntryEntryType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -468,14 +468,14 @@ sealed class EntryType14Converter : JsonConverter<EntryType14>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "expiration_change" => EntryType14.ExpirationChange,
-            _ => (EntryType14)(-1),
+            "expiration_change" => ExpirationChangeLedgerEntryEntryType.ExpirationChange,
+            _ => (ExpirationChangeLedgerEntryEntryType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        EntryType14 value,
+        ExpirationChangeLedgerEntryEntryType value,
         JsonSerializerOptions options
     )
     {
@@ -483,7 +483,7 @@ sealed class EntryType14Converter : JsonConverter<EntryType14>
             writer,
             value switch
             {
-                EntryType14.ExpirationChange => "expiration_change",
+                ExpirationChangeLedgerEntryEntryType.ExpirationChange => "expiration_change",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

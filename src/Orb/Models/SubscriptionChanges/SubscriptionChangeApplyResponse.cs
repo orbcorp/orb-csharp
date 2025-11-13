@@ -74,7 +74,7 @@ public sealed record class SubscriptionChangeApplyResponse
         }
     }
 
-    public required ApiEnum<string, Status1> Status
+    public required ApiEnum<string, SubscriptionChangeApplyResponseStatus> Status
     {
         get
         {
@@ -84,10 +84,9 @@ public sealed record class SubscriptionChangeApplyResponse
                     new System::ArgumentOutOfRangeException("status", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Status1>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, SubscriptionChangeApplyResponseStatus>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -200,17 +199,18 @@ public sealed record class SubscriptionChangeApplyResponse
     }
 }
 
-[JsonConverter(typeof(Status1Converter))]
-public enum Status1
+[JsonConverter(typeof(SubscriptionChangeApplyResponseStatusConverter))]
+public enum SubscriptionChangeApplyResponseStatus
 {
     Pending,
     Applied,
     Cancelled,
 }
 
-sealed class Status1Converter : JsonConverter<Status1>
+sealed class SubscriptionChangeApplyResponseStatusConverter
+    : JsonConverter<SubscriptionChangeApplyResponseStatus>
 {
-    public override Status1 Read(
+    public override SubscriptionChangeApplyResponseStatus Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -218,22 +218,26 @@ sealed class Status1Converter : JsonConverter<Status1>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "pending" => Status1.Pending,
-            "applied" => Status1.Applied,
-            "cancelled" => Status1.Cancelled,
-            _ => (Status1)(-1),
+            "pending" => SubscriptionChangeApplyResponseStatus.Pending,
+            "applied" => SubscriptionChangeApplyResponseStatus.Applied,
+            "cancelled" => SubscriptionChangeApplyResponseStatus.Cancelled,
+            _ => (SubscriptionChangeApplyResponseStatus)(-1),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Status1 value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        SubscriptionChangeApplyResponseStatus value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                Status1.Pending => "pending",
-                Status1.Applied => "applied",
-                Status1.Cancelled => "cancelled",
+                SubscriptionChangeApplyResponseStatus.Pending => "pending",
+                SubscriptionChangeApplyResponseStatus.Applied => "applied",
+                SubscriptionChangeApplyResponseStatus.Cancelled => "cancelled",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

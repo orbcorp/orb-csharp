@@ -313,14 +313,14 @@ public sealed record class DataModel
     /// <summary>
     /// The unit of expires_after.
     /// </summary>
-    public ApiEnum<string, ExpiresAfterUnit4>? ExpiresAfterUnit
+    public ApiEnum<string, DataModelExpiresAfterUnit>? ExpiresAfterUnit
     {
         get
         {
             if (!this._properties.TryGetValue("expires_after_unit", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ExpiresAfterUnit4>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, DataModelExpiresAfterUnit>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -372,16 +372,16 @@ public sealed record class DataModel
 /// <summary>
 /// The unit of expires_after.
 /// </summary>
-[JsonConverter(typeof(ExpiresAfterUnit4Converter))]
-public enum ExpiresAfterUnit4
+[JsonConverter(typeof(DataModelExpiresAfterUnitConverter))]
+public enum DataModelExpiresAfterUnit
 {
     Day,
     Month,
 }
 
-sealed class ExpiresAfterUnit4Converter : JsonConverter<ExpiresAfterUnit4>
+sealed class DataModelExpiresAfterUnitConverter : JsonConverter<DataModelExpiresAfterUnit>
 {
-    public override ExpiresAfterUnit4 Read(
+    public override DataModelExpiresAfterUnit Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -389,15 +389,15 @@ sealed class ExpiresAfterUnit4Converter : JsonConverter<ExpiresAfterUnit4>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "day" => ExpiresAfterUnit4.Day,
-            "month" => ExpiresAfterUnit4.Month,
-            _ => (ExpiresAfterUnit4)(-1),
+            "day" => DataModelExpiresAfterUnit.Day,
+            "month" => DataModelExpiresAfterUnit.Month,
+            _ => (DataModelExpiresAfterUnit)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ExpiresAfterUnit4 value,
+        DataModelExpiresAfterUnit value,
         JsonSerializerOptions options
     )
     {
@@ -405,8 +405,8 @@ sealed class ExpiresAfterUnit4Converter : JsonConverter<ExpiresAfterUnit4>
             writer,
             value switch
             {
-                ExpiresAfterUnit4.Day => "day",
-                ExpiresAfterUnit4.Month => "month",
+                DataModelExpiresAfterUnit.Day => "day",
+                DataModelExpiresAfterUnit.Month => "month",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

@@ -107,7 +107,7 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
         }
     }
 
-    public required ApiEnum<string, Type4> Type
+    public required ApiEnum<string, OtherSubLineItemType> Type
     {
         get
         {
@@ -117,7 +117,7 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
                     new System::ArgumentOutOfRangeException("type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Type4>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, OtherSubLineItemType>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -163,15 +163,15 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
     }
 }
 
-[JsonConverter(typeof(Type4Converter))]
-public enum Type4
+[JsonConverter(typeof(OtherSubLineItemTypeConverter))]
+public enum OtherSubLineItemType
 {
     Null,
 }
 
-sealed class Type4Converter : JsonConverter<Type4>
+sealed class OtherSubLineItemTypeConverter : JsonConverter<OtherSubLineItemType>
 {
-    public override Type4 Read(
+    public override OtherSubLineItemType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -179,18 +179,22 @@ sealed class Type4Converter : JsonConverter<Type4>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "'null'" => Type4.Null,
-            _ => (Type4)(-1),
+            "'null'" => OtherSubLineItemType.Null,
+            _ => (OtherSubLineItemType)(-1),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Type4 value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        OtherSubLineItemType value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                Type4.Null => "'null'",
+                OtherSubLineItemType.Null => "'null'",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

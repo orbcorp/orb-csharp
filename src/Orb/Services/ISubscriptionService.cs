@@ -231,7 +231,7 @@ public interface ISubscriptionService
     /// the customer_id or external_customer_id query parameters. To filter subscriptions
     /// for multiple customers, use the customer_id[] or external_customer_id[] query parameters.</para>
     /// </summary>
-    Task<SubscriptionsModel> List(
+    Task<SubscriptionSubscriptions> List(
         SubscriptionListParams? parameters = null,
         CancellationToken cancellationToken = default
     );

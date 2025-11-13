@@ -13,8 +13,8 @@ namespace Orb.Models;
 /// The [Credit Note](/invoicing/credit-notes) resource represents a credit that
 /// has been applied to a particular invoice.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<CreditNoteModel>))]
-public sealed record class CreditNoteModel : ModelBase, IFromRaw<CreditNoteModel>
+[JsonConverter(typeof(ModelConverter<SharedCreditNote>))]
+public sealed record class SharedCreditNote : ModelBase, IFromRaw<SharedCreditNote>
 {
     /// <summary>
     /// The Orb id of this credit note.
@@ -362,7 +362,7 @@ public sealed record class CreditNoteModel : ModelBase, IFromRaw<CreditNoteModel
         }
     }
 
-    public required ApiEnum<string, TypeModel> Type
+    public required ApiEnum<string, SharedCreditNoteType> Type
     {
         get
         {
@@ -372,7 +372,7 @@ public sealed record class CreditNoteModel : ModelBase, IFromRaw<CreditNoteModel
                     new System::ArgumentOutOfRangeException("type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, TypeModel>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, SharedCreditNoteType>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -465,22 +465,22 @@ public sealed record class CreditNoteModel : ModelBase, IFromRaw<CreditNoteModel
         }
     }
 
-    public CreditNoteModel() { }
+    public SharedCreditNote() { }
 
-    public CreditNoteModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public SharedCreditNote(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CreditNoteModel(FrozenDictionary<string, JsonElement> properties)
+    SharedCreditNote(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static CreditNoteModel FromRawUnchecked(
+    public static SharedCreditNote FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -887,7 +887,7 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
         }
     }
 
-    public required ApiEnum<string, DiscountType1> DiscountType
+    public required ApiEnum<string, DiscountDiscountType> DiscountType
     {
         get
         {
@@ -900,7 +900,7 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, DiscountType1>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, DiscountDiscountType>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1006,16 +1006,16 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
     }
 }
 
-[JsonConverter(typeof(DiscountType1Converter))]
-public enum DiscountType1
+[JsonConverter(typeof(DiscountDiscountTypeConverter))]
+public enum DiscountDiscountType
 {
     Percentage,
     Amount,
 }
 
-sealed class DiscountType1Converter : JsonConverter<DiscountType1>
+sealed class DiscountDiscountTypeConverter : JsonConverter<DiscountDiscountType>
 {
-    public override DiscountType1 Read(
+    public override DiscountDiscountType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1023,15 +1023,15 @@ sealed class DiscountType1Converter : JsonConverter<DiscountType1>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "percentage" => DiscountType1.Percentage,
-            "amount" => DiscountType1.Amount,
-            _ => (DiscountType1)(-1),
+            "percentage" => DiscountDiscountType.Percentage,
+            "amount" => DiscountDiscountType.Amount,
+            _ => (DiscountDiscountType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        DiscountType1 value,
+        DiscountDiscountType value,
         JsonSerializerOptions options
     )
     {
@@ -1039,8 +1039,8 @@ sealed class DiscountType1Converter : JsonConverter<DiscountType1>
             writer,
             value switch
             {
-                DiscountType1.Percentage => "percentage",
-                DiscountType1.Amount => "amount",
+                DiscountDiscountType.Percentage => "percentage",
+                DiscountDiscountType.Amount => "amount",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1084,7 +1084,7 @@ public sealed record class MaximumAmountAdjustment : ModelBase, IFromRaw<Maximum
         }
     }
 
-    public required ApiEnum<string, DiscountType2> DiscountType
+    public required ApiEnum<string, MaximumAmountAdjustmentDiscountType> DiscountType
     {
         get
         {
@@ -1097,7 +1097,7 @@ public sealed record class MaximumAmountAdjustment : ModelBase, IFromRaw<Maximum
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, DiscountType2>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, MaximumAmountAdjustmentDiscountType>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1209,15 +1209,16 @@ public sealed record class MaximumAmountAdjustment : ModelBase, IFromRaw<Maximum
     }
 }
 
-[JsonConverter(typeof(DiscountType2Converter))]
-public enum DiscountType2
+[JsonConverter(typeof(MaximumAmountAdjustmentDiscountTypeConverter))]
+public enum MaximumAmountAdjustmentDiscountType
 {
     Percentage,
 }
 
-sealed class DiscountType2Converter : JsonConverter<DiscountType2>
+sealed class MaximumAmountAdjustmentDiscountTypeConverter
+    : JsonConverter<MaximumAmountAdjustmentDiscountType>
 {
-    public override DiscountType2 Read(
+    public override MaximumAmountAdjustmentDiscountType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1225,14 +1226,14 @@ sealed class DiscountType2Converter : JsonConverter<DiscountType2>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "percentage" => DiscountType2.Percentage,
-            _ => (DiscountType2)(-1),
+            "percentage" => MaximumAmountAdjustmentDiscountType.Percentage,
+            _ => (MaximumAmountAdjustmentDiscountType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        DiscountType2 value,
+        MaximumAmountAdjustmentDiscountType value,
         JsonSerializerOptions options
     )
     {
@@ -1240,7 +1241,7 @@ sealed class DiscountType2Converter : JsonConverter<DiscountType2>
             writer,
             value switch
             {
-                DiscountType2.Percentage => "percentage",
+                MaximumAmountAdjustmentDiscountType.Percentage => "percentage",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1378,16 +1379,16 @@ sealed class ReasonConverter : JsonConverter<Reason>
     }
 }
 
-[JsonConverter(typeof(TypeModelConverter))]
-public enum TypeModel
+[JsonConverter(typeof(SharedCreditNoteTypeConverter))]
+public enum SharedCreditNoteType
 {
     Refund,
     Adjustment,
 }
 
-sealed class TypeModelConverter : JsonConverter<TypeModel>
+sealed class SharedCreditNoteTypeConverter : JsonConverter<SharedCreditNoteType>
 {
-    public override TypeModel Read(
+    public override SharedCreditNoteType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1395,15 +1396,15 @@ sealed class TypeModelConverter : JsonConverter<TypeModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "refund" => TypeModel.Refund,
-            "adjustment" => TypeModel.Adjustment,
-            _ => (TypeModel)(-1),
+            "refund" => SharedCreditNoteType.Refund,
+            "adjustment" => SharedCreditNoteType.Adjustment,
+            _ => (SharedCreditNoteType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        TypeModel value,
+        SharedCreditNoteType value,
         JsonSerializerOptions options
     )
     {
@@ -1411,8 +1412,8 @@ sealed class TypeModelConverter : JsonConverter<TypeModel>
             writer,
             value switch
             {
-                TypeModel.Refund => "refund",
-                TypeModel.Adjustment => "adjustment",
+                SharedCreditNoteType.Refund => "refund",
+                SharedCreditNoteType.Adjustment => "adjustment",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1453,7 +1454,7 @@ public sealed record class DiscountModel : ModelBase, IFromRaw<DiscountModel>
         }
     }
 
-    public required ApiEnum<string, DiscountType3> DiscountType
+    public required ApiEnum<string, DiscountModelDiscountType> DiscountType
     {
         get
         {
@@ -1466,7 +1467,7 @@ public sealed record class DiscountModel : ModelBase, IFromRaw<DiscountModel>
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, DiscountType3>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, DiscountModelDiscountType>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1578,15 +1579,15 @@ public sealed record class DiscountModel : ModelBase, IFromRaw<DiscountModel>
     }
 }
 
-[JsonConverter(typeof(DiscountType3Converter))]
-public enum DiscountType3
+[JsonConverter(typeof(DiscountModelDiscountTypeConverter))]
+public enum DiscountModelDiscountType
 {
     Percentage,
 }
 
-sealed class DiscountType3Converter : JsonConverter<DiscountType3>
+sealed class DiscountModelDiscountTypeConverter : JsonConverter<DiscountModelDiscountType>
 {
-    public override DiscountType3 Read(
+    public override DiscountModelDiscountType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1594,14 +1595,14 @@ sealed class DiscountType3Converter : JsonConverter<DiscountType3>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "percentage" => DiscountType3.Percentage,
-            _ => (DiscountType3)(-1),
+            "percentage" => DiscountModelDiscountType.Percentage,
+            _ => (DiscountModelDiscountType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        DiscountType3 value,
+        DiscountModelDiscountType value,
         JsonSerializerOptions options
     )
     {
@@ -1609,7 +1610,7 @@ sealed class DiscountType3Converter : JsonConverter<DiscountType3>
             writer,
             value switch
             {
-                DiscountType3.Percentage => "percentage",
+                DiscountModelDiscountType.Percentage => "percentage",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

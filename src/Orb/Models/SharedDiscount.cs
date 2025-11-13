@@ -7,8 +7,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(Discount1Converter))]
-public record class Discount1
+[JsonConverter(typeof(SharedDiscountConverter))]
+public record class SharedDiscount
 {
     public object Value { get; private init; }
 
@@ -25,32 +25,32 @@ public record class Discount1
         }
     }
 
-    public Discount1(PercentageDiscount value)
+    public SharedDiscount(PercentageDiscount value)
     {
         Value = value;
     }
 
-    public Discount1(TrialDiscount value)
+    public SharedDiscount(TrialDiscount value)
     {
         Value = value;
     }
 
-    public Discount1(UsageDiscount value)
+    public SharedDiscount(UsageDiscount value)
     {
         Value = value;
     }
 
-    public Discount1(AmountDiscount value)
+    public SharedDiscount(AmountDiscount value)
     {
         Value = value;
     }
 
-    Discount1(UnknownVariant value)
+    SharedDiscount(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static Discount1 CreateUnknownVariant(JsonElement value)
+    public static SharedDiscount CreateUnknownVariant(JsonElement value)
     {
         return new(new UnknownVariant(value));
     }
@@ -101,7 +101,9 @@ public record class Discount1
                 amount(value);
                 break;
             default:
-                throw new OrbInvalidDataException("Data did not match any variant of Discount1");
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of SharedDiscount"
+                );
         }
     }
 
@@ -118,32 +120,34 @@ public record class Discount1
             TrialDiscount value => trial(value),
             UsageDiscount value => usage(value),
             AmountDiscount value => amount(value),
-            _ => throw new OrbInvalidDataException("Data did not match any variant of Discount1"),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of SharedDiscount"
+            ),
         };
     }
 
-    public static implicit operator Discount1(PercentageDiscount value) => new(value);
+    public static implicit operator SharedDiscount(PercentageDiscount value) => new(value);
 
-    public static implicit operator Discount1(TrialDiscount value) => new(value);
+    public static implicit operator SharedDiscount(TrialDiscount value) => new(value);
 
-    public static implicit operator Discount1(UsageDiscount value) => new(value);
+    public static implicit operator SharedDiscount(UsageDiscount value) => new(value);
 
-    public static implicit operator Discount1(AmountDiscount value) => new(value);
+    public static implicit operator SharedDiscount(AmountDiscount value) => new(value);
 
     public void Validate()
     {
         if (this.Value is UnknownVariant)
         {
-            throw new OrbInvalidDataException("Data did not match any variant of Discount1");
+            throw new OrbInvalidDataException("Data did not match any variant of SharedDiscount");
         }
     }
 
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class Discount1Converter : JsonConverter<Discount1>
+sealed class SharedDiscountConverter : JsonConverter<SharedDiscount>
 {
-    public override Discount1? Read(
+    public override SharedDiscount? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -175,7 +179,7 @@ sealed class Discount1Converter : JsonConverter<Discount1>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Discount1(deserialized);
+                        return new SharedDiscount(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -201,7 +205,7 @@ sealed class Discount1Converter : JsonConverter<Discount1>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Discount1(deserialized);
+                        return new SharedDiscount(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -227,7 +231,7 @@ sealed class Discount1Converter : JsonConverter<Discount1>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Discount1(deserialized);
+                        return new SharedDiscount(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -253,7 +257,7 @@ sealed class Discount1Converter : JsonConverter<Discount1>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Discount1(deserialized);
+                        return new SharedDiscount(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -280,7 +284,7 @@ sealed class Discount1Converter : JsonConverter<Discount1>
 
     public override void Write(
         Utf8JsonWriter writer,
-        Discount1 value,
+        SharedDiscount value,
         JsonSerializerOptions options
     )
     {

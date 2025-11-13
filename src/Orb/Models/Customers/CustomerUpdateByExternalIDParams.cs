@@ -710,12 +710,12 @@ public record class TaxConfiguration1
         Value = value;
     }
 
-    public TaxConfiguration1(Numeral1 value)
+    public TaxConfiguration1(TaxConfiguration1Numeral value)
     {
         Value = value;
     }
 
-    public TaxConfiguration1(Anrok1 value)
+    public TaxConfiguration1(TaxConfiguration1Anrok value)
     {
         Value = value;
     }
@@ -748,15 +748,15 @@ public record class TaxConfiguration1
         return value != null;
     }
 
-    public bool TryPickNumeral([NotNullWhen(true)] out Numeral1? value)
+    public bool TryPickNumeral([NotNullWhen(true)] out TaxConfiguration1Numeral? value)
     {
-        value = this.Value as Numeral1;
+        value = this.Value as TaxConfiguration1Numeral;
         return value != null;
     }
 
-    public bool TryPickAnrok([NotNullWhen(true)] out Anrok1? value)
+    public bool TryPickAnrok([NotNullWhen(true)] out TaxConfiguration1Anrok? value)
     {
-        value = this.Value as Anrok1;
+        value = this.Value as TaxConfiguration1Anrok;
         return value != null;
     }
 
@@ -764,8 +764,8 @@ public record class TaxConfiguration1
         System::Action<NewAvalaraTaxConfiguration> newAvalara,
         System::Action<NewTaxJarConfiguration> newTaxJar,
         System::Action<NewSphereConfiguration> newSphere,
-        System::Action<Numeral1> numeral,
-        System::Action<Anrok1> anrok
+        System::Action<TaxConfiguration1Numeral> numeral,
+        System::Action<TaxConfiguration1Anrok> anrok
     )
     {
         switch (this.Value)
@@ -779,10 +779,10 @@ public record class TaxConfiguration1
             case NewSphereConfiguration value:
                 newSphere(value);
                 break;
-            case Numeral1 value:
+            case TaxConfiguration1Numeral value:
                 numeral(value);
                 break;
-            case Anrok1 value:
+            case TaxConfiguration1Anrok value:
                 anrok(value);
                 break;
             default:
@@ -796,8 +796,8 @@ public record class TaxConfiguration1
         System::Func<NewAvalaraTaxConfiguration, T> newAvalara,
         System::Func<NewTaxJarConfiguration, T> newTaxJar,
         System::Func<NewSphereConfiguration, T> newSphere,
-        System::Func<Numeral1, T> numeral,
-        System::Func<Anrok1, T> anrok
+        System::Func<TaxConfiguration1Numeral, T> numeral,
+        System::Func<TaxConfiguration1Anrok, T> anrok
     )
     {
         return this.Value switch
@@ -805,8 +805,8 @@ public record class TaxConfiguration1
             NewAvalaraTaxConfiguration value => newAvalara(value),
             NewTaxJarConfiguration value => newTaxJar(value),
             NewSphereConfiguration value => newSphere(value),
-            Numeral1 value => numeral(value),
-            Anrok1 value => anrok(value),
+            TaxConfiguration1Numeral value => numeral(value),
+            TaxConfiguration1Anrok value => anrok(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of TaxConfiguration1"
             ),
@@ -820,9 +820,9 @@ public record class TaxConfiguration1
 
     public static implicit operator TaxConfiguration1(NewSphereConfiguration value) => new(value);
 
-    public static implicit operator TaxConfiguration1(Numeral1 value) => new(value);
+    public static implicit operator TaxConfiguration1(TaxConfiguration1Numeral value) => new(value);
 
-    public static implicit operator TaxConfiguration1(Anrok1 value) => new(value);
+    public static implicit operator TaxConfiguration1(TaxConfiguration1Anrok value) => new(value);
 
     public void Validate()
     {
@@ -951,7 +951,10 @@ sealed class TaxConfiguration1Converter : JsonConverter<TaxConfiguration1?>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Numeral1>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<TaxConfiguration1Numeral>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -963,7 +966,7 @@ sealed class TaxConfiguration1Converter : JsonConverter<TaxConfiguration1?>
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'Numeral1'",
+                            "Data does not match union variant 'TaxConfiguration1Numeral'",
                             e
                         )
                     );
@@ -977,7 +980,10 @@ sealed class TaxConfiguration1Converter : JsonConverter<TaxConfiguration1?>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Anrok1>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<TaxConfiguration1Anrok>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -988,7 +994,10 @@ sealed class TaxConfiguration1Converter : JsonConverter<TaxConfiguration1?>
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
                     exceptions.Add(
-                        new OrbInvalidDataException("Data does not match union variant 'Anrok1'", e)
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'TaxConfiguration1Anrok'",
+                            e
+                        )
                     );
                 }
 
@@ -1014,8 +1023,8 @@ sealed class TaxConfiguration1Converter : JsonConverter<TaxConfiguration1?>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Numeral1>))]
-public sealed record class Numeral1 : ModelBase, IFromRaw<Numeral1>
+[JsonConverter(typeof(ModelConverter<TaxConfiguration1Numeral>))]
+public sealed record class TaxConfiguration1Numeral : ModelBase, IFromRaw<TaxConfiguration1Numeral>
 {
     public required bool TaxExempt
     {
@@ -1041,7 +1050,7 @@ public sealed record class Numeral1 : ModelBase, IFromRaw<Numeral1>
         }
     }
 
-    public TaxProvider3 TaxProvider
+    public TaxConfiguration1NumeralTaxProvider TaxProvider
     {
         get
         {
@@ -1054,7 +1063,10 @@ public sealed record class Numeral1 : ModelBase, IFromRaw<Numeral1>
                     )
                 );
 
-            return JsonSerializer.Deserialize<TaxProvider3>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<TaxConfiguration1NumeralTaxProvider>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
                 ?? throw new OrbInvalidDataException(
                     "'tax_provider' cannot be null",
                     new System::ArgumentNullException("tax_provider")
@@ -1098,12 +1110,12 @@ public sealed record class Numeral1 : ModelBase, IFromRaw<Numeral1>
         _ = this.AutomaticTaxEnabled;
     }
 
-    public Numeral1()
+    public TaxConfiguration1Numeral()
     {
         this.TaxProvider = new();
     }
 
-    public Numeral1(IReadOnlyDictionary<string, JsonElement> properties)
+    public TaxConfiguration1Numeral(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
 
@@ -1112,19 +1124,21 @@ public sealed record class Numeral1 : ModelBase, IFromRaw<Numeral1>
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Numeral1(FrozenDictionary<string, JsonElement> properties)
+    TaxConfiguration1Numeral(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Numeral1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static TaxConfiguration1Numeral FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]
-    public Numeral1(bool taxExempt)
+    public TaxConfiguration1Numeral(bool taxExempt)
         : this()
     {
         this.TaxExempt = taxExempt;
@@ -1132,31 +1146,33 @@ public sealed record class Numeral1 : ModelBase, IFromRaw<Numeral1>
 }
 
 [JsonConverter(typeof(Converter))]
-public class TaxProvider3
+public class TaxConfiguration1NumeralTaxProvider
 {
     public JsonElement Json { get; private init; }
 
-    public TaxProvider3()
+    public TaxConfiguration1NumeralTaxProvider()
     {
         Json = JsonSerializer.Deserialize<JsonElement>("\"numeral\"");
     }
 
-    TaxProvider3(JsonElement json)
+    TaxConfiguration1NumeralTaxProvider(JsonElement json)
     {
         Json = json;
     }
 
     public void Validate()
     {
-        if (JsonElement.DeepEquals(this.Json, new TaxProvider3().Json))
+        if (JsonElement.DeepEquals(this.Json, new TaxConfiguration1NumeralTaxProvider().Json))
         {
-            throw new OrbInvalidDataException("Invalid value given for 'TaxProvider3'");
+            throw new OrbInvalidDataException(
+                "Invalid value given for 'TaxConfiguration1NumeralTaxProvider'"
+            );
         }
     }
 
-    class Converter : JsonConverter<TaxProvider3>
+    class Converter : JsonConverter<TaxConfiguration1NumeralTaxProvider>
     {
-        public override TaxProvider3? Read(
+        public override TaxConfiguration1NumeralTaxProvider? Read(
             ref Utf8JsonReader reader,
             System::Type typeToConvert,
             JsonSerializerOptions options
@@ -1167,7 +1183,7 @@ public class TaxProvider3
 
         public override void Write(
             Utf8JsonWriter writer,
-            TaxProvider3 value,
+            TaxConfiguration1NumeralTaxProvider value,
             JsonSerializerOptions options
         )
         {
@@ -1176,8 +1192,8 @@ public class TaxProvider3
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Anrok1>))]
-public sealed record class Anrok1 : ModelBase, IFromRaw<Anrok1>
+[JsonConverter(typeof(ModelConverter<TaxConfiguration1Anrok>))]
+public sealed record class TaxConfiguration1Anrok : ModelBase, IFromRaw<TaxConfiguration1Anrok>
 {
     public required bool TaxExempt
     {
@@ -1203,7 +1219,7 @@ public sealed record class Anrok1 : ModelBase, IFromRaw<Anrok1>
         }
     }
 
-    public TaxProvider4 TaxProvider
+    public TaxConfiguration1AnrokTaxProvider TaxProvider
     {
         get
         {
@@ -1216,7 +1232,10 @@ public sealed record class Anrok1 : ModelBase, IFromRaw<Anrok1>
                     )
                 );
 
-            return JsonSerializer.Deserialize<TaxProvider4>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<TaxConfiguration1AnrokTaxProvider>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
                 ?? throw new OrbInvalidDataException(
                     "'tax_provider' cannot be null",
                     new System::ArgumentNullException("tax_provider")
@@ -1260,12 +1279,12 @@ public sealed record class Anrok1 : ModelBase, IFromRaw<Anrok1>
         _ = this.AutomaticTaxEnabled;
     }
 
-    public Anrok1()
+    public TaxConfiguration1Anrok()
     {
         this.TaxProvider = new();
     }
 
-    public Anrok1(IReadOnlyDictionary<string, JsonElement> properties)
+    public TaxConfiguration1Anrok(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
 
@@ -1274,19 +1293,21 @@ public sealed record class Anrok1 : ModelBase, IFromRaw<Anrok1>
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Anrok1(FrozenDictionary<string, JsonElement> properties)
+    TaxConfiguration1Anrok(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Anrok1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static TaxConfiguration1Anrok FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]
-    public Anrok1(bool taxExempt)
+    public TaxConfiguration1Anrok(bool taxExempt)
         : this()
     {
         this.TaxExempt = taxExempt;
@@ -1294,31 +1315,33 @@ public sealed record class Anrok1 : ModelBase, IFromRaw<Anrok1>
 }
 
 [JsonConverter(typeof(Converter))]
-public class TaxProvider4
+public class TaxConfiguration1AnrokTaxProvider
 {
     public JsonElement Json { get; private init; }
 
-    public TaxProvider4()
+    public TaxConfiguration1AnrokTaxProvider()
     {
         Json = JsonSerializer.Deserialize<JsonElement>("\"anrok\"");
     }
 
-    TaxProvider4(JsonElement json)
+    TaxConfiguration1AnrokTaxProvider(JsonElement json)
     {
         Json = json;
     }
 
     public void Validate()
     {
-        if (JsonElement.DeepEquals(this.Json, new TaxProvider4().Json))
+        if (JsonElement.DeepEquals(this.Json, new TaxConfiguration1AnrokTaxProvider().Json))
         {
-            throw new OrbInvalidDataException("Invalid value given for 'TaxProvider4'");
+            throw new OrbInvalidDataException(
+                "Invalid value given for 'TaxConfiguration1AnrokTaxProvider'"
+            );
         }
     }
 
-    class Converter : JsonConverter<TaxProvider4>
+    class Converter : JsonConverter<TaxConfiguration1AnrokTaxProvider>
     {
-        public override TaxProvider4? Read(
+        public override TaxConfiguration1AnrokTaxProvider? Read(
             ref Utf8JsonReader reader,
             System::Type typeToConvert,
             JsonSerializerOptions options
@@ -1329,7 +1352,7 @@ public class TaxProvider4
 
         public override void Write(
             Utf8JsonWriter writer,
-            TaxProvider4 value,
+            TaxConfiguration1AnrokTaxProvider value,
             JsonSerializerOptions options
         )
         {

@@ -15,10 +15,10 @@ public class PriceServiceTest : TestBase
             {
                 Body = new NewFloatingUnitPrice()
                 {
-                    Cadence = Cadence23.Annual,
+                    Cadence = NewFloatingUnitPriceCadence.Annual,
                     Currency = "currency",
                     ItemID = "item_id",
-                    ModelType = ModelType22.Unit,
+                    ModelType = NewFloatingUnitPriceModelType.Unit,
                     Name = "Annual fee",
                     UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                     BillableMetricID = "billable_metric_id",
@@ -26,12 +26,12 @@ public class PriceServiceTest : TestBase
                     BillingCycleConfiguration = new()
                     {
                         Duration = 0,
-                        DurationUnit = DurationUnit1.Day,
+                        DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                     },
                     ConversionRate = 0,
-                    ConversionRateConfig = new UnitConversionRateConfig()
+                    ConversionRateConfig = new SharedUnitConversionRateConfig()
                     {
-                        ConversionRateType = ConversionRateTypeModel.Unit,
+                        ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                         UnitConfig = new("unit_amount"),
                     },
                     DimensionalPriceConfiguration = new()
@@ -46,7 +46,7 @@ public class PriceServiceTest : TestBase
                     InvoicingCycleConfiguration = new()
                     {
                         Duration = 0,
-                        DurationUnit = DurationUnit1.Day,
+                        DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                     },
                     Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 },

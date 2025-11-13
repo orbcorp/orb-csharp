@@ -107,7 +107,7 @@ public sealed record class MatrixWithAllocationConfig
     /// <summary>
     /// Matrix values configuration
     /// </summary>
-    public required List<MatrixValueModel> MatrixValues
+    public required List<MatrixValue> MatrixValues
     {
         get
         {
@@ -117,7 +117,7 @@ public sealed record class MatrixWithAllocationConfig
                     new ArgumentOutOfRangeException("matrix_values", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<List<MatrixValueModel>>(
+            return JsonSerializer.Deserialize<List<MatrixValue>>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -172,8 +172,8 @@ public sealed record class MatrixWithAllocationConfig
 /// <summary>
 /// Configuration for a single matrix value
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixValueModel>))]
-public sealed record class MatrixValueModel : ModelBase, IFromRaw<MatrixValueModel>
+[JsonConverter(typeof(ModelConverter<MatrixValue>))]
+public sealed record class MatrixValue : ModelBase, IFromRaw<MatrixValue>
 {
     /// <summary>
     /// One or two matrix keys to filter usage to this Matrix value by. For example,
@@ -239,24 +239,22 @@ public sealed record class MatrixValueModel : ModelBase, IFromRaw<MatrixValueMod
         _ = this.UnitAmount;
     }
 
-    public MatrixValueModel() { }
+    public MatrixValue() { }
 
-    public MatrixValueModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public MatrixValue(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    MatrixValueModel(FrozenDictionary<string, JsonElement> properties)
+    MatrixValue(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static MatrixValueModel FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
-    )
+    public static MatrixValue FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }

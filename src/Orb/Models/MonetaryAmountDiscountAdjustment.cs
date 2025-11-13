@@ -342,7 +342,7 @@ public sealed record class Filter6 : ModelBase, IFromRaw<Filter6>
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, Field6> Field
+    public required ApiEnum<string, Filter6Field> Field
     {
         get
         {
@@ -352,7 +352,7 @@ public sealed record class Filter6 : ModelBase, IFromRaw<Filter6>
                     new System::ArgumentOutOfRangeException("field", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Field6>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, Filter6Field>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -369,7 +369,7 @@ public sealed record class Filter6 : ModelBase, IFromRaw<Filter6>
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, Operator6> Operator
+    public required ApiEnum<string, Filter6Operator> Operator
     {
         get
         {
@@ -379,7 +379,7 @@ public sealed record class Filter6 : ModelBase, IFromRaw<Filter6>
                     new System::ArgumentOutOfRangeException("operator", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Operator6>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, Filter6Operator>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -452,8 +452,8 @@ public sealed record class Filter6 : ModelBase, IFromRaw<Filter6>
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(Field6Converter))]
-public enum Field6
+[JsonConverter(typeof(Filter6FieldConverter))]
+public enum Filter6Field
 {
     PriceID,
     ItemID,
@@ -462,9 +462,9 @@ public enum Field6
     PricingUnitID,
 }
 
-sealed class Field6Converter : JsonConverter<Field6>
+sealed class Filter6FieldConverter : JsonConverter<Filter6Field>
 {
-    public override Field6 Read(
+    public override Filter6Field Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -472,26 +472,30 @@ sealed class Field6Converter : JsonConverter<Field6>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => Field6.PriceID,
-            "item_id" => Field6.ItemID,
-            "price_type" => Field6.PriceType,
-            "currency" => Field6.Currency,
-            "pricing_unit_id" => Field6.PricingUnitID,
-            _ => (Field6)(-1),
+            "price_id" => Filter6Field.PriceID,
+            "item_id" => Filter6Field.ItemID,
+            "price_type" => Filter6Field.PriceType,
+            "currency" => Filter6Field.Currency,
+            "pricing_unit_id" => Filter6Field.PricingUnitID,
+            _ => (Filter6Field)(-1),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Field6 value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        Filter6Field value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                Field6.PriceID => "price_id",
-                Field6.ItemID => "item_id",
-                Field6.PriceType => "price_type",
-                Field6.Currency => "currency",
-                Field6.PricingUnitID => "pricing_unit_id",
+                Filter6Field.PriceID => "price_id",
+                Filter6Field.ItemID => "item_id",
+                Filter6Field.PriceType => "price_type",
+                Filter6Field.Currency => "currency",
+                Filter6Field.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -504,16 +508,16 @@ sealed class Field6Converter : JsonConverter<Field6>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(Operator6Converter))]
-public enum Operator6
+[JsonConverter(typeof(Filter6OperatorConverter))]
+public enum Filter6Operator
 {
     Includes,
     Excludes,
 }
 
-sealed class Operator6Converter : JsonConverter<Operator6>
+sealed class Filter6OperatorConverter : JsonConverter<Filter6Operator>
 {
-    public override Operator6 Read(
+    public override Filter6Operator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -521,15 +525,15 @@ sealed class Operator6Converter : JsonConverter<Operator6>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Operator6.Includes,
-            "excludes" => Operator6.Excludes,
-            _ => (Operator6)(-1),
+            "includes" => Filter6Operator.Includes,
+            "excludes" => Filter6Operator.Excludes,
+            _ => (Filter6Operator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Operator6 value,
+        Filter6Operator value,
         JsonSerializerOptions options
     )
     {
@@ -537,8 +541,8 @@ sealed class Operator6Converter : JsonConverter<Operator6>
             writer,
             value switch
             {
-                Operator6.Includes => "includes",
-                Operator6.Excludes => "excludes",
+                Filter6Operator.Includes => "includes",
+                Filter6Operator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

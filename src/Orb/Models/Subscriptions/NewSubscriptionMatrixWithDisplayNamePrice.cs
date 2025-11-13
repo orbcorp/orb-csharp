@@ -17,7 +17,7 @@ public sealed record class NewSubscriptionMatrixWithDisplayNamePrice
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Subscriptions.Cadence33> Cadence
+    public required ApiEnum<string, NewSubscriptionMatrixWithDisplayNamePriceCadence> Cadence
     {
         get
         {
@@ -28,7 +28,7 @@ public sealed record class NewSubscriptionMatrixWithDisplayNamePrice
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Subscriptions.Cadence33>
+                ApiEnum<string, NewSubscriptionMatrixWithDisplayNamePriceCadence>
             >(element, ModelBase.SerializerOptions);
         }
         init
@@ -110,7 +110,7 @@ public sealed record class NewSubscriptionMatrixWithDisplayNamePrice
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Subscriptions.ModelType33> ModelType
+    public required ApiEnum<string, NewSubscriptionMatrixWithDisplayNamePriceModelType> ModelType
     {
         get
         {
@@ -124,7 +124,7 @@ public sealed record class NewSubscriptionMatrixWithDisplayNamePrice
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Subscriptions.ModelType33>
+                ApiEnum<string, NewSubscriptionMatrixWithDisplayNamePriceModelType>
             >(element, ModelBase.SerializerOptions);
         }
         init
@@ -261,14 +261,14 @@ public sealed record class NewSubscriptionMatrixWithDisplayNamePrice
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public global::Orb.Models.Subscriptions.ConversionRateConfig33? ConversionRateConfig
+    public NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig? ConversionRateConfig
     {
         get
         {
             if (!this._properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<global::Orb.Models.Subscriptions.ConversionRateConfig33?>(
+            return JsonSerializer.Deserialize<NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -524,8 +524,8 @@ public sealed record class NewSubscriptionMatrixWithDisplayNamePrice
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Subscriptions.Cadence33Converter))]
-public enum Cadence33
+[JsonConverter(typeof(NewSubscriptionMatrixWithDisplayNamePriceCadenceConverter))]
+public enum NewSubscriptionMatrixWithDisplayNamePriceCadence
 {
     Annual,
     SemiAnnual,
@@ -535,9 +535,10 @@ public enum Cadence33
     Custom,
 }
 
-sealed class Cadence33Converter : JsonConverter<global::Orb.Models.Subscriptions.Cadence33>
+sealed class NewSubscriptionMatrixWithDisplayNamePriceCadenceConverter
+    : JsonConverter<NewSubscriptionMatrixWithDisplayNamePriceCadence>
 {
-    public override global::Orb.Models.Subscriptions.Cadence33 Read(
+    public override NewSubscriptionMatrixWithDisplayNamePriceCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -545,19 +546,19 @@ sealed class Cadence33Converter : JsonConverter<global::Orb.Models.Subscriptions
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => global::Orb.Models.Subscriptions.Cadence33.Annual,
-            "semi_annual" => global::Orb.Models.Subscriptions.Cadence33.SemiAnnual,
-            "monthly" => global::Orb.Models.Subscriptions.Cadence33.Monthly,
-            "quarterly" => global::Orb.Models.Subscriptions.Cadence33.Quarterly,
-            "one_time" => global::Orb.Models.Subscriptions.Cadence33.OneTime,
-            "custom" => global::Orb.Models.Subscriptions.Cadence33.Custom,
-            _ => (global::Orb.Models.Subscriptions.Cadence33)(-1),
+            "annual" => NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
+            "semi_annual" => NewSubscriptionMatrixWithDisplayNamePriceCadence.SemiAnnual,
+            "monthly" => NewSubscriptionMatrixWithDisplayNamePriceCadence.Monthly,
+            "quarterly" => NewSubscriptionMatrixWithDisplayNamePriceCadence.Quarterly,
+            "one_time" => NewSubscriptionMatrixWithDisplayNamePriceCadence.OneTime,
+            "custom" => NewSubscriptionMatrixWithDisplayNamePriceCadence.Custom,
+            _ => (NewSubscriptionMatrixWithDisplayNamePriceCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Subscriptions.Cadence33 value,
+        NewSubscriptionMatrixWithDisplayNamePriceCadence value,
         JsonSerializerOptions options
     )
     {
@@ -565,12 +566,12 @@ sealed class Cadence33Converter : JsonConverter<global::Orb.Models.Subscriptions
             writer,
             value switch
             {
-                global::Orb.Models.Subscriptions.Cadence33.Annual => "annual",
-                global::Orb.Models.Subscriptions.Cadence33.SemiAnnual => "semi_annual",
-                global::Orb.Models.Subscriptions.Cadence33.Monthly => "monthly",
-                global::Orb.Models.Subscriptions.Cadence33.Quarterly => "quarterly",
-                global::Orb.Models.Subscriptions.Cadence33.OneTime => "one_time",
-                global::Orb.Models.Subscriptions.Cadence33.Custom => "custom",
+                NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual => "annual",
+                NewSubscriptionMatrixWithDisplayNamePriceCadence.SemiAnnual => "semi_annual",
+                NewSubscriptionMatrixWithDisplayNamePriceCadence.Monthly => "monthly",
+                NewSubscriptionMatrixWithDisplayNamePriceCadence.Quarterly => "quarterly",
+                NewSubscriptionMatrixWithDisplayNamePriceCadence.OneTime => "one_time",
+                NewSubscriptionMatrixWithDisplayNamePriceCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -820,15 +821,16 @@ public sealed record class UnitAmountModel
 /// <summary>
 /// The pricing model type
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Subscriptions.ModelType33Converter))]
-public enum ModelType33
+[JsonConverter(typeof(NewSubscriptionMatrixWithDisplayNamePriceModelTypeConverter))]
+public enum NewSubscriptionMatrixWithDisplayNamePriceModelType
 {
     MatrixWithDisplayName,
 }
 
-sealed class ModelType33Converter : JsonConverter<global::Orb.Models.Subscriptions.ModelType33>
+sealed class NewSubscriptionMatrixWithDisplayNamePriceModelTypeConverter
+    : JsonConverter<NewSubscriptionMatrixWithDisplayNamePriceModelType>
 {
-    public override global::Orb.Models.Subscriptions.ModelType33 Read(
+    public override NewSubscriptionMatrixWithDisplayNamePriceModelType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -836,18 +838,15 @@ sealed class ModelType33Converter : JsonConverter<global::Orb.Models.Subscriptio
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "matrix_with_display_name" => global::Orb
-                .Models
-                .Subscriptions
-                .ModelType33
-                .MatrixWithDisplayName,
-            _ => (global::Orb.Models.Subscriptions.ModelType33)(-1),
+            "matrix_with_display_name" =>
+                NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
+            _ => (NewSubscriptionMatrixWithDisplayNamePriceModelType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Subscriptions.ModelType33 value,
+        NewSubscriptionMatrixWithDisplayNamePriceModelType value,
         JsonSerializerOptions options
     )
     {
@@ -855,7 +854,7 @@ sealed class ModelType33Converter : JsonConverter<global::Orb.Models.Subscriptio
             writer,
             value switch
             {
-                global::Orb.Models.Subscriptions.ModelType33.MatrixWithDisplayName =>
+                NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName =>
                     "matrix_with_display_name",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
@@ -866,86 +865,90 @@ sealed class ModelType33Converter : JsonConverter<global::Orb.Models.Subscriptio
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Subscriptions.ConversionRateConfig33Converter))]
-public record class ConversionRateConfig33
+[JsonConverter(typeof(NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfigConverter))]
+public record class NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig
 {
     public object Value { get; private init; }
 
-    public ConversionRateConfig33(UnitConversionRateConfig value)
+    public NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    )
     {
         Value = value;
     }
 
-    public ConversionRateConfig33(TieredConversionRateConfig value)
+    public NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    )
     {
         Value = value;
     }
 
-    ConversionRateConfig33(UnknownVariant value)
+    NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static global::Orb.Models.Subscriptions.ConversionRateConfig33 CreateUnknownVariant(
+    public static NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig CreateUnknownVariant(
         JsonElement value
     )
     {
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
-        value = this.Value as UnitConversionRateConfig;
+        value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
-    public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
-        value = this.Value as TieredConversionRateConfig;
+        value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
     public void Switch(
-        System::Action<UnitConversionRateConfig> unit,
-        System::Action<TieredConversionRateConfig> tiered
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
     )
     {
         switch (this.Value)
         {
-            case UnitConversionRateConfig value:
+            case SharedUnitConversionRateConfig value:
                 unit(value);
                 break;
-            case TieredConversionRateConfig value:
+            case SharedTieredConversionRateConfig value:
                 tiered(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of ConversionRateConfig33"
+                    "Data did not match any variant of NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig"
                 );
         }
     }
 
     public T Match<T>(
-        System::Func<UnitConversionRateConfig, T> unit,
-        System::Func<TieredConversionRateConfig, T> tiered
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
     )
     {
         return this.Value switch
         {
-            UnitConversionRateConfig value => unit(value),
-            TieredConversionRateConfig value => tiered(value),
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig33"
+                "Data did not match any variant of NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig"
             ),
         };
     }
 
-    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig33(
-        UnitConversionRateConfig value
+    public static implicit operator NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig(
+        SharedUnitConversionRateConfig value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig33(
-        TieredConversionRateConfig value
+    public static implicit operator NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig(
+        SharedTieredConversionRateConfig value
     ) => new(value);
 
     public void Validate()
@@ -953,7 +956,7 @@ public record class ConversionRateConfig33
         if (this.Value is UnknownVariant)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig33"
+                "Data did not match any variant of NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig"
             );
         }
     }
@@ -961,10 +964,10 @@ public record class ConversionRateConfig33
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class ConversionRateConfig33Converter
-    : JsonConverter<global::Orb.Models.Subscriptions.ConversionRateConfig33>
+sealed class NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfigConverter
+    : JsonConverter<NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig>
 {
-    public override global::Orb.Models.Subscriptions.ConversionRateConfig33? Read(
+    public override NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -989,14 +992,14 @@ sealed class ConversionRateConfig33Converter
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Subscriptions.ConversionRateConfig33(
+                        return new NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig(
                             deserialized
                         );
                     }
@@ -1006,7 +1009,7 @@ sealed class ConversionRateConfig33Converter
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'UnitConversionRateConfig'",
+                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
                             e
                         )
                     );
@@ -1020,14 +1023,14 @@ sealed class ConversionRateConfig33Converter
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Subscriptions.ConversionRateConfig33(
+                        return new NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig(
                             deserialized
                         );
                     }
@@ -1037,7 +1040,7 @@ sealed class ConversionRateConfig33Converter
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'TieredConversionRateConfig'",
+                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
                             e
                         )
                     );
@@ -1056,7 +1059,7 @@ sealed class ConversionRateConfig33Converter
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Subscriptions.ConversionRateConfig33 value,
+        NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig value,
         JsonSerializerOptions options
     )
     {

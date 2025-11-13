@@ -41,7 +41,7 @@ public sealed record class NewBillingCycleConfiguration
     /// <summary>
     /// The unit of billing period duration.
     /// </summary>
-    public required ApiEnum<string, DurationUnit1> DurationUnit
+    public required ApiEnum<string, NewBillingCycleConfigurationDurationUnit> DurationUnit
     {
         get
         {
@@ -54,10 +54,9 @@ public sealed record class NewBillingCycleConfiguration
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, DurationUnit1>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, NewBillingCycleConfigurationDurationUnit>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -100,16 +99,17 @@ public sealed record class NewBillingCycleConfiguration
 /// <summary>
 /// The unit of billing period duration.
 /// </summary>
-[JsonConverter(typeof(DurationUnit1Converter))]
-public enum DurationUnit1
+[JsonConverter(typeof(NewBillingCycleConfigurationDurationUnitConverter))]
+public enum NewBillingCycleConfigurationDurationUnit
 {
     Day,
     Month,
 }
 
-sealed class DurationUnit1Converter : JsonConverter<DurationUnit1>
+sealed class NewBillingCycleConfigurationDurationUnitConverter
+    : JsonConverter<NewBillingCycleConfigurationDurationUnit>
 {
-    public override DurationUnit1 Read(
+    public override NewBillingCycleConfigurationDurationUnit Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -117,15 +117,15 @@ sealed class DurationUnit1Converter : JsonConverter<DurationUnit1>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "day" => DurationUnit1.Day,
-            "month" => DurationUnit1.Month,
-            _ => (DurationUnit1)(-1),
+            "day" => NewBillingCycleConfigurationDurationUnit.Day,
+            "month" => NewBillingCycleConfigurationDurationUnit.Month,
+            _ => (NewBillingCycleConfigurationDurationUnit)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        DurationUnit1 value,
+        NewBillingCycleConfigurationDurationUnit value,
         JsonSerializerOptions options
     )
     {
@@ -133,8 +133,8 @@ sealed class DurationUnit1Converter : JsonConverter<DurationUnit1>
             writer,
             value switch
             {
-                DurationUnit1.Day => "day",
-                DurationUnit1.Month => "month",
+                NewBillingCycleConfigurationDurationUnit.Day => "day",
+                NewBillingCycleConfigurationDurationUnit.Month => "month",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

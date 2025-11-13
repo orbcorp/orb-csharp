@@ -17,7 +17,7 @@ public sealed record class ChangedSubscriptionResources
     /// <summary>
     /// The credit notes that were created as part of this operation.
     /// </summary>
-    public required List<CreditNoteModel> CreatedCreditNotes
+    public required List<SharedCreditNote> CreatedCreditNotes
     {
         get
         {
@@ -30,7 +30,7 @@ public sealed record class ChangedSubscriptionResources
                     )
                 );
 
-            return JsonSerializer.Deserialize<List<CreditNoteModel>>(
+            return JsonSerializer.Deserialize<List<SharedCreditNote>>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -85,7 +85,7 @@ public sealed record class ChangedSubscriptionResources
     /// <summary>
     /// The credit notes that were voided as part of this operation.
     /// </summary>
-    public required List<CreditNoteModel> VoidedCreditNotes
+    public required List<SharedCreditNote> VoidedCreditNotes
     {
         get
         {
@@ -98,7 +98,7 @@ public sealed record class ChangedSubscriptionResources
                     )
                 );
 
-            return JsonSerializer.Deserialize<List<CreditNoteModel>>(
+            return JsonSerializer.Deserialize<List<SharedCreditNote>>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -2330,7 +2330,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
     /// on invoice calculations (ie. usage discounts -> amount discounts -> percentage
     /// discounts -> minimums -> maximums).
     /// </summary>
-    public required List<AdjustmentModel> Adjustments
+    public required List<Adjustment> Adjustments
     {
         get
         {
@@ -2343,7 +2343,7 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
                     )
                 );
 
-            return JsonSerializer.Deserialize<List<AdjustmentModel>>(
+            return JsonSerializer.Deserialize<List<Adjustment>>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -2424,14 +2424,17 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
     /// <summary>
     /// This field is deprecated in favor of `adjustments`
     /// </summary>
-    public required Discount1? Discount
+    public required SharedDiscount? Discount
     {
         get
         {
             if (!this._properties.TryGetValue("discount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Discount1?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<SharedDiscount?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -2918,8 +2921,8 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
     }
 }
 
-[JsonConverter(typeof(AdjustmentModelConverter))]
-public record class AdjustmentModel
+[JsonConverter(typeof(AdjustmentConverter))]
+public record class Adjustment
 {
     public object Value { get; private init; }
 
@@ -2993,37 +2996,37 @@ public record class AdjustmentModel
         }
     }
 
-    public AdjustmentModel(MonetaryUsageDiscountAdjustment value)
+    public Adjustment(MonetaryUsageDiscountAdjustment value)
     {
         Value = value;
     }
 
-    public AdjustmentModel(MonetaryAmountDiscountAdjustment value)
+    public Adjustment(MonetaryAmountDiscountAdjustment value)
     {
         Value = value;
     }
 
-    public AdjustmentModel(MonetaryPercentageDiscountAdjustment value)
+    public Adjustment(MonetaryPercentageDiscountAdjustment value)
     {
         Value = value;
     }
 
-    public AdjustmentModel(MonetaryMinimumAdjustment value)
+    public Adjustment(MonetaryMinimumAdjustment value)
     {
         Value = value;
     }
 
-    public AdjustmentModel(MonetaryMaximumAdjustment value)
+    public Adjustment(MonetaryMaximumAdjustment value)
     {
         Value = value;
     }
 
-    AdjustmentModel(UnknownVariant value)
+    Adjustment(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static AdjustmentModel CreateUnknownVariant(JsonElement value)
+    public static Adjustment CreateUnknownVariant(JsonElement value)
     {
         return new(new UnknownVariant(value));
     }
@@ -3090,9 +3093,7 @@ public record class AdjustmentModel
                 monetaryMaximum(value);
                 break;
             default:
-                throw new OrbInvalidDataException(
-                    "Data did not match any variant of AdjustmentModel"
-                );
+                throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
         }
     }
 
@@ -3111,39 +3112,36 @@ public record class AdjustmentModel
             MonetaryPercentageDiscountAdjustment value => monetaryPercentageDiscount(value),
             MonetaryMinimumAdjustment value => monetaryMinimum(value),
             MonetaryMaximumAdjustment value => monetaryMaximum(value),
-            _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of AdjustmentModel"
-            ),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment"),
         };
     }
 
-    public static implicit operator AdjustmentModel(MonetaryUsageDiscountAdjustment value) =>
+    public static implicit operator Adjustment(MonetaryUsageDiscountAdjustment value) => new(value);
+
+    public static implicit operator Adjustment(MonetaryAmountDiscountAdjustment value) =>
         new(value);
 
-    public static implicit operator AdjustmentModel(MonetaryAmountDiscountAdjustment value) =>
+    public static implicit operator Adjustment(MonetaryPercentageDiscountAdjustment value) =>
         new(value);
 
-    public static implicit operator AdjustmentModel(MonetaryPercentageDiscountAdjustment value) =>
-        new(value);
+    public static implicit operator Adjustment(MonetaryMinimumAdjustment value) => new(value);
 
-    public static implicit operator AdjustmentModel(MonetaryMinimumAdjustment value) => new(value);
-
-    public static implicit operator AdjustmentModel(MonetaryMaximumAdjustment value) => new(value);
+    public static implicit operator Adjustment(MonetaryMaximumAdjustment value) => new(value);
 
     public void Validate()
     {
         if (this.Value is UnknownVariant)
         {
-            throw new OrbInvalidDataException("Data did not match any variant of AdjustmentModel");
+            throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
         }
     }
 
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class AdjustmentModelConverter : JsonConverter<AdjustmentModel>
+sealed class AdjustmentConverter : JsonConverter<Adjustment>
 {
-    public override AdjustmentModel? Read(
+    public override Adjustment? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -3175,7 +3173,7 @@ sealed class AdjustmentModelConverter : JsonConverter<AdjustmentModel>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new AdjustmentModel(deserialized);
+                        return new Adjustment(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -3204,7 +3202,7 @@ sealed class AdjustmentModelConverter : JsonConverter<AdjustmentModel>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new AdjustmentModel(deserialized);
+                        return new Adjustment(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -3234,7 +3232,7 @@ sealed class AdjustmentModelConverter : JsonConverter<AdjustmentModel>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new AdjustmentModel(deserialized);
+                        return new Adjustment(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -3263,7 +3261,7 @@ sealed class AdjustmentModelConverter : JsonConverter<AdjustmentModel>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new AdjustmentModel(deserialized);
+                        return new Adjustment(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -3292,7 +3290,7 @@ sealed class AdjustmentModelConverter : JsonConverter<AdjustmentModel>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new AdjustmentModel(deserialized);
+                        return new Adjustment(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -3319,7 +3317,7 @@ sealed class AdjustmentModelConverter : JsonConverter<AdjustmentModel>
 
     public override void Write(
         Utf8JsonWriter writer,
-        AdjustmentModel value,
+        Adjustment value,
         JsonSerializerOptions options
     )
     {

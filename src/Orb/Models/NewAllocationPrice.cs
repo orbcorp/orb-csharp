@@ -263,7 +263,7 @@ public sealed record class Filter11 : ModelBase, IFromRaw<Filter11>
     /// <summary>
     /// The property of the price the block applies to. Only item_id is supported.
     /// </summary>
-    public required ApiEnum<string, Field11> Field
+    public required ApiEnum<string, Filter11Field> Field
     {
         get
         {
@@ -273,7 +273,7 @@ public sealed record class Filter11 : ModelBase, IFromRaw<Filter11>
                     new System::ArgumentOutOfRangeException("field", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Field11>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, Filter11Field>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -290,7 +290,7 @@ public sealed record class Filter11 : ModelBase, IFromRaw<Filter11>
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, Operator11> Operator
+    public required ApiEnum<string, Filter11Operator> Operator
     {
         get
         {
@@ -300,7 +300,7 @@ public sealed record class Filter11 : ModelBase, IFromRaw<Filter11>
                     new System::ArgumentOutOfRangeException("operator", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Operator11>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, Filter11Operator>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -373,15 +373,15 @@ public sealed record class Filter11 : ModelBase, IFromRaw<Filter11>
 /// <summary>
 /// The property of the price the block applies to. Only item_id is supported.
 /// </summary>
-[JsonConverter(typeof(Field11Converter))]
-public enum Field11
+[JsonConverter(typeof(Filter11FieldConverter))]
+public enum Filter11Field
 {
     ItemID,
 }
 
-sealed class Field11Converter : JsonConverter<Field11>
+sealed class Filter11FieldConverter : JsonConverter<Filter11Field>
 {
-    public override Field11 Read(
+    public override Filter11Field Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -389,18 +389,22 @@ sealed class Field11Converter : JsonConverter<Field11>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "item_id" => Field11.ItemID,
-            _ => (Field11)(-1),
+            "item_id" => Filter11Field.ItemID,
+            _ => (Filter11Field)(-1),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Field11 value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        Filter11Field value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                Field11.ItemID => "item_id",
+                Filter11Field.ItemID => "item_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -413,16 +417,16 @@ sealed class Field11Converter : JsonConverter<Field11>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(Operator11Converter))]
-public enum Operator11
+[JsonConverter(typeof(Filter11OperatorConverter))]
+public enum Filter11Operator
 {
     Includes,
     Excludes,
 }
 
-sealed class Operator11Converter : JsonConverter<Operator11>
+sealed class Filter11OperatorConverter : JsonConverter<Filter11Operator>
 {
-    public override Operator11 Read(
+    public override Filter11Operator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -430,15 +434,15 @@ sealed class Operator11Converter : JsonConverter<Operator11>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Operator11.Includes,
-            "excludes" => Operator11.Excludes,
-            _ => (Operator11)(-1),
+            "includes" => Filter11Operator.Includes,
+            "excludes" => Filter11Operator.Excludes,
+            _ => (Filter11Operator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Operator11 value,
+        Filter11Operator value,
         JsonSerializerOptions options
     )
     {
@@ -446,8 +450,8 @@ sealed class Operator11Converter : JsonConverter<Operator11>
             writer,
             value switch
             {
-                Operator11.Includes => "includes",
-                Operator11.Excludes => "excludes",
+                Filter11Operator.Includes => "includes",
+                Filter11Operator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

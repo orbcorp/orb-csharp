@@ -138,7 +138,7 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
         }
     }
 
-    public required ApiEnum<string, Type3> Type
+    public required ApiEnum<string, MatrixSubLineItemType> Type
     {
         get
         {
@@ -148,7 +148,7 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
                     new System::ArgumentOutOfRangeException("type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Type3>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, MatrixSubLineItemType>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -217,15 +217,15 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
     }
 }
 
-[JsonConverter(typeof(Type3Converter))]
-public enum Type3
+[JsonConverter(typeof(MatrixSubLineItemTypeConverter))]
+public enum MatrixSubLineItemType
 {
     Matrix,
 }
 
-sealed class Type3Converter : JsonConverter<Type3>
+sealed class MatrixSubLineItemTypeConverter : JsonConverter<MatrixSubLineItemType>
 {
-    public override Type3 Read(
+    public override MatrixSubLineItemType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -233,18 +233,22 @@ sealed class Type3Converter : JsonConverter<Type3>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "matrix" => Type3.Matrix,
-            _ => (Type3)(-1),
+            "matrix" => MatrixSubLineItemType.Matrix,
+            _ => (MatrixSubLineItemType)(-1),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Type3 value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        MatrixSubLineItemType value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                Type3.Matrix => "matrix",
+                MatrixSubLineItemType.Matrix => "matrix",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

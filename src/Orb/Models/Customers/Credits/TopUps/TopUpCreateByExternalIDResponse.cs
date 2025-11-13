@@ -218,17 +218,17 @@ public sealed record class TopUpCreateByExternalIDResponse
     /// <summary>
     /// The unit of expires_after.
     /// </summary>
-    public ApiEnum<string, ExpiresAfterUnit3>? ExpiresAfterUnit
+    public ApiEnum<string, TopUpCreateByExternalIDResponseExpiresAfterUnit>? ExpiresAfterUnit
     {
         get
         {
             if (!this._properties.TryGetValue("expires_after_unit", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ExpiresAfterUnit3>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<ApiEnum<
+                string,
+                TopUpCreateByExternalIDResponseExpiresAfterUnit
+            >?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -277,16 +277,17 @@ public sealed record class TopUpCreateByExternalIDResponse
 /// <summary>
 /// The unit of expires_after.
 /// </summary>
-[JsonConverter(typeof(ExpiresAfterUnit3Converter))]
-public enum ExpiresAfterUnit3
+[JsonConverter(typeof(TopUpCreateByExternalIDResponseExpiresAfterUnitConverter))]
+public enum TopUpCreateByExternalIDResponseExpiresAfterUnit
 {
     Day,
     Month,
 }
 
-sealed class ExpiresAfterUnit3Converter : JsonConverter<ExpiresAfterUnit3>
+sealed class TopUpCreateByExternalIDResponseExpiresAfterUnitConverter
+    : JsonConverter<TopUpCreateByExternalIDResponseExpiresAfterUnit>
 {
-    public override ExpiresAfterUnit3 Read(
+    public override TopUpCreateByExternalIDResponseExpiresAfterUnit Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -294,15 +295,15 @@ sealed class ExpiresAfterUnit3Converter : JsonConverter<ExpiresAfterUnit3>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "day" => ExpiresAfterUnit3.Day,
-            "month" => ExpiresAfterUnit3.Month,
-            _ => (ExpiresAfterUnit3)(-1),
+            "day" => TopUpCreateByExternalIDResponseExpiresAfterUnit.Day,
+            "month" => TopUpCreateByExternalIDResponseExpiresAfterUnit.Month,
+            _ => (TopUpCreateByExternalIDResponseExpiresAfterUnit)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ExpiresAfterUnit3 value,
+        TopUpCreateByExternalIDResponseExpiresAfterUnit value,
         JsonSerializerOptions options
     )
     {
@@ -310,8 +311,8 @@ sealed class ExpiresAfterUnit3Converter : JsonConverter<ExpiresAfterUnit3>
             writer,
             value switch
             {
-                ExpiresAfterUnit3.Day => "day",
-                ExpiresAfterUnit3.Month => "month",
+                TopUpCreateByExternalIDResponseExpiresAfterUnit.Day => "day",
+                TopUpCreateByExternalIDResponseExpiresAfterUnit.Month => "month",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

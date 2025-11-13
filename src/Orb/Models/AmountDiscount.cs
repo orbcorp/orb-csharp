@@ -216,7 +216,7 @@ public sealed record class FilterModel : ModelBase, IFromRaw<FilterModel>
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, FieldModel> Field
+    public required ApiEnum<string, FilterModelField> Field
     {
         get
         {
@@ -226,7 +226,7 @@ public sealed record class FilterModel : ModelBase, IFromRaw<FilterModel>
                     new System::ArgumentOutOfRangeException("field", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, FieldModel>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, FilterModelField>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -243,7 +243,7 @@ public sealed record class FilterModel : ModelBase, IFromRaw<FilterModel>
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, OperatorModel> Operator
+    public required ApiEnum<string, FilterModelOperator> Operator
     {
         get
         {
@@ -253,7 +253,7 @@ public sealed record class FilterModel : ModelBase, IFromRaw<FilterModel>
                     new System::ArgumentOutOfRangeException("operator", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, OperatorModel>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, FilterModelOperator>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -326,8 +326,8 @@ public sealed record class FilterModel : ModelBase, IFromRaw<FilterModel>
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(FieldModelConverter))]
-public enum FieldModel
+[JsonConverter(typeof(FilterModelFieldConverter))]
+public enum FilterModelField
 {
     PriceID,
     ItemID,
@@ -336,9 +336,9 @@ public enum FieldModel
     PricingUnitID,
 }
 
-sealed class FieldModelConverter : JsonConverter<FieldModel>
+sealed class FilterModelFieldConverter : JsonConverter<FilterModelField>
 {
-    public override FieldModel Read(
+    public override FilterModelField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -346,18 +346,18 @@ sealed class FieldModelConverter : JsonConverter<FieldModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => FieldModel.PriceID,
-            "item_id" => FieldModel.ItemID,
-            "price_type" => FieldModel.PriceType,
-            "currency" => FieldModel.Currency,
-            "pricing_unit_id" => FieldModel.PricingUnitID,
-            _ => (FieldModel)(-1),
+            "price_id" => FilterModelField.PriceID,
+            "item_id" => FilterModelField.ItemID,
+            "price_type" => FilterModelField.PriceType,
+            "currency" => FilterModelField.Currency,
+            "pricing_unit_id" => FilterModelField.PricingUnitID,
+            _ => (FilterModelField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        FieldModel value,
+        FilterModelField value,
         JsonSerializerOptions options
     )
     {
@@ -365,11 +365,11 @@ sealed class FieldModelConverter : JsonConverter<FieldModel>
             writer,
             value switch
             {
-                FieldModel.PriceID => "price_id",
-                FieldModel.ItemID => "item_id",
-                FieldModel.PriceType => "price_type",
-                FieldModel.Currency => "currency",
-                FieldModel.PricingUnitID => "pricing_unit_id",
+                FilterModelField.PriceID => "price_id",
+                FilterModelField.ItemID => "item_id",
+                FilterModelField.PriceType => "price_type",
+                FilterModelField.Currency => "currency",
+                FilterModelField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -382,16 +382,16 @@ sealed class FieldModelConverter : JsonConverter<FieldModel>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(OperatorModelConverter))]
-public enum OperatorModel
+[JsonConverter(typeof(FilterModelOperatorConverter))]
+public enum FilterModelOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class OperatorModelConverter : JsonConverter<OperatorModel>
+sealed class FilterModelOperatorConverter : JsonConverter<FilterModelOperator>
 {
-    public override OperatorModel Read(
+    public override FilterModelOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -399,15 +399,15 @@ sealed class OperatorModelConverter : JsonConverter<OperatorModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => OperatorModel.Includes,
-            "excludes" => OperatorModel.Excludes,
-            _ => (OperatorModel)(-1),
+            "includes" => FilterModelOperator.Includes,
+            "excludes" => FilterModelOperator.Excludes,
+            _ => (FilterModelOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        OperatorModel value,
+        FilterModelOperator value,
         JsonSerializerOptions options
     )
     {
@@ -415,8 +415,8 @@ sealed class OperatorModelConverter : JsonConverter<OperatorModel>
             writer,
             value switch
             {
-                OperatorModel.Includes => "includes",
-                OperatorModel.Excludes => "excludes",
+                FilterModelOperator.Includes => "includes",
+                FilterModelOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

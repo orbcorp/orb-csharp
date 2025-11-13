@@ -601,7 +601,7 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
         }
     }
 
-    public EntryTypeModel EntryType
+    public IncrementEntryType EntryType
     {
         get
         {
@@ -614,7 +614,10 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
                     )
                 );
 
-            return JsonSerializer.Deserialize<EntryTypeModel>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<IncrementEntryType>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
                 ?? throw new OrbInvalidDataException(
                     "'entry_type' cannot be null",
                     new System::ArgumentNullException("entry_type")
@@ -873,31 +876,31 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
 }
 
 [JsonConverter(typeof(Converter))]
-public class EntryTypeModel
+public class IncrementEntryType
 {
     public JsonElement Json { get; private init; }
 
-    public EntryTypeModel()
+    public IncrementEntryType()
     {
         Json = JsonSerializer.Deserialize<JsonElement>("\"increment\"");
     }
 
-    EntryTypeModel(JsonElement json)
+    IncrementEntryType(JsonElement json)
     {
         Json = json;
     }
 
     public void Validate()
     {
-        if (JsonElement.DeepEquals(this.Json, new EntryTypeModel().Json))
+        if (JsonElement.DeepEquals(this.Json, new IncrementEntryType().Json))
         {
-            throw new OrbInvalidDataException("Invalid value given for 'EntryTypeModel'");
+            throw new OrbInvalidDataException("Invalid value given for 'IncrementEntryType'");
         }
     }
 
-    class Converter : JsonConverter<EntryTypeModel>
+    class Converter : JsonConverter<IncrementEntryType>
     {
-        public override EntryTypeModel? Read(
+        public override IncrementEntryType? Read(
             ref Utf8JsonReader reader,
             System::Type typeToConvert,
             JsonSerializerOptions options
@@ -908,7 +911,7 @@ public class EntryTypeModel
 
         public override void Write(
             Utf8JsonWriter writer,
-            EntryTypeModel value,
+            IncrementEntryType value,
             JsonSerializerOptions options
         )
         {
@@ -1665,7 +1668,7 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
         }
     }
 
-    public EntryType1 EntryType
+    public DecrementEntryType EntryType
     {
         get
         {
@@ -1678,7 +1681,10 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
                     )
                 );
 
-            return JsonSerializer.Deserialize<EntryType1>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<DecrementEntryType>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
                 ?? throw new OrbInvalidDataException(
                     "'entry_type' cannot be null",
                     new System::ArgumentNullException("entry_type")
@@ -1807,31 +1813,31 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
 }
 
 [JsonConverter(typeof(Converter))]
-public class EntryType1
+public class DecrementEntryType
 {
     public JsonElement Json { get; private init; }
 
-    public EntryType1()
+    public DecrementEntryType()
     {
         Json = JsonSerializer.Deserialize<JsonElement>("\"decrement\"");
     }
 
-    EntryType1(JsonElement json)
+    DecrementEntryType(JsonElement json)
     {
         Json = json;
     }
 
     public void Validate()
     {
-        if (JsonElement.DeepEquals(this.Json, new EntryType1().Json))
+        if (JsonElement.DeepEquals(this.Json, new DecrementEntryType().Json))
         {
-            throw new OrbInvalidDataException("Invalid value given for 'EntryType1'");
+            throw new OrbInvalidDataException("Invalid value given for 'DecrementEntryType'");
         }
     }
 
-    class Converter : JsonConverter<EntryType1>
+    class Converter : JsonConverter<DecrementEntryType>
     {
-        public override EntryType1? Read(
+        public override DecrementEntryType? Read(
             ref Utf8JsonReader reader,
             System::Type typeToConvert,
             JsonSerializerOptions options
@@ -1842,7 +1848,7 @@ public class EntryType1
 
         public override void Write(
             Utf8JsonWriter writer,
-            EntryType1 value,
+            DecrementEntryType value,
             JsonSerializerOptions options
         )
         {
@@ -1854,7 +1860,7 @@ public class EntryType1
 [JsonConverter(typeof(ModelConverter<ExpirationChange>))]
 public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChange>
 {
-    public EntryType2 EntryType
+    public ExpirationChangeEntryType EntryType
     {
         get
         {
@@ -1867,7 +1873,10 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
                     )
                 );
 
-            return JsonSerializer.Deserialize<EntryType2>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<ExpirationChangeEntryType>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
                 ?? throw new OrbInvalidDataException(
                     "'entry_type' cannot be null",
                     new System::ArgumentNullException("entry_type")
@@ -2101,31 +2110,33 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
 }
 
 [JsonConverter(typeof(Converter))]
-public class EntryType2
+public class ExpirationChangeEntryType
 {
     public JsonElement Json { get; private init; }
 
-    public EntryType2()
+    public ExpirationChangeEntryType()
     {
         Json = JsonSerializer.Deserialize<JsonElement>("\"expiration_change\"");
     }
 
-    EntryType2(JsonElement json)
+    ExpirationChangeEntryType(JsonElement json)
     {
         Json = json;
     }
 
     public void Validate()
     {
-        if (JsonElement.DeepEquals(this.Json, new EntryType2().Json))
+        if (JsonElement.DeepEquals(this.Json, new ExpirationChangeEntryType().Json))
         {
-            throw new OrbInvalidDataException("Invalid value given for 'EntryType2'");
+            throw new OrbInvalidDataException(
+                "Invalid value given for 'ExpirationChangeEntryType'"
+            );
         }
     }
 
-    class Converter : JsonConverter<EntryType2>
+    class Converter : JsonConverter<ExpirationChangeEntryType>
     {
-        public override EntryType2? Read(
+        public override ExpirationChangeEntryType? Read(
             ref Utf8JsonReader reader,
             System::Type typeToConvert,
             JsonSerializerOptions options
@@ -2136,7 +2147,7 @@ public class EntryType2
 
         public override void Write(
             Utf8JsonWriter writer,
-            EntryType2 value,
+            ExpirationChangeEntryType value,
             JsonSerializerOptions options
         )
         {
@@ -2201,7 +2212,7 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
         }
     }
 
-    public EntryType3 EntryType
+    public VoidEntryType EntryType
     {
         get
         {
@@ -2214,7 +2225,7 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
                     )
                 );
 
-            return JsonSerializer.Deserialize<EntryType3>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<VoidEntryType>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'entry_type' cannot be null",
                     new System::ArgumentNullException("entry_type")
@@ -2362,31 +2373,31 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
 }
 
 [JsonConverter(typeof(Converter))]
-public class EntryType3
+public class VoidEntryType
 {
     public JsonElement Json { get; private init; }
 
-    public EntryType3()
+    public VoidEntryType()
     {
         Json = JsonSerializer.Deserialize<JsonElement>("\"void\"");
     }
 
-    EntryType3(JsonElement json)
+    VoidEntryType(JsonElement json)
     {
         Json = json;
     }
 
     public void Validate()
     {
-        if (JsonElement.DeepEquals(this.Json, new EntryType3().Json))
+        if (JsonElement.DeepEquals(this.Json, new VoidEntryType().Json))
         {
-            throw new OrbInvalidDataException("Invalid value given for 'EntryType3'");
+            throw new OrbInvalidDataException("Invalid value given for 'VoidEntryType'");
         }
     }
 
-    class Converter : JsonConverter<EntryType3>
+    class Converter : JsonConverter<VoidEntryType>
     {
-        public override EntryType3? Read(
+        public override VoidEntryType? Read(
             ref Utf8JsonReader reader,
             System::Type typeToConvert,
             JsonSerializerOptions options
@@ -2397,7 +2408,7 @@ public class EntryType3
 
         public override void Write(
             Utf8JsonWriter writer,
-            EntryType3 value,
+            VoidEntryType value,
             JsonSerializerOptions options
         )
         {
@@ -2506,7 +2517,7 @@ public sealed record class Amendment : ModelBase, IFromRaw<Amendment>
         }
     }
 
-    public EntryType4 EntryType
+    public AmendmentEntryType EntryType
     {
         get
         {
@@ -2519,7 +2530,10 @@ public sealed record class Amendment : ModelBase, IFromRaw<Amendment>
                     )
                 );
 
-            return JsonSerializer.Deserialize<EntryType4>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<AmendmentEntryType>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
                 ?? throw new OrbInvalidDataException(
                     "'entry_type' cannot be null",
                     new System::ArgumentNullException("entry_type")
@@ -2642,31 +2656,31 @@ public sealed record class Amendment : ModelBase, IFromRaw<Amendment>
 }
 
 [JsonConverter(typeof(Converter))]
-public class EntryType4
+public class AmendmentEntryType
 {
     public JsonElement Json { get; private init; }
 
-    public EntryType4()
+    public AmendmentEntryType()
     {
         Json = JsonSerializer.Deserialize<JsonElement>("\"amendment\"");
     }
 
-    EntryType4(JsonElement json)
+    AmendmentEntryType(JsonElement json)
     {
         Json = json;
     }
 
     public void Validate()
     {
-        if (JsonElement.DeepEquals(this.Json, new EntryType4().Json))
+        if (JsonElement.DeepEquals(this.Json, new AmendmentEntryType().Json))
         {
-            throw new OrbInvalidDataException("Invalid value given for 'EntryType4'");
+            throw new OrbInvalidDataException("Invalid value given for 'AmendmentEntryType'");
         }
     }
 
-    class Converter : JsonConverter<EntryType4>
+    class Converter : JsonConverter<AmendmentEntryType>
     {
-        public override EntryType4? Read(
+        public override AmendmentEntryType? Read(
             ref Utf8JsonReader reader,
             System::Type typeToConvert,
             JsonSerializerOptions options
@@ -2677,7 +2691,7 @@ public class EntryType4
 
         public override void Write(
             Utf8JsonWriter writer,
-            EntryType4 value,
+            AmendmentEntryType value,
             JsonSerializerOptions options
         )
         {

@@ -50,7 +50,7 @@ public interface IDimensionalPriceGroupService
     /// <summary>
     /// List dimensional price groups
     /// </summary>
-    Task<DimensionalPriceGroupsModel> List(
+    Task<DimensionalPriceGroupDimensionalPriceGroups> List(
         DimensionalPriceGroupListParams? parameters = null,
         CancellationToken cancellationToken = default
     );

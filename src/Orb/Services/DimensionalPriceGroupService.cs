@@ -100,7 +100,7 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
         return dimensionalPriceGroup;
     }
 
-    public async Task<DimensionalPriceGroupsModel> List(
+    public async Task<DimensionalPriceGroupDimensionalPriceGroups> List(
         DimensionalPriceGroupListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -116,7 +116,7 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var page = await response
-            .Deserialize<DimensionalPriceGroupsModel>(cancellationToken)
+            .Deserialize<DimensionalPriceGroupDimensionalPriceGroups>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {

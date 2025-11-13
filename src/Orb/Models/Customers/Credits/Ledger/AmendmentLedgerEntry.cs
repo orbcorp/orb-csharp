@@ -208,7 +208,7 @@ public sealed record class AmendmentLedgerEntry : ModelBase, IFromRaw<AmendmentL
         }
     }
 
-    public required ApiEnum<string, EntryStatus1> EntryStatus
+    public required ApiEnum<string, AmendmentLedgerEntryEntryStatus> EntryStatus
     {
         get
         {
@@ -221,7 +221,7 @@ public sealed record class AmendmentLedgerEntry : ModelBase, IFromRaw<AmendmentL
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, EntryStatus1>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, AmendmentLedgerEntryEntryStatus>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -235,7 +235,7 @@ public sealed record class AmendmentLedgerEntry : ModelBase, IFromRaw<AmendmentL
         }
     }
 
-    public required ApiEnum<string, EntryType11> EntryType
+    public required ApiEnum<string, AmendmentLedgerEntryEntryType> EntryType
     {
         get
         {
@@ -248,7 +248,7 @@ public sealed record class AmendmentLedgerEntry : ModelBase, IFromRaw<AmendmentL
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, EntryType11>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, AmendmentLedgerEntryEntryType>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -384,16 +384,17 @@ public sealed record class AmendmentLedgerEntry : ModelBase, IFromRaw<AmendmentL
     }
 }
 
-[JsonConverter(typeof(EntryStatus1Converter))]
-public enum EntryStatus1
+[JsonConverter(typeof(AmendmentLedgerEntryEntryStatusConverter))]
+public enum AmendmentLedgerEntryEntryStatus
 {
     Committed,
     Pending,
 }
 
-sealed class EntryStatus1Converter : JsonConverter<EntryStatus1>
+sealed class AmendmentLedgerEntryEntryStatusConverter
+    : JsonConverter<AmendmentLedgerEntryEntryStatus>
 {
-    public override EntryStatus1 Read(
+    public override AmendmentLedgerEntryEntryStatus Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -401,15 +402,15 @@ sealed class EntryStatus1Converter : JsonConverter<EntryStatus1>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "committed" => EntryStatus1.Committed,
-            "pending" => EntryStatus1.Pending,
-            _ => (EntryStatus1)(-1),
+            "committed" => AmendmentLedgerEntryEntryStatus.Committed,
+            "pending" => AmendmentLedgerEntryEntryStatus.Pending,
+            _ => (AmendmentLedgerEntryEntryStatus)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        EntryStatus1 value,
+        AmendmentLedgerEntryEntryStatus value,
         JsonSerializerOptions options
     )
     {
@@ -417,8 +418,8 @@ sealed class EntryStatus1Converter : JsonConverter<EntryStatus1>
             writer,
             value switch
             {
-                EntryStatus1.Committed => "committed",
-                EntryStatus1.Pending => "pending",
+                AmendmentLedgerEntryEntryStatus.Committed => "committed",
+                AmendmentLedgerEntryEntryStatus.Pending => "pending",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -428,15 +429,15 @@ sealed class EntryStatus1Converter : JsonConverter<EntryStatus1>
     }
 }
 
-[JsonConverter(typeof(EntryType11Converter))]
-public enum EntryType11
+[JsonConverter(typeof(AmendmentLedgerEntryEntryTypeConverter))]
+public enum AmendmentLedgerEntryEntryType
 {
     Amendment,
 }
 
-sealed class EntryType11Converter : JsonConverter<EntryType11>
+sealed class AmendmentLedgerEntryEntryTypeConverter : JsonConverter<AmendmentLedgerEntryEntryType>
 {
-    public override EntryType11 Read(
+    public override AmendmentLedgerEntryEntryType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -444,14 +445,14 @@ sealed class EntryType11Converter : JsonConverter<EntryType11>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "amendment" => EntryType11.Amendment,
-            _ => (EntryType11)(-1),
+            "amendment" => AmendmentLedgerEntryEntryType.Amendment,
+            _ => (AmendmentLedgerEntryEntryType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        EntryType11 value,
+        AmendmentLedgerEntryEntryType value,
         JsonSerializerOptions options
     )
     {
@@ -459,7 +460,7 @@ sealed class EntryType11Converter : JsonConverter<EntryType11>
             writer,
             value switch
             {
-                EntryType11.Amendment => "amendment",
+                AmendmentLedgerEntryEntryType.Amendment => "amendment",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

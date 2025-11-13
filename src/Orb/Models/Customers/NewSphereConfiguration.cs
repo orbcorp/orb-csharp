@@ -36,7 +36,7 @@ public sealed record class NewSphereConfiguration : ModelBase, IFromRaw<NewSpher
         }
     }
 
-    public required ApiEnum<string, TaxProvider6> TaxProvider
+    public required ApiEnum<string, NewSphereConfigurationTaxProvider> TaxProvider
     {
         get
         {
@@ -49,7 +49,7 @@ public sealed record class NewSphereConfiguration : ModelBase, IFromRaw<NewSpher
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, TaxProvider6>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, NewSphereConfigurationTaxProvider>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -115,15 +115,16 @@ public sealed record class NewSphereConfiguration : ModelBase, IFromRaw<NewSpher
     }
 }
 
-[JsonConverter(typeof(TaxProvider6Converter))]
-public enum TaxProvider6
+[JsonConverter(typeof(NewSphereConfigurationTaxProviderConverter))]
+public enum NewSphereConfigurationTaxProvider
 {
     Sphere,
 }
 
-sealed class TaxProvider6Converter : JsonConverter<TaxProvider6>
+sealed class NewSphereConfigurationTaxProviderConverter
+    : JsonConverter<NewSphereConfigurationTaxProvider>
 {
-    public override TaxProvider6 Read(
+    public override NewSphereConfigurationTaxProvider Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -131,14 +132,14 @@ sealed class TaxProvider6Converter : JsonConverter<TaxProvider6>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "sphere" => TaxProvider6.Sphere,
-            _ => (TaxProvider6)(-1),
+            "sphere" => NewSphereConfigurationTaxProvider.Sphere,
+            _ => (NewSphereConfigurationTaxProvider)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        TaxProvider6 value,
+        NewSphereConfigurationTaxProvider value,
         JsonSerializerOptions options
     )
     {
@@ -146,7 +147,7 @@ sealed class TaxProvider6Converter : JsonConverter<TaxProvider6>
             writer,
             value switch
             {
-                TaxProvider6.Sphere => "sphere",
+                NewSphereConfigurationTaxProvider.Sphere => "sphere",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

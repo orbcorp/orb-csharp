@@ -22,7 +22,7 @@ public sealed class CreditNoteService : ICreditNoteService
         _client = client;
     }
 
-    public async Task<CreditNoteModel> Create(
+    public async Task<SharedCreditNote> Create(
         CreditNoteCreateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -36,7 +36,7 @@ public sealed class CreditNoteService : ICreditNoteService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var creditNote = await response
-            .Deserialize<CreditNoteModel>(cancellationToken)
+            .Deserialize<SharedCreditNote>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -70,7 +70,7 @@ public sealed class CreditNoteService : ICreditNoteService
         return page;
     }
 
-    public async Task<CreditNoteModel> Fetch(
+    public async Task<SharedCreditNote> Fetch(
         CreditNoteFetchParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -84,7 +84,7 @@ public sealed class CreditNoteService : ICreditNoteService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var creditNote = await response
-            .Deserialize<CreditNoteModel>(cancellationToken)
+            .Deserialize<SharedCreditNote>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {

@@ -17,7 +17,7 @@ public sealed record class NewFloatingTieredWithProrationPrice
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, Cadence22> Cadence
+    public required ApiEnum<string, NewFloatingTieredWithProrationPriceCadence> Cadence
     {
         get
         {
@@ -27,10 +27,9 @@ public sealed record class NewFloatingTieredWithProrationPrice
                     new System::ArgumentOutOfRangeException("cadence", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Cadence22>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, NewFloatingTieredWithProrationPriceCadence>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -100,7 +99,7 @@ public sealed record class NewFloatingTieredWithProrationPrice
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public required ApiEnum<string, ModelType21> ModelType
+    public required ApiEnum<string, NewFloatingTieredWithProrationPriceModelType> ModelType
     {
         get
         {
@@ -113,10 +112,9 @@ public sealed record class NewFloatingTieredWithProrationPrice
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ModelType21>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, NewFloatingTieredWithProrationPriceModelType>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -291,14 +289,14 @@ public sealed record class NewFloatingTieredWithProrationPrice
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public ConversionRateConfig21? ConversionRateConfig
+    public NewFloatingTieredWithProrationPriceConversionRateConfig? ConversionRateConfig
     {
         get
         {
             if (!this._properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ConversionRateConfig21?>(
+            return JsonSerializer.Deserialize<NewFloatingTieredWithProrationPriceConversionRateConfig?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -507,8 +505,8 @@ public sealed record class NewFloatingTieredWithProrationPrice
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(Cadence22Converter))]
-public enum Cadence22
+[JsonConverter(typeof(NewFloatingTieredWithProrationPriceCadenceConverter))]
+public enum NewFloatingTieredWithProrationPriceCadence
 {
     Annual,
     SemiAnnual,
@@ -518,9 +516,10 @@ public enum Cadence22
     Custom,
 }
 
-sealed class Cadence22Converter : JsonConverter<Cadence22>
+sealed class NewFloatingTieredWithProrationPriceCadenceConverter
+    : JsonConverter<NewFloatingTieredWithProrationPriceCadence>
 {
-    public override Cadence22 Read(
+    public override NewFloatingTieredWithProrationPriceCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -528,19 +527,19 @@ sealed class Cadence22Converter : JsonConverter<Cadence22>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => Cadence22.Annual,
-            "semi_annual" => Cadence22.SemiAnnual,
-            "monthly" => Cadence22.Monthly,
-            "quarterly" => Cadence22.Quarterly,
-            "one_time" => Cadence22.OneTime,
-            "custom" => Cadence22.Custom,
-            _ => (Cadence22)(-1),
+            "annual" => NewFloatingTieredWithProrationPriceCadence.Annual,
+            "semi_annual" => NewFloatingTieredWithProrationPriceCadence.SemiAnnual,
+            "monthly" => NewFloatingTieredWithProrationPriceCadence.Monthly,
+            "quarterly" => NewFloatingTieredWithProrationPriceCadence.Quarterly,
+            "one_time" => NewFloatingTieredWithProrationPriceCadence.OneTime,
+            "custom" => NewFloatingTieredWithProrationPriceCadence.Custom,
+            _ => (NewFloatingTieredWithProrationPriceCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Cadence22 value,
+        NewFloatingTieredWithProrationPriceCadence value,
         JsonSerializerOptions options
     )
     {
@@ -548,12 +547,12 @@ sealed class Cadence22Converter : JsonConverter<Cadence22>
             writer,
             value switch
             {
-                Cadence22.Annual => "annual",
-                Cadence22.SemiAnnual => "semi_annual",
-                Cadence22.Monthly => "monthly",
-                Cadence22.Quarterly => "quarterly",
-                Cadence22.OneTime => "one_time",
-                Cadence22.Custom => "custom",
+                NewFloatingTieredWithProrationPriceCadence.Annual => "annual",
+                NewFloatingTieredWithProrationPriceCadence.SemiAnnual => "semi_annual",
+                NewFloatingTieredWithProrationPriceCadence.Monthly => "monthly",
+                NewFloatingTieredWithProrationPriceCadence.Quarterly => "quarterly",
+                NewFloatingTieredWithProrationPriceCadence.OneTime => "one_time",
+                NewFloatingTieredWithProrationPriceCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -566,15 +565,16 @@ sealed class Cadence22Converter : JsonConverter<Cadence22>
 /// <summary>
 /// The pricing model type
 /// </summary>
-[JsonConverter(typeof(ModelType21Converter))]
-public enum ModelType21
+[JsonConverter(typeof(NewFloatingTieredWithProrationPriceModelTypeConverter))]
+public enum NewFloatingTieredWithProrationPriceModelType
 {
     TieredWithProration,
 }
 
-sealed class ModelType21Converter : JsonConverter<ModelType21>
+sealed class NewFloatingTieredWithProrationPriceModelTypeConverter
+    : JsonConverter<NewFloatingTieredWithProrationPriceModelType>
 {
-    public override ModelType21 Read(
+    public override NewFloatingTieredWithProrationPriceModelType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -582,14 +582,15 @@ sealed class ModelType21Converter : JsonConverter<ModelType21>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "tiered_with_proration" => ModelType21.TieredWithProration,
-            _ => (ModelType21)(-1),
+            "tiered_with_proration" =>
+                NewFloatingTieredWithProrationPriceModelType.TieredWithProration,
+            _ => (NewFloatingTieredWithProrationPriceModelType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ModelType21 value,
+        NewFloatingTieredWithProrationPriceModelType value,
         JsonSerializerOptions options
     )
     {
@@ -597,7 +598,8 @@ sealed class ModelType21Converter : JsonConverter<ModelType21>
             writer,
             value switch
             {
-                ModelType21.TieredWithProration => "tiered_with_proration",
+                NewFloatingTieredWithProrationPriceModelType.TieredWithProration =>
+                    "tiered_with_proration",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -777,90 +779,98 @@ public sealed record class Tier7 : ModelBase, IFromRaw<Tier7>
     }
 }
 
-[JsonConverter(typeof(ConversionRateConfig21Converter))]
-public record class ConversionRateConfig21
+[JsonConverter(typeof(NewFloatingTieredWithProrationPriceConversionRateConfigConverter))]
+public record class NewFloatingTieredWithProrationPriceConversionRateConfig
 {
     public object Value { get; private init; }
 
-    public ConversionRateConfig21(UnitConversionRateConfig value)
+    public NewFloatingTieredWithProrationPriceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    )
     {
         Value = value;
     }
 
-    public ConversionRateConfig21(TieredConversionRateConfig value)
+    public NewFloatingTieredWithProrationPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    )
     {
         Value = value;
     }
 
-    ConversionRateConfig21(UnknownVariant value)
+    NewFloatingTieredWithProrationPriceConversionRateConfig(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static ConversionRateConfig21 CreateUnknownVariant(JsonElement value)
+    public static NewFloatingTieredWithProrationPriceConversionRateConfig CreateUnknownVariant(
+        JsonElement value
+    )
     {
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
-        value = this.Value as UnitConversionRateConfig;
+        value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
-    public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
-        value = this.Value as TieredConversionRateConfig;
+        value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
     public void Switch(
-        System::Action<UnitConversionRateConfig> unit,
-        System::Action<TieredConversionRateConfig> tiered
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
     )
     {
         switch (this.Value)
         {
-            case UnitConversionRateConfig value:
+            case SharedUnitConversionRateConfig value:
                 unit(value);
                 break;
-            case TieredConversionRateConfig value:
+            case SharedTieredConversionRateConfig value:
                 tiered(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of ConversionRateConfig21"
+                    "Data did not match any variant of NewFloatingTieredWithProrationPriceConversionRateConfig"
                 );
         }
     }
 
     public T Match<T>(
-        System::Func<UnitConversionRateConfig, T> unit,
-        System::Func<TieredConversionRateConfig, T> tiered
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
     )
     {
         return this.Value switch
         {
-            UnitConversionRateConfig value => unit(value),
-            TieredConversionRateConfig value => tiered(value),
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig21"
+                "Data did not match any variant of NewFloatingTieredWithProrationPriceConversionRateConfig"
             ),
         };
     }
 
-    public static implicit operator ConversionRateConfig21(UnitConversionRateConfig value) =>
-        new(value);
+    public static implicit operator NewFloatingTieredWithProrationPriceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
 
-    public static implicit operator ConversionRateConfig21(TieredConversionRateConfig value) =>
-        new(value);
+    public static implicit operator NewFloatingTieredWithProrationPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {
         if (this.Value is UnknownVariant)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig21"
+                "Data did not match any variant of NewFloatingTieredWithProrationPriceConversionRateConfig"
             );
         }
     }
@@ -868,9 +878,10 @@ public record class ConversionRateConfig21
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class ConversionRateConfig21Converter : JsonConverter<ConversionRateConfig21>
+sealed class NewFloatingTieredWithProrationPriceConversionRateConfigConverter
+    : JsonConverter<NewFloatingTieredWithProrationPriceConversionRateConfig>
 {
-    public override ConversionRateConfig21? Read(
+    public override NewFloatingTieredWithProrationPriceConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -895,14 +906,16 @@ sealed class ConversionRateConfig21Converter : JsonConverter<ConversionRateConfi
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new ConversionRateConfig21(deserialized);
+                        return new NewFloatingTieredWithProrationPriceConversionRateConfig(
+                            deserialized
+                        );
                     }
                 }
                 catch (System::Exception e)
@@ -910,7 +923,7 @@ sealed class ConversionRateConfig21Converter : JsonConverter<ConversionRateConfi
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'UnitConversionRateConfig'",
+                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
                             e
                         )
                     );
@@ -924,14 +937,16 @@ sealed class ConversionRateConfig21Converter : JsonConverter<ConversionRateConfi
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new ConversionRateConfig21(deserialized);
+                        return new NewFloatingTieredWithProrationPriceConversionRateConfig(
+                            deserialized
+                        );
                     }
                 }
                 catch (System::Exception e)
@@ -939,7 +954,7 @@ sealed class ConversionRateConfig21Converter : JsonConverter<ConversionRateConfi
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'TieredConversionRateConfig'",
+                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
                             e
                         )
                     );
@@ -958,7 +973,7 @@ sealed class ConversionRateConfig21Converter : JsonConverter<ConversionRateConfi
 
     public override void Write(
         Utf8JsonWriter writer,
-        ConversionRateConfig21 value,
+        NewFloatingTieredWithProrationPriceConversionRateConfig value,
         JsonSerializerOptions options
     )
     {

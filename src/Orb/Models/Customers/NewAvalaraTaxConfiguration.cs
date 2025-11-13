@@ -38,7 +38,7 @@ public sealed record class NewAvalaraTaxConfiguration
         }
     }
 
-    public required ApiEnum<string, TaxProvider5> TaxProvider
+    public required ApiEnum<string, NewAvalaraTaxConfigurationTaxProvider> TaxProvider
     {
         get
         {
@@ -51,10 +51,9 @@ public sealed record class NewAvalaraTaxConfiguration
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, TaxProvider5>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, NewAvalaraTaxConfigurationTaxProvider>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -136,15 +135,16 @@ public sealed record class NewAvalaraTaxConfiguration
     }
 }
 
-[JsonConverter(typeof(TaxProvider5Converter))]
-public enum TaxProvider5
+[JsonConverter(typeof(NewAvalaraTaxConfigurationTaxProviderConverter))]
+public enum NewAvalaraTaxConfigurationTaxProvider
 {
     Avalara,
 }
 
-sealed class TaxProvider5Converter : JsonConverter<TaxProvider5>
+sealed class NewAvalaraTaxConfigurationTaxProviderConverter
+    : JsonConverter<NewAvalaraTaxConfigurationTaxProvider>
 {
-    public override TaxProvider5 Read(
+    public override NewAvalaraTaxConfigurationTaxProvider Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -152,14 +152,14 @@ sealed class TaxProvider5Converter : JsonConverter<TaxProvider5>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "avalara" => TaxProvider5.Avalara,
-            _ => (TaxProvider5)(-1),
+            "avalara" => NewAvalaraTaxConfigurationTaxProvider.Avalara,
+            _ => (NewAvalaraTaxConfigurationTaxProvider)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        TaxProvider5 value,
+        NewAvalaraTaxConfigurationTaxProvider value,
         JsonSerializerOptions options
     )
     {
@@ -167,7 +167,7 @@ sealed class TaxProvider5Converter : JsonConverter<TaxProvider5>
             writer,
             value switch
             {
-                TaxProvider5.Avalara => "avalara",
+                NewAvalaraTaxConfigurationTaxProvider.Avalara => "avalara",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

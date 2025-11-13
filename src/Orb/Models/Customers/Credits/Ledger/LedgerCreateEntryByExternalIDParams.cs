@@ -277,27 +277,27 @@ public record class BodyModel
         }
     }
 
-    public BodyModel(IncrementModel value)
+    public BodyModel(BodyModelIncrement value)
     {
         Value = value;
     }
 
-    public BodyModel(DecrementModel value)
+    public BodyModel(BodyModelDecrement value)
     {
         Value = value;
     }
 
-    public BodyModel(ExpirationChangeModel value)
+    public BodyModel(BodyModelExpirationChange value)
     {
         Value = value;
     }
 
-    public BodyModel(VoidModel value)
+    public BodyModel(BodyModelVoid value)
     {
         Value = value;
     }
 
-    public BodyModel(AmendmentModel value)
+    public BodyModel(BodyModelAmendment value)
     {
         Value = value;
     }
@@ -312,59 +312,59 @@ public record class BodyModel
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickIncrement([NotNullWhen(true)] out IncrementModel? value)
+    public bool TryPickIncrement([NotNullWhen(true)] out BodyModelIncrement? value)
     {
-        value = this.Value as IncrementModel;
+        value = this.Value as BodyModelIncrement;
         return value != null;
     }
 
-    public bool TryPickDecrement([NotNullWhen(true)] out DecrementModel? value)
+    public bool TryPickDecrement([NotNullWhen(true)] out BodyModelDecrement? value)
     {
-        value = this.Value as DecrementModel;
+        value = this.Value as BodyModelDecrement;
         return value != null;
     }
 
-    public bool TryPickExpirationChange([NotNullWhen(true)] out ExpirationChangeModel? value)
+    public bool TryPickExpirationChange([NotNullWhen(true)] out BodyModelExpirationChange? value)
     {
-        value = this.Value as ExpirationChangeModel;
+        value = this.Value as BodyModelExpirationChange;
         return value != null;
     }
 
-    public bool TryPickVoid([NotNullWhen(true)] out VoidModel? value)
+    public bool TryPickVoid([NotNullWhen(true)] out BodyModelVoid? value)
     {
-        value = this.Value as VoidModel;
+        value = this.Value as BodyModelVoid;
         return value != null;
     }
 
-    public bool TryPickAmendment([NotNullWhen(true)] out AmendmentModel? value)
+    public bool TryPickAmendment([NotNullWhen(true)] out BodyModelAmendment? value)
     {
-        value = this.Value as AmendmentModel;
+        value = this.Value as BodyModelAmendment;
         return value != null;
     }
 
     public void Switch(
-        System::Action<IncrementModel> increment,
-        System::Action<DecrementModel> decrement,
-        System::Action<ExpirationChangeModel> expirationChange,
-        System::Action<VoidModel> void1,
-        System::Action<AmendmentModel> amendment
+        System::Action<BodyModelIncrement> increment,
+        System::Action<BodyModelDecrement> decrement,
+        System::Action<BodyModelExpirationChange> expirationChange,
+        System::Action<BodyModelVoid> void1,
+        System::Action<BodyModelAmendment> amendment
     )
     {
         switch (this.Value)
         {
-            case IncrementModel value:
+            case BodyModelIncrement value:
                 increment(value);
                 break;
-            case DecrementModel value:
+            case BodyModelDecrement value:
                 decrement(value);
                 break;
-            case ExpirationChangeModel value:
+            case BodyModelExpirationChange value:
                 expirationChange(value);
                 break;
-            case VoidModel value:
+            case BodyModelVoid value:
                 void1(value);
                 break;
-            case AmendmentModel value:
+            case BodyModelAmendment value:
                 amendment(value);
                 break;
             default:
@@ -373,33 +373,33 @@ public record class BodyModel
     }
 
     public T Match<T>(
-        System::Func<IncrementModel, T> increment,
-        System::Func<DecrementModel, T> decrement,
-        System::Func<ExpirationChangeModel, T> expirationChange,
-        System::Func<VoidModel, T> void1,
-        System::Func<AmendmentModel, T> amendment
+        System::Func<BodyModelIncrement, T> increment,
+        System::Func<BodyModelDecrement, T> decrement,
+        System::Func<BodyModelExpirationChange, T> expirationChange,
+        System::Func<BodyModelVoid, T> void1,
+        System::Func<BodyModelAmendment, T> amendment
     )
     {
         return this.Value switch
         {
-            IncrementModel value => increment(value),
-            DecrementModel value => decrement(value),
-            ExpirationChangeModel value => expirationChange(value),
-            VoidModel value => void1(value),
-            AmendmentModel value => amendment(value),
+            BodyModelIncrement value => increment(value),
+            BodyModelDecrement value => decrement(value),
+            BodyModelExpirationChange value => expirationChange(value),
+            BodyModelVoid value => void1(value),
+            BodyModelAmendment value => amendment(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of BodyModel"),
         };
     }
 
-    public static implicit operator BodyModel(IncrementModel value) => new(value);
+    public static implicit operator BodyModel(BodyModelIncrement value) => new(value);
 
-    public static implicit operator BodyModel(DecrementModel value) => new(value);
+    public static implicit operator BodyModel(BodyModelDecrement value) => new(value);
 
-    public static implicit operator BodyModel(ExpirationChangeModel value) => new(value);
+    public static implicit operator BodyModel(BodyModelExpirationChange value) => new(value);
 
-    public static implicit operator BodyModel(VoidModel value) => new(value);
+    public static implicit operator BodyModel(BodyModelVoid value) => new(value);
 
-    public static implicit operator BodyModel(AmendmentModel value) => new(value);
+    public static implicit operator BodyModel(BodyModelAmendment value) => new(value);
 
     public void Validate()
     {
@@ -439,59 +439,7 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<IncrementModel>(json, options);
-                    if (deserialized != null)
-                    {
-                        deserialized.Validate();
-                        return new BodyModel(deserialized);
-                    }
-                }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
-                {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'IncrementModel'",
-                            e
-                        )
-                    );
-                }
-
-                throw new System::AggregateException(exceptions);
-            }
-            case "decrement":
-            {
-                List<OrbInvalidDataException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<DecrementModel>(json, options);
-                    if (deserialized != null)
-                    {
-                        deserialized.Validate();
-                        return new BodyModel(deserialized);
-                    }
-                }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
-                {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'DecrementModel'",
-                            e
-                        )
-                    );
-                }
-
-                throw new System::AggregateException(exceptions);
-            }
-            case "expiration_change":
-            {
-                List<OrbInvalidDataException> exceptions = [];
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<ExpirationChangeModel>(
+                    var deserialized = JsonSerializer.Deserialize<BodyModelIncrement>(
                         json,
                         options
                     );
@@ -506,7 +454,65 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'ExpirationChangeModel'",
+                            "Data does not match union variant 'BodyModelIncrement'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "decrement":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<BodyModelDecrement>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new BodyModel(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'BodyModelDecrement'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "expiration_change":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<BodyModelExpirationChange>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new BodyModel(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'BodyModelExpirationChange'",
                             e
                         )
                     );
@@ -520,7 +526,7 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<VoidModel>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<BodyModelVoid>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -532,7 +538,7 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'VoidModel'",
+                            "Data does not match union variant 'BodyModelVoid'",
                             e
                         )
                     );
@@ -546,7 +552,10 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<AmendmentModel>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<BodyModelAmendment>(
+                        json,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -558,7 +567,7 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'AmendmentModel'",
+                            "Data does not match union variant 'BodyModelAmendment'",
                             e
                         )
                     );
@@ -586,8 +595,8 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<IncrementModel>))]
-public sealed record class IncrementModel : ModelBase, IFromRaw<IncrementModel>
+[JsonConverter(typeof(ModelConverter<BodyModelIncrement>))]
+public sealed record class BodyModelIncrement : ModelBase, IFromRaw<BodyModelIncrement>
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -614,7 +623,7 @@ public sealed record class IncrementModel : ModelBase, IFromRaw<IncrementModel>
         }
     }
 
-    public EntryType5 EntryType
+    public BodyModelIncrementEntryType EntryType
     {
         get
         {
@@ -627,7 +636,10 @@ public sealed record class IncrementModel : ModelBase, IFromRaw<IncrementModel>
                     )
                 );
 
-            return JsonSerializer.Deserialize<EntryType5>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<BodyModelIncrementEntryType>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
                 ?? throw new OrbInvalidDataException(
                     "'entry_type' cannot be null",
                     new System::ArgumentNullException("entry_type")
@@ -766,14 +778,14 @@ public sealed record class IncrementModel : ModelBase, IFromRaw<IncrementModel>
     /// added credits. If `invoice_settings` is passed, you must specify per_unit_cost_basis,
     /// as the calculation of the invoice total is done on that basis.
     /// </summary>
-    public InvoiceSettingsModel? InvoiceSettings
+    public BodyModelIncrementInvoiceSettings? InvoiceSettings
     {
         get
         {
             if (!this._properties.TryGetValue("invoice_settings", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<InvoiceSettingsModel?>(
+            return JsonSerializer.Deserialize<BodyModelIncrementInvoiceSettings?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -852,12 +864,12 @@ public sealed record class IncrementModel : ModelBase, IFromRaw<IncrementModel>
         _ = this.PerUnitCostBasis;
     }
 
-    public IncrementModel()
+    public BodyModelIncrement()
     {
         this.EntryType = new();
     }
 
-    public IncrementModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public BodyModelIncrement(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
 
@@ -866,13 +878,13 @@ public sealed record class IncrementModel : ModelBase, IFromRaw<IncrementModel>
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    IncrementModel(FrozenDictionary<string, JsonElement> properties)
+    BodyModelIncrement(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static IncrementModel FromRawUnchecked(
+    public static BodyModelIncrement FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -880,7 +892,7 @@ public sealed record class IncrementModel : ModelBase, IFromRaw<IncrementModel>
     }
 
     [SetsRequiredMembers]
-    public IncrementModel(double amount)
+    public BodyModelIncrement(double amount)
         : this()
     {
         this.Amount = amount;
@@ -888,31 +900,33 @@ public sealed record class IncrementModel : ModelBase, IFromRaw<IncrementModel>
 }
 
 [JsonConverter(typeof(Converter))]
-public class EntryType5
+public class BodyModelIncrementEntryType
 {
     public JsonElement Json { get; private init; }
 
-    public EntryType5()
+    public BodyModelIncrementEntryType()
     {
         Json = JsonSerializer.Deserialize<JsonElement>("\"increment\"");
     }
 
-    EntryType5(JsonElement json)
+    BodyModelIncrementEntryType(JsonElement json)
     {
         Json = json;
     }
 
     public void Validate()
     {
-        if (JsonElement.DeepEquals(this.Json, new EntryType5().Json))
+        if (JsonElement.DeepEquals(this.Json, new BodyModelIncrementEntryType().Json))
         {
-            throw new OrbInvalidDataException("Invalid value given for 'EntryType5'");
+            throw new OrbInvalidDataException(
+                "Invalid value given for 'BodyModelIncrementEntryType'"
+            );
         }
     }
 
-    class Converter : JsonConverter<EntryType5>
+    class Converter : JsonConverter<BodyModelIncrementEntryType>
     {
-        public override EntryType5? Read(
+        public override BodyModelIncrementEntryType? Read(
             ref Utf8JsonReader reader,
             System::Type typeToConvert,
             JsonSerializerOptions options
@@ -923,7 +937,7 @@ public class EntryType5
 
         public override void Write(
             Utf8JsonWriter writer,
-            EntryType5 value,
+            BodyModelIncrementEntryType value,
             JsonSerializerOptions options
         )
         {
@@ -943,7 +957,10 @@ public sealed record class FilterModel
     /// <summary>
     /// The property of the price the block applies to. Only item_id is supported.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.FieldModel> Field
+    public required ApiEnum<
+        string,
+        global::Orb.Models.Customers.Credits.Ledger.FilterModelField
+    > Field
     {
         get
         {
@@ -954,7 +971,7 @@ public sealed record class FilterModel
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.FieldModel>
+                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.FilterModelField>
             >(element, ModelBase.SerializerOptions);
         }
         init
@@ -971,7 +988,7 @@ public sealed record class FilterModel
     /// </summary>
     public required ApiEnum<
         string,
-        global::Orb.Models.Customers.Credits.Ledger.OperatorModel
+        global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator
     > Operator
     {
         get
@@ -983,7 +1000,7 @@ public sealed record class FilterModel
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.OperatorModel>
+                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator>
             >(element, ModelBase.SerializerOptions);
         }
         init
@@ -1056,16 +1073,16 @@ public sealed record class FilterModel
 /// <summary>
 /// The property of the price the block applies to. Only item_id is supported.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Customers.Credits.Ledger.FieldModelConverter))]
-public enum FieldModel
+[JsonConverter(typeof(global::Orb.Models.Customers.Credits.Ledger.FilterModelFieldConverter))]
+public enum FilterModelField
 {
     ItemID,
 }
 
-sealed class FieldModelConverter
-    : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.FieldModel>
+sealed class FilterModelFieldConverter
+    : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.FilterModelField>
 {
-    public override global::Orb.Models.Customers.Credits.Ledger.FieldModel Read(
+    public override global::Orb.Models.Customers.Credits.Ledger.FilterModelField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1073,14 +1090,14 @@ sealed class FieldModelConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "item_id" => global::Orb.Models.Customers.Credits.Ledger.FieldModel.ItemID,
-            _ => (global::Orb.Models.Customers.Credits.Ledger.FieldModel)(-1),
+            "item_id" => global::Orb.Models.Customers.Credits.Ledger.FilterModelField.ItemID,
+            _ => (global::Orb.Models.Customers.Credits.Ledger.FilterModelField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Customers.Credits.Ledger.FieldModel value,
+        global::Orb.Models.Customers.Credits.Ledger.FilterModelField value,
         JsonSerializerOptions options
     )
     {
@@ -1088,7 +1105,7 @@ sealed class FieldModelConverter
             writer,
             value switch
             {
-                global::Orb.Models.Customers.Credits.Ledger.FieldModel.ItemID => "item_id",
+                global::Orb.Models.Customers.Credits.Ledger.FilterModelField.ItemID => "item_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1101,17 +1118,17 @@ sealed class FieldModelConverter
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Customers.Credits.Ledger.OperatorModelConverter))]
-public enum OperatorModel
+[JsonConverter(typeof(global::Orb.Models.Customers.Credits.Ledger.FilterModelOperatorConverter))]
+public enum FilterModelOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class OperatorModelConverter
-    : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.OperatorModel>
+sealed class FilterModelOperatorConverter
+    : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator>
 {
-    public override global::Orb.Models.Customers.Credits.Ledger.OperatorModel Read(
+    public override global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1119,15 +1136,15 @@ sealed class OperatorModelConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => global::Orb.Models.Customers.Credits.Ledger.OperatorModel.Includes,
-            "excludes" => global::Orb.Models.Customers.Credits.Ledger.OperatorModel.Excludes,
-            _ => (global::Orb.Models.Customers.Credits.Ledger.OperatorModel)(-1),
+            "includes" => global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator.Includes,
+            "excludes" => global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator.Excludes,
+            _ => (global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Customers.Credits.Ledger.OperatorModel value,
+        global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator value,
         JsonSerializerOptions options
     )
     {
@@ -1135,8 +1152,10 @@ sealed class OperatorModelConverter
             writer,
             value switch
             {
-                global::Orb.Models.Customers.Credits.Ledger.OperatorModel.Includes => "includes",
-                global::Orb.Models.Customers.Credits.Ledger.OperatorModel.Excludes => "excludes",
+                global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator.Includes =>
+                    "includes",
+                global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator.Excludes =>
+                    "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1151,8 +1170,10 @@ sealed class OperatorModelConverter
 /// credits. If `invoice_settings` is passed, you must specify per_unit_cost_basis,
 /// as the calculation of the invoice total is done on that basis.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<InvoiceSettingsModel>))]
-public sealed record class InvoiceSettingsModel : ModelBase, IFromRaw<InvoiceSettingsModel>
+[JsonConverter(typeof(ModelConverter<BodyModelIncrementInvoiceSettings>))]
+public sealed record class BodyModelIncrementInvoiceSettings
+    : ModelBase,
+        IFromRaw<BodyModelIncrementInvoiceSettings>
 {
     /// <summary>
     /// Whether the credits purchase invoice should auto collect with the customer's
@@ -1186,14 +1207,14 @@ public sealed record class InvoiceSettingsModel : ModelBase, IFromRaw<InvoiceSet
     /// An optional custom due date for the invoice. If not set, the due date will
     /// be calculated based on the `net_terms` value.
     /// </summary>
-    public CustomDueDateModel? CustomDueDate
+    public BodyModelIncrementInvoiceSettingsCustomDueDate? CustomDueDate
     {
         get
         {
             if (!this._properties.TryGetValue("custom_due_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<CustomDueDateModel?>(
+            return JsonSerializer.Deserialize<BodyModelIncrementInvoiceSettingsCustomDueDate?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1212,14 +1233,14 @@ public sealed record class InvoiceSettingsModel : ModelBase, IFromRaw<InvoiceSet
     /// the customer's timezone. If not provided, the invoice date will default to
     /// the credit block's effective date.
     /// </summary>
-    public InvoiceDateModel? InvoiceDate
+    public BodyModelIncrementInvoiceSettingsInvoiceDate? InvoiceDate
     {
         get
         {
             if (!this._properties.TryGetValue("invoice_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<InvoiceDateModel?>(
+            return JsonSerializer.Deserialize<BodyModelIncrementInvoiceSettingsInvoiceDate?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1342,22 +1363,22 @@ public sealed record class InvoiceSettingsModel : ModelBase, IFromRaw<InvoiceSet
         _ = this.RequireSuccessfulPayment;
     }
 
-    public InvoiceSettingsModel() { }
+    public BodyModelIncrementInvoiceSettings() { }
 
-    public InvoiceSettingsModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public BodyModelIncrementInvoiceSettings(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    InvoiceSettingsModel(FrozenDictionary<string, JsonElement> properties)
+    BodyModelIncrementInvoiceSettings(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static InvoiceSettingsModel FromRawUnchecked(
+    public static BodyModelIncrementInvoiceSettings FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -1365,7 +1386,7 @@ public sealed record class InvoiceSettingsModel : ModelBase, IFromRaw<InvoiceSet
     }
 
     [SetsRequiredMembers]
-    public InvoiceSettingsModel(bool autoCollection)
+    public BodyModelIncrementInvoiceSettings(bool autoCollection)
         : this()
     {
         this.AutoCollection = autoCollection;
@@ -1376,27 +1397,29 @@ public sealed record class InvoiceSettingsModel : ModelBase, IFromRaw<InvoiceSet
 /// An optional custom due date for the invoice. If not set, the due date will be
 /// calculated based on the `net_terms` value.
 /// </summary>
-[JsonConverter(typeof(CustomDueDateModelConverter))]
-public record class CustomDueDateModel
+[JsonConverter(typeof(BodyModelIncrementInvoiceSettingsCustomDueDateConverter))]
+public record class BodyModelIncrementInvoiceSettingsCustomDueDate
 {
     public object Value { get; private init; }
 
-    public CustomDueDateModel(System::DateOnly value)
+    public BodyModelIncrementInvoiceSettingsCustomDueDate(System::DateOnly value)
     {
         Value = value;
     }
 
-    public CustomDueDateModel(System::DateTimeOffset value)
+    public BodyModelIncrementInvoiceSettingsCustomDueDate(System::DateTimeOffset value)
     {
         Value = value;
     }
 
-    CustomDueDateModel(UnknownVariant value)
+    BodyModelIncrementInvoiceSettingsCustomDueDate(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static CustomDueDateModel CreateUnknownVariant(JsonElement value)
+    public static BodyModelIncrementInvoiceSettingsCustomDueDate CreateUnknownVariant(
+        JsonElement value
+    )
     {
         return new(new UnknownVariant(value));
     }
@@ -1428,7 +1451,7 @@ public record class CustomDueDateModel
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of CustomDueDateModel"
+                    "Data did not match any variant of BodyModelIncrementInvoiceSettingsCustomDueDate"
                 );
         }
     }
@@ -1443,21 +1466,25 @@ public record class CustomDueDateModel
             System::DateOnly value => @date(value),
             System::DateTimeOffset value => @dateTime(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of CustomDueDateModel"
+                "Data did not match any variant of BodyModelIncrementInvoiceSettingsCustomDueDate"
             ),
         };
     }
 
-    public static implicit operator CustomDueDateModel(System::DateOnly value) => new(value);
+    public static implicit operator BodyModelIncrementInvoiceSettingsCustomDueDate(
+        System::DateOnly value
+    ) => new(value);
 
-    public static implicit operator CustomDueDateModel(System::DateTimeOffset value) => new(value);
+    public static implicit operator BodyModelIncrementInvoiceSettingsCustomDueDate(
+        System::DateTimeOffset value
+    ) => new(value);
 
     public void Validate()
     {
         if (this.Value is UnknownVariant)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of CustomDueDateModel"
+                "Data did not match any variant of BodyModelIncrementInvoiceSettingsCustomDueDate"
             );
         }
     }
@@ -1465,9 +1492,10 @@ public record class CustomDueDateModel
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class CustomDueDateModelConverter : JsonConverter<CustomDueDateModel?>
+sealed class BodyModelIncrementInvoiceSettingsCustomDueDateConverter
+    : JsonConverter<BodyModelIncrementInvoiceSettingsCustomDueDate?>
 {
-    public override CustomDueDateModel? Read(
+    public override BodyModelIncrementInvoiceSettingsCustomDueDate? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1477,7 +1505,7 @@ sealed class CustomDueDateModelConverter : JsonConverter<CustomDueDateModel?>
 
         try
         {
-            return new CustomDueDateModel(
+            return new BodyModelIncrementInvoiceSettingsCustomDueDate(
                 JsonSerializer.Deserialize<System::DateOnly>(ref reader, options)
             );
         }
@@ -1493,7 +1521,7 @@ sealed class CustomDueDateModelConverter : JsonConverter<CustomDueDateModel?>
 
         try
         {
-            return new CustomDueDateModel(
+            return new BodyModelIncrementInvoiceSettingsCustomDueDate(
                 JsonSerializer.Deserialize<System::DateTimeOffset>(ref reader, options)
             );
         }
@@ -1512,7 +1540,7 @@ sealed class CustomDueDateModelConverter : JsonConverter<CustomDueDateModel?>
 
     public override void Write(
         Utf8JsonWriter writer,
-        CustomDueDateModel? value,
+        BodyModelIncrementInvoiceSettingsCustomDueDate? value,
         JsonSerializerOptions options
     )
     {
@@ -1526,27 +1554,29 @@ sealed class CustomDueDateModelConverter : JsonConverter<CustomDueDateModel?>
 /// customer's timezone. If not provided, the invoice date will default to the credit
 /// block's effective date.
 /// </summary>
-[JsonConverter(typeof(InvoiceDateModelConverter))]
-public record class InvoiceDateModel
+[JsonConverter(typeof(BodyModelIncrementInvoiceSettingsInvoiceDateConverter))]
+public record class BodyModelIncrementInvoiceSettingsInvoiceDate
 {
     public object Value { get; private init; }
 
-    public InvoiceDateModel(System::DateOnly value)
+    public BodyModelIncrementInvoiceSettingsInvoiceDate(System::DateOnly value)
     {
         Value = value;
     }
 
-    public InvoiceDateModel(System::DateTimeOffset value)
+    public BodyModelIncrementInvoiceSettingsInvoiceDate(System::DateTimeOffset value)
     {
         Value = value;
     }
 
-    InvoiceDateModel(UnknownVariant value)
+    BodyModelIncrementInvoiceSettingsInvoiceDate(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static InvoiceDateModel CreateUnknownVariant(JsonElement value)
+    public static BodyModelIncrementInvoiceSettingsInvoiceDate CreateUnknownVariant(
+        JsonElement value
+    )
     {
         return new(new UnknownVariant(value));
     }
@@ -1578,7 +1608,7 @@ public record class InvoiceDateModel
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of InvoiceDateModel"
+                    "Data did not match any variant of BodyModelIncrementInvoiceSettingsInvoiceDate"
                 );
         }
     }
@@ -1593,29 +1623,36 @@ public record class InvoiceDateModel
             System::DateOnly value => @date(value),
             System::DateTimeOffset value => @dateTime(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of InvoiceDateModel"
+                "Data did not match any variant of BodyModelIncrementInvoiceSettingsInvoiceDate"
             ),
         };
     }
 
-    public static implicit operator InvoiceDateModel(System::DateOnly value) => new(value);
+    public static implicit operator BodyModelIncrementInvoiceSettingsInvoiceDate(
+        System::DateOnly value
+    ) => new(value);
 
-    public static implicit operator InvoiceDateModel(System::DateTimeOffset value) => new(value);
+    public static implicit operator BodyModelIncrementInvoiceSettingsInvoiceDate(
+        System::DateTimeOffset value
+    ) => new(value);
 
     public void Validate()
     {
         if (this.Value is UnknownVariant)
         {
-            throw new OrbInvalidDataException("Data did not match any variant of InvoiceDateModel");
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of BodyModelIncrementInvoiceSettingsInvoiceDate"
+            );
         }
     }
 
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class InvoiceDateModelConverter : JsonConverter<InvoiceDateModel?>
+sealed class BodyModelIncrementInvoiceSettingsInvoiceDateConverter
+    : JsonConverter<BodyModelIncrementInvoiceSettingsInvoiceDate?>
 {
-    public override InvoiceDateModel? Read(
+    public override BodyModelIncrementInvoiceSettingsInvoiceDate? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1625,7 +1662,7 @@ sealed class InvoiceDateModelConverter : JsonConverter<InvoiceDateModel?>
 
         try
         {
-            return new InvoiceDateModel(
+            return new BodyModelIncrementInvoiceSettingsInvoiceDate(
                 JsonSerializer.Deserialize<System::DateOnly>(ref reader, options)
             );
         }
@@ -1641,7 +1678,7 @@ sealed class InvoiceDateModelConverter : JsonConverter<InvoiceDateModel?>
 
         try
         {
-            return new InvoiceDateModel(
+            return new BodyModelIncrementInvoiceSettingsInvoiceDate(
                 JsonSerializer.Deserialize<System::DateTimeOffset>(ref reader, options)
             );
         }
@@ -1660,7 +1697,7 @@ sealed class InvoiceDateModelConverter : JsonConverter<InvoiceDateModel?>
 
     public override void Write(
         Utf8JsonWriter writer,
-        InvoiceDateModel? value,
+        BodyModelIncrementInvoiceSettingsInvoiceDate? value,
         JsonSerializerOptions options
     )
     {
@@ -1669,8 +1706,8 @@ sealed class InvoiceDateModelConverter : JsonConverter<InvoiceDateModel?>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<DecrementModel>))]
-public sealed record class DecrementModel : ModelBase, IFromRaw<DecrementModel>
+[JsonConverter(typeof(ModelConverter<BodyModelDecrement>))]
+public sealed record class BodyModelDecrement : ModelBase, IFromRaw<BodyModelDecrement>
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -1697,7 +1734,7 @@ public sealed record class DecrementModel : ModelBase, IFromRaw<DecrementModel>
         }
     }
 
-    public EntryType6 EntryType
+    public BodyModelDecrementEntryType EntryType
     {
         get
         {
@@ -1710,7 +1747,10 @@ public sealed record class DecrementModel : ModelBase, IFromRaw<DecrementModel>
                     )
                 );
 
-            return JsonSerializer.Deserialize<EntryType6>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<BodyModelDecrementEntryType>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
                 ?? throw new OrbInvalidDataException(
                     "'entry_type' cannot be null",
                     new System::ArgumentNullException("entry_type")
@@ -1805,12 +1845,12 @@ public sealed record class DecrementModel : ModelBase, IFromRaw<DecrementModel>
         _ = this.Metadata;
     }
 
-    public DecrementModel()
+    public BodyModelDecrement()
     {
         this.EntryType = new();
     }
 
-    public DecrementModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public BodyModelDecrement(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
 
@@ -1819,13 +1859,13 @@ public sealed record class DecrementModel : ModelBase, IFromRaw<DecrementModel>
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DecrementModel(FrozenDictionary<string, JsonElement> properties)
+    BodyModelDecrement(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static DecrementModel FromRawUnchecked(
+    public static BodyModelDecrement FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -1833,7 +1873,7 @@ public sealed record class DecrementModel : ModelBase, IFromRaw<DecrementModel>
     }
 
     [SetsRequiredMembers]
-    public DecrementModel(double amount)
+    public BodyModelDecrement(double amount)
         : this()
     {
         this.Amount = amount;
@@ -1841,31 +1881,33 @@ public sealed record class DecrementModel : ModelBase, IFromRaw<DecrementModel>
 }
 
 [JsonConverter(typeof(Converter))]
-public class EntryType6
+public class BodyModelDecrementEntryType
 {
     public JsonElement Json { get; private init; }
 
-    public EntryType6()
+    public BodyModelDecrementEntryType()
     {
         Json = JsonSerializer.Deserialize<JsonElement>("\"decrement\"");
     }
 
-    EntryType6(JsonElement json)
+    BodyModelDecrementEntryType(JsonElement json)
     {
         Json = json;
     }
 
     public void Validate()
     {
-        if (JsonElement.DeepEquals(this.Json, new EntryType6().Json))
+        if (JsonElement.DeepEquals(this.Json, new BodyModelDecrementEntryType().Json))
         {
-            throw new OrbInvalidDataException("Invalid value given for 'EntryType6'");
+            throw new OrbInvalidDataException(
+                "Invalid value given for 'BodyModelDecrementEntryType'"
+            );
         }
     }
 
-    class Converter : JsonConverter<EntryType6>
+    class Converter : JsonConverter<BodyModelDecrementEntryType>
     {
-        public override EntryType6? Read(
+        public override BodyModelDecrementEntryType? Read(
             ref Utf8JsonReader reader,
             System::Type typeToConvert,
             JsonSerializerOptions options
@@ -1876,7 +1918,7 @@ public class EntryType6
 
         public override void Write(
             Utf8JsonWriter writer,
-            EntryType6 value,
+            BodyModelDecrementEntryType value,
             JsonSerializerOptions options
         )
         {
@@ -1885,10 +1927,12 @@ public class EntryType6
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ExpirationChangeModel>))]
-public sealed record class ExpirationChangeModel : ModelBase, IFromRaw<ExpirationChangeModel>
+[JsonConverter(typeof(ModelConverter<BodyModelExpirationChange>))]
+public sealed record class BodyModelExpirationChange
+    : ModelBase,
+        IFromRaw<BodyModelExpirationChange>
 {
-    public EntryType7 EntryType
+    public BodyModelExpirationChangeEntryType EntryType
     {
         get
         {
@@ -1901,7 +1945,10 @@ public sealed record class ExpirationChangeModel : ModelBase, IFromRaw<Expiratio
                     )
                 );
 
-            return JsonSerializer.Deserialize<EntryType7>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<BodyModelExpirationChangeEntryType>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
                 ?? throw new OrbInvalidDataException(
                     "'entry_type' cannot be null",
                     new System::ArgumentNullException("entry_type")
@@ -2099,12 +2146,12 @@ public sealed record class ExpirationChangeModel : ModelBase, IFromRaw<Expiratio
         _ = this.Metadata;
     }
 
-    public ExpirationChangeModel()
+    public BodyModelExpirationChange()
     {
         this.EntryType = new();
     }
 
-    public ExpirationChangeModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public BodyModelExpirationChange(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
 
@@ -2113,13 +2160,13 @@ public sealed record class ExpirationChangeModel : ModelBase, IFromRaw<Expiratio
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ExpirationChangeModel(FrozenDictionary<string, JsonElement> properties)
+    BodyModelExpirationChange(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static ExpirationChangeModel FromRawUnchecked(
+    public static BodyModelExpirationChange FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -2127,7 +2174,7 @@ public sealed record class ExpirationChangeModel : ModelBase, IFromRaw<Expiratio
     }
 
     [SetsRequiredMembers]
-    public ExpirationChangeModel(System::DateOnly targetExpiryDate)
+    public BodyModelExpirationChange(System::DateOnly targetExpiryDate)
         : this()
     {
         this.TargetExpiryDate = targetExpiryDate;
@@ -2135,31 +2182,33 @@ public sealed record class ExpirationChangeModel : ModelBase, IFromRaw<Expiratio
 }
 
 [JsonConverter(typeof(Converter))]
-public class EntryType7
+public class BodyModelExpirationChangeEntryType
 {
     public JsonElement Json { get; private init; }
 
-    public EntryType7()
+    public BodyModelExpirationChangeEntryType()
     {
         Json = JsonSerializer.Deserialize<JsonElement>("\"expiration_change\"");
     }
 
-    EntryType7(JsonElement json)
+    BodyModelExpirationChangeEntryType(JsonElement json)
     {
         Json = json;
     }
 
     public void Validate()
     {
-        if (JsonElement.DeepEquals(this.Json, new EntryType7().Json))
+        if (JsonElement.DeepEquals(this.Json, new BodyModelExpirationChangeEntryType().Json))
         {
-            throw new OrbInvalidDataException("Invalid value given for 'EntryType7'");
+            throw new OrbInvalidDataException(
+                "Invalid value given for 'BodyModelExpirationChangeEntryType'"
+            );
         }
     }
 
-    class Converter : JsonConverter<EntryType7>
+    class Converter : JsonConverter<BodyModelExpirationChangeEntryType>
     {
-        public override EntryType7? Read(
+        public override BodyModelExpirationChangeEntryType? Read(
             ref Utf8JsonReader reader,
             System::Type typeToConvert,
             JsonSerializerOptions options
@@ -2170,7 +2219,7 @@ public class EntryType7
 
         public override void Write(
             Utf8JsonWriter writer,
-            EntryType7 value,
+            BodyModelExpirationChangeEntryType value,
             JsonSerializerOptions options
         )
         {
@@ -2179,8 +2228,8 @@ public class EntryType7
     }
 }
 
-[JsonConverter(typeof(ModelConverter<VoidModel>))]
-public sealed record class VoidModel : ModelBase, IFromRaw<VoidModel>
+[JsonConverter(typeof(ModelConverter<BodyModelVoid>))]
+public sealed record class BodyModelVoid : ModelBase, IFromRaw<BodyModelVoid>
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -2235,7 +2284,7 @@ public sealed record class VoidModel : ModelBase, IFromRaw<VoidModel>
         }
     }
 
-    public EntryType8 EntryType
+    public BodyModelVoidEntryType EntryType
     {
         get
         {
@@ -2248,7 +2297,10 @@ public sealed record class VoidModel : ModelBase, IFromRaw<VoidModel>
                     )
                 );
 
-            return JsonSerializer.Deserialize<EntryType8>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<BodyModelVoidEntryType>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
                 ?? throw new OrbInvalidDataException(
                     "'entry_type' cannot be null",
                     new System::ArgumentNullException("entry_type")
@@ -2337,14 +2389,14 @@ public sealed record class VoidModel : ModelBase, IFromRaw<VoidModel>
     /// <summary>
     /// Can only be specified when `entry_type=void`. The reason for the void.
     /// </summary>
-    public ApiEnum<string, VoidReasonModel>? VoidReason
+    public ApiEnum<string, BodyModelVoidVoidReason>? VoidReason
     {
         get
         {
             if (!this._properties.TryGetValue("void_reason", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, VoidReasonModel>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, BodyModelVoidVoidReason>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2369,12 +2421,12 @@ public sealed record class VoidModel : ModelBase, IFromRaw<VoidModel>
         this.VoidReason?.Validate();
     }
 
-    public VoidModel()
+    public BodyModelVoid()
     {
         this.EntryType = new();
     }
 
-    public VoidModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public BodyModelVoid(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
 
@@ -2383,44 +2435,46 @@ public sealed record class VoidModel : ModelBase, IFromRaw<VoidModel>
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    VoidModel(FrozenDictionary<string, JsonElement> properties)
+    BodyModelVoid(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static VoidModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static BodyModelVoid FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
 [JsonConverter(typeof(Converter))]
-public class EntryType8
+public class BodyModelVoidEntryType
 {
     public JsonElement Json { get; private init; }
 
-    public EntryType8()
+    public BodyModelVoidEntryType()
     {
         Json = JsonSerializer.Deserialize<JsonElement>("\"void\"");
     }
 
-    EntryType8(JsonElement json)
+    BodyModelVoidEntryType(JsonElement json)
     {
         Json = json;
     }
 
     public void Validate()
     {
-        if (JsonElement.DeepEquals(this.Json, new EntryType8().Json))
+        if (JsonElement.DeepEquals(this.Json, new BodyModelVoidEntryType().Json))
         {
-            throw new OrbInvalidDataException("Invalid value given for 'EntryType8'");
+            throw new OrbInvalidDataException("Invalid value given for 'BodyModelVoidEntryType'");
         }
     }
 
-    class Converter : JsonConverter<EntryType8>
+    class Converter : JsonConverter<BodyModelVoidEntryType>
     {
-        public override EntryType8? Read(
+        public override BodyModelVoidEntryType? Read(
             ref Utf8JsonReader reader,
             System::Type typeToConvert,
             JsonSerializerOptions options
@@ -2431,7 +2485,7 @@ public class EntryType8
 
         public override void Write(
             Utf8JsonWriter writer,
-            EntryType8 value,
+            BodyModelVoidEntryType value,
             JsonSerializerOptions options
         )
         {
@@ -2443,15 +2497,15 @@ public class EntryType8
 /// <summary>
 /// Can only be specified when `entry_type=void`. The reason for the void.
 /// </summary>
-[JsonConverter(typeof(VoidReasonModelConverter))]
-public enum VoidReasonModel
+[JsonConverter(typeof(BodyModelVoidVoidReasonConverter))]
+public enum BodyModelVoidVoidReason
 {
     Refund,
 }
 
-sealed class VoidReasonModelConverter : JsonConverter<VoidReasonModel>
+sealed class BodyModelVoidVoidReasonConverter : JsonConverter<BodyModelVoidVoidReason>
 {
-    public override VoidReasonModel Read(
+    public override BodyModelVoidVoidReason Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -2459,14 +2513,14 @@ sealed class VoidReasonModelConverter : JsonConverter<VoidReasonModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "refund" => VoidReasonModel.Refund,
-            _ => (VoidReasonModel)(-1),
+            "refund" => BodyModelVoidVoidReason.Refund,
+            _ => (BodyModelVoidVoidReason)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        VoidReasonModel value,
+        BodyModelVoidVoidReason value,
         JsonSerializerOptions options
     )
     {
@@ -2474,7 +2528,7 @@ sealed class VoidReasonModelConverter : JsonConverter<VoidReasonModel>
             writer,
             value switch
             {
-                VoidReasonModel.Refund => "refund",
+                BodyModelVoidVoidReason.Refund => "refund",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -2484,8 +2538,8 @@ sealed class VoidReasonModelConverter : JsonConverter<VoidReasonModel>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AmendmentModel>))]
-public sealed record class AmendmentModel : ModelBase, IFromRaw<AmendmentModel>
+[JsonConverter(typeof(ModelConverter<BodyModelAmendment>))]
+public sealed record class BodyModelAmendment : ModelBase, IFromRaw<BodyModelAmendment>
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -2540,7 +2594,7 @@ public sealed record class AmendmentModel : ModelBase, IFromRaw<AmendmentModel>
         }
     }
 
-    public EntryType9 EntryType
+    public BodyModelAmendmentEntryType EntryType
     {
         get
         {
@@ -2553,7 +2607,10 @@ public sealed record class AmendmentModel : ModelBase, IFromRaw<AmendmentModel>
                     )
                 );
 
-            return JsonSerializer.Deserialize<EntryType9>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<BodyModelAmendmentEntryType>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
                 ?? throw new OrbInvalidDataException(
                     "'entry_type' cannot be null",
                     new System::ArgumentNullException("entry_type")
@@ -2649,12 +2706,12 @@ public sealed record class AmendmentModel : ModelBase, IFromRaw<AmendmentModel>
         _ = this.Metadata;
     }
 
-    public AmendmentModel()
+    public BodyModelAmendment()
     {
         this.EntryType = new();
     }
 
-    public AmendmentModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public BodyModelAmendment(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
 
@@ -2663,13 +2720,13 @@ public sealed record class AmendmentModel : ModelBase, IFromRaw<AmendmentModel>
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AmendmentModel(FrozenDictionary<string, JsonElement> properties)
+    BodyModelAmendment(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static AmendmentModel FromRawUnchecked(
+    public static BodyModelAmendment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -2678,31 +2735,33 @@ public sealed record class AmendmentModel : ModelBase, IFromRaw<AmendmentModel>
 }
 
 [JsonConverter(typeof(Converter))]
-public class EntryType9
+public class BodyModelAmendmentEntryType
 {
     public JsonElement Json { get; private init; }
 
-    public EntryType9()
+    public BodyModelAmendmentEntryType()
     {
         Json = JsonSerializer.Deserialize<JsonElement>("\"amendment\"");
     }
 
-    EntryType9(JsonElement json)
+    BodyModelAmendmentEntryType(JsonElement json)
     {
         Json = json;
     }
 
     public void Validate()
     {
-        if (JsonElement.DeepEquals(this.Json, new EntryType9().Json))
+        if (JsonElement.DeepEquals(this.Json, new BodyModelAmendmentEntryType().Json))
         {
-            throw new OrbInvalidDataException("Invalid value given for 'EntryType9'");
+            throw new OrbInvalidDataException(
+                "Invalid value given for 'BodyModelAmendmentEntryType'"
+            );
         }
     }
 
-    class Converter : JsonConverter<EntryType9>
+    class Converter : JsonConverter<BodyModelAmendmentEntryType>
     {
-        public override EntryType9? Read(
+        public override BodyModelAmendmentEntryType? Read(
             ref Utf8JsonReader reader,
             System::Type typeToConvert,
             JsonSerializerOptions options
@@ -2713,7 +2772,7 @@ public class EntryType9
 
         public override void Write(
             Utf8JsonWriter writer,
-            EntryType9 value,
+            BodyModelAmendmentEntryType value,
             JsonSerializerOptions options
         )
         {
