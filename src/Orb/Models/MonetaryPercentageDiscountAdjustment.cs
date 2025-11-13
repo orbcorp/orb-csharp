@@ -99,6 +99,7 @@ public sealed record class MonetaryPercentageDiscountAdjustment
     /// <summary>
     /// The price IDs that this adjustment applies to.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required List<string> AppliesToPriceIDs
     {
         get

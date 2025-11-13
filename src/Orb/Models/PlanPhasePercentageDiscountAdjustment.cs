@@ -71,6 +71,7 @@ public sealed record class PlanPhasePercentageDiscountAdjustment
     /// <summary>
     /// The price IDs that this adjustment applies to.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required List<string> AppliesToPriceIDs
     {
         get

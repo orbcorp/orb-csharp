@@ -358,6 +358,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
     /// The discount intervals for this subscription sorted by the start_date. This
     /// field is deprecated in favor of `adjustment_intervals`.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required List<DiscountInterval> DiscountIntervals
     {
         get
@@ -471,6 +472,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
     /// The maximum intervals for this subscription sorted by the start_date. This
     /// field is deprecated in favor of `adjustment_intervals`.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required List<MaximumInterval> MaximumIntervals
     {
         get
@@ -540,6 +542,7 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
     /// The minimum intervals for this subscription sorted by the start_date. This
     /// field is deprecated in favor of `adjustment_intervals`.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required List<MinimumInterval> MinimumIntervals
     {
         get
