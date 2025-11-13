@@ -677,7 +677,8 @@ public record class TaxConfigurationModel
                 newTaxJar: (x) => x.TaxExempt,
                 newSphere: (x) => x.TaxExempt,
                 numeral: (x) => x.TaxExempt,
-                anrok: (x) => x.TaxExempt
+                anrok: (x) => x.TaxExempt,
+                stripe: (x) => x.TaxExempt
             );
         }
     }
@@ -691,7 +692,8 @@ public record class TaxConfigurationModel
                 newTaxJar: (x) => x.AutomaticTaxEnabled,
                 newSphere: (x) => x.AutomaticTaxEnabled,
                 numeral: (x) => x.AutomaticTaxEnabled,
-                anrok: (x) => x.AutomaticTaxEnabled
+                anrok: (x) => x.AutomaticTaxEnabled,
+                stripe: (x) => x.AutomaticTaxEnabled
             );
         }
     }
@@ -717,6 +719,11 @@ public record class TaxConfigurationModel
     }
 
     public TaxConfigurationModel(TaxConfigurationModelAnrok value)
+    {
+        Value = value;
+    }
+
+    public TaxConfigurationModel(TaxConfigurationModelStripe value)
     {
         Value = value;
     }
@@ -761,12 +768,19 @@ public record class TaxConfigurationModel
         return value != null;
     }
 
+    public bool TryPickStripe([NotNullWhen(true)] out TaxConfigurationModelStripe? value)
+    {
+        value = this.Value as TaxConfigurationModelStripe;
+        return value != null;
+    }
+
     public void Switch(
         System::Action<NewAvalaraTaxConfiguration> newAvalara,
         System::Action<NewTaxJarConfiguration> newTaxJar,
         System::Action<NewSphereConfiguration> newSphere,
         System::Action<TaxConfigurationModelNumeral> numeral,
-        System::Action<TaxConfigurationModelAnrok> anrok
+        System::Action<TaxConfigurationModelAnrok> anrok,
+        System::Action<TaxConfigurationModelStripe> stripe
     )
     {
         switch (this.Value)
@@ -786,6 +800,9 @@ public record class TaxConfigurationModel
             case TaxConfigurationModelAnrok value:
                 anrok(value);
                 break;
+            case TaxConfigurationModelStripe value:
+                stripe(value);
+                break;
             default:
                 throw new OrbInvalidDataException(
                     "Data did not match any variant of TaxConfigurationModel"
@@ -798,7 +815,8 @@ public record class TaxConfigurationModel
         System::Func<NewTaxJarConfiguration, T> newTaxJar,
         System::Func<NewSphereConfiguration, T> newSphere,
         System::Func<TaxConfigurationModelNumeral, T> numeral,
-        System::Func<TaxConfigurationModelAnrok, T> anrok
+        System::Func<TaxConfigurationModelAnrok, T> anrok,
+        System::Func<TaxConfigurationModelStripe, T> stripe
     )
     {
         return this.Value switch
@@ -808,6 +826,7 @@ public record class TaxConfigurationModel
             NewSphereConfiguration value => newSphere(value),
             TaxConfigurationModelNumeral value => numeral(value),
             TaxConfigurationModelAnrok value => anrok(value),
+            TaxConfigurationModelStripe value => stripe(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of TaxConfigurationModel"
             ),
@@ -827,6 +846,9 @@ public record class TaxConfigurationModel
         new(value);
 
     public static implicit operator TaxConfigurationModel(TaxConfigurationModelAnrok value) =>
+        new(value);
+
+    public static implicit operator TaxConfigurationModel(TaxConfigurationModelStripe value) =>
         new(value);
 
     public void Validate()
@@ -1001,6 +1023,35 @@ sealed class TaxConfigurationModelConverter : JsonConverter<TaxConfigurationMode
                     exceptions.Add(
                         new OrbInvalidDataException(
                             "Data does not match union variant 'TaxConfigurationModelAnrok'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "stripe":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<TaxConfigurationModelStripe>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new TaxConfigurationModel(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'TaxConfigurationModelStripe'",
                             e
                         )
                     );
@@ -1362,6 +1413,177 @@ public class TaxConfigurationModelAnrokTaxProvider
         public override void Write(
             Utf8JsonWriter writer,
             TaxConfigurationModelAnrokTaxProvider value,
+            JsonSerializerOptions options
+        )
+        {
+            JsonSerializer.Serialize(writer, value.Json, options);
+        }
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<TaxConfigurationModelStripe>))]
+public sealed record class TaxConfigurationModelStripe
+    : ModelBase,
+        IFromRaw<TaxConfigurationModelStripe>
+{
+    public required bool TaxExempt
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("tax_exempt", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'tax_exempt' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "tax_exempt",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["tax_exempt"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public TaxConfigurationModelStripeTaxProvider TaxProvider
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("tax_provider", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'tax_provider' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "tax_provider",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<TaxConfigurationModelStripeTaxProvider>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'tax_provider' cannot be null",
+                    new System::ArgumentNullException("tax_provider")
+                );
+        }
+        init
+        {
+            this._properties["tax_provider"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Whether to automatically calculate tax for this customer. When null, inherits
+    /// from account-level setting. When true or false, overrides the account setting.
+    /// </summary>
+    public bool? AutomaticTaxEnabled
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("automatic_tax_enabled", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["automatic_tax_enabled"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.TaxExempt;
+        this.TaxProvider.Validate();
+        _ = this.AutomaticTaxEnabled;
+    }
+
+    public TaxConfigurationModelStripe()
+    {
+        this.TaxProvider = new();
+    }
+
+    public TaxConfigurationModelStripe(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+
+        this.TaxProvider = new();
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TaxConfigurationModelStripe(FrozenDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+#pragma warning restore CS8618
+
+    public static TaxConfigurationModelStripe FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
+    }
+
+    [SetsRequiredMembers]
+    public TaxConfigurationModelStripe(bool taxExempt)
+        : this()
+    {
+        this.TaxExempt = taxExempt;
+    }
+}
+
+[JsonConverter(typeof(Converter))]
+public class TaxConfigurationModelStripeTaxProvider
+{
+    public JsonElement Json { get; private init; }
+
+    public TaxConfigurationModelStripeTaxProvider()
+    {
+        Json = JsonSerializer.Deserialize<JsonElement>("\"stripe\"");
+    }
+
+    TaxConfigurationModelStripeTaxProvider(JsonElement json)
+    {
+        Json = json;
+    }
+
+    public void Validate()
+    {
+        if (JsonElement.DeepEquals(this.Json, new TaxConfigurationModelStripeTaxProvider().Json))
+        {
+            throw new OrbInvalidDataException(
+                "Invalid value given for 'TaxConfigurationModelStripeTaxProvider'"
+            );
+        }
+    }
+
+    class Converter : JsonConverter<TaxConfigurationModelStripeTaxProvider>
+    {
+        public override TaxConfigurationModelStripeTaxProvider? Read(
+            ref Utf8JsonReader reader,
+            System::Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            TaxConfigurationModelStripeTaxProvider value,
             JsonSerializerOptions options
         )
         {
