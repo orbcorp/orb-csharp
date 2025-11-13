@@ -2423,31 +2423,6 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
     }
 
     /// <summary>
-    /// This field is deprecated in favor of `adjustments`
-    /// </summary>
-    [System::Obsolete("deprecated")]
-    public required SharedDiscount? Discount
-    {
-        get
-        {
-            if (!this._properties.TryGetValue("discount", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<SharedDiscount?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
-        init
-        {
-            this._properties["discount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
-    /// <summary>
     /// The end date of the range of time applied for this line item's price.
     /// </summary>
     public required System::DateTimeOffset EndDate
@@ -2512,94 +2487,6 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
         init
         {
             this._properties["grouping"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
-    /// <summary>
-    /// This field is deprecated in favor of `adjustments`.
-    /// </summary>
-    [System::Obsolete("deprecated")]
-    public required Maximum? Maximum
-    {
-        get
-        {
-            if (!this._properties.TryGetValue("maximum", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Maximum?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._properties["maximum"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
-    /// <summary>
-    /// This field is deprecated in favor of `adjustments`.
-    /// </summary>
-    [System::Obsolete("deprecated")]
-    public required string? MaximumAmount
-    {
-        get
-        {
-            if (!this._properties.TryGetValue("maximum_amount", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._properties["maximum_amount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
-    /// <summary>
-    /// This field is deprecated in favor of `adjustments`.
-    /// </summary>
-    [System::Obsolete("deprecated")]
-    public required Minimum? Minimum
-    {
-        get
-        {
-            if (!this._properties.TryGetValue("minimum", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Minimum?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._properties["minimum"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
-    /// <summary>
-    /// This field is deprecated in favor of `adjustments`.
-    /// </summary>
-    [System::Obsolete("deprecated")]
-    public required string? MinimumAmount
-    {
-        get
-        {
-            if (!this._properties.TryGetValue("minimum_amount", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._properties["minimum_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -2881,14 +2768,9 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
         }
         _ = this.Amount;
         _ = this.CreditsApplied;
-        this.Discount?.Validate();
         _ = this.EndDate;
         _ = this.Filter;
         _ = this.Grouping;
-        this.Maximum?.Validate();
-        _ = this.MaximumAmount;
-        this.Minimum?.Validate();
-        _ = this.MinimumAmount;
         _ = this.Name;
         _ = this.PartiallyInvoicedAmount;
         this.Price.Validate();
