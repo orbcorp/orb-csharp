@@ -68,7 +68,7 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     /// <summary>
     /// The type of alert to create. This must be a valid alert type.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Alerts.Type1> Type
+    public required ApiEnum<string, Type1> Type
     {
         get
         {
@@ -78,7 +78,7 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
                     new System::ArgumentOutOfRangeException("type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, global::Orb.Models.Alerts.Type1>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, Type1>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -186,16 +186,16 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
 /// <summary>
 /// The type of alert to create. This must be a valid alert type.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Alerts.Type1Converter))]
+[JsonConverter(typeof(Type1Converter))]
 public enum Type1
 {
     UsageExceeded,
     CostExceeded,
 }
 
-sealed class Type1Converter : JsonConverter<global::Orb.Models.Alerts.Type1>
+sealed class Type1Converter : JsonConverter<Type1>
 {
-    public override global::Orb.Models.Alerts.Type1 Read(
+    public override Type1 Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -203,24 +203,20 @@ sealed class Type1Converter : JsonConverter<global::Orb.Models.Alerts.Type1>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "usage_exceeded" => global::Orb.Models.Alerts.Type1.UsageExceeded,
-            "cost_exceeded" => global::Orb.Models.Alerts.Type1.CostExceeded,
-            _ => (global::Orb.Models.Alerts.Type1)(-1),
+            "usage_exceeded" => Type1.UsageExceeded,
+            "cost_exceeded" => Type1.CostExceeded,
+            _ => (Type1)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Alerts.Type1 value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Type1 value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::Orb.Models.Alerts.Type1.UsageExceeded => "usage_exceeded",
-                global::Orb.Models.Alerts.Type1.CostExceeded => "cost_exceeded",
+                Type1.UsageExceeded => "usage_exceeded",
+                Type1.CostExceeded => "cost_exceeded",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

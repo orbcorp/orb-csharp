@@ -21,7 +21,7 @@ public sealed record class PlanVersion : ModelBase, IFromRaw<PlanVersion>
     /// Adjustments for this plan. If the plan has phases, this includes adjustments
     /// across all phases of the plan.
     /// </summary>
-    public required List<global::Orb.Models.Beta.Adjustment1> Adjustments
+    public required List<global::Orb.Models.Beta.Adjustment> Adjustments
     {
         get
         {
@@ -34,7 +34,7 @@ public sealed record class PlanVersion : ModelBase, IFromRaw<PlanVersion>
                     )
                 );
 
-            return JsonSerializer.Deserialize<List<global::Orb.Models.Beta.Adjustment1>>(
+            return JsonSerializer.Deserialize<List<global::Orb.Models.Beta.Adjustment>>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -192,8 +192,8 @@ public sealed record class PlanVersion : ModelBase, IFromRaw<PlanVersion>
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Beta.Adjustment1Converter))]
-public record class Adjustment1
+[JsonConverter(typeof(global::Orb.Models.Beta.AdjustmentConverter))]
+public record class Adjustment
 {
     public object Value { get; private init; }
 
@@ -267,37 +267,37 @@ public record class Adjustment1
         }
     }
 
-    public Adjustment1(PlanPhaseUsageDiscountAdjustment value)
+    public Adjustment(PlanPhaseUsageDiscountAdjustment value)
     {
         Value = value;
     }
 
-    public Adjustment1(PlanPhaseAmountDiscountAdjustment value)
+    public Adjustment(PlanPhaseAmountDiscountAdjustment value)
     {
         Value = value;
     }
 
-    public Adjustment1(PlanPhasePercentageDiscountAdjustment value)
+    public Adjustment(PlanPhasePercentageDiscountAdjustment value)
     {
         Value = value;
     }
 
-    public Adjustment1(PlanPhaseMinimumAdjustment value)
+    public Adjustment(PlanPhaseMinimumAdjustment value)
     {
         Value = value;
     }
 
-    public Adjustment1(PlanPhaseMaximumAdjustment value)
+    public Adjustment(PlanPhaseMaximumAdjustment value)
     {
         Value = value;
     }
 
-    Adjustment1(UnknownVariant value)
+    Adjustment(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static global::Orb.Models.Beta.Adjustment1 CreateUnknownVariant(JsonElement value)
+    public static global::Orb.Models.Beta.Adjustment CreateUnknownVariant(JsonElement value)
     {
         return new(new UnknownVariant(value));
     }
@@ -364,7 +364,7 @@ public record class Adjustment1
                 planPhaseMaximum(value);
                 break;
             default:
-                throw new OrbInvalidDataException("Data did not match any variant of Adjustment1");
+                throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
         }
     }
 
@@ -383,27 +383,27 @@ public record class Adjustment1
             PlanPhasePercentageDiscountAdjustment value => planPhasePercentageDiscount(value),
             PlanPhaseMinimumAdjustment value => planPhaseMinimum(value),
             PlanPhaseMaximumAdjustment value => planPhaseMaximum(value),
-            _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment1"),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment"),
         };
     }
 
-    public static implicit operator global::Orb.Models.Beta.Adjustment1(
+    public static implicit operator global::Orb.Models.Beta.Adjustment(
         PlanPhaseUsageDiscountAdjustment value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Adjustment1(
+    public static implicit operator global::Orb.Models.Beta.Adjustment(
         PlanPhaseAmountDiscountAdjustment value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Adjustment1(
+    public static implicit operator global::Orb.Models.Beta.Adjustment(
         PlanPhasePercentageDiscountAdjustment value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Adjustment1(
+    public static implicit operator global::Orb.Models.Beta.Adjustment(
         PlanPhaseMinimumAdjustment value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Adjustment1(
+    public static implicit operator global::Orb.Models.Beta.Adjustment(
         PlanPhaseMaximumAdjustment value
     ) => new(value);
 
@@ -411,16 +411,16 @@ public record class Adjustment1
     {
         if (this.Value is UnknownVariant)
         {
-            throw new OrbInvalidDataException("Data did not match any variant of Adjustment1");
+            throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
         }
     }
 
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class Adjustment1Converter : JsonConverter<global::Orb.Models.Beta.Adjustment1>
+sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Beta.Adjustment>
 {
-    public override global::Orb.Models.Beta.Adjustment1? Read(
+    public override global::Orb.Models.Beta.Adjustment? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -452,7 +452,7 @@ sealed class Adjustment1Converter : JsonConverter<global::Orb.Models.Beta.Adjust
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.Adjustment1(deserialized);
+                        return new global::Orb.Models.Beta.Adjustment(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -482,7 +482,7 @@ sealed class Adjustment1Converter : JsonConverter<global::Orb.Models.Beta.Adjust
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.Adjustment1(deserialized);
+                        return new global::Orb.Models.Beta.Adjustment(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -512,7 +512,7 @@ sealed class Adjustment1Converter : JsonConverter<global::Orb.Models.Beta.Adjust
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.Adjustment1(deserialized);
+                        return new global::Orb.Models.Beta.Adjustment(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -541,7 +541,7 @@ sealed class Adjustment1Converter : JsonConverter<global::Orb.Models.Beta.Adjust
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.Adjustment1(deserialized);
+                        return new global::Orb.Models.Beta.Adjustment(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -570,7 +570,7 @@ sealed class Adjustment1Converter : JsonConverter<global::Orb.Models.Beta.Adjust
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.Adjustment1(deserialized);
+                        return new global::Orb.Models.Beta.Adjustment(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -597,7 +597,7 @@ sealed class Adjustment1Converter : JsonConverter<global::Orb.Models.Beta.Adjust
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Beta.Adjustment1 value,
+        global::Orb.Models.Beta.Adjustment value,
         JsonSerializerOptions options
     )
     {

@@ -9,10 +9,10 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<TieredConversionRateConfig>))]
-public sealed record class TieredConversionRateConfig
+[JsonConverter(typeof(ModelConverter<SharedTieredConversionRateConfig>))]
+public sealed record class SharedTieredConversionRateConfig
     : ModelBase,
-        IFromRaw<TieredConversionRateConfig>
+        IFromRaw<SharedTieredConversionRateConfig>
 {
     public required ApiEnum<string, ConversionRateType> ConversionRateType
     {
@@ -78,22 +78,22 @@ public sealed record class TieredConversionRateConfig
         this.TieredConfig.Validate();
     }
 
-    public TieredConversionRateConfig() { }
+    public SharedTieredConversionRateConfig() { }
 
-    public TieredConversionRateConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    public SharedTieredConversionRateConfig(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TieredConversionRateConfig(FrozenDictionary<string, JsonElement> properties)
+    SharedTieredConversionRateConfig(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static TieredConversionRateConfig FromRawUnchecked(
+    public static SharedTieredConversionRateConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {

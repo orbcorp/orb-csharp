@@ -12,7 +12,7 @@ namespace Orb.Models;
 [JsonConverter(typeof(ModelConverter<NewPercentageDiscount>))]
 public sealed record class NewPercentageDiscount : ModelBase, IFromRaw<NewPercentageDiscount>
 {
-    public required ApiEnum<string, AdjustmentType7> AdjustmentType
+    public required ApiEnum<string, NewPercentageDiscountAdjustmentType> AdjustmentType
     {
         get
         {
@@ -25,7 +25,7 @@ public sealed record class NewPercentageDiscount : ModelBase, IFromRaw<NewPercen
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, AdjustmentType7>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, NewPercentageDiscountAdjustmentType>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -66,14 +66,14 @@ public sealed record class NewPercentageDiscount : ModelBase, IFromRaw<NewPercen
     /// <summary>
     /// If set, the adjustment will apply to every price on the subscription.
     /// </summary>
-    public ApiEnum<bool, AppliesToAll2>? AppliesToAll
+    public ApiEnum<bool, NewPercentageDiscountAppliesToAll>? AppliesToAll
     {
         get
         {
             if (!this._properties.TryGetValue("applies_to_all", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<bool, AppliesToAll2>?>(
+            return JsonSerializer.Deserialize<ApiEnum<bool, NewPercentageDiscountAppliesToAll>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -204,14 +204,14 @@ public sealed record class NewPercentageDiscount : ModelBase, IFromRaw<NewPercen
     /// <summary>
     /// If set, only prices of the specified type will have the adjustment applied.
     /// </summary>
-    public ApiEnum<string, PriceType2>? PriceType
+    public ApiEnum<string, NewPercentageDiscountPriceType>? PriceType
     {
         get
         {
             if (!this._properties.TryGetValue("price_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, PriceType2>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, NewPercentageDiscountPriceType>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -264,15 +264,16 @@ public sealed record class NewPercentageDiscount : ModelBase, IFromRaw<NewPercen
     }
 }
 
-[JsonConverter(typeof(AdjustmentType7Converter))]
-public enum AdjustmentType7
+[JsonConverter(typeof(NewPercentageDiscountAdjustmentTypeConverter))]
+public enum NewPercentageDiscountAdjustmentType
 {
     PercentageDiscount,
 }
 
-sealed class AdjustmentType7Converter : JsonConverter<AdjustmentType7>
+sealed class NewPercentageDiscountAdjustmentTypeConverter
+    : JsonConverter<NewPercentageDiscountAdjustmentType>
 {
-    public override AdjustmentType7 Read(
+    public override NewPercentageDiscountAdjustmentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -280,14 +281,14 @@ sealed class AdjustmentType7Converter : JsonConverter<AdjustmentType7>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "percentage_discount" => AdjustmentType7.PercentageDiscount,
-            _ => (AdjustmentType7)(-1),
+            "percentage_discount" => NewPercentageDiscountAdjustmentType.PercentageDiscount,
+            _ => (NewPercentageDiscountAdjustmentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        AdjustmentType7 value,
+        NewPercentageDiscountAdjustmentType value,
         JsonSerializerOptions options
     )
     {
@@ -295,7 +296,7 @@ sealed class AdjustmentType7Converter : JsonConverter<AdjustmentType7>
             writer,
             value switch
             {
-                AdjustmentType7.PercentageDiscount => "percentage_discount",
+                NewPercentageDiscountAdjustmentType.PercentageDiscount => "percentage_discount",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -308,15 +309,16 @@ sealed class AdjustmentType7Converter : JsonConverter<AdjustmentType7>
 /// <summary>
 /// If set, the adjustment will apply to every price on the subscription.
 /// </summary>
-[JsonConverter(typeof(AppliesToAll2Converter))]
-public enum AppliesToAll2
+[JsonConverter(typeof(NewPercentageDiscountAppliesToAllConverter))]
+public enum NewPercentageDiscountAppliesToAll
 {
     True,
 }
 
-sealed class AppliesToAll2Converter : JsonConverter<AppliesToAll2>
+sealed class NewPercentageDiscountAppliesToAllConverter
+    : JsonConverter<NewPercentageDiscountAppliesToAll>
 {
-    public override AppliesToAll2 Read(
+    public override NewPercentageDiscountAppliesToAll Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -324,14 +326,14 @@ sealed class AppliesToAll2Converter : JsonConverter<AppliesToAll2>
     {
         return JsonSerializer.Deserialize<bool>(ref reader, options) switch
         {
-            true => AppliesToAll2.True,
-            _ => (AppliesToAll2)(-1),
+            true => NewPercentageDiscountAppliesToAll.True,
+            _ => (NewPercentageDiscountAppliesToAll)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        AppliesToAll2 value,
+        NewPercentageDiscountAppliesToAll value,
         JsonSerializerOptions options
     )
     {
@@ -339,7 +341,7 @@ sealed class AppliesToAll2Converter : JsonConverter<AppliesToAll2>
             writer,
             value switch
             {
-                AppliesToAll2.True => true,
+                NewPercentageDiscountAppliesToAll.True => true,
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -355,7 +357,7 @@ public sealed record class Filter15 : ModelBase, IFromRaw<Filter15>
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, Field15> Field
+    public required ApiEnum<string, Filter15Field> Field
     {
         get
         {
@@ -365,7 +367,7 @@ public sealed record class Filter15 : ModelBase, IFromRaw<Filter15>
                     new System::ArgumentOutOfRangeException("field", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Field15>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, Filter15Field>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -382,7 +384,7 @@ public sealed record class Filter15 : ModelBase, IFromRaw<Filter15>
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, Operator15> Operator
+    public required ApiEnum<string, Filter15Operator> Operator
     {
         get
         {
@@ -392,7 +394,7 @@ public sealed record class Filter15 : ModelBase, IFromRaw<Filter15>
                     new System::ArgumentOutOfRangeException("operator", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Operator15>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, Filter15Operator>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -465,8 +467,8 @@ public sealed record class Filter15 : ModelBase, IFromRaw<Filter15>
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(Field15Converter))]
-public enum Field15
+[JsonConverter(typeof(Filter15FieldConverter))]
+public enum Filter15Field
 {
     PriceID,
     ItemID,
@@ -475,9 +477,9 @@ public enum Field15
     PricingUnitID,
 }
 
-sealed class Field15Converter : JsonConverter<Field15>
+sealed class Filter15FieldConverter : JsonConverter<Filter15Field>
 {
-    public override Field15 Read(
+    public override Filter15Field Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -485,26 +487,30 @@ sealed class Field15Converter : JsonConverter<Field15>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => Field15.PriceID,
-            "item_id" => Field15.ItemID,
-            "price_type" => Field15.PriceType,
-            "currency" => Field15.Currency,
-            "pricing_unit_id" => Field15.PricingUnitID,
-            _ => (Field15)(-1),
+            "price_id" => Filter15Field.PriceID,
+            "item_id" => Filter15Field.ItemID,
+            "price_type" => Filter15Field.PriceType,
+            "currency" => Filter15Field.Currency,
+            "pricing_unit_id" => Filter15Field.PricingUnitID,
+            _ => (Filter15Field)(-1),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Field15 value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        Filter15Field value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                Field15.PriceID => "price_id",
-                Field15.ItemID => "item_id",
-                Field15.PriceType => "price_type",
-                Field15.Currency => "currency",
-                Field15.PricingUnitID => "pricing_unit_id",
+                Filter15Field.PriceID => "price_id",
+                Filter15Field.ItemID => "item_id",
+                Filter15Field.PriceType => "price_type",
+                Filter15Field.Currency => "currency",
+                Filter15Field.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -517,16 +523,16 @@ sealed class Field15Converter : JsonConverter<Field15>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(Operator15Converter))]
-public enum Operator15
+[JsonConverter(typeof(Filter15OperatorConverter))]
+public enum Filter15Operator
 {
     Includes,
     Excludes,
 }
 
-sealed class Operator15Converter : JsonConverter<Operator15>
+sealed class Filter15OperatorConverter : JsonConverter<Filter15Operator>
 {
-    public override Operator15 Read(
+    public override Filter15Operator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -534,15 +540,15 @@ sealed class Operator15Converter : JsonConverter<Operator15>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Operator15.Includes,
-            "excludes" => Operator15.Excludes,
-            _ => (Operator15)(-1),
+            "includes" => Filter15Operator.Includes,
+            "excludes" => Filter15Operator.Excludes,
+            _ => (Filter15Operator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Operator15 value,
+        Filter15Operator value,
         JsonSerializerOptions options
     )
     {
@@ -550,8 +556,8 @@ sealed class Operator15Converter : JsonConverter<Operator15>
             writer,
             value switch
             {
-                Operator15.Includes => "includes",
-                Operator15.Excludes => "excludes",
+                Filter15Operator.Includes => "includes",
+                Filter15Operator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -564,8 +570,8 @@ sealed class Operator15Converter : JsonConverter<Operator15>
 /// <summary>
 /// If set, only prices of the specified type will have the adjustment applied.
 /// </summary>
-[JsonConverter(typeof(PriceType2Converter))]
-public enum PriceType2
+[JsonConverter(typeof(NewPercentageDiscountPriceTypeConverter))]
+public enum NewPercentageDiscountPriceType
 {
     Usage,
     FixedInAdvance,
@@ -574,9 +580,9 @@ public enum PriceType2
     InArrears,
 }
 
-sealed class PriceType2Converter : JsonConverter<PriceType2>
+sealed class NewPercentageDiscountPriceTypeConverter : JsonConverter<NewPercentageDiscountPriceType>
 {
-    public override PriceType2 Read(
+    public override NewPercentageDiscountPriceType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -584,18 +590,18 @@ sealed class PriceType2Converter : JsonConverter<PriceType2>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "usage" => PriceType2.Usage,
-            "fixed_in_advance" => PriceType2.FixedInAdvance,
-            "fixed_in_arrears" => PriceType2.FixedInArrears,
-            "fixed" => PriceType2.Fixed,
-            "in_arrears" => PriceType2.InArrears,
-            _ => (PriceType2)(-1),
+            "usage" => NewPercentageDiscountPriceType.Usage,
+            "fixed_in_advance" => NewPercentageDiscountPriceType.FixedInAdvance,
+            "fixed_in_arrears" => NewPercentageDiscountPriceType.FixedInArrears,
+            "fixed" => NewPercentageDiscountPriceType.Fixed,
+            "in_arrears" => NewPercentageDiscountPriceType.InArrears,
+            _ => (NewPercentageDiscountPriceType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        PriceType2 value,
+        NewPercentageDiscountPriceType value,
         JsonSerializerOptions options
     )
     {
@@ -603,11 +609,11 @@ sealed class PriceType2Converter : JsonConverter<PriceType2>
             writer,
             value switch
             {
-                PriceType2.Usage => "usage",
-                PriceType2.FixedInAdvance => "fixed_in_advance",
-                PriceType2.FixedInArrears => "fixed_in_arrears",
-                PriceType2.Fixed => "fixed",
-                PriceType2.InArrears => "in_arrears",
+                NewPercentageDiscountPriceType.Usage => "usage",
+                NewPercentageDiscountPriceType.FixedInAdvance => "fixed_in_advance",
+                NewPercentageDiscountPriceType.FixedInArrears => "fixed_in_arrears",
+                NewPercentageDiscountPriceType.Fixed => "fixed",
+                NewPercentageDiscountPriceType.InArrears => "in_arrears",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

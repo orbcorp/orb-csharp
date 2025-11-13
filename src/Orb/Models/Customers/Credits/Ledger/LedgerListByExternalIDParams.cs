@@ -230,14 +230,14 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
         }
     }
 
-    public ApiEnum<string, EntryType10>? EntryType
+    public ApiEnum<string, EntryTypeModel>? EntryType
     {
         get
         {
             if (!this._queryProperties.TryGetValue("entry_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, EntryType10>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, EntryTypeModel>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -397,8 +397,8 @@ sealed class EntryStatusModelConverter : JsonConverter<EntryStatusModel>
     }
 }
 
-[JsonConverter(typeof(EntryType10Converter))]
-public enum EntryType10
+[JsonConverter(typeof(EntryTypeModelConverter))]
+public enum EntryTypeModel
 {
     Increment,
     Decrement,
@@ -409,9 +409,9 @@ public enum EntryType10
     Amendment,
 }
 
-sealed class EntryType10Converter : JsonConverter<EntryType10>
+sealed class EntryTypeModelConverter : JsonConverter<EntryTypeModel>
 {
-    public override EntryType10 Read(
+    public override EntryTypeModel Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -419,20 +419,20 @@ sealed class EntryType10Converter : JsonConverter<EntryType10>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "increment" => EntryType10.Increment,
-            "decrement" => EntryType10.Decrement,
-            "expiration_change" => EntryType10.ExpirationChange,
-            "credit_block_expiry" => EntryType10.CreditBlockExpiry,
-            "void" => EntryType10.Void,
-            "void_initiated" => EntryType10.VoidInitiated,
-            "amendment" => EntryType10.Amendment,
-            _ => (EntryType10)(-1),
+            "increment" => EntryTypeModel.Increment,
+            "decrement" => EntryTypeModel.Decrement,
+            "expiration_change" => EntryTypeModel.ExpirationChange,
+            "credit_block_expiry" => EntryTypeModel.CreditBlockExpiry,
+            "void" => EntryTypeModel.Void,
+            "void_initiated" => EntryTypeModel.VoidInitiated,
+            "amendment" => EntryTypeModel.Amendment,
+            _ => (EntryTypeModel)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        EntryType10 value,
+        EntryTypeModel value,
         JsonSerializerOptions options
     )
     {
@@ -440,13 +440,13 @@ sealed class EntryType10Converter : JsonConverter<EntryType10>
             writer,
             value switch
             {
-                EntryType10.Increment => "increment",
-                EntryType10.Decrement => "decrement",
-                EntryType10.ExpirationChange => "expiration_change",
-                EntryType10.CreditBlockExpiry => "credit_block_expiry",
-                EntryType10.Void => "void",
-                EntryType10.VoidInitiated => "void_initiated",
-                EntryType10.Amendment => "amendment",
+                EntryTypeModel.Increment => "increment",
+                EntryTypeModel.Decrement => "decrement",
+                EntryTypeModel.ExpirationChange => "expiration_change",
+                EntryTypeModel.CreditBlockExpiry => "credit_block_expiry",
+                EntryTypeModel.Void => "void",
+                EntryTypeModel.VoidInitiated => "void_initiated",
+                EntryTypeModel.Amendment => "amendment",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

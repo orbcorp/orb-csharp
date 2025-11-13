@@ -10,29 +10,33 @@ using Orb.Exceptions;
 namespace Orb.Models;
 
 /// <summary>
-/// Configuration for a single tier
+/// Configuration for a single matrix value
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier26>))]
-public sealed record class Tier26 : ModelBase, IFromRaw<Tier26>
+[JsonConverter(typeof(ModelConverter<SharedMatrixValue>))]
+public sealed record class SharedMatrixValue : ModelBase, IFromRaw<SharedMatrixValue>
 {
     /// <summary>
-    /// Exclusive tier starting value
+    /// One or two matrix keys to filter usage to this Matrix value by
     /// </summary>
-    public required double FirstUnit
+    public required List<string?> DimensionValues
     {
         get
         {
-            if (!this._properties.TryGetValue("first_unit", out JsonElement element))
+            if (!this._properties.TryGetValue("dimension_values", out JsonElement element))
                 throw new OrbInvalidDataException(
-                    "'first_unit' cannot be null",
-                    new ArgumentOutOfRangeException("first_unit", "Missing required argument")
+                    "'dimension_values' cannot be null",
+                    new ArgumentOutOfRangeException("dimension_values", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<List<string?>>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'dimension_values' cannot be null",
+                    new ArgumentNullException("dimension_values")
+                );
         }
         init
         {
-            this._properties["first_unit"] = JsonSerializer.SerializeToElement(
+            this._properties["dimension_values"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -40,7 +44,7 @@ public sealed record class Tier26 : ModelBase, IFromRaw<Tier26>
     }
 
     /// <summary>
-    /// Amount per unit
+    /// Unit price for the specified dimension_values
     /// </summary>
     public required string UnitAmount
     {
@@ -67,51 +71,30 @@ public sealed record class Tier26 : ModelBase, IFromRaw<Tier26>
         }
     }
 
-    /// <summary>
-    /// Inclusive tier ending value. This value is null if and only if this is the
-    /// last tier.
-    /// </summary>
-    public double? LastUnit
-    {
-        get
-        {
-            if (!this._properties.TryGetValue("last_unit", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._properties["last_unit"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
     public override void Validate()
     {
-        _ = this.FirstUnit;
+        _ = this.DimensionValues;
         _ = this.UnitAmount;
-        _ = this.LastUnit;
     }
 
-    public Tier26() { }
+    public SharedMatrixValue() { }
 
-    public Tier26(IReadOnlyDictionary<string, JsonElement> properties)
+    public SharedMatrixValue(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier26(FrozenDictionary<string, JsonElement> properties)
+    SharedMatrixValue(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Tier26 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static SharedMatrixValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }

@@ -411,14 +411,14 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
     /// This is used for creating charges or invoices in an external system via Orb.
     /// When not in test mode, the connection must first be configured in the Orb webapp.
     /// </summary>
-    public required ApiEnum<string, PaymentProvider2>? PaymentProvider
+    public required ApiEnum<string, CustomerPaymentProvider>? PaymentProvider
     {
         get
         {
             if (!this._properties.TryGetValue("payment_provider", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, PaymentProvider2>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, CustomerPaymentProvider>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -850,8 +850,8 @@ public sealed record class Hierarchy : ModelBase, IFromRaw<Hierarchy>
 /// This is used for creating charges or invoices in an external system via Orb.
 /// When not in test mode, the connection must first be configured in the Orb webapp.
 /// </summary>
-[JsonConverter(typeof(PaymentProvider2Converter))]
-public enum PaymentProvider2
+[JsonConverter(typeof(CustomerPaymentProviderConverter))]
+public enum CustomerPaymentProvider
 {
     Quickbooks,
     BillCom,
@@ -860,9 +860,9 @@ public enum PaymentProvider2
     Netsuite,
 }
 
-sealed class PaymentProvider2Converter : JsonConverter<PaymentProvider2>
+sealed class CustomerPaymentProviderConverter : JsonConverter<CustomerPaymentProvider>
 {
-    public override PaymentProvider2 Read(
+    public override CustomerPaymentProvider Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -870,18 +870,18 @@ sealed class PaymentProvider2Converter : JsonConverter<PaymentProvider2>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "quickbooks" => PaymentProvider2.Quickbooks,
-            "bill.com" => PaymentProvider2.BillCom,
-            "stripe_charge" => PaymentProvider2.StripeCharge,
-            "stripe_invoice" => PaymentProvider2.StripeInvoice,
-            "netsuite" => PaymentProvider2.Netsuite,
-            _ => (PaymentProvider2)(-1),
+            "quickbooks" => CustomerPaymentProvider.Quickbooks,
+            "bill.com" => CustomerPaymentProvider.BillCom,
+            "stripe_charge" => CustomerPaymentProvider.StripeCharge,
+            "stripe_invoice" => CustomerPaymentProvider.StripeInvoice,
+            "netsuite" => CustomerPaymentProvider.Netsuite,
+            _ => (CustomerPaymentProvider)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        PaymentProvider2 value,
+        CustomerPaymentProvider value,
         JsonSerializerOptions options
     )
     {
@@ -889,11 +889,11 @@ sealed class PaymentProvider2Converter : JsonConverter<PaymentProvider2>
             writer,
             value switch
             {
-                PaymentProvider2.Quickbooks => "quickbooks",
-                PaymentProvider2.BillCom => "bill.com",
-                PaymentProvider2.StripeCharge => "stripe_charge",
-                PaymentProvider2.StripeInvoice => "stripe_invoice",
-                PaymentProvider2.Netsuite => "netsuite",
+                CustomerPaymentProvider.Quickbooks => "quickbooks",
+                CustomerPaymentProvider.BillCom => "bill.com",
+                CustomerPaymentProvider.StripeCharge => "stripe_charge",
+                CustomerPaymentProvider.StripeInvoice => "stripe_invoice",
+                CustomerPaymentProvider.Netsuite => "netsuite",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

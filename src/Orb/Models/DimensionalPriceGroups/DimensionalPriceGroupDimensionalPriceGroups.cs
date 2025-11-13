@@ -9,10 +9,10 @@ using Orb.Exceptions;
 
 namespace Orb.Models.DimensionalPriceGroups;
 
-[JsonConverter(typeof(ModelConverter<DimensionalPriceGroupsModel>))]
-public sealed record class DimensionalPriceGroupsModel
+[JsonConverter(typeof(ModelConverter<DimensionalPriceGroupDimensionalPriceGroups>))]
+public sealed record class DimensionalPriceGroupDimensionalPriceGroups
     : ModelBase,
-        IFromRaw<DimensionalPriceGroupsModel>
+        IFromRaw<DimensionalPriceGroupDimensionalPriceGroups>
 {
     public required List<DimensionalPriceGroup> Data
     {
@@ -82,22 +82,24 @@ public sealed record class DimensionalPriceGroupsModel
         this.PaginationMetadata.Validate();
     }
 
-    public DimensionalPriceGroupsModel() { }
+    public DimensionalPriceGroupDimensionalPriceGroups() { }
 
-    public DimensionalPriceGroupsModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public DimensionalPriceGroupDimensionalPriceGroups(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DimensionalPriceGroupsModel(FrozenDictionary<string, JsonElement> properties)
+    DimensionalPriceGroupDimensionalPriceGroups(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static DimensionalPriceGroupsModel FromRawUnchecked(
+    public static DimensionalPriceGroupDimensionalPriceGroups FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {

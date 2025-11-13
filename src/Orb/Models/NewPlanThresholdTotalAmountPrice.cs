@@ -17,7 +17,7 @@ public sealed record class NewPlanThresholdTotalAmountPrice
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, Cadence43> Cadence
+    public required ApiEnum<string, NewPlanThresholdTotalAmountPriceCadence> Cadence
     {
         get
         {
@@ -27,10 +27,9 @@ public sealed record class NewPlanThresholdTotalAmountPrice
                     new System::ArgumentOutOfRangeException("cadence", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Cadence43>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, NewPlanThresholdTotalAmountPriceCadence>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -72,7 +71,7 @@ public sealed record class NewPlanThresholdTotalAmountPrice
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public required ApiEnum<string, ModelType42> ModelType
+    public required ApiEnum<string, NewPlanThresholdTotalAmountPriceModelType> ModelType
     {
         get
         {
@@ -85,10 +84,9 @@ public sealed record class NewPlanThresholdTotalAmountPrice
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ModelType42>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, NewPlanThresholdTotalAmountPriceModelType>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -130,7 +128,7 @@ public sealed record class NewPlanThresholdTotalAmountPrice
     /// <summary>
     /// Configuration for threshold_total_amount pricing
     /// </summary>
-    public required ThresholdTotalAmountConfigModel ThresholdTotalAmountConfig
+    public required NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig ThresholdTotalAmountConfig
     {
         get
         {
@@ -148,7 +146,7 @@ public sealed record class NewPlanThresholdTotalAmountPrice
                     )
                 );
 
-            return JsonSerializer.Deserialize<ThresholdTotalAmountConfigModel>(
+            return JsonSerializer.Deserialize<NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -263,14 +261,14 @@ public sealed record class NewPlanThresholdTotalAmountPrice
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public ConversionRateConfig42? ConversionRateConfig
+    public NewPlanThresholdTotalAmountPriceConversionRateConfig? ConversionRateConfig
     {
         get
         {
             if (!this._properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ConversionRateConfig42?>(
+            return JsonSerializer.Deserialize<NewPlanThresholdTotalAmountPriceConversionRateConfig?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -524,8 +522,8 @@ public sealed record class NewPlanThresholdTotalAmountPrice
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(Cadence43Converter))]
-public enum Cadence43
+[JsonConverter(typeof(NewPlanThresholdTotalAmountPriceCadenceConverter))]
+public enum NewPlanThresholdTotalAmountPriceCadence
 {
     Annual,
     SemiAnnual,
@@ -535,9 +533,10 @@ public enum Cadence43
     Custom,
 }
 
-sealed class Cadence43Converter : JsonConverter<Cadence43>
+sealed class NewPlanThresholdTotalAmountPriceCadenceConverter
+    : JsonConverter<NewPlanThresholdTotalAmountPriceCadence>
 {
-    public override Cadence43 Read(
+    public override NewPlanThresholdTotalAmountPriceCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -545,19 +544,19 @@ sealed class Cadence43Converter : JsonConverter<Cadence43>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => Cadence43.Annual,
-            "semi_annual" => Cadence43.SemiAnnual,
-            "monthly" => Cadence43.Monthly,
-            "quarterly" => Cadence43.Quarterly,
-            "one_time" => Cadence43.OneTime,
-            "custom" => Cadence43.Custom,
-            _ => (Cadence43)(-1),
+            "annual" => NewPlanThresholdTotalAmountPriceCadence.Annual,
+            "semi_annual" => NewPlanThresholdTotalAmountPriceCadence.SemiAnnual,
+            "monthly" => NewPlanThresholdTotalAmountPriceCadence.Monthly,
+            "quarterly" => NewPlanThresholdTotalAmountPriceCadence.Quarterly,
+            "one_time" => NewPlanThresholdTotalAmountPriceCadence.OneTime,
+            "custom" => NewPlanThresholdTotalAmountPriceCadence.Custom,
+            _ => (NewPlanThresholdTotalAmountPriceCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Cadence43 value,
+        NewPlanThresholdTotalAmountPriceCadence value,
         JsonSerializerOptions options
     )
     {
@@ -565,12 +564,12 @@ sealed class Cadence43Converter : JsonConverter<Cadence43>
             writer,
             value switch
             {
-                Cadence43.Annual => "annual",
-                Cadence43.SemiAnnual => "semi_annual",
-                Cadence43.Monthly => "monthly",
-                Cadence43.Quarterly => "quarterly",
-                Cadence43.OneTime => "one_time",
-                Cadence43.Custom => "custom",
+                NewPlanThresholdTotalAmountPriceCadence.Annual => "annual",
+                NewPlanThresholdTotalAmountPriceCadence.SemiAnnual => "semi_annual",
+                NewPlanThresholdTotalAmountPriceCadence.Monthly => "monthly",
+                NewPlanThresholdTotalAmountPriceCadence.Quarterly => "quarterly",
+                NewPlanThresholdTotalAmountPriceCadence.OneTime => "one_time",
+                NewPlanThresholdTotalAmountPriceCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -583,15 +582,16 @@ sealed class Cadence43Converter : JsonConverter<Cadence43>
 /// <summary>
 /// The pricing model type
 /// </summary>
-[JsonConverter(typeof(ModelType42Converter))]
-public enum ModelType42
+[JsonConverter(typeof(NewPlanThresholdTotalAmountPriceModelTypeConverter))]
+public enum NewPlanThresholdTotalAmountPriceModelType
 {
     ThresholdTotalAmount,
 }
 
-sealed class ModelType42Converter : JsonConverter<ModelType42>
+sealed class NewPlanThresholdTotalAmountPriceModelTypeConverter
+    : JsonConverter<NewPlanThresholdTotalAmountPriceModelType>
 {
-    public override ModelType42 Read(
+    public override NewPlanThresholdTotalAmountPriceModelType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -599,14 +599,15 @@ sealed class ModelType42Converter : JsonConverter<ModelType42>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "threshold_total_amount" => ModelType42.ThresholdTotalAmount,
-            _ => (ModelType42)(-1),
+            "threshold_total_amount" =>
+                NewPlanThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
+            _ => (NewPlanThresholdTotalAmountPriceModelType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ModelType42 value,
+        NewPlanThresholdTotalAmountPriceModelType value,
         JsonSerializerOptions options
     )
     {
@@ -614,7 +615,8 @@ sealed class ModelType42Converter : JsonConverter<ModelType42>
             writer,
             value switch
             {
-                ModelType42.ThresholdTotalAmount => "threshold_total_amount",
+                NewPlanThresholdTotalAmountPriceModelType.ThresholdTotalAmount =>
+                    "threshold_total_amount",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -627,10 +629,10 @@ sealed class ModelType42Converter : JsonConverter<ModelType42>
 /// <summary>
 /// Configuration for threshold_total_amount pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ThresholdTotalAmountConfigModel>))]
-public sealed record class ThresholdTotalAmountConfigModel
+[JsonConverter(typeof(ModelConverter<NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig>))]
+public sealed record class NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig
     : ModelBase,
-        IFromRaw<ThresholdTotalAmountConfigModel>
+        IFromRaw<NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig>
 {
     /// <summary>
     /// When the quantity consumed passes a provided threshold, the configured total
@@ -697,22 +699,26 @@ public sealed record class ThresholdTotalAmountConfigModel
         _ = this.Prorate;
     }
 
-    public ThresholdTotalAmountConfigModel() { }
+    public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig() { }
 
-    public ThresholdTotalAmountConfigModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ThresholdTotalAmountConfigModel(FrozenDictionary<string, JsonElement> properties)
+    NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig(
+        FrozenDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static ThresholdTotalAmountConfigModel FromRawUnchecked(
+    public static NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -720,7 +726,9 @@ public sealed record class ThresholdTotalAmountConfigModel
     }
 
     [SetsRequiredMembers]
-    public ThresholdTotalAmountConfigModel(List<ConsumptionTableModel> consumptionTable)
+    public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig(
+        List<ConsumptionTableModel> consumptionTable
+    )
         : this()
     {
         this.ConsumptionTable = consumptionTable;
@@ -824,90 +832,98 @@ public sealed record class ConsumptionTableModel : ModelBase, IFromRaw<Consumpti
     }
 }
 
-[JsonConverter(typeof(ConversionRateConfig42Converter))]
-public record class ConversionRateConfig42
+[JsonConverter(typeof(NewPlanThresholdTotalAmountPriceConversionRateConfigConverter))]
+public record class NewPlanThresholdTotalAmountPriceConversionRateConfig
 {
     public object Value { get; private init; }
 
-    public ConversionRateConfig42(UnitConversionRateConfig value)
+    public NewPlanThresholdTotalAmountPriceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    )
     {
         Value = value;
     }
 
-    public ConversionRateConfig42(TieredConversionRateConfig value)
+    public NewPlanThresholdTotalAmountPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    )
     {
         Value = value;
     }
 
-    ConversionRateConfig42(UnknownVariant value)
+    NewPlanThresholdTotalAmountPriceConversionRateConfig(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static ConversionRateConfig42 CreateUnknownVariant(JsonElement value)
+    public static NewPlanThresholdTotalAmountPriceConversionRateConfig CreateUnknownVariant(
+        JsonElement value
+    )
     {
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
-        value = this.Value as UnitConversionRateConfig;
+        value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
-    public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
-        value = this.Value as TieredConversionRateConfig;
+        value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
     public void Switch(
-        System::Action<UnitConversionRateConfig> unit,
-        System::Action<TieredConversionRateConfig> tiered
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
     )
     {
         switch (this.Value)
         {
-            case UnitConversionRateConfig value:
+            case SharedUnitConversionRateConfig value:
                 unit(value);
                 break;
-            case TieredConversionRateConfig value:
+            case SharedTieredConversionRateConfig value:
                 tiered(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of ConversionRateConfig42"
+                    "Data did not match any variant of NewPlanThresholdTotalAmountPriceConversionRateConfig"
                 );
         }
     }
 
     public T Match<T>(
-        System::Func<UnitConversionRateConfig, T> unit,
-        System::Func<TieredConversionRateConfig, T> tiered
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
     )
     {
         return this.Value switch
         {
-            UnitConversionRateConfig value => unit(value),
-            TieredConversionRateConfig value => tiered(value),
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig42"
+                "Data did not match any variant of NewPlanThresholdTotalAmountPriceConversionRateConfig"
             ),
         };
     }
 
-    public static implicit operator ConversionRateConfig42(UnitConversionRateConfig value) =>
-        new(value);
+    public static implicit operator NewPlanThresholdTotalAmountPriceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
 
-    public static implicit operator ConversionRateConfig42(TieredConversionRateConfig value) =>
-        new(value);
+    public static implicit operator NewPlanThresholdTotalAmountPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {
         if (this.Value is UnknownVariant)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig42"
+                "Data did not match any variant of NewPlanThresholdTotalAmountPriceConversionRateConfig"
             );
         }
     }
@@ -915,9 +931,10 @@ public record class ConversionRateConfig42
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class ConversionRateConfig42Converter : JsonConverter<ConversionRateConfig42>
+sealed class NewPlanThresholdTotalAmountPriceConversionRateConfigConverter
+    : JsonConverter<NewPlanThresholdTotalAmountPriceConversionRateConfig>
 {
-    public override ConversionRateConfig42? Read(
+    public override NewPlanThresholdTotalAmountPriceConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -942,14 +959,16 @@ sealed class ConversionRateConfig42Converter : JsonConverter<ConversionRateConfi
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new ConversionRateConfig42(deserialized);
+                        return new NewPlanThresholdTotalAmountPriceConversionRateConfig(
+                            deserialized
+                        );
                     }
                 }
                 catch (System::Exception e)
@@ -957,7 +976,7 @@ sealed class ConversionRateConfig42Converter : JsonConverter<ConversionRateConfi
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'UnitConversionRateConfig'",
+                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
                             e
                         )
                     );
@@ -971,14 +990,16 @@ sealed class ConversionRateConfig42Converter : JsonConverter<ConversionRateConfi
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new ConversionRateConfig42(deserialized);
+                        return new NewPlanThresholdTotalAmountPriceConversionRateConfig(
+                            deserialized
+                        );
                     }
                 }
                 catch (System::Exception e)
@@ -986,7 +1007,7 @@ sealed class ConversionRateConfig42Converter : JsonConverter<ConversionRateConfi
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'TieredConversionRateConfig'",
+                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
                             e
                         )
                     );
@@ -1005,7 +1026,7 @@ sealed class ConversionRateConfig42Converter : JsonConverter<ConversionRateConfi
 
     public override void Write(
         Utf8JsonWriter writer,
-        ConversionRateConfig42 value,
+        NewPlanThresholdTotalAmountPriceConversionRateConfig value,
         JsonSerializerOptions options
     )
     {

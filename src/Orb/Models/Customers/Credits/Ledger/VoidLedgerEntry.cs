@@ -208,7 +208,7 @@ public sealed record class VoidLedgerEntry : ModelBase, IFromRaw<VoidLedgerEntry
         }
     }
 
-    public required ApiEnum<string, EntryStatus7> EntryStatus
+    public required ApiEnum<string, VoidLedgerEntryEntryStatus> EntryStatus
     {
         get
         {
@@ -221,7 +221,7 @@ public sealed record class VoidLedgerEntry : ModelBase, IFromRaw<VoidLedgerEntry
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, EntryStatus7>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, VoidLedgerEntryEntryStatus>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -235,7 +235,7 @@ public sealed record class VoidLedgerEntry : ModelBase, IFromRaw<VoidLedgerEntry
         }
     }
 
-    public required ApiEnum<string, EntryType17> EntryType
+    public required ApiEnum<string, VoidLedgerEntryEntryType> EntryType
     {
         get
         {
@@ -248,7 +248,7 @@ public sealed record class VoidLedgerEntry : ModelBase, IFromRaw<VoidLedgerEntry
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, EntryType17>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, VoidLedgerEntryEntryType>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -428,16 +428,16 @@ public sealed record class VoidLedgerEntry : ModelBase, IFromRaw<VoidLedgerEntry
     }
 }
 
-[JsonConverter(typeof(EntryStatus7Converter))]
-public enum EntryStatus7
+[JsonConverter(typeof(VoidLedgerEntryEntryStatusConverter))]
+public enum VoidLedgerEntryEntryStatus
 {
     Committed,
     Pending,
 }
 
-sealed class EntryStatus7Converter : JsonConverter<EntryStatus7>
+sealed class VoidLedgerEntryEntryStatusConverter : JsonConverter<VoidLedgerEntryEntryStatus>
 {
-    public override EntryStatus7 Read(
+    public override VoidLedgerEntryEntryStatus Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -445,15 +445,15 @@ sealed class EntryStatus7Converter : JsonConverter<EntryStatus7>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "committed" => EntryStatus7.Committed,
-            "pending" => EntryStatus7.Pending,
-            _ => (EntryStatus7)(-1),
+            "committed" => VoidLedgerEntryEntryStatus.Committed,
+            "pending" => VoidLedgerEntryEntryStatus.Pending,
+            _ => (VoidLedgerEntryEntryStatus)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        EntryStatus7 value,
+        VoidLedgerEntryEntryStatus value,
         JsonSerializerOptions options
     )
     {
@@ -461,8 +461,8 @@ sealed class EntryStatus7Converter : JsonConverter<EntryStatus7>
             writer,
             value switch
             {
-                EntryStatus7.Committed => "committed",
-                EntryStatus7.Pending => "pending",
+                VoidLedgerEntryEntryStatus.Committed => "committed",
+                VoidLedgerEntryEntryStatus.Pending => "pending",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -472,15 +472,15 @@ sealed class EntryStatus7Converter : JsonConverter<EntryStatus7>
     }
 }
 
-[JsonConverter(typeof(EntryType17Converter))]
-public enum EntryType17
+[JsonConverter(typeof(VoidLedgerEntryEntryTypeConverter))]
+public enum VoidLedgerEntryEntryType
 {
     Void,
 }
 
-sealed class EntryType17Converter : JsonConverter<EntryType17>
+sealed class VoidLedgerEntryEntryTypeConverter : JsonConverter<VoidLedgerEntryEntryType>
 {
-    public override EntryType17 Read(
+    public override VoidLedgerEntryEntryType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -488,14 +488,14 @@ sealed class EntryType17Converter : JsonConverter<EntryType17>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "void" => EntryType17.Void,
-            _ => (EntryType17)(-1),
+            "void" => VoidLedgerEntryEntryType.Void,
+            _ => (VoidLedgerEntryEntryType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        EntryType17 value,
+        VoidLedgerEntryEntryType value,
         JsonSerializerOptions options
     )
     {
@@ -503,7 +503,7 @@ sealed class EntryType17Converter : JsonConverter<EntryType17>
             writer,
             value switch
             {
-                EntryType17.Void => "void",
+                VoidLedgerEntryEntryType.Void => "void",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

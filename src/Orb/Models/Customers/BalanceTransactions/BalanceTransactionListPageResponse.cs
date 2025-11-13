@@ -133,10 +133,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         }
     }
 
-    public required ApiEnum<
-        string,
-        global::Orb.Models.Customers.BalanceTransactions.ActionModel
-    > Action
+    public required ApiEnum<string, DataAction> Action
     {
         get
         {
@@ -146,9 +143,10 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
                     new System::ArgumentOutOfRangeException("action", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.ActionModel>
-            >(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ApiEnum<string, DataAction>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -340,7 +338,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         }
     }
 
-    public required ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Type1> Type
+    public required ApiEnum<string, DataType> Type
     {
         get
         {
@@ -350,9 +348,10 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
                     new System::ArgumentOutOfRangeException("type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Type1>
-            >(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ApiEnum<string, DataType>>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -398,8 +397,8 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Customers.BalanceTransactions.ActionModelConverter))]
-public enum ActionModel
+[JsonConverter(typeof(DataActionConverter))]
+public enum DataAction
 {
     AppliedToInvoice,
     ManualAdjustment,
@@ -413,10 +412,9 @@ public enum ActionModel
     SmallInvoiceCarryover,
 }
 
-sealed class ActionModelConverter
-    : JsonConverter<global::Orb.Models.Customers.BalanceTransactions.ActionModel>
+sealed class DataActionConverter : JsonConverter<DataAction>
 {
-    public override global::Orb.Models.Customers.BalanceTransactions.ActionModel Read(
+    public override DataAction Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -424,73 +422,23 @@ sealed class ActionModelConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "applied_to_invoice" => global::Orb
-                .Models
-                .Customers
-                .BalanceTransactions
-                .ActionModel
-                .AppliedToInvoice,
-            "manual_adjustment" => global::Orb
-                .Models
-                .Customers
-                .BalanceTransactions
-                .ActionModel
-                .ManualAdjustment,
-            "prorated_refund" => global::Orb
-                .Models
-                .Customers
-                .BalanceTransactions
-                .ActionModel
-                .ProratedRefund,
-            "revert_prorated_refund" => global::Orb
-                .Models
-                .Customers
-                .BalanceTransactions
-                .ActionModel
-                .RevertProratedRefund,
-            "return_from_voiding" => global::Orb
-                .Models
-                .Customers
-                .BalanceTransactions
-                .ActionModel
-                .ReturnFromVoiding,
-            "credit_note_applied" => global::Orb
-                .Models
-                .Customers
-                .BalanceTransactions
-                .ActionModel
-                .CreditNoteApplied,
-            "credit_note_voided" => global::Orb
-                .Models
-                .Customers
-                .BalanceTransactions
-                .ActionModel
-                .CreditNoteVoided,
-            "overpayment_refund" => global::Orb
-                .Models
-                .Customers
-                .BalanceTransactions
-                .ActionModel
-                .OverpaymentRefund,
-            "external_payment" => global::Orb
-                .Models
-                .Customers
-                .BalanceTransactions
-                .ActionModel
-                .ExternalPayment,
-            "small_invoice_carryover" => global::Orb
-                .Models
-                .Customers
-                .BalanceTransactions
-                .ActionModel
-                .SmallInvoiceCarryover,
-            _ => (global::Orb.Models.Customers.BalanceTransactions.ActionModel)(-1),
+            "applied_to_invoice" => DataAction.AppliedToInvoice,
+            "manual_adjustment" => DataAction.ManualAdjustment,
+            "prorated_refund" => DataAction.ProratedRefund,
+            "revert_prorated_refund" => DataAction.RevertProratedRefund,
+            "return_from_voiding" => DataAction.ReturnFromVoiding,
+            "credit_note_applied" => DataAction.CreditNoteApplied,
+            "credit_note_voided" => DataAction.CreditNoteVoided,
+            "overpayment_refund" => DataAction.OverpaymentRefund,
+            "external_payment" => DataAction.ExternalPayment,
+            "small_invoice_carryover" => DataAction.SmallInvoiceCarryover,
+            _ => (DataAction)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Customers.BalanceTransactions.ActionModel value,
+        DataAction value,
         JsonSerializerOptions options
     )
     {
@@ -498,30 +446,16 @@ sealed class ActionModelConverter
             writer,
             value switch
             {
-                global::Orb.Models.Customers.BalanceTransactions.ActionModel.AppliedToInvoice =>
-                    "applied_to_invoice",
-                global::Orb.Models.Customers.BalanceTransactions.ActionModel.ManualAdjustment =>
-                    "manual_adjustment",
-                global::Orb.Models.Customers.BalanceTransactions.ActionModel.ProratedRefund =>
-                    "prorated_refund",
-                global::Orb.Models.Customers.BalanceTransactions.ActionModel.RevertProratedRefund =>
-                    "revert_prorated_refund",
-                global::Orb.Models.Customers.BalanceTransactions.ActionModel.ReturnFromVoiding =>
-                    "return_from_voiding",
-                global::Orb.Models.Customers.BalanceTransactions.ActionModel.CreditNoteApplied =>
-                    "credit_note_applied",
-                global::Orb.Models.Customers.BalanceTransactions.ActionModel.CreditNoteVoided =>
-                    "credit_note_voided",
-                global::Orb.Models.Customers.BalanceTransactions.ActionModel.OverpaymentRefund =>
-                    "overpayment_refund",
-                global::Orb.Models.Customers.BalanceTransactions.ActionModel.ExternalPayment =>
-                    "external_payment",
-                global::Orb
-                    .Models
-                    .Customers
-                    .BalanceTransactions
-                    .ActionModel
-                    .SmallInvoiceCarryover => "small_invoice_carryover",
+                DataAction.AppliedToInvoice => "applied_to_invoice",
+                DataAction.ManualAdjustment => "manual_adjustment",
+                DataAction.ProratedRefund => "prorated_refund",
+                DataAction.RevertProratedRefund => "revert_prorated_refund",
+                DataAction.ReturnFromVoiding => "return_from_voiding",
+                DataAction.CreditNoteApplied => "credit_note_applied",
+                DataAction.CreditNoteVoided => "credit_note_voided",
+                DataAction.OverpaymentRefund => "overpayment_refund",
+                DataAction.ExternalPayment => "external_payment",
+                DataAction.SmallInvoiceCarryover => "small_invoice_carryover",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -531,16 +465,16 @@ sealed class ActionModelConverter
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Customers.BalanceTransactions.Type1Converter))]
-public enum Type1
+[JsonConverter(typeof(DataTypeConverter))]
+public enum DataType
 {
     Increment,
     Decrement,
 }
 
-sealed class Type1Converter : JsonConverter<global::Orb.Models.Customers.BalanceTransactions.Type1>
+sealed class DataTypeConverter : JsonConverter<DataType>
 {
-    public override global::Orb.Models.Customers.BalanceTransactions.Type1 Read(
+    public override DataType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -548,24 +482,20 @@ sealed class Type1Converter : JsonConverter<global::Orb.Models.Customers.Balance
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "increment" => global::Orb.Models.Customers.BalanceTransactions.Type1.Increment,
-            "decrement" => global::Orb.Models.Customers.BalanceTransactions.Type1.Decrement,
-            _ => (global::Orb.Models.Customers.BalanceTransactions.Type1)(-1),
+            "increment" => DataType.Increment,
+            "decrement" => DataType.Decrement,
+            _ => (DataType)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Customers.BalanceTransactions.Type1 value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, DataType value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::Orb.Models.Customers.BalanceTransactions.Type1.Increment => "increment",
-                global::Orb.Models.Customers.BalanceTransactions.Type1.Decrement => "decrement",
+                DataType.Increment => "increment",
+                DataType.Decrement => "decrement",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

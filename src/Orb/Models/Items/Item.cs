@@ -240,7 +240,10 @@ public sealed record class ExternalConnectionModel : ModelBase, IFromRaw<Externa
     /// <summary>
     /// The name of the external system this item is connected to.
     /// </summary>
-    public required ApiEnum<string, ExternalConnectionNameModel> ExternalConnectionName
+    public required ApiEnum<
+        string,
+        ExternalConnectionModelExternalConnectionName
+    > ExternalConnectionName
     {
         get
         {
@@ -253,10 +256,9 @@ public sealed record class ExternalConnectionModel : ModelBase, IFromRaw<Externa
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ExternalConnectionNameModel>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, ExternalConnectionModelExternalConnectionName>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -330,8 +332,8 @@ public sealed record class ExternalConnectionModel : ModelBase, IFromRaw<Externa
 /// <summary>
 /// The name of the external system this item is connected to.
 /// </summary>
-[JsonConverter(typeof(ExternalConnectionNameModelConverter))]
-public enum ExternalConnectionNameModel
+[JsonConverter(typeof(ExternalConnectionModelExternalConnectionNameConverter))]
+public enum ExternalConnectionModelExternalConnectionName
 {
     Stripe,
     Quickbooks,
@@ -343,9 +345,10 @@ public enum ExternalConnectionNameModel
     Numeral,
 }
 
-sealed class ExternalConnectionNameModelConverter : JsonConverter<ExternalConnectionNameModel>
+sealed class ExternalConnectionModelExternalConnectionNameConverter
+    : JsonConverter<ExternalConnectionModelExternalConnectionName>
 {
-    public override ExternalConnectionNameModel Read(
+    public override ExternalConnectionModelExternalConnectionName Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -353,21 +356,21 @@ sealed class ExternalConnectionNameModelConverter : JsonConverter<ExternalConnec
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "stripe" => ExternalConnectionNameModel.Stripe,
-            "quickbooks" => ExternalConnectionNameModel.Quickbooks,
-            "bill.com" => ExternalConnectionNameModel.BillCom,
-            "netsuite" => ExternalConnectionNameModel.Netsuite,
-            "taxjar" => ExternalConnectionNameModel.Taxjar,
-            "avalara" => ExternalConnectionNameModel.Avalara,
-            "anrok" => ExternalConnectionNameModel.Anrok,
-            "numeral" => ExternalConnectionNameModel.Numeral,
-            _ => (ExternalConnectionNameModel)(-1),
+            "stripe" => ExternalConnectionModelExternalConnectionName.Stripe,
+            "quickbooks" => ExternalConnectionModelExternalConnectionName.Quickbooks,
+            "bill.com" => ExternalConnectionModelExternalConnectionName.BillCom,
+            "netsuite" => ExternalConnectionModelExternalConnectionName.Netsuite,
+            "taxjar" => ExternalConnectionModelExternalConnectionName.Taxjar,
+            "avalara" => ExternalConnectionModelExternalConnectionName.Avalara,
+            "anrok" => ExternalConnectionModelExternalConnectionName.Anrok,
+            "numeral" => ExternalConnectionModelExternalConnectionName.Numeral,
+            _ => (ExternalConnectionModelExternalConnectionName)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ExternalConnectionNameModel value,
+        ExternalConnectionModelExternalConnectionName value,
         JsonSerializerOptions options
     )
     {
@@ -375,14 +378,14 @@ sealed class ExternalConnectionNameModelConverter : JsonConverter<ExternalConnec
             writer,
             value switch
             {
-                ExternalConnectionNameModel.Stripe => "stripe",
-                ExternalConnectionNameModel.Quickbooks => "quickbooks",
-                ExternalConnectionNameModel.BillCom => "bill.com",
-                ExternalConnectionNameModel.Netsuite => "netsuite",
-                ExternalConnectionNameModel.Taxjar => "taxjar",
-                ExternalConnectionNameModel.Avalara => "avalara",
-                ExternalConnectionNameModel.Anrok => "anrok",
-                ExternalConnectionNameModel.Numeral => "numeral",
+                ExternalConnectionModelExternalConnectionName.Stripe => "stripe",
+                ExternalConnectionModelExternalConnectionName.Quickbooks => "quickbooks",
+                ExternalConnectionModelExternalConnectionName.BillCom => "bill.com",
+                ExternalConnectionModelExternalConnectionName.Netsuite => "netsuite",
+                ExternalConnectionModelExternalConnectionName.Taxjar => "taxjar",
+                ExternalConnectionModelExternalConnectionName.Avalara => "avalara",
+                ExternalConnectionModelExternalConnectionName.Anrok => "anrok",
+                ExternalConnectionModelExternalConnectionName.Numeral => "numeral",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

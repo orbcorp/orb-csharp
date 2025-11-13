@@ -173,14 +173,17 @@ public sealed record class InvoiceLineItemCreateResponse
     /// <summary>
     /// This field is deprecated in favor of `adjustments`
     /// </summary>
-    public required Discount1? Discount
+    public required SharedDiscount? Discount
     {
         get
         {
             if (!this._properties.TryGetValue("discount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Discount1?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<SharedDiscount?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {

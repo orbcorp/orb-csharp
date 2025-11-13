@@ -17,7 +17,7 @@ public sealed record class NewPlanTieredPackageWithMinimumPrice
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, Cadence45> Cadence
+    public required ApiEnum<string, NewPlanTieredPackageWithMinimumPriceCadence> Cadence
     {
         get
         {
@@ -27,10 +27,9 @@ public sealed record class NewPlanTieredPackageWithMinimumPrice
                     new System::ArgumentOutOfRangeException("cadence", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Cadence45>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, NewPlanTieredPackageWithMinimumPriceCadence>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -72,7 +71,7 @@ public sealed record class NewPlanTieredPackageWithMinimumPrice
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public required ApiEnum<string, ModelType44> ModelType
+    public required ApiEnum<string, NewPlanTieredPackageWithMinimumPriceModelType> ModelType
     {
         get
         {
@@ -85,10 +84,9 @@ public sealed record class NewPlanTieredPackageWithMinimumPrice
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ModelType44>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, NewPlanTieredPackageWithMinimumPriceModelType>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -130,7 +128,7 @@ public sealed record class NewPlanTieredPackageWithMinimumPrice
     /// <summary>
     /// Configuration for tiered_package_with_minimum pricing
     /// </summary>
-    public required TieredPackageWithMinimumConfigModel TieredPackageWithMinimumConfig
+    public required NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfig TieredPackageWithMinimumConfig
     {
         get
         {
@@ -148,7 +146,7 @@ public sealed record class NewPlanTieredPackageWithMinimumPrice
                     )
                 );
 
-            return JsonSerializer.Deserialize<TieredPackageWithMinimumConfigModel>(
+            return JsonSerializer.Deserialize<NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfig>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -261,14 +259,14 @@ public sealed record class NewPlanTieredPackageWithMinimumPrice
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public ConversionRateConfig44? ConversionRateConfig
+    public NewPlanTieredPackageWithMinimumPriceConversionRateConfig? ConversionRateConfig
     {
         get
         {
             if (!this._properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ConversionRateConfig44?>(
+            return JsonSerializer.Deserialize<NewPlanTieredPackageWithMinimumPriceConversionRateConfig?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -522,8 +520,8 @@ public sealed record class NewPlanTieredPackageWithMinimumPrice
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(Cadence45Converter))]
-public enum Cadence45
+[JsonConverter(typeof(NewPlanTieredPackageWithMinimumPriceCadenceConverter))]
+public enum NewPlanTieredPackageWithMinimumPriceCadence
 {
     Annual,
     SemiAnnual,
@@ -533,9 +531,10 @@ public enum Cadence45
     Custom,
 }
 
-sealed class Cadence45Converter : JsonConverter<Cadence45>
+sealed class NewPlanTieredPackageWithMinimumPriceCadenceConverter
+    : JsonConverter<NewPlanTieredPackageWithMinimumPriceCadence>
 {
-    public override Cadence45 Read(
+    public override NewPlanTieredPackageWithMinimumPriceCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -543,19 +542,19 @@ sealed class Cadence45Converter : JsonConverter<Cadence45>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => Cadence45.Annual,
-            "semi_annual" => Cadence45.SemiAnnual,
-            "monthly" => Cadence45.Monthly,
-            "quarterly" => Cadence45.Quarterly,
-            "one_time" => Cadence45.OneTime,
-            "custom" => Cadence45.Custom,
-            _ => (Cadence45)(-1),
+            "annual" => NewPlanTieredPackageWithMinimumPriceCadence.Annual,
+            "semi_annual" => NewPlanTieredPackageWithMinimumPriceCadence.SemiAnnual,
+            "monthly" => NewPlanTieredPackageWithMinimumPriceCadence.Monthly,
+            "quarterly" => NewPlanTieredPackageWithMinimumPriceCadence.Quarterly,
+            "one_time" => NewPlanTieredPackageWithMinimumPriceCadence.OneTime,
+            "custom" => NewPlanTieredPackageWithMinimumPriceCadence.Custom,
+            _ => (NewPlanTieredPackageWithMinimumPriceCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Cadence45 value,
+        NewPlanTieredPackageWithMinimumPriceCadence value,
         JsonSerializerOptions options
     )
     {
@@ -563,12 +562,12 @@ sealed class Cadence45Converter : JsonConverter<Cadence45>
             writer,
             value switch
             {
-                Cadence45.Annual => "annual",
-                Cadence45.SemiAnnual => "semi_annual",
-                Cadence45.Monthly => "monthly",
-                Cadence45.Quarterly => "quarterly",
-                Cadence45.OneTime => "one_time",
-                Cadence45.Custom => "custom",
+                NewPlanTieredPackageWithMinimumPriceCadence.Annual => "annual",
+                NewPlanTieredPackageWithMinimumPriceCadence.SemiAnnual => "semi_annual",
+                NewPlanTieredPackageWithMinimumPriceCadence.Monthly => "monthly",
+                NewPlanTieredPackageWithMinimumPriceCadence.Quarterly => "quarterly",
+                NewPlanTieredPackageWithMinimumPriceCadence.OneTime => "one_time",
+                NewPlanTieredPackageWithMinimumPriceCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -581,15 +580,16 @@ sealed class Cadence45Converter : JsonConverter<Cadence45>
 /// <summary>
 /// The pricing model type
 /// </summary>
-[JsonConverter(typeof(ModelType44Converter))]
-public enum ModelType44
+[JsonConverter(typeof(NewPlanTieredPackageWithMinimumPriceModelTypeConverter))]
+public enum NewPlanTieredPackageWithMinimumPriceModelType
 {
     TieredPackageWithMinimum,
 }
 
-sealed class ModelType44Converter : JsonConverter<ModelType44>
+sealed class NewPlanTieredPackageWithMinimumPriceModelTypeConverter
+    : JsonConverter<NewPlanTieredPackageWithMinimumPriceModelType>
 {
-    public override ModelType44 Read(
+    public override NewPlanTieredPackageWithMinimumPriceModelType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -597,14 +597,15 @@ sealed class ModelType44Converter : JsonConverter<ModelType44>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "tiered_package_with_minimum" => ModelType44.TieredPackageWithMinimum,
-            _ => (ModelType44)(-1),
+            "tiered_package_with_minimum" =>
+                NewPlanTieredPackageWithMinimumPriceModelType.TieredPackageWithMinimum,
+            _ => (NewPlanTieredPackageWithMinimumPriceModelType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ModelType44 value,
+        NewPlanTieredPackageWithMinimumPriceModelType value,
         JsonSerializerOptions options
     )
     {
@@ -612,7 +613,8 @@ sealed class ModelType44Converter : JsonConverter<ModelType44>
             writer,
             value switch
             {
-                ModelType44.TieredPackageWithMinimum => "tiered_package_with_minimum",
+                NewPlanTieredPackageWithMinimumPriceModelType.TieredPackageWithMinimum =>
+                    "tiered_package_with_minimum",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -625,10 +627,12 @@ sealed class ModelType44Converter : JsonConverter<ModelType44>
 /// <summary>
 /// Configuration for tiered_package_with_minimum pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<TieredPackageWithMinimumConfigModel>))]
-public sealed record class TieredPackageWithMinimumConfigModel
+[JsonConverter(
+    typeof(ModelConverter<NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfig>)
+)]
+public sealed record class NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfig
     : ModelBase,
-        IFromRaw<TieredPackageWithMinimumConfigModel>
+        IFromRaw<NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfig>
 {
     /// <summary>
     /// Package size
@@ -695,22 +699,26 @@ public sealed record class TieredPackageWithMinimumConfigModel
         }
     }
 
-    public TieredPackageWithMinimumConfigModel() { }
+    public NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfig() { }
 
-    public TieredPackageWithMinimumConfigModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfig(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TieredPackageWithMinimumConfigModel(FrozenDictionary<string, JsonElement> properties)
+    NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfig(
+        FrozenDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static TieredPackageWithMinimumConfigModel FromRawUnchecked(
+    public static NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -842,90 +850,98 @@ public sealed record class Tier14 : ModelBase, IFromRaw<Tier14>
     }
 }
 
-[JsonConverter(typeof(ConversionRateConfig44Converter))]
-public record class ConversionRateConfig44
+[JsonConverter(typeof(NewPlanTieredPackageWithMinimumPriceConversionRateConfigConverter))]
+public record class NewPlanTieredPackageWithMinimumPriceConversionRateConfig
 {
     public object Value { get; private init; }
 
-    public ConversionRateConfig44(UnitConversionRateConfig value)
+    public NewPlanTieredPackageWithMinimumPriceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    )
     {
         Value = value;
     }
 
-    public ConversionRateConfig44(TieredConversionRateConfig value)
+    public NewPlanTieredPackageWithMinimumPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    )
     {
         Value = value;
     }
 
-    ConversionRateConfig44(UnknownVariant value)
+    NewPlanTieredPackageWithMinimumPriceConversionRateConfig(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static ConversionRateConfig44 CreateUnknownVariant(JsonElement value)
+    public static NewPlanTieredPackageWithMinimumPriceConversionRateConfig CreateUnknownVariant(
+        JsonElement value
+    )
     {
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
-        value = this.Value as UnitConversionRateConfig;
+        value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
-    public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
-        value = this.Value as TieredConversionRateConfig;
+        value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
     public void Switch(
-        System::Action<UnitConversionRateConfig> unit,
-        System::Action<TieredConversionRateConfig> tiered
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
     )
     {
         switch (this.Value)
         {
-            case UnitConversionRateConfig value:
+            case SharedUnitConversionRateConfig value:
                 unit(value);
                 break;
-            case TieredConversionRateConfig value:
+            case SharedTieredConversionRateConfig value:
                 tiered(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of ConversionRateConfig44"
+                    "Data did not match any variant of NewPlanTieredPackageWithMinimumPriceConversionRateConfig"
                 );
         }
     }
 
     public T Match<T>(
-        System::Func<UnitConversionRateConfig, T> unit,
-        System::Func<TieredConversionRateConfig, T> tiered
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
     )
     {
         return this.Value switch
         {
-            UnitConversionRateConfig value => unit(value),
-            TieredConversionRateConfig value => tiered(value),
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig44"
+                "Data did not match any variant of NewPlanTieredPackageWithMinimumPriceConversionRateConfig"
             ),
         };
     }
 
-    public static implicit operator ConversionRateConfig44(UnitConversionRateConfig value) =>
-        new(value);
+    public static implicit operator NewPlanTieredPackageWithMinimumPriceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
 
-    public static implicit operator ConversionRateConfig44(TieredConversionRateConfig value) =>
-        new(value);
+    public static implicit operator NewPlanTieredPackageWithMinimumPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {
         if (this.Value is UnknownVariant)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig44"
+                "Data did not match any variant of NewPlanTieredPackageWithMinimumPriceConversionRateConfig"
             );
         }
     }
@@ -933,9 +949,10 @@ public record class ConversionRateConfig44
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class ConversionRateConfig44Converter : JsonConverter<ConversionRateConfig44>
+sealed class NewPlanTieredPackageWithMinimumPriceConversionRateConfigConverter
+    : JsonConverter<NewPlanTieredPackageWithMinimumPriceConversionRateConfig>
 {
-    public override ConversionRateConfig44? Read(
+    public override NewPlanTieredPackageWithMinimumPriceConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -960,14 +977,16 @@ sealed class ConversionRateConfig44Converter : JsonConverter<ConversionRateConfi
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new ConversionRateConfig44(deserialized);
+                        return new NewPlanTieredPackageWithMinimumPriceConversionRateConfig(
+                            deserialized
+                        );
                     }
                 }
                 catch (System::Exception e)
@@ -975,7 +994,7 @@ sealed class ConversionRateConfig44Converter : JsonConverter<ConversionRateConfi
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'UnitConversionRateConfig'",
+                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
                             e
                         )
                     );
@@ -989,14 +1008,16 @@ sealed class ConversionRateConfig44Converter : JsonConverter<ConversionRateConfi
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new ConversionRateConfig44(deserialized);
+                        return new NewPlanTieredPackageWithMinimumPriceConversionRateConfig(
+                            deserialized
+                        );
                     }
                 }
                 catch (System::Exception e)
@@ -1004,7 +1025,7 @@ sealed class ConversionRateConfig44Converter : JsonConverter<ConversionRateConfi
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'TieredConversionRateConfig'",
+                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
                             e
                         )
                     );
@@ -1023,7 +1044,7 @@ sealed class ConversionRateConfig44Converter : JsonConverter<ConversionRateConfi
 
     public override void Write(
         Utf8JsonWriter writer,
-        ConversionRateConfig44 value,
+        NewPlanTieredPackageWithMinimumPriceConversionRateConfig value,
         JsonSerializerOptions options
     )
     {

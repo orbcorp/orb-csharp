@@ -26,15 +26,15 @@ public class PlanServiceTest : TestBase
                             CustomExpiration = new()
                             {
                                 Duration = 0,
-                                DurationUnit = DurationUnitModel.Day,
+                                DurationUnit = CustomExpirationDurationUnit.Day,
                             },
                             ExpiresAtEndOfCadence = true,
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Field11.ItemID,
-                                    Operator = Operator11.Includes,
+                                    Field = Filter11Field.ItemID,
+                                    Operator = Filter11Operator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -42,9 +42,9 @@ public class PlanServiceTest : TestBase
                         PlanPhaseOrder = 0,
                         Price1 = new NewPlanUnitPrice()
                         {
-                            Cadence = Cadence48.Annual,
+                            Cadence = NewPlanUnitPriceCadence.Annual,
                             ItemID = "item_id",
-                            ModelType = ModelType47.Unit,
+                            ModelType = NewPlanUnitPriceModelType.Unit,
                             Name = "Annual fee",
                             UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                             BillableMetricID = "billable_metric_id",
@@ -52,12 +52,13 @@ public class PlanServiceTest : TestBase
                             BillingCycleConfiguration = new()
                             {
                                 Duration = 0,
-                                DurationUnit = DurationUnit1.Day,
+                                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                             },
                             ConversionRate = 0,
-                            ConversionRateConfig = new UnitConversionRateConfig()
+                            ConversionRateConfig = new SharedUnitConversionRateConfig()
                             {
-                                ConversionRateType = ConversionRateTypeModel.Unit,
+                                ConversionRateType =
+                                    SharedUnitConversionRateConfigConversionRateType.Unit,
                                 UnitConfig = new("unit_amount"),
                             },
                             Currency = "currency",
@@ -74,7 +75,7 @@ public class PlanServiceTest : TestBase
                             InvoicingCycleConfiguration = new()
                             {
                                 Duration = 0,
-                                DurationUnit = DurationUnit1.Day,
+                                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                             },
                             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                             ReferenceID = "reference_id",

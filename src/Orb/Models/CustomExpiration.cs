@@ -33,7 +33,7 @@ public sealed record class CustomExpiration : ModelBase, IFromRaw<CustomExpirati
         }
     }
 
-    public required ApiEnum<string, DurationUnitModel> DurationUnit
+    public required ApiEnum<string, CustomExpirationDurationUnit> DurationUnit
     {
         get
         {
@@ -46,7 +46,7 @@ public sealed record class CustomExpiration : ModelBase, IFromRaw<CustomExpirati
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, DurationUnitModel>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, CustomExpirationDurationUnit>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -89,16 +89,16 @@ public sealed record class CustomExpiration : ModelBase, IFromRaw<CustomExpirati
     }
 }
 
-[JsonConverter(typeof(DurationUnitModelConverter))]
-public enum DurationUnitModel
+[JsonConverter(typeof(CustomExpirationDurationUnitConverter))]
+public enum CustomExpirationDurationUnit
 {
     Day,
     Month,
 }
 
-sealed class DurationUnitModelConverter : JsonConverter<DurationUnitModel>
+sealed class CustomExpirationDurationUnitConverter : JsonConverter<CustomExpirationDurationUnit>
 {
-    public override DurationUnitModel Read(
+    public override CustomExpirationDurationUnit Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -106,15 +106,15 @@ sealed class DurationUnitModelConverter : JsonConverter<DurationUnitModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "day" => DurationUnitModel.Day,
-            "month" => DurationUnitModel.Month,
-            _ => (DurationUnitModel)(-1),
+            "day" => CustomExpirationDurationUnit.Day,
+            "month" => CustomExpirationDurationUnit.Month,
+            _ => (CustomExpirationDurationUnit)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        DurationUnitModel value,
+        CustomExpirationDurationUnit value,
         JsonSerializerOptions options
     )
     {
@@ -122,8 +122,8 @@ sealed class DurationUnitModelConverter : JsonConverter<DurationUnitModel>
             writer,
             value switch
             {
-                DurationUnitModel.Day => "day",
-                DurationUnitModel.Month => "month",
+                CustomExpirationDurationUnit.Day => "day",
+                CustomExpirationDurationUnit.Month => "month",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

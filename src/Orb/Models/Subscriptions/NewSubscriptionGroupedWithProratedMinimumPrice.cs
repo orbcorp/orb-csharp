@@ -17,7 +17,7 @@ public sealed record class NewSubscriptionGroupedWithProratedMinimumPrice
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Subscriptions.Cadence30> Cadence
+    public required ApiEnum<string, NewSubscriptionGroupedWithProratedMinimumPriceCadence> Cadence
     {
         get
         {
@@ -28,7 +28,7 @@ public sealed record class NewSubscriptionGroupedWithProratedMinimumPrice
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Subscriptions.Cadence30>
+                ApiEnum<string, NewSubscriptionGroupedWithProratedMinimumPriceCadence>
             >(element, ModelBase.SerializerOptions);
         }
         init
@@ -108,7 +108,10 @@ public sealed record class NewSubscriptionGroupedWithProratedMinimumPrice
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Subscriptions.ModelType30> ModelType
+    public required ApiEnum<
+        string,
+        NewSubscriptionGroupedWithProratedMinimumPriceModelType
+    > ModelType
     {
         get
         {
@@ -122,7 +125,7 @@ public sealed record class NewSubscriptionGroupedWithProratedMinimumPrice
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Subscriptions.ModelType30>
+                ApiEnum<string, NewSubscriptionGroupedWithProratedMinimumPriceModelType>
             >(element, ModelBase.SerializerOptions);
         }
         init
@@ -259,14 +262,14 @@ public sealed record class NewSubscriptionGroupedWithProratedMinimumPrice
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public global::Orb.Models.Subscriptions.ConversionRateConfig30? ConversionRateConfig
+    public NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig? ConversionRateConfig
     {
         get
         {
             if (!this._properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<global::Orb.Models.Subscriptions.ConversionRateConfig30?>(
+            return JsonSerializer.Deserialize<NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -522,8 +525,8 @@ public sealed record class NewSubscriptionGroupedWithProratedMinimumPrice
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Subscriptions.Cadence30Converter))]
-public enum Cadence30
+[JsonConverter(typeof(NewSubscriptionGroupedWithProratedMinimumPriceCadenceConverter))]
+public enum NewSubscriptionGroupedWithProratedMinimumPriceCadence
 {
     Annual,
     SemiAnnual,
@@ -533,9 +536,10 @@ public enum Cadence30
     Custom,
 }
 
-sealed class Cadence30Converter : JsonConverter<global::Orb.Models.Subscriptions.Cadence30>
+sealed class NewSubscriptionGroupedWithProratedMinimumPriceCadenceConverter
+    : JsonConverter<NewSubscriptionGroupedWithProratedMinimumPriceCadence>
 {
-    public override global::Orb.Models.Subscriptions.Cadence30 Read(
+    public override NewSubscriptionGroupedWithProratedMinimumPriceCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -543,19 +547,19 @@ sealed class Cadence30Converter : JsonConverter<global::Orb.Models.Subscriptions
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => global::Orb.Models.Subscriptions.Cadence30.Annual,
-            "semi_annual" => global::Orb.Models.Subscriptions.Cadence30.SemiAnnual,
-            "monthly" => global::Orb.Models.Subscriptions.Cadence30.Monthly,
-            "quarterly" => global::Orb.Models.Subscriptions.Cadence30.Quarterly,
-            "one_time" => global::Orb.Models.Subscriptions.Cadence30.OneTime,
-            "custom" => global::Orb.Models.Subscriptions.Cadence30.Custom,
-            _ => (global::Orb.Models.Subscriptions.Cadence30)(-1),
+            "annual" => NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual,
+            "semi_annual" => NewSubscriptionGroupedWithProratedMinimumPriceCadence.SemiAnnual,
+            "monthly" => NewSubscriptionGroupedWithProratedMinimumPriceCadence.Monthly,
+            "quarterly" => NewSubscriptionGroupedWithProratedMinimumPriceCadence.Quarterly,
+            "one_time" => NewSubscriptionGroupedWithProratedMinimumPriceCadence.OneTime,
+            "custom" => NewSubscriptionGroupedWithProratedMinimumPriceCadence.Custom,
+            _ => (NewSubscriptionGroupedWithProratedMinimumPriceCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Subscriptions.Cadence30 value,
+        NewSubscriptionGroupedWithProratedMinimumPriceCadence value,
         JsonSerializerOptions options
     )
     {
@@ -563,12 +567,12 @@ sealed class Cadence30Converter : JsonConverter<global::Orb.Models.Subscriptions
             writer,
             value switch
             {
-                global::Orb.Models.Subscriptions.Cadence30.Annual => "annual",
-                global::Orb.Models.Subscriptions.Cadence30.SemiAnnual => "semi_annual",
-                global::Orb.Models.Subscriptions.Cadence30.Monthly => "monthly",
-                global::Orb.Models.Subscriptions.Cadence30.Quarterly => "quarterly",
-                global::Orb.Models.Subscriptions.Cadence30.OneTime => "one_time",
-                global::Orb.Models.Subscriptions.Cadence30.Custom => "custom",
+                NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual => "annual",
+                NewSubscriptionGroupedWithProratedMinimumPriceCadence.SemiAnnual => "semi_annual",
+                NewSubscriptionGroupedWithProratedMinimumPriceCadence.Monthly => "monthly",
+                NewSubscriptionGroupedWithProratedMinimumPriceCadence.Quarterly => "quarterly",
+                NewSubscriptionGroupedWithProratedMinimumPriceCadence.OneTime => "one_time",
+                NewSubscriptionGroupedWithProratedMinimumPriceCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -711,15 +715,16 @@ public sealed record class GroupedWithProratedMinimumConfig
 /// <summary>
 /// The pricing model type
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Subscriptions.ModelType30Converter))]
-public enum ModelType30
+[JsonConverter(typeof(NewSubscriptionGroupedWithProratedMinimumPriceModelTypeConverter))]
+public enum NewSubscriptionGroupedWithProratedMinimumPriceModelType
 {
     GroupedWithProratedMinimum,
 }
 
-sealed class ModelType30Converter : JsonConverter<global::Orb.Models.Subscriptions.ModelType30>
+sealed class NewSubscriptionGroupedWithProratedMinimumPriceModelTypeConverter
+    : JsonConverter<NewSubscriptionGroupedWithProratedMinimumPriceModelType>
 {
-    public override global::Orb.Models.Subscriptions.ModelType30 Read(
+    public override NewSubscriptionGroupedWithProratedMinimumPriceModelType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -727,18 +732,15 @@ sealed class ModelType30Converter : JsonConverter<global::Orb.Models.Subscriptio
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "grouped_with_prorated_minimum" => global::Orb
-                .Models
-                .Subscriptions
-                .ModelType30
-                .GroupedWithProratedMinimum,
-            _ => (global::Orb.Models.Subscriptions.ModelType30)(-1),
+            "grouped_with_prorated_minimum" =>
+                NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
+            _ => (NewSubscriptionGroupedWithProratedMinimumPriceModelType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Subscriptions.ModelType30 value,
+        NewSubscriptionGroupedWithProratedMinimumPriceModelType value,
         JsonSerializerOptions options
     )
     {
@@ -746,7 +748,7 @@ sealed class ModelType30Converter : JsonConverter<global::Orb.Models.Subscriptio
             writer,
             value switch
             {
-                global::Orb.Models.Subscriptions.ModelType30.GroupedWithProratedMinimum =>
+                NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum =>
                     "grouped_with_prorated_minimum",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
@@ -757,86 +759,90 @@ sealed class ModelType30Converter : JsonConverter<global::Orb.Models.Subscriptio
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Subscriptions.ConversionRateConfig30Converter))]
-public record class ConversionRateConfig30
+[JsonConverter(typeof(NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfigConverter))]
+public record class NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig
 {
     public object Value { get; private init; }
 
-    public ConversionRateConfig30(UnitConversionRateConfig value)
+    public NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    )
     {
         Value = value;
     }
 
-    public ConversionRateConfig30(TieredConversionRateConfig value)
+    public NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    )
     {
         Value = value;
     }
 
-    ConversionRateConfig30(UnknownVariant value)
+    NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static global::Orb.Models.Subscriptions.ConversionRateConfig30 CreateUnknownVariant(
+    public static NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig CreateUnknownVariant(
         JsonElement value
     )
     {
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
-        value = this.Value as UnitConversionRateConfig;
+        value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
-    public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
-        value = this.Value as TieredConversionRateConfig;
+        value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
     public void Switch(
-        System::Action<UnitConversionRateConfig> unit,
-        System::Action<TieredConversionRateConfig> tiered
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
     )
     {
         switch (this.Value)
         {
-            case UnitConversionRateConfig value:
+            case SharedUnitConversionRateConfig value:
                 unit(value);
                 break;
-            case TieredConversionRateConfig value:
+            case SharedTieredConversionRateConfig value:
                 tiered(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of ConversionRateConfig30"
+                    "Data did not match any variant of NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig"
                 );
         }
     }
 
     public T Match<T>(
-        System::Func<UnitConversionRateConfig, T> unit,
-        System::Func<TieredConversionRateConfig, T> tiered
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
     )
     {
         return this.Value switch
         {
-            UnitConversionRateConfig value => unit(value),
-            TieredConversionRateConfig value => tiered(value),
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig30"
+                "Data did not match any variant of NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig"
             ),
         };
     }
 
-    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig30(
-        UnitConversionRateConfig value
+    public static implicit operator NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig(
+        SharedUnitConversionRateConfig value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Subscriptions.ConversionRateConfig30(
-        TieredConversionRateConfig value
+    public static implicit operator NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value
     ) => new(value);
 
     public void Validate()
@@ -844,7 +850,7 @@ public record class ConversionRateConfig30
         if (this.Value is UnknownVariant)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig30"
+                "Data did not match any variant of NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig"
             );
         }
     }
@@ -852,10 +858,10 @@ public record class ConversionRateConfig30
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class ConversionRateConfig30Converter
-    : JsonConverter<global::Orb.Models.Subscriptions.ConversionRateConfig30>
+sealed class NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfigConverter
+    : JsonConverter<NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig>
 {
-    public override global::Orb.Models.Subscriptions.ConversionRateConfig30? Read(
+    public override NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -880,14 +886,14 @@ sealed class ConversionRateConfig30Converter
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Subscriptions.ConversionRateConfig30(
+                        return new NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig(
                             deserialized
                         );
                     }
@@ -897,7 +903,7 @@ sealed class ConversionRateConfig30Converter
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'UnitConversionRateConfig'",
+                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
                             e
                         )
                     );
@@ -911,14 +917,14 @@ sealed class ConversionRateConfig30Converter
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Subscriptions.ConversionRateConfig30(
+                        return new NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig(
                             deserialized
                         );
                     }
@@ -928,7 +934,7 @@ sealed class ConversionRateConfig30Converter
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'TieredConversionRateConfig'",
+                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
                             e
                         )
                     );
@@ -947,7 +953,7 @@ sealed class ConversionRateConfig30Converter
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Subscriptions.ConversionRateConfig30 value,
+        NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig value,
         JsonSerializerOptions options
     )
     {

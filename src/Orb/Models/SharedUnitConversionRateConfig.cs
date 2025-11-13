@@ -9,10 +9,15 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<UnitConversionRateConfig>))]
-public sealed record class UnitConversionRateConfig : ModelBase, IFromRaw<UnitConversionRateConfig>
+[JsonConverter(typeof(ModelConverter<SharedUnitConversionRateConfig>))]
+public sealed record class SharedUnitConversionRateConfig
+    : ModelBase,
+        IFromRaw<SharedUnitConversionRateConfig>
 {
-    public required ApiEnum<string, ConversionRateTypeModel> ConversionRateType
+    public required ApiEnum<
+        string,
+        SharedUnitConversionRateConfigConversionRateType
+    > ConversionRateType
     {
         get
         {
@@ -25,10 +30,9 @@ public sealed record class UnitConversionRateConfig : ModelBase, IFromRaw<UnitCo
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ConversionRateTypeModel>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, SharedUnitConversionRateConfigConversionRateType>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -76,22 +80,22 @@ public sealed record class UnitConversionRateConfig : ModelBase, IFromRaw<UnitCo
         this.UnitConfig.Validate();
     }
 
-    public UnitConversionRateConfig() { }
+    public SharedUnitConversionRateConfig() { }
 
-    public UnitConversionRateConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    public SharedUnitConversionRateConfig(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnitConversionRateConfig(FrozenDictionary<string, JsonElement> properties)
+    SharedUnitConversionRateConfig(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static UnitConversionRateConfig FromRawUnchecked(
+    public static SharedUnitConversionRateConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -99,15 +103,16 @@ public sealed record class UnitConversionRateConfig : ModelBase, IFromRaw<UnitCo
     }
 }
 
-[JsonConverter(typeof(ConversionRateTypeModelConverter))]
-public enum ConversionRateTypeModel
+[JsonConverter(typeof(SharedUnitConversionRateConfigConversionRateTypeConverter))]
+public enum SharedUnitConversionRateConfigConversionRateType
 {
     Unit,
 }
 
-sealed class ConversionRateTypeModelConverter : JsonConverter<ConversionRateTypeModel>
+sealed class SharedUnitConversionRateConfigConversionRateTypeConverter
+    : JsonConverter<SharedUnitConversionRateConfigConversionRateType>
 {
-    public override ConversionRateTypeModel Read(
+    public override SharedUnitConversionRateConfigConversionRateType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -115,14 +120,14 @@ sealed class ConversionRateTypeModelConverter : JsonConverter<ConversionRateType
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "unit" => ConversionRateTypeModel.Unit,
-            _ => (ConversionRateTypeModel)(-1),
+            "unit" => SharedUnitConversionRateConfigConversionRateType.Unit,
+            _ => (SharedUnitConversionRateConfigConversionRateType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ConversionRateTypeModel value,
+        SharedUnitConversionRateConfigConversionRateType value,
         JsonSerializerOptions options
     )
     {
@@ -130,7 +135,7 @@ sealed class ConversionRateTypeModelConverter : JsonConverter<ConversionRateType
             writer,
             value switch
             {
-                ConversionRateTypeModel.Unit => "unit",
+                SharedUnitConversionRateConfigConversionRateType.Unit => "unit",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

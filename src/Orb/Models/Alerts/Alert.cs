@@ -238,7 +238,7 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
     /// <summary>
     /// The type of alert. This must be a valid alert type.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Alerts.Type2> Type
+    public required ApiEnum<string, AlertType> Type
     {
         get
         {
@@ -248,7 +248,7 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
                     new System::ArgumentOutOfRangeException("type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, global::Orb.Models.Alerts.Type2>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, AlertType>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -517,8 +517,8 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
 /// <summary>
 /// The type of alert. This must be a valid alert type.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Alerts.Type2Converter))]
-public enum Type2
+[JsonConverter(typeof(AlertTypeConverter))]
+public enum AlertType
 {
     CreditBalanceDepleted,
     CreditBalanceDropped,
@@ -527,9 +527,9 @@ public enum Type2
     CostExceeded,
 }
 
-sealed class Type2Converter : JsonConverter<global::Orb.Models.Alerts.Type2>
+sealed class AlertTypeConverter : JsonConverter<AlertType>
 {
-    public override global::Orb.Models.Alerts.Type2 Read(
+    public override AlertType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -537,18 +537,18 @@ sealed class Type2Converter : JsonConverter<global::Orb.Models.Alerts.Type2>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "credit_balance_depleted" => global::Orb.Models.Alerts.Type2.CreditBalanceDepleted,
-            "credit_balance_dropped" => global::Orb.Models.Alerts.Type2.CreditBalanceDropped,
-            "credit_balance_recovered" => global::Orb.Models.Alerts.Type2.CreditBalanceRecovered,
-            "usage_exceeded" => global::Orb.Models.Alerts.Type2.UsageExceeded,
-            "cost_exceeded" => global::Orb.Models.Alerts.Type2.CostExceeded,
-            _ => (global::Orb.Models.Alerts.Type2)(-1),
+            "credit_balance_depleted" => AlertType.CreditBalanceDepleted,
+            "credit_balance_dropped" => AlertType.CreditBalanceDropped,
+            "credit_balance_recovered" => AlertType.CreditBalanceRecovered,
+            "usage_exceeded" => AlertType.UsageExceeded,
+            "cost_exceeded" => AlertType.CostExceeded,
+            _ => (AlertType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Alerts.Type2 value,
+        AlertType value,
         JsonSerializerOptions options
     )
     {
@@ -556,12 +556,11 @@ sealed class Type2Converter : JsonConverter<global::Orb.Models.Alerts.Type2>
             writer,
             value switch
             {
-                global::Orb.Models.Alerts.Type2.CreditBalanceDepleted => "credit_balance_depleted",
-                global::Orb.Models.Alerts.Type2.CreditBalanceDropped => "credit_balance_dropped",
-                global::Orb.Models.Alerts.Type2.CreditBalanceRecovered =>
-                    "credit_balance_recovered",
-                global::Orb.Models.Alerts.Type2.UsageExceeded => "usage_exceeded",
-                global::Orb.Models.Alerts.Type2.CostExceeded => "cost_exceeded",
+                AlertType.CreditBalanceDepleted => "credit_balance_depleted",
+                AlertType.CreditBalanceDropped => "credit_balance_dropped",
+                AlertType.CreditBalanceRecovered => "credit_balance_recovered",
+                AlertType.UsageExceeded => "usage_exceeded",
+                AlertType.CostExceeded => "cost_exceeded",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

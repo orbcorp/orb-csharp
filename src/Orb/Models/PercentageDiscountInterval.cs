@@ -50,7 +50,7 @@ public sealed record class PercentageDiscountInterval
         }
     }
 
-    public required ApiEnum<string, DiscountType5> DiscountType
+    public required ApiEnum<string, PercentageDiscountIntervalDiscountType> DiscountType
     {
         get
         {
@@ -63,10 +63,9 @@ public sealed record class PercentageDiscountInterval
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, DiscountType5>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, PercentageDiscountIntervalDiscountType>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -223,15 +222,16 @@ public sealed record class PercentageDiscountInterval
     }
 }
 
-[JsonConverter(typeof(DiscountType5Converter))]
-public enum DiscountType5
+[JsonConverter(typeof(PercentageDiscountIntervalDiscountTypeConverter))]
+public enum PercentageDiscountIntervalDiscountType
 {
     Percentage,
 }
 
-sealed class DiscountType5Converter : JsonConverter<DiscountType5>
+sealed class PercentageDiscountIntervalDiscountTypeConverter
+    : JsonConverter<PercentageDiscountIntervalDiscountType>
 {
-    public override DiscountType5 Read(
+    public override PercentageDiscountIntervalDiscountType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -239,14 +239,14 @@ sealed class DiscountType5Converter : JsonConverter<DiscountType5>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "percentage" => DiscountType5.Percentage,
-            _ => (DiscountType5)(-1),
+            "percentage" => PercentageDiscountIntervalDiscountType.Percentage,
+            _ => (PercentageDiscountIntervalDiscountType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        DiscountType5 value,
+        PercentageDiscountIntervalDiscountType value,
         JsonSerializerOptions options
     )
     {
@@ -254,7 +254,7 @@ sealed class DiscountType5Converter : JsonConverter<DiscountType5>
             writer,
             value switch
             {
-                DiscountType5.Percentage => "percentage",
+                PercentageDiscountIntervalDiscountType.Percentage => "percentage",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -270,7 +270,7 @@ public sealed record class Filter18 : ModelBase, IFromRaw<Filter18>
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, Field18> Field
+    public required ApiEnum<string, Filter18Field> Field
     {
         get
         {
@@ -280,7 +280,7 @@ public sealed record class Filter18 : ModelBase, IFromRaw<Filter18>
                     new System::ArgumentOutOfRangeException("field", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Field18>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, Filter18Field>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -297,7 +297,7 @@ public sealed record class Filter18 : ModelBase, IFromRaw<Filter18>
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, Operator18> Operator
+    public required ApiEnum<string, Filter18Operator> Operator
     {
         get
         {
@@ -307,7 +307,7 @@ public sealed record class Filter18 : ModelBase, IFromRaw<Filter18>
                     new System::ArgumentOutOfRangeException("operator", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Operator18>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, Filter18Operator>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -380,8 +380,8 @@ public sealed record class Filter18 : ModelBase, IFromRaw<Filter18>
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(Field18Converter))]
-public enum Field18
+[JsonConverter(typeof(Filter18FieldConverter))]
+public enum Filter18Field
 {
     PriceID,
     ItemID,
@@ -390,9 +390,9 @@ public enum Field18
     PricingUnitID,
 }
 
-sealed class Field18Converter : JsonConverter<Field18>
+sealed class Filter18FieldConverter : JsonConverter<Filter18Field>
 {
-    public override Field18 Read(
+    public override Filter18Field Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -400,26 +400,30 @@ sealed class Field18Converter : JsonConverter<Field18>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => Field18.PriceID,
-            "item_id" => Field18.ItemID,
-            "price_type" => Field18.PriceType,
-            "currency" => Field18.Currency,
-            "pricing_unit_id" => Field18.PricingUnitID,
-            _ => (Field18)(-1),
+            "price_id" => Filter18Field.PriceID,
+            "item_id" => Filter18Field.ItemID,
+            "price_type" => Filter18Field.PriceType,
+            "currency" => Filter18Field.Currency,
+            "pricing_unit_id" => Filter18Field.PricingUnitID,
+            _ => (Filter18Field)(-1),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Field18 value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        Filter18Field value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                Field18.PriceID => "price_id",
-                Field18.ItemID => "item_id",
-                Field18.PriceType => "price_type",
-                Field18.Currency => "currency",
-                Field18.PricingUnitID => "pricing_unit_id",
+                Filter18Field.PriceID => "price_id",
+                Filter18Field.ItemID => "item_id",
+                Filter18Field.PriceType => "price_type",
+                Filter18Field.Currency => "currency",
+                Filter18Field.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -432,16 +436,16 @@ sealed class Field18Converter : JsonConverter<Field18>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(Operator18Converter))]
-public enum Operator18
+[JsonConverter(typeof(Filter18OperatorConverter))]
+public enum Filter18Operator
 {
     Includes,
     Excludes,
 }
 
-sealed class Operator18Converter : JsonConverter<Operator18>
+sealed class Filter18OperatorConverter : JsonConverter<Filter18Operator>
 {
-    public override Operator18 Read(
+    public override Filter18Operator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -449,15 +453,15 @@ sealed class Operator18Converter : JsonConverter<Operator18>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Operator18.Includes,
-            "excludes" => Operator18.Excludes,
-            _ => (Operator18)(-1),
+            "includes" => Filter18Operator.Includes,
+            "excludes" => Filter18Operator.Excludes,
+            _ => (Filter18Operator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Operator18 value,
+        Filter18Operator value,
         JsonSerializerOptions options
     )
     {
@@ -465,8 +469,8 @@ sealed class Operator18Converter : JsonConverter<Operator18>
             writer,
             value switch
             {
-                Operator18.Includes => "includes",
-                Operator18.Excludes => "excludes",
+                Filter18Operator.Includes => "includes",
+                Filter18Operator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

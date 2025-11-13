@@ -60,7 +60,7 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
     /// <summary>
     /// The type of alert to create. This must be a valid alert type.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Alerts.TypeModel> Type
+    public required ApiEnum<string, TypeModel> Type
     {
         get
         {
@@ -70,7 +70,7 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
                     new System::ArgumentOutOfRangeException("type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, global::Orb.Models.Alerts.TypeModel>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, TypeModel>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -181,7 +181,7 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
 /// <summary>
 /// The type of alert to create. This must be a valid alert type.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Alerts.TypeModelConverter))]
+[JsonConverter(typeof(TypeModelConverter))]
 public enum TypeModel
 {
     CreditBalanceDepleted,
@@ -189,9 +189,9 @@ public enum TypeModel
     CreditBalanceRecovered,
 }
 
-sealed class TypeModelConverter : JsonConverter<global::Orb.Models.Alerts.TypeModel>
+sealed class TypeModelConverter : JsonConverter<TypeModel>
 {
-    public override global::Orb.Models.Alerts.TypeModel Read(
+    public override TypeModel Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -199,20 +199,16 @@ sealed class TypeModelConverter : JsonConverter<global::Orb.Models.Alerts.TypeMo
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "credit_balance_depleted" => global::Orb.Models.Alerts.TypeModel.CreditBalanceDepleted,
-            "credit_balance_dropped" => global::Orb.Models.Alerts.TypeModel.CreditBalanceDropped,
-            "credit_balance_recovered" => global::Orb
-                .Models
-                .Alerts
-                .TypeModel
-                .CreditBalanceRecovered,
-            _ => (global::Orb.Models.Alerts.TypeModel)(-1),
+            "credit_balance_depleted" => TypeModel.CreditBalanceDepleted,
+            "credit_balance_dropped" => TypeModel.CreditBalanceDropped,
+            "credit_balance_recovered" => TypeModel.CreditBalanceRecovered,
+            _ => (TypeModel)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Alerts.TypeModel value,
+        TypeModel value,
         JsonSerializerOptions options
     )
     {
@@ -220,12 +216,9 @@ sealed class TypeModelConverter : JsonConverter<global::Orb.Models.Alerts.TypeMo
             writer,
             value switch
             {
-                global::Orb.Models.Alerts.TypeModel.CreditBalanceDepleted =>
-                    "credit_balance_depleted",
-                global::Orb.Models.Alerts.TypeModel.CreditBalanceDropped =>
-                    "credit_balance_dropped",
-                global::Orb.Models.Alerts.TypeModel.CreditBalanceRecovered =>
-                    "credit_balance_recovered",
+                TypeModel.CreditBalanceDepleted => "credit_balance_depleted",
+                TypeModel.CreditBalanceDropped => "credit_balance_dropped",
+                TypeModel.CreditBalanceRecovered => "credit_balance_recovered",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

@@ -47,7 +47,7 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
     /// Adjustments for this plan. If the plan has phases, this includes adjustments
     /// across all phases of the plan.
     /// </summary>
-    public required List<global::Orb.Models.Plans.Adjustment1> Adjustments
+    public required List<global::Orb.Models.Plans.AdjustmentModel> Adjustments
     {
         get
         {
@@ -60,7 +60,7 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
                     )
                 );
 
-            return JsonSerializer.Deserialize<List<global::Orb.Models.Plans.Adjustment1>>(
+            return JsonSerializer.Deserialize<List<global::Orb.Models.Plans.AdjustmentModel>>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -223,14 +223,17 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
         }
     }
 
-    public required Discount1? Discount
+    public required SharedDiscount? Discount
     {
         get
         {
             if (!this._properties.TryGetValue("discount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Discount1?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<SharedDiscount?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -530,7 +533,7 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
         }
     }
 
-    public required ApiEnum<string, Status1> Status
+    public required ApiEnum<string, PlanStatus> Status
     {
         get
         {
@@ -540,7 +543,7 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
                     new System::ArgumentOutOfRangeException("status", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Status1>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, PlanStatus>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -661,8 +664,8 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Plans.Adjustment1Converter))]
-public record class Adjustment1
+[JsonConverter(typeof(global::Orb.Models.Plans.AdjustmentModelConverter))]
+public record class AdjustmentModel
 {
     public object Value { get; private init; }
 
@@ -736,37 +739,37 @@ public record class Adjustment1
         }
     }
 
-    public Adjustment1(PlanPhaseUsageDiscountAdjustment value)
+    public AdjustmentModel(PlanPhaseUsageDiscountAdjustment value)
     {
         Value = value;
     }
 
-    public Adjustment1(PlanPhaseAmountDiscountAdjustment value)
+    public AdjustmentModel(PlanPhaseAmountDiscountAdjustment value)
     {
         Value = value;
     }
 
-    public Adjustment1(PlanPhasePercentageDiscountAdjustment value)
+    public AdjustmentModel(PlanPhasePercentageDiscountAdjustment value)
     {
         Value = value;
     }
 
-    public Adjustment1(PlanPhaseMinimumAdjustment value)
+    public AdjustmentModel(PlanPhaseMinimumAdjustment value)
     {
         Value = value;
     }
 
-    public Adjustment1(PlanPhaseMaximumAdjustment value)
+    public AdjustmentModel(PlanPhaseMaximumAdjustment value)
     {
         Value = value;
     }
 
-    Adjustment1(UnknownVariant value)
+    AdjustmentModel(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static global::Orb.Models.Plans.Adjustment1 CreateUnknownVariant(JsonElement value)
+    public static global::Orb.Models.Plans.AdjustmentModel CreateUnknownVariant(JsonElement value)
     {
         return new(new UnknownVariant(value));
     }
@@ -833,7 +836,9 @@ public record class Adjustment1
                 planPhaseMaximum(value);
                 break;
             default:
-                throw new OrbInvalidDataException("Data did not match any variant of Adjustment1");
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of AdjustmentModel"
+                );
         }
     }
 
@@ -852,27 +857,29 @@ public record class Adjustment1
             PlanPhasePercentageDiscountAdjustment value => planPhasePercentageDiscount(value),
             PlanPhaseMinimumAdjustment value => planPhaseMinimum(value),
             PlanPhaseMaximumAdjustment value => planPhaseMaximum(value),
-            _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment1"),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of AdjustmentModel"
+            ),
         };
     }
 
-    public static implicit operator global::Orb.Models.Plans.Adjustment1(
+    public static implicit operator global::Orb.Models.Plans.AdjustmentModel(
         PlanPhaseUsageDiscountAdjustment value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Plans.Adjustment1(
+    public static implicit operator global::Orb.Models.Plans.AdjustmentModel(
         PlanPhaseAmountDiscountAdjustment value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Plans.Adjustment1(
+    public static implicit operator global::Orb.Models.Plans.AdjustmentModel(
         PlanPhasePercentageDiscountAdjustment value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Plans.Adjustment1(
+    public static implicit operator global::Orb.Models.Plans.AdjustmentModel(
         PlanPhaseMinimumAdjustment value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Plans.Adjustment1(
+    public static implicit operator global::Orb.Models.Plans.AdjustmentModel(
         PlanPhaseMaximumAdjustment value
     ) => new(value);
 
@@ -880,16 +887,16 @@ public record class Adjustment1
     {
         if (this.Value is UnknownVariant)
         {
-            throw new OrbInvalidDataException("Data did not match any variant of Adjustment1");
+            throw new OrbInvalidDataException("Data did not match any variant of AdjustmentModel");
         }
     }
 
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class Adjustment1Converter : JsonConverter<global::Orb.Models.Plans.Adjustment1>
+sealed class AdjustmentModelConverter : JsonConverter<global::Orb.Models.Plans.AdjustmentModel>
 {
-    public override global::Orb.Models.Plans.Adjustment1? Read(
+    public override global::Orb.Models.Plans.AdjustmentModel? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -921,7 +928,7 @@ sealed class Adjustment1Converter : JsonConverter<global::Orb.Models.Plans.Adjus
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Plans.Adjustment1(deserialized);
+                        return new global::Orb.Models.Plans.AdjustmentModel(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -951,7 +958,7 @@ sealed class Adjustment1Converter : JsonConverter<global::Orb.Models.Plans.Adjus
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Plans.Adjustment1(deserialized);
+                        return new global::Orb.Models.Plans.AdjustmentModel(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -981,7 +988,7 @@ sealed class Adjustment1Converter : JsonConverter<global::Orb.Models.Plans.Adjus
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Plans.Adjustment1(deserialized);
+                        return new global::Orb.Models.Plans.AdjustmentModel(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -1010,7 +1017,7 @@ sealed class Adjustment1Converter : JsonConverter<global::Orb.Models.Plans.Adjus
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Plans.Adjustment1(deserialized);
+                        return new global::Orb.Models.Plans.AdjustmentModel(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -1039,7 +1046,7 @@ sealed class Adjustment1Converter : JsonConverter<global::Orb.Models.Plans.Adjus
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Plans.Adjustment1(deserialized);
+                        return new global::Orb.Models.Plans.AdjustmentModel(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -1066,7 +1073,7 @@ sealed class Adjustment1Converter : JsonConverter<global::Orb.Models.Plans.Adjus
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Plans.Adjustment1 value,
+        global::Orb.Models.Plans.AdjustmentModel value,
         JsonSerializerOptions options
     )
     {
@@ -1211,14 +1218,17 @@ public sealed record class PlanPhaseModel : ModelBase, IFromRaw<PlanPhaseModel>
         }
     }
 
-    public required Discount1? Discount
+    public required SharedDiscount? Discount
     {
         get
         {
             if (!this._properties.TryGetValue("discount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Discount1?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<SharedDiscount?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -1251,17 +1261,17 @@ public sealed record class PlanPhaseModel : ModelBase, IFromRaw<PlanPhaseModel>
         }
     }
 
-    public required ApiEnum<string, global::Orb.Models.Plans.DurationUnitModel>? DurationUnit
+    public required ApiEnum<string, PlanPhaseModelDurationUnit>? DurationUnit
     {
         get
         {
             if (!this._properties.TryGetValue("duration_unit", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<
-                string,
-                global::Orb.Models.Plans.DurationUnitModel
-            >?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ApiEnum<string, PlanPhaseModelDurationUnit>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -1431,8 +1441,8 @@ public sealed record class PlanPhaseModel : ModelBase, IFromRaw<PlanPhaseModel>
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Plans.DurationUnitModelConverter))]
-public enum DurationUnitModel
+[JsonConverter(typeof(PlanPhaseModelDurationUnitConverter))]
+public enum PlanPhaseModelDurationUnit
 {
     Daily,
     Monthly,
@@ -1441,9 +1451,9 @@ public enum DurationUnitModel
     Annual,
 }
 
-sealed class DurationUnitModelConverter : JsonConverter<global::Orb.Models.Plans.DurationUnitModel>
+sealed class PlanPhaseModelDurationUnitConverter : JsonConverter<PlanPhaseModelDurationUnit>
 {
-    public override global::Orb.Models.Plans.DurationUnitModel Read(
+    public override PlanPhaseModelDurationUnit Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1451,18 +1461,18 @@ sealed class DurationUnitModelConverter : JsonConverter<global::Orb.Models.Plans
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "daily" => global::Orb.Models.Plans.DurationUnitModel.Daily,
-            "monthly" => global::Orb.Models.Plans.DurationUnitModel.Monthly,
-            "quarterly" => global::Orb.Models.Plans.DurationUnitModel.Quarterly,
-            "semi_annual" => global::Orb.Models.Plans.DurationUnitModel.SemiAnnual,
-            "annual" => global::Orb.Models.Plans.DurationUnitModel.Annual,
-            _ => (global::Orb.Models.Plans.DurationUnitModel)(-1),
+            "daily" => PlanPhaseModelDurationUnit.Daily,
+            "monthly" => PlanPhaseModelDurationUnit.Monthly,
+            "quarterly" => PlanPhaseModelDurationUnit.Quarterly,
+            "semi_annual" => PlanPhaseModelDurationUnit.SemiAnnual,
+            "annual" => PlanPhaseModelDurationUnit.Annual,
+            _ => (PlanPhaseModelDurationUnit)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Plans.DurationUnitModel value,
+        PlanPhaseModelDurationUnit value,
         JsonSerializerOptions options
     )
     {
@@ -1470,11 +1480,11 @@ sealed class DurationUnitModelConverter : JsonConverter<global::Orb.Models.Plans
             writer,
             value switch
             {
-                global::Orb.Models.Plans.DurationUnitModel.Daily => "daily",
-                global::Orb.Models.Plans.DurationUnitModel.Monthly => "monthly",
-                global::Orb.Models.Plans.DurationUnitModel.Quarterly => "quarterly",
-                global::Orb.Models.Plans.DurationUnitModel.SemiAnnual => "semi_annual",
-                global::Orb.Models.Plans.DurationUnitModel.Annual => "annual",
+                PlanPhaseModelDurationUnit.Daily => "daily",
+                PlanPhaseModelDurationUnit.Monthly => "monthly",
+                PlanPhaseModelDurationUnit.Quarterly => "quarterly",
+                PlanPhaseModelDurationUnit.SemiAnnual => "semi_annual",
+                PlanPhaseModelDurationUnit.Annual => "annual",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1592,17 +1602,17 @@ public sealed record class Product : ModelBase, IFromRaw<Product>
     }
 }
 
-[JsonConverter(typeof(Status1Converter))]
-public enum Status1
+[JsonConverter(typeof(PlanStatusConverter))]
+public enum PlanStatus
 {
     Active,
     Archived,
     Draft,
 }
 
-sealed class Status1Converter : JsonConverter<Status1>
+sealed class PlanStatusConverter : JsonConverter<PlanStatus>
 {
-    public override Status1 Read(
+    public override PlanStatus Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1610,22 +1620,26 @@ sealed class Status1Converter : JsonConverter<Status1>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "active" => Status1.Active,
-            "archived" => Status1.Archived,
-            "draft" => Status1.Draft,
-            _ => (Status1)(-1),
+            "active" => PlanStatus.Active,
+            "archived" => PlanStatus.Archived,
+            "draft" => PlanStatus.Draft,
+            _ => (PlanStatus)(-1),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Status1 value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        PlanStatus value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                Status1.Active => "active",
-                Status1.Archived => "archived",
-                Status1.Draft => "draft",
+                PlanStatus.Active => "active",
+                PlanStatus.Archived => "archived",
+                PlanStatus.Draft => "draft",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

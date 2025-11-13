@@ -17,7 +17,7 @@ public sealed record class NewPlanGroupedTieredPrice
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, Cadence31> Cadence
+    public required ApiEnum<string, NewPlanGroupedTieredPriceCadence> Cadence
     {
         get
         {
@@ -27,7 +27,7 @@ public sealed record class NewPlanGroupedTieredPrice
                     new System::ArgumentOutOfRangeException("cadence", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Cadence31>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, NewPlanGroupedTieredPriceCadence>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -44,7 +44,7 @@ public sealed record class NewPlanGroupedTieredPrice
     /// <summary>
     /// Configuration for grouped_tiered pricing
     /// </summary>
-    public required GroupedTieredConfigModel GroupedTieredConfig
+    public required NewPlanGroupedTieredPriceGroupedTieredConfig GroupedTieredConfig
     {
         get
         {
@@ -57,7 +57,7 @@ public sealed record class NewPlanGroupedTieredPrice
                     )
                 );
 
-            return JsonSerializer.Deserialize<GroupedTieredConfigModel>(
+            return JsonSerializer.Deserialize<NewPlanGroupedTieredPriceGroupedTieredConfig>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -106,7 +106,7 @@ public sealed record class NewPlanGroupedTieredPrice
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public required ApiEnum<string, ModelType30> ModelType
+    public required ApiEnum<string, NewPlanGroupedTieredPriceModelType> ModelType
     {
         get
         {
@@ -119,7 +119,7 @@ public sealed record class NewPlanGroupedTieredPrice
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ModelType30>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, NewPlanGroupedTieredPriceModelType>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -258,14 +258,14 @@ public sealed record class NewPlanGroupedTieredPrice
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public ConversionRateConfig30? ConversionRateConfig
+    public NewPlanGroupedTieredPriceConversionRateConfig? ConversionRateConfig
     {
         get
         {
             if (!this._properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ConversionRateConfig30?>(
+            return JsonSerializer.Deserialize<NewPlanGroupedTieredPriceConversionRateConfig?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -519,8 +519,8 @@ public sealed record class NewPlanGroupedTieredPrice
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(Cadence31Converter))]
-public enum Cadence31
+[JsonConverter(typeof(NewPlanGroupedTieredPriceCadenceConverter))]
+public enum NewPlanGroupedTieredPriceCadence
 {
     Annual,
     SemiAnnual,
@@ -530,9 +530,10 @@ public enum Cadence31
     Custom,
 }
 
-sealed class Cadence31Converter : JsonConverter<Cadence31>
+sealed class NewPlanGroupedTieredPriceCadenceConverter
+    : JsonConverter<NewPlanGroupedTieredPriceCadence>
 {
-    public override Cadence31 Read(
+    public override NewPlanGroupedTieredPriceCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -540,19 +541,19 @@ sealed class Cadence31Converter : JsonConverter<Cadence31>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => Cadence31.Annual,
-            "semi_annual" => Cadence31.SemiAnnual,
-            "monthly" => Cadence31.Monthly,
-            "quarterly" => Cadence31.Quarterly,
-            "one_time" => Cadence31.OneTime,
-            "custom" => Cadence31.Custom,
-            _ => (Cadence31)(-1),
+            "annual" => NewPlanGroupedTieredPriceCadence.Annual,
+            "semi_annual" => NewPlanGroupedTieredPriceCadence.SemiAnnual,
+            "monthly" => NewPlanGroupedTieredPriceCadence.Monthly,
+            "quarterly" => NewPlanGroupedTieredPriceCadence.Quarterly,
+            "one_time" => NewPlanGroupedTieredPriceCadence.OneTime,
+            "custom" => NewPlanGroupedTieredPriceCadence.Custom,
+            _ => (NewPlanGroupedTieredPriceCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Cadence31 value,
+        NewPlanGroupedTieredPriceCadence value,
         JsonSerializerOptions options
     )
     {
@@ -560,12 +561,12 @@ sealed class Cadence31Converter : JsonConverter<Cadence31>
             writer,
             value switch
             {
-                Cadence31.Annual => "annual",
-                Cadence31.SemiAnnual => "semi_annual",
-                Cadence31.Monthly => "monthly",
-                Cadence31.Quarterly => "quarterly",
-                Cadence31.OneTime => "one_time",
-                Cadence31.Custom => "custom",
+                NewPlanGroupedTieredPriceCadence.Annual => "annual",
+                NewPlanGroupedTieredPriceCadence.SemiAnnual => "semi_annual",
+                NewPlanGroupedTieredPriceCadence.Monthly => "monthly",
+                NewPlanGroupedTieredPriceCadence.Quarterly => "quarterly",
+                NewPlanGroupedTieredPriceCadence.OneTime => "one_time",
+                NewPlanGroupedTieredPriceCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -578,8 +579,10 @@ sealed class Cadence31Converter : JsonConverter<Cadence31>
 /// <summary>
 /// Configuration for grouped_tiered pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<GroupedTieredConfigModel>))]
-public sealed record class GroupedTieredConfigModel : ModelBase, IFromRaw<GroupedTieredConfigModel>
+[JsonConverter(typeof(ModelConverter<NewPlanGroupedTieredPriceGroupedTieredConfig>))]
+public sealed record class NewPlanGroupedTieredPriceGroupedTieredConfig
+    : ModelBase,
+        IFromRaw<NewPlanGroupedTieredPriceGroupedTieredConfig>
 {
     /// <summary>
     /// The billable metric property used to group before tiering
@@ -649,22 +652,24 @@ public sealed record class GroupedTieredConfigModel : ModelBase, IFromRaw<Groupe
         }
     }
 
-    public GroupedTieredConfigModel() { }
+    public NewPlanGroupedTieredPriceGroupedTieredConfig() { }
 
-    public GroupedTieredConfigModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public NewPlanGroupedTieredPriceGroupedTieredConfig(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    GroupedTieredConfigModel(FrozenDictionary<string, JsonElement> properties)
+    NewPlanGroupedTieredPriceGroupedTieredConfig(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static GroupedTieredConfigModel FromRawUnchecked(
+    public static NewPlanGroupedTieredPriceGroupedTieredConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -770,15 +775,16 @@ public sealed record class Tier10 : ModelBase, IFromRaw<Tier10>
 /// <summary>
 /// The pricing model type
 /// </summary>
-[JsonConverter(typeof(ModelType30Converter))]
-public enum ModelType30
+[JsonConverter(typeof(NewPlanGroupedTieredPriceModelTypeConverter))]
+public enum NewPlanGroupedTieredPriceModelType
 {
     GroupedTiered,
 }
 
-sealed class ModelType30Converter : JsonConverter<ModelType30>
+sealed class NewPlanGroupedTieredPriceModelTypeConverter
+    : JsonConverter<NewPlanGroupedTieredPriceModelType>
 {
-    public override ModelType30 Read(
+    public override NewPlanGroupedTieredPriceModelType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -786,14 +792,14 @@ sealed class ModelType30Converter : JsonConverter<ModelType30>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "grouped_tiered" => ModelType30.GroupedTiered,
-            _ => (ModelType30)(-1),
+            "grouped_tiered" => NewPlanGroupedTieredPriceModelType.GroupedTiered,
+            _ => (NewPlanGroupedTieredPriceModelType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ModelType30 value,
+        NewPlanGroupedTieredPriceModelType value,
         JsonSerializerOptions options
     )
     {
@@ -801,7 +807,7 @@ sealed class ModelType30Converter : JsonConverter<ModelType30>
             writer,
             value switch
             {
-                ModelType30.GroupedTiered => "grouped_tiered",
+                NewPlanGroupedTieredPriceModelType.GroupedTiered => "grouped_tiered",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -811,90 +817,94 @@ sealed class ModelType30Converter : JsonConverter<ModelType30>
     }
 }
 
-[JsonConverter(typeof(ConversionRateConfig30Converter))]
-public record class ConversionRateConfig30
+[JsonConverter(typeof(NewPlanGroupedTieredPriceConversionRateConfigConverter))]
+public record class NewPlanGroupedTieredPriceConversionRateConfig
 {
     public object Value { get; private init; }
 
-    public ConversionRateConfig30(UnitConversionRateConfig value)
+    public NewPlanGroupedTieredPriceConversionRateConfig(SharedUnitConversionRateConfig value)
     {
         Value = value;
     }
 
-    public ConversionRateConfig30(TieredConversionRateConfig value)
+    public NewPlanGroupedTieredPriceConversionRateConfig(SharedTieredConversionRateConfig value)
     {
         Value = value;
     }
 
-    ConversionRateConfig30(UnknownVariant value)
+    NewPlanGroupedTieredPriceConversionRateConfig(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static ConversionRateConfig30 CreateUnknownVariant(JsonElement value)
+    public static NewPlanGroupedTieredPriceConversionRateConfig CreateUnknownVariant(
+        JsonElement value
+    )
     {
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
-        value = this.Value as UnitConversionRateConfig;
+        value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
-    public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
-        value = this.Value as TieredConversionRateConfig;
+        value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
     public void Switch(
-        System::Action<UnitConversionRateConfig> unit,
-        System::Action<TieredConversionRateConfig> tiered
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
     )
     {
         switch (this.Value)
         {
-            case UnitConversionRateConfig value:
+            case SharedUnitConversionRateConfig value:
                 unit(value);
                 break;
-            case TieredConversionRateConfig value:
+            case SharedTieredConversionRateConfig value:
                 tiered(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of ConversionRateConfig30"
+                    "Data did not match any variant of NewPlanGroupedTieredPriceConversionRateConfig"
                 );
         }
     }
 
     public T Match<T>(
-        System::Func<UnitConversionRateConfig, T> unit,
-        System::Func<TieredConversionRateConfig, T> tiered
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
     )
     {
         return this.Value switch
         {
-            UnitConversionRateConfig value => unit(value),
-            TieredConversionRateConfig value => tiered(value),
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig30"
+                "Data did not match any variant of NewPlanGroupedTieredPriceConversionRateConfig"
             ),
         };
     }
 
-    public static implicit operator ConversionRateConfig30(UnitConversionRateConfig value) =>
-        new(value);
+    public static implicit operator NewPlanGroupedTieredPriceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
 
-    public static implicit operator ConversionRateConfig30(TieredConversionRateConfig value) =>
-        new(value);
+    public static implicit operator NewPlanGroupedTieredPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {
         if (this.Value is UnknownVariant)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig30"
+                "Data did not match any variant of NewPlanGroupedTieredPriceConversionRateConfig"
             );
         }
     }
@@ -902,9 +912,10 @@ public record class ConversionRateConfig30
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class ConversionRateConfig30Converter : JsonConverter<ConversionRateConfig30>
+sealed class NewPlanGroupedTieredPriceConversionRateConfigConverter
+    : JsonConverter<NewPlanGroupedTieredPriceConversionRateConfig>
 {
-    public override ConversionRateConfig30? Read(
+    public override NewPlanGroupedTieredPriceConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -929,14 +940,14 @@ sealed class ConversionRateConfig30Converter : JsonConverter<ConversionRateConfi
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new ConversionRateConfig30(deserialized);
+                        return new NewPlanGroupedTieredPriceConversionRateConfig(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -944,7 +955,7 @@ sealed class ConversionRateConfig30Converter : JsonConverter<ConversionRateConfi
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'UnitConversionRateConfig'",
+                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
                             e
                         )
                     );
@@ -958,14 +969,14 @@ sealed class ConversionRateConfig30Converter : JsonConverter<ConversionRateConfi
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new ConversionRateConfig30(deserialized);
+                        return new NewPlanGroupedTieredPriceConversionRateConfig(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -973,7 +984,7 @@ sealed class ConversionRateConfig30Converter : JsonConverter<ConversionRateConfi
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'TieredConversionRateConfig'",
+                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
                             e
                         )
                     );
@@ -992,7 +1003,7 @@ sealed class ConversionRateConfig30Converter : JsonConverter<ConversionRateConfi
 
     public override void Write(
         Utf8JsonWriter writer,
-        ConversionRateConfig30 value,
+        NewPlanGroupedTieredPriceConversionRateConfig value,
         JsonSerializerOptions options
     )
     {

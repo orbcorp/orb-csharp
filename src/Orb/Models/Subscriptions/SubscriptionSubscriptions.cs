@@ -9,8 +9,10 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<SubscriptionsModel>))]
-public sealed record class SubscriptionsModel : ModelBase, IFromRaw<SubscriptionsModel>
+[JsonConverter(typeof(ModelConverter<SubscriptionSubscriptions>))]
+public sealed record class SubscriptionSubscriptions
+    : ModelBase,
+        IFromRaw<SubscriptionSubscriptions>
 {
     public required List<Subscription> Data
     {
@@ -80,22 +82,22 @@ public sealed record class SubscriptionsModel : ModelBase, IFromRaw<Subscription
         this.PaginationMetadata.Validate();
     }
 
-    public SubscriptionsModel() { }
+    public SubscriptionSubscriptions() { }
 
-    public SubscriptionsModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public SubscriptionSubscriptions(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    SubscriptionsModel(FrozenDictionary<string, JsonElement> properties)
+    SubscriptionSubscriptions(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static SubscriptionsModel FromRawUnchecked(
+    public static SubscriptionSubscriptions FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {

@@ -70,7 +70,7 @@ public sealed class SubscriptionService : ISubscriptionService
         return subscription;
     }
 
-    public async Task<SubscriptionsModel> List(
+    public async Task<SubscriptionSubscriptions> List(
         SubscriptionListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -86,7 +86,7 @@ public sealed class SubscriptionService : ISubscriptionService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var page = await response
-            .Deserialize<SubscriptionsModel>(cancellationToken)
+            .Deserialize<SubscriptionSubscriptions>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {

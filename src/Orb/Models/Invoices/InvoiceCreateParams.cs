@@ -138,14 +138,17 @@ public sealed record class InvoiceCreateParams : ParamsBase
     /// <summary>
     /// An optional discount to attach to the invoice.
     /// </summary>
-    public Discount1? Discount
+    public SharedDiscount? Discount
     {
         get
         {
             if (!this._bodyProperties.TryGetValue("discount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Discount1?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<SharedDiscount?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {

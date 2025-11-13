@@ -246,7 +246,7 @@ public sealed record class BalanceTransactionCreateResponse
         }
     }
 
-    public required ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.TypeModel> Type
+    public required ApiEnum<string, BalanceTransactionCreateResponseType> Type
     {
         get
         {
@@ -257,7 +257,7 @@ public sealed record class BalanceTransactionCreateResponse
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.TypeModel>
+                ApiEnum<string, BalanceTransactionCreateResponseType>
             >(element, ModelBase.SerializerOptions);
         }
         init
@@ -435,17 +435,17 @@ sealed class ActionConverter
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Customers.BalanceTransactions.TypeModelConverter))]
-public enum TypeModel
+[JsonConverter(typeof(BalanceTransactionCreateResponseTypeConverter))]
+public enum BalanceTransactionCreateResponseType
 {
     Increment,
     Decrement,
 }
 
-sealed class TypeModelConverter
-    : JsonConverter<global::Orb.Models.Customers.BalanceTransactions.TypeModel>
+sealed class BalanceTransactionCreateResponseTypeConverter
+    : JsonConverter<BalanceTransactionCreateResponseType>
 {
-    public override global::Orb.Models.Customers.BalanceTransactions.TypeModel Read(
+    public override BalanceTransactionCreateResponseType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -453,15 +453,15 @@ sealed class TypeModelConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "increment" => global::Orb.Models.Customers.BalanceTransactions.TypeModel.Increment,
-            "decrement" => global::Orb.Models.Customers.BalanceTransactions.TypeModel.Decrement,
-            _ => (global::Orb.Models.Customers.BalanceTransactions.TypeModel)(-1),
+            "increment" => BalanceTransactionCreateResponseType.Increment,
+            "decrement" => BalanceTransactionCreateResponseType.Decrement,
+            _ => (BalanceTransactionCreateResponseType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Customers.BalanceTransactions.TypeModel value,
+        BalanceTransactionCreateResponseType value,
         JsonSerializerOptions options
     )
     {
@@ -469,8 +469,8 @@ sealed class TypeModelConverter
             writer,
             value switch
             {
-                global::Orb.Models.Customers.BalanceTransactions.TypeModel.Increment => "increment",
-                global::Orb.Models.Customers.BalanceTransactions.TypeModel.Decrement => "decrement",
+                BalanceTransactionCreateResponseType.Increment => "increment",
+                BalanceTransactionCreateResponseType.Decrement => "decrement",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

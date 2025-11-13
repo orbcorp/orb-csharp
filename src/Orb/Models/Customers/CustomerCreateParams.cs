@@ -1233,7 +1233,7 @@ public sealed record class Anrok : ModelBase, IFromRaw<Anrok>
         }
     }
 
-    public TaxProviderModel TaxProvider
+    public AnrokTaxProvider TaxProvider
     {
         get
         {
@@ -1246,7 +1246,7 @@ public sealed record class Anrok : ModelBase, IFromRaw<Anrok>
                     )
                 );
 
-            return JsonSerializer.Deserialize<TaxProviderModel>(
+            return JsonSerializer.Deserialize<AnrokTaxProvider>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -1327,31 +1327,31 @@ public sealed record class Anrok : ModelBase, IFromRaw<Anrok>
 }
 
 [JsonConverter(typeof(Converter))]
-public class TaxProviderModel
+public class AnrokTaxProvider
 {
     public JsonElement Json { get; private init; }
 
-    public TaxProviderModel()
+    public AnrokTaxProvider()
     {
         Json = JsonSerializer.Deserialize<JsonElement>("\"anrok\"");
     }
 
-    TaxProviderModel(JsonElement json)
+    AnrokTaxProvider(JsonElement json)
     {
         Json = json;
     }
 
     public void Validate()
     {
-        if (JsonElement.DeepEquals(this.Json, new TaxProviderModel().Json))
+        if (JsonElement.DeepEquals(this.Json, new AnrokTaxProvider().Json))
         {
-            throw new OrbInvalidDataException("Invalid value given for 'TaxProviderModel'");
+            throw new OrbInvalidDataException("Invalid value given for 'AnrokTaxProvider'");
         }
     }
 
-    class Converter : JsonConverter<TaxProviderModel>
+    class Converter : JsonConverter<AnrokTaxProvider>
     {
-        public override TaxProviderModel? Read(
+        public override AnrokTaxProvider? Read(
             ref Utf8JsonReader reader,
             System::Type typeToConvert,
             JsonSerializerOptions options
@@ -1362,7 +1362,7 @@ public class TaxProviderModel
 
         public override void Write(
             Utf8JsonWriter writer,
-            TaxProviderModel value,
+            AnrokTaxProvider value,
             JsonSerializerOptions options
         )
         {

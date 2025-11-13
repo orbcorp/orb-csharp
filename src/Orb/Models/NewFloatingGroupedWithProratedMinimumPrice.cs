@@ -17,7 +17,7 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, Cadence7> Cadence
+    public required ApiEnum<string, NewFloatingGroupedWithProratedMinimumPriceCadence> Cadence
     {
         get
         {
@@ -27,10 +27,9 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice
                     new System::ArgumentOutOfRangeException("cadence", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Cadence7>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, NewFloatingGroupedWithProratedMinimumPriceCadence>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -137,7 +136,7 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public required ApiEnum<string, ModelType6> ModelType
+    public required ApiEnum<string, NewFloatingGroupedWithProratedMinimumPriceModelType> ModelType
     {
         get
         {
@@ -150,10 +149,9 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ModelType6>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, NewFloatingGroupedWithProratedMinimumPriceModelType>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -289,14 +287,14 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public ConversionRateConfig6? ConversionRateConfig
+    public NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig? ConversionRateConfig
     {
         get
         {
             if (!this._properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ConversionRateConfig6?>(
+            return JsonSerializer.Deserialize<NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -507,8 +505,8 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(Cadence7Converter))]
-public enum Cadence7
+[JsonConverter(typeof(NewFloatingGroupedWithProratedMinimumPriceCadenceConverter))]
+public enum NewFloatingGroupedWithProratedMinimumPriceCadence
 {
     Annual,
     SemiAnnual,
@@ -518,9 +516,10 @@ public enum Cadence7
     Custom,
 }
 
-sealed class Cadence7Converter : JsonConverter<Cadence7>
+sealed class NewFloatingGroupedWithProratedMinimumPriceCadenceConverter
+    : JsonConverter<NewFloatingGroupedWithProratedMinimumPriceCadence>
 {
-    public override Cadence7 Read(
+    public override NewFloatingGroupedWithProratedMinimumPriceCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -528,28 +527,32 @@ sealed class Cadence7Converter : JsonConverter<Cadence7>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => Cadence7.Annual,
-            "semi_annual" => Cadence7.SemiAnnual,
-            "monthly" => Cadence7.Monthly,
-            "quarterly" => Cadence7.Quarterly,
-            "one_time" => Cadence7.OneTime,
-            "custom" => Cadence7.Custom,
-            _ => (Cadence7)(-1),
+            "annual" => NewFloatingGroupedWithProratedMinimumPriceCadence.Annual,
+            "semi_annual" => NewFloatingGroupedWithProratedMinimumPriceCadence.SemiAnnual,
+            "monthly" => NewFloatingGroupedWithProratedMinimumPriceCadence.Monthly,
+            "quarterly" => NewFloatingGroupedWithProratedMinimumPriceCadence.Quarterly,
+            "one_time" => NewFloatingGroupedWithProratedMinimumPriceCadence.OneTime,
+            "custom" => NewFloatingGroupedWithProratedMinimumPriceCadence.Custom,
+            _ => (NewFloatingGroupedWithProratedMinimumPriceCadence)(-1),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Cadence7 value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        NewFloatingGroupedWithProratedMinimumPriceCadence value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                Cadence7.Annual => "annual",
-                Cadence7.SemiAnnual => "semi_annual",
-                Cadence7.Monthly => "monthly",
-                Cadence7.Quarterly => "quarterly",
-                Cadence7.OneTime => "one_time",
-                Cadence7.Custom => "custom",
+                NewFloatingGroupedWithProratedMinimumPriceCadence.Annual => "annual",
+                NewFloatingGroupedWithProratedMinimumPriceCadence.SemiAnnual => "semi_annual",
+                NewFloatingGroupedWithProratedMinimumPriceCadence.Monthly => "monthly",
+                NewFloatingGroupedWithProratedMinimumPriceCadence.Quarterly => "quarterly",
+                NewFloatingGroupedWithProratedMinimumPriceCadence.OneTime => "one_time",
+                NewFloatingGroupedWithProratedMinimumPriceCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -690,15 +693,16 @@ public sealed record class GroupedWithProratedMinimumConfig
 /// <summary>
 /// The pricing model type
 /// </summary>
-[JsonConverter(typeof(ModelType6Converter))]
-public enum ModelType6
+[JsonConverter(typeof(NewFloatingGroupedWithProratedMinimumPriceModelTypeConverter))]
+public enum NewFloatingGroupedWithProratedMinimumPriceModelType
 {
     GroupedWithProratedMinimum,
 }
 
-sealed class ModelType6Converter : JsonConverter<ModelType6>
+sealed class NewFloatingGroupedWithProratedMinimumPriceModelTypeConverter
+    : JsonConverter<NewFloatingGroupedWithProratedMinimumPriceModelType>
 {
-    public override ModelType6 Read(
+    public override NewFloatingGroupedWithProratedMinimumPriceModelType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -706,14 +710,15 @@ sealed class ModelType6Converter : JsonConverter<ModelType6>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "grouped_with_prorated_minimum" => ModelType6.GroupedWithProratedMinimum,
-            _ => (ModelType6)(-1),
+            "grouped_with_prorated_minimum" =>
+                NewFloatingGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
+            _ => (NewFloatingGroupedWithProratedMinimumPriceModelType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ModelType6 value,
+        NewFloatingGroupedWithProratedMinimumPriceModelType value,
         JsonSerializerOptions options
     )
     {
@@ -721,7 +726,8 @@ sealed class ModelType6Converter : JsonConverter<ModelType6>
             writer,
             value switch
             {
-                ModelType6.GroupedWithProratedMinimum => "grouped_with_prorated_minimum",
+                NewFloatingGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum =>
+                    "grouped_with_prorated_minimum",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -731,90 +737,98 @@ sealed class ModelType6Converter : JsonConverter<ModelType6>
     }
 }
 
-[JsonConverter(typeof(ConversionRateConfig6Converter))]
-public record class ConversionRateConfig6
+[JsonConverter(typeof(NewFloatingGroupedWithProratedMinimumPriceConversionRateConfigConverter))]
+public record class NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig
 {
     public object Value { get; private init; }
 
-    public ConversionRateConfig6(UnitConversionRateConfig value)
+    public NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    )
     {
         Value = value;
     }
 
-    public ConversionRateConfig6(TieredConversionRateConfig value)
+    public NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    )
     {
         Value = value;
     }
 
-    ConversionRateConfig6(UnknownVariant value)
+    NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static ConversionRateConfig6 CreateUnknownVariant(JsonElement value)
+    public static NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig CreateUnknownVariant(
+        JsonElement value
+    )
     {
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
-        value = this.Value as UnitConversionRateConfig;
+        value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
-    public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
-        value = this.Value as TieredConversionRateConfig;
+        value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
     public void Switch(
-        System::Action<UnitConversionRateConfig> unit,
-        System::Action<TieredConversionRateConfig> tiered
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
     )
     {
         switch (this.Value)
         {
-            case UnitConversionRateConfig value:
+            case SharedUnitConversionRateConfig value:
                 unit(value);
                 break;
-            case TieredConversionRateConfig value:
+            case SharedTieredConversionRateConfig value:
                 tiered(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of ConversionRateConfig6"
+                    "Data did not match any variant of NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig"
                 );
         }
     }
 
     public T Match<T>(
-        System::Func<UnitConversionRateConfig, T> unit,
-        System::Func<TieredConversionRateConfig, T> tiered
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
     )
     {
         return this.Value switch
         {
-            UnitConversionRateConfig value => unit(value),
-            TieredConversionRateConfig value => tiered(value),
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig6"
+                "Data did not match any variant of NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig"
             ),
         };
     }
 
-    public static implicit operator ConversionRateConfig6(UnitConversionRateConfig value) =>
-        new(value);
+    public static implicit operator NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
 
-    public static implicit operator ConversionRateConfig6(TieredConversionRateConfig value) =>
-        new(value);
+    public static implicit operator NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {
         if (this.Value is UnknownVariant)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig6"
+                "Data did not match any variant of NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig"
             );
         }
     }
@@ -822,9 +836,10 @@ public record class ConversionRateConfig6
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class ConversionRateConfig6Converter : JsonConverter<ConversionRateConfig6>
+sealed class NewFloatingGroupedWithProratedMinimumPriceConversionRateConfigConverter
+    : JsonConverter<NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig>
 {
-    public override ConversionRateConfig6? Read(
+    public override NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -849,14 +864,16 @@ sealed class ConversionRateConfig6Converter : JsonConverter<ConversionRateConfig
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new ConversionRateConfig6(deserialized);
+                        return new NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig(
+                            deserialized
+                        );
                     }
                 }
                 catch (System::Exception e)
@@ -864,7 +881,7 @@ sealed class ConversionRateConfig6Converter : JsonConverter<ConversionRateConfig
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'UnitConversionRateConfig'",
+                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
                             e
                         )
                     );
@@ -878,14 +895,16 @@ sealed class ConversionRateConfig6Converter : JsonConverter<ConversionRateConfig
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new ConversionRateConfig6(deserialized);
+                        return new NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig(
+                            deserialized
+                        );
                     }
                 }
                 catch (System::Exception e)
@@ -893,7 +912,7 @@ sealed class ConversionRateConfig6Converter : JsonConverter<ConversionRateConfig
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'TieredConversionRateConfig'",
+                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
                             e
                         )
                     );
@@ -912,7 +931,7 @@ sealed class ConversionRateConfig6Converter : JsonConverter<ConversionRateConfig
 
     public override void Write(
         Utf8JsonWriter writer,
-        ConversionRateConfig6 value,
+        NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig value,
         JsonSerializerOptions options
     )
     {

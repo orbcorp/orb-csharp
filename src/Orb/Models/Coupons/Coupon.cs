@@ -71,7 +71,7 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
         }
     }
 
-    public required global::Orb.Models.Coupons.DiscountModel Discount
+    public required CouponDiscount Discount
     {
         get
         {
@@ -81,10 +81,7 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
                     new System::ArgumentOutOfRangeException("discount", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<global::Orb.Models.Coupons.DiscountModel>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
+            return JsonSerializer.Deserialize<CouponDiscount>(element, ModelBase.SerializerOptions)
                 ?? throw new OrbInvalidDataException(
                     "'discount' cannot be null",
                     new System::ArgumentNullException("discount")
@@ -233,8 +230,8 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
     }
 }
 
-[JsonConverter(typeof(DiscountModelConverter))]
-public record class DiscountModel
+[JsonConverter(typeof(CouponDiscountConverter))]
+public record class CouponDiscount
 {
     public object Value { get; private init; }
 
@@ -243,22 +240,22 @@ public record class DiscountModel
         get { return Match<string?>(percentage: (x) => x.Reason, amount: (x) => x.Reason); }
     }
 
-    public DiscountModel(PercentageDiscount value)
+    public CouponDiscount(PercentageDiscount value)
     {
         Value = value;
     }
 
-    public DiscountModel(AmountDiscount value)
+    public CouponDiscount(AmountDiscount value)
     {
         Value = value;
     }
 
-    DiscountModel(UnknownVariant value)
+    CouponDiscount(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static global::Orb.Models.Coupons.DiscountModel CreateUnknownVariant(JsonElement value)
+    public static CouponDiscount CreateUnknownVariant(JsonElement value)
     {
         return new(new UnknownVariant(value));
     }
@@ -290,7 +287,7 @@ public record class DiscountModel
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of DiscountModel"
+                    "Data did not match any variant of CouponDiscount"
                 );
         }
     }
@@ -305,33 +302,29 @@ public record class DiscountModel
             PercentageDiscount value => percentage(value),
             AmountDiscount value => amount(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of DiscountModel"
+                "Data did not match any variant of CouponDiscount"
             ),
         };
     }
 
-    public static implicit operator global::Orb.Models.Coupons.DiscountModel(
-        PercentageDiscount value
-    ) => new(value);
+    public static implicit operator CouponDiscount(PercentageDiscount value) => new(value);
 
-    public static implicit operator global::Orb.Models.Coupons.DiscountModel(
-        AmountDiscount value
-    ) => new(value);
+    public static implicit operator CouponDiscount(AmountDiscount value) => new(value);
 
     public void Validate()
     {
         if (this.Value is UnknownVariant)
         {
-            throw new OrbInvalidDataException("Data did not match any variant of DiscountModel");
+            throw new OrbInvalidDataException("Data did not match any variant of CouponDiscount");
         }
     }
 
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class DiscountModelConverter : JsonConverter<global::Orb.Models.Coupons.DiscountModel>
+sealed class CouponDiscountConverter : JsonConverter<CouponDiscount>
 {
-    public override global::Orb.Models.Coupons.DiscountModel? Read(
+    public override CouponDiscount? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -363,7 +356,7 @@ sealed class DiscountModelConverter : JsonConverter<global::Orb.Models.Coupons.D
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Coupons.DiscountModel(deserialized);
+                        return new CouponDiscount(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -389,7 +382,7 @@ sealed class DiscountModelConverter : JsonConverter<global::Orb.Models.Coupons.D
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Coupons.DiscountModel(deserialized);
+                        return new CouponDiscount(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -416,7 +409,7 @@ sealed class DiscountModelConverter : JsonConverter<global::Orb.Models.Coupons.D
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Coupons.DiscountModel value,
+        CouponDiscount value,
         JsonSerializerOptions options
     )
     {

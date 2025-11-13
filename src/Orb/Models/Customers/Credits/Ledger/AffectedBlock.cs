@@ -145,7 +145,7 @@ public sealed record class Filter1
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Field1> Field
+    public required ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Filter1Field> Field
     {
         get
         {
@@ -156,7 +156,7 @@ public sealed record class Filter1
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Field1>
+                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Filter1Field>
             >(element, ModelBase.SerializerOptions);
         }
         init
@@ -171,7 +171,10 @@ public sealed record class Filter1
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Operator1> Operator
+    public required ApiEnum<
+        string,
+        global::Orb.Models.Customers.Credits.Ledger.Filter1Operator
+    > Operator
     {
         get
         {
@@ -182,7 +185,7 @@ public sealed record class Filter1
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Operator1>
+                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Filter1Operator>
             >(element, ModelBase.SerializerOptions);
         }
         init
@@ -255,8 +258,8 @@ public sealed record class Filter1
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Customers.Credits.Ledger.Field1Converter))]
-public enum Field1
+[JsonConverter(typeof(global::Orb.Models.Customers.Credits.Ledger.Filter1FieldConverter))]
+public enum Filter1Field
 {
     PriceID,
     ItemID,
@@ -265,9 +268,10 @@ public enum Field1
     PricingUnitID,
 }
 
-sealed class Field1Converter : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.Field1>
+sealed class Filter1FieldConverter
+    : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.Filter1Field>
 {
-    public override global::Orb.Models.Customers.Credits.Ledger.Field1 Read(
+    public override global::Orb.Models.Customers.Credits.Ledger.Filter1Field Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -275,18 +279,24 @@ sealed class Field1Converter : JsonConverter<global::Orb.Models.Customers.Credit
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => global::Orb.Models.Customers.Credits.Ledger.Field1.PriceID,
-            "item_id" => global::Orb.Models.Customers.Credits.Ledger.Field1.ItemID,
-            "price_type" => global::Orb.Models.Customers.Credits.Ledger.Field1.PriceType,
-            "currency" => global::Orb.Models.Customers.Credits.Ledger.Field1.Currency,
-            "pricing_unit_id" => global::Orb.Models.Customers.Credits.Ledger.Field1.PricingUnitID,
-            _ => (global::Orb.Models.Customers.Credits.Ledger.Field1)(-1),
+            "price_id" => global::Orb.Models.Customers.Credits.Ledger.Filter1Field.PriceID,
+            "item_id" => global::Orb.Models.Customers.Credits.Ledger.Filter1Field.ItemID,
+            "price_type" => global::Orb.Models.Customers.Credits.Ledger.Filter1Field.PriceType,
+            "currency" => global::Orb.Models.Customers.Credits.Ledger.Filter1Field.Currency,
+            "pricing_unit_id" => global::Orb
+                .Models
+                .Customers
+                .Credits
+                .Ledger
+                .Filter1Field
+                .PricingUnitID,
+            _ => (global::Orb.Models.Customers.Credits.Ledger.Filter1Field)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Customers.Credits.Ledger.Field1 value,
+        global::Orb.Models.Customers.Credits.Ledger.Filter1Field value,
         JsonSerializerOptions options
     )
     {
@@ -294,11 +304,11 @@ sealed class Field1Converter : JsonConverter<global::Orb.Models.Customers.Credit
             writer,
             value switch
             {
-                global::Orb.Models.Customers.Credits.Ledger.Field1.PriceID => "price_id",
-                global::Orb.Models.Customers.Credits.Ledger.Field1.ItemID => "item_id",
-                global::Orb.Models.Customers.Credits.Ledger.Field1.PriceType => "price_type",
-                global::Orb.Models.Customers.Credits.Ledger.Field1.Currency => "currency",
-                global::Orb.Models.Customers.Credits.Ledger.Field1.PricingUnitID =>
+                global::Orb.Models.Customers.Credits.Ledger.Filter1Field.PriceID => "price_id",
+                global::Orb.Models.Customers.Credits.Ledger.Filter1Field.ItemID => "item_id",
+                global::Orb.Models.Customers.Credits.Ledger.Filter1Field.PriceType => "price_type",
+                global::Orb.Models.Customers.Credits.Ledger.Filter1Field.Currency => "currency",
+                global::Orb.Models.Customers.Credits.Ledger.Filter1Field.PricingUnitID =>
                     "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
@@ -312,17 +322,17 @@ sealed class Field1Converter : JsonConverter<global::Orb.Models.Customers.Credit
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Customers.Credits.Ledger.Operator1Converter))]
-public enum Operator1
+[JsonConverter(typeof(global::Orb.Models.Customers.Credits.Ledger.Filter1OperatorConverter))]
+public enum Filter1Operator
 {
     Includes,
     Excludes,
 }
 
-sealed class Operator1Converter
-    : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.Operator1>
+sealed class Filter1OperatorConverter
+    : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.Filter1Operator>
 {
-    public override global::Orb.Models.Customers.Credits.Ledger.Operator1 Read(
+    public override global::Orb.Models.Customers.Credits.Ledger.Filter1Operator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -330,15 +340,15 @@ sealed class Operator1Converter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => global::Orb.Models.Customers.Credits.Ledger.Operator1.Includes,
-            "excludes" => global::Orb.Models.Customers.Credits.Ledger.Operator1.Excludes,
-            _ => (global::Orb.Models.Customers.Credits.Ledger.Operator1)(-1),
+            "includes" => global::Orb.Models.Customers.Credits.Ledger.Filter1Operator.Includes,
+            "excludes" => global::Orb.Models.Customers.Credits.Ledger.Filter1Operator.Excludes,
+            _ => (global::Orb.Models.Customers.Credits.Ledger.Filter1Operator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Customers.Credits.Ledger.Operator1 value,
+        global::Orb.Models.Customers.Credits.Ledger.Filter1Operator value,
         JsonSerializerOptions options
     )
     {
@@ -346,8 +356,8 @@ sealed class Operator1Converter
             writer,
             value switch
             {
-                global::Orb.Models.Customers.Credits.Ledger.Operator1.Includes => "includes",
-                global::Orb.Models.Customers.Credits.Ledger.Operator1.Excludes => "excludes",
+                global::Orb.Models.Customers.Credits.Ledger.Filter1Operator.Includes => "includes",
+                global::Orb.Models.Customers.Credits.Ledger.Filter1Operator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

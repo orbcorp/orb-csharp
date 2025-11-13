@@ -18,7 +18,7 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
     /// </summary>
-    public required List<Tier26> Tiers
+    public required List<SharedTier> Tiers
     {
         get
         {
@@ -28,7 +28,10 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
                     new ArgumentOutOfRangeException("tiers", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<List<Tier26>>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<List<SharedTier>>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
                 ?? throw new OrbInvalidDataException(
                     "'tiers' cannot be null",
                     new ArgumentNullException("tiers")
@@ -99,7 +102,7 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
     }
 
     [SetsRequiredMembers]
-    public TieredConfig(List<Tier26> tiers)
+    public TieredConfig(List<SharedTier> tiers)
         : this()
     {
         this.Tiers = tiers;

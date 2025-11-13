@@ -19,7 +19,7 @@ public interface ISubscriptionService
     /// from the most recently created subscription. For a full discussion of the
     /// subscription resource, see [Subscription](/core-concepts#subscription).
     /// </summary>
-    Task<Subscriptions::SubscriptionsModel> List(
+    Task<Subscriptions::SubscriptionSubscriptions> List(
         SubscriptionListParams parameters,
         CancellationToken cancellationToken = default
     );

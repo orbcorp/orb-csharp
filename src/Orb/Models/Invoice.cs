@@ -76,7 +76,7 @@ public sealed record class Invoice : ModelBase, IFromRaw<Invoice>
         }
     }
 
-    public required AutoCollectionModel AutoCollection
+    public required InvoiceAutoCollection AutoCollection
     {
         get
         {
@@ -89,7 +89,7 @@ public sealed record class Invoice : ModelBase, IFromRaw<Invoice>
                     )
                 );
 
-            return JsonSerializer.Deserialize<AutoCollectionModel>(
+            return JsonSerializer.Deserialize<InvoiceAutoCollection>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -158,7 +158,7 @@ public sealed record class Invoice : ModelBase, IFromRaw<Invoice>
     /// <summary>
     /// A list of credit notes associated with the invoice
     /// </summary>
-    public required List<CreditNote1> CreditNotes
+    public required List<CreditNoteModel> CreditNotes
     {
         get
         {
@@ -171,7 +171,7 @@ public sealed record class Invoice : ModelBase, IFromRaw<Invoice>
                     )
                 );
 
-            return JsonSerializer.Deserialize<List<CreditNote1>>(
+            return JsonSerializer.Deserialize<List<CreditNoteModel>>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -618,7 +618,7 @@ public sealed record class Invoice : ModelBase, IFromRaw<Invoice>
         }
     }
 
-    public required ApiEnum<string, InvoiceSourceModel> InvoiceSource
+    public required ApiEnum<string, InvoiceInvoiceSource> InvoiceSource
     {
         get
         {
@@ -631,7 +631,7 @@ public sealed record class Invoice : ModelBase, IFromRaw<Invoice>
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, InvoiceSourceModel>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, InvoiceInvoiceSource>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1006,7 +1006,7 @@ public sealed record class Invoice : ModelBase, IFromRaw<Invoice>
         }
     }
 
-    public required ApiEnum<string, StatusModel> Status
+    public required ApiEnum<string, InvoiceStatus> Status
     {
         get
         {
@@ -1016,7 +1016,7 @@ public sealed record class Invoice : ModelBase, IFromRaw<Invoice>
                     new System::ArgumentOutOfRangeException("status", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, StatusModel>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, InvoiceStatus>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1267,8 +1267,8 @@ public sealed record class Invoice : ModelBase, IFromRaw<Invoice>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AutoCollectionModel>))]
-public sealed record class AutoCollectionModel : ModelBase, IFromRaw<AutoCollectionModel>
+[JsonConverter(typeof(ModelConverter<InvoiceAutoCollection>))]
+public sealed record class InvoiceAutoCollection : ModelBase, IFromRaw<InvoiceAutoCollection>
 {
     /// <summary>
     /// True only if auto-collection is enabled for this invoice.
@@ -1375,22 +1375,22 @@ public sealed record class AutoCollectionModel : ModelBase, IFromRaw<AutoCollect
         _ = this.PreviouslyAttemptedAt;
     }
 
-    public AutoCollectionModel() { }
+    public InvoiceAutoCollection() { }
 
-    public AutoCollectionModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public InvoiceAutoCollection(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AutoCollectionModel(FrozenDictionary<string, JsonElement> properties)
+    InvoiceAutoCollection(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static AutoCollectionModel FromRawUnchecked(
+    public static InvoiceAutoCollection FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -1398,8 +1398,8 @@ public sealed record class AutoCollectionModel : ModelBase, IFromRaw<AutoCollect
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CreditNote1>))]
-public sealed record class CreditNote1 : ModelBase, IFromRaw<CreditNote1>
+[JsonConverter(typeof(ModelConverter<CreditNoteModel>))]
+public sealed record class CreditNoteModel : ModelBase, IFromRaw<CreditNoteModel>
 {
     public required string ID
     {
@@ -1586,22 +1586,24 @@ public sealed record class CreditNote1 : ModelBase, IFromRaw<CreditNote1>
         _ = this.VoidedAt;
     }
 
-    public CreditNote1() { }
+    public CreditNoteModel() { }
 
-    public CreditNote1(IReadOnlyDictionary<string, JsonElement> properties)
+    public CreditNoteModel(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CreditNote1(FrozenDictionary<string, JsonElement> properties)
+    CreditNoteModel(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static CreditNote1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static CreditNoteModel FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
@@ -1640,7 +1642,7 @@ public sealed record class CustomerBalanceTransactionModel
         }
     }
 
-    public required ApiEnum<string, ActionModel> Action
+    public required ApiEnum<string, CustomerBalanceTransactionModelAction> Action
     {
         get
         {
@@ -1650,10 +1652,9 @@ public sealed record class CustomerBalanceTransactionModel
                     new System::ArgumentOutOfRangeException("action", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ActionModel>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, CustomerBalanceTransactionModelAction>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -1845,7 +1846,7 @@ public sealed record class CustomerBalanceTransactionModel
         }
     }
 
-    public required ApiEnum<string, Type2> Type
+    public required ApiEnum<string, CustomerBalanceTransactionModelType> Type
     {
         get
         {
@@ -1855,7 +1856,7 @@ public sealed record class CustomerBalanceTransactionModel
                     new System::ArgumentOutOfRangeException("type", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Type2>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, CustomerBalanceTransactionModelType>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1906,8 +1907,8 @@ public sealed record class CustomerBalanceTransactionModel
     }
 }
 
-[JsonConverter(typeof(ActionModelConverter))]
-public enum ActionModel
+[JsonConverter(typeof(CustomerBalanceTransactionModelActionConverter))]
+public enum CustomerBalanceTransactionModelAction
 {
     AppliedToInvoice,
     ManualAdjustment,
@@ -1921,9 +1922,10 @@ public enum ActionModel
     SmallInvoiceCarryover,
 }
 
-sealed class ActionModelConverter : JsonConverter<ActionModel>
+sealed class CustomerBalanceTransactionModelActionConverter
+    : JsonConverter<CustomerBalanceTransactionModelAction>
 {
-    public override ActionModel Read(
+    public override CustomerBalanceTransactionModelAction Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1931,23 +1933,24 @@ sealed class ActionModelConverter : JsonConverter<ActionModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "applied_to_invoice" => ActionModel.AppliedToInvoice,
-            "manual_adjustment" => ActionModel.ManualAdjustment,
-            "prorated_refund" => ActionModel.ProratedRefund,
-            "revert_prorated_refund" => ActionModel.RevertProratedRefund,
-            "return_from_voiding" => ActionModel.ReturnFromVoiding,
-            "credit_note_applied" => ActionModel.CreditNoteApplied,
-            "credit_note_voided" => ActionModel.CreditNoteVoided,
-            "overpayment_refund" => ActionModel.OverpaymentRefund,
-            "external_payment" => ActionModel.ExternalPayment,
-            "small_invoice_carryover" => ActionModel.SmallInvoiceCarryover,
-            _ => (ActionModel)(-1),
+            "applied_to_invoice" => CustomerBalanceTransactionModelAction.AppliedToInvoice,
+            "manual_adjustment" => CustomerBalanceTransactionModelAction.ManualAdjustment,
+            "prorated_refund" => CustomerBalanceTransactionModelAction.ProratedRefund,
+            "revert_prorated_refund" => CustomerBalanceTransactionModelAction.RevertProratedRefund,
+            "return_from_voiding" => CustomerBalanceTransactionModelAction.ReturnFromVoiding,
+            "credit_note_applied" => CustomerBalanceTransactionModelAction.CreditNoteApplied,
+            "credit_note_voided" => CustomerBalanceTransactionModelAction.CreditNoteVoided,
+            "overpayment_refund" => CustomerBalanceTransactionModelAction.OverpaymentRefund,
+            "external_payment" => CustomerBalanceTransactionModelAction.ExternalPayment,
+            "small_invoice_carryover" =>
+                CustomerBalanceTransactionModelAction.SmallInvoiceCarryover,
+            _ => (CustomerBalanceTransactionModelAction)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ActionModel value,
+        CustomerBalanceTransactionModelAction value,
         JsonSerializerOptions options
     )
     {
@@ -1955,16 +1958,18 @@ sealed class ActionModelConverter : JsonConverter<ActionModel>
             writer,
             value switch
             {
-                ActionModel.AppliedToInvoice => "applied_to_invoice",
-                ActionModel.ManualAdjustment => "manual_adjustment",
-                ActionModel.ProratedRefund => "prorated_refund",
-                ActionModel.RevertProratedRefund => "revert_prorated_refund",
-                ActionModel.ReturnFromVoiding => "return_from_voiding",
-                ActionModel.CreditNoteApplied => "credit_note_applied",
-                ActionModel.CreditNoteVoided => "credit_note_voided",
-                ActionModel.OverpaymentRefund => "overpayment_refund",
-                ActionModel.ExternalPayment => "external_payment",
-                ActionModel.SmallInvoiceCarryover => "small_invoice_carryover",
+                CustomerBalanceTransactionModelAction.AppliedToInvoice => "applied_to_invoice",
+                CustomerBalanceTransactionModelAction.ManualAdjustment => "manual_adjustment",
+                CustomerBalanceTransactionModelAction.ProratedRefund => "prorated_refund",
+                CustomerBalanceTransactionModelAction.RevertProratedRefund =>
+                    "revert_prorated_refund",
+                CustomerBalanceTransactionModelAction.ReturnFromVoiding => "return_from_voiding",
+                CustomerBalanceTransactionModelAction.CreditNoteApplied => "credit_note_applied",
+                CustomerBalanceTransactionModelAction.CreditNoteVoided => "credit_note_voided",
+                CustomerBalanceTransactionModelAction.OverpaymentRefund => "overpayment_refund",
+                CustomerBalanceTransactionModelAction.ExternalPayment => "external_payment",
+                CustomerBalanceTransactionModelAction.SmallInvoiceCarryover =>
+                    "small_invoice_carryover",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1974,16 +1979,17 @@ sealed class ActionModelConverter : JsonConverter<ActionModel>
     }
 }
 
-[JsonConverter(typeof(Type2Converter))]
-public enum Type2
+[JsonConverter(typeof(CustomerBalanceTransactionModelTypeConverter))]
+public enum CustomerBalanceTransactionModelType
 {
     Increment,
     Decrement,
 }
 
-sealed class Type2Converter : JsonConverter<Type2>
+sealed class CustomerBalanceTransactionModelTypeConverter
+    : JsonConverter<CustomerBalanceTransactionModelType>
 {
-    public override Type2 Read(
+    public override CustomerBalanceTransactionModelType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1991,20 +1997,24 @@ sealed class Type2Converter : JsonConverter<Type2>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "increment" => Type2.Increment,
-            "decrement" => Type2.Decrement,
-            _ => (Type2)(-1),
+            "increment" => CustomerBalanceTransactionModelType.Increment,
+            "decrement" => CustomerBalanceTransactionModelType.Decrement,
+            _ => (CustomerBalanceTransactionModelType)(-1),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Type2 value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        CustomerBalanceTransactionModelType value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                Type2.Increment => "increment",
-                Type2.Decrement => "decrement",
+                CustomerBalanceTransactionModelType.Increment => "increment",
+                CustomerBalanceTransactionModelType.Decrement => "decrement",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -2014,17 +2024,17 @@ sealed class Type2Converter : JsonConverter<Type2>
     }
 }
 
-[JsonConverter(typeof(InvoiceSourceModelConverter))]
-public enum InvoiceSourceModel
+[JsonConverter(typeof(InvoiceInvoiceSourceConverter))]
+public enum InvoiceInvoiceSource
 {
     Subscription,
     Partial,
     OneOff,
 }
 
-sealed class InvoiceSourceModelConverter : JsonConverter<InvoiceSourceModel>
+sealed class InvoiceInvoiceSourceConverter : JsonConverter<InvoiceInvoiceSource>
 {
-    public override InvoiceSourceModel Read(
+    public override InvoiceInvoiceSource Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -2032,16 +2042,16 @@ sealed class InvoiceSourceModelConverter : JsonConverter<InvoiceSourceModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "subscription" => InvoiceSourceModel.Subscription,
-            "partial" => InvoiceSourceModel.Partial,
-            "one_off" => InvoiceSourceModel.OneOff,
-            _ => (InvoiceSourceModel)(-1),
+            "subscription" => InvoiceInvoiceSource.Subscription,
+            "partial" => InvoiceInvoiceSource.Partial,
+            "one_off" => InvoiceInvoiceSource.OneOff,
+            _ => (InvoiceInvoiceSource)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        InvoiceSourceModel value,
+        InvoiceInvoiceSource value,
         JsonSerializerOptions options
     )
     {
@@ -2049,9 +2059,9 @@ sealed class InvoiceSourceModelConverter : JsonConverter<InvoiceSourceModel>
             writer,
             value switch
             {
-                InvoiceSourceModel.Subscription => "subscription",
-                InvoiceSourceModel.Partial => "partial",
-                InvoiceSourceModel.OneOff => "one_off",
+                InvoiceInvoiceSource.Subscription => "subscription",
+                InvoiceInvoiceSource.Partial => "partial",
+                InvoiceInvoiceSource.OneOff => "one_off",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -2129,7 +2139,7 @@ public sealed record class LineItem1 : ModelBase, IFromRaw<LineItem1>
     /// on invoice calculations (ie. usage discounts -> amount discounts -> percentage
     /// discounts -> minimums -> maximums).
     /// </summary>
-    public required List<Adjustment1> Adjustments
+    public required List<AdjustmentModel> Adjustments
     {
         get
         {
@@ -2142,7 +2152,7 @@ public sealed record class LineItem1 : ModelBase, IFromRaw<LineItem1>
                     )
                 );
 
-            return JsonSerializer.Deserialize<List<Adjustment1>>(
+            return JsonSerializer.Deserialize<List<AdjustmentModel>>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -2223,14 +2233,17 @@ public sealed record class LineItem1 : ModelBase, IFromRaw<LineItem1>
     /// <summary>
     /// This field is deprecated in favor of `adjustments`
     /// </summary>
-    public required Discount1? Discount
+    public required SharedDiscount? Discount
     {
         get
         {
             if (!this._properties.TryGetValue("discount", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Discount1?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<SharedDiscount?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -2717,8 +2730,8 @@ public sealed record class LineItem1 : ModelBase, IFromRaw<LineItem1>
     }
 }
 
-[JsonConverter(typeof(Adjustment1Converter))]
-public record class Adjustment1
+[JsonConverter(typeof(AdjustmentModelConverter))]
+public record class AdjustmentModel
 {
     public object Value { get; private init; }
 
@@ -2792,37 +2805,37 @@ public record class Adjustment1
         }
     }
 
-    public Adjustment1(MonetaryUsageDiscountAdjustment value)
+    public AdjustmentModel(MonetaryUsageDiscountAdjustment value)
     {
         Value = value;
     }
 
-    public Adjustment1(MonetaryAmountDiscountAdjustment value)
+    public AdjustmentModel(MonetaryAmountDiscountAdjustment value)
     {
         Value = value;
     }
 
-    public Adjustment1(MonetaryPercentageDiscountAdjustment value)
+    public AdjustmentModel(MonetaryPercentageDiscountAdjustment value)
     {
         Value = value;
     }
 
-    public Adjustment1(MonetaryMinimumAdjustment value)
+    public AdjustmentModel(MonetaryMinimumAdjustment value)
     {
         Value = value;
     }
 
-    public Adjustment1(MonetaryMaximumAdjustment value)
+    public AdjustmentModel(MonetaryMaximumAdjustment value)
     {
         Value = value;
     }
 
-    Adjustment1(UnknownVariant value)
+    AdjustmentModel(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static Adjustment1 CreateUnknownVariant(JsonElement value)
+    public static AdjustmentModel CreateUnknownVariant(JsonElement value)
     {
         return new(new UnknownVariant(value));
     }
@@ -2889,7 +2902,9 @@ public record class Adjustment1
                 monetaryMaximum(value);
                 break;
             default:
-                throw new OrbInvalidDataException("Data did not match any variant of Adjustment1");
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of AdjustmentModel"
+                );
         }
     }
 
@@ -2908,37 +2923,39 @@ public record class Adjustment1
             MonetaryPercentageDiscountAdjustment value => monetaryPercentageDiscount(value),
             MonetaryMinimumAdjustment value => monetaryMinimum(value),
             MonetaryMaximumAdjustment value => monetaryMaximum(value),
-            _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment1"),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of AdjustmentModel"
+            ),
         };
     }
 
-    public static implicit operator Adjustment1(MonetaryUsageDiscountAdjustment value) =>
+    public static implicit operator AdjustmentModel(MonetaryUsageDiscountAdjustment value) =>
         new(value);
 
-    public static implicit operator Adjustment1(MonetaryAmountDiscountAdjustment value) =>
+    public static implicit operator AdjustmentModel(MonetaryAmountDiscountAdjustment value) =>
         new(value);
 
-    public static implicit operator Adjustment1(MonetaryPercentageDiscountAdjustment value) =>
+    public static implicit operator AdjustmentModel(MonetaryPercentageDiscountAdjustment value) =>
         new(value);
 
-    public static implicit operator Adjustment1(MonetaryMinimumAdjustment value) => new(value);
+    public static implicit operator AdjustmentModel(MonetaryMinimumAdjustment value) => new(value);
 
-    public static implicit operator Adjustment1(MonetaryMaximumAdjustment value) => new(value);
+    public static implicit operator AdjustmentModel(MonetaryMaximumAdjustment value) => new(value);
 
     public void Validate()
     {
         if (this.Value is UnknownVariant)
         {
-            throw new OrbInvalidDataException("Data did not match any variant of Adjustment1");
+            throw new OrbInvalidDataException("Data did not match any variant of AdjustmentModel");
         }
     }
 
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class Adjustment1Converter : JsonConverter<Adjustment1>
+sealed class AdjustmentModelConverter : JsonConverter<AdjustmentModel>
 {
-    public override Adjustment1? Read(
+    public override AdjustmentModel? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -2970,7 +2987,7 @@ sealed class Adjustment1Converter : JsonConverter<Adjustment1>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Adjustment1(deserialized);
+                        return new AdjustmentModel(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -2999,7 +3016,7 @@ sealed class Adjustment1Converter : JsonConverter<Adjustment1>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Adjustment1(deserialized);
+                        return new AdjustmentModel(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -3029,7 +3046,7 @@ sealed class Adjustment1Converter : JsonConverter<Adjustment1>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Adjustment1(deserialized);
+                        return new AdjustmentModel(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -3058,7 +3075,7 @@ sealed class Adjustment1Converter : JsonConverter<Adjustment1>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Adjustment1(deserialized);
+                        return new AdjustmentModel(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -3087,7 +3104,7 @@ sealed class Adjustment1Converter : JsonConverter<Adjustment1>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Adjustment1(deserialized);
+                        return new AdjustmentModel(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -3114,7 +3131,7 @@ sealed class Adjustment1Converter : JsonConverter<Adjustment1>
 
     public override void Write(
         Utf8JsonWriter writer,
-        Adjustment1 value,
+        AdjustmentModel value,
         JsonSerializerOptions options
     )
     {
@@ -3477,14 +3494,14 @@ public sealed record class PaymentAttemptModel : ModelBase, IFromRaw<PaymentAtte
     /// <summary>
     /// The payment provider that attempted to collect the payment.
     /// </summary>
-    public required ApiEnum<string, PaymentProviderModel>? PaymentProvider
+    public required ApiEnum<string, PaymentAttemptModelPaymentProvider>? PaymentProvider
     {
         get
         {
             if (!this._properties.TryGetValue("payment_provider", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, PaymentProviderModel>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, PaymentAttemptModelPaymentProvider>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -3605,15 +3622,16 @@ public sealed record class PaymentAttemptModel : ModelBase, IFromRaw<PaymentAtte
 /// <summary>
 /// The payment provider that attempted to collect the payment.
 /// </summary>
-[JsonConverter(typeof(PaymentProviderModelConverter))]
-public enum PaymentProviderModel
+[JsonConverter(typeof(PaymentAttemptModelPaymentProviderConverter))]
+public enum PaymentAttemptModelPaymentProvider
 {
     Stripe,
 }
 
-sealed class PaymentProviderModelConverter : JsonConverter<PaymentProviderModel>
+sealed class PaymentAttemptModelPaymentProviderConverter
+    : JsonConverter<PaymentAttemptModelPaymentProvider>
 {
-    public override PaymentProviderModel Read(
+    public override PaymentAttemptModelPaymentProvider Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -3621,14 +3639,14 @@ sealed class PaymentProviderModelConverter : JsonConverter<PaymentProviderModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "stripe" => PaymentProviderModel.Stripe,
-            _ => (PaymentProviderModel)(-1),
+            "stripe" => PaymentAttemptModelPaymentProvider.Stripe,
+            _ => (PaymentAttemptModelPaymentProvider)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        PaymentProviderModel value,
+        PaymentAttemptModelPaymentProvider value,
         JsonSerializerOptions options
     )
     {
@@ -3636,7 +3654,7 @@ sealed class PaymentProviderModelConverter : JsonConverter<PaymentProviderModel>
             writer,
             value switch
             {
-                PaymentProviderModel.Stripe => "stripe",
+                PaymentAttemptModelPaymentProvider.Stripe => "stripe",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -3646,8 +3664,8 @@ sealed class PaymentProviderModelConverter : JsonConverter<PaymentProviderModel>
     }
 }
 
-[JsonConverter(typeof(StatusModelConverter))]
-public enum StatusModel
+[JsonConverter(typeof(InvoiceStatusConverter))]
+public enum InvoiceStatus
 {
     Issued,
     Paid,
@@ -3656,9 +3674,9 @@ public enum StatusModel
     Draft,
 }
 
-sealed class StatusModelConverter : JsonConverter<StatusModel>
+sealed class InvoiceStatusConverter : JsonConverter<InvoiceStatus>
 {
-    public override StatusModel Read(
+    public override InvoiceStatus Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -3666,18 +3684,18 @@ sealed class StatusModelConverter : JsonConverter<StatusModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "issued" => StatusModel.Issued,
-            "paid" => StatusModel.Paid,
-            "synced" => StatusModel.Synced,
-            "void" => StatusModel.Void,
-            "draft" => StatusModel.Draft,
-            _ => (StatusModel)(-1),
+            "issued" => InvoiceStatus.Issued,
+            "paid" => InvoiceStatus.Paid,
+            "synced" => InvoiceStatus.Synced,
+            "void" => InvoiceStatus.Void,
+            "draft" => InvoiceStatus.Draft,
+            _ => (InvoiceStatus)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        StatusModel value,
+        InvoiceStatus value,
         JsonSerializerOptions options
     )
     {
@@ -3685,11 +3703,11 @@ sealed class StatusModelConverter : JsonConverter<StatusModel>
             writer,
             value switch
             {
-                StatusModel.Issued => "issued",
-                StatusModel.Paid => "paid",
-                StatusModel.Synced => "synced",
-                StatusModel.Void => "void",
-                StatusModel.Draft => "draft",
+                InvoiceStatus.Issued => "issued",
+                InvoiceStatus.Paid => "paid",
+                InvoiceStatus.Synced => "synced",
+                InvoiceStatus.Void => "void",
+                InvoiceStatus.Draft => "draft",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

@@ -3158,12 +3158,12 @@ public record class ConversionRateConfig
 {
     public object Value { get; private init; }
 
-    public ConversionRateConfig(UnitConversionRateConfig value)
+    public ConversionRateConfig(SharedUnitConversionRateConfig value)
     {
         Value = value;
     }
 
-    public ConversionRateConfig(TieredConversionRateConfig value)
+    public ConversionRateConfig(SharedTieredConversionRateConfig value)
     {
         Value = value;
     }
@@ -3180,29 +3180,29 @@ public record class ConversionRateConfig
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
-        value = this.Value as UnitConversionRateConfig;
+        value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
-    public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
-        value = this.Value as TieredConversionRateConfig;
+        value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
     public void Switch(
-        System::Action<UnitConversionRateConfig> unit,
-        System::Action<TieredConversionRateConfig> tiered
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
     )
     {
         switch (this.Value)
         {
-            case UnitConversionRateConfig value:
+            case SharedUnitConversionRateConfig value:
                 unit(value);
                 break;
-            case TieredConversionRateConfig value:
+            case SharedTieredConversionRateConfig value:
                 tiered(value);
                 break;
             default:
@@ -3213,14 +3213,14 @@ public record class ConversionRateConfig
     }
 
     public T Match<T>(
-        System::Func<UnitConversionRateConfig, T> unit,
-        System::Func<TieredConversionRateConfig, T> tiered
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
     )
     {
         return this.Value switch
         {
-            UnitConversionRateConfig value => unit(value),
-            TieredConversionRateConfig value => tiered(value),
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of ConversionRateConfig"
             ),
@@ -3228,11 +3228,11 @@ public record class ConversionRateConfig
     }
 
     public static implicit operator global::Orb.Models.Prices.ConversionRateConfig(
-        UnitConversionRateConfig value
+        SharedUnitConversionRateConfig value
     ) => new(value);
 
     public static implicit operator global::Orb.Models.Prices.ConversionRateConfig(
-        TieredConversionRateConfig value
+        SharedTieredConversionRateConfig value
     ) => new(value);
 
     public void Validate()
@@ -3276,7 +3276,7 @@ sealed class ConversionRateConfigConverter
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
                         json,
                         options
                     );
@@ -3291,7 +3291,7 @@ sealed class ConversionRateConfigConverter
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'UnitConversionRateConfig'",
+                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
                             e
                         )
                     );
@@ -3305,7 +3305,7 @@ sealed class ConversionRateConfigConverter
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
                         json,
                         options
                     );
@@ -3320,7 +3320,7 @@ sealed class ConversionRateConfigConverter
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'TieredConversionRateConfig'",
+                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
                             e
                         )
                     );
@@ -3356,7 +3356,10 @@ public sealed record class GroupedWithMinMaxThresholds
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Prices.CadenceModel> Cadence
+    public required ApiEnum<
+        string,
+        global::Orb.Models.Prices.GroupedWithMinMaxThresholdsCadence
+    > Cadence
     {
         get
         {
@@ -3367,7 +3370,7 @@ public sealed record class GroupedWithMinMaxThresholds
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Prices.CadenceModel>
+                ApiEnum<string, global::Orb.Models.Prices.GroupedWithMinMaxThresholdsCadence>
             >(element, ModelBase.SerializerOptions);
         }
         init
@@ -3475,7 +3478,7 @@ public sealed record class GroupedWithMinMaxThresholds
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public global::Orb.Models.Prices.ModelTypeModel ModelType
+    public global::Orb.Models.Prices.GroupedWithMinMaxThresholdsModelType ModelType
     {
         get
         {
@@ -3488,7 +3491,7 @@ public sealed record class GroupedWithMinMaxThresholds
                     )
                 );
 
-            return JsonSerializer.Deserialize<global::Orb.Models.Prices.ModelTypeModel>(
+            return JsonSerializer.Deserialize<global::Orb.Models.Prices.GroupedWithMinMaxThresholdsModelType>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -3631,14 +3634,14 @@ public sealed record class GroupedWithMinMaxThresholds
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public global::Orb.Models.Prices.ConversionRateConfigModel? ConversionRateConfig
+    public global::Orb.Models.Prices.GroupedWithMinMaxThresholdsConversionRateConfig? ConversionRateConfig
     {
         get
         {
             if (!this._properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<global::Orb.Models.Prices.ConversionRateConfigModel?>(
+            return JsonSerializer.Deserialize<global::Orb.Models.Prices.GroupedWithMinMaxThresholdsConversionRateConfig?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -3852,8 +3855,8 @@ public sealed record class GroupedWithMinMaxThresholds
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Prices.CadenceModelConverter))]
-public enum CadenceModel
+[JsonConverter(typeof(global::Orb.Models.Prices.GroupedWithMinMaxThresholdsCadenceConverter))]
+public enum GroupedWithMinMaxThresholdsCadence
 {
     Annual,
     SemiAnnual,
@@ -3863,9 +3866,10 @@ public enum CadenceModel
     Custom,
 }
 
-sealed class CadenceModelConverter : JsonConverter<global::Orb.Models.Prices.CadenceModel>
+sealed class GroupedWithMinMaxThresholdsCadenceConverter
+    : JsonConverter<global::Orb.Models.Prices.GroupedWithMinMaxThresholdsCadence>
 {
-    public override global::Orb.Models.Prices.CadenceModel Read(
+    public override global::Orb.Models.Prices.GroupedWithMinMaxThresholdsCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -3873,19 +3877,23 @@ sealed class CadenceModelConverter : JsonConverter<global::Orb.Models.Prices.Cad
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => global::Orb.Models.Prices.CadenceModel.Annual,
-            "semi_annual" => global::Orb.Models.Prices.CadenceModel.SemiAnnual,
-            "monthly" => global::Orb.Models.Prices.CadenceModel.Monthly,
-            "quarterly" => global::Orb.Models.Prices.CadenceModel.Quarterly,
-            "one_time" => global::Orb.Models.Prices.CadenceModel.OneTime,
-            "custom" => global::Orb.Models.Prices.CadenceModel.Custom,
-            _ => (global::Orb.Models.Prices.CadenceModel)(-1),
+            "annual" => global::Orb.Models.Prices.GroupedWithMinMaxThresholdsCadence.Annual,
+            "semi_annual" => global::Orb
+                .Models
+                .Prices
+                .GroupedWithMinMaxThresholdsCadence
+                .SemiAnnual,
+            "monthly" => global::Orb.Models.Prices.GroupedWithMinMaxThresholdsCadence.Monthly,
+            "quarterly" => global::Orb.Models.Prices.GroupedWithMinMaxThresholdsCadence.Quarterly,
+            "one_time" => global::Orb.Models.Prices.GroupedWithMinMaxThresholdsCadence.OneTime,
+            "custom" => global::Orb.Models.Prices.GroupedWithMinMaxThresholdsCadence.Custom,
+            _ => (global::Orb.Models.Prices.GroupedWithMinMaxThresholdsCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Prices.CadenceModel value,
+        global::Orb.Models.Prices.GroupedWithMinMaxThresholdsCadence value,
         JsonSerializerOptions options
     )
     {
@@ -3893,12 +3901,14 @@ sealed class CadenceModelConverter : JsonConverter<global::Orb.Models.Prices.Cad
             writer,
             value switch
             {
-                global::Orb.Models.Prices.CadenceModel.Annual => "annual",
-                global::Orb.Models.Prices.CadenceModel.SemiAnnual => "semi_annual",
-                global::Orb.Models.Prices.CadenceModel.Monthly => "monthly",
-                global::Orb.Models.Prices.CadenceModel.Quarterly => "quarterly",
-                global::Orb.Models.Prices.CadenceModel.OneTime => "one_time",
-                global::Orb.Models.Prices.CadenceModel.Custom => "custom",
+                global::Orb.Models.Prices.GroupedWithMinMaxThresholdsCadence.Annual => "annual",
+                global::Orb.Models.Prices.GroupedWithMinMaxThresholdsCadence.SemiAnnual =>
+                    "semi_annual",
+                global::Orb.Models.Prices.GroupedWithMinMaxThresholdsCadence.Monthly => "monthly",
+                global::Orb.Models.Prices.GroupedWithMinMaxThresholdsCadence.Quarterly =>
+                    "quarterly",
+                global::Orb.Models.Prices.GroupedWithMinMaxThresholdsCadence.OneTime => "one_time",
+                global::Orb.Models.Prices.GroupedWithMinMaxThresholdsCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -4075,31 +4085,38 @@ public sealed record class GroupedWithMinMaxThresholdsConfig
 /// The pricing model type
 /// </summary>
 [JsonConverter(typeof(Converter))]
-public class ModelTypeModel
+public class GroupedWithMinMaxThresholdsModelType
 {
     public JsonElement Json { get; private init; }
 
-    public ModelTypeModel()
+    public GroupedWithMinMaxThresholdsModelType()
     {
         Json = JsonSerializer.Deserialize<JsonElement>("\"grouped_with_min_max_thresholds\"");
     }
 
-    ModelTypeModel(JsonElement json)
+    GroupedWithMinMaxThresholdsModelType(JsonElement json)
     {
         Json = json;
     }
 
     public void Validate()
     {
-        if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Prices.ModelTypeModel().Json))
+        if (
+            JsonElement.DeepEquals(
+                this.Json,
+                new global::Orb.Models.Prices.GroupedWithMinMaxThresholdsModelType().Json
+            )
+        )
         {
-            throw new OrbInvalidDataException("Invalid value given for 'ModelTypeModel'");
+            throw new OrbInvalidDataException(
+                "Invalid value given for 'GroupedWithMinMaxThresholdsModelType'"
+            );
         }
     }
 
-    class Converter : JsonConverter<global::Orb.Models.Prices.ModelTypeModel>
+    class Converter : JsonConverter<global::Orb.Models.Prices.GroupedWithMinMaxThresholdsModelType>
     {
-        public override global::Orb.Models.Prices.ModelTypeModel? Read(
+        public override global::Orb.Models.Prices.GroupedWithMinMaxThresholdsModelType? Read(
             ref Utf8JsonReader reader,
             System::Type typeToConvert,
             JsonSerializerOptions options
@@ -4110,7 +4127,7 @@ public class ModelTypeModel
 
         public override void Write(
             Utf8JsonWriter writer,
-            global::Orb.Models.Prices.ModelTypeModel value,
+            global::Orb.Models.Prices.GroupedWithMinMaxThresholdsModelType value,
             JsonSerializerOptions options
         )
         {
@@ -4119,86 +4136,88 @@ public class ModelTypeModel
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Prices.ConversionRateConfigModelConverter))]
-public record class ConversionRateConfigModel
+[JsonConverter(
+    typeof(global::Orb.Models.Prices.GroupedWithMinMaxThresholdsConversionRateConfigConverter)
+)]
+public record class GroupedWithMinMaxThresholdsConversionRateConfig
 {
     public object Value { get; private init; }
 
-    public ConversionRateConfigModel(UnitConversionRateConfig value)
+    public GroupedWithMinMaxThresholdsConversionRateConfig(SharedUnitConversionRateConfig value)
     {
         Value = value;
     }
 
-    public ConversionRateConfigModel(TieredConversionRateConfig value)
+    public GroupedWithMinMaxThresholdsConversionRateConfig(SharedTieredConversionRateConfig value)
     {
         Value = value;
     }
 
-    ConversionRateConfigModel(UnknownVariant value)
+    GroupedWithMinMaxThresholdsConversionRateConfig(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static global::Orb.Models.Prices.ConversionRateConfigModel CreateUnknownVariant(
+    public static global::Orb.Models.Prices.GroupedWithMinMaxThresholdsConversionRateConfig CreateUnknownVariant(
         JsonElement value
     )
     {
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
-        value = this.Value as UnitConversionRateConfig;
+        value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
-    public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
-        value = this.Value as TieredConversionRateConfig;
+        value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
     public void Switch(
-        System::Action<UnitConversionRateConfig> unit,
-        System::Action<TieredConversionRateConfig> tiered
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
     )
     {
         switch (this.Value)
         {
-            case UnitConversionRateConfig value:
+            case SharedUnitConversionRateConfig value:
                 unit(value);
                 break;
-            case TieredConversionRateConfig value:
+            case SharedTieredConversionRateConfig value:
                 tiered(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of ConversionRateConfigModel"
+                    "Data did not match any variant of GroupedWithMinMaxThresholdsConversionRateConfig"
                 );
         }
     }
 
     public T Match<T>(
-        System::Func<UnitConversionRateConfig, T> unit,
-        System::Func<TieredConversionRateConfig, T> tiered
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
     )
     {
         return this.Value switch
         {
-            UnitConversionRateConfig value => unit(value),
-            TieredConversionRateConfig value => tiered(value),
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfigModel"
+                "Data did not match any variant of GroupedWithMinMaxThresholdsConversionRateConfig"
             ),
         };
     }
 
-    public static implicit operator global::Orb.Models.Prices.ConversionRateConfigModel(
-        UnitConversionRateConfig value
+    public static implicit operator global::Orb.Models.Prices.GroupedWithMinMaxThresholdsConversionRateConfig(
+        SharedUnitConversionRateConfig value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Prices.ConversionRateConfigModel(
-        TieredConversionRateConfig value
+    public static implicit operator global::Orb.Models.Prices.GroupedWithMinMaxThresholdsConversionRateConfig(
+        SharedTieredConversionRateConfig value
     ) => new(value);
 
     public void Validate()
@@ -4206,7 +4225,7 @@ public record class ConversionRateConfigModel
         if (this.Value is UnknownVariant)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfigModel"
+                "Data did not match any variant of GroupedWithMinMaxThresholdsConversionRateConfig"
             );
         }
     }
@@ -4214,10 +4233,10 @@ public record class ConversionRateConfigModel
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class ConversionRateConfigModelConverter
-    : JsonConverter<global::Orb.Models.Prices.ConversionRateConfigModel>
+sealed class GroupedWithMinMaxThresholdsConversionRateConfigConverter
+    : JsonConverter<global::Orb.Models.Prices.GroupedWithMinMaxThresholdsConversionRateConfig>
 {
-    public override global::Orb.Models.Prices.ConversionRateConfigModel? Read(
+    public override global::Orb.Models.Prices.GroupedWithMinMaxThresholdsConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -4242,14 +4261,14 @@ sealed class ConversionRateConfigModelConverter
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Prices.ConversionRateConfigModel(
+                        return new global::Orb.Models.Prices.GroupedWithMinMaxThresholdsConversionRateConfig(
                             deserialized
                         );
                     }
@@ -4259,7 +4278,7 @@ sealed class ConversionRateConfigModelConverter
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'UnitConversionRateConfig'",
+                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
                             e
                         )
                     );
@@ -4273,14 +4292,14 @@ sealed class ConversionRateConfigModelConverter
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Prices.ConversionRateConfigModel(
+                        return new global::Orb.Models.Prices.GroupedWithMinMaxThresholdsConversionRateConfig(
                             deserialized
                         );
                     }
@@ -4290,7 +4309,7 @@ sealed class ConversionRateConfigModelConverter
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'TieredConversionRateConfig'",
+                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
                             e
                         )
                     );
@@ -4309,7 +4328,7 @@ sealed class ConversionRateConfigModelConverter
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Prices.ConversionRateConfigModel value,
+        global::Orb.Models.Prices.GroupedWithMinMaxThresholdsConversionRateConfig value,
         JsonSerializerOptions options
     )
     {
@@ -4324,7 +4343,7 @@ public sealed record class Percent : ModelBase, IFromRaw<global::Orb.Models.Pric
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Prices.Cadence1> Cadence
+    public required ApiEnum<string, global::Orb.Models.Prices.PercentCadence> Cadence
     {
         get
         {
@@ -4334,10 +4353,9 @@ public sealed record class Percent : ModelBase, IFromRaw<global::Orb.Models.Pric
                     new System::ArgumentOutOfRangeException("cadence", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, global::Orb.Models.Prices.Cadence1>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, global::Orb.Models.Prices.PercentCadence>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -4407,7 +4425,7 @@ public sealed record class Percent : ModelBase, IFromRaw<global::Orb.Models.Pric
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public global::Orb.Models.Prices.ModelType1 ModelType
+    public global::Orb.Models.Prices.PercentModelType ModelType
     {
         get
         {
@@ -4420,7 +4438,7 @@ public sealed record class Percent : ModelBase, IFromRaw<global::Orb.Models.Pric
                     )
                 );
 
-            return JsonSerializer.Deserialize<global::Orb.Models.Prices.ModelType1>(
+            return JsonSerializer.Deserialize<global::Orb.Models.Prices.PercentModelType>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -4597,14 +4615,14 @@ public sealed record class Percent : ModelBase, IFromRaw<global::Orb.Models.Pric
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public global::Orb.Models.Prices.ConversionRateConfig1? ConversionRateConfig
+    public global::Orb.Models.Prices.PercentConversionRateConfig? ConversionRateConfig
     {
         get
         {
             if (!this._properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<global::Orb.Models.Prices.ConversionRateConfig1?>(
+            return JsonSerializer.Deserialize<global::Orb.Models.Prices.PercentConversionRateConfig?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -4818,8 +4836,8 @@ public sealed record class Percent : ModelBase, IFromRaw<global::Orb.Models.Pric
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Prices.Cadence1Converter))]
-public enum Cadence1
+[JsonConverter(typeof(global::Orb.Models.Prices.PercentCadenceConverter))]
+public enum PercentCadence
 {
     Annual,
     SemiAnnual,
@@ -4829,9 +4847,9 @@ public enum Cadence1
     Custom,
 }
 
-sealed class Cadence1Converter : JsonConverter<global::Orb.Models.Prices.Cadence1>
+sealed class PercentCadenceConverter : JsonConverter<global::Orb.Models.Prices.PercentCadence>
 {
-    public override global::Orb.Models.Prices.Cadence1 Read(
+    public override global::Orb.Models.Prices.PercentCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -4839,19 +4857,19 @@ sealed class Cadence1Converter : JsonConverter<global::Orb.Models.Prices.Cadence
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => global::Orb.Models.Prices.Cadence1.Annual,
-            "semi_annual" => global::Orb.Models.Prices.Cadence1.SemiAnnual,
-            "monthly" => global::Orb.Models.Prices.Cadence1.Monthly,
-            "quarterly" => global::Orb.Models.Prices.Cadence1.Quarterly,
-            "one_time" => global::Orb.Models.Prices.Cadence1.OneTime,
-            "custom" => global::Orb.Models.Prices.Cadence1.Custom,
-            _ => (global::Orb.Models.Prices.Cadence1)(-1),
+            "annual" => global::Orb.Models.Prices.PercentCadence.Annual,
+            "semi_annual" => global::Orb.Models.Prices.PercentCadence.SemiAnnual,
+            "monthly" => global::Orb.Models.Prices.PercentCadence.Monthly,
+            "quarterly" => global::Orb.Models.Prices.PercentCadence.Quarterly,
+            "one_time" => global::Orb.Models.Prices.PercentCadence.OneTime,
+            "custom" => global::Orb.Models.Prices.PercentCadence.Custom,
+            _ => (global::Orb.Models.Prices.PercentCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Prices.Cadence1 value,
+        global::Orb.Models.Prices.PercentCadence value,
         JsonSerializerOptions options
     )
     {
@@ -4859,12 +4877,12 @@ sealed class Cadence1Converter : JsonConverter<global::Orb.Models.Prices.Cadence
             writer,
             value switch
             {
-                global::Orb.Models.Prices.Cadence1.Annual => "annual",
-                global::Orb.Models.Prices.Cadence1.SemiAnnual => "semi_annual",
-                global::Orb.Models.Prices.Cadence1.Monthly => "monthly",
-                global::Orb.Models.Prices.Cadence1.Quarterly => "quarterly",
-                global::Orb.Models.Prices.Cadence1.OneTime => "one_time",
-                global::Orb.Models.Prices.Cadence1.Custom => "custom",
+                global::Orb.Models.Prices.PercentCadence.Annual => "annual",
+                global::Orb.Models.Prices.PercentCadence.SemiAnnual => "semi_annual",
+                global::Orb.Models.Prices.PercentCadence.Monthly => "monthly",
+                global::Orb.Models.Prices.PercentCadence.Quarterly => "quarterly",
+                global::Orb.Models.Prices.PercentCadence.OneTime => "one_time",
+                global::Orb.Models.Prices.PercentCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -4878,31 +4896,33 @@ sealed class Cadence1Converter : JsonConverter<global::Orb.Models.Prices.Cadence
 /// The pricing model type
 /// </summary>
 [JsonConverter(typeof(Converter))]
-public class ModelType1
+public class PercentModelType
 {
     public JsonElement Json { get; private init; }
 
-    public ModelType1()
+    public PercentModelType()
     {
         Json = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
     }
 
-    ModelType1(JsonElement json)
+    PercentModelType(JsonElement json)
     {
         Json = json;
     }
 
     public void Validate()
     {
-        if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Prices.ModelType1().Json))
+        if (
+            JsonElement.DeepEquals(this.Json, new global::Orb.Models.Prices.PercentModelType().Json)
+        )
         {
-            throw new OrbInvalidDataException("Invalid value given for 'ModelType1'");
+            throw new OrbInvalidDataException("Invalid value given for 'PercentModelType'");
         }
     }
 
-    class Converter : JsonConverter<global::Orb.Models.Prices.ModelType1>
+    class Converter : JsonConverter<global::Orb.Models.Prices.PercentModelType>
     {
-        public override global::Orb.Models.Prices.ModelType1? Read(
+        public override global::Orb.Models.Prices.PercentModelType? Read(
             ref Utf8JsonReader reader,
             System::Type typeToConvert,
             JsonSerializerOptions options
@@ -4913,7 +4933,7 @@ public class ModelType1
 
         public override void Write(
             Utf8JsonWriter writer,
-            global::Orb.Models.Prices.ModelType1 value,
+            global::Orb.Models.Prices.PercentModelType value,
             JsonSerializerOptions options
         )
         {
@@ -4989,86 +5009,86 @@ public sealed record class PercentConfig
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Prices.ConversionRateConfig1Converter))]
-public record class ConversionRateConfig1
+[JsonConverter(typeof(global::Orb.Models.Prices.PercentConversionRateConfigConverter))]
+public record class PercentConversionRateConfig
 {
     public object Value { get; private init; }
 
-    public ConversionRateConfig1(UnitConversionRateConfig value)
+    public PercentConversionRateConfig(SharedUnitConversionRateConfig value)
     {
         Value = value;
     }
 
-    public ConversionRateConfig1(TieredConversionRateConfig value)
+    public PercentConversionRateConfig(SharedTieredConversionRateConfig value)
     {
         Value = value;
     }
 
-    ConversionRateConfig1(UnknownVariant value)
+    PercentConversionRateConfig(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static global::Orb.Models.Prices.ConversionRateConfig1 CreateUnknownVariant(
+    public static global::Orb.Models.Prices.PercentConversionRateConfig CreateUnknownVariant(
         JsonElement value
     )
     {
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
-        value = this.Value as UnitConversionRateConfig;
+        value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
-    public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
-        value = this.Value as TieredConversionRateConfig;
+        value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
     public void Switch(
-        System::Action<UnitConversionRateConfig> unit,
-        System::Action<TieredConversionRateConfig> tiered
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
     )
     {
         switch (this.Value)
         {
-            case UnitConversionRateConfig value:
+            case SharedUnitConversionRateConfig value:
                 unit(value);
                 break;
-            case TieredConversionRateConfig value:
+            case SharedTieredConversionRateConfig value:
                 tiered(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of ConversionRateConfig1"
+                    "Data did not match any variant of PercentConversionRateConfig"
                 );
         }
     }
 
     public T Match<T>(
-        System::Func<UnitConversionRateConfig, T> unit,
-        System::Func<TieredConversionRateConfig, T> tiered
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
     )
     {
         return this.Value switch
         {
-            UnitConversionRateConfig value => unit(value),
-            TieredConversionRateConfig value => tiered(value),
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig1"
+                "Data did not match any variant of PercentConversionRateConfig"
             ),
         };
     }
 
-    public static implicit operator global::Orb.Models.Prices.ConversionRateConfig1(
-        UnitConversionRateConfig value
+    public static implicit operator global::Orb.Models.Prices.PercentConversionRateConfig(
+        SharedUnitConversionRateConfig value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Prices.ConversionRateConfig1(
-        TieredConversionRateConfig value
+    public static implicit operator global::Orb.Models.Prices.PercentConversionRateConfig(
+        SharedTieredConversionRateConfig value
     ) => new(value);
 
     public void Validate()
@@ -5076,7 +5096,7 @@ public record class ConversionRateConfig1
         if (this.Value is UnknownVariant)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig1"
+                "Data did not match any variant of PercentConversionRateConfig"
             );
         }
     }
@@ -5084,10 +5104,10 @@ public record class ConversionRateConfig1
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class ConversionRateConfig1Converter
-    : JsonConverter<global::Orb.Models.Prices.ConversionRateConfig1>
+sealed class PercentConversionRateConfigConverter
+    : JsonConverter<global::Orb.Models.Prices.PercentConversionRateConfig>
 {
-    public override global::Orb.Models.Prices.ConversionRateConfig1? Read(
+    public override global::Orb.Models.Prices.PercentConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -5112,14 +5132,16 @@ sealed class ConversionRateConfig1Converter
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Prices.ConversionRateConfig1(deserialized);
+                        return new global::Orb.Models.Prices.PercentConversionRateConfig(
+                            deserialized
+                        );
                     }
                 }
                 catch (System::Exception e)
@@ -5127,7 +5149,7 @@ sealed class ConversionRateConfig1Converter
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'UnitConversionRateConfig'",
+                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
                             e
                         )
                     );
@@ -5141,14 +5163,16 @@ sealed class ConversionRateConfig1Converter
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Prices.ConversionRateConfig1(deserialized);
+                        return new global::Orb.Models.Prices.PercentConversionRateConfig(
+                            deserialized
+                        );
                     }
                 }
                 catch (System::Exception e)
@@ -5156,7 +5180,7 @@ sealed class ConversionRateConfig1Converter
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'TieredConversionRateConfig'",
+                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
                             e
                         )
                     );
@@ -5175,7 +5199,7 @@ sealed class ConversionRateConfig1Converter
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Prices.ConversionRateConfig1 value,
+        global::Orb.Models.Prices.PercentConversionRateConfig value,
         JsonSerializerOptions options
     )
     {
@@ -5190,7 +5214,7 @@ public sealed record class EventOutput : ModelBase, IFromRaw<global::Orb.Models.
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Prices.Cadence2> Cadence
+    public required ApiEnum<string, global::Orb.Models.Prices.EventOutputCadence> Cadence
     {
         get
         {
@@ -5200,10 +5224,9 @@ public sealed record class EventOutput : ModelBase, IFromRaw<global::Orb.Models.
                     new System::ArgumentOutOfRangeException("cadence", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, global::Orb.Models.Prices.Cadence2>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, global::Orb.Models.Prices.EventOutputCadence>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -5307,7 +5330,7 @@ public sealed record class EventOutput : ModelBase, IFromRaw<global::Orb.Models.
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public global::Orb.Models.Prices.ModelType2 ModelType
+    public global::Orb.Models.Prices.EventOutputModelType ModelType
     {
         get
         {
@@ -5320,7 +5343,7 @@ public sealed record class EventOutput : ModelBase, IFromRaw<global::Orb.Models.
                     )
                 );
 
-            return JsonSerializer.Deserialize<global::Orb.Models.Prices.ModelType2>(
+            return JsonSerializer.Deserialize<global::Orb.Models.Prices.EventOutputModelType>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -5463,14 +5486,14 @@ public sealed record class EventOutput : ModelBase, IFromRaw<global::Orb.Models.
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public global::Orb.Models.Prices.ConversionRateConfig2? ConversionRateConfig
+    public global::Orb.Models.Prices.EventOutputConversionRateConfig? ConversionRateConfig
     {
         get
         {
             if (!this._properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<global::Orb.Models.Prices.ConversionRateConfig2?>(
+            return JsonSerializer.Deserialize<global::Orb.Models.Prices.EventOutputConversionRateConfig?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -5684,8 +5707,8 @@ public sealed record class EventOutput : ModelBase, IFromRaw<global::Orb.Models.
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Prices.Cadence2Converter))]
-public enum Cadence2
+[JsonConverter(typeof(global::Orb.Models.Prices.EventOutputCadenceConverter))]
+public enum EventOutputCadence
 {
     Annual,
     SemiAnnual,
@@ -5695,9 +5718,10 @@ public enum Cadence2
     Custom,
 }
 
-sealed class Cadence2Converter : JsonConverter<global::Orb.Models.Prices.Cadence2>
+sealed class EventOutputCadenceConverter
+    : JsonConverter<global::Orb.Models.Prices.EventOutputCadence>
 {
-    public override global::Orb.Models.Prices.Cadence2 Read(
+    public override global::Orb.Models.Prices.EventOutputCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -5705,19 +5729,19 @@ sealed class Cadence2Converter : JsonConverter<global::Orb.Models.Prices.Cadence
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => global::Orb.Models.Prices.Cadence2.Annual,
-            "semi_annual" => global::Orb.Models.Prices.Cadence2.SemiAnnual,
-            "monthly" => global::Orb.Models.Prices.Cadence2.Monthly,
-            "quarterly" => global::Orb.Models.Prices.Cadence2.Quarterly,
-            "one_time" => global::Orb.Models.Prices.Cadence2.OneTime,
-            "custom" => global::Orb.Models.Prices.Cadence2.Custom,
-            _ => (global::Orb.Models.Prices.Cadence2)(-1),
+            "annual" => global::Orb.Models.Prices.EventOutputCadence.Annual,
+            "semi_annual" => global::Orb.Models.Prices.EventOutputCadence.SemiAnnual,
+            "monthly" => global::Orb.Models.Prices.EventOutputCadence.Monthly,
+            "quarterly" => global::Orb.Models.Prices.EventOutputCadence.Quarterly,
+            "one_time" => global::Orb.Models.Prices.EventOutputCadence.OneTime,
+            "custom" => global::Orb.Models.Prices.EventOutputCadence.Custom,
+            _ => (global::Orb.Models.Prices.EventOutputCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Prices.Cadence2 value,
+        global::Orb.Models.Prices.EventOutputCadence value,
         JsonSerializerOptions options
     )
     {
@@ -5725,12 +5749,12 @@ sealed class Cadence2Converter : JsonConverter<global::Orb.Models.Prices.Cadence
             writer,
             value switch
             {
-                global::Orb.Models.Prices.Cadence2.Annual => "annual",
-                global::Orb.Models.Prices.Cadence2.SemiAnnual => "semi_annual",
-                global::Orb.Models.Prices.Cadence2.Monthly => "monthly",
-                global::Orb.Models.Prices.Cadence2.Quarterly => "quarterly",
-                global::Orb.Models.Prices.Cadence2.OneTime => "one_time",
-                global::Orb.Models.Prices.Cadence2.Custom => "custom",
+                global::Orb.Models.Prices.EventOutputCadence.Annual => "annual",
+                global::Orb.Models.Prices.EventOutputCadence.SemiAnnual => "semi_annual",
+                global::Orb.Models.Prices.EventOutputCadence.Monthly => "monthly",
+                global::Orb.Models.Prices.EventOutputCadence.Quarterly => "quarterly",
+                global::Orb.Models.Prices.EventOutputCadence.OneTime => "one_time",
+                global::Orb.Models.Prices.EventOutputCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -5865,31 +5889,36 @@ public sealed record class EventOutputConfig
 /// The pricing model type
 /// </summary>
 [JsonConverter(typeof(Converter))]
-public class ModelType2
+public class EventOutputModelType
 {
     public JsonElement Json { get; private init; }
 
-    public ModelType2()
+    public EventOutputModelType()
     {
         Json = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
     }
 
-    ModelType2(JsonElement json)
+    EventOutputModelType(JsonElement json)
     {
         Json = json;
     }
 
     public void Validate()
     {
-        if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Prices.ModelType2().Json))
+        if (
+            JsonElement.DeepEquals(
+                this.Json,
+                new global::Orb.Models.Prices.EventOutputModelType().Json
+            )
+        )
         {
-            throw new OrbInvalidDataException("Invalid value given for 'ModelType2'");
+            throw new OrbInvalidDataException("Invalid value given for 'EventOutputModelType'");
         }
     }
 
-    class Converter : JsonConverter<global::Orb.Models.Prices.ModelType2>
+    class Converter : JsonConverter<global::Orb.Models.Prices.EventOutputModelType>
     {
-        public override global::Orb.Models.Prices.ModelType2? Read(
+        public override global::Orb.Models.Prices.EventOutputModelType? Read(
             ref Utf8JsonReader reader,
             System::Type typeToConvert,
             JsonSerializerOptions options
@@ -5900,7 +5929,7 @@ public class ModelType2
 
         public override void Write(
             Utf8JsonWriter writer,
-            global::Orb.Models.Prices.ModelType2 value,
+            global::Orb.Models.Prices.EventOutputModelType value,
             JsonSerializerOptions options
         )
         {
@@ -5909,86 +5938,86 @@ public class ModelType2
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Prices.ConversionRateConfig2Converter))]
-public record class ConversionRateConfig2
+[JsonConverter(typeof(global::Orb.Models.Prices.EventOutputConversionRateConfigConverter))]
+public record class EventOutputConversionRateConfig
 {
     public object Value { get; private init; }
 
-    public ConversionRateConfig2(UnitConversionRateConfig value)
+    public EventOutputConversionRateConfig(SharedUnitConversionRateConfig value)
     {
         Value = value;
     }
 
-    public ConversionRateConfig2(TieredConversionRateConfig value)
+    public EventOutputConversionRateConfig(SharedTieredConversionRateConfig value)
     {
         Value = value;
     }
 
-    ConversionRateConfig2(UnknownVariant value)
+    EventOutputConversionRateConfig(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static global::Orb.Models.Prices.ConversionRateConfig2 CreateUnknownVariant(
+    public static global::Orb.Models.Prices.EventOutputConversionRateConfig CreateUnknownVariant(
         JsonElement value
     )
     {
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
-        value = this.Value as UnitConversionRateConfig;
+        value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
-    public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
-        value = this.Value as TieredConversionRateConfig;
+        value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
     public void Switch(
-        System::Action<UnitConversionRateConfig> unit,
-        System::Action<TieredConversionRateConfig> tiered
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
     )
     {
         switch (this.Value)
         {
-            case UnitConversionRateConfig value:
+            case SharedUnitConversionRateConfig value:
                 unit(value);
                 break;
-            case TieredConversionRateConfig value:
+            case SharedTieredConversionRateConfig value:
                 tiered(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of ConversionRateConfig2"
+                    "Data did not match any variant of EventOutputConversionRateConfig"
                 );
         }
     }
 
     public T Match<T>(
-        System::Func<UnitConversionRateConfig, T> unit,
-        System::Func<TieredConversionRateConfig, T> tiered
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
     )
     {
         return this.Value switch
         {
-            UnitConversionRateConfig value => unit(value),
-            TieredConversionRateConfig value => tiered(value),
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig2"
+                "Data did not match any variant of EventOutputConversionRateConfig"
             ),
         };
     }
 
-    public static implicit operator global::Orb.Models.Prices.ConversionRateConfig2(
-        UnitConversionRateConfig value
+    public static implicit operator global::Orb.Models.Prices.EventOutputConversionRateConfig(
+        SharedUnitConversionRateConfig value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Prices.ConversionRateConfig2(
-        TieredConversionRateConfig value
+    public static implicit operator global::Orb.Models.Prices.EventOutputConversionRateConfig(
+        SharedTieredConversionRateConfig value
     ) => new(value);
 
     public void Validate()
@@ -5996,7 +6025,7 @@ public record class ConversionRateConfig2
         if (this.Value is UnknownVariant)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig2"
+                "Data did not match any variant of EventOutputConversionRateConfig"
             );
         }
     }
@@ -6004,10 +6033,10 @@ public record class ConversionRateConfig2
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class ConversionRateConfig2Converter
-    : JsonConverter<global::Orb.Models.Prices.ConversionRateConfig2>
+sealed class EventOutputConversionRateConfigConverter
+    : JsonConverter<global::Orb.Models.Prices.EventOutputConversionRateConfig>
 {
-    public override global::Orb.Models.Prices.ConversionRateConfig2? Read(
+    public override global::Orb.Models.Prices.EventOutputConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -6032,14 +6061,16 @@ sealed class ConversionRateConfig2Converter
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Prices.ConversionRateConfig2(deserialized);
+                        return new global::Orb.Models.Prices.EventOutputConversionRateConfig(
+                            deserialized
+                        );
                     }
                 }
                 catch (System::Exception e)
@@ -6047,7 +6078,7 @@ sealed class ConversionRateConfig2Converter
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'UnitConversionRateConfig'",
+                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
                             e
                         )
                     );
@@ -6061,14 +6092,16 @@ sealed class ConversionRateConfig2Converter
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Prices.ConversionRateConfig2(deserialized);
+                        return new global::Orb.Models.Prices.EventOutputConversionRateConfig(
+                            deserialized
+                        );
                     }
                 }
                 catch (System::Exception e)
@@ -6076,7 +6109,7 @@ sealed class ConversionRateConfig2Converter
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'TieredConversionRateConfig'",
+                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
                             e
                         )
                     );
@@ -6095,7 +6128,7 @@ sealed class ConversionRateConfig2Converter
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Prices.ConversionRateConfig2 value,
+        global::Orb.Models.Prices.EventOutputConversionRateConfig value,
         JsonSerializerOptions options
     )
     {

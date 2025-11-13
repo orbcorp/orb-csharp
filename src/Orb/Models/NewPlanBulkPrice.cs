@@ -46,7 +46,7 @@ public sealed record class NewPlanBulkPrice : ModelBase, IFromRaw<NewPlanBulkPri
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, Cadence26> Cadence
+    public required ApiEnum<string, NewPlanBulkPriceCadence> Cadence
     {
         get
         {
@@ -56,7 +56,7 @@ public sealed record class NewPlanBulkPrice : ModelBase, IFromRaw<NewPlanBulkPri
                     new System::ArgumentOutOfRangeException("cadence", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Cadence26>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, NewPlanBulkPriceCadence>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -101,7 +101,7 @@ public sealed record class NewPlanBulkPrice : ModelBase, IFromRaw<NewPlanBulkPri
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public required ApiEnum<string, ModelType25> ModelType
+    public required ApiEnum<string, NewPlanBulkPriceModelType> ModelType
     {
         get
         {
@@ -114,7 +114,7 @@ public sealed record class NewPlanBulkPrice : ModelBase, IFromRaw<NewPlanBulkPri
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ModelType25>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, NewPlanBulkPriceModelType>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -253,14 +253,14 @@ public sealed record class NewPlanBulkPrice : ModelBase, IFromRaw<NewPlanBulkPri
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public ConversionRateConfig25? ConversionRateConfig
+    public NewPlanBulkPriceConversionRateConfig? ConversionRateConfig
     {
         get
         {
             if (!this._properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ConversionRateConfig25?>(
+            return JsonSerializer.Deserialize<NewPlanBulkPriceConversionRateConfig?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -514,8 +514,8 @@ public sealed record class NewPlanBulkPrice : ModelBase, IFromRaw<NewPlanBulkPri
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(Cadence26Converter))]
-public enum Cadence26
+[JsonConverter(typeof(NewPlanBulkPriceCadenceConverter))]
+public enum NewPlanBulkPriceCadence
 {
     Annual,
     SemiAnnual,
@@ -525,9 +525,9 @@ public enum Cadence26
     Custom,
 }
 
-sealed class Cadence26Converter : JsonConverter<Cadence26>
+sealed class NewPlanBulkPriceCadenceConverter : JsonConverter<NewPlanBulkPriceCadence>
 {
-    public override Cadence26 Read(
+    public override NewPlanBulkPriceCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -535,19 +535,19 @@ sealed class Cadence26Converter : JsonConverter<Cadence26>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => Cadence26.Annual,
-            "semi_annual" => Cadence26.SemiAnnual,
-            "monthly" => Cadence26.Monthly,
-            "quarterly" => Cadence26.Quarterly,
-            "one_time" => Cadence26.OneTime,
-            "custom" => Cadence26.Custom,
-            _ => (Cadence26)(-1),
+            "annual" => NewPlanBulkPriceCadence.Annual,
+            "semi_annual" => NewPlanBulkPriceCadence.SemiAnnual,
+            "monthly" => NewPlanBulkPriceCadence.Monthly,
+            "quarterly" => NewPlanBulkPriceCadence.Quarterly,
+            "one_time" => NewPlanBulkPriceCadence.OneTime,
+            "custom" => NewPlanBulkPriceCadence.Custom,
+            _ => (NewPlanBulkPriceCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Cadence26 value,
+        NewPlanBulkPriceCadence value,
         JsonSerializerOptions options
     )
     {
@@ -555,12 +555,12 @@ sealed class Cadence26Converter : JsonConverter<Cadence26>
             writer,
             value switch
             {
-                Cadence26.Annual => "annual",
-                Cadence26.SemiAnnual => "semi_annual",
-                Cadence26.Monthly => "monthly",
-                Cadence26.Quarterly => "quarterly",
-                Cadence26.OneTime => "one_time",
-                Cadence26.Custom => "custom",
+                NewPlanBulkPriceCadence.Annual => "annual",
+                NewPlanBulkPriceCadence.SemiAnnual => "semi_annual",
+                NewPlanBulkPriceCadence.Monthly => "monthly",
+                NewPlanBulkPriceCadence.Quarterly => "quarterly",
+                NewPlanBulkPriceCadence.OneTime => "one_time",
+                NewPlanBulkPriceCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -573,15 +573,15 @@ sealed class Cadence26Converter : JsonConverter<Cadence26>
 /// <summary>
 /// The pricing model type
 /// </summary>
-[JsonConverter(typeof(ModelType25Converter))]
-public enum ModelType25
+[JsonConverter(typeof(NewPlanBulkPriceModelTypeConverter))]
+public enum NewPlanBulkPriceModelType
 {
     Bulk,
 }
 
-sealed class ModelType25Converter : JsonConverter<ModelType25>
+sealed class NewPlanBulkPriceModelTypeConverter : JsonConverter<NewPlanBulkPriceModelType>
 {
-    public override ModelType25 Read(
+    public override NewPlanBulkPriceModelType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -589,14 +589,14 @@ sealed class ModelType25Converter : JsonConverter<ModelType25>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "bulk" => ModelType25.Bulk,
-            _ => (ModelType25)(-1),
+            "bulk" => NewPlanBulkPriceModelType.Bulk,
+            _ => (NewPlanBulkPriceModelType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ModelType25 value,
+        NewPlanBulkPriceModelType value,
         JsonSerializerOptions options
     )
     {
@@ -604,7 +604,7 @@ sealed class ModelType25Converter : JsonConverter<ModelType25>
             writer,
             value switch
             {
-                ModelType25.Bulk => "bulk",
+                NewPlanBulkPriceModelType.Bulk => "bulk",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -614,90 +614,92 @@ sealed class ModelType25Converter : JsonConverter<ModelType25>
     }
 }
 
-[JsonConverter(typeof(ConversionRateConfig25Converter))]
-public record class ConversionRateConfig25
+[JsonConverter(typeof(NewPlanBulkPriceConversionRateConfigConverter))]
+public record class NewPlanBulkPriceConversionRateConfig
 {
     public object Value { get; private init; }
 
-    public ConversionRateConfig25(UnitConversionRateConfig value)
+    public NewPlanBulkPriceConversionRateConfig(SharedUnitConversionRateConfig value)
     {
         Value = value;
     }
 
-    public ConversionRateConfig25(TieredConversionRateConfig value)
+    public NewPlanBulkPriceConversionRateConfig(SharedTieredConversionRateConfig value)
     {
         Value = value;
     }
 
-    ConversionRateConfig25(UnknownVariant value)
+    NewPlanBulkPriceConversionRateConfig(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static ConversionRateConfig25 CreateUnknownVariant(JsonElement value)
+    public static NewPlanBulkPriceConversionRateConfig CreateUnknownVariant(JsonElement value)
     {
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
-        value = this.Value as UnitConversionRateConfig;
+        value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
-    public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
-        value = this.Value as TieredConversionRateConfig;
+        value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
     public void Switch(
-        System::Action<UnitConversionRateConfig> unit,
-        System::Action<TieredConversionRateConfig> tiered
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
     )
     {
         switch (this.Value)
         {
-            case UnitConversionRateConfig value:
+            case SharedUnitConversionRateConfig value:
                 unit(value);
                 break;
-            case TieredConversionRateConfig value:
+            case SharedTieredConversionRateConfig value:
                 tiered(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of ConversionRateConfig25"
+                    "Data did not match any variant of NewPlanBulkPriceConversionRateConfig"
                 );
         }
     }
 
     public T Match<T>(
-        System::Func<UnitConversionRateConfig, T> unit,
-        System::Func<TieredConversionRateConfig, T> tiered
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
     )
     {
         return this.Value switch
         {
-            UnitConversionRateConfig value => unit(value),
-            TieredConversionRateConfig value => tiered(value),
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig25"
+                "Data did not match any variant of NewPlanBulkPriceConversionRateConfig"
             ),
         };
     }
 
-    public static implicit operator ConversionRateConfig25(UnitConversionRateConfig value) =>
-        new(value);
+    public static implicit operator NewPlanBulkPriceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
 
-    public static implicit operator ConversionRateConfig25(TieredConversionRateConfig value) =>
-        new(value);
+    public static implicit operator NewPlanBulkPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {
         if (this.Value is UnknownVariant)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig25"
+                "Data did not match any variant of NewPlanBulkPriceConversionRateConfig"
             );
         }
     }
@@ -705,9 +707,10 @@ public record class ConversionRateConfig25
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class ConversionRateConfig25Converter : JsonConverter<ConversionRateConfig25>
+sealed class NewPlanBulkPriceConversionRateConfigConverter
+    : JsonConverter<NewPlanBulkPriceConversionRateConfig>
 {
-    public override ConversionRateConfig25? Read(
+    public override NewPlanBulkPriceConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -732,14 +735,14 @@ sealed class ConversionRateConfig25Converter : JsonConverter<ConversionRateConfi
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new ConversionRateConfig25(deserialized);
+                        return new NewPlanBulkPriceConversionRateConfig(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -747,7 +750,7 @@ sealed class ConversionRateConfig25Converter : JsonConverter<ConversionRateConfi
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'UnitConversionRateConfig'",
+                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
                             e
                         )
                     );
@@ -761,14 +764,14 @@ sealed class ConversionRateConfig25Converter : JsonConverter<ConversionRateConfi
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new ConversionRateConfig25(deserialized);
+                        return new NewPlanBulkPriceConversionRateConfig(deserialized);
                     }
                 }
                 catch (System::Exception e)
@@ -776,7 +779,7 @@ sealed class ConversionRateConfig25Converter : JsonConverter<ConversionRateConfi
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'TieredConversionRateConfig'",
+                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
                             e
                         )
                     );
@@ -795,7 +798,7 @@ sealed class ConversionRateConfig25Converter : JsonConverter<ConversionRateConfi
 
     public override void Write(
         Utf8JsonWriter writer,
-        ConversionRateConfig25 value,
+        NewPlanBulkPriceConversionRateConfig value,
         JsonSerializerOptions options
     )
     {

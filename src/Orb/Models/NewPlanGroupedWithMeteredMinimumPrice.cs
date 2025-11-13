@@ -17,7 +17,7 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, Cadence32> Cadence
+    public required ApiEnum<string, NewPlanGroupedWithMeteredMinimumPriceCadence> Cadence
     {
         get
         {
@@ -27,10 +27,9 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
                     new System::ArgumentOutOfRangeException("cadence", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Cadence32>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, NewPlanGroupedWithMeteredMinimumPriceCadence>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -44,7 +43,7 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
     /// <summary>
     /// Configuration for grouped_with_metered_minimum pricing
     /// </summary>
-    public required GroupedWithMeteredMinimumConfigModel GroupedWithMeteredMinimumConfig
+    public required NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig GroupedWithMeteredMinimumConfig
     {
         get
         {
@@ -62,7 +61,7 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
                     )
                 );
 
-            return JsonSerializer.Deserialize<GroupedWithMeteredMinimumConfigModel>(
+            return JsonSerializer.Deserialize<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -109,7 +108,7 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public required ApiEnum<string, ModelType31> ModelType
+    public required ApiEnum<string, NewPlanGroupedWithMeteredMinimumPriceModelType> ModelType
     {
         get
         {
@@ -122,10 +121,9 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
                     )
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ModelType31>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, NewPlanGroupedWithMeteredMinimumPriceModelType>
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -261,14 +259,14 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public ConversionRateConfig31? ConversionRateConfig
+    public NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig? ConversionRateConfig
     {
         get
         {
             if (!this._properties.TryGetValue("conversion_rate_config", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ConversionRateConfig31?>(
+            return JsonSerializer.Deserialize<NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -524,8 +522,8 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(Cadence32Converter))]
-public enum Cadence32
+[JsonConverter(typeof(NewPlanGroupedWithMeteredMinimumPriceCadenceConverter))]
+public enum NewPlanGroupedWithMeteredMinimumPriceCadence
 {
     Annual,
     SemiAnnual,
@@ -535,9 +533,10 @@ public enum Cadence32
     Custom,
 }
 
-sealed class Cadence32Converter : JsonConverter<Cadence32>
+sealed class NewPlanGroupedWithMeteredMinimumPriceCadenceConverter
+    : JsonConverter<NewPlanGroupedWithMeteredMinimumPriceCadence>
 {
-    public override Cadence32 Read(
+    public override NewPlanGroupedWithMeteredMinimumPriceCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -545,19 +544,19 @@ sealed class Cadence32Converter : JsonConverter<Cadence32>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => Cadence32.Annual,
-            "semi_annual" => Cadence32.SemiAnnual,
-            "monthly" => Cadence32.Monthly,
-            "quarterly" => Cadence32.Quarterly,
-            "one_time" => Cadence32.OneTime,
-            "custom" => Cadence32.Custom,
-            _ => (Cadence32)(-1),
+            "annual" => NewPlanGroupedWithMeteredMinimumPriceCadence.Annual,
+            "semi_annual" => NewPlanGroupedWithMeteredMinimumPriceCadence.SemiAnnual,
+            "monthly" => NewPlanGroupedWithMeteredMinimumPriceCadence.Monthly,
+            "quarterly" => NewPlanGroupedWithMeteredMinimumPriceCadence.Quarterly,
+            "one_time" => NewPlanGroupedWithMeteredMinimumPriceCadence.OneTime,
+            "custom" => NewPlanGroupedWithMeteredMinimumPriceCadence.Custom,
+            _ => (NewPlanGroupedWithMeteredMinimumPriceCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Cadence32 value,
+        NewPlanGroupedWithMeteredMinimumPriceCadence value,
         JsonSerializerOptions options
     )
     {
@@ -565,12 +564,12 @@ sealed class Cadence32Converter : JsonConverter<Cadence32>
             writer,
             value switch
             {
-                Cadence32.Annual => "annual",
-                Cadence32.SemiAnnual => "semi_annual",
-                Cadence32.Monthly => "monthly",
-                Cadence32.Quarterly => "quarterly",
-                Cadence32.OneTime => "one_time",
-                Cadence32.Custom => "custom",
+                NewPlanGroupedWithMeteredMinimumPriceCadence.Annual => "annual",
+                NewPlanGroupedWithMeteredMinimumPriceCadence.SemiAnnual => "semi_annual",
+                NewPlanGroupedWithMeteredMinimumPriceCadence.Monthly => "monthly",
+                NewPlanGroupedWithMeteredMinimumPriceCadence.Quarterly => "quarterly",
+                NewPlanGroupedWithMeteredMinimumPriceCadence.OneTime => "one_time",
+                NewPlanGroupedWithMeteredMinimumPriceCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -583,10 +582,12 @@ sealed class Cadence32Converter : JsonConverter<Cadence32>
 /// <summary>
 /// Configuration for grouped_with_metered_minimum pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<GroupedWithMeteredMinimumConfigModel>))]
-public sealed record class GroupedWithMeteredMinimumConfigModel
+[JsonConverter(
+    typeof(ModelConverter<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig>)
+)]
+public sealed record class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig
     : ModelBase,
-        IFromRaw<GroupedWithMeteredMinimumConfigModel>
+        IFromRaw<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig>
 {
     /// <summary>
     /// Used to partition the usage into groups. The minimum amount is applied to
@@ -798,22 +799,26 @@ public sealed record class GroupedWithMeteredMinimumConfigModel
         }
     }
 
-    public GroupedWithMeteredMinimumConfigModel() { }
+    public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig() { }
 
-    public GroupedWithMeteredMinimumConfigModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    GroupedWithMeteredMinimumConfigModel(FrozenDictionary<string, JsonElement> properties)
+    NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig(
+        FrozenDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static GroupedWithMeteredMinimumConfigModel FromRawUnchecked(
+    public static NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -1016,15 +1021,16 @@ public sealed record class UnitAmount1 : ModelBase, IFromRaw<UnitAmount1>
 /// <summary>
 /// The pricing model type
 /// </summary>
-[JsonConverter(typeof(ModelType31Converter))]
-public enum ModelType31
+[JsonConverter(typeof(NewPlanGroupedWithMeteredMinimumPriceModelTypeConverter))]
+public enum NewPlanGroupedWithMeteredMinimumPriceModelType
 {
     GroupedWithMeteredMinimum,
 }
 
-sealed class ModelType31Converter : JsonConverter<ModelType31>
+sealed class NewPlanGroupedWithMeteredMinimumPriceModelTypeConverter
+    : JsonConverter<NewPlanGroupedWithMeteredMinimumPriceModelType>
 {
-    public override ModelType31 Read(
+    public override NewPlanGroupedWithMeteredMinimumPriceModelType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1032,14 +1038,15 @@ sealed class ModelType31Converter : JsonConverter<ModelType31>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "grouped_with_metered_minimum" => ModelType31.GroupedWithMeteredMinimum,
-            _ => (ModelType31)(-1),
+            "grouped_with_metered_minimum" =>
+                NewPlanGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
+            _ => (NewPlanGroupedWithMeteredMinimumPriceModelType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ModelType31 value,
+        NewPlanGroupedWithMeteredMinimumPriceModelType value,
         JsonSerializerOptions options
     )
     {
@@ -1047,7 +1054,8 @@ sealed class ModelType31Converter : JsonConverter<ModelType31>
             writer,
             value switch
             {
-                ModelType31.GroupedWithMeteredMinimum => "grouped_with_metered_minimum",
+                NewPlanGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum =>
+                    "grouped_with_metered_minimum",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1057,90 +1065,98 @@ sealed class ModelType31Converter : JsonConverter<ModelType31>
     }
 }
 
-[JsonConverter(typeof(ConversionRateConfig31Converter))]
-public record class ConversionRateConfig31
+[JsonConverter(typeof(NewPlanGroupedWithMeteredMinimumPriceConversionRateConfigConverter))]
+public record class NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig
 {
     public object Value { get; private init; }
 
-    public ConversionRateConfig31(UnitConversionRateConfig value)
+    public NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    )
     {
         Value = value;
     }
 
-    public ConversionRateConfig31(TieredConversionRateConfig value)
+    public NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    )
     {
         Value = value;
     }
 
-    ConversionRateConfig31(UnknownVariant value)
+    NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig(UnknownVariant value)
     {
         Value = value;
     }
 
-    public static ConversionRateConfig31 CreateUnknownVariant(JsonElement value)
+    public static NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig CreateUnknownVariant(
+        JsonElement value
+    )
     {
         return new(new UnknownVariant(value));
     }
 
-    public bool TryPickUnit([NotNullWhen(true)] out UnitConversionRateConfig? value)
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
-        value = this.Value as UnitConversionRateConfig;
+        value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
-    public bool TryPickTiered([NotNullWhen(true)] out TieredConversionRateConfig? value)
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
-        value = this.Value as TieredConversionRateConfig;
+        value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
     public void Switch(
-        System::Action<UnitConversionRateConfig> unit,
-        System::Action<TieredConversionRateConfig> tiered
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
     )
     {
         switch (this.Value)
         {
-            case UnitConversionRateConfig value:
+            case SharedUnitConversionRateConfig value:
                 unit(value);
                 break;
-            case TieredConversionRateConfig value:
+            case SharedTieredConversionRateConfig value:
                 tiered(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of ConversionRateConfig31"
+                    "Data did not match any variant of NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig"
                 );
         }
     }
 
     public T Match<T>(
-        System::Func<UnitConversionRateConfig, T> unit,
-        System::Func<TieredConversionRateConfig, T> tiered
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
     )
     {
         return this.Value switch
         {
-            UnitConversionRateConfig value => unit(value),
-            TieredConversionRateConfig value => tiered(value),
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig31"
+                "Data did not match any variant of NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig"
             ),
         };
     }
 
-    public static implicit operator ConversionRateConfig31(UnitConversionRateConfig value) =>
-        new(value);
+    public static implicit operator NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
 
-    public static implicit operator ConversionRateConfig31(TieredConversionRateConfig value) =>
-        new(value);
+    public static implicit operator NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
 
     public void Validate()
     {
         if (this.Value is UnknownVariant)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of ConversionRateConfig31"
+                "Data did not match any variant of NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig"
             );
         }
     }
@@ -1148,9 +1164,10 @@ public record class ConversionRateConfig31
     record struct UnknownVariant(JsonElement value);
 }
 
-sealed class ConversionRateConfig31Converter : JsonConverter<ConversionRateConfig31>
+sealed class NewPlanGroupedWithMeteredMinimumPriceConversionRateConfigConverter
+    : JsonConverter<NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig>
 {
-    public override ConversionRateConfig31? Read(
+    public override NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1175,14 +1192,16 @@ sealed class ConversionRateConfig31Converter : JsonConverter<ConversionRateConfi
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new ConversionRateConfig31(deserialized);
+                        return new NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig(
+                            deserialized
+                        );
                     }
                 }
                 catch (System::Exception e)
@@ -1190,7 +1209,7 @@ sealed class ConversionRateConfig31Converter : JsonConverter<ConversionRateConfi
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'UnitConversionRateConfig'",
+                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
                             e
                         )
                     );
@@ -1204,14 +1223,16 @@ sealed class ConversionRateConfig31Converter : JsonConverter<ConversionRateConfi
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
                         json,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new ConversionRateConfig31(deserialized);
+                        return new NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig(
+                            deserialized
+                        );
                     }
                 }
                 catch (System::Exception e)
@@ -1219,7 +1240,7 @@ sealed class ConversionRateConfig31Converter : JsonConverter<ConversionRateConfi
                 {
                     exceptions.Add(
                         new OrbInvalidDataException(
-                            "Data does not match union variant 'TieredConversionRateConfig'",
+                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
                             e
                         )
                     );
@@ -1238,7 +1259,7 @@ sealed class ConversionRateConfig31Converter : JsonConverter<ConversionRateConfi
 
     public override void Write(
         Utf8JsonWriter writer,
-        ConversionRateConfig31 value,
+        NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig value,
         JsonSerializerOptions options
     )
     {
