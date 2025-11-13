@@ -173,6 +173,7 @@ public sealed record class InvoiceLineItemCreateResponse
     /// <summary>
     /// This field is deprecated in favor of `adjustments`
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -268,6 +269,7 @@ public sealed record class InvoiceLineItemCreateResponse
     /// <summary>
     /// This field is deprecated in favor of `adjustments`.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -289,6 +291,7 @@ public sealed record class InvoiceLineItemCreateResponse
     /// <summary>
     /// This field is deprecated in favor of `adjustments`.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -310,6 +313,7 @@ public sealed record class InvoiceLineItemCreateResponse
     /// <summary>
     /// This field is deprecated in favor of `adjustments`.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -331,6 +335,7 @@ public sealed record class InvoiceLineItemCreateResponse
     /// <summary>
     /// This field is deprecated in favor of `adjustments`.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get

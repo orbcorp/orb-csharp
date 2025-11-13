@@ -310,6 +310,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
         }
     }
 
+    [System::Obsolete("deprecated")]
     public string? AwsRegion
     {
         get
@@ -377,6 +378,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
         }
     }
 
+    [System::Obsolete("deprecated")]
     public double? CreditsOverageRate
     {
         get
@@ -496,6 +498,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
         }
     }
 
+    [System::Obsolete("deprecated")]
     public ApiEnum<string, ExternalMarketplace>? ExternalMarketplace
     {
         get
@@ -517,6 +520,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
         }
     }
 
+    [System::Obsolete("deprecated")]
     public string? ExternalMarketplaceReportingID
     {
         get
@@ -698,6 +702,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
         }
     }
 
+    [System::Obsolete("deprecated")]
     public double? PerCreditOverageAmount
     {
         get
@@ -768,6 +773,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
     /// <summary>
     /// Optionally provide a list of overrides for prices on the plan
     /// </summary>
+    [System::Obsolete("deprecated")]
     public List<JsonElement>? PriceOverrides
     {
         get
@@ -1559,6 +1565,7 @@ public sealed record class AddPrice : ModelBase, IFromRaw<AddPrice>
     /// [DEPRECATED] Use add_adjustments instead. The subscription's discounts for
     /// this price.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public List<DiscountOverride>? Discounts
     {
         get
@@ -1630,6 +1637,7 @@ public sealed record class AddPrice : ModelBase, IFromRaw<AddPrice>
     /// [DEPRECATED] Use add_adjustments instead. The subscription's maximum amount
     /// for this price.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public string? MaximumAmount
     {
         get
@@ -1652,6 +1660,7 @@ public sealed record class AddPrice : ModelBase, IFromRaw<AddPrice>
     /// [DEPRECATED] Use add_adjustments instead. The subscription's minimum amount
     /// for this price.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public string? MinimumAmount
     {
         get
@@ -9047,7 +9056,7 @@ sealed class EventOutputConversionRateConfigConverter
     }
 }
 
-[JsonConverter(typeof(ExternalMarketplaceConverter))]
+[System::Obsolete("deprecated"), JsonConverter(typeof(ExternalMarketplaceConverter))]
 public enum ExternalMarketplace
 {
     Google,
@@ -9748,6 +9757,7 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
     /// [DEPRECATED] Use add_adjustments instead. The subscription's discounts for
     /// the replacement price.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public List<DiscountOverride>? Discounts
     {
         get
@@ -9815,6 +9825,7 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
     /// [DEPRECATED] Use add_adjustments instead. The subscription's maximum amount
     /// for the replacement price.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public string? MaximumAmount
     {
         get
@@ -9837,6 +9848,7 @@ public sealed record class ReplacePrice : ModelBase, IFromRaw<ReplacePrice>
     /// [DEPRECATED] Use add_adjustments instead. The subscription's minimum amount
     /// for the replacement price.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public string? MinimumAmount
     {
         get

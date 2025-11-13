@@ -16,6 +16,7 @@ public sealed record class Minimum : ModelBase, IFromRaw<Minimum>
     /// List of price_ids that this minimum amount applies to. For plan/plan phase
     /// minimums, this can be a subset of prices.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required List<string> AppliesToPriceIDs
     {
         get

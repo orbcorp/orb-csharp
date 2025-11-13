@@ -403,6 +403,7 @@ public sealed record class InvoiceFetchUpcomingResponse
     /// provided, the first discount in the list will be returned. If the list is
     /// empty, `None` will be returned.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required JsonElement Discount
     {
         get
@@ -2232,6 +2233,7 @@ public sealed record class LineItemModel
     /// <summary>
     /// This field is deprecated in favor of `adjustments`
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -2327,6 +2329,7 @@ public sealed record class LineItemModel
     /// <summary>
     /// This field is deprecated in favor of `adjustments`.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -2348,6 +2351,7 @@ public sealed record class LineItemModel
     /// <summary>
     /// This field is deprecated in favor of `adjustments`.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -2369,6 +2373,7 @@ public sealed record class LineItemModel
     /// <summary>
     /// This field is deprecated in favor of `adjustments`.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -2390,6 +2395,7 @@ public sealed record class LineItemModel
     /// <summary>
     /// This field is deprecated in favor of `adjustments`.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get

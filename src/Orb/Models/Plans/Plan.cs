@@ -148,6 +148,7 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
     /// <summary>
     /// An ISO 4217 currency string or custom pricing unit (`credits`) for this plan's prices.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required string Currency
     {
         get
@@ -223,6 +224,7 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -299,6 +301,7 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -317,6 +320,7 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -369,6 +373,7 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -387,6 +392,7 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get

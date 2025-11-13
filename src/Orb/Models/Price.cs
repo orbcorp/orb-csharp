@@ -2540,6 +2540,7 @@ public sealed record class Unit : ModelBase, IFromRaw<Unit>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -2651,6 +2652,7 @@ public sealed record class Unit : ModelBase, IFromRaw<Unit>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -2669,6 +2671,7 @@ public sealed record class Unit : ModelBase, IFromRaw<Unit>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -2721,6 +2724,7 @@ public sealed record class Unit : ModelBase, IFromRaw<Unit>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -2739,6 +2743,7 @@ public sealed record class Unit : ModelBase, IFromRaw<Unit>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -3869,6 +3874,7 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -3980,6 +3986,7 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -3998,6 +4005,7 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -4050,6 +4058,7 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -4068,6 +4077,7 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -5232,6 +5242,7 @@ public sealed record class Bulk : ModelBase, IFromRaw<Bulk>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -5343,6 +5354,7 @@ public sealed record class Bulk : ModelBase, IFromRaw<Bulk>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -5361,6 +5373,7 @@ public sealed record class Bulk : ModelBase, IFromRaw<Bulk>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -5413,6 +5426,7 @@ public sealed record class Bulk : ModelBase, IFromRaw<Bulk>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -5431,6 +5445,7 @@ public sealed record class Bulk : ModelBase, IFromRaw<Bulk>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -6564,6 +6579,7 @@ public sealed record class BulkWithFilters : ModelBase, IFromRaw<BulkWithFilters
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -6675,6 +6691,7 @@ public sealed record class BulkWithFilters : ModelBase, IFromRaw<BulkWithFilters
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -6693,6 +6710,7 @@ public sealed record class BulkWithFilters : ModelBase, IFromRaw<BulkWithFilters
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -6745,6 +6763,7 @@ public sealed record class BulkWithFilters : ModelBase, IFromRaw<BulkWithFilters
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -6763,6 +6782,7 @@ public sealed record class BulkWithFilters : ModelBase, IFromRaw<BulkWithFilters
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -8152,6 +8172,7 @@ public sealed record class Package : ModelBase, IFromRaw<Package>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -8263,6 +8284,7 @@ public sealed record class Package : ModelBase, IFromRaw<Package>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -8281,6 +8303,7 @@ public sealed record class Package : ModelBase, IFromRaw<Package>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -8333,6 +8356,7 @@ public sealed record class Package : ModelBase, IFromRaw<Package>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -8351,6 +8375,7 @@ public sealed record class Package : ModelBase, IFromRaw<Package>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -9484,6 +9509,7 @@ public sealed record class Matrix : ModelBase, IFromRaw<Matrix>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -9626,6 +9652,7 @@ public sealed record class Matrix : ModelBase, IFromRaw<Matrix>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -9644,6 +9671,7 @@ public sealed record class Matrix : ModelBase, IFromRaw<Matrix>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -9696,6 +9724,7 @@ public sealed record class Matrix : ModelBase, IFromRaw<Matrix>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -9714,6 +9743,7 @@ public sealed record class Matrix : ModelBase, IFromRaw<Matrix>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -10813,6 +10843,7 @@ public sealed record class ThresholdTotalAmount : ModelBase, IFromRaw<ThresholdT
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -10924,6 +10955,7 @@ public sealed record class ThresholdTotalAmount : ModelBase, IFromRaw<ThresholdT
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -10942,6 +10974,7 @@ public sealed record class ThresholdTotalAmount : ModelBase, IFromRaw<ThresholdT
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -10994,6 +11027,7 @@ public sealed record class ThresholdTotalAmount : ModelBase, IFromRaw<ThresholdT
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -11012,6 +11046,7 @@ public sealed record class ThresholdTotalAmount : ModelBase, IFromRaw<ThresholdT
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -12361,6 +12396,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -12472,6 +12508,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -12490,6 +12527,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -12542,6 +12580,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -12560,6 +12599,7 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -13893,6 +13933,7 @@ public sealed record class TieredWithMinimum : ModelBase, IFromRaw<TieredWithMin
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -14004,6 +14045,7 @@ public sealed record class TieredWithMinimum : ModelBase, IFromRaw<TieredWithMin
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -14022,6 +14064,7 @@ public sealed record class TieredWithMinimum : ModelBase, IFromRaw<TieredWithMin
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -14074,6 +14117,7 @@ public sealed record class TieredWithMinimum : ModelBase, IFromRaw<TieredWithMin
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -14092,6 +14136,7 @@ public sealed record class TieredWithMinimum : ModelBase, IFromRaw<TieredWithMin
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -15493,6 +15538,7 @@ public sealed record class GroupedTiered : ModelBase, IFromRaw<GroupedTiered>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -15638,6 +15684,7 @@ public sealed record class GroupedTiered : ModelBase, IFromRaw<GroupedTiered>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -15656,6 +15703,7 @@ public sealed record class GroupedTiered : ModelBase, IFromRaw<GroupedTiered>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -15708,6 +15756,7 @@ public sealed record class GroupedTiered : ModelBase, IFromRaw<GroupedTiered>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -15726,6 +15775,7 @@ public sealed record class GroupedTiered : ModelBase, IFromRaw<GroupedTiered>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -17025,6 +17075,7 @@ public sealed record class TieredPackageWithMinimum : ModelBase, IFromRaw<Tiered
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -17136,6 +17187,7 @@ public sealed record class TieredPackageWithMinimum : ModelBase, IFromRaw<Tiered
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -17154,6 +17206,7 @@ public sealed record class TieredPackageWithMinimum : ModelBase, IFromRaw<Tiered
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -17206,6 +17259,7 @@ public sealed record class TieredPackageWithMinimum : ModelBase, IFromRaw<Tiered
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -17224,6 +17278,7 @@ public sealed record class TieredPackageWithMinimum : ModelBase, IFromRaw<Tiered
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -18597,6 +18652,7 @@ public sealed record class PackageWithAllocation : ModelBase, IFromRaw<PackageWi
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -18708,6 +18764,7 @@ public sealed record class PackageWithAllocation : ModelBase, IFromRaw<PackageWi
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -18726,6 +18783,7 @@ public sealed record class PackageWithAllocation : ModelBase, IFromRaw<PackageWi
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -18778,6 +18836,7 @@ public sealed record class PackageWithAllocation : ModelBase, IFromRaw<PackageWi
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -18796,6 +18855,7 @@ public sealed record class PackageWithAllocation : ModelBase, IFromRaw<PackageWi
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -20078,6 +20138,7 @@ public sealed record class UnitWithPercent : ModelBase, IFromRaw<UnitWithPercent
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -20189,6 +20250,7 @@ public sealed record class UnitWithPercent : ModelBase, IFromRaw<UnitWithPercent
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -20207,6 +20269,7 @@ public sealed record class UnitWithPercent : ModelBase, IFromRaw<UnitWithPercent
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -20259,6 +20322,7 @@ public sealed record class UnitWithPercent : ModelBase, IFromRaw<UnitWithPercent
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -20277,6 +20341,7 @@ public sealed record class UnitWithPercent : ModelBase, IFromRaw<UnitWithPercent
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -21512,6 +21577,7 @@ public sealed record class MatrixWithAllocation : ModelBase, IFromRaw<MatrixWith
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -21662,6 +21728,7 @@ public sealed record class MatrixWithAllocation : ModelBase, IFromRaw<MatrixWith
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -21680,6 +21747,7 @@ public sealed record class MatrixWithAllocation : ModelBase, IFromRaw<MatrixWith
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -21732,6 +21800,7 @@ public sealed record class MatrixWithAllocation : ModelBase, IFromRaw<MatrixWith
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -21750,6 +21819,7 @@ public sealed record class MatrixWithAllocation : ModelBase, IFromRaw<MatrixWith
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -22858,6 +22928,7 @@ public sealed record class TieredWithProration : ModelBase, IFromRaw<TieredWithP
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -22969,6 +23040,7 @@ public sealed record class TieredWithProration : ModelBase, IFromRaw<TieredWithP
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -22987,6 +23059,7 @@ public sealed record class TieredWithProration : ModelBase, IFromRaw<TieredWithP
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -23039,6 +23112,7 @@ public sealed record class TieredWithProration : ModelBase, IFromRaw<TieredWithP
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -23057,6 +23131,7 @@ public sealed record class TieredWithProration : ModelBase, IFromRaw<TieredWithP
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -24375,6 +24450,7 @@ public sealed record class UnitWithProration : ModelBase, IFromRaw<UnitWithProra
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -24486,6 +24562,7 @@ public sealed record class UnitWithProration : ModelBase, IFromRaw<UnitWithProra
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -24504,6 +24581,7 @@ public sealed record class UnitWithProration : ModelBase, IFromRaw<UnitWithProra
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -24556,6 +24634,7 @@ public sealed record class UnitWithProration : ModelBase, IFromRaw<UnitWithProra
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -24574,6 +24653,7 @@ public sealed record class UnitWithProration : ModelBase, IFromRaw<UnitWithProra
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -25793,6 +25873,7 @@ public sealed record class GroupedAllocation : ModelBase, IFromRaw<GroupedAlloca
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -25938,6 +26019,7 @@ public sealed record class GroupedAllocation : ModelBase, IFromRaw<GroupedAlloca
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -25956,6 +26038,7 @@ public sealed record class GroupedAllocation : ModelBase, IFromRaw<GroupedAlloca
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -26008,6 +26091,7 @@ public sealed record class GroupedAllocation : ModelBase, IFromRaw<GroupedAlloca
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -26026,6 +26110,7 @@ public sealed record class GroupedAllocation : ModelBase, IFromRaw<GroupedAlloca
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -27302,6 +27387,7 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -27413,6 +27499,7 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -27431,6 +27518,7 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -27483,6 +27571,7 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -27501,6 +27590,7 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -28777,6 +28867,7 @@ public sealed record class GroupedWithProratedMinimum
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -28925,6 +29016,7 @@ public sealed record class GroupedWithProratedMinimum
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -28943,6 +29035,7 @@ public sealed record class GroupedWithProratedMinimum
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -28995,6 +29088,7 @@ public sealed record class GroupedWithProratedMinimum
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -29013,6 +29107,7 @@ public sealed record class GroupedWithProratedMinimum
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -30258,6 +30353,7 @@ public sealed record class GroupedWithMeteredMinimum
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -30406,6 +30502,7 @@ public sealed record class GroupedWithMeteredMinimum
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -30424,6 +30521,7 @@ public sealed record class GroupedWithMeteredMinimum
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -30476,6 +30574,7 @@ public sealed record class GroupedWithMeteredMinimum
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -30494,6 +30593,7 @@ public sealed record class GroupedWithMeteredMinimum
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -32044,6 +32144,7 @@ public sealed record class GroupedWithMinMaxThresholds
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -32192,6 +32293,7 @@ public sealed record class GroupedWithMinMaxThresholds
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -32210,6 +32312,7 @@ public sealed record class GroupedWithMinMaxThresholds
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -32262,6 +32365,7 @@ public sealed record class GroupedWithMinMaxThresholds
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -32280,6 +32384,7 @@ public sealed record class GroupedWithMinMaxThresholds
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -33554,6 +33659,7 @@ public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWit
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -33704,6 +33810,7 @@ public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWit
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -33722,6 +33829,7 @@ public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWit
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -33774,6 +33882,7 @@ public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWit
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -33792,6 +33901,7 @@ public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWit
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -35136,6 +35246,7 @@ public sealed record class GroupedTieredPackage : ModelBase, IFromRaw<GroupedTie
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -35286,6 +35397,7 @@ public sealed record class GroupedTieredPackage : ModelBase, IFromRaw<GroupedTie
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -35304,6 +35416,7 @@ public sealed record class GroupedTieredPackage : ModelBase, IFromRaw<GroupedTie
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -35356,6 +35469,7 @@ public sealed record class GroupedTieredPackage : ModelBase, IFromRaw<GroupedTie
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -35374,6 +35488,7 @@ public sealed record class GroupedTieredPackage : ModelBase, IFromRaw<GroupedTie
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -36708,6 +36823,7 @@ public sealed record class MaxGroupTieredPackage : ModelBase, IFromRaw<MaxGroupT
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -36858,6 +36974,7 @@ public sealed record class MaxGroupTieredPackage : ModelBase, IFromRaw<MaxGroupT
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -36876,6 +36993,7 @@ public sealed record class MaxGroupTieredPackage : ModelBase, IFromRaw<MaxGroupT
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -36928,6 +37046,7 @@ public sealed record class MaxGroupTieredPackage : ModelBase, IFromRaw<MaxGroupT
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -36946,6 +37065,7 @@ public sealed record class MaxGroupTieredPackage : ModelBase, IFromRaw<MaxGroupT
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -38284,6 +38404,7 @@ public sealed record class ScalableMatrixWithUnitPricing
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -38395,6 +38516,7 @@ public sealed record class ScalableMatrixWithUnitPricing
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -38413,6 +38535,7 @@ public sealed record class ScalableMatrixWithUnitPricing
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -38465,6 +38588,7 @@ public sealed record class ScalableMatrixWithUnitPricing
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -38483,6 +38607,7 @@ public sealed record class ScalableMatrixWithUnitPricing
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -39937,6 +40062,7 @@ public sealed record class ScalableMatrixWithTieredPricing
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -40048,6 +40174,7 @@ public sealed record class ScalableMatrixWithTieredPricing
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -40066,6 +40193,7 @@ public sealed record class ScalableMatrixWithTieredPricing
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -40118,6 +40246,7 @@ public sealed record class ScalableMatrixWithTieredPricing
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -40136,6 +40265,7 @@ public sealed record class ScalableMatrixWithTieredPricing
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -41708,6 +41838,7 @@ public sealed record class CumulativeGroupedBulk : ModelBase, IFromRaw<Cumulativ
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -41819,6 +41950,7 @@ public sealed record class CumulativeGroupedBulk : ModelBase, IFromRaw<Cumulativ
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -41837,6 +41969,7 @@ public sealed record class CumulativeGroupedBulk : ModelBase, IFromRaw<Cumulativ
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -41889,6 +42022,7 @@ public sealed record class CumulativeGroupedBulk : ModelBase, IFromRaw<Cumulativ
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -41907,6 +42041,7 @@ public sealed record class CumulativeGroupedBulk : ModelBase, IFromRaw<Cumulativ
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -43250,6 +43385,7 @@ public sealed record class PriceMinimum : ModelBase, IFromRaw<PriceMinimum>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -43361,6 +43497,7 @@ public sealed record class PriceMinimum : ModelBase, IFromRaw<PriceMinimum>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -43379,6 +43516,7 @@ public sealed record class PriceMinimum : ModelBase, IFromRaw<PriceMinimum>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -43431,6 +43569,7 @@ public sealed record class PriceMinimum : ModelBase, IFromRaw<PriceMinimum>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -43449,6 +43588,7 @@ public sealed record class PriceMinimum : ModelBase, IFromRaw<PriceMinimum>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -44687,6 +44827,7 @@ public sealed record class Percent : ModelBase, IFromRaw<Percent>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -44798,6 +44939,7 @@ public sealed record class Percent : ModelBase, IFromRaw<Percent>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -44816,6 +44958,7 @@ public sealed record class Percent : ModelBase, IFromRaw<Percent>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -44868,6 +45011,7 @@ public sealed record class Percent : ModelBase, IFromRaw<Percent>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -44886,6 +45030,7 @@ public sealed record class Percent : ModelBase, IFromRaw<Percent>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get
@@ -46084,6 +46229,7 @@ public sealed record class EventOutput : ModelBase, IFromRaw<EventOutput>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
         get
@@ -46229,6 +46375,7 @@ public sealed record class EventOutput : ModelBase, IFromRaw<EventOutput>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
         get
@@ -46247,6 +46394,7 @@ public sealed record class EventOutput : ModelBase, IFromRaw<EventOutput>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
         get
@@ -46299,6 +46447,7 @@ public sealed record class EventOutput : ModelBase, IFromRaw<EventOutput>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
         get
@@ -46317,6 +46466,7 @@ public sealed record class EventOutput : ModelBase, IFromRaw<EventOutput>
         }
     }
 
+    [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
         get

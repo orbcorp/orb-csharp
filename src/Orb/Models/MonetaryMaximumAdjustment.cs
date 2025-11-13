@@ -96,6 +96,7 @@ public sealed record class MonetaryMaximumAdjustment
     /// <summary>
     /// The price IDs that this adjustment applies to.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required List<string> AppliesToPriceIDs
     {
         get

@@ -410,6 +410,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
         }
     }
 
+    [System::Obsolete("deprecated")]
     public double? CreditsOverageRate
     {
         get
@@ -562,6 +563,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
         }
     }
 
+    [System::Obsolete("deprecated")]
     public double? PerCreditOverageAmount
     {
         get
@@ -632,6 +634,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     /// <summary>
     /// Optionally provide a list of overrides for prices on the plan
     /// </summary>
+    [System::Obsolete("deprecated")]
     public List<JsonElement>? PriceOverrides
     {
         get
@@ -1449,6 +1452,7 @@ public sealed record class AddPriceModel : ModelBase, IFromRaw<AddPriceModel>
     /// [DEPRECATED] Use add_adjustments instead. The subscription's discounts for
     /// this price.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public List<DiscountOverride>? Discounts
     {
         get
@@ -1520,6 +1524,7 @@ public sealed record class AddPriceModel : ModelBase, IFromRaw<AddPriceModel>
     /// [DEPRECATED] Use add_adjustments instead. The subscription's maximum amount
     /// for this price.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public string? MaximumAmount
     {
         get
@@ -1542,6 +1547,7 @@ public sealed record class AddPriceModel : ModelBase, IFromRaw<AddPriceModel>
     /// [DEPRECATED] Use add_adjustments instead. The subscription's minimum amount
     /// for this price.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public string? MinimumAmount
     {
         get
@@ -9622,6 +9628,7 @@ public sealed record class ReplacePriceModel : ModelBase, IFromRaw<ReplacePriceM
     /// [DEPRECATED] Use add_adjustments instead. The subscription's discounts for
     /// the replacement price.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public List<DiscountOverride>? Discounts
     {
         get
@@ -9689,6 +9696,7 @@ public sealed record class ReplacePriceModel : ModelBase, IFromRaw<ReplacePriceM
     /// [DEPRECATED] Use add_adjustments instead. The subscription's maximum amount
     /// for the replacement price.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public string? MaximumAmount
     {
         get
@@ -9711,6 +9719,7 @@ public sealed record class ReplacePriceModel : ModelBase, IFromRaw<ReplacePriceM
     /// [DEPRECATED] Use add_adjustments instead. The subscription's minimum amount
     /// for the replacement price.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public string? MinimumAmount
     {
         get
