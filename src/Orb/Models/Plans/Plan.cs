@@ -78,6 +78,46 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
         }
     }
 
+    public required BasePlan? BasePlan
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("base_plan", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<BasePlan?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["base_plan"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The parent plan id if the given plan was created by overriding one or more
+    /// of the parent's prices
+    /// </summary>
+    public required string? BasePlanID
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("base_plan_id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["base_plan_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     public required System::DateTimeOffset CreatedAt
     {
         get
@@ -572,46 +612,6 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
         }
     }
 
-    public BasePlan? BasePlan
-    {
-        get
-        {
-            if (!this._properties.TryGetValue("base_plan", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<BasePlan?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._properties["base_plan"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
-    /// <summary>
-    /// The parent plan id if the given plan was created by overriding one or more
-    /// of the parent's prices
-    /// </summary>
-    public string? BasePlanID
-    {
-        get
-        {
-            if (!this._properties.TryGetValue("base_plan_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._properties["base_plan_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
     public override void Validate()
     {
         _ = this.ID;
@@ -619,6 +619,8 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
         {
             item.Validate();
         }
+        this.BasePlan?.Validate();
+        _ = this.BasePlanID;
         _ = this.CreatedAt;
         _ = this.Currency;
         _ = this.DefaultInvoiceMemo;
@@ -645,8 +647,6 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
         this.Status.Validate();
         this.TrialConfig.Validate();
         _ = this.Version;
-        this.BasePlan?.Validate();
-        _ = this.BasePlanID;
     }
 
     public Plan() { }
@@ -1085,6 +1085,96 @@ sealed class AdjustmentModelConverter : JsonConverter<global::Orb.Models.Plans.A
     {
         object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<BasePlan>))]
+public sealed record class BasePlan : ModelBase, IFromRaw<BasePlan>
+{
+    public required string? ID
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// An optional user-defined ID for this plan resource, used throughout the system
+    /// as an alias for this Plan. Use this field to identify a plan by an existing
+    /// identifier in your system.
+    /// </summary>
+    public required string? ExternalPlanID
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("external_plan_id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["external_plan_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required string? Name
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("name", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.ExternalPlanID;
+        _ = this.Name;
+    }
+
+    public BasePlan() { }
+
+    public BasePlan(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BasePlan(FrozenDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+#pragma warning restore CS8618
+
+    public static BasePlan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
@@ -1678,95 +1768,5 @@ sealed class TrialPeriodUnitConverter : JsonConverter<TrialPeriodUnit>
             },
             options
         );
-    }
-}
-
-[JsonConverter(typeof(ModelConverter<BasePlan>))]
-public sealed record class BasePlan : ModelBase, IFromRaw<BasePlan>
-{
-    public required string? ID
-    {
-        get
-        {
-            if (!this._properties.TryGetValue("id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._properties["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
-    /// <summary>
-    /// An optional user-defined ID for this plan resource, used throughout the system
-    /// as an alias for this Plan. Use this field to identify a plan by an existing
-    /// identifier in your system.
-    /// </summary>
-    public required string? ExternalPlanID
-    {
-        get
-        {
-            if (!this._properties.TryGetValue("external_plan_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._properties["external_plan_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
-    public required string? Name
-    {
-        get
-        {
-            if (!this._properties.TryGetValue("name", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._properties["name"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
-    public override void Validate()
-    {
-        _ = this.ID;
-        _ = this.ExternalPlanID;
-        _ = this.Name;
-    }
-
-    public BasePlan() { }
-
-    public BasePlan(IReadOnlyDictionary<string, JsonElement> properties)
-    {
-        this._properties = [.. properties];
-    }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    BasePlan(FrozenDictionary<string, JsonElement> properties)
-    {
-        this._properties = [.. properties];
-    }
-#pragma warning restore CS8618
-
-    public static BasePlan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
-    {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
