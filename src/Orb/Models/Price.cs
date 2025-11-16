@@ -57,6 +57,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.ID,
                 scalableMatrixWithTieredPricing: (x) => x.ID,
                 cumulativeGroupedBulk: (x) => x.ID,
+                cumulativeGroupedAllocation: (x) => x.ID,
                 minimum: (x) => x.ID,
                 percent: (x) => x.ID,
                 eventOutput: (x) => x.ID
@@ -96,6 +97,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.BillableMetric,
                 scalableMatrixWithTieredPricing: (x) => x.BillableMetric,
                 cumulativeGroupedBulk: (x) => x.BillableMetric,
+                cumulativeGroupedAllocation: (x) => x.BillableMetric,
                 minimum: (x) => x.BillableMetric,
                 percent: (x) => x.BillableMetric,
                 eventOutput: (x) => x.BillableMetric
@@ -135,6 +137,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.BillingCycleConfiguration,
                 scalableMatrixWithTieredPricing: (x) => x.BillingCycleConfiguration,
                 cumulativeGroupedBulk: (x) => x.BillingCycleConfiguration,
+                cumulativeGroupedAllocation: (x) => x.BillingCycleConfiguration,
                 minimum: (x) => x.BillingCycleConfiguration,
                 percent: (x) => x.BillingCycleConfiguration,
                 eventOutput: (x) => x.BillingCycleConfiguration
@@ -174,6 +177,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.ConversionRate,
                 scalableMatrixWithTieredPricing: (x) => x.ConversionRate,
                 cumulativeGroupedBulk: (x) => x.ConversionRate,
+                cumulativeGroupedAllocation: (x) => x.ConversionRate,
                 minimum: (x) => x.ConversionRate,
                 percent: (x) => x.ConversionRate,
                 eventOutput: (x) => x.ConversionRate
@@ -213,6 +217,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.CreatedAt,
                 scalableMatrixWithTieredPricing: (x) => x.CreatedAt,
                 cumulativeGroupedBulk: (x) => x.CreatedAt,
+                cumulativeGroupedAllocation: (x) => x.CreatedAt,
                 minimum: (x) => x.CreatedAt,
                 percent: (x) => x.CreatedAt,
                 eventOutput: (x) => x.CreatedAt
@@ -252,6 +257,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.CreditAllocation,
                 scalableMatrixWithTieredPricing: (x) => x.CreditAllocation,
                 cumulativeGroupedBulk: (x) => x.CreditAllocation,
+                cumulativeGroupedAllocation: (x) => x.CreditAllocation,
                 minimum: (x) => x.CreditAllocation,
                 percent: (x) => x.CreditAllocation,
                 eventOutput: (x) => x.CreditAllocation
@@ -291,6 +297,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.Currency,
                 scalableMatrixWithTieredPricing: (x) => x.Currency,
                 cumulativeGroupedBulk: (x) => x.Currency,
+                cumulativeGroupedAllocation: (x) => x.Currency,
                 minimum: (x) => x.Currency,
                 percent: (x) => x.Currency,
                 eventOutput: (x) => x.Currency
@@ -330,6 +337,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.Discount,
                 scalableMatrixWithTieredPricing: (x) => x.Discount,
                 cumulativeGroupedBulk: (x) => x.Discount,
+                cumulativeGroupedAllocation: (x) => x.Discount,
                 minimum: (x) => x.Discount,
                 percent: (x) => x.Discount,
                 eventOutput: (x) => x.Discount
@@ -369,6 +377,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.ExternalPriceID,
                 scalableMatrixWithTieredPricing: (x) => x.ExternalPriceID,
                 cumulativeGroupedBulk: (x) => x.ExternalPriceID,
+                cumulativeGroupedAllocation: (x) => x.ExternalPriceID,
                 minimum: (x) => x.ExternalPriceID,
                 percent: (x) => x.ExternalPriceID,
                 eventOutput: (x) => x.ExternalPriceID
@@ -408,6 +417,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.FixedPriceQuantity,
                 scalableMatrixWithTieredPricing: (x) => x.FixedPriceQuantity,
                 cumulativeGroupedBulk: (x) => x.FixedPriceQuantity,
+                cumulativeGroupedAllocation: (x) => x.FixedPriceQuantity,
                 minimum: (x) => x.FixedPriceQuantity,
                 percent: (x) => x.FixedPriceQuantity,
                 eventOutput: (x) => x.FixedPriceQuantity
@@ -447,6 +457,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.InvoicingCycleConfiguration,
                 scalableMatrixWithTieredPricing: (x) => x.InvoicingCycleConfiguration,
                 cumulativeGroupedBulk: (x) => x.InvoicingCycleConfiguration,
+                cumulativeGroupedAllocation: (x) => x.InvoicingCycleConfiguration,
                 minimum: (x) => x.InvoicingCycleConfiguration,
                 percent: (x) => x.InvoicingCycleConfiguration,
                 eventOutput: (x) => x.InvoicingCycleConfiguration
@@ -486,6 +497,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.Item,
                 scalableMatrixWithTieredPricing: (x) => x.Item,
                 cumulativeGroupedBulk: (x) => x.Item,
+                cumulativeGroupedAllocation: (x) => x.Item,
                 minimum: (x) => x.Item,
                 percent: (x) => x.Item,
                 eventOutput: (x) => x.Item
@@ -525,6 +537,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.Maximum,
                 scalableMatrixWithTieredPricing: (x) => x.Maximum,
                 cumulativeGroupedBulk: (x) => x.Maximum,
+                cumulativeGroupedAllocation: (x) => x.Maximum,
                 minimum: (x) => x.Maximum,
                 percent: (x) => x.Maximum,
                 eventOutput: (x) => x.Maximum
@@ -564,6 +577,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.MaximumAmount,
                 scalableMatrixWithTieredPricing: (x) => x.MaximumAmount,
                 cumulativeGroupedBulk: (x) => x.MaximumAmount,
+                cumulativeGroupedAllocation: (x) => x.MaximumAmount,
                 minimum: (x) => x.MaximumAmount,
                 percent: (x) => x.MaximumAmount,
                 eventOutput: (x) => x.MaximumAmount
@@ -603,6 +617,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.Minimum,
                 scalableMatrixWithTieredPricing: (x) => x.Minimum,
                 cumulativeGroupedBulk: (x) => x.Minimum,
+                cumulativeGroupedAllocation: (x) => x.Minimum,
                 minimum: (x) => x.Minimum,
                 percent: (x) => x.Minimum,
                 eventOutput: (x) => x.Minimum
@@ -642,6 +657,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.MinimumAmount,
                 scalableMatrixWithTieredPricing: (x) => x.MinimumAmount,
                 cumulativeGroupedBulk: (x) => x.MinimumAmount,
+                cumulativeGroupedAllocation: (x) => x.MinimumAmount,
                 minimum: (x) => x.MinimumAmount,
                 percent: (x) => x.MinimumAmount,
                 eventOutput: (x) => x.MinimumAmount
@@ -681,6 +697,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.Name,
                 scalableMatrixWithTieredPricing: (x) => x.Name,
                 cumulativeGroupedBulk: (x) => x.Name,
+                cumulativeGroupedAllocation: (x) => x.Name,
                 minimum: (x) => x.Name,
                 percent: (x) => x.Name,
                 eventOutput: (x) => x.Name
@@ -720,6 +737,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.PlanPhaseOrder,
                 scalableMatrixWithTieredPricing: (x) => x.PlanPhaseOrder,
                 cumulativeGroupedBulk: (x) => x.PlanPhaseOrder,
+                cumulativeGroupedAllocation: (x) => x.PlanPhaseOrder,
                 minimum: (x) => x.PlanPhaseOrder,
                 percent: (x) => x.PlanPhaseOrder,
                 eventOutput: (x) => x.PlanPhaseOrder
@@ -759,6 +777,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.ReplacesPriceID,
                 scalableMatrixWithTieredPricing: (x) => x.ReplacesPriceID,
                 cumulativeGroupedBulk: (x) => x.ReplacesPriceID,
+                cumulativeGroupedAllocation: (x) => x.ReplacesPriceID,
                 minimum: (x) => x.ReplacesPriceID,
                 percent: (x) => x.ReplacesPriceID,
                 eventOutput: (x) => x.ReplacesPriceID
@@ -798,6 +817,7 @@ public record class Price
                 scalableMatrixWithUnitPricing: (x) => x.DimensionalPriceConfiguration,
                 scalableMatrixWithTieredPricing: (x) => x.DimensionalPriceConfiguration,
                 cumulativeGroupedBulk: (x) => x.DimensionalPriceConfiguration,
+                cumulativeGroupedAllocation: (x) => x.DimensionalPriceConfiguration,
                 minimum: (x) => x.DimensionalPriceConfiguration,
                 percent: (x) => x.DimensionalPriceConfiguration,
                 eventOutput: (x) => x.DimensionalPriceConfiguration
@@ -936,6 +956,11 @@ public record class Price
     }
 
     public Price(CumulativeGroupedBulk value)
+    {
+        Value = value;
+    }
+
+    public Price(CumulativeGroupedAllocation value)
     {
         Value = value;
     }
@@ -1139,6 +1164,14 @@ public record class Price
         return value != null;
     }
 
+    public bool TryPickCumulativeGroupedAllocation(
+        [NotNullWhen(true)] out CumulativeGroupedAllocation? value
+    )
+    {
+        value = this.Value as CumulativeGroupedAllocation;
+        return value != null;
+    }
+
     public bool TryPickMinimum([NotNullWhen(true)] out PriceMinimum? value)
     {
         value = this.Value as PriceMinimum;
@@ -1185,6 +1218,7 @@ public record class Price
         System::Action<ScalableMatrixWithUnitPricing> scalableMatrixWithUnitPricing,
         System::Action<ScalableMatrixWithTieredPricing> scalableMatrixWithTieredPricing,
         System::Action<CumulativeGroupedBulk> cumulativeGroupedBulk,
+        System::Action<CumulativeGroupedAllocation> cumulativeGroupedAllocation,
         System::Action<PriceMinimum> minimum,
         System::Action<Percent> percent,
         System::Action<EventOutput> eventOutput
@@ -1273,6 +1307,9 @@ public record class Price
             case CumulativeGroupedBulk value:
                 cumulativeGroupedBulk(value);
                 break;
+            case CumulativeGroupedAllocation value:
+                cumulativeGroupedAllocation(value);
+                break;
             case PriceMinimum value:
                 minimum(value);
                 break;
@@ -1315,6 +1352,7 @@ public record class Price
         System::Func<ScalableMatrixWithUnitPricing, T> scalableMatrixWithUnitPricing,
         System::Func<ScalableMatrixWithTieredPricing, T> scalableMatrixWithTieredPricing,
         System::Func<CumulativeGroupedBulk, T> cumulativeGroupedBulk,
+        System::Func<CumulativeGroupedAllocation, T> cumulativeGroupedAllocation,
         System::Func<PriceMinimum, T> minimum,
         System::Func<Percent, T> percent,
         System::Func<EventOutput, T> eventOutput
@@ -1349,6 +1387,7 @@ public record class Price
             ScalableMatrixWithUnitPricing value => scalableMatrixWithUnitPricing(value),
             ScalableMatrixWithTieredPricing value => scalableMatrixWithTieredPricing(value),
             CumulativeGroupedBulk value => cumulativeGroupedBulk(value),
+            CumulativeGroupedAllocation value => cumulativeGroupedAllocation(value),
             PriceMinimum value => minimum(value),
             Percent value => percent(value),
             EventOutput value => eventOutput(value),
@@ -1409,6 +1448,8 @@ public record class Price
     public static implicit operator Price(ScalableMatrixWithTieredPricing value) => new(value);
 
     public static implicit operator Price(CumulativeGroupedBulk value) => new(value);
+
+    public static implicit operator Price(CumulativeGroupedAllocation value) => new(value);
 
     public static implicit operator Price(PriceMinimum value) => new(value);
 
@@ -2173,6 +2214,35 @@ sealed class PriceConverter : JsonConverter<Price>
                     exceptions.Add(
                         new OrbInvalidDataException(
                             "Data does not match union variant 'CumulativeGroupedBulk'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "cumulative_grouped_allocation":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<CumulativeGroupedAllocation>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new Price(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'CumulativeGroupedAllocation'",
                             e
                         )
                     );
@@ -43119,6 +43189,1522 @@ sealed class CumulativeGroupedBulkPriceTypeConverter : JsonConverter<CumulativeG
     }
 }
 
+[JsonConverter(typeof(ModelConverter<CumulativeGroupedAllocation>))]
+public sealed record class CumulativeGroupedAllocation
+    : ModelBase,
+        IFromRaw<CumulativeGroupedAllocation>
+{
+    public required string ID
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("id", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'id' cannot be null",
+                    new System::ArgumentNullException("id")
+                );
+        }
+        init
+        {
+            this._properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required BillableMetricTiny? BillableMetric
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("billable_metric", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<BillableMetricTiny?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        init
+        {
+            this._properties["billable_metric"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required BillingCycleConfiguration BillingCycleConfiguration
+    {
+        get
+        {
+            if (
+                !this._properties.TryGetValue(
+                    "billing_cycle_configuration",
+                    out JsonElement element
+                )
+            )
+                throw new OrbInvalidDataException(
+                    "'billing_cycle_configuration' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "billing_cycle_configuration",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<BillingCycleConfiguration>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_cycle_configuration' cannot be null",
+                    new System::ArgumentNullException("billing_cycle_configuration")
+                );
+        }
+        init
+        {
+            this._properties["billing_cycle_configuration"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required ApiEnum<string, CumulativeGroupedAllocationBillingMode> BillingMode
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("billing_mode", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "billing_mode",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, CumulativeGroupedAllocationBillingMode>
+            >(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["billing_mode"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required ApiEnum<string, CumulativeGroupedAllocationCadence> Cadence
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("cadence", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentOutOfRangeException("cadence", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<ApiEnum<string, CumulativeGroupedAllocationCadence>>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        init
+        {
+            this._properties["cadence"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required List<CompositePriceFilter26>? CompositePriceFilters
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("composite_price_filters", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<List<CompositePriceFilter26>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        init
+        {
+            this._properties["composite_price_filters"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required double? ConversionRate
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("conversion_rate", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["conversion_rate"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required CumulativeGroupedAllocationConversionRateConfig? ConversionRateConfig
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("conversion_rate_config", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<CumulativeGroupedAllocationConversionRateConfig?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        init
+        {
+            this._properties["conversion_rate_config"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required System::DateTimeOffset CreatedAt
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("created_at", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'created_at' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "created_at",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<System::DateTimeOffset>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        init
+        {
+            this._properties["created_at"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required Allocation? CreditAllocation
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("credit_allocation", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<Allocation?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["credit_allocation"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Configuration for cumulative_grouped_allocation pricing
+    /// </summary>
+    public required CumulativeGroupedAllocationConfig CumulativeGroupedAllocationConfig
+    {
+        get
+        {
+            if (
+                !this._properties.TryGetValue(
+                    "cumulative_grouped_allocation_config",
+                    out JsonElement element
+                )
+            )
+                throw new OrbInvalidDataException(
+                    "'cumulative_grouped_allocation_config' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "cumulative_grouped_allocation_config",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<CumulativeGroupedAllocationConfig>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cumulative_grouped_allocation_config' cannot be null",
+                    new System::ArgumentNullException("cumulative_grouped_allocation_config")
+                );
+        }
+        init
+        {
+            this._properties["cumulative_grouped_allocation_config"] =
+                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
+        }
+    }
+
+    public required string Currency
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("currency", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'currency' cannot be null",
+                    new System::ArgumentOutOfRangeException("currency", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'currency' cannot be null",
+                    new System::ArgumentNullException("currency")
+                );
+        }
+        init
+        {
+            this._properties["currency"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required SharedDiscount? Discount
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("discount", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<SharedDiscount?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        init
+        {
+            this._properties["discount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required string? ExternalPriceID
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("external_price_id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["external_price_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required double? FixedPriceQuantity
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("fixed_price_quantity", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["fixed_price_quantity"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required BillingCycleConfiguration? InvoicingCycleConfiguration
+    {
+        get
+        {
+            if (
+                !this._properties.TryGetValue(
+                    "invoicing_cycle_configuration",
+                    out JsonElement element
+                )
+            )
+                return null;
+
+            return JsonSerializer.Deserialize<BillingCycleConfiguration?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        init
+        {
+            this._properties["invoicing_cycle_configuration"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// A minimal representation of an Item containing only the essential identifying information.
+    /// </summary>
+    public required ItemSlim Item
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("item", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'item' cannot be null",
+                    new System::ArgumentOutOfRangeException("item", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<ItemSlim>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'item' cannot be null",
+                    new System::ArgumentNullException("item")
+                );
+        }
+        init
+        {
+            this._properties["item"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required Maximum? Maximum
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("maximum", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<Maximum?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["maximum"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required string? MaximumAmount
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("maximum_amount", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["maximum_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// User specified key-value pairs for the resource. If not present, this defaults
+    /// to an empty dictionary. Individual keys can be removed by setting the value
+    /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
+    /// to `null`.
+    /// </summary>
+    public required Dictionary<string, string> Metadata
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("metadata", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'metadata' cannot be null",
+                    new System::ArgumentOutOfRangeException("metadata", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<Dictionary<string, string>>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'metadata' cannot be null",
+                    new System::ArgumentNullException("metadata")
+                );
+        }
+        init
+        {
+            this._properties["metadata"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required Minimum? Minimum
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("minimum", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<Minimum?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["minimum"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required string? MinimumAmount
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("minimum_amount", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["minimum_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
+    public CumulativeGroupedAllocationModelType ModelType
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("model_type", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'model_type' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "model_type",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<CumulativeGroupedAllocationModelType>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'model_type' cannot be null",
+                    new System::ArgumentNullException("model_type")
+                );
+        }
+        init
+        {
+            this._properties["model_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required string Name
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("name", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'name' cannot be null",
+                    new System::ArgumentNullException("name")
+                );
+        }
+        init
+        {
+            this._properties["name"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required long? PlanPhaseOrder
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("plan_phase_order", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["plan_phase_order"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public required ApiEnum<string, CumulativeGroupedAllocationPriceType> PriceType
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("price_type", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "price_type",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<
+                ApiEnum<string, CumulativeGroupedAllocationPriceType>
+            >(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["price_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The price id this price replaces. This price will take the place of the replaced
+    /// price in plan version migrations.
+    /// </summary>
+    public required string? ReplacesPriceID
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("replaces_price_id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["replaces_price_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public DimensionalPriceConfiguration? DimensionalPriceConfiguration
+    {
+        get
+        {
+            if (
+                !this._properties.TryGetValue(
+                    "dimensional_price_configuration",
+                    out JsonElement element
+                )
+            )
+                return null;
+
+            return JsonSerializer.Deserialize<DimensionalPriceConfiguration?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        init
+        {
+            this._properties["dimensional_price_configuration"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.ID;
+        this.BillableMetric?.Validate();
+        this.BillingCycleConfiguration.Validate();
+        this.BillingMode.Validate();
+        this.Cadence.Validate();
+        foreach (var item in this.CompositePriceFilters ?? [])
+        {
+            item.Validate();
+        }
+        _ = this.ConversionRate;
+        this.ConversionRateConfig?.Validate();
+        _ = this.CreatedAt;
+        this.CreditAllocation?.Validate();
+        this.CumulativeGroupedAllocationConfig.Validate();
+        _ = this.Currency;
+        this.Discount?.Validate();
+        _ = this.ExternalPriceID;
+        _ = this.FixedPriceQuantity;
+        this.InvoicingCycleConfiguration?.Validate();
+        this.Item.Validate();
+        this.Maximum?.Validate();
+        _ = this.MaximumAmount;
+        _ = this.Metadata;
+        this.Minimum?.Validate();
+        _ = this.MinimumAmount;
+        this.ModelType.Validate();
+        _ = this.Name;
+        _ = this.PlanPhaseOrder;
+        this.PriceType.Validate();
+        _ = this.ReplacesPriceID;
+        this.DimensionalPriceConfiguration?.Validate();
+    }
+
+    public CumulativeGroupedAllocation()
+    {
+        this.ModelType = new();
+    }
+
+    public CumulativeGroupedAllocation(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+
+        this.ModelType = new();
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CumulativeGroupedAllocation(FrozenDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+#pragma warning restore CS8618
+
+    public static CumulativeGroupedAllocation FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
+    }
+}
+
+[JsonConverter(typeof(CumulativeGroupedAllocationBillingModeConverter))]
+public enum CumulativeGroupedAllocationBillingMode
+{
+    InAdvance,
+    InArrear,
+}
+
+sealed class CumulativeGroupedAllocationBillingModeConverter
+    : JsonConverter<CumulativeGroupedAllocationBillingMode>
+{
+    public override CumulativeGroupedAllocationBillingMode Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "in_advance" => CumulativeGroupedAllocationBillingMode.InAdvance,
+            "in_arrear" => CumulativeGroupedAllocationBillingMode.InArrear,
+            _ => (CumulativeGroupedAllocationBillingMode)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        CumulativeGroupedAllocationBillingMode value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                CumulativeGroupedAllocationBillingMode.InAdvance => "in_advance",
+                CumulativeGroupedAllocationBillingMode.InArrear => "in_arrear",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(CumulativeGroupedAllocationCadenceConverter))]
+public enum CumulativeGroupedAllocationCadence
+{
+    OneTime,
+    Monthly,
+    Quarterly,
+    SemiAnnual,
+    Annual,
+    Custom,
+}
+
+sealed class CumulativeGroupedAllocationCadenceConverter
+    : JsonConverter<CumulativeGroupedAllocationCadence>
+{
+    public override CumulativeGroupedAllocationCadence Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "one_time" => CumulativeGroupedAllocationCadence.OneTime,
+            "monthly" => CumulativeGroupedAllocationCadence.Monthly,
+            "quarterly" => CumulativeGroupedAllocationCadence.Quarterly,
+            "semi_annual" => CumulativeGroupedAllocationCadence.SemiAnnual,
+            "annual" => CumulativeGroupedAllocationCadence.Annual,
+            "custom" => CumulativeGroupedAllocationCadence.Custom,
+            _ => (CumulativeGroupedAllocationCadence)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        CumulativeGroupedAllocationCadence value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                CumulativeGroupedAllocationCadence.OneTime => "one_time",
+                CumulativeGroupedAllocationCadence.Monthly => "monthly",
+                CumulativeGroupedAllocationCadence.Quarterly => "quarterly",
+                CumulativeGroupedAllocationCadence.SemiAnnual => "semi_annual",
+                CumulativeGroupedAllocationCadence.Annual => "annual",
+                CumulativeGroupedAllocationCadence.Custom => "custom",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter26>))]
+public sealed record class CompositePriceFilter26 : ModelBase, IFromRaw<CompositePriceFilter26>
+{
+    /// <summary>
+    /// The property of the price to filter on.
+    /// </summary>
+    public required ApiEnum<string, CompositePriceFilter26Field> Field
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("field", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentOutOfRangeException("field", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter26Field>>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        init
+        {
+            this._properties["field"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<string, CompositePriceFilter26Operator> Operator
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("operator", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentOutOfRangeException("operator", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter26Operator>>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        init
+        {
+            this._properties["operator"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required List<string> Values
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("values", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'values' cannot be null",
+                    new System::ArgumentOutOfRangeException("values", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'values' cannot be null",
+                    new System::ArgumentNullException("values")
+                );
+        }
+        init
+        {
+            this._properties["values"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public CompositePriceFilter26() { }
+
+    public CompositePriceFilter26(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CompositePriceFilter26(FrozenDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+#pragma warning restore CS8618
+
+    public static CompositePriceFilter26 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
+    }
+}
+
+/// <summary>
+/// The property of the price to filter on.
+/// </summary>
+[JsonConverter(typeof(CompositePriceFilter26FieldConverter))]
+public enum CompositePriceFilter26Field
+{
+    PriceID,
+    ItemID,
+    PriceType,
+    Currency,
+    PricingUnitID,
+}
+
+sealed class CompositePriceFilter26FieldConverter : JsonConverter<CompositePriceFilter26Field>
+{
+    public override CompositePriceFilter26Field Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "price_id" => CompositePriceFilter26Field.PriceID,
+            "item_id" => CompositePriceFilter26Field.ItemID,
+            "price_type" => CompositePriceFilter26Field.PriceType,
+            "currency" => CompositePriceFilter26Field.Currency,
+            "pricing_unit_id" => CompositePriceFilter26Field.PricingUnitID,
+            _ => (CompositePriceFilter26Field)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        CompositePriceFilter26Field value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                CompositePriceFilter26Field.PriceID => "price_id",
+                CompositePriceFilter26Field.ItemID => "item_id",
+                CompositePriceFilter26Field.PriceType => "price_type",
+                CompositePriceFilter26Field.Currency => "currency",
+                CompositePriceFilter26Field.PricingUnitID => "pricing_unit_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(typeof(CompositePriceFilter26OperatorConverter))]
+public enum CompositePriceFilter26Operator
+{
+    Includes,
+    Excludes,
+}
+
+sealed class CompositePriceFilter26OperatorConverter : JsonConverter<CompositePriceFilter26Operator>
+{
+    public override CompositePriceFilter26Operator Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" => CompositePriceFilter26Operator.Includes,
+            "excludes" => CompositePriceFilter26Operator.Excludes,
+            _ => (CompositePriceFilter26Operator)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        CompositePriceFilter26Operator value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                CompositePriceFilter26Operator.Includes => "includes",
+                CompositePriceFilter26Operator.Excludes => "excludes",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(CumulativeGroupedAllocationConversionRateConfigConverter))]
+public record class CumulativeGroupedAllocationConversionRateConfig
+{
+    public object Value { get; private init; }
+
+    public CumulativeGroupedAllocationConversionRateConfig(SharedUnitConversionRateConfig value)
+    {
+        Value = value;
+    }
+
+    public CumulativeGroupedAllocationConversionRateConfig(SharedTieredConversionRateConfig value)
+    {
+        Value = value;
+    }
+
+    CumulativeGroupedAllocationConversionRateConfig(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static CumulativeGroupedAllocationConversionRateConfig CreateUnknownVariant(
+        JsonElement value
+    )
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
+    {
+        value = this.Value as SharedUnitConversionRateConfig;
+        return value != null;
+    }
+
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
+    {
+        value = this.Value as SharedTieredConversionRateConfig;
+        return value != null;
+    }
+
+    public void Switch(
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
+    )
+    {
+        switch (this.Value)
+        {
+            case SharedUnitConversionRateConfig value:
+                unit(value);
+                break;
+            case SharedTieredConversionRateConfig value:
+                tiered(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of CumulativeGroupedAllocationConversionRateConfig"
+                );
+        }
+    }
+
+    public T Match<T>(
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
+    )
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of CumulativeGroupedAllocationConversionRateConfig"
+            ),
+        };
+    }
+
+    public static implicit operator CumulativeGroupedAllocationConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator CumulativeGroupedAllocationConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
+
+    public void Validate()
+    {
+        if (this.Value is UnknownVariant)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of CumulativeGroupedAllocationConversionRateConfig"
+            );
+        }
+    }
+
+    record struct UnknownVariant(JsonElement value);
+}
+
+sealed class CumulativeGroupedAllocationConversionRateConfigConverter
+    : JsonConverter<CumulativeGroupedAllocationConversionRateConfig>
+{
+    public override CumulativeGroupedAllocationConversionRateConfig? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? conversionRateType;
+        try
+        {
+            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+        }
+        catch
+        {
+            conversionRateType = null;
+        }
+
+        switch (conversionRateType)
+        {
+            case "unit":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new CumulativeGroupedAllocationConversionRateConfig(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            case "tiered":
+            {
+                List<OrbInvalidDataException> exceptions = [];
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
+                        json,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new CumulativeGroupedAllocationConversionRateConfig(deserialized);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    exceptions.Add(
+                        new OrbInvalidDataException(
+                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
+                            e
+                        )
+                    );
+                }
+
+                throw new System::AggregateException(exceptions);
+            }
+            default:
+            {
+                throw new OrbInvalidDataException(
+                    "Could not find valid union variant to represent data"
+                );
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        CumulativeGroupedAllocationConversionRateConfig value,
+        JsonSerializerOptions options
+    )
+    {
+        object variant = value.Value;
+        JsonSerializer.Serialize(writer, variant, options);
+    }
+}
+
+/// <summary>
+/// Configuration for cumulative_grouped_allocation pricing
+/// </summary>
+[JsonConverter(typeof(ModelConverter<CumulativeGroupedAllocationConfig>))]
+public sealed record class CumulativeGroupedAllocationConfig
+    : ModelBase,
+        IFromRaw<CumulativeGroupedAllocationConfig>
+{
+    /// <summary>
+    /// The overall allocation across all groups
+    /// </summary>
+    public required string CumulativeAllocation
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("cumulative_allocation", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'cumulative_allocation' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "cumulative_allocation",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cumulative_allocation' cannot be null",
+                    new System::ArgumentNullException("cumulative_allocation")
+                );
+        }
+        init
+        {
+            this._properties["cumulative_allocation"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The allocation per individual group
+    /// </summary>
+    public required string GroupAllocation
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("group_allocation", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'group_allocation' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "group_allocation",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'group_allocation' cannot be null",
+                    new System::ArgumentNullException("group_allocation")
+                );
+        }
+        init
+        {
+            this._properties["group_allocation"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The event property used to group usage before applying allocations
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("grouping_key", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'grouping_key' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "grouping_key",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'grouping_key' cannot be null",
+                    new System::ArgumentNullException("grouping_key")
+                );
+        }
+        init
+        {
+            this._properties["grouping_key"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The amount to charge for each unit outside of the allocation
+    /// </summary>
+    public required string UnitAmount
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("unit_amount", out JsonElement element))
+                throw new OrbInvalidDataException(
+                    "'unit_amount' cannot be null",
+                    new System::ArgumentOutOfRangeException(
+                        "unit_amount",
+                        "Missing required argument"
+                    )
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'unit_amount' cannot be null",
+                    new System::ArgumentNullException("unit_amount")
+                );
+        }
+        init
+        {
+            this._properties["unit_amount"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.CumulativeAllocation;
+        _ = this.GroupAllocation;
+        _ = this.GroupingKey;
+        _ = this.UnitAmount;
+    }
+
+    public CumulativeGroupedAllocationConfig() { }
+
+    public CumulativeGroupedAllocationConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CumulativeGroupedAllocationConfig(FrozenDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+#pragma warning restore CS8618
+
+    public static CumulativeGroupedAllocationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
+    }
+}
+
+/// <summary>
+/// The pricing model type
+/// </summary>
+[JsonConverter(typeof(Converter))]
+public class CumulativeGroupedAllocationModelType
+{
+    public JsonElement Json { get; private init; }
+
+    public CumulativeGroupedAllocationModelType()
+    {
+        Json = JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_allocation\"");
+    }
+
+    CumulativeGroupedAllocationModelType(JsonElement json)
+    {
+        Json = json;
+    }
+
+    public void Validate()
+    {
+        if (JsonElement.DeepEquals(this.Json, new CumulativeGroupedAllocationModelType().Json))
+        {
+            throw new OrbInvalidDataException(
+                "Invalid value given for 'CumulativeGroupedAllocationModelType'"
+            );
+        }
+    }
+
+    class Converter : JsonConverter<CumulativeGroupedAllocationModelType>
+    {
+        public override CumulativeGroupedAllocationModelType? Read(
+            ref Utf8JsonReader reader,
+            System::Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            CumulativeGroupedAllocationModelType value,
+            JsonSerializerOptions options
+        )
+        {
+            JsonSerializer.Serialize(writer, value.Json, options);
+        }
+    }
+}
+
+[JsonConverter(typeof(CumulativeGroupedAllocationPriceTypeConverter))]
+public enum CumulativeGroupedAllocationPriceType
+{
+    UsagePrice,
+    FixedPrice,
+    CompositePrice,
+}
+
+sealed class CumulativeGroupedAllocationPriceTypeConverter
+    : JsonConverter<CumulativeGroupedAllocationPriceType>
+{
+    public override CumulativeGroupedAllocationPriceType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "usage_price" => CumulativeGroupedAllocationPriceType.UsagePrice,
+            "fixed_price" => CumulativeGroupedAllocationPriceType.FixedPrice,
+            "composite_price" => CumulativeGroupedAllocationPriceType.CompositePrice,
+            _ => (CumulativeGroupedAllocationPriceType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        CumulativeGroupedAllocationPriceType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                CumulativeGroupedAllocationPriceType.UsagePrice => "usage_price",
+                CumulativeGroupedAllocationPriceType.FixedPrice => "fixed_price",
+                CumulativeGroupedAllocationPriceType.CompositePrice => "composite_price",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
 [JsonConverter(typeof(ModelConverter<PriceMinimum>))]
 public sealed record class PriceMinimum : ModelBase, IFromRaw<PriceMinimum>
 {
@@ -43255,14 +44841,14 @@ public sealed record class PriceMinimum : ModelBase, IFromRaw<PriceMinimum>
         }
     }
 
-    public required List<CompositePriceFilter26>? CompositePriceFilters
+    public required List<CompositePriceFilter27>? CompositePriceFilters
     {
         get
         {
             if (!this._properties.TryGetValue("composite_price_filters", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<CompositePriceFilter26>?>(
+            return JsonSerializer.Deserialize<List<CompositePriceFilter27>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -43954,13 +45540,13 @@ sealed class PriceMinimumCadenceConverter : JsonConverter<PriceMinimumCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter26>))]
-public sealed record class CompositePriceFilter26 : ModelBase, IFromRaw<CompositePriceFilter26>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter27>))]
+public sealed record class CompositePriceFilter27 : ModelBase, IFromRaw<CompositePriceFilter27>
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter26Field> Field
+    public required ApiEnum<string, CompositePriceFilter27Field> Field
     {
         get
         {
@@ -43970,7 +45556,7 @@ public sealed record class CompositePriceFilter26 : ModelBase, IFromRaw<Composit
                     new System::ArgumentOutOfRangeException("field", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter26Field>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter27Field>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -43987,7 +45573,7 @@ public sealed record class CompositePriceFilter26 : ModelBase, IFromRaw<Composit
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter26Operator> Operator
+    public required ApiEnum<string, CompositePriceFilter27Operator> Operator
     {
         get
         {
@@ -43997,7 +45583,7 @@ public sealed record class CompositePriceFilter26 : ModelBase, IFromRaw<Composit
                     new System::ArgumentOutOfRangeException("operator", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter26Operator>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter27Operator>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -44046,22 +45632,22 @@ public sealed record class CompositePriceFilter26 : ModelBase, IFromRaw<Composit
         _ = this.Values;
     }
 
-    public CompositePriceFilter26() { }
+    public CompositePriceFilter27() { }
 
-    public CompositePriceFilter26(IReadOnlyDictionary<string, JsonElement> properties)
+    public CompositePriceFilter27(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter26(FrozenDictionary<string, JsonElement> properties)
+    CompositePriceFilter27(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter26 FromRawUnchecked(
+    public static CompositePriceFilter27 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -44072,8 +45658,8 @@ public sealed record class CompositePriceFilter26 : ModelBase, IFromRaw<Composit
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter26FieldConverter))]
-public enum CompositePriceFilter26Field
+[JsonConverter(typeof(CompositePriceFilter27FieldConverter))]
+public enum CompositePriceFilter27Field
 {
     PriceID,
     ItemID,
@@ -44082,9 +45668,9 @@ public enum CompositePriceFilter26Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter26FieldConverter : JsonConverter<CompositePriceFilter26Field>
+sealed class CompositePriceFilter27FieldConverter : JsonConverter<CompositePriceFilter27Field>
 {
-    public override CompositePriceFilter26Field Read(
+    public override CompositePriceFilter27Field Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -44092,18 +45678,18 @@ sealed class CompositePriceFilter26FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter26Field.PriceID,
-            "item_id" => CompositePriceFilter26Field.ItemID,
-            "price_type" => CompositePriceFilter26Field.PriceType,
-            "currency" => CompositePriceFilter26Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter26Field.PricingUnitID,
-            _ => (CompositePriceFilter26Field)(-1),
+            "price_id" => CompositePriceFilter27Field.PriceID,
+            "item_id" => CompositePriceFilter27Field.ItemID,
+            "price_type" => CompositePriceFilter27Field.PriceType,
+            "currency" => CompositePriceFilter27Field.Currency,
+            "pricing_unit_id" => CompositePriceFilter27Field.PricingUnitID,
+            _ => (CompositePriceFilter27Field)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter26Field value,
+        CompositePriceFilter27Field value,
         JsonSerializerOptions options
     )
     {
@@ -44111,11 +45697,11 @@ sealed class CompositePriceFilter26FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter26Field.PriceID => "price_id",
-                CompositePriceFilter26Field.ItemID => "item_id",
-                CompositePriceFilter26Field.PriceType => "price_type",
-                CompositePriceFilter26Field.Currency => "currency",
-                CompositePriceFilter26Field.PricingUnitID => "pricing_unit_id",
+                CompositePriceFilter27Field.PriceID => "price_id",
+                CompositePriceFilter27Field.ItemID => "item_id",
+                CompositePriceFilter27Field.PriceType => "price_type",
+                CompositePriceFilter27Field.Currency => "currency",
+                CompositePriceFilter27Field.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -44128,16 +45714,16 @@ sealed class CompositePriceFilter26FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter26OperatorConverter))]
-public enum CompositePriceFilter26Operator
+[JsonConverter(typeof(CompositePriceFilter27OperatorConverter))]
+public enum CompositePriceFilter27Operator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter26OperatorConverter : JsonConverter<CompositePriceFilter26Operator>
+sealed class CompositePriceFilter27OperatorConverter : JsonConverter<CompositePriceFilter27Operator>
 {
-    public override CompositePriceFilter26Operator Read(
+    public override CompositePriceFilter27Operator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -44145,15 +45731,15 @@ sealed class CompositePriceFilter26OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter26Operator.Includes,
-            "excludes" => CompositePriceFilter26Operator.Excludes,
-            _ => (CompositePriceFilter26Operator)(-1),
+            "includes" => CompositePriceFilter27Operator.Includes,
+            "excludes" => CompositePriceFilter27Operator.Excludes,
+            _ => (CompositePriceFilter27Operator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter26Operator value,
+        CompositePriceFilter27Operator value,
         JsonSerializerOptions options
     )
     {
@@ -44161,8 +45747,8 @@ sealed class CompositePriceFilter26OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter26Operator.Includes => "includes",
-                CompositePriceFilter26Operator.Excludes => "excludes",
+                CompositePriceFilter27Operator.Includes => "includes",
+                CompositePriceFilter27Operator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -44697,14 +46283,14 @@ public sealed record class Percent : ModelBase, IFromRaw<Percent>
         }
     }
 
-    public required List<CompositePriceFilter27>? CompositePriceFilters
+    public required List<CompositePriceFilter28>? CompositePriceFilters
     {
         get
         {
             if (!this._properties.TryGetValue("composite_price_filters", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<CompositePriceFilter27>?>(
+            return JsonSerializer.Deserialize<List<CompositePriceFilter28>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -45393,13 +46979,13 @@ sealed class PercentCadenceConverter : JsonConverter<PercentCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter27>))]
-public sealed record class CompositePriceFilter27 : ModelBase, IFromRaw<CompositePriceFilter27>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter28>))]
+public sealed record class CompositePriceFilter28 : ModelBase, IFromRaw<CompositePriceFilter28>
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter27Field> Field
+    public required ApiEnum<string, CompositePriceFilter28Field> Field
     {
         get
         {
@@ -45409,7 +46995,7 @@ public sealed record class CompositePriceFilter27 : ModelBase, IFromRaw<Composit
                     new System::ArgumentOutOfRangeException("field", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter27Field>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter28Field>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -45426,7 +47012,7 @@ public sealed record class CompositePriceFilter27 : ModelBase, IFromRaw<Composit
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter27Operator> Operator
+    public required ApiEnum<string, CompositePriceFilter28Operator> Operator
     {
         get
         {
@@ -45436,7 +47022,7 @@ public sealed record class CompositePriceFilter27 : ModelBase, IFromRaw<Composit
                     new System::ArgumentOutOfRangeException("operator", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter27Operator>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter28Operator>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -45485,22 +47071,22 @@ public sealed record class CompositePriceFilter27 : ModelBase, IFromRaw<Composit
         _ = this.Values;
     }
 
-    public CompositePriceFilter27() { }
+    public CompositePriceFilter28() { }
 
-    public CompositePriceFilter27(IReadOnlyDictionary<string, JsonElement> properties)
+    public CompositePriceFilter28(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter27(FrozenDictionary<string, JsonElement> properties)
+    CompositePriceFilter28(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter27 FromRawUnchecked(
+    public static CompositePriceFilter28 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -45511,8 +47097,8 @@ public sealed record class CompositePriceFilter27 : ModelBase, IFromRaw<Composit
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter27FieldConverter))]
-public enum CompositePriceFilter27Field
+[JsonConverter(typeof(CompositePriceFilter28FieldConverter))]
+public enum CompositePriceFilter28Field
 {
     PriceID,
     ItemID,
@@ -45521,9 +47107,9 @@ public enum CompositePriceFilter27Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter27FieldConverter : JsonConverter<CompositePriceFilter27Field>
+sealed class CompositePriceFilter28FieldConverter : JsonConverter<CompositePriceFilter28Field>
 {
-    public override CompositePriceFilter27Field Read(
+    public override CompositePriceFilter28Field Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -45531,18 +47117,18 @@ sealed class CompositePriceFilter27FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter27Field.PriceID,
-            "item_id" => CompositePriceFilter27Field.ItemID,
-            "price_type" => CompositePriceFilter27Field.PriceType,
-            "currency" => CompositePriceFilter27Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter27Field.PricingUnitID,
-            _ => (CompositePriceFilter27Field)(-1),
+            "price_id" => CompositePriceFilter28Field.PriceID,
+            "item_id" => CompositePriceFilter28Field.ItemID,
+            "price_type" => CompositePriceFilter28Field.PriceType,
+            "currency" => CompositePriceFilter28Field.Currency,
+            "pricing_unit_id" => CompositePriceFilter28Field.PricingUnitID,
+            _ => (CompositePriceFilter28Field)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter27Field value,
+        CompositePriceFilter28Field value,
         JsonSerializerOptions options
     )
     {
@@ -45550,11 +47136,11 @@ sealed class CompositePriceFilter27FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter27Field.PriceID => "price_id",
-                CompositePriceFilter27Field.ItemID => "item_id",
-                CompositePriceFilter27Field.PriceType => "price_type",
-                CompositePriceFilter27Field.Currency => "currency",
-                CompositePriceFilter27Field.PricingUnitID => "pricing_unit_id",
+                CompositePriceFilter28Field.PriceID => "price_id",
+                CompositePriceFilter28Field.ItemID => "item_id",
+                CompositePriceFilter28Field.PriceType => "price_type",
+                CompositePriceFilter28Field.Currency => "currency",
+                CompositePriceFilter28Field.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -45567,16 +47153,16 @@ sealed class CompositePriceFilter27FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter27OperatorConverter))]
-public enum CompositePriceFilter27Operator
+[JsonConverter(typeof(CompositePriceFilter28OperatorConverter))]
+public enum CompositePriceFilter28Operator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter27OperatorConverter : JsonConverter<CompositePriceFilter27Operator>
+sealed class CompositePriceFilter28OperatorConverter : JsonConverter<CompositePriceFilter28Operator>
 {
-    public override CompositePriceFilter27Operator Read(
+    public override CompositePriceFilter28Operator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -45584,15 +47170,15 @@ sealed class CompositePriceFilter27OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter27Operator.Includes,
-            "excludes" => CompositePriceFilter27Operator.Excludes,
-            _ => (CompositePriceFilter27Operator)(-1),
+            "includes" => CompositePriceFilter28Operator.Includes,
+            "excludes" => CompositePriceFilter28Operator.Excludes,
+            _ => (CompositePriceFilter28Operator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter27Operator value,
+        CompositePriceFilter28Operator value,
         JsonSerializerOptions options
     )
     {
@@ -45600,8 +47186,8 @@ sealed class CompositePriceFilter27OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter27Operator.Includes => "includes",
-                CompositePriceFilter27Operator.Excludes => "excludes",
+                CompositePriceFilter28Operator.Includes => "includes",
+                CompositePriceFilter28Operator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -46099,14 +47685,14 @@ public sealed record class EventOutput : ModelBase, IFromRaw<EventOutput>
         }
     }
 
-    public required List<CompositePriceFilter28>? CompositePriceFilters
+    public required List<CompositePriceFilter29>? CompositePriceFilters
     {
         get
         {
             if (!this._properties.TryGetValue("composite_price_filters", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<CompositePriceFilter28>?>(
+            return JsonSerializer.Deserialize<List<CompositePriceFilter29>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -46798,13 +48384,13 @@ sealed class EventOutputCadenceConverter : JsonConverter<EventOutputCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter28>))]
-public sealed record class CompositePriceFilter28 : ModelBase, IFromRaw<CompositePriceFilter28>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter29>))]
+public sealed record class CompositePriceFilter29 : ModelBase, IFromRaw<CompositePriceFilter29>
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter28Field> Field
+    public required ApiEnum<string, CompositePriceFilter29Field> Field
     {
         get
         {
@@ -46814,7 +48400,7 @@ public sealed record class CompositePriceFilter28 : ModelBase, IFromRaw<Composit
                     new System::ArgumentOutOfRangeException("field", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter28Field>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter29Field>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -46831,7 +48417,7 @@ public sealed record class CompositePriceFilter28 : ModelBase, IFromRaw<Composit
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter28Operator> Operator
+    public required ApiEnum<string, CompositePriceFilter29Operator> Operator
     {
         get
         {
@@ -46841,7 +48427,7 @@ public sealed record class CompositePriceFilter28 : ModelBase, IFromRaw<Composit
                     new System::ArgumentOutOfRangeException("operator", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter28Operator>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter29Operator>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -46890,22 +48476,22 @@ public sealed record class CompositePriceFilter28 : ModelBase, IFromRaw<Composit
         _ = this.Values;
     }
 
-    public CompositePriceFilter28() { }
+    public CompositePriceFilter29() { }
 
-    public CompositePriceFilter28(IReadOnlyDictionary<string, JsonElement> properties)
+    public CompositePriceFilter29(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter28(FrozenDictionary<string, JsonElement> properties)
+    CompositePriceFilter29(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter28 FromRawUnchecked(
+    public static CompositePriceFilter29 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -46916,8 +48502,8 @@ public sealed record class CompositePriceFilter28 : ModelBase, IFromRaw<Composit
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter28FieldConverter))]
-public enum CompositePriceFilter28Field
+[JsonConverter(typeof(CompositePriceFilter29FieldConverter))]
+public enum CompositePriceFilter29Field
 {
     PriceID,
     ItemID,
@@ -46926,9 +48512,9 @@ public enum CompositePriceFilter28Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter28FieldConverter : JsonConverter<CompositePriceFilter28Field>
+sealed class CompositePriceFilter29FieldConverter : JsonConverter<CompositePriceFilter29Field>
 {
-    public override CompositePriceFilter28Field Read(
+    public override CompositePriceFilter29Field Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -46936,18 +48522,18 @@ sealed class CompositePriceFilter28FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter28Field.PriceID,
-            "item_id" => CompositePriceFilter28Field.ItemID,
-            "price_type" => CompositePriceFilter28Field.PriceType,
-            "currency" => CompositePriceFilter28Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter28Field.PricingUnitID,
-            _ => (CompositePriceFilter28Field)(-1),
+            "price_id" => CompositePriceFilter29Field.PriceID,
+            "item_id" => CompositePriceFilter29Field.ItemID,
+            "price_type" => CompositePriceFilter29Field.PriceType,
+            "currency" => CompositePriceFilter29Field.Currency,
+            "pricing_unit_id" => CompositePriceFilter29Field.PricingUnitID,
+            _ => (CompositePriceFilter29Field)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter28Field value,
+        CompositePriceFilter29Field value,
         JsonSerializerOptions options
     )
     {
@@ -46955,11 +48541,11 @@ sealed class CompositePriceFilter28FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter28Field.PriceID => "price_id",
-                CompositePriceFilter28Field.ItemID => "item_id",
-                CompositePriceFilter28Field.PriceType => "price_type",
-                CompositePriceFilter28Field.Currency => "currency",
-                CompositePriceFilter28Field.PricingUnitID => "pricing_unit_id",
+                CompositePriceFilter29Field.PriceID => "price_id",
+                CompositePriceFilter29Field.ItemID => "item_id",
+                CompositePriceFilter29Field.PriceType => "price_type",
+                CompositePriceFilter29Field.Currency => "currency",
+                CompositePriceFilter29Field.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -46972,16 +48558,16 @@ sealed class CompositePriceFilter28FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter28OperatorConverter))]
-public enum CompositePriceFilter28Operator
+[JsonConverter(typeof(CompositePriceFilter29OperatorConverter))]
+public enum CompositePriceFilter29Operator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter28OperatorConverter : JsonConverter<CompositePriceFilter28Operator>
+sealed class CompositePriceFilter29OperatorConverter : JsonConverter<CompositePriceFilter29Operator>
 {
-    public override CompositePriceFilter28Operator Read(
+    public override CompositePriceFilter29Operator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -46989,15 +48575,15 @@ sealed class CompositePriceFilter28OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter28Operator.Includes,
-            "excludes" => CompositePriceFilter28Operator.Excludes,
-            _ => (CompositePriceFilter28Operator)(-1),
+            "includes" => CompositePriceFilter29Operator.Includes,
+            "excludes" => CompositePriceFilter29Operator.Excludes,
+            _ => (CompositePriceFilter29Operator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter28Operator value,
+        CompositePriceFilter29Operator value,
         JsonSerializerOptions options
     )
     {
@@ -47005,8 +48591,8 @@ sealed class CompositePriceFilter28OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter28Operator.Includes => "includes",
-                CompositePriceFilter28Operator.Excludes => "excludes",
+                CompositePriceFilter29Operator.Includes => "includes",
+                CompositePriceFilter29Operator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
