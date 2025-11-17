@@ -6,6 +6,11 @@ using Orb.Models.Events.Backfills;
 
 namespace Orb.Services.Events;
 
+/// <summary>
+/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
+/// changes in non-major versions. We may add new methods in the future that cause
+/// existing derived classes to break.
+/// </summary>
 public interface IBackfillService
 {
     IBackfillService WithOptions(Func<ClientOptions, ClientOptions> modifier);
