@@ -697,7 +697,14 @@ sealed class PaymentProviderConverter : JsonConverter<global::Orb.Models.Custome
 [JsonConverter(typeof(TaxConfigurationConverter))]
 public record class TaxConfiguration
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
+
+    JsonElement? _json = null;
+
+    public JsonElement Json
+    {
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+    }
 
     public bool TaxExempt
     {
@@ -729,44 +736,45 @@ public record class TaxConfiguration
         }
     }
 
-    public TaxConfiguration(NewAvalaraTaxConfiguration value)
+    public TaxConfiguration(NewAvalaraTaxConfiguration value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public TaxConfiguration(NewTaxJarConfiguration value)
+    public TaxConfiguration(NewTaxJarConfiguration value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public TaxConfiguration(NewSphereConfiguration value)
+    public TaxConfiguration(NewSphereConfiguration value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public TaxConfiguration(Numeral value)
+    public TaxConfiguration(Numeral value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public TaxConfiguration(Anrok value)
+    public TaxConfiguration(Anrok value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public TaxConfiguration(Stripe value)
+    public TaxConfiguration(Stripe value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    TaxConfiguration(UnknownVariant value)
+    public TaxConfiguration(JsonElement json)
     {
-        Value = value;
-    }
-
-    public static TaxConfiguration CreateUnknownVariant(JsonElement value)
-    {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickNewAvalara([NotNullWhen(true)] out NewAvalaraTaxConfiguration? value)
@@ -879,13 +887,11 @@ public record class TaxConfiguration
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException("Data did not match any variant of TaxConfiguration");
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
@@ -911,8 +917,6 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
         {
             case "avalara":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewAvalaraTaxConfiguration>(
@@ -922,26 +926,19 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new TaxConfiguration(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewAvalaraTaxConfiguration'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "taxjar":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewTaxJarConfiguration>(
@@ -951,26 +948,19 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new TaxConfiguration(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewTaxJarConfiguration'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "sphere":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewSphereConfiguration>(
@@ -980,99 +970,77 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new TaxConfiguration(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewSphereConfiguration'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "numeral":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<Numeral>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new TaxConfiguration(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'Numeral'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "anrok":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<Anrok>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new TaxConfiguration(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException("Data does not match union variant 'Anrok'", e)
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "stripe":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<Stripe>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new TaxConfiguration(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException("Data does not match union variant 'Stripe'", e)
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new TaxConfiguration(json);
             }
         }
     }
@@ -1083,8 +1051,7 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
         JsonSerializerOptions options
     )
     {
-        object? variant = value?.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value?.Json, options);
     }
 }
 

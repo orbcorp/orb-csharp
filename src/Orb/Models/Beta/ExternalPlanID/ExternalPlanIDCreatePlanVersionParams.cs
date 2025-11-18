@@ -385,7 +385,14 @@ public sealed record class AddAdjustment
 [JsonConverter(typeof(global::Orb.Models.Beta.ExternalPlanID.AdjustmentConverter))]
 public record class Adjustment
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
+
+    JsonElement? _json = null;
+
+    public JsonElement Json
+    {
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+    }
 
     public string? Currency
     {
@@ -415,41 +422,39 @@ public record class Adjustment
         }
     }
 
-    public Adjustment(NewPercentageDiscount value)
+    public Adjustment(NewPercentageDiscount value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public Adjustment(NewUsageDiscount value)
+    public Adjustment(NewUsageDiscount value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public Adjustment(NewAmountDiscount value)
+    public Adjustment(NewAmountDiscount value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public Adjustment(NewMinimum value)
+    public Adjustment(NewMinimum value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public Adjustment(NewMaximum value)
+    public Adjustment(NewMaximum value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    Adjustment(UnknownVariant value)
+    public Adjustment(JsonElement json)
     {
-        Value = value;
-    }
-
-    public static global::Orb.Models.Beta.ExternalPlanID.Adjustment CreateUnknownVariant(
-        JsonElement value
-    )
-    {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickNewPercentageDiscount([NotNullWhen(true)] out NewPercentageDiscount? value)
@@ -553,13 +558,11 @@ public record class Adjustment
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlanID.Adjustment>
@@ -585,8 +588,6 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Beta.Externa
         {
             case "percentage_discount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPercentageDiscount>(
@@ -596,131 +597,96 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Beta.Externa
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Adjustment(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPercentageDiscount'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "usage_discount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewUsageDiscount>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Adjustment(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewUsageDiscount'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "amount_discount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewAmountDiscount>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Adjustment(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewAmountDiscount'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "minimum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewMinimum>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Adjustment(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewMinimum'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "maximum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewMaximum>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Adjustment(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewMaximum'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new global::Orb.Models.Beta.ExternalPlanID.Adjustment(json);
             }
         }
     }
@@ -731,8 +697,7 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Beta.Externa
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 
@@ -846,7 +811,14 @@ public sealed record class AddPrice
 [JsonConverter(typeof(global::Orb.Models.Beta.ExternalPlanID.PriceConverter))]
 public record class Price
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
+
+    JsonElement? _json = null;
+
+    public JsonElement Json
+    {
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+    }
 
     public string ItemID
     {
@@ -1368,171 +1340,207 @@ public record class Price
         }
     }
 
-    public Price(NewPlanUnitPrice value)
+    public Price(NewPlanUnitPrice value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public Price(NewPlanTieredPrice value)
+    public Price(NewPlanTieredPrice value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public Price(NewPlanBulkPrice value)
+    public Price(NewPlanBulkPrice value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public Price(global::Orb.Models.Beta.ExternalPlanID.BulkWithFilters value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanPackagePrice value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanMatrixPrice value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanThresholdTotalAmountPrice value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanTieredPackagePrice value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanTieredWithMinimumPrice value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanGroupedTieredPrice value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanTieredPackageWithMinimumPrice value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanPackageWithAllocationPrice value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanUnitWithPercentPrice value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanMatrixWithAllocationPrice value)
-    {
-        Value = value;
-    }
-
-    public Price(global::Orb.Models.Beta.ExternalPlanID.TieredWithProration value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanUnitWithProrationPrice value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanGroupedAllocationPrice value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanBulkWithProrationPrice value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanGroupedWithProratedMinimumPrice value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanGroupedWithMeteredMinimumPrice value)
-    {
-        Value = value;
-    }
-
-    public Price(global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholds value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanMatrixWithDisplayNamePrice value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanGroupedTieredPackagePrice value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanMaxGroupTieredPackagePrice value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanScalableMatrixWithUnitPricingPrice value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanScalableMatrixWithTieredPricingPrice value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanCumulativeGroupedBulkPrice value)
-    {
-        Value = value;
-    }
-
-    public Price(global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocation value)
-    {
-        Value = value;
-    }
-
-    public Price(NewPlanMinimumCompositePrice value)
-    {
-        Value = value;
-    }
-
-    public Price(global::Orb.Models.Beta.ExternalPlanID.Percent value)
-    {
-        Value = value;
-    }
-
-    public Price(global::Orb.Models.Beta.ExternalPlanID.EventOutput value)
-    {
-        Value = value;
-    }
-
-    Price(UnknownVariant value)
-    {
-        Value = value;
-    }
-
-    public static global::Orb.Models.Beta.ExternalPlanID.Price CreateUnknownVariant(
-        JsonElement value
+    public Price(
+        global::Orb.Models.Beta.ExternalPlanID.BulkWithFilters value,
+        JsonElement? json = null
     )
     {
-        return new(new UnknownVariant(value));
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanPackagePrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanMatrixPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanThresholdTotalAmountPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanTieredPackagePrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanTieredWithMinimumPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanGroupedTieredPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanTieredPackageWithMinimumPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanPackageWithAllocationPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanUnitWithPercentPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanMatrixWithAllocationPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(
+        global::Orb.Models.Beta.ExternalPlanID.TieredWithProration value,
+        JsonElement? json = null
+    )
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanUnitWithProrationPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanGroupedAllocationPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanBulkWithProrationPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanGroupedWithProratedMinimumPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanGroupedWithMeteredMinimumPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(
+        global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholds value,
+        JsonElement? json = null
+    )
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanMatrixWithDisplayNamePrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanGroupedTieredPackagePrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanMaxGroupTieredPackagePrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanScalableMatrixWithUnitPricingPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanScalableMatrixWithTieredPricingPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanCumulativeGroupedBulkPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(
+        global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocation value,
+        JsonElement? json = null
+    )
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(NewPlanMinimumCompositePrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(global::Orb.Models.Beta.ExternalPlanID.Percent value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(global::Orb.Models.Beta.ExternalPlanID.EventOutput value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public Price(JsonElement json)
+    {
+        this._json = json;
     }
 
     public bool TryPickNewPlanUnit([NotNullWhen(true)] out NewPlanUnitPrice? value)
@@ -2130,13 +2138,11 @@ public record class Price
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException("Data did not match any variant of Price");
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlanID.Price?>
@@ -2162,34 +2168,25 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanUnitPrice>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanUnitPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanTieredPrice>(
@@ -2199,52 +2196,38 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanTieredPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "bulk":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanBulkPrice>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanBulkPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "bulk_with_filters":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -2255,26 +2238,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'global::Orb.Models.Beta.ExternalPlanID.BulkWithFilters'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "package":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanPackagePrice>(
@@ -2284,26 +2260,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanPackagePrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "matrix":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanMatrixPrice>(
@@ -2313,26 +2282,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanMatrixPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "threshold_total_amount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanThresholdTotalAmountPrice>(
@@ -2342,26 +2304,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanThresholdTotalAmountPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered_package":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanTieredPackagePrice>(
@@ -2371,26 +2326,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanTieredPackagePrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered_with_minimum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanTieredWithMinimumPrice>(
@@ -2400,26 +2348,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanTieredWithMinimumPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "grouped_tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanGroupedTieredPrice>(
@@ -2429,26 +2370,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanGroupedTieredPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered_package_with_minimum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -2459,26 +2393,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanTieredPackageWithMinimumPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "package_with_allocation":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -2489,26 +2416,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanPackageWithAllocationPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "unit_with_percent":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanUnitWithPercentPrice>(
@@ -2518,26 +2438,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanUnitWithPercentPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "matrix_with_allocation":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanMatrixWithAllocationPrice>(
@@ -2547,26 +2460,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanMatrixWithAllocationPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered_with_proration":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -2577,26 +2483,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'global::Orb.Models.Beta.ExternalPlanID.TieredWithProration'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "unit_with_proration":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanUnitWithProrationPrice>(
@@ -2606,26 +2505,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanUnitWithProrationPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "grouped_allocation":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanGroupedAllocationPrice>(
@@ -2635,26 +2527,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanGroupedAllocationPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "bulk_with_proration":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanBulkWithProrationPrice>(
@@ -2664,26 +2549,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanBulkWithProrationPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "grouped_with_prorated_minimum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -2694,26 +2572,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanGroupedWithProratedMinimumPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "grouped_with_metered_minimum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -2724,26 +2595,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanGroupedWithMeteredMinimumPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "grouped_with_min_max_thresholds":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -2754,26 +2618,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholds'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "matrix_with_display_name":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -2784,26 +2641,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanMatrixWithDisplayNamePrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "grouped_tiered_package":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanGroupedTieredPackagePrice>(
@@ -2813,26 +2663,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanGroupedTieredPackagePrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "max_group_tiered_package":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -2843,26 +2686,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanMaxGroupTieredPackagePrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "scalable_matrix_with_unit_pricing":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -2873,26 +2709,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanScalableMatrixWithUnitPricingPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "scalable_matrix_with_tiered_pricing":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -2903,26 +2732,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanScalableMatrixWithTieredPricingPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "cumulative_grouped_bulk":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -2933,26 +2755,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanCumulativeGroupedBulkPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "cumulative_grouped_allocation":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -2963,26 +2778,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocation'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "minimum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanMinimumCompositePrice>(
@@ -2992,26 +2800,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanMinimumCompositePrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "percent":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -3022,26 +2823,19 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'global::Orb.Models.Beta.ExternalPlanID.Percent'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "event_output":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -3052,27 +2846,20 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.Price(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'global::Orb.Models.Beta.ExternalPlanID.EventOutput'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new global::Orb.Models.Beta.ExternalPlanID.Price(json);
             }
         }
     }
@@ -3083,8 +2870,7 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
         JsonSerializerOptions options
     )
     {
-        object? variant = value?.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value?.Json, options);
     }
 }
 
@@ -4018,28 +3804,30 @@ public class ModelType
 [JsonConverter(typeof(global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfigConverter))]
 public record class ConversionRateConfig
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public ConversionRateConfig(SharedUnitConversionRateConfig value)
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public ConversionRateConfig(SharedTieredConversionRateConfig value)
+    public ConversionRateConfig(SharedUnitConversionRateConfig value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    ConversionRateConfig(UnknownVariant value)
+    public ConversionRateConfig(SharedTieredConversionRateConfig value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public static global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig CreateUnknownVariant(
-        JsonElement value
-    )
+    public ConversionRateConfig(JsonElement json)
     {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
@@ -4099,15 +3887,13 @@ public record class ConversionRateConfig
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of ConversionRateConfig"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class ConversionRateConfigConverter
@@ -4134,8 +3920,6 @@ sealed class ConversionRateConfigConverter
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
@@ -4145,28 +3929,19 @@ sealed class ConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
@@ -4176,29 +3951,20 @@ sealed class ConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfig(json);
             }
         }
     }
@@ -4209,8 +3975,7 @@ sealed class ConversionRateConfigConverter
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 
@@ -5052,28 +4817,36 @@ public sealed record class TierModel
 )]
 public record class TieredWithProrationConversionRateConfig
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public TieredWithProrationConversionRateConfig(SharedUnitConversionRateConfig value)
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public TieredWithProrationConversionRateConfig(SharedTieredConversionRateConfig value)
-    {
-        Value = value;
-    }
-
-    TieredWithProrationConversionRateConfig(UnknownVariant value)
-    {
-        Value = value;
-    }
-
-    public static global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConversionRateConfig CreateUnknownVariant(
-        JsonElement value
+    public TieredWithProrationConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        return new(new UnknownVariant(value));
+        this.Value = value;
+        this._json = json;
+    }
+
+    public TieredWithProrationConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? json = null
+    )
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public TieredWithProrationConversionRateConfig(JsonElement json)
+    {
+        this._json = json;
     }
 
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
@@ -5133,15 +4906,13 @@ public record class TieredWithProrationConversionRateConfig
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of TieredWithProrationConversionRateConfig"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class TieredWithProrationConversionRateConfigConverter
@@ -5168,8 +4939,6 @@ sealed class TieredWithProrationConversionRateConfigConverter
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
@@ -5179,28 +4948,19 @@ sealed class TieredWithProrationConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
@@ -5210,28 +4970,21 @@ sealed class TieredWithProrationConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
+                return new global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConversionRateConfig(
+                    json
                 );
             }
         }
@@ -5243,8 +4996,7 @@ sealed class TieredWithProrationConversionRateConfigConverter
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 
@@ -6106,28 +5858,36 @@ public class GroupedWithMinMaxThresholdsModelType
 )]
 public record class GroupedWithMinMaxThresholdsConversionRateConfig
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public GroupedWithMinMaxThresholdsConversionRateConfig(SharedUnitConversionRateConfig value)
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public GroupedWithMinMaxThresholdsConversionRateConfig(SharedTieredConversionRateConfig value)
-    {
-        Value = value;
-    }
-
-    GroupedWithMinMaxThresholdsConversionRateConfig(UnknownVariant value)
-    {
-        Value = value;
-    }
-
-    public static global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsConversionRateConfig CreateUnknownVariant(
-        JsonElement value
+    public GroupedWithMinMaxThresholdsConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        return new(new UnknownVariant(value));
+        this.Value = value;
+        this._json = json;
+    }
+
+    public GroupedWithMinMaxThresholdsConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? json = null
+    )
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public GroupedWithMinMaxThresholdsConversionRateConfig(JsonElement json)
+    {
+        this._json = json;
     }
 
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
@@ -6187,15 +5947,13 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of GroupedWithMinMaxThresholdsConversionRateConfig"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class GroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -6222,8 +5980,6 @@ sealed class GroupedWithMinMaxThresholdsConversionRateConfigConverter
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
@@ -6233,28 +5989,19 @@ sealed class GroupedWithMinMaxThresholdsConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
@@ -6264,28 +6011,21 @@ sealed class GroupedWithMinMaxThresholdsConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
+                return new global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsConversionRateConfig(
+                    json
                 );
             }
         }
@@ -6297,8 +6037,7 @@ sealed class GroupedWithMinMaxThresholdsConversionRateConfigConverter
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 
@@ -7160,28 +6899,36 @@ public class CumulativeGroupedAllocationModelType
 )]
 public record class CumulativeGroupedAllocationConversionRateConfig
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public CumulativeGroupedAllocationConversionRateConfig(SharedUnitConversionRateConfig value)
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public CumulativeGroupedAllocationConversionRateConfig(SharedTieredConversionRateConfig value)
-    {
-        Value = value;
-    }
-
-    CumulativeGroupedAllocationConversionRateConfig(UnknownVariant value)
-    {
-        Value = value;
-    }
-
-    public static global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationConversionRateConfig CreateUnknownVariant(
-        JsonElement value
+    public CumulativeGroupedAllocationConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        return new(new UnknownVariant(value));
+        this.Value = value;
+        this._json = json;
+    }
+
+    public CumulativeGroupedAllocationConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? json = null
+    )
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public CumulativeGroupedAllocationConversionRateConfig(JsonElement json)
+    {
+        this._json = json;
     }
 
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
@@ -7241,15 +6988,13 @@ public record class CumulativeGroupedAllocationConversionRateConfig
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of CumulativeGroupedAllocationConversionRateConfig"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class CumulativeGroupedAllocationConversionRateConfigConverter
@@ -7276,8 +7021,6 @@ sealed class CumulativeGroupedAllocationConversionRateConfigConverter
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
@@ -7287,28 +7030,19 @@ sealed class CumulativeGroupedAllocationConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
@@ -7318,28 +7052,21 @@ sealed class CumulativeGroupedAllocationConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
+                return new global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationConversionRateConfig(
+                    json
                 );
             }
         }
@@ -7351,8 +7078,7 @@ sealed class CumulativeGroupedAllocationConversionRateConfigConverter
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 
@@ -8054,28 +7780,36 @@ public sealed record class PercentConfig
 [JsonConverter(typeof(global::Orb.Models.Beta.ExternalPlanID.PercentConversionRateConfigConverter))]
 public record class PercentConversionRateConfig
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public PercentConversionRateConfig(SharedUnitConversionRateConfig value)
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public PercentConversionRateConfig(SharedTieredConversionRateConfig value)
-    {
-        Value = value;
-    }
-
-    PercentConversionRateConfig(UnknownVariant value)
-    {
-        Value = value;
-    }
-
-    public static global::Orb.Models.Beta.ExternalPlanID.PercentConversionRateConfig CreateUnknownVariant(
-        JsonElement value
+    public PercentConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        return new(new UnknownVariant(value));
+        this.Value = value;
+        this._json = json;
+    }
+
+    public PercentConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? json = null
+    )
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public PercentConversionRateConfig(JsonElement json)
+    {
+        this._json = json;
     }
 
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
@@ -8135,15 +7869,13 @@ public record class PercentConversionRateConfig
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of PercentConversionRateConfig"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class PercentConversionRateConfigConverter
@@ -8170,8 +7902,6 @@ sealed class PercentConversionRateConfigConverter
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
@@ -8181,28 +7911,19 @@ sealed class PercentConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.PercentConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
@@ -8212,29 +7933,20 @@ sealed class PercentConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.PercentConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new global::Orb.Models.Beta.ExternalPlanID.PercentConversionRateConfig(json);
             }
         }
     }
@@ -8245,8 +7957,7 @@ sealed class PercentConversionRateConfigConverter
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 
@@ -9008,28 +8719,36 @@ public class EventOutputModelType
 )]
 public record class EventOutputConversionRateConfig
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public EventOutputConversionRateConfig(SharedUnitConversionRateConfig value)
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public EventOutputConversionRateConfig(SharedTieredConversionRateConfig value)
-    {
-        Value = value;
-    }
-
-    EventOutputConversionRateConfig(UnknownVariant value)
-    {
-        Value = value;
-    }
-
-    public static global::Orb.Models.Beta.ExternalPlanID.EventOutputConversionRateConfig CreateUnknownVariant(
-        JsonElement value
+    public EventOutputConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        return new(new UnknownVariant(value));
+        this.Value = value;
+        this._json = json;
+    }
+
+    public EventOutputConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? json = null
+    )
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public EventOutputConversionRateConfig(JsonElement json)
+    {
+        this._json = json;
     }
 
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
@@ -9089,15 +8808,13 @@ public record class EventOutputConversionRateConfig
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of EventOutputConversionRateConfig"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class EventOutputConversionRateConfigConverter
@@ -9124,8 +8841,6 @@ sealed class EventOutputConversionRateConfigConverter
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
@@ -9135,28 +8850,19 @@ sealed class EventOutputConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.EventOutputConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
@@ -9166,28 +8872,21 @@ sealed class EventOutputConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.EventOutputConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
+                return new global::Orb.Models.Beta.ExternalPlanID.EventOutputConversionRateConfig(
+                    json
                 );
             }
         }
@@ -9199,8 +8898,7 @@ sealed class EventOutputConversionRateConfigConverter
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 
@@ -9514,7 +9212,14 @@ public sealed record class ReplaceAdjustment
 [JsonConverter(typeof(global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustmentAdjustmentConverter))]
 public record class ReplaceAdjustmentAdjustment
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
+
+    JsonElement? _json = null;
+
+    public JsonElement Json
+    {
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+    }
 
     public string? Currency
     {
@@ -9544,41 +9249,39 @@ public record class ReplaceAdjustmentAdjustment
         }
     }
 
-    public ReplaceAdjustmentAdjustment(NewPercentageDiscount value)
+    public ReplaceAdjustmentAdjustment(NewPercentageDiscount value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public ReplaceAdjustmentAdjustment(NewUsageDiscount value)
+    public ReplaceAdjustmentAdjustment(NewUsageDiscount value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public ReplaceAdjustmentAdjustment(NewAmountDiscount value)
+    public ReplaceAdjustmentAdjustment(NewAmountDiscount value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public ReplaceAdjustmentAdjustment(NewMinimum value)
+    public ReplaceAdjustmentAdjustment(NewMinimum value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public ReplaceAdjustmentAdjustment(NewMaximum value)
+    public ReplaceAdjustmentAdjustment(NewMaximum value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    ReplaceAdjustmentAdjustment(UnknownVariant value)
+    public ReplaceAdjustmentAdjustment(JsonElement json)
     {
-        Value = value;
-    }
-
-    public static global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustmentAdjustment CreateUnknownVariant(
-        JsonElement value
-    )
-    {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickNewPercentageDiscount([NotNullWhen(true)] out NewPercentageDiscount? value)
@@ -9686,15 +9389,13 @@ public record class ReplaceAdjustmentAdjustment
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of ReplaceAdjustmentAdjustment"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class ReplaceAdjustmentAdjustmentConverter
@@ -9721,8 +9422,6 @@ sealed class ReplaceAdjustmentAdjustmentConverter
         {
             case "percentage_discount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPercentageDiscount>(
@@ -9732,141 +9431,96 @@ sealed class ReplaceAdjustmentAdjustmentConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustmentAdjustment(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPercentageDiscount'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "usage_discount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewUsageDiscount>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustmentAdjustment(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewUsageDiscount'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "amount_discount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewAmountDiscount>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustmentAdjustment(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewAmountDiscount'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "minimum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewMinimum>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustmentAdjustment(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewMinimum'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "maximum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewMaximum>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustmentAdjustment(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewMaximum'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustmentAdjustment(json);
             }
         }
     }
@@ -9877,8 +9531,7 @@ sealed class ReplaceAdjustmentAdjustmentConverter
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 
@@ -10031,7 +9684,14 @@ public sealed record class ReplacePrice
 [JsonConverter(typeof(global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceConverter))]
 public record class ReplacePricePrice
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
+
+    JsonElement? _json = null;
+
+    public JsonElement Json
+    {
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+    }
 
     public string ItemID
     {
@@ -10553,181 +10213,219 @@ public record class ReplacePricePrice
         }
     }
 
-    public ReplacePricePrice(NewPlanUnitPrice value)
+    public ReplacePricePrice(NewPlanUnitPrice value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public ReplacePricePrice(NewPlanTieredPrice value)
+    public ReplacePricePrice(NewPlanTieredPrice value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public ReplacePricePrice(NewPlanBulkPrice value)
+    public ReplacePricePrice(NewPlanBulkPrice value, JsonElement? json = null)
     {
-        Value = value;
-    }
-
-    public ReplacePricePrice(
-        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFilters value
-    )
-    {
-        Value = value;
-    }
-
-    public ReplacePricePrice(NewPlanPackagePrice value)
-    {
-        Value = value;
-    }
-
-    public ReplacePricePrice(NewPlanMatrixPrice value)
-    {
-        Value = value;
-    }
-
-    public ReplacePricePrice(NewPlanThresholdTotalAmountPrice value)
-    {
-        Value = value;
-    }
-
-    public ReplacePricePrice(NewPlanTieredPackagePrice value)
-    {
-        Value = value;
-    }
-
-    public ReplacePricePrice(NewPlanTieredWithMinimumPrice value)
-    {
-        Value = value;
-    }
-
-    public ReplacePricePrice(NewPlanGroupedTieredPrice value)
-    {
-        Value = value;
-    }
-
-    public ReplacePricePrice(NewPlanTieredPackageWithMinimumPrice value)
-    {
-        Value = value;
-    }
-
-    public ReplacePricePrice(NewPlanPackageWithAllocationPrice value)
-    {
-        Value = value;
-    }
-
-    public ReplacePricePrice(NewPlanUnitWithPercentPrice value)
-    {
-        Value = value;
-    }
-
-    public ReplacePricePrice(NewPlanMatrixWithAllocationPrice value)
-    {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
     public ReplacePricePrice(
-        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProration value
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFilters value,
+        JsonElement? json = null
     )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public ReplacePricePrice(NewPlanUnitWithProrationPrice value)
+    public ReplacePricePrice(NewPlanPackagePrice value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public ReplacePricePrice(NewPlanGroupedAllocationPrice value)
+    public ReplacePricePrice(NewPlanMatrixPrice value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public ReplacePricePrice(NewPlanBulkWithProrationPrice value)
+    public ReplacePricePrice(NewPlanThresholdTotalAmountPrice value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public ReplacePricePrice(NewPlanGroupedWithProratedMinimumPrice value)
+    public ReplacePricePrice(NewPlanTieredPackagePrice value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public ReplacePricePrice(NewPlanGroupedWithMeteredMinimumPrice value)
+    public ReplacePricePrice(NewPlanTieredWithMinimumPrice value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePrice(NewPlanGroupedTieredPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePrice(NewPlanTieredPackageWithMinimumPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePrice(NewPlanPackageWithAllocationPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePrice(NewPlanUnitWithPercentPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePrice(NewPlanMatrixWithAllocationPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
     }
 
     public ReplacePricePrice(
-        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholds value
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProration value,
+        JsonElement? json = null
     )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public ReplacePricePrice(NewPlanMatrixWithDisplayNamePrice value)
+    public ReplacePricePrice(NewPlanUnitWithProrationPrice value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public ReplacePricePrice(NewPlanGroupedTieredPackagePrice value)
+    public ReplacePricePrice(NewPlanGroupedAllocationPrice value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public ReplacePricePrice(NewPlanMaxGroupTieredPackagePrice value)
+    public ReplacePricePrice(NewPlanBulkWithProrationPrice value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public ReplacePricePrice(NewPlanScalableMatrixWithUnitPricingPrice value)
+    public ReplacePricePrice(NewPlanGroupedWithProratedMinimumPrice value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public ReplacePricePrice(NewPlanScalableMatrixWithTieredPricingPrice value)
+    public ReplacePricePrice(NewPlanGroupedWithMeteredMinimumPrice value, JsonElement? json = null)
     {
-        Value = value;
-    }
-
-    public ReplacePricePrice(NewPlanCumulativeGroupedBulkPrice value)
-    {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
     public ReplacePricePrice(
-        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocation value
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholds value,
+        JsonElement? json = null
     )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public ReplacePricePrice(NewPlanMinimumCompositePrice value)
+    public ReplacePricePrice(NewPlanMatrixWithDisplayNamePrice value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public ReplacePricePrice(global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercent value)
+    public ReplacePricePrice(NewPlanGroupedTieredPackagePrice value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePrice(NewPlanMaxGroupTieredPackagePrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
     }
 
     public ReplacePricePrice(
-        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutput value
+        NewPlanScalableMatrixWithUnitPricingPrice value,
+        JsonElement? json = null
     )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    ReplacePricePrice(UnknownVariant value)
-    {
-        Value = value;
-    }
-
-    public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice CreateUnknownVariant(
-        JsonElement value
+    public ReplacePricePrice(
+        NewPlanScalableMatrixWithTieredPricingPrice value,
+        JsonElement? json = null
     )
     {
-        return new(new UnknownVariant(value));
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePrice(NewPlanCumulativeGroupedBulkPrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePrice(
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocation value,
+        JsonElement? json = null
+    )
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePrice(NewPlanMinimumCompositePrice value, JsonElement? json = null)
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePrice(
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercent value,
+        JsonElement? json = null
+    )
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePrice(
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutput value,
+        JsonElement? json = null
+    )
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePrice(JsonElement json)
+    {
+        this._json = json;
     }
 
     public bool TryPickNewPlanUnit([NotNullWhen(true)] out NewPlanUnitPrice? value)
@@ -11347,15 +11045,13 @@ public record class ReplacePricePrice
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of ReplacePricePrice"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class ReplacePricePriceConverter
@@ -11382,36 +11078,25 @@ sealed class ReplacePricePriceConverter
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanUnitPrice>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanUnitPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanTieredPrice>(
@@ -11421,56 +11106,38 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanTieredPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "bulk":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanBulkPrice>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanBulkPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "bulk_with_filters":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -11481,28 +11148,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFilters'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "package":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanPackagePrice>(
@@ -11512,28 +11170,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanPackagePrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "matrix":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanMatrixPrice>(
@@ -11543,28 +11192,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanMatrixPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "threshold_total_amount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanThresholdTotalAmountPrice>(
@@ -11574,28 +11214,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanThresholdTotalAmountPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered_package":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanTieredPackagePrice>(
@@ -11605,28 +11236,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanTieredPackagePrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered_with_minimum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanTieredWithMinimumPrice>(
@@ -11636,28 +11258,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanTieredWithMinimumPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "grouped_tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanGroupedTieredPrice>(
@@ -11667,28 +11280,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanGroupedTieredPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered_package_with_minimum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -11699,28 +11303,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanTieredPackageWithMinimumPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "package_with_allocation":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -11731,28 +11326,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanPackageWithAllocationPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "unit_with_percent":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanUnitWithPercentPrice>(
@@ -11762,28 +11348,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanUnitWithPercentPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "matrix_with_allocation":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanMatrixWithAllocationPrice>(
@@ -11793,28 +11370,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanMatrixWithAllocationPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered_with_proration":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -11825,28 +11393,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProration'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "unit_with_proration":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanUnitWithProrationPrice>(
@@ -11856,28 +11415,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanUnitWithProrationPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "grouped_allocation":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanGroupedAllocationPrice>(
@@ -11887,28 +11437,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanGroupedAllocationPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "bulk_with_proration":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanBulkWithProrationPrice>(
@@ -11918,28 +11459,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanBulkWithProrationPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "grouped_with_prorated_minimum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -11950,28 +11482,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanGroupedWithProratedMinimumPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "grouped_with_metered_minimum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -11982,28 +11505,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanGroupedWithMeteredMinimumPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "grouped_with_min_max_thresholds":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -12014,28 +11528,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholds'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "matrix_with_display_name":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -12046,28 +11551,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanMatrixWithDisplayNamePrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "grouped_tiered_package":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanGroupedTieredPackagePrice>(
@@ -12077,28 +11573,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanGroupedTieredPackagePrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "max_group_tiered_package":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -12109,28 +11596,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanMaxGroupTieredPackagePrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "scalable_matrix_with_unit_pricing":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -12141,28 +11619,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanScalableMatrixWithUnitPricingPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "scalable_matrix_with_tiered_pricing":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -12173,28 +11642,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanScalableMatrixWithTieredPricingPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "cumulative_grouped_bulk":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -12205,28 +11665,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanCumulativeGroupedBulkPrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "cumulative_grouped_allocation":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -12237,28 +11688,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocation'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "minimum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPlanMinimumCompositePrice>(
@@ -12268,28 +11710,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'NewPlanMinimumCompositePrice'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "percent":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -12300,28 +11733,19 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercent'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "event_output":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -12332,29 +11756,20 @@ sealed class ReplacePricePriceConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutput'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePrice(json);
             }
         }
     }
@@ -12365,8 +11780,7 @@ sealed class ReplacePricePriceConverter
         JsonSerializerOptions options
     )
     {
-        object? variant = value?.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value?.Json, options);
     }
 }
 
@@ -13381,32 +12795,36 @@ public class ReplacePricePriceBulkWithFiltersModelType
 )]
 public record class ReplacePricePriceBulkWithFiltersConversionRateConfig
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public ReplacePricePriceBulkWithFiltersConversionRateConfig(
-        SharedUnitConversionRateConfig value
-    )
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public ReplacePricePriceBulkWithFiltersConversionRateConfig(
-        SharedTieredConversionRateConfig value
+        SharedUnitConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    ReplacePricePriceBulkWithFiltersConversionRateConfig(UnknownVariant value)
-    {
-        Value = value;
-    }
-
-    public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersConversionRateConfig CreateUnknownVariant(
-        JsonElement value
+    public ReplacePricePriceBulkWithFiltersConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        return new(new UnknownVariant(value));
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePriceBulkWithFiltersConversionRateConfig(JsonElement json)
+    {
+        this._json = json;
     }
 
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
@@ -13466,15 +12884,13 @@ public record class ReplacePricePriceBulkWithFiltersConversionRateConfig
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of ReplacePricePriceBulkWithFiltersConversionRateConfig"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class ReplacePricePriceBulkWithFiltersConversionRateConfigConverter
@@ -13501,8 +12917,6 @@ sealed class ReplacePricePriceBulkWithFiltersConversionRateConfigConverter
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
@@ -13512,28 +12926,19 @@ sealed class ReplacePricePriceBulkWithFiltersConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
@@ -13543,28 +12948,21 @@ sealed class ReplacePricePriceBulkWithFiltersConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
+                return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersConversionRateConfig(
+                    json
                 );
             }
         }
@@ -13576,8 +12974,7 @@ sealed class ReplacePricePriceBulkWithFiltersConversionRateConfigConverter
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 
@@ -14478,32 +13875,36 @@ public sealed record class Tier2 : ModelBase, IFromRaw<global::Orb.Models.Beta.E
 )]
 public record class ReplacePricePriceTieredWithProrationConversionRateConfig
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public ReplacePricePriceTieredWithProrationConversionRateConfig(
-        SharedUnitConversionRateConfig value
-    )
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public ReplacePricePriceTieredWithProrationConversionRateConfig(
-        SharedTieredConversionRateConfig value
+        SharedUnitConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    ReplacePricePriceTieredWithProrationConversionRateConfig(UnknownVariant value)
-    {
-        Value = value;
-    }
-
-    public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationConversionRateConfig CreateUnknownVariant(
-        JsonElement value
+    public ReplacePricePriceTieredWithProrationConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        return new(new UnknownVariant(value));
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePriceTieredWithProrationConversionRateConfig(JsonElement json)
+    {
+        this._json = json;
     }
 
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
@@ -14563,15 +13964,13 @@ public record class ReplacePricePriceTieredWithProrationConversionRateConfig
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of ReplacePricePriceTieredWithProrationConversionRateConfig"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class ReplacePricePriceTieredWithProrationConversionRateConfigConverter
@@ -14598,8 +13997,6 @@ sealed class ReplacePricePriceTieredWithProrationConversionRateConfigConverter
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
@@ -14609,28 +14006,19 @@ sealed class ReplacePricePriceTieredWithProrationConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
@@ -14640,28 +14028,21 @@ sealed class ReplacePricePriceTieredWithProrationConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
+                return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationConversionRateConfig(
+                    json
                 );
             }
         }
@@ -14673,8 +14054,7 @@ sealed class ReplacePricePriceTieredWithProrationConversionRateConfigConverter
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 
@@ -15561,32 +14941,36 @@ public class ReplacePricePriceGroupedWithMinMaxThresholdsModelType
 )]
 public record class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig(
-        SharedUnitConversionRateConfig value
-    )
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig(
-        SharedTieredConversionRateConfig value
+        SharedUnitConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig(UnknownVariant value)
-    {
-        Value = value;
-    }
-
-    public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig CreateUnknownVariant(
-        JsonElement value
+    public ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        return new(new UnknownVariant(value));
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig(JsonElement json)
+    {
+        this._json = json;
     }
 
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
@@ -15646,15 +15030,13 @@ public record class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateCo
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -15681,8 +15063,6 @@ sealed class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigCon
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
@@ -15692,28 +15072,19 @@ sealed class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigCon
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
@@ -15723,28 +15094,21 @@ sealed class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigCon
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
+                return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig(
+                    json
                 );
             }
         }
@@ -15756,8 +15120,7 @@ sealed class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigCon
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 
@@ -16644,32 +16007,36 @@ public class ReplacePricePriceCumulativeGroupedAllocationModelType
 )]
 public record class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig(
-        SharedUnitConversionRateConfig value
-    )
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig(
-        SharedTieredConversionRateConfig value
+        SharedUnitConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig(UnknownVariant value)
-    {
-        Value = value;
-    }
-
-    public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig CreateUnknownVariant(
-        JsonElement value
+    public ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        return new(new UnknownVariant(value));
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig(JsonElement json)
+    {
+        this._json = json;
     }
 
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
@@ -16729,15 +16096,13 @@ public record class ReplacePricePriceCumulativeGroupedAllocationConversionRateCo
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigConverter
@@ -16764,8 +16129,6 @@ sealed class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigCon
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
@@ -16775,28 +16138,19 @@ sealed class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigCon
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
@@ -16806,28 +16160,21 @@ sealed class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigCon
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
+                return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig(
+                    json
                 );
             }
         }
@@ -16839,8 +16186,7 @@ sealed class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigCon
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 
@@ -17597,28 +16943,36 @@ public sealed record class ReplacePricePricePercentPercentConfig
 )]
 public record class ReplacePricePricePercentConversionRateConfig
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public ReplacePricePricePercentConversionRateConfig(SharedUnitConversionRateConfig value)
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public ReplacePricePricePercentConversionRateConfig(SharedTieredConversionRateConfig value)
-    {
-        Value = value;
-    }
-
-    ReplacePricePricePercentConversionRateConfig(UnknownVariant value)
-    {
-        Value = value;
-    }
-
-    public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentConversionRateConfig CreateUnknownVariant(
-        JsonElement value
+    public ReplacePricePricePercentConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        return new(new UnknownVariant(value));
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePricePercentConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? json = null
+    )
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePricePercentConversionRateConfig(JsonElement json)
+    {
+        this._json = json;
     }
 
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
@@ -17678,15 +17032,13 @@ public record class ReplacePricePricePercentConversionRateConfig
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of ReplacePricePricePercentConversionRateConfig"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class ReplacePricePricePercentConversionRateConfigConverter
@@ -17713,8 +17065,6 @@ sealed class ReplacePricePricePercentConversionRateConfigConverter
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
@@ -17724,28 +17074,19 @@ sealed class ReplacePricePricePercentConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
@@ -17755,28 +17096,21 @@ sealed class ReplacePricePricePercentConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
+                return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentConversionRateConfig(
+                    json
                 );
             }
         }
@@ -17788,8 +17122,7 @@ sealed class ReplacePricePricePercentConversionRateConfigConverter
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 
@@ -18616,28 +17949,36 @@ public class ReplacePricePriceEventOutputModelType
 )]
 public record class ReplacePricePriceEventOutputConversionRateConfig
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public ReplacePricePriceEventOutputConversionRateConfig(SharedUnitConversionRateConfig value)
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public ReplacePricePriceEventOutputConversionRateConfig(SharedTieredConversionRateConfig value)
-    {
-        Value = value;
-    }
-
-    ReplacePricePriceEventOutputConversionRateConfig(UnknownVariant value)
-    {
-        Value = value;
-    }
-
-    public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputConversionRateConfig CreateUnknownVariant(
-        JsonElement value
+    public ReplacePricePriceEventOutputConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        return new(new UnknownVariant(value));
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePriceEventOutputConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? json = null
+    )
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public ReplacePricePriceEventOutputConversionRateConfig(JsonElement json)
+    {
+        this._json = json;
     }
 
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
@@ -18697,15 +18038,13 @@ public record class ReplacePricePriceEventOutputConversionRateConfig
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of ReplacePricePriceEventOutputConversionRateConfig"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class ReplacePricePriceEventOutputConversionRateConfigConverter
@@ -18732,8 +18071,6 @@ sealed class ReplacePricePriceEventOutputConversionRateConfigConverter
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
@@ -18743,28 +18080,19 @@ sealed class ReplacePricePriceEventOutputConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
@@ -18774,28 +18102,21 @@ sealed class ReplacePricePriceEventOutputConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
+                return new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputConversionRateConfig(
+                    json
                 );
             }
         }
@@ -18807,7 +18128,6 @@ sealed class ReplacePricePriceEventOutputConversionRateConfigConverter
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }

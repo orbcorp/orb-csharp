@@ -193,7 +193,14 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
 [JsonConverter(typeof(AdjustmentIntervalAdjustmentConverter))]
 public record class AdjustmentIntervalAdjustment
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
+
+    JsonElement? _json = null;
+
+    public JsonElement Json
+    {
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+    }
 
     public string ID
     {
@@ -265,39 +272,48 @@ public record class AdjustmentIntervalAdjustment
         }
     }
 
-    public AdjustmentIntervalAdjustment(PlanPhaseUsageDiscountAdjustment value)
+    public AdjustmentIntervalAdjustment(
+        PlanPhaseUsageDiscountAdjustment value,
+        JsonElement? json = null
+    )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public AdjustmentIntervalAdjustment(PlanPhaseAmountDiscountAdjustment value)
+    public AdjustmentIntervalAdjustment(
+        PlanPhaseAmountDiscountAdjustment value,
+        JsonElement? json = null
+    )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public AdjustmentIntervalAdjustment(PlanPhasePercentageDiscountAdjustment value)
+    public AdjustmentIntervalAdjustment(
+        PlanPhasePercentageDiscountAdjustment value,
+        JsonElement? json = null
+    )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public AdjustmentIntervalAdjustment(PlanPhaseMinimumAdjustment value)
+    public AdjustmentIntervalAdjustment(PlanPhaseMinimumAdjustment value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public AdjustmentIntervalAdjustment(PlanPhaseMaximumAdjustment value)
+    public AdjustmentIntervalAdjustment(PlanPhaseMaximumAdjustment value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    AdjustmentIntervalAdjustment(UnknownVariant value)
+    public AdjustmentIntervalAdjustment(JsonElement json)
     {
-        Value = value;
-    }
-
-    public static AdjustmentIntervalAdjustment CreateUnknownVariant(JsonElement value)
-    {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickPlanPhaseUsageDiscount(
@@ -411,15 +427,13 @@ public record class AdjustmentIntervalAdjustment
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of AdjustmentIntervalAdjustment"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class AdjustmentIntervalAdjustmentConverter : JsonConverter<AdjustmentIntervalAdjustment>
@@ -445,8 +459,6 @@ sealed class AdjustmentIntervalAdjustmentConverter : JsonConverter<AdjustmentInt
         {
             case "usage_discount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<PlanPhaseUsageDiscountAdjustment>(
@@ -456,26 +468,19 @@ sealed class AdjustmentIntervalAdjustmentConverter : JsonConverter<AdjustmentInt
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new AdjustmentIntervalAdjustment(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'PlanPhaseUsageDiscountAdjustment'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "amount_discount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -486,26 +491,19 @@ sealed class AdjustmentIntervalAdjustmentConverter : JsonConverter<AdjustmentInt
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new AdjustmentIntervalAdjustment(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'PlanPhaseAmountDiscountAdjustment'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "percentage_discount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -516,26 +514,19 @@ sealed class AdjustmentIntervalAdjustmentConverter : JsonConverter<AdjustmentInt
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new AdjustmentIntervalAdjustment(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'PlanPhasePercentageDiscountAdjustment'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "minimum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<PlanPhaseMinimumAdjustment>(
@@ -545,26 +536,19 @@ sealed class AdjustmentIntervalAdjustmentConverter : JsonConverter<AdjustmentInt
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new AdjustmentIntervalAdjustment(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'PlanPhaseMinimumAdjustment'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "maximum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<PlanPhaseMaximumAdjustment>(
@@ -574,27 +558,20 @@ sealed class AdjustmentIntervalAdjustmentConverter : JsonConverter<AdjustmentInt
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new AdjustmentIntervalAdjustment(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'PlanPhaseMaximumAdjustment'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new AdjustmentIntervalAdjustment(json);
             }
         }
     }
@@ -605,7 +582,6 @@ sealed class AdjustmentIntervalAdjustmentConverter : JsonConverter<AdjustmentInt
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }

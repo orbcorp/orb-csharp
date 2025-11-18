@@ -1008,32 +1008,36 @@ public sealed record class Tier12 : ModelBase, IFromRaw<Tier12>
 [JsonConverter(typeof(NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfigConverter))]
 public record class NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfig
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfig(
-        SharedUnitConversionRateConfig value
-    )
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfig(
-        SharedTieredConversionRateConfig value
+        SharedUnitConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfig(UnknownVariant value)
-    {
-        Value = value;
-    }
-
-    public static NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfig CreateUnknownVariant(
-        JsonElement value
+    public NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        return new(new UnknownVariant(value));
+        this.Value = value;
+        this._json = json;
+    }
+
+    public NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfig(JsonElement json)
+    {
+        this._json = json;
     }
 
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
@@ -1093,15 +1097,13 @@ public record class NewPlanScalableMatrixWithTieredPricingPriceConversionRateCon
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfig"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfigConverter
@@ -1128,8 +1130,6 @@ sealed class NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfigConv
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
@@ -1139,28 +1139,19 @@ sealed class NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfigConv
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
@@ -1170,29 +1161,20 @@ sealed class NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfigConv
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfig(json);
             }
         }
     }
@@ -1203,7 +1185,6 @@ sealed class NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfigConv
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }

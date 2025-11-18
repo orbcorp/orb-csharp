@@ -12,26 +12,30 @@ namespace Orb.Models.Subscriptions;
 [JsonConverter(typeof(SubscriptionUsageConverter))]
 public record class SubscriptionUsage
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public SubscriptionUsage(UngroupedSubscriptionUsage value)
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public SubscriptionUsage(GroupedSubscriptionUsage value)
+    public SubscriptionUsage(UngroupedSubscriptionUsage value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    SubscriptionUsage(UnknownVariant value)
+    public SubscriptionUsage(GroupedSubscriptionUsage value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public static SubscriptionUsage CreateUnknownVariant(JsonElement value)
+    public SubscriptionUsage(JsonElement json)
     {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickUngrouped([NotNullWhen(true)] out UngroupedSubscriptionUsage? value)
@@ -88,15 +92,13 @@ public record class SubscriptionUsage
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of SubscriptionUsage"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
@@ -107,53 +109,39 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
         JsonSerializerOptions options
     )
     {
-        List<OrbInvalidDataException> exceptions = [];
-
+        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
             var deserialized = JsonSerializer.Deserialize<UngroupedSubscriptionUsage>(
-                ref reader,
+                json,
                 options
             );
             if (deserialized != null)
             {
                 deserialized.Validate();
-                return new SubscriptionUsage(deserialized);
+                return new(deserialized, json);
             }
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
-            exceptions.Add(
-                new OrbInvalidDataException(
-                    "Data does not match union variant 'UngroupedSubscriptionUsage'",
-                    e
-                )
-            );
+            // ignore
         }
 
         try
         {
-            var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsage>(
-                ref reader,
-                options
-            );
+            var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsage>(json, options);
             if (deserialized != null)
             {
                 deserialized.Validate();
-                return new SubscriptionUsage(deserialized);
+                return new(deserialized, json);
             }
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
-            exceptions.Add(
-                new OrbInvalidDataException(
-                    "Data does not match union variant 'GroupedSubscriptionUsage'",
-                    e
-                )
-            );
+            // ignore
         }
 
-        throw new System::AggregateException(exceptions);
+        return new(json);
     }
 
     public override void Write(
@@ -162,8 +150,7 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 

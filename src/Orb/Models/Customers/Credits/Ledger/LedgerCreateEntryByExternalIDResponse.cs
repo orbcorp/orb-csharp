@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -14,7 +13,14 @@ namespace Orb.Models.Customers.Credits.Ledger;
 [JsonConverter(typeof(LedgerCreateEntryByExternalIDResponseConverter))]
 public record class LedgerCreateEntryByExternalIDResponse
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
+
+    JsonElement? _json = null;
+
+    public JsonElement Json
+    {
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+    }
 
     public string ID
     {
@@ -224,49 +230,69 @@ public record class LedgerCreateEntryByExternalIDResponse
         }
     }
 
-    public LedgerCreateEntryByExternalIDResponse(IncrementLedgerEntry value)
+    public LedgerCreateEntryByExternalIDResponse(
+        IncrementLedgerEntry value,
+        JsonElement? json = null
+    )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public LedgerCreateEntryByExternalIDResponse(DecrementLedgerEntry value)
+    public LedgerCreateEntryByExternalIDResponse(
+        DecrementLedgerEntry value,
+        JsonElement? json = null
+    )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public LedgerCreateEntryByExternalIDResponse(ExpirationChangeLedgerEntry value)
+    public LedgerCreateEntryByExternalIDResponse(
+        ExpirationChangeLedgerEntry value,
+        JsonElement? json = null
+    )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public LedgerCreateEntryByExternalIDResponse(CreditBlockExpiryLedgerEntry value)
+    public LedgerCreateEntryByExternalIDResponse(
+        CreditBlockExpiryLedgerEntry value,
+        JsonElement? json = null
+    )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public LedgerCreateEntryByExternalIDResponse(VoidLedgerEntry value)
+    public LedgerCreateEntryByExternalIDResponse(VoidLedgerEntry value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public LedgerCreateEntryByExternalIDResponse(VoidInitiatedLedgerEntry value)
+    public LedgerCreateEntryByExternalIDResponse(
+        VoidInitiatedLedgerEntry value,
+        JsonElement? json = null
+    )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public LedgerCreateEntryByExternalIDResponse(AmendmentLedgerEntry value)
+    public LedgerCreateEntryByExternalIDResponse(
+        AmendmentLedgerEntry value,
+        JsonElement? json = null
+    )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    LedgerCreateEntryByExternalIDResponse(UnknownVariant value)
+    public LedgerCreateEntryByExternalIDResponse(JsonElement json)
     {
-        Value = value;
-    }
-
-    public static LedgerCreateEntryByExternalIDResponse CreateUnknownVariant(JsonElement value)
-    {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickIncrementLedgerEntry([NotNullWhen(true)] out IncrementLedgerEntry? value)
@@ -411,15 +437,13 @@ public record class LedgerCreateEntryByExternalIDResponse
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of LedgerCreateEntryByExternalIDResponse"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class LedgerCreateEntryByExternalIDResponseConverter
@@ -446,8 +470,6 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
         {
             case "increment":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<IncrementLedgerEntry>(
@@ -457,26 +479,19 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new LedgerCreateEntryByExternalIDResponse(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'IncrementLedgerEntry'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "decrement":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<DecrementLedgerEntry>(
@@ -486,26 +501,19 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new LedgerCreateEntryByExternalIDResponse(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'DecrementLedgerEntry'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "expiration_change":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<ExpirationChangeLedgerEntry>(
@@ -515,26 +523,19 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new LedgerCreateEntryByExternalIDResponse(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'ExpirationChangeLedgerEntry'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "credit_block_expiry":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<CreditBlockExpiryLedgerEntry>(
@@ -544,52 +545,38 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new LedgerCreateEntryByExternalIDResponse(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'CreditBlockExpiryLedgerEntry'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "void":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<VoidLedgerEntry>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new LedgerCreateEntryByExternalIDResponse(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'VoidLedgerEntry'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "void_initiated":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<VoidInitiatedLedgerEntry>(
@@ -599,26 +586,19 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new LedgerCreateEntryByExternalIDResponse(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'VoidInitiatedLedgerEntry'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "amendment":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<AmendmentLedgerEntry>(
@@ -628,27 +608,20 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new LedgerCreateEntryByExternalIDResponse(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'AmendmentLedgerEntry'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new LedgerCreateEntryByExternalIDResponse(json);
             }
         }
     }
@@ -659,7 +632,6 @@ sealed class LedgerCreateEntryByExternalIDResponseConverter
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }

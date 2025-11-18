@@ -196,26 +196,30 @@ public sealed record class CouponCreateParams : ParamsBase
 [JsonConverter(typeof(DiscountConverter))]
 public record class Discount
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public Discount(Percentage value)
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public Discount(Amount value)
+    public Discount(Percentage value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    Discount(UnknownVariant value)
+    public Discount(Amount value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public static global::Orb.Models.Coupons.Discount CreateUnknownVariant(JsonElement value)
+    public Discount(JsonElement json)
     {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickPercentage([NotNullWhen(true)] out Percentage? value)
@@ -262,13 +266,11 @@ public record class Discount
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException("Data did not match any variant of Discount");
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class DiscountConverter : JsonConverter<global::Orb.Models.Coupons.Discount>
@@ -294,58 +296,45 @@ sealed class DiscountConverter : JsonConverter<global::Orb.Models.Coupons.Discou
         {
             case "percentage":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<Percentage>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Coupons.Discount(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'Percentage'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "amount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<Amount>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Coupons.Discount(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException("Data does not match union variant 'Amount'", e)
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new global::Orb.Models.Coupons.Discount(json);
             }
         }
     }
@@ -356,8 +345,7 @@ sealed class DiscountConverter : JsonConverter<global::Orb.Models.Coupons.Discou
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 

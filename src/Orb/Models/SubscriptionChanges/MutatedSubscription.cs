@@ -904,7 +904,14 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
 [JsonConverter(typeof(DiscountIntervalConverter))]
 public record class DiscountInterval
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
+
+    JsonElement? _json = null;
+
+    public JsonElement Json
+    {
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+    }
 
     public System::DateTimeOffset? EndDate
     {
@@ -930,29 +937,27 @@ public record class DiscountInterval
         }
     }
 
-    public DiscountInterval(AmountDiscountInterval value)
+    public DiscountInterval(AmountDiscountInterval value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public DiscountInterval(PercentageDiscountInterval value)
+    public DiscountInterval(PercentageDiscountInterval value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public DiscountInterval(UsageDiscountInterval value)
+    public DiscountInterval(UsageDiscountInterval value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    DiscountInterval(UnknownVariant value)
+    public DiscountInterval(JsonElement json)
     {
-        Value = value;
-    }
-
-    public static DiscountInterval CreateUnknownVariant(JsonElement value)
-    {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickAmount([NotNullWhen(true)] out AmountDiscountInterval? value)
@@ -1023,13 +1028,11 @@ public record class DiscountInterval
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException("Data did not match any variant of DiscountInterval");
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
@@ -1055,8 +1058,6 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
         {
             case "amount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<AmountDiscountInterval>(
@@ -1066,26 +1067,19 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new DiscountInterval(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'AmountDiscountInterval'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "percentage":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<PercentageDiscountInterval>(
@@ -1095,26 +1089,19 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new DiscountInterval(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'PercentageDiscountInterval'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "usage":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<UsageDiscountInterval>(
@@ -1124,27 +1111,20 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new DiscountInterval(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'UsageDiscountInterval'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new DiscountInterval(json);
             }
         }
     }
@@ -1155,8 +1135,7 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 
