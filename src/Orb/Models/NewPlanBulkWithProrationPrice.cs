@@ -794,28 +794,36 @@ sealed class NewPlanBulkWithProrationPriceModelTypeConverter
 [JsonConverter(typeof(NewPlanBulkWithProrationPriceConversionRateConfigConverter))]
 public record class NewPlanBulkWithProrationPriceConversionRateConfig
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public NewPlanBulkWithProrationPriceConversionRateConfig(SharedUnitConversionRateConfig value)
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public NewPlanBulkWithProrationPriceConversionRateConfig(SharedTieredConversionRateConfig value)
-    {
-        Value = value;
-    }
-
-    NewPlanBulkWithProrationPriceConversionRateConfig(UnknownVariant value)
-    {
-        Value = value;
-    }
-
-    public static NewPlanBulkWithProrationPriceConversionRateConfig CreateUnknownVariant(
-        JsonElement value
+    public NewPlanBulkWithProrationPriceConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        return new(new UnknownVariant(value));
+        this.Value = value;
+        this._json = json;
+    }
+
+    public NewPlanBulkWithProrationPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? json = null
+    )
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public NewPlanBulkWithProrationPriceConversionRateConfig(JsonElement json)
+    {
+        this._json = json;
     }
 
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
@@ -875,15 +883,13 @@ public record class NewPlanBulkWithProrationPriceConversionRateConfig
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of NewPlanBulkWithProrationPriceConversionRateConfig"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class NewPlanBulkWithProrationPriceConversionRateConfigConverter
@@ -910,8 +916,6 @@ sealed class NewPlanBulkWithProrationPriceConversionRateConfigConverter
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
@@ -921,26 +925,19 @@ sealed class NewPlanBulkWithProrationPriceConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new NewPlanBulkWithProrationPriceConversionRateConfig(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
@@ -950,27 +947,20 @@ sealed class NewPlanBulkWithProrationPriceConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new NewPlanBulkWithProrationPriceConversionRateConfig(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new NewPlanBulkWithProrationPriceConversionRateConfig(json);
             }
         }
     }
@@ -981,7 +971,6 @@ sealed class NewPlanBulkWithProrationPriceConversionRateConfigConverter
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }

@@ -762,32 +762,36 @@ sealed class NewSubscriptionGroupedWithProratedMinimumPriceModelTypeConverter
 [JsonConverter(typeof(NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfigConverter))]
 public record class NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig(
-        SharedUnitConversionRateConfig value
-    )
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig(
-        SharedTieredConversionRateConfig value
+        SharedUnitConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig(UnknownVariant value)
-    {
-        Value = value;
-    }
-
-    public static NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig CreateUnknownVariant(
-        JsonElement value
+    public NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        return new(new UnknownVariant(value));
+        this.Value = value;
+        this._json = json;
+    }
+
+    public NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig(JsonElement json)
+    {
+        this._json = json;
     }
 
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
@@ -847,15 +851,13 @@ public record class NewSubscriptionGroupedWithProratedMinimumPriceConversionRate
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfigConverter
@@ -882,8 +884,6 @@ sealed class NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfigC
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
@@ -893,28 +893,19 @@ sealed class NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfigC
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
@@ -924,29 +915,20 @@ sealed class NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfigC
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig(json);
             }
         }
     }
@@ -957,7 +939,6 @@ sealed class NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfigC
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }

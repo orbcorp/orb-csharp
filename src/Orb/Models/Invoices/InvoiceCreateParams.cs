@@ -648,26 +648,30 @@ sealed class ModelTypeConverter : JsonConverter<global::Orb.Models.Invoices.Mode
 [JsonConverter(typeof(DueDateConverter))]
 public record class DueDate
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public DueDate(System::DateOnly value)
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public DueDate(System::DateTimeOffset value)
+    public DueDate(System::DateOnly value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    DueDate(UnknownVariant value)
+    public DueDate(System::DateTimeOffset value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public static DueDate CreateUnknownVariant(JsonElement value)
+    public DueDate(JsonElement json)
     {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickDate([NotNullWhen(true)] out System::DateOnly? value)
@@ -719,13 +723,11 @@ public record class DueDate
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException("Data did not match any variant of DueDate");
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class DueDateConverter : JsonConverter<DueDate?>
@@ -736,44 +738,30 @@ sealed class DueDateConverter : JsonConverter<DueDate?>
         JsonSerializerOptions options
     )
     {
-        List<OrbInvalidDataException> exceptions = [];
-
+        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            return new DueDate(JsonSerializer.Deserialize<System::DateOnly>(ref reader, options));
+            return new(JsonSerializer.Deserialize<System::DateOnly>(json, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
-            exceptions.Add(
-                new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateOnly'",
-                    e
-                )
-            );
+            // ignore
         }
 
         try
         {
-            return new DueDate(
-                JsonSerializer.Deserialize<System::DateTimeOffset>(ref reader, options)
-            );
+            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(json, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
-            exceptions.Add(
-                new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateTimeOffset'",
-                    e
-                )
-            );
+            // ignore
         }
 
-        throw new System::AggregateException(exceptions);
+        return new(json);
     }
 
     public override void Write(Utf8JsonWriter writer, DueDate? value, JsonSerializerOptions options)
     {
-        object? variant = value?.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value?.Json, options);
     }
 }

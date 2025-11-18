@@ -205,7 +205,14 @@ public sealed record class LedgerCreateEntryByExternalIDParams : ParamsBase
 [JsonConverter(typeof(BodyModelConverter))]
 public record class BodyModel
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
+
+    JsonElement? _json = null;
+
+    public JsonElement Json
+    {
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+    }
 
     public double? Amount
     {
@@ -277,39 +284,39 @@ public record class BodyModel
         }
     }
 
-    public BodyModel(BodyModelIncrement value)
+    public BodyModel(BodyModelIncrement value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public BodyModel(BodyModelDecrement value)
+    public BodyModel(BodyModelDecrement value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public BodyModel(BodyModelExpirationChange value)
+    public BodyModel(BodyModelExpirationChange value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public BodyModel(BodyModelVoid value)
+    public BodyModel(BodyModelVoid value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public BodyModel(BodyModelAmendment value)
+    public BodyModel(BodyModelAmendment value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    BodyModel(UnknownVariant value)
+    public BodyModel(JsonElement json)
     {
-        Value = value;
-    }
-
-    public static BodyModel CreateUnknownVariant(JsonElement value)
-    {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickIncrement([NotNullWhen(true)] out BodyModelIncrement? value)
@@ -403,13 +410,11 @@ public record class BodyModel
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException("Data did not match any variant of BodyModel");
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class BodyModelConverter : JsonConverter<BodyModel>
@@ -435,8 +440,6 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
         {
             case "increment":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<BodyModelIncrement>(
@@ -446,26 +449,19 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new BodyModel(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'BodyModelIncrement'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "decrement":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<BodyModelDecrement>(
@@ -475,26 +471,19 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new BodyModel(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'BodyModelDecrement'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "expiration_change":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<BodyModelExpirationChange>(
@@ -504,52 +493,38 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new BodyModel(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'BodyModelExpirationChange'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "void":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<BodyModelVoid>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new BodyModel(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'BodyModelVoid'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "amendment":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<BodyModelAmendment>(
@@ -559,27 +534,20 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new BodyModel(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'BodyModelAmendment'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new BodyModel(json);
             }
         }
     }
@@ -590,8 +558,7 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 
@@ -1400,28 +1367,36 @@ public sealed record class BodyModelIncrementInvoiceSettings
 [JsonConverter(typeof(BodyModelIncrementInvoiceSettingsCustomDueDateConverter))]
 public record class BodyModelIncrementInvoiceSettingsCustomDueDate
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public BodyModelIncrementInvoiceSettingsCustomDueDate(System::DateOnly value)
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public BodyModelIncrementInvoiceSettingsCustomDueDate(System::DateTimeOffset value)
-    {
-        Value = value;
-    }
-
-    BodyModelIncrementInvoiceSettingsCustomDueDate(UnknownVariant value)
-    {
-        Value = value;
-    }
-
-    public static BodyModelIncrementInvoiceSettingsCustomDueDate CreateUnknownVariant(
-        JsonElement value
+    public BodyModelIncrementInvoiceSettingsCustomDueDate(
+        System::DateOnly value,
+        JsonElement? json = null
     )
     {
-        return new(new UnknownVariant(value));
+        this.Value = value;
+        this._json = json;
+    }
+
+    public BodyModelIncrementInvoiceSettingsCustomDueDate(
+        System::DateTimeOffset value,
+        JsonElement? json = null
+    )
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public BodyModelIncrementInvoiceSettingsCustomDueDate(JsonElement json)
+    {
+        this._json = json;
     }
 
     public bool TryPickDate([NotNullWhen(true)] out System::DateOnly? value)
@@ -1481,15 +1456,13 @@ public record class BodyModelIncrementInvoiceSettingsCustomDueDate
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of BodyModelIncrementInvoiceSettingsCustomDueDate"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class BodyModelIncrementInvoiceSettingsCustomDueDateConverter
@@ -1501,41 +1474,26 @@ sealed class BodyModelIncrementInvoiceSettingsCustomDueDateConverter
         JsonSerializerOptions options
     )
     {
-        List<OrbInvalidDataException> exceptions = [];
-
+        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            return new BodyModelIncrementInvoiceSettingsCustomDueDate(
-                JsonSerializer.Deserialize<System::DateOnly>(ref reader, options)
-            );
+            return new(JsonSerializer.Deserialize<System::DateOnly>(json, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
-            exceptions.Add(
-                new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateOnly'",
-                    e
-                )
-            );
+            // ignore
         }
 
         try
         {
-            return new BodyModelIncrementInvoiceSettingsCustomDueDate(
-                JsonSerializer.Deserialize<System::DateTimeOffset>(ref reader, options)
-            );
+            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(json, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
-            exceptions.Add(
-                new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateTimeOffset'",
-                    e
-                )
-            );
+            // ignore
         }
 
-        throw new System::AggregateException(exceptions);
+        return new(json);
     }
 
     public override void Write(
@@ -1544,8 +1502,7 @@ sealed class BodyModelIncrementInvoiceSettingsCustomDueDateConverter
         JsonSerializerOptions options
     )
     {
-        object? variant = value?.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value?.Json, options);
     }
 }
 
@@ -1557,28 +1514,36 @@ sealed class BodyModelIncrementInvoiceSettingsCustomDueDateConverter
 [JsonConverter(typeof(BodyModelIncrementInvoiceSettingsInvoiceDateConverter))]
 public record class BodyModelIncrementInvoiceSettingsInvoiceDate
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public BodyModelIncrementInvoiceSettingsInvoiceDate(System::DateOnly value)
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public BodyModelIncrementInvoiceSettingsInvoiceDate(System::DateTimeOffset value)
-    {
-        Value = value;
-    }
-
-    BodyModelIncrementInvoiceSettingsInvoiceDate(UnknownVariant value)
-    {
-        Value = value;
-    }
-
-    public static BodyModelIncrementInvoiceSettingsInvoiceDate CreateUnknownVariant(
-        JsonElement value
+    public BodyModelIncrementInvoiceSettingsInvoiceDate(
+        System::DateOnly value,
+        JsonElement? json = null
     )
     {
-        return new(new UnknownVariant(value));
+        this.Value = value;
+        this._json = json;
+    }
+
+    public BodyModelIncrementInvoiceSettingsInvoiceDate(
+        System::DateTimeOffset value,
+        JsonElement? json = null
+    )
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public BodyModelIncrementInvoiceSettingsInvoiceDate(JsonElement json)
+    {
+        this._json = json;
     }
 
     public bool TryPickDate([NotNullWhen(true)] out System::DateOnly? value)
@@ -1638,15 +1603,13 @@ public record class BodyModelIncrementInvoiceSettingsInvoiceDate
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of BodyModelIncrementInvoiceSettingsInvoiceDate"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class BodyModelIncrementInvoiceSettingsInvoiceDateConverter
@@ -1658,41 +1621,26 @@ sealed class BodyModelIncrementInvoiceSettingsInvoiceDateConverter
         JsonSerializerOptions options
     )
     {
-        List<OrbInvalidDataException> exceptions = [];
-
+        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            return new BodyModelIncrementInvoiceSettingsInvoiceDate(
-                JsonSerializer.Deserialize<System::DateOnly>(ref reader, options)
-            );
+            return new(JsonSerializer.Deserialize<System::DateOnly>(json, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
-            exceptions.Add(
-                new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateOnly'",
-                    e
-                )
-            );
+            // ignore
         }
 
         try
         {
-            return new BodyModelIncrementInvoiceSettingsInvoiceDate(
-                JsonSerializer.Deserialize<System::DateTimeOffset>(ref reader, options)
-            );
+            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(json, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
-            exceptions.Add(
-                new OrbInvalidDataException(
-                    "Data does not match union variant 'System::DateTimeOffset'",
-                    e
-                )
-            );
+            // ignore
         }
 
-        throw new System::AggregateException(exceptions);
+        return new(json);
     }
 
     public override void Write(
@@ -1701,8 +1649,7 @@ sealed class BodyModelIncrementInvoiceSettingsInvoiceDateConverter
         JsonSerializerOptions options
     )
     {
-        object? variant = value?.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value?.Json, options);
     }
 }
 

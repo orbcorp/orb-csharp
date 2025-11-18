@@ -109,7 +109,14 @@ public sealed record class LedgerListPageResponse : ModelBase, IFromRaw<LedgerLi
 [JsonConverter(typeof(DataConverter))]
 public record class Data
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
+
+    JsonElement? _json = null;
+
+    public JsonElement Json
+    {
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+    }
 
     public string ID
     {
@@ -319,51 +326,51 @@ public record class Data
         }
     }
 
-    public Data(IncrementLedgerEntry value)
+    public Data(IncrementLedgerEntry value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public Data(DecrementLedgerEntry value)
+    public Data(DecrementLedgerEntry value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public Data(ExpirationChangeLedgerEntry value)
+    public Data(ExpirationChangeLedgerEntry value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public Data(CreditBlockExpiryLedgerEntry value)
+    public Data(CreditBlockExpiryLedgerEntry value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public Data(VoidLedgerEntry value)
+    public Data(VoidLedgerEntry value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public Data(VoidInitiatedLedgerEntry value)
+    public Data(VoidInitiatedLedgerEntry value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public Data(AmendmentLedgerEntry value)
+    public Data(AmendmentLedgerEntry value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    Data(UnknownVariant value)
+    public Data(JsonElement json)
     {
-        Value = value;
-    }
-
-    public static global::Orb.Models.Customers.Credits.Ledger.Data CreateUnknownVariant(
-        JsonElement value
-    )
-    {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickIncrementLedgerEntry([NotNullWhen(true)] out IncrementLedgerEntry? value)
@@ -505,13 +512,11 @@ public record class Data
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException("Data did not match any variant of Data");
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class DataConverter : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.Data>
@@ -537,8 +542,6 @@ sealed class DataConverter : JsonConverter<global::Orb.Models.Customers.Credits.
         {
             case "increment":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<IncrementLedgerEntry>(
@@ -548,26 +551,19 @@ sealed class DataConverter : JsonConverter<global::Orb.Models.Customers.Credits.
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Customers.Credits.Ledger.Data(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'IncrementLedgerEntry'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "decrement":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<DecrementLedgerEntry>(
@@ -577,26 +573,19 @@ sealed class DataConverter : JsonConverter<global::Orb.Models.Customers.Credits.
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Customers.Credits.Ledger.Data(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'DecrementLedgerEntry'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "expiration_change":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<ExpirationChangeLedgerEntry>(
@@ -606,26 +595,19 @@ sealed class DataConverter : JsonConverter<global::Orb.Models.Customers.Credits.
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Customers.Credits.Ledger.Data(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'ExpirationChangeLedgerEntry'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "credit_block_expiry":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<CreditBlockExpiryLedgerEntry>(
@@ -635,52 +617,38 @@ sealed class DataConverter : JsonConverter<global::Orb.Models.Customers.Credits.
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Customers.Credits.Ledger.Data(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'CreditBlockExpiryLedgerEntry'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "void":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<VoidLedgerEntry>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Customers.Credits.Ledger.Data(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'VoidLedgerEntry'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "void_initiated":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<VoidInitiatedLedgerEntry>(
@@ -690,26 +658,19 @@ sealed class DataConverter : JsonConverter<global::Orb.Models.Customers.Credits.
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Customers.Credits.Ledger.Data(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'VoidInitiatedLedgerEntry'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "amendment":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<AmendmentLedgerEntry>(
@@ -719,27 +680,20 @@ sealed class DataConverter : JsonConverter<global::Orb.Models.Customers.Credits.
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Customers.Credits.Ledger.Data(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'AmendmentLedgerEntry'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new global::Orb.Models.Customers.Credits.Ledger.Data(json);
             }
         }
     }
@@ -750,7 +704,6 @@ sealed class DataConverter : JsonConverter<global::Orb.Models.Customers.Credits.
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }

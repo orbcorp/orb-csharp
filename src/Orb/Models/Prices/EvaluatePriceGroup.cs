@@ -134,31 +134,36 @@ public sealed record class EvaluatePriceGroup : ModelBase, IFromRaw<EvaluatePric
 [JsonConverter(typeof(GroupingValueConverter))]
 public record class GroupingValue
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public GroupingValue(string value)
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public GroupingValue(double value)
+    public GroupingValue(string value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public GroupingValue(bool value)
+    public GroupingValue(double value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    GroupingValue(UnknownVariant value)
+    public GroupingValue(bool value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public static GroupingValue CreateUnknownVariant(JsonElement value)
+    public GroupingValue(JsonElement json)
     {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
@@ -228,13 +233,11 @@ public record class GroupingValue
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException("Data did not match any variant of GroupingValue");
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class GroupingValueConverter : JsonConverter<GroupingValue>
@@ -245,46 +248,39 @@ sealed class GroupingValueConverter : JsonConverter<GroupingValue>
         JsonSerializerOptions options
     )
     {
-        List<OrbInvalidDataException> exceptions = [];
-
+        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
+            var deserialized = JsonSerializer.Deserialize<string>(json, options);
             if (deserialized != null)
             {
-                return new GroupingValue(deserialized);
+                return new(deserialized, json);
             }
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
-            exceptions.Add(
-                new OrbInvalidDataException("Data does not match union variant 'string'", e)
-            );
+            // ignore
         }
 
         try
         {
-            return new GroupingValue(JsonSerializer.Deserialize<double>(ref reader, options));
+            return new(JsonSerializer.Deserialize<double>(json, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
-            exceptions.Add(
-                new OrbInvalidDataException("Data does not match union variant 'double'", e)
-            );
+            // ignore
         }
 
         try
         {
-            return new GroupingValue(JsonSerializer.Deserialize<bool>(ref reader, options));
+            return new(JsonSerializer.Deserialize<bool>(json, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
-            exceptions.Add(
-                new OrbInvalidDataException("Data does not match union variant 'bool'", e)
-            );
+            // ignore
         }
 
-        throw new System::AggregateException(exceptions);
+        return new(json);
     }
 
     public override void Write(
@@ -293,7 +289,6 @@ sealed class GroupingValueConverter : JsonConverter<GroupingValue>
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }

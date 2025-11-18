@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -10,7 +9,14 @@ namespace Orb.Models;
 [JsonConverter(typeof(InvoiceLevelDiscountConverter))]
 public record class InvoiceLevelDiscount
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
+
+    JsonElement? _json = null;
+
+    public JsonElement Json
+    {
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+    }
 
     public string? Reason
     {
@@ -24,29 +30,27 @@ public record class InvoiceLevelDiscount
         }
     }
 
-    public InvoiceLevelDiscount(PercentageDiscount value)
+    public InvoiceLevelDiscount(PercentageDiscount value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public InvoiceLevelDiscount(AmountDiscount value)
+    public InvoiceLevelDiscount(AmountDiscount value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public InvoiceLevelDiscount(TrialDiscount value)
+    public InvoiceLevelDiscount(TrialDiscount value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    InvoiceLevelDiscount(UnknownVariant value)
+    public InvoiceLevelDiscount(JsonElement json)
     {
-        Value = value;
-    }
-
-    public static InvoiceLevelDiscount CreateUnknownVariant(JsonElement value)
-    {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickPercentage([NotNullWhen(true)] out PercentageDiscount? value)
@@ -116,15 +120,13 @@ public record class InvoiceLevelDiscount
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of InvoiceLevelDiscount"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
@@ -150,8 +152,6 @@ sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
         {
             case "percentage":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<PercentageDiscount>(
@@ -161,79 +161,58 @@ sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new InvoiceLevelDiscount(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'PercentageDiscount'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "amount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<AmountDiscount>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new InvoiceLevelDiscount(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'AmountDiscount'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "trial":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<TrialDiscount>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new InvoiceLevelDiscount(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'TrialDiscount'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new InvoiceLevelDiscount(json);
             }
         }
     }
@@ -244,7 +223,6 @@ sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }

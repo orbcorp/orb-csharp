@@ -601,26 +601,36 @@ sealed class NewFloatingTieredPriceModelTypeConverter
 [JsonConverter(typeof(NewFloatingTieredPriceConversionRateConfigConverter))]
 public record class NewFloatingTieredPriceConversionRateConfig
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public NewFloatingTieredPriceConversionRateConfig(SharedUnitConversionRateConfig value)
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public NewFloatingTieredPriceConversionRateConfig(SharedTieredConversionRateConfig value)
+    public NewFloatingTieredPriceConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? json = null
+    )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    NewFloatingTieredPriceConversionRateConfig(UnknownVariant value)
+    public NewFloatingTieredPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? json = null
+    )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public static NewFloatingTieredPriceConversionRateConfig CreateUnknownVariant(JsonElement value)
+    public NewFloatingTieredPriceConversionRateConfig(JsonElement json)
     {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
@@ -680,15 +690,13 @@ public record class NewFloatingTieredPriceConversionRateConfig
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of NewFloatingTieredPriceConversionRateConfig"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class NewFloatingTieredPriceConversionRateConfigConverter
@@ -715,8 +723,6 @@ sealed class NewFloatingTieredPriceConversionRateConfigConverter
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
@@ -726,26 +732,19 @@ sealed class NewFloatingTieredPriceConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new NewFloatingTieredPriceConversionRateConfig(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
@@ -755,27 +754,20 @@ sealed class NewFloatingTieredPriceConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new NewFloatingTieredPriceConversionRateConfig(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new NewFloatingTieredPriceConversionRateConfig(json);
             }
         }
     }
@@ -786,7 +778,6 @@ sealed class NewFloatingTieredPriceConversionRateConfigConverter
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }

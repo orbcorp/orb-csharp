@@ -233,31 +233,35 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
 [JsonConverter(typeof(CouponDiscountConverter))]
 public record class CouponDiscount
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
+
+    JsonElement? _json = null;
+
+    public JsonElement Json
+    {
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+    }
 
     public string? Reason
     {
         get { return Match<string?>(percentage: (x) => x.Reason, amount: (x) => x.Reason); }
     }
 
-    public CouponDiscount(PercentageDiscount value)
+    public CouponDiscount(PercentageDiscount value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public CouponDiscount(AmountDiscount value)
+    public CouponDiscount(AmountDiscount value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    CouponDiscount(UnknownVariant value)
+    public CouponDiscount(JsonElement json)
     {
-        Value = value;
-    }
-
-    public static CouponDiscount CreateUnknownVariant(JsonElement value)
-    {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickPercentage([NotNullWhen(true)] out PercentageDiscount? value)
@@ -313,13 +317,11 @@ public record class CouponDiscount
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException("Data did not match any variant of CouponDiscount");
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class CouponDiscountConverter : JsonConverter<CouponDiscount>
@@ -345,8 +347,6 @@ sealed class CouponDiscountConverter : JsonConverter<CouponDiscount>
         {
             case "percentage":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<PercentageDiscount>(
@@ -356,53 +356,39 @@ sealed class CouponDiscountConverter : JsonConverter<CouponDiscount>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new CouponDiscount(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'PercentageDiscount'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "amount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<AmountDiscount>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new CouponDiscount(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'AmountDiscount'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new CouponDiscount(json);
             }
         }
     }
@@ -413,7 +399,6 @@ sealed class CouponDiscountConverter : JsonConverter<CouponDiscount>
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }

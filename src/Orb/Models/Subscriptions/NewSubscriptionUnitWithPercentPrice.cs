@@ -718,32 +718,36 @@ public sealed record class UnitWithPercentConfig
 [JsonConverter(typeof(NewSubscriptionUnitWithPercentPriceConversionRateConfigConverter))]
 public record class NewSubscriptionUnitWithPercentPriceConversionRateConfig
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public NewSubscriptionUnitWithPercentPriceConversionRateConfig(
-        SharedUnitConversionRateConfig value
-    )
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public NewSubscriptionUnitWithPercentPriceConversionRateConfig(
-        SharedTieredConversionRateConfig value
+        SharedUnitConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    NewSubscriptionUnitWithPercentPriceConversionRateConfig(UnknownVariant value)
-    {
-        Value = value;
-    }
-
-    public static NewSubscriptionUnitWithPercentPriceConversionRateConfig CreateUnknownVariant(
-        JsonElement value
+    public NewSubscriptionUnitWithPercentPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? json = null
     )
     {
-        return new(new UnknownVariant(value));
+        this.Value = value;
+        this._json = json;
+    }
+
+    public NewSubscriptionUnitWithPercentPriceConversionRateConfig(JsonElement json)
+    {
+        this._json = json;
     }
 
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
@@ -803,15 +807,13 @@ public record class NewSubscriptionUnitWithPercentPriceConversionRateConfig
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of NewSubscriptionUnitWithPercentPriceConversionRateConfig"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class NewSubscriptionUnitWithPercentPriceConversionRateConfigConverter
@@ -838,8 +840,6 @@ sealed class NewSubscriptionUnitWithPercentPriceConversionRateConfigConverter
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
@@ -849,28 +849,19 @@ sealed class NewSubscriptionUnitWithPercentPriceConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new NewSubscriptionUnitWithPercentPriceConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
@@ -880,29 +871,20 @@ sealed class NewSubscriptionUnitWithPercentPriceConversionRateConfigConverter
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new NewSubscriptionUnitWithPercentPriceConversionRateConfig(
-                            deserialized
-                        );
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new NewSubscriptionUnitWithPercentPriceConversionRateConfig(json);
             }
         }
     }
@@ -913,7 +895,6 @@ sealed class NewSubscriptionUnitWithPercentPriceConversionRateConfigConverter
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }

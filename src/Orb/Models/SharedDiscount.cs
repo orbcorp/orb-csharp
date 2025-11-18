@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -10,7 +9,14 @@ namespace Orb.Models;
 [JsonConverter(typeof(SharedDiscountConverter))]
 public record class SharedDiscount
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
+
+    JsonElement? _json = null;
+
+    public JsonElement Json
+    {
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+    }
 
     public string? Reason
     {
@@ -25,34 +31,33 @@ public record class SharedDiscount
         }
     }
 
-    public SharedDiscount(PercentageDiscount value)
+    public SharedDiscount(PercentageDiscount value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public SharedDiscount(TrialDiscount value)
+    public SharedDiscount(TrialDiscount value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public SharedDiscount(UsageDiscount value)
+    public SharedDiscount(UsageDiscount value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public SharedDiscount(AmountDiscount value)
+    public SharedDiscount(AmountDiscount value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    SharedDiscount(UnknownVariant value)
+    public SharedDiscount(JsonElement json)
     {
-        Value = value;
-    }
-
-    public static SharedDiscount CreateUnknownVariant(JsonElement value)
-    {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickPercentage([NotNullWhen(true)] out PercentageDiscount? value)
@@ -136,13 +141,11 @@ public record class SharedDiscount
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException("Data did not match any variant of SharedDiscount");
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class SharedDiscountConverter : JsonConverter<SharedDiscount>
@@ -168,8 +171,6 @@ sealed class SharedDiscountConverter : JsonConverter<SharedDiscount>
         {
             case "percentage":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<PercentageDiscount>(
@@ -179,105 +180,77 @@ sealed class SharedDiscountConverter : JsonConverter<SharedDiscount>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new SharedDiscount(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'PercentageDiscount'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "trial":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<TrialDiscount>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new SharedDiscount(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'TrialDiscount'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "usage":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<UsageDiscount>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new SharedDiscount(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'UsageDiscount'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "amount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<AmountDiscount>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new SharedDiscount(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'AmountDiscount'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new SharedDiscount(json);
             }
         }
     }
@@ -288,7 +261,6 @@ sealed class SharedDiscountConverter : JsonConverter<SharedDiscount>
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }

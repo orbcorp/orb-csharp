@@ -679,7 +679,14 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
 [JsonConverter(typeof(global::Orb.Models.Plans.AdjustmentModelConverter))]
 public record class AdjustmentModel
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
+
+    JsonElement? _json = null;
+
+    public JsonElement Json
+    {
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+    }
 
     public string ID
     {
@@ -751,39 +758,39 @@ public record class AdjustmentModel
         }
     }
 
-    public AdjustmentModel(PlanPhaseUsageDiscountAdjustment value)
+    public AdjustmentModel(PlanPhaseUsageDiscountAdjustment value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public AdjustmentModel(PlanPhaseAmountDiscountAdjustment value)
+    public AdjustmentModel(PlanPhaseAmountDiscountAdjustment value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public AdjustmentModel(PlanPhasePercentageDiscountAdjustment value)
+    public AdjustmentModel(PlanPhasePercentageDiscountAdjustment value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public AdjustmentModel(PlanPhaseMinimumAdjustment value)
+    public AdjustmentModel(PlanPhaseMinimumAdjustment value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public AdjustmentModel(PlanPhaseMaximumAdjustment value)
+    public AdjustmentModel(PlanPhaseMaximumAdjustment value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    AdjustmentModel(UnknownVariant value)
+    public AdjustmentModel(JsonElement json)
     {
-        Value = value;
-    }
-
-    public static global::Orb.Models.Plans.AdjustmentModel CreateUnknownVariant(JsonElement value)
-    {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickPlanPhaseUsageDiscount(
@@ -897,13 +904,11 @@ public record class AdjustmentModel
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException("Data did not match any variant of AdjustmentModel");
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class AdjustmentModelConverter : JsonConverter<global::Orb.Models.Plans.AdjustmentModel>
@@ -929,8 +934,6 @@ sealed class AdjustmentModelConverter : JsonConverter<global::Orb.Models.Plans.A
         {
             case "usage_discount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<PlanPhaseUsageDiscountAdjustment>(
@@ -940,26 +943,19 @@ sealed class AdjustmentModelConverter : JsonConverter<global::Orb.Models.Plans.A
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Plans.AdjustmentModel(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'PlanPhaseUsageDiscountAdjustment'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "amount_discount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -970,26 +966,19 @@ sealed class AdjustmentModelConverter : JsonConverter<global::Orb.Models.Plans.A
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Plans.AdjustmentModel(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'PlanPhaseAmountDiscountAdjustment'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "percentage_discount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -1000,26 +989,19 @@ sealed class AdjustmentModelConverter : JsonConverter<global::Orb.Models.Plans.A
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Plans.AdjustmentModel(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'PlanPhasePercentageDiscountAdjustment'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "minimum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<PlanPhaseMinimumAdjustment>(
@@ -1029,26 +1011,19 @@ sealed class AdjustmentModelConverter : JsonConverter<global::Orb.Models.Plans.A
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Plans.AdjustmentModel(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'PlanPhaseMinimumAdjustment'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "maximum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<PlanPhaseMaximumAdjustment>(
@@ -1058,27 +1033,20 @@ sealed class AdjustmentModelConverter : JsonConverter<global::Orb.Models.Plans.A
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new global::Orb.Models.Plans.AdjustmentModel(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'PlanPhaseMaximumAdjustment'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new global::Orb.Models.Plans.AdjustmentModel(json);
             }
         }
     }
@@ -1089,8 +1057,7 @@ sealed class AdjustmentModelConverter : JsonConverter<global::Orb.Models.Plans.A
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 

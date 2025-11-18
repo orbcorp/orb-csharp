@@ -600,26 +600,30 @@ sealed class ModelTypeConverter : JsonConverter<ModelType>
 [JsonConverter(typeof(ConversionRateConfigConverter))]
 public record class ConversionRateConfig
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
 
-    public ConversionRateConfig(SharedUnitConversionRateConfig value)
+    JsonElement? _json = null;
+
+    public JsonElement Json
     {
-        Value = value;
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public ConversionRateConfig(SharedTieredConversionRateConfig value)
+    public ConversionRateConfig(SharedUnitConversionRateConfig value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    ConversionRateConfig(UnknownVariant value)
+    public ConversionRateConfig(SharedTieredConversionRateConfig value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public static ConversionRateConfig CreateUnknownVariant(JsonElement value)
+    public ConversionRateConfig(JsonElement json)
     {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
@@ -677,15 +681,13 @@ public record class ConversionRateConfig
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException(
                 "Data did not match any variant of ConversionRateConfig"
             );
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig>
@@ -711,8 +713,6 @@ sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig>
         {
             case "unit":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
@@ -722,26 +722,19 @@ sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new ConversionRateConfig(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedUnitConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tiered":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
@@ -751,27 +744,20 @@ sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new ConversionRateConfig(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'SharedTieredConversionRateConfig'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new ConversionRateConfig(json);
             }
         }
     }
@@ -782,7 +768,6 @@ sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig>
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }

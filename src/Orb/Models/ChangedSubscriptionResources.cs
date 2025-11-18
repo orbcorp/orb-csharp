@@ -2812,7 +2812,14 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
 [JsonConverter(typeof(AdjustmentConverter))]
 public record class Adjustment
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
+
+    JsonElement? _json = null;
+
+    public JsonElement Json
+    {
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+    }
 
     public string ID
     {
@@ -2884,39 +2891,39 @@ public record class Adjustment
         }
     }
 
-    public Adjustment(MonetaryUsageDiscountAdjustment value)
+    public Adjustment(MonetaryUsageDiscountAdjustment value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public Adjustment(MonetaryAmountDiscountAdjustment value)
+    public Adjustment(MonetaryAmountDiscountAdjustment value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public Adjustment(MonetaryPercentageDiscountAdjustment value)
+    public Adjustment(MonetaryPercentageDiscountAdjustment value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public Adjustment(MonetaryMinimumAdjustment value)
+    public Adjustment(MonetaryMinimumAdjustment value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public Adjustment(MonetaryMaximumAdjustment value)
+    public Adjustment(MonetaryMaximumAdjustment value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    Adjustment(UnknownVariant value)
+    public Adjustment(JsonElement json)
     {
-        Value = value;
-    }
-
-    public static Adjustment CreateUnknownVariant(JsonElement value)
-    {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickMonetaryUsageDiscount(
@@ -3018,13 +3025,11 @@ public record class Adjustment
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class AdjustmentConverter : JsonConverter<Adjustment>
@@ -3050,8 +3055,6 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
         {
             case "usage_discount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<MonetaryUsageDiscountAdjustment>(
@@ -3061,26 +3064,19 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Adjustment(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'MonetaryUsageDiscountAdjustment'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "amount_discount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<MonetaryAmountDiscountAdjustment>(
@@ -3090,26 +3086,19 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Adjustment(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'MonetaryAmountDiscountAdjustment'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "percentage_discount":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized =
@@ -3120,26 +3109,19 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Adjustment(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'MonetaryPercentageDiscountAdjustment'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "minimum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<MonetaryMinimumAdjustment>(
@@ -3149,26 +3131,19 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Adjustment(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'MonetaryMinimumAdjustment'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "maximum":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<MonetaryMaximumAdjustment>(
@@ -3178,27 +3153,20 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new Adjustment(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'MonetaryMaximumAdjustment'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new Adjustment(json);
             }
         }
     }
@@ -3209,15 +3177,21 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 
 [JsonConverter(typeof(SubLineItemConverter))]
 public record class SubLineItem
 {
-    public object Value { get; private init; }
+    public object? Value { get; } = null;
+
+    JsonElement? _json = null;
+
+    public JsonElement Json
+    {
+        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+    }
 
     public string Amount
     {
@@ -3256,29 +3230,27 @@ public record class SubLineItem
         }
     }
 
-    public SubLineItem(MatrixSubLineItem value)
+    public SubLineItem(MatrixSubLineItem value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public SubLineItem(TierSubLineItem value)
+    public SubLineItem(TierSubLineItem value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    public SubLineItem(OtherSubLineItem value)
+    public SubLineItem(OtherSubLineItem value, JsonElement? json = null)
     {
-        Value = value;
+        this.Value = value;
+        this._json = json;
     }
 
-    SubLineItem(UnknownVariant value)
+    public SubLineItem(JsonElement json)
     {
-        Value = value;
-    }
-
-    public static SubLineItem CreateUnknownVariant(JsonElement value)
-    {
-        return new(new UnknownVariant(value));
+        this._json = json;
     }
 
     public bool TryPickMatrix([NotNullWhen(true)] out MatrixSubLineItem? value)
@@ -3344,13 +3316,11 @@ public record class SubLineItem
 
     public void Validate()
     {
-        if (this.Value is UnknownVariant)
+        if (this.Value == null)
         {
             throw new OrbInvalidDataException("Data did not match any variant of SubLineItem");
         }
     }
-
-    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class SubLineItemConverter : JsonConverter<SubLineItem>
@@ -3376,87 +3346,64 @@ sealed class SubLineItemConverter : JsonConverter<SubLineItem>
         {
             case "matrix":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<MatrixSubLineItem>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new SubLineItem(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'MatrixSubLineItem'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "tier":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<TierSubLineItem>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new SubLineItem(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'TierSubLineItem'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             case "'null'":
             {
-                List<OrbInvalidDataException> exceptions = [];
-
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<OtherSubLineItem>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new SubLineItem(deserialized);
+                        return new(deserialized, json);
                     }
                 }
                 catch (System::Exception e)
                     when (e is JsonException || e is OrbInvalidDataException)
                 {
-                    exceptions.Add(
-                        new OrbInvalidDataException(
-                            "Data does not match union variant 'OtherSubLineItem'",
-                            e
-                        )
-                    );
+                    // ignore
                 }
 
-                throw new System::AggregateException(exceptions);
+                return new(json);
             }
             default:
             {
-                throw new OrbInvalidDataException(
-                    "Could not find valid union variant to represent data"
-                );
+                return new SubLineItem(json);
             }
         }
     }
@@ -3467,8 +3414,7 @@ sealed class SubLineItemConverter : JsonConverter<SubLineItem>
         JsonSerializerOptions options
     )
     {
-        object variant = value.Value;
-        JsonSerializer.Serialize(writer, variant, options);
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 
