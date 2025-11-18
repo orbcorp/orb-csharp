@@ -78,6 +78,11 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
         }
     }
 
+    /// <summary>
+    /// Legacy field representing the parent plan if the current plan is a 'child
+    /// plan', overriding prices from the parent.
+    /// </summary>
+    [System::Obsolete("deprecated")]
     public required BasePlan? BasePlan
     {
         get
@@ -97,9 +102,10 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
     }
 
     /// <summary>
-    /// The parent plan id if the given plan was created by overriding one or more
-    /// of the parent's prices
+    /// Legacy field representing the parent plan ID if the current plan is a 'child
+    /// plan', overriding prices from the parent.
     /// </summary>
+    [System::Obsolete("deprecated")]
     public required string? BasePlanID
     {
         get
@@ -1088,7 +1094,11 @@ sealed class AdjustmentModelConverter : JsonConverter<global::Orb.Models.Plans.A
     }
 }
 
-[JsonConverter(typeof(ModelConverter<BasePlan>))]
+/// <summary>
+/// Legacy field representing the parent plan if the current plan is a 'child plan',
+/// overriding prices from the parent.
+/// </summary>
+[System::Obsolete("deprecated"), JsonConverter(typeof(ModelConverter<BasePlan>))]
 public sealed record class BasePlan : ModelBase, IFromRaw<BasePlan>
 {
     public required string? ID
