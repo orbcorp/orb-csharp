@@ -265,15 +265,20 @@ public sealed record class PlanPhaseMaximumAdjustment
         _ = this.ReplacesAdjustmentID;
     }
 
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public PlanPhaseMaximumAdjustment() { }
 
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public PlanPhaseMaximumAdjustment(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete("Required properties are deprecated: applies_to_price_ids"),
+        SetsRequiredMembers
+    ]
     PlanPhaseMaximumAdjustment(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];

@@ -873,15 +873,26 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
         this.TrialInfo.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount_intervals, maximum_intervals, minimum_intervals"
+    )]
     public Subscription() { }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount_intervals, maximum_intervals, minimum_intervals"
+    )]
     public Subscription(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount_intervals, maximum_intervals, minimum_intervals"
+        ),
+        SetsRequiredMembers
+    ]
     Subscription(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];

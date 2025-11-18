@@ -114,15 +114,20 @@ public sealed record class Maximum : ModelBase, IFromRaw<Maximum>
         _ = this.MaximumAmount;
     }
 
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public Maximum() { }
 
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public Maximum(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete("Required properties are deprecated: applies_to_price_ids"),
+        SetsRequiredMembers
+    ]
     Maximum(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];

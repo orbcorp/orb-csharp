@@ -1243,15 +1243,17 @@ public sealed record class InvoiceFetchUpcomingResponse
         _ = this.WillAutoIssue;
     }
 
+    [System::Obsolete("Required properties are deprecated: discount")]
     public InvoiceFetchUpcomingResponse() { }
 
+    [System::Obsolete("Required properties are deprecated: discount")]
     public InvoiceFetchUpcomingResponse(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [System::Obsolete("Required properties are deprecated: discount"), SetsRequiredMembers]
     InvoiceFetchUpcomingResponse(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];

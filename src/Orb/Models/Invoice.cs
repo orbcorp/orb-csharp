@@ -1247,15 +1247,17 @@ public sealed record class Invoice : ModelBase, IFromRaw<Invoice>
         _ = this.WillAutoIssue;
     }
 
+    [System::Obsolete("Required properties are deprecated: discount")]
     public Invoice() { }
 
+    [System::Obsolete("Required properties are deprecated: discount")]
     public Invoice(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [System::Obsolete("Required properties are deprecated: discount"), SetsRequiredMembers]
     Invoice(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
