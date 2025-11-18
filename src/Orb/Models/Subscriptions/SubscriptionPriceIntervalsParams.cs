@@ -9625,8 +9625,8 @@ public sealed record class Edit : ModelBase, IFromRaw<Edit>
 
     /// <summary>
     /// If true, ending an in-arrears price interval mid-cycle will defer billing
-    /// the final line itemuntil the next scheduled invoice. If false, it will be
-    /// billed on its end date. If not provided, behaviorwill follow account default.
+    /// the final line item until the next scheduled invoice. If false, it will be
+    /// billed on its end date. If not provided, behavior will follow account default.
     /// </summary>
     public bool? CanDeferBilling
     {
