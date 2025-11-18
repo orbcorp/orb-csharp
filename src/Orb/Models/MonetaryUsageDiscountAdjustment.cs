@@ -268,15 +268,20 @@ public sealed record class MonetaryUsageDiscountAdjustment
         _ = this.UsageDiscount;
     }
 
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryUsageDiscountAdjustment() { }
 
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryUsageDiscountAdjustment(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete("Required properties are deprecated: applies_to_price_ids"),
+        SetsRequiredMembers
+    ]
     MonetaryUsageDiscountAdjustment(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];

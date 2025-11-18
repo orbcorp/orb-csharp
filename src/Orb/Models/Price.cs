@@ -2870,11 +2870,17 @@ public sealed record class Unit : ModelBase, IFromRaw<Unit>
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Unit()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Unit(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -2883,7 +2889,12 @@ public sealed record class Unit : ModelBase, IFromRaw<Unit>
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     Unit(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -4192,11 +4203,17 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Tiered()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Tiered(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -4205,7 +4222,12 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     Tiered(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -5520,11 +5542,17 @@ public sealed record class Bulk : ModelBase, IFromRaw<Bulk>
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Bulk()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Bulk(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -5533,7 +5561,12 @@ public sealed record class Bulk : ModelBase, IFromRaw<Bulk>
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     Bulk(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -6848,11 +6881,17 @@ public sealed record class BulkWithFilters : ModelBase, IFromRaw<BulkWithFilters
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public BulkWithFilters()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public BulkWithFilters(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -6861,7 +6900,12 @@ public sealed record class BulkWithFilters : ModelBase, IFromRaw<BulkWithFilters
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     BulkWithFilters(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -8463,11 +8507,17 @@ public sealed record class Package : ModelBase, IFromRaw<Package>
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Package()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Package(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -8476,7 +8526,12 @@ public sealed record class Package : ModelBase, IFromRaw<Package>
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     Package(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -9788,11 +9843,17 @@ public sealed record class Matrix : ModelBase, IFromRaw<Matrix>
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Matrix()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Matrix(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -9801,7 +9862,12 @@ public sealed record class Matrix : ModelBase, IFromRaw<Matrix>
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     Matrix(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -11124,11 +11190,17 @@ public sealed record class ThresholdTotalAmount : ModelBase, IFromRaw<ThresholdT
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public ThresholdTotalAmount()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public ThresholdTotalAmount(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -11137,7 +11209,12 @@ public sealed record class ThresholdTotalAmount : ModelBase, IFromRaw<ThresholdT
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     ThresholdTotalAmount(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -12663,11 +12740,17 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public TieredPackage()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public TieredPackage(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -12676,7 +12759,12 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     TieredPackage(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -14193,11 +14281,17 @@ public sealed record class TieredWithMinimum : ModelBase, IFromRaw<TieredWithMin
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public TieredWithMinimum()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public TieredWithMinimum(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -14206,7 +14300,12 @@ public sealed record class TieredWithMinimum : ModelBase, IFromRaw<TieredWithMin
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     TieredWithMinimum(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -15787,11 +15886,17 @@ public sealed record class GroupedTiered : ModelBase, IFromRaw<GroupedTiered>
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public GroupedTiered()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public GroupedTiered(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -15800,7 +15905,12 @@ public sealed record class GroupedTiered : ModelBase, IFromRaw<GroupedTiered>
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     GroupedTiered(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -17318,11 +17428,17 @@ public sealed record class TieredPackageWithMinimum : ModelBase, IFromRaw<Tiered
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public TieredPackageWithMinimum()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public TieredPackageWithMinimum(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -17331,7 +17447,12 @@ public sealed record class TieredPackageWithMinimum : ModelBase, IFromRaw<Tiered
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     TieredPackageWithMinimum(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -18886,11 +19007,17 @@ public sealed record class PackageWithAllocation : ModelBase, IFromRaw<PackageWi
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public PackageWithAllocation()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public PackageWithAllocation(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -18899,7 +19026,12 @@ public sealed record class PackageWithAllocation : ModelBase, IFromRaw<PackageWi
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     PackageWithAllocation(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -20358,11 +20490,17 @@ public sealed record class UnitWithPercent : ModelBase, IFromRaw<UnitWithPercent
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public UnitWithPercent()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public UnitWithPercent(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -20371,7 +20509,12 @@ public sealed record class UnitWithPercent : ModelBase, IFromRaw<UnitWithPercent
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     UnitWithPercent(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -21793,11 +21936,17 @@ public sealed record class MatrixWithAllocation : ModelBase, IFromRaw<MatrixWith
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public MatrixWithAllocation()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public MatrixWithAllocation(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -21806,7 +21955,12 @@ public sealed record class MatrixWithAllocation : ModelBase, IFromRaw<MatrixWith
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     MatrixWithAllocation(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -23135,11 +23289,17 @@ public sealed record class TieredWithProration : ModelBase, IFromRaw<TieredWithP
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public TieredWithProration()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public TieredWithProration(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -23148,7 +23308,12 @@ public sealed record class TieredWithProration : ModelBase, IFromRaw<TieredWithP
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     TieredWithProration(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -24645,11 +24810,17 @@ public sealed record class UnitWithProration : ModelBase, IFromRaw<UnitWithProra
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public UnitWithProration()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public UnitWithProration(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -24658,7 +24829,12 @@ public sealed record class UnitWithProration : ModelBase, IFromRaw<UnitWithProra
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     UnitWithProration(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -26057,11 +26233,17 @@ public sealed record class GroupedAllocation : ModelBase, IFromRaw<GroupedAlloca
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public GroupedAllocation()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public GroupedAllocation(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -26070,7 +26252,12 @@ public sealed record class GroupedAllocation : ModelBase, IFromRaw<GroupedAlloca
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     GroupedAllocation(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -27528,11 +27715,17 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public BulkWithProration()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public BulkWithProration(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -27541,7 +27734,12 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     BulkWithProration(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -29036,11 +29234,17 @@ public sealed record class GroupedWithProratedMinimum
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public GroupedWithProratedMinimum()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public GroupedWithProratedMinimum(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -29049,7 +29253,12 @@ public sealed record class GroupedWithProratedMinimum
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     GroupedWithProratedMinimum(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -30511,11 +30720,17 @@ public sealed record class GroupedWithMeteredMinimum
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public GroupedWithMeteredMinimum()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public GroupedWithMeteredMinimum(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -30524,7 +30739,12 @@ public sealed record class GroupedWithMeteredMinimum
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     GroupedWithMeteredMinimum(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -32290,11 +32510,17 @@ public sealed record class GroupedWithMinMaxThresholds
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public GroupedWithMinMaxThresholds()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public GroupedWithMinMaxThresholds(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -32303,7 +32529,12 @@ public sealed record class GroupedWithMinMaxThresholds
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     GroupedWithMinMaxThresholds(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -33797,11 +34028,17 @@ public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWit
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public MatrixWithDisplayName()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public MatrixWithDisplayName(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -33810,7 +34047,12 @@ public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWit
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     MatrixWithDisplayName(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -35375,11 +35617,17 @@ public sealed record class GroupedTieredPackage : ModelBase, IFromRaw<GroupedTie
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public GroupedTieredPackage()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public GroupedTieredPackage(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -35388,7 +35636,12 @@ public sealed record class GroupedTieredPackage : ModelBase, IFromRaw<GroupedTie
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     GroupedTieredPackage(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -36943,11 +37196,17 @@ public sealed record class MaxGroupTieredPackage : ModelBase, IFromRaw<MaxGroupT
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public MaxGroupTieredPackage()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public MaxGroupTieredPackage(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -36956,7 +37215,12 @@ public sealed record class MaxGroupTieredPackage : ModelBase, IFromRaw<MaxGroupT
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     MaxGroupTieredPackage(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -38512,11 +38776,17 @@ public sealed record class ScalableMatrixWithUnitPricing
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public ScalableMatrixWithUnitPricing()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public ScalableMatrixWithUnitPricing(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -38525,7 +38795,12 @@ public sealed record class ScalableMatrixWithUnitPricing
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     ScalableMatrixWithUnitPricing(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -40159,11 +40434,17 @@ public sealed record class ScalableMatrixWithTieredPricing
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public ScalableMatrixWithTieredPricing()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public ScalableMatrixWithTieredPricing(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -40172,7 +40453,12 @@ public sealed record class ScalableMatrixWithTieredPricing
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     ScalableMatrixWithTieredPricing(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -41882,11 +42168,17 @@ public sealed record class CumulativeGroupedBulk : ModelBase, IFromRaw<Cumulativ
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public CumulativeGroupedBulk()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public CumulativeGroupedBulk(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -41895,7 +42187,12 @@ public sealed record class CumulativeGroupedBulk : ModelBase, IFromRaw<Cumulativ
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     CumulativeGroupedBulk(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -43457,11 +43754,17 @@ public sealed record class CumulativeGroupedAllocation
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public CumulativeGroupedAllocation()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public CumulativeGroupedAllocation(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -43470,7 +43773,12 @@ public sealed record class CumulativeGroupedAllocation
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     CumulativeGroupedAllocation(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -44959,11 +45267,17 @@ public sealed record class PriceMinimum : ModelBase, IFromRaw<PriceMinimum>
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public PriceMinimum()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public PriceMinimum(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -44972,7 +45286,12 @@ public sealed record class PriceMinimum : ModelBase, IFromRaw<PriceMinimum>
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     PriceMinimum(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -46389,11 +46708,17 @@ public sealed record class Percent : ModelBase, IFromRaw<Percent>
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Percent()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Percent(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -46402,7 +46727,12 @@ public sealed record class Percent : ModelBase, IFromRaw<Percent>
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     Percent(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -47785,11 +48115,17 @@ public sealed record class EventOutput : ModelBase, IFromRaw<EventOutput>
         this.DimensionalPriceConfiguration?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public EventOutput()
     {
         this.ModelType = new();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public EventOutput(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
@@ -47798,7 +48134,12 @@ public sealed record class EventOutput : ModelBase, IFromRaw<EventOutput>
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     EventOutput(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];

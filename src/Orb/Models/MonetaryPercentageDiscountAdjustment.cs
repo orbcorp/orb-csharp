@@ -271,15 +271,20 @@ public sealed record class MonetaryPercentageDiscountAdjustment
         _ = this.ReplacesAdjustmentID;
     }
 
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryPercentageDiscountAdjustment() { }
 
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryPercentageDiscountAdjustment(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete("Required properties are deprecated: applies_to_price_ids"),
+        SetsRequiredMembers
+    ]
     MonetaryPercentageDiscountAdjustment(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];

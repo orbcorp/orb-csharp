@@ -264,8 +264,10 @@ public sealed record class PlanPhasePercentageDiscountAdjustment
         _ = this.ReplacesAdjustmentID;
     }
 
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public PlanPhasePercentageDiscountAdjustment() { }
 
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public PlanPhasePercentageDiscountAdjustment(
         IReadOnlyDictionary<string, JsonElement> properties
     )
@@ -274,7 +276,10 @@ public sealed record class PlanPhasePercentageDiscountAdjustment
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete("Required properties are deprecated: applies_to_price_ids"),
+        SetsRequiredMembers
+    ]
     PlanPhasePercentageDiscountAdjustment(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];

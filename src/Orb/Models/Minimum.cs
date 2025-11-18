@@ -114,15 +114,20 @@ public sealed record class Minimum : ModelBase, IFromRaw<Minimum>
         _ = this.MinimumAmount;
     }
 
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public Minimum() { }
 
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public Minimum(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete("Required properties are deprecated: applies_to_price_ids"),
+        SetsRequiredMembers
+    ]
     Minimum(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];

@@ -294,15 +294,20 @@ public sealed record class PlanPhaseMinimumAdjustment
         _ = this.ReplacesAdjustmentID;
     }
 
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public PlanPhaseMinimumAdjustment() { }
 
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public PlanPhaseMinimumAdjustment(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete("Required properties are deprecated: applies_to_price_ids"),
+        SetsRequiredMembers
+    ]
     PlanPhaseMinimumAdjustment(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];

@@ -878,15 +878,26 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
         this.ChangedResources?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount_intervals, maximum_intervals, minimum_intervals"
+    )]
     public MutatedSubscription() { }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount_intervals, maximum_intervals, minimum_intervals"
+    )]
     public MutatedSubscription(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: discount_intervals, maximum_intervals, minimum_intervals"
+        ),
+        SetsRequiredMembers
+    ]
     MutatedSubscription(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];

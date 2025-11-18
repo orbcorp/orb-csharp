@@ -655,15 +655,26 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
         _ = this.Version;
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: base_plan, base_plan_id, currency, discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Plan() { }
 
+    [System::Obsolete(
+        "Required properties are deprecated: base_plan, base_plan_id, currency, discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Plan(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete(
+            "Required properties are deprecated: base_plan, base_plan_id, currency, discount, maximum, maximum_amount, minimum, minimum_amount"
+        ),
+        SetsRequiredMembers
+    ]
     Plan(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];

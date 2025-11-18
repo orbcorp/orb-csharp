@@ -272,15 +272,20 @@ public sealed record class MonetaryMaximumAdjustment
         _ = this.ReplacesAdjustmentID;
     }
 
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryMaximumAdjustment() { }
 
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryMaximumAdjustment(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
-    [SetsRequiredMembers]
+    [
+        System::Obsolete("Required properties are deprecated: applies_to_price_ids"),
+        SetsRequiredMembers
+    ]
     MonetaryMaximumAdjustment(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
