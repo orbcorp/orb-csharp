@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Beta;
 using Orb.Models.Plans;
 using Orb.Services.Beta;
@@ -35,6 +36,11 @@ public sealed class BetaService : IBetaService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.PlanID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.PlanID' cannot be null");
+        }
+
         HttpRequest<BetaCreatePlanVersionParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -53,11 +59,25 @@ public sealed class BetaService : IBetaService
         return planVersion;
     }
 
+    public async Task<PlanVersion> CreatePlanVersion(
+        string planID,
+        BetaCreatePlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await this.CreatePlanVersion(parameters with { PlanID = planID }, cancellationToken);
+    }
+
     public async Task<PlanVersion> FetchPlanVersion(
         BetaFetchPlanVersionParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.Version == null)
+        {
+            throw new OrbInvalidDataException("'parameters.Version' cannot be null");
+        }
+
         HttpRequest<BetaFetchPlanVersionParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -76,11 +96,31 @@ public sealed class BetaService : IBetaService
         return planVersion;
     }
 
+    public async Task<PlanVersion> FetchPlanVersion(
+        string version,
+        BetaFetchPlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await this.FetchPlanVersion(
+            parameters with
+            {
+                Version = version,
+            },
+            cancellationToken
+        );
+    }
+
     public async Task<Plan> SetDefaultPlanVersion(
         BetaSetDefaultPlanVersionParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.PlanID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.PlanID' cannot be null");
+        }
+
         HttpRequest<BetaSetDefaultPlanVersionParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -95,5 +135,20 @@ public sealed class BetaService : IBetaService
             plan.Validate();
         }
         return plan;
+    }
+
+    public async Task<Plan> SetDefaultPlanVersion(
+        string planID,
+        BetaSetDefaultPlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await this.SetDefaultPlanVersion(
+            parameters with
+            {
+                PlanID = planID,
+            },
+            cancellationToken
+        );
     }
 }

@@ -22,7 +22,7 @@ public sealed record class DimensionalPriceGroupUpdateParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string DimensionalPriceGroupID { get; init; }
+    public string? DimensionalPriceGroupID { get; init; }
 
     /// <summary>
     /// An optional user-defined ID for this dimensional price group resource, used

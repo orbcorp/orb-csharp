@@ -102,7 +102,7 @@ public sealed record class LedgerCreateEntryByExternalIDParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string ExternalCustomerID { get; init; }
+    public string? ExternalCustomerID { get; init; }
 
     public required BodyModel Body
     {

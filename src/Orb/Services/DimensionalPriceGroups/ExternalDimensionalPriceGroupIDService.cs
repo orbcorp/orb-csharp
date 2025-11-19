@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.DimensionalPriceGroups;
 using Orb.Models.DimensionalPriceGroups.ExternalDimensionalPriceGroupID;
 
@@ -29,6 +30,13 @@ public sealed class ExternalDimensionalPriceGroupIDService : IExternalDimensiona
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ExternalDimensionalPriceGroupID == null)
+        {
+            throw new OrbInvalidDataException(
+                "'parameters.ExternalDimensionalPriceGroupID' cannot be null"
+            );
+        }
+
         HttpRequest<ExternalDimensionalPriceGroupIDRetrieveParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -47,11 +55,35 @@ public sealed class ExternalDimensionalPriceGroupIDService : IExternalDimensiona
         return dimensionalPriceGroup;
     }
 
+    public async Task<DimensionalPriceGroup> Retrieve(
+        string externalDimensionalPriceGroupID,
+        ExternalDimensionalPriceGroupIDRetrieveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Retrieve(
+            parameters with
+            {
+                ExternalDimensionalPriceGroupID = externalDimensionalPriceGroupID,
+            },
+            cancellationToken
+        );
+    }
+
     public async Task<DimensionalPriceGroup> Update(
         ExternalDimensionalPriceGroupIDUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ExternalDimensionalPriceGroupID == null)
+        {
+            throw new OrbInvalidDataException(
+                "'parameters.ExternalDimensionalPriceGroupID' cannot be null"
+            );
+        }
+
         HttpRequest<ExternalDimensionalPriceGroupIDUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
@@ -68,5 +100,22 @@ public sealed class ExternalDimensionalPriceGroupIDService : IExternalDimensiona
             dimensionalPriceGroup.Validate();
         }
         return dimensionalPriceGroup;
+    }
+
+    public async Task<DimensionalPriceGroup> Update(
+        string externalDimensionalPriceGroupID,
+        ExternalDimensionalPriceGroupIDUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Update(
+            parameters with
+            {
+                ExternalDimensionalPriceGroupID = externalDimensionalPriceGroupID,
+            },
+            cancellationToken
+        );
     }
 }

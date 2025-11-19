@@ -27,7 +27,7 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string ExternalCustomerID { get; init; }
+    public string? ExternalCustomerID { get; init; }
 
     /// <summary>
     /// The amount to increment when the threshold is reached.

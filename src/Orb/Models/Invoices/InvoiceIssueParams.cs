@@ -24,7 +24,7 @@ public sealed record class InvoiceIssueParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string InvoiceID { get; init; }
+    public string? InvoiceID { get; init; }
 
     /// <summary>
     /// If true, the invoice will be issued synchronously. If false, the invoice

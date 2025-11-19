@@ -28,27 +28,21 @@ public class BackfillServiceTest : TestBase
     [Fact]
     public async Task Close_Works()
     {
-        var response = await this.client.Events.Backfills.Close(
-            new() { BackfillID = "backfill_id" }
-        );
+        var response = await this.client.Events.Backfills.Close("backfill_id");
         response.Validate();
     }
 
     [Fact]
     public async Task Fetch_Works()
     {
-        var response = await this.client.Events.Backfills.Fetch(
-            new() { BackfillID = "backfill_id" }
-        );
+        var response = await this.client.Events.Backfills.Fetch("backfill_id");
         response.Validate();
     }
 
     [Fact]
     public async Task Revert_Works()
     {
-        var response = await this.client.Events.Backfills.Revert(
-            new() { BackfillID = "backfill_id" }
-        );
+        var response = await this.client.Events.Backfills.Revert("backfill_id");
         response.Validate();
     }
 }

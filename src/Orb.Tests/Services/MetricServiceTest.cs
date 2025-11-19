@@ -22,7 +22,7 @@ public class MetricServiceTest : TestBase
     [Fact]
     public async Task Update_Works()
     {
-        var billableMetric = await this.client.Metrics.Update(new() { MetricID = "metric_id" });
+        var billableMetric = await this.client.Metrics.Update("metric_id");
         billableMetric.Validate();
     }
 
@@ -36,7 +36,7 @@ public class MetricServiceTest : TestBase
     [Fact]
     public async Task Fetch_Works()
     {
-        var billableMetric = await this.client.Metrics.Fetch(new() { MetricID = "metric_id" });
+        var billableMetric = await this.client.Metrics.Fetch("metric_id");
         billableMetric.Validate();
     }
 }

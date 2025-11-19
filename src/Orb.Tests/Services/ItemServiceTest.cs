@@ -14,7 +14,7 @@ public class ItemServiceTest : TestBase
     [Fact]
     public async Task Update_Works()
     {
-        var item = await this.client.Items.Update(new() { ItemID = "item_id" });
+        var item = await this.client.Items.Update("item_id");
         item.Validate();
     }
 
@@ -28,14 +28,14 @@ public class ItemServiceTest : TestBase
     [Fact]
     public async Task Archive_Works()
     {
-        var item = await this.client.Items.Archive(new() { ItemID = "item_id" });
+        var item = await this.client.Items.Archive("item_id");
         item.Validate();
     }
 
     [Fact]
     public async Task Fetch_Works()
     {
-        var item = await this.client.Items.Fetch(new() { ItemID = "item_id" });
+        var item = await this.client.Items.Fetch("item_id");
         item.Validate();
     }
 }

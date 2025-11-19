@@ -19,7 +19,7 @@ namespace Orb.Models.SubscriptionChanges;
 /// </summary>
 public sealed record class SubscriptionChangeRetrieveParams : ParamsBase
 {
-    public required string SubscriptionChangeID { get; init; }
+    public string? SubscriptionChangeID { get; init; }
 
     public SubscriptionChangeRetrieveParams() { }
 

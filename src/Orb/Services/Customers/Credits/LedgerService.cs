@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers.Credits.Ledger;
 
 namespace Orb.Services.Customers.Credits;
@@ -26,6 +27,11 @@ public sealed class LedgerService : ILedgerService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.CustomerID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.CustomerID' cannot be null");
+        }
+
         HttpRequest<LedgerListParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -44,11 +50,27 @@ public sealed class LedgerService : ILedgerService
         return page;
     }
 
+    public async Task<LedgerListPageResponse> List(
+        string customerID,
+        LedgerListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.List(parameters with { CustomerID = customerID }, cancellationToken);
+    }
+
     public async Task<LedgerCreateEntryResponse> CreateEntry(
         LedgerCreateEntryParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.CustomerID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.CustomerID' cannot be null");
+        }
+
         HttpRequest<LedgerCreateEntryParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -67,11 +89,31 @@ public sealed class LedgerService : ILedgerService
         return deserializedResponse;
     }
 
+    public async Task<LedgerCreateEntryResponse> CreateEntry(
+        string customerID,
+        LedgerCreateEntryParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await this.CreateEntry(
+            parameters with
+            {
+                CustomerID = customerID,
+            },
+            cancellationToken
+        );
+    }
+
     public async Task<LedgerCreateEntryByExternalIDResponse> CreateEntryByExternalID(
         LedgerCreateEntryByExternalIDParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ExternalCustomerID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.ExternalCustomerID' cannot be null");
+        }
+
         HttpRequest<LedgerCreateEntryByExternalIDParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -90,11 +132,31 @@ public sealed class LedgerService : ILedgerService
         return deserializedResponse;
     }
 
+    public async Task<LedgerCreateEntryByExternalIDResponse> CreateEntryByExternalID(
+        string externalCustomerID,
+        LedgerCreateEntryByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await this.CreateEntryByExternalID(
+            parameters with
+            {
+                ExternalCustomerID = externalCustomerID,
+            },
+            cancellationToken
+        );
+    }
+
     public async Task<LedgerListByExternalIDPageResponse> ListByExternalID(
         LedgerListByExternalIDParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ExternalCustomerID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.ExternalCustomerID' cannot be null");
+        }
+
         HttpRequest<LedgerListByExternalIDParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -111,5 +173,22 @@ public sealed class LedgerService : ILedgerService
             page.Validate();
         }
         return page;
+    }
+
+    public async Task<LedgerListByExternalIDPageResponse> ListByExternalID(
+        string externalCustomerID,
+        LedgerListByExternalIDParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.ListByExternalID(
+            parameters with
+            {
+                ExternalCustomerID = externalCustomerID,
+            },
+            cancellationToken
+        );
     }
 }

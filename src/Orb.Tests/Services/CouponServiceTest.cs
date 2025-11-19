@@ -24,14 +24,14 @@ public class CouponServiceTest : TestBase
     [Fact]
     public async Task Archive_Works()
     {
-        var coupon = await this.client.Coupons.Archive(new() { CouponID = "coupon_id" });
+        var coupon = await this.client.Coupons.Archive("coupon_id");
         coupon.Validate();
     }
 
     [Fact]
     public async Task Fetch_Works()
     {
-        var coupon = await this.client.Coupons.Fetch(new() { CouponID = "coupon_id" });
+        var coupon = await this.client.Coupons.Fetch("coupon_id");
         coupon.Validate();
     }
 }

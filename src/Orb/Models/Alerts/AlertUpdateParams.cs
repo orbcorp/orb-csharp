@@ -21,7 +21,7 @@ public sealed record class AlertUpdateParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string AlertConfigurationID { get; init; }
+    public string? AlertConfigurationID { get; init; }
 
     /// <summary>
     /// The thresholds that define the values at which the alert will be triggered.

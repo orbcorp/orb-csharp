@@ -10,9 +10,7 @@ public class LedgerServiceTest : TestBase
     [Fact]
     public async Task List_Works()
     {
-        var page = await this.client.Customers.Credits.Ledger.List(
-            new() { CustomerID = "customer_id" }
-        );
+        var page = await this.client.Customers.Credits.Ledger.List("customer_id");
         page.Validate();
     }
 
@@ -20,9 +18,9 @@ public class LedgerServiceTest : TestBase
     public async Task CreateEntry_Works()
     {
         var response = await this.client.Customers.Credits.Ledger.CreateEntry(
+            "customer_id",
             new()
             {
-                CustomerID = "customer_id",
                 Body = new Increment()
                 {
                     Amount = 0,
@@ -61,9 +59,9 @@ public class LedgerServiceTest : TestBase
     public async Task CreateEntryByExternalID_Works()
     {
         var response = await this.client.Customers.Credits.Ledger.CreateEntryByExternalID(
+            "external_customer_id",
             new()
             {
-                ExternalCustomerID = "external_customer_id",
                 Body = new BodyModelIncrement()
                 {
                     Amount = 0,
@@ -102,7 +100,7 @@ public class LedgerServiceTest : TestBase
     public async Task ListByExternalID_Works()
     {
         var page = await this.client.Customers.Credits.Ledger.ListByExternalID(
-            new() { ExternalCustomerID = "external_customer_id" }
+            "external_customer_id"
         );
         page.Validate();
     }

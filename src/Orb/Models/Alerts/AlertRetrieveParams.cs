@@ -13,7 +13,7 @@ namespace Orb.Models.Alerts;
 /// </summary>
 public sealed record class AlertRetrieveParams : ParamsBase
 {
-    public required string AlertID { get; init; }
+    public string? AlertID { get; init; }
 
     public AlertRetrieveParams() { }
 

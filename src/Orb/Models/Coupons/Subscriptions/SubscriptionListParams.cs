@@ -16,7 +16,7 @@ namespace Orb.Models.Coupons.Subscriptions;
 /// </summary>
 public sealed record class SubscriptionListParams : ParamsBase
 {
-    public required string CouponID { get; init; }
+    public string? CouponID { get; init; }
 
     /// <summary>
     /// Cursor for pagination. This can be populated by the `next_cursor` value returned

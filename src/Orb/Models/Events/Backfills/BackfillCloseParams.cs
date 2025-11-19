@@ -16,7 +16,7 @@ namespace Orb.Models.Events.Backfills;
 /// </summary>
 public sealed record class BackfillCloseParams : ParamsBase
 {
-    public required string BackfillID { get; init; }
+    public string? BackfillID { get; init; }
 
     public BackfillCloseParams() { }
 

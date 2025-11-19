@@ -13,7 +13,7 @@ namespace Orb.Models.Customers.Credits.TopUps;
 /// </summary>
 public sealed record class TopUpListParams : ParamsBase
 {
-    public required string CustomerID { get; init; }
+    public string? CustomerID { get; init; }
 
     /// <summary>
     /// Cursor for pagination. This can be populated by the `next_cursor` value returned

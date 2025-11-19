@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Events;
 using Orb.Services.Events;
 
@@ -41,6 +42,11 @@ public sealed class EventService : IEventService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.EventID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.EventID' cannot be null");
+        }
+
         HttpRequest<EventUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
@@ -59,11 +65,25 @@ public sealed class EventService : IEventService
         return deserializedResponse;
     }
 
+    public async Task<EventUpdateResponse> Update(
+        string eventID,
+        EventUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await this.Update(parameters with { EventID = eventID }, cancellationToken);
+    }
+
     public async Task<EventDeprecateResponse> Deprecate(
         EventDeprecateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.EventID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.EventID' cannot be null");
+        }
+
         HttpRequest<EventDeprecateParams> request = new()
         {
             Method = HttpMethod.Put,
@@ -80,6 +100,17 @@ public sealed class EventService : IEventService
             deserializedResponse.Validate();
         }
         return deserializedResponse;
+    }
+
+    public async Task<EventDeprecateResponse> Deprecate(
+        string eventID,
+        EventDeprecateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Deprecate(parameters with { EventID = eventID }, cancellationToken);
     }
 
     public async Task<EventIngestResponse> Ingest(

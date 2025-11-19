@@ -43,8 +43,38 @@ public interface ICreditService
     /// <para>Note that `currency` defaults to credits if not specified. To use a
     /// real world currency, set `currency` to an ISO 4217 string.</para>
     /// </summary>
+    Task<CreditListPageResponse> List(
+        string customerID,
+        CreditListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a paginated list of unexpired, non-zero credit blocks for a customer.
+    ///
+    /// <para>If `include_all_blocks` is set to `true`, all credit blocks (including
+    /// expired and depleted blocks) will be included in the response.</para>
+    ///
+    /// <para>Note that `currency` defaults to credits if not specified. To use a
+    /// real world currency, set `currency` to an ISO 4217 string.</para>
+    /// </summary>
     Task<CreditListByExternalIDPageResponse> ListByExternalID(
         CreditListByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a paginated list of unexpired, non-zero credit blocks for a customer.
+    ///
+    /// <para>If `include_all_blocks` is set to `true`, all credit blocks (including
+    /// expired and depleted blocks) will be included in the response.</para>
+    ///
+    /// <para>Note that `currency` defaults to credits if not specified. To use a
+    /// real world currency, set `currency` to an ISO 4217 string.</para>
+    /// </summary>
+    Task<CreditListByExternalIDPageResponse> ListByExternalID(
+        string externalCustomerID,
+        CreditListByExternalIDParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 }

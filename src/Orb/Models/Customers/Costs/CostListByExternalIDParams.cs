@@ -109,7 +109,7 @@ namespace Orb.Models.Customers.Costs;
 /// </summary>
 public sealed record class CostListByExternalIDParams : ParamsBase
 {
-    public required string ExternalCustomerID { get; init; }
+    public string? ExternalCustomerID { get; init; }
 
     /// <summary>
     /// The currency or custom pricing unit to use.

@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 using Orb.Models.Invoices;
 
@@ -48,6 +49,11 @@ public sealed class InvoiceService : IInvoiceService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.InvoiceID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.InvoiceID' cannot be null");
+        }
+
         HttpRequest<InvoiceUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
@@ -62,6 +68,17 @@ public sealed class InvoiceService : IInvoiceService
             invoice.Validate();
         }
         return invoice;
+    }
+
+    public async Task<Invoice> Update(
+        string invoiceID,
+        InvoiceUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Update(parameters with { InvoiceID = invoiceID }, cancellationToken);
     }
 
     public async Task<InvoiceListPageResponse> List(
@@ -94,6 +111,11 @@ public sealed class InvoiceService : IInvoiceService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.InvoiceID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.InvoiceID' cannot be null");
+        }
+
         HttpRequest<InvoiceFetchParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -108,6 +130,17 @@ public sealed class InvoiceService : IInvoiceService
             invoice.Validate();
         }
         return invoice;
+    }
+
+    public async Task<Invoice> Fetch(
+        string invoiceID,
+        InvoiceFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Fetch(parameters with { InvoiceID = invoiceID }, cancellationToken);
     }
 
     public async Task<InvoiceFetchUpcomingResponse> FetchUpcoming(
@@ -138,6 +171,11 @@ public sealed class InvoiceService : IInvoiceService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.InvoiceID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.InvoiceID' cannot be null");
+        }
+
         HttpRequest<InvoiceIssueParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -154,11 +192,27 @@ public sealed class InvoiceService : IInvoiceService
         return invoice;
     }
 
+    public async Task<Invoice> Issue(
+        string invoiceID,
+        InvoiceIssueParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Issue(parameters with { InvoiceID = invoiceID }, cancellationToken);
+    }
+
     public async Task<Invoice> MarkPaid(
         InvoiceMarkPaidParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.InvoiceID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.InvoiceID' cannot be null");
+        }
+
         HttpRequest<InvoiceMarkPaidParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -175,11 +229,25 @@ public sealed class InvoiceService : IInvoiceService
         return invoice;
     }
 
+    public async Task<Invoice> MarkPaid(
+        string invoiceID,
+        InvoiceMarkPaidParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await this.MarkPaid(parameters with { InvoiceID = invoiceID }, cancellationToken);
+    }
+
     public async Task<Invoice> Pay(
         InvoicePayParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.InvoiceID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.InvoiceID' cannot be null");
+        }
+
         HttpRequest<InvoicePayParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -196,11 +264,27 @@ public sealed class InvoiceService : IInvoiceService
         return invoice;
     }
 
+    public async Task<Invoice> Pay(
+        string invoiceID,
+        InvoicePayParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Pay(parameters with { InvoiceID = invoiceID }, cancellationToken);
+    }
+
     public async Task<Invoice> Void(
         InvoiceVoidParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.InvoiceID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.InvoiceID' cannot be null");
+        }
+
         HttpRequest<InvoiceVoidParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -215,5 +299,16 @@ public sealed class InvoiceService : IInvoiceService
             invoice.Validate();
         }
         return invoice;
+    }
+
+    public async Task<Invoice> Void(
+        string invoiceID,
+        InvoiceVoidParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Void(parameters with { InvoiceID = invoiceID }, cancellationToken);
     }
 }

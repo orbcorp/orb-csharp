@@ -26,7 +26,7 @@ namespace Orb.Models.Plans.ExternalPlanID;
 /// </summary>
 public sealed record class ExternalPlanIDFetchParams : ParamsBase
 {
-    public required string ExternalPlanID { get; init; }
+    public string? ExternalPlanID { get; init; }
 
     public ExternalPlanIDFetchParams() { }
 

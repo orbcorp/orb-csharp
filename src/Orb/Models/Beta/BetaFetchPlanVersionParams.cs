@@ -16,7 +16,7 @@ public sealed record class BetaFetchPlanVersionParams : ParamsBase
 {
     public required string PlanID { get; init; }
 
-    public required string Version { get; init; }
+    public string? Version { get; init; }
 
     public BetaFetchPlanVersionParams() { }
 

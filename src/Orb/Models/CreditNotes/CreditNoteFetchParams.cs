@@ -14,7 +14,7 @@ namespace Orb.Models.CreditNotes;
 /// </summary>
 public sealed record class CreditNoteFetchParams : ParamsBase
 {
-    public required string CreditNoteID { get; init; }
+    public string? CreditNoteID { get; init; }
 
     public CreditNoteFetchParams() { }
 

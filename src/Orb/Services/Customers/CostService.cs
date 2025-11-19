@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers.Costs;
 
 namespace Orb.Services.Customers;
@@ -26,6 +27,11 @@ public sealed class CostService : ICostService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.CustomerID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.CustomerID' cannot be null");
+        }
+
         HttpRequest<CostListParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -44,11 +50,27 @@ public sealed class CostService : ICostService
         return costs;
     }
 
+    public async Task<CostListResponse> List(
+        string customerID,
+        CostListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.List(parameters with { CustomerID = customerID }, cancellationToken);
+    }
+
     public async Task<CostListByExternalIDResponse> ListByExternalID(
         CostListByExternalIDParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ExternalCustomerID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.ExternalCustomerID' cannot be null");
+        }
+
         HttpRequest<CostListByExternalIDParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -65,5 +87,22 @@ public sealed class CostService : ICostService
             deserializedResponse.Validate();
         }
         return deserializedResponse;
+    }
+
+    public async Task<CostListByExternalIDResponse> ListByExternalID(
+        string externalCustomerID,
+        CostListByExternalIDParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.ListByExternalID(
+            parameters with
+            {
+                ExternalCustomerID = externalCustomerID,
+            },
+            cancellationToken
+        );
     }
 }

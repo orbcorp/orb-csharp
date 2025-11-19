@@ -13,7 +13,7 @@ namespace Orb.Models.DimensionalPriceGroups.ExternalDimensionalPriceGroupID;
 /// </summary>
 public sealed record class ExternalDimensionalPriceGroupIDRetrieveParams : ParamsBase
 {
-    public required string ExternalDimensionalPriceGroupID { get; init; }
+    public string? ExternalDimensionalPriceGroupID { get; init; }
 
     public ExternalDimensionalPriceGroupIDRetrieveParams() { }
 

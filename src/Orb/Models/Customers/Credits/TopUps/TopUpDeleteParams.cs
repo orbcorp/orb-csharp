@@ -16,7 +16,7 @@ public sealed record class TopUpDeleteParams : ParamsBase
 {
     public required string CustomerID { get; init; }
 
-    public required string TopUpID { get; init; }
+    public string? TopUpID { get; init; }
 
     public TopUpDeleteParams() { }
 

@@ -21,7 +21,7 @@ public sealed record class ExternalPriceIDUpdateParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string ExternalPriceID { get; init; }
+    public string? ExternalPriceID { get; init; }
 
     /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed

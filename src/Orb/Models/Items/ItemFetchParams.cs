@@ -13,7 +13,7 @@ namespace Orb.Models.Items;
 /// </summary>
 public sealed record class ItemFetchParams : ParamsBase
 {
-    public required string ItemID { get; init; }
+    public string? ItemID { get; init; }
 
     public ItemFetchParams() { }
 

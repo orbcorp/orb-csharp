@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Prices;
 using Orb.Services.Prices;
 using Models = Orb.Models;
@@ -58,6 +59,11 @@ public sealed class PriceService : IPriceService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.PriceID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.PriceID' cannot be null");
+        }
+
         HttpRequest<PriceUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
@@ -74,6 +80,17 @@ public sealed class PriceService : IPriceService
             price.Validate();
         }
         return price;
+    }
+
+    public async Task<Models::Price> Update(
+        string priceID,
+        PriceUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Update(parameters with { PriceID = priceID }, cancellationToken);
     }
 
     public async Task<PriceListPageResponse> List(
@@ -106,6 +123,11 @@ public sealed class PriceService : IPriceService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.PriceID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.PriceID' cannot be null");
+        }
+
         HttpRequest<PriceEvaluateParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -122,6 +144,15 @@ public sealed class PriceService : IPriceService
             deserializedResponse.Validate();
         }
         return deserializedResponse;
+    }
+
+    public async Task<PriceEvaluateResponse> Evaluate(
+        string priceID,
+        PriceEvaluateParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await this.Evaluate(parameters with { PriceID = priceID }, cancellationToken);
     }
 
     public async Task<PriceEvaluateMultipleResponse> EvaluateMultiple(
@@ -175,6 +206,11 @@ public sealed class PriceService : IPriceService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.PriceID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.PriceID' cannot be null");
+        }
+
         HttpRequest<PriceFetchParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -191,5 +227,16 @@ public sealed class PriceService : IPriceService
             price.Validate();
         }
         return price;
+    }
+
+    public async Task<Models::Price> Fetch(
+        string priceID,
+        PriceFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Fetch(parameters with { PriceID = priceID }, cancellationToken);
     }
 }

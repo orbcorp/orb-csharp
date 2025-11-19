@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.DimensionalPriceGroups;
 using Orb.Services.DimensionalPriceGroups;
 
@@ -59,6 +60,13 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.DimensionalPriceGroupID == null)
+        {
+            throw new OrbInvalidDataException(
+                "'parameters.DimensionalPriceGroupID' cannot be null"
+            );
+        }
+
         HttpRequest<DimensionalPriceGroupRetrieveParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -77,11 +85,35 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
         return dimensionalPriceGroup;
     }
 
+    public async Task<DimensionalPriceGroup> Retrieve(
+        string dimensionalPriceGroupID,
+        DimensionalPriceGroupRetrieveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Retrieve(
+            parameters with
+            {
+                DimensionalPriceGroupID = dimensionalPriceGroupID,
+            },
+            cancellationToken
+        );
+    }
+
     public async Task<DimensionalPriceGroup> Update(
         DimensionalPriceGroupUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.DimensionalPriceGroupID == null)
+        {
+            throw new OrbInvalidDataException(
+                "'parameters.DimensionalPriceGroupID' cannot be null"
+            );
+        }
+
         HttpRequest<DimensionalPriceGroupUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
@@ -98,6 +130,23 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
             dimensionalPriceGroup.Validate();
         }
         return dimensionalPriceGroup;
+    }
+
+    public async Task<DimensionalPriceGroup> Update(
+        string dimensionalPriceGroupID,
+        DimensionalPriceGroupUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Update(
+            parameters with
+            {
+                DimensionalPriceGroupID = dimensionalPriceGroupID,
+            },
+            cancellationToken
+        );
     }
 
     public async Task<DimensionalPriceGroupDimensionalPriceGroups> List(

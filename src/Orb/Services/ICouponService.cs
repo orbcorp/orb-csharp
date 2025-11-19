@@ -51,8 +51,29 @@ public interface ICouponService
     );
 
     /// <summary>
+    /// This endpoint allows a coupon to be archived. Archived coupons can no longer
+    /// be redeemed, and will be hidden from lists of active coupons. Additionally,
+    /// once a coupon is archived, its redemption code can be reused for a different coupon.
+    /// </summary>
+    Task<Coupon> Archive(
+        string couponID,
+        CouponArchiveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// This endpoint retrieves a coupon by its ID. To fetch coupons by their redemption
     /// code, use the [List coupons](list-coupons) endpoint with the redemption_code parameter.
     /// </summary>
     Task<Coupon> Fetch(CouponFetchParams parameters, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// This endpoint retrieves a coupon by its ID. To fetch coupons by their redemption
+    /// code, use the [List coupons](list-coupons) endpoint with the redemption_code parameter.
+    /// </summary>
+    Task<Coupon> Fetch(
+        string couponID,
+        CouponFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 }

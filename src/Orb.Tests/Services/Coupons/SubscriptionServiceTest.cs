@@ -7,7 +7,7 @@ public class SubscriptionServiceTest : TestBase
     [Fact]
     public async Task List_Works()
     {
-        var page = await this.client.Coupons.Subscriptions.List(new() { CouponID = "coupon_id" });
+        var page = await this.client.Coupons.Subscriptions.List("coupon_id");
         page.Validate();
     }
 }

@@ -19,7 +19,7 @@ namespace Orb.Models.Customers;
 public sealed record class CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams
     : ParamsBase
 {
-    public required string ExternalCustomerID { get; init; }
+    public string? ExternalCustomerID { get; init; }
 
     public CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams() { }
 

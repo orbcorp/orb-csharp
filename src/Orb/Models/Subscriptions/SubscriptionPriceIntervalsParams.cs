@@ -88,7 +88,7 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string SubscriptionID { get; init; }
+    public string? SubscriptionID { get; init; }
 
     /// <summary>
     /// A list of price intervals to add to the subscription.

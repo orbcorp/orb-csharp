@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 using Orb.Models.CreditNotes;
 
@@ -75,6 +76,11 @@ public sealed class CreditNoteService : ICreditNoteService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.CreditNoteID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.CreditNoteID' cannot be null");
+        }
+
         HttpRequest<CreditNoteFetchParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -91,5 +97,16 @@ public sealed class CreditNoteService : ICreditNoteService
             creditNote.Validate();
         }
         return creditNote;
+    }
+
+    public async Task<SharedCreditNote> Fetch(
+        string creditNoteID,
+        CreditNoteFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Fetch(parameters with { CreditNoteID = creditNoteID }, cancellationToken);
     }
 }

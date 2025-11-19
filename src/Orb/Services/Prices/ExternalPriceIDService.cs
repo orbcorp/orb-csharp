@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 using Orb.Models.Prices.ExternalPriceID;
 
@@ -27,6 +28,11 @@ public sealed class ExternalPriceIDService : IExternalPriceIDService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ExternalPriceID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.ExternalPriceID' cannot be null");
+        }
+
         HttpRequest<ExternalPriceIDUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
@@ -43,11 +49,33 @@ public sealed class ExternalPriceIDService : IExternalPriceIDService
         return price;
     }
 
+    public async Task<Price> Update(
+        string externalPriceID,
+        ExternalPriceIDUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Update(
+            parameters with
+            {
+                ExternalPriceID = externalPriceID,
+            },
+            cancellationToken
+        );
+    }
+
     public async Task<Price> Fetch(
         ExternalPriceIDFetchParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ExternalPriceID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.ExternalPriceID' cannot be null");
+        }
+
         HttpRequest<ExternalPriceIDFetchParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -62,5 +90,22 @@ public sealed class ExternalPriceIDService : IExternalPriceIDService
             price.Validate();
         }
         return price;
+    }
+
+    public async Task<Price> Fetch(
+        string externalPriceID,
+        ExternalPriceIDFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Fetch(
+            parameters with
+            {
+                ExternalPriceID = externalPriceID,
+            },
+            cancellationToken
+        );
     }
 }

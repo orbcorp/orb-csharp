@@ -80,7 +80,7 @@ namespace Orb.Models.Customers.Credits.Ledger;
 /// </summary>
 public sealed record class LedgerListByExternalIDParams : ParamsBase
 {
-    public required string ExternalCustomerID { get; init; }
+    public string? ExternalCustomerID { get; init; }
 
     public System::DateTimeOffset? CreatedAtGt
     {

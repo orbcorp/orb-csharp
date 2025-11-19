@@ -33,7 +33,7 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string SubscriptionID { get; init; }
+    public string? SubscriptionID { get; init; }
 
     /// <summary>
     /// Price for which the quantity should be updated. Must be a fixed fee.

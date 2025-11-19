@@ -9,7 +9,7 @@ public class ExternalDimensionalPriceGroupIDServiceTest : TestBase
     {
         var dimensionalPriceGroup =
             await this.client.DimensionalPriceGroups.ExternalDimensionalPriceGroupID.Retrieve(
-                new() { ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id" }
+                "external_dimensional_price_group_id"
             );
         dimensionalPriceGroup.Validate();
     }
@@ -19,7 +19,7 @@ public class ExternalDimensionalPriceGroupIDServiceTest : TestBase
     {
         var dimensionalPriceGroup =
             await this.client.DimensionalPriceGroups.ExternalDimensionalPriceGroupID.Update(
-                new() { ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id" }
+                "external_dimensional_price_group_id"
             );
         dimensionalPriceGroup.Validate();
     }

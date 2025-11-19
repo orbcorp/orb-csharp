@@ -26,6 +26,15 @@ public interface IItemService
     Task<Item> Update(ItemUpdateParams parameters, CancellationToken cancellationToken = default);
 
     /// <summary>
+    /// This endpoint can be used to update properties on the Item.
+    /// </summary>
+    Task<Item> Update(
+        string itemID,
+        ItemUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// This endpoint returns a list of all Items, ordered in descending order by
     /// creation time.
     /// </summary>
@@ -40,7 +49,25 @@ public interface IItemService
     Task<Item> Archive(ItemArchiveParams parameters, CancellationToken cancellationToken = default);
 
     /// <summary>
+    /// Archive item
+    /// </summary>
+    Task<Item> Archive(
+        string itemID,
+        ItemArchiveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// This endpoint returns an item identified by its item_id.
     /// </summary>
     Task<Item> Fetch(ItemFetchParams parameters, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// This endpoint returns an item identified by its item_id.
+    /// </summary>
+    Task<Item> Fetch(
+        string itemID,
+        ItemFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 }

@@ -35,7 +35,7 @@ public class InvoiceServiceTest : TestBase
     [Fact]
     public async Task Update_Works()
     {
-        var invoice = await this.client.Invoices.Update(new() { InvoiceID = "invoice_id" });
+        var invoice = await this.client.Invoices.Update("invoice_id");
         invoice.Validate();
     }
 
@@ -49,7 +49,7 @@ public class InvoiceServiceTest : TestBase
     [Fact]
     public async Task Fetch_Works()
     {
-        var invoice = await this.client.Invoices.Fetch(new() { InvoiceID = "invoice_id" });
+        var invoice = await this.client.Invoices.Fetch("invoice_id");
         invoice.Validate();
     }
 
@@ -65,7 +65,7 @@ public class InvoiceServiceTest : TestBase
     [Fact]
     public async Task Issue_Works()
     {
-        var invoice = await this.client.Invoices.Issue(new() { InvoiceID = "invoice_id" });
+        var invoice = await this.client.Invoices.Issue("invoice_id");
         invoice.Validate();
     }
 
@@ -73,7 +73,8 @@ public class InvoiceServiceTest : TestBase
     public async Task MarkPaid_Works()
     {
         var invoice = await this.client.Invoices.MarkPaid(
-            new() { InvoiceID = "invoice_id", PaymentReceivedDate = DateOnly.Parse("2023-09-22") }
+            "invoice_id",
+            new() { PaymentReceivedDate = DateOnly.Parse("2023-09-22") }
         );
         invoice.Validate();
     }
@@ -81,14 +82,14 @@ public class InvoiceServiceTest : TestBase
     [Fact]
     public async Task Pay_Works()
     {
-        var invoice = await this.client.Invoices.Pay(new() { InvoiceID = "invoice_id" });
+        var invoice = await this.client.Invoices.Pay("invoice_id");
         invoice.Validate();
     }
 
     [Fact]
     public async Task Void_Works()
     {
-        var invoice = await this.client.Invoices.Void(new() { InvoiceID = "invoice_id" });
+        var invoice = await this.client.Invoices.Void("invoice_id");
         invoice.Validate();
     }
 }

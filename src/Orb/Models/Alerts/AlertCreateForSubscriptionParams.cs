@@ -32,7 +32,7 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string SubscriptionID { get; init; }
+    public string? SubscriptionID { get; init; }
 
     /// <summary>
     /// The thresholds that define the values at which the alert will be triggered.

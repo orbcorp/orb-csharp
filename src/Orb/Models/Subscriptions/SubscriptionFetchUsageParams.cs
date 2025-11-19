@@ -140,7 +140,7 @@ namespace Orb.Models.Subscriptions;
 /// </summary>
 public sealed record class SubscriptionFetchUsageParams : ParamsBase
 {
-    public required string SubscriptionID { get; init; }
+    public string? SubscriptionID { get; init; }
 
     /// <summary>
     /// When specified in conjunction with `group_by`, this parameter filters usage

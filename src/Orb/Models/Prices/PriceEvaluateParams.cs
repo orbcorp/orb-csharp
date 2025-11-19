@@ -43,7 +43,7 @@ public sealed record class PriceEvaluateParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string PriceID { get; init; }
+    public string? PriceID { get; init; }
 
     /// <summary>
     /// The exclusive upper bound for event timestamps

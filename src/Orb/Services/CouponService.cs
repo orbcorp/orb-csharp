@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Coupons;
 using Coupons = Orb.Services.Coupons;
 
@@ -80,6 +81,11 @@ public sealed class CouponService : ICouponService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.CouponID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.CouponID' cannot be null");
+        }
+
         HttpRequest<CouponArchiveParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -96,11 +102,27 @@ public sealed class CouponService : ICouponService
         return coupon;
     }
 
+    public async Task<Coupon> Archive(
+        string couponID,
+        CouponArchiveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Archive(parameters with { CouponID = couponID }, cancellationToken);
+    }
+
     public async Task<Coupon> Fetch(
         CouponFetchParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.CouponID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.CouponID' cannot be null");
+        }
+
         HttpRequest<CouponFetchParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -115,5 +137,16 @@ public sealed class CouponService : ICouponService
             coupon.Validate();
         }
         return coupon;
+    }
+
+    public async Task<Coupon> Fetch(
+        string couponID,
+        CouponFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Fetch(parameters with { CouponID = couponID }, cancellationToken);
     }
 }

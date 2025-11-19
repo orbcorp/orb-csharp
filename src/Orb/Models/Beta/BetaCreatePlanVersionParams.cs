@@ -22,7 +22,7 @@ public sealed record class BetaCreatePlanVersionParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string PlanID { get; init; }
+    public string? PlanID { get; init; }
 
     /// <summary>
     /// New version number.

@@ -71,7 +71,7 @@ public sealed record class SubscriptionCancelParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string SubscriptionID { get; init; }
+    public string? SubscriptionID { get; init; }
 
     /// <summary>
     /// Determines the timing of subscription cancellation

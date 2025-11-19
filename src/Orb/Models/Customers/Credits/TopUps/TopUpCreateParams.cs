@@ -27,7 +27,7 @@ public sealed record class TopUpCreateParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string CustomerID { get; init; }
+    public string? CustomerID { get; init; }
 
     /// <summary>
     /// The amount to increment when the threshold is reached.

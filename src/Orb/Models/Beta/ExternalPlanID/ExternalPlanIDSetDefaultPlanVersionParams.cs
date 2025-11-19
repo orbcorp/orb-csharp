@@ -21,7 +21,7 @@ public sealed record class ExternalPlanIDSetDefaultPlanVersionParams : ParamsBas
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string ExternalPlanID { get; init; }
+    public string? ExternalPlanID { get; init; }
 
     /// <summary>
     /// Plan version to set as the default.

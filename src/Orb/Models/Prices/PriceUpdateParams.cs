@@ -21,7 +21,7 @@ public sealed record class PriceUpdateParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string PriceID { get; init; }
+    public string? PriceID { get; init; }
 
     /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed

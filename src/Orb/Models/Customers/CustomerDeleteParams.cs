@@ -23,7 +23,7 @@ namespace Orb.Models.Customers;
 /// </summary>
 public sealed record class CustomerDeleteParams : ParamsBase
 {
-    public required string CustomerID { get; init; }
+    public string? CustomerID { get; init; }
 
     public CustomerDeleteParams() { }
 

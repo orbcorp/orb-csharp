@@ -11,9 +11,9 @@ public class EventServiceTest : TestBase
     public async Task Update_Works()
     {
         var event1 = await this.client.Events.Update(
+            "event_id",
             new()
             {
-                EventID = "event_id",
                 EventName = "event_name",
                 Properties = new Dictionary<string, JsonElement>()
                 {
@@ -28,7 +28,7 @@ public class EventServiceTest : TestBase
     [Fact]
     public async Task Deprecate_Works()
     {
-        var response = await this.client.Events.Deprecate(new() { EventID = "event_id" });
+        var response = await this.client.Events.Deprecate("event_id");
         response.Validate();
     }
 

@@ -14,7 +14,7 @@ namespace Orb.Models.Metrics;
 /// </summary>
 public sealed record class MetricFetchParams : ParamsBase
 {
-    public required string MetricID { get; init; }
+    public string? MetricID { get; init; }
 
     public MetricFetchParams() { }
 

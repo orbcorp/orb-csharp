@@ -15,7 +15,7 @@ namespace Orb.Models.SubscriptionChanges;
 /// </summary>
 public sealed record class SubscriptionChangeCancelParams : ParamsBase
 {
-    public required string SubscriptionChangeID { get; init; }
+    public string? SubscriptionChangeID { get; init; }
 
     public SubscriptionChangeCancelParams() { }
 

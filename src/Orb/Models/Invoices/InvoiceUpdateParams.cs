@@ -28,7 +28,7 @@ public sealed record class InvoiceUpdateParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string InvoiceID { get; init; }
+    public string? InvoiceID { get; init; }
 
     /// <summary>
     /// An optional custom due date for the invoice. If not set, the due date will
