@@ -23,7 +23,7 @@ public sealed record class PlanUpdateParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string PlanID { get; init; }
+    public string? PlanID { get; init; }
 
     /// <summary>
     /// An optional user-defined ID for this plan resource, used throughout the system

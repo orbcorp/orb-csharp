@@ -58,7 +58,7 @@ public class PriceServiceTest : TestBase
     [Fact]
     public async Task Update_Works()
     {
-        var price = await this.client.Prices.Update(new() { PriceID = "price_id" });
+        var price = await this.client.Prices.Update("price_id");
         price.Validate();
     }
 
@@ -73,9 +73,9 @@ public class PriceServiceTest : TestBase
     public async Task Evaluate_Works()
     {
         var response = await this.client.Prices.Evaluate(
+            "price_id",
             new()
             {
-                PriceID = "price_id",
                 TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             }
@@ -112,7 +112,7 @@ public class PriceServiceTest : TestBase
     [Fact]
     public async Task Fetch_Works()
     {
-        var price = await this.client.Prices.Fetch(new() { PriceID = "price_id" });
+        var price = await this.client.Prices.Fetch("price_id");
         price.Validate();
     }
 }

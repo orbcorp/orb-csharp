@@ -28,6 +28,15 @@ public interface IBetaService
     );
 
     /// <summary>
+    /// This endpoint allows the creation of a new plan version for an existing plan.
+    /// </summary>
+    Task<PlanVersion> CreatePlanVersion(
+        string planID,
+        BetaCreatePlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// This endpoint is used to fetch a plan version. It returns the phases, prices,
     /// and adjustments present on this version of the plan.
     /// </summary>
@@ -37,9 +46,28 @@ public interface IBetaService
     );
 
     /// <summary>
+    /// This endpoint is used to fetch a plan version. It returns the phases, prices,
+    /// and adjustments present on this version of the plan.
+    /// </summary>
+    Task<PlanVersion> FetchPlanVersion(
+        string version,
+        BetaFetchPlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// This endpoint allows setting the default version of a plan.
     /// </summary>
     Task<Plan> SetDefaultPlanVersion(
+        BetaSetDefaultPlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// This endpoint allows setting the default version of a plan.
+    /// </summary>
+    Task<Plan> SetDefaultPlanVersion(
+        string planID,
         BetaSetDefaultPlanVersionParams parameters,
         CancellationToken cancellationToken = default
     );

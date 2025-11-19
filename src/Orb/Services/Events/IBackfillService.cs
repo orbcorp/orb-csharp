@@ -84,10 +84,31 @@ public interface IBackfillService
     );
 
     /// <summary>
+    /// Closing a backfill makes the updated usage visible in Orb. Upon closing a
+    /// backfill, Orb will asynchronously reflect the updated usage in invoice amounts
+    /// and usage graphs. Once all of the updates are complete, the backfill's status
+    /// will transition to `reflected`.
+    /// </summary>
+    Task<BackfillCloseResponse> Close(
+        string backfillID,
+        BackfillCloseParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// This endpoint is used to fetch a backfill given an identifier.
     /// </summary>
     Task<BackfillFetchResponse> Fetch(
         BackfillFetchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// This endpoint is used to fetch a backfill given an identifier.
+    /// </summary>
+    Task<BackfillFetchResponse> Fetch(
+        string backfillID,
+        BackfillFetchParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 
@@ -102,6 +123,21 @@ public interface IBackfillService
     /// </summary>
     Task<BackfillRevertResponse> Revert(
         BackfillRevertParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Reverting a backfill undoes all the effects of closing the backfill. If the
+    /// backfill is reflected, the status will transition to `pending_revert` while
+    /// the effects of the backfill are undone. Once all effects are undone, the
+    /// backfill will transition to `reverted`.
+    ///
+    /// <para>If a backfill is reverted before its closed, no usage will be updated
+    /// as a result of the backfill and it will immediately transition to `reverted`.</para>
+    /// </summary>
+    Task<BackfillRevertResponse> Revert(
+        string backfillID,
+        BackfillRevertParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 }

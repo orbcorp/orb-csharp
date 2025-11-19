@@ -22,7 +22,7 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string SubscriptionID { get; init; }
+    public string? SubscriptionID { get; init; }
 
     public required ApiEnum<string, ChangeOption> ChangeOption
     {

@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers;
 using Orb.Services.Customers;
 
@@ -71,6 +72,11 @@ public sealed class CustomerService : ICustomerService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.CustomerID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.CustomerID' cannot be null");
+        }
+
         HttpRequest<CustomerUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
@@ -87,6 +93,17 @@ public sealed class CustomerService : ICustomerService
             customer.Validate();
         }
         return customer;
+    }
+
+    public async Task<Customer> Update(
+        string customerID,
+        CustomerUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Update(parameters with { CustomerID = customerID }, cancellationToken);
     }
 
     public async Task<CustomerListPageResponse> List(
@@ -119,6 +136,11 @@ public sealed class CustomerService : ICustomerService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.CustomerID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.CustomerID' cannot be null");
+        }
+
         HttpRequest<CustomerDeleteParams> request = new()
         {
             Method = HttpMethod.Delete,
@@ -129,11 +151,27 @@ public sealed class CustomerService : ICustomerService
             .ConfigureAwait(false);
     }
 
+    public async Task Delete(
+        string customerID,
+        CustomerDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        await this.Delete(parameters with { CustomerID = customerID }, cancellationToken);
+    }
+
     public async Task<Customer> Fetch(
         CustomerFetchParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.CustomerID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.CustomerID' cannot be null");
+        }
+
         HttpRequest<CustomerFetchParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -152,11 +190,27 @@ public sealed class CustomerService : ICustomerService
         return customer;
     }
 
+    public async Task<Customer> Fetch(
+        string customerID,
+        CustomerFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Fetch(parameters with { CustomerID = customerID }, cancellationToken);
+    }
+
     public async Task<Customer> FetchByExternalID(
         CustomerFetchByExternalIDParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ExternalCustomerID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.ExternalCustomerID' cannot be null");
+        }
+
         HttpRequest<CustomerFetchByExternalIDParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -175,11 +229,33 @@ public sealed class CustomerService : ICustomerService
         return customer;
     }
 
+    public async Task<Customer> FetchByExternalID(
+        string externalCustomerID,
+        CustomerFetchByExternalIDParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.FetchByExternalID(
+            parameters with
+            {
+                ExternalCustomerID = externalCustomerID,
+            },
+            cancellationToken
+        );
+    }
+
     public async Task SyncPaymentMethodsFromGateway(
         CustomerSyncPaymentMethodsFromGatewayParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.CustomerID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.CustomerID' cannot be null");
+        }
+
         HttpRequest<CustomerSyncPaymentMethodsFromGatewayParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -190,11 +266,33 @@ public sealed class CustomerService : ICustomerService
             .ConfigureAwait(false);
     }
 
+    public async Task SyncPaymentMethodsFromGateway(
+        string customerID,
+        CustomerSyncPaymentMethodsFromGatewayParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        await this.SyncPaymentMethodsFromGateway(
+            parameters with
+            {
+                CustomerID = customerID,
+            },
+            cancellationToken
+        );
+    }
+
     public async Task SyncPaymentMethodsFromGatewayByExternalCustomerID(
         CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ExternalCustomerID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.ExternalCustomerID' cannot be null");
+        }
+
         HttpRequest<CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -205,11 +303,33 @@ public sealed class CustomerService : ICustomerService
             .ConfigureAwait(false);
     }
 
+    public async Task SyncPaymentMethodsFromGatewayByExternalCustomerID(
+        string externalCustomerID,
+        CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        await this.SyncPaymentMethodsFromGatewayByExternalCustomerID(
+            parameters with
+            {
+                ExternalCustomerID = externalCustomerID,
+            },
+            cancellationToken
+        );
+    }
+
     public async Task<Customer> UpdateByExternalID(
         CustomerUpdateByExternalIDParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.ID' cannot be null");
+        }
+
         HttpRequest<CustomerUpdateByExternalIDParams> request = new()
         {
             Method = HttpMethod.Put,
@@ -226,5 +346,16 @@ public sealed class CustomerService : ICustomerService
             customer.Validate();
         }
         return customer;
+    }
+
+    public async Task<Customer> UpdateByExternalID(
+        string id,
+        CustomerUpdateByExternalIDParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.UpdateByExternalID(parameters with { ID = id }, cancellationToken);
     }
 }

@@ -50,6 +50,18 @@ public interface ICustomerService
     );
 
     /// <summary>
+    /// This endpoint can be used to update the `payment_provider`, `payment_provider_id`,
+    /// `name`, `email`, `email_delivery`, `tax_id`, `auto_collection`, `metadata`,
+    /// `shipping_address`, `billing_address`, and `additional_emails` of an existing
+    /// customer. Other fields on a customer are currently immutable.
+    /// </summary>
+    Task<Customer> Update(
+        string customerID,
+        CustomerUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// This endpoint returns a list of all customers for an account. The list of
     /// customers is ordered starting from the most recently created customer. This
     /// endpoint follows Orb's [standardized pagination format](/api-reference/pagination).
@@ -78,6 +90,26 @@ public interface ICustomerService
     Task Delete(CustomerDeleteParams parameters, CancellationToken cancellationToken = default);
 
     /// <summary>
+    /// This performs a deletion of this customer, its subscriptions, and its invoices,
+    /// provided the customer does not have any issued invoices. Customers with issued
+    /// invoices cannot be deleted. This operation is irreversible. Note that this
+    /// is a _soft_ deletion, but the data will be inaccessible through the API and
+    /// Orb dashboard.
+    ///
+    /// <para>For a hard-deletion, please reach out to the Orb team directly.</para>
+    ///
+    /// <para>**Note**: This operation happens asynchronously and can be expected
+    /// to take a few minutes to propagate to related resources. However, querying
+    /// for the customer on subsequent GET requests while deletion is in process will
+    /// reflect its deletion.</para>
+    /// </summary>
+    Task Delete(
+        string customerID,
+        CustomerDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// This endpoint is used to fetch customer details given an identifier. If the
     /// `Customer` is in the process of being deleted, only the properties `id` and
     /// `deleted: true` will be returned.
@@ -91,6 +123,20 @@ public interface ICustomerService
     );
 
     /// <summary>
+    /// This endpoint is used to fetch customer details given an identifier. If the
+    /// `Customer` is in the process of being deleted, only the properties `id` and
+    /// `deleted: true` will be returned.
+    ///
+    /// <para>See the [Customer resource](/core-concepts#customer) for a full discussion
+    /// of the Customer model.</para>
+    /// </summary>
+    Task<Customer> Fetch(
+        string customerID,
+        CustomerFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// This endpoint is used to fetch customer details given an `external_customer_id`
     /// (see [Customer ID Aliases](/events-and-metrics/customer-aliases)).
     ///
@@ -99,6 +145,19 @@ public interface ICustomerService
     /// </summary>
     Task<Customer> FetchByExternalID(
         CustomerFetchByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// This endpoint is used to fetch customer details given an `external_customer_id`
+    /// (see [Customer ID Aliases](/events-and-metrics/customer-aliases)).
+    ///
+    /// <para>Note that the resource and semantics of this endpoint exactly mirror
+    /// [Get Customer](fetch-customer).</para>
+    /// </summary>
+    Task<Customer> FetchByExternalID(
+        string externalCustomerID,
+        CustomerFetchByExternalIDParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 
@@ -125,8 +184,38 @@ public interface ICustomerService
     ///
     /// <para>**Note**: This functionality is currently only available for Stripe.</para>
     /// </summary>
+    Task SyncPaymentMethodsFromGateway(
+        string customerID,
+        CustomerSyncPaymentMethodsFromGatewayParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Sync Orb's payment methods for the customer with their gateway.
+    ///
+    /// <para>This method can be called before taking an action that may cause the
+    /// customer to be charged, ensuring that the most up-to-date payment method
+    /// is charged.</para>
+    ///
+    /// <para>**Note**: This functionality is currently only available for Stripe.</para>
+    /// </summary>
     Task SyncPaymentMethodsFromGatewayByExternalCustomerID(
         CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Sync Orb's payment methods for the customer with their gateway.
+    ///
+    /// <para>This method can be called before taking an action that may cause the
+    /// customer to be charged, ensuring that the most up-to-date payment method
+    /// is charged.</para>
+    ///
+    /// <para>**Note**: This functionality is currently only available for Stripe.</para>
+    /// </summary>
+    Task SyncPaymentMethodsFromGatewayByExternalCustomerID(
+        string externalCustomerID,
+        CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 
@@ -137,6 +226,17 @@ public interface ICustomerService
     /// </summary>
     Task<Customer> UpdateByExternalID(
         CustomerUpdateByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// This endpoint is used to update customer details given an `external_customer_id`
+    /// (see [Customer ID Aliases](/events-and-metrics/customer-aliases)). Note that
+    /// the resource and semantics of this endpoint exactly mirror [Update Customer](update-customer).
+    /// </summary>
+    Task<Customer> UpdateByExternalID(
+        string id,
+        CustomerUpdateByExternalIDParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 }

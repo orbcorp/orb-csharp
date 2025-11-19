@@ -13,7 +13,7 @@ namespace Orb.Models.Prices;
 /// </summary>
 public sealed record class PriceFetchParams : ParamsBase
 {
-    public required string PriceID { get; init; }
+    public string? PriceID { get; init; }
 
     public PriceFetchParams() { }
 

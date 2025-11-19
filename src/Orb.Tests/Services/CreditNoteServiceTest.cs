@@ -38,9 +38,7 @@ public class CreditNoteServiceTest : TestBase
     [Fact]
     public async Task Fetch_Works()
     {
-        var creditNote = await this.client.CreditNotes.Fetch(
-            new() { CreditNoteID = "credit_note_id" }
-        );
+        var creditNote = await this.client.CreditNotes.Fetch("credit_note_id");
         creditNote.Validate();
     }
 }

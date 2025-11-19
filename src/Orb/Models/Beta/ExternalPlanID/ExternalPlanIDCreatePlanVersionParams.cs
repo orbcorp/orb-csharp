@@ -22,7 +22,7 @@ public sealed record class ExternalPlanIDCreatePlanVersionParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string ExternalPlanID { get; init; }
+    public string? ExternalPlanID { get; init; }
 
     /// <summary>
     /// New version number.

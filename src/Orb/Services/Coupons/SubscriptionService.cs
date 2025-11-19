@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Coupons.Subscriptions;
 using Subscriptions = Orb.Models.Subscriptions;
 
@@ -31,6 +32,11 @@ public sealed class SubscriptionService : global::Orb.Services.Coupons.ISubscrip
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.CouponID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.CouponID' cannot be null");
+        }
+
         HttpRequest<SubscriptionListParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -47,5 +53,16 @@ public sealed class SubscriptionService : global::Orb.Services.Coupons.ISubscrip
             page.Validate();
         }
         return page;
+    }
+
+    public async Task<Subscriptions::SubscriptionSubscriptions> List(
+        string couponID,
+        SubscriptionListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.List(parameters with { CouponID = couponID }, cancellationToken);
     }
 }

@@ -19,7 +19,7 @@ namespace Orb.Models.Customers.Credits;
 /// </summary>
 public sealed record class CreditListParams : ParamsBase
 {
-    public required string CustomerID { get; init; }
+    public string? CustomerID { get; init; }
 
     /// <summary>
     /// The ledger currency or custom pricing unit to use.

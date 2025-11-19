@@ -16,7 +16,7 @@ public sealed record class ExternalPlanIDFetchPlanVersionParams : ParamsBase
 {
     public required string ExternalPlanID { get; init; }
 
-    public required string Version { get; init; }
+    public string? Version { get; init; }
 
     public ExternalPlanIDFetchPlanVersionParams() { }
 

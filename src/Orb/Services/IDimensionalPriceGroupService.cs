@@ -43,12 +43,32 @@ public interface IDimensionalPriceGroupService
     );
 
     /// <summary>
+    /// Fetch dimensional price group
+    /// </summary>
+    Task<DimensionalPriceGroup> Retrieve(
+        string dimensionalPriceGroupID,
+        DimensionalPriceGroupRetrieveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// This endpoint can be used to update the `external_dimensional_price_group_id`
     /// and `metadata` of an existing dimensional price group. Other fields on a dimensional
     /// price group are currently immutable.
     /// </summary>
     Task<DimensionalPriceGroup> Update(
         DimensionalPriceGroupUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// This endpoint can be used to update the `external_dimensional_price_group_id`
+    /// and `metadata` of an existing dimensional price group. Other fields on a dimensional
+    /// price group are currently immutable.
+    /// </summary>
+    Task<DimensionalPriceGroup> Update(
+        string dimensionalPriceGroupID,
+        DimensionalPriceGroupUpdateParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 

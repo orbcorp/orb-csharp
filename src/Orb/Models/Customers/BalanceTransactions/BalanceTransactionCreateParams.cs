@@ -23,7 +23,7 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string CustomerID { get; init; }
+    public string? CustomerID { get; init; }
 
     public required string Amount
     {

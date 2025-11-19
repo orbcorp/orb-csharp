@@ -47,6 +47,17 @@ public interface IPriceService
     );
 
     /// <summary>
+    /// This endpoint allows you to update the `metadata` property on a price. If
+    /// you pass null for the metadata value, it will clear any existing metadata
+    /// for that price.
+    /// </summary>
+    Task<Models::Price> Update(
+        string priceID,
+        PriceUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// This endpoint is used to list all add-on prices created using the [price creation endpoint](/api-reference/price/create-price).
     /// </summary>
     Task<PriceListPageResponse> List(
@@ -81,6 +92,38 @@ public interface IPriceService
     /// body rather than query parameters.</para>
     /// </summary>
     Task<PriceEvaluateResponse> Evaluate(
+        PriceEvaluateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// [NOTE] It is recommended to use the `/v1/prices/evaluate` which offers further
+    /// functionality, such as multiple prices, inline price definitions, and querying
+    /// over preview events.
+    ///
+    /// <para>This endpoint is used to evaluate the output of a price for a given
+    /// customer and time range. It enables filtering and grouping the output using
+    /// [computed properties](/extensibility/advanced-metrics#computed-properties),
+    /// supporting the following workflows:</para>
+    ///
+    /// <para>1. Showing detailed usage and costs to the end customer. 2. Auditing
+    /// subtotals on invoice line items.</para>
+    ///
+    /// <para>For these workflows, the expressiveness of computed properties in both
+    /// the filters and grouping is critical. For example, if you'd like to show your
+    /// customer their usage grouped by hour and another property, you can do so with
+    /// the following `grouping_keys`: `["hour_floor_timestamp_millis(timestamp_millis)",
+    /// "my_property"]`. If you'd like to examine a customer's usage for a specific
+    /// property value, you can do so with the following `filter`: `my_property =
+    /// 'foo' AND my_other_property = 'bar'`.</para>
+    ///
+    /// <para>By default, the start of the time range must be no more than 100 days
+    /// ago and the length of the results must be no greater than 1000. Note that
+    /// this is a POST endpoint rather than a GET endpoint because it employs a JSON
+    /// body rather than query parameters.</para>
+    /// </summary>
+    Task<PriceEvaluateResponse> Evaluate(
+        string priceID,
         PriceEvaluateParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -146,6 +189,15 @@ public interface IPriceService
     /// </summary>
     Task<Models::Price> Fetch(
         PriceFetchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// This endpoint returns a price given an identifier.
+    /// </summary>
+    Task<Models::Price> Fetch(
+        string priceID,
+        PriceFetchParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 }

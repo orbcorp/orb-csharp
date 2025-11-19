@@ -15,7 +15,7 @@ namespace Orb.Models.Alerts;
 /// </summary>
 public sealed record class AlertDisableParams : ParamsBase
 {
-    public required string AlertConfigurationID { get; init; }
+    public string? AlertConfigurationID { get; init; }
 
     /// <summary>
     /// Used to update the status of a plan alert scoped to this subscription_id

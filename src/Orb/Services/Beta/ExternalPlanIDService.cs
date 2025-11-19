@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Beta;
 using Orb.Models.Beta.ExternalPlanID;
 using Orb.Models.Plans;
@@ -28,6 +29,11 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ExternalPlanID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.ExternalPlanID' cannot be null");
+        }
+
         HttpRequest<ExternalPlanIDCreatePlanVersionParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -46,11 +52,31 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
         return planVersion;
     }
 
+    public async Task<PlanVersion> CreatePlanVersion(
+        string externalPlanID,
+        ExternalPlanIDCreatePlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await this.CreatePlanVersion(
+            parameters with
+            {
+                ExternalPlanID = externalPlanID,
+            },
+            cancellationToken
+        );
+    }
+
     public async Task<PlanVersion> FetchPlanVersion(
         ExternalPlanIDFetchPlanVersionParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.Version == null)
+        {
+            throw new OrbInvalidDataException("'parameters.Version' cannot be null");
+        }
+
         HttpRequest<ExternalPlanIDFetchPlanVersionParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -69,11 +95,31 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
         return planVersion;
     }
 
+    public async Task<PlanVersion> FetchPlanVersion(
+        string version,
+        ExternalPlanIDFetchPlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await this.FetchPlanVersion(
+            parameters with
+            {
+                Version = version,
+            },
+            cancellationToken
+        );
+    }
+
     public async Task<Plan> SetDefaultPlanVersion(
         ExternalPlanIDSetDefaultPlanVersionParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ExternalPlanID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.ExternalPlanID' cannot be null");
+        }
+
         HttpRequest<ExternalPlanIDSetDefaultPlanVersionParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -88,5 +134,20 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
             plan.Validate();
         }
         return plan;
+    }
+
+    public async Task<Plan> SetDefaultPlanVersion(
+        string externalPlanID,
+        ExternalPlanIDSetDefaultPlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await this.SetDefaultPlanVersion(
+            parameters with
+            {
+                ExternalPlanID = externalPlanID,
+            },
+            cancellationToken
+        );
     }
 }

@@ -23,7 +23,7 @@ public sealed record class ExternalPlanIDUpdateParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string OtherExternalPlanID { get; init; }
+    public string? OtherExternalPlanID { get; init; }
 
     /// <summary>
     /// An optional user-defined ID for this plan resource, used throughout the system

@@ -90,7 +90,7 @@ public class PlanServiceTest : TestBase
     [Fact]
     public async Task Update_Works()
     {
-        var plan = await this.client.Plans.Update(new() { PlanID = "plan_id" });
+        var plan = await this.client.Plans.Update("plan_id");
         plan.Validate();
     }
 
@@ -104,7 +104,7 @@ public class PlanServiceTest : TestBase
     [Fact]
     public async Task Fetch_Works()
     {
-        var plan = await this.client.Plans.Fetch(new() { PlanID = "plan_id" });
+        var plan = await this.client.Plans.Fetch("plan_id");
         plan.Validate();
     }
 }

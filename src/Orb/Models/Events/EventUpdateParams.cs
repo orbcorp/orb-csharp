@@ -58,7 +58,7 @@ public sealed record class EventUpdateParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string EventID { get; init; }
+    public string? EventID { get; init; }
 
     /// <summary>
     /// A name to meaningfully identify the action or event type.

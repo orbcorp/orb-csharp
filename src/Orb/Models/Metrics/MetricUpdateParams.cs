@@ -21,7 +21,7 @@ public sealed record class MetricUpdateParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string MetricID { get; init; }
+    public string? MetricID { get; init; }
 
     /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed

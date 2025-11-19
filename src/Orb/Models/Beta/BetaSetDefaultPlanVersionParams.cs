@@ -21,7 +21,7 @@ public sealed record class BetaSetDefaultPlanVersionParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string PlanID { get; init; }
+    public string? PlanID { get; init; }
 
     /// <summary>
     /// Plan version to set as the default.

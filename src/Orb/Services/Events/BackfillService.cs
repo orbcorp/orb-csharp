@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Events.Backfills;
 
 namespace Orb.Services.Events;
@@ -74,6 +75,11 @@ public sealed class BackfillService : IBackfillService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.BackfillID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.BackfillID' cannot be null");
+        }
+
         HttpRequest<BackfillCloseParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -92,11 +98,27 @@ public sealed class BackfillService : IBackfillService
         return deserializedResponse;
     }
 
+    public async Task<BackfillCloseResponse> Close(
+        string backfillID,
+        BackfillCloseParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Close(parameters with { BackfillID = backfillID }, cancellationToken);
+    }
+
     public async Task<BackfillFetchResponse> Fetch(
         BackfillFetchParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.BackfillID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.BackfillID' cannot be null");
+        }
+
         HttpRequest<BackfillFetchParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -115,11 +137,27 @@ public sealed class BackfillService : IBackfillService
         return deserializedResponse;
     }
 
+    public async Task<BackfillFetchResponse> Fetch(
+        string backfillID,
+        BackfillFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Fetch(parameters with { BackfillID = backfillID }, cancellationToken);
+    }
+
     public async Task<BackfillRevertResponse> Revert(
         BackfillRevertParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.BackfillID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.BackfillID' cannot be null");
+        }
+
         HttpRequest<BackfillRevertParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -136,5 +174,16 @@ public sealed class BackfillService : IBackfillService
             deserializedResponse.Validate();
         }
         return deserializedResponse;
+    }
+
+    public async Task<BackfillRevertResponse> Revert(
+        string backfillID,
+        BackfillRevertParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Revert(parameters with { BackfillID = backfillID }, cancellationToken);
     }
 }

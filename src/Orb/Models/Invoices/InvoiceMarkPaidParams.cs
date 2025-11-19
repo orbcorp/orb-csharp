@@ -22,7 +22,7 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string InvoiceID { get; init; }
+    public string? InvoiceID { get; init; }
 
     /// <summary>
     /// A date string to specify the date of the payment.

@@ -18,7 +18,7 @@ namespace Orb.Models.Customers;
 /// </summary>
 public sealed record class CustomerFetchParams : ParamsBase
 {
-    public required string CustomerID { get; init; }
+    public string? CustomerID { get; init; }
 
     public CustomerFetchParams() { }
 

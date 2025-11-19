@@ -39,7 +39,7 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string SubscriptionID { get; init; }
+    public string? SubscriptionID { get; init; }
 
     /// <summary>
     /// The new date that the trial should end, or the literal string `immediate`

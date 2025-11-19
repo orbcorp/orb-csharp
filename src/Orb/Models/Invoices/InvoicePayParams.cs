@@ -14,7 +14,7 @@ namespace Orb.Models.Invoices;
 /// </summary>
 public sealed record class InvoicePayParams : ParamsBase
 {
-    public required string InvoiceID { get; init; }
+    public string? InvoiceID { get; init; }
 
     public InvoicePayParams() { }
 

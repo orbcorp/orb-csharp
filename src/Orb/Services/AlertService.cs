@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Alerts;
 
 namespace Orb.Services;
@@ -26,6 +27,11 @@ public sealed class AlertService : IAlertService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.AlertID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.AlertID' cannot be null");
+        }
+
         HttpRequest<AlertRetrieveParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -42,11 +48,27 @@ public sealed class AlertService : IAlertService
         return alert;
     }
 
+    public async Task<Alert> Retrieve(
+        string alertID,
+        AlertRetrieveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Retrieve(parameters with { AlertID = alertID }, cancellationToken);
+    }
+
     public async Task<Alert> Update(
         AlertUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.AlertConfigurationID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.AlertConfigurationID' cannot be null");
+        }
+
         HttpRequest<AlertUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
@@ -61,6 +83,21 @@ public sealed class AlertService : IAlertService
             alert.Validate();
         }
         return alert;
+    }
+
+    public async Task<Alert> Update(
+        string alertConfigurationID,
+        AlertUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await this.Update(
+            parameters with
+            {
+                AlertConfigurationID = alertConfigurationID,
+            },
+            cancellationToken
+        );
     }
 
     public async Task<AlertListPageResponse> List(
@@ -93,6 +130,11 @@ public sealed class AlertService : IAlertService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.CustomerID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.CustomerID' cannot be null");
+        }
+
         HttpRequest<AlertCreateForCustomerParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -109,11 +151,31 @@ public sealed class AlertService : IAlertService
         return alert;
     }
 
+    public async Task<Alert> CreateForCustomer(
+        string customerID,
+        AlertCreateForCustomerParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await this.CreateForCustomer(
+            parameters with
+            {
+                CustomerID = customerID,
+            },
+            cancellationToken
+        );
+    }
+
     public async Task<Alert> CreateForExternalCustomer(
         AlertCreateForExternalCustomerParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ExternalCustomerID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.ExternalCustomerID' cannot be null");
+        }
+
         HttpRequest<AlertCreateForExternalCustomerParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -130,11 +192,31 @@ public sealed class AlertService : IAlertService
         return alert;
     }
 
+    public async Task<Alert> CreateForExternalCustomer(
+        string externalCustomerID,
+        AlertCreateForExternalCustomerParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await this.CreateForExternalCustomer(
+            parameters with
+            {
+                ExternalCustomerID = externalCustomerID,
+            },
+            cancellationToken
+        );
+    }
+
     public async Task<Alert> CreateForSubscription(
         AlertCreateForSubscriptionParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.SubscriptionID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.SubscriptionID' cannot be null");
+        }
+
         HttpRequest<AlertCreateForSubscriptionParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -151,11 +233,31 @@ public sealed class AlertService : IAlertService
         return alert;
     }
 
+    public async Task<Alert> CreateForSubscription(
+        string subscriptionID,
+        AlertCreateForSubscriptionParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await this.CreateForSubscription(
+            parameters with
+            {
+                SubscriptionID = subscriptionID,
+            },
+            cancellationToken
+        );
+    }
+
     public async Task<Alert> Disable(
         AlertDisableParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.AlertConfigurationID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.AlertConfigurationID' cannot be null");
+        }
+
         HttpRequest<AlertDisableParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -172,11 +274,33 @@ public sealed class AlertService : IAlertService
         return alert;
     }
 
+    public async Task<Alert> Disable(
+        string alertConfigurationID,
+        AlertDisableParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Disable(
+            parameters with
+            {
+                AlertConfigurationID = alertConfigurationID,
+            },
+            cancellationToken
+        );
+    }
+
     public async Task<Alert> Enable(
         AlertEnableParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.AlertConfigurationID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.AlertConfigurationID' cannot be null");
+        }
+
         HttpRequest<AlertEnableParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -191,5 +315,22 @@ public sealed class AlertService : IAlertService
             alert.Validate();
         }
         return alert;
+    }
+
+    public async Task<Alert> Enable(
+        string alertConfigurationID,
+        AlertEnableParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Enable(
+            parameters with
+            {
+                AlertConfigurationID = alertConfigurationID,
+            },
+            cancellationToken
+        );
     }
 }

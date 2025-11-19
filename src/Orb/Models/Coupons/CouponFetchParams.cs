@@ -14,7 +14,7 @@ namespace Orb.Models.Coupons;
 /// </summary>
 public sealed record class CouponFetchParams : ParamsBase
 {
-    public required string CouponID { get; init; }
+    public string? CouponID { get; init; }
 
     public CouponFetchParams() { }
 

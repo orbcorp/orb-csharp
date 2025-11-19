@@ -19,7 +19,7 @@ namespace Orb.Models.Customers.Credits;
 /// </summary>
 public sealed record class CreditListByExternalIDParams : ParamsBase
 {
-    public required string ExternalCustomerID { get; init; }
+    public string? ExternalCustomerID { get; init; }
 
     /// <summary>
     /// The ledger currency or custom pricing unit to use.

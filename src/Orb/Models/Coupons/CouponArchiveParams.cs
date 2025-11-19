@@ -15,7 +15,7 @@ namespace Orb.Models.Coupons;
 /// </summary>
 public sealed record class CouponArchiveParams : ParamsBase
 {
-    public required string CouponID { get; init; }
+    public string? CouponID { get; init; }
 
     public CouponArchiveParams() { }
 

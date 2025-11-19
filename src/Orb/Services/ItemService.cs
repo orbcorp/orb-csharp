@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Items;
 
 namespace Orb.Services;
@@ -47,6 +48,11 @@ public sealed class ItemService : IItemService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ItemID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.ItemID' cannot be null");
+        }
+
         HttpRequest<ItemUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
@@ -61,6 +67,17 @@ public sealed class ItemService : IItemService
             item.Validate();
         }
         return item;
+    }
+
+    public async Task<Item> Update(
+        string itemID,
+        ItemUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Update(parameters with { ItemID = itemID }, cancellationToken);
     }
 
     public async Task<ItemListPageResponse> List(
@@ -93,6 +110,11 @@ public sealed class ItemService : IItemService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ItemID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.ItemID' cannot be null");
+        }
+
         HttpRequest<ItemArchiveParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -109,11 +131,27 @@ public sealed class ItemService : IItemService
         return item;
     }
 
+    public async Task<Item> Archive(
+        string itemID,
+        ItemArchiveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Archive(parameters with { ItemID = itemID }, cancellationToken);
+    }
+
     public async Task<Item> Fetch(
         ItemFetchParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ItemID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.ItemID' cannot be null");
+        }
+
         HttpRequest<ItemFetchParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -128,5 +166,16 @@ public sealed class ItemService : IItemService
             item.Validate();
         }
         return item;
+    }
+
+    public async Task<Item> Fetch(
+        string itemID,
+        ItemFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Fetch(parameters with { ItemID = itemID }, cancellationToken);
     }
 }

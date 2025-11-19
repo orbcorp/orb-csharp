@@ -8,9 +8,9 @@ public class TopUpServiceTest : TestBase
     public async Task Create_Works()
     {
         var topUp = await this.client.Customers.Credits.TopUps.Create(
+            "customer_id",
             new()
             {
-                CustomerID = "customer_id",
                 Amount = "amount",
                 Currency = "currency",
                 InvoiceSettings = new()
@@ -30,9 +30,7 @@ public class TopUpServiceTest : TestBase
     [Fact]
     public async Task List_Works()
     {
-        var page = await this.client.Customers.Credits.TopUps.List(
-            new() { CustomerID = "customer_id" }
-        );
+        var page = await this.client.Customers.Credits.TopUps.List("customer_id");
         page.Validate();
     }
 
@@ -40,7 +38,8 @@ public class TopUpServiceTest : TestBase
     public async Task Delete_Works()
     {
         await this.client.Customers.Credits.TopUps.Delete(
-            new() { CustomerID = "customer_id", TopUpID = "top_up_id" }
+            "top_up_id",
+            new() { CustomerID = "customer_id" }
         );
     }
 
@@ -48,9 +47,9 @@ public class TopUpServiceTest : TestBase
     public async Task CreateByExternalID_Works()
     {
         var response = await this.client.Customers.Credits.TopUps.CreateByExternalID(
+            "external_customer_id",
             new()
             {
-                ExternalCustomerID = "external_customer_id",
                 Amount = "amount",
                 Currency = "currency",
                 InvoiceSettings = new()
@@ -71,7 +70,8 @@ public class TopUpServiceTest : TestBase
     public async Task DeleteByExternalID_Works()
     {
         await this.client.Customers.Credits.TopUps.DeleteByExternalID(
-            new() { ExternalCustomerID = "external_customer_id", TopUpID = "top_up_id" }
+            "top_up_id",
+            new() { ExternalCustomerID = "external_customer_id" }
         );
     }
 
@@ -79,7 +79,7 @@ public class TopUpServiceTest : TestBase
     public async Task ListByExternalID_Works()
     {
         var page = await this.client.Customers.Credits.TopUps.ListByExternalID(
-            new() { ExternalCustomerID = "external_customer_id" }
+            "external_customer_id"
         );
         page.Validate();
     }

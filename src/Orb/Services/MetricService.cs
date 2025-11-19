@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Metrics;
 
 namespace Orb.Services;
@@ -49,6 +50,11 @@ public sealed class MetricService : IMetricService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.MetricID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.MetricID' cannot be null");
+        }
+
         HttpRequest<MetricUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
@@ -65,6 +71,17 @@ public sealed class MetricService : IMetricService
             billableMetric.Validate();
         }
         return billableMetric;
+    }
+
+    public async Task<BillableMetric> Update(
+        string metricID,
+        MetricUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Update(parameters with { MetricID = metricID }, cancellationToken);
     }
 
     public async Task<MetricListPageResponse> List(
@@ -97,6 +114,11 @@ public sealed class MetricService : IMetricService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.MetricID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.MetricID' cannot be null");
+        }
+
         HttpRequest<MetricFetchParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -113,5 +135,16 @@ public sealed class MetricService : IMetricService
             billableMetric.Validate();
         }
         return billableMetric;
+    }
+
+    public async Task<BillableMetric> Fetch(
+        string metricID,
+        MetricFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Fetch(parameters with { MetricID = metricID }, cancellationToken);
     }
 }

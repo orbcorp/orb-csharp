@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.SubscriptionChanges;
 
 namespace Orb.Services;
@@ -26,6 +27,11 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.SubscriptionChangeID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.SubscriptionChangeID' cannot be null");
+        }
+
         HttpRequest<SubscriptionChangeRetrieveParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -44,11 +50,33 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
         return subscriptionChange;
     }
 
+    public async Task<SubscriptionChangeRetrieveResponse> Retrieve(
+        string subscriptionChangeID,
+        SubscriptionChangeRetrieveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Retrieve(
+            parameters with
+            {
+                SubscriptionChangeID = subscriptionChangeID,
+            },
+            cancellationToken
+        );
+    }
+
     public async Task<SubscriptionChangeApplyResponse> Apply(
         SubscriptionChangeApplyParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.SubscriptionChangeID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.SubscriptionChangeID' cannot be null");
+        }
+
         HttpRequest<SubscriptionChangeApplyParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -67,11 +95,33 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
         return deserializedResponse;
     }
 
+    public async Task<SubscriptionChangeApplyResponse> Apply(
+        string subscriptionChangeID,
+        SubscriptionChangeApplyParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Apply(
+            parameters with
+            {
+                SubscriptionChangeID = subscriptionChangeID,
+            },
+            cancellationToken
+        );
+    }
+
     public async Task<SubscriptionChangeCancelResponse> Cancel(
         SubscriptionChangeCancelParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.SubscriptionChangeID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.SubscriptionChangeID' cannot be null");
+        }
+
         HttpRequest<SubscriptionChangeCancelParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -88,5 +138,22 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
             deserializedResponse.Validate();
         }
         return deserializedResponse;
+    }
+
+    public async Task<SubscriptionChangeCancelResponse> Cancel(
+        string subscriptionChangeID,
+        SubscriptionChangeCancelParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Cancel(
+            parameters with
+            {
+                SubscriptionChangeID = subscriptionChangeID,
+            },
+            cancellationToken
+        );
     }
 }

@@ -24,7 +24,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string ID { get; init; }
+    public string? ID { get; init; }
 
     public NewAccountingSyncConfiguration? AccountingSyncConfiguration
     {

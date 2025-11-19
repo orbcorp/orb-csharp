@@ -66,4 +66,14 @@ public interface ICreditNoteService
         CreditNoteFetchParams parameters,
         CancellationToken cancellationToken = default
     );
+
+    /// <summary>
+    /// This endpoint is used to fetch a single [`Credit Note`](/invoicing/credit-notes)
+    /// given an identifier.
+    /// </summary>
+    Task<SharedCreditNote> Fetch(
+        string creditNoteID,
+        CreditNoteFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 }

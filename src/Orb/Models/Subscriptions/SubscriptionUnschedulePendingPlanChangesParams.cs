@@ -14,7 +14,7 @@ namespace Orb.Models.Subscriptions;
 /// </summary>
 public sealed record class SubscriptionUnschedulePendingPlanChangesParams : ParamsBase
 {
-    public required string SubscriptionID { get; init; }
+    public string? SubscriptionID { get; init; }
 
     public SubscriptionUnschedulePendingPlanChangesParams() { }
 

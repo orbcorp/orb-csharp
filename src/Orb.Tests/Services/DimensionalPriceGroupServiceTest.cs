@@ -22,7 +22,7 @@ public class DimensionalPriceGroupServiceTest : TestBase
     public async Task Retrieve_Works()
     {
         var dimensionalPriceGroup = await this.client.DimensionalPriceGroups.Retrieve(
-            new() { DimensionalPriceGroupID = "dimensional_price_group_id" }
+            "dimensional_price_group_id"
         );
         dimensionalPriceGroup.Validate();
     }
@@ -31,7 +31,7 @@ public class DimensionalPriceGroupServiceTest : TestBase
     public async Task Update_Works()
     {
         var dimensionalPriceGroup = await this.client.DimensionalPriceGroups.Update(
-            new() { DimensionalPriceGroupID = "dimensional_price_group_id" }
+            "dimensional_price_group_id"
         );
         dimensionalPriceGroup.Validate();
     }

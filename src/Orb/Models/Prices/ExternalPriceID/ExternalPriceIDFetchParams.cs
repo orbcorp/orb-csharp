@@ -14,7 +14,7 @@ namespace Orb.Models.Prices.ExternalPriceID;
 /// </summary>
 public sealed record class ExternalPriceIDFetchParams : ParamsBase
 {
-    public required string ExternalPriceID { get; init; }
+    public string? ExternalPriceID { get; init; }
 
     public ExternalPriceIDFetchParams() { }
 

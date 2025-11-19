@@ -27,7 +27,7 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string CustomerID { get; init; }
+    public string? CustomerID { get; init; }
 
     /// <summary>
     /// The case sensitive currency or custom pricing unit to use for this alert.

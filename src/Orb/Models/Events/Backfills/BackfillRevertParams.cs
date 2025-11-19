@@ -19,7 +19,7 @@ namespace Orb.Models.Events.Backfills;
 /// </summary>
 public sealed record class BackfillRevertParams : ParamsBase
 {
-    public required string BackfillID { get; init; }
+    public string? BackfillID { get; init; }
 
     public BackfillRevertParams() { }
 

@@ -22,7 +22,7 @@ public sealed record class ItemUpdateParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string ItemID { get; init; }
+    public string? ItemID { get; init; }
 
     public List<ExternalConnection>? ExternalConnections
     {

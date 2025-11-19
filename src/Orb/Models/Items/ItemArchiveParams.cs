@@ -13,7 +13,7 @@ namespace Orb.Models.Items;
 /// </summary>
 public sealed record class ItemArchiveParams : ParamsBase
 {
-    public required string ItemID { get; init; }
+    public string? ItemID { get; init; }
 
     public ItemArchiveParams() { }
 

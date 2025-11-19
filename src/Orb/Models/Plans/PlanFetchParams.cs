@@ -23,7 +23,7 @@ namespace Orb.Models.Plans;
 /// </summary>
 public sealed record class PlanFetchParams : ParamsBase
 {
-    public required string PlanID { get; init; }
+    public string? PlanID { get; init; }
 
     public PlanFetchParams() { }
 

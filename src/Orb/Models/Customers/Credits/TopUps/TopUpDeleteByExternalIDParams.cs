@@ -16,7 +16,7 @@ public sealed record class TopUpDeleteByExternalIDParams : ParamsBase
 {
     public required string ExternalCustomerID { get; init; }
 
-    public required string TopUpID { get; init; }
+    public string? TopUpID { get; init; }
 
     public TopUpDeleteByExternalIDParams() { }
 

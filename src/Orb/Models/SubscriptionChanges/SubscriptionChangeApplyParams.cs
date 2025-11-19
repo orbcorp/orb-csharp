@@ -22,7 +22,7 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string SubscriptionChangeID { get; init; }
+    public string? SubscriptionChangeID { get; init; }
 
     /// <summary>
     /// Description to apply to the balance transaction representing this credit.

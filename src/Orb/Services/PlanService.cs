@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Plans;
 using Orb.Services.Plans;
 
@@ -55,6 +56,11 @@ public sealed class PlanService : IPlanService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.PlanID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.PlanID' cannot be null");
+        }
+
         HttpRequest<PlanUpdateParams> request = new()
         {
             Method = HttpMethod.Put,
@@ -69,6 +75,17 @@ public sealed class PlanService : IPlanService
             plan.Validate();
         }
         return plan;
+    }
+
+    public async Task<Plan> Update(
+        string planID,
+        PlanUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Update(parameters with { PlanID = planID }, cancellationToken);
     }
 
     public async Task<PlanListPageResponse> List(
@@ -101,6 +118,11 @@ public sealed class PlanService : IPlanService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.PlanID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.PlanID' cannot be null");
+        }
+
         HttpRequest<PlanFetchParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -115,5 +137,16 @@ public sealed class PlanService : IPlanService
             plan.Validate();
         }
         return plan;
+    }
+
+    public async Task<Plan> Fetch(
+        string planID,
+        PlanFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Fetch(parameters with { PlanID = planID }, cancellationToken);
     }
 }

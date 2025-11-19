@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers.Credits.TopUps;
 
 namespace Orb.Services.Customers.Credits;
@@ -26,6 +27,11 @@ public sealed class TopUpService : ITopUpService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.CustomerID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.CustomerID' cannot be null");
+        }
+
         HttpRequest<TopUpCreateParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -44,11 +50,25 @@ public sealed class TopUpService : ITopUpService
         return topUp;
     }
 
+    public async Task<TopUpCreateResponse> Create(
+        string customerID,
+        TopUpCreateParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await this.Create(parameters with { CustomerID = customerID }, cancellationToken);
+    }
+
     public async Task<TopUpListPageResponse> List(
         TopUpListParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.CustomerID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.CustomerID' cannot be null");
+        }
+
         HttpRequest<TopUpListParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -67,11 +87,27 @@ public sealed class TopUpService : ITopUpService
         return page;
     }
 
+    public async Task<TopUpListPageResponse> List(
+        string customerID,
+        TopUpListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.List(parameters with { CustomerID = customerID }, cancellationToken);
+    }
+
     public async Task Delete(
         TopUpDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.TopUpID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.TopUpID' cannot be null");
+        }
+
         HttpRequest<TopUpDeleteParams> request = new()
         {
             Method = HttpMethod.Delete,
@@ -82,11 +118,25 @@ public sealed class TopUpService : ITopUpService
             .ConfigureAwait(false);
     }
 
+    public async Task Delete(
+        string topUpID,
+        TopUpDeleteParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        await this.Delete(parameters with { TopUpID = topUpID }, cancellationToken);
+    }
+
     public async Task<TopUpCreateByExternalIDResponse> CreateByExternalID(
         TopUpCreateByExternalIDParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ExternalCustomerID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.ExternalCustomerID' cannot be null");
+        }
+
         HttpRequest<TopUpCreateByExternalIDParams> request = new()
         {
             Method = HttpMethod.Post,
@@ -105,11 +155,31 @@ public sealed class TopUpService : ITopUpService
         return deserializedResponse;
     }
 
+    public async Task<TopUpCreateByExternalIDResponse> CreateByExternalID(
+        string externalCustomerID,
+        TopUpCreateByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await this.CreateByExternalID(
+            parameters with
+            {
+                ExternalCustomerID = externalCustomerID,
+            },
+            cancellationToken
+        );
+    }
+
     public async Task DeleteByExternalID(
         TopUpDeleteByExternalIDParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.TopUpID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.TopUpID' cannot be null");
+        }
+
         HttpRequest<TopUpDeleteByExternalIDParams> request = new()
         {
             Method = HttpMethod.Delete,
@@ -120,11 +190,25 @@ public sealed class TopUpService : ITopUpService
             .ConfigureAwait(false);
     }
 
+    public async Task DeleteByExternalID(
+        string topUpID,
+        TopUpDeleteByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        await this.DeleteByExternalID(parameters with { TopUpID = topUpID }, cancellationToken);
+    }
+
     public async Task<TopUpListByExternalIDPageResponse> ListByExternalID(
         TopUpListByExternalIDParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ExternalCustomerID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.ExternalCustomerID' cannot be null");
+        }
+
         HttpRequest<TopUpListByExternalIDParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -141,5 +225,22 @@ public sealed class TopUpService : ITopUpService
             page.Validate();
         }
         return page;
+    }
+
+    public async Task<TopUpListByExternalIDPageResponse> ListByExternalID(
+        string externalCustomerID,
+        TopUpListByExternalIDParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.ListByExternalID(
+            parameters with
+            {
+                ExternalCustomerID = externalCustomerID,
+            },
+            cancellationToken
+        );
     }
 }

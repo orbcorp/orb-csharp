@@ -20,7 +20,7 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
         get { return this._bodyProperties.Freeze(); }
     }
 
-    public required string SubscriptionID { get; init; }
+    public string? SubscriptionID { get; init; }
 
     /// <summary>
     /// If false, this request will fail if it would void an issued invoice or create

@@ -45,7 +45,7 @@ namespace Orb.Models.Events;
 /// </summary>
 public sealed record class EventDeprecateParams : ParamsBase
 {
-    public required string EventID { get; init; }
+    public string? EventID { get; init; }
 
     public EventDeprecateParams() { }
 
