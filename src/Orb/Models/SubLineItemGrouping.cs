@@ -16,7 +16,7 @@ public sealed record class SubLineItemGrouping : ModelBase, IFromRaw<SubLineItem
     {
         get
         {
-            if (!this._properties.TryGetValue("key", out JsonElement element))
+            if (!this._rawData.TryGetValue("key", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'key' cannot be null",
                     new ArgumentOutOfRangeException("key", "Missing required argument")
@@ -30,7 +30,7 @@ public sealed record class SubLineItemGrouping : ModelBase, IFromRaw<SubLineItem
         }
         init
         {
-            this._properties["key"] = JsonSerializer.SerializeToElement(
+            this._rawData["key"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -44,14 +44,14 @@ public sealed record class SubLineItemGrouping : ModelBase, IFromRaw<SubLineItem
     {
         get
         {
-            if (!this._properties.TryGetValue("value", out JsonElement element))
+            if (!this._rawData.TryGetValue("value", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["value"] = JsonSerializer.SerializeToElement(
+            this._rawData["value"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -66,23 +66,23 @@ public sealed record class SubLineItemGrouping : ModelBase, IFromRaw<SubLineItem
 
     public SubLineItemGrouping() { }
 
-    public SubLineItemGrouping(IReadOnlyDictionary<string, JsonElement> properties)
+    public SubLineItemGrouping(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    SubLineItemGrouping(FrozenDictionary<string, JsonElement> properties)
+    SubLineItemGrouping(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static SubLineItemGrouping FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

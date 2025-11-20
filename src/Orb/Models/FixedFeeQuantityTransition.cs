@@ -18,7 +18,7 @@ public sealed record class FixedFeeQuantityTransition
     {
         get
         {
-            if (!this._properties.TryGetValue("effective_date", out JsonElement element))
+            if (!this._rawData.TryGetValue("effective_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'effective_date' cannot be null",
                     new ArgumentOutOfRangeException("effective_date", "Missing required argument")
@@ -28,7 +28,7 @@ public sealed record class FixedFeeQuantityTransition
         }
         init
         {
-            this._properties["effective_date"] = JsonSerializer.SerializeToElement(
+            this._rawData["effective_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -39,7 +39,7 @@ public sealed record class FixedFeeQuantityTransition
     {
         get
         {
-            if (!this._properties.TryGetValue("price_id", out JsonElement element))
+            if (!this._rawData.TryGetValue("price_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'price_id' cannot be null",
                     new ArgumentOutOfRangeException("price_id", "Missing required argument")
@@ -53,7 +53,7 @@ public sealed record class FixedFeeQuantityTransition
         }
         init
         {
-            this._properties["price_id"] = JsonSerializer.SerializeToElement(
+            this._rawData["price_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -64,7 +64,7 @@ public sealed record class FixedFeeQuantityTransition
     {
         get
         {
-            if (!this._properties.TryGetValue("quantity", out JsonElement element))
+            if (!this._rawData.TryGetValue("quantity", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'quantity' cannot be null",
                     new ArgumentOutOfRangeException("quantity", "Missing required argument")
@@ -74,7 +74,7 @@ public sealed record class FixedFeeQuantityTransition
         }
         init
         {
-            this._properties["quantity"] = JsonSerializer.SerializeToElement(
+            this._rawData["quantity"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -90,23 +90,23 @@ public sealed record class FixedFeeQuantityTransition
 
     public FixedFeeQuantityTransition() { }
 
-    public FixedFeeQuantityTransition(IReadOnlyDictionary<string, JsonElement> properties)
+    public FixedFeeQuantityTransition(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FixedFeeQuantityTransition(FrozenDictionary<string, JsonElement> properties)
+    FixedFeeQuantityTransition(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static FixedFeeQuantityTransition FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

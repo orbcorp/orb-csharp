@@ -18,7 +18,7 @@ public sealed record class SharedTieredConversionRateConfig
     {
         get
         {
-            if (!this._properties.TryGetValue("conversion_rate_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("conversion_rate_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'conversion_rate_type' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -34,7 +34,7 @@ public sealed record class SharedTieredConversionRateConfig
         }
         init
         {
-            this._properties["conversion_rate_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["conversion_rate_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -45,7 +45,7 @@ public sealed record class SharedTieredConversionRateConfig
     {
         get
         {
-            if (!this._properties.TryGetValue("tiered_config", out JsonElement element))
+            if (!this._rawData.TryGetValue("tiered_config", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tiered_config' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -65,7 +65,7 @@ public sealed record class SharedTieredConversionRateConfig
         }
         init
         {
-            this._properties["tiered_config"] = JsonSerializer.SerializeToElement(
+            this._rawData["tiered_config"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -80,24 +80,24 @@ public sealed record class SharedTieredConversionRateConfig
 
     public SharedTieredConversionRateConfig() { }
 
-    public SharedTieredConversionRateConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    public SharedTieredConversionRateConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    SharedTieredConversionRateConfig(FrozenDictionary<string, JsonElement> properties)
+    SharedTieredConversionRateConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static SharedTieredConversionRateConfig FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 

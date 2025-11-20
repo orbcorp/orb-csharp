@@ -19,7 +19,7 @@ public sealed record class EventDeprecateResponse : ModelBase, IFromRaw<EventDep
     {
         get
         {
-            if (!this._properties.TryGetValue("deprecated", out JsonElement element))
+            if (!this._rawData.TryGetValue("deprecated", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'deprecated' cannot be null",
                     new ArgumentOutOfRangeException("deprecated", "Missing required argument")
@@ -33,7 +33,7 @@ public sealed record class EventDeprecateResponse : ModelBase, IFromRaw<EventDep
         }
         init
         {
-            this._properties["deprecated"] = JsonSerializer.SerializeToElement(
+            this._rawData["deprecated"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -47,24 +47,24 @@ public sealed record class EventDeprecateResponse : ModelBase, IFromRaw<EventDep
 
     public EventDeprecateResponse() { }
 
-    public EventDeprecateResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    public EventDeprecateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    EventDeprecateResponse(FrozenDictionary<string, JsonElement> properties)
+    EventDeprecateResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static EventDeprecateResponse FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

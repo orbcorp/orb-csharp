@@ -16,7 +16,7 @@ public sealed record class TopLevelPingResponse : ModelBase, IFromRaw<TopLevelPi
     {
         get
         {
-            if (!this._properties.TryGetValue("response", out JsonElement element))
+            if (!this._rawData.TryGetValue("response", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'response' cannot be null",
                     new ArgumentOutOfRangeException("response", "Missing required argument")
@@ -30,7 +30,7 @@ public sealed record class TopLevelPingResponse : ModelBase, IFromRaw<TopLevelPi
         }
         init
         {
-            this._properties["response"] = JsonSerializer.SerializeToElement(
+            this._rawData["response"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -44,24 +44,24 @@ public sealed record class TopLevelPingResponse : ModelBase, IFromRaw<TopLevelPi
 
     public TopLevelPingResponse() { }
 
-    public TopLevelPingResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    public TopLevelPingResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TopLevelPingResponse(FrozenDictionary<string, JsonElement> properties)
+    TopLevelPingResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static TopLevelPingResponse FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

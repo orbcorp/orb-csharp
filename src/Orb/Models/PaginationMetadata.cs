@@ -16,7 +16,7 @@ public sealed record class PaginationMetadata : ModelBase, IFromRaw<PaginationMe
     {
         get
         {
-            if (!this._properties.TryGetValue("has_more", out JsonElement element))
+            if (!this._rawData.TryGetValue("has_more", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'has_more' cannot be null",
                     new ArgumentOutOfRangeException("has_more", "Missing required argument")
@@ -26,7 +26,7 @@ public sealed record class PaginationMetadata : ModelBase, IFromRaw<PaginationMe
         }
         init
         {
-            this._properties["has_more"] = JsonSerializer.SerializeToElement(
+            this._rawData["has_more"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -37,14 +37,14 @@ public sealed record class PaginationMetadata : ModelBase, IFromRaw<PaginationMe
     {
         get
         {
-            if (!this._properties.TryGetValue("next_cursor", out JsonElement element))
+            if (!this._rawData.TryGetValue("next_cursor", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["next_cursor"] = JsonSerializer.SerializeToElement(
+            this._rawData["next_cursor"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -59,23 +59,23 @@ public sealed record class PaginationMetadata : ModelBase, IFromRaw<PaginationMe
 
     public PaginationMetadata() { }
 
-    public PaginationMetadata(IReadOnlyDictionary<string, JsonElement> properties)
+    public PaginationMetadata(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PaginationMetadata(FrozenDictionary<string, JsonElement> properties)
+    PaginationMetadata(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static PaginationMetadata FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

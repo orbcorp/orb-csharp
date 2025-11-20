@@ -19,7 +19,7 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
     {
         get
         {
-            if (!this._properties.TryGetValue("amount", out JsonElement element))
+            if (!this._rawData.TryGetValue("amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amount' cannot be null",
                     new System::ArgumentOutOfRangeException("amount", "Missing required argument")
@@ -33,7 +33,7 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
         }
         init
         {
-            this._properties["amount"] = JsonSerializer.SerializeToElement(
+            this._rawData["amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -44,7 +44,7 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
     {
         get
         {
-            if (!this._properties.TryGetValue("grouping", out JsonElement element))
+            if (!this._rawData.TryGetValue("grouping", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<SubLineItemGrouping?>(
@@ -54,7 +54,7 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
         }
         init
         {
-            this._properties["grouping"] = JsonSerializer.SerializeToElement(
+            this._rawData["grouping"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -65,7 +65,7 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
     {
         get
         {
-            if (!this._properties.TryGetValue("name", out JsonElement element))
+            if (!this._rawData.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
                     new System::ArgumentOutOfRangeException("name", "Missing required argument")
@@ -79,7 +79,7 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
         }
         init
         {
-            this._properties["name"] = JsonSerializer.SerializeToElement(
+            this._rawData["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -90,7 +90,7 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
     {
         get
         {
-            if (!this._properties.TryGetValue("quantity", out JsonElement element))
+            if (!this._rawData.TryGetValue("quantity", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'quantity' cannot be null",
                     new System::ArgumentOutOfRangeException("quantity", "Missing required argument")
@@ -100,7 +100,7 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
         }
         init
         {
-            this._properties["quantity"] = JsonSerializer.SerializeToElement(
+            this._rawData["quantity"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -111,7 +111,7 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
     {
         get
         {
-            if (!this._properties.TryGetValue("type", out JsonElement element))
+            if (!this._rawData.TryGetValue("type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'type' cannot be null",
                     new System::ArgumentOutOfRangeException("type", "Missing required argument")
@@ -124,7 +124,7 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
         }
         init
         {
-            this._properties["type"] = JsonSerializer.SerializeToElement(
+            this._rawData["type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -142,24 +142,24 @@ public sealed record class OtherSubLineItem : ModelBase, IFromRaw<OtherSubLineIt
 
     public OtherSubLineItem() { }
 
-    public OtherSubLineItem(IReadOnlyDictionary<string, JsonElement> properties)
+    public OtherSubLineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    OtherSubLineItem(FrozenDictionary<string, JsonElement> properties)
+    OtherSubLineItem(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static OtherSubLineItem FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 

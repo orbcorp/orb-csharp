@@ -18,7 +18,7 @@ public sealed record class CustomerHierarchyConfig : ModelBase, IFromRaw<Custome
     {
         get
         {
-            if (!this._properties.TryGetValue("child_customer_ids", out JsonElement element))
+            if (!this._rawData.TryGetValue("child_customer_ids", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
@@ -30,7 +30,7 @@ public sealed record class CustomerHierarchyConfig : ModelBase, IFromRaw<Custome
                 return;
             }
 
-            this._properties["child_customer_ids"] = JsonSerializer.SerializeToElement(
+            this._rawData["child_customer_ids"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -45,14 +45,14 @@ public sealed record class CustomerHierarchyConfig : ModelBase, IFromRaw<Custome
     {
         get
         {
-            if (!this._properties.TryGetValue("parent_customer_id", out JsonElement element))
+            if (!this._rawData.TryGetValue("parent_customer_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["parent_customer_id"] = JsonSerializer.SerializeToElement(
+            this._rawData["parent_customer_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -67,23 +67,23 @@ public sealed record class CustomerHierarchyConfig : ModelBase, IFromRaw<Custome
 
     public CustomerHierarchyConfig() { }
 
-    public CustomerHierarchyConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    public CustomerHierarchyConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CustomerHierarchyConfig(FrozenDictionary<string, JsonElement> properties)
+    CustomerHierarchyConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static CustomerHierarchyConfig FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

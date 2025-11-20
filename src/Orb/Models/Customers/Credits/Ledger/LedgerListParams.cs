@@ -86,7 +86,7 @@ public sealed record class LedgerListParams : ParamsBase
     {
         get
         {
-            if (!this._queryProperties.TryGetValue("created_at[gt]", out JsonElement element))
+            if (!this._rawQueryData.TryGetValue("created_at[gt]", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTimeOffset?>(
@@ -96,7 +96,7 @@ public sealed record class LedgerListParams : ParamsBase
         }
         init
         {
-            this._queryProperties["created_at[gt]"] = JsonSerializer.SerializeToElement(
+            this._rawQueryData["created_at[gt]"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -107,7 +107,7 @@ public sealed record class LedgerListParams : ParamsBase
     {
         get
         {
-            if (!this._queryProperties.TryGetValue("created_at[gte]", out JsonElement element))
+            if (!this._rawQueryData.TryGetValue("created_at[gte]", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTimeOffset?>(
@@ -117,7 +117,7 @@ public sealed record class LedgerListParams : ParamsBase
         }
         init
         {
-            this._queryProperties["created_at[gte]"] = JsonSerializer.SerializeToElement(
+            this._rawQueryData["created_at[gte]"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -128,7 +128,7 @@ public sealed record class LedgerListParams : ParamsBase
     {
         get
         {
-            if (!this._queryProperties.TryGetValue("created_at[lt]", out JsonElement element))
+            if (!this._rawQueryData.TryGetValue("created_at[lt]", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTimeOffset?>(
@@ -138,7 +138,7 @@ public sealed record class LedgerListParams : ParamsBase
         }
         init
         {
-            this._queryProperties["created_at[lt]"] = JsonSerializer.SerializeToElement(
+            this._rawQueryData["created_at[lt]"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -149,7 +149,7 @@ public sealed record class LedgerListParams : ParamsBase
     {
         get
         {
-            if (!this._queryProperties.TryGetValue("created_at[lte]", out JsonElement element))
+            if (!this._rawQueryData.TryGetValue("created_at[lte]", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTimeOffset?>(
@@ -159,7 +159,7 @@ public sealed record class LedgerListParams : ParamsBase
         }
         init
         {
-            this._queryProperties["created_at[lte]"] = JsonSerializer.SerializeToElement(
+            this._rawQueryData["created_at[lte]"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -173,14 +173,14 @@ public sealed record class LedgerListParams : ParamsBase
     {
         get
         {
-            if (!this._queryProperties.TryGetValue("currency", out JsonElement element))
+            if (!this._rawQueryData.TryGetValue("currency", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._queryProperties["currency"] = JsonSerializer.SerializeToElement(
+            this._rawQueryData["currency"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -195,14 +195,14 @@ public sealed record class LedgerListParams : ParamsBase
     {
         get
         {
-            if (!this._queryProperties.TryGetValue("cursor", out JsonElement element))
+            if (!this._rawQueryData.TryGetValue("cursor", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._queryProperties["cursor"] = JsonSerializer.SerializeToElement(
+            this._rawQueryData["cursor"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -213,7 +213,7 @@ public sealed record class LedgerListParams : ParamsBase
     {
         get
         {
-            if (!this._queryProperties.TryGetValue("entry_status", out JsonElement element))
+            if (!this._rawQueryData.TryGetValue("entry_status", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<string, EntryStatus>?>(
@@ -223,7 +223,7 @@ public sealed record class LedgerListParams : ParamsBase
         }
         init
         {
-            this._queryProperties["entry_status"] = JsonSerializer.SerializeToElement(
+            this._rawQueryData["entry_status"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -234,7 +234,7 @@ public sealed record class LedgerListParams : ParamsBase
     {
         get
         {
-            if (!this._queryProperties.TryGetValue("entry_type", out JsonElement element))
+            if (!this._rawQueryData.TryGetValue("entry_type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<string, EntryType>?>(
@@ -244,7 +244,7 @@ public sealed record class LedgerListParams : ParamsBase
         }
         init
         {
-            this._queryProperties["entry_type"] = JsonSerializer.SerializeToElement(
+            this._rawQueryData["entry_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -258,7 +258,7 @@ public sealed record class LedgerListParams : ParamsBase
     {
         get
         {
-            if (!this._queryProperties.TryGetValue("limit", out JsonElement element))
+            if (!this._rawQueryData.TryGetValue("limit", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
@@ -270,7 +270,7 @@ public sealed record class LedgerListParams : ParamsBase
                 return;
             }
 
-            this._queryProperties["limit"] = JsonSerializer.SerializeToElement(
+            this._rawQueryData["limit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -281,14 +281,14 @@ public sealed record class LedgerListParams : ParamsBase
     {
         get
         {
-            if (!this._queryProperties.TryGetValue("minimum_amount", out JsonElement element))
+            if (!this._rawQueryData.TryGetValue("minimum_amount", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._queryProperties["minimum_amount"] = JsonSerializer.SerializeToElement(
+            this._rawQueryData["minimum_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -298,34 +298,34 @@ public sealed record class LedgerListParams : ParamsBase
     public LedgerListParams() { }
 
     public LedgerListParams(
-        IReadOnlyDictionary<string, JsonElement> headerProperties,
-        IReadOnlyDictionary<string, JsonElement> queryProperties
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._headerProperties = [.. headerProperties];
-        this._queryProperties = [.. queryProperties];
+        this._rawHeaderData = [.. rawHeaderData];
+        this._rawQueryData = [.. rawQueryData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     LedgerListParams(
-        FrozenDictionary<string, JsonElement> headerProperties,
-        FrozenDictionary<string, JsonElement> queryProperties
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._headerProperties = [.. headerProperties];
-        this._queryProperties = [.. queryProperties];
+        this._rawHeaderData = [.. rawHeaderData];
+        this._rawQueryData = [.. rawQueryData];
     }
 #pragma warning restore CS8618
 
     public static LedgerListParams FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> headerProperties,
-        IReadOnlyDictionary<string, JsonElement> queryProperties
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
     {
         return new(
-            FrozenDictionary.ToFrozenDictionary(headerProperties),
-            FrozenDictionary.ToFrozenDictionary(queryProperties)
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
         );
     }
 
@@ -343,7 +343,7 @@ public sealed record class LedgerListParams : ParamsBase
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
         ParamsBase.AddDefaultHeaders(request, options);
-        foreach (var item in this.HeaderProperties)
+        foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }

@@ -18,7 +18,7 @@ public sealed record class FixedFeeQuantityScheduleEntry
     {
         get
         {
-            if (!this._properties.TryGetValue("end_date", out JsonElement element))
+            if (!this._rawData.TryGetValue("end_date", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<DateTimeOffset?>(
@@ -28,7 +28,7 @@ public sealed record class FixedFeeQuantityScheduleEntry
         }
         init
         {
-            this._properties["end_date"] = JsonSerializer.SerializeToElement(
+            this._rawData["end_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -39,7 +39,7 @@ public sealed record class FixedFeeQuantityScheduleEntry
     {
         get
         {
-            if (!this._properties.TryGetValue("price_id", out JsonElement element))
+            if (!this._rawData.TryGetValue("price_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'price_id' cannot be null",
                     new ArgumentOutOfRangeException("price_id", "Missing required argument")
@@ -53,7 +53,7 @@ public sealed record class FixedFeeQuantityScheduleEntry
         }
         init
         {
-            this._properties["price_id"] = JsonSerializer.SerializeToElement(
+            this._rawData["price_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -64,7 +64,7 @@ public sealed record class FixedFeeQuantityScheduleEntry
     {
         get
         {
-            if (!this._properties.TryGetValue("quantity", out JsonElement element))
+            if (!this._rawData.TryGetValue("quantity", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'quantity' cannot be null",
                     new ArgumentOutOfRangeException("quantity", "Missing required argument")
@@ -74,7 +74,7 @@ public sealed record class FixedFeeQuantityScheduleEntry
         }
         init
         {
-            this._properties["quantity"] = JsonSerializer.SerializeToElement(
+            this._rawData["quantity"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -85,7 +85,7 @@ public sealed record class FixedFeeQuantityScheduleEntry
     {
         get
         {
-            if (!this._properties.TryGetValue("start_date", out JsonElement element))
+            if (!this._rawData.TryGetValue("start_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'start_date' cannot be null",
                     new ArgumentOutOfRangeException("start_date", "Missing required argument")
@@ -95,7 +95,7 @@ public sealed record class FixedFeeQuantityScheduleEntry
         }
         init
         {
-            this._properties["start_date"] = JsonSerializer.SerializeToElement(
+            this._rawData["start_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -112,23 +112,23 @@ public sealed record class FixedFeeQuantityScheduleEntry
 
     public FixedFeeQuantityScheduleEntry() { }
 
-    public FixedFeeQuantityScheduleEntry(IReadOnlyDictionary<string, JsonElement> properties)
+    public FixedFeeQuantityScheduleEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FixedFeeQuantityScheduleEntry(FrozenDictionary<string, JsonElement> properties)
+    FixedFeeQuantityScheduleEntry(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static FixedFeeQuantityScheduleEntry FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

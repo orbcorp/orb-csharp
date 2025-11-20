@@ -18,7 +18,7 @@ public sealed record class DimensionalPriceConfiguration
     {
         get
         {
-            if (!this._properties.TryGetValue("dimension_values", out JsonElement element))
+            if (!this._rawData.TryGetValue("dimension_values", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'dimension_values' cannot be null",
                     new ArgumentOutOfRangeException("dimension_values", "Missing required argument")
@@ -32,7 +32,7 @@ public sealed record class DimensionalPriceConfiguration
         }
         init
         {
-            this._properties["dimension_values"] = JsonSerializer.SerializeToElement(
+            this._rawData["dimension_values"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -43,9 +43,7 @@ public sealed record class DimensionalPriceConfiguration
     {
         get
         {
-            if (
-                !this._properties.TryGetValue("dimensional_price_group_id", out JsonElement element)
-            )
+            if (!this._rawData.TryGetValue("dimensional_price_group_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'dimensional_price_group_id' cannot be null",
                     new ArgumentOutOfRangeException(
@@ -62,7 +60,7 @@ public sealed record class DimensionalPriceConfiguration
         }
         init
         {
-            this._properties["dimensional_price_group_id"] = JsonSerializer.SerializeToElement(
+            this._rawData["dimensional_price_group_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -77,23 +75,23 @@ public sealed record class DimensionalPriceConfiguration
 
     public DimensionalPriceConfiguration() { }
 
-    public DimensionalPriceConfiguration(IReadOnlyDictionary<string, JsonElement> properties)
+    public DimensionalPriceConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DimensionalPriceConfiguration(FrozenDictionary<string, JsonElement> properties)
+    DimensionalPriceConfiguration(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static DimensionalPriceConfiguration FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

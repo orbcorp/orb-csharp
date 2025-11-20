@@ -19,7 +19,7 @@ public sealed record class EventUpdateResponse : ModelBase, IFromRaw<EventUpdate
     {
         get
         {
-            if (!this._properties.TryGetValue("amended", out JsonElement element))
+            if (!this._rawData.TryGetValue("amended", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amended' cannot be null",
                     new ArgumentOutOfRangeException("amended", "Missing required argument")
@@ -33,7 +33,7 @@ public sealed record class EventUpdateResponse : ModelBase, IFromRaw<EventUpdate
         }
         init
         {
-            this._properties["amended"] = JsonSerializer.SerializeToElement(
+            this._rawData["amended"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -47,24 +47,24 @@ public sealed record class EventUpdateResponse : ModelBase, IFromRaw<EventUpdate
 
     public EventUpdateResponse() { }
 
-    public EventUpdateResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    public EventUpdateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    EventUpdateResponse(FrozenDictionary<string, JsonElement> properties)
+    EventUpdateResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static EventUpdateResponse FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

@@ -16,7 +16,7 @@ public sealed record class CustomExpiration : ModelBase, IFromRaw<CustomExpirati
     {
         get
         {
-            if (!this._properties.TryGetValue("duration", out JsonElement element))
+            if (!this._rawData.TryGetValue("duration", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'duration' cannot be null",
                     new System::ArgumentOutOfRangeException("duration", "Missing required argument")
@@ -26,7 +26,7 @@ public sealed record class CustomExpiration : ModelBase, IFromRaw<CustomExpirati
         }
         init
         {
-            this._properties["duration"] = JsonSerializer.SerializeToElement(
+            this._rawData["duration"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -37,7 +37,7 @@ public sealed record class CustomExpiration : ModelBase, IFromRaw<CustomExpirati
     {
         get
         {
-            if (!this._properties.TryGetValue("duration_unit", out JsonElement element))
+            if (!this._rawData.TryGetValue("duration_unit", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'duration_unit' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -53,7 +53,7 @@ public sealed record class CustomExpiration : ModelBase, IFromRaw<CustomExpirati
         }
         init
         {
-            this._properties["duration_unit"] = JsonSerializer.SerializeToElement(
+            this._rawData["duration_unit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -68,24 +68,24 @@ public sealed record class CustomExpiration : ModelBase, IFromRaw<CustomExpirati
 
     public CustomExpiration() { }
 
-    public CustomExpiration(IReadOnlyDictionary<string, JsonElement> properties)
+    public CustomExpiration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CustomExpiration(FrozenDictionary<string, JsonElement> properties)
+    CustomExpiration(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static CustomExpiration FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 

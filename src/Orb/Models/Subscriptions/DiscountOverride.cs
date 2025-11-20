@@ -16,7 +16,7 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
     {
         get
         {
-            if (!this._properties.TryGetValue("discount_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("discount_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'discount_type' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -32,7 +32,7 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
         }
         init
         {
-            this._properties["discount_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["discount_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -46,14 +46,14 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
     {
         get
         {
-            if (!this._properties.TryGetValue("amount_discount", out JsonElement element))
+            if (!this._rawData.TryGetValue("amount_discount", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["amount_discount"] = JsonSerializer.SerializeToElement(
+            this._rawData["amount_discount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -68,14 +68,14 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
     {
         get
         {
-            if (!this._properties.TryGetValue("percentage_discount", out JsonElement element))
+            if (!this._rawData.TryGetValue("percentage_discount", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["percentage_discount"] = JsonSerializer.SerializeToElement(
+            this._rawData["percentage_discount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -90,14 +90,14 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
     {
         get
         {
-            if (!this._properties.TryGetValue("usage_discount", out JsonElement element))
+            if (!this._rawData.TryGetValue("usage_discount", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["usage_discount"] = JsonSerializer.SerializeToElement(
+            this._rawData["usage_discount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -114,24 +114,24 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
 
     public DiscountOverride() { }
 
-    public DiscountOverride(IReadOnlyDictionary<string, JsonElement> properties)
+    public DiscountOverride(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DiscountOverride(FrozenDictionary<string, JsonElement> properties)
+    DiscountOverride(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static DiscountOverride FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

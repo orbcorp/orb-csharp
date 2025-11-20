@@ -22,7 +22,7 @@ public sealed record class SharedTier : ModelBase, IFromRaw<SharedTier>
     {
         get
         {
-            if (!this._properties.TryGetValue("first_unit", out JsonElement element))
+            if (!this._rawData.TryGetValue("first_unit", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'first_unit' cannot be null",
                     new ArgumentOutOfRangeException("first_unit", "Missing required argument")
@@ -32,7 +32,7 @@ public sealed record class SharedTier : ModelBase, IFromRaw<SharedTier>
         }
         init
         {
-            this._properties["first_unit"] = JsonSerializer.SerializeToElement(
+            this._rawData["first_unit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -46,7 +46,7 @@ public sealed record class SharedTier : ModelBase, IFromRaw<SharedTier>
     {
         get
         {
-            if (!this._properties.TryGetValue("unit_amount", out JsonElement element))
+            if (!this._rawData.TryGetValue("unit_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'unit_amount' cannot be null",
                     new ArgumentOutOfRangeException("unit_amount", "Missing required argument")
@@ -60,7 +60,7 @@ public sealed record class SharedTier : ModelBase, IFromRaw<SharedTier>
         }
         init
         {
-            this._properties["unit_amount"] = JsonSerializer.SerializeToElement(
+            this._rawData["unit_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -75,14 +75,14 @@ public sealed record class SharedTier : ModelBase, IFromRaw<SharedTier>
     {
         get
         {
-            if (!this._properties.TryGetValue("last_unit", out JsonElement element))
+            if (!this._rawData.TryGetValue("last_unit", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["last_unit"] = JsonSerializer.SerializeToElement(
+            this._rawData["last_unit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -98,21 +98,21 @@ public sealed record class SharedTier : ModelBase, IFromRaw<SharedTier>
 
     public SharedTier() { }
 
-    public SharedTier(IReadOnlyDictionary<string, JsonElement> properties)
+    public SharedTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    SharedTier(FrozenDictionary<string, JsonElement> properties)
+    SharedTier(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static SharedTier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static SharedTier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

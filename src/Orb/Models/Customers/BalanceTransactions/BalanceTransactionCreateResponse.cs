@@ -21,7 +21,7 @@ public sealed record class BalanceTransactionCreateResponse
     {
         get
         {
-            if (!this._properties.TryGetValue("id", out JsonElement element))
+            if (!this._rawData.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new System::ArgumentOutOfRangeException("id", "Missing required argument")
@@ -35,7 +35,7 @@ public sealed record class BalanceTransactionCreateResponse
         }
         init
         {
-            this._properties["id"] = JsonSerializer.SerializeToElement(
+            this._rawData["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -46,7 +46,7 @@ public sealed record class BalanceTransactionCreateResponse
     {
         get
         {
-            if (!this._properties.TryGetValue("action", out JsonElement element))
+            if (!this._rawData.TryGetValue("action", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'action' cannot be null",
                     new System::ArgumentOutOfRangeException("action", "Missing required argument")
@@ -58,7 +58,7 @@ public sealed record class BalanceTransactionCreateResponse
         }
         init
         {
-            this._properties["action"] = JsonSerializer.SerializeToElement(
+            this._rawData["action"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -72,7 +72,7 @@ public sealed record class BalanceTransactionCreateResponse
     {
         get
         {
-            if (!this._properties.TryGetValue("amount", out JsonElement element))
+            if (!this._rawData.TryGetValue("amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amount' cannot be null",
                     new System::ArgumentOutOfRangeException("amount", "Missing required argument")
@@ -86,7 +86,7 @@ public sealed record class BalanceTransactionCreateResponse
         }
         init
         {
-            this._properties["amount"] = JsonSerializer.SerializeToElement(
+            this._rawData["amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -100,7 +100,7 @@ public sealed record class BalanceTransactionCreateResponse
     {
         get
         {
-            if (!this._properties.TryGetValue("created_at", out JsonElement element))
+            if (!this._rawData.TryGetValue("created_at", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'created_at' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -116,7 +116,7 @@ public sealed record class BalanceTransactionCreateResponse
         }
         init
         {
-            this._properties["created_at"] = JsonSerializer.SerializeToElement(
+            this._rawData["created_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -127,7 +127,7 @@ public sealed record class BalanceTransactionCreateResponse
     {
         get
         {
-            if (!this._properties.TryGetValue("credit_note", out JsonElement element))
+            if (!this._rawData.TryGetValue("credit_note", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<CreditNoteTiny?>(
@@ -137,7 +137,7 @@ public sealed record class BalanceTransactionCreateResponse
         }
         init
         {
-            this._properties["credit_note"] = JsonSerializer.SerializeToElement(
+            this._rawData["credit_note"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -151,14 +151,14 @@ public sealed record class BalanceTransactionCreateResponse
     {
         get
         {
-            if (!this._properties.TryGetValue("description", out JsonElement element))
+            if (!this._rawData.TryGetValue("description", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["description"] = JsonSerializer.SerializeToElement(
+            this._rawData["description"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -172,7 +172,7 @@ public sealed record class BalanceTransactionCreateResponse
     {
         get
         {
-            if (!this._properties.TryGetValue("ending_balance", out JsonElement element))
+            if (!this._rawData.TryGetValue("ending_balance", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'ending_balance' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -189,7 +189,7 @@ public sealed record class BalanceTransactionCreateResponse
         }
         init
         {
-            this._properties["ending_balance"] = JsonSerializer.SerializeToElement(
+            this._rawData["ending_balance"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -200,14 +200,14 @@ public sealed record class BalanceTransactionCreateResponse
     {
         get
         {
-            if (!this._properties.TryGetValue("invoice", out JsonElement element))
+            if (!this._rawData.TryGetValue("invoice", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<InvoiceTiny?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["invoice"] = JsonSerializer.SerializeToElement(
+            this._rawData["invoice"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -222,7 +222,7 @@ public sealed record class BalanceTransactionCreateResponse
     {
         get
         {
-            if (!this._properties.TryGetValue("starting_balance", out JsonElement element))
+            if (!this._rawData.TryGetValue("starting_balance", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'starting_balance' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -239,7 +239,7 @@ public sealed record class BalanceTransactionCreateResponse
         }
         init
         {
-            this._properties["starting_balance"] = JsonSerializer.SerializeToElement(
+            this._rawData["starting_balance"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -250,7 +250,7 @@ public sealed record class BalanceTransactionCreateResponse
     {
         get
         {
-            if (!this._properties.TryGetValue("type", out JsonElement element))
+            if (!this._rawData.TryGetValue("type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'type' cannot be null",
                     new System::ArgumentOutOfRangeException("type", "Missing required argument")
@@ -262,7 +262,7 @@ public sealed record class BalanceTransactionCreateResponse
         }
         init
         {
-            this._properties["type"] = JsonSerializer.SerializeToElement(
+            this._rawData["type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -285,24 +285,24 @@ public sealed record class BalanceTransactionCreateResponse
 
     public BalanceTransactionCreateResponse() { }
 
-    public BalanceTransactionCreateResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    public BalanceTransactionCreateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    BalanceTransactionCreateResponse(FrozenDictionary<string, JsonElement> properties)
+    BalanceTransactionCreateResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static BalanceTransactionCreateResponse FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 

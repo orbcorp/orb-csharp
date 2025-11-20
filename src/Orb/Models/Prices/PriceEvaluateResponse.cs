@@ -16,7 +16,7 @@ public sealed record class PriceEvaluateResponse : ModelBase, IFromRaw<PriceEval
     {
         get
         {
-            if (!this._properties.TryGetValue("data", out JsonElement element))
+            if (!this._rawData.TryGetValue("data", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'data' cannot be null",
                     new ArgumentOutOfRangeException("data", "Missing required argument")
@@ -33,7 +33,7 @@ public sealed record class PriceEvaluateResponse : ModelBase, IFromRaw<PriceEval
         }
         init
         {
-            this._properties["data"] = JsonSerializer.SerializeToElement(
+            this._rawData["data"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -50,24 +50,24 @@ public sealed record class PriceEvaluateResponse : ModelBase, IFromRaw<PriceEval
 
     public PriceEvaluateResponse() { }
 
-    public PriceEvaluateResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    public PriceEvaluateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PriceEvaluateResponse(FrozenDictionary<string, JsonElement> properties)
+    PriceEvaluateResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static PriceEvaluateResponse FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

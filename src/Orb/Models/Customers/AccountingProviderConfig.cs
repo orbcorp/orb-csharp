@@ -16,7 +16,7 @@ public sealed record class AccountingProviderConfig : ModelBase, IFromRaw<Accoun
     {
         get
         {
-            if (!this._properties.TryGetValue("external_provider_id", out JsonElement element))
+            if (!this._rawData.TryGetValue("external_provider_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'external_provider_id' cannot be null",
                     new ArgumentOutOfRangeException(
@@ -33,7 +33,7 @@ public sealed record class AccountingProviderConfig : ModelBase, IFromRaw<Accoun
         }
         init
         {
-            this._properties["external_provider_id"] = JsonSerializer.SerializeToElement(
+            this._rawData["external_provider_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -44,7 +44,7 @@ public sealed record class AccountingProviderConfig : ModelBase, IFromRaw<Accoun
     {
         get
         {
-            if (!this._properties.TryGetValue("provider_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("provider_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'provider_type' cannot be null",
                     new ArgumentOutOfRangeException("provider_type", "Missing required argument")
@@ -58,7 +58,7 @@ public sealed record class AccountingProviderConfig : ModelBase, IFromRaw<Accoun
         }
         init
         {
-            this._properties["provider_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["provider_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -73,23 +73,23 @@ public sealed record class AccountingProviderConfig : ModelBase, IFromRaw<Accoun
 
     public AccountingProviderConfig() { }
 
-    public AccountingProviderConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    public AccountingProviderConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AccountingProviderConfig(FrozenDictionary<string, JsonElement> properties)
+    AccountingProviderConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static AccountingProviderConfig FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

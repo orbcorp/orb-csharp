@@ -116,7 +116,7 @@ public sealed record class CustomerTaxID : ModelBase, IFromRaw<CustomerTaxID>
     {
         get
         {
-            if (!this._properties.TryGetValue("country", out JsonElement element))
+            if (!this._rawData.TryGetValue("country", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'country' cannot be null",
                     new System::ArgumentOutOfRangeException("country", "Missing required argument")
@@ -129,7 +129,7 @@ public sealed record class CustomerTaxID : ModelBase, IFromRaw<CustomerTaxID>
         }
         init
         {
-            this._properties["country"] = JsonSerializer.SerializeToElement(
+            this._rawData["country"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -140,7 +140,7 @@ public sealed record class CustomerTaxID : ModelBase, IFromRaw<CustomerTaxID>
     {
         get
         {
-            if (!this._properties.TryGetValue("type", out JsonElement element))
+            if (!this._rawData.TryGetValue("type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'type' cannot be null",
                     new System::ArgumentOutOfRangeException("type", "Missing required argument")
@@ -153,7 +153,7 @@ public sealed record class CustomerTaxID : ModelBase, IFromRaw<CustomerTaxID>
         }
         init
         {
-            this._properties["type"] = JsonSerializer.SerializeToElement(
+            this._rawData["type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -164,7 +164,7 @@ public sealed record class CustomerTaxID : ModelBase, IFromRaw<CustomerTaxID>
     {
         get
         {
-            if (!this._properties.TryGetValue("value", out JsonElement element))
+            if (!this._rawData.TryGetValue("value", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'value' cannot be null",
                     new System::ArgumentOutOfRangeException("value", "Missing required argument")
@@ -178,7 +178,7 @@ public sealed record class CustomerTaxID : ModelBase, IFromRaw<CustomerTaxID>
         }
         init
         {
-            this._properties["value"] = JsonSerializer.SerializeToElement(
+            this._rawData["value"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -194,24 +194,22 @@ public sealed record class CustomerTaxID : ModelBase, IFromRaw<CustomerTaxID>
 
     public CustomerTaxID() { }
 
-    public CustomerTaxID(IReadOnlyDictionary<string, JsonElement> properties)
+    public CustomerTaxID(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CustomerTaxID(FrozenDictionary<string, JsonElement> properties)
+    CustomerTaxID(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CustomerTaxID FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
-    )
+    public static CustomerTaxID FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 

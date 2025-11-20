@@ -21,7 +21,7 @@ public sealed record class ConversionRateTieredConfig
     {
         get
         {
-            if (!this._properties.TryGetValue("tiers", out JsonElement element))
+            if (!this._rawData.TryGetValue("tiers", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tiers' cannot be null",
                     new ArgumentOutOfRangeException("tiers", "Missing required argument")
@@ -38,7 +38,7 @@ public sealed record class ConversionRateTieredConfig
         }
         init
         {
-            this._properties["tiers"] = JsonSerializer.SerializeToElement(
+            this._rawData["tiers"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -55,24 +55,24 @@ public sealed record class ConversionRateTieredConfig
 
     public ConversionRateTieredConfig() { }
 
-    public ConversionRateTieredConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    public ConversionRateTieredConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ConversionRateTieredConfig(FrozenDictionary<string, JsonElement> properties)
+    ConversionRateTieredConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static ConversionRateTieredConfig FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

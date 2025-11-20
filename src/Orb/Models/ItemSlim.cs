@@ -22,7 +22,7 @@ public sealed record class ItemSlim : ModelBase, IFromRaw<ItemSlim>
     {
         get
         {
-            if (!this._properties.TryGetValue("id", out JsonElement element))
+            if (!this._rawData.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new ArgumentOutOfRangeException("id", "Missing required argument")
@@ -36,7 +36,7 @@ public sealed record class ItemSlim : ModelBase, IFromRaw<ItemSlim>
         }
         init
         {
-            this._properties["id"] = JsonSerializer.SerializeToElement(
+            this._rawData["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -50,7 +50,7 @@ public sealed record class ItemSlim : ModelBase, IFromRaw<ItemSlim>
     {
         get
         {
-            if (!this._properties.TryGetValue("name", out JsonElement element))
+            if (!this._rawData.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
                     new ArgumentOutOfRangeException("name", "Missing required argument")
@@ -64,7 +64,7 @@ public sealed record class ItemSlim : ModelBase, IFromRaw<ItemSlim>
         }
         init
         {
-            this._properties["name"] = JsonSerializer.SerializeToElement(
+            this._rawData["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -79,21 +79,21 @@ public sealed record class ItemSlim : ModelBase, IFromRaw<ItemSlim>
 
     public ItemSlim() { }
 
-    public ItemSlim(IReadOnlyDictionary<string, JsonElement> properties)
+    public ItemSlim(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ItemSlim(FrozenDictionary<string, JsonElement> properties)
+    ItemSlim(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static ItemSlim FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static ItemSlim FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
