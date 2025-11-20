@@ -16,7 +16,7 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
     {
         get
         {
-            if (!this._properties.TryGetValue("discount_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("discount_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'discount_type' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -32,7 +32,7 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
         }
         init
         {
-            this._properties["discount_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["discount_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -47,14 +47,14 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
     {
         get
         {
-            if (!this._properties.TryGetValue("applies_to_price_ids", out JsonElement element))
+            if (!this._rawData.TryGetValue("applies_to_price_ids", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(
+            this._rawData["applies_to_price_ids"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -68,7 +68,7 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
     {
         get
         {
-            if (!this._properties.TryGetValue("filters", out JsonElement element))
+            if (!this._rawData.TryGetValue("filters", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<Filter25>?>(
@@ -78,7 +78,7 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
         }
         init
         {
-            this._properties["filters"] = JsonSerializer.SerializeToElement(
+            this._rawData["filters"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -89,14 +89,14 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
     {
         get
         {
-            if (!this._properties.TryGetValue("reason", out JsonElement element))
+            if (!this._rawData.TryGetValue("reason", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["reason"] = JsonSerializer.SerializeToElement(
+            this._rawData["reason"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -110,14 +110,14 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
     {
         get
         {
-            if (!this._properties.TryGetValue("trial_amount_discount", out JsonElement element))
+            if (!this._rawData.TryGetValue("trial_amount_discount", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["trial_amount_discount"] = JsonSerializer.SerializeToElement(
+            this._rawData["trial_amount_discount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -131,14 +131,14 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
     {
         get
         {
-            if (!this._properties.TryGetValue("trial_percentage_discount", out JsonElement element))
+            if (!this._rawData.TryGetValue("trial_percentage_discount", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["trial_percentage_discount"] = JsonSerializer.SerializeToElement(
+            this._rawData["trial_percentage_discount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -160,24 +160,22 @@ public sealed record class TrialDiscount : ModelBase, IFromRaw<TrialDiscount>
 
     public TrialDiscount() { }
 
-    public TrialDiscount(IReadOnlyDictionary<string, JsonElement> properties)
+    public TrialDiscount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TrialDiscount(FrozenDictionary<string, JsonElement> properties)
+    TrialDiscount(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static TrialDiscount FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
-    )
+    public static TrialDiscount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]
@@ -239,7 +237,7 @@ public sealed record class Filter25 : ModelBase, IFromRaw<Filter25>
     {
         get
         {
-            if (!this._properties.TryGetValue("field", out JsonElement element))
+            if (!this._rawData.TryGetValue("field", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'field' cannot be null",
                     new System::ArgumentOutOfRangeException("field", "Missing required argument")
@@ -252,7 +250,7 @@ public sealed record class Filter25 : ModelBase, IFromRaw<Filter25>
         }
         init
         {
-            this._properties["field"] = JsonSerializer.SerializeToElement(
+            this._rawData["field"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -266,7 +264,7 @@ public sealed record class Filter25 : ModelBase, IFromRaw<Filter25>
     {
         get
         {
-            if (!this._properties.TryGetValue("operator", out JsonElement element))
+            if (!this._rawData.TryGetValue("operator", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'operator' cannot be null",
                     new System::ArgumentOutOfRangeException("operator", "Missing required argument")
@@ -279,7 +277,7 @@ public sealed record class Filter25 : ModelBase, IFromRaw<Filter25>
         }
         init
         {
-            this._properties["operator"] = JsonSerializer.SerializeToElement(
+            this._rawData["operator"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -293,7 +291,7 @@ public sealed record class Filter25 : ModelBase, IFromRaw<Filter25>
     {
         get
         {
-            if (!this._properties.TryGetValue("values", out JsonElement element))
+            if (!this._rawData.TryGetValue("values", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'values' cannot be null",
                     new System::ArgumentOutOfRangeException("values", "Missing required argument")
@@ -307,7 +305,7 @@ public sealed record class Filter25 : ModelBase, IFromRaw<Filter25>
         }
         init
         {
-            this._properties["values"] = JsonSerializer.SerializeToElement(
+            this._rawData["values"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -323,22 +321,22 @@ public sealed record class Filter25 : ModelBase, IFromRaw<Filter25>
 
     public Filter25() { }
 
-    public Filter25(IReadOnlyDictionary<string, JsonElement> properties)
+    public Filter25(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter25(FrozenDictionary<string, JsonElement> properties)
+    Filter25(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Filter25 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static Filter25 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 

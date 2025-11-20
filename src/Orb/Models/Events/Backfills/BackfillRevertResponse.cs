@@ -20,7 +20,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
     {
         get
         {
-            if (!this._properties.TryGetValue("id", out JsonElement element))
+            if (!this._rawData.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new System::ArgumentOutOfRangeException("id", "Missing required argument")
@@ -34,7 +34,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
         }
         init
         {
-            this._properties["id"] = JsonSerializer.SerializeToElement(
+            this._rawData["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -49,7 +49,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
     {
         get
         {
-            if (!this._properties.TryGetValue("close_time", out JsonElement element))
+            if (!this._rawData.TryGetValue("close_time", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTimeOffset?>(
@@ -59,7 +59,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
         }
         init
         {
-            this._properties["close_time"] = JsonSerializer.SerializeToElement(
+            this._rawData["close_time"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -70,7 +70,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
     {
         get
         {
-            if (!this._properties.TryGetValue("created_at", out JsonElement element))
+            if (!this._rawData.TryGetValue("created_at", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'created_at' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -86,7 +86,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
         }
         init
         {
-            this._properties["created_at"] = JsonSerializer.SerializeToElement(
+            this._rawData["created_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -101,14 +101,14 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
     {
         get
         {
-            if (!this._properties.TryGetValue("customer_id", out JsonElement element))
+            if (!this._rawData.TryGetValue("customer_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["customer_id"] = JsonSerializer.SerializeToElement(
+            this._rawData["customer_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -122,7 +122,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
     {
         get
         {
-            if (!this._properties.TryGetValue("events_ingested", out JsonElement element))
+            if (!this._rawData.TryGetValue("events_ingested", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'events_ingested' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -135,7 +135,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
         }
         init
         {
-            this._properties["events_ingested"] = JsonSerializer.SerializeToElement(
+            this._rawData["events_ingested"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -151,7 +151,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
     {
         get
         {
-            if (!this._properties.TryGetValue("replace_existing_events", out JsonElement element))
+            if (!this._rawData.TryGetValue("replace_existing_events", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'replace_existing_events' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -164,7 +164,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
         }
         init
         {
-            this._properties["replace_existing_events"] = JsonSerializer.SerializeToElement(
+            this._rawData["replace_existing_events"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -178,7 +178,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
     {
         get
         {
-            if (!this._properties.TryGetValue("reverted_at", out JsonElement element))
+            if (!this._rawData.TryGetValue("reverted_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<System::DateTimeOffset?>(
@@ -188,7 +188,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
         }
         init
         {
-            this._properties["reverted_at"] = JsonSerializer.SerializeToElement(
+            this._rawData["reverted_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -202,7 +202,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
     {
         get
         {
-            if (!this._properties.TryGetValue("status", out JsonElement element))
+            if (!this._rawData.TryGetValue("status", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'status' cannot be null",
                     new System::ArgumentOutOfRangeException("status", "Missing required argument")
@@ -215,7 +215,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
         }
         init
         {
-            this._properties["status"] = JsonSerializer.SerializeToElement(
+            this._rawData["status"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -226,7 +226,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
     {
         get
         {
-            if (!this._properties.TryGetValue("timeframe_end", out JsonElement element))
+            if (!this._rawData.TryGetValue("timeframe_end", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'timeframe_end' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -242,7 +242,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
         }
         init
         {
-            this._properties["timeframe_end"] = JsonSerializer.SerializeToElement(
+            this._rawData["timeframe_end"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -253,7 +253,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
     {
         get
         {
-            if (!this._properties.TryGetValue("timeframe_start", out JsonElement element))
+            if (!this._rawData.TryGetValue("timeframe_start", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'timeframe_start' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -269,7 +269,7 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
         }
         init
         {
-            this._properties["timeframe_start"] = JsonSerializer.SerializeToElement(
+            this._rawData["timeframe_start"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -284,14 +284,14 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
     {
         get
         {
-            if (!this._properties.TryGetValue("deprecation_filter", out JsonElement element))
+            if (!this._rawData.TryGetValue("deprecation_filter", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["deprecation_filter"] = JsonSerializer.SerializeToElement(
+            this._rawData["deprecation_filter"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -315,24 +315,24 @@ public sealed record class BackfillRevertResponse : ModelBase, IFromRaw<Backfill
 
     public BackfillRevertResponse() { }
 
-    public BackfillRevertResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    public BackfillRevertResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    BackfillRevertResponse(FrozenDictionary<string, JsonElement> properties)
+    BackfillRevertResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static BackfillRevertResponse FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 

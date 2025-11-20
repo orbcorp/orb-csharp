@@ -22,7 +22,7 @@ public sealed record class UnitConfig : ModelBase, IFromRaw<UnitConfig>
     {
         get
         {
-            if (!this._properties.TryGetValue("unit_amount", out JsonElement element))
+            if (!this._rawData.TryGetValue("unit_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'unit_amount' cannot be null",
                     new ArgumentOutOfRangeException("unit_amount", "Missing required argument")
@@ -36,7 +36,7 @@ public sealed record class UnitConfig : ModelBase, IFromRaw<UnitConfig>
         }
         init
         {
-            this._properties["unit_amount"] = JsonSerializer.SerializeToElement(
+            this._rawData["unit_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -50,7 +50,7 @@ public sealed record class UnitConfig : ModelBase, IFromRaw<UnitConfig>
     {
         get
         {
-            if (!this._properties.TryGetValue("prorated", out JsonElement element))
+            if (!this._rawData.TryGetValue("prorated", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -62,7 +62,7 @@ public sealed record class UnitConfig : ModelBase, IFromRaw<UnitConfig>
                 return;
             }
 
-            this._properties["prorated"] = JsonSerializer.SerializeToElement(
+            this._rawData["prorated"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -77,22 +77,22 @@ public sealed record class UnitConfig : ModelBase, IFromRaw<UnitConfig>
 
     public UnitConfig() { }
 
-    public UnitConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    public UnitConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnitConfig(FrozenDictionary<string, JsonElement> properties)
+    UnitConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static UnitConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static UnitConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

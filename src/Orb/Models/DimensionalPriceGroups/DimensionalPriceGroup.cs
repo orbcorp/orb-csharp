@@ -21,7 +21,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
     {
         get
         {
-            if (!this._properties.TryGetValue("id", out JsonElement element))
+            if (!this._rawData.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new ArgumentOutOfRangeException("id", "Missing required argument")
@@ -35,7 +35,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
         }
         init
         {
-            this._properties["id"] = JsonSerializer.SerializeToElement(
+            this._rawData["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -51,7 +51,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
     {
         get
         {
-            if (!this._properties.TryGetValue("billable_metric_id", out JsonElement element))
+            if (!this._rawData.TryGetValue("billable_metric_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'billable_metric_id' cannot be null",
                     new ArgumentOutOfRangeException(
@@ -68,7 +68,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
         }
         init
         {
-            this._properties["billable_metric_id"] = JsonSerializer.SerializeToElement(
+            this._rawData["billable_metric_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -82,7 +82,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
     {
         get
         {
-            if (!this._properties.TryGetValue("dimensions", out JsonElement element))
+            if (!this._rawData.TryGetValue("dimensions", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'dimensions' cannot be null",
                     new ArgumentOutOfRangeException("dimensions", "Missing required argument")
@@ -96,7 +96,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
         }
         init
         {
-            this._properties["dimensions"] = JsonSerializer.SerializeToElement(
+            this._rawData["dimensions"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -111,7 +111,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
         get
         {
             if (
-                !this._properties.TryGetValue(
+                !this._rawData.TryGetValue(
                     "external_dimensional_price_group_id",
                     out JsonElement element
                 )
@@ -122,7 +122,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
         }
         init
         {
-            this._properties["external_dimensional_price_group_id"] =
+            this._rawData["external_dimensional_price_group_id"] =
                 JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
@@ -137,7 +137,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
     {
         get
         {
-            if (!this._properties.TryGetValue("metadata", out JsonElement element))
+            if (!this._rawData.TryGetValue("metadata", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'metadata' cannot be null",
                     new ArgumentOutOfRangeException("metadata", "Missing required argument")
@@ -154,7 +154,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
         }
         init
         {
-            this._properties["metadata"] = JsonSerializer.SerializeToElement(
+            this._rawData["metadata"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -168,7 +168,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
     {
         get
         {
-            if (!this._properties.TryGetValue("name", out JsonElement element))
+            if (!this._rawData.TryGetValue("name", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'name' cannot be null",
                     new ArgumentOutOfRangeException("name", "Missing required argument")
@@ -182,7 +182,7 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
         }
         init
         {
-            this._properties["name"] = JsonSerializer.SerializeToElement(
+            this._rawData["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -201,23 +201,23 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
 
     public DimensionalPriceGroup() { }
 
-    public DimensionalPriceGroup(IReadOnlyDictionary<string, JsonElement> properties)
+    public DimensionalPriceGroup(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DimensionalPriceGroup(FrozenDictionary<string, JsonElement> properties)
+    DimensionalPriceGroup(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static DimensionalPriceGroup FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

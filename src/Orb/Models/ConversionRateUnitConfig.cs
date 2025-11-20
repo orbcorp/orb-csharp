@@ -19,7 +19,7 @@ public sealed record class ConversionRateUnitConfig : ModelBase, IFromRaw<Conver
     {
         get
         {
-            if (!this._properties.TryGetValue("unit_amount", out JsonElement element))
+            if (!this._rawData.TryGetValue("unit_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'unit_amount' cannot be null",
                     new ArgumentOutOfRangeException("unit_amount", "Missing required argument")
@@ -33,7 +33,7 @@ public sealed record class ConversionRateUnitConfig : ModelBase, IFromRaw<Conver
         }
         init
         {
-            this._properties["unit_amount"] = JsonSerializer.SerializeToElement(
+            this._rawData["unit_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -47,24 +47,24 @@ public sealed record class ConversionRateUnitConfig : ModelBase, IFromRaw<Conver
 
     public ConversionRateUnitConfig() { }
 
-    public ConversionRateUnitConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    public ConversionRateUnitConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ConversionRateUnitConfig(FrozenDictionary<string, JsonElement> properties)
+    ConversionRateUnitConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static ConversionRateUnitConfig FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

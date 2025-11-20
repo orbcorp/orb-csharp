@@ -18,7 +18,7 @@ public sealed record class SubscriptionFetchSchedulePageResponse
     {
         get
         {
-            if (!this._properties.TryGetValue("data", out JsonElement element))
+            if (!this._rawData.TryGetValue("data", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'data' cannot be null",
                     new ArgumentOutOfRangeException("data", "Missing required argument")
@@ -32,7 +32,7 @@ public sealed record class SubscriptionFetchSchedulePageResponse
         }
         init
         {
-            this._properties["data"] = JsonSerializer.SerializeToElement(
+            this._rawData["data"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -43,7 +43,7 @@ public sealed record class SubscriptionFetchSchedulePageResponse
     {
         get
         {
-            if (!this._properties.TryGetValue("pagination_metadata", out JsonElement element))
+            if (!this._rawData.TryGetValue("pagination_metadata", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'pagination_metadata' cannot be null",
                     new ArgumentOutOfRangeException(
@@ -63,7 +63,7 @@ public sealed record class SubscriptionFetchSchedulePageResponse
         }
         init
         {
-            this._properties["pagination_metadata"] = JsonSerializer.SerializeToElement(
+            this._rawData["pagination_metadata"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -81,26 +81,24 @@ public sealed record class SubscriptionFetchSchedulePageResponse
 
     public SubscriptionFetchSchedulePageResponse() { }
 
-    public SubscriptionFetchSchedulePageResponse(
-        IReadOnlyDictionary<string, JsonElement> properties
-    )
+    public SubscriptionFetchSchedulePageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    SubscriptionFetchSchedulePageResponse(FrozenDictionary<string, JsonElement> properties)
+    SubscriptionFetchSchedulePageResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static SubscriptionFetchSchedulePageResponse FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -111,7 +109,7 @@ public sealed record class Data1 : ModelBase, IFromRaw<Data1>
     {
         get
         {
-            if (!this._properties.TryGetValue("created_at", out JsonElement element))
+            if (!this._rawData.TryGetValue("created_at", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'created_at' cannot be null",
                     new ArgumentOutOfRangeException("created_at", "Missing required argument")
@@ -121,7 +119,7 @@ public sealed record class Data1 : ModelBase, IFromRaw<Data1>
         }
         init
         {
-            this._properties["created_at"] = JsonSerializer.SerializeToElement(
+            this._rawData["created_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -132,7 +130,7 @@ public sealed record class Data1 : ModelBase, IFromRaw<Data1>
     {
         get
         {
-            if (!this._properties.TryGetValue("end_date", out JsonElement element))
+            if (!this._rawData.TryGetValue("end_date", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<DateTimeOffset?>(
@@ -142,7 +140,7 @@ public sealed record class Data1 : ModelBase, IFromRaw<Data1>
         }
         init
         {
-            this._properties["end_date"] = JsonSerializer.SerializeToElement(
+            this._rawData["end_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -153,14 +151,14 @@ public sealed record class Data1 : ModelBase, IFromRaw<Data1>
     {
         get
         {
-            if (!this._properties.TryGetValue("plan", out JsonElement element))
+            if (!this._rawData.TryGetValue("plan", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Plan?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["plan"] = JsonSerializer.SerializeToElement(
+            this._rawData["plan"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -171,7 +169,7 @@ public sealed record class Data1 : ModelBase, IFromRaw<Data1>
     {
         get
         {
-            if (!this._properties.TryGetValue("start_date", out JsonElement element))
+            if (!this._rawData.TryGetValue("start_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'start_date' cannot be null",
                     new ArgumentOutOfRangeException("start_date", "Missing required argument")
@@ -181,7 +179,7 @@ public sealed record class Data1 : ModelBase, IFromRaw<Data1>
         }
         init
         {
-            this._properties["start_date"] = JsonSerializer.SerializeToElement(
+            this._rawData["start_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -198,22 +196,22 @@ public sealed record class Data1 : ModelBase, IFromRaw<Data1>
 
     public Data1() { }
 
-    public Data1(IReadOnlyDictionary<string, JsonElement> properties)
+    public Data1(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Data1(FrozenDictionary<string, JsonElement> properties)
+    Data1(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Data1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static Data1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -224,14 +222,14 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
     {
         get
         {
-            if (!this._properties.TryGetValue("id", out JsonElement element))
+            if (!this._rawData.TryGetValue("id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["id"] = JsonSerializer.SerializeToElement(
+            this._rawData["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -247,14 +245,14 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
     {
         get
         {
-            if (!this._properties.TryGetValue("external_plan_id", out JsonElement element))
+            if (!this._rawData.TryGetValue("external_plan_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["external_plan_id"] = JsonSerializer.SerializeToElement(
+            this._rawData["external_plan_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -265,14 +263,14 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
     {
         get
         {
-            if (!this._properties.TryGetValue("name", out JsonElement element))
+            if (!this._rawData.TryGetValue("name", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["name"] = JsonSerializer.SerializeToElement(
+            this._rawData["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -288,21 +286,21 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
 
     public Plan() { }
 
-    public Plan(IReadOnlyDictionary<string, JsonElement> properties)
+    public Plan(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Plan(FrozenDictionary<string, JsonElement> properties)
+    Plan(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Plan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static Plan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

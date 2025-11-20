@@ -16,7 +16,7 @@ public sealed record class CustomerMinified : ModelBase, IFromRaw<CustomerMinifi
     {
         get
         {
-            if (!this._properties.TryGetValue("id", out JsonElement element))
+            if (!this._rawData.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new ArgumentOutOfRangeException("id", "Missing required argument")
@@ -30,7 +30,7 @@ public sealed record class CustomerMinified : ModelBase, IFromRaw<CustomerMinifi
         }
         init
         {
-            this._properties["id"] = JsonSerializer.SerializeToElement(
+            this._rawData["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -41,14 +41,14 @@ public sealed record class CustomerMinified : ModelBase, IFromRaw<CustomerMinifi
     {
         get
         {
-            if (!this._properties.TryGetValue("external_customer_id", out JsonElement element))
+            if (!this._rawData.TryGetValue("external_customer_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["external_customer_id"] = JsonSerializer.SerializeToElement(
+            this._rawData["external_customer_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -63,23 +63,23 @@ public sealed record class CustomerMinified : ModelBase, IFromRaw<CustomerMinifi
 
     public CustomerMinified() { }
 
-    public CustomerMinified(IReadOnlyDictionary<string, JsonElement> properties)
+    public CustomerMinified(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CustomerMinified(FrozenDictionary<string, JsonElement> properties)
+    CustomerMinified(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static CustomerMinified FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

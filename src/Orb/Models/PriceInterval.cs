@@ -20,7 +20,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     {
         get
         {
-            if (!this._properties.TryGetValue("id", out JsonElement element))
+            if (!this._rawData.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new ArgumentOutOfRangeException("id", "Missing required argument")
@@ -34,7 +34,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
         }
         init
         {
-            this._properties["id"] = JsonSerializer.SerializeToElement(
+            this._rawData["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -48,7 +48,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     {
         get
         {
-            if (!this._properties.TryGetValue("billing_cycle_day", out JsonElement element))
+            if (!this._rawData.TryGetValue("billing_cycle_day", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'billing_cycle_day' cannot be null",
                     new ArgumentOutOfRangeException(
@@ -61,7 +61,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
         }
         init
         {
-            this._properties["billing_cycle_day"] = JsonSerializer.SerializeToElement(
+            this._rawData["billing_cycle_day"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -77,7 +77,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     {
         get
         {
-            if (!this._properties.TryGetValue("can_defer_billing", out JsonElement element))
+            if (!this._rawData.TryGetValue("can_defer_billing", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'can_defer_billing' cannot be null",
                     new ArgumentOutOfRangeException(
@@ -90,7 +90,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
         }
         init
         {
-            this._properties["can_defer_billing"] = JsonSerializer.SerializeToElement(
+            this._rawData["can_defer_billing"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -107,7 +107,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
         get
         {
             if (
-                !this._properties.TryGetValue(
+                !this._rawData.TryGetValue(
                     "current_billing_period_end_date",
                     out JsonElement element
                 )
@@ -121,7 +121,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
         }
         init
         {
-            this._properties["current_billing_period_end_date"] = JsonSerializer.SerializeToElement(
+            this._rawData["current_billing_period_end_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -138,7 +138,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
         get
         {
             if (
-                !this._properties.TryGetValue(
+                !this._rawData.TryGetValue(
                     "current_billing_period_start_date",
                     out JsonElement element
                 )
@@ -152,8 +152,10 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
         }
         init
         {
-            this._properties["current_billing_period_start_date"] =
-                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
+            this._rawData["current_billing_period_start_date"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
         }
     }
 
@@ -165,7 +167,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     {
         get
         {
-            if (!this._properties.TryGetValue("end_date", out JsonElement element))
+            if (!this._rawData.TryGetValue("end_date", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<DateTimeOffset?>(
@@ -175,7 +177,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
         }
         init
         {
-            this._properties["end_date"] = JsonSerializer.SerializeToElement(
+            this._rawData["end_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -189,14 +191,14 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     {
         get
         {
-            if (!this._properties.TryGetValue("filter", out JsonElement element))
+            if (!this._rawData.TryGetValue("filter", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["filter"] = JsonSerializer.SerializeToElement(
+            this._rawData["filter"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -212,7 +214,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
         get
         {
             if (
-                !this._properties.TryGetValue(
+                !this._rawData.TryGetValue(
                     "fixed_fee_quantity_transitions",
                     out JsonElement element
                 )
@@ -226,7 +228,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
         }
         init
         {
-            this._properties["fixed_fee_quantity_transitions"] = JsonSerializer.SerializeToElement(
+            this._rawData["fixed_fee_quantity_transitions"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -248,7 +250,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     {
         get
         {
-            if (!this._properties.TryGetValue("price", out JsonElement element))
+            if (!this._rawData.TryGetValue("price", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'price' cannot be null",
                     new ArgumentOutOfRangeException("price", "Missing required argument")
@@ -262,7 +264,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
         }
         init
         {
-            this._properties["price"] = JsonSerializer.SerializeToElement(
+            this._rawData["price"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -277,7 +279,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     {
         get
         {
-            if (!this._properties.TryGetValue("start_date", out JsonElement element))
+            if (!this._rawData.TryGetValue("start_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'start_date' cannot be null",
                     new ArgumentOutOfRangeException("start_date", "Missing required argument")
@@ -287,7 +289,7 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
         }
         init
         {
-            this._properties["start_date"] = JsonSerializer.SerializeToElement(
+            this._rawData["start_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -302,14 +304,14 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     {
         get
         {
-            if (!this._properties.TryGetValue("usage_customer_ids", out JsonElement element))
+            if (!this._rawData.TryGetValue("usage_customer_ids", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["usage_customer_ids"] = JsonSerializer.SerializeToElement(
+            this._rawData["usage_customer_ids"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -336,23 +338,21 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
 
     public PriceInterval() { }
 
-    public PriceInterval(IReadOnlyDictionary<string, JsonElement> properties)
+    public PriceInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PriceInterval(FrozenDictionary<string, JsonElement> properties)
+    PriceInterval(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static PriceInterval FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
-    )
+    public static PriceInterval FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

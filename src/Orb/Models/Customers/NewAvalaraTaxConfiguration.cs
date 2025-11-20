@@ -18,7 +18,7 @@ public sealed record class NewAvalaraTaxConfiguration
     {
         get
         {
-            if (!this._properties.TryGetValue("tax_exempt", out JsonElement element))
+            if (!this._rawData.TryGetValue("tax_exempt", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tax_exempt' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -31,7 +31,7 @@ public sealed record class NewAvalaraTaxConfiguration
         }
         init
         {
-            this._properties["tax_exempt"] = JsonSerializer.SerializeToElement(
+            this._rawData["tax_exempt"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -42,7 +42,7 @@ public sealed record class NewAvalaraTaxConfiguration
     {
         get
         {
-            if (!this._properties.TryGetValue("tax_provider", out JsonElement element))
+            if (!this._rawData.TryGetValue("tax_provider", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tax_provider' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -57,7 +57,7 @@ public sealed record class NewAvalaraTaxConfiguration
         }
         init
         {
-            this._properties["tax_provider"] = JsonSerializer.SerializeToElement(
+            this._rawData["tax_provider"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -72,14 +72,14 @@ public sealed record class NewAvalaraTaxConfiguration
     {
         get
         {
-            if (!this._properties.TryGetValue("automatic_tax_enabled", out JsonElement element))
+            if (!this._rawData.TryGetValue("automatic_tax_enabled", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["automatic_tax_enabled"] = JsonSerializer.SerializeToElement(
+            this._rawData["automatic_tax_enabled"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -90,14 +90,14 @@ public sealed record class NewAvalaraTaxConfiguration
     {
         get
         {
-            if (!this._properties.TryGetValue("tax_exemption_code", out JsonElement element))
+            if (!this._rawData.TryGetValue("tax_exemption_code", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["tax_exemption_code"] = JsonSerializer.SerializeToElement(
+            this._rawData["tax_exemption_code"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -114,24 +114,24 @@ public sealed record class NewAvalaraTaxConfiguration
 
     public NewAvalaraTaxConfiguration() { }
 
-    public NewAvalaraTaxConfiguration(IReadOnlyDictionary<string, JsonElement> properties)
+    public NewAvalaraTaxConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    NewAvalaraTaxConfiguration(FrozenDictionary<string, JsonElement> properties)
+    NewAvalaraTaxConfiguration(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static NewAvalaraTaxConfiguration FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 

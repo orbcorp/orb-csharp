@@ -16,7 +16,7 @@ public sealed record class NewAccountingSyncConfiguration
     {
         get
         {
-            if (!this._properties.TryGetValue("accounting_providers", out JsonElement element))
+            if (!this._rawData.TryGetValue("accounting_providers", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<AccountingProviderConfig>?>(
@@ -26,7 +26,7 @@ public sealed record class NewAccountingSyncConfiguration
         }
         init
         {
-            this._properties["accounting_providers"] = JsonSerializer.SerializeToElement(
+            this._rawData["accounting_providers"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -37,14 +37,14 @@ public sealed record class NewAccountingSyncConfiguration
     {
         get
         {
-            if (!this._properties.TryGetValue("excluded", out JsonElement element))
+            if (!this._rawData.TryGetValue("excluded", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["excluded"] = JsonSerializer.SerializeToElement(
+            this._rawData["excluded"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -62,23 +62,23 @@ public sealed record class NewAccountingSyncConfiguration
 
     public NewAccountingSyncConfiguration() { }
 
-    public NewAccountingSyncConfiguration(IReadOnlyDictionary<string, JsonElement> properties)
+    public NewAccountingSyncConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    NewAccountingSyncConfiguration(FrozenDictionary<string, JsonElement> properties)
+    NewAccountingSyncConfiguration(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static NewAccountingSyncConfiguration FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

@@ -16,7 +16,7 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
     {
         get
         {
-            if (!this._properties.TryGetValue("adjustment_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("adjustment_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'adjustment_type' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -32,7 +32,7 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
         }
         init
         {
-            this._properties["adjustment_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["adjustment_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -43,7 +43,7 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
     {
         get
         {
-            if (!this._properties.TryGetValue("maximum_amount", out JsonElement element))
+            if (!this._rawData.TryGetValue("maximum_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'maximum_amount' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -60,7 +60,7 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
         }
         init
         {
-            this._properties["maximum_amount"] = JsonSerializer.SerializeToElement(
+            this._rawData["maximum_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -74,7 +74,7 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
     {
         get
         {
-            if (!this._properties.TryGetValue("applies_to_all", out JsonElement element))
+            if (!this._rawData.TryGetValue("applies_to_all", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<bool, NewMaximumAppliesToAll>?>(
@@ -84,7 +84,7 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
         }
         init
         {
-            this._properties["applies_to_all"] = JsonSerializer.SerializeToElement(
+            this._rawData["applies_to_all"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -98,14 +98,14 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
     {
         get
         {
-            if (!this._properties.TryGetValue("applies_to_item_ids", out JsonElement element))
+            if (!this._rawData.TryGetValue("applies_to_item_ids", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["applies_to_item_ids"] = JsonSerializer.SerializeToElement(
+            this._rawData["applies_to_item_ids"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -119,14 +119,14 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
     {
         get
         {
-            if (!this._properties.TryGetValue("applies_to_price_ids", out JsonElement element))
+            if (!this._rawData.TryGetValue("applies_to_price_ids", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(
+            this._rawData["applies_to_price_ids"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -140,14 +140,14 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
     {
         get
         {
-            if (!this._properties.TryGetValue("currency", out JsonElement element))
+            if (!this._rawData.TryGetValue("currency", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["currency"] = JsonSerializer.SerializeToElement(
+            this._rawData["currency"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -161,7 +161,7 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
     {
         get
         {
-            if (!this._properties.TryGetValue("filters", out JsonElement element))
+            if (!this._rawData.TryGetValue("filters", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<Filter13>?>(
@@ -171,7 +171,7 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
         }
         init
         {
-            this._properties["filters"] = JsonSerializer.SerializeToElement(
+            this._rawData["filters"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -186,7 +186,7 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
     {
         get
         {
-            if (!this._properties.TryGetValue("is_invoice_level", out JsonElement element))
+            if (!this._rawData.TryGetValue("is_invoice_level", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -198,7 +198,7 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
                 return;
             }
 
-            this._properties["is_invoice_level"] = JsonSerializer.SerializeToElement(
+            this._rawData["is_invoice_level"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -212,7 +212,7 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
     {
         get
         {
-            if (!this._properties.TryGetValue("price_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("price_type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<string, NewMaximumPriceType>?>(
@@ -222,7 +222,7 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
         }
         init
         {
-            this._properties["price_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["price_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -247,22 +247,22 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
 
     public NewMaximum() { }
 
-    public NewMaximum(IReadOnlyDictionary<string, JsonElement> properties)
+    public NewMaximum(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    NewMaximum(FrozenDictionary<string, JsonElement> properties)
+    NewMaximum(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static NewMaximum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static NewMaximum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -361,7 +361,7 @@ public sealed record class Filter13 : ModelBase, IFromRaw<Filter13>
     {
         get
         {
-            if (!this._properties.TryGetValue("field", out JsonElement element))
+            if (!this._rawData.TryGetValue("field", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'field' cannot be null",
                     new System::ArgumentOutOfRangeException("field", "Missing required argument")
@@ -374,7 +374,7 @@ public sealed record class Filter13 : ModelBase, IFromRaw<Filter13>
         }
         init
         {
-            this._properties["field"] = JsonSerializer.SerializeToElement(
+            this._rawData["field"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -388,7 +388,7 @@ public sealed record class Filter13 : ModelBase, IFromRaw<Filter13>
     {
         get
         {
-            if (!this._properties.TryGetValue("operator", out JsonElement element))
+            if (!this._rawData.TryGetValue("operator", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'operator' cannot be null",
                     new System::ArgumentOutOfRangeException("operator", "Missing required argument")
@@ -401,7 +401,7 @@ public sealed record class Filter13 : ModelBase, IFromRaw<Filter13>
         }
         init
         {
-            this._properties["operator"] = JsonSerializer.SerializeToElement(
+            this._rawData["operator"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -415,7 +415,7 @@ public sealed record class Filter13 : ModelBase, IFromRaw<Filter13>
     {
         get
         {
-            if (!this._properties.TryGetValue("values", out JsonElement element))
+            if (!this._rawData.TryGetValue("values", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'values' cannot be null",
                     new System::ArgumentOutOfRangeException("values", "Missing required argument")
@@ -429,7 +429,7 @@ public sealed record class Filter13 : ModelBase, IFromRaw<Filter13>
         }
         init
         {
-            this._properties["values"] = JsonSerializer.SerializeToElement(
+            this._rawData["values"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -445,22 +445,22 @@ public sealed record class Filter13 : ModelBase, IFromRaw<Filter13>
 
     public Filter13() { }
 
-    public Filter13(IReadOnlyDictionary<string, JsonElement> properties)
+    public Filter13(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter13(FrozenDictionary<string, JsonElement> properties)
+    Filter13(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Filter13 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static Filter13 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 

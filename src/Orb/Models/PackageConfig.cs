@@ -22,7 +22,7 @@ public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
     {
         get
         {
-            if (!this._properties.TryGetValue("package_amount", out JsonElement element))
+            if (!this._rawData.TryGetValue("package_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'package_amount' cannot be null",
                     new ArgumentOutOfRangeException("package_amount", "Missing required argument")
@@ -36,7 +36,7 @@ public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
         }
         init
         {
-            this._properties["package_amount"] = JsonSerializer.SerializeToElement(
+            this._rawData["package_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -51,7 +51,7 @@ public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
     {
         get
         {
-            if (!this._properties.TryGetValue("package_size", out JsonElement element))
+            if (!this._rawData.TryGetValue("package_size", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'package_size' cannot be null",
                     new ArgumentOutOfRangeException("package_size", "Missing required argument")
@@ -61,7 +61,7 @@ public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
         }
         init
         {
-            this._properties["package_size"] = JsonSerializer.SerializeToElement(
+            this._rawData["package_size"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -76,23 +76,21 @@ public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
 
     public PackageConfig() { }
 
-    public PackageConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    public PackageConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PackageConfig(FrozenDictionary<string, JsonElement> properties)
+    PackageConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static PackageConfig FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
-    )
+    public static PackageConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

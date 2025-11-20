@@ -24,7 +24,7 @@ public sealed record class BillingCycleAnchorConfiguration
     {
         get
         {
-            if (!this._properties.TryGetValue("day", out JsonElement element))
+            if (!this._rawData.TryGetValue("day", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'day' cannot be null",
                     new ArgumentOutOfRangeException("day", "Missing required argument")
@@ -34,7 +34,7 @@ public sealed record class BillingCycleAnchorConfiguration
         }
         init
         {
-            this._properties["day"] = JsonSerializer.SerializeToElement(
+            this._rawData["day"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -49,14 +49,14 @@ public sealed record class BillingCycleAnchorConfiguration
     {
         get
         {
-            if (!this._properties.TryGetValue("month", out JsonElement element))
+            if (!this._rawData.TryGetValue("month", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["month"] = JsonSerializer.SerializeToElement(
+            this._rawData["month"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -71,14 +71,14 @@ public sealed record class BillingCycleAnchorConfiguration
     {
         get
         {
-            if (!this._properties.TryGetValue("year", out JsonElement element))
+            if (!this._rawData.TryGetValue("year", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["year"] = JsonSerializer.SerializeToElement(
+            this._rawData["year"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -94,24 +94,24 @@ public sealed record class BillingCycleAnchorConfiguration
 
     public BillingCycleAnchorConfiguration() { }
 
-    public BillingCycleAnchorConfiguration(IReadOnlyDictionary<string, JsonElement> properties)
+    public BillingCycleAnchorConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    BillingCycleAnchorConfiguration(FrozenDictionary<string, JsonElement> properties)
+    BillingCycleAnchorConfiguration(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static BillingCycleAnchorConfiguration FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

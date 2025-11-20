@@ -19,7 +19,7 @@ public sealed record class InvoiceTiny : ModelBase, IFromRaw<InvoiceTiny>
     {
         get
         {
-            if (!this._properties.TryGetValue("id", out JsonElement element))
+            if (!this._rawData.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new ArgumentOutOfRangeException("id", "Missing required argument")
@@ -33,7 +33,7 @@ public sealed record class InvoiceTiny : ModelBase, IFromRaw<InvoiceTiny>
         }
         init
         {
-            this._properties["id"] = JsonSerializer.SerializeToElement(
+            this._rawData["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -47,22 +47,22 @@ public sealed record class InvoiceTiny : ModelBase, IFromRaw<InvoiceTiny>
 
     public InvoiceTiny() { }
 
-    public InvoiceTiny(IReadOnlyDictionary<string, JsonElement> properties)
+    public InvoiceTiny(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    InvoiceTiny(FrozenDictionary<string, JsonElement> properties)
+    InvoiceTiny(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static InvoiceTiny FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static InvoiceTiny FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

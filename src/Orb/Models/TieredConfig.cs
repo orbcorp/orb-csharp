@@ -22,7 +22,7 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
     {
         get
         {
-            if (!this._properties.TryGetValue("tiers", out JsonElement element))
+            if (!this._rawData.TryGetValue("tiers", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tiers' cannot be null",
                     new ArgumentOutOfRangeException("tiers", "Missing required argument")
@@ -39,7 +39,7 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
         }
         init
         {
-            this._properties["tiers"] = JsonSerializer.SerializeToElement(
+            this._rawData["tiers"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -53,7 +53,7 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
     {
         get
         {
-            if (!this._properties.TryGetValue("prorated", out JsonElement element))
+            if (!this._rawData.TryGetValue("prorated", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -65,7 +65,7 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
                 return;
             }
 
-            this._properties["prorated"] = JsonSerializer.SerializeToElement(
+            this._rawData["prorated"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -83,22 +83,22 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
 
     public TieredConfig() { }
 
-    public TieredConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    public TieredConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TieredConfig(FrozenDictionary<string, JsonElement> properties)
+    TieredConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static TieredConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static TieredConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

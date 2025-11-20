@@ -16,7 +16,7 @@ public sealed record class EventVolumes : ModelBase, IFromRaw<EventVolumes>
     {
         get
         {
-            if (!this._properties.TryGetValue("data", out JsonElement element))
+            if (!this._rawData.TryGetValue("data", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'data' cannot be null",
                     new ArgumentOutOfRangeException("data", "Missing required argument")
@@ -33,7 +33,7 @@ public sealed record class EventVolumes : ModelBase, IFromRaw<EventVolumes>
         }
         init
         {
-            this._properties["data"] = JsonSerializer.SerializeToElement(
+            this._rawData["data"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -50,22 +50,22 @@ public sealed record class EventVolumes : ModelBase, IFromRaw<EventVolumes>
 
     public EventVolumes() { }
 
-    public EventVolumes(IReadOnlyDictionary<string, JsonElement> properties)
+    public EventVolumes(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    EventVolumes(FrozenDictionary<string, JsonElement> properties)
+    EventVolumes(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static EventVolumes FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static EventVolumes FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]
@@ -90,7 +90,7 @@ public sealed record class Data : ModelBase, IFromRaw<global::Orb.Models.Events.
     {
         get
         {
-            if (!this._properties.TryGetValue("count", out JsonElement element))
+            if (!this._rawData.TryGetValue("count", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'count' cannot be null",
                     new ArgumentOutOfRangeException("count", "Missing required argument")
@@ -100,7 +100,7 @@ public sealed record class Data : ModelBase, IFromRaw<global::Orb.Models.Events.
         }
         init
         {
-            this._properties["count"] = JsonSerializer.SerializeToElement(
+            this._rawData["count"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -111,7 +111,7 @@ public sealed record class Data : ModelBase, IFromRaw<global::Orb.Models.Events.
     {
         get
         {
-            if (!this._properties.TryGetValue("timeframe_end", out JsonElement element))
+            if (!this._rawData.TryGetValue("timeframe_end", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'timeframe_end' cannot be null",
                     new ArgumentOutOfRangeException("timeframe_end", "Missing required argument")
@@ -121,7 +121,7 @@ public sealed record class Data : ModelBase, IFromRaw<global::Orb.Models.Events.
         }
         init
         {
-            this._properties["timeframe_end"] = JsonSerializer.SerializeToElement(
+            this._rawData["timeframe_end"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -132,7 +132,7 @@ public sealed record class Data : ModelBase, IFromRaw<global::Orb.Models.Events.
     {
         get
         {
-            if (!this._properties.TryGetValue("timeframe_start", out JsonElement element))
+            if (!this._rawData.TryGetValue("timeframe_start", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'timeframe_start' cannot be null",
                     new ArgumentOutOfRangeException("timeframe_start", "Missing required argument")
@@ -142,7 +142,7 @@ public sealed record class Data : ModelBase, IFromRaw<global::Orb.Models.Events.
         }
         init
         {
-            this._properties["timeframe_start"] = JsonSerializer.SerializeToElement(
+            this._rawData["timeframe_start"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -158,23 +158,23 @@ public sealed record class Data : ModelBase, IFromRaw<global::Orb.Models.Events.
 
     public Data() { }
 
-    public Data(IReadOnlyDictionary<string, JsonElement> properties)
+    public Data(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Data(FrozenDictionary<string, JsonElement> properties)
+    Data(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static global::Orb.Models.Events.Volume.Data FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

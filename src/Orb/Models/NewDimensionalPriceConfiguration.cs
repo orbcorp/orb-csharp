@@ -21,7 +21,7 @@ public sealed record class NewDimensionalPriceConfiguration
     {
         get
         {
-            if (!this._properties.TryGetValue("dimension_values", out JsonElement element))
+            if (!this._rawData.TryGetValue("dimension_values", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'dimension_values' cannot be null",
                     new ArgumentOutOfRangeException("dimension_values", "Missing required argument")
@@ -35,7 +35,7 @@ public sealed record class NewDimensionalPriceConfiguration
         }
         init
         {
-            this._properties["dimension_values"] = JsonSerializer.SerializeToElement(
+            this._rawData["dimension_values"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -49,16 +49,14 @@ public sealed record class NewDimensionalPriceConfiguration
     {
         get
         {
-            if (
-                !this._properties.TryGetValue("dimensional_price_group_id", out JsonElement element)
-            )
+            if (!this._rawData.TryGetValue("dimensional_price_group_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["dimensional_price_group_id"] = JsonSerializer.SerializeToElement(
+            this._rawData["dimensional_price_group_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -73,7 +71,7 @@ public sealed record class NewDimensionalPriceConfiguration
         get
         {
             if (
-                !this._properties.TryGetValue(
+                !this._rawData.TryGetValue(
                     "external_dimensional_price_group_id",
                     out JsonElement element
                 )
@@ -84,7 +82,7 @@ public sealed record class NewDimensionalPriceConfiguration
         }
         init
         {
-            this._properties["external_dimensional_price_group_id"] =
+            this._rawData["external_dimensional_price_group_id"] =
                 JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
         }
     }
@@ -98,24 +96,24 @@ public sealed record class NewDimensionalPriceConfiguration
 
     public NewDimensionalPriceConfiguration() { }
 
-    public NewDimensionalPriceConfiguration(IReadOnlyDictionary<string, JsonElement> properties)
+    public NewDimensionalPriceConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    NewDimensionalPriceConfiguration(FrozenDictionary<string, JsonElement> properties)
+    NewDimensionalPriceConfiguration(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static NewDimensionalPriceConfiguration FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

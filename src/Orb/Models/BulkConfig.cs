@@ -22,7 +22,7 @@ public sealed record class BulkConfig : ModelBase, IFromRaw<BulkConfig>
     {
         get
         {
-            if (!this._properties.TryGetValue("tiers", out JsonElement element))
+            if (!this._rawData.TryGetValue("tiers", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tiers' cannot be null",
                     new ArgumentOutOfRangeException("tiers", "Missing required argument")
@@ -36,7 +36,7 @@ public sealed record class BulkConfig : ModelBase, IFromRaw<BulkConfig>
         }
         init
         {
-            this._properties["tiers"] = JsonSerializer.SerializeToElement(
+            this._rawData["tiers"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -53,22 +53,22 @@ public sealed record class BulkConfig : ModelBase, IFromRaw<BulkConfig>
 
     public BulkConfig() { }
 
-    public BulkConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    public BulkConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    BulkConfig(FrozenDictionary<string, JsonElement> properties)
+    BulkConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static BulkConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static BulkConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

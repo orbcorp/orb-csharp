@@ -17,17 +17,17 @@ namespace Orb.Models.Coupons;
 /// </summary>
 public sealed record class CouponCreateParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
-    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
-        get { return this._bodyProperties.Freeze(); }
+        get { return this._rawBodyData.Freeze(); }
     }
 
     public required global::Orb.Models.Coupons.Discount Discount
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("discount", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("discount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'discount' cannot be null",
                     new System::ArgumentOutOfRangeException("discount", "Missing required argument")
@@ -44,7 +44,7 @@ public sealed record class CouponCreateParams : ParamsBase
         }
         init
         {
-            this._bodyProperties["discount"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["discount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -58,7 +58,7 @@ public sealed record class CouponCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("redemption_code", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("redemption_code", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'redemption_code' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -75,7 +75,7 @@ public sealed record class CouponCreateParams : ParamsBase
         }
         init
         {
-            this._bodyProperties["redemption_code"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["redemption_code"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -90,14 +90,14 @@ public sealed record class CouponCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("duration_in_months", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("duration_in_months", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._bodyProperties["duration_in_months"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["duration_in_months"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -112,14 +112,14 @@ public sealed record class CouponCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("max_redemptions", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("max_redemptions", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._bodyProperties["max_redemptions"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["max_redemptions"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -129,40 +129,40 @@ public sealed record class CouponCreateParams : ParamsBase
     public CouponCreateParams() { }
 
     public CouponCreateParams(
-        IReadOnlyDictionary<string, JsonElement> headerProperties,
-        IReadOnlyDictionary<string, JsonElement> queryProperties,
-        IReadOnlyDictionary<string, JsonElement> bodyProperties
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._headerProperties = [.. headerProperties];
-        this._queryProperties = [.. queryProperties];
-        this._bodyProperties = [.. bodyProperties];
+        this._rawHeaderData = [.. rawHeaderData];
+        this._rawQueryData = [.. rawQueryData];
+        this._rawBodyData = [.. rawBodyData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     CouponCreateParams(
-        FrozenDictionary<string, JsonElement> headerProperties,
-        FrozenDictionary<string, JsonElement> queryProperties,
-        FrozenDictionary<string, JsonElement> bodyProperties
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._headerProperties = [.. headerProperties];
-        this._queryProperties = [.. queryProperties];
-        this._bodyProperties = [.. bodyProperties];
+        this._rawHeaderData = [.. rawHeaderData];
+        this._rawQueryData = [.. rawQueryData];
+        this._rawBodyData = [.. rawBodyData];
     }
 #pragma warning restore CS8618
 
     public static CouponCreateParams FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> headerProperties,
-        IReadOnlyDictionary<string, JsonElement> queryProperties,
-        IReadOnlyDictionary<string, JsonElement> bodyProperties
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
         return new(
-            FrozenDictionary.ToFrozenDictionary(headerProperties),
-            FrozenDictionary.ToFrozenDictionary(queryProperties),
-            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            FrozenDictionary.ToFrozenDictionary(rawBodyData)
         );
     }
 
@@ -176,17 +176,13 @@ public sealed record class CouponCreateParams : ParamsBase
 
     internal override StringContent? BodyContent()
     {
-        return new(
-            JsonSerializer.Serialize(this.BodyProperties),
-            Encoding.UTF8,
-            "application/json"
-        );
+        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
         ParamsBase.AddDefaultHeaders(request, options);
-        foreach (var item in this.HeaderProperties)
+        foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
@@ -356,7 +352,7 @@ public sealed record class Percentage : ModelBase, IFromRaw<Percentage>
     {
         get
         {
-            if (!this._properties.TryGetValue("discount_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("discount_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'discount_type' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -376,7 +372,7 @@ public sealed record class Percentage : ModelBase, IFromRaw<Percentage>
         }
         init
         {
-            this._properties["discount_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["discount_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -387,7 +383,7 @@ public sealed record class Percentage : ModelBase, IFromRaw<Percentage>
     {
         get
         {
-            if (!this._properties.TryGetValue("percentage_discount", out JsonElement element))
+            if (!this._rawData.TryGetValue("percentage_discount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'percentage_discount' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -400,7 +396,7 @@ public sealed record class Percentage : ModelBase, IFromRaw<Percentage>
         }
         init
         {
-            this._properties["percentage_discount"] = JsonSerializer.SerializeToElement(
+            this._rawData["percentage_discount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -418,24 +414,24 @@ public sealed record class Percentage : ModelBase, IFromRaw<Percentage>
         this.DiscountType = new();
     }
 
-    public Percentage(IReadOnlyDictionary<string, JsonElement> properties)
+    public Percentage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
 
         this.DiscountType = new();
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Percentage(FrozenDictionary<string, JsonElement> properties)
+    Percentage(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Percentage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static Percentage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]
@@ -498,7 +494,7 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
     {
         get
         {
-            if (!this._properties.TryGetValue("amount_discount", out JsonElement element))
+            if (!this._rawData.TryGetValue("amount_discount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amount_discount' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -515,7 +511,7 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
         }
         init
         {
-            this._properties["amount_discount"] = JsonSerializer.SerializeToElement(
+            this._rawData["amount_discount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -526,7 +522,7 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
     {
         get
         {
-            if (!this._properties.TryGetValue("discount_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("discount_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'discount_type' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -546,7 +542,7 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
         }
         init
         {
-            this._properties["discount_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["discount_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -564,24 +560,24 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
         this.DiscountType = new();
     }
 
-    public Amount(IReadOnlyDictionary<string, JsonElement> properties)
+    public Amount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
 
         this.DiscountType = new();
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Amount(FrozenDictionary<string, JsonElement> properties)
+    Amount(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Amount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static Amount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

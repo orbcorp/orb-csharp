@@ -20,7 +20,7 @@ public sealed record class EventIngestResponse : ModelBase, IFromRaw<EventIngest
     {
         get
         {
-            if (!this._properties.TryGetValue("validation_failed", out JsonElement element))
+            if (!this._rawData.TryGetValue("validation_failed", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'validation_failed' cannot be null",
                     new ArgumentOutOfRangeException(
@@ -40,7 +40,7 @@ public sealed record class EventIngestResponse : ModelBase, IFromRaw<EventIngest
         }
         init
         {
-            this._properties["validation_failed"] = JsonSerializer.SerializeToElement(
+            this._rawData["validation_failed"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -55,14 +55,14 @@ public sealed record class EventIngestResponse : ModelBase, IFromRaw<EventIngest
     {
         get
         {
-            if (!this._properties.TryGetValue("debug", out JsonElement element))
+            if (!this._rawData.TryGetValue("debug", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Debug?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["debug"] = JsonSerializer.SerializeToElement(
+            this._rawData["debug"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -80,24 +80,24 @@ public sealed record class EventIngestResponse : ModelBase, IFromRaw<EventIngest
 
     public EventIngestResponse() { }
 
-    public EventIngestResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    public EventIngestResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    EventIngestResponse(FrozenDictionary<string, JsonElement> properties)
+    EventIngestResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static EventIngestResponse FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]
@@ -118,7 +118,7 @@ public sealed record class ValidationFailed : ModelBase, IFromRaw<ValidationFail
     {
         get
         {
-            if (!this._properties.TryGetValue("idempotency_key", out JsonElement element))
+            if (!this._rawData.TryGetValue("idempotency_key", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'idempotency_key' cannot be null",
                     new ArgumentOutOfRangeException("idempotency_key", "Missing required argument")
@@ -132,7 +132,7 @@ public sealed record class ValidationFailed : ModelBase, IFromRaw<ValidationFail
         }
         init
         {
-            this._properties["idempotency_key"] = JsonSerializer.SerializeToElement(
+            this._rawData["idempotency_key"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -146,7 +146,7 @@ public sealed record class ValidationFailed : ModelBase, IFromRaw<ValidationFail
     {
         get
         {
-            if (!this._properties.TryGetValue("validation_errors", out JsonElement element))
+            if (!this._rawData.TryGetValue("validation_errors", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'validation_errors' cannot be null",
                     new ArgumentOutOfRangeException(
@@ -163,7 +163,7 @@ public sealed record class ValidationFailed : ModelBase, IFromRaw<ValidationFail
         }
         init
         {
-            this._properties["validation_errors"] = JsonSerializer.SerializeToElement(
+            this._rawData["validation_errors"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -178,24 +178,24 @@ public sealed record class ValidationFailed : ModelBase, IFromRaw<ValidationFail
 
     public ValidationFailed() { }
 
-    public ValidationFailed(IReadOnlyDictionary<string, JsonElement> properties)
+    public ValidationFailed(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ValidationFailed(FrozenDictionary<string, JsonElement> properties)
+    ValidationFailed(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static ValidationFailed FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -210,7 +210,7 @@ public sealed record class Debug : ModelBase, IFromRaw<Debug>
     {
         get
         {
-            if (!this._properties.TryGetValue("duplicate", out JsonElement element))
+            if (!this._rawData.TryGetValue("duplicate", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'duplicate' cannot be null",
                     new ArgumentOutOfRangeException("duplicate", "Missing required argument")
@@ -224,7 +224,7 @@ public sealed record class Debug : ModelBase, IFromRaw<Debug>
         }
         init
         {
-            this._properties["duplicate"] = JsonSerializer.SerializeToElement(
+            this._rawData["duplicate"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -235,7 +235,7 @@ public sealed record class Debug : ModelBase, IFromRaw<Debug>
     {
         get
         {
-            if (!this._properties.TryGetValue("ingested", out JsonElement element))
+            if (!this._rawData.TryGetValue("ingested", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'ingested' cannot be null",
                     new ArgumentOutOfRangeException("ingested", "Missing required argument")
@@ -249,7 +249,7 @@ public sealed record class Debug : ModelBase, IFromRaw<Debug>
         }
         init
         {
-            this._properties["ingested"] = JsonSerializer.SerializeToElement(
+            this._rawData["ingested"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -264,21 +264,21 @@ public sealed record class Debug : ModelBase, IFromRaw<Debug>
 
     public Debug() { }
 
-    public Debug(IReadOnlyDictionary<string, JsonElement> properties)
+    public Debug(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Debug(FrozenDictionary<string, JsonElement> properties)
+    Debug(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Debug FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static Debug FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

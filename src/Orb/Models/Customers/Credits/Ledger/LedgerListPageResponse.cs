@@ -16,7 +16,7 @@ public sealed record class LedgerListPageResponse : ModelBase, IFromRaw<LedgerLi
     {
         get
         {
-            if (!this._properties.TryGetValue("data", out JsonElement element))
+            if (!this._rawData.TryGetValue("data", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'data' cannot be null",
                     new System::ArgumentOutOfRangeException("data", "Missing required argument")
@@ -32,7 +32,7 @@ public sealed record class LedgerListPageResponse : ModelBase, IFromRaw<LedgerLi
         }
         init
         {
-            this._properties["data"] = JsonSerializer.SerializeToElement(
+            this._rawData["data"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -43,7 +43,7 @@ public sealed record class LedgerListPageResponse : ModelBase, IFromRaw<LedgerLi
     {
         get
         {
-            if (!this._properties.TryGetValue("pagination_metadata", out JsonElement element))
+            if (!this._rawData.TryGetValue("pagination_metadata", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'pagination_metadata' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -63,7 +63,7 @@ public sealed record class LedgerListPageResponse : ModelBase, IFromRaw<LedgerLi
         }
         init
         {
-            this._properties["pagination_metadata"] = JsonSerializer.SerializeToElement(
+            this._rawData["pagination_metadata"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -81,24 +81,24 @@ public sealed record class LedgerListPageResponse : ModelBase, IFromRaw<LedgerLi
 
     public LedgerListPageResponse() { }
 
-    public LedgerListPageResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    public LedgerListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    LedgerListPageResponse(FrozenDictionary<string, JsonElement> properties)
+    LedgerListPageResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static LedgerListPageResponse FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 

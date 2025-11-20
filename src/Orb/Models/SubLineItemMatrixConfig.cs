@@ -19,7 +19,7 @@ public sealed record class SubLineItemMatrixConfig : ModelBase, IFromRaw<SubLine
     {
         get
         {
-            if (!this._properties.TryGetValue("dimension_values", out JsonElement element))
+            if (!this._rawData.TryGetValue("dimension_values", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'dimension_values' cannot be null",
                     new ArgumentOutOfRangeException("dimension_values", "Missing required argument")
@@ -33,7 +33,7 @@ public sealed record class SubLineItemMatrixConfig : ModelBase, IFromRaw<SubLine
         }
         init
         {
-            this._properties["dimension_values"] = JsonSerializer.SerializeToElement(
+            this._rawData["dimension_values"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -47,24 +47,24 @@ public sealed record class SubLineItemMatrixConfig : ModelBase, IFromRaw<SubLine
 
     public SubLineItemMatrixConfig() { }
 
-    public SubLineItemMatrixConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    public SubLineItemMatrixConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    SubLineItemMatrixConfig(FrozenDictionary<string, JsonElement> properties)
+    SubLineItemMatrixConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static SubLineItemMatrixConfig FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

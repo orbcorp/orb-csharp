@@ -16,7 +16,7 @@ public sealed record class NewSphereConfiguration : ModelBase, IFromRaw<NewSpher
     {
         get
         {
-            if (!this._properties.TryGetValue("tax_exempt", out JsonElement element))
+            if (!this._rawData.TryGetValue("tax_exempt", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tax_exempt' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -29,7 +29,7 @@ public sealed record class NewSphereConfiguration : ModelBase, IFromRaw<NewSpher
         }
         init
         {
-            this._properties["tax_exempt"] = JsonSerializer.SerializeToElement(
+            this._rawData["tax_exempt"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -40,7 +40,7 @@ public sealed record class NewSphereConfiguration : ModelBase, IFromRaw<NewSpher
     {
         get
         {
-            if (!this._properties.TryGetValue("tax_provider", out JsonElement element))
+            if (!this._rawData.TryGetValue("tax_provider", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'tax_provider' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -56,7 +56,7 @@ public sealed record class NewSphereConfiguration : ModelBase, IFromRaw<NewSpher
         }
         init
         {
-            this._properties["tax_provider"] = JsonSerializer.SerializeToElement(
+            this._rawData["tax_provider"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -71,14 +71,14 @@ public sealed record class NewSphereConfiguration : ModelBase, IFromRaw<NewSpher
     {
         get
         {
-            if (!this._properties.TryGetValue("automatic_tax_enabled", out JsonElement element))
+            if (!this._rawData.TryGetValue("automatic_tax_enabled", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["automatic_tax_enabled"] = JsonSerializer.SerializeToElement(
+            this._rawData["automatic_tax_enabled"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -94,24 +94,24 @@ public sealed record class NewSphereConfiguration : ModelBase, IFromRaw<NewSpher
 
     public NewSphereConfiguration() { }
 
-    public NewSphereConfiguration(IReadOnlyDictionary<string, JsonElement> properties)
+    public NewSphereConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    NewSphereConfiguration(FrozenDictionary<string, JsonElement> properties)
+    NewSphereConfiguration(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static NewSphereConfiguration FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 

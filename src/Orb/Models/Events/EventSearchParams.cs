@@ -28,10 +28,10 @@ namespace Orb.Models.Events;
 /// </summary>
 public sealed record class EventSearchParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
-    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
-        get { return this._bodyProperties.Freeze(); }
+        get { return this._rawBodyData.Freeze(); }
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ public sealed record class EventSearchParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("event_ids", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("event_ids", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'event_ids' cannot be null",
                     new ArgumentOutOfRangeException("event_ids", "Missing required argument")
@@ -58,7 +58,7 @@ public sealed record class EventSearchParams : ParamsBase
         }
         init
         {
-            this._bodyProperties["event_ids"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["event_ids"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -73,7 +73,7 @@ public sealed record class EventSearchParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("timeframe_end", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("timeframe_end", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<DateTimeOffset?>(
@@ -83,7 +83,7 @@ public sealed record class EventSearchParams : ParamsBase
         }
         init
         {
-            this._bodyProperties["timeframe_end"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["timeframe_end"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -98,7 +98,7 @@ public sealed record class EventSearchParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("timeframe_start", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("timeframe_start", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<DateTimeOffset?>(
@@ -108,7 +108,7 @@ public sealed record class EventSearchParams : ParamsBase
         }
         init
         {
-            this._bodyProperties["timeframe_start"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["timeframe_start"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -118,40 +118,40 @@ public sealed record class EventSearchParams : ParamsBase
     public EventSearchParams() { }
 
     public EventSearchParams(
-        IReadOnlyDictionary<string, JsonElement> headerProperties,
-        IReadOnlyDictionary<string, JsonElement> queryProperties,
-        IReadOnlyDictionary<string, JsonElement> bodyProperties
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._headerProperties = [.. headerProperties];
-        this._queryProperties = [.. queryProperties];
-        this._bodyProperties = [.. bodyProperties];
+        this._rawHeaderData = [.. rawHeaderData];
+        this._rawQueryData = [.. rawQueryData];
+        this._rawBodyData = [.. rawBodyData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     EventSearchParams(
-        FrozenDictionary<string, JsonElement> headerProperties,
-        FrozenDictionary<string, JsonElement> queryProperties,
-        FrozenDictionary<string, JsonElement> bodyProperties
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._headerProperties = [.. headerProperties];
-        this._queryProperties = [.. queryProperties];
-        this._bodyProperties = [.. bodyProperties];
+        this._rawHeaderData = [.. rawHeaderData];
+        this._rawQueryData = [.. rawQueryData];
+        this._rawBodyData = [.. rawBodyData];
     }
 #pragma warning restore CS8618
 
     public static EventSearchParams FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> headerProperties,
-        IReadOnlyDictionary<string, JsonElement> queryProperties,
-        IReadOnlyDictionary<string, JsonElement> bodyProperties
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
         return new(
-            FrozenDictionary.ToFrozenDictionary(headerProperties),
-            FrozenDictionary.ToFrozenDictionary(queryProperties),
-            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            FrozenDictionary.ToFrozenDictionary(rawBodyData)
         );
     }
 
@@ -165,17 +165,13 @@ public sealed record class EventSearchParams : ParamsBase
 
     internal override StringContent? BodyContent()
     {
-        return new(
-            JsonSerializer.Serialize(this.BodyProperties),
-            Encoding.UTF8,
-            "application/json"
-        );
+        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
         ParamsBase.AddDefaultHeaders(request, options);
-        foreach (var item in this.HeaderProperties)
+        foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }

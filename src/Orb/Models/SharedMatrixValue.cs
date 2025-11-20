@@ -22,7 +22,7 @@ public sealed record class SharedMatrixValue : ModelBase, IFromRaw<SharedMatrixV
     {
         get
         {
-            if (!this._properties.TryGetValue("dimension_values", out JsonElement element))
+            if (!this._rawData.TryGetValue("dimension_values", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'dimension_values' cannot be null",
                     new ArgumentOutOfRangeException("dimension_values", "Missing required argument")
@@ -36,7 +36,7 @@ public sealed record class SharedMatrixValue : ModelBase, IFromRaw<SharedMatrixV
         }
         init
         {
-            this._properties["dimension_values"] = JsonSerializer.SerializeToElement(
+            this._rawData["dimension_values"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -50,7 +50,7 @@ public sealed record class SharedMatrixValue : ModelBase, IFromRaw<SharedMatrixV
     {
         get
         {
-            if (!this._properties.TryGetValue("unit_amount", out JsonElement element))
+            if (!this._rawData.TryGetValue("unit_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'unit_amount' cannot be null",
                     new ArgumentOutOfRangeException("unit_amount", "Missing required argument")
@@ -64,7 +64,7 @@ public sealed record class SharedMatrixValue : ModelBase, IFromRaw<SharedMatrixV
         }
         init
         {
-            this._properties["unit_amount"] = JsonSerializer.SerializeToElement(
+            this._rawData["unit_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -79,23 +79,23 @@ public sealed record class SharedMatrixValue : ModelBase, IFromRaw<SharedMatrixV
 
     public SharedMatrixValue() { }
 
-    public SharedMatrixValue(IReadOnlyDictionary<string, JsonElement> properties)
+    public SharedMatrixValue(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    SharedMatrixValue(FrozenDictionary<string, JsonElement> properties)
+    SharedMatrixValue(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static SharedMatrixValue FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

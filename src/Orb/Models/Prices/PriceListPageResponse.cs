@@ -17,7 +17,7 @@ public sealed record class PriceListPageResponse : ModelBase, IFromRaw<PriceList
     {
         get
         {
-            if (!this._properties.TryGetValue("data", out JsonElement element))
+            if (!this._rawData.TryGetValue("data", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'data' cannot be null",
                     new ArgumentOutOfRangeException("data", "Missing required argument")
@@ -34,7 +34,7 @@ public sealed record class PriceListPageResponse : ModelBase, IFromRaw<PriceList
         }
         init
         {
-            this._properties["data"] = JsonSerializer.SerializeToElement(
+            this._rawData["data"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -45,7 +45,7 @@ public sealed record class PriceListPageResponse : ModelBase, IFromRaw<PriceList
     {
         get
         {
-            if (!this._properties.TryGetValue("pagination_metadata", out JsonElement element))
+            if (!this._rawData.TryGetValue("pagination_metadata", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'pagination_metadata' cannot be null",
                     new ArgumentOutOfRangeException(
@@ -65,7 +65,7 @@ public sealed record class PriceListPageResponse : ModelBase, IFromRaw<PriceList
         }
         init
         {
-            this._properties["pagination_metadata"] = JsonSerializer.SerializeToElement(
+            this._rawData["pagination_metadata"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -83,23 +83,23 @@ public sealed record class PriceListPageResponse : ModelBase, IFromRaw<PriceList
 
     public PriceListPageResponse() { }
 
-    public PriceListPageResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    public PriceListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PriceListPageResponse(FrozenDictionary<string, JsonElement> properties)
+    PriceListPageResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static PriceListPageResponse FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

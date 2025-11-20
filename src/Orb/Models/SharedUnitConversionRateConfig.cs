@@ -21,7 +21,7 @@ public sealed record class SharedUnitConversionRateConfig
     {
         get
         {
-            if (!this._properties.TryGetValue("conversion_rate_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("conversion_rate_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'conversion_rate_type' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -36,7 +36,7 @@ public sealed record class SharedUnitConversionRateConfig
         }
         init
         {
-            this._properties["conversion_rate_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["conversion_rate_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -47,7 +47,7 @@ public sealed record class SharedUnitConversionRateConfig
     {
         get
         {
-            if (!this._properties.TryGetValue("unit_config", out JsonElement element))
+            if (!this._rawData.TryGetValue("unit_config", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'unit_config' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -67,7 +67,7 @@ public sealed record class SharedUnitConversionRateConfig
         }
         init
         {
-            this._properties["unit_config"] = JsonSerializer.SerializeToElement(
+            this._rawData["unit_config"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -82,24 +82,24 @@ public sealed record class SharedUnitConversionRateConfig
 
     public SharedUnitConversionRateConfig() { }
 
-    public SharedUnitConversionRateConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    public SharedUnitConversionRateConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    SharedUnitConversionRateConfig(FrozenDictionary<string, JsonElement> properties)
+    SharedUnitConversionRateConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static SharedUnitConversionRateConfig FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 

@@ -15,7 +15,7 @@ public sealed record class SubscriptionTrialInfo : ModelBase, IFromRaw<Subscript
     {
         get
         {
-            if (!this._properties.TryGetValue("end_date", out JsonElement element))
+            if (!this._rawData.TryGetValue("end_date", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<DateTimeOffset?>(
@@ -25,7 +25,7 @@ public sealed record class SubscriptionTrialInfo : ModelBase, IFromRaw<Subscript
         }
         init
         {
-            this._properties["end_date"] = JsonSerializer.SerializeToElement(
+            this._rawData["end_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -39,24 +39,24 @@ public sealed record class SubscriptionTrialInfo : ModelBase, IFromRaw<Subscript
 
     public SubscriptionTrialInfo() { }
 
-    public SubscriptionTrialInfo(IReadOnlyDictionary<string, JsonElement> properties)
+    public SubscriptionTrialInfo(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    SubscriptionTrialInfo(FrozenDictionary<string, JsonElement> properties)
+    SubscriptionTrialInfo(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static SubscriptionTrialInfo FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

@@ -44,7 +44,7 @@ public class EventServiceTest : TestBase
                     {
                         EventName = "event_name",
                         IdempotencyKey = "idempotency_key",
-                        Properties1 = new Dictionary<string, JsonElement>()
+                        Properties = new Dictionary<string, JsonElement>()
                         {
                             { "foo", JsonSerializer.SerializeToElement("bar") },
                         },

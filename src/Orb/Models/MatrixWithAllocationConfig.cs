@@ -24,7 +24,7 @@ public sealed record class MatrixWithAllocationConfig
     {
         get
         {
-            if (!this._properties.TryGetValue("allocation", out JsonElement element))
+            if (!this._rawData.TryGetValue("allocation", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'allocation' cannot be null",
                     new ArgumentOutOfRangeException("allocation", "Missing required argument")
@@ -38,7 +38,7 @@ public sealed record class MatrixWithAllocationConfig
         }
         init
         {
-            this._properties["allocation"] = JsonSerializer.SerializeToElement(
+            this._rawData["allocation"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -52,7 +52,7 @@ public sealed record class MatrixWithAllocationConfig
     {
         get
         {
-            if (!this._properties.TryGetValue("default_unit_amount", out JsonElement element))
+            if (!this._rawData.TryGetValue("default_unit_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'default_unit_amount' cannot be null",
                     new ArgumentOutOfRangeException(
@@ -69,7 +69,7 @@ public sealed record class MatrixWithAllocationConfig
         }
         init
         {
-            this._properties["default_unit_amount"] = JsonSerializer.SerializeToElement(
+            this._rawData["default_unit_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -83,7 +83,7 @@ public sealed record class MatrixWithAllocationConfig
     {
         get
         {
-            if (!this._properties.TryGetValue("dimensions", out JsonElement element))
+            if (!this._rawData.TryGetValue("dimensions", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'dimensions' cannot be null",
                     new ArgumentOutOfRangeException("dimensions", "Missing required argument")
@@ -97,7 +97,7 @@ public sealed record class MatrixWithAllocationConfig
         }
         init
         {
-            this._properties["dimensions"] = JsonSerializer.SerializeToElement(
+            this._rawData["dimensions"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -111,7 +111,7 @@ public sealed record class MatrixWithAllocationConfig
     {
         get
         {
-            if (!this._properties.TryGetValue("matrix_values", out JsonElement element))
+            if (!this._rawData.TryGetValue("matrix_values", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'matrix_values' cannot be null",
                     new ArgumentOutOfRangeException("matrix_values", "Missing required argument")
@@ -128,7 +128,7 @@ public sealed record class MatrixWithAllocationConfig
         }
         init
         {
-            this._properties["matrix_values"] = JsonSerializer.SerializeToElement(
+            this._rawData["matrix_values"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -148,24 +148,24 @@ public sealed record class MatrixWithAllocationConfig
 
     public MatrixWithAllocationConfig() { }
 
-    public MatrixWithAllocationConfig(IReadOnlyDictionary<string, JsonElement> properties)
+    public MatrixWithAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    MatrixWithAllocationConfig(FrozenDictionary<string, JsonElement> properties)
+    MatrixWithAllocationConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static MatrixWithAllocationConfig FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -184,7 +184,7 @@ public sealed record class MatrixValue : ModelBase, IFromRaw<MatrixValue>
     {
         get
         {
-            if (!this._properties.TryGetValue("dimension_values", out JsonElement element))
+            if (!this._rawData.TryGetValue("dimension_values", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'dimension_values' cannot be null",
                     new ArgumentOutOfRangeException("dimension_values", "Missing required argument")
@@ -198,7 +198,7 @@ public sealed record class MatrixValue : ModelBase, IFromRaw<MatrixValue>
         }
         init
         {
-            this._properties["dimension_values"] = JsonSerializer.SerializeToElement(
+            this._rawData["dimension_values"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -212,7 +212,7 @@ public sealed record class MatrixValue : ModelBase, IFromRaw<MatrixValue>
     {
         get
         {
-            if (!this._properties.TryGetValue("unit_amount", out JsonElement element))
+            if (!this._rawData.TryGetValue("unit_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'unit_amount' cannot be null",
                     new ArgumentOutOfRangeException("unit_amount", "Missing required argument")
@@ -226,7 +226,7 @@ public sealed record class MatrixValue : ModelBase, IFromRaw<MatrixValue>
         }
         init
         {
-            this._properties["unit_amount"] = JsonSerializer.SerializeToElement(
+            this._rawData["unit_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -241,21 +241,21 @@ public sealed record class MatrixValue : ModelBase, IFromRaw<MatrixValue>
 
     public MatrixValue() { }
 
-    public MatrixValue(IReadOnlyDictionary<string, JsonElement> properties)
+    public MatrixValue(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    MatrixValue(FrozenDictionary<string, JsonElement> properties)
+    MatrixValue(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static MatrixValue FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static MatrixValue FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

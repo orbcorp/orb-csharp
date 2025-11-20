@@ -16,7 +16,7 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
     {
         get
         {
-            if (!this._properties.TryGetValue("coupon_id", out JsonElement element))
+            if (!this._rawData.TryGetValue("coupon_id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'coupon_id' cannot be null",
                     new ArgumentOutOfRangeException("coupon_id", "Missing required argument")
@@ -30,7 +30,7 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
         }
         init
         {
-            this._properties["coupon_id"] = JsonSerializer.SerializeToElement(
+            this._rawData["coupon_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -41,7 +41,7 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
     {
         get
         {
-            if (!this._properties.TryGetValue("end_date", out JsonElement element))
+            if (!this._rawData.TryGetValue("end_date", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<DateTimeOffset?>(
@@ -51,7 +51,7 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
         }
         init
         {
-            this._properties["end_date"] = JsonSerializer.SerializeToElement(
+            this._rawData["end_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -62,7 +62,7 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
     {
         get
         {
-            if (!this._properties.TryGetValue("start_date", out JsonElement element))
+            if (!this._rawData.TryGetValue("start_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'start_date' cannot be null",
                     new ArgumentOutOfRangeException("start_date", "Missing required argument")
@@ -72,7 +72,7 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
         }
         init
         {
-            this._properties["start_date"] = JsonSerializer.SerializeToElement(
+            this._rawData["start_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -88,23 +88,23 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
 
     public CouponRedemption() { }
 
-    public CouponRedemption(IReadOnlyDictionary<string, JsonElement> properties)
+    public CouponRedemption(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CouponRedemption(FrozenDictionary<string, JsonElement> properties)
+    CouponRedemption(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static CouponRedemption FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

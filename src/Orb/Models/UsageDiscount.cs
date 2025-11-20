@@ -16,7 +16,7 @@ public sealed record class UsageDiscount : ModelBase, IFromRaw<UsageDiscount>
     {
         get
         {
-            if (!this._properties.TryGetValue("discount_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("discount_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'discount_type' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -32,7 +32,7 @@ public sealed record class UsageDiscount : ModelBase, IFromRaw<UsageDiscount>
         }
         init
         {
-            this._properties["discount_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["discount_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -47,7 +47,7 @@ public sealed record class UsageDiscount : ModelBase, IFromRaw<UsageDiscount>
     {
         get
         {
-            if (!this._properties.TryGetValue("usage_discount", out JsonElement element))
+            if (!this._rawData.TryGetValue("usage_discount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'usage_discount' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -60,7 +60,7 @@ public sealed record class UsageDiscount : ModelBase, IFromRaw<UsageDiscount>
         }
         init
         {
-            this._properties["usage_discount"] = JsonSerializer.SerializeToElement(
+            this._rawData["usage_discount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -75,14 +75,14 @@ public sealed record class UsageDiscount : ModelBase, IFromRaw<UsageDiscount>
     {
         get
         {
-            if (!this._properties.TryGetValue("applies_to_price_ids", out JsonElement element))
+            if (!this._rawData.TryGetValue("applies_to_price_ids", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["applies_to_price_ids"] = JsonSerializer.SerializeToElement(
+            this._rawData["applies_to_price_ids"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -96,7 +96,7 @@ public sealed record class UsageDiscount : ModelBase, IFromRaw<UsageDiscount>
     {
         get
         {
-            if (!this._properties.TryGetValue("filters", out JsonElement element))
+            if (!this._rawData.TryGetValue("filters", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<Filter26>?>(
@@ -106,7 +106,7 @@ public sealed record class UsageDiscount : ModelBase, IFromRaw<UsageDiscount>
         }
         init
         {
-            this._properties["filters"] = JsonSerializer.SerializeToElement(
+            this._rawData["filters"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -117,14 +117,14 @@ public sealed record class UsageDiscount : ModelBase, IFromRaw<UsageDiscount>
     {
         get
         {
-            if (!this._properties.TryGetValue("reason", out JsonElement element))
+            if (!this._rawData.TryGetValue("reason", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["reason"] = JsonSerializer.SerializeToElement(
+            this._rawData["reason"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -145,24 +145,22 @@ public sealed record class UsageDiscount : ModelBase, IFromRaw<UsageDiscount>
 
     public UsageDiscount() { }
 
-    public UsageDiscount(IReadOnlyDictionary<string, JsonElement> properties)
+    public UsageDiscount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UsageDiscount(FrozenDictionary<string, JsonElement> properties)
+    UsageDiscount(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static UsageDiscount FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
-    )
+    public static UsageDiscount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -217,7 +215,7 @@ public sealed record class Filter26 : ModelBase, IFromRaw<Filter26>
     {
         get
         {
-            if (!this._properties.TryGetValue("field", out JsonElement element))
+            if (!this._rawData.TryGetValue("field", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'field' cannot be null",
                     new System::ArgumentOutOfRangeException("field", "Missing required argument")
@@ -230,7 +228,7 @@ public sealed record class Filter26 : ModelBase, IFromRaw<Filter26>
         }
         init
         {
-            this._properties["field"] = JsonSerializer.SerializeToElement(
+            this._rawData["field"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -244,7 +242,7 @@ public sealed record class Filter26 : ModelBase, IFromRaw<Filter26>
     {
         get
         {
-            if (!this._properties.TryGetValue("operator", out JsonElement element))
+            if (!this._rawData.TryGetValue("operator", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'operator' cannot be null",
                     new System::ArgumentOutOfRangeException("operator", "Missing required argument")
@@ -257,7 +255,7 @@ public sealed record class Filter26 : ModelBase, IFromRaw<Filter26>
         }
         init
         {
-            this._properties["operator"] = JsonSerializer.SerializeToElement(
+            this._rawData["operator"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -271,7 +269,7 @@ public sealed record class Filter26 : ModelBase, IFromRaw<Filter26>
     {
         get
         {
-            if (!this._properties.TryGetValue("values", out JsonElement element))
+            if (!this._rawData.TryGetValue("values", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'values' cannot be null",
                     new System::ArgumentOutOfRangeException("values", "Missing required argument")
@@ -285,7 +283,7 @@ public sealed record class Filter26 : ModelBase, IFromRaw<Filter26>
         }
         init
         {
-            this._properties["values"] = JsonSerializer.SerializeToElement(
+            this._rawData["values"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -301,22 +299,22 @@ public sealed record class Filter26 : ModelBase, IFromRaw<Filter26>
 
     public Filter26() { }
 
-    public Filter26(IReadOnlyDictionary<string, JsonElement> properties)
+    public Filter26(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter26(FrozenDictionary<string, JsonElement> properties)
+    Filter26(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Filter26 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static Filter26 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 

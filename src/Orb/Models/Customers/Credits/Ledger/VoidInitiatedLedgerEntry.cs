@@ -16,7 +16,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
     {
         get
         {
-            if (!this._properties.TryGetValue("id", out JsonElement element))
+            if (!this._rawData.TryGetValue("id", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'id' cannot be null",
                     new System::ArgumentOutOfRangeException("id", "Missing required argument")
@@ -30,7 +30,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
         }
         init
         {
-            this._properties["id"] = JsonSerializer.SerializeToElement(
+            this._rawData["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -41,7 +41,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
     {
         get
         {
-            if (!this._properties.TryGetValue("amount", out JsonElement element))
+            if (!this._rawData.TryGetValue("amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'amount' cannot be null",
                     new System::ArgumentOutOfRangeException("amount", "Missing required argument")
@@ -51,7 +51,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
         }
         init
         {
-            this._properties["amount"] = JsonSerializer.SerializeToElement(
+            this._rawData["amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -62,7 +62,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
     {
         get
         {
-            if (!this._properties.TryGetValue("created_at", out JsonElement element))
+            if (!this._rawData.TryGetValue("created_at", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'created_at' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -78,7 +78,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
         }
         init
         {
-            this._properties["created_at"] = JsonSerializer.SerializeToElement(
+            this._rawData["created_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -89,7 +89,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
     {
         get
         {
-            if (!this._properties.TryGetValue("credit_block", out JsonElement element))
+            if (!this._rawData.TryGetValue("credit_block", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'credit_block' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -106,7 +106,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
         }
         init
         {
-            this._properties["credit_block"] = JsonSerializer.SerializeToElement(
+            this._rawData["credit_block"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -117,7 +117,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
     {
         get
         {
-            if (!this._properties.TryGetValue("currency", out JsonElement element))
+            if (!this._rawData.TryGetValue("currency", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'currency' cannot be null",
                     new System::ArgumentOutOfRangeException("currency", "Missing required argument")
@@ -131,7 +131,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
         }
         init
         {
-            this._properties["currency"] = JsonSerializer.SerializeToElement(
+            this._rawData["currency"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -142,7 +142,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
     {
         get
         {
-            if (!this._properties.TryGetValue("customer", out JsonElement element))
+            if (!this._rawData.TryGetValue("customer", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'customer' cannot be null",
                     new System::ArgumentOutOfRangeException("customer", "Missing required argument")
@@ -159,7 +159,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
         }
         init
         {
-            this._properties["customer"] = JsonSerializer.SerializeToElement(
+            this._rawData["customer"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -170,14 +170,14 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
     {
         get
         {
-            if (!this._properties.TryGetValue("description", out JsonElement element))
+            if (!this._rawData.TryGetValue("description", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["description"] = JsonSerializer.SerializeToElement(
+            this._rawData["description"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -188,7 +188,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
     {
         get
         {
-            if (!this._properties.TryGetValue("ending_balance", out JsonElement element))
+            if (!this._rawData.TryGetValue("ending_balance", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'ending_balance' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -201,7 +201,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
         }
         init
         {
-            this._properties["ending_balance"] = JsonSerializer.SerializeToElement(
+            this._rawData["ending_balance"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -212,7 +212,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
     {
         get
         {
-            if (!this._properties.TryGetValue("entry_status", out JsonElement element))
+            if (!this._rawData.TryGetValue("entry_status", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'entry_status' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -228,7 +228,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
         }
         init
         {
-            this._properties["entry_status"] = JsonSerializer.SerializeToElement(
+            this._rawData["entry_status"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -239,7 +239,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
     {
         get
         {
-            if (!this._properties.TryGetValue("entry_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("entry_type", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'entry_type' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -255,7 +255,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
         }
         init
         {
-            this._properties["entry_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["entry_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -266,7 +266,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
     {
         get
         {
-            if (!this._properties.TryGetValue("ledger_sequence_number", out JsonElement element))
+            if (!this._rawData.TryGetValue("ledger_sequence_number", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'ledger_sequence_number' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -279,7 +279,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
         }
         init
         {
-            this._properties["ledger_sequence_number"] = JsonSerializer.SerializeToElement(
+            this._rawData["ledger_sequence_number"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -296,7 +296,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
     {
         get
         {
-            if (!this._properties.TryGetValue("metadata", out JsonElement element))
+            if (!this._rawData.TryGetValue("metadata", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'metadata' cannot be null",
                     new System::ArgumentOutOfRangeException("metadata", "Missing required argument")
@@ -313,7 +313,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
         }
         init
         {
-            this._properties["metadata"] = JsonSerializer.SerializeToElement(
+            this._rawData["metadata"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -324,7 +324,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
     {
         get
         {
-            if (!this._properties.TryGetValue("new_block_expiry_date", out JsonElement element))
+            if (!this._rawData.TryGetValue("new_block_expiry_date", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'new_block_expiry_date' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -340,7 +340,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
         }
         init
         {
-            this._properties["new_block_expiry_date"] = JsonSerializer.SerializeToElement(
+            this._rawData["new_block_expiry_date"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -351,7 +351,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
     {
         get
         {
-            if (!this._properties.TryGetValue("starting_balance", out JsonElement element))
+            if (!this._rawData.TryGetValue("starting_balance", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'starting_balance' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -364,7 +364,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
         }
         init
         {
-            this._properties["starting_balance"] = JsonSerializer.SerializeToElement(
+            this._rawData["starting_balance"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -375,7 +375,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
     {
         get
         {
-            if (!this._properties.TryGetValue("void_amount", out JsonElement element))
+            if (!this._rawData.TryGetValue("void_amount", out JsonElement element))
                 throw new OrbInvalidDataException(
                     "'void_amount' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -388,7 +388,7 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
         }
         init
         {
-            this._properties["void_amount"] = JsonSerializer.SerializeToElement(
+            this._rawData["void_amount"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -399,14 +399,14 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
     {
         get
         {
-            if (!this._properties.TryGetValue("void_reason", out JsonElement element))
+            if (!this._rawData.TryGetValue("void_reason", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
         init
         {
-            this._properties["void_reason"] = JsonSerializer.SerializeToElement(
+            this._rawData["void_reason"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -435,24 +435,24 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
 
     public VoidInitiatedLedgerEntry() { }
 
-    public VoidInitiatedLedgerEntry(IReadOnlyDictionary<string, JsonElement> properties)
+    public VoidInitiatedLedgerEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    VoidInitiatedLedgerEntry(FrozenDictionary<string, JsonElement> properties)
+    VoidInitiatedLedgerEntry(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static VoidInitiatedLedgerEntry FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
