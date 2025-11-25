@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
-[JsonConverter(typeof(ModelConverter<VoidInitiatedLedgerEntry>))]
-public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidInitiatedLedgerEntry>
+[JsonConverter(typeof(ModelConverter<VoidInitiatedLedgerEntry, VoidInitiatedLedgerEntryFromRaw>))]
+public sealed record class VoidInitiatedLedgerEntry : ModelBase
 {
     public required string ID
     {
@@ -454,6 +454,13 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase, IFromRaw<VoidIn
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class VoidInitiatedLedgerEntryFromRaw : IFromRaw<VoidInitiatedLedgerEntry>
+{
+    public VoidInitiatedLedgerEntry FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => VoidInitiatedLedgerEntry.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(VoidInitiatedLedgerEntryEntryStatusConverter))]

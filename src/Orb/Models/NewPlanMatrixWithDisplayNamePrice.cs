@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewPlanMatrixWithDisplayNamePrice>))]
-public sealed record class NewPlanMatrixWithDisplayNamePrice
-    : ModelBase,
-        IFromRaw<NewPlanMatrixWithDisplayNamePrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanMatrixWithDisplayNamePrice,
+        NewPlanMatrixWithDisplayNamePriceFromRaw
+    >)
+)]
+public sealed record class NewPlanMatrixWithDisplayNamePrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -511,6 +514,13 @@ public sealed record class NewPlanMatrixWithDisplayNamePrice
     }
 }
 
+class NewPlanMatrixWithDisplayNamePriceFromRaw : IFromRaw<NewPlanMatrixWithDisplayNamePrice>
+{
+    public NewPlanMatrixWithDisplayNamePrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanMatrixWithDisplayNamePrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -575,11 +585,12 @@ sealed class NewPlanMatrixWithDisplayNamePriceCadenceConverter
 /// Configuration for matrix_with_display_name pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig>)
+    typeof(ModelConverter<
+        NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig,
+        NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigFromRaw
+    >)
 )]
-public sealed record class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig
-    : ModelBase,
-        IFromRaw<NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig>
+public sealed record class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig : ModelBase
 {
     /// <summary>
     /// Used to determine the unit rate
@@ -682,11 +693,19 @@ public sealed record class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNam
     }
 }
 
+class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigFromRaw
+    : IFromRaw<NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig>
+{
+    public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a unit amount item
 /// </summary>
-[JsonConverter(typeof(ModelConverter<UnitAmount2>))]
-public sealed record class UnitAmount2 : ModelBase, IFromRaw<UnitAmount2>
+[JsonConverter(typeof(ModelConverter<UnitAmount2, UnitAmount2FromRaw>))]
+public sealed record class UnitAmount2 : ModelBase
 {
     /// <summary>
     /// The dimension value
@@ -807,6 +826,12 @@ public sealed record class UnitAmount2 : ModelBase, IFromRaw<UnitAmount2>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class UnitAmount2FromRaw : IFromRaw<UnitAmount2>
+{
+    public UnitAmount2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        UnitAmount2.FromRawUnchecked(rawData);
 }
 
 /// <summary>

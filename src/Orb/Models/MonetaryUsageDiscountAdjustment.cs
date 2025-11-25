@@ -9,10 +9,10 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<MonetaryUsageDiscountAdjustment>))]
-public sealed record class MonetaryUsageDiscountAdjustment
-    : ModelBase,
-        IFromRaw<MonetaryUsageDiscountAdjustment>
+[JsonConverter(
+    typeof(ModelConverter<MonetaryUsageDiscountAdjustment, MonetaryUsageDiscountAdjustmentFromRaw>)
+)]
+public sealed record class MonetaryUsageDiscountAdjustment : ModelBase
 {
     public required string ID
     {
@@ -296,6 +296,13 @@ public sealed record class MonetaryUsageDiscountAdjustment
     }
 }
 
+class MonetaryUsageDiscountAdjustmentFromRaw : IFromRaw<MonetaryUsageDiscountAdjustment>
+{
+    public MonetaryUsageDiscountAdjustment FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MonetaryUsageDiscountAdjustment.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(MonetaryUsageDiscountAdjustmentAdjustmentTypeConverter))]
 public enum MonetaryUsageDiscountAdjustmentAdjustmentType
 {
@@ -338,8 +345,8 @@ sealed class MonetaryUsageDiscountAdjustmentAdjustmentTypeConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Filter10>))]
-public sealed record class Filter10 : ModelBase, IFromRaw<Filter10>
+[JsonConverter(typeof(ModelConverter<Filter10, Filter10FromRaw>))]
+public sealed record class Filter10 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -449,6 +456,12 @@ public sealed record class Filter10 : ModelBase, IFromRaw<Filter10>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Filter10FromRaw : IFromRaw<Filter10>
+{
+    public Filter10 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Filter10.FromRawUnchecked(rawData);
 }
 
 /// <summary>

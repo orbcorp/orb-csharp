@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Events;
 
-[JsonConverter(typeof(ModelConverter<EventDeprecateResponse>))]
-public sealed record class EventDeprecateResponse : ModelBase, IFromRaw<EventDeprecateResponse>
+[JsonConverter(typeof(ModelConverter<EventDeprecateResponse, EventDeprecateResponseFromRaw>))]
+public sealed record class EventDeprecateResponse : ModelBase
 {
     /// <summary>
     /// event_id of the deprecated event, if successfully updated
@@ -73,4 +73,11 @@ public sealed record class EventDeprecateResponse : ModelBase, IFromRaw<EventDep
     {
         this.Deprecated = deprecated;
     }
+}
+
+class EventDeprecateResponseFromRaw : IFromRaw<EventDeprecateResponse>
+{
+    public EventDeprecateResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => EventDeprecateResponse.FromRawUnchecked(rawData);
 }

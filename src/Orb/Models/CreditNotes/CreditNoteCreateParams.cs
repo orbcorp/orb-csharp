@@ -243,8 +243,13 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.CreditNotes.LineItem>))]
-public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.CreditNotes.LineItem>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.CreditNotes.LineItem,
+        global::Orb.Models.CreditNotes.LineItemFromRaw
+    >)
+)]
+public sealed record class LineItem : ModelBase
 {
     /// <summary>
     /// The total amount in the invoice's currency to credit this line item.
@@ -389,6 +394,13 @@ public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.Cre
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class LineItemFromRaw : IFromRaw<global::Orb.Models.CreditNotes.LineItem>
+{
+    public global::Orb.Models.CreditNotes.LineItem FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.CreditNotes.LineItem.FromRawUnchecked(rawData);
 }
 
 /// <summary>

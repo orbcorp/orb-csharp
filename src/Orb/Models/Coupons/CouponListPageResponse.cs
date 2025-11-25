@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Coupons;
 
-[JsonConverter(typeof(ModelConverter<CouponListPageResponse>))]
-public sealed record class CouponListPageResponse : ModelBase, IFromRaw<CouponListPageResponse>
+[JsonConverter(typeof(ModelConverter<CouponListPageResponse, CouponListPageResponseFromRaw>))]
+public sealed record class CouponListPageResponse : ModelBase
 {
     public required List<Coupon> Data
     {
@@ -98,4 +98,11 @@ public sealed record class CouponListPageResponse : ModelBase, IFromRaw<CouponLi
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CouponListPageResponseFromRaw : IFromRaw<CouponListPageResponse>
+{
+    public CouponListPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CouponListPageResponse.FromRawUnchecked(rawData);
 }

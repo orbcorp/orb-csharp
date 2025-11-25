@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<NewSubscriptionCumulativeGroupedBulkPrice>))]
-public sealed record class NewSubscriptionCumulativeGroupedBulkPrice
-    : ModelBase,
-        IFromRaw<NewSubscriptionCumulativeGroupedBulkPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewSubscriptionCumulativeGroupedBulkPrice,
+        NewSubscriptionCumulativeGroupedBulkPriceFromRaw
+    >)
+)]
+public sealed record class NewSubscriptionCumulativeGroupedBulkPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -513,6 +516,14 @@ public sealed record class NewSubscriptionCumulativeGroupedBulkPrice
     }
 }
 
+class NewSubscriptionCumulativeGroupedBulkPriceFromRaw
+    : IFromRaw<NewSubscriptionCumulativeGroupedBulkPrice>
+{
+    public NewSubscriptionCumulativeGroupedBulkPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewSubscriptionCumulativeGroupedBulkPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -577,11 +588,12 @@ sealed class NewSubscriptionCumulativeGroupedBulkPriceCadenceConverter
 /// Configuration for cumulative_grouped_bulk pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Subscriptions.CumulativeGroupedBulkConfig>)
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.CumulativeGroupedBulkConfig,
+        global::Orb.Models.Subscriptions.CumulativeGroupedBulkConfigFromRaw
+    >)
 )]
-public sealed record class CumulativeGroupedBulkConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.CumulativeGroupedBulkConfig>
+public sealed record class CumulativeGroupedBulkConfig : ModelBase
 {
     /// <summary>
     /// Each tier lower bound must have the same group of values.
@@ -676,13 +688,24 @@ public sealed record class CumulativeGroupedBulkConfig
     }
 }
 
+class CumulativeGroupedBulkConfigFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.CumulativeGroupedBulkConfig>
+{
+    public global::Orb.Models.Subscriptions.CumulativeGroupedBulkConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.CumulativeGroupedBulkConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a dimension value entry
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.DimensionValue>))]
-public sealed record class DimensionValue
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.DimensionValue>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.DimensionValue,
+        global::Orb.Models.Subscriptions.DimensionValueFromRaw
+    >)
+)]
+public sealed record class DimensionValue : ModelBase
 {
     /// <summary>
     /// Grouping key value
@@ -805,6 +828,13 @@ public sealed record class DimensionValue
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class DimensionValueFromRaw : IFromRaw<global::Orb.Models.Subscriptions.DimensionValue>
+{
+    public global::Orb.Models.Subscriptions.DimensionValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.DimensionValue.FromRawUnchecked(rawData);
 }
 
 /// <summary>

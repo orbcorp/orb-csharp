@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Events;
 
-[JsonConverter(typeof(ModelConverter<EventUpdateResponse>))]
-public sealed record class EventUpdateResponse : ModelBase, IFromRaw<EventUpdateResponse>
+[JsonConverter(typeof(ModelConverter<EventUpdateResponse, EventUpdateResponseFromRaw>))]
+public sealed record class EventUpdateResponse : ModelBase
 {
     /// <summary>
     /// event_id of the amended event, if successfully ingested
@@ -73,4 +73,10 @@ public sealed record class EventUpdateResponse : ModelBase, IFromRaw<EventUpdate
     {
         this.Amended = amended;
     }
+}
+
+class EventUpdateResponseFromRaw : IFromRaw<EventUpdateResponse>
+{
+    public EventUpdateResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        EventUpdateResponse.FromRawUnchecked(rawData);
 }

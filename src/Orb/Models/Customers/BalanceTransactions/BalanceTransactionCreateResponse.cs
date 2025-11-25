@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Customers.BalanceTransactions;
 
-[JsonConverter(typeof(ModelConverter<BalanceTransactionCreateResponse>))]
-public sealed record class BalanceTransactionCreateResponse
-    : ModelBase,
-        IFromRaw<BalanceTransactionCreateResponse>
+[JsonConverter(
+    typeof(ModelConverter<
+        BalanceTransactionCreateResponse,
+        BalanceTransactionCreateResponseFromRaw
+    >)
+)]
+public sealed record class BalanceTransactionCreateResponse : ModelBase
 {
     /// <summary>
     /// A unique id for this transaction.
@@ -304,6 +307,13 @@ public sealed record class BalanceTransactionCreateResponse
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class BalanceTransactionCreateResponseFromRaw : IFromRaw<BalanceTransactionCreateResponse>
+{
+    public BalanceTransactionCreateResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BalanceTransactionCreateResponse.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(global::Orb.Models.Customers.BalanceTransactions.ActionConverter))]

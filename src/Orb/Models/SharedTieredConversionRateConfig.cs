@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<SharedTieredConversionRateConfig>))]
-public sealed record class SharedTieredConversionRateConfig
-    : ModelBase,
-        IFromRaw<SharedTieredConversionRateConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        SharedTieredConversionRateConfig,
+        SharedTieredConversionRateConfigFromRaw
+    >)
+)]
+public sealed record class SharedTieredConversionRateConfig : ModelBase
 {
     public required ApiEnum<string, ConversionRateType> ConversionRateType
     {
@@ -99,6 +102,13 @@ public sealed record class SharedTieredConversionRateConfig
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class SharedTieredConversionRateConfigFromRaw : IFromRaw<SharedTieredConversionRateConfig>
+{
+    public SharedTieredConversionRateConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => SharedTieredConversionRateConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(ConversionRateTypeConverter))]

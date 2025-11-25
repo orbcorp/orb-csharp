@@ -14,8 +14,8 @@ namespace Orb.Models.Beta;
 /// The PlanVersion resource represents the prices and adjustments present on a specific
 /// version of a plan.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<PlanVersion>))]
-public sealed record class PlanVersion : ModelBase, IFromRaw<PlanVersion>
+[JsonConverter(typeof(ModelConverter<PlanVersion, PlanVersionFromRaw>))]
+public sealed record class PlanVersion : ModelBase
 {
     /// <summary>
     /// Adjustments for this plan. If the plan has phases, this includes adjustments
@@ -190,6 +190,12 @@ public sealed record class PlanVersion : ModelBase, IFromRaw<PlanVersion>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class PlanVersionFromRaw : IFromRaw<PlanVersion>
+{
+    public PlanVersion FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PlanVersion.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(global::Orb.Models.Beta.AdjustmentConverter))]

@@ -9,10 +9,10 @@ using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
-[JsonConverter(typeof(ModelConverter<ExpirationChangeLedgerEntry>))]
-public sealed record class ExpirationChangeLedgerEntry
-    : ModelBase,
-        IFromRaw<ExpirationChangeLedgerEntry>
+[JsonConverter(
+    typeof(ModelConverter<ExpirationChangeLedgerEntry, ExpirationChangeLedgerEntryFromRaw>)
+)]
+public sealed record class ExpirationChangeLedgerEntry : ModelBase
 {
     public required string ID
     {
@@ -404,6 +404,13 @@ public sealed record class ExpirationChangeLedgerEntry
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ExpirationChangeLedgerEntryFromRaw : IFromRaw<ExpirationChangeLedgerEntry>
+{
+    public ExpirationChangeLedgerEntry FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ExpirationChangeLedgerEntry.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(ExpirationChangeLedgerEntryEntryStatusConverter))]

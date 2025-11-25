@@ -558,8 +558,8 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<BodyModelIncrement>))]
-public sealed record class BodyModelIncrement : ModelBase, IFromRaw<BodyModelIncrement>
+[JsonConverter(typeof(ModelConverter<BodyModelIncrement, BodyModelIncrementFromRaw>))]
+public sealed record class BodyModelIncrement : ModelBase
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -862,6 +862,12 @@ public sealed record class BodyModelIncrement : ModelBase, IFromRaw<BodyModelInc
     }
 }
 
+class BodyModelIncrementFromRaw : IFromRaw<BodyModelIncrement>
+{
+    public BodyModelIncrement FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        BodyModelIncrement.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(Converter))]
 public class BodyModelIncrementEntryType
 {
@@ -912,10 +918,13 @@ public class BodyModelIncrementEntryType
 /// <summary>
 /// A PriceFilter that only allows item_id field for block filters.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Customers.Credits.Ledger.FilterModel>))]
-public sealed record class FilterModel
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Customers.Credits.Ledger.FilterModel>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Customers.Credits.Ledger.FilterModel,
+        global::Orb.Models.Customers.Credits.Ledger.FilterModelFromRaw
+    >)
+)]
+public sealed record class FilterModel : ModelBase
 {
     /// <summary>
     /// The property of the price the block applies to. Only item_id is supported.
@@ -1033,6 +1042,13 @@ public sealed record class FilterModel
     }
 }
 
+class FilterModelFromRaw : IFromRaw<global::Orb.Models.Customers.Credits.Ledger.FilterModel>
+{
+    public global::Orb.Models.Customers.Credits.Ledger.FilterModel FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Customers.Credits.Ledger.FilterModel.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The property of the price the block applies to. Only item_id is supported.
 /// </summary>
@@ -1133,10 +1149,13 @@ sealed class FilterModelOperatorConverter
 /// credits. If `invoice_settings` is passed, you must specify per_unit_cost_basis,
 /// as the calculation of the invoice total is done on that basis.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<BodyModelIncrementInvoiceSettings>))]
-public sealed record class BodyModelIncrementInvoiceSettings
-    : ModelBase,
-        IFromRaw<BodyModelIncrementInvoiceSettings>
+[JsonConverter(
+    typeof(ModelConverter<
+        BodyModelIncrementInvoiceSettings,
+        BodyModelIncrementInvoiceSettingsFromRaw
+    >)
+)]
+public sealed record class BodyModelIncrementInvoiceSettings : ModelBase
 {
     /// <summary>
     /// Whether the credits purchase invoice should auto collect with the customer's
@@ -1352,6 +1371,13 @@ public sealed record class BodyModelIncrementInvoiceSettings
     {
         this.AutoCollection = autoCollection;
     }
+}
+
+class BodyModelIncrementInvoiceSettingsFromRaw : IFromRaw<BodyModelIncrementInvoiceSettings>
+{
+    public BodyModelIncrementInvoiceSettings FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BodyModelIncrementInvoiceSettings.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -1647,8 +1673,8 @@ sealed class BodyModelIncrementInvoiceSettingsInvoiceDateConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<BodyModelDecrement>))]
-public sealed record class BodyModelDecrement : ModelBase, IFromRaw<BodyModelDecrement>
+[JsonConverter(typeof(ModelConverter<BodyModelDecrement, BodyModelDecrementFromRaw>))]
+public sealed record class BodyModelDecrement : ModelBase
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -1821,6 +1847,12 @@ public sealed record class BodyModelDecrement : ModelBase, IFromRaw<BodyModelDec
     }
 }
 
+class BodyModelDecrementFromRaw : IFromRaw<BodyModelDecrement>
+{
+    public BodyModelDecrement FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        BodyModelDecrement.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(Converter))]
 public class BodyModelDecrementEntryType
 {
@@ -1868,10 +1900,8 @@ public class BodyModelDecrementEntryType
     }
 }
 
-[JsonConverter(typeof(ModelConverter<BodyModelExpirationChange>))]
-public sealed record class BodyModelExpirationChange
-    : ModelBase,
-        IFromRaw<BodyModelExpirationChange>
+[JsonConverter(typeof(ModelConverter<BodyModelExpirationChange, BodyModelExpirationChangeFromRaw>))]
+public sealed record class BodyModelExpirationChange : ModelBase
 {
     public BodyModelExpirationChangeEntryType EntryType
     {
@@ -2122,6 +2152,13 @@ public sealed record class BodyModelExpirationChange
     }
 }
 
+class BodyModelExpirationChangeFromRaw : IFromRaw<BodyModelExpirationChange>
+{
+    public BodyModelExpirationChange FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BodyModelExpirationChange.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(Converter))]
 public class BodyModelExpirationChangeEntryType
 {
@@ -2169,8 +2206,8 @@ public class BodyModelExpirationChangeEntryType
     }
 }
 
-[JsonConverter(typeof(ModelConverter<BodyModelVoid>))]
-public sealed record class BodyModelVoid : ModelBase, IFromRaw<BodyModelVoid>
+[JsonConverter(typeof(ModelConverter<BodyModelVoid, BodyModelVoidFromRaw>))]
+public sealed record class BodyModelVoid : ModelBase
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -2388,6 +2425,12 @@ public sealed record class BodyModelVoid : ModelBase, IFromRaw<BodyModelVoid>
     }
 }
 
+class BodyModelVoidFromRaw : IFromRaw<BodyModelVoid>
+{
+    public BodyModelVoid FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        BodyModelVoid.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(Converter))]
 public class BodyModelVoidEntryType
 {
@@ -2477,8 +2520,8 @@ sealed class BodyModelVoidVoidReasonConverter : JsonConverter<BodyModelVoidVoidR
     }
 }
 
-[JsonConverter(typeof(ModelConverter<BodyModelAmendment>))]
-public sealed record class BodyModelAmendment : ModelBase, IFromRaw<BodyModelAmendment>
+[JsonConverter(typeof(ModelConverter<BodyModelAmendment, BodyModelAmendmentFromRaw>))]
+public sealed record class BodyModelAmendment : ModelBase
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -2671,6 +2714,12 @@ public sealed record class BodyModelAmendment : ModelBase, IFromRaw<BodyModelAme
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class BodyModelAmendmentFromRaw : IFromRaw<BodyModelAmendment>
+{
+    public BodyModelAmendment FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        BodyModelAmendment.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(Converter))]

@@ -12,8 +12,8 @@ namespace Orb.Models;
 /// <summary>
 /// Configuration for package pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<PackageConfig>))]
-public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
+[JsonConverter(typeof(ModelConverter<PackageConfig, PackageConfigFromRaw>))]
+public sealed record class PackageConfig : ModelBase
 {
     /// <summary>
     /// A currency amount to rate usage by
@@ -93,4 +93,10 @@ public sealed record class PackageConfig : ModelBase, IFromRaw<PackageConfig>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class PackageConfigFromRaw : IFromRaw<PackageConfig>
+{
+    public PackageConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PackageConfig.FromRawUnchecked(rawData);
 }

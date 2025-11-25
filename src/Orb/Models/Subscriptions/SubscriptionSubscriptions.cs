@@ -9,10 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<SubscriptionSubscriptions>))]
-public sealed record class SubscriptionSubscriptions
-    : ModelBase,
-        IFromRaw<SubscriptionSubscriptions>
+[JsonConverter(typeof(ModelConverter<SubscriptionSubscriptions, SubscriptionSubscriptionsFromRaw>))]
+public sealed record class SubscriptionSubscriptions : ModelBase
 {
     public required List<Subscription> Data
     {
@@ -103,4 +101,11 @@ public sealed record class SubscriptionSubscriptions
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class SubscriptionSubscriptionsFromRaw : IFromRaw<SubscriptionSubscriptions>
+{
+    public SubscriptionSubscriptions FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => SubscriptionSubscriptions.FromRawUnchecked(rawData);
 }

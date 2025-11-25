@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Events.Volume;
 
-[JsonConverter(typeof(ModelConverter<EventVolumes>))]
-public sealed record class EventVolumes : ModelBase, IFromRaw<EventVolumes>
+[JsonConverter(typeof(ModelConverter<EventVolumes, EventVolumesFromRaw>))]
+public sealed record class EventVolumes : ModelBase
 {
     public required List<global::Orb.Models.Events.Volume.Data> Data
     {
@@ -76,12 +76,23 @@ public sealed record class EventVolumes : ModelBase, IFromRaw<EventVolumes>
     }
 }
 
+class EventVolumesFromRaw : IFromRaw<EventVolumes>
+{
+    public EventVolumes FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        EventVolumes.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// An EventVolume contains the event volume ingested in an hourly window. The timestamp
 /// used for the aggregation is the `timestamp` datetime field on events.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Events.Volume.Data>))]
-public sealed record class Data : ModelBase, IFromRaw<global::Orb.Models.Events.Volume.Data>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Events.Volume.Data,
+        global::Orb.Models.Events.Volume.DataFromRaw
+    >)
+)]
+public sealed record class Data : ModelBase
 {
     /// <summary>
     /// The number of events ingested with a timestamp between the timeframe
@@ -177,4 +188,11 @@ public sealed record class Data : ModelBase, IFromRaw<global::Orb.Models.Events.
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class DataFromRaw : IFromRaw<global::Orb.Models.Events.Volume.Data>
+{
+    public global::Orb.Models.Events.Volume.Data FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Events.Volume.Data.FromRawUnchecked(rawData);
 }

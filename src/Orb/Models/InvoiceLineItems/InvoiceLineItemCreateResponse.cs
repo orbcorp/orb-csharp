@@ -9,10 +9,10 @@ using System = System;
 
 namespace Orb.Models.InvoiceLineItems;
 
-[JsonConverter(typeof(ModelConverter<InvoiceLineItemCreateResponse>))]
-public sealed record class InvoiceLineItemCreateResponse
-    : ModelBase,
-        IFromRaw<InvoiceLineItemCreateResponse>
+[JsonConverter(
+    typeof(ModelConverter<InvoiceLineItemCreateResponse, InvoiceLineItemCreateResponseFromRaw>)
+)]
+public sealed record class InvoiceLineItemCreateResponse : ModelBase
 {
     /// <summary>
     /// A unique ID for this line item.
@@ -556,6 +556,13 @@ public sealed record class InvoiceLineItemCreateResponse
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class InvoiceLineItemCreateResponseFromRaw : IFromRaw<InvoiceLineItemCreateResponse>
+{
+    public InvoiceLineItemCreateResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => InvoiceLineItemCreateResponse.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(global::Orb.Models.InvoiceLineItems.AdjustmentConverter))]

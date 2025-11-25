@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewFloatingPackageWithAllocationPrice>))]
-public sealed record class NewFloatingPackageWithAllocationPrice
-    : ModelBase,
-        IFromRaw<NewFloatingPackageWithAllocationPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewFloatingPackageWithAllocationPrice,
+        NewFloatingPackageWithAllocationPriceFromRaw
+    >)
+)]
+public sealed record class NewFloatingPackageWithAllocationPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -494,6 +497,13 @@ public sealed record class NewFloatingPackageWithAllocationPrice
     }
 }
 
+class NewFloatingPackageWithAllocationPriceFromRaw : IFromRaw<NewFloatingPackageWithAllocationPrice>
+{
+    public NewFloatingPackageWithAllocationPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewFloatingPackageWithAllocationPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -604,10 +614,10 @@ sealed class NewFloatingPackageWithAllocationPriceModelTypeConverter
 /// <summary>
 /// Configuration for package_with_allocation pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<PackageWithAllocationConfig>))]
-public sealed record class PackageWithAllocationConfig
-    : ModelBase,
-        IFromRaw<PackageWithAllocationConfig>
+[JsonConverter(
+    typeof(ModelConverter<PackageWithAllocationConfig, PackageWithAllocationConfigFromRaw>)
+)]
+public sealed record class PackageWithAllocationConfig : ModelBase
 {
     /// <summary>
     /// Usage allocation
@@ -730,6 +740,13 @@ public sealed record class PackageWithAllocationConfig
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class PackageWithAllocationConfigFromRaw : IFromRaw<PackageWithAllocationConfig>
+{
+    public PackageWithAllocationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PackageWithAllocationConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewFloatingPackageWithAllocationPriceConversionRateConfigConverter))]

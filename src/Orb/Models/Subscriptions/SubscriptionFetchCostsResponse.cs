@@ -9,10 +9,10 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<SubscriptionFetchCostsResponse>))]
-public sealed record class SubscriptionFetchCostsResponse
-    : ModelBase,
-        IFromRaw<SubscriptionFetchCostsResponse>
+[JsonConverter(
+    typeof(ModelConverter<SubscriptionFetchCostsResponse, SubscriptionFetchCostsResponseFromRaw>)
+)]
+public sealed record class SubscriptionFetchCostsResponse : ModelBase
 {
     public required List<AggregatedCost> Data
     {
@@ -78,4 +78,11 @@ public sealed record class SubscriptionFetchCostsResponse
     {
         this.Data = data;
     }
+}
+
+class SubscriptionFetchCostsResponseFromRaw : IFromRaw<SubscriptionFetchCostsResponse>
+{
+    public SubscriptionFetchCostsResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => SubscriptionFetchCostsResponse.FromRawUnchecked(rawData);
 }

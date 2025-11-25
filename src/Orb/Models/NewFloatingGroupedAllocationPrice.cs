@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewFloatingGroupedAllocationPrice>))]
-public sealed record class NewFloatingGroupedAllocationPrice
-    : ModelBase,
-        IFromRaw<NewFloatingGroupedAllocationPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewFloatingGroupedAllocationPrice,
+        NewFloatingGroupedAllocationPriceFromRaw
+    >)
+)]
+public sealed record class NewFloatingGroupedAllocationPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -489,6 +492,13 @@ public sealed record class NewFloatingGroupedAllocationPrice
     }
 }
 
+class NewFloatingGroupedAllocationPriceFromRaw : IFromRaw<NewFloatingGroupedAllocationPrice>
+{
+    public NewFloatingGroupedAllocationPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewFloatingGroupedAllocationPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -552,8 +562,8 @@ sealed class NewFloatingGroupedAllocationPriceCadenceConverter
 /// <summary>
 /// Configuration for grouped_allocation pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<GroupedAllocationConfig>))]
-public sealed record class GroupedAllocationConfig : ModelBase, IFromRaw<GroupedAllocationConfig>
+[JsonConverter(typeof(ModelConverter<GroupedAllocationConfig, GroupedAllocationConfigFromRaw>))]
+public sealed record class GroupedAllocationConfig : ModelBase
 {
     /// <summary>
     /// Usage allocation per group
@@ -676,6 +686,13 @@ public sealed record class GroupedAllocationConfig : ModelBase, IFromRaw<Grouped
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class GroupedAllocationConfigFromRaw : IFromRaw<GroupedAllocationConfig>
+{
+    public GroupedAllocationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedAllocationConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>

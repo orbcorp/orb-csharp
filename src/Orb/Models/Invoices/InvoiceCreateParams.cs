@@ -368,8 +368,13 @@ public sealed record class InvoiceCreateParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Invoices.LineItem>))]
-public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.Invoices.LineItem>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Invoices.LineItem,
+        global::Orb.Models.Invoices.LineItemFromRaw
+    >)
+)]
+public sealed record class LineItem : ModelBase
 {
     /// <summary>
     /// A date string to specify the line item's end date in the customer's timezone.
@@ -594,6 +599,13 @@ public sealed record class LineItem : ModelBase, IFromRaw<global::Orb.Models.Inv
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class LineItemFromRaw : IFromRaw<global::Orb.Models.Invoices.LineItem>
+{
+    public global::Orb.Models.Invoices.LineItem FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Invoices.LineItem.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(global::Orb.Models.Invoices.ModelTypeConverter))]

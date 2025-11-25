@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<NewSubscriptionGroupedAllocationPrice>))]
-public sealed record class NewSubscriptionGroupedAllocationPrice
-    : ModelBase,
-        IFromRaw<NewSubscriptionGroupedAllocationPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewSubscriptionGroupedAllocationPrice,
+        NewSubscriptionGroupedAllocationPriceFromRaw
+    >)
+)]
+public sealed record class NewSubscriptionGroupedAllocationPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -506,6 +509,13 @@ public sealed record class NewSubscriptionGroupedAllocationPrice
     }
 }
 
+class NewSubscriptionGroupedAllocationPriceFromRaw : IFromRaw<NewSubscriptionGroupedAllocationPrice>
+{
+    public NewSubscriptionGroupedAllocationPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewSubscriptionGroupedAllocationPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -569,10 +579,13 @@ sealed class NewSubscriptionGroupedAllocationPriceCadenceConverter
 /// <summary>
 /// Configuration for grouped_allocation pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.GroupedAllocationConfig>))]
-public sealed record class GroupedAllocationConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.GroupedAllocationConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.GroupedAllocationConfig,
+        global::Orb.Models.Subscriptions.GroupedAllocationConfigFromRaw
+    >)
+)]
+public sealed record class GroupedAllocationConfig : ModelBase
 {
     /// <summary>
     /// Usage allocation per group
@@ -695,6 +708,14 @@ public sealed record class GroupedAllocationConfig
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class GroupedAllocationConfigFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.GroupedAllocationConfig>
+{
+    public global::Orb.Models.Subscriptions.GroupedAllocationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.GroupedAllocationConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>

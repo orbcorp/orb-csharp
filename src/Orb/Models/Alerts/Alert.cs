@@ -15,8 +15,8 @@ namespace Orb.Models.Alerts;
 ///
 /// <para>Alerts created through the API can be scoped to either customers or subscriptions.</para>
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Alert>))]
-public sealed record class Alert : ModelBase, IFromRaw<Alert>
+[JsonConverter(typeof(ModelConverter<Alert, AlertFromRaw>))]
+public sealed record class Alert : ModelBase
 {
     /// <summary>
     /// Also referred to as alert_id in this documentation.
@@ -328,11 +328,17 @@ public sealed record class Alert : ModelBase, IFromRaw<Alert>
     }
 }
 
+class AlertFromRaw : IFromRaw<Alert>
+{
+    public Alert FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Alert.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The metric the alert applies to.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Metric>))]
-public sealed record class Metric : ModelBase, IFromRaw<Metric>
+[JsonConverter(typeof(ModelConverter<Metric, MetricFromRaw>))]
+public sealed record class Metric : ModelBase
 {
     public required string ID
     {
@@ -392,11 +398,17 @@ public sealed record class Metric : ModelBase, IFromRaw<Metric>
     }
 }
 
+class MetricFromRaw : IFromRaw<Metric>
+{
+    public Metric FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Metric.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The plan the alert applies to.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Plan>))]
-public sealed record class Plan : ModelBase, IFromRaw<Plan>
+[JsonConverter(typeof(ModelConverter<Plan, PlanFromRaw>))]
+public sealed record class Plan : ModelBase
 {
     public required string? ID
     {
@@ -514,6 +526,12 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
     }
 }
 
+class PlanFromRaw : IFromRaw<Plan>
+{
+    public Plan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Plan.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The type of alert. This must be a valid alert type.
 /// </summary>
@@ -573,8 +591,8 @@ sealed class AlertTypeConverter : JsonConverter<AlertType>
 /// <summary>
 /// Alert status is used to determine if an alert is currently in-alert or not.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<BalanceAlertStatus>))]
-public sealed record class BalanceAlertStatus : ModelBase, IFromRaw<BalanceAlertStatus>
+[JsonConverter(typeof(ModelConverter<BalanceAlertStatus, BalanceAlertStatusFromRaw>))]
+public sealed record class BalanceAlertStatus : ModelBase
 {
     /// <summary>
     /// Whether the alert is currently in-alert or not.
@@ -654,4 +672,10 @@ public sealed record class BalanceAlertStatus : ModelBase, IFromRaw<BalanceAlert
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class BalanceAlertStatusFromRaw : IFromRaw<BalanceAlertStatus>
+{
+    public BalanceAlertStatus FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        BalanceAlertStatus.FromRawUnchecked(rawData);
 }

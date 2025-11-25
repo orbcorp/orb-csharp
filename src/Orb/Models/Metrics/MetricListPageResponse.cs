@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Metrics;
 
-[JsonConverter(typeof(ModelConverter<MetricListPageResponse>))]
-public sealed record class MetricListPageResponse : ModelBase, IFromRaw<MetricListPageResponse>
+[JsonConverter(typeof(ModelConverter<MetricListPageResponse, MetricListPageResponseFromRaw>))]
+public sealed record class MetricListPageResponse : ModelBase
 {
     public required List<BillableMetric> Data
     {
@@ -101,4 +101,11 @@ public sealed record class MetricListPageResponse : ModelBase, IFromRaw<MetricLi
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class MetricListPageResponseFromRaw : IFromRaw<MetricListPageResponse>
+{
+    public MetricListPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MetricListPageResponse.FromRawUnchecked(rawData);
 }

@@ -14,8 +14,8 @@ namespace Orb.Models.DimensionalPriceGroups;
 /// by a set of dimensions. Prices in a price group must specify the parition used
 /// to derive their usage.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<DimensionalPriceGroup>))]
-public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<DimensionalPriceGroup>
+[JsonConverter(typeof(ModelConverter<DimensionalPriceGroup, DimensionalPriceGroupFromRaw>))]
+public sealed record class DimensionalPriceGroup : ModelBase
 {
     public required string ID
     {
@@ -220,4 +220,11 @@ public sealed record class DimensionalPriceGroup : ModelBase, IFromRaw<Dimension
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class DimensionalPriceGroupFromRaw : IFromRaw<DimensionalPriceGroup>
+{
+    public DimensionalPriceGroup FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => DimensionalPriceGroup.FromRawUnchecked(rawData);
 }

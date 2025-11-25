@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Customers.Costs;
 
-[JsonConverter(typeof(ModelConverter<CostListResponse>))]
-public sealed record class CostListResponse : ModelBase, IFromRaw<CostListResponse>
+[JsonConverter(typeof(ModelConverter<CostListResponse, CostListResponseFromRaw>))]
+public sealed record class CostListResponse : ModelBase
 {
     public required List<AggregatedCost> Data
     {
@@ -76,4 +76,10 @@ public sealed record class CostListResponse : ModelBase, IFromRaw<CostListRespon
     {
         this.Data = data;
     }
+}
+
+class CostListResponseFromRaw : IFromRaw<CostListResponse>
+{
+    public CostListResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        CostListResponse.FromRawUnchecked(rawData);
 }

@@ -9,10 +9,10 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewPlanGroupedAllocationPrice>))]
-public sealed record class NewPlanGroupedAllocationPrice
-    : ModelBase,
-        IFromRaw<NewPlanGroupedAllocationPrice>
+[JsonConverter(
+    typeof(ModelConverter<NewPlanGroupedAllocationPrice, NewPlanGroupedAllocationPriceFromRaw>)
+)]
+public sealed record class NewPlanGroupedAllocationPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -506,6 +506,13 @@ public sealed record class NewPlanGroupedAllocationPrice
     }
 }
 
+class NewPlanGroupedAllocationPriceFromRaw : IFromRaw<NewPlanGroupedAllocationPrice>
+{
+    public NewPlanGroupedAllocationPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanGroupedAllocationPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -569,10 +576,13 @@ sealed class NewPlanGroupedAllocationPriceCadenceConverter
 /// <summary>
 /// Configuration for grouped_allocation pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<NewPlanGroupedAllocationPriceGroupedAllocationConfig>))]
-public sealed record class NewPlanGroupedAllocationPriceGroupedAllocationConfig
-    : ModelBase,
-        IFromRaw<NewPlanGroupedAllocationPriceGroupedAllocationConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanGroupedAllocationPriceGroupedAllocationConfig,
+        NewPlanGroupedAllocationPriceGroupedAllocationConfigFromRaw
+    >)
+)]
+public sealed record class NewPlanGroupedAllocationPriceGroupedAllocationConfig : ModelBase
 {
     /// <summary>
     /// Usage allocation per group
@@ -699,6 +709,14 @@ public sealed record class NewPlanGroupedAllocationPriceGroupedAllocationConfig
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class NewPlanGroupedAllocationPriceGroupedAllocationConfigFromRaw
+    : IFromRaw<NewPlanGroupedAllocationPriceGroupedAllocationConfig>
+{
+    public NewPlanGroupedAllocationPriceGroupedAllocationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanGroupedAllocationPriceGroupedAllocationConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>

@@ -15,8 +15,8 @@ namespace Orb.Models.Coupons;
 /// using a redemption code, which applies the discount to a subscription or invoice.
 /// The duration of a coupon determines how long it remains available for use by end users.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Coupon>))]
-public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
+[JsonConverter(typeof(ModelConverter<Coupon, CouponFromRaw>))]
+public sealed record class Coupon : ModelBase
 {
     /// <summary>
     /// Also referred to as coupon_id in this documentation.
@@ -228,6 +228,12 @@ public sealed record class Coupon : ModelBase, IFromRaw<Coupon>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CouponFromRaw : IFromRaw<Coupon>
+{
+    public Coupon FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Coupon.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(CouponDiscountConverter))]

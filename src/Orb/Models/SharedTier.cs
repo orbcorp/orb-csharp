@@ -12,8 +12,8 @@ namespace Orb.Models;
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<SharedTier>))]
-public sealed record class SharedTier : ModelBase, IFromRaw<SharedTier>
+[JsonConverter(typeof(ModelConverter<SharedTier, SharedTierFromRaw>))]
+public sealed record class SharedTier : ModelBase
 {
     /// <summary>
     /// Exclusive tier starting value
@@ -115,4 +115,10 @@ public sealed record class SharedTier : ModelBase, IFromRaw<SharedTier>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class SharedTierFromRaw : IFromRaw<SharedTier>
+{
+    public SharedTier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        SharedTier.FromRawUnchecked(rawData);
 }

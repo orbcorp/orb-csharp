@@ -9,10 +9,13 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Prices;
 
-[JsonConverter(typeof(ModelConverter<PriceEvaluatePreviewEventsResponse>))]
-public sealed record class PriceEvaluatePreviewEventsResponse
-    : ModelBase,
-        IFromRaw<PriceEvaluatePreviewEventsResponse>
+[JsonConverter(
+    typeof(ModelConverter<
+        PriceEvaluatePreviewEventsResponse,
+        PriceEvaluatePreviewEventsResponseFromRaw
+    >)
+)]
+public sealed record class PriceEvaluatePreviewEventsResponse : ModelBase
 {
     public required List<DataModel> Data
     {
@@ -77,8 +80,15 @@ public sealed record class PriceEvaluatePreviewEventsResponse
     }
 }
 
-[JsonConverter(typeof(ModelConverter<DataModel>))]
-public sealed record class DataModel : ModelBase, IFromRaw<DataModel>
+class PriceEvaluatePreviewEventsResponseFromRaw : IFromRaw<PriceEvaluatePreviewEventsResponse>
+{
+    public PriceEvaluatePreviewEventsResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PriceEvaluatePreviewEventsResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<DataModel, DataModelFromRaw>))]
+public sealed record class DataModel : ModelBase
 {
     /// <summary>
     /// The currency of the price
@@ -233,4 +243,10 @@ public sealed record class DataModel : ModelBase, IFromRaw<DataModel>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class DataModelFromRaw : IFromRaw<DataModel>
+{
+    public DataModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        DataModel.FromRawUnchecked(rawData);
 }

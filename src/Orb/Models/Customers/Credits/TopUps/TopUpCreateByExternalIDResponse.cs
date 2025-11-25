@@ -9,10 +9,10 @@ using System = System;
 
 namespace Orb.Models.Customers.Credits.TopUps;
 
-[JsonConverter(typeof(ModelConverter<TopUpCreateByExternalIDResponse>))]
-public sealed record class TopUpCreateByExternalIDResponse
-    : ModelBase,
-        IFromRaw<TopUpCreateByExternalIDResponse>
+[JsonConverter(
+    typeof(ModelConverter<TopUpCreateByExternalIDResponse, TopUpCreateByExternalIDResponseFromRaw>)
+)]
+public sealed record class TopUpCreateByExternalIDResponse : ModelBase
 {
     public required string ID
     {
@@ -272,6 +272,13 @@ public sealed record class TopUpCreateByExternalIDResponse
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class TopUpCreateByExternalIDResponseFromRaw : IFromRaw<TopUpCreateByExternalIDResponse>
+{
+    public TopUpCreateByExternalIDResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TopUpCreateByExternalIDResponse.FromRawUnchecked(rawData);
 }
 
 /// <summary>

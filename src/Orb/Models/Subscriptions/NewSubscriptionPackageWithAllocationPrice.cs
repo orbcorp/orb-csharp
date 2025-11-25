@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<NewSubscriptionPackageWithAllocationPrice>))]
-public sealed record class NewSubscriptionPackageWithAllocationPrice
-    : ModelBase,
-        IFromRaw<NewSubscriptionPackageWithAllocationPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewSubscriptionPackageWithAllocationPrice,
+        NewSubscriptionPackageWithAllocationPriceFromRaw
+    >)
+)]
+public sealed record class NewSubscriptionPackageWithAllocationPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -513,6 +516,14 @@ public sealed record class NewSubscriptionPackageWithAllocationPrice
     }
 }
 
+class NewSubscriptionPackageWithAllocationPriceFromRaw
+    : IFromRaw<NewSubscriptionPackageWithAllocationPrice>
+{
+    public NewSubscriptionPackageWithAllocationPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewSubscriptionPackageWithAllocationPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -624,11 +635,12 @@ sealed class NewSubscriptionPackageWithAllocationPriceModelTypeConverter
 /// Configuration for package_with_allocation pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Subscriptions.PackageWithAllocationConfig>)
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.PackageWithAllocationConfig,
+        global::Orb.Models.Subscriptions.PackageWithAllocationConfigFromRaw
+    >)
 )]
-public sealed record class PackageWithAllocationConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.PackageWithAllocationConfig>
+public sealed record class PackageWithAllocationConfig : ModelBase
 {
     /// <summary>
     /// Usage allocation
@@ -751,6 +763,14 @@ public sealed record class PackageWithAllocationConfig
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class PackageWithAllocationConfigFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.PackageWithAllocationConfig>
+{
+    public global::Orb.Models.Subscriptions.PackageWithAllocationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.PackageWithAllocationConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewSubscriptionPackageWithAllocationPriceConversionRateConfigConverter))]

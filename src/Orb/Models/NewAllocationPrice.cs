@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewAllocationPrice>))]
-public sealed record class NewAllocationPrice : ModelBase, IFromRaw<NewAllocationPrice>
+[JsonConverter(typeof(ModelConverter<NewAllocationPrice, NewAllocationPriceFromRaw>))]
+public sealed record class NewAllocationPrice : ModelBase
 {
     /// <summary>
     /// An amount of the currency to allocate to the customer at the specified cadence.
@@ -202,6 +202,12 @@ public sealed record class NewAllocationPrice : ModelBase, IFromRaw<NewAllocatio
     }
 }
 
+class NewAllocationPriceFromRaw : IFromRaw<NewAllocationPrice>
+{
+    public NewAllocationPrice FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        NewAllocationPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence at which to allocate the amount to the customer.
 /// </summary>
@@ -257,8 +263,8 @@ sealed class CadenceConverter : JsonConverter<Cadence>
 /// <summary>
 /// A PriceFilter that only allows item_id field for block filters.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Filter11>))]
-public sealed record class Filter11 : ModelBase, IFromRaw<Filter11>
+[JsonConverter(typeof(ModelConverter<Filter11, Filter11FromRaw>))]
+public sealed record class Filter11 : ModelBase
 {
     /// <summary>
     /// The property of the price the block applies to. Only item_id is supported.
@@ -368,6 +374,12 @@ public sealed record class Filter11 : ModelBase, IFromRaw<Filter11>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Filter11FromRaw : IFromRaw<Filter11>
+{
+    public Filter11 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Filter11.FromRawUnchecked(rawData);
 }
 
 /// <summary>

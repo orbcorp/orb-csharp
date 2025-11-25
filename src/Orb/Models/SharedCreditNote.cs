@@ -13,8 +13,8 @@ namespace Orb.Models;
 /// The [Credit Note](/invoicing/credit-notes) resource represents a credit that
 /// has been applied to a particular invoice.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<SharedCreditNote>))]
-public sealed record class SharedCreditNote : ModelBase, IFromRaw<SharedCreditNote>
+[JsonConverter(typeof(ModelConverter<SharedCreditNote, SharedCreditNoteFromRaw>))]
+public sealed record class SharedCreditNote : ModelBase
 {
     /// <summary>
     /// The Orb id of this credit note.
@@ -488,8 +488,14 @@ public sealed record class SharedCreditNote : ModelBase, IFromRaw<SharedCreditNo
     }
 }
 
-[JsonConverter(typeof(ModelConverter<LineItemModel>))]
-public sealed record class LineItemModel : ModelBase, IFromRaw<LineItemModel>
+class SharedCreditNoteFromRaw : IFromRaw<SharedCreditNote>
+{
+    public SharedCreditNote FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        SharedCreditNote.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<LineItemModel, LineItemModelFromRaw>))]
+public sealed record class LineItemModel : ModelBase
 {
     /// <summary>
     /// The Orb id of this resource.
@@ -801,8 +807,14 @@ public sealed record class LineItemModel : ModelBase, IFromRaw<LineItemModel>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Discount>))]
-public sealed record class Discount : ModelBase, IFromRaw<Discount>
+class LineItemModelFromRaw : IFromRaw<LineItemModel>
+{
+    public LineItemModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        LineItemModel.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Discount, DiscountFromRaw>))]
+public sealed record class Discount : ModelBase
 {
     public required string ID
     {
@@ -1004,6 +1016,12 @@ public sealed record class Discount : ModelBase, IFromRaw<Discount>
     }
 }
 
+class DiscountFromRaw : IFromRaw<Discount>
+{
+    public Discount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Discount.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(DiscountDiscountTypeConverter))]
 public enum DiscountDiscountType
 {
@@ -1051,8 +1069,8 @@ sealed class DiscountDiscountTypeConverter : JsonConverter<DiscountDiscountType>
 /// <summary>
 /// The maximum amount applied on the original invoice
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MaximumAmountAdjustment>))]
-public sealed record class MaximumAmountAdjustment : ModelBase, IFromRaw<MaximumAmountAdjustment>
+[JsonConverter(typeof(ModelConverter<MaximumAmountAdjustment, MaximumAmountAdjustmentFromRaw>))]
+public sealed record class MaximumAmountAdjustment : ModelBase
 {
     public required string AmountApplied
     {
@@ -1207,6 +1225,13 @@ public sealed record class MaximumAmountAdjustment : ModelBase, IFromRaw<Maximum
     }
 }
 
+class MaximumAmountAdjustmentFromRaw : IFromRaw<MaximumAmountAdjustment>
+{
+    public MaximumAmountAdjustment FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MaximumAmountAdjustment.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(MaximumAmountAdjustmentDiscountTypeConverter))]
 public enum MaximumAmountAdjustmentDiscountType
 {
@@ -1249,8 +1274,8 @@ sealed class MaximumAmountAdjustmentDiscountTypeConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AppliesToPrice>))]
-public sealed record class AppliesToPrice : ModelBase, IFromRaw<AppliesToPrice>
+[JsonConverter(typeof(ModelConverter<AppliesToPrice, AppliesToPriceFromRaw>))]
+public sealed record class AppliesToPrice : ModelBase
 {
     public required string ID
     {
@@ -1327,6 +1352,12 @@ public sealed record class AppliesToPrice : ModelBase, IFromRaw<AppliesToPrice>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class AppliesToPriceFromRaw : IFromRaw<AppliesToPrice>
+{
+    public AppliesToPrice FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        AppliesToPrice.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(ReasonConverter))]
@@ -1419,8 +1450,8 @@ sealed class SharedCreditNoteTypeConverter : JsonConverter<SharedCreditNoteType>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<DiscountModel>))]
-public sealed record class DiscountModel : ModelBase, IFromRaw<DiscountModel>
+[JsonConverter(typeof(ModelConverter<DiscountModel, DiscountModelFromRaw>))]
+public sealed record class DiscountModel : ModelBase
 {
     public required string AmountApplied
     {
@@ -1573,6 +1604,12 @@ public sealed record class DiscountModel : ModelBase, IFromRaw<DiscountModel>
     }
 }
 
+class DiscountModelFromRaw : IFromRaw<DiscountModel>
+{
+    public DiscountModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        DiscountModel.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(DiscountModelDiscountTypeConverter))]
 public enum DiscountModelDiscountType
 {
@@ -1614,8 +1651,8 @@ sealed class DiscountModelDiscountTypeConverter : JsonConverter<DiscountModelDis
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AppliesToPriceModel>))]
-public sealed record class AppliesToPriceModel : ModelBase, IFromRaw<AppliesToPriceModel>
+[JsonConverter(typeof(ModelConverter<AppliesToPriceModel, AppliesToPriceModelFromRaw>))]
+public sealed record class AppliesToPriceModel : ModelBase
 {
     public required string ID
     {
@@ -1694,4 +1731,10 @@ public sealed record class AppliesToPriceModel : ModelBase, IFromRaw<AppliesToPr
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class AppliesToPriceModelFromRaw : IFromRaw<AppliesToPriceModel>
+{
+    public AppliesToPriceModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        AppliesToPriceModel.FromRawUnchecked(rawData);
 }

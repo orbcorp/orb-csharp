@@ -9,10 +9,10 @@ using System = System;
 
 namespace Orb.Models.Customers;
 
-[JsonConverter(typeof(ModelConverter<NewAvalaraTaxConfiguration>))]
-public sealed record class NewAvalaraTaxConfiguration
-    : ModelBase,
-        IFromRaw<NewAvalaraTaxConfiguration>
+[JsonConverter(
+    typeof(ModelConverter<NewAvalaraTaxConfiguration, NewAvalaraTaxConfigurationFromRaw>)
+)]
+public sealed record class NewAvalaraTaxConfiguration : ModelBase
 {
     public required bool TaxExempt
     {
@@ -133,6 +133,13 @@ public sealed record class NewAvalaraTaxConfiguration
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class NewAvalaraTaxConfigurationFromRaw : IFromRaw<NewAvalaraTaxConfiguration>
+{
+    public NewAvalaraTaxConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewAvalaraTaxConfiguration.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewAvalaraTaxConfigurationTaxProviderConverter))]

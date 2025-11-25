@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<NewSubscriptionMinimumCompositePrice>))]
-public sealed record class NewSubscriptionMinimumCompositePrice
-    : ModelBase,
-        IFromRaw<NewSubscriptionMinimumCompositePrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewSubscriptionMinimumCompositePrice,
+        NewSubscriptionMinimumCompositePriceFromRaw
+    >)
+)]
+public sealed record class NewSubscriptionMinimumCompositePrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -506,6 +509,13 @@ public sealed record class NewSubscriptionMinimumCompositePrice
     }
 }
 
+class NewSubscriptionMinimumCompositePriceFromRaw : IFromRaw<NewSubscriptionMinimumCompositePrice>
+{
+    public NewSubscriptionMinimumCompositePrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewSubscriptionMinimumCompositePrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -569,10 +579,13 @@ sealed class NewSubscriptionMinimumCompositePriceCadenceConverter
 /// <summary>
 /// Configuration for minimum pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.MinimumConfig>))]
-public sealed record class MinimumConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.MinimumConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.MinimumConfig,
+        global::Orb.Models.Subscriptions.MinimumConfigFromRaw
+    >)
+)]
+public sealed record class MinimumConfig : ModelBase
 {
     /// <summary>
     /// The minimum amount to apply
@@ -665,6 +678,13 @@ public sealed record class MinimumConfig
     {
         this.MinimumAmount = minimumAmount;
     }
+}
+
+class MinimumConfigFromRaw : IFromRaw<global::Orb.Models.Subscriptions.MinimumConfig>
+{
+    public global::Orb.Models.Subscriptions.MinimumConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.MinimumConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>

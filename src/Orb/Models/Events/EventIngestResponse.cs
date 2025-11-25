@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Events;
 
-[JsonConverter(typeof(ModelConverter<EventIngestResponse>))]
-public sealed record class EventIngestResponse : ModelBase, IFromRaw<EventIngestResponse>
+[JsonConverter(typeof(ModelConverter<EventIngestResponse, EventIngestResponseFromRaw>))]
+public sealed record class EventIngestResponse : ModelBase
 {
     /// <summary>
     /// Contains all failing validation events. In the case of a 200, this array will
@@ -108,8 +108,14 @@ public sealed record class EventIngestResponse : ModelBase, IFromRaw<EventIngest
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ValidationFailed>))]
-public sealed record class ValidationFailed : ModelBase, IFromRaw<ValidationFailed>
+class EventIngestResponseFromRaw : IFromRaw<EventIngestResponse>
+{
+    public EventIngestResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        EventIngestResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<ValidationFailed, ValidationFailedFromRaw>))]
+public sealed record class ValidationFailed : ModelBase
 {
     /// <summary>
     /// The passed idempotency_key corresponding to the validation_errors
@@ -199,12 +205,18 @@ public sealed record class ValidationFailed : ModelBase, IFromRaw<ValidationFail
     }
 }
 
+class ValidationFailedFromRaw : IFromRaw<ValidationFailed>
+{
+    public ValidationFailed FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ValidationFailed.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Optional debug information (only present when debug=true is passed to the endpoint).
 /// Contains ingested and duplicate event idempotency keys.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Debug>))]
-public sealed record class Debug : ModelBase, IFromRaw<Debug>
+[JsonConverter(typeof(ModelConverter<Debug, DebugFromRaw>))]
+public sealed record class Debug : ModelBase
 {
     public required List<string> Duplicate
     {
@@ -281,4 +293,10 @@ public sealed record class Debug : ModelBase, IFromRaw<Debug>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class DebugFromRaw : IFromRaw<Debug>
+{
+    public Debug FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Debug.FromRawUnchecked(rawData);
 }

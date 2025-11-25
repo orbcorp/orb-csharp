@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewFloatingTieredPrice>))]
-public sealed record class NewFloatingTieredPrice : ModelBase, IFromRaw<NewFloatingTieredPrice>
+[JsonConverter(typeof(ModelConverter<NewFloatingTieredPrice, NewFloatingTieredPriceFromRaw>))]
+public sealed record class NewFloatingTieredPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -484,6 +484,13 @@ public sealed record class NewFloatingTieredPrice : ModelBase, IFromRaw<NewFloat
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class NewFloatingTieredPriceFromRaw : IFromRaw<NewFloatingTieredPrice>
+{
+    public NewFloatingTieredPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewFloatingTieredPrice.FromRawUnchecked(rawData);
 }
 
 /// <summary>

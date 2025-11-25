@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Customers.BalanceTransactions;
 
-[JsonConverter(typeof(ModelConverter<BalanceTransactionListPageResponse>))]
-public sealed record class BalanceTransactionListPageResponse
-    : ModelBase,
-        IFromRaw<BalanceTransactionListPageResponse>
+[JsonConverter(
+    typeof(ModelConverter<
+        BalanceTransactionListPageResponse,
+        BalanceTransactionListPageResponseFromRaw
+    >)
+)]
+public sealed record class BalanceTransactionListPageResponse : ModelBase
 {
     public required List<Data> Data
     {
@@ -102,8 +105,15 @@ public sealed record class BalanceTransactionListPageResponse
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Data>))]
-public sealed record class Data : ModelBase, IFromRaw<Data>
+class BalanceTransactionListPageResponseFromRaw : IFromRaw<BalanceTransactionListPageResponse>
+{
+    public BalanceTransactionListPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BalanceTransactionListPageResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Data, DataFromRaw>))]
+public sealed record class Data : ModelBase
 {
     /// <summary>
     /// A unique id for this transaction.
@@ -395,6 +405,12 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class DataFromRaw : IFromRaw<Data>
+{
+    public Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Data.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(DataActionConverter))]

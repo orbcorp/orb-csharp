@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<PerPriceCost>))]
-public sealed record class PerPriceCost : ModelBase, IFromRaw<PerPriceCost>
+[JsonConverter(typeof(ModelConverter<PerPriceCost, PerPriceCostFromRaw>))]
+public sealed record class PerPriceCost : ModelBase
 {
     /// <summary>
     /// The price object
@@ -173,4 +173,10 @@ public sealed record class PerPriceCost : ModelBase, IFromRaw<PerPriceCost>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class PerPriceCostFromRaw : IFromRaw<PerPriceCost>
+{
+    public PerPriceCost FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PerPriceCost.FromRawUnchecked(rawData);
 }

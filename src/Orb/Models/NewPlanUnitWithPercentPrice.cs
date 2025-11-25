@@ -9,10 +9,10 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewPlanUnitWithPercentPrice>))]
-public sealed record class NewPlanUnitWithPercentPrice
-    : ModelBase,
-        IFromRaw<NewPlanUnitWithPercentPrice>
+[JsonConverter(
+    typeof(ModelConverter<NewPlanUnitWithPercentPrice, NewPlanUnitWithPercentPriceFromRaw>)
+)]
+public sealed record class NewPlanUnitWithPercentPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -507,6 +507,13 @@ public sealed record class NewPlanUnitWithPercentPrice
     }
 }
 
+class NewPlanUnitWithPercentPriceFromRaw : IFromRaw<NewPlanUnitWithPercentPrice>
+{
+    public NewPlanUnitWithPercentPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanUnitWithPercentPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -615,10 +622,13 @@ sealed class NewPlanUnitWithPercentPriceModelTypeConverter
 /// <summary>
 /// Configuration for unit_with_percent pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<NewPlanUnitWithPercentPriceUnitWithPercentConfig>))]
-public sealed record class NewPlanUnitWithPercentPriceUnitWithPercentConfig
-    : ModelBase,
-        IFromRaw<NewPlanUnitWithPercentPriceUnitWithPercentConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanUnitWithPercentPriceUnitWithPercentConfig,
+        NewPlanUnitWithPercentPriceUnitWithPercentConfigFromRaw
+    >)
+)]
+public sealed record class NewPlanUnitWithPercentPriceUnitWithPercentConfig : ModelBase
 {
     /// <summary>
     /// What percent, out of 100, of the calculated total to charge
@@ -708,6 +718,14 @@ public sealed record class NewPlanUnitWithPercentPriceUnitWithPercentConfig
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class NewPlanUnitWithPercentPriceUnitWithPercentConfigFromRaw
+    : IFromRaw<NewPlanUnitWithPercentPriceUnitWithPercentConfig>
+{
+    public NewPlanUnitWithPercentPriceUnitWithPercentConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanUnitWithPercentPriceUnitWithPercentConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewPlanUnitWithPercentPriceConversionRateConfigConverter))]

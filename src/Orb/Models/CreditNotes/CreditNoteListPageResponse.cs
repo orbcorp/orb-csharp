@@ -9,10 +9,10 @@ using Orb.Exceptions;
 
 namespace Orb.Models.CreditNotes;
 
-[JsonConverter(typeof(ModelConverter<CreditNoteListPageResponse>))]
-public sealed record class CreditNoteListPageResponse
-    : ModelBase,
-        IFromRaw<CreditNoteListPageResponse>
+[JsonConverter(
+    typeof(ModelConverter<CreditNoteListPageResponse, CreditNoteListPageResponseFromRaw>)
+)]
+public sealed record class CreditNoteListPageResponse : ModelBase
 {
     public required List<SharedCreditNote> Data
     {
@@ -103,4 +103,11 @@ public sealed record class CreditNoteListPageResponse
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CreditNoteListPageResponseFromRaw : IFromRaw<CreditNoteListPageResponse>
+{
+    public CreditNoteListPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CreditNoteListPageResponse.FromRawUnchecked(rawData);
 }

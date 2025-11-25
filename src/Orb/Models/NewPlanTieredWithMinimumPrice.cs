@@ -9,10 +9,10 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewPlanTieredWithMinimumPrice>))]
-public sealed record class NewPlanTieredWithMinimumPrice
-    : ModelBase,
-        IFromRaw<NewPlanTieredWithMinimumPrice>
+[JsonConverter(
+    typeof(ModelConverter<NewPlanTieredWithMinimumPrice, NewPlanTieredWithMinimumPriceFromRaw>)
+)]
+public sealed record class NewPlanTieredWithMinimumPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -506,6 +506,13 @@ public sealed record class NewPlanTieredWithMinimumPrice
     }
 }
 
+class NewPlanTieredWithMinimumPriceFromRaw : IFromRaw<NewPlanTieredWithMinimumPrice>
+{
+    public NewPlanTieredWithMinimumPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanTieredWithMinimumPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -614,10 +621,13 @@ sealed class NewPlanTieredWithMinimumPriceModelTypeConverter
 /// <summary>
 /// Configuration for tiered_with_minimum pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<NewPlanTieredWithMinimumPriceTieredWithMinimumConfig>))]
-public sealed record class NewPlanTieredWithMinimumPriceTieredWithMinimumConfig
-    : ModelBase,
-        IFromRaw<NewPlanTieredWithMinimumPriceTieredWithMinimumConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanTieredWithMinimumPriceTieredWithMinimumConfig,
+        NewPlanTieredWithMinimumPriceTieredWithMinimumConfigFromRaw
+    >)
+)]
+public sealed record class NewPlanTieredWithMinimumPriceTieredWithMinimumConfig : ModelBase
 {
     /// <summary>
     /// Tiered pricing with a minimum amount dependent on the volume tier. Tiers
@@ -744,11 +754,19 @@ public sealed record class NewPlanTieredWithMinimumPriceTieredWithMinimumConfig
     }
 }
 
+class NewPlanTieredWithMinimumPriceTieredWithMinimumConfigFromRaw
+    : IFromRaw<NewPlanTieredWithMinimumPriceTieredWithMinimumConfig>
+{
+    public NewPlanTieredWithMinimumPriceTieredWithMinimumConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanTieredWithMinimumPriceTieredWithMinimumConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier15>))]
-public sealed record class Tier15 : ModelBase, IFromRaw<Tier15>
+[JsonConverter(typeof(ModelConverter<Tier15, Tier15FromRaw>))]
+public sealed record class Tier15 : ModelBase
 {
     /// <summary>
     /// Minimum amount
@@ -869,6 +887,12 @@ public sealed record class Tier15 : ModelBase, IFromRaw<Tier15>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Tier15FromRaw : IFromRaw<Tier15>
+{
+    public Tier15 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier15.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewPlanTieredWithMinimumPriceConversionRateConfigConverter))]

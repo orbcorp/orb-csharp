@@ -1027,8 +1027,8 @@ sealed class TaxConfiguration1Converter : JsonConverter<TaxConfiguration1?>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<TaxConfiguration1Numeral>))]
-public sealed record class TaxConfiguration1Numeral : ModelBase, IFromRaw<TaxConfiguration1Numeral>
+[JsonConverter(typeof(ModelConverter<TaxConfiguration1Numeral, TaxConfiguration1NumeralFromRaw>))]
+public sealed record class TaxConfiguration1Numeral : ModelBase
 {
     public required bool TaxExempt
     {
@@ -1149,6 +1149,13 @@ public sealed record class TaxConfiguration1Numeral : ModelBase, IFromRaw<TaxCon
     }
 }
 
+class TaxConfiguration1NumeralFromRaw : IFromRaw<TaxConfiguration1Numeral>
+{
+    public TaxConfiguration1Numeral FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TaxConfiguration1Numeral.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(Converter))]
 public class TaxConfiguration1NumeralTaxProvider
 {
@@ -1196,8 +1203,8 @@ public class TaxConfiguration1NumeralTaxProvider
     }
 }
 
-[JsonConverter(typeof(ModelConverter<TaxConfiguration1Anrok>))]
-public sealed record class TaxConfiguration1Anrok : ModelBase, IFromRaw<TaxConfiguration1Anrok>
+[JsonConverter(typeof(ModelConverter<TaxConfiguration1Anrok, TaxConfiguration1AnrokFromRaw>))]
+public sealed record class TaxConfiguration1Anrok : ModelBase
 {
     public required bool TaxExempt
     {
@@ -1318,6 +1325,13 @@ public sealed record class TaxConfiguration1Anrok : ModelBase, IFromRaw<TaxConfi
     }
 }
 
+class TaxConfiguration1AnrokFromRaw : IFromRaw<TaxConfiguration1Anrok>
+{
+    public TaxConfiguration1Anrok FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TaxConfiguration1Anrok.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(Converter))]
 public class TaxConfiguration1AnrokTaxProvider
 {
@@ -1365,8 +1379,8 @@ public class TaxConfiguration1AnrokTaxProvider
     }
 }
 
-[JsonConverter(typeof(ModelConverter<TaxConfiguration1Stripe>))]
-public sealed record class TaxConfiguration1Stripe : ModelBase, IFromRaw<TaxConfiguration1Stripe>
+[JsonConverter(typeof(ModelConverter<TaxConfiguration1Stripe, TaxConfiguration1StripeFromRaw>))]
+public sealed record class TaxConfiguration1Stripe : ModelBase
 {
     public required bool TaxExempt
     {
@@ -1485,6 +1499,13 @@ public sealed record class TaxConfiguration1Stripe : ModelBase, IFromRaw<TaxConf
     {
         this.TaxExempt = taxExempt;
     }
+}
+
+class TaxConfiguration1StripeFromRaw : IFromRaw<TaxConfiguration1Stripe>
+{
+    public TaxConfiguration1Stripe FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TaxConfiguration1Stripe.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(Converter))]

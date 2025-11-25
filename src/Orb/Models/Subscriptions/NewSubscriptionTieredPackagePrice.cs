@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<NewSubscriptionTieredPackagePrice>))]
-public sealed record class NewSubscriptionTieredPackagePrice
-    : ModelBase,
-        IFromRaw<NewSubscriptionTieredPackagePrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewSubscriptionTieredPackagePrice,
+        NewSubscriptionTieredPackagePriceFromRaw
+    >)
+)]
+public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -506,6 +509,13 @@ public sealed record class NewSubscriptionTieredPackagePrice
     }
 }
 
+class NewSubscriptionTieredPackagePriceFromRaw : IFromRaw<NewSubscriptionTieredPackagePrice>
+{
+    public NewSubscriptionTieredPackagePrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewSubscriptionTieredPackagePrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -614,10 +624,13 @@ sealed class NewSubscriptionTieredPackagePriceModelTypeConverter
 /// <summary>
 /// Configuration for tiered_package pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.TieredPackageConfig>))]
-public sealed record class TieredPackageConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.TieredPackageConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.TieredPackageConfig,
+        global::Orb.Models.Subscriptions.TieredPackageConfigFromRaw
+    >)
+)]
+public sealed record class TieredPackageConfig : ModelBase
 {
     /// <summary>
     /// Package size
@@ -716,11 +729,23 @@ public sealed record class TieredPackageConfig
     }
 }
 
+class TieredPackageConfigFromRaw : IFromRaw<global::Orb.Models.Subscriptions.TieredPackageConfig>
+{
+    public global::Orb.Models.Subscriptions.TieredPackageConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.TieredPackageConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tier with business logic
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.Tier13>))]
-public sealed record class Tier13 : ModelBase, IFromRaw<global::Orb.Models.Subscriptions.Tier13>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.Tier13,
+        global::Orb.Models.Subscriptions.Tier13FromRaw
+    >)
+)]
+public sealed record class Tier13 : ModelBase
 {
     /// <summary>
     /// Price per package
@@ -808,6 +833,13 @@ public sealed record class Tier13 : ModelBase, IFromRaw<global::Orb.Models.Subsc
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Tier13FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tier13>
+{
+    public global::Orb.Models.Subscriptions.Tier13 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.Tier13.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewSubscriptionTieredPackagePriceConversionRateConfigConverter))]

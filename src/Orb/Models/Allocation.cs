@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<Allocation>))]
-public sealed record class Allocation : ModelBase, IFromRaw<Allocation>
+[JsonConverter(typeof(ModelConverter<Allocation, AllocationFromRaw>))]
+public sealed record class Allocation : ModelBase
 {
     public required bool AllowsRollover
     {
@@ -137,8 +137,14 @@ public sealed record class Allocation : ModelBase, IFromRaw<Allocation>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Filter>))]
-public sealed record class Filter : ModelBase, IFromRaw<Filter>
+class AllocationFromRaw : IFromRaw<Allocation>
+{
+    public Allocation FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Allocation.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Filter, FilterFromRaw>))]
+public sealed record class Filter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -248,6 +254,12 @@ public sealed record class Filter : ModelBase, IFromRaw<Filter>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class FilterFromRaw : IFromRaw<Filter>
+{
+    public Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Filter.FromRawUnchecked(rawData);
 }
 
 /// <summary>

@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
-[JsonConverter(typeof(ModelConverter<LedgerListPageResponse>))]
-public sealed record class LedgerListPageResponse : ModelBase, IFromRaw<LedgerListPageResponse>
+[JsonConverter(typeof(ModelConverter<LedgerListPageResponse, LedgerListPageResponseFromRaw>))]
+public sealed record class LedgerListPageResponse : ModelBase
 {
     public required List<global::Orb.Models.Customers.Credits.Ledger.Data> Data
     {
@@ -100,6 +100,13 @@ public sealed record class LedgerListPageResponse : ModelBase, IFromRaw<LedgerLi
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class LedgerListPageResponseFromRaw : IFromRaw<LedgerListPageResponse>
+{
+    public LedgerListPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => LedgerListPageResponse.FromRawUnchecked(rawData);
 }
 
 /// <summary>

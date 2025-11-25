@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<CustomExpiration>))]
-public sealed record class CustomExpiration : ModelBase, IFromRaw<CustomExpiration>
+[JsonConverter(typeof(ModelConverter<CustomExpiration, CustomExpirationFromRaw>))]
+public sealed record class CustomExpiration : ModelBase
 {
     public required long Duration
     {
@@ -87,6 +87,12 @@ public sealed record class CustomExpiration : ModelBase, IFromRaw<CustomExpirati
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CustomExpirationFromRaw : IFromRaw<CustomExpiration>
+{
+    public CustomExpiration FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        CustomExpiration.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(CustomExpirationDurationUnitConverter))]

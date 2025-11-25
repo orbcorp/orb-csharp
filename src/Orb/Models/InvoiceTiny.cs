@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<InvoiceTiny>))]
-public sealed record class InvoiceTiny : ModelBase, IFromRaw<InvoiceTiny>
+[JsonConverter(typeof(ModelConverter<InvoiceTiny, InvoiceTinyFromRaw>))]
+public sealed record class InvoiceTiny : ModelBase
 {
     /// <summary>
     /// The Invoice id
@@ -71,4 +71,10 @@ public sealed record class InvoiceTiny : ModelBase, IFromRaw<InvoiceTiny>
     {
         this.ID = id;
     }
+}
+
+class InvoiceTinyFromRaw : IFromRaw<InvoiceTiny>
+{
+    public InvoiceTiny FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        InvoiceTiny.FromRawUnchecked(rawData);
 }

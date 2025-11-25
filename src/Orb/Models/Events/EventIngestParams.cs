@@ -320,8 +320,8 @@ public sealed record class EventIngestParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Event>))]
-public sealed record class Event : ModelBase, IFromRaw<Event>
+[JsonConverter(typeof(ModelConverter<Event, EventFromRaw>))]
+public sealed record class Event : ModelBase
 {
     /// <summary>
     /// A name to meaningfully identify the action or event type.
@@ -510,4 +510,10 @@ public sealed record class Event : ModelBase, IFromRaw<Event>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class EventFromRaw : IFromRaw<Event>
+{
+    public Event FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Event.FromRawUnchecked(rawData);
 }

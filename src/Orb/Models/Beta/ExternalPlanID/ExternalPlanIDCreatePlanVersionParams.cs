@@ -279,10 +279,13 @@ public sealed record class ExternalPlanIDCreatePlanVersionParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.AddAdjustment>))]
-public sealed record class AddAdjustment
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.AddAdjustment>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.AddAdjustment,
+        global::Orb.Models.Beta.ExternalPlanID.AddAdjustmentFromRaw
+    >)
+)]
+public sealed record class AddAdjustment : ModelBase
 {
     /// <summary>
     /// The definition of a new adjustment to create and add to the plan.
@@ -373,6 +376,13 @@ public sealed record class AddAdjustment
     {
         this.Adjustment = adjustment;
     }
+}
+
+class AddAdjustmentFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.AddAdjustment>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.AddAdjustment FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.AddAdjustment.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -697,10 +707,13 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Beta.Externa
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.AddPrice>))]
-public sealed record class AddPrice
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.AddPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.AddPrice,
+        global::Orb.Models.Beta.ExternalPlanID.AddPriceFromRaw
+    >)
+)]
+public sealed record class AddPrice : ModelBase
 {
     /// <summary>
     /// The allocation price to add to the plan.
@@ -799,6 +812,13 @@ public sealed record class AddPrice
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class AddPriceFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.AddPrice>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.AddPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.AddPrice.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -2870,10 +2890,13 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlan
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.BulkWithFilters>))]
-public sealed record class BulkWithFilters
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.BulkWithFilters>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.BulkWithFilters,
+        global::Orb.Models.Beta.ExternalPlanID.BulkWithFiltersFromRaw
+    >)
+)]
+public sealed record class BulkWithFilters : ModelBase
 {
     /// <summary>
     /// Configuration for bulk_with_filters pricing
@@ -3377,15 +3400,23 @@ public sealed record class BulkWithFilters
     }
 }
 
+class BulkWithFiltersFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.BulkWithFilters>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.BulkWithFilters FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.BulkWithFilters.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for bulk_with_filters pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.BulkWithFiltersConfig>)
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.BulkWithFiltersConfig,
+        global::Orb.Models.Beta.ExternalPlanID.BulkWithFiltersConfigFromRaw
+    >)
 )]
-public sealed record class BulkWithFiltersConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.BulkWithFiltersConfig>
+public sealed record class BulkWithFiltersConfig : ModelBase
 {
     /// <summary>
     /// Property filters to apply (all must match)
@@ -3484,13 +3515,24 @@ public sealed record class BulkWithFiltersConfig
     }
 }
 
+class BulkWithFiltersConfigFromRaw
+    : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.BulkWithFiltersConfig>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.BulkWithFiltersConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.BulkWithFiltersConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single property filter
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.Filter>))]
-public sealed record class Filter
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.Filter>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.Filter,
+        global::Orb.Models.Beta.ExternalPlanID.FilterFromRaw
+    >)
+)]
+public sealed record class Filter : ModelBase
 {
     /// <summary>
     /// Event property key to filter on
@@ -3583,11 +3625,23 @@ public sealed record class Filter
     }
 }
 
+class FilterFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.Filter>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.Filter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.Filter.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single bulk pricing tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.Tier>))]
-public sealed record class Tier : ModelBase, IFromRaw<global::Orb.Models.Beta.ExternalPlanID.Tier>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.Tier,
+        global::Orb.Models.Beta.ExternalPlanID.TierFromRaw
+    >)
+)]
+public sealed record class Tier : ModelBase
 {
     /// <summary>
     /// Amount per unit
@@ -3675,6 +3729,13 @@ public sealed record class Tier : ModelBase, IFromRaw<global::Orb.Models.Beta.Ex
     {
         this.UnitAmount = unitAmount;
     }
+}
+
+class TierFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.Tier>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.Tier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.Tier.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -3967,10 +4028,13 @@ sealed class ConversionRateConfigConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.TieredWithProration>))]
-public sealed record class TieredWithProration
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.TieredWithProration>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.TieredWithProration,
+        global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationFromRaw
+    >)
+)]
+public sealed record class TieredWithProration : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -4477,6 +4541,14 @@ public sealed record class TieredWithProration
     }
 }
 
+class TieredWithProrationFromRaw
+    : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.TieredWithProration>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.TieredWithProration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.TieredWithProration.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -4613,11 +4685,12 @@ public class TieredWithProrationModelType
 /// Configuration for tiered_with_proration pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConfig>)
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConfig,
+        global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConfigFromRaw
+    >)
 )]
-public sealed record class TieredWithProrationConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConfig>
+public sealed record class TieredWithProrationConfig : ModelBase
 {
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
@@ -4688,13 +4761,24 @@ public sealed record class TieredWithProrationConfig
     }
 }
 
+class TieredWithProrationConfigFromRaw
+    : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConfig>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tiered with proration tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.TierModel>))]
-public sealed record class TierModel
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.TierModel>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.TierModel,
+        global::Orb.Models.Beta.ExternalPlanID.TierModelFromRaw
+    >)
+)]
+public sealed record class TierModel : ModelBase
 {
     /// <summary>
     /// Inclusive tier starting value
@@ -4785,6 +4869,13 @@ public sealed record class TierModel
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class TierModelFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.TierModel>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.TierModel FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.TierModel.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
@@ -4976,11 +5067,12 @@ sealed class TieredWithProrationConversionRateConfigConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholds>)
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholds,
+        global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsFromRaw
+    >)
 )]
-public sealed record class GroupedWithMinMaxThresholds
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholds>
+public sealed record class GroupedWithMinMaxThresholds : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -5493,6 +5585,17 @@ public sealed record class GroupedWithMinMaxThresholds
     }
 }
 
+class GroupedWithMinMaxThresholdsFromRaw
+    : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholds>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholds FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholds.FromRawUnchecked(
+            rawData
+        );
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -5603,11 +5706,12 @@ sealed class GroupedWithMinMaxThresholdsCadenceConverter
 /// Configuration for grouped_with_min_max_thresholds pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsConfig>)
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsConfig,
+        global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsConfigFromRaw
+    >)
 )]
-public sealed record class GroupedWithMinMaxThresholdsConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsConfig>
+public sealed record class GroupedWithMinMaxThresholdsConfig : ModelBase
 {
     /// <summary>
     /// The event property used to group before applying thresholds
@@ -5762,6 +5866,17 @@ public sealed record class GroupedWithMinMaxThresholdsConfig
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class GroupedWithMinMaxThresholdsConfigFromRaw
+    : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsConfig>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsConfig.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
@@ -6009,11 +6124,12 @@ sealed class GroupedWithMinMaxThresholdsConversionRateConfigConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocation>)
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocation,
+        global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationFromRaw
+    >)
 )]
-public sealed record class CumulativeGroupedAllocation
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocation>
+public sealed record class CumulativeGroupedAllocation : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -6526,6 +6642,17 @@ public sealed record class CumulativeGroupedAllocation
     }
 }
 
+class CumulativeGroupedAllocationFromRaw
+    : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocation>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocation FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocation.FromRawUnchecked(
+            rawData
+        );
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -6636,11 +6763,12 @@ sealed class CumulativeGroupedAllocationCadenceConverter
 /// Configuration for cumulative_grouped_allocation pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationConfig>)
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationConfig,
+        global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationConfigFromRaw
+    >)
 )]
-public sealed record class CumulativeGroupedAllocationConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationConfig>
+public sealed record class CumulativeGroupedAllocationConfig : ModelBase
 {
     /// <summary>
     /// The overall allocation across all groups
@@ -6795,6 +6923,17 @@ public sealed record class CumulativeGroupedAllocationConfig
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CumulativeGroupedAllocationConfigFromRaw
+    : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationConfig>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationConfig.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
@@ -7041,10 +7180,13 @@ sealed class CumulativeGroupedAllocationConversionRateConfigConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.Percent>))]
-public sealed record class Percent
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.Percent>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.Percent,
+        global::Orb.Models.Beta.ExternalPlanID.PercentFromRaw
+    >)
+)]
+public sealed record class Percent : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -7548,6 +7690,13 @@ public sealed record class Percent
     }
 }
 
+class PercentFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.Percent>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.Percent FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.Percent.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -7664,10 +7813,13 @@ public class PercentModelType
 /// <summary>
 /// Configuration for percent pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.PercentConfig>))]
-public sealed record class PercentConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.PercentConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.PercentConfig,
+        global::Orb.Models.Beta.ExternalPlanID.PercentConfigFromRaw
+    >)
+)]
+public sealed record class PercentConfig : ModelBase
 {
     /// <summary>
     /// What percent of the component subtotals to charge
@@ -7726,6 +7878,13 @@ public sealed record class PercentConfig
     {
         this.Percent = percent;
     }
+}
+
+class PercentConfigFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.PercentConfig>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.PercentConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.PercentConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(global::Orb.Models.Beta.ExternalPlanID.PercentConversionRateConfigConverter))]
@@ -7912,10 +8071,13 @@ sealed class PercentConversionRateConfigConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.EventOutput>))]
-public sealed record class EventOutput
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.EventOutput>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.EventOutput,
+        global::Orb.Models.Beta.ExternalPlanID.EventOutputFromRaw
+    >)
+)]
+public sealed record class EventOutput : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -8422,6 +8584,13 @@ public sealed record class EventOutput
     }
 }
 
+class EventOutputFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.EventOutput>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.EventOutput FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.EventOutput.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -8486,10 +8655,13 @@ sealed class EventOutputCadenceConverter
 /// <summary>
 /// Configuration for event_output pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.EventOutputConfig>))]
-public sealed record class EventOutputConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.EventOutputConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.EventOutputConfig,
+        global::Orb.Models.Beta.ExternalPlanID.EventOutputConfigFromRaw
+    >)
+)]
+public sealed record class EventOutputConfig : ModelBase
 {
     /// <summary>
     /// The key in the event data to extract the unit rate from.
@@ -8602,6 +8774,13 @@ public sealed record class EventOutputConfig
     {
         this.UnitRatingKey = unitRatingKey;
     }
+}
+
+class EventOutputConfigFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.EventOutputConfig>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.EventOutputConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.EventOutputConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -8845,10 +9024,13 @@ sealed class EventOutputConversionRateConfigConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.RemoveAdjustment>))]
-public sealed record class RemoveAdjustment
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.RemoveAdjustment>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.RemoveAdjustment,
+        global::Orb.Models.Beta.ExternalPlanID.RemoveAdjustmentFromRaw
+    >)
+)]
+public sealed record class RemoveAdjustment : ModelBase
 {
     /// <summary>
     /// The id of the adjustment to remove from on the plan.
@@ -8938,10 +9120,20 @@ public sealed record class RemoveAdjustment
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.RemovePrice>))]
-public sealed record class RemovePrice
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.RemovePrice>
+class RemoveAdjustmentFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.RemoveAdjustment>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.RemoveAdjustment FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.RemoveAdjustment.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.RemovePrice,
+        global::Orb.Models.Beta.ExternalPlanID.RemovePriceFromRaw
+    >)
+)]
+public sealed record class RemovePrice : ModelBase
 {
     /// <summary>
     /// The id of the price to remove from the plan.
@@ -9028,10 +9220,20 @@ public sealed record class RemovePrice
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustment>))]
-public sealed record class ReplaceAdjustment
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustment>
+class RemovePriceFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.RemovePrice>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.RemovePrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.RemovePrice.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustment,
+        global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustmentFromRaw
+    >)
+)]
+public sealed record class ReplaceAdjustment : ModelBase
 {
     /// <summary>
     /// The definition of a new adjustment to create and add to the plan.
@@ -9147,6 +9349,13 @@ public sealed record class ReplaceAdjustment
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ReplaceAdjustmentFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustment>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustment FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustment.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -9478,10 +9687,13 @@ sealed class ReplaceAdjustmentAdjustmentConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.ReplacePrice>))]
-public sealed record class ReplacePrice
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePrice,
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePriceFromRaw
+    >)
+)]
+public sealed record class ReplacePrice : ModelBase
 {
     /// <summary>
     /// The id of the price on the plan to replace in the plan.
@@ -9619,6 +9831,13 @@ public sealed record class ReplacePrice
     {
         this.ReplacesPriceID = replacesPriceID;
     }
+}
+
+class ReplacePriceFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePrice>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.ReplacePrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.ReplacePrice.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -11728,11 +11947,12 @@ sealed class ReplacePricePriceConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFilters>)
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFilters,
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersFromRaw
+    >)
 )]
-public sealed record class ReplacePricePriceBulkWithFilters
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFilters>
+public sealed record class ReplacePricePriceBulkWithFilters : ModelBase
 {
     /// <summary>
     /// Configuration for bulk_with_filters pricing
@@ -12242,15 +12462,27 @@ public sealed record class ReplacePricePriceBulkWithFilters
     }
 }
 
+class ReplacePricePriceBulkWithFiltersFromRaw
+    : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFilters>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFilters FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFilters.FromRawUnchecked(
+            rawData
+        );
+}
+
 /// <summary>
 /// Configuration for bulk_with_filters pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig>)
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig,
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFromRaw
+    >)
 )]
-public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig>
+public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig : ModelBase
 {
     /// <summary>
     /// Property filters to apply (all must match)
@@ -12352,13 +12584,27 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
     }
 }
 
+class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFromRaw
+    : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig.FromRawUnchecked(
+            rawData
+        );
+}
+
 /// <summary>
 /// Configuration for a single property filter
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.FilterModel>))]
-public sealed record class FilterModel
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.FilterModel>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.FilterModel,
+        global::Orb.Models.Beta.ExternalPlanID.FilterModelFromRaw
+    >)
+)]
+public sealed record class FilterModel : ModelBase
 {
     /// <summary>
     /// Event property key to filter on
@@ -12451,11 +12697,23 @@ public sealed record class FilterModel
     }
 }
 
+class FilterModelFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.FilterModel>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.FilterModel FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.FilterModel.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single bulk pricing tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.Tier1>))]
-public sealed record class Tier1 : ModelBase, IFromRaw<global::Orb.Models.Beta.ExternalPlanID.Tier1>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.Tier1,
+        global::Orb.Models.Beta.ExternalPlanID.Tier1FromRaw
+    >)
+)]
+public sealed record class Tier1 : ModelBase
 {
     /// <summary>
     /// Amount per unit
@@ -12543,6 +12801,13 @@ public sealed record class Tier1 : ModelBase, IFromRaw<global::Orb.Models.Beta.E
     {
         this.UnitAmount = unitAmount;
     }
+}
+
+class Tier1FromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.Tier1>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.Tier1 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.Tier1.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -12914,11 +13179,12 @@ sealed class ReplacePricePriceBulkWithFiltersConversionRateConfigConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProration>)
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProration,
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationFromRaw
+    >)
 )]
-public sealed record class ReplacePricePriceTieredWithProration
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProration>
+public sealed record class ReplacePricePriceTieredWithProration : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -13428,6 +13694,17 @@ public sealed record class ReplacePricePriceTieredWithProration
     }
 }
 
+class ReplacePricePriceTieredWithProrationFromRaw
+    : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProration>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProration.FromRawUnchecked(
+            rawData
+        );
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -13613,11 +13890,12 @@ public class ReplacePricePriceTieredWithProrationModelType
 /// Configuration for tiered_with_proration pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationTieredWithProrationConfig>)
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationTieredWithProrationConfig,
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationTieredWithProrationConfigFromRaw
+    >)
 )]
-public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrationConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationTieredWithProrationConfig>
+public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrationConfig : ModelBase
 {
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
@@ -13695,11 +13973,27 @@ public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrati
     }
 }
 
+class ReplacePricePriceTieredWithProrationTieredWithProrationConfigFromRaw
+    : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationTieredWithProrationConfig>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationTieredWithProrationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationTieredWithProrationConfig.FromRawUnchecked(
+            rawData
+        );
+}
+
 /// <summary>
 /// Configuration for a single tiered with proration tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.Tier2>))]
-public sealed record class Tier2 : ModelBase, IFromRaw<global::Orb.Models.Beta.ExternalPlanID.Tier2>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.Tier2,
+        global::Orb.Models.Beta.ExternalPlanID.Tier2FromRaw
+    >)
+)]
+public sealed record class Tier2 : ModelBase
 {
     /// <summary>
     /// Inclusive tier starting value
@@ -13790,6 +14084,13 @@ public sealed record class Tier2 : ModelBase, IFromRaw<global::Orb.Models.Beta.E
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Tier2FromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.Tier2>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.Tier2 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.Tier2.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
@@ -13981,11 +14282,12 @@ sealed class ReplacePricePriceTieredWithProrationConversionRateConfigConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholds>)
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholds,
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsFromRaw
+    >)
 )]
-public sealed record class ReplacePricePriceGroupedWithMinMaxThresholds
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholds>
+public sealed record class ReplacePricePriceGroupedWithMinMaxThresholds : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -14500,6 +14802,17 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholds
     }
 }
 
+class ReplacePricePriceGroupedWithMinMaxThresholdsFromRaw
+    : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholds>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholds FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholds.FromRawUnchecked(
+            rawData
+        );
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -14629,11 +14942,13 @@ sealed class ReplacePricePriceGroupedWithMinMaxThresholdsCadenceConverter
 /// Configuration for grouped_with_min_max_thresholds pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>)
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig,
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
+    >)
 )]
 public sealed record class ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>
+    : ModelBase
 {
     /// <summary>
     /// The event property used to group before applying thresholds
@@ -14792,6 +15107,17 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWi
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
+    : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
@@ -15039,11 +15365,12 @@ sealed class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigCon
 }
 
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocation>)
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocation,
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationFromRaw
+    >)
 )]
-public sealed record class ReplacePricePriceCumulativeGroupedAllocation
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocation>
+public sealed record class ReplacePricePriceCumulativeGroupedAllocation : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -15558,6 +15885,17 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocation
     }
 }
 
+class ReplacePricePriceCumulativeGroupedAllocationFromRaw
+    : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocation>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocation FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocation.FromRawUnchecked(
+            rawData
+        );
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -15687,11 +16025,13 @@ sealed class ReplacePricePriceCumulativeGroupedAllocationCadenceConverter
 /// Configuration for cumulative_grouped_allocation pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>)
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig,
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
+    >)
 )]
 public sealed record class ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>
+    : ModelBase
 {
     /// <summary>
     /// The overall allocation across all groups
@@ -15850,6 +16190,17 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocationCumulativ
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
+    : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
@@ -16097,11 +16448,12 @@ sealed class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigCon
 }
 
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercent>)
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercent,
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentFromRaw
+    >)
 )]
-public sealed record class ReplacePricePricePercent
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercent>
+public sealed record class ReplacePricePricePercent : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -16611,6 +16963,14 @@ public sealed record class ReplacePricePricePercent
     }
 }
 
+class ReplacePricePricePercentFromRaw
+    : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercent>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercent FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercent.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -16769,11 +17129,12 @@ public class ReplacePricePricePercentModelType
 /// Configuration for percent pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentPercentConfig>)
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentPercentConfig,
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentPercentConfigFromRaw
+    >)
 )]
-public sealed record class ReplacePricePricePercentPercentConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentPercentConfig>
+public sealed record class ReplacePricePricePercentPercentConfig : ModelBase
 {
     /// <summary>
     /// What percent of the component subtotals to charge
@@ -16832,6 +17193,17 @@ public sealed record class ReplacePricePricePercentPercentConfig
     {
         this.Percent = percent;
     }
+}
+
+class ReplacePricePricePercentPercentConfigFromRaw
+    : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentPercentConfig>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentPercentConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentPercentConfig.FromRawUnchecked(
+            rawData
+        );
 }
 
 [JsonConverter(
@@ -17023,11 +17395,12 @@ sealed class ReplacePricePricePercentConversionRateConfigConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutput>)
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutput,
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputFromRaw
+    >)
 )]
-public sealed record class ReplacePricePriceEventOutput
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutput>
+public sealed record class ReplacePricePriceEventOutput : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -17537,6 +17910,17 @@ public sealed record class ReplacePricePriceEventOutput
     }
 }
 
+class ReplacePricePriceEventOutputFromRaw
+    : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutput>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutput FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutput.FromRawUnchecked(
+            rawData
+        );
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -17655,11 +18039,12 @@ sealed class ReplacePricePriceEventOutputCadenceConverter
 /// Configuration for event_output pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputEventOutputConfig>)
+    typeof(ModelConverter<
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputEventOutputConfig,
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputEventOutputConfigFromRaw
+    >)
 )]
-public sealed record class ReplacePricePriceEventOutputEventOutputConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputEventOutputConfig>
+public sealed record class ReplacePricePriceEventOutputEventOutputConfig : ModelBase
 {
     /// <summary>
     /// The key in the event data to extract the unit rate from.
@@ -17774,6 +18159,17 @@ public sealed record class ReplacePricePriceEventOutputEventOutputConfig
     {
         this.UnitRatingKey = unitRatingKey;
     }
+}
+
+class ReplacePricePriceEventOutputEventOutputConfigFromRaw
+    : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputEventOutputConfig>
+{
+    public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputEventOutputConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputEventOutputConfig.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>

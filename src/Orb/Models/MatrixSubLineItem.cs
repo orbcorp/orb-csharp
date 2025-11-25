@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<MatrixSubLineItem>))]
-public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLineItem>
+[JsonConverter(typeof(ModelConverter<MatrixSubLineItem, MatrixSubLineItemFromRaw>))]
+public sealed record class MatrixSubLineItem : ModelBase
 {
     /// <summary>
     /// The total amount for this sub line item.
@@ -215,6 +215,12 @@ public sealed record class MatrixSubLineItem : ModelBase, IFromRaw<MatrixSubLine
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class MatrixSubLineItemFromRaw : IFromRaw<MatrixSubLineItem>
+{
+    public MatrixSubLineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MatrixSubLineItem.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(MatrixSubLineItemTypeConverter))]

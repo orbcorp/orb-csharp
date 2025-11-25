@@ -345,8 +345,8 @@ sealed class DiscountConverter : JsonConverter<global::Orb.Models.Coupons.Discou
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Percentage>))]
-public sealed record class Percentage : ModelBase, IFromRaw<Percentage>
+[JsonConverter(typeof(ModelConverter<Percentage, PercentageFromRaw>))]
+public sealed record class Percentage : ModelBase
 {
     public global::Orb.Models.Coupons.DiscountType DiscountType
     {
@@ -442,6 +442,12 @@ public sealed record class Percentage : ModelBase, IFromRaw<Percentage>
     }
 }
 
+class PercentageFromRaw : IFromRaw<Percentage>
+{
+    public Percentage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Percentage.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(Converter))]
 public class DiscountType
 {
@@ -487,8 +493,8 @@ public class DiscountType
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Amount>))]
-public sealed record class Amount : ModelBase, IFromRaw<Amount>
+[JsonConverter(typeof(ModelConverter<Amount, AmountFromRaw>))]
+public sealed record class Amount : ModelBase
 {
     public required string AmountDiscount
     {
@@ -586,6 +592,12 @@ public sealed record class Amount : ModelBase, IFromRaw<Amount>
     {
         this.AmountDiscount = amountDiscount;
     }
+}
+
+class AmountFromRaw : IFromRaw<Amount>
+{
+    public Amount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Amount.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(Converter))]

@@ -12,8 +12,8 @@ namespace Orb.Models;
 /// <summary>
 /// Configuration for a single bulk pricing tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<BulkTier>))]
-public sealed record class BulkTier : ModelBase, IFromRaw<BulkTier>
+[JsonConverter(typeof(ModelConverter<BulkTier, BulkTierFromRaw>))]
+public sealed record class BulkTier : ModelBase
 {
     /// <summary>
     /// Amount per unit
@@ -96,4 +96,10 @@ public sealed record class BulkTier : ModelBase, IFromRaw<BulkTier>
     {
         this.UnitAmount = unitAmount;
     }
+}
+
+class BulkTierFromRaw : IFromRaw<BulkTier>
+{
+    public BulkTier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        BulkTier.FromRawUnchecked(rawData);
 }

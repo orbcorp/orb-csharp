@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<NewSubscriptionThresholdTotalAmountPrice>))]
-public sealed record class NewSubscriptionThresholdTotalAmountPrice
-    : ModelBase,
-        IFromRaw<NewSubscriptionThresholdTotalAmountPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewSubscriptionThresholdTotalAmountPrice,
+        NewSubscriptionThresholdTotalAmountPriceFromRaw
+    >)
+)]
+public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -510,6 +513,14 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice
     }
 }
 
+class NewSubscriptionThresholdTotalAmountPriceFromRaw
+    : IFromRaw<NewSubscriptionThresholdTotalAmountPrice>
+{
+    public NewSubscriptionThresholdTotalAmountPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewSubscriptionThresholdTotalAmountPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -620,10 +631,13 @@ sealed class NewSubscriptionThresholdTotalAmountPriceModelTypeConverter
 /// <summary>
 /// Configuration for threshold_total_amount pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig>))]
-public sealed record class ThresholdTotalAmountConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig,
+        global::Orb.Models.Subscriptions.ThresholdTotalAmountConfigFromRaw
+    >)
+)]
+public sealed record class ThresholdTotalAmountConfig : ModelBase
 {
     /// <summary>
     /// When the quantity consumed passes a provided threshold, the configured total
@@ -721,13 +735,24 @@ public sealed record class ThresholdTotalAmountConfig
     }
 }
 
+class ThresholdTotalAmountConfigFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig>
+{
+    public global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single threshold
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.ConsumptionTable>))]
-public sealed record class ConsumptionTable
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.ConsumptionTable>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.ConsumptionTable,
+        global::Orb.Models.Subscriptions.ConsumptionTableFromRaw
+    >)
+)]
+public sealed record class ConsumptionTable : ModelBase
 {
     /// <summary>
     /// Quantity threshold
@@ -818,6 +843,13 @@ public sealed record class ConsumptionTable
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ConsumptionTableFromRaw : IFromRaw<global::Orb.Models.Subscriptions.ConsumptionTable>
+{
+    public global::Orb.Models.Subscriptions.ConsumptionTable FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.ConsumptionTable.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewSubscriptionThresholdTotalAmountPriceConversionRateConfigConverter))]

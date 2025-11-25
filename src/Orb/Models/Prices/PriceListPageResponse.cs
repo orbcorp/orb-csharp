@@ -10,8 +10,8 @@ using Models = Orb.Models;
 
 namespace Orb.Models.Prices;
 
-[JsonConverter(typeof(ModelConverter<PriceListPageResponse>))]
-public sealed record class PriceListPageResponse : ModelBase, IFromRaw<PriceListPageResponse>
+[JsonConverter(typeof(ModelConverter<PriceListPageResponse, PriceListPageResponseFromRaw>))]
+public sealed record class PriceListPageResponse : ModelBase
 {
     public required List<Models::Price> Data
     {
@@ -102,4 +102,11 @@ public sealed record class PriceListPageResponse : ModelBase, IFromRaw<PriceList
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class PriceListPageResponseFromRaw : IFromRaw<PriceListPageResponse>
+{
+    public PriceListPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PriceListPageResponse.FromRawUnchecked(rawData);
 }

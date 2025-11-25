@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewPlanCumulativeGroupedBulkPrice>))]
-public sealed record class NewPlanCumulativeGroupedBulkPrice
-    : ModelBase,
-        IFromRaw<NewPlanCumulativeGroupedBulkPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanCumulativeGroupedBulkPrice,
+        NewPlanCumulativeGroupedBulkPriceFromRaw
+    >)
+)]
+public sealed record class NewPlanCumulativeGroupedBulkPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -511,6 +514,13 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice
     }
 }
 
+class NewPlanCumulativeGroupedBulkPriceFromRaw : IFromRaw<NewPlanCumulativeGroupedBulkPrice>
+{
+    public NewPlanCumulativeGroupedBulkPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanCumulativeGroupedBulkPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -575,11 +585,12 @@ sealed class NewPlanCumulativeGroupedBulkPriceCadenceConverter
 /// Configuration for cumulative_grouped_bulk pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig>)
+    typeof(ModelConverter<
+        NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig,
+        NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigFromRaw
+    >)
 )]
-public sealed record class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig
-    : ModelBase,
-        IFromRaw<NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig>
+public sealed record class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig : ModelBase
 {
     /// <summary>
     /// Each tier lower bound must have the same group of values.
@@ -679,11 +690,19 @@ public sealed record class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBul
     }
 }
 
+class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigFromRaw
+    : IFromRaw<NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig>
+{
+    public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a dimension value entry
 /// </summary>
-[JsonConverter(typeof(ModelConverter<DimensionValueModel>))]
-public sealed record class DimensionValueModel : ModelBase, IFromRaw<DimensionValueModel>
+[JsonConverter(typeof(ModelConverter<DimensionValueModel, DimensionValueModelFromRaw>))]
+public sealed record class DimensionValueModel : ModelBase
 {
     /// <summary>
     /// Grouping key value
@@ -806,6 +825,12 @@ public sealed record class DimensionValueModel : ModelBase, IFromRaw<DimensionVa
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class DimensionValueModelFromRaw : IFromRaw<DimensionValueModel>
+{
+    public DimensionValueModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        DimensionValueModel.FromRawUnchecked(rawData);
 }
 
 /// <summary>

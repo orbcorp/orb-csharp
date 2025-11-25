@@ -9,10 +9,10 @@ using Orb.Exceptions;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<ConversionRateTieredConfig>))]
-public sealed record class ConversionRateTieredConfig
-    : ModelBase,
-        IFromRaw<ConversionRateTieredConfig>
+[JsonConverter(
+    typeof(ModelConverter<ConversionRateTieredConfig, ConversionRateTieredConfigFromRaw>)
+)]
+public sealed record class ConversionRateTieredConfig : ModelBase
 {
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
@@ -81,4 +81,11 @@ public sealed record class ConversionRateTieredConfig
     {
         this.Tiers = tiers;
     }
+}
+
+class ConversionRateTieredConfigFromRaw : IFromRaw<ConversionRateTieredConfig>
+{
+    public ConversionRateTieredConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ConversionRateTieredConfig.FromRawUnchecked(rawData);
 }

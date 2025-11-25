@@ -12,10 +12,10 @@ namespace Orb.Models;
 /// <summary>
 /// Configuration for matrix pricing with usage allocation
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixWithAllocationConfig>))]
-public sealed record class MatrixWithAllocationConfig
-    : ModelBase,
-        IFromRaw<MatrixWithAllocationConfig>
+[JsonConverter(
+    typeof(ModelConverter<MatrixWithAllocationConfig, MatrixWithAllocationConfigFromRaw>)
+)]
+public sealed record class MatrixWithAllocationConfig : ModelBase
 {
     /// <summary>
     /// Usage allocation
@@ -169,11 +169,18 @@ public sealed record class MatrixWithAllocationConfig
     }
 }
 
+class MatrixWithAllocationConfigFromRaw : IFromRaw<MatrixWithAllocationConfig>
+{
+    public MatrixWithAllocationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MatrixWithAllocationConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single matrix value
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixValue>))]
-public sealed record class MatrixValue : ModelBase, IFromRaw<MatrixValue>
+[JsonConverter(typeof(ModelConverter<MatrixValue, MatrixValueFromRaw>))]
+public sealed record class MatrixValue : ModelBase
 {
     /// <summary>
     /// One or two matrix keys to filter usage to this Matrix value by. For example,
@@ -258,4 +265,10 @@ public sealed record class MatrixValue : ModelBase, IFromRaw<MatrixValue>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class MatrixValueFromRaw : IFromRaw<MatrixValue>
+{
+    public MatrixValue FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MatrixValue.FromRawUnchecked(rawData);
 }

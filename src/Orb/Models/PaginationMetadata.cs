@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<PaginationMetadata>))]
-public sealed record class PaginationMetadata : ModelBase, IFromRaw<PaginationMetadata>
+[JsonConverter(typeof(ModelConverter<PaginationMetadata, PaginationMetadataFromRaw>))]
+public sealed record class PaginationMetadata : ModelBase
 {
     public required bool HasMore
     {
@@ -78,4 +78,10 @@ public sealed record class PaginationMetadata : ModelBase, IFromRaw<PaginationMe
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class PaginationMetadataFromRaw : IFromRaw<PaginationMetadata>
+{
+    public PaginationMetadata FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PaginationMetadata.FromRawUnchecked(rawData);
 }

@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<NewSubscriptionScalableMatrixWithTieredPricingPrice>))]
-public sealed record class NewSubscriptionScalableMatrixWithTieredPricingPrice
-    : ModelBase,
-        IFromRaw<NewSubscriptionScalableMatrixWithTieredPricingPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewSubscriptionScalableMatrixWithTieredPricingPrice,
+        NewSubscriptionScalableMatrixWithTieredPricingPriceFromRaw
+    >)
+)]
+public sealed record class NewSubscriptionScalableMatrixWithTieredPricingPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -519,6 +522,14 @@ public sealed record class NewSubscriptionScalableMatrixWithTieredPricingPrice
     }
 }
 
+class NewSubscriptionScalableMatrixWithTieredPricingPriceFromRaw
+    : IFromRaw<NewSubscriptionScalableMatrixWithTieredPricingPrice>
+{
+    public NewSubscriptionScalableMatrixWithTieredPricingPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewSubscriptionScalableMatrixWithTieredPricingPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -631,11 +642,12 @@ sealed class NewSubscriptionScalableMatrixWithTieredPricingPriceModelTypeConvert
 /// Configuration for scalable_matrix_with_tiered_pricing pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfig>)
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfig,
+        global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigFromRaw
+    >)
 )]
-public sealed record class ScalableMatrixWithTieredPricingConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfig>
+public sealed record class ScalableMatrixWithTieredPricingConfig : ModelBase
 {
     /// <summary>
     /// Used for the scalable matrix first dimension
@@ -790,13 +802,27 @@ public sealed record class ScalableMatrixWithTieredPricingConfig
     }
 }
 
+class ScalableMatrixWithTieredPricingConfigFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfig>
+{
+    public global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfig.FromRawUnchecked(
+            rawData
+        );
+}
+
 /// <summary>
 /// Configuration for a single matrix scaling factor
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.MatrixScalingFactor>))]
-public sealed record class MatrixScalingFactor
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.MatrixScalingFactor>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.MatrixScalingFactor,
+        global::Orb.Models.Subscriptions.MatrixScalingFactorFromRaw
+    >)
+)]
+public sealed record class MatrixScalingFactor : ModelBase
 {
     /// <summary>
     /// First dimension value
@@ -911,11 +937,23 @@ public sealed record class MatrixScalingFactor
     }
 }
 
+class MatrixScalingFactorFromRaw : IFromRaw<global::Orb.Models.Subscriptions.MatrixScalingFactor>
+{
+    public global::Orb.Models.Subscriptions.MatrixScalingFactor FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.MatrixScalingFactor.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tier entry with business logic
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.Tier12>))]
-public sealed record class Tier12 : ModelBase, IFromRaw<global::Orb.Models.Subscriptions.Tier12>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.Tier12,
+        global::Orb.Models.Subscriptions.Tier12FromRaw
+    >)
+)]
+public sealed record class Tier12 : ModelBase
 {
     /// <summary>
     /// Tier lower bound
@@ -1006,6 +1044,13 @@ public sealed record class Tier12 : ModelBase, IFromRaw<global::Orb.Models.Subsc
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Tier12FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tier12>
+{
+    public global::Orb.Models.Subscriptions.Tier12 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.Tier12.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(

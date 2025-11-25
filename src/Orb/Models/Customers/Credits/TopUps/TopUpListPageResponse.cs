@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models.Customers.Credits.TopUps;
 
-[JsonConverter(typeof(ModelConverter<TopUpListPageResponse>))]
-public sealed record class TopUpListPageResponse : ModelBase, IFromRaw<TopUpListPageResponse>
+[JsonConverter(typeof(ModelConverter<TopUpListPageResponse, TopUpListPageResponseFromRaw>))]
+public sealed record class TopUpListPageResponse : ModelBase
 {
     public required List<global::Orb.Models.Customers.Credits.TopUps.Data> Data
     {
@@ -102,10 +102,20 @@ public sealed record class TopUpListPageResponse : ModelBase, IFromRaw<TopUpList
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Customers.Credits.TopUps.Data>))]
-public sealed record class Data
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Customers.Credits.TopUps.Data>
+class TopUpListPageResponseFromRaw : IFromRaw<TopUpListPageResponse>
+{
+    public TopUpListPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TopUpListPageResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Customers.Credits.TopUps.Data,
+        global::Orb.Models.Customers.Credits.TopUps.DataFromRaw
+    >)
+)]
+public sealed record class Data : ModelBase
 {
     public required string ID
     {
@@ -365,6 +375,13 @@ public sealed record class Data
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class DataFromRaw : IFromRaw<global::Orb.Models.Customers.Credits.TopUps.Data>
+{
+    public global::Orb.Models.Customers.Credits.TopUps.Data FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Customers.Credits.TopUps.Data.FromRawUnchecked(rawData);
 }
 
 /// <summary>

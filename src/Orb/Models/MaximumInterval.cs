@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<MaximumInterval>))]
-public sealed record class MaximumInterval : ModelBase, IFromRaw<MaximumInterval>
+[JsonConverter(typeof(ModelConverter<MaximumInterval, MaximumIntervalFromRaw>))]
+public sealed record class MaximumInterval : ModelBase
 {
     /// <summary>
     /// The price interval ids that this maximum interval applies to.
@@ -192,8 +192,14 @@ public sealed record class MaximumInterval : ModelBase, IFromRaw<MaximumInterval
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Filter3>))]
-public sealed record class Filter3 : ModelBase, IFromRaw<Filter3>
+class MaximumIntervalFromRaw : IFromRaw<MaximumInterval>
+{
+    public MaximumInterval FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MaximumInterval.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Filter3, Filter3FromRaw>))]
+public sealed record class Filter3 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -303,6 +309,12 @@ public sealed record class Filter3 : ModelBase, IFromRaw<Filter3>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Filter3FromRaw : IFromRaw<Filter3>
+{
+    public Filter3 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Filter3.FromRawUnchecked(rawData);
 }
 
 /// <summary>

@@ -32,8 +32,8 @@ namespace Orb.Models.Subscriptions;
 /// to contain usage-based charges for the previous period, and a recurring fee for
 /// the following period.</para>
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Subscription>))]
-public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
+[JsonConverter(typeof(ModelConverter<Subscription, SubscriptionFromRaw>))]
+public sealed record class Subscription : ModelBase
 {
     public required string ID
     {
@@ -897,6 +897,12 @@ public sealed record class Subscription : ModelBase, IFromRaw<Subscription>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class SubscriptionFromRaw : IFromRaw<Subscription>
+{
+    public Subscription FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Subscription.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(DiscountIntervalConverter))]

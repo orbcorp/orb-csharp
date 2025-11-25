@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewUsageDiscount>))]
-public sealed record class NewUsageDiscount : ModelBase, IFromRaw<NewUsageDiscount>
+[JsonConverter(typeof(ModelConverter<NewUsageDiscount, NewUsageDiscountFromRaw>))]
+public sealed record class NewUsageDiscount : ModelBase
 {
     public required ApiEnum<string, NewUsageDiscountAdjustmentType> AdjustmentType
     {
@@ -264,6 +264,12 @@ public sealed record class NewUsageDiscount : ModelBase, IFromRaw<NewUsageDiscou
     }
 }
 
+class NewUsageDiscountFromRaw : IFromRaw<NewUsageDiscount>
+{
+    public NewUsageDiscount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        NewUsageDiscount.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(NewUsageDiscountAdjustmentTypeConverter))]
 public enum NewUsageDiscountAdjustmentType
 {
@@ -349,8 +355,8 @@ sealed class NewUsageDiscountAppliesToAllConverter : JsonConverter<NewUsageDisco
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Filter16>))]
-public sealed record class Filter16 : ModelBase, IFromRaw<Filter16>
+[JsonConverter(typeof(ModelConverter<Filter16, Filter16FromRaw>))]
+public sealed record class Filter16 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -460,6 +466,12 @@ public sealed record class Filter16 : ModelBase, IFromRaw<Filter16>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Filter16FromRaw : IFromRaw<Filter16>
+{
+    public Filter16 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Filter16.FromRawUnchecked(rawData);
 }
 
 /// <summary>

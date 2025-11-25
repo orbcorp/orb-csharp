@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewMinimum>))]
-public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
+[JsonConverter(typeof(ModelConverter<NewMinimum, NewMinimumFromRaw>))]
+public sealed record class NewMinimum : ModelBase
 {
     public required ApiEnum<string, NewMinimumAdjustmentType> AdjustmentType
     {
@@ -295,6 +295,12 @@ public sealed record class NewMinimum : ModelBase, IFromRaw<NewMinimum>
     }
 }
 
+class NewMinimumFromRaw : IFromRaw<NewMinimum>
+{
+    public NewMinimum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        NewMinimum.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(NewMinimumAdjustmentTypeConverter))]
 public enum NewMinimumAdjustmentType
 {
@@ -380,8 +386,8 @@ sealed class NewMinimumAppliesToAllConverter : JsonConverter<NewMinimumAppliesTo
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Filter14>))]
-public sealed record class Filter14 : ModelBase, IFromRaw<Filter14>
+[JsonConverter(typeof(ModelConverter<Filter14, Filter14FromRaw>))]
+public sealed record class Filter14 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -491,6 +497,12 @@ public sealed record class Filter14 : ModelBase, IFromRaw<Filter14>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Filter14FromRaw : IFromRaw<Filter14>
+{
+    public Filter14 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Filter14.FromRawUnchecked(rawData);
 }
 
 /// <summary>

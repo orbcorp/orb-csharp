@@ -9,10 +9,10 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<PlanPhaseMinimumAdjustment>))]
-public sealed record class PlanPhaseMinimumAdjustment
-    : ModelBase,
-        IFromRaw<PlanPhaseMinimumAdjustment>
+[JsonConverter(
+    typeof(ModelConverter<PlanPhaseMinimumAdjustment, PlanPhaseMinimumAdjustmentFromRaw>)
+)]
+public sealed record class PlanPhaseMinimumAdjustment : ModelBase
 {
     public required string ID
     {
@@ -322,6 +322,13 @@ public sealed record class PlanPhaseMinimumAdjustment
     }
 }
 
+class PlanPhaseMinimumAdjustmentFromRaw : IFromRaw<PlanPhaseMinimumAdjustment>
+{
+    public PlanPhaseMinimumAdjustment FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PlanPhaseMinimumAdjustment.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(PlanPhaseMinimumAdjustmentAdjustmentTypeConverter))]
 public enum PlanPhaseMinimumAdjustmentAdjustmentType
 {
@@ -364,8 +371,8 @@ sealed class PlanPhaseMinimumAdjustmentAdjustmentTypeConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Filter21>))]
-public sealed record class Filter21 : ModelBase, IFromRaw<Filter21>
+[JsonConverter(typeof(ModelConverter<Filter21, Filter21FromRaw>))]
+public sealed record class Filter21 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -475,6 +482,12 @@ public sealed record class Filter21 : ModelBase, IFromRaw<Filter21>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Filter21FromRaw : IFromRaw<Filter21>
+{
+    public Filter21 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Filter21.FromRawUnchecked(rawData);
 }
 
 /// <summary>

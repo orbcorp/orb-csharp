@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<CustomerMinified>))]
-public sealed record class CustomerMinified : ModelBase, IFromRaw<CustomerMinified>
+[JsonConverter(typeof(ModelConverter<CustomerMinified, CustomerMinifiedFromRaw>))]
+public sealed record class CustomerMinified : ModelBase
 {
     public required string ID
     {
@@ -82,4 +82,10 @@ public sealed record class CustomerMinified : ModelBase, IFromRaw<CustomerMinifi
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CustomerMinifiedFromRaw : IFromRaw<CustomerMinified>
+{
+    public CustomerMinified FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        CustomerMinified.FromRawUnchecked(rawData);
 }

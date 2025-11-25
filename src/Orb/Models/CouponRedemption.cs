@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<CouponRedemption>))]
-public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedemption>
+[JsonConverter(typeof(ModelConverter<CouponRedemption, CouponRedemptionFromRaw>))]
+public sealed record class CouponRedemption : ModelBase
 {
     public required string CouponID
     {
@@ -107,4 +107,10 @@ public sealed record class CouponRedemption : ModelBase, IFromRaw<CouponRedempti
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CouponRedemptionFromRaw : IFromRaw<CouponRedemption>
+{
+    public CouponRedemption FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        CouponRedemption.FromRawUnchecked(rawData);
 }

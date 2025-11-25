@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<TaxAmount>))]
-public sealed record class TaxAmount : ModelBase, IFromRaw<TaxAmount>
+[JsonConverter(typeof(ModelConverter<TaxAmount, TaxAmountFromRaw>))]
+public sealed record class TaxAmount : ModelBase
 {
     /// <summary>
     /// The amount of additional tax incurred by this tax rate.
@@ -118,4 +118,10 @@ public sealed record class TaxAmount : ModelBase, IFromRaw<TaxAmount>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class TaxAmountFromRaw : IFromRaw<TaxAmount>
+{
+    public TaxAmount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        TaxAmount.FromRawUnchecked(rawData);
 }

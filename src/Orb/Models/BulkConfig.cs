@@ -12,8 +12,8 @@ namespace Orb.Models;
 /// <summary>
 /// Configuration for bulk pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<BulkConfig>))]
-public sealed record class BulkConfig : ModelBase, IFromRaw<BulkConfig>
+[JsonConverter(typeof(ModelConverter<BulkConfig, BulkConfigFromRaw>))]
+public sealed record class BulkConfig : ModelBase
 {
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
@@ -77,4 +77,10 @@ public sealed record class BulkConfig : ModelBase, IFromRaw<BulkConfig>
     {
         this.Tiers = tiers;
     }
+}
+
+class BulkConfigFromRaw : IFromRaw<BulkConfig>
+{
+    public BulkConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        BulkConfig.FromRawUnchecked(rawData);
 }

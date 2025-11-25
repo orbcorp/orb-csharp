@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Customers.Credits.TopUps;
 
-[JsonConverter(typeof(ModelConverter<TopUpListByExternalIDPageResponse>))]
-public sealed record class TopUpListByExternalIDPageResponse
-    : ModelBase,
-        IFromRaw<TopUpListByExternalIDPageResponse>
+[JsonConverter(
+    typeof(ModelConverter<
+        TopUpListByExternalIDPageResponse,
+        TopUpListByExternalIDPageResponseFromRaw
+    >)
+)]
+public sealed record class TopUpListByExternalIDPageResponse : ModelBase
 {
     public required List<global::Orb.Models.Customers.Credits.TopUps.DataModel> Data
     {
@@ -104,10 +107,20 @@ public sealed record class TopUpListByExternalIDPageResponse
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Customers.Credits.TopUps.DataModel>))]
-public sealed record class DataModel
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Customers.Credits.TopUps.DataModel>
+class TopUpListByExternalIDPageResponseFromRaw : IFromRaw<TopUpListByExternalIDPageResponse>
+{
+    public TopUpListByExternalIDPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TopUpListByExternalIDPageResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Customers.Credits.TopUps.DataModel,
+        global::Orb.Models.Customers.Credits.TopUps.DataModelFromRaw
+    >)
+)]
+public sealed record class DataModel : ModelBase
 {
     public required string ID
     {
@@ -367,6 +380,13 @@ public sealed record class DataModel
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class DataModelFromRaw : IFromRaw<global::Orb.Models.Customers.Credits.TopUps.DataModel>
+{
+    public global::Orb.Models.Customers.Credits.TopUps.DataModel FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Customers.Credits.TopUps.DataModel.FromRawUnchecked(rawData);
 }
 
 /// <summary>

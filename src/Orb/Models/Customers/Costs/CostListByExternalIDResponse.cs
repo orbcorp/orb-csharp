@@ -9,10 +9,10 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Customers.Costs;
 
-[JsonConverter(typeof(ModelConverter<CostListByExternalIDResponse>))]
-public sealed record class CostListByExternalIDResponse
-    : ModelBase,
-        IFromRaw<CostListByExternalIDResponse>
+[JsonConverter(
+    typeof(ModelConverter<CostListByExternalIDResponse, CostListByExternalIDResponseFromRaw>)
+)]
+public sealed record class CostListByExternalIDResponse : ModelBase
 {
     public required List<AggregatedCost> Data
     {
@@ -78,4 +78,11 @@ public sealed record class CostListByExternalIDResponse
     {
         this.Data = data;
     }
+}
+
+class CostListByExternalIDResponseFromRaw : IFromRaw<CostListByExternalIDResponse>
+{
+    public CostListByExternalIDResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CostListByExternalIDResponse.FromRawUnchecked(rawData);
 }

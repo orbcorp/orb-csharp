@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewFloatingThresholdTotalAmountPrice>))]
-public sealed record class NewFloatingThresholdTotalAmountPrice
-    : ModelBase,
-        IFromRaw<NewFloatingThresholdTotalAmountPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewFloatingThresholdTotalAmountPrice,
+        NewFloatingThresholdTotalAmountPriceFromRaw
+    >)
+)]
+public sealed record class NewFloatingThresholdTotalAmountPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -491,6 +494,13 @@ public sealed record class NewFloatingThresholdTotalAmountPrice
     }
 }
 
+class NewFloatingThresholdTotalAmountPriceFromRaw : IFromRaw<NewFloatingThresholdTotalAmountPrice>
+{
+    public NewFloatingThresholdTotalAmountPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewFloatingThresholdTotalAmountPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -601,10 +611,10 @@ sealed class NewFloatingThresholdTotalAmountPriceModelTypeConverter
 /// <summary>
 /// Configuration for threshold_total_amount pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ThresholdTotalAmountConfig>))]
-public sealed record class ThresholdTotalAmountConfig
-    : ModelBase,
-        IFromRaw<ThresholdTotalAmountConfig>
+[JsonConverter(
+    typeof(ModelConverter<ThresholdTotalAmountConfig, ThresholdTotalAmountConfigFromRaw>)
+)]
+public sealed record class ThresholdTotalAmountConfig : ModelBase
 {
     /// <summary>
     /// When the quantity consumed passes a provided threshold, the configured total
@@ -701,11 +711,18 @@ public sealed record class ThresholdTotalAmountConfig
     }
 }
 
+class ThresholdTotalAmountConfigFromRaw : IFromRaw<ThresholdTotalAmountConfig>
+{
+    public ThresholdTotalAmountConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ThresholdTotalAmountConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single threshold
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ConsumptionTable>))]
-public sealed record class ConsumptionTable : ModelBase, IFromRaw<ConsumptionTable>
+[JsonConverter(typeof(ModelConverter<ConsumptionTable, ConsumptionTableFromRaw>))]
+public sealed record class ConsumptionTable : ModelBase
 {
     /// <summary>
     /// Quantity threshold
@@ -796,6 +813,12 @@ public sealed record class ConsumptionTable : ModelBase, IFromRaw<ConsumptionTab
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ConsumptionTableFromRaw : IFromRaw<ConsumptionTable>
+{
+    public ConsumptionTable FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ConsumptionTable.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewFloatingThresholdTotalAmountPriceConversionRateConfigConverter))]

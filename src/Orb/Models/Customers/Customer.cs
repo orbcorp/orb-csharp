@@ -26,8 +26,8 @@ namespace Orb.Models.Customers;
 /// which defaults to your account's timezone. See [Timezone localization](/essentials/timezones)
 /// for information on what this timezone parameter influences within Orb.</para>
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Customer>))]
-public sealed record class Customer : ModelBase, IFromRaw<Customer>
+[JsonConverter(typeof(ModelConverter<Customer, CustomerFromRaw>))]
+public sealed record class Customer : ModelBase
 {
     public required string ID
     {
@@ -758,11 +758,17 @@ public sealed record class Customer : ModelBase, IFromRaw<Customer>
     }
 }
 
+class CustomerFromRaw : IFromRaw<Customer>
+{
+    public Customer FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Customer.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The hierarchical relationships for this customer.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Hierarchy>))]
-public sealed record class Hierarchy : ModelBase, IFromRaw<Hierarchy>
+[JsonConverter(typeof(ModelConverter<Hierarchy, HierarchyFromRaw>))]
+public sealed record class Hierarchy : ModelBase
 {
     public required List<CustomerMinified> Children
     {
@@ -843,6 +849,12 @@ public sealed record class Hierarchy : ModelBase, IFromRaw<Hierarchy>
     }
 }
 
+class HierarchyFromRaw : IFromRaw<Hierarchy>
+{
+    public Hierarchy FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Hierarchy.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// This is used for creating charges or invoices in an external system via Orb.
 /// When not in test mode, the connection must first be configured in the Orb webapp.
@@ -900,10 +912,10 @@ sealed class CustomerPaymentProviderConverter : JsonConverter<CustomerPaymentPro
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AccountingSyncConfiguration>))]
-public sealed record class AccountingSyncConfiguration
-    : ModelBase,
-        IFromRaw<AccountingSyncConfiguration>
+[JsonConverter(
+    typeof(ModelConverter<AccountingSyncConfiguration, AccountingSyncConfigurationFromRaw>)
+)]
+public sealed record class AccountingSyncConfiguration : ModelBase
 {
     public required List<AccountingProvider> AccountingProviders
     {
@@ -989,8 +1001,15 @@ public sealed record class AccountingSyncConfiguration
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AccountingProvider>))]
-public sealed record class AccountingProvider : ModelBase, IFromRaw<AccountingProvider>
+class AccountingSyncConfigurationFromRaw : IFromRaw<AccountingSyncConfiguration>
+{
+    public AccountingSyncConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AccountingSyncConfiguration.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<AccountingProvider, AccountingProviderFromRaw>))]
+public sealed record class AccountingProvider : ModelBase
 {
     public required string? ExternalProviderID
     {
@@ -1066,6 +1085,12 @@ public sealed record class AccountingProvider : ModelBase, IFromRaw<AccountingPr
     }
 }
 
+class AccountingProviderFromRaw : IFromRaw<AccountingProvider>
+{
+    public AccountingProvider FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        AccountingProvider.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(ProviderTypeConverter))]
 public enum ProviderType
 {
@@ -1110,8 +1135,8 @@ sealed class ProviderTypeConverter : JsonConverter<ProviderType>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ReportingConfiguration>))]
-public sealed record class ReportingConfiguration : ModelBase, IFromRaw<ReportingConfiguration>
+[JsonConverter(typeof(ModelConverter<ReportingConfiguration, ReportingConfigurationFromRaw>))]
+public sealed record class ReportingConfiguration : ModelBase
 {
     public required bool Exempt
     {
@@ -1167,4 +1192,11 @@ public sealed record class ReportingConfiguration : ModelBase, IFromRaw<Reportin
     {
         this.Exempt = exempt;
     }
+}
+
+class ReportingConfigurationFromRaw : IFromRaw<ReportingConfiguration>
+{
+    public ReportingConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ReportingConfiguration.FromRawUnchecked(rawData);
 }

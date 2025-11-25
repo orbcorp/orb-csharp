@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<NewSubscriptionGroupedWithProratedMinimumPrice>))]
-public sealed record class NewSubscriptionGroupedWithProratedMinimumPrice
-    : ModelBase,
-        IFromRaw<NewSubscriptionGroupedWithProratedMinimumPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewSubscriptionGroupedWithProratedMinimumPrice,
+        NewSubscriptionGroupedWithProratedMinimumPriceFromRaw
+    >)
+)]
+public sealed record class NewSubscriptionGroupedWithProratedMinimumPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -514,6 +517,14 @@ public sealed record class NewSubscriptionGroupedWithProratedMinimumPrice
     }
 }
 
+class NewSubscriptionGroupedWithProratedMinimumPriceFromRaw
+    : IFromRaw<NewSubscriptionGroupedWithProratedMinimumPrice>
+{
+    public NewSubscriptionGroupedWithProratedMinimumPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewSubscriptionGroupedWithProratedMinimumPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -578,11 +589,12 @@ sealed class NewSubscriptionGroupedWithProratedMinimumPriceCadenceConverter
 /// Configuration for grouped_with_prorated_minimum pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Subscriptions.GroupedWithProratedMinimumConfig>)
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.GroupedWithProratedMinimumConfig,
+        global::Orb.Models.Subscriptions.GroupedWithProratedMinimumConfigFromRaw
+    >)
 )]
-public sealed record class GroupedWithProratedMinimumConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.GroupedWithProratedMinimumConfig>
+public sealed record class GroupedWithProratedMinimumConfig : ModelBase
 {
     /// <summary>
     /// How to determine the groups that should each have a minimum
@@ -702,6 +714,15 @@ public sealed record class GroupedWithProratedMinimumConfig
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class GroupedWithProratedMinimumConfigFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.GroupedWithProratedMinimumConfig>
+{
+    public global::Orb.Models.Subscriptions.GroupedWithProratedMinimumConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        global::Orb.Models.Subscriptions.GroupedWithProratedMinimumConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>

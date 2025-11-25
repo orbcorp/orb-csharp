@@ -539,8 +539,8 @@ sealed class BodyConverter : JsonConverter<Body>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Increment>))]
-public sealed record class Increment : ModelBase, IFromRaw<Increment>
+[JsonConverter(typeof(ModelConverter<Increment, IncrementFromRaw>))]
+public sealed record class Increment : ModelBase
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -841,6 +841,12 @@ public sealed record class Increment : ModelBase, IFromRaw<Increment>
     }
 }
 
+class IncrementFromRaw : IFromRaw<Increment>
+{
+    public Increment FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Increment.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(Converter))]
 public class IncrementEntryType
 {
@@ -889,10 +895,13 @@ public class IncrementEntryType
 /// <summary>
 /// A PriceFilter that only allows item_id field for block filters.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Customers.Credits.Ledger.Filter>))]
-public sealed record class Filter
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Customers.Credits.Ledger.Filter>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Customers.Credits.Ledger.Filter,
+        global::Orb.Models.Customers.Credits.Ledger.FilterFromRaw
+    >)
+)]
+public sealed record class Filter : ModelBase
 {
     /// <summary>
     /// The property of the price the block applies to. Only item_id is supported.
@@ -1004,6 +1013,13 @@ public sealed record class Filter
     }
 }
 
+class FilterFromRaw : IFromRaw<global::Orb.Models.Customers.Credits.Ledger.Filter>
+{
+    public global::Orb.Models.Customers.Credits.Ledger.Filter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Customers.Credits.Ledger.Filter.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The property of the price the block applies to. Only item_id is supported.
 /// </summary>
@@ -1100,8 +1116,8 @@ sealed class OperatorConverter : JsonConverter<global::Orb.Models.Customers.Cred
 /// credits. If `invoice_settings` is passed, you must specify per_unit_cost_basis,
 /// as the calculation of the invoice total is done on that basis.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<InvoiceSettings>))]
-public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings>
+[JsonConverter(typeof(ModelConverter<InvoiceSettings, InvoiceSettingsFromRaw>))]
+public sealed record class InvoiceSettings : ModelBase
 {
     /// <summary>
     /// Whether the credits purchase invoice should auto collect with the customer's
@@ -1309,6 +1325,12 @@ public sealed record class InvoiceSettings : ModelBase, IFromRaw<InvoiceSettings
     {
         this.AutoCollection = autoCollection;
     }
+}
+
+class InvoiceSettingsFromRaw : IFromRaw<InvoiceSettings>
+{
+    public InvoiceSettings FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        InvoiceSettings.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -1574,8 +1596,8 @@ sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Decrement>))]
-public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
+[JsonConverter(typeof(ModelConverter<Decrement, DecrementFromRaw>))]
+public sealed record class Decrement : ModelBase
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -1746,6 +1768,12 @@ public sealed record class Decrement : ModelBase, IFromRaw<Decrement>
     }
 }
 
+class DecrementFromRaw : IFromRaw<Decrement>
+{
+    public Decrement FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Decrement.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(Converter))]
 public class DecrementEntryType
 {
@@ -1791,8 +1819,8 @@ public class DecrementEntryType
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ExpirationChange>))]
-public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChange>
+[JsonConverter(typeof(ModelConverter<ExpirationChange, ExpirationChangeFromRaw>))]
+public sealed record class ExpirationChange : ModelBase
 {
     public ExpirationChangeEntryType EntryType
     {
@@ -2043,6 +2071,12 @@ public sealed record class ExpirationChange : ModelBase, IFromRaw<ExpirationChan
     }
 }
 
+class ExpirationChangeFromRaw : IFromRaw<ExpirationChange>
+{
+    public ExpirationChange FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ExpirationChange.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(Converter))]
 public class ExpirationChangeEntryType
 {
@@ -2090,8 +2124,8 @@ public class ExpirationChangeEntryType
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Void>))]
-public sealed record class Void : ModelBase, IFromRaw<Void>
+[JsonConverter(typeof(ModelConverter<Void, VoidFromRaw>))]
+public sealed record class Void : ModelBase
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -2306,6 +2340,12 @@ public sealed record class Void : ModelBase, IFromRaw<Void>
     }
 }
 
+class VoidFromRaw : IFromRaw<Void>
+{
+    public Void FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Void.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(Converter))]
 public class VoidEntryType
 {
@@ -2395,8 +2435,8 @@ sealed class VoidReasonConverter : JsonConverter<VoidReason>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Amendment>))]
-public sealed record class Amendment : ModelBase, IFromRaw<Amendment>
+[JsonConverter(typeof(ModelConverter<Amendment, AmendmentFromRaw>))]
+public sealed record class Amendment : ModelBase
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -2587,6 +2627,12 @@ public sealed record class Amendment : ModelBase, IFromRaw<Amendment>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class AmendmentFromRaw : IFromRaw<Amendment>
+{
+    public Amendment FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Amendment.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(Converter))]

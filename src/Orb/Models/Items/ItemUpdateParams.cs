@@ -158,8 +158,8 @@ public sealed record class ItemUpdateParams : ParamsBase
 /// Represents a connection between an Item and an external system for invoicing
 /// or tax calculation purposes.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ExternalConnection>))]
-public sealed record class ExternalConnection : ModelBase, IFromRaw<ExternalConnection>
+[JsonConverter(typeof(ModelConverter<ExternalConnection, ExternalConnectionFromRaw>))]
+public sealed record class ExternalConnection : ModelBase
 {
     /// <summary>
     /// The name of the external system this item is connected to.
@@ -249,6 +249,12 @@ public sealed record class ExternalConnection : ModelBase, IFromRaw<ExternalConn
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ExternalConnectionFromRaw : IFromRaw<ExternalConnection>
+{
+    public ExternalConnection FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ExternalConnection.FromRawUnchecked(rawData);
 }
 
 /// <summary>

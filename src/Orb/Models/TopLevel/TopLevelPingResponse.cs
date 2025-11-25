@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models.TopLevel;
 
-[JsonConverter(typeof(ModelConverter<TopLevelPingResponse>))]
-public sealed record class TopLevelPingResponse : ModelBase, IFromRaw<TopLevelPingResponse>
+[JsonConverter(typeof(ModelConverter<TopLevelPingResponse, TopLevelPingResponseFromRaw>))]
+public sealed record class TopLevelPingResponse : ModelBase
 {
     public required string Response
     {
@@ -70,4 +70,11 @@ public sealed record class TopLevelPingResponse : ModelBase, IFromRaw<TopLevelPi
     {
         this.Response = response;
     }
+}
+
+class TopLevelPingResponseFromRaw : IFromRaw<TopLevelPingResponse>
+{
+    public TopLevelPingResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TopLevelPingResponse.FromRawUnchecked(rawData);
 }

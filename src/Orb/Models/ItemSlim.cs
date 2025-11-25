@@ -12,8 +12,8 @@ namespace Orb.Models;
 /// <summary>
 /// A minimal representation of an Item containing only the essential identifying information.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ItemSlim>))]
-public sealed record class ItemSlim : ModelBase, IFromRaw<ItemSlim>
+[JsonConverter(typeof(ModelConverter<ItemSlim, ItemSlimFromRaw>))]
+public sealed record class ItemSlim : ModelBase
 {
     /// <summary>
     /// The Orb-assigned unique identifier for the item.
@@ -96,4 +96,10 @@ public sealed record class ItemSlim : ModelBase, IFromRaw<ItemSlim>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ItemSlimFromRaw : IFromRaw<ItemSlim>
+{
+    public ItemSlim FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ItemSlim.FromRawUnchecked(rawData);
 }

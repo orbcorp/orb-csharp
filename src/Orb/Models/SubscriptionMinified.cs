@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<SubscriptionMinified>))]
-public sealed record class SubscriptionMinified : ModelBase, IFromRaw<SubscriptionMinified>
+[JsonConverter(typeof(ModelConverter<SubscriptionMinified, SubscriptionMinifiedFromRaw>))]
+public sealed record class SubscriptionMinified : ModelBase
 {
     public required string ID
     {
@@ -70,4 +70,11 @@ public sealed record class SubscriptionMinified : ModelBase, IFromRaw<Subscripti
     {
         this.ID = id;
     }
+}
+
+class SubscriptionMinifiedFromRaw : IFromRaw<SubscriptionMinified>
+{
+    public SubscriptionMinified FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => SubscriptionMinified.FromRawUnchecked(rawData);
 }

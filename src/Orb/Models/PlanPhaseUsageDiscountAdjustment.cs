@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<PlanPhaseUsageDiscountAdjustment>))]
-public sealed record class PlanPhaseUsageDiscountAdjustment
-    : ModelBase,
-        IFromRaw<PlanPhaseUsageDiscountAdjustment>
+[JsonConverter(
+    typeof(ModelConverter<
+        PlanPhaseUsageDiscountAdjustment,
+        PlanPhaseUsageDiscountAdjustmentFromRaw
+    >)
+)]
+public sealed record class PlanPhaseUsageDiscountAdjustment : ModelBase
 {
     public required string ID
     {
@@ -289,6 +292,13 @@ public sealed record class PlanPhaseUsageDiscountAdjustment
     }
 }
 
+class PlanPhaseUsageDiscountAdjustmentFromRaw : IFromRaw<PlanPhaseUsageDiscountAdjustment>
+{
+    public PlanPhaseUsageDiscountAdjustment FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PlanPhaseUsageDiscountAdjustment.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(PlanPhaseUsageDiscountAdjustmentAdjustmentTypeConverter))]
 public enum PlanPhaseUsageDiscountAdjustmentAdjustmentType
 {
@@ -331,8 +341,8 @@ sealed class PlanPhaseUsageDiscountAdjustmentAdjustmentTypeConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Filter23>))]
-public sealed record class Filter23 : ModelBase, IFromRaw<Filter23>
+[JsonConverter(typeof(ModelConverter<Filter23, Filter23FromRaw>))]
+public sealed record class Filter23 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -442,6 +452,12 @@ public sealed record class Filter23 : ModelBase, IFromRaw<Filter23>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Filter23FromRaw : IFromRaw<Filter23>
+{
+    public Filter23 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Filter23.FromRawUnchecked(rawData);
 }
 
 /// <summary>

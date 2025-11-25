@@ -7,8 +7,8 @@ using Orb.Core;
 
 namespace Orb.Models.Customers;
 
-[JsonConverter(typeof(ModelConverter<CustomerHierarchyConfig>))]
-public sealed record class CustomerHierarchyConfig : ModelBase, IFromRaw<CustomerHierarchyConfig>
+[JsonConverter(typeof(ModelConverter<CustomerHierarchyConfig, CustomerHierarchyConfigFromRaw>))]
+public sealed record class CustomerHierarchyConfig : ModelBase
 {
     /// <summary>
     /// A list of child customer IDs to add to the hierarchy. The desired child customers
@@ -86,4 +86,11 @@ public sealed record class CustomerHierarchyConfig : ModelBase, IFromRaw<Custome
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CustomerHierarchyConfigFromRaw : IFromRaw<CustomerHierarchyConfig>
+{
+    public CustomerHierarchyConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CustomerHierarchyConfig.FromRawUnchecked(rawData);
 }

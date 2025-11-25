@@ -9,10 +9,13 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<SubscriptionFetchSchedulePageResponse>))]
-public sealed record class SubscriptionFetchSchedulePageResponse
-    : ModelBase,
-        IFromRaw<SubscriptionFetchSchedulePageResponse>
+[JsonConverter(
+    typeof(ModelConverter<
+        SubscriptionFetchSchedulePageResponse,
+        SubscriptionFetchSchedulePageResponseFromRaw
+    >)
+)]
+public sealed record class SubscriptionFetchSchedulePageResponse : ModelBase
 {
     public required List<Data1> Data
     {
@@ -102,8 +105,15 @@ public sealed record class SubscriptionFetchSchedulePageResponse
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Data1>))]
-public sealed record class Data1 : ModelBase, IFromRaw<Data1>
+class SubscriptionFetchSchedulePageResponseFromRaw : IFromRaw<SubscriptionFetchSchedulePageResponse>
+{
+    public SubscriptionFetchSchedulePageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => SubscriptionFetchSchedulePageResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Data1, Data1FromRaw>))]
+public sealed record class Data1 : ModelBase
 {
     public required DateTimeOffset CreatedAt
     {
@@ -215,8 +225,14 @@ public sealed record class Data1 : ModelBase, IFromRaw<Data1>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Plan>))]
-public sealed record class Plan : ModelBase, IFromRaw<Plan>
+class Data1FromRaw : IFromRaw<Data1>
+{
+    public Data1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Data1.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Plan, PlanFromRaw>))]
+public sealed record class Plan : ModelBase
 {
     public required string? ID
     {
@@ -303,4 +319,10 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class PlanFromRaw : IFromRaw<Plan>
+{
+    public Plan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Plan.FromRawUnchecked(rawData);
 }

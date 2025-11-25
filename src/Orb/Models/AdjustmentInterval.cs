@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<AdjustmentInterval>))]
-public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentInterval>
+[JsonConverter(typeof(ModelConverter<AdjustmentInterval, AdjustmentIntervalFromRaw>))]
+public sealed record class AdjustmentInterval : ModelBase
 {
     public required string ID
     {
@@ -185,6 +185,12 @@ public sealed record class AdjustmentInterval : ModelBase, IFromRaw<AdjustmentIn
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class AdjustmentIntervalFromRaw : IFromRaw<AdjustmentInterval>
+{
+    public AdjustmentInterval FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        AdjustmentInterval.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(AdjustmentIntervalAdjustmentConverter))]
