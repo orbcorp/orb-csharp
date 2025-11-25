@@ -141,17 +141,26 @@ public sealed record class InvoiceListParams : ParamsBase
         }
     }
 
-    public System::DateOnly? DueDate
+    public
+#if NET
+    System::DateOnly
+#else
+    System::DateTimeOffset
+#endif
+    ? DueDate
     {
         get
         {
             if (!this._rawQueryData.TryGetValue("due_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateOnly?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+#if NET
+            System::DateOnly
+#else
+            System::DateTimeOffset
+#endif
+            ?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -186,17 +195,26 @@ public sealed record class InvoiceListParams : ParamsBase
         }
     }
 
-    public System::DateOnly? DueDateGt
+    public
+#if NET
+    System::DateOnly
+#else
+    System::DateTimeOffset
+#endif
+    ? DueDateGt
     {
         get
         {
             if (!this._rawQueryData.TryGetValue("due_date[gt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateOnly?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+#if NET
+            System::DateOnly
+#else
+            System::DateTimeOffset
+#endif
+            ?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -207,17 +225,26 @@ public sealed record class InvoiceListParams : ParamsBase
         }
     }
 
-    public System::DateOnly? DueDateLt
+    public
+#if NET
+    System::DateOnly
+#else
+    System::DateTimeOffset
+#endif
+    ? DueDateLt
     {
         get
         {
             if (!this._rawQueryData.TryGetValue("due_date[lt]", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateOnly?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+#if NET
+            System::DateOnly
+#else
+            System::DateTimeOffset
+#endif
+            ?>(element, ModelBase.SerializerOptions);
         }
         init
         {

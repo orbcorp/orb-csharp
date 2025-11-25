@@ -18,8 +18,20 @@ public class CreditNoteServiceTest : TestBase
                     {
                         Amount = "amount",
                         InvoiceLineItemID = "4khy3nwzktxv7",
-                        EndDate = DateOnly.Parse("2023-09-22"),
-                        StartDate = DateOnly.Parse("2023-09-22"),
+                        EndDate =
+#if NET
+                        DateOnly
+#else
+                        DateTimeOffset
+#endif
+                        .Parse("2023-09-22"),
+                        StartDate =
+#if NET
+                        DateOnly
+#else
+                        DateTimeOffset
+#endif
+                        .Parse("2023-09-22"),
                     },
                 ],
                 Reason = Reason.Duplicate,

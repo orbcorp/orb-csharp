@@ -12,10 +12,22 @@ public class InvoiceLineItemServiceTest : TestBase
             new()
             {
                 Amount = "12.00",
-                EndDate = DateOnly.Parse("2023-09-22"),
+                EndDate =
+#if NET
+                DateOnly
+#else
+                DateTimeOffset
+#endif
+                .Parse("2023-09-22"),
                 InvoiceID = "4khy3nwzktxv7",
                 Quantity = 1,
-                StartDate = DateOnly.Parse("2023-09-22"),
+                StartDate =
+#if NET
+                DateOnly
+#else
+                DateTimeOffset
+#endif
+                .Parse("2023-09-22"),
             }
         );
         invoiceLineItem.Validate();

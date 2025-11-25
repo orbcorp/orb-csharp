@@ -18,12 +18,24 @@ public class InvoiceServiceTest : TestBase
                 [
                     new()
                     {
-                        EndDate = DateOnly.Parse("2023-09-22"),
+                        EndDate =
+#if NET
+                        DateOnly
+#else
+                        DateTimeOffset
+#endif
+                        .Parse("2023-09-22"),
                         ItemID = "4khy3nwzktxv7",
                         ModelType = ModelType.Unit,
                         Name = "Line Item Name",
                         Quantity = 1,
-                        StartDate = DateOnly.Parse("2023-09-22"),
+                        StartDate =
+#if NET
+                        DateOnly
+#else
+                        DateTimeOffset
+#endif
+                        .Parse("2023-09-22"),
                         UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                     },
                 ],
@@ -74,7 +86,13 @@ public class InvoiceServiceTest : TestBase
     {
         var invoice = await this.client.Invoices.MarkPaid(
             "invoice_id",
-            new() { PaymentReceivedDate = DateOnly.Parse("2023-09-22") }
+            new() { PaymentReceivedDate =
+#if NET
+                DateOnly
+#else
+                DateTimeOffset
+#endif
+                .Parse("2023-09-22") }
         );
         invoice.Validate();
     }

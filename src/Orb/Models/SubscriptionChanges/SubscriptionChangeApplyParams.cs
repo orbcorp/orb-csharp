@@ -114,14 +114,26 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     /// A date string to specify the date the payment was received. Only applicable
     /// when mark_as_paid is true. If not provided, defaults to the current date.
     /// </summary>
-    public DateOnly? PaymentReceivedDate
+    public
+#if NET
+    DateOnly
+#else
+    DateTimeOffset
+#endif
+    ? PaymentReceivedDate
     {
         get
         {
             if (!this._rawBodyData.TryGetValue("payment_received_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateOnly?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<
+#if NET
+            DateOnly
+#else
+            DateTimeOffset
+#endif
+            ?>(element, ModelBase.SerializerOptions);
         }
         init
         {

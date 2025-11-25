@@ -379,7 +379,13 @@ public sealed record class LineItem : ModelBase
     /// <summary>
     /// A date string to specify the line item's end date in the customer's timezone.
     /// </summary>
-    public required System::DateOnly EndDate
+    public required
+#if NET
+    System::DateOnly
+#else
+    System::DateTimeOffset
+#endif
+    EndDate
     {
         get
         {
@@ -389,10 +395,13 @@ public sealed record class LineItem : ModelBase
                     new System::ArgumentOutOfRangeException("end_date", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<System::DateOnly>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+#if NET
+            System::DateOnly
+#else
+            System::DateTimeOffset
+#endif
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -509,7 +518,13 @@ public sealed record class LineItem : ModelBase
     /// <summary>
     /// A date string to specify the line item's start date in the customer's timezone.
     /// </summary>
-    public required System::DateOnly StartDate
+    public required
+#if NET
+    System::DateOnly
+#else
+    System::DateTimeOffset
+#endif
+    StartDate
     {
         get
         {
@@ -522,10 +537,13 @@ public sealed record class LineItem : ModelBase
                     )
                 );
 
-            return JsonSerializer.Deserialize<System::DateOnly>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+#if NET
+            System::DateOnly
+#else
+            System::DateTimeOffset
+#endif
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -665,7 +683,13 @@ public record class DueDate
         get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public DueDate(System::DateOnly value, JsonElement? json = null)
+    public DueDate(
+#if NET
+        System::DateOnly
+#else
+        System::DateTimeOffset
+#endif
+        value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
@@ -682,9 +706,21 @@ public record class DueDate
         this._json = json;
     }
 
-    public bool TryPickDate([NotNullWhen(true)] out System::DateOnly? value)
+    public bool TryPickDate([NotNullWhen(true)] out
+#if NET
+        System::DateOnly
+#else
+        System::DateTimeOffset
+#endif
+        ? value)
     {
-        value = this.Value as System::DateOnly?;
+        value = this.Value as
+#if NET
+            System::DateOnly
+#else
+            System::DateTimeOffset
+#endif
+            ?;
         return value != null;
     }
 
@@ -695,13 +731,25 @@ public record class DueDate
     }
 
     public void Switch(
-        System::Action<System::DateOnly> @date,
+        System::Action<
+#if NET
+        System::DateOnly
+#else
+        System::DateTimeOffset
+#endif
+        > @date,
         System::Action<System::DateTimeOffset> @dateTime
     )
     {
         switch (this.Value)
         {
-            case System::DateOnly value:
+            case
+#if NET
+            System::DateOnly
+#else
+            System::DateTimeOffset
+#endif
+            value:
                 @date(value);
                 break;
             case System::DateTimeOffset value:
@@ -713,19 +761,36 @@ public record class DueDate
     }
 
     public T Match<T>(
-        System::Func<System::DateOnly, T> @date,
+        System::Func<
+#if NET
+            System::DateOnly
+#else
+            System::DateTimeOffset
+#endif
+            , T> @date,
         System::Func<System::DateTimeOffset, T> @dateTime
     )
     {
         return this.Value switch
         {
-            System::DateOnly value => @date(value),
+#if NET
+            System::DateOnly
+#else
+            System::DateTimeOffset
+#endif
+            value => @date(value),
             System::DateTimeOffset value => @dateTime(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of DueDate"),
         };
     }
 
-    public static implicit operator DueDate(System::DateOnly value) => new(value);
+    public static implicit operator DueDate(
+#if NET
+        System::DateOnly
+#else
+        System::DateTimeOffset
+#endif
+        value) => new(value);
 
     public static implicit operator DueDate(System::DateTimeOffset value) => new(value);
 
@@ -749,7 +814,13 @@ sealed class DueDateConverter : JsonConverter<DueDate?>
         var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateOnly>(json, options));
+            return new(JsonSerializer.Deserialize<
+#if NET
+                System::DateOnly
+#else
+                System::DateTimeOffset
+#endif
+                >(json, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
