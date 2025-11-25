@@ -166,6 +166,57 @@ public sealed record class NewAllocationPrice : ModelBase
         }
     }
 
+    /// <summary>
+    /// The item ID that line items representing charges for this allocation will
+    /// be associated with. If not provided, the default allocation item for the
+    /// currency will be used (e.g. 'Included Allocation (USD)').
+    /// </summary>
+    public string? ItemID
+    {
+        get
+        {
+            if (!this._rawData.TryGetValue("item_id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._rawData["item_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// The (per-unit) cost basis of each created block. If non-zero, a customer
+    /// will be invoiced according to the quantity and per unit cost basis specified
+    /// for the allocation each cadence.
+    /// </summary>
+    public string? PerUnitCostBasis
+    {
+        get
+        {
+            if (!this._rawData.TryGetValue("per_unit_cost_basis", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["per_unit_cost_basis"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     public override void Validate()
     {
         _ = this.Amount;
@@ -177,6 +228,8 @@ public sealed record class NewAllocationPrice : ModelBase
         {
             item.Validate();
         }
+        _ = this.ItemID;
+        _ = this.PerUnitCostBasis;
     }
 
     public NewAllocationPrice() { }
