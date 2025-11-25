@@ -38,6 +38,8 @@ public class PlanServiceTest : TestBase
                                     Values = ["string"],
                                 },
                             ],
+                            ItemID = "item_id",
+                            PerUnitCostBasis = "per_unit_cost_basis",
                         },
                         PlanPhaseOrder = 0,
                         Price1 = new NewPlanUnitPrice()

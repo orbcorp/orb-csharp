@@ -174,9 +174,8 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
     }
 
     /// <summary>
-    /// If true, ending an in-arrears price interval mid-cycle will defer billing
-    /// the final line itemuntil the next scheduled invoice. If false, it will be
-    /// billed on its end date. If not provided, behaviorwill follow account default.
+    /// If set, the default value to use for added/edited price intervals with an
+    /// end_date set.
     /// </summary>
     public bool? CanDeferBilling
     {
@@ -370,6 +369,29 @@ public sealed record class Add : ModelBase
         init
         {
             this._rawData["allocation_price"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// If true, an in-arrears price interval ending mid-cycle will defer billing
+    /// the final line item until the next scheduled invoice. If false, it will be
+    /// billed on its end date.
+    /// </summary>
+    public bool? CanDeferBilling
+    {
+        get
+        {
+            if (!this._rawData.TryGetValue("can_defer_billing", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._rawData["can_defer_billing"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -611,6 +633,7 @@ public sealed record class Add : ModelBase
     {
         this.StartDate.Validate();
         this.AllocationPrice?.Validate();
+        _ = this.CanDeferBilling;
         foreach (var item in this.Discounts ?? [])
         {
             item.Validate();
@@ -9374,9 +9397,9 @@ public sealed record class Edit : ModelBase
     }
 
     /// <summary>
-    /// If true, ending an in-arrears price interval mid-cycle will defer billing
+    /// If true, an in-arrears price interval ending mid-cycle will defer billing
     /// the final line item until the next scheduled invoice. If false, it will be
-    /// billed on its end date. If not provided, behavior will follow account default.
+    /// billed on its end date.
     /// </summary>
     public bool? CanDeferBilling
     {
