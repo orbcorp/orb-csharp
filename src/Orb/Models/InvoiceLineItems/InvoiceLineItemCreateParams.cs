@@ -62,7 +62,13 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// <summary>
     /// A date string to specify the line item's end date in the customer's timezone.
     /// </summary>
-    public required DateOnly EndDate
+    public required
+#if NET
+    DateOnly
+#else
+    DateTimeOffset
+#endif
+    EndDate
     {
         get
         {
@@ -72,7 +78,13 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
                     new ArgumentOutOfRangeException("end_date", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<DateOnly>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<
+#if NET
+            DateOnly
+#else
+            DateTimeOffset
+#endif
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -138,7 +150,13 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// <summary>
     /// A date string to specify the line item's start date in the customer's timezone.
     /// </summary>
-    public required DateOnly StartDate
+    public required
+#if NET
+    DateOnly
+#else
+    DateTimeOffset
+#endif
+    StartDate
     {
         get
         {
@@ -148,7 +166,13 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
                     new ArgumentOutOfRangeException("start_date", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<DateOnly>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<
+#if NET
+            DateOnly
+#else
+            DateTimeOffset
+#endif
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {

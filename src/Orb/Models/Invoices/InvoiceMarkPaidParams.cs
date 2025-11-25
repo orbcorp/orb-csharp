@@ -27,7 +27,13 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     /// <summary>
     /// A date string to specify the date of the payment.
     /// </summary>
-    public required DateOnly PaymentReceivedDate
+    public required
+#if NET
+    DateOnly
+#else
+    DateTimeOffset
+#endif
+    PaymentReceivedDate
     {
         get
         {
@@ -40,7 +46,13 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
                     )
                 );
 
-            return JsonSerializer.Deserialize<DateOnly>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<
+#if NET
+            DateOnly
+#else
+            DateTimeOffset
+#endif
+            >(element, ModelBase.SerializerOptions);
         }
         init
         {

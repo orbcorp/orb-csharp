@@ -148,17 +148,26 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     /// timezone. If this parameter is not passed in, the quantity change is effective
     /// according to `change_option`.
     /// </summary>
-    public System::DateOnly? EffectiveDate
+    public
+#if NET
+    System::DateOnly
+#else
+    System::DateTimeOffset
+#endif
+    ? EffectiveDate
     {
         get
         {
             if (!this._rawBodyData.TryGetValue("effective_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateOnly?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+#if NET
+            System::DateOnly
+#else
+            System::DateTimeOffset
+#endif
+            ?>(element, ModelBase.SerializerOptions);
         }
         init
         {

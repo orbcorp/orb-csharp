@@ -110,17 +110,26 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     /// items will use their original invoice line item service periods. This date
     /// is inclusive.
     /// </summary>
-    public System::DateOnly? EndDate
+    public
+#if NET
+    System::DateOnly
+#else
+    System::DateTimeOffset
+#endif
+    ? EndDate
     {
         get
         {
             if (!this._rawBodyData.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateOnly?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+#if NET
+            System::DateOnly
+#else
+            System::DateTimeOffset
+#endif
+            ?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -159,17 +168,26 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     /// items will use their original invoice line item service periods. This date
     /// is inclusive.
     /// </summary>
-    public System::DateOnly? StartDate
+    public
+#if NET
+    System::DateOnly
+#else
+    System::DateTimeOffset
+#endif
+    ? StartDate
     {
         get
         {
             if (!this._rawBodyData.TryGetValue("start_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateOnly?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+#if NET
+            System::DateOnly
+#else
+            System::DateTimeOffset
+#endif
+            ?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -316,17 +334,26 @@ public sealed record class LineItem : ModelBase
     /// line item. If not provided, will use the global end_date if available, otherwise
     /// defaults to the original invoice line item's end date. This date is inclusive.
     /// </summary>
-    public System::DateOnly? EndDate
+    public
+#if NET
+    System::DateOnly
+#else
+    System::DateTimeOffset
+#endif
+    ? EndDate
     {
         get
         {
             if (!this._rawData.TryGetValue("end_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateOnly?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+#if NET
+            System::DateOnly
+#else
+            System::DateTimeOffset
+#endif
+            ?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -344,17 +371,26 @@ public sealed record class LineItem : ModelBase
     /// otherwise defaults to the original invoice line item's start date. This date
     /// is inclusive.
     /// </summary>
-    public System::DateOnly? StartDate
+    public
+#if NET
+    System::DateOnly
+#else
+    System::DateTimeOffset
+#endif
+    ? StartDate
     {
         get
         {
             if (!this._rawData.TryGetValue("start_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<System::DateOnly?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<
+#if NET
+            System::DateOnly
+#else
+            System::DateTimeOffset
+#endif
+            ?>(element, ModelBase.SerializerOptions);
         }
         init
         {

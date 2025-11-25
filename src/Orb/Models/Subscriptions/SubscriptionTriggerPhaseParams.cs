@@ -54,14 +54,26 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
     /// The date on which the phase change should take effect. If not provided, defaults
     /// to today in the customer's timezone.
     /// </summary>
-    public DateOnly? EffectiveDate
+    public
+#if NET
+    DateOnly
+#else
+    DateTimeOffset
+#endif
+    ? EffectiveDate
     {
         get
         {
             if (!this._rawBodyData.TryGetValue("effective_date", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<DateOnly?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<
+#if NET
+            DateOnly
+#else
+            DateTimeOffset
+#endif
+            ?>(element, ModelBase.SerializerOptions);
         }
         init
         {

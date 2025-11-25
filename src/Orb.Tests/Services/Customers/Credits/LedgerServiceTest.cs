@@ -40,8 +40,20 @@ public class LedgerServiceTest : TestBase
                     InvoiceSettings = new()
                     {
                         AutoCollection = true,
-                        CustomDueDate = DateOnly.Parse("2019-12-27"),
-                        InvoiceDate = DateOnly.Parse("2019-12-27"),
+                        CustomDueDate =
+#if NET
+                        DateOnly
+#else
+                        DateTimeOffset
+#endif
+                        .Parse("2019-12-27"),
+                        InvoiceDate =
+#if NET
+                        DateOnly
+#else
+                        DateTimeOffset
+#endif
+                        .Parse("2019-12-27"),
                         ItemID = "item_id",
                         Memo = "memo",
                         NetTerms = 0,
@@ -81,8 +93,20 @@ public class LedgerServiceTest : TestBase
                     InvoiceSettings = new()
                     {
                         AutoCollection = true,
-                        CustomDueDate = DateOnly.Parse("2019-12-27"),
-                        InvoiceDate = DateOnly.Parse("2019-12-27"),
+                        CustomDueDate =
+#if NET
+                        DateOnly
+#else
+                        DateTimeOffset
+#endif
+                        .Parse("2019-12-27"),
+                        InvoiceDate =
+#if NET
+                        DateOnly
+#else
+                        DateTimeOffset
+#endif
+                        .Parse("2019-12-27"),
                         ItemID = "item_id",
                         Memo = "memo",
                         NetTerms = 0,
