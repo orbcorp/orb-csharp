@@ -12,8 +12,8 @@ namespace Orb.Models;
 /// <summary>
 /// Configuration for matrix pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixConfig>))]
-public sealed record class MatrixConfig : ModelBase, IFromRaw<MatrixConfig>
+[JsonConverter(typeof(ModelConverter<MatrixConfig, MatrixConfigFromRaw>))]
+public sealed record class MatrixConfig : ModelBase
 {
     /// <summary>
     /// Default per unit rate for any usage not bucketed into a specified matrix_value
@@ -134,4 +134,10 @@ public sealed record class MatrixConfig : ModelBase, IFromRaw<MatrixConfig>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class MatrixConfigFromRaw : IFromRaw<MatrixConfig>
+{
+    public MatrixConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MatrixConfig.FromRawUnchecked(rawData);
 }

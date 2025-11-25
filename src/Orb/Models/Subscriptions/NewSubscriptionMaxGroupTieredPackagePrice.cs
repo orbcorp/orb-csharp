@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<NewSubscriptionMaxGroupTieredPackagePrice>))]
-public sealed record class NewSubscriptionMaxGroupTieredPackagePrice
-    : ModelBase,
-        IFromRaw<NewSubscriptionMaxGroupTieredPackagePrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewSubscriptionMaxGroupTieredPackagePrice,
+        NewSubscriptionMaxGroupTieredPackagePriceFromRaw
+    >)
+)]
+public sealed record class NewSubscriptionMaxGroupTieredPackagePrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -513,6 +516,14 @@ public sealed record class NewSubscriptionMaxGroupTieredPackagePrice
     }
 }
 
+class NewSubscriptionMaxGroupTieredPackagePriceFromRaw
+    : IFromRaw<NewSubscriptionMaxGroupTieredPackagePrice>
+{
+    public NewSubscriptionMaxGroupTieredPackagePrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewSubscriptionMaxGroupTieredPackagePrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -577,11 +588,12 @@ sealed class NewSubscriptionMaxGroupTieredPackagePriceCadenceConverter
 /// Configuration for max_group_tiered_package pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig>)
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig,
+        global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigFromRaw
+    >)
 )]
-public sealed record class MaxGroupTieredPackageConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig>
+public sealed record class MaxGroupTieredPackageConfig : ModelBase
 {
     /// <summary>
     /// The event property used to group before tiering the group with the highest value
@@ -709,11 +721,24 @@ public sealed record class MaxGroupTieredPackageConfig
     }
 }
 
+class MaxGroupTieredPackageConfigFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig>
+{
+    public global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.Tier11>))]
-public sealed record class Tier11 : ModelBase, IFromRaw<global::Orb.Models.Subscriptions.Tier11>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.Tier11,
+        global::Orb.Models.Subscriptions.Tier11FromRaw
+    >)
+)]
+public sealed record class Tier11 : ModelBase
 {
     /// <summary>
     /// Tier lower bound
@@ -804,6 +829,13 @@ public sealed record class Tier11 : ModelBase, IFromRaw<global::Orb.Models.Subsc
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Tier11FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tier11>
+{
+    public global::Orb.Models.Subscriptions.Tier11 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.Tier11.FromRawUnchecked(rawData);
 }
 
 /// <summary>

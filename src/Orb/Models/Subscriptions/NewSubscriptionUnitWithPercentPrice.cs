@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<NewSubscriptionUnitWithPercentPrice>))]
-public sealed record class NewSubscriptionUnitWithPercentPrice
-    : ModelBase,
-        IFromRaw<NewSubscriptionUnitWithPercentPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewSubscriptionUnitWithPercentPrice,
+        NewSubscriptionUnitWithPercentPriceFromRaw
+    >)
+)]
+public sealed record class NewSubscriptionUnitWithPercentPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -506,6 +509,13 @@ public sealed record class NewSubscriptionUnitWithPercentPrice
     }
 }
 
+class NewSubscriptionUnitWithPercentPriceFromRaw : IFromRaw<NewSubscriptionUnitWithPercentPrice>
+{
+    public NewSubscriptionUnitWithPercentPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewSubscriptionUnitWithPercentPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -614,10 +624,13 @@ sealed class NewSubscriptionUnitWithPercentPriceModelTypeConverter
 /// <summary>
 /// Configuration for unit_with_percent pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.UnitWithPercentConfig>))]
-public sealed record class UnitWithPercentConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.UnitWithPercentConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.UnitWithPercentConfig,
+        global::Orb.Models.Subscriptions.UnitWithPercentConfigFromRaw
+    >)
+)]
+public sealed record class UnitWithPercentConfig : ModelBase
 {
     /// <summary>
     /// What percent, out of 100, of the calculated total to charge
@@ -705,6 +718,14 @@ public sealed record class UnitWithPercentConfig
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class UnitWithPercentConfigFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.UnitWithPercentConfig>
+{
+    public global::Orb.Models.Subscriptions.UnitWithPercentConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.UnitWithPercentConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewSubscriptionUnitWithPercentPriceConversionRateConfigConverter))]

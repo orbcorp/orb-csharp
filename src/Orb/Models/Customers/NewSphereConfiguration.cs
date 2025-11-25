@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models.Customers;
 
-[JsonConverter(typeof(ModelConverter<NewSphereConfiguration>))]
-public sealed record class NewSphereConfiguration : ModelBase, IFromRaw<NewSphereConfiguration>
+[JsonConverter(typeof(ModelConverter<NewSphereConfiguration, NewSphereConfigurationFromRaw>))]
+public sealed record class NewSphereConfiguration : ModelBase
 {
     public required bool TaxExempt
     {
@@ -113,6 +113,13 @@ public sealed record class NewSphereConfiguration : ModelBase, IFromRaw<NewSpher
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class NewSphereConfigurationFromRaw : IFromRaw<NewSphereConfiguration>
+{
+    public NewSphereConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewSphereConfiguration.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewSphereConfigurationTaxProviderConverter))]

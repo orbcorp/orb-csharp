@@ -9,10 +9,10 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewPlanMinimumCompositePrice>))]
-public sealed record class NewPlanMinimumCompositePrice
-    : ModelBase,
-        IFromRaw<NewPlanMinimumCompositePrice>
+[JsonConverter(
+    typeof(ModelConverter<NewPlanMinimumCompositePrice, NewPlanMinimumCompositePriceFromRaw>)
+)]
+public sealed record class NewPlanMinimumCompositePrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -507,6 +507,13 @@ public sealed record class NewPlanMinimumCompositePrice
     }
 }
 
+class NewPlanMinimumCompositePriceFromRaw : IFromRaw<NewPlanMinimumCompositePrice>
+{
+    public NewPlanMinimumCompositePrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanMinimumCompositePrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -570,10 +577,13 @@ sealed class NewPlanMinimumCompositePriceCadenceConverter
 /// <summary>
 /// Configuration for minimum pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<NewPlanMinimumCompositePriceMinimumConfig>))]
-public sealed record class NewPlanMinimumCompositePriceMinimumConfig
-    : ModelBase,
-        IFromRaw<NewPlanMinimumCompositePriceMinimumConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanMinimumCompositePriceMinimumConfig,
+        NewPlanMinimumCompositePriceMinimumConfigFromRaw
+    >)
+)]
+public sealed record class NewPlanMinimumCompositePriceMinimumConfig : ModelBase
 {
     /// <summary>
     /// The minimum amount to apply
@@ -668,6 +678,14 @@ public sealed record class NewPlanMinimumCompositePriceMinimumConfig
     {
         this.MinimumAmount = minimumAmount;
     }
+}
+
+class NewPlanMinimumCompositePriceMinimumConfigFromRaw
+    : IFromRaw<NewPlanMinimumCompositePriceMinimumConfig>
+{
+    public NewPlanMinimumCompositePriceMinimumConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanMinimumCompositePriceMinimumConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>

@@ -9,10 +9,10 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewPlanBulkWithProrationPrice>))]
-public sealed record class NewPlanBulkWithProrationPrice
-    : ModelBase,
-        IFromRaw<NewPlanBulkWithProrationPrice>
+[JsonConverter(
+    typeof(ModelConverter<NewPlanBulkWithProrationPrice, NewPlanBulkWithProrationPriceFromRaw>)
+)]
+public sealed record class NewPlanBulkWithProrationPrice : ModelBase
 {
     /// <summary>
     /// Configuration for bulk_with_proration pricing
@@ -506,13 +506,23 @@ public sealed record class NewPlanBulkWithProrationPrice
     }
 }
 
+class NewPlanBulkWithProrationPriceFromRaw : IFromRaw<NewPlanBulkWithProrationPrice>
+{
+    public NewPlanBulkWithProrationPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanBulkWithProrationPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for bulk_with_proration pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<NewPlanBulkWithProrationPriceBulkWithProrationConfig>))]
-public sealed record class NewPlanBulkWithProrationPriceBulkWithProrationConfig
-    : ModelBase,
-        IFromRaw<NewPlanBulkWithProrationPriceBulkWithProrationConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanBulkWithProrationPriceBulkWithProrationConfig,
+        NewPlanBulkWithProrationPriceBulkWithProrationConfigFromRaw
+    >)
+)]
+public sealed record class NewPlanBulkWithProrationPriceBulkWithProrationConfig : ModelBase
 {
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
@@ -584,11 +594,19 @@ public sealed record class NewPlanBulkWithProrationPriceBulkWithProrationConfig
     }
 }
 
+class NewPlanBulkWithProrationPriceBulkWithProrationConfigFromRaw
+    : IFromRaw<NewPlanBulkWithProrationPriceBulkWithProrationConfig>
+{
+    public NewPlanBulkWithProrationPriceBulkWithProrationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanBulkWithProrationPriceBulkWithProrationConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single bulk pricing tier with proration
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier8>))]
-public sealed record class Tier8 : ModelBase, IFromRaw<Tier8>
+[JsonConverter(typeof(ModelConverter<Tier8, Tier8FromRaw>))]
+public sealed record class Tier8 : ModelBase
 {
     /// <summary>
     /// Cost per unit
@@ -674,6 +692,12 @@ public sealed record class Tier8 : ModelBase, IFromRaw<Tier8>
     {
         this.UnitAmount = unitAmount;
     }
+}
+
+class Tier8FromRaw : IFromRaw<Tier8>
+{
+    public Tier8 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier8.FromRawUnchecked(rawData);
 }
 
 /// <summary>

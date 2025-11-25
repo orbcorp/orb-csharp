@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<ConversionRateUnitConfig>))]
-public sealed record class ConversionRateUnitConfig : ModelBase, IFromRaw<ConversionRateUnitConfig>
+[JsonConverter(typeof(ModelConverter<ConversionRateUnitConfig, ConversionRateUnitConfigFromRaw>))]
+public sealed record class ConversionRateUnitConfig : ModelBase
 {
     /// <summary>
     /// Amount per unit of overage
@@ -73,4 +73,11 @@ public sealed record class ConversionRateUnitConfig : ModelBase, IFromRaw<Conver
     {
         this.UnitAmount = unitAmount;
     }
+}
+
+class ConversionRateUnitConfigFromRaw : IFromRaw<ConversionRateUnitConfig>
+{
+    public ConversionRateUnitConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ConversionRateUnitConfig.FromRawUnchecked(rawData);
 }

@@ -13,8 +13,8 @@ namespace Orb.Models;
 /// The Price Interval resource represents a period of time for which a price will
 /// bill on a subscription. A subscription’s price intervals define its billing behavior.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<PriceInterval>))]
-public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
+[JsonConverter(typeof(ModelConverter<PriceInterval, PriceIntervalFromRaw>))]
+public sealed record class PriceInterval : ModelBase
 {
     public required string ID
     {
@@ -355,4 +355,10 @@ public sealed record class PriceInterval : ModelBase, IFromRaw<PriceInterval>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class PriceIntervalFromRaw : IFromRaw<PriceInterval>
+{
+    public PriceInterval FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PriceInterval.FromRawUnchecked(rawData);
 }

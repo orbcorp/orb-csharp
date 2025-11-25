@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewFloatingMatrixWithDisplayNamePrice>))]
-public sealed record class NewFloatingMatrixWithDisplayNamePrice
-    : ModelBase,
-        IFromRaw<NewFloatingMatrixWithDisplayNamePrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewFloatingMatrixWithDisplayNamePrice,
+        NewFloatingMatrixWithDisplayNamePriceFromRaw
+    >)
+)]
+public sealed record class NewFloatingMatrixWithDisplayNamePrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -494,6 +497,13 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice
     }
 }
 
+class NewFloatingMatrixWithDisplayNamePriceFromRaw : IFromRaw<NewFloatingMatrixWithDisplayNamePrice>
+{
+    public NewFloatingMatrixWithDisplayNamePrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewFloatingMatrixWithDisplayNamePrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -557,10 +567,10 @@ sealed class NewFloatingMatrixWithDisplayNamePriceCadenceConverter
 /// <summary>
 /// Configuration for matrix_with_display_name pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixWithDisplayNameConfig>))]
-public sealed record class MatrixWithDisplayNameConfig
-    : ModelBase,
-        IFromRaw<MatrixWithDisplayNameConfig>
+[JsonConverter(
+    typeof(ModelConverter<MatrixWithDisplayNameConfig, MatrixWithDisplayNameConfigFromRaw>)
+)]
+public sealed record class MatrixWithDisplayNameConfig : ModelBase
 {
     /// <summary>
     /// Used to determine the unit rate
@@ -659,11 +669,18 @@ public sealed record class MatrixWithDisplayNameConfig
     }
 }
 
+class MatrixWithDisplayNameConfigFromRaw : IFromRaw<MatrixWithDisplayNameConfig>
+{
+    public MatrixWithDisplayNameConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MatrixWithDisplayNameConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a unit amount item
 /// </summary>
-[JsonConverter(typeof(ModelConverter<UnitAmountModel>))]
-public sealed record class UnitAmountModel : ModelBase, IFromRaw<UnitAmountModel>
+[JsonConverter(typeof(ModelConverter<UnitAmountModel, UnitAmountModelFromRaw>))]
+public sealed record class UnitAmountModel : ModelBase
 {
     /// <summary>
     /// The dimension value
@@ -784,6 +801,12 @@ public sealed record class UnitAmountModel : ModelBase, IFromRaw<UnitAmountModel
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class UnitAmountModelFromRaw : IFromRaw<UnitAmountModel>
+{
+    public UnitAmountModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        UnitAmountModel.FromRawUnchecked(rawData);
 }
 
 /// <summary>

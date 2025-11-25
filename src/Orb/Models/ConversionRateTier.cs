@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<ConversionRateTier>))]
-public sealed record class ConversionRateTier : ModelBase, IFromRaw<ConversionRateTier>
+[JsonConverter(typeof(ModelConverter<ConversionRateTier, ConversionRateTierFromRaw>))]
+public sealed record class ConversionRateTier : ModelBase
 {
     /// <summary>
     /// Exclusive tier starting value
@@ -113,4 +113,10 @@ public sealed record class ConversionRateTier : ModelBase, IFromRaw<ConversionRa
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ConversionRateTierFromRaw : IFromRaw<ConversionRateTier>
+{
+    public ConversionRateTier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ConversionRateTier.FromRawUnchecked(rawData);
 }

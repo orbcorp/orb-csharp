@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewPlanGroupedWithProratedMinimumPrice>))]
-public sealed record class NewPlanGroupedWithProratedMinimumPrice
-    : ModelBase,
-        IFromRaw<NewPlanGroupedWithProratedMinimumPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanGroupedWithProratedMinimumPrice,
+        NewPlanGroupedWithProratedMinimumPriceFromRaw
+    >)
+)]
+public sealed record class NewPlanGroupedWithProratedMinimumPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -509,6 +512,14 @@ public sealed record class NewPlanGroupedWithProratedMinimumPrice
     }
 }
 
+class NewPlanGroupedWithProratedMinimumPriceFromRaw
+    : IFromRaw<NewPlanGroupedWithProratedMinimumPrice>
+{
+    public NewPlanGroupedWithProratedMinimumPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanGroupedWithProratedMinimumPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -573,11 +584,13 @@ sealed class NewPlanGroupedWithProratedMinimumPriceCadenceConverter
 /// Configuration for grouped_with_prorated_minimum pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig>)
+    typeof(ModelConverter<
+        NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig,
+        NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfigFromRaw
+    >)
 )]
 public sealed record class NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig
-    : ModelBase,
-        IFromRaw<NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig>
+    : ModelBase
 {
     /// <summary>
     /// How to determine the groups that should each have a minimum
@@ -701,6 +714,17 @@ public sealed record class NewPlanGroupedWithProratedMinimumPriceGroupedWithPror
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfigFromRaw
+    : IFromRaw<NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig>
+{
+    public NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>

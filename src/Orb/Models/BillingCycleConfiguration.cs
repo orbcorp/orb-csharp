@@ -9,10 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<BillingCycleConfiguration>))]
-public sealed record class BillingCycleConfiguration
-    : ModelBase,
-        IFromRaw<BillingCycleConfiguration>
+[JsonConverter(typeof(ModelConverter<BillingCycleConfiguration, BillingCycleConfigurationFromRaw>))]
+public sealed record class BillingCycleConfiguration : ModelBase
 {
     public required long Duration
     {
@@ -89,6 +87,13 @@ public sealed record class BillingCycleConfiguration
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class BillingCycleConfigurationFromRaw : IFromRaw<BillingCycleConfiguration>
+{
+    public BillingCycleConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BillingCycleConfiguration.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(DurationUnitConverter))]

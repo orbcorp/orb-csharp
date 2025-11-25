@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewFloatingCumulativeGroupedBulkPrice>))]
-public sealed record class NewFloatingCumulativeGroupedBulkPrice
-    : ModelBase,
-        IFromRaw<NewFloatingCumulativeGroupedBulkPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewFloatingCumulativeGroupedBulkPrice,
+        NewFloatingCumulativeGroupedBulkPriceFromRaw
+    >)
+)]
+public sealed record class NewFloatingCumulativeGroupedBulkPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -494,6 +497,13 @@ public sealed record class NewFloatingCumulativeGroupedBulkPrice
     }
 }
 
+class NewFloatingCumulativeGroupedBulkPriceFromRaw : IFromRaw<NewFloatingCumulativeGroupedBulkPrice>
+{
+    public NewFloatingCumulativeGroupedBulkPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewFloatingCumulativeGroupedBulkPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -557,10 +567,10 @@ sealed class NewFloatingCumulativeGroupedBulkPriceCadenceConverter
 /// <summary>
 /// Configuration for cumulative_grouped_bulk pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<CumulativeGroupedBulkConfig>))]
-public sealed record class CumulativeGroupedBulkConfig
-    : ModelBase,
-        IFromRaw<CumulativeGroupedBulkConfig>
+[JsonConverter(
+    typeof(ModelConverter<CumulativeGroupedBulkConfig, CumulativeGroupedBulkConfigFromRaw>)
+)]
+public sealed record class CumulativeGroupedBulkConfig : ModelBase
 {
     /// <summary>
     /// Each tier lower bound must have the same group of values.
@@ -656,11 +666,18 @@ public sealed record class CumulativeGroupedBulkConfig
     }
 }
 
+class CumulativeGroupedBulkConfigFromRaw : IFromRaw<CumulativeGroupedBulkConfig>
+{
+    public CumulativeGroupedBulkConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CumulativeGroupedBulkConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a dimension value entry
 /// </summary>
-[JsonConverter(typeof(ModelConverter<DimensionValue>))]
-public sealed record class DimensionValue : ModelBase, IFromRaw<DimensionValue>
+[JsonConverter(typeof(ModelConverter<DimensionValue, DimensionValueFromRaw>))]
+public sealed record class DimensionValue : ModelBase
 {
     /// <summary>
     /// Grouping key value
@@ -781,6 +798,12 @@ public sealed record class DimensionValue : ModelBase, IFromRaw<DimensionValue>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class DimensionValueFromRaw : IFromRaw<DimensionValue>
+{
+    public DimensionValue FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        DimensionValue.FromRawUnchecked(rawData);
 }
 
 /// <summary>

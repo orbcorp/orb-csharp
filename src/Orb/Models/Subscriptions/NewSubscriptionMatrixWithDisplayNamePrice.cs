@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<NewSubscriptionMatrixWithDisplayNamePrice>))]
-public sealed record class NewSubscriptionMatrixWithDisplayNamePrice
-    : ModelBase,
-        IFromRaw<NewSubscriptionMatrixWithDisplayNamePrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewSubscriptionMatrixWithDisplayNamePrice,
+        NewSubscriptionMatrixWithDisplayNamePriceFromRaw
+    >)
+)]
+public sealed record class NewSubscriptionMatrixWithDisplayNamePrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -513,6 +516,14 @@ public sealed record class NewSubscriptionMatrixWithDisplayNamePrice
     }
 }
 
+class NewSubscriptionMatrixWithDisplayNamePriceFromRaw
+    : IFromRaw<NewSubscriptionMatrixWithDisplayNamePrice>
+{
+    public NewSubscriptionMatrixWithDisplayNamePrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewSubscriptionMatrixWithDisplayNamePrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -577,11 +588,12 @@ sealed class NewSubscriptionMatrixWithDisplayNamePriceCadenceConverter
 /// Configuration for matrix_with_display_name pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig>)
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig,
+        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigFromRaw
+    >)
 )]
-public sealed record class MatrixWithDisplayNameConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig>
+public sealed record class MatrixWithDisplayNameConfig : ModelBase
 {
     /// <summary>
     /// Used to determine the unit rate
@@ -679,13 +691,24 @@ public sealed record class MatrixWithDisplayNameConfig
     }
 }
 
+class MatrixWithDisplayNameConfigFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig>
+{
+    public global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a unit amount item
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.UnitAmountModel>))]
-public sealed record class UnitAmountModel
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.UnitAmountModel>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.UnitAmountModel,
+        global::Orb.Models.Subscriptions.UnitAmountModelFromRaw
+    >)
+)]
+public sealed record class UnitAmountModel : ModelBase
 {
     /// <summary>
     /// The dimension value
@@ -808,6 +831,13 @@ public sealed record class UnitAmountModel
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class UnitAmountModelFromRaw : IFromRaw<global::Orb.Models.Subscriptions.UnitAmountModel>
+{
+    public global::Orb.Models.Subscriptions.UnitAmountModel FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.UnitAmountModel.FromRawUnchecked(rawData);
 }
 
 /// <summary>

@@ -154,10 +154,10 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<UngroupedSubscriptionUsage>))]
-public sealed record class UngroupedSubscriptionUsage
-    : ModelBase,
-        IFromRaw<UngroupedSubscriptionUsage>
+[JsonConverter(
+    typeof(ModelConverter<UngroupedSubscriptionUsage, UngroupedSubscriptionUsageFromRaw>)
+)]
+public sealed record class UngroupedSubscriptionUsage : ModelBase
 {
     public required List<Data> Data
     {
@@ -222,8 +222,15 @@ public sealed record class UngroupedSubscriptionUsage
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Data>))]
-public sealed record class Data : ModelBase, IFromRaw<Data>
+class UngroupedSubscriptionUsageFromRaw : IFromRaw<UngroupedSubscriptionUsage>
+{
+    public UngroupedSubscriptionUsage FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => UngroupedSubscriptionUsage.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Data, DataFromRaw>))]
+public sealed record class Data : ModelBase
 {
     public required BillableMetric BillableMetric
     {
@@ -336,8 +343,14 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<BillableMetric>))]
-public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
+class DataFromRaw : IFromRaw<Data>
+{
+    public Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Data.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<BillableMetric, BillableMetricFromRaw>))]
+public sealed record class BillableMetric : ModelBase
 {
     public required string ID
     {
@@ -416,8 +429,14 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Usage>))]
-public sealed record class Usage : ModelBase, IFromRaw<Usage>
+class BillableMetricFromRaw : IFromRaw<BillableMetric>
+{
+    public BillableMetric FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        BillableMetric.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Usage, UsageFromRaw>))]
+public sealed record class Usage : ModelBase
 {
     public required double Quantity
     {
@@ -522,6 +541,12 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
     }
 }
 
+class UsageFromRaw : IFromRaw<Usage>
+{
+    public Usage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Usage.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(DataViewModeConverter))]
 public enum DataViewMode
 {
@@ -566,8 +591,8 @@ sealed class DataViewModeConverter : JsonConverter<DataViewMode>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<GroupedSubscriptionUsage>))]
-public sealed record class GroupedSubscriptionUsage : ModelBase, IFromRaw<GroupedSubscriptionUsage>
+[JsonConverter(typeof(ModelConverter<GroupedSubscriptionUsage, GroupedSubscriptionUsageFromRaw>))]
+public sealed record class GroupedSubscriptionUsage : ModelBase
 {
     public required List<DataModel> Data
     {
@@ -654,8 +679,15 @@ public sealed record class GroupedSubscriptionUsage : ModelBase, IFromRaw<Groupe
     }
 }
 
-[JsonConverter(typeof(ModelConverter<DataModel>))]
-public sealed record class DataModel : ModelBase, IFromRaw<DataModel>
+class GroupedSubscriptionUsageFromRaw : IFromRaw<GroupedSubscriptionUsage>
+{
+    public GroupedSubscriptionUsage FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedSubscriptionUsage.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<DataModel, DataModelFromRaw>))]
+public sealed record class DataModel : ModelBase
 {
     public required DataModelBillableMetric BillableMetric
     {
@@ -803,8 +835,14 @@ public sealed record class DataModel : ModelBase, IFromRaw<DataModel>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<DataModelBillableMetric>))]
-public sealed record class DataModelBillableMetric : ModelBase, IFromRaw<DataModelBillableMetric>
+class DataModelFromRaw : IFromRaw<DataModel>
+{
+    public DataModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        DataModel.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<DataModelBillableMetric, DataModelBillableMetricFromRaw>))]
+public sealed record class DataModelBillableMetric : ModelBase
 {
     public required string ID
     {
@@ -885,8 +923,15 @@ public sealed record class DataModelBillableMetric : ModelBase, IFromRaw<DataMod
     }
 }
 
-[JsonConverter(typeof(ModelConverter<MetricGroup>))]
-public sealed record class MetricGroup : ModelBase, IFromRaw<MetricGroup>
+class DataModelBillableMetricFromRaw : IFromRaw<DataModelBillableMetric>
+{
+    public DataModelBillableMetric FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => DataModelBillableMetric.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<MetricGroup, MetricGroupFromRaw>))]
+public sealed record class MetricGroup : ModelBase
 {
     public required string PropertyKey
     {
@@ -971,8 +1016,14 @@ public sealed record class MetricGroup : ModelBase, IFromRaw<MetricGroup>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<UsageModel>))]
-public sealed record class UsageModel : ModelBase, IFromRaw<UsageModel>
+class MetricGroupFromRaw : IFromRaw<MetricGroup>
+{
+    public MetricGroup FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MetricGroup.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<UsageModel, UsageModelFromRaw>))]
+public sealed record class UsageModel : ModelBase
 {
     public required double Quantity
     {
@@ -1075,6 +1126,12 @@ public sealed record class UsageModel : ModelBase, IFromRaw<UsageModel>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class UsageModelFromRaw : IFromRaw<UsageModel>
+{
+    public UsageModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        UsageModel.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(DataModelViewModeConverter))]

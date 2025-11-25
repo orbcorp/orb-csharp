@@ -2167,8 +2167,8 @@ sealed class PriceConverter : JsonConverter<Price>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Unit>))]
-public sealed record class Unit : ModelBase, IFromRaw<Unit>
+[JsonConverter(typeof(ModelConverter<Unit, UnitFromRaw>))]
+public sealed record class Unit : ModelBase
 {
     public required string ID
     {
@@ -2899,6 +2899,12 @@ public sealed record class Unit : ModelBase, IFromRaw<Unit>
     }
 }
 
+class UnitFromRaw : IFromRaw<Unit>
+{
+    public Unit FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Unit.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(BillingModeConverter))]
 public enum BillingMode
 {
@@ -2999,8 +3005,8 @@ sealed class UnitCadenceConverter : JsonConverter<UnitCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter>))]
-public sealed record class CompositePriceFilter : ModelBase, IFromRaw<CompositePriceFilter>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter, CompositePriceFilterFromRaw>))]
+public sealed record class CompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -3112,6 +3118,13 @@ public sealed record class CompositePriceFilter : ModelBase, IFromRaw<CompositeP
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilterFromRaw : IFromRaw<CompositePriceFilter>
+{
+    public CompositePriceFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -3492,8 +3505,8 @@ sealed class UnitPriceTypeConverter : JsonConverter<UnitPriceType>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Tiered>))]
-public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
+[JsonConverter(typeof(ModelConverter<Tiered, TieredFromRaw>))]
+public sealed record class Tiered : ModelBase
 {
     public required string ID
     {
@@ -4224,6 +4237,12 @@ public sealed record class Tiered : ModelBase, IFromRaw<Tiered>
     }
 }
 
+class TieredFromRaw : IFromRaw<Tiered>
+{
+    public Tiered FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tiered.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(TieredBillingModeConverter))]
 public enum TieredBillingMode
 {
@@ -4324,10 +4343,8 @@ sealed class TieredCadenceConverter : JsonConverter<TieredCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilterModel>))]
-public sealed record class CompositePriceFilterModel
-    : ModelBase,
-        IFromRaw<CompositePriceFilterModel>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilterModel, CompositePriceFilterModelFromRaw>))]
+public sealed record class CompositePriceFilterModel : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -4439,6 +4456,13 @@ public sealed record class CompositePriceFilterModel
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilterModelFromRaw : IFromRaw<CompositePriceFilterModel>
+{
+    public CompositePriceFilterModel FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilterModel.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -4823,8 +4847,8 @@ sealed class TieredPriceTypeConverter : JsonConverter<TieredPriceType>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Bulk>))]
-public sealed record class Bulk : ModelBase, IFromRaw<Bulk>
+[JsonConverter(typeof(ModelConverter<Bulk, BulkFromRaw>))]
+public sealed record class Bulk : ModelBase
 {
     public required string ID
     {
@@ -5555,6 +5579,12 @@ public sealed record class Bulk : ModelBase, IFromRaw<Bulk>
     }
 }
 
+class BulkFromRaw : IFromRaw<Bulk>
+{
+    public Bulk FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Bulk.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(BulkBillingModeConverter))]
 public enum BulkBillingMode
 {
@@ -5655,8 +5685,8 @@ sealed class BulkCadenceConverter : JsonConverter<BulkCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter1>))]
-public sealed record class CompositePriceFilter1 : ModelBase, IFromRaw<CompositePriceFilter1>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter1, CompositePriceFilter1FromRaw>))]
+public sealed record class CompositePriceFilter1 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -5768,6 +5798,13 @@ public sealed record class CompositePriceFilter1 : ModelBase, IFromRaw<Composite
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter1FromRaw : IFromRaw<CompositePriceFilter1>
+{
+    public CompositePriceFilter1 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter1.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -6148,8 +6185,8 @@ sealed class BulkPriceTypeConverter : JsonConverter<BulkPriceType>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<BulkWithFilters>))]
-public sealed record class BulkWithFilters : ModelBase, IFromRaw<BulkWithFilters>
+[JsonConverter(typeof(ModelConverter<BulkWithFilters, BulkWithFiltersFromRaw>))]
+public sealed record class BulkWithFilters : ModelBase
 {
     public required string ID
     {
@@ -6886,6 +6923,12 @@ public sealed record class BulkWithFilters : ModelBase, IFromRaw<BulkWithFilters
     }
 }
 
+class BulkWithFiltersFromRaw : IFromRaw<BulkWithFilters>
+{
+    public BulkWithFilters FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        BulkWithFilters.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(BulkWithFiltersBillingModeConverter))]
 public enum BulkWithFiltersBillingMode
 {
@@ -6933,8 +6976,8 @@ sealed class BulkWithFiltersBillingModeConverter : JsonConverter<BulkWithFilters
 /// <summary>
 /// Configuration for bulk_with_filters pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<BulkWithFiltersConfig>))]
-public sealed record class BulkWithFiltersConfig : ModelBase, IFromRaw<BulkWithFiltersConfig>
+[JsonConverter(typeof(ModelConverter<BulkWithFiltersConfig, BulkWithFiltersConfigFromRaw>))]
+public sealed record class BulkWithFiltersConfig : ModelBase
 {
     /// <summary>
     /// Property filters to apply (all must match)
@@ -7027,11 +7070,18 @@ public sealed record class BulkWithFiltersConfig : ModelBase, IFromRaw<BulkWithF
     }
 }
 
+class BulkWithFiltersConfigFromRaw : IFromRaw<BulkWithFiltersConfig>
+{
+    public BulkWithFiltersConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BulkWithFiltersConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single property filter
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Filter24>))]
-public sealed record class Filter24 : ModelBase, IFromRaw<Filter24>
+[JsonConverter(typeof(ModelConverter<Filter24, Filter24FromRaw>))]
+public sealed record class Filter24 : ModelBase
 {
     /// <summary>
     /// Event property key to filter on
@@ -7122,11 +7172,17 @@ public sealed record class Filter24 : ModelBase, IFromRaw<Filter24>
     }
 }
 
+class Filter24FromRaw : IFromRaw<Filter24>
+{
+    public Filter24 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Filter24.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single bulk pricing tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier16>))]
-public sealed record class Tier16 : ModelBase, IFromRaw<Tier16>
+[JsonConverter(typeof(ModelConverter<Tier16, Tier16FromRaw>))]
+public sealed record class Tier16 : ModelBase
 {
     /// <summary>
     /// Amount per unit
@@ -7214,6 +7270,12 @@ public sealed record class Tier16 : ModelBase, IFromRaw<Tier16>
     }
 }
 
+class Tier16FromRaw : IFromRaw<Tier16>
+{
+    public Tier16 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier16.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(BulkWithFiltersCadenceConverter))]
 public enum BulkWithFiltersCadence
 {
@@ -7270,8 +7332,8 @@ sealed class BulkWithFiltersCadenceConverter : JsonConverter<BulkWithFiltersCade
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter2>))]
-public sealed record class CompositePriceFilter2 : ModelBase, IFromRaw<CompositePriceFilter2>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter2, CompositePriceFilter2FromRaw>))]
+public sealed record class CompositePriceFilter2 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -7383,6 +7445,13 @@ public sealed record class CompositePriceFilter2 : ModelBase, IFromRaw<Composite
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter2FromRaw : IFromRaw<CompositePriceFilter2>
+{
+    public CompositePriceFilter2 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter2.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -7767,8 +7836,8 @@ sealed class BulkWithFiltersPriceTypeConverter : JsonConverter<BulkWithFiltersPr
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Package>))]
-public sealed record class Package : ModelBase, IFromRaw<Package>
+[JsonConverter(typeof(ModelConverter<Package, PackageFromRaw>))]
+public sealed record class Package : ModelBase
 {
     public required string ID
     {
@@ -8502,6 +8571,12 @@ public sealed record class Package : ModelBase, IFromRaw<Package>
     }
 }
 
+class PackageFromRaw : IFromRaw<Package>
+{
+    public Package FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Package.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(PackageBillingModeConverter))]
 public enum PackageBillingMode
 {
@@ -8602,8 +8677,8 @@ sealed class PackageCadenceConverter : JsonConverter<PackageCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter3>))]
-public sealed record class CompositePriceFilter3 : ModelBase, IFromRaw<CompositePriceFilter3>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter3, CompositePriceFilter3FromRaw>))]
+public sealed record class CompositePriceFilter3 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -8715,6 +8790,13 @@ public sealed record class CompositePriceFilter3 : ModelBase, IFromRaw<Composite
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter3FromRaw : IFromRaw<CompositePriceFilter3>
+{
+    public CompositePriceFilter3 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter3.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -9098,8 +9180,8 @@ sealed class PackagePriceTypeConverter : JsonConverter<PackagePriceType>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Matrix>))]
-public sealed record class Matrix : ModelBase, IFromRaw<Matrix>
+[JsonConverter(typeof(ModelConverter<Matrix, MatrixFromRaw>))]
+public sealed record class Matrix : ModelBase
 {
     public required string ID
     {
@@ -9830,6 +9912,12 @@ public sealed record class Matrix : ModelBase, IFromRaw<Matrix>
     }
 }
 
+class MatrixFromRaw : IFromRaw<Matrix>
+{
+    public Matrix FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Matrix.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(MatrixBillingModeConverter))]
 public enum MatrixBillingMode
 {
@@ -9930,8 +10018,8 @@ sealed class MatrixCadenceConverter : JsonConverter<MatrixCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter4>))]
-public sealed record class CompositePriceFilter4 : ModelBase, IFromRaw<CompositePriceFilter4>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter4, CompositePriceFilter4FromRaw>))]
+public sealed record class CompositePriceFilter4 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -10043,6 +10131,13 @@ public sealed record class CompositePriceFilter4 : ModelBase, IFromRaw<Composite
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter4FromRaw : IFromRaw<CompositePriceFilter4>
+{
+    public CompositePriceFilter4 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter4.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -10426,8 +10521,8 @@ sealed class MatrixPriceTypeConverter : JsonConverter<MatrixPriceType>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ThresholdTotalAmount>))]
-public sealed record class ThresholdTotalAmount : ModelBase, IFromRaw<ThresholdTotalAmount>
+[JsonConverter(typeof(ModelConverter<ThresholdTotalAmount, ThresholdTotalAmountFromRaw>))]
+public sealed record class ThresholdTotalAmount : ModelBase
 {
     public required string ID
     {
@@ -11168,6 +11263,13 @@ public sealed record class ThresholdTotalAmount : ModelBase, IFromRaw<ThresholdT
     }
 }
 
+class ThresholdTotalAmountFromRaw : IFromRaw<ThresholdTotalAmount>
+{
+    public ThresholdTotalAmount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ThresholdTotalAmount.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(ThresholdTotalAmountBillingModeConverter))]
 public enum ThresholdTotalAmountBillingMode
 {
@@ -11269,8 +11371,8 @@ sealed class ThresholdTotalAmountCadenceConverter : JsonConverter<ThresholdTotal
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter5>))]
-public sealed record class CompositePriceFilter5 : ModelBase, IFromRaw<CompositePriceFilter5>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter5, CompositePriceFilter5FromRaw>))]
+public sealed record class CompositePriceFilter5 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -11382,6 +11484,13 @@ public sealed record class CompositePriceFilter5 : ModelBase, IFromRaw<Composite
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter5FromRaw : IFromRaw<CompositePriceFilter5>
+{
+    public CompositePriceFilter5 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter5.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -11771,10 +11880,13 @@ sealed class ThresholdTotalAmountPriceTypeConverter : JsonConverter<ThresholdTot
 /// <summary>
 /// Configuration for threshold_total_amount pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ThresholdTotalAmountThresholdTotalAmountConfig>))]
-public sealed record class ThresholdTotalAmountThresholdTotalAmountConfig
-    : ModelBase,
-        IFromRaw<ThresholdTotalAmountThresholdTotalAmountConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        ThresholdTotalAmountThresholdTotalAmountConfig,
+        ThresholdTotalAmountThresholdTotalAmountConfigFromRaw
+    >)
+)]
+public sealed record class ThresholdTotalAmountThresholdTotalAmountConfig : ModelBase
 {
     /// <summary>
     /// When the quantity consumed passes a provided threshold, the configured total
@@ -11873,11 +11985,19 @@ public sealed record class ThresholdTotalAmountThresholdTotalAmountConfig
     }
 }
 
+class ThresholdTotalAmountThresholdTotalAmountConfigFromRaw
+    : IFromRaw<ThresholdTotalAmountThresholdTotalAmountConfig>
+{
+    public ThresholdTotalAmountThresholdTotalAmountConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ThresholdTotalAmountThresholdTotalAmountConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single threshold
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ConsumptionTable1>))]
-public sealed record class ConsumptionTable1 : ModelBase, IFromRaw<ConsumptionTable1>
+[JsonConverter(typeof(ModelConverter<ConsumptionTable1, ConsumptionTable1FromRaw>))]
+public sealed record class ConsumptionTable1 : ModelBase
 {
     /// <summary>
     /// Quantity threshold
@@ -11970,8 +12090,14 @@ public sealed record class ConsumptionTable1 : ModelBase, IFromRaw<ConsumptionTa
     }
 }
 
-[JsonConverter(typeof(ModelConverter<TieredPackage>))]
-public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
+class ConsumptionTable1FromRaw : IFromRaw<ConsumptionTable1>
+{
+    public ConsumptionTable1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ConsumptionTable1.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<TieredPackage, TieredPackageFromRaw>))]
+public sealed record class TieredPackage : ModelBase
 {
     public required string ID
     {
@@ -12708,6 +12834,12 @@ public sealed record class TieredPackage : ModelBase, IFromRaw<TieredPackage>
     }
 }
 
+class TieredPackageFromRaw : IFromRaw<TieredPackage>
+{
+    public TieredPackage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        TieredPackage.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(TieredPackageBillingModeConverter))]
 public enum TieredPackageBillingMode
 {
@@ -12808,8 +12940,8 @@ sealed class TieredPackageCadenceConverter : JsonConverter<TieredPackageCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter6>))]
-public sealed record class CompositePriceFilter6 : ModelBase, IFromRaw<CompositePriceFilter6>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter6, CompositePriceFilter6FromRaw>))]
+public sealed record class CompositePriceFilter6 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -12921,6 +13053,13 @@ public sealed record class CompositePriceFilter6 : ModelBase, IFromRaw<Composite
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter6FromRaw : IFromRaw<CompositePriceFilter6>
+{
+    public CompositePriceFilter6 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter6.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -13308,10 +13447,13 @@ sealed class TieredPackagePriceTypeConverter : JsonConverter<TieredPackagePriceT
 /// <summary>
 /// Configuration for tiered_package pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<TieredPackageTieredPackageConfig>))]
-public sealed record class TieredPackageTieredPackageConfig
-    : ModelBase,
-        IFromRaw<TieredPackageTieredPackageConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        TieredPackageTieredPackageConfig,
+        TieredPackageTieredPackageConfigFromRaw
+    >)
+)]
+public sealed record class TieredPackageTieredPackageConfig : ModelBase
 {
     /// <summary>
     /// Package size
@@ -13407,11 +13549,18 @@ public sealed record class TieredPackageTieredPackageConfig
     }
 }
 
+class TieredPackageTieredPackageConfigFromRaw : IFromRaw<TieredPackageTieredPackageConfig>
+{
+    public TieredPackageTieredPackageConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TieredPackageTieredPackageConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tier with business logic
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier17>))]
-public sealed record class Tier17 : ModelBase, IFromRaw<Tier17>
+[JsonConverter(typeof(ModelConverter<Tier17, Tier17FromRaw>))]
+public sealed record class Tier17 : ModelBase
 {
     /// <summary>
     /// Price per package
@@ -13499,8 +13648,14 @@ public sealed record class Tier17 : ModelBase, IFromRaw<Tier17>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<TieredWithMinimum>))]
-public sealed record class TieredWithMinimum : ModelBase, IFromRaw<TieredWithMinimum>
+class Tier17FromRaw : IFromRaw<Tier17>
+{
+    public Tier17 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier17.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<TieredWithMinimum, TieredWithMinimumFromRaw>))]
+public sealed record class TieredWithMinimum : ModelBase
 {
     public required string ID
     {
@@ -14239,6 +14394,12 @@ public sealed record class TieredWithMinimum : ModelBase, IFromRaw<TieredWithMin
     }
 }
 
+class TieredWithMinimumFromRaw : IFromRaw<TieredWithMinimum>
+{
+    public TieredWithMinimum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        TieredWithMinimum.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(TieredWithMinimumBillingModeConverter))]
 public enum TieredWithMinimumBillingMode
 {
@@ -14339,8 +14500,8 @@ sealed class TieredWithMinimumCadenceConverter : JsonConverter<TieredWithMinimum
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter7>))]
-public sealed record class CompositePriceFilter7 : ModelBase, IFromRaw<CompositePriceFilter7>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter7, CompositePriceFilter7FromRaw>))]
+public sealed record class CompositePriceFilter7 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -14452,6 +14613,13 @@ public sealed record class CompositePriceFilter7 : ModelBase, IFromRaw<Composite
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter7FromRaw : IFromRaw<CompositePriceFilter7>
+{
+    public CompositePriceFilter7 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter7.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -14841,10 +15009,13 @@ sealed class TieredWithMinimumPriceTypeConverter : JsonConverter<TieredWithMinim
 /// <summary>
 /// Configuration for tiered_with_minimum pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<TieredWithMinimumTieredWithMinimumConfig>))]
-public sealed record class TieredWithMinimumTieredWithMinimumConfig
-    : ModelBase,
-        IFromRaw<TieredWithMinimumTieredWithMinimumConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        TieredWithMinimumTieredWithMinimumConfig,
+        TieredWithMinimumTieredWithMinimumConfigFromRaw
+    >)
+)]
+public sealed record class TieredWithMinimumTieredWithMinimumConfig : ModelBase
 {
     /// <summary>
     /// Tiered pricing with a minimum amount dependent on the volume tier. Tiers
@@ -14969,11 +15140,19 @@ public sealed record class TieredWithMinimumTieredWithMinimumConfig
     }
 }
 
+class TieredWithMinimumTieredWithMinimumConfigFromRaw
+    : IFromRaw<TieredWithMinimumTieredWithMinimumConfig>
+{
+    public TieredWithMinimumTieredWithMinimumConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TieredWithMinimumTieredWithMinimumConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier18>))]
-public sealed record class Tier18 : ModelBase, IFromRaw<Tier18>
+[JsonConverter(typeof(ModelConverter<Tier18, Tier18FromRaw>))]
+public sealed record class Tier18 : ModelBase
 {
     /// <summary>
     /// Minimum amount
@@ -15096,8 +15275,14 @@ public sealed record class Tier18 : ModelBase, IFromRaw<Tier18>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<GroupedTiered>))]
-public sealed record class GroupedTiered : ModelBase, IFromRaw<GroupedTiered>
+class Tier18FromRaw : IFromRaw<Tier18>
+{
+    public Tier18 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier18.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<GroupedTiered, GroupedTieredFromRaw>))]
+public sealed record class GroupedTiered : ModelBase
 {
     public required string ID
     {
@@ -15834,6 +16019,12 @@ public sealed record class GroupedTiered : ModelBase, IFromRaw<GroupedTiered>
     }
 }
 
+class GroupedTieredFromRaw : IFromRaw<GroupedTiered>
+{
+    public GroupedTiered FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        GroupedTiered.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(GroupedTieredBillingModeConverter))]
 public enum GroupedTieredBillingMode
 {
@@ -15934,8 +16125,8 @@ sealed class GroupedTieredCadenceConverter : JsonConverter<GroupedTieredCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter8>))]
-public sealed record class CompositePriceFilter8 : ModelBase, IFromRaw<CompositePriceFilter8>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter8, CompositePriceFilter8FromRaw>))]
+public sealed record class CompositePriceFilter8 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -16047,6 +16238,13 @@ public sealed record class CompositePriceFilter8 : ModelBase, IFromRaw<Composite
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter8FromRaw : IFromRaw<CompositePriceFilter8>
+{
+    public CompositePriceFilter8 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter8.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -16339,10 +16537,13 @@ sealed class GroupedTieredConversionRateConfigConverter
 /// <summary>
 /// Configuration for grouped_tiered pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<GroupedTieredGroupedTieredConfig>))]
-public sealed record class GroupedTieredGroupedTieredConfig
-    : ModelBase,
-        IFromRaw<GroupedTieredGroupedTieredConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        GroupedTieredGroupedTieredConfig,
+        GroupedTieredGroupedTieredConfigFromRaw
+    >)
+)]
+public sealed record class GroupedTieredGroupedTieredConfig : ModelBase
 {
     /// <summary>
     /// The billable metric property used to group before tiering
@@ -16435,11 +16636,18 @@ public sealed record class GroupedTieredGroupedTieredConfig
     }
 }
 
+class GroupedTieredGroupedTieredConfigFromRaw : IFromRaw<GroupedTieredGroupedTieredConfig>
+{
+    public GroupedTieredGroupedTieredConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedTieredGroupedTieredConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier19>))]
-public sealed record class Tier19 : ModelBase, IFromRaw<Tier19>
+[JsonConverter(typeof(ModelConverter<Tier19, Tier19FromRaw>))]
+public sealed record class Tier19 : ModelBase
 {
     /// <summary>
     /// Tier lower bound
@@ -16528,6 +16736,12 @@ public sealed record class Tier19 : ModelBase, IFromRaw<Tier19>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Tier19FromRaw : IFromRaw<Tier19>
+{
+    public Tier19 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier19.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -16625,8 +16839,8 @@ sealed class GroupedTieredPriceTypeConverter : JsonConverter<GroupedTieredPriceT
     }
 }
 
-[JsonConverter(typeof(ModelConverter<TieredPackageWithMinimum>))]
-public sealed record class TieredPackageWithMinimum : ModelBase, IFromRaw<TieredPackageWithMinimum>
+[JsonConverter(typeof(ModelConverter<TieredPackageWithMinimum, TieredPackageWithMinimumFromRaw>))]
+public sealed record class TieredPackageWithMinimum : ModelBase
 {
     public required string ID
     {
@@ -17370,6 +17584,13 @@ public sealed record class TieredPackageWithMinimum : ModelBase, IFromRaw<Tiered
     }
 }
 
+class TieredPackageWithMinimumFromRaw : IFromRaw<TieredPackageWithMinimum>
+{
+    public TieredPackageWithMinimum FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TieredPackageWithMinimum.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(TieredPackageWithMinimumBillingModeConverter))]
 public enum TieredPackageWithMinimumBillingMode
 {
@@ -17472,8 +17693,8 @@ sealed class TieredPackageWithMinimumCadenceConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter9>))]
-public sealed record class CompositePriceFilter9 : ModelBase, IFromRaw<CompositePriceFilter9>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter9, CompositePriceFilter9FromRaw>))]
+public sealed record class CompositePriceFilter9 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -17585,6 +17806,13 @@ public sealed record class CompositePriceFilter9 : ModelBase, IFromRaw<Composite
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter9FromRaw : IFromRaw<CompositePriceFilter9>
+{
+    public CompositePriceFilter9 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter9.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -17975,10 +18203,13 @@ sealed class TieredPackageWithMinimumPriceTypeConverter
 /// <summary>
 /// Configuration for tiered_package_with_minimum pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<TieredPackageWithMinimumTieredPackageWithMinimumConfig>))]
-public sealed record class TieredPackageWithMinimumTieredPackageWithMinimumConfig
-    : ModelBase,
-        IFromRaw<TieredPackageWithMinimumTieredPackageWithMinimumConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        TieredPackageWithMinimumTieredPackageWithMinimumConfig,
+        TieredPackageWithMinimumTieredPackageWithMinimumConfigFromRaw
+    >)
+)]
+public sealed record class TieredPackageWithMinimumTieredPackageWithMinimumConfig : ModelBase
 {
     /// <summary>
     /// Package size
@@ -18072,11 +18303,19 @@ public sealed record class TieredPackageWithMinimumTieredPackageWithMinimumConfi
     }
 }
 
+class TieredPackageWithMinimumTieredPackageWithMinimumConfigFromRaw
+    : IFromRaw<TieredPackageWithMinimumTieredPackageWithMinimumConfig>
+{
+    public TieredPackageWithMinimumTieredPackageWithMinimumConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TieredPackageWithMinimumTieredPackageWithMinimumConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier20>))]
-public sealed record class Tier20 : ModelBase, IFromRaw<Tier20>
+[JsonConverter(typeof(ModelConverter<Tier20, Tier20FromRaw>))]
+public sealed record class Tier20 : ModelBase
 {
     /// <summary>
     /// Minimum amount
@@ -18196,8 +18435,14 @@ public sealed record class Tier20 : ModelBase, IFromRaw<Tier20>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<PackageWithAllocation>))]
-public sealed record class PackageWithAllocation : ModelBase, IFromRaw<PackageWithAllocation>
+class Tier20FromRaw : IFromRaw<Tier20>
+{
+    public Tier20 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier20.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<PackageWithAllocation, PackageWithAllocationFromRaw>))]
+public sealed record class PackageWithAllocation : ModelBase
 {
     public required string ID
     {
@@ -18941,6 +19186,13 @@ public sealed record class PackageWithAllocation : ModelBase, IFromRaw<PackageWi
     }
 }
 
+class PackageWithAllocationFromRaw : IFromRaw<PackageWithAllocation>
+{
+    public PackageWithAllocation FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PackageWithAllocation.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(PackageWithAllocationBillingModeConverter))]
 public enum PackageWithAllocationBillingMode
 {
@@ -19042,8 +19294,8 @@ sealed class PackageWithAllocationCadenceConverter : JsonConverter<PackageWithAl
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter10>))]
-public sealed record class CompositePriceFilter10 : ModelBase, IFromRaw<CompositePriceFilter10>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter10, CompositePriceFilter10FromRaw>))]
+public sealed record class CompositePriceFilter10 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -19155,6 +19407,13 @@ public sealed record class CompositePriceFilter10 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter10FromRaw : IFromRaw<CompositePriceFilter10>
+{
+    public CompositePriceFilter10 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter10.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -19497,10 +19756,13 @@ public class PackageWithAllocationModelType
 /// <summary>
 /// Configuration for package_with_allocation pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<PackageWithAllocationPackageWithAllocationConfig>))]
-public sealed record class PackageWithAllocationPackageWithAllocationConfig
-    : ModelBase,
-        IFromRaw<PackageWithAllocationPackageWithAllocationConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        PackageWithAllocationPackageWithAllocationConfig,
+        PackageWithAllocationPackageWithAllocationConfigFromRaw
+    >)
+)]
+public sealed record class PackageWithAllocationPackageWithAllocationConfig : ModelBase
 {
     /// <summary>
     /// Usage allocation
@@ -19627,6 +19889,14 @@ public sealed record class PackageWithAllocationPackageWithAllocationConfig
     }
 }
 
+class PackageWithAllocationPackageWithAllocationConfigFromRaw
+    : IFromRaw<PackageWithAllocationPackageWithAllocationConfig>
+{
+    public PackageWithAllocationPackageWithAllocationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PackageWithAllocationPackageWithAllocationConfig.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(PackageWithAllocationPriceTypeConverter))]
 public enum PackageWithAllocationPriceType
 {
@@ -19674,8 +19944,8 @@ sealed class PackageWithAllocationPriceTypeConverter : JsonConverter<PackageWith
     }
 }
 
-[JsonConverter(typeof(ModelConverter<UnitWithPercent>))]
-public sealed record class UnitWithPercent : ModelBase, IFromRaw<UnitWithPercent>
+[JsonConverter(typeof(ModelConverter<UnitWithPercent, UnitWithPercentFromRaw>))]
+public sealed record class UnitWithPercent : ModelBase
 {
     public required string ID
     {
@@ -20412,6 +20682,12 @@ public sealed record class UnitWithPercent : ModelBase, IFromRaw<UnitWithPercent
     }
 }
 
+class UnitWithPercentFromRaw : IFromRaw<UnitWithPercent>
+{
+    public UnitWithPercent FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        UnitWithPercent.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(UnitWithPercentBillingModeConverter))]
 public enum UnitWithPercentBillingMode
 {
@@ -20512,8 +20788,8 @@ sealed class UnitWithPercentCadenceConverter : JsonConverter<UnitWithPercentCade
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter11>))]
-public sealed record class CompositePriceFilter11 : ModelBase, IFromRaw<CompositePriceFilter11>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter11, CompositePriceFilter11FromRaw>))]
+public sealed record class CompositePriceFilter11 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -20625,6 +20901,13 @@ public sealed record class CompositePriceFilter11 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter11FromRaw : IFromRaw<CompositePriceFilter11>
+{
+    public CompositePriceFilter11 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter11.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -21012,10 +21295,13 @@ sealed class UnitWithPercentPriceTypeConverter : JsonConverter<UnitWithPercentPr
 /// <summary>
 /// Configuration for unit_with_percent pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<UnitWithPercentUnitWithPercentConfig>))]
-public sealed record class UnitWithPercentUnitWithPercentConfig
-    : ModelBase,
-        IFromRaw<UnitWithPercentUnitWithPercentConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        UnitWithPercentUnitWithPercentConfig,
+        UnitWithPercentUnitWithPercentConfigFromRaw
+    >)
+)]
+public sealed record class UnitWithPercentUnitWithPercentConfig : ModelBase
 {
     /// <summary>
     /// What percent, out of 100, of the calculated total to charge
@@ -21105,8 +21391,15 @@ public sealed record class UnitWithPercentUnitWithPercentConfig
     }
 }
 
-[JsonConverter(typeof(ModelConverter<MatrixWithAllocation>))]
-public sealed record class MatrixWithAllocation : ModelBase, IFromRaw<MatrixWithAllocation>
+class UnitWithPercentUnitWithPercentConfigFromRaw : IFromRaw<UnitWithPercentUnitWithPercentConfig>
+{
+    public UnitWithPercentUnitWithPercentConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => UnitWithPercentUnitWithPercentConfig.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<MatrixWithAllocation, MatrixWithAllocationFromRaw>))]
+public sealed record class MatrixWithAllocation : ModelBase
 {
     public required string ID
     {
@@ -21847,6 +22140,13 @@ public sealed record class MatrixWithAllocation : ModelBase, IFromRaw<MatrixWith
     }
 }
 
+class MatrixWithAllocationFromRaw : IFromRaw<MatrixWithAllocation>
+{
+    public MatrixWithAllocation FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MatrixWithAllocation.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(MatrixWithAllocationBillingModeConverter))]
 public enum MatrixWithAllocationBillingMode
 {
@@ -21948,8 +22248,8 @@ sealed class MatrixWithAllocationCadenceConverter : JsonConverter<MatrixWithAllo
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter12>))]
-public sealed record class CompositePriceFilter12 : ModelBase, IFromRaw<CompositePriceFilter12>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter12, CompositePriceFilter12FromRaw>))]
+public sealed record class CompositePriceFilter12 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -22061,6 +22361,13 @@ public sealed record class CompositePriceFilter12 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter12FromRaw : IFromRaw<CompositePriceFilter12>
+{
+    public CompositePriceFilter12 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter12.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -22447,8 +22754,8 @@ sealed class MatrixWithAllocationPriceTypeConverter : JsonConverter<MatrixWithAl
     }
 }
 
-[JsonConverter(typeof(ModelConverter<TieredWithProration>))]
-public sealed record class TieredWithProration : ModelBase, IFromRaw<TieredWithProration>
+[JsonConverter(typeof(ModelConverter<TieredWithProration, TieredWithProrationFromRaw>))]
+public sealed record class TieredWithProration : ModelBase
 {
     public required string ID
     {
@@ -23187,6 +23494,12 @@ public sealed record class TieredWithProration : ModelBase, IFromRaw<TieredWithP
     }
 }
 
+class TieredWithProrationFromRaw : IFromRaw<TieredWithProration>
+{
+    public TieredWithProration FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        TieredWithProration.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(TieredWithProrationBillingModeConverter))]
 public enum TieredWithProrationBillingMode
 {
@@ -23287,8 +23600,8 @@ sealed class TieredWithProrationCadenceConverter : JsonConverter<TieredWithProra
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter13>))]
-public sealed record class CompositePriceFilter13 : ModelBase, IFromRaw<CompositePriceFilter13>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter13, CompositePriceFilter13FromRaw>))]
+public sealed record class CompositePriceFilter13 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -23400,6 +23713,13 @@ public sealed record class CompositePriceFilter13 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter13FromRaw : IFromRaw<CompositePriceFilter13>
+{
+    public CompositePriceFilter13 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter13.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -23789,10 +24109,13 @@ sealed class TieredWithProrationPriceTypeConverter : JsonConverter<TieredWithPro
 /// <summary>
 /// Configuration for tiered_with_proration pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<TieredWithProrationTieredWithProrationConfig>))]
-public sealed record class TieredWithProrationTieredWithProrationConfig
-    : ModelBase,
-        IFromRaw<TieredWithProrationTieredWithProrationConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        TieredWithProrationTieredWithProrationConfig,
+        TieredWithProrationTieredWithProrationConfigFromRaw
+    >)
+)]
+public sealed record class TieredWithProrationTieredWithProrationConfig : ModelBase
 {
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
@@ -23863,11 +24186,19 @@ public sealed record class TieredWithProrationTieredWithProrationConfig
     }
 }
 
+class TieredWithProrationTieredWithProrationConfigFromRaw
+    : IFromRaw<TieredWithProrationTieredWithProrationConfig>
+{
+    public TieredWithProrationTieredWithProrationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TieredWithProrationTieredWithProrationConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tiered with proration tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier21>))]
-public sealed record class Tier21 : ModelBase, IFromRaw<Tier21>
+[JsonConverter(typeof(ModelConverter<Tier21, Tier21FromRaw>))]
+public sealed record class Tier21 : ModelBase
 {
     /// <summary>
     /// Inclusive tier starting value
@@ -23958,8 +24289,14 @@ public sealed record class Tier21 : ModelBase, IFromRaw<Tier21>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<UnitWithProration>))]
-public sealed record class UnitWithProration : ModelBase, IFromRaw<UnitWithProration>
+class Tier21FromRaw : IFromRaw<Tier21>
+{
+    public Tier21 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier21.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<UnitWithProration, UnitWithProrationFromRaw>))]
+public sealed record class UnitWithProration : ModelBase
 {
     public required string ID
     {
@@ -24698,6 +25035,12 @@ public sealed record class UnitWithProration : ModelBase, IFromRaw<UnitWithProra
     }
 }
 
+class UnitWithProrationFromRaw : IFromRaw<UnitWithProration>
+{
+    public UnitWithProration FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        UnitWithProration.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(UnitWithProrationBillingModeConverter))]
 public enum UnitWithProrationBillingMode
 {
@@ -24798,8 +25141,8 @@ sealed class UnitWithProrationCadenceConverter : JsonConverter<UnitWithProration
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter14>))]
-public sealed record class CompositePriceFilter14 : ModelBase, IFromRaw<CompositePriceFilter14>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter14, CompositePriceFilter14FromRaw>))]
+public sealed record class CompositePriceFilter14 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -24911,6 +25254,13 @@ public sealed record class CompositePriceFilter14 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter14FromRaw : IFromRaw<CompositePriceFilter14>
+{
+    public CompositePriceFilter14 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter14.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -25300,10 +25650,13 @@ sealed class UnitWithProrationPriceTypeConverter : JsonConverter<UnitWithProrati
 /// <summary>
 /// Configuration for unit_with_proration pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<UnitWithProrationUnitWithProrationConfig>))]
-public sealed record class UnitWithProrationUnitWithProrationConfig
-    : ModelBase,
-        IFromRaw<UnitWithProrationUnitWithProrationConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        UnitWithProrationUnitWithProrationConfig,
+        UnitWithProrationUnitWithProrationConfigFromRaw
+    >)
+)]
+public sealed record class UnitWithProrationUnitWithProrationConfig : ModelBase
 {
     /// <summary>
     /// Rate per unit of usage
@@ -25373,8 +25726,16 @@ public sealed record class UnitWithProrationUnitWithProrationConfig
     }
 }
 
-[JsonConverter(typeof(ModelConverter<GroupedAllocation>))]
-public sealed record class GroupedAllocation : ModelBase, IFromRaw<GroupedAllocation>
+class UnitWithProrationUnitWithProrationConfigFromRaw
+    : IFromRaw<UnitWithProrationUnitWithProrationConfig>
+{
+    public UnitWithProrationUnitWithProrationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => UnitWithProrationUnitWithProrationConfig.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<GroupedAllocation, GroupedAllocationFromRaw>))]
+public sealed record class GroupedAllocation : ModelBase
 {
     public required string ID
     {
@@ -26113,6 +26474,12 @@ public sealed record class GroupedAllocation : ModelBase, IFromRaw<GroupedAlloca
     }
 }
 
+class GroupedAllocationFromRaw : IFromRaw<GroupedAllocation>
+{
+    public GroupedAllocation FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        GroupedAllocation.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(GroupedAllocationBillingModeConverter))]
 public enum GroupedAllocationBillingMode
 {
@@ -26213,8 +26580,8 @@ sealed class GroupedAllocationCadenceConverter : JsonConverter<GroupedAllocation
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter15>))]
-public sealed record class CompositePriceFilter15 : ModelBase, IFromRaw<CompositePriceFilter15>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter15, CompositePriceFilter15FromRaw>))]
+public sealed record class CompositePriceFilter15 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -26326,6 +26693,13 @@ public sealed record class CompositePriceFilter15 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter15FromRaw : IFromRaw<CompositePriceFilter15>
+{
+    public CompositePriceFilter15 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter15.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -26618,10 +26992,13 @@ sealed class GroupedAllocationConversionRateConfigConverter
 /// <summary>
 /// Configuration for grouped_allocation pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<GroupedAllocationGroupedAllocationConfig>))]
-public sealed record class GroupedAllocationGroupedAllocationConfig
-    : ModelBase,
-        IFromRaw<GroupedAllocationGroupedAllocationConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        GroupedAllocationGroupedAllocationConfig,
+        GroupedAllocationGroupedAllocationConfigFromRaw
+    >)
+)]
+public sealed record class GroupedAllocationGroupedAllocationConfig : ModelBase
 {
     /// <summary>
     /// Usage allocation per group
@@ -26748,6 +27125,14 @@ public sealed record class GroupedAllocationGroupedAllocationConfig
     }
 }
 
+class GroupedAllocationGroupedAllocationConfigFromRaw
+    : IFromRaw<GroupedAllocationGroupedAllocationConfig>
+{
+    public GroupedAllocationGroupedAllocationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedAllocationGroupedAllocationConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The pricing model type
 /// </summary>
@@ -26845,8 +27230,8 @@ sealed class GroupedAllocationPriceTypeConverter : JsonConverter<GroupedAllocati
     }
 }
 
-[JsonConverter(typeof(ModelConverter<BulkWithProration>))]
-public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProration>
+[JsonConverter(typeof(ModelConverter<BulkWithProration, BulkWithProrationFromRaw>))]
+public sealed record class BulkWithProration : ModelBase
 {
     public required string ID
     {
@@ -27585,6 +27970,12 @@ public sealed record class BulkWithProration : ModelBase, IFromRaw<BulkWithProra
     }
 }
 
+class BulkWithProrationFromRaw : IFromRaw<BulkWithProration>
+{
+    public BulkWithProration FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        BulkWithProration.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(BulkWithProrationBillingModeConverter))]
 public enum BulkWithProrationBillingMode
 {
@@ -27632,10 +28023,13 @@ sealed class BulkWithProrationBillingModeConverter : JsonConverter<BulkWithProra
 /// <summary>
 /// Configuration for bulk_with_proration pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<BulkWithProrationBulkWithProrationConfig>))]
-public sealed record class BulkWithProrationBulkWithProrationConfig
-    : ModelBase,
-        IFromRaw<BulkWithProrationBulkWithProrationConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        BulkWithProrationBulkWithProrationConfig,
+        BulkWithProrationBulkWithProrationConfigFromRaw
+    >)
+)]
+public sealed record class BulkWithProrationBulkWithProrationConfig : ModelBase
 {
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
@@ -27705,11 +28099,19 @@ public sealed record class BulkWithProrationBulkWithProrationConfig
     }
 }
 
+class BulkWithProrationBulkWithProrationConfigFromRaw
+    : IFromRaw<BulkWithProrationBulkWithProrationConfig>
+{
+    public BulkWithProrationBulkWithProrationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BulkWithProrationBulkWithProrationConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single bulk pricing tier with proration
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier22>))]
-public sealed record class Tier22 : ModelBase, IFromRaw<Tier22>
+[JsonConverter(typeof(ModelConverter<Tier22, Tier22FromRaw>))]
+public sealed record class Tier22 : ModelBase
 {
     /// <summary>
     /// Cost per unit
@@ -27797,6 +28199,12 @@ public sealed record class Tier22 : ModelBase, IFromRaw<Tier22>
     }
 }
 
+class Tier22FromRaw : IFromRaw<Tier22>
+{
+    public Tier22 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier22.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(BulkWithProrationCadenceConverter))]
 public enum BulkWithProrationCadence
 {
@@ -27853,8 +28261,8 @@ sealed class BulkWithProrationCadenceConverter : JsonConverter<BulkWithProration
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter16>))]
-public sealed record class CompositePriceFilter16 : ModelBase, IFromRaw<CompositePriceFilter16>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter16, CompositePriceFilter16FromRaw>))]
+public sealed record class CompositePriceFilter16 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -27966,6 +28374,13 @@ public sealed record class CompositePriceFilter16 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter16FromRaw : IFromRaw<CompositePriceFilter16>
+{
+    public CompositePriceFilter16 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter16.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -28352,10 +28767,10 @@ sealed class BulkWithProrationPriceTypeConverter : JsonConverter<BulkWithProrati
     }
 }
 
-[JsonConverter(typeof(ModelConverter<GroupedWithProratedMinimum>))]
-public sealed record class GroupedWithProratedMinimum
-    : ModelBase,
-        IFromRaw<GroupedWithProratedMinimum>
+[JsonConverter(
+    typeof(ModelConverter<GroupedWithProratedMinimum, GroupedWithProratedMinimumFromRaw>)
+)]
+public sealed record class GroupedWithProratedMinimum : ModelBase
 {
     public required string ID
     {
@@ -29096,6 +29511,13 @@ public sealed record class GroupedWithProratedMinimum
     }
 }
 
+class GroupedWithProratedMinimumFromRaw : IFromRaw<GroupedWithProratedMinimum>
+{
+    public GroupedWithProratedMinimum FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedWithProratedMinimum.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(GroupedWithProratedMinimumBillingModeConverter))]
 public enum GroupedWithProratedMinimumBillingMode
 {
@@ -29198,8 +29620,8 @@ sealed class GroupedWithProratedMinimumCadenceConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter17>))]
-public sealed record class CompositePriceFilter17 : ModelBase, IFromRaw<CompositePriceFilter17>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter17, CompositePriceFilter17FromRaw>))]
+public sealed record class CompositePriceFilter17 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -29311,6 +29733,13 @@ public sealed record class CompositePriceFilter17 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter17FromRaw : IFromRaw<CompositePriceFilter17>
+{
+    public CompositePriceFilter17 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter17.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -29603,10 +30032,13 @@ sealed class GroupedWithProratedMinimumConversionRateConfigConverter
 /// <summary>
 /// Configuration for grouped_with_prorated_minimum pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<GroupedWithProratedMinimumGroupedWithProratedMinimumConfig>))]
-public sealed record class GroupedWithProratedMinimumGroupedWithProratedMinimumConfig
-    : ModelBase,
-        IFromRaw<GroupedWithProratedMinimumGroupedWithProratedMinimumConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        GroupedWithProratedMinimumGroupedWithProratedMinimumConfig,
+        GroupedWithProratedMinimumGroupedWithProratedMinimumConfigFromRaw
+    >)
+)]
+public sealed record class GroupedWithProratedMinimumGroupedWithProratedMinimumConfig : ModelBase
 {
     /// <summary>
     /// How to determine the groups that should each have a minimum
@@ -29732,6 +30164,14 @@ public sealed record class GroupedWithProratedMinimumGroupedWithProratedMinimumC
     }
 }
 
+class GroupedWithProratedMinimumGroupedWithProratedMinimumConfigFromRaw
+    : IFromRaw<GroupedWithProratedMinimumGroupedWithProratedMinimumConfig>
+{
+    public GroupedWithProratedMinimumGroupedWithProratedMinimumConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedWithProratedMinimumGroupedWithProratedMinimumConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The pricing model type
 /// </summary>
@@ -29830,10 +30270,8 @@ sealed class GroupedWithProratedMinimumPriceTypeConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<GroupedWithMeteredMinimum>))]
-public sealed record class GroupedWithMeteredMinimum
-    : ModelBase,
-        IFromRaw<GroupedWithMeteredMinimum>
+[JsonConverter(typeof(ModelConverter<GroupedWithMeteredMinimum, GroupedWithMeteredMinimumFromRaw>))]
+public sealed record class GroupedWithMeteredMinimum : ModelBase
 {
     public required string ID
     {
@@ -30574,6 +31012,13 @@ public sealed record class GroupedWithMeteredMinimum
     }
 }
 
+class GroupedWithMeteredMinimumFromRaw : IFromRaw<GroupedWithMeteredMinimum>
+{
+    public GroupedWithMeteredMinimum FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedWithMeteredMinimum.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(GroupedWithMeteredMinimumBillingModeConverter))]
 public enum GroupedWithMeteredMinimumBillingMode
 {
@@ -30676,8 +31121,8 @@ sealed class GroupedWithMeteredMinimumCadenceConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter18>))]
-public sealed record class CompositePriceFilter18 : ModelBase, IFromRaw<CompositePriceFilter18>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter18, CompositePriceFilter18FromRaw>))]
+public sealed record class CompositePriceFilter18 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -30789,6 +31234,13 @@ public sealed record class CompositePriceFilter18 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter18FromRaw : IFromRaw<CompositePriceFilter18>
+{
+    public CompositePriceFilter18 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter18.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -31081,10 +31533,13 @@ sealed class GroupedWithMeteredMinimumConversionRateConfigConverter
 /// <summary>
 /// Configuration for grouped_with_metered_minimum pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfig>))]
-public sealed record class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfig
-    : ModelBase,
-        IFromRaw<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfig,
+        GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigFromRaw
+    >)
+)]
+public sealed record class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfig : ModelBase
 {
     /// <summary>
     /// Used to partition the usage into groups. The minimum amount is applied to
@@ -31323,11 +31778,19 @@ public sealed record class GroupedWithMeteredMinimumGroupedWithMeteredMinimumCon
     }
 }
 
+class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigFromRaw
+    : IFromRaw<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfig>
+{
+    public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a scaling factor
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ScalingFactor1>))]
-public sealed record class ScalingFactor1 : ModelBase, IFromRaw<ScalingFactor1>
+[JsonConverter(typeof(ModelConverter<ScalingFactor1, ScalingFactor1FromRaw>))]
+public sealed record class ScalingFactor1 : ModelBase
 {
     /// <summary>
     /// Scaling factor
@@ -31418,11 +31881,17 @@ public sealed record class ScalingFactor1 : ModelBase, IFromRaw<ScalingFactor1>
     }
 }
 
+class ScalingFactor1FromRaw : IFromRaw<ScalingFactor1>
+{
+    public ScalingFactor1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ScalingFactor1.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a unit amount
 /// </summary>
-[JsonConverter(typeof(ModelConverter<UnitAmount3>))]
-public sealed record class UnitAmount3 : ModelBase, IFromRaw<UnitAmount3>
+[JsonConverter(typeof(ModelConverter<UnitAmount3, UnitAmount3FromRaw>))]
+public sealed record class UnitAmount3 : ModelBase
 {
     /// <summary>
     /// Pricing value
@@ -31511,6 +31980,12 @@ public sealed record class UnitAmount3 : ModelBase, IFromRaw<UnitAmount3>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class UnitAmount3FromRaw : IFromRaw<UnitAmount3>
+{
+    public UnitAmount3 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        UnitAmount3.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -31611,10 +32086,10 @@ sealed class GroupedWithMeteredMinimumPriceTypeConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<GroupedWithMinMaxThresholds>))]
-public sealed record class GroupedWithMinMaxThresholds
-    : ModelBase,
-        IFromRaw<GroupedWithMinMaxThresholds>
+[JsonConverter(
+    typeof(ModelConverter<GroupedWithMinMaxThresholds, GroupedWithMinMaxThresholdsFromRaw>)
+)]
+public sealed record class GroupedWithMinMaxThresholds : ModelBase
 {
     public required string ID
     {
@@ -32354,6 +32829,13 @@ public sealed record class GroupedWithMinMaxThresholds
     }
 }
 
+class GroupedWithMinMaxThresholdsFromRaw : IFromRaw<GroupedWithMinMaxThresholds>
+{
+    public GroupedWithMinMaxThresholds FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedWithMinMaxThresholds.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(GroupedWithMinMaxThresholdsBillingModeConverter))]
 public enum GroupedWithMinMaxThresholdsBillingMode
 {
@@ -32456,8 +32938,8 @@ sealed class GroupedWithMinMaxThresholdsCadenceConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter19>))]
-public sealed record class CompositePriceFilter19 : ModelBase, IFromRaw<CompositePriceFilter19>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter19, CompositePriceFilter19FromRaw>))]
+public sealed record class CompositePriceFilter19 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -32569,6 +33051,13 @@ public sealed record class CompositePriceFilter19 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter19FromRaw : IFromRaw<CompositePriceFilter19>
+{
+    public CompositePriceFilter19 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter19.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -32861,10 +33350,13 @@ sealed class GroupedWithMinMaxThresholdsConversionRateConfigConverter
 /// <summary>
 /// Configuration for grouped_with_min_max_thresholds pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<GroupedWithMinMaxThresholdsConfig>))]
-public sealed record class GroupedWithMinMaxThresholdsConfig
-    : ModelBase,
-        IFromRaw<GroupedWithMinMaxThresholdsConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        GroupedWithMinMaxThresholdsConfig,
+        GroupedWithMinMaxThresholdsConfigFromRaw
+    >)
+)]
+public sealed record class GroupedWithMinMaxThresholdsConfig : ModelBase
 {
     /// <summary>
     /// The event property used to group before applying thresholds
@@ -33021,6 +33513,13 @@ public sealed record class GroupedWithMinMaxThresholdsConfig
     }
 }
 
+class GroupedWithMinMaxThresholdsConfigFromRaw : IFromRaw<GroupedWithMinMaxThresholdsConfig>
+{
+    public GroupedWithMinMaxThresholdsConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedWithMinMaxThresholdsConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The pricing model type
 /// </summary>
@@ -33119,8 +33618,8 @@ sealed class GroupedWithMinMaxThresholdsPriceTypeConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<MatrixWithDisplayName>))]
-public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWithDisplayName>
+[JsonConverter(typeof(ModelConverter<MatrixWithDisplayName, MatrixWithDisplayNameFromRaw>))]
+public sealed record class MatrixWithDisplayName : ModelBase
 {
     public required string ID
     {
@@ -33864,6 +34363,13 @@ public sealed record class MatrixWithDisplayName : ModelBase, IFromRaw<MatrixWit
     }
 }
 
+class MatrixWithDisplayNameFromRaw : IFromRaw<MatrixWithDisplayName>
+{
+    public MatrixWithDisplayName FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MatrixWithDisplayName.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(MatrixWithDisplayNameBillingModeConverter))]
 public enum MatrixWithDisplayNameBillingMode
 {
@@ -33965,8 +34471,8 @@ sealed class MatrixWithDisplayNameCadenceConverter : JsonConverter<MatrixWithDis
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter20>))]
-public sealed record class CompositePriceFilter20 : ModelBase, IFromRaw<CompositePriceFilter20>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter20, CompositePriceFilter20FromRaw>))]
+public sealed record class CompositePriceFilter20 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -34078,6 +34584,13 @@ public sealed record class CompositePriceFilter20 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter20FromRaw : IFromRaw<CompositePriceFilter20>
+{
+    public CompositePriceFilter20 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter20.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -34370,10 +34883,13 @@ sealed class MatrixWithDisplayNameConversionRateConfigConverter
 /// <summary>
 /// Configuration for matrix_with_display_name pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixWithDisplayNameMatrixWithDisplayNameConfig>))]
-public sealed record class MatrixWithDisplayNameMatrixWithDisplayNameConfig
-    : ModelBase,
-        IFromRaw<MatrixWithDisplayNameMatrixWithDisplayNameConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        MatrixWithDisplayNameMatrixWithDisplayNameConfig,
+        MatrixWithDisplayNameMatrixWithDisplayNameConfigFromRaw
+    >)
+)]
+public sealed record class MatrixWithDisplayNameMatrixWithDisplayNameConfig : ModelBase
 {
     /// <summary>
     /// Used to determine the unit rate
@@ -34474,11 +34990,19 @@ public sealed record class MatrixWithDisplayNameMatrixWithDisplayNameConfig
     }
 }
 
+class MatrixWithDisplayNameMatrixWithDisplayNameConfigFromRaw
+    : IFromRaw<MatrixWithDisplayNameMatrixWithDisplayNameConfig>
+{
+    public MatrixWithDisplayNameMatrixWithDisplayNameConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MatrixWithDisplayNameMatrixWithDisplayNameConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a unit amount item
 /// </summary>
-[JsonConverter(typeof(ModelConverter<UnitAmount4>))]
-public sealed record class UnitAmount4 : ModelBase, IFromRaw<UnitAmount4>
+[JsonConverter(typeof(ModelConverter<UnitAmount4, UnitAmount4FromRaw>))]
+public sealed record class UnitAmount4 : ModelBase
 {
     /// <summary>
     /// The dimension value
@@ -34601,6 +35125,12 @@ public sealed record class UnitAmount4 : ModelBase, IFromRaw<UnitAmount4>
     }
 }
 
+class UnitAmount4FromRaw : IFromRaw<UnitAmount4>
+{
+    public UnitAmount4 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        UnitAmount4.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The pricing model type
 /// </summary>
@@ -34698,8 +35228,8 @@ sealed class MatrixWithDisplayNamePriceTypeConverter : JsonConverter<MatrixWithD
     }
 }
 
-[JsonConverter(typeof(ModelConverter<GroupedTieredPackage>))]
-public sealed record class GroupedTieredPackage : ModelBase, IFromRaw<GroupedTieredPackage>
+[JsonConverter(typeof(ModelConverter<GroupedTieredPackage, GroupedTieredPackageFromRaw>))]
+public sealed record class GroupedTieredPackage : ModelBase
 {
     public required string ID
     {
@@ -35440,6 +35970,13 @@ public sealed record class GroupedTieredPackage : ModelBase, IFromRaw<GroupedTie
     }
 }
 
+class GroupedTieredPackageFromRaw : IFromRaw<GroupedTieredPackage>
+{
+    public GroupedTieredPackage FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedTieredPackage.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(GroupedTieredPackageBillingModeConverter))]
 public enum GroupedTieredPackageBillingMode
 {
@@ -35541,8 +36078,8 @@ sealed class GroupedTieredPackageCadenceConverter : JsonConverter<GroupedTieredP
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter21>))]
-public sealed record class CompositePriceFilter21 : ModelBase, IFromRaw<CompositePriceFilter21>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter21, CompositePriceFilter21FromRaw>))]
+public sealed record class CompositePriceFilter21 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -35654,6 +36191,13 @@ public sealed record class CompositePriceFilter21 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter21FromRaw : IFromRaw<CompositePriceFilter21>
+{
+    public CompositePriceFilter21 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter21.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -35946,10 +36490,13 @@ sealed class GroupedTieredPackageConversionRateConfigConverter
 /// <summary>
 /// Configuration for grouped_tiered_package pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<GroupedTieredPackageGroupedTieredPackageConfig>))]
-public sealed record class GroupedTieredPackageGroupedTieredPackageConfig
-    : ModelBase,
-        IFromRaw<GroupedTieredPackageGroupedTieredPackageConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        GroupedTieredPackageGroupedTieredPackageConfig,
+        GroupedTieredPackageGroupedTieredPackageConfigFromRaw
+    >)
+)]
+public sealed record class GroupedTieredPackageGroupedTieredPackageConfig : ModelBase
 {
     /// <summary>
     /// The event property used to group before tiering
@@ -36077,11 +36624,19 @@ public sealed record class GroupedTieredPackageGroupedTieredPackageConfig
     }
 }
 
+class GroupedTieredPackageGroupedTieredPackageConfigFromRaw
+    : IFromRaw<GroupedTieredPackageGroupedTieredPackageConfig>
+{
+    public GroupedTieredPackageGroupedTieredPackageConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedTieredPackageGroupedTieredPackageConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier23>))]
-public sealed record class Tier23 : ModelBase, IFromRaw<Tier23>
+[JsonConverter(typeof(ModelConverter<Tier23, Tier23FromRaw>))]
+public sealed record class Tier23 : ModelBase
 {
     /// <summary>
     /// Price per package
@@ -36167,6 +36722,12 @@ public sealed record class Tier23 : ModelBase, IFromRaw<Tier23>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Tier23FromRaw : IFromRaw<Tier23>
+{
+    public Tier23 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier23.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -36266,8 +36827,8 @@ sealed class GroupedTieredPackagePriceTypeConverter : JsonConverter<GroupedTiere
     }
 }
 
-[JsonConverter(typeof(ModelConverter<MaxGroupTieredPackage>))]
-public sealed record class MaxGroupTieredPackage : ModelBase, IFromRaw<MaxGroupTieredPackage>
+[JsonConverter(typeof(ModelConverter<MaxGroupTieredPackage, MaxGroupTieredPackageFromRaw>))]
+public sealed record class MaxGroupTieredPackage : ModelBase
 {
     public required string ID
     {
@@ -37011,6 +37572,13 @@ public sealed record class MaxGroupTieredPackage : ModelBase, IFromRaw<MaxGroupT
     }
 }
 
+class MaxGroupTieredPackageFromRaw : IFromRaw<MaxGroupTieredPackage>
+{
+    public MaxGroupTieredPackage FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MaxGroupTieredPackage.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(MaxGroupTieredPackageBillingModeConverter))]
 public enum MaxGroupTieredPackageBillingMode
 {
@@ -37112,8 +37680,8 @@ sealed class MaxGroupTieredPackageCadenceConverter : JsonConverter<MaxGroupTiere
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter22>))]
-public sealed record class CompositePriceFilter22 : ModelBase, IFromRaw<CompositePriceFilter22>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter22, CompositePriceFilter22FromRaw>))]
+public sealed record class CompositePriceFilter22 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -37225,6 +37793,13 @@ public sealed record class CompositePriceFilter22 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter22FromRaw : IFromRaw<CompositePriceFilter22>
+{
+    public CompositePriceFilter22 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter22.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -37517,10 +38092,13 @@ sealed class MaxGroupTieredPackageConversionRateConfigConverter
 /// <summary>
 /// Configuration for max_group_tiered_package pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MaxGroupTieredPackageMaxGroupTieredPackageConfig>))]
-public sealed record class MaxGroupTieredPackageMaxGroupTieredPackageConfig
-    : ModelBase,
-        IFromRaw<MaxGroupTieredPackageMaxGroupTieredPackageConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        MaxGroupTieredPackageMaxGroupTieredPackageConfig,
+        MaxGroupTieredPackageMaxGroupTieredPackageConfigFromRaw
+    >)
+)]
+public sealed record class MaxGroupTieredPackageMaxGroupTieredPackageConfig : ModelBase
 {
     /// <summary>
     /// The event property used to group before tiering the group with the highest value
@@ -37647,11 +38225,19 @@ public sealed record class MaxGroupTieredPackageMaxGroupTieredPackageConfig
     }
 }
 
+class MaxGroupTieredPackageMaxGroupTieredPackageConfigFromRaw
+    : IFromRaw<MaxGroupTieredPackageMaxGroupTieredPackageConfig>
+{
+    public MaxGroupTieredPackageMaxGroupTieredPackageConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MaxGroupTieredPackageMaxGroupTieredPackageConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier24>))]
-public sealed record class Tier24 : ModelBase, IFromRaw<Tier24>
+[JsonConverter(typeof(ModelConverter<Tier24, Tier24FromRaw>))]
+public sealed record class Tier24 : ModelBase
 {
     /// <summary>
     /// Tier lower bound
@@ -37740,6 +38326,12 @@ public sealed record class Tier24 : ModelBase, IFromRaw<Tier24>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Tier24FromRaw : IFromRaw<Tier24>
+{
+    public Tier24 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier24.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -37839,10 +38431,10 @@ sealed class MaxGroupTieredPackagePriceTypeConverter : JsonConverter<MaxGroupTie
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ScalableMatrixWithUnitPricing>))]
-public sealed record class ScalableMatrixWithUnitPricing
-    : ModelBase,
-        IFromRaw<ScalableMatrixWithUnitPricing>
+[JsonConverter(
+    typeof(ModelConverter<ScalableMatrixWithUnitPricing, ScalableMatrixWithUnitPricingFromRaw>)
+)]
+public sealed record class ScalableMatrixWithUnitPricing : ModelBase
 {
     public required string ID
     {
@@ -38581,6 +39173,13 @@ public sealed record class ScalableMatrixWithUnitPricing
     }
 }
 
+class ScalableMatrixWithUnitPricingFromRaw : IFromRaw<ScalableMatrixWithUnitPricing>
+{
+    public ScalableMatrixWithUnitPricing FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ScalableMatrixWithUnitPricing.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(ScalableMatrixWithUnitPricingBillingModeConverter))]
 public enum ScalableMatrixWithUnitPricingBillingMode
 {
@@ -38683,8 +39282,8 @@ sealed class ScalableMatrixWithUnitPricingCadenceConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter23>))]
-public sealed record class CompositePriceFilter23 : ModelBase, IFromRaw<CompositePriceFilter23>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter23, CompositePriceFilter23FromRaw>))]
+public sealed record class CompositePriceFilter23 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -38796,6 +39395,13 @@ public sealed record class CompositePriceFilter23 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter23FromRaw : IFromRaw<CompositePriceFilter23>
+{
+    public CompositePriceFilter23 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter23.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -39187,11 +39793,13 @@ sealed class ScalableMatrixWithUnitPricingPriceTypeConverter
 /// Configuration for scalable_matrix_with_unit_pricing pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig>)
+    typeof(ModelConverter<
+        ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig,
+        ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigFromRaw
+    >)
 )]
 public sealed record class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig
-    : ModelBase,
-        IFromRaw<ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig>
+    : ModelBase
 {
     /// <summary>
     /// Used to determine the unit rate
@@ -39370,11 +39978,19 @@ public sealed record class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPr
     }
 }
 
+class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigFromRaw
+    : IFromRaw<ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig>
+{
+    public ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single matrix scaling factor
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixScalingFactor3>))]
-public sealed record class MatrixScalingFactor3 : ModelBase, IFromRaw<MatrixScalingFactor3>
+[JsonConverter(typeof(ModelConverter<MatrixScalingFactor3, MatrixScalingFactor3FromRaw>))]
+public sealed record class MatrixScalingFactor3 : ModelBase
 {
     /// <summary>
     /// First dimension value
@@ -39489,10 +40105,17 @@ public sealed record class MatrixScalingFactor3 : ModelBase, IFromRaw<MatrixScal
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ScalableMatrixWithTieredPricing>))]
-public sealed record class ScalableMatrixWithTieredPricing
-    : ModelBase,
-        IFromRaw<ScalableMatrixWithTieredPricing>
+class MatrixScalingFactor3FromRaw : IFromRaw<MatrixScalingFactor3>
+{
+    public MatrixScalingFactor3 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MatrixScalingFactor3.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<ScalableMatrixWithTieredPricing, ScalableMatrixWithTieredPricingFromRaw>)
+)]
+public sealed record class ScalableMatrixWithTieredPricing : ModelBase
 {
     public required string ID
     {
@@ -40231,6 +40854,13 @@ public sealed record class ScalableMatrixWithTieredPricing
     }
 }
 
+class ScalableMatrixWithTieredPricingFromRaw : IFromRaw<ScalableMatrixWithTieredPricing>
+{
+    public ScalableMatrixWithTieredPricing FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ScalableMatrixWithTieredPricing.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(ScalableMatrixWithTieredPricingBillingModeConverter))]
 public enum ScalableMatrixWithTieredPricingBillingMode
 {
@@ -40333,8 +40963,8 @@ sealed class ScalableMatrixWithTieredPricingCadenceConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter24>))]
-public sealed record class CompositePriceFilter24 : ModelBase, IFromRaw<CompositePriceFilter24>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter24, CompositePriceFilter24FromRaw>))]
+public sealed record class CompositePriceFilter24 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -40446,6 +41076,13 @@ public sealed record class CompositePriceFilter24 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter24FromRaw : IFromRaw<CompositePriceFilter24>
+{
+    public CompositePriceFilter24 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter24.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -40837,11 +41474,13 @@ sealed class ScalableMatrixWithTieredPricingPriceTypeConverter
 /// Configuration for scalable_matrix_with_tiered_pricing pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig>)
+    typeof(ModelConverter<
+        ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig,
+        ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigFromRaw
+    >)
 )]
 public sealed record class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig
-    : ModelBase,
-        IFromRaw<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig>
+    : ModelBase
 {
     /// <summary>
     /// Used for the scalable matrix first dimension
@@ -40998,11 +41637,22 @@ public sealed record class ScalableMatrixWithTieredPricingScalableMatrixWithTier
     }
 }
 
+class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigFromRaw
+    : IFromRaw<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig>
+{
+    public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig.FromRawUnchecked(
+            rawData
+        );
+}
+
 /// <summary>
 /// Configuration for a single matrix scaling factor
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixScalingFactor4>))]
-public sealed record class MatrixScalingFactor4 : ModelBase, IFromRaw<MatrixScalingFactor4>
+[JsonConverter(typeof(ModelConverter<MatrixScalingFactor4, MatrixScalingFactor4FromRaw>))]
+public sealed record class MatrixScalingFactor4 : ModelBase
 {
     /// <summary>
     /// First dimension value
@@ -41117,11 +41767,18 @@ public sealed record class MatrixScalingFactor4 : ModelBase, IFromRaw<MatrixScal
     }
 }
 
+class MatrixScalingFactor4FromRaw : IFromRaw<MatrixScalingFactor4>
+{
+    public MatrixScalingFactor4 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MatrixScalingFactor4.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tier entry with business logic
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier25>))]
-public sealed record class Tier25 : ModelBase, IFromRaw<Tier25>
+[JsonConverter(typeof(ModelConverter<Tier25, Tier25FromRaw>))]
+public sealed record class Tier25 : ModelBase
 {
     /// <summary>
     /// Tier lower bound
@@ -41212,8 +41869,14 @@ public sealed record class Tier25 : ModelBase, IFromRaw<Tier25>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CumulativeGroupedBulk>))]
-public sealed record class CumulativeGroupedBulk : ModelBase, IFromRaw<CumulativeGroupedBulk>
+class Tier25FromRaw : IFromRaw<Tier25>
+{
+    public Tier25 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier25.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<CumulativeGroupedBulk, CumulativeGroupedBulkFromRaw>))]
+public sealed record class CumulativeGroupedBulk : ModelBase
 {
     public required string ID
     {
@@ -41957,6 +42620,13 @@ public sealed record class CumulativeGroupedBulk : ModelBase, IFromRaw<Cumulativ
     }
 }
 
+class CumulativeGroupedBulkFromRaw : IFromRaw<CumulativeGroupedBulk>
+{
+    public CumulativeGroupedBulk FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CumulativeGroupedBulk.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(CumulativeGroupedBulkBillingModeConverter))]
 public enum CumulativeGroupedBulkBillingMode
 {
@@ -42058,8 +42728,8 @@ sealed class CumulativeGroupedBulkCadenceConverter : JsonConverter<CumulativeGro
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter25>))]
-public sealed record class CompositePriceFilter25 : ModelBase, IFromRaw<CompositePriceFilter25>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter25, CompositePriceFilter25FromRaw>))]
+public sealed record class CompositePriceFilter25 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -42171,6 +42841,13 @@ public sealed record class CompositePriceFilter25 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter25FromRaw : IFromRaw<CompositePriceFilter25>
+{
+    public CompositePriceFilter25 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter25.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -42463,10 +43140,13 @@ sealed class CumulativeGroupedBulkConversionRateConfigConverter
 /// <summary>
 /// Configuration for cumulative_grouped_bulk pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<CumulativeGroupedBulkCumulativeGroupedBulkConfig>))]
-public sealed record class CumulativeGroupedBulkCumulativeGroupedBulkConfig
-    : ModelBase,
-        IFromRaw<CumulativeGroupedBulkCumulativeGroupedBulkConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        CumulativeGroupedBulkCumulativeGroupedBulkConfig,
+        CumulativeGroupedBulkCumulativeGroupedBulkConfigFromRaw
+    >)
+)]
+public sealed record class CumulativeGroupedBulkCumulativeGroupedBulkConfig : ModelBase
 {
     /// <summary>
     /// Each tier lower bound must have the same group of values.
@@ -42564,11 +43244,19 @@ public sealed record class CumulativeGroupedBulkCumulativeGroupedBulkConfig
     }
 }
 
+class CumulativeGroupedBulkCumulativeGroupedBulkConfigFromRaw
+    : IFromRaw<CumulativeGroupedBulkCumulativeGroupedBulkConfig>
+{
+    public CumulativeGroupedBulkCumulativeGroupedBulkConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CumulativeGroupedBulkCumulativeGroupedBulkConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a dimension value entry
 /// </summary>
-[JsonConverter(typeof(ModelConverter<DimensionValue1>))]
-public sealed record class DimensionValue1 : ModelBase, IFromRaw<DimensionValue1>
+[JsonConverter(typeof(ModelConverter<DimensionValue1, DimensionValue1FromRaw>))]
+public sealed record class DimensionValue1 : ModelBase
 {
     /// <summary>
     /// Grouping key value
@@ -42691,6 +43379,12 @@ public sealed record class DimensionValue1 : ModelBase, IFromRaw<DimensionValue1
     }
 }
 
+class DimensionValue1FromRaw : IFromRaw<DimensionValue1>
+{
+    public DimensionValue1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        DimensionValue1.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The pricing model type
 /// </summary>
@@ -42788,10 +43482,10 @@ sealed class CumulativeGroupedBulkPriceTypeConverter : JsonConverter<CumulativeG
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CumulativeGroupedAllocation>))]
-public sealed record class CumulativeGroupedAllocation
-    : ModelBase,
-        IFromRaw<CumulativeGroupedAllocation>
+[JsonConverter(
+    typeof(ModelConverter<CumulativeGroupedAllocation, CumulativeGroupedAllocationFromRaw>)
+)]
+public sealed record class CumulativeGroupedAllocation : ModelBase
 {
     public required string ID
     {
@@ -43531,6 +44225,13 @@ public sealed record class CumulativeGroupedAllocation
     }
 }
 
+class CumulativeGroupedAllocationFromRaw : IFromRaw<CumulativeGroupedAllocation>
+{
+    public CumulativeGroupedAllocation FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CumulativeGroupedAllocation.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(CumulativeGroupedAllocationBillingModeConverter))]
 public enum CumulativeGroupedAllocationBillingMode
 {
@@ -43633,8 +44334,8 @@ sealed class CumulativeGroupedAllocationCadenceConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter26>))]
-public sealed record class CompositePriceFilter26 : ModelBase, IFromRaw<CompositePriceFilter26>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter26, CompositePriceFilter26FromRaw>))]
+public sealed record class CompositePriceFilter26 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -43746,6 +44447,13 @@ public sealed record class CompositePriceFilter26 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter26FromRaw : IFromRaw<CompositePriceFilter26>
+{
+    public CompositePriceFilter26 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter26.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -44038,10 +44746,13 @@ sealed class CumulativeGroupedAllocationConversionRateConfigConverter
 /// <summary>
 /// Configuration for cumulative_grouped_allocation pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<CumulativeGroupedAllocationConfig>))]
-public sealed record class CumulativeGroupedAllocationConfig
-    : ModelBase,
-        IFromRaw<CumulativeGroupedAllocationConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        CumulativeGroupedAllocationConfig,
+        CumulativeGroupedAllocationConfigFromRaw
+    >)
+)]
+public sealed record class CumulativeGroupedAllocationConfig : ModelBase
 {
     /// <summary>
     /// The overall allocation across all groups
@@ -44198,6 +44909,13 @@ public sealed record class CumulativeGroupedAllocationConfig
     }
 }
 
+class CumulativeGroupedAllocationConfigFromRaw : IFromRaw<CumulativeGroupedAllocationConfig>
+{
+    public CumulativeGroupedAllocationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CumulativeGroupedAllocationConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The pricing model type
 /// </summary>
@@ -44296,8 +45014,8 @@ sealed class CumulativeGroupedAllocationPriceTypeConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<PriceMinimum>))]
-public sealed record class PriceMinimum : ModelBase, IFromRaw<PriceMinimum>
+[JsonConverter(typeof(ModelConverter<PriceMinimum, PriceMinimumFromRaw>))]
+public sealed record class PriceMinimum : ModelBase
 {
     public required string ID
     {
@@ -45034,6 +45752,12 @@ public sealed record class PriceMinimum : ModelBase, IFromRaw<PriceMinimum>
     }
 }
 
+class PriceMinimumFromRaw : IFromRaw<PriceMinimum>
+{
+    public PriceMinimum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PriceMinimum.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(PriceMinimumBillingModeConverter))]
 public enum PriceMinimumBillingMode
 {
@@ -45134,8 +45858,8 @@ sealed class PriceMinimumCadenceConverter : JsonConverter<PriceMinimumCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter27>))]
-public sealed record class CompositePriceFilter27 : ModelBase, IFromRaw<CompositePriceFilter27>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter27, CompositePriceFilter27FromRaw>))]
+public sealed record class CompositePriceFilter27 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -45247,6 +45971,13 @@ public sealed record class CompositePriceFilter27 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter27FromRaw : IFromRaw<CompositePriceFilter27>
+{
+    public CompositePriceFilter27 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter27.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -45539,10 +46270,8 @@ sealed class PriceMinimumConversionRateConfigConverter
 /// <summary>
 /// Configuration for minimum pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<PriceMinimumMinimumConfig>))]
-public sealed record class PriceMinimumMinimumConfig
-    : ModelBase,
-        IFromRaw<PriceMinimumMinimumConfig>
+[JsonConverter(typeof(ModelConverter<PriceMinimumMinimumConfig, PriceMinimumMinimumConfigFromRaw>))]
+public sealed record class PriceMinimumMinimumConfig : ModelBase
 {
     /// <summary>
     /// The minimum amount to apply
@@ -45635,6 +46364,13 @@ public sealed record class PriceMinimumMinimumConfig
     {
         this.MinimumAmount = minimumAmount;
     }
+}
+
+class PriceMinimumMinimumConfigFromRaw : IFromRaw<PriceMinimumMinimumConfig>
+{
+    public PriceMinimumMinimumConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PriceMinimumMinimumConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -45732,8 +46468,8 @@ sealed class PriceMinimumPriceTypeConverter : JsonConverter<PriceMinimumPriceTyp
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Percent>))]
-public sealed record class Percent : ModelBase, IFromRaw<Percent>
+[JsonConverter(typeof(ModelConverter<Percent, PercentFromRaw>))]
+public sealed record class Percent : ModelBase
 {
     public required string ID
     {
@@ -46467,6 +47203,12 @@ public sealed record class Percent : ModelBase, IFromRaw<Percent>
     }
 }
 
+class PercentFromRaw : IFromRaw<Percent>
+{
+    public Percent FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Percent.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(PercentBillingModeConverter))]
 public enum PercentBillingMode
 {
@@ -46567,8 +47309,8 @@ sealed class PercentCadenceConverter : JsonConverter<PercentCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter28>))]
-public sealed record class CompositePriceFilter28 : ModelBase, IFromRaw<CompositePriceFilter28>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter28, CompositePriceFilter28FromRaw>))]
+public sealed record class CompositePriceFilter28 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -46680,6 +47422,13 @@ public sealed record class CompositePriceFilter28 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter28FromRaw : IFromRaw<CompositePriceFilter28>
+{
+    public CompositePriceFilter28 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter28.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -47019,8 +47768,8 @@ public class PercentModelType
 /// <summary>
 /// Configuration for percent pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<PercentConfig>))]
-public sealed record class PercentConfig : ModelBase, IFromRaw<PercentConfig>
+[JsonConverter(typeof(ModelConverter<PercentConfig, PercentConfigFromRaw>))]
+public sealed record class PercentConfig : ModelBase
 {
     /// <summary>
     /// What percent of the component subtotals to charge
@@ -47079,6 +47828,12 @@ public sealed record class PercentConfig : ModelBase, IFromRaw<PercentConfig>
     }
 }
 
+class PercentConfigFromRaw : IFromRaw<PercentConfig>
+{
+    public PercentConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PercentConfig.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(PercentPriceTypeConverter))]
 public enum PercentPriceType
 {
@@ -47126,8 +47881,8 @@ sealed class PercentPriceTypeConverter : JsonConverter<PercentPriceType>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<EventOutput>))]
-public sealed record class EventOutput : ModelBase, IFromRaw<EventOutput>
+[JsonConverter(typeof(ModelConverter<EventOutput, EventOutputFromRaw>))]
+public sealed record class EventOutput : ModelBase
 {
     public required string ID
     {
@@ -47864,6 +48619,12 @@ public sealed record class EventOutput : ModelBase, IFromRaw<EventOutput>
     }
 }
 
+class EventOutputFromRaw : IFromRaw<EventOutput>
+{
+    public EventOutput FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        EventOutput.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(EventOutputBillingModeConverter))]
 public enum EventOutputBillingMode
 {
@@ -47964,8 +48725,8 @@ sealed class EventOutputCadenceConverter : JsonConverter<EventOutputCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter29>))]
-public sealed record class CompositePriceFilter29 : ModelBase, IFromRaw<CompositePriceFilter29>
+[JsonConverter(typeof(ModelConverter<CompositePriceFilter29, CompositePriceFilter29FromRaw>))]
+public sealed record class CompositePriceFilter29 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -48077,6 +48838,13 @@ public sealed record class CompositePriceFilter29 : ModelBase, IFromRaw<Composit
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CompositePriceFilter29FromRaw : IFromRaw<CompositePriceFilter29>
+{
+    public CompositePriceFilter29 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CompositePriceFilter29.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -48369,8 +49137,8 @@ sealed class EventOutputConversionRateConfigConverter
 /// <summary>
 /// Configuration for event_output pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<EventOutputConfig>))]
-public sealed record class EventOutputConfig : ModelBase, IFromRaw<EventOutputConfig>
+[JsonConverter(typeof(ModelConverter<EventOutputConfig, EventOutputConfigFromRaw>))]
+public sealed record class EventOutputConfig : ModelBase
 {
     /// <summary>
     /// The key in the event data to extract the unit rate from.
@@ -48483,6 +49251,12 @@ public sealed record class EventOutputConfig : ModelBase, IFromRaw<EventOutputCo
     {
         this.UnitRatingKey = unitRatingKey;
     }
+}
+
+class EventOutputConfigFromRaw : IFromRaw<EventOutputConfig>
+{
+    public EventOutputConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        EventOutputConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>

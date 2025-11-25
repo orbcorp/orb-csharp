@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<Minimum>))]
-public sealed record class Minimum : ModelBase, IFromRaw<Minimum>
+[JsonConverter(typeof(ModelConverter<Minimum, MinimumFromRaw>))]
+public sealed record class Minimum : ModelBase
 {
     /// <summary>
     /// List of price_ids that this minimum amount applies to. For plan/plan phase
@@ -140,8 +140,14 @@ public sealed record class Minimum : ModelBase, IFromRaw<Minimum>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Filter4>))]
-public sealed record class Filter4 : ModelBase, IFromRaw<Filter4>
+class MinimumFromRaw : IFromRaw<Minimum>
+{
+    public Minimum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Minimum.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Filter4, Filter4FromRaw>))]
+public sealed record class Filter4 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -251,6 +257,12 @@ public sealed record class Filter4 : ModelBase, IFromRaw<Filter4>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Filter4FromRaw : IFromRaw<Filter4>
+{
+    public Filter4 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Filter4.FromRawUnchecked(rawData);
 }
 
 /// <summary>

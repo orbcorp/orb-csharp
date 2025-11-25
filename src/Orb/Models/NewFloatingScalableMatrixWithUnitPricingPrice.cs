@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewFloatingScalableMatrixWithUnitPricingPrice>))]
-public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice
-    : ModelBase,
-        IFromRaw<NewFloatingScalableMatrixWithUnitPricingPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewFloatingScalableMatrixWithUnitPricingPrice,
+        NewFloatingScalableMatrixWithUnitPricingPriceFromRaw
+    >)
+)]
+public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -497,6 +500,14 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice
     }
 }
 
+class NewFloatingScalableMatrixWithUnitPricingPriceFromRaw
+    : IFromRaw<NewFloatingScalableMatrixWithUnitPricingPrice>
+{
+    public NewFloatingScalableMatrixWithUnitPricingPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewFloatingScalableMatrixWithUnitPricingPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -607,10 +618,13 @@ sealed class NewFloatingScalableMatrixWithUnitPricingPriceModelTypeConverter
 /// <summary>
 /// Configuration for scalable_matrix_with_unit_pricing pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ScalableMatrixWithUnitPricingConfig>))]
-public sealed record class ScalableMatrixWithUnitPricingConfig
-    : ModelBase,
-        IFromRaw<ScalableMatrixWithUnitPricingConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        ScalableMatrixWithUnitPricingConfig,
+        ScalableMatrixWithUnitPricingConfigFromRaw
+    >)
+)]
+public sealed record class ScalableMatrixWithUnitPricingConfig : ModelBase
 {
     /// <summary>
     /// Used to determine the unit rate
@@ -785,11 +799,18 @@ public sealed record class ScalableMatrixWithUnitPricingConfig
     }
 }
 
+class ScalableMatrixWithUnitPricingConfigFromRaw : IFromRaw<ScalableMatrixWithUnitPricingConfig>
+{
+    public ScalableMatrixWithUnitPricingConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ScalableMatrixWithUnitPricingConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single matrix scaling factor
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixScalingFactorModel>))]
-public sealed record class MatrixScalingFactorModel : ModelBase, IFromRaw<MatrixScalingFactorModel>
+[JsonConverter(typeof(ModelConverter<MatrixScalingFactorModel, MatrixScalingFactorModelFromRaw>))]
+public sealed record class MatrixScalingFactorModel : ModelBase
 {
     /// <summary>
     /// First dimension value
@@ -902,6 +923,13 @@ public sealed record class MatrixScalingFactorModel : ModelBase, IFromRaw<Matrix
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class MatrixScalingFactorModelFromRaw : IFromRaw<MatrixScalingFactorModel>
+{
+    public MatrixScalingFactorModel FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MatrixScalingFactorModel.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfigConverter))]

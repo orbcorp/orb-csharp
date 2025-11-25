@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Items;
 
-[JsonConverter(typeof(ModelConverter<ItemListPageResponse>))]
-public sealed record class ItemListPageResponse : ModelBase, IFromRaw<ItemListPageResponse>
+[JsonConverter(typeof(ModelConverter<ItemListPageResponse, ItemListPageResponseFromRaw>))]
+public sealed record class ItemListPageResponse : ModelBase
 {
     public required List<Item> Data
     {
@@ -98,4 +98,11 @@ public sealed record class ItemListPageResponse : ModelBase, IFromRaw<ItemListPa
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ItemListPageResponseFromRaw : IFromRaw<ItemListPageResponse>
+{
+    public ItemListPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ItemListPageResponse.FromRawUnchecked(rawData);
 }

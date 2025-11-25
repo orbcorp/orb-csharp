@@ -13,8 +13,8 @@ namespace Orb.Models.Events.Backfills;
 /// A backfill represents an update to historical usage data, adding or replacing
 /// events in a timeframe.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<BackfillCloseResponse>))]
-public sealed record class BackfillCloseResponse : ModelBase, IFromRaw<BackfillCloseResponse>
+[JsonConverter(typeof(ModelConverter<BackfillCloseResponse, BackfillCloseResponseFromRaw>))]
+public sealed record class BackfillCloseResponse : ModelBase
 {
     public required string ID
     {
@@ -334,6 +334,13 @@ public sealed record class BackfillCloseResponse : ModelBase, IFromRaw<BackfillC
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class BackfillCloseResponseFromRaw : IFromRaw<BackfillCloseResponse>
+{
+    public BackfillCloseResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BackfillCloseResponse.FromRawUnchecked(rawData);
 }
 
 /// <summary>

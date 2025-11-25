@@ -7,8 +7,8 @@ using Orb.Core;
 
 namespace Orb.Models.Customers;
 
-[JsonConverter(typeof(ModelConverter<AddressInput>))]
-public sealed record class AddressInput : ModelBase, IFromRaw<AddressInput>
+[JsonConverter(typeof(ModelConverter<AddressInput, AddressInputFromRaw>))]
+public sealed record class AddressInput : ModelBase
 {
     public string? City
     {
@@ -147,4 +147,10 @@ public sealed record class AddressInput : ModelBase, IFromRaw<AddressInput>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class AddressInputFromRaw : IFromRaw<AddressInput>
+{
+    public AddressInput FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        AddressInput.FromRawUnchecked(rawData);
 }

@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Customers.Credits;
 
-[JsonConverter(typeof(ModelConverter<CreditListByExternalIDPageResponse>))]
-public sealed record class CreditListByExternalIDPageResponse
-    : ModelBase,
-        IFromRaw<CreditListByExternalIDPageResponse>
+[JsonConverter(
+    typeof(ModelConverter<
+        CreditListByExternalIDPageResponse,
+        CreditListByExternalIDPageResponseFromRaw
+    >)
+)]
+public sealed record class CreditListByExternalIDPageResponse : ModelBase
 {
     public required List<DataModel> Data
     {
@@ -102,8 +105,15 @@ public sealed record class CreditListByExternalIDPageResponse
     }
 }
 
-[JsonConverter(typeof(ModelConverter<DataModel>))]
-public sealed record class DataModel : ModelBase, IFromRaw<DataModel>
+class CreditListByExternalIDPageResponseFromRaw : IFromRaw<CreditListByExternalIDPageResponse>
+{
+    public CreditListByExternalIDPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CreditListByExternalIDPageResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<DataModel, DataModelFromRaw>))]
+public sealed record class DataModel : ModelBase
 {
     public required string ID
     {
@@ -316,13 +326,22 @@ public sealed record class DataModel : ModelBase, IFromRaw<DataModel>
     }
 }
 
+class DataModelFromRaw : IFromRaw<DataModel>
+{
+    public DataModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        DataModel.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// A PriceFilter that only allows item_id field for block filters.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Customers.Credits.FilterModel>))]
-public sealed record class FilterModel
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Customers.Credits.FilterModel>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Customers.Credits.FilterModel,
+        global::Orb.Models.Customers.Credits.FilterModelFromRaw
+    >)
+)]
+public sealed record class FilterModel : ModelBase
 {
     /// <summary>
     /// The property of the price the block applies to. Only item_id is supported.
@@ -435,6 +454,13 @@ public sealed record class FilterModel
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class FilterModelFromRaw : IFromRaw<global::Orb.Models.Customers.Credits.FilterModel>
+{
+    public global::Orb.Models.Customers.Credits.FilterModel FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Customers.Credits.FilterModel.FromRawUnchecked(rawData);
 }
 
 /// <summary>

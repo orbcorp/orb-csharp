@@ -9,10 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewPlanTieredPackagePrice>))]
-public sealed record class NewPlanTieredPackagePrice
-    : ModelBase,
-        IFromRaw<NewPlanTieredPackagePrice>
+[JsonConverter(typeof(ModelConverter<NewPlanTieredPackagePrice, NewPlanTieredPackagePriceFromRaw>))]
+public sealed record class NewPlanTieredPackagePrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -508,6 +506,13 @@ public sealed record class NewPlanTieredPackagePrice
     }
 }
 
+class NewPlanTieredPackagePriceFromRaw : IFromRaw<NewPlanTieredPackagePrice>
+{
+    public NewPlanTieredPackagePrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanTieredPackagePrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -616,10 +621,13 @@ sealed class NewPlanTieredPackagePriceModelTypeConverter
 /// <summary>
 /// Configuration for tiered_package pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<NewPlanTieredPackagePriceTieredPackageConfig>))]
-public sealed record class NewPlanTieredPackagePriceTieredPackageConfig
-    : ModelBase,
-        IFromRaw<NewPlanTieredPackagePriceTieredPackageConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanTieredPackagePriceTieredPackageConfig,
+        NewPlanTieredPackagePriceTieredPackageConfigFromRaw
+    >)
+)]
+public sealed record class NewPlanTieredPackagePriceTieredPackageConfig : ModelBase
 {
     /// <summary>
     /// Package size
@@ -717,11 +725,19 @@ public sealed record class NewPlanTieredPackagePriceTieredPackageConfig
     }
 }
 
+class NewPlanTieredPackagePriceTieredPackageConfigFromRaw
+    : IFromRaw<NewPlanTieredPackagePriceTieredPackageConfig>
+{
+    public NewPlanTieredPackagePriceTieredPackageConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanTieredPackagePriceTieredPackageConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tier with business logic
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier13>))]
-public sealed record class Tier13 : ModelBase, IFromRaw<Tier13>
+[JsonConverter(typeof(ModelConverter<Tier13, Tier13FromRaw>))]
+public sealed record class Tier13 : ModelBase
 {
     /// <summary>
     /// Price per package
@@ -807,6 +823,12 @@ public sealed record class Tier13 : ModelBase, IFromRaw<Tier13>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Tier13FromRaw : IFromRaw<Tier13>
+{
+    public Tier13 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier13.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewPlanTieredPackagePriceConversionRateConfigConverter))]

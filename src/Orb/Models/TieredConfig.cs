@@ -12,8 +12,8 @@ namespace Orb.Models;
 /// <summary>
 /// Configuration for tiered pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<TieredConfig>))]
-public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
+[JsonConverter(typeof(ModelConverter<TieredConfig, TieredConfigFromRaw>))]
+public sealed record class TieredConfig : ModelBase
 {
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
@@ -107,4 +107,10 @@ public sealed record class TieredConfig : ModelBase, IFromRaw<TieredConfig>
     {
         this.Tiers = tiers;
     }
+}
+
+class TieredConfigFromRaw : IFromRaw<TieredConfig>
+{
+    public TieredConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        TieredConfig.FromRawUnchecked(rawData);
 }

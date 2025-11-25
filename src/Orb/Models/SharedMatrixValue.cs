@@ -12,8 +12,8 @@ namespace Orb.Models;
 /// <summary>
 /// Configuration for a single matrix value
 /// </summary>
-[JsonConverter(typeof(ModelConverter<SharedMatrixValue>))]
-public sealed record class SharedMatrixValue : ModelBase, IFromRaw<SharedMatrixValue>
+[JsonConverter(typeof(ModelConverter<SharedMatrixValue, SharedMatrixValueFromRaw>))]
+public sealed record class SharedMatrixValue : ModelBase
 {
     /// <summary>
     /// One or two matrix keys to filter usage to this Matrix value by
@@ -98,4 +98,10 @@ public sealed record class SharedMatrixValue : ModelBase, IFromRaw<SharedMatrixV
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class SharedMatrixValueFromRaw : IFromRaw<SharedMatrixValue>
+{
+    public SharedMatrixValue FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        SharedMatrixValue.FromRawUnchecked(rawData);
 }

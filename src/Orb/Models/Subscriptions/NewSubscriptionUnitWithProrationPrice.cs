@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<NewSubscriptionUnitWithProrationPrice>))]
-public sealed record class NewSubscriptionUnitWithProrationPrice
-    : ModelBase,
-        IFromRaw<NewSubscriptionUnitWithProrationPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewSubscriptionUnitWithProrationPrice,
+        NewSubscriptionUnitWithProrationPriceFromRaw
+    >)
+)]
+public sealed record class NewSubscriptionUnitWithProrationPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -506,6 +509,13 @@ public sealed record class NewSubscriptionUnitWithProrationPrice
     }
 }
 
+class NewSubscriptionUnitWithProrationPriceFromRaw : IFromRaw<NewSubscriptionUnitWithProrationPrice>
+{
+    public NewSubscriptionUnitWithProrationPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewSubscriptionUnitWithProrationPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -616,10 +626,13 @@ sealed class NewSubscriptionUnitWithProrationPriceModelTypeConverter
 /// <summary>
 /// Configuration for unit_with_proration pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.UnitWithProrationConfig>))]
-public sealed record class UnitWithProrationConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.UnitWithProrationConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.UnitWithProrationConfig,
+        global::Orb.Models.Subscriptions.UnitWithProrationConfigFromRaw
+    >)
+)]
+public sealed record class UnitWithProrationConfig : ModelBase
 {
     /// <summary>
     /// Rate per unit of usage
@@ -685,6 +698,14 @@ public sealed record class UnitWithProrationConfig
     {
         this.UnitAmount = unitAmount;
     }
+}
+
+class UnitWithProrationConfigFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.UnitWithProrationConfig>
+{
+    public global::Orb.Models.Subscriptions.UnitWithProrationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.UnitWithProrationConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewSubscriptionUnitWithProrationPriceConversionRateConfigConverter))]

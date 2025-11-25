@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewFloatingUnitWithProrationPrice>))]
-public sealed record class NewFloatingUnitWithProrationPrice
-    : ModelBase,
-        IFromRaw<NewFloatingUnitWithProrationPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewFloatingUnitWithProrationPrice,
+        NewFloatingUnitWithProrationPriceFromRaw
+    >)
+)]
+public sealed record class NewFloatingUnitWithProrationPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -489,6 +492,13 @@ public sealed record class NewFloatingUnitWithProrationPrice
     }
 }
 
+class NewFloatingUnitWithProrationPriceFromRaw : IFromRaw<NewFloatingUnitWithProrationPrice>
+{
+    public NewFloatingUnitWithProrationPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewFloatingUnitWithProrationPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -598,8 +608,8 @@ sealed class NewFloatingUnitWithProrationPriceModelTypeConverter
 /// <summary>
 /// Configuration for unit_with_proration pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<UnitWithProrationConfig>))]
-public sealed record class UnitWithProrationConfig : ModelBase, IFromRaw<UnitWithProrationConfig>
+[JsonConverter(typeof(ModelConverter<UnitWithProrationConfig, UnitWithProrationConfigFromRaw>))]
+public sealed record class UnitWithProrationConfig : ModelBase
 {
     /// <summary>
     /// Rate per unit of usage
@@ -665,6 +675,13 @@ public sealed record class UnitWithProrationConfig : ModelBase, IFromRaw<UnitWit
     {
         this.UnitAmount = unitAmount;
     }
+}
+
+class UnitWithProrationConfigFromRaw : IFromRaw<UnitWithProrationConfig>
+{
+    public UnitWithProrationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => UnitWithProrationConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewFloatingUnitWithProrationPriceConversionRateConfigConverter))]

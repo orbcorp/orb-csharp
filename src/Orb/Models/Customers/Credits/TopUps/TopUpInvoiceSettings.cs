@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Customers.Credits.TopUps;
 
-[JsonConverter(typeof(ModelConverter<TopUpInvoiceSettings>))]
-public sealed record class TopUpInvoiceSettings : ModelBase, IFromRaw<TopUpInvoiceSettings>
+[JsonConverter(typeof(ModelConverter<TopUpInvoiceSettings, TopUpInvoiceSettingsFromRaw>))]
+public sealed record class TopUpInvoiceSettings : ModelBase
 {
     /// <summary>
     /// Whether the credits purchase invoice should auto collect with the customer's
@@ -142,4 +142,11 @@ public sealed record class TopUpInvoiceSettings : ModelBase, IFromRaw<TopUpInvoi
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class TopUpInvoiceSettingsFromRaw : IFromRaw<TopUpInvoiceSettings>
+{
+    public TopUpInvoiceSettings FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TopUpInvoiceSettings.FromRawUnchecked(rawData);
 }

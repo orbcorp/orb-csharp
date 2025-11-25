@@ -8,8 +8,8 @@ using Orb.Core;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<SubscriptionTrialInfo>))]
-public sealed record class SubscriptionTrialInfo : ModelBase, IFromRaw<SubscriptionTrialInfo>
+[JsonConverter(typeof(ModelConverter<SubscriptionTrialInfo, SubscriptionTrialInfoFromRaw>))]
+public sealed record class SubscriptionTrialInfo : ModelBase
 {
     public required DateTimeOffset? EndDate
     {
@@ -65,4 +65,11 @@ public sealed record class SubscriptionTrialInfo : ModelBase, IFromRaw<Subscript
     {
         this.EndDate = endDate;
     }
+}
+
+class SubscriptionTrialInfoFromRaw : IFromRaw<SubscriptionTrialInfo>
+{
+    public SubscriptionTrialInfo FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => SubscriptionTrialInfo.FromRawUnchecked(rawData);
 }

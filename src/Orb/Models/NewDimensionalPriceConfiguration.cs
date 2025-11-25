@@ -9,10 +9,13 @@ using Orb.Exceptions;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewDimensionalPriceConfiguration>))]
-public sealed record class NewDimensionalPriceConfiguration
-    : ModelBase,
-        IFromRaw<NewDimensionalPriceConfiguration>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewDimensionalPriceConfiguration,
+        NewDimensionalPriceConfigurationFromRaw
+    >)
+)]
+public sealed record class NewDimensionalPriceConfiguration : ModelBase
 {
     /// <summary>
     /// The list of dimension values matching (in order) the dimensions of the price group
@@ -122,4 +125,11 @@ public sealed record class NewDimensionalPriceConfiguration
     {
         this.DimensionValues = dimensionValues;
     }
+}
+
+class NewDimensionalPriceConfigurationFromRaw : IFromRaw<NewDimensionalPriceConfiguration>
+{
+    public NewDimensionalPriceConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewDimensionalPriceConfiguration.FromRawUnchecked(rawData);
 }

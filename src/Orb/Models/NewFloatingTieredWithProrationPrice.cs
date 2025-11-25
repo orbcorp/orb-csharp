@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewFloatingTieredWithProrationPrice>))]
-public sealed record class NewFloatingTieredWithProrationPrice
-    : ModelBase,
-        IFromRaw<NewFloatingTieredWithProrationPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewFloatingTieredWithProrationPrice,
+        NewFloatingTieredWithProrationPriceFromRaw
+    >)
+)]
+public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -489,6 +492,13 @@ public sealed record class NewFloatingTieredWithProrationPrice
     }
 }
 
+class NewFloatingTieredWithProrationPriceFromRaw : IFromRaw<NewFloatingTieredWithProrationPrice>
+{
+    public NewFloatingTieredWithProrationPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewFloatingTieredWithProrationPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -599,10 +609,8 @@ sealed class NewFloatingTieredWithProrationPriceModelTypeConverter
 /// <summary>
 /// Configuration for tiered_with_proration pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<TieredWithProrationConfig>))]
-public sealed record class TieredWithProrationConfig
-    : ModelBase,
-        IFromRaw<TieredWithProrationConfig>
+[JsonConverter(typeof(ModelConverter<TieredWithProrationConfig, TieredWithProrationConfigFromRaw>))]
+public sealed record class TieredWithProrationConfig : ModelBase
 {
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
@@ -671,11 +679,18 @@ public sealed record class TieredWithProrationConfig
     }
 }
 
+class TieredWithProrationConfigFromRaw : IFromRaw<TieredWithProrationConfig>
+{
+    public TieredWithProrationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TieredWithProrationConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tiered with proration tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier7>))]
-public sealed record class Tier7 : ModelBase, IFromRaw<Tier7>
+[JsonConverter(typeof(ModelConverter<Tier7, Tier7FromRaw>))]
+public sealed record class Tier7 : ModelBase
 {
     /// <summary>
     /// Inclusive tier starting value
@@ -764,6 +779,12 @@ public sealed record class Tier7 : ModelBase, IFromRaw<Tier7>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Tier7FromRaw : IFromRaw<Tier7>
+{
+    public Tier7 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier7.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewFloatingTieredWithProrationPriceConversionRateConfigConverter))]

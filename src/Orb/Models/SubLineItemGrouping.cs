@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<SubLineItemGrouping>))]
-public sealed record class SubLineItemGrouping : ModelBase, IFromRaw<SubLineItemGrouping>
+[JsonConverter(typeof(ModelConverter<SubLineItemGrouping, SubLineItemGroupingFromRaw>))]
+public sealed record class SubLineItemGrouping : ModelBase
 {
     public required string Key
     {
@@ -85,4 +85,10 @@ public sealed record class SubLineItemGrouping : ModelBase, IFromRaw<SubLineItem
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class SubLineItemGroupingFromRaw : IFromRaw<SubLineItemGrouping>
+{
+    public SubLineItemGrouping FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        SubLineItemGrouping.FromRawUnchecked(rawData);
 }

@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models.Beta;
 
-[JsonConverter(typeof(ModelConverter<PlanVersionPhase>))]
-public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPhase>
+[JsonConverter(typeof(ModelConverter<PlanVersionPhase, PlanVersionPhaseFromRaw>))]
+public sealed record class PlanVersionPhase : ModelBase
 {
     public required string ID
     {
@@ -178,6 +178,12 @@ public sealed record class PlanVersionPhase : ModelBase, IFromRaw<PlanVersionPha
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class PlanVersionPhaseFromRaw : IFromRaw<PlanVersionPhase>
+{
+    public PlanVersionPhase FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PlanVersionPhase.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(global::Orb.Models.Beta.DurationUnitConverter))]

@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<DiscountOverride>))]
-public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverride>
+[JsonConverter(typeof(ModelConverter<DiscountOverride, DiscountOverrideFromRaw>))]
+public sealed record class DiscountOverride : ModelBase
 {
     public required ApiEnum<string, DiscountOverrideDiscountType> DiscountType
     {
@@ -140,6 +140,12 @@ public sealed record class DiscountOverride : ModelBase, IFromRaw<DiscountOverri
     {
         this.DiscountType = discountType;
     }
+}
+
+class DiscountOverrideFromRaw : IFromRaw<DiscountOverride>
+{
+    public DiscountOverride FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        DiscountOverride.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(DiscountOverrideDiscountTypeConverter))]

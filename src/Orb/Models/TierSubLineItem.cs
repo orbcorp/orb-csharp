@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<TierSubLineItem>))]
-public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem>
+[JsonConverter(typeof(ModelConverter<TierSubLineItem, TierSubLineItemFromRaw>))]
+public sealed record class TierSubLineItem : ModelBase
 {
     /// <summary>
     /// The total amount for this sub line item.
@@ -190,8 +190,14 @@ public sealed record class TierSubLineItem : ModelBase, IFromRaw<TierSubLineItem
     }
 }
 
-[JsonConverter(typeof(ModelConverter<TierConfig>))]
-public sealed record class TierConfig : ModelBase, IFromRaw<TierConfig>
+class TierSubLineItemFromRaw : IFromRaw<TierSubLineItem>
+{
+    public TierSubLineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        TierSubLineItem.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<TierConfig, TierConfigFromRaw>))]
+public sealed record class TierConfig : ModelBase
 {
     public required double FirstUnit
     {
@@ -289,6 +295,12 @@ public sealed record class TierConfig : ModelBase, IFromRaw<TierConfig>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class TierConfigFromRaw : IFromRaw<TierConfig>
+{
+    public TierConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        TierConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(TierSubLineItemTypeConverter))]

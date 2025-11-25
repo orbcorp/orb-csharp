@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models.Prices;
 
-[JsonConverter(typeof(ModelConverter<EvaluatePriceGroup>))]
-public sealed record class EvaluatePriceGroup : ModelBase, IFromRaw<EvaluatePriceGroup>
+[JsonConverter(typeof(ModelConverter<EvaluatePriceGroup, EvaluatePriceGroupFromRaw>))]
+public sealed record class EvaluatePriceGroup : ModelBase
 {
     /// <summary>
     /// The price's output for the group
@@ -129,6 +129,12 @@ public sealed record class EvaluatePriceGroup : ModelBase, IFromRaw<EvaluatePric
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class EvaluatePriceGroupFromRaw : IFromRaw<EvaluatePriceGroup>
+{
+    public EvaluatePriceGroup FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        EvaluatePriceGroup.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(GroupingValueConverter))]

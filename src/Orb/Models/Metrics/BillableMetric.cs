@@ -15,8 +15,8 @@ namespace Orb.Models.Metrics;
 /// are defined by the query that transforms raw usage events into meaningful values
 /// for your customers.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<BillableMetric>))]
-public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
+[JsonConverter(typeof(ModelConverter<BillableMetric, BillableMetricFromRaw>))]
+public sealed record class BillableMetric : ModelBase
 {
     public required string ID
     {
@@ -203,6 +203,12 @@ public sealed record class BillableMetric : ModelBase, IFromRaw<BillableMetric>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class BillableMetricFromRaw : IFromRaw<BillableMetric>
+{
+    public BillableMetric FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        BillableMetric.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(global::Orb.Models.Metrics.StatusConverter))]

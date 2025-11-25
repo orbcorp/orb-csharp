@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<AmountDiscountInterval>))]
-public sealed record class AmountDiscountInterval : ModelBase, IFromRaw<AmountDiscountInterval>
+[JsonConverter(typeof(ModelConverter<AmountDiscountInterval, AmountDiscountIntervalFromRaw>))]
+public sealed record class AmountDiscountInterval : ModelBase
 {
     /// <summary>
     /// Only available if discount_type is `amount`.
@@ -221,6 +221,13 @@ public sealed record class AmountDiscountInterval : ModelBase, IFromRaw<AmountDi
     }
 }
 
+class AmountDiscountIntervalFromRaw : IFromRaw<AmountDiscountInterval>
+{
+    public AmountDiscountInterval FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AmountDiscountInterval.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(AmountDiscountIntervalDiscountTypeConverter))]
 public enum AmountDiscountIntervalDiscountType
 {
@@ -263,8 +270,8 @@ sealed class AmountDiscountIntervalDiscountTypeConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Filter1>))]
-public sealed record class Filter1 : ModelBase, IFromRaw<Filter1>
+[JsonConverter(typeof(ModelConverter<Filter1, Filter1FromRaw>))]
+public sealed record class Filter1 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -374,6 +381,12 @@ public sealed record class Filter1 : ModelBase, IFromRaw<Filter1>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Filter1FromRaw : IFromRaw<Filter1>
+{
+    public Filter1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Filter1.FromRawUnchecked(rawData);
 }
 
 /// <summary>

@@ -9,10 +9,10 @@ using System = System;
 
 namespace Orb.Models.Invoices;
 
-[JsonConverter(typeof(ModelConverter<InvoiceFetchUpcomingResponse>))]
-public sealed record class InvoiceFetchUpcomingResponse
-    : ModelBase,
-        IFromRaw<InvoiceFetchUpcomingResponse>
+[JsonConverter(
+    typeof(ModelConverter<InvoiceFetchUpcomingResponse, InvoiceFetchUpcomingResponseFromRaw>)
+)]
+public sealed record class InvoiceFetchUpcomingResponse : ModelBase
 {
     public required string ID
     {
@@ -1265,10 +1265,20 @@ public sealed record class InvoiceFetchUpcomingResponse
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Invoices.AutoCollection>))]
-public sealed record class AutoCollection
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Invoices.AutoCollection>
+class InvoiceFetchUpcomingResponseFromRaw : IFromRaw<InvoiceFetchUpcomingResponse>
+{
+    public InvoiceFetchUpcomingResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => InvoiceFetchUpcomingResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Invoices.AutoCollection,
+        global::Orb.Models.Invoices.AutoCollectionFromRaw
+    >)
+)]
+public sealed record class AutoCollection : ModelBase
 {
     /// <summary>
     /// True only if auto-collection is enabled for this invoice.
@@ -1398,8 +1408,20 @@ public sealed record class AutoCollection
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Invoices.CreditNote>))]
-public sealed record class CreditNote : ModelBase, IFromRaw<global::Orb.Models.Invoices.CreditNote>
+class AutoCollectionFromRaw : IFromRaw<global::Orb.Models.Invoices.AutoCollection>
+{
+    public global::Orb.Models.Invoices.AutoCollection FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Invoices.AutoCollection.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Invoices.CreditNote,
+        global::Orb.Models.Invoices.CreditNoteFromRaw
+    >)
+)]
+public sealed record class CreditNote : ModelBase
 {
     public required string ID
     {
@@ -1609,10 +1631,20 @@ public sealed record class CreditNote : ModelBase, IFromRaw<global::Orb.Models.I
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Invoices.CustomerBalanceTransaction>))]
-public sealed record class CustomerBalanceTransaction
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Invoices.CustomerBalanceTransaction>
+class CreditNoteFromRaw : IFromRaw<global::Orb.Models.Invoices.CreditNote>
+{
+    public global::Orb.Models.Invoices.CreditNote FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Invoices.CreditNote.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Invoices.CustomerBalanceTransaction,
+        global::Orb.Models.Invoices.CustomerBalanceTransactionFromRaw
+    >)
+)]
+public sealed record class CustomerBalanceTransaction : ModelBase
 {
     /// <summary>
     /// A unique id for this transaction.
@@ -1908,6 +1940,14 @@ public sealed record class CustomerBalanceTransaction
     }
 }
 
+class CustomerBalanceTransactionFromRaw
+    : IFromRaw<global::Orb.Models.Invoices.CustomerBalanceTransaction>
+{
+    public global::Orb.Models.Invoices.CustomerBalanceTransaction FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Invoices.CustomerBalanceTransaction.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(global::Orb.Models.Invoices.ActionConverter))]
 public enum Action
 {
@@ -2068,10 +2108,13 @@ sealed class InvoiceSourceConverter : JsonConverter<global::Orb.Models.Invoices.
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Invoices.LineItemModel>))]
-public sealed record class LineItemModel
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Invoices.LineItemModel>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Invoices.LineItemModel,
+        global::Orb.Models.Invoices.LineItemModelFromRaw
+    >)
+)]
+public sealed record class LineItemModel : ModelBase
 {
     /// <summary>
     /// A unique ID for this line item.
@@ -2616,6 +2659,13 @@ public sealed record class LineItemModel
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class LineItemModelFromRaw : IFromRaw<global::Orb.Models.Invoices.LineItemModel>
+{
+    public global::Orb.Models.Invoices.LineItemModel FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Invoices.LineItemModel.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(global::Orb.Models.Invoices.AdjustmentConverter))]
@@ -3241,10 +3291,13 @@ sealed class SubLineItemConverter : JsonConverter<global::Orb.Models.Invoices.Su
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Invoices.PaymentAttempt>))]
-public sealed record class PaymentAttempt
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Invoices.PaymentAttempt>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Invoices.PaymentAttempt,
+        global::Orb.Models.Invoices.PaymentAttemptFromRaw
+    >)
+)]
+public sealed record class PaymentAttempt : ModelBase
 {
     /// <summary>
     /// The ID of the payment attempt.
@@ -3458,6 +3511,13 @@ public sealed record class PaymentAttempt
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class PaymentAttemptFromRaw : IFromRaw<global::Orb.Models.Invoices.PaymentAttempt>
+{
+    public global::Orb.Models.Invoices.PaymentAttempt FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Invoices.PaymentAttempt.FromRawUnchecked(rawData);
 }
 
 /// <summary>

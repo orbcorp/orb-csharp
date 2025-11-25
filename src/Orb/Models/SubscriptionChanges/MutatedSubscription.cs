@@ -11,8 +11,8 @@ using System = System;
 
 namespace Orb.Models.SubscriptionChanges;
 
-[JsonConverter(typeof(ModelConverter<MutatedSubscription>))]
-public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubscription>
+[JsonConverter(typeof(ModelConverter<MutatedSubscription, MutatedSubscriptionFromRaw>))]
+public sealed record class MutatedSubscription : ModelBase
 {
     public required string ID
     {
@@ -904,6 +904,12 @@ public sealed record class MutatedSubscription : ModelBase, IFromRaw<MutatedSubs
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class MutatedSubscriptionFromRaw : IFromRaw<MutatedSubscription>
+{
+    public MutatedSubscription FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MutatedSubscription.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(DiscountIntervalConverter))]

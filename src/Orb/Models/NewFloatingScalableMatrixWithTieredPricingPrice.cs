@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewFloatingScalableMatrixWithTieredPricingPrice>))]
-public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
-    : ModelBase,
-        IFromRaw<NewFloatingScalableMatrixWithTieredPricingPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewFloatingScalableMatrixWithTieredPricingPrice,
+        NewFloatingScalableMatrixWithTieredPricingPriceFromRaw
+    >)
+)]
+public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -497,6 +500,14 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice
     }
 }
 
+class NewFloatingScalableMatrixWithTieredPricingPriceFromRaw
+    : IFromRaw<NewFloatingScalableMatrixWithTieredPricingPrice>
+{
+    public NewFloatingScalableMatrixWithTieredPricingPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewFloatingScalableMatrixWithTieredPricingPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -607,10 +618,13 @@ sealed class NewFloatingScalableMatrixWithTieredPricingPriceModelTypeConverter
 /// <summary>
 /// Configuration for scalable_matrix_with_tiered_pricing pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ScalableMatrixWithTieredPricingConfig>))]
-public sealed record class ScalableMatrixWithTieredPricingConfig
-    : ModelBase,
-        IFromRaw<ScalableMatrixWithTieredPricingConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        ScalableMatrixWithTieredPricingConfig,
+        ScalableMatrixWithTieredPricingConfigFromRaw
+    >)
+)]
+public sealed record class ScalableMatrixWithTieredPricingConfig : ModelBase
 {
     /// <summary>
     /// Used for the scalable matrix first dimension
@@ -763,11 +777,18 @@ public sealed record class ScalableMatrixWithTieredPricingConfig
     }
 }
 
+class ScalableMatrixWithTieredPricingConfigFromRaw : IFromRaw<ScalableMatrixWithTieredPricingConfig>
+{
+    public ScalableMatrixWithTieredPricingConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ScalableMatrixWithTieredPricingConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single matrix scaling factor
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixScalingFactor>))]
-public sealed record class MatrixScalingFactor : ModelBase, IFromRaw<MatrixScalingFactor>
+[JsonConverter(typeof(ModelConverter<MatrixScalingFactor, MatrixScalingFactorFromRaw>))]
+public sealed record class MatrixScalingFactor : ModelBase
 {
     /// <summary>
     /// First dimension value
@@ -882,11 +903,17 @@ public sealed record class MatrixScalingFactor : ModelBase, IFromRaw<MatrixScali
     }
 }
 
+class MatrixScalingFactorFromRaw : IFromRaw<MatrixScalingFactor>
+{
+    public MatrixScalingFactor FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MatrixScalingFactor.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tier entry with business logic
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier3>))]
-public sealed record class Tier3 : ModelBase, IFromRaw<Tier3>
+[JsonConverter(typeof(ModelConverter<Tier3, Tier3FromRaw>))]
+public sealed record class Tier3 : ModelBase
 {
     /// <summary>
     /// Tier lower bound
@@ -975,6 +1002,12 @@ public sealed record class Tier3 : ModelBase, IFromRaw<Tier3>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Tier3FromRaw : IFromRaw<Tier3>
+{
+    public Tier3 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier3.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(

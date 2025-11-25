@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<NewSubscriptionBulkWithProrationPrice>))]
-public sealed record class NewSubscriptionBulkWithProrationPrice
-    : ModelBase,
-        IFromRaw<NewSubscriptionBulkWithProrationPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewSubscriptionBulkWithProrationPrice,
+        NewSubscriptionBulkWithProrationPriceFromRaw
+    >)
+)]
+public sealed record class NewSubscriptionBulkWithProrationPrice : ModelBase
 {
     /// <summary>
     /// Configuration for bulk_with_proration pricing
@@ -506,13 +509,23 @@ public sealed record class NewSubscriptionBulkWithProrationPrice
     }
 }
 
+class NewSubscriptionBulkWithProrationPriceFromRaw : IFromRaw<NewSubscriptionBulkWithProrationPrice>
+{
+    public NewSubscriptionBulkWithProrationPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewSubscriptionBulkWithProrationPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for bulk_with_proration pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.BulkWithProrationConfig>))]
-public sealed record class BulkWithProrationConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.BulkWithProrationConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.BulkWithProrationConfig,
+        global::Orb.Models.Subscriptions.BulkWithProrationConfigFromRaw
+    >)
+)]
+public sealed record class BulkWithProrationConfig : ModelBase
 {
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
@@ -583,11 +596,24 @@ public sealed record class BulkWithProrationConfig
     }
 }
 
+class BulkWithProrationConfigFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.BulkWithProrationConfig>
+{
+    public global::Orb.Models.Subscriptions.BulkWithProrationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.BulkWithProrationConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single bulk pricing tier with proration
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.Tier8>))]
-public sealed record class Tier8 : ModelBase, IFromRaw<global::Orb.Models.Subscriptions.Tier8>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.Tier8,
+        global::Orb.Models.Subscriptions.Tier8FromRaw
+    >)
+)]
+public sealed record class Tier8 : ModelBase
 {
     /// <summary>
     /// Cost per unit
@@ -675,6 +701,13 @@ public sealed record class Tier8 : ModelBase, IFromRaw<global::Orb.Models.Subscr
     {
         this.UnitAmount = unitAmount;
     }
+}
+
+class Tier8FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tier8>
+{
+    public global::Orb.Models.Subscriptions.Tier8 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.Tier8.FromRawUnchecked(rawData);
 }
 
 /// <summary>

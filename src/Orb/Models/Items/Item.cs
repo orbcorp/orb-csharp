@@ -14,8 +14,8 @@ namespace Orb.Models.Items;
 /// with all line items, billable metrics, and prices and are used for defining external
 /// sync behavior for invoices and tax calculation purposes.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Item>))]
-public sealed record class Item : ModelBase, IFromRaw<Item>
+[JsonConverter(typeof(ModelConverter<Item, ItemFromRaw>))]
+public sealed record class Item : ModelBase
 {
     /// <summary>
     /// The Orb-assigned unique identifier for the item.
@@ -230,12 +230,18 @@ public sealed record class Item : ModelBase, IFromRaw<Item>
     }
 }
 
+class ItemFromRaw : IFromRaw<Item>
+{
+    public Item FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Item.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Represents a connection between an Item and an external system for invoicing
 /// or tax calculation purposes.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ExternalConnectionModel>))]
-public sealed record class ExternalConnectionModel : ModelBase, IFromRaw<ExternalConnectionModel>
+[JsonConverter(typeof(ModelConverter<ExternalConnectionModel, ExternalConnectionModelFromRaw>))]
+public sealed record class ExternalConnectionModel : ModelBase
 {
     /// <summary>
     /// The name of the external system this item is connected to.
@@ -327,6 +333,13 @@ public sealed record class ExternalConnectionModel : ModelBase, IFromRaw<Externa
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ExternalConnectionModelFromRaw : IFromRaw<ExternalConnectionModel>
+{
+    public ExternalConnectionModel FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ExternalConnectionModel.FromRawUnchecked(rawData);
 }
 
 /// <summary>

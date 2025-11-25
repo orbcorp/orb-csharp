@@ -9,10 +9,10 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewFloatingUnitWithPercentPrice>))]
-public sealed record class NewFloatingUnitWithPercentPrice
-    : ModelBase,
-        IFromRaw<NewFloatingUnitWithPercentPrice>
+[JsonConverter(
+    typeof(ModelConverter<NewFloatingUnitWithPercentPrice, NewFloatingUnitWithPercentPriceFromRaw>)
+)]
+public sealed record class NewFloatingUnitWithPercentPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -489,6 +489,13 @@ public sealed record class NewFloatingUnitWithPercentPrice
     }
 }
 
+class NewFloatingUnitWithPercentPriceFromRaw : IFromRaw<NewFloatingUnitWithPercentPrice>
+{
+    public NewFloatingUnitWithPercentPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewFloatingUnitWithPercentPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -597,8 +604,8 @@ sealed class NewFloatingUnitWithPercentPriceModelTypeConverter
 /// <summary>
 /// Configuration for unit_with_percent pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<UnitWithPercentConfig>))]
-public sealed record class UnitWithPercentConfig : ModelBase, IFromRaw<UnitWithPercentConfig>
+[JsonConverter(typeof(ModelConverter<UnitWithPercentConfig, UnitWithPercentConfigFromRaw>))]
+public sealed record class UnitWithPercentConfig : ModelBase
 {
     /// <summary>
     /// What percent, out of 100, of the calculated total to charge
@@ -686,6 +693,13 @@ public sealed record class UnitWithPercentConfig : ModelBase, IFromRaw<UnitWithP
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class UnitWithPercentConfigFromRaw : IFromRaw<UnitWithPercentConfig>
+{
+    public UnitWithPercentConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => UnitWithPercentConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewFloatingUnitWithPercentPriceConversionRateConfigConverter))]

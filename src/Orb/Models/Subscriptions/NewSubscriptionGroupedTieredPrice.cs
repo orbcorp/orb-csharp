@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<NewSubscriptionGroupedTieredPrice>))]
-public sealed record class NewSubscriptionGroupedTieredPrice
-    : ModelBase,
-        IFromRaw<NewSubscriptionGroupedTieredPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewSubscriptionGroupedTieredPrice,
+        NewSubscriptionGroupedTieredPriceFromRaw
+    >)
+)]
+public sealed record class NewSubscriptionGroupedTieredPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -506,6 +509,13 @@ public sealed record class NewSubscriptionGroupedTieredPrice
     }
 }
 
+class NewSubscriptionGroupedTieredPriceFromRaw : IFromRaw<NewSubscriptionGroupedTieredPrice>
+{
+    public NewSubscriptionGroupedTieredPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewSubscriptionGroupedTieredPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -569,10 +579,13 @@ sealed class NewSubscriptionGroupedTieredPriceCadenceConverter
 /// <summary>
 /// Configuration for grouped_tiered pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.GroupedTieredConfig>))]
-public sealed record class GroupedTieredConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.GroupedTieredConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.GroupedTieredConfig,
+        global::Orb.Models.Subscriptions.GroupedTieredConfigFromRaw
+    >)
+)]
+public sealed record class GroupedTieredConfig : ModelBase
 {
     /// <summary>
     /// The billable metric property used to group before tiering
@@ -668,11 +681,23 @@ public sealed record class GroupedTieredConfig
     }
 }
 
+class GroupedTieredConfigFromRaw : IFromRaw<global::Orb.Models.Subscriptions.GroupedTieredConfig>
+{
+    public global::Orb.Models.Subscriptions.GroupedTieredConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.GroupedTieredConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.Tier10>))]
-public sealed record class Tier10 : ModelBase, IFromRaw<global::Orb.Models.Subscriptions.Tier10>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.Tier10,
+        global::Orb.Models.Subscriptions.Tier10FromRaw
+    >)
+)]
+public sealed record class Tier10 : ModelBase
 {
     /// <summary>
     /// Tier lower bound
@@ -763,6 +788,13 @@ public sealed record class Tier10 : ModelBase, IFromRaw<global::Orb.Models.Subsc
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Tier10FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tier10>
+{
+    public global::Orb.Models.Subscriptions.Tier10 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.Tier10.FromRawUnchecked(rawData);
 }
 
 /// <summary>

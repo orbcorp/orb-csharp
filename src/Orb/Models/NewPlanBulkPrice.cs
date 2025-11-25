@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewPlanBulkPrice>))]
-public sealed record class NewPlanBulkPrice : ModelBase, IFromRaw<NewPlanBulkPrice>
+[JsonConverter(typeof(ModelConverter<NewPlanBulkPrice, NewPlanBulkPriceFromRaw>))]
+public sealed record class NewPlanBulkPrice : ModelBase
 {
     /// <summary>
     /// Configuration for bulk pricing
@@ -501,6 +501,12 @@ public sealed record class NewPlanBulkPrice : ModelBase, IFromRaw<NewPlanBulkPri
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class NewPlanBulkPriceFromRaw : IFromRaw<NewPlanBulkPrice>
+{
+    public NewPlanBulkPrice FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        NewPlanBulkPrice.FromRawUnchecked(rawData);
 }
 
 /// <summary>

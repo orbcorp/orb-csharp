@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<NewSubscriptionGroupedWithMeteredMinimumPrice>))]
-public sealed record class NewSubscriptionGroupedWithMeteredMinimumPrice
-    : ModelBase,
-        IFromRaw<NewSubscriptionGroupedWithMeteredMinimumPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewSubscriptionGroupedWithMeteredMinimumPrice,
+        NewSubscriptionGroupedWithMeteredMinimumPriceFromRaw
+    >)
+)]
+public sealed record class NewSubscriptionGroupedWithMeteredMinimumPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -514,6 +517,14 @@ public sealed record class NewSubscriptionGroupedWithMeteredMinimumPrice
     }
 }
 
+class NewSubscriptionGroupedWithMeteredMinimumPriceFromRaw
+    : IFromRaw<NewSubscriptionGroupedWithMeteredMinimumPrice>
+{
+    public NewSubscriptionGroupedWithMeteredMinimumPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewSubscriptionGroupedWithMeteredMinimumPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -578,11 +589,12 @@ sealed class NewSubscriptionGroupedWithMeteredMinimumPriceCadenceConverter
 /// Configuration for grouped_with_metered_minimum pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Subscriptions.GroupedWithMeteredMinimumConfig>)
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.GroupedWithMeteredMinimumConfig,
+        global::Orb.Models.Subscriptions.GroupedWithMeteredMinimumConfigFromRaw
+    >)
 )]
-public sealed record class GroupedWithMeteredMinimumConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.GroupedWithMeteredMinimumConfig>
+public sealed record class GroupedWithMeteredMinimumConfig : ModelBase
 {
     /// <summary>
     /// Used to partition the usage into groups. The minimum amount is applied to
@@ -817,13 +829,24 @@ public sealed record class GroupedWithMeteredMinimumConfig
     }
 }
 
+class GroupedWithMeteredMinimumConfigFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.GroupedWithMeteredMinimumConfig>
+{
+    public global::Orb.Models.Subscriptions.GroupedWithMeteredMinimumConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.GroupedWithMeteredMinimumConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a scaling factor
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.ScalingFactor>))]
-public sealed record class ScalingFactor
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.ScalingFactor>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.ScalingFactor,
+        global::Orb.Models.Subscriptions.ScalingFactorFromRaw
+    >)
+)]
+public sealed record class ScalingFactor : ModelBase
 {
     /// <summary>
     /// Scaling factor
@@ -916,13 +939,23 @@ public sealed record class ScalingFactor
     }
 }
 
+class ScalingFactorFromRaw : IFromRaw<global::Orb.Models.Subscriptions.ScalingFactor>
+{
+    public global::Orb.Models.Subscriptions.ScalingFactor FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.ScalingFactor.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a unit amount
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.UnitAmount>))]
-public sealed record class UnitAmount
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.UnitAmount>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.UnitAmount,
+        global::Orb.Models.Subscriptions.UnitAmountFromRaw
+    >)
+)]
+public sealed record class UnitAmount : ModelBase
 {
     /// <summary>
     /// Pricing value
@@ -1013,6 +1046,13 @@ public sealed record class UnitAmount
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class UnitAmountFromRaw : IFromRaw<global::Orb.Models.Subscriptions.UnitAmount>
+{
+    public global::Orb.Models.Subscriptions.UnitAmount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.UnitAmount.FromRawUnchecked(rawData);
 }
 
 /// <summary>

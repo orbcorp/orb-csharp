@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewFloatingMinimumCompositePrice>))]
-public sealed record class NewFloatingMinimumCompositePrice
-    : ModelBase,
-        IFromRaw<NewFloatingMinimumCompositePrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewFloatingMinimumCompositePrice,
+        NewFloatingMinimumCompositePriceFromRaw
+    >)
+)]
+public sealed record class NewFloatingMinimumCompositePrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -486,6 +489,13 @@ public sealed record class NewFloatingMinimumCompositePrice
     }
 }
 
+class NewFloatingMinimumCompositePriceFromRaw : IFromRaw<NewFloatingMinimumCompositePrice>
+{
+    public NewFloatingMinimumCompositePrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewFloatingMinimumCompositePrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -549,8 +559,8 @@ sealed class NewFloatingMinimumCompositePriceCadenceConverter
 /// <summary>
 /// Configuration for minimum pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MinimumConfig>))]
-public sealed record class MinimumConfig : ModelBase, IFromRaw<MinimumConfig>
+[JsonConverter(typeof(ModelConverter<MinimumConfig, MinimumConfigFromRaw>))]
+public sealed record class MinimumConfig : ModelBase
 {
     /// <summary>
     /// The minimum amount to apply
@@ -641,6 +651,12 @@ public sealed record class MinimumConfig : ModelBase, IFromRaw<MinimumConfig>
     {
         this.MinimumAmount = minimumAmount;
     }
+}
+
+class MinimumConfigFromRaw : IFromRaw<MinimumConfig>
+{
+    public MinimumConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MinimumConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>

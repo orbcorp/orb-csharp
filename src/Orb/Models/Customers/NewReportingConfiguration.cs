@@ -9,10 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Customers;
 
-[JsonConverter(typeof(ModelConverter<NewReportingConfiguration>))]
-public sealed record class NewReportingConfiguration
-    : ModelBase,
-        IFromRaw<NewReportingConfiguration>
+[JsonConverter(typeof(ModelConverter<NewReportingConfiguration, NewReportingConfigurationFromRaw>))]
+public sealed record class NewReportingConfiguration : ModelBase
 {
     public required bool Exempt
     {
@@ -68,4 +66,11 @@ public sealed record class NewReportingConfiguration
     {
         this.Exempt = exempt;
     }
+}
+
+class NewReportingConfigurationFromRaw : IFromRaw<NewReportingConfiguration>
+{
+    public NewReportingConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewReportingConfiguration.FromRawUnchecked(rawData);
 }

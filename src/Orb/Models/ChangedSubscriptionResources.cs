@@ -9,10 +9,10 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<ChangedSubscriptionResources>))]
-public sealed record class ChangedSubscriptionResources
-    : ModelBase,
-        IFromRaw<ChangedSubscriptionResources>
+[JsonConverter(
+    typeof(ModelConverter<ChangedSubscriptionResources, ChangedSubscriptionResourcesFromRaw>)
+)]
+public sealed record class ChangedSubscriptionResources : ModelBase
 {
     /// <summary>
     /// The credit notes that were created as part of this operation.
@@ -190,8 +190,15 @@ public sealed record class ChangedSubscriptionResources
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CreatedInvoice>))]
-public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
+class ChangedSubscriptionResourcesFromRaw : IFromRaw<ChangedSubscriptionResources>
+{
+    public ChangedSubscriptionResources FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ChangedSubscriptionResources.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<CreatedInvoice, CreatedInvoiceFromRaw>))]
+public sealed record class CreatedInvoice : ModelBase
 {
     public required string ID
     {
@@ -1466,8 +1473,14 @@ public sealed record class CreatedInvoice : ModelBase, IFromRaw<CreatedInvoice>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AutoCollection>))]
-public sealed record class AutoCollection : ModelBase, IFromRaw<AutoCollection>
+class CreatedInvoiceFromRaw : IFromRaw<CreatedInvoice>
+{
+    public CreatedInvoice FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        CreatedInvoice.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<AutoCollection, AutoCollectionFromRaw>))]
+public sealed record class AutoCollection : ModelBase
 {
     /// <summary>
     /// True only if auto-collection is enabled for this invoice.
@@ -1595,8 +1608,14 @@ public sealed record class AutoCollection : ModelBase, IFromRaw<AutoCollection>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CreditNote>))]
-public sealed record class CreditNote : ModelBase, IFromRaw<CreditNote>
+class AutoCollectionFromRaw : IFromRaw<AutoCollection>
+{
+    public AutoCollection FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        AutoCollection.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<CreditNote, CreditNoteFromRaw>))]
+public sealed record class CreditNote : ModelBase
 {
     public required string ID
     {
@@ -1804,10 +1823,16 @@ public sealed record class CreditNote : ModelBase, IFromRaw<CreditNote>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CustomerBalanceTransaction>))]
-public sealed record class CustomerBalanceTransaction
-    : ModelBase,
-        IFromRaw<CustomerBalanceTransaction>
+class CreditNoteFromRaw : IFromRaw<CreditNote>
+{
+    public CreditNote FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        CreditNote.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<CustomerBalanceTransaction, CustomerBalanceTransactionFromRaw>)
+)]
+public sealed record class CustomerBalanceTransaction : ModelBase
 {
     /// <summary>
     /// A unique id for this transaction.
@@ -2103,6 +2128,13 @@ public sealed record class CustomerBalanceTransaction
     }
 }
 
+class CustomerBalanceTransactionFromRaw : IFromRaw<CustomerBalanceTransaction>
+{
+    public CustomerBalanceTransaction FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CustomerBalanceTransaction.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(ActionConverter))]
 public enum Action
 {
@@ -2258,8 +2290,8 @@ sealed class InvoiceSourceConverter : JsonConverter<InvoiceSource>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<LineItem>))]
-public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
+[JsonConverter(typeof(ModelConverter<LineItem, LineItemFromRaw>))]
+public sealed record class LineItem : ModelBase
 {
     /// <summary>
     /// A unique ID for this line item.
@@ -2802,6 +2834,12 @@ public sealed record class LineItem : ModelBase, IFromRaw<LineItem>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class LineItemFromRaw : IFromRaw<LineItem>
+{
+    public LineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        LineItem.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(AdjustmentConverter))]
@@ -3413,8 +3451,8 @@ sealed class SubLineItemConverter : JsonConverter<SubLineItem>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<PaymentAttempt>))]
-public sealed record class PaymentAttempt : ModelBase, IFromRaw<PaymentAttempt>
+[JsonConverter(typeof(ModelConverter<PaymentAttempt, PaymentAttemptFromRaw>))]
+public sealed record class PaymentAttempt : ModelBase
 {
     /// <summary>
     /// The ID of the payment attempt.
@@ -3626,6 +3664,12 @@ public sealed record class PaymentAttempt : ModelBase, IFromRaw<PaymentAttempt>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class PaymentAttemptFromRaw : IFromRaw<PaymentAttempt>
+{
+    public PaymentAttempt FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PaymentAttempt.FromRawUnchecked(rawData);
 }
 
 /// <summary>

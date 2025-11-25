@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewFloatingMaxGroupTieredPackagePrice>))]
-public sealed record class NewFloatingMaxGroupTieredPackagePrice
-    : ModelBase,
-        IFromRaw<NewFloatingMaxGroupTieredPackagePrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewFloatingMaxGroupTieredPackagePrice,
+        NewFloatingMaxGroupTieredPackagePriceFromRaw
+    >)
+)]
+public sealed record class NewFloatingMaxGroupTieredPackagePrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -494,6 +497,13 @@ public sealed record class NewFloatingMaxGroupTieredPackagePrice
     }
 }
 
+class NewFloatingMaxGroupTieredPackagePriceFromRaw : IFromRaw<NewFloatingMaxGroupTieredPackagePrice>
+{
+    public NewFloatingMaxGroupTieredPackagePrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewFloatingMaxGroupTieredPackagePrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -557,10 +567,10 @@ sealed class NewFloatingMaxGroupTieredPackagePriceCadenceConverter
 /// <summary>
 /// Configuration for max_group_tiered_package pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MaxGroupTieredPackageConfig>))]
-public sealed record class MaxGroupTieredPackageConfig
-    : ModelBase,
-        IFromRaw<MaxGroupTieredPackageConfig>
+[JsonConverter(
+    typeof(ModelConverter<MaxGroupTieredPackageConfig, MaxGroupTieredPackageConfigFromRaw>)
+)]
+public sealed record class MaxGroupTieredPackageConfig : ModelBase
 {
     /// <summary>
     /// The event property used to group before tiering the group with the highest value
@@ -685,11 +695,18 @@ public sealed record class MaxGroupTieredPackageConfig
     }
 }
 
+class MaxGroupTieredPackageConfigFromRaw : IFromRaw<MaxGroupTieredPackageConfig>
+{
+    public MaxGroupTieredPackageConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MaxGroupTieredPackageConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier2>))]
-public sealed record class Tier2 : ModelBase, IFromRaw<Tier2>
+[JsonConverter(typeof(ModelConverter<Tier2, Tier2FromRaw>))]
+public sealed record class Tier2 : ModelBase
 {
     /// <summary>
     /// Tier lower bound
@@ -778,6 +795,12 @@ public sealed record class Tier2 : ModelBase, IFromRaw<Tier2>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Tier2FromRaw : IFromRaw<Tier2>
+{
+    public Tier2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier2.FromRawUnchecked(rawData);
 }
 
 /// <summary>

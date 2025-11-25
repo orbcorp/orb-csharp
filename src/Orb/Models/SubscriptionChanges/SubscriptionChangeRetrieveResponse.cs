@@ -14,10 +14,13 @@ namespace Orb.Models.SubscriptionChanges;
 /// an existing subscription. It is a way to first preview the effects on the subscription
 /// as well as any changes/creation of invoices (see `subscription.changed_resources`).
 /// </summary>
-[JsonConverter(typeof(ModelConverter<SubscriptionChangeRetrieveResponse>))]
-public sealed record class SubscriptionChangeRetrieveResponse
-    : ModelBase,
-        IFromRaw<SubscriptionChangeRetrieveResponse>
+[JsonConverter(
+    typeof(ModelConverter<
+        SubscriptionChangeRetrieveResponse,
+        SubscriptionChangeRetrieveResponseFromRaw
+    >)
+)]
+public sealed record class SubscriptionChangeRetrieveResponse : ModelBase
 {
     public required string ID
     {
@@ -197,6 +200,13 @@ public sealed record class SubscriptionChangeRetrieveResponse
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class SubscriptionChangeRetrieveResponseFromRaw : IFromRaw<SubscriptionChangeRetrieveResponse>
+{
+    public SubscriptionChangeRetrieveResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => SubscriptionChangeRetrieveResponse.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(SubscriptionChangeRetrieveResponseStatusConverter))]

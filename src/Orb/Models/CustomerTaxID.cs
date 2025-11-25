@@ -109,8 +109,8 @@ namespace Orb.Models;
 /// | Zambia Tax Identification Number | | Zimbabwe | `zw_tin` | Zimbabwe Tax Identification
 /// Number |</para>
 /// </summary>
-[JsonConverter(typeof(ModelConverter<CustomerTaxID>))]
-public sealed record class CustomerTaxID : ModelBase, IFromRaw<CustomerTaxID>
+[JsonConverter(typeof(ModelConverter<CustomerTaxID, CustomerTaxIDFromRaw>))]
+public sealed record class CustomerTaxID : ModelBase
 {
     public required ApiEnum<string, Country> Country
     {
@@ -211,6 +211,12 @@ public sealed record class CustomerTaxID : ModelBase, IFromRaw<CustomerTaxID>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CustomerTaxIDFromRaw : IFromRaw<CustomerTaxID>
+{
+    public CustomerTaxID FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        CustomerTaxID.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(CountryConverter))]

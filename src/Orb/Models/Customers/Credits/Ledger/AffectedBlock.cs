@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
-[JsonConverter(typeof(ModelConverter<AffectedBlock>))]
-public sealed record class AffectedBlock : ModelBase, IFromRaw<AffectedBlock>
+[JsonConverter(typeof(ModelConverter<AffectedBlock, AffectedBlockFromRaw>))]
+public sealed record class AffectedBlock : ModelBase
 {
     public required string ID
     {
@@ -135,10 +135,19 @@ public sealed record class AffectedBlock : ModelBase, IFromRaw<AffectedBlock>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Customers.Credits.Ledger.Filter1>))]
-public sealed record class Filter1
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Customers.Credits.Ledger.Filter1>
+class AffectedBlockFromRaw : IFromRaw<AffectedBlock>
+{
+    public AffectedBlock FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        AffectedBlock.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Customers.Credits.Ledger.Filter1,
+        global::Orb.Models.Customers.Credits.Ledger.Filter1FromRaw
+    >)
+)]
+public sealed record class Filter1 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -251,6 +260,13 @@ public sealed record class Filter1
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Filter1FromRaw : IFromRaw<global::Orb.Models.Customers.Credits.Ledger.Filter1>
+{
+    public global::Orb.Models.Customers.Credits.Ledger.Filter1 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Customers.Credits.Ledger.Filter1.FromRawUnchecked(rawData);
 }
 
 /// <summary>

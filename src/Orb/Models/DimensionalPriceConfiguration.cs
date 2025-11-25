@@ -9,10 +9,10 @@ using Orb.Exceptions;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<DimensionalPriceConfiguration>))]
-public sealed record class DimensionalPriceConfiguration
-    : ModelBase,
-        IFromRaw<DimensionalPriceConfiguration>
+[JsonConverter(
+    typeof(ModelConverter<DimensionalPriceConfiguration, DimensionalPriceConfigurationFromRaw>)
+)]
+public sealed record class DimensionalPriceConfiguration : ModelBase
 {
     public required List<string> DimensionValues
     {
@@ -94,4 +94,11 @@ public sealed record class DimensionalPriceConfiguration
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class DimensionalPriceConfigurationFromRaw : IFromRaw<DimensionalPriceConfiguration>
+{
+    public DimensionalPriceConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => DimensionalPriceConfiguration.FromRawUnchecked(rawData);
 }

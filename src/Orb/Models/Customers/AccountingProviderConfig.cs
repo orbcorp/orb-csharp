@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models.Customers;
 
-[JsonConverter(typeof(ModelConverter<AccountingProviderConfig>))]
-public sealed record class AccountingProviderConfig : ModelBase, IFromRaw<AccountingProviderConfig>
+[JsonConverter(typeof(ModelConverter<AccountingProviderConfig, AccountingProviderConfigFromRaw>))]
+public sealed record class AccountingProviderConfig : ModelBase
 {
     public required string ExternalProviderID
     {
@@ -92,4 +92,11 @@ public sealed record class AccountingProviderConfig : ModelBase, IFromRaw<Accoun
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class AccountingProviderConfigFromRaw : IFromRaw<AccountingProviderConfig>
+{
+    public AccountingProviderConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AccountingProviderConfig.FromRawUnchecked(rawData);
 }

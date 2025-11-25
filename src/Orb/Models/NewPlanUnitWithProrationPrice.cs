@@ -9,10 +9,10 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewPlanUnitWithProrationPrice>))]
-public sealed record class NewPlanUnitWithProrationPrice
-    : ModelBase,
-        IFromRaw<NewPlanUnitWithProrationPrice>
+[JsonConverter(
+    typeof(ModelConverter<NewPlanUnitWithProrationPrice, NewPlanUnitWithProrationPriceFromRaw>)
+)]
+public sealed record class NewPlanUnitWithProrationPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -506,6 +506,13 @@ public sealed record class NewPlanUnitWithProrationPrice
     }
 }
 
+class NewPlanUnitWithProrationPriceFromRaw : IFromRaw<NewPlanUnitWithProrationPrice>
+{
+    public NewPlanUnitWithProrationPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanUnitWithProrationPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -614,10 +621,13 @@ sealed class NewPlanUnitWithProrationPriceModelTypeConverter
 /// <summary>
 /// Configuration for unit_with_proration pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<NewPlanUnitWithProrationPriceUnitWithProrationConfig>))]
-public sealed record class NewPlanUnitWithProrationPriceUnitWithProrationConfig
-    : ModelBase,
-        IFromRaw<NewPlanUnitWithProrationPriceUnitWithProrationConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanUnitWithProrationPriceUnitWithProrationConfig,
+        NewPlanUnitWithProrationPriceUnitWithProrationConfigFromRaw
+    >)
+)]
+public sealed record class NewPlanUnitWithProrationPriceUnitWithProrationConfig : ModelBase
 {
     /// <summary>
     /// Rate per unit of usage
@@ -687,6 +697,14 @@ public sealed record class NewPlanUnitWithProrationPriceUnitWithProrationConfig
     {
         this.UnitAmount = unitAmount;
     }
+}
+
+class NewPlanUnitWithProrationPriceUnitWithProrationConfigFromRaw
+    : IFromRaw<NewPlanUnitWithProrationPriceUnitWithProrationConfig>
+{
+    public NewPlanUnitWithProrationPriceUnitWithProrationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanUnitWithProrationPriceUnitWithProrationConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewPlanUnitWithProrationPriceConversionRateConfigConverter))]

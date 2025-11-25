@@ -9,8 +9,8 @@ using Orb.Exceptions;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<SubLineItemMatrixConfig>))]
-public sealed record class SubLineItemMatrixConfig : ModelBase, IFromRaw<SubLineItemMatrixConfig>
+[JsonConverter(typeof(ModelConverter<SubLineItemMatrixConfig, SubLineItemMatrixConfigFromRaw>))]
+public sealed record class SubLineItemMatrixConfig : ModelBase
 {
     /// <summary>
     /// The ordered dimension values for this line item.
@@ -73,4 +73,11 @@ public sealed record class SubLineItemMatrixConfig : ModelBase, IFromRaw<SubLine
     {
         this.DimensionValues = dimensionValues;
     }
+}
+
+class SubLineItemMatrixConfigFromRaw : IFromRaw<SubLineItemMatrixConfig>
+{
+    public SubLineItemMatrixConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => SubLineItemMatrixConfig.FromRawUnchecked(rawData);
 }

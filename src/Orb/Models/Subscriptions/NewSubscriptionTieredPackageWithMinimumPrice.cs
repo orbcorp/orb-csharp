@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<NewSubscriptionTieredPackageWithMinimumPrice>))]
-public sealed record class NewSubscriptionTieredPackageWithMinimumPrice
-    : ModelBase,
-        IFromRaw<NewSubscriptionTieredPackageWithMinimumPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewSubscriptionTieredPackageWithMinimumPrice,
+        NewSubscriptionTieredPackageWithMinimumPriceFromRaw
+    >)
+)]
+public sealed record class NewSubscriptionTieredPackageWithMinimumPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -513,6 +516,14 @@ public sealed record class NewSubscriptionTieredPackageWithMinimumPrice
     }
 }
 
+class NewSubscriptionTieredPackageWithMinimumPriceFromRaw
+    : IFromRaw<NewSubscriptionTieredPackageWithMinimumPrice>
+{
+    public NewSubscriptionTieredPackageWithMinimumPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewSubscriptionTieredPackageWithMinimumPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -624,11 +635,12 @@ sealed class NewSubscriptionTieredPackageWithMinimumPriceModelTypeConverter
 /// Configuration for tiered_package_with_minimum pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig>)
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig,
+        global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigFromRaw
+    >)
 )]
-public sealed record class TieredPackageWithMinimumConfig
-    : ModelBase,
-        IFromRaw<global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig>
+public sealed record class TieredPackageWithMinimumConfig : ModelBase
 {
     /// <summary>
     /// Package size
@@ -721,11 +733,24 @@ public sealed record class TieredPackageWithMinimumConfig
     }
 }
 
+class TieredPackageWithMinimumConfigFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig>
+{
+    public global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.Tier14>))]
-public sealed record class Tier14 : ModelBase, IFromRaw<global::Orb.Models.Subscriptions.Tier14>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.Tier14,
+        global::Orb.Models.Subscriptions.Tier14FromRaw
+    >)
+)]
+public sealed record class Tier14 : ModelBase
 {
     /// <summary>
     /// Minimum amount
@@ -845,6 +870,13 @@ public sealed record class Tier14 : ModelBase, IFromRaw<global::Orb.Models.Subsc
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Tier14FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tier14>
+{
+    public global::Orb.Models.Subscriptions.Tier14 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.Tier14.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfigConverter))]

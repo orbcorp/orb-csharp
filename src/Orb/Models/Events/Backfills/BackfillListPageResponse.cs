@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models.Events.Backfills;
 
-[JsonConverter(typeof(ModelConverter<BackfillListPageResponse>))]
-public sealed record class BackfillListPageResponse : ModelBase, IFromRaw<BackfillListPageResponse>
+[JsonConverter(typeof(ModelConverter<BackfillListPageResponse, BackfillListPageResponseFromRaw>))]
+public sealed record class BackfillListPageResponse : ModelBase
 {
     public required List<global::Orb.Models.Events.Backfills.Data> Data
     {
@@ -103,12 +103,24 @@ public sealed record class BackfillListPageResponse : ModelBase, IFromRaw<Backfi
     }
 }
 
+class BackfillListPageResponseFromRaw : IFromRaw<BackfillListPageResponse>
+{
+    public BackfillListPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BackfillListPageResponse.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// A backfill represents an update to historical usage data, adding or replacing
 /// events in a timeframe.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Events.Backfills.Data>))]
-public sealed record class Data : ModelBase, IFromRaw<global::Orb.Models.Events.Backfills.Data>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Events.Backfills.Data,
+        global::Orb.Models.Events.Backfills.DataFromRaw
+    >)
+)]
+public sealed record class Data : ModelBase
 {
     public required string ID
     {
@@ -428,6 +440,13 @@ public sealed record class Data : ModelBase, IFromRaw<global::Orb.Models.Events.
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class DataFromRaw : IFromRaw<global::Orb.Models.Events.Backfills.Data>
+{
+    public global::Orb.Models.Events.Backfills.Data FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Events.Backfills.Data.FromRawUnchecked(rawData);
 }
 
 /// <summary>

@@ -908,8 +908,8 @@ sealed class ChangeOptionModelConverter : JsonConverter<ChangeOptionModel>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AddAdjustment1>))]
-public sealed record class AddAdjustment1 : ModelBase, IFromRaw<AddAdjustment1>
+[JsonConverter(typeof(ModelConverter<AddAdjustment1, AddAdjustment1FromRaw>))]
+public sealed record class AddAdjustment1 : ModelBase
 {
     /// <summary>
     /// The definition of a new adjustment to create and add to the subscription.
@@ -1051,6 +1051,12 @@ public sealed record class AddAdjustment1 : ModelBase, IFromRaw<AddAdjustment1>
     {
         this.Adjustment = adjustment;
     }
+}
+
+class AddAdjustment1FromRaw : IFromRaw<AddAdjustment1>
+{
+    public AddAdjustment1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        AddAdjustment1.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -1372,8 +1378,8 @@ sealed class AddAdjustment1AdjustmentConverter : JsonConverter<AddAdjustment1Adj
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AddPriceModel>))]
-public sealed record class AddPriceModel : ModelBase, IFromRaw<AddPriceModel>
+[JsonConverter(typeof(ModelConverter<AddPriceModel, AddPriceModelFromRaw>))]
+public sealed record class AddPriceModel : ModelBase
 {
     /// <summary>
     /// The definition of a new allocation price to create and add to the subscription.
@@ -1645,6 +1651,12 @@ public sealed record class AddPriceModel : ModelBase, IFromRaw<AddPriceModel>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class AddPriceModelFromRaw : IFromRaw<AddPriceModel>
+{
+    public AddPriceModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        AddPriceModel.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -3794,10 +3806,13 @@ sealed class AddPriceModelPriceConverter : JsonConverter<AddPriceModelPrice?>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AddPriceModelPriceBulkWithFilters>))]
-public sealed record class AddPriceModelPriceBulkWithFilters
-    : ModelBase,
-        IFromRaw<AddPriceModelPriceBulkWithFilters>
+[JsonConverter(
+    typeof(ModelConverter<
+        AddPriceModelPriceBulkWithFilters,
+        AddPriceModelPriceBulkWithFiltersFromRaw
+    >)
+)]
+public sealed record class AddPriceModelPriceBulkWithFilters : ModelBase
 {
     /// <summary>
     /// Configuration for bulk_with_filters pricing
@@ -4301,13 +4316,23 @@ public sealed record class AddPriceModelPriceBulkWithFilters
     }
 }
 
+class AddPriceModelPriceBulkWithFiltersFromRaw : IFromRaw<AddPriceModelPriceBulkWithFilters>
+{
+    public AddPriceModelPriceBulkWithFilters FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AddPriceModelPriceBulkWithFilters.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for bulk_with_filters pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<AddPriceModelPriceBulkWithFiltersBulkWithFiltersConfig>))]
-public sealed record class AddPriceModelPriceBulkWithFiltersBulkWithFiltersConfig
-    : ModelBase,
-        IFromRaw<AddPriceModelPriceBulkWithFiltersBulkWithFiltersConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        AddPriceModelPriceBulkWithFiltersBulkWithFiltersConfig,
+        AddPriceModelPriceBulkWithFiltersBulkWithFiltersConfigFromRaw
+    >)
+)]
+public sealed record class AddPriceModelPriceBulkWithFiltersBulkWithFiltersConfig : ModelBase
 {
     /// <summary>
     /// Property filters to apply (all must match)
@@ -4410,11 +4435,24 @@ public sealed record class AddPriceModelPriceBulkWithFiltersBulkWithFiltersConfi
     }
 }
 
+class AddPriceModelPriceBulkWithFiltersBulkWithFiltersConfigFromRaw
+    : IFromRaw<AddPriceModelPriceBulkWithFiltersBulkWithFiltersConfig>
+{
+    public AddPriceModelPriceBulkWithFiltersBulkWithFiltersConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AddPriceModelPriceBulkWithFiltersBulkWithFiltersConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single property filter
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.Filter2>))]
-public sealed record class Filter2 : ModelBase, IFromRaw<global::Orb.Models.Subscriptions.Filter2>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.Filter2,
+        global::Orb.Models.Subscriptions.Filter2FromRaw
+    >)
+)]
+public sealed record class Filter2 : ModelBase
 {
     /// <summary>
     /// Event property key to filter on
@@ -4507,11 +4545,23 @@ public sealed record class Filter2 : ModelBase, IFromRaw<global::Orb.Models.Subs
     }
 }
 
+class Filter2FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Filter2>
+{
+    public global::Orb.Models.Subscriptions.Filter2 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.Filter2.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single bulk pricing tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.Tier4>))]
-public sealed record class Tier4 : ModelBase, IFromRaw<global::Orb.Models.Subscriptions.Tier4>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.Tier4,
+        global::Orb.Models.Subscriptions.Tier4FromRaw
+    >)
+)]
+public sealed record class Tier4 : ModelBase
 {
     /// <summary>
     /// Amount per unit
@@ -4599,6 +4649,13 @@ public sealed record class Tier4 : ModelBase, IFromRaw<global::Orb.Models.Subscr
     {
         this.UnitAmount = unitAmount;
     }
+}
+
+class Tier4FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tier4>
+{
+    public global::Orb.Models.Subscriptions.Tier4 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.Tier4.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -4897,10 +4954,13 @@ sealed class AddPriceModelPriceBulkWithFiltersConversionRateConfigConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AddPriceModelPriceTieredWithProration>))]
-public sealed record class AddPriceModelPriceTieredWithProration
-    : ModelBase,
-        IFromRaw<AddPriceModelPriceTieredWithProration>
+[JsonConverter(
+    typeof(ModelConverter<
+        AddPriceModelPriceTieredWithProration,
+        AddPriceModelPriceTieredWithProrationFromRaw
+    >)
+)]
+public sealed record class AddPriceModelPriceTieredWithProration : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -5404,6 +5464,13 @@ public sealed record class AddPriceModelPriceTieredWithProration
     }
 }
 
+class AddPriceModelPriceTieredWithProrationFromRaw : IFromRaw<AddPriceModelPriceTieredWithProration>
+{
+    public AddPriceModelPriceTieredWithProration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AddPriceModelPriceTieredWithProration.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -5523,11 +5590,13 @@ public class AddPriceModelPriceTieredWithProrationModelType
 /// Configuration for tiered_with_proration pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<AddPriceModelPriceTieredWithProrationTieredWithProrationConfig>)
+    typeof(ModelConverter<
+        AddPriceModelPriceTieredWithProrationTieredWithProrationConfig,
+        AddPriceModelPriceTieredWithProrationTieredWithProrationConfigFromRaw
+    >)
 )]
 public sealed record class AddPriceModelPriceTieredWithProrationTieredWithProrationConfig
-    : ModelBase,
-        IFromRaw<AddPriceModelPriceTieredWithProrationTieredWithProrationConfig>
+    : ModelBase
 {
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
@@ -5605,11 +5674,24 @@ public sealed record class AddPriceModelPriceTieredWithProrationTieredWithProrat
     }
 }
 
+class AddPriceModelPriceTieredWithProrationTieredWithProrationConfigFromRaw
+    : IFromRaw<AddPriceModelPriceTieredWithProrationTieredWithProrationConfig>
+{
+    public AddPriceModelPriceTieredWithProrationTieredWithProrationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AddPriceModelPriceTieredWithProrationTieredWithProrationConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tiered with proration tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.Tier5>))]
-public sealed record class Tier5 : ModelBase, IFromRaw<global::Orb.Models.Subscriptions.Tier5>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.Tier5,
+        global::Orb.Models.Subscriptions.Tier5FromRaw
+    >)
+)]
+public sealed record class Tier5 : ModelBase
 {
     /// <summary>
     /// Inclusive tier starting value
@@ -5700,6 +5782,13 @@ public sealed record class Tier5 : ModelBase, IFromRaw<global::Orb.Models.Subscr
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Tier5FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tier5>
+{
+    public global::Orb.Models.Subscriptions.Tier5 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.Tier5.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(AddPriceModelPriceTieredWithProrationConversionRateConfigConverter))]
@@ -5886,10 +5975,13 @@ sealed class AddPriceModelPriceTieredWithProrationConversionRateConfigConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AddPriceModelPriceGroupedWithMinMaxThresholds>))]
-public sealed record class AddPriceModelPriceGroupedWithMinMaxThresholds
-    : ModelBase,
-        IFromRaw<AddPriceModelPriceGroupedWithMinMaxThresholds>
+[JsonConverter(
+    typeof(ModelConverter<
+        AddPriceModelPriceGroupedWithMinMaxThresholds,
+        AddPriceModelPriceGroupedWithMinMaxThresholdsFromRaw
+    >)
+)]
+public sealed record class AddPriceModelPriceGroupedWithMinMaxThresholds : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -6398,6 +6490,14 @@ public sealed record class AddPriceModelPriceGroupedWithMinMaxThresholds
     }
 }
 
+class AddPriceModelPriceGroupedWithMinMaxThresholdsFromRaw
+    : IFromRaw<AddPriceModelPriceGroupedWithMinMaxThresholds>
+{
+    public AddPriceModelPriceGroupedWithMinMaxThresholds FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AddPriceModelPriceGroupedWithMinMaxThresholds.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -6462,11 +6562,13 @@ sealed class AddPriceModelPriceGroupedWithMinMaxThresholdsCadenceConverter
 /// Configuration for grouped_with_min_max_thresholds pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<AddPriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>)
+    typeof(ModelConverter<
+        AddPriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig,
+        AddPriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
+    >)
 )]
 public sealed record class AddPriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
-    : ModelBase,
-        IFromRaw<AddPriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>
+    : ModelBase
 {
     /// <summary>
     /// The event property used to group before applying thresholds
@@ -6625,6 +6727,17 @@ public sealed record class AddPriceModelPriceGroupedWithMinMaxThresholdsGroupedW
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class AddPriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
+    : IFromRaw<AddPriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>
+{
+    public AddPriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        AddPriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
@@ -6866,10 +6979,13 @@ sealed class AddPriceModelPriceGroupedWithMinMaxThresholdsConversionRateConfigCo
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AddPriceModelPriceCumulativeGroupedAllocation>))]
-public sealed record class AddPriceModelPriceCumulativeGroupedAllocation
-    : ModelBase,
-        IFromRaw<AddPriceModelPriceCumulativeGroupedAllocation>
+[JsonConverter(
+    typeof(ModelConverter<
+        AddPriceModelPriceCumulativeGroupedAllocation,
+        AddPriceModelPriceCumulativeGroupedAllocationFromRaw
+    >)
+)]
+public sealed record class AddPriceModelPriceCumulativeGroupedAllocation : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -7378,6 +7494,14 @@ public sealed record class AddPriceModelPriceCumulativeGroupedAllocation
     }
 }
 
+class AddPriceModelPriceCumulativeGroupedAllocationFromRaw
+    : IFromRaw<AddPriceModelPriceCumulativeGroupedAllocation>
+{
+    public AddPriceModelPriceCumulativeGroupedAllocation FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AddPriceModelPriceCumulativeGroupedAllocation.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -7442,11 +7566,13 @@ sealed class AddPriceModelPriceCumulativeGroupedAllocationCadenceConverter
 /// Configuration for cumulative_grouped_allocation pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<AddPriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>)
+    typeof(ModelConverter<
+        AddPriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig,
+        AddPriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
+    >)
 )]
 public sealed record class AddPriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
-    : ModelBase,
-        IFromRaw<AddPriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>
+    : ModelBase
 {
     /// <summary>
     /// The overall allocation across all groups
@@ -7605,6 +7731,17 @@ public sealed record class AddPriceModelPriceCumulativeGroupedAllocationCumulati
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class AddPriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
+    : IFromRaw<AddPriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>
+{
+    public AddPriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        AddPriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
@@ -7846,10 +7983,8 @@ sealed class AddPriceModelPriceCumulativeGroupedAllocationConversionRateConfigCo
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AddPriceModelPricePercent>))]
-public sealed record class AddPriceModelPricePercent
-    : ModelBase,
-        IFromRaw<AddPriceModelPricePercent>
+[JsonConverter(typeof(ModelConverter<AddPriceModelPricePercent, AddPriceModelPricePercentFromRaw>))]
+public sealed record class AddPriceModelPricePercent : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -8354,6 +8489,13 @@ public sealed record class AddPriceModelPricePercent
     }
 }
 
+class AddPriceModelPricePercentFromRaw : IFromRaw<AddPriceModelPricePercent>
+{
+    public AddPriceModelPricePercent FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AddPriceModelPricePercent.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -8467,10 +8609,13 @@ public class AddPriceModelPricePercentModelType
 /// <summary>
 /// Configuration for percent pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<AddPriceModelPricePercentPercentConfig>))]
-public sealed record class AddPriceModelPricePercentPercentConfig
-    : ModelBase,
-        IFromRaw<AddPriceModelPricePercentPercentConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        AddPriceModelPricePercentPercentConfig,
+        AddPriceModelPricePercentPercentConfigFromRaw
+    >)
+)]
+public sealed record class AddPriceModelPricePercentPercentConfig : ModelBase
 {
     /// <summary>
     /// What percent of the component subtotals to charge
@@ -8529,6 +8674,14 @@ public sealed record class AddPriceModelPricePercentPercentConfig
     {
         this.Percent = percent;
     }
+}
+
+class AddPriceModelPricePercentPercentConfigFromRaw
+    : IFromRaw<AddPriceModelPricePercentPercentConfig>
+{
+    public AddPriceModelPricePercentPercentConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AddPriceModelPricePercentPercentConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(AddPriceModelPricePercentConversionRateConfigConverter))]
@@ -8715,10 +8868,10 @@ sealed class AddPriceModelPricePercentConversionRateConfigConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AddPriceModelPriceEventOutput>))]
-public sealed record class AddPriceModelPriceEventOutput
-    : ModelBase,
-        IFromRaw<AddPriceModelPriceEventOutput>
+[JsonConverter(
+    typeof(ModelConverter<AddPriceModelPriceEventOutput, AddPriceModelPriceEventOutputFromRaw>)
+)]
+public sealed record class AddPriceModelPriceEventOutput : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -9222,6 +9375,13 @@ public sealed record class AddPriceModelPriceEventOutput
     }
 }
 
+class AddPriceModelPriceEventOutputFromRaw : IFromRaw<AddPriceModelPriceEventOutput>
+{
+    public AddPriceModelPriceEventOutput FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AddPriceModelPriceEventOutput.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -9285,10 +9445,13 @@ sealed class AddPriceModelPriceEventOutputCadenceConverter
 /// <summary>
 /// Configuration for event_output pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<AddPriceModelPriceEventOutputEventOutputConfig>))]
-public sealed record class AddPriceModelPriceEventOutputEventOutputConfig
-    : ModelBase,
-        IFromRaw<AddPriceModelPriceEventOutputEventOutputConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        AddPriceModelPriceEventOutputEventOutputConfig,
+        AddPriceModelPriceEventOutputEventOutputConfigFromRaw
+    >)
+)]
+public sealed record class AddPriceModelPriceEventOutputEventOutputConfig : ModelBase
 {
     /// <summary>
     /// The key in the event data to extract the unit rate from.
@@ -9403,6 +9566,14 @@ public sealed record class AddPriceModelPriceEventOutputEventOutputConfig
     {
         this.UnitRatingKey = unitRatingKey;
     }
+}
+
+class AddPriceModelPriceEventOutputEventOutputConfigFromRaw
+    : IFromRaw<AddPriceModelPriceEventOutputEventOutputConfig>
+{
+    public AddPriceModelPriceEventOutputEventOutputConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AddPriceModelPriceEventOutputEventOutputConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -9691,8 +9862,8 @@ sealed class BillingCycleAlignmentConverter : JsonConverter<BillingCycleAlignmen
     }
 }
 
-[JsonConverter(typeof(ModelConverter<RemoveAdjustmentModel>))]
-public sealed record class RemoveAdjustmentModel : ModelBase, IFromRaw<RemoveAdjustmentModel>
+[JsonConverter(typeof(ModelConverter<RemoveAdjustmentModel, RemoveAdjustmentModelFromRaw>))]
+public sealed record class RemoveAdjustmentModel : ModelBase
 {
     /// <summary>
     /// The id of the adjustment to remove on the subscription.
@@ -9760,8 +9931,15 @@ public sealed record class RemoveAdjustmentModel : ModelBase, IFromRaw<RemoveAdj
     }
 }
 
-[JsonConverter(typeof(ModelConverter<RemovePriceModel>))]
-public sealed record class RemovePriceModel : ModelBase, IFromRaw<RemovePriceModel>
+class RemoveAdjustmentModelFromRaw : IFromRaw<RemoveAdjustmentModel>
+{
+    public RemoveAdjustmentModel FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => RemoveAdjustmentModel.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<RemovePriceModel, RemovePriceModelFromRaw>))]
+public sealed record class RemovePriceModel : ModelBase
 {
     /// <summary>
     /// The external price id of the price to remove on the subscription.
@@ -9834,8 +10012,14 @@ public sealed record class RemovePriceModel : ModelBase, IFromRaw<RemovePriceMod
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ReplaceAdjustmentModel>))]
-public sealed record class ReplaceAdjustmentModel : ModelBase, IFromRaw<ReplaceAdjustmentModel>
+class RemovePriceModelFromRaw : IFromRaw<RemovePriceModel>
+{
+    public RemovePriceModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        RemovePriceModel.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<ReplaceAdjustmentModel, ReplaceAdjustmentModelFromRaw>))]
+public sealed record class ReplaceAdjustmentModel : ModelBase
 {
     /// <summary>
     /// The definition of a new adjustment to create and add to the subscription.
@@ -9929,6 +10113,13 @@ public sealed record class ReplaceAdjustmentModel : ModelBase, IFromRaw<ReplaceA
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ReplaceAdjustmentModelFromRaw : IFromRaw<ReplaceAdjustmentModel>
+{
+    public ReplaceAdjustmentModel FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ReplaceAdjustmentModel.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -10255,8 +10446,8 @@ sealed class ReplaceAdjustmentModelAdjustmentConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ReplacePriceModel>))]
-public sealed record class ReplacePriceModel : ModelBase, IFromRaw<ReplacePriceModel>
+[JsonConverter(typeof(ModelConverter<ReplacePriceModel, ReplacePriceModelFromRaw>))]
+public sealed record class ReplacePriceModel : ModelBase
 {
     /// <summary>
     /// The id of the price on the plan to replace in the subscription.
@@ -10516,6 +10707,12 @@ public sealed record class ReplacePriceModel : ModelBase, IFromRaw<ReplacePriceM
     {
         this.ReplacesPriceID = replacesPriceID;
     }
+}
+
+class ReplacePriceModelFromRaw : IFromRaw<ReplacePriceModel>
+{
+    public ReplacePriceModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ReplacePriceModel.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -12701,10 +12898,13 @@ sealed class ReplacePriceModelPriceConverter : JsonConverter<ReplacePriceModelPr
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ReplacePriceModelPriceBulkWithFilters>))]
-public sealed record class ReplacePriceModelPriceBulkWithFilters
-    : ModelBase,
-        IFromRaw<ReplacePriceModelPriceBulkWithFilters>
+[JsonConverter(
+    typeof(ModelConverter<
+        ReplacePriceModelPriceBulkWithFilters,
+        ReplacePriceModelPriceBulkWithFiltersFromRaw
+    >)
+)]
+public sealed record class ReplacePriceModelPriceBulkWithFilters : ModelBase
 {
     /// <summary>
     /// Configuration for bulk_with_filters pricing
@@ -13208,13 +13408,23 @@ public sealed record class ReplacePriceModelPriceBulkWithFilters
     }
 }
 
+class ReplacePriceModelPriceBulkWithFiltersFromRaw : IFromRaw<ReplacePriceModelPriceBulkWithFilters>
+{
+    public ReplacePriceModelPriceBulkWithFilters FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ReplacePriceModelPriceBulkWithFilters.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for bulk_with_filters pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ReplacePriceModelPriceBulkWithFiltersBulkWithFiltersConfig>))]
-public sealed record class ReplacePriceModelPriceBulkWithFiltersBulkWithFiltersConfig
-    : ModelBase,
-        IFromRaw<ReplacePriceModelPriceBulkWithFiltersBulkWithFiltersConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        ReplacePriceModelPriceBulkWithFiltersBulkWithFiltersConfig,
+        ReplacePriceModelPriceBulkWithFiltersBulkWithFiltersConfigFromRaw
+    >)
+)]
+public sealed record class ReplacePriceModelPriceBulkWithFiltersBulkWithFiltersConfig : ModelBase
 {
     /// <summary>
     /// Property filters to apply (all must match)
@@ -13317,11 +13527,24 @@ public sealed record class ReplacePriceModelPriceBulkWithFiltersBulkWithFiltersC
     }
 }
 
+class ReplacePriceModelPriceBulkWithFiltersBulkWithFiltersConfigFromRaw
+    : IFromRaw<ReplacePriceModelPriceBulkWithFiltersBulkWithFiltersConfig>
+{
+    public ReplacePriceModelPriceBulkWithFiltersBulkWithFiltersConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ReplacePriceModelPriceBulkWithFiltersBulkWithFiltersConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single property filter
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.Filter3>))]
-public sealed record class Filter3 : ModelBase, IFromRaw<global::Orb.Models.Subscriptions.Filter3>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.Filter3,
+        global::Orb.Models.Subscriptions.Filter3FromRaw
+    >)
+)]
+public sealed record class Filter3 : ModelBase
 {
     /// <summary>
     /// Event property key to filter on
@@ -13414,11 +13637,23 @@ public sealed record class Filter3 : ModelBase, IFromRaw<global::Orb.Models.Subs
     }
 }
 
+class Filter3FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Filter3>
+{
+    public global::Orb.Models.Subscriptions.Filter3 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.Filter3.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single bulk pricing tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.Tier6>))]
-public sealed record class Tier6 : ModelBase, IFromRaw<global::Orb.Models.Subscriptions.Tier6>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.Tier6,
+        global::Orb.Models.Subscriptions.Tier6FromRaw
+    >)
+)]
+public sealed record class Tier6 : ModelBase
 {
     /// <summary>
     /// Amount per unit
@@ -13506,6 +13741,13 @@ public sealed record class Tier6 : ModelBase, IFromRaw<global::Orb.Models.Subscr
     {
         this.UnitAmount = unitAmount;
     }
+}
+
+class Tier6FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tier6>
+{
+    public global::Orb.Models.Subscriptions.Tier6 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.Tier6.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -13807,10 +14049,13 @@ sealed class ReplacePriceModelPriceBulkWithFiltersConversionRateConfigConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ReplacePriceModelPriceTieredWithProration>))]
-public sealed record class ReplacePriceModelPriceTieredWithProration
-    : ModelBase,
-        IFromRaw<ReplacePriceModelPriceTieredWithProration>
+[JsonConverter(
+    typeof(ModelConverter<
+        ReplacePriceModelPriceTieredWithProration,
+        ReplacePriceModelPriceTieredWithProrationFromRaw
+    >)
+)]
+public sealed record class ReplacePriceModelPriceTieredWithProration : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -14316,6 +14561,14 @@ public sealed record class ReplacePriceModelPriceTieredWithProration
     }
 }
 
+class ReplacePriceModelPriceTieredWithProrationFromRaw
+    : IFromRaw<ReplacePriceModelPriceTieredWithProration>
+{
+    public ReplacePriceModelPriceTieredWithProration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ReplacePriceModelPriceTieredWithProration.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -14435,11 +14688,13 @@ public class ReplacePriceModelPriceTieredWithProrationModelType
 /// Configuration for tiered_with_proration pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<ReplacePriceModelPriceTieredWithProrationTieredWithProrationConfig>)
+    typeof(ModelConverter<
+        ReplacePriceModelPriceTieredWithProrationTieredWithProrationConfig,
+        ReplacePriceModelPriceTieredWithProrationTieredWithProrationConfigFromRaw
+    >)
 )]
 public sealed record class ReplacePriceModelPriceTieredWithProrationTieredWithProrationConfig
-    : ModelBase,
-        IFromRaw<ReplacePriceModelPriceTieredWithProrationTieredWithProrationConfig>
+    : ModelBase
 {
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
@@ -14517,11 +14772,27 @@ public sealed record class ReplacePriceModelPriceTieredWithProrationTieredWithPr
     }
 }
 
+class ReplacePriceModelPriceTieredWithProrationTieredWithProrationConfigFromRaw
+    : IFromRaw<ReplacePriceModelPriceTieredWithProrationTieredWithProrationConfig>
+{
+    public ReplacePriceModelPriceTieredWithProrationTieredWithProrationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        ReplacePriceModelPriceTieredWithProrationTieredWithProrationConfig.FromRawUnchecked(
+            rawData
+        );
+}
+
 /// <summary>
 /// Configuration for a single tiered with proration tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Subscriptions.Tier7>))]
-public sealed record class Tier7 : ModelBase, IFromRaw<global::Orb.Models.Subscriptions.Tier7>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Subscriptions.Tier7,
+        global::Orb.Models.Subscriptions.Tier7FromRaw
+    >)
+)]
+public sealed record class Tier7 : ModelBase
 {
     /// <summary>
     /// Inclusive tier starting value
@@ -14612,6 +14883,13 @@ public sealed record class Tier7 : ModelBase, IFromRaw<global::Orb.Models.Subscr
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Tier7FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tier7>
+{
+    public global::Orb.Models.Subscriptions.Tier7 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Subscriptions.Tier7.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(ReplacePriceModelPriceTieredWithProrationConversionRateConfigConverter))]
@@ -14798,10 +15076,13 @@ sealed class ReplacePriceModelPriceTieredWithProrationConversionRateConfigConver
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ReplacePriceModelPriceGroupedWithMinMaxThresholds>))]
-public sealed record class ReplacePriceModelPriceGroupedWithMinMaxThresholds
-    : ModelBase,
-        IFromRaw<ReplacePriceModelPriceGroupedWithMinMaxThresholds>
+[JsonConverter(
+    typeof(ModelConverter<
+        ReplacePriceModelPriceGroupedWithMinMaxThresholds,
+        ReplacePriceModelPriceGroupedWithMinMaxThresholdsFromRaw
+    >)
+)]
+public sealed record class ReplacePriceModelPriceGroupedWithMinMaxThresholds : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -15313,6 +15594,14 @@ public sealed record class ReplacePriceModelPriceGroupedWithMinMaxThresholds
     }
 }
 
+class ReplacePriceModelPriceGroupedWithMinMaxThresholdsFromRaw
+    : IFromRaw<ReplacePriceModelPriceGroupedWithMinMaxThresholds>
+{
+    public ReplacePriceModelPriceGroupedWithMinMaxThresholds FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ReplacePriceModelPriceGroupedWithMinMaxThresholds.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -15378,11 +15667,13 @@ sealed class ReplacePriceModelPriceGroupedWithMinMaxThresholdsCadenceConverter
 /// Configuration for grouped_with_min_max_thresholds pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<ReplacePriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>)
+    typeof(ModelConverter<
+        ReplacePriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig,
+        ReplacePriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
+    >)
 )]
 public sealed record class ReplacePriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
-    : ModelBase,
-        IFromRaw<ReplacePriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>
+    : ModelBase
 {
     /// <summary>
     /// The event property used to group before applying thresholds
@@ -15541,6 +15832,17 @@ public sealed record class ReplacePriceModelPriceGroupedWithMinMaxThresholdsGrou
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ReplacePriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
+    : IFromRaw<ReplacePriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>
+{
+    public ReplacePriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        ReplacePriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
@@ -15786,10 +16088,13 @@ sealed class ReplacePriceModelPriceGroupedWithMinMaxThresholdsConversionRateConf
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ReplacePriceModelPriceCumulativeGroupedAllocation>))]
-public sealed record class ReplacePriceModelPriceCumulativeGroupedAllocation
-    : ModelBase,
-        IFromRaw<ReplacePriceModelPriceCumulativeGroupedAllocation>
+[JsonConverter(
+    typeof(ModelConverter<
+        ReplacePriceModelPriceCumulativeGroupedAllocation,
+        ReplacePriceModelPriceCumulativeGroupedAllocationFromRaw
+    >)
+)]
+public sealed record class ReplacePriceModelPriceCumulativeGroupedAllocation : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -16301,6 +16606,14 @@ public sealed record class ReplacePriceModelPriceCumulativeGroupedAllocation
     }
 }
 
+class ReplacePriceModelPriceCumulativeGroupedAllocationFromRaw
+    : IFromRaw<ReplacePriceModelPriceCumulativeGroupedAllocation>
+{
+    public ReplacePriceModelPriceCumulativeGroupedAllocation FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ReplacePriceModelPriceCumulativeGroupedAllocation.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -16366,11 +16679,13 @@ sealed class ReplacePriceModelPriceCumulativeGroupedAllocationCadenceConverter
 /// Configuration for cumulative_grouped_allocation pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<ReplacePriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>)
+    typeof(ModelConverter<
+        ReplacePriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig,
+        ReplacePriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
+    >)
 )]
 public sealed record class ReplacePriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
-    : ModelBase,
-        IFromRaw<ReplacePriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>
+    : ModelBase
 {
     /// <summary>
     /// The overall allocation across all groups
@@ -16529,6 +16844,17 @@ public sealed record class ReplacePriceModelPriceCumulativeGroupedAllocationCumu
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ReplacePriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
+    : IFromRaw<ReplacePriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>
+{
+    public ReplacePriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        ReplacePriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
@@ -16774,10 +17100,10 @@ sealed class ReplacePriceModelPriceCumulativeGroupedAllocationConversionRateConf
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ReplacePriceModelPricePercent>))]
-public sealed record class ReplacePriceModelPricePercent
-    : ModelBase,
-        IFromRaw<ReplacePriceModelPricePercent>
+[JsonConverter(
+    typeof(ModelConverter<ReplacePriceModelPricePercent, ReplacePriceModelPricePercentFromRaw>)
+)]
+public sealed record class ReplacePriceModelPricePercent : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -17281,6 +17607,13 @@ public sealed record class ReplacePriceModelPricePercent
     }
 }
 
+class ReplacePriceModelPricePercentFromRaw : IFromRaw<ReplacePriceModelPricePercent>
+{
+    public ReplacePriceModelPricePercent FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ReplacePriceModelPricePercent.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -17394,10 +17727,13 @@ public class ReplacePriceModelPricePercentModelType
 /// <summary>
 /// Configuration for percent pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ReplacePriceModelPricePercentPercentConfig>))]
-public sealed record class ReplacePriceModelPricePercentPercentConfig
-    : ModelBase,
-        IFromRaw<ReplacePriceModelPricePercentPercentConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        ReplacePriceModelPricePercentPercentConfig,
+        ReplacePriceModelPricePercentPercentConfigFromRaw
+    >)
+)]
+public sealed record class ReplacePriceModelPricePercentPercentConfig : ModelBase
 {
     /// <summary>
     /// What percent of the component subtotals to charge
@@ -17458,6 +17794,14 @@ public sealed record class ReplacePriceModelPricePercentPercentConfig
     {
         this.Percent = percent;
     }
+}
+
+class ReplacePriceModelPricePercentPercentConfigFromRaw
+    : IFromRaw<ReplacePriceModelPricePercentPercentConfig>
+{
+    public ReplacePriceModelPricePercentPercentConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ReplacePriceModelPricePercentPercentConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(ReplacePriceModelPricePercentConversionRateConfigConverter))]
@@ -17644,10 +17988,13 @@ sealed class ReplacePriceModelPricePercentConversionRateConfigConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ReplacePriceModelPriceEventOutput>))]
-public sealed record class ReplacePriceModelPriceEventOutput
-    : ModelBase,
-        IFromRaw<ReplacePriceModelPriceEventOutput>
+[JsonConverter(
+    typeof(ModelConverter<
+        ReplacePriceModelPriceEventOutput,
+        ReplacePriceModelPriceEventOutputFromRaw
+    >)
+)]
+public sealed record class ReplacePriceModelPriceEventOutput : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -18151,6 +18498,13 @@ public sealed record class ReplacePriceModelPriceEventOutput
     }
 }
 
+class ReplacePriceModelPriceEventOutputFromRaw : IFromRaw<ReplacePriceModelPriceEventOutput>
+{
+    public ReplacePriceModelPriceEventOutput FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ReplacePriceModelPriceEventOutput.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -18214,10 +18568,13 @@ sealed class ReplacePriceModelPriceEventOutputCadenceConverter
 /// <summary>
 /// Configuration for event_output pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ReplacePriceModelPriceEventOutputEventOutputConfig>))]
-public sealed record class ReplacePriceModelPriceEventOutputEventOutputConfig
-    : ModelBase,
-        IFromRaw<ReplacePriceModelPriceEventOutputEventOutputConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        ReplacePriceModelPriceEventOutputEventOutputConfig,
+        ReplacePriceModelPriceEventOutputEventOutputConfigFromRaw
+    >)
+)]
+public sealed record class ReplacePriceModelPriceEventOutputEventOutputConfig : ModelBase
 {
     /// <summary>
     /// The key in the event data to extract the unit rate from.
@@ -18334,6 +18691,14 @@ public sealed record class ReplacePriceModelPriceEventOutputEventOutputConfig
     {
         this.UnitRatingKey = unitRatingKey;
     }
+}
+
+class ReplacePriceModelPriceEventOutputEventOutputConfigFromRaw
+    : IFromRaw<ReplacePriceModelPriceEventOutputEventOutputConfig>
+{
+    public ReplacePriceModelPriceEventOutputEventOutputConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ReplacePriceModelPriceEventOutputEventOutputConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>

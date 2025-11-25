@@ -1048,8 +1048,8 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Numeral>))]
-public sealed record class Numeral : ModelBase, IFromRaw<Numeral>
+[JsonConverter(typeof(ModelConverter<Numeral, NumeralFromRaw>))]
+public sealed record class Numeral : ModelBase
 {
     public required bool TaxExempt
     {
@@ -1165,6 +1165,12 @@ public sealed record class Numeral : ModelBase, IFromRaw<Numeral>
     }
 }
 
+class NumeralFromRaw : IFromRaw<Numeral>
+{
+    public Numeral FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Numeral.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(Converter))]
 public class TaxProvider
 {
@@ -1210,8 +1216,8 @@ public class TaxProvider
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Anrok>))]
-public sealed record class Anrok : ModelBase, IFromRaw<Anrok>
+[JsonConverter(typeof(ModelConverter<Anrok, AnrokFromRaw>))]
+public sealed record class Anrok : ModelBase
 {
     public required bool TaxExempt
     {
@@ -1330,6 +1336,12 @@ public sealed record class Anrok : ModelBase, IFromRaw<Anrok>
     }
 }
 
+class AnrokFromRaw : IFromRaw<Anrok>
+{
+    public Anrok FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Anrok.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(Converter))]
 public class AnrokTaxProvider
 {
@@ -1375,8 +1387,8 @@ public class AnrokTaxProvider
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Stripe>))]
-public sealed record class Stripe : ModelBase, IFromRaw<Stripe>
+[JsonConverter(typeof(ModelConverter<Stripe, StripeFromRaw>))]
+public sealed record class Stripe : ModelBase
 {
     public required bool TaxExempt
     {
@@ -1493,6 +1505,12 @@ public sealed record class Stripe : ModelBase, IFromRaw<Stripe>
     {
         this.TaxExempt = taxExempt;
     }
+}
+
+class StripeFromRaw : IFromRaw<Stripe>
+{
+    public Stripe FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Stripe.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(Converter))]

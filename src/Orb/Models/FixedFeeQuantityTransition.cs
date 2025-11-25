@@ -9,10 +9,10 @@ using Orb.Exceptions;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<FixedFeeQuantityTransition>))]
-public sealed record class FixedFeeQuantityTransition
-    : ModelBase,
-        IFromRaw<FixedFeeQuantityTransition>
+[JsonConverter(
+    typeof(ModelConverter<FixedFeeQuantityTransition, FixedFeeQuantityTransitionFromRaw>)
+)]
+public sealed record class FixedFeeQuantityTransition : ModelBase
 {
     public required DateTimeOffset EffectiveDate
     {
@@ -109,4 +109,11 @@ public sealed record class FixedFeeQuantityTransition
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class FixedFeeQuantityTransitionFromRaw : IFromRaw<FixedFeeQuantityTransition>
+{
+    public FixedFeeQuantityTransition FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => FixedFeeQuantityTransition.FromRawUnchecked(rawData);
 }

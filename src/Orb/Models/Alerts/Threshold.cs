@@ -12,8 +12,8 @@ namespace Orb.Models.Alerts;
 /// <summary>
 /// Thresholds are used to define the conditions under which an alert will be triggered.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Threshold>))]
-public sealed record class Threshold : ModelBase, IFromRaw<Threshold>
+[JsonConverter(typeof(ModelConverter<Threshold, ThresholdFromRaw>))]
+public sealed record class Threshold : ModelBase
 {
     /// <summary>
     /// The value at which an alert will fire. For credit balance alerts, the alert
@@ -72,4 +72,10 @@ public sealed record class Threshold : ModelBase, IFromRaw<Threshold>
     {
         this.Value = value;
     }
+}
+
+class ThresholdFromRaw : IFromRaw<Threshold>
+{
+    public Threshold FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Threshold.FromRawUnchecked(rawData);
 }

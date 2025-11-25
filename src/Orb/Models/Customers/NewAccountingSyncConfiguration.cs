@@ -7,10 +7,10 @@ using Orb.Core;
 
 namespace Orb.Models.Customers;
 
-[JsonConverter(typeof(ModelConverter<NewAccountingSyncConfiguration>))]
-public sealed record class NewAccountingSyncConfiguration
-    : ModelBase,
-        IFromRaw<NewAccountingSyncConfiguration>
+[JsonConverter(
+    typeof(ModelConverter<NewAccountingSyncConfiguration, NewAccountingSyncConfigurationFromRaw>)
+)]
+public sealed record class NewAccountingSyncConfiguration : ModelBase
 {
     public List<AccountingProviderConfig>? AccountingProviders
     {
@@ -81,4 +81,11 @@ public sealed record class NewAccountingSyncConfiguration
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class NewAccountingSyncConfigurationFromRaw : IFromRaw<NewAccountingSyncConfiguration>
+{
+    public NewAccountingSyncConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewAccountingSyncConfiguration.FromRawUnchecked(rawData);
 }

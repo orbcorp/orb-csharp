@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models.Customers.Credits;
 
-[JsonConverter(typeof(ModelConverter<CreditListPageResponse>))]
-public sealed record class CreditListPageResponse : ModelBase, IFromRaw<CreditListPageResponse>
+[JsonConverter(typeof(ModelConverter<CreditListPageResponse, CreditListPageResponseFromRaw>))]
+public sealed record class CreditListPageResponse : ModelBase
 {
     public required List<Data> Data
     {
@@ -100,8 +100,15 @@ public sealed record class CreditListPageResponse : ModelBase, IFromRaw<CreditLi
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Data>))]
-public sealed record class Data : ModelBase, IFromRaw<Data>
+class CreditListPageResponseFromRaw : IFromRaw<CreditListPageResponse>
+{
+    public CreditListPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CreditListPageResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Data, DataFromRaw>))]
+public sealed record class Data : ModelBase
 {
     public required string ID
     {
@@ -314,11 +321,22 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
     }
 }
 
+class DataFromRaw : IFromRaw<Data>
+{
+    public Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Data.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// A PriceFilter that only allows item_id field for block filters.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::Orb.Models.Customers.Credits.Filter>))]
-public sealed record class Filter : ModelBase, IFromRaw<global::Orb.Models.Customers.Credits.Filter>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::Orb.Models.Customers.Credits.Filter,
+        global::Orb.Models.Customers.Credits.FilterFromRaw
+    >)
+)]
+public sealed record class Filter : ModelBase
 {
     /// <summary>
     /// The property of the price the block applies to. Only item_id is supported.
@@ -428,6 +446,13 @@ public sealed record class Filter : ModelBase, IFromRaw<global::Orb.Models.Custo
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class FilterFromRaw : IFromRaw<global::Orb.Models.Customers.Credits.Filter>
+{
+    public global::Orb.Models.Customers.Credits.Filter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Customers.Credits.Filter.FromRawUnchecked(rawData);
 }
 
 /// <summary>

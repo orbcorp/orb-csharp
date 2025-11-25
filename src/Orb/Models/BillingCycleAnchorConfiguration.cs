@@ -9,10 +9,10 @@ using Orb.Exceptions;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<BillingCycleAnchorConfiguration>))]
-public sealed record class BillingCycleAnchorConfiguration
-    : ModelBase,
-        IFromRaw<BillingCycleAnchorConfiguration>
+[JsonConverter(
+    typeof(ModelConverter<BillingCycleAnchorConfiguration, BillingCycleAnchorConfigurationFromRaw>)
+)]
+public sealed record class BillingCycleAnchorConfiguration : ModelBase
 {
     /// <summary>
     /// The day of the month on which the billing cycle is anchored. If the maximum
@@ -120,4 +120,11 @@ public sealed record class BillingCycleAnchorConfiguration
     {
         this.Day = day;
     }
+}
+
+class BillingCycleAnchorConfigurationFromRaw : IFromRaw<BillingCycleAnchorConfiguration>
+{
+    public BillingCycleAnchorConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BillingCycleAnchorConfiguration.FromRawUnchecked(rawData);
 }

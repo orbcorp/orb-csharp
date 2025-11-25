@@ -15,8 +15,8 @@ namespace Orb.Models.Plans;
 /// be subscribed to by a customer. Plans define the billing behavior of the subscription.
 /// You can see more about how to configure prices in the [Price resource](/reference/price).
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Plan>))]
-public sealed record class Plan : ModelBase, IFromRaw<Plan>
+[JsonConverter(typeof(ModelConverter<Plan, PlanFromRaw>))]
+public sealed record class Plan : ModelBase
 {
     public required string ID
     {
@@ -687,6 +687,12 @@ public sealed record class Plan : ModelBase, IFromRaw<Plan>
     }
 }
 
+class PlanFromRaw : IFromRaw<Plan>
+{
+    public Plan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Plan.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(global::Orb.Models.Plans.AdjustmentModelConverter))]
 public record class AdjustmentModel
 {
@@ -1076,8 +1082,8 @@ sealed class AdjustmentModelConverter : JsonConverter<global::Orb.Models.Plans.A
 /// Legacy field representing the parent plan if the current plan is a 'child plan',
 /// overriding prices from the parent.
 /// </summary>
-[System::Obsolete("deprecated"), JsonConverter(typeof(ModelConverter<BasePlan>))]
-public sealed record class BasePlan : ModelBase, IFromRaw<BasePlan>
+[System::Obsolete("deprecated"), JsonConverter(typeof(ModelConverter<BasePlan, BasePlanFromRaw>))]
+public sealed record class BasePlan : ModelBase
 {
     public required string? ID
     {
@@ -1166,8 +1172,14 @@ public sealed record class BasePlan : ModelBase, IFromRaw<BasePlan>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<PlanPhaseModel>))]
-public sealed record class PlanPhaseModel : ModelBase, IFromRaw<PlanPhaseModel>
+class BasePlanFromRaw : IFromRaw<BasePlan>
+{
+    public BasePlan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        BasePlan.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<PlanPhaseModel, PlanPhaseModelFromRaw>))]
+public sealed record class PlanPhaseModel : ModelBase
 {
     public required string ID
     {
@@ -1433,6 +1445,12 @@ public sealed record class PlanPhaseModel : ModelBase, IFromRaw<PlanPhaseModel>
     }
 }
 
+class PlanPhaseModelFromRaw : IFromRaw<PlanPhaseModel>
+{
+    public PlanPhaseModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PlanPhaseModel.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(PlanPhaseModelDurationUnitConverter))]
 public enum PlanPhaseModelDurationUnit
 {
@@ -1486,8 +1504,8 @@ sealed class PlanPhaseModelDurationUnitConverter : JsonConverter<PlanPhaseModelD
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Product>))]
-public sealed record class Product : ModelBase, IFromRaw<Product>
+[JsonConverter(typeof(ModelConverter<Product, ProductFromRaw>))]
+public sealed record class Product : ModelBase
 {
     public required string ID
     {
@@ -1594,6 +1612,12 @@ public sealed record class Product : ModelBase, IFromRaw<Product>
     }
 }
 
+class ProductFromRaw : IFromRaw<Product>
+{
+    public Product FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Product.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(PlanStatusConverter))]
 public enum PlanStatus
 {
@@ -1641,8 +1665,8 @@ sealed class PlanStatusConverter : JsonConverter<PlanStatus>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<TrialConfig>))]
-public sealed record class TrialConfig : ModelBase, IFromRaw<TrialConfig>
+[JsonConverter(typeof(ModelConverter<TrialConfig, TrialConfigFromRaw>))]
+public sealed record class TrialConfig : ModelBase
 {
     public required long? TrialPeriod
     {
@@ -1714,6 +1738,12 @@ public sealed record class TrialConfig : ModelBase, IFromRaw<TrialConfig>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class TrialConfigFromRaw : IFromRaw<TrialConfig>
+{
+    public TrialConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        TrialConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(TrialPeriodUnitConverter))]

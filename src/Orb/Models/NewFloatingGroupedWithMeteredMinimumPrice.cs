@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewFloatingGroupedWithMeteredMinimumPrice>))]
-public sealed record class NewFloatingGroupedWithMeteredMinimumPrice
-    : ModelBase,
-        IFromRaw<NewFloatingGroupedWithMeteredMinimumPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewFloatingGroupedWithMeteredMinimumPrice,
+        NewFloatingGroupedWithMeteredMinimumPriceFromRaw
+    >)
+)]
+public sealed record class NewFloatingGroupedWithMeteredMinimumPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -494,6 +497,14 @@ public sealed record class NewFloatingGroupedWithMeteredMinimumPrice
     }
 }
 
+class NewFloatingGroupedWithMeteredMinimumPriceFromRaw
+    : IFromRaw<NewFloatingGroupedWithMeteredMinimumPrice>
+{
+    public NewFloatingGroupedWithMeteredMinimumPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewFloatingGroupedWithMeteredMinimumPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -557,10 +568,10 @@ sealed class NewFloatingGroupedWithMeteredMinimumPriceCadenceConverter
 /// <summary>
 /// Configuration for grouped_with_metered_minimum pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<GroupedWithMeteredMinimumConfig>))]
-public sealed record class GroupedWithMeteredMinimumConfig
-    : ModelBase,
-        IFromRaw<GroupedWithMeteredMinimumConfig>
+[JsonConverter(
+    typeof(ModelConverter<GroupedWithMeteredMinimumConfig, GroupedWithMeteredMinimumConfigFromRaw>)
+)]
+public sealed record class GroupedWithMeteredMinimumConfig : ModelBase
 {
     /// <summary>
     /// Used to partition the usage into groups. The minimum amount is applied to
@@ -795,11 +806,18 @@ public sealed record class GroupedWithMeteredMinimumConfig
     }
 }
 
+class GroupedWithMeteredMinimumConfigFromRaw : IFromRaw<GroupedWithMeteredMinimumConfig>
+{
+    public GroupedWithMeteredMinimumConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedWithMeteredMinimumConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a scaling factor
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ScalingFactor>))]
-public sealed record class ScalingFactor : ModelBase, IFromRaw<ScalingFactor>
+[JsonConverter(typeof(ModelConverter<ScalingFactor, ScalingFactorFromRaw>))]
+public sealed record class ScalingFactor : ModelBase
 {
     /// <summary>
     /// Scaling factor
@@ -890,11 +908,17 @@ public sealed record class ScalingFactor : ModelBase, IFromRaw<ScalingFactor>
     }
 }
 
+class ScalingFactorFromRaw : IFromRaw<ScalingFactor>
+{
+    public ScalingFactor FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ScalingFactor.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a unit amount
 /// </summary>
-[JsonConverter(typeof(ModelConverter<UnitAmount>))]
-public sealed record class UnitAmount : ModelBase, IFromRaw<UnitAmount>
+[JsonConverter(typeof(ModelConverter<UnitAmount, UnitAmountFromRaw>))]
+public sealed record class UnitAmount : ModelBase
 {
     /// <summary>
     /// Pricing value
@@ -983,6 +1007,12 @@ public sealed record class UnitAmount : ModelBase, IFromRaw<UnitAmount>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class UnitAmountFromRaw : IFromRaw<UnitAmount>
+{
+    public UnitAmount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        UnitAmount.FromRawUnchecked(rawData);
 }
 
 /// <summary>

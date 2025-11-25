@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewPlanPackageWithAllocationPrice>))]
-public sealed record class NewPlanPackageWithAllocationPrice
-    : ModelBase,
-        IFromRaw<NewPlanPackageWithAllocationPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanPackageWithAllocationPrice,
+        NewPlanPackageWithAllocationPriceFromRaw
+    >)
+)]
+public sealed record class NewPlanPackageWithAllocationPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -511,6 +514,13 @@ public sealed record class NewPlanPackageWithAllocationPrice
     }
 }
 
+class NewPlanPackageWithAllocationPriceFromRaw : IFromRaw<NewPlanPackageWithAllocationPrice>
+{
+    public NewPlanPackageWithAllocationPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanPackageWithAllocationPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -622,11 +632,12 @@ sealed class NewPlanPackageWithAllocationPriceModelTypeConverter
 /// Configuration for package_with_allocation pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<NewPlanPackageWithAllocationPricePackageWithAllocationConfig>)
+    typeof(ModelConverter<
+        NewPlanPackageWithAllocationPricePackageWithAllocationConfig,
+        NewPlanPackageWithAllocationPricePackageWithAllocationConfigFromRaw
+    >)
 )]
-public sealed record class NewPlanPackageWithAllocationPricePackageWithAllocationConfig
-    : ModelBase,
-        IFromRaw<NewPlanPackageWithAllocationPricePackageWithAllocationConfig>
+public sealed record class NewPlanPackageWithAllocationPricePackageWithAllocationConfig : ModelBase
 {
     /// <summary>
     /// Usage allocation
@@ -753,6 +764,14 @@ public sealed record class NewPlanPackageWithAllocationPricePackageWithAllocatio
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class NewPlanPackageWithAllocationPricePackageWithAllocationConfigFromRaw
+    : IFromRaw<NewPlanPackageWithAllocationPricePackageWithAllocationConfig>
+{
+    public NewPlanPackageWithAllocationPricePackageWithAllocationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanPackageWithAllocationPricePackageWithAllocationConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewPlanPackageWithAllocationPriceConversionRateConfigConverter))]

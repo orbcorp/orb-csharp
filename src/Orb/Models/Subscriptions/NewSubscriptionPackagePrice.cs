@@ -9,10 +9,10 @@ using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<NewSubscriptionPackagePrice>))]
-public sealed record class NewSubscriptionPackagePrice
-    : ModelBase,
-        IFromRaw<NewSubscriptionPackagePrice>
+[JsonConverter(
+    typeof(ModelConverter<NewSubscriptionPackagePrice, NewSubscriptionPackagePriceFromRaw>)
+)]
+public sealed record class NewSubscriptionPackagePrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -502,6 +502,13 @@ public sealed record class NewSubscriptionPackagePrice
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class NewSubscriptionPackagePriceFromRaw : IFromRaw<NewSubscriptionPackagePrice>
+{
+    public NewSubscriptionPackagePrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewSubscriptionPackagePrice.FromRawUnchecked(rawData);
 }
 
 /// <summary>

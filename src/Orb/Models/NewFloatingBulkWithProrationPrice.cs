@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewFloatingBulkWithProrationPrice>))]
-public sealed record class NewFloatingBulkWithProrationPrice
-    : ModelBase,
-        IFromRaw<NewFloatingBulkWithProrationPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewFloatingBulkWithProrationPrice,
+        NewFloatingBulkWithProrationPriceFromRaw
+    >)
+)]
+public sealed record class NewFloatingBulkWithProrationPrice : ModelBase
 {
     /// <summary>
     /// Configuration for bulk_with_proration pricing
@@ -489,11 +492,18 @@ public sealed record class NewFloatingBulkWithProrationPrice
     }
 }
 
+class NewFloatingBulkWithProrationPriceFromRaw : IFromRaw<NewFloatingBulkWithProrationPrice>
+{
+    public NewFloatingBulkWithProrationPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewFloatingBulkWithProrationPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for bulk_with_proration pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<BulkWithProrationConfig>))]
-public sealed record class BulkWithProrationConfig : ModelBase, IFromRaw<BulkWithProrationConfig>
+[JsonConverter(typeof(ModelConverter<BulkWithProrationConfig, BulkWithProrationConfigFromRaw>))]
+public sealed record class BulkWithProrationConfig : ModelBase
 {
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
@@ -561,11 +571,18 @@ public sealed record class BulkWithProrationConfig : ModelBase, IFromRaw<BulkWit
     }
 }
 
+class BulkWithProrationConfigFromRaw : IFromRaw<BulkWithProrationConfig>
+{
+    public BulkWithProrationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BulkWithProrationConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single bulk pricing tier with proration
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier>))]
-public sealed record class Tier : ModelBase, IFromRaw<Tier>
+[JsonConverter(typeof(ModelConverter<Tier, TierFromRaw>))]
+public sealed record class Tier : ModelBase
 {
     /// <summary>
     /// Cost per unit
@@ -651,6 +668,12 @@ public sealed record class Tier : ModelBase, IFromRaw<Tier>
     {
         this.UnitAmount = unitAmount;
     }
+}
+
+class TierFromRaw : IFromRaw<Tier>
+{
+    public Tier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier.FromRawUnchecked(rawData);
 }
 
 /// <summary>

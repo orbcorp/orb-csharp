@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewFloatingGroupedWithProratedMinimumPrice>))]
-public sealed record class NewFloatingGroupedWithProratedMinimumPrice
-    : ModelBase,
-        IFromRaw<NewFloatingGroupedWithProratedMinimumPrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewFloatingGroupedWithProratedMinimumPrice,
+        NewFloatingGroupedWithProratedMinimumPriceFromRaw
+    >)
+)]
+public sealed record class NewFloatingGroupedWithProratedMinimumPrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -494,6 +497,14 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice
     }
 }
 
+class NewFloatingGroupedWithProratedMinimumPriceFromRaw
+    : IFromRaw<NewFloatingGroupedWithProratedMinimumPrice>
+{
+    public NewFloatingGroupedWithProratedMinimumPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewFloatingGroupedWithProratedMinimumPrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -557,10 +568,13 @@ sealed class NewFloatingGroupedWithProratedMinimumPriceCadenceConverter
 /// <summary>
 /// Configuration for grouped_with_prorated_minimum pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<GroupedWithProratedMinimumConfig>))]
-public sealed record class GroupedWithProratedMinimumConfig
-    : ModelBase,
-        IFromRaw<GroupedWithProratedMinimumConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        GroupedWithProratedMinimumConfig,
+        GroupedWithProratedMinimumConfigFromRaw
+    >)
+)]
+public sealed record class GroupedWithProratedMinimumConfig : ModelBase
 {
     /// <summary>
     /// How to determine the groups that should each have a minimum
@@ -680,6 +694,13 @@ public sealed record class GroupedWithProratedMinimumConfig
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class GroupedWithProratedMinimumConfigFromRaw : IFromRaw<GroupedWithProratedMinimumConfig>
+{
+    public GroupedWithProratedMinimumConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedWithProratedMinimumConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>

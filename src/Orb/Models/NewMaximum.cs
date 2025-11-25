@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewMaximum>))]
-public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
+[JsonConverter(typeof(ModelConverter<NewMaximum, NewMaximumFromRaw>))]
+public sealed record class NewMaximum : ModelBase
 {
     public required ApiEnum<string, NewMaximumAdjustmentType> AdjustmentType
     {
@@ -266,6 +266,12 @@ public sealed record class NewMaximum : ModelBase, IFromRaw<NewMaximum>
     }
 }
 
+class NewMaximumFromRaw : IFromRaw<NewMaximum>
+{
+    public NewMaximum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        NewMaximum.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(NewMaximumAdjustmentTypeConverter))]
 public enum NewMaximumAdjustmentType
 {
@@ -351,8 +357,8 @@ sealed class NewMaximumAppliesToAllConverter : JsonConverter<NewMaximumAppliesTo
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Filter13>))]
-public sealed record class Filter13 : ModelBase, IFromRaw<Filter13>
+[JsonConverter(typeof(ModelConverter<Filter13, Filter13FromRaw>))]
+public sealed record class Filter13 : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -462,6 +468,12 @@ public sealed record class Filter13 : ModelBase, IFromRaw<Filter13>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Filter13FromRaw : IFromRaw<Filter13>
+{
+    public Filter13 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Filter13.FromRawUnchecked(rawData);
 }
 
 /// <summary>

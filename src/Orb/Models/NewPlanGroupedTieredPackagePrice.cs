@@ -9,10 +9,13 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewPlanGroupedTieredPackagePrice>))]
-public sealed record class NewPlanGroupedTieredPackagePrice
-    : ModelBase,
-        IFromRaw<NewPlanGroupedTieredPackagePrice>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanGroupedTieredPackagePrice,
+        NewPlanGroupedTieredPackagePriceFromRaw
+    >)
+)]
+public sealed record class NewPlanGroupedTieredPackagePrice : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -508,6 +511,13 @@ public sealed record class NewPlanGroupedTieredPackagePrice
     }
 }
 
+class NewPlanGroupedTieredPackagePriceFromRaw : IFromRaw<NewPlanGroupedTieredPackagePrice>
+{
+    public NewPlanGroupedTieredPackagePrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanGroupedTieredPackagePrice.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
@@ -571,10 +581,13 @@ sealed class NewPlanGroupedTieredPackagePriceCadenceConverter
 /// <summary>
 /// Configuration for grouped_tiered_package pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfig>))]
-public sealed record class NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfig
-    : ModelBase,
-        IFromRaw<NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfig>
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfig,
+        NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigFromRaw
+    >)
+)]
+public sealed record class NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfig : ModelBase
 {
     /// <summary>
     /// The event property used to group before tiering
@@ -704,11 +717,19 @@ public sealed record class NewPlanGroupedTieredPackagePriceGroupedTieredPackageC
     }
 }
 
+class NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigFromRaw
+    : IFromRaw<NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfig>
+{
+    public NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfig.FromRawUnchecked(rawData);
+}
+
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier9>))]
-public sealed record class Tier9 : ModelBase, IFromRaw<Tier9>
+[JsonConverter(typeof(ModelConverter<Tier9, Tier9FromRaw>))]
+public sealed record class Tier9 : ModelBase
 {
     /// <summary>
     /// Price per package
@@ -794,6 +815,12 @@ public sealed record class Tier9 : ModelBase, IFromRaw<Tier9>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Tier9FromRaw : IFromRaw<Tier9>
+{
+    public Tier9 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier9.FromRawUnchecked(rawData);
 }
 
 /// <summary>

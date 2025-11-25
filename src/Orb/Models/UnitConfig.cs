@@ -12,8 +12,8 @@ namespace Orb.Models;
 /// <summary>
 /// Configuration for unit pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<UnitConfig>))]
-public sealed record class UnitConfig : ModelBase, IFromRaw<UnitConfig>
+[JsonConverter(typeof(ModelConverter<UnitConfig, UnitConfigFromRaw>))]
+public sealed record class UnitConfig : ModelBase
 {
     /// <summary>
     /// Rate per unit of usage
@@ -101,4 +101,10 @@ public sealed record class UnitConfig : ModelBase, IFromRaw<UnitConfig>
     {
         this.UnitAmount = unitAmount;
     }
+}
+
+class UnitConfigFromRaw : IFromRaw<UnitConfig>
+{
+    public UnitConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        UnitConfig.FromRawUnchecked(rawData);
 }
