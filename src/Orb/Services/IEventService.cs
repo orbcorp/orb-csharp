@@ -14,6 +14,11 @@ namespace Orb.Services;
 /// </summary>
 public interface IEventService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     IEventService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     IBackfillService Backfills { get; }
@@ -66,47 +71,7 @@ public interface IEventService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// This endpoint is used to amend a single usage event with a given `event_id`.
-    /// `event_id` refers to the `idempotency_key` passed in during ingestion. The
-    /// event will maintain its existing `event_id` after the amendment.
-    ///
-    /// <para>This endpoint will mark the existing event as ignored, and Orb will
-    /// only use the new event passed in the body of this request as the source of
-    /// truth for that `event_id`. Note that a single event can be amended any number
-    /// of times, so the same event can be overwritten in subsequent calls to this
-    /// endpoint. Only a single event with a given `event_id` will be considered
-    /// the source of truth at any given time.</para>
-    ///
-    /// <para>This is a powerful and audit-safe mechanism to retroactively update
-    /// a single event in cases where you need to: * update an event with new metadata
-    /// as you iterate on your pricing model * update an event based on the result
-    /// of an external API call (e.g. call to a payment gateway succeeded or failed)</para>
-    ///
-    /// <para>This amendment API is always audit-safe. The process will still retain
-    /// the original event, though it will be ignored for billing calculations. For
-    /// auditing and data fidelity purposes, Orb never overwrites or permanently deletes
-    /// ingested usage data.</para>
-    ///
-    /// <para>## Request validation * The `timestamp` of the new event must match
-    /// the `timestamp` of the existing event already ingested. As with   ingestion,
-    /// all timestamps must be sent in ISO8601 format with UTC timezone offset. *
-    /// The `customer_id` or `external_customer_id` of the new event must match the
-    /// `customer_id` or   `external_customer_id` of the existing event already ingested.
-    /// Exactly one of `customer_id` and   `external_customer_id` should be specified,
-    /// and similar to ingestion, the ID must identify a Customer resource   within
-    /// Orb. Unlike ingestion, for event amendment, we strictly enforce that the
-    /// Customer must be in the Orb   system, even during the initial integration
-    /// period. We do not allow updating the `Customer` an event is   associated
-    /// with. * Orb does not accept an `idempotency_key` with the event in this endpoint,
-    /// since this request is by design   idempotent. On retryable errors, you should
-    /// retry the request and assume the amendment operation has not   succeeded until
-    /// receipt of a 2xx. * The event's `timestamp` must fall within the customer's
-    /// current subscription's billing period, or within the   grace period of the
-    /// customer's current subscription's previous billing period. * By default, no
-    /// more than 100 events can be amended for a single customer in a 100 day period.
-    /// For higher volume   updates, consider using the [event backfill](create-backfill) endpoint.</para>
-    /// </summary>
+    /// <inheritdoc cref="Update(EventUpdateParams, CancellationToken)"/>
     Task<EventUpdateResponse> Update(
         string eventID,
         EventUpdateParams parameters,
@@ -156,44 +121,7 @@ public interface IEventService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// This endpoint is used to deprecate a single usage event with a given `event_id`.
-    /// `event_id` refers to the `idempotency_key` passed in during ingestion.
-    ///
-    /// <para>This endpoint will mark the existing event as ignored. Note that if
-    /// you attempt to re-ingest an event with the same `event_id` as a deprecated
-    /// event, Orb will return an error.</para>
-    ///
-    /// <para>This is a powerful and audit-safe mechanism to retroactively deprecate
-    /// a single event in cases where you need to: * no longer bill for an event
-    /// that was improperly reported * no longer bill for an event based on the result
-    /// of an external API call (e.g. call to a payment gateway failed and   the user
-    /// should not be billed)</para>
-    ///
-    /// <para>If you want to only change specific properties of an event, but keep
-    /// the event as part of the billing calculation, use the [Amend event](amend-event)
-    /// endpoint instead.</para>
-    ///
-    /// <para>This API is always audit-safe. The process will still retain the deprecated
-    /// event, though it will be ignored for billing calculations. For auditing and
-    /// data fidelity purposes, Orb never overwrites or permanently deletes ingested
-    /// usage data.</para>
-    ///
-    /// <para>## Request validation * Orb does not accept an `idempotency_key` with
-    /// the event in this endpoint, since this request is by design   idempotent.
-    /// On retryable errors, you should retry the request and assume the deprecation
-    /// operation has not   succeeded until receipt of a 2xx. * The event's `timestamp`
-    /// must fall within the customer's current subscription's billing period, or
-    /// within the   grace period of the customer's current subscription's previous
-    /// billing period. Orb does not allow deprecating   events for billing periods
-    /// that have already invoiced customers. * The `customer_id` or the `external_customer_id`
-    /// of the original event ingestion request must identify a Customer   resource
-    /// within Orb, even if this event was ingested during the initial integration
-    /// period. We do not allow   deprecating events for customers not in the Orb
-    /// system. * By default, no more than 100 events can be deprecated for a single
-    /// customer in a 100 day period. For higher volume   updates, consider using
-    /// the [event backfill](create-backfill) endpoint.</para>
-    /// </summary>
+    /// <inheritdoc cref="Deprecate(EventDeprecateParams, CancellationToken)"/>
     Task<EventDeprecateResponse> Deprecate(
         string eventID,
         EventDeprecateParams? parameters = null,

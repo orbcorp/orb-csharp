@@ -8,8 +8,10 @@ using Orb.Models.Customers.Credits.Ledger;
 
 namespace Orb.Services.Customers.Credits;
 
+/// <inheritdoc />
 public sealed class LedgerService : ILedgerService
 {
+    /// <inheritdoc/>
     public ILedgerService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new LedgerService(this._client.WithOptions(modifier));
@@ -22,6 +24,7 @@ public sealed class LedgerService : ILedgerService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<LedgerListPageResponse> List(
         LedgerListParams parameters,
         CancellationToken cancellationToken = default
@@ -50,6 +53,7 @@ public sealed class LedgerService : ILedgerService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<LedgerListPageResponse> List(
         string customerID,
         LedgerListParams? parameters = null,
@@ -61,6 +65,7 @@ public sealed class LedgerService : ILedgerService
         return await this.List(parameters with { CustomerID = customerID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<LedgerCreateEntryResponse> CreateEntry(
         LedgerCreateEntryParams parameters,
         CancellationToken cancellationToken = default
@@ -89,6 +94,7 @@ public sealed class LedgerService : ILedgerService
         return deserializedResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<LedgerCreateEntryResponse> CreateEntry(
         string customerID,
         LedgerCreateEntryParams parameters,
@@ -104,6 +110,7 @@ public sealed class LedgerService : ILedgerService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<LedgerCreateEntryByExternalIDResponse> CreateEntryByExternalID(
         LedgerCreateEntryByExternalIDParams parameters,
         CancellationToken cancellationToken = default
@@ -132,6 +139,7 @@ public sealed class LedgerService : ILedgerService
         return deserializedResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<LedgerCreateEntryByExternalIDResponse> CreateEntryByExternalID(
         string externalCustomerID,
         LedgerCreateEntryByExternalIDParams parameters,
@@ -147,6 +155,7 @@ public sealed class LedgerService : ILedgerService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<LedgerListByExternalIDPageResponse> ListByExternalID(
         LedgerListByExternalIDParams parameters,
         CancellationToken cancellationToken = default
@@ -175,6 +184,7 @@ public sealed class LedgerService : ILedgerService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<LedgerListByExternalIDPageResponse> ListByExternalID(
         string externalCustomerID,
         LedgerListByExternalIDParams? parameters = null,

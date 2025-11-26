@@ -8,8 +8,10 @@ using Orb.Models.SubscriptionChanges;
 
 namespace Orb.Services;
 
+/// <inheritdoc />
 public sealed class SubscriptionChangeService : ISubscriptionChangeService
 {
+    /// <inheritdoc/>
     public ISubscriptionChangeService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new SubscriptionChangeService(this._client.WithOptions(modifier));
@@ -22,6 +24,7 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<SubscriptionChangeRetrieveResponse> Retrieve(
         SubscriptionChangeRetrieveParams parameters,
         CancellationToken cancellationToken = default
@@ -50,6 +53,7 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
         return subscriptionChange;
     }
 
+    /// <inheritdoc/>
     public async Task<SubscriptionChangeRetrieveResponse> Retrieve(
         string subscriptionChangeID,
         SubscriptionChangeRetrieveParams? parameters = null,
@@ -67,6 +71,7 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<SubscriptionChangeApplyResponse> Apply(
         SubscriptionChangeApplyParams parameters,
         CancellationToken cancellationToken = default
@@ -95,6 +100,7 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
         return deserializedResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<SubscriptionChangeApplyResponse> Apply(
         string subscriptionChangeID,
         SubscriptionChangeApplyParams? parameters = null,
@@ -112,6 +118,7 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<SubscriptionChangeCancelResponse> Cancel(
         SubscriptionChangeCancelParams parameters,
         CancellationToken cancellationToken = default
@@ -140,6 +147,7 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
         return deserializedResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<SubscriptionChangeCancelResponse> Cancel(
         string subscriptionChangeID,
         SubscriptionChangeCancelParams? parameters = null,

@@ -9,8 +9,10 @@ using Orb.Services.Plans;
 
 namespace Orb.Services;
 
+/// <inheritdoc />
 public sealed class PlanService : IPlanService
 {
+    /// <inheritdoc/>
     public IPlanService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new PlanService(this._client.WithOptions(modifier));
@@ -30,6 +32,7 @@ public sealed class PlanService : IPlanService
         get { return _externalPlanID.Value; }
     }
 
+    /// <inheritdoc/>
     public async Task<Plan> Create(
         PlanCreateParams parameters,
         CancellationToken cancellationToken = default
@@ -51,6 +54,7 @@ public sealed class PlanService : IPlanService
         return plan;
     }
 
+    /// <inheritdoc/>
     public async Task<Plan> Update(
         PlanUpdateParams parameters,
         CancellationToken cancellationToken = default
@@ -77,6 +81,7 @@ public sealed class PlanService : IPlanService
         return plan;
     }
 
+    /// <inheritdoc/>
     public async Task<Plan> Update(
         string planID,
         PlanUpdateParams? parameters = null,
@@ -88,6 +93,7 @@ public sealed class PlanService : IPlanService
         return await this.Update(parameters with { PlanID = planID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<PlanListPageResponse> List(
         PlanListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -113,6 +119,7 @@ public sealed class PlanService : IPlanService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<Plan> Fetch(
         PlanFetchParams parameters,
         CancellationToken cancellationToken = default
@@ -139,6 +146,7 @@ public sealed class PlanService : IPlanService
         return plan;
     }
 
+    /// <inheritdoc/>
     public async Task<Plan> Fetch(
         string planID,
         PlanFetchParams? parameters = null,

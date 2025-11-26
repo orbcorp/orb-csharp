@@ -14,6 +14,11 @@ namespace Orb.Services;
 /// </summary>
 public interface ICreditNoteService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     ICreditNoteService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
@@ -67,10 +72,7 @@ public interface ICreditNoteService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// This endpoint is used to fetch a single [`Credit Note`](/invoicing/credit-notes)
-    /// given an identifier.
-    /// </summary>
+    /// <inheritdoc cref="Fetch(CreditNoteFetchParams, CancellationToken)"/>
     Task<SharedCreditNote> Fetch(
         string creditNoteID,
         CreditNoteFetchParams? parameters = null,

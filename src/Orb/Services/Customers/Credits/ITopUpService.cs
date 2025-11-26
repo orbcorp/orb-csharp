@@ -13,6 +13,11 @@ namespace Orb.Services.Customers.Credits;
 /// </summary>
 public interface ITopUpService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     ITopUpService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
@@ -28,14 +33,7 @@ public interface ITopUpService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// This endpoint allows you to create a new top-up for a specified customer's
-    /// balance. While this top-up is active, the customer's balance will added in
-    /// increments of the specified amount whenever the balance reaches the specified threshold.
-    ///
-    /// <para>If a top-up already exists for this customer in the same currency,
-    /// the existing top-up will be replaced.</para>
-    /// </summary>
+    /// <inheritdoc cref="Create(TopUpCreateParams, CancellationToken)"/>
     Task<TopUpCreateResponse> Create(
         string customerID,
         TopUpCreateParams parameters,
@@ -50,9 +48,7 @@ public interface ITopUpService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// List top-ups
-    /// </summary>
+    /// <inheritdoc cref="List(TopUpListParams, CancellationToken)"/>
     Task<TopUpListPageResponse> List(
         string customerID,
         TopUpListParams? parameters = null,
@@ -65,10 +61,7 @@ public interface ITopUpService
     /// </summary>
     Task Delete(TopUpDeleteParams parameters, CancellationToken cancellationToken = default);
 
-    /// <summary>
-    /// This deactivates the top-up and voids any invoices associated with pending
-    /// credit blocks purchased through the top-up.
-    /// </summary>
+    /// <inheritdoc cref="Delete(TopUpDeleteParams, CancellationToken)"/>
     Task Delete(
         string topUpID,
         TopUpDeleteParams parameters,
@@ -88,14 +81,7 @@ public interface ITopUpService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// This endpoint allows you to create a new top-up for a specified customer's
-    /// balance. While this top-up is active, the customer's balance will added in
-    /// increments of the specified amount whenever the balance reaches the specified threshold.
-    ///
-    /// <para>If a top-up already exists for this customer in the same currency,
-    /// the existing top-up will be replaced.</para>
-    /// </summary>
+    /// <inheritdoc cref="CreateByExternalID(TopUpCreateByExternalIDParams, CancellationToken)"/>
     Task<TopUpCreateByExternalIDResponse> CreateByExternalID(
         string externalCustomerID,
         TopUpCreateByExternalIDParams parameters,
@@ -111,10 +97,7 @@ public interface ITopUpService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// This deactivates the top-up and voids any invoices associated with pending
-    /// credit blocks purchased through the top-up.
-    /// </summary>
+    /// <inheritdoc cref="DeleteByExternalID(TopUpDeleteByExternalIDParams, CancellationToken)"/>
     Task DeleteByExternalID(
         string topUpID,
         TopUpDeleteByExternalIDParams parameters,
@@ -129,9 +112,7 @@ public interface ITopUpService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// List top-ups by external ID
-    /// </summary>
+    /// <inheritdoc cref="ListByExternalID(TopUpListByExternalIDParams, CancellationToken)"/>
     Task<TopUpListByExternalIDPageResponse> ListByExternalID(
         string externalCustomerID,
         TopUpListByExternalIDParams? parameters = null,

@@ -13,6 +13,11 @@ namespace Orb.Services.Events;
 /// </summary>
 public interface IVolumeService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     IVolumeService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>

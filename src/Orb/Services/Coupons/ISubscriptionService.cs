@@ -14,6 +14,11 @@ namespace Orb.Services.Coupons;
 /// </summary>
 public interface ISubscriptionService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     global::Orb.Services.Coupons.ISubscriptionService WithOptions(
         Func<ClientOptions, ClientOptions> modifier
     );
@@ -29,12 +34,7 @@ public interface ISubscriptionService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// This endpoint returns a list of all subscriptions that have redeemed a given
-    /// coupon as a [paginated](/api-reference/pagination) list, ordered starting
-    /// from the most recently created subscription. For a full discussion of the
-    /// subscription resource, see [Subscription](/core-concepts#subscription).
-    /// </summary>
+    /// <inheritdoc cref="List(SubscriptionListParams, CancellationToken)"/>
     Task<Subscriptions::SubscriptionSubscriptions> List(
         string couponID,
         SubscriptionListParams? parameters = null,

@@ -9,8 +9,10 @@ using Orb.Models.CreditNotes;
 
 namespace Orb.Services;
 
+/// <inheritdoc />
 public sealed class CreditNoteService : ICreditNoteService
 {
+    /// <inheritdoc/>
     public ICreditNoteService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new CreditNoteService(this._client.WithOptions(modifier));
@@ -23,6 +25,7 @@ public sealed class CreditNoteService : ICreditNoteService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<SharedCreditNote> Create(
         CreditNoteCreateParams parameters,
         CancellationToken cancellationToken = default
@@ -46,6 +49,7 @@ public sealed class CreditNoteService : ICreditNoteService
         return creditNote;
     }
 
+    /// <inheritdoc/>
     public async Task<CreditNoteListPageResponse> List(
         CreditNoteListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -71,6 +75,7 @@ public sealed class CreditNoteService : ICreditNoteService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<SharedCreditNote> Fetch(
         CreditNoteFetchParams parameters,
         CancellationToken cancellationToken = default
@@ -99,6 +104,7 @@ public sealed class CreditNoteService : ICreditNoteService
         return creditNote;
     }
 
+    /// <inheritdoc/>
     public async Task<SharedCreditNote> Fetch(
         string creditNoteID,
         CreditNoteFetchParams? parameters = null,

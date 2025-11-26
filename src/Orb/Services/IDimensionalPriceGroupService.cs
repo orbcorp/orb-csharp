@@ -14,6 +14,11 @@ namespace Orb.Services;
 /// </summary>
 public interface IDimensionalPriceGroupService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     IDimensionalPriceGroupService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     IExternalDimensionalPriceGroupIDService ExternalDimensionalPriceGroupID { get; }
@@ -42,9 +47,7 @@ public interface IDimensionalPriceGroupService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Fetch dimensional price group
-    /// </summary>
+    /// <inheritdoc cref="Retrieve(DimensionalPriceGroupRetrieveParams, CancellationToken)"/>
     Task<DimensionalPriceGroup> Retrieve(
         string dimensionalPriceGroupID,
         DimensionalPriceGroupRetrieveParams? parameters = null,
@@ -61,11 +64,7 @@ public interface IDimensionalPriceGroupService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// This endpoint can be used to update the `external_dimensional_price_group_id`
-    /// and `metadata` of an existing dimensional price group. Other fields on a dimensional
-    /// price group are currently immutable.
-    /// </summary>
+    /// <inheritdoc cref="Update(DimensionalPriceGroupUpdateParams, CancellationToken)"/>
     Task<DimensionalPriceGroup> Update(
         string dimensionalPriceGroupID,
         DimensionalPriceGroupUpdateParams? parameters = null,

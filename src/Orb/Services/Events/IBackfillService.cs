@@ -13,6 +13,11 @@ namespace Orb.Services.Events;
 /// </summary>
 public interface IBackfillService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     IBackfillService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
@@ -83,12 +88,7 @@ public interface IBackfillService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Closing a backfill makes the updated usage visible in Orb. Upon closing a
-    /// backfill, Orb will asynchronously reflect the updated usage in invoice amounts
-    /// and usage graphs. Once all of the updates are complete, the backfill's status
-    /// will transition to `reflected`.
-    /// </summary>
+    /// <inheritdoc cref="Close(BackfillCloseParams, CancellationToken)"/>
     Task<BackfillCloseResponse> Close(
         string backfillID,
         BackfillCloseParams? parameters = null,
@@ -103,9 +103,7 @@ public interface IBackfillService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// This endpoint is used to fetch a backfill given an identifier.
-    /// </summary>
+    /// <inheritdoc cref="Fetch(BackfillFetchParams, CancellationToken)"/>
     Task<BackfillFetchResponse> Fetch(
         string backfillID,
         BackfillFetchParams? parameters = null,
@@ -126,15 +124,7 @@ public interface IBackfillService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Reverting a backfill undoes all the effects of closing the backfill. If the
-    /// backfill is reflected, the status will transition to `pending_revert` while
-    /// the effects of the backfill are undone. Once all effects are undone, the
-    /// backfill will transition to `reverted`.
-    ///
-    /// <para>If a backfill is reverted before its closed, no usage will be updated
-    /// as a result of the backfill and it will immediately transition to `reverted`.</para>
-    /// </summary>
+    /// <inheritdoc cref="Revert(BackfillRevertParams, CancellationToken)"/>
     Task<BackfillRevertResponse> Revert(
         string backfillID,
         BackfillRevertParams? parameters = null,

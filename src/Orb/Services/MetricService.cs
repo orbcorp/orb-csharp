@@ -8,8 +8,10 @@ using Orb.Models.Metrics;
 
 namespace Orb.Services;
 
+/// <inheritdoc />
 public sealed class MetricService : IMetricService
 {
+    /// <inheritdoc/>
     public IMetricService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new MetricService(this._client.WithOptions(modifier));
@@ -22,6 +24,7 @@ public sealed class MetricService : IMetricService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<BillableMetric> Create(
         MetricCreateParams parameters,
         CancellationToken cancellationToken = default
@@ -45,6 +48,7 @@ public sealed class MetricService : IMetricService
         return billableMetric;
     }
 
+    /// <inheritdoc/>
     public async Task<BillableMetric> Update(
         MetricUpdateParams parameters,
         CancellationToken cancellationToken = default
@@ -73,6 +77,7 @@ public sealed class MetricService : IMetricService
         return billableMetric;
     }
 
+    /// <inheritdoc/>
     public async Task<BillableMetric> Update(
         string metricID,
         MetricUpdateParams? parameters = null,
@@ -84,6 +89,7 @@ public sealed class MetricService : IMetricService
         return await this.Update(parameters with { MetricID = metricID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<MetricListPageResponse> List(
         MetricListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -109,6 +115,7 @@ public sealed class MetricService : IMetricService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<BillableMetric> Fetch(
         MetricFetchParams parameters,
         CancellationToken cancellationToken = default
@@ -137,6 +144,7 @@ public sealed class MetricService : IMetricService
         return billableMetric;
     }
 
+    /// <inheritdoc/>
     public async Task<BillableMetric> Fetch(
         string metricID,
         MetricFetchParams? parameters = null,

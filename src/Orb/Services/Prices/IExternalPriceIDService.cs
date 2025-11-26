@@ -14,6 +14,11 @@ namespace Orb.Services.Prices;
 /// </summary>
 public interface IExternalPriceIDService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     IExternalPriceIDService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
@@ -26,11 +31,7 @@ public interface IExternalPriceIDService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// This endpoint allows you to update the `metadata` property on a price. If
-    /// you pass null for the metadata value, it will clear any existing metadata
-    /// for that price.
-    /// </summary>
+    /// <inheritdoc cref="Update(ExternalPriceIDUpdateParams, CancellationToken)"/>
     Task<Price> Update(
         string externalPriceID,
         ExternalPriceIDUpdateParams? parameters = null,
@@ -47,11 +48,7 @@ public interface IExternalPriceIDService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// This endpoint returns a price given an external price id. See the [price creation
-    /// API](/api-reference/price/create-price) for more information about external
-    /// price aliases.
-    /// </summary>
+    /// <inheritdoc cref="Fetch(ExternalPriceIDFetchParams, CancellationToken)"/>
     Task<Price> Fetch(
         string externalPriceID,
         ExternalPriceIDFetchParams? parameters = null,

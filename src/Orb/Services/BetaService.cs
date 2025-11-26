@@ -10,8 +10,10 @@ using Orb.Services.Beta;
 
 namespace Orb.Services;
 
+/// <inheritdoc />
 public sealed class BetaService : IBetaService
 {
+    /// <inheritdoc/>
     public IBetaService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new BetaService(this._client.WithOptions(modifier));
@@ -31,6 +33,7 @@ public sealed class BetaService : IBetaService
         get { return _externalPlanID.Value; }
     }
 
+    /// <inheritdoc/>
     public async Task<PlanVersion> CreatePlanVersion(
         BetaCreatePlanVersionParams parameters,
         CancellationToken cancellationToken = default
@@ -59,6 +62,7 @@ public sealed class BetaService : IBetaService
         return planVersion;
     }
 
+    /// <inheritdoc/>
     public async Task<PlanVersion> CreatePlanVersion(
         string planID,
         BetaCreatePlanVersionParams parameters,
@@ -68,6 +72,7 @@ public sealed class BetaService : IBetaService
         return await this.CreatePlanVersion(parameters with { PlanID = planID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<PlanVersion> FetchPlanVersion(
         BetaFetchPlanVersionParams parameters,
         CancellationToken cancellationToken = default
@@ -96,6 +101,7 @@ public sealed class BetaService : IBetaService
         return planVersion;
     }
 
+    /// <inheritdoc/>
     public async Task<PlanVersion> FetchPlanVersion(
         string version,
         BetaFetchPlanVersionParams parameters,
@@ -111,6 +117,7 @@ public sealed class BetaService : IBetaService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<Plan> SetDefaultPlanVersion(
         BetaSetDefaultPlanVersionParams parameters,
         CancellationToken cancellationToken = default
@@ -137,6 +144,7 @@ public sealed class BetaService : IBetaService
         return plan;
     }
 
+    /// <inheritdoc/>
     public async Task<Plan> SetDefaultPlanVersion(
         string planID,
         BetaSetDefaultPlanVersionParams parameters,

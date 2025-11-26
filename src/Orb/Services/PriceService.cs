@@ -10,8 +10,10 @@ using Models = Orb.Models;
 
 namespace Orb.Services;
 
+/// <inheritdoc />
 public sealed class PriceService : IPriceService
 {
+    /// <inheritdoc/>
     public IPriceService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new PriceService(this._client.WithOptions(modifier));
@@ -31,6 +33,7 @@ public sealed class PriceService : IPriceService
         get { return _externalPriceID.Value; }
     }
 
+    /// <inheritdoc/>
     public async Task<Models::Price> Create(
         PriceCreateParams parameters,
         CancellationToken cancellationToken = default
@@ -54,6 +57,7 @@ public sealed class PriceService : IPriceService
         return price;
     }
 
+    /// <inheritdoc/>
     public async Task<Models::Price> Update(
         PriceUpdateParams parameters,
         CancellationToken cancellationToken = default
@@ -82,6 +86,7 @@ public sealed class PriceService : IPriceService
         return price;
     }
 
+    /// <inheritdoc/>
     public async Task<Models::Price> Update(
         string priceID,
         PriceUpdateParams? parameters = null,
@@ -93,6 +98,7 @@ public sealed class PriceService : IPriceService
         return await this.Update(parameters with { PriceID = priceID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<PriceListPageResponse> List(
         PriceListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -118,6 +124,7 @@ public sealed class PriceService : IPriceService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<PriceEvaluateResponse> Evaluate(
         PriceEvaluateParams parameters,
         CancellationToken cancellationToken = default
@@ -146,6 +153,7 @@ public sealed class PriceService : IPriceService
         return deserializedResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<PriceEvaluateResponse> Evaluate(
         string priceID,
         PriceEvaluateParams parameters,
@@ -155,6 +163,7 @@ public sealed class PriceService : IPriceService
         return await this.Evaluate(parameters with { PriceID = priceID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<PriceEvaluateMultipleResponse> EvaluateMultiple(
         PriceEvaluateMultipleParams parameters,
         CancellationToken cancellationToken = default
@@ -178,6 +187,7 @@ public sealed class PriceService : IPriceService
         return deserializedResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<PriceEvaluatePreviewEventsResponse> EvaluatePreviewEvents(
         PriceEvaluatePreviewEventsParams parameters,
         CancellationToken cancellationToken = default
@@ -201,6 +211,7 @@ public sealed class PriceService : IPriceService
         return deserializedResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<Models::Price> Fetch(
         PriceFetchParams parameters,
         CancellationToken cancellationToken = default
@@ -229,6 +240,7 @@ public sealed class PriceService : IPriceService
         return price;
     }
 
+    /// <inheritdoc/>
     public async Task<Models::Price> Fetch(
         string priceID,
         PriceFetchParams? parameters = null,

@@ -8,8 +8,10 @@ using Orb.Models.Events.Backfills;
 
 namespace Orb.Services.Events;
 
+/// <inheritdoc />
 public sealed class BackfillService : IBackfillService
 {
+    /// <inheritdoc/>
     public IBackfillService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new BackfillService(this._client.WithOptions(modifier));
@@ -22,6 +24,7 @@ public sealed class BackfillService : IBackfillService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<BackfillCreateResponse> Create(
         BackfillCreateParams parameters,
         CancellationToken cancellationToken = default
@@ -45,6 +48,7 @@ public sealed class BackfillService : IBackfillService
         return backfill;
     }
 
+    /// <inheritdoc/>
     public async Task<BackfillListPageResponse> List(
         BackfillListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -70,6 +74,7 @@ public sealed class BackfillService : IBackfillService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<BackfillCloseResponse> Close(
         BackfillCloseParams parameters,
         CancellationToken cancellationToken = default
@@ -98,6 +103,7 @@ public sealed class BackfillService : IBackfillService
         return deserializedResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<BackfillCloseResponse> Close(
         string backfillID,
         BackfillCloseParams? parameters = null,
@@ -109,6 +115,7 @@ public sealed class BackfillService : IBackfillService
         return await this.Close(parameters with { BackfillID = backfillID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<BackfillFetchResponse> Fetch(
         BackfillFetchParams parameters,
         CancellationToken cancellationToken = default
@@ -137,6 +144,7 @@ public sealed class BackfillService : IBackfillService
         return deserializedResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<BackfillFetchResponse> Fetch(
         string backfillID,
         BackfillFetchParams? parameters = null,
@@ -148,6 +156,7 @@ public sealed class BackfillService : IBackfillService
         return await this.Fetch(parameters with { BackfillID = backfillID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<BackfillRevertResponse> Revert(
         BackfillRevertParams parameters,
         CancellationToken cancellationToken = default
@@ -176,6 +185,7 @@ public sealed class BackfillService : IBackfillService
         return deserializedResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<BackfillRevertResponse> Revert(
         string backfillID,
         BackfillRevertParams? parameters = null,
