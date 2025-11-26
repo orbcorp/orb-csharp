@@ -13,6 +13,11 @@ namespace Orb.Services;
 /// </summary>
 public interface IItemService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     IItemService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
@@ -25,9 +30,7 @@ public interface IItemService
     /// </summary>
     Task<Item> Update(ItemUpdateParams parameters, CancellationToken cancellationToken = default);
 
-    /// <summary>
-    /// This endpoint can be used to update properties on the Item.
-    /// </summary>
+    /// <inheritdoc cref="Update(ItemUpdateParams, CancellationToken)"/>
     Task<Item> Update(
         string itemID,
         ItemUpdateParams? parameters = null,
@@ -48,9 +51,7 @@ public interface IItemService
     /// </summary>
     Task<Item> Archive(ItemArchiveParams parameters, CancellationToken cancellationToken = default);
 
-    /// <summary>
-    /// Archive item
-    /// </summary>
+    /// <inheritdoc cref="Archive(ItemArchiveParams, CancellationToken)"/>
     Task<Item> Archive(
         string itemID,
         ItemArchiveParams? parameters = null,
@@ -62,9 +63,7 @@ public interface IItemService
     /// </summary>
     Task<Item> Fetch(ItemFetchParams parameters, CancellationToken cancellationToken = default);
 
-    /// <summary>
-    /// This endpoint returns an item identified by its item_id.
-    /// </summary>
+    /// <inheritdoc cref="Fetch(ItemFetchParams, CancellationToken)"/>
     Task<Item> Fetch(
         string itemID,
         ItemFetchParams? parameters = null,

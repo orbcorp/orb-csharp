@@ -15,6 +15,11 @@ namespace Orb.Services.Beta;
 /// </summary>
 public interface IExternalPlanIDService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     IExternalPlanIDService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
@@ -25,9 +30,7 @@ public interface IExternalPlanIDService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// This endpoint allows the creation of a new plan version for an existing plan.
-    /// </summary>
+    /// <inheritdoc cref="CreatePlanVersion(ExternalPlanIDCreatePlanVersionParams, CancellationToken)"/>
     Task<PlanVersion> CreatePlanVersion(
         string externalPlanID,
         ExternalPlanIDCreatePlanVersionParams parameters,
@@ -43,10 +46,7 @@ public interface IExternalPlanIDService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// This endpoint is used to fetch a plan version. It returns the phases, prices,
-    /// and adjustments present on this version of the plan.
-    /// </summary>
+    /// <inheritdoc cref="FetchPlanVersion(ExternalPlanIDFetchPlanVersionParams, CancellationToken)"/>
     Task<PlanVersion> FetchPlanVersion(
         string version,
         ExternalPlanIDFetchPlanVersionParams parameters,
@@ -61,9 +61,7 @@ public interface IExternalPlanIDService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// This endpoint allows setting the default version of a plan.
-    /// </summary>
+    /// <inheritdoc cref="SetDefaultPlanVersion(ExternalPlanIDSetDefaultPlanVersionParams, CancellationToken)"/>
     Task<Plan> SetDefaultPlanVersion(
         string externalPlanID,
         ExternalPlanIDSetDefaultPlanVersionParams parameters,

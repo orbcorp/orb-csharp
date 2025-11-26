@@ -8,8 +8,10 @@ using Orb.Models.Customers.Costs;
 
 namespace Orb.Services.Customers;
 
+/// <inheritdoc />
 public sealed class CostService : ICostService
 {
+    /// <inheritdoc/>
     public ICostService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new CostService(this._client.WithOptions(modifier));
@@ -22,6 +24,7 @@ public sealed class CostService : ICostService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<CostListResponse> List(
         CostListParams parameters,
         CancellationToken cancellationToken = default
@@ -50,6 +53,7 @@ public sealed class CostService : ICostService
         return costs;
     }
 
+    /// <inheritdoc/>
     public async Task<CostListResponse> List(
         string customerID,
         CostListParams? parameters = null,
@@ -61,6 +65,7 @@ public sealed class CostService : ICostService
         return await this.List(parameters with { CustomerID = customerID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<CostListByExternalIDResponse> ListByExternalID(
         CostListByExternalIDParams parameters,
         CancellationToken cancellationToken = default
@@ -89,6 +94,7 @@ public sealed class CostService : ICostService
         return deserializedResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<CostListByExternalIDResponse> ListByExternalID(
         string externalCustomerID,
         CostListByExternalIDParams? parameters = null,

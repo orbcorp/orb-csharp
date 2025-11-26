@@ -8,8 +8,10 @@ using Orb.Models.Alerts;
 
 namespace Orb.Services;
 
+/// <inheritdoc />
 public sealed class AlertService : IAlertService
 {
+    /// <inheritdoc/>
     public IAlertService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new AlertService(this._client.WithOptions(modifier));
@@ -22,6 +24,7 @@ public sealed class AlertService : IAlertService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<Alert> Retrieve(
         AlertRetrieveParams parameters,
         CancellationToken cancellationToken = default
@@ -48,6 +51,7 @@ public sealed class AlertService : IAlertService
         return alert;
     }
 
+    /// <inheritdoc/>
     public async Task<Alert> Retrieve(
         string alertID,
         AlertRetrieveParams? parameters = null,
@@ -59,6 +63,7 @@ public sealed class AlertService : IAlertService
         return await this.Retrieve(parameters with { AlertID = alertID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<Alert> Update(
         AlertUpdateParams parameters,
         CancellationToken cancellationToken = default
@@ -85,6 +90,7 @@ public sealed class AlertService : IAlertService
         return alert;
     }
 
+    /// <inheritdoc/>
     public async Task<Alert> Update(
         string alertConfigurationID,
         AlertUpdateParams parameters,
@@ -100,6 +106,7 @@ public sealed class AlertService : IAlertService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<AlertListPageResponse> List(
         AlertListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -125,6 +132,7 @@ public sealed class AlertService : IAlertService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<Alert> CreateForCustomer(
         AlertCreateForCustomerParams parameters,
         CancellationToken cancellationToken = default
@@ -151,6 +159,7 @@ public sealed class AlertService : IAlertService
         return alert;
     }
 
+    /// <inheritdoc/>
     public async Task<Alert> CreateForCustomer(
         string customerID,
         AlertCreateForCustomerParams parameters,
@@ -166,6 +175,7 @@ public sealed class AlertService : IAlertService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<Alert> CreateForExternalCustomer(
         AlertCreateForExternalCustomerParams parameters,
         CancellationToken cancellationToken = default
@@ -192,6 +202,7 @@ public sealed class AlertService : IAlertService
         return alert;
     }
 
+    /// <inheritdoc/>
     public async Task<Alert> CreateForExternalCustomer(
         string externalCustomerID,
         AlertCreateForExternalCustomerParams parameters,
@@ -207,6 +218,7 @@ public sealed class AlertService : IAlertService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<Alert> CreateForSubscription(
         AlertCreateForSubscriptionParams parameters,
         CancellationToken cancellationToken = default
@@ -233,6 +245,7 @@ public sealed class AlertService : IAlertService
         return alert;
     }
 
+    /// <inheritdoc/>
     public async Task<Alert> CreateForSubscription(
         string subscriptionID,
         AlertCreateForSubscriptionParams parameters,
@@ -248,6 +261,7 @@ public sealed class AlertService : IAlertService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<Alert> Disable(
         AlertDisableParams parameters,
         CancellationToken cancellationToken = default
@@ -274,6 +288,7 @@ public sealed class AlertService : IAlertService
         return alert;
     }
 
+    /// <inheritdoc/>
     public async Task<Alert> Disable(
         string alertConfigurationID,
         AlertDisableParams? parameters = null,
@@ -291,6 +306,7 @@ public sealed class AlertService : IAlertService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<Alert> Enable(
         AlertEnableParams parameters,
         CancellationToken cancellationToken = default
@@ -317,6 +333,7 @@ public sealed class AlertService : IAlertService
         return alert;
     }
 
+    /// <inheritdoc/>
     public async Task<Alert> Enable(
         string alertConfigurationID,
         AlertEnableParams? parameters = null,

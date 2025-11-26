@@ -7,8 +7,10 @@ using Orb.Models.TopLevel;
 
 namespace Orb.Services;
 
+/// <inheritdoc />
 public sealed class TopLevelService : ITopLevelService
 {
+    /// <inheritdoc/>
     public ITopLevelService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new TopLevelService(this._client.WithOptions(modifier));
@@ -21,6 +23,7 @@ public sealed class TopLevelService : ITopLevelService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<TopLevelPingResponse> Ping(
         TopLevelPingParams? parameters = null,
         CancellationToken cancellationToken = default

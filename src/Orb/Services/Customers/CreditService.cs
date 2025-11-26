@@ -9,8 +9,10 @@ using Orb.Services.Customers.Credits;
 
 namespace Orb.Services.Customers;
 
+/// <inheritdoc />
 public sealed class CreditService : ICreditService
 {
+    /// <inheritdoc/>
     public ICreditService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new CreditService(this._client.WithOptions(modifier));
@@ -37,6 +39,7 @@ public sealed class CreditService : ICreditService
         get { return _topUps.Value; }
     }
 
+    /// <inheritdoc/>
     public async Task<CreditListPageResponse> List(
         CreditListParams parameters,
         CancellationToken cancellationToken = default
@@ -65,6 +68,7 @@ public sealed class CreditService : ICreditService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<CreditListPageResponse> List(
         string customerID,
         CreditListParams? parameters = null,
@@ -76,6 +80,7 @@ public sealed class CreditService : ICreditService
         return await this.List(parameters with { CustomerID = customerID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<CreditListByExternalIDPageResponse> ListByExternalID(
         CreditListByExternalIDParams parameters,
         CancellationToken cancellationToken = default
@@ -104,6 +109,7 @@ public sealed class CreditService : ICreditService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<CreditListByExternalIDPageResponse> ListByExternalID(
         string externalCustomerID,
         CreditListByExternalIDParams? parameters = null,

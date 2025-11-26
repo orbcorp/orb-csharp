@@ -15,6 +15,11 @@ namespace Orb.Services;
 /// </summary>
 public interface IBetaService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     IBetaService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     IExternalPlanIDService ExternalPlanID { get; }
@@ -27,9 +32,7 @@ public interface IBetaService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// This endpoint allows the creation of a new plan version for an existing plan.
-    /// </summary>
+    /// <inheritdoc cref="CreatePlanVersion(BetaCreatePlanVersionParams, CancellationToken)"/>
     Task<PlanVersion> CreatePlanVersion(
         string planID,
         BetaCreatePlanVersionParams parameters,
@@ -45,10 +48,7 @@ public interface IBetaService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// This endpoint is used to fetch a plan version. It returns the phases, prices,
-    /// and adjustments present on this version of the plan.
-    /// </summary>
+    /// <inheritdoc cref="FetchPlanVersion(BetaFetchPlanVersionParams, CancellationToken)"/>
     Task<PlanVersion> FetchPlanVersion(
         string version,
         BetaFetchPlanVersionParams parameters,
@@ -63,9 +63,7 @@ public interface IBetaService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// This endpoint allows setting the default version of a plan.
-    /// </summary>
+    /// <inheritdoc cref="SetDefaultPlanVersion(BetaSetDefaultPlanVersionParams, CancellationToken)"/>
     Task<Plan> SetDefaultPlanVersion(
         string planID,
         BetaSetDefaultPlanVersionParams parameters,

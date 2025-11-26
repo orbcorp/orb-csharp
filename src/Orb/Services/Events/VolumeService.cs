@@ -7,8 +7,10 @@ using Orb.Models.Events.Volume;
 
 namespace Orb.Services.Events;
 
+/// <inheritdoc />
 public sealed class VolumeService : IVolumeService
 {
+    /// <inheritdoc/>
     public IVolumeService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new VolumeService(this._client.WithOptions(modifier));
@@ -21,6 +23,7 @@ public sealed class VolumeService : IVolumeService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<EventVolumes> List(
         VolumeListParams parameters,
         CancellationToken cancellationToken = default

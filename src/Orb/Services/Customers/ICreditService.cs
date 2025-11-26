@@ -14,6 +14,11 @@ namespace Orb.Services.Customers;
 /// </summary>
 public interface ICreditService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     ICreditService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     ILedgerService Ledger { get; }
@@ -34,15 +39,7 @@ public interface ICreditService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Returns a paginated list of unexpired, non-zero credit blocks for a customer.
-    ///
-    /// <para>If `include_all_blocks` is set to `true`, all credit blocks (including
-    /// expired and depleted blocks) will be included in the response.</para>
-    ///
-    /// <para>Note that `currency` defaults to credits if not specified. To use a
-    /// real world currency, set `currency` to an ISO 4217 string.</para>
-    /// </summary>
+    /// <inheritdoc cref="List(CreditListParams, CancellationToken)"/>
     Task<CreditListPageResponse> List(
         string customerID,
         CreditListParams? parameters = null,
@@ -63,15 +60,7 @@ public interface ICreditService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Returns a paginated list of unexpired, non-zero credit blocks for a customer.
-    ///
-    /// <para>If `include_all_blocks` is set to `true`, all credit blocks (including
-    /// expired and depleted blocks) will be included in the response.</para>
-    ///
-    /// <para>Note that `currency` defaults to credits if not specified. To use a
-    /// real world currency, set `currency` to an ISO 4217 string.</para>
-    /// </summary>
+    /// <inheritdoc cref="ListByExternalID(CreditListByExternalIDParams, CancellationToken)"/>
     Task<CreditListByExternalIDPageResponse> ListByExternalID(
         string externalCustomerID,
         CreditListByExternalIDParams? parameters = null,

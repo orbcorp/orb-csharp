@@ -9,8 +9,10 @@ using Orb.Services.Customers;
 
 namespace Orb.Services;
 
+/// <inheritdoc />
 public sealed class CustomerService : ICustomerService
 {
+    /// <inheritdoc/>
     public ICustomerService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new CustomerService(this._client.WithOptions(modifier));
@@ -44,6 +46,7 @@ public sealed class CustomerService : ICustomerService
         get { return _balanceTransactions.Value; }
     }
 
+    /// <inheritdoc/>
     public async Task<Customer> Create(
         CustomerCreateParams parameters,
         CancellationToken cancellationToken = default
@@ -67,6 +70,7 @@ public sealed class CustomerService : ICustomerService
         return customer;
     }
 
+    /// <inheritdoc/>
     public async Task<Customer> Update(
         CustomerUpdateParams parameters,
         CancellationToken cancellationToken = default
@@ -95,6 +99,7 @@ public sealed class CustomerService : ICustomerService
         return customer;
     }
 
+    /// <inheritdoc/>
     public async Task<Customer> Update(
         string customerID,
         CustomerUpdateParams? parameters = null,
@@ -106,6 +111,7 @@ public sealed class CustomerService : ICustomerService
         return await this.Update(parameters with { CustomerID = customerID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<CustomerListPageResponse> List(
         CustomerListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -131,6 +137,7 @@ public sealed class CustomerService : ICustomerService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task Delete(
         CustomerDeleteParams parameters,
         CancellationToken cancellationToken = default
@@ -151,6 +158,7 @@ public sealed class CustomerService : ICustomerService
             .ConfigureAwait(false);
     }
 
+    /// <inheritdoc/>
     public async Task Delete(
         string customerID,
         CustomerDeleteParams? parameters = null,
@@ -162,6 +170,7 @@ public sealed class CustomerService : ICustomerService
         await this.Delete(parameters with { CustomerID = customerID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<Customer> Fetch(
         CustomerFetchParams parameters,
         CancellationToken cancellationToken = default
@@ -190,6 +199,7 @@ public sealed class CustomerService : ICustomerService
         return customer;
     }
 
+    /// <inheritdoc/>
     public async Task<Customer> Fetch(
         string customerID,
         CustomerFetchParams? parameters = null,
@@ -201,6 +211,7 @@ public sealed class CustomerService : ICustomerService
         return await this.Fetch(parameters with { CustomerID = customerID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<Customer> FetchByExternalID(
         CustomerFetchByExternalIDParams parameters,
         CancellationToken cancellationToken = default
@@ -229,6 +240,7 @@ public sealed class CustomerService : ICustomerService
         return customer;
     }
 
+    /// <inheritdoc/>
     public async Task<Customer> FetchByExternalID(
         string externalCustomerID,
         CustomerFetchByExternalIDParams? parameters = null,
@@ -246,6 +258,7 @@ public sealed class CustomerService : ICustomerService
         );
     }
 
+    /// <inheritdoc/>
     public async Task SyncPaymentMethodsFromGateway(
         CustomerSyncPaymentMethodsFromGatewayParams parameters,
         CancellationToken cancellationToken = default
@@ -266,6 +279,7 @@ public sealed class CustomerService : ICustomerService
             .ConfigureAwait(false);
     }
 
+    /// <inheritdoc/>
     public async Task SyncPaymentMethodsFromGateway(
         string customerID,
         CustomerSyncPaymentMethodsFromGatewayParams? parameters = null,
@@ -283,6 +297,7 @@ public sealed class CustomerService : ICustomerService
         );
     }
 
+    /// <inheritdoc/>
     public async Task SyncPaymentMethodsFromGatewayByExternalCustomerID(
         CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams parameters,
         CancellationToken cancellationToken = default
@@ -303,6 +318,7 @@ public sealed class CustomerService : ICustomerService
             .ConfigureAwait(false);
     }
 
+    /// <inheritdoc/>
     public async Task SyncPaymentMethodsFromGatewayByExternalCustomerID(
         string externalCustomerID,
         CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams? parameters = null,
@@ -320,6 +336,7 @@ public sealed class CustomerService : ICustomerService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<Customer> UpdateByExternalID(
         CustomerUpdateByExternalIDParams parameters,
         CancellationToken cancellationToken = default
@@ -348,6 +365,7 @@ public sealed class CustomerService : ICustomerService
         return customer;
     }
 
+    /// <inheritdoc/>
     public async Task<Customer> UpdateByExternalID(
         string id,
         CustomerUpdateByExternalIDParams? parameters = null,

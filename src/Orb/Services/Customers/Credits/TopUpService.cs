@@ -8,8 +8,10 @@ using Orb.Models.Customers.Credits.TopUps;
 
 namespace Orb.Services.Customers.Credits;
 
+/// <inheritdoc />
 public sealed class TopUpService : ITopUpService
 {
+    /// <inheritdoc/>
     public ITopUpService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new TopUpService(this._client.WithOptions(modifier));
@@ -22,6 +24,7 @@ public sealed class TopUpService : ITopUpService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<TopUpCreateResponse> Create(
         TopUpCreateParams parameters,
         CancellationToken cancellationToken = default
@@ -50,6 +53,7 @@ public sealed class TopUpService : ITopUpService
         return topUp;
     }
 
+    /// <inheritdoc/>
     public async Task<TopUpCreateResponse> Create(
         string customerID,
         TopUpCreateParams parameters,
@@ -59,6 +63,7 @@ public sealed class TopUpService : ITopUpService
         return await this.Create(parameters with { CustomerID = customerID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<TopUpListPageResponse> List(
         TopUpListParams parameters,
         CancellationToken cancellationToken = default
@@ -87,6 +92,7 @@ public sealed class TopUpService : ITopUpService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<TopUpListPageResponse> List(
         string customerID,
         TopUpListParams? parameters = null,
@@ -98,6 +104,7 @@ public sealed class TopUpService : ITopUpService
         return await this.List(parameters with { CustomerID = customerID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task Delete(
         TopUpDeleteParams parameters,
         CancellationToken cancellationToken = default
@@ -118,6 +125,7 @@ public sealed class TopUpService : ITopUpService
             .ConfigureAwait(false);
     }
 
+    /// <inheritdoc/>
     public async Task Delete(
         string topUpID,
         TopUpDeleteParams parameters,
@@ -127,6 +135,7 @@ public sealed class TopUpService : ITopUpService
         await this.Delete(parameters with { TopUpID = topUpID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<TopUpCreateByExternalIDResponse> CreateByExternalID(
         TopUpCreateByExternalIDParams parameters,
         CancellationToken cancellationToken = default
@@ -155,6 +164,7 @@ public sealed class TopUpService : ITopUpService
         return deserializedResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<TopUpCreateByExternalIDResponse> CreateByExternalID(
         string externalCustomerID,
         TopUpCreateByExternalIDParams parameters,
@@ -170,6 +180,7 @@ public sealed class TopUpService : ITopUpService
         );
     }
 
+    /// <inheritdoc/>
     public async Task DeleteByExternalID(
         TopUpDeleteByExternalIDParams parameters,
         CancellationToken cancellationToken = default
@@ -190,6 +201,7 @@ public sealed class TopUpService : ITopUpService
             .ConfigureAwait(false);
     }
 
+    /// <inheritdoc/>
     public async Task DeleteByExternalID(
         string topUpID,
         TopUpDeleteByExternalIDParams parameters,
@@ -199,6 +211,7 @@ public sealed class TopUpService : ITopUpService
         await this.DeleteByExternalID(parameters with { TopUpID = topUpID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<TopUpListByExternalIDPageResponse> ListByExternalID(
         TopUpListByExternalIDParams parameters,
         CancellationToken cancellationToken = default
@@ -227,6 +240,7 @@ public sealed class TopUpService : ITopUpService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<TopUpListByExternalIDPageResponse> ListByExternalID(
         string externalCustomerID,
         TopUpListByExternalIDParams? parameters = null,

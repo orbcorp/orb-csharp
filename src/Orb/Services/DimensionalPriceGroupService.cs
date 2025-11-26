@@ -9,8 +9,10 @@ using Orb.Services.DimensionalPriceGroups;
 
 namespace Orb.Services;
 
+/// <inheritdoc />
 public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
 {
+    /// <inheritdoc/>
     public IDimensionalPriceGroupService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new DimensionalPriceGroupService(this._client.WithOptions(modifier));
@@ -32,6 +34,7 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
         get { return _externalDimensionalPriceGroupID.Value; }
     }
 
+    /// <inheritdoc/>
     public async Task<DimensionalPriceGroup> Create(
         DimensionalPriceGroupCreateParams parameters,
         CancellationToken cancellationToken = default
@@ -55,6 +58,7 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
         return dimensionalPriceGroup;
     }
 
+    /// <inheritdoc/>
     public async Task<DimensionalPriceGroup> Retrieve(
         DimensionalPriceGroupRetrieveParams parameters,
         CancellationToken cancellationToken = default
@@ -85,6 +89,7 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
         return dimensionalPriceGroup;
     }
 
+    /// <inheritdoc/>
     public async Task<DimensionalPriceGroup> Retrieve(
         string dimensionalPriceGroupID,
         DimensionalPriceGroupRetrieveParams? parameters = null,
@@ -102,6 +107,7 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<DimensionalPriceGroup> Update(
         DimensionalPriceGroupUpdateParams parameters,
         CancellationToken cancellationToken = default
@@ -132,6 +138,7 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
         return dimensionalPriceGroup;
     }
 
+    /// <inheritdoc/>
     public async Task<DimensionalPriceGroup> Update(
         string dimensionalPriceGroupID,
         DimensionalPriceGroupUpdateParams? parameters = null,
@@ -149,6 +156,7 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<DimensionalPriceGroupDimensionalPriceGroups> List(
         DimensionalPriceGroupListParams? parameters = null,
         CancellationToken cancellationToken = default

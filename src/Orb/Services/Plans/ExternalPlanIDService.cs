@@ -9,8 +9,10 @@ using Orb.Models.Plans.ExternalPlanID;
 
 namespace Orb.Services.Plans;
 
+/// <inheritdoc />
 public sealed class ExternalPlanIDService : IExternalPlanIDService
 {
+    /// <inheritdoc/>
     public IExternalPlanIDService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new ExternalPlanIDService(this._client.WithOptions(modifier));
@@ -23,6 +25,7 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<Plan> Update(
         ExternalPlanIDUpdateParams parameters,
         CancellationToken cancellationToken = default
@@ -49,6 +52,7 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
         return plan;
     }
 
+    /// <inheritdoc/>
     public async Task<Plan> Update(
         string otherExternalPlanID,
         ExternalPlanIDUpdateParams? parameters = null,
@@ -66,6 +70,7 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<Plan> Fetch(
         ExternalPlanIDFetchParams parameters,
         CancellationToken cancellationToken = default
@@ -92,6 +97,7 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
         return plan;
     }
 
+    /// <inheritdoc/>
     public async Task<Plan> Fetch(
         string externalPlanID,
         ExternalPlanIDFetchParams? parameters = null,

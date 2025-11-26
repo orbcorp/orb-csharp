@@ -8,8 +8,10 @@ using Orb.Models.Customers.BalanceTransactions;
 
 namespace Orb.Services.Customers;
 
+/// <inheritdoc />
 public sealed class BalanceTransactionService : IBalanceTransactionService
 {
+    /// <inheritdoc/>
     public IBalanceTransactionService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new BalanceTransactionService(this._client.WithOptions(modifier));
@@ -22,6 +24,7 @@ public sealed class BalanceTransactionService : IBalanceTransactionService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<BalanceTransactionCreateResponse> Create(
         BalanceTransactionCreateParams parameters,
         CancellationToken cancellationToken = default
@@ -50,6 +53,7 @@ public sealed class BalanceTransactionService : IBalanceTransactionService
         return balanceTransaction;
     }
 
+    /// <inheritdoc/>
     public async Task<BalanceTransactionCreateResponse> Create(
         string customerID,
         BalanceTransactionCreateParams parameters,
@@ -59,6 +63,7 @@ public sealed class BalanceTransactionService : IBalanceTransactionService
         return await this.Create(parameters with { CustomerID = customerID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<BalanceTransactionListPageResponse> List(
         BalanceTransactionListParams parameters,
         CancellationToken cancellationToken = default
@@ -87,6 +92,7 @@ public sealed class BalanceTransactionService : IBalanceTransactionService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<BalanceTransactionListPageResponse> List(
         string customerID,
         BalanceTransactionListParams? parameters = null,

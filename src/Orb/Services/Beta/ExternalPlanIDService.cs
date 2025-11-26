@@ -10,8 +10,10 @@ using Orb.Models.Plans;
 
 namespace Orb.Services.Beta;
 
+/// <inheritdoc />
 public sealed class ExternalPlanIDService : IExternalPlanIDService
 {
+    /// <inheritdoc/>
     public IExternalPlanIDService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new ExternalPlanIDService(this._client.WithOptions(modifier));
@@ -24,6 +26,7 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<PlanVersion> CreatePlanVersion(
         ExternalPlanIDCreatePlanVersionParams parameters,
         CancellationToken cancellationToken = default
@@ -52,6 +55,7 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
         return planVersion;
     }
 
+    /// <inheritdoc/>
     public async Task<PlanVersion> CreatePlanVersion(
         string externalPlanID,
         ExternalPlanIDCreatePlanVersionParams parameters,
@@ -67,6 +71,7 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<PlanVersion> FetchPlanVersion(
         ExternalPlanIDFetchPlanVersionParams parameters,
         CancellationToken cancellationToken = default
@@ -95,6 +100,7 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
         return planVersion;
     }
 
+    /// <inheritdoc/>
     public async Task<PlanVersion> FetchPlanVersion(
         string version,
         ExternalPlanIDFetchPlanVersionParams parameters,
@@ -110,6 +116,7 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<Plan> SetDefaultPlanVersion(
         ExternalPlanIDSetDefaultPlanVersionParams parameters,
         CancellationToken cancellationToken = default
@@ -136,6 +143,7 @@ public sealed class ExternalPlanIDService : IExternalPlanIDService
         return plan;
     }
 
+    /// <inheritdoc/>
     public async Task<Plan> SetDefaultPlanVersion(
         string externalPlanID,
         ExternalPlanIDSetDefaultPlanVersionParams parameters,

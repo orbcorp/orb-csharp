@@ -9,8 +9,10 @@ using Orb.Models.DimensionalPriceGroups.ExternalDimensionalPriceGroupID;
 
 namespace Orb.Services.DimensionalPriceGroups;
 
+/// <inheritdoc />
 public sealed class ExternalDimensionalPriceGroupIDService : IExternalDimensionalPriceGroupIDService
 {
+    /// <inheritdoc/>
     public IExternalDimensionalPriceGroupIDService WithOptions(
         Func<ClientOptions, ClientOptions> modifier
     )
@@ -25,6 +27,7 @@ public sealed class ExternalDimensionalPriceGroupIDService : IExternalDimensiona
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<DimensionalPriceGroup> Retrieve(
         ExternalDimensionalPriceGroupIDRetrieveParams parameters,
         CancellationToken cancellationToken = default
@@ -55,6 +58,7 @@ public sealed class ExternalDimensionalPriceGroupIDService : IExternalDimensiona
         return dimensionalPriceGroup;
     }
 
+    /// <inheritdoc/>
     public async Task<DimensionalPriceGroup> Retrieve(
         string externalDimensionalPriceGroupID,
         ExternalDimensionalPriceGroupIDRetrieveParams? parameters = null,
@@ -72,6 +76,7 @@ public sealed class ExternalDimensionalPriceGroupIDService : IExternalDimensiona
         );
     }
 
+    /// <inheritdoc/>
     public async Task<DimensionalPriceGroup> Update(
         ExternalDimensionalPriceGroupIDUpdateParams parameters,
         CancellationToken cancellationToken = default
@@ -102,6 +107,7 @@ public sealed class ExternalDimensionalPriceGroupIDService : IExternalDimensiona
         return dimensionalPriceGroup;
     }
 
+    /// <inheritdoc/>
     public async Task<DimensionalPriceGroup> Update(
         string externalDimensionalPriceGroupID,
         ExternalDimensionalPriceGroupIDUpdateParams? parameters = null,

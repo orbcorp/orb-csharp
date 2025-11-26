@@ -9,8 +9,10 @@ using Coupons = Orb.Services.Coupons;
 
 namespace Orb.Services;
 
+/// <inheritdoc />
 public sealed class CouponService : ICouponService
 {
+    /// <inheritdoc/>
     public ICouponService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new CouponService(this._client.WithOptions(modifier));
@@ -30,6 +32,7 @@ public sealed class CouponService : ICouponService
         get { return _subscriptions.Value; }
     }
 
+    /// <inheritdoc/>
     public async Task<Coupon> Create(
         CouponCreateParams parameters,
         CancellationToken cancellationToken = default
@@ -51,6 +54,7 @@ public sealed class CouponService : ICouponService
         return coupon;
     }
 
+    /// <inheritdoc/>
     public async Task<CouponListPageResponse> List(
         CouponListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -76,6 +80,7 @@ public sealed class CouponService : ICouponService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<Coupon> Archive(
         CouponArchiveParams parameters,
         CancellationToken cancellationToken = default
@@ -102,6 +107,7 @@ public sealed class CouponService : ICouponService
         return coupon;
     }
 
+    /// <inheritdoc/>
     public async Task<Coupon> Archive(
         string couponID,
         CouponArchiveParams? parameters = null,
@@ -113,6 +119,7 @@ public sealed class CouponService : ICouponService
         return await this.Archive(parameters with { CouponID = couponID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<Coupon> Fetch(
         CouponFetchParams parameters,
         CancellationToken cancellationToken = default
@@ -139,6 +146,7 @@ public sealed class CouponService : ICouponService
         return coupon;
     }
 
+    /// <inheritdoc/>
     public async Task<Coupon> Fetch(
         string couponID,
         CouponFetchParams? parameters = null,

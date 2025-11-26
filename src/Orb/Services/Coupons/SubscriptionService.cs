@@ -9,8 +9,10 @@ using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Services.Coupons;
 
+/// <inheritdoc />
 public sealed class SubscriptionService : global::Orb.Services.Coupons.ISubscriptionService
 {
+    /// <inheritdoc/>
     public global::Orb.Services.Coupons.ISubscriptionService WithOptions(
         Func<ClientOptions, ClientOptions> modifier
     )
@@ -27,6 +29,7 @@ public sealed class SubscriptionService : global::Orb.Services.Coupons.ISubscrip
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<Subscriptions::SubscriptionSubscriptions> List(
         SubscriptionListParams parameters,
         CancellationToken cancellationToken = default
@@ -55,6 +58,7 @@ public sealed class SubscriptionService : global::Orb.Services.Coupons.ISubscrip
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<Subscriptions::SubscriptionSubscriptions> List(
         string couponID,
         SubscriptionListParams? parameters = null,

@@ -9,8 +9,10 @@ using Orb.Services.Events;
 
 namespace Orb.Services;
 
+/// <inheritdoc />
 public sealed class EventService : IEventService
 {
+    /// <inheritdoc/>
     public IEventService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new EventService(this._client.WithOptions(modifier));
@@ -37,6 +39,7 @@ public sealed class EventService : IEventService
         get { return _volume.Value; }
     }
 
+    /// <inheritdoc/>
     public async Task<EventUpdateResponse> Update(
         EventUpdateParams parameters,
         CancellationToken cancellationToken = default
@@ -65,6 +68,7 @@ public sealed class EventService : IEventService
         return deserializedResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<EventUpdateResponse> Update(
         string eventID,
         EventUpdateParams parameters,
@@ -74,6 +78,7 @@ public sealed class EventService : IEventService
         return await this.Update(parameters with { EventID = eventID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<EventDeprecateResponse> Deprecate(
         EventDeprecateParams parameters,
         CancellationToken cancellationToken = default
@@ -102,6 +107,7 @@ public sealed class EventService : IEventService
         return deserializedResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<EventDeprecateResponse> Deprecate(
         string eventID,
         EventDeprecateParams? parameters = null,
@@ -113,6 +119,7 @@ public sealed class EventService : IEventService
         return await this.Deprecate(parameters with { EventID = eventID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<EventIngestResponse> Ingest(
         EventIngestParams parameters,
         CancellationToken cancellationToken = default
@@ -136,6 +143,7 @@ public sealed class EventService : IEventService
         return deserializedResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<EventSearchResponse> Search(
         EventSearchParams parameters,
         CancellationToken cancellationToken = default

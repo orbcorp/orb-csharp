@@ -9,8 +9,10 @@ using Orb.Models.Subscriptions;
 
 namespace Orb.Services;
 
+/// <inheritdoc />
 public sealed class SubscriptionService : ISubscriptionService
 {
+    /// <inheritdoc/>
     public ISubscriptionService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new SubscriptionService(this._client.WithOptions(modifier));
@@ -23,6 +25,7 @@ public sealed class SubscriptionService : ISubscriptionService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> Create(
         SubscriptionCreateParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -48,6 +51,7 @@ public sealed class SubscriptionService : ISubscriptionService
         return mutatedSubscription;
     }
 
+    /// <inheritdoc/>
     public async Task<Subscription> Update(
         SubscriptionUpdateParams parameters,
         CancellationToken cancellationToken = default
@@ -76,6 +80,7 @@ public sealed class SubscriptionService : ISubscriptionService
         return subscription;
     }
 
+    /// <inheritdoc/>
     public async Task<Subscription> Update(
         string subscriptionID,
         SubscriptionUpdateParams? parameters = null,
@@ -93,6 +98,7 @@ public sealed class SubscriptionService : ISubscriptionService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<SubscriptionSubscriptions> List(
         SubscriptionListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -118,6 +124,7 @@ public sealed class SubscriptionService : ISubscriptionService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> Cancel(
         SubscriptionCancelParams parameters,
         CancellationToken cancellationToken = default
@@ -146,6 +153,7 @@ public sealed class SubscriptionService : ISubscriptionService
         return mutatedSubscription;
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> Cancel(
         string subscriptionID,
         SubscriptionCancelParams parameters,
@@ -161,6 +169,7 @@ public sealed class SubscriptionService : ISubscriptionService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<Subscription> Fetch(
         SubscriptionFetchParams parameters,
         CancellationToken cancellationToken = default
@@ -189,6 +198,7 @@ public sealed class SubscriptionService : ISubscriptionService
         return subscription;
     }
 
+    /// <inheritdoc/>
     public async Task<Subscription> Fetch(
         string subscriptionID,
         SubscriptionFetchParams? parameters = null,
@@ -206,6 +216,7 @@ public sealed class SubscriptionService : ISubscriptionService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<SubscriptionFetchCostsResponse> FetchCosts(
         SubscriptionFetchCostsParams parameters,
         CancellationToken cancellationToken = default
@@ -234,6 +245,7 @@ public sealed class SubscriptionService : ISubscriptionService
         return deserializedResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<SubscriptionFetchCostsResponse> FetchCosts(
         string subscriptionID,
         SubscriptionFetchCostsParams? parameters = null,
@@ -251,6 +263,7 @@ public sealed class SubscriptionService : ISubscriptionService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<SubscriptionFetchSchedulePageResponse> FetchSchedule(
         SubscriptionFetchScheduleParams parameters,
         CancellationToken cancellationToken = default
@@ -279,6 +292,7 @@ public sealed class SubscriptionService : ISubscriptionService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<SubscriptionFetchSchedulePageResponse> FetchSchedule(
         string subscriptionID,
         SubscriptionFetchScheduleParams? parameters = null,
@@ -296,6 +310,7 @@ public sealed class SubscriptionService : ISubscriptionService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<SubscriptionUsage> FetchUsage(
         SubscriptionFetchUsageParams parameters,
         CancellationToken cancellationToken = default
@@ -324,6 +339,7 @@ public sealed class SubscriptionService : ISubscriptionService
         return subscriptionUsage;
     }
 
+    /// <inheritdoc/>
     public async Task<SubscriptionUsage> FetchUsage(
         string subscriptionID,
         SubscriptionFetchUsageParams? parameters = null,
@@ -341,6 +357,7 @@ public sealed class SubscriptionService : ISubscriptionService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> PriceIntervals(
         SubscriptionPriceIntervalsParams parameters,
         CancellationToken cancellationToken = default
@@ -369,6 +386,7 @@ public sealed class SubscriptionService : ISubscriptionService
         return mutatedSubscription;
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> PriceIntervals(
         string subscriptionID,
         SubscriptionPriceIntervalsParams? parameters = null,
@@ -386,6 +404,7 @@ public sealed class SubscriptionService : ISubscriptionService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> RedeemCoupon(
         SubscriptionRedeemCouponParams parameters,
         CancellationToken cancellationToken = default
@@ -414,6 +433,7 @@ public sealed class SubscriptionService : ISubscriptionService
         return mutatedSubscription;
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> RedeemCoupon(
         string subscriptionID,
         SubscriptionRedeemCouponParams parameters,
@@ -429,6 +449,7 @@ public sealed class SubscriptionService : ISubscriptionService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> SchedulePlanChange(
         SubscriptionSchedulePlanChangeParams parameters,
         CancellationToken cancellationToken = default
@@ -457,6 +478,7 @@ public sealed class SubscriptionService : ISubscriptionService
         return mutatedSubscription;
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> SchedulePlanChange(
         string subscriptionID,
         SubscriptionSchedulePlanChangeParams parameters,
@@ -472,6 +494,7 @@ public sealed class SubscriptionService : ISubscriptionService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> TriggerPhase(
         SubscriptionTriggerPhaseParams parameters,
         CancellationToken cancellationToken = default
@@ -500,6 +523,7 @@ public sealed class SubscriptionService : ISubscriptionService
         return mutatedSubscription;
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> TriggerPhase(
         string subscriptionID,
         SubscriptionTriggerPhaseParams? parameters = null,
@@ -517,6 +541,7 @@ public sealed class SubscriptionService : ISubscriptionService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> UnscheduleCancellation(
         SubscriptionUnscheduleCancellationParams parameters,
         CancellationToken cancellationToken = default
@@ -545,6 +570,7 @@ public sealed class SubscriptionService : ISubscriptionService
         return mutatedSubscription;
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> UnscheduleCancellation(
         string subscriptionID,
         SubscriptionUnscheduleCancellationParams? parameters = null,
@@ -562,6 +588,7 @@ public sealed class SubscriptionService : ISubscriptionService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> UnscheduleFixedFeeQuantityUpdates(
         SubscriptionUnscheduleFixedFeeQuantityUpdatesParams parameters,
         CancellationToken cancellationToken = default
@@ -590,6 +617,7 @@ public sealed class SubscriptionService : ISubscriptionService
         return mutatedSubscription;
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> UnscheduleFixedFeeQuantityUpdates(
         string subscriptionID,
         SubscriptionUnscheduleFixedFeeQuantityUpdatesParams parameters,
@@ -605,6 +633,7 @@ public sealed class SubscriptionService : ISubscriptionService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> UnschedulePendingPlanChanges(
         SubscriptionUnschedulePendingPlanChangesParams parameters,
         CancellationToken cancellationToken = default
@@ -633,6 +662,7 @@ public sealed class SubscriptionService : ISubscriptionService
         return mutatedSubscription;
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> UnschedulePendingPlanChanges(
         string subscriptionID,
         SubscriptionUnschedulePendingPlanChangesParams? parameters = null,
@@ -650,6 +680,7 @@ public sealed class SubscriptionService : ISubscriptionService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> UpdateFixedFeeQuantity(
         SubscriptionUpdateFixedFeeQuantityParams parameters,
         CancellationToken cancellationToken = default
@@ -678,6 +709,7 @@ public sealed class SubscriptionService : ISubscriptionService
         return mutatedSubscription;
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> UpdateFixedFeeQuantity(
         string subscriptionID,
         SubscriptionUpdateFixedFeeQuantityParams parameters,
@@ -693,6 +725,7 @@ public sealed class SubscriptionService : ISubscriptionService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> UpdateTrial(
         SubscriptionUpdateTrialParams parameters,
         CancellationToken cancellationToken = default
@@ -721,6 +754,7 @@ public sealed class SubscriptionService : ISubscriptionService
         return mutatedSubscription;
     }
 
+    /// <inheritdoc/>
     public async Task<MutatedSubscription> UpdateTrial(
         string subscriptionID,
         SubscriptionUpdateTrialParams parameters,

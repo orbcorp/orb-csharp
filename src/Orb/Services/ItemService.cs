@@ -8,8 +8,10 @@ using Orb.Models.Items;
 
 namespace Orb.Services;
 
+/// <inheritdoc />
 public sealed class ItemService : IItemService
 {
+    /// <inheritdoc/>
     public IItemService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new ItemService(this._client.WithOptions(modifier));
@@ -22,6 +24,7 @@ public sealed class ItemService : IItemService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<Item> Create(
         ItemCreateParams parameters,
         CancellationToken cancellationToken = default
@@ -43,6 +46,7 @@ public sealed class ItemService : IItemService
         return item;
     }
 
+    /// <inheritdoc/>
     public async Task<Item> Update(
         ItemUpdateParams parameters,
         CancellationToken cancellationToken = default
@@ -69,6 +73,7 @@ public sealed class ItemService : IItemService
         return item;
     }
 
+    /// <inheritdoc/>
     public async Task<Item> Update(
         string itemID,
         ItemUpdateParams? parameters = null,
@@ -80,6 +85,7 @@ public sealed class ItemService : IItemService
         return await this.Update(parameters with { ItemID = itemID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<ItemListPageResponse> List(
         ItemListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -105,6 +111,7 @@ public sealed class ItemService : IItemService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<Item> Archive(
         ItemArchiveParams parameters,
         CancellationToken cancellationToken = default
@@ -131,6 +138,7 @@ public sealed class ItemService : IItemService
         return item;
     }
 
+    /// <inheritdoc/>
     public async Task<Item> Archive(
         string itemID,
         ItemArchiveParams? parameters = null,
@@ -142,6 +150,7 @@ public sealed class ItemService : IItemService
         return await this.Archive(parameters with { ItemID = itemID }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<Item> Fetch(
         ItemFetchParams parameters,
         CancellationToken cancellationToken = default
@@ -168,6 +177,7 @@ public sealed class ItemService : IItemService
         return item;
     }
 
+    /// <inheritdoc/>
     public async Task<Item> Fetch(
         string itemID,
         ItemFetchParams? parameters = null,

@@ -14,6 +14,11 @@ namespace Orb.Services;
 /// </summary>
 public interface ICouponService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     ICouponService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     Coupons::ISubscriptionService Subscriptions { get; }
@@ -50,11 +55,7 @@ public interface ICouponService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// This endpoint allows a coupon to be archived. Archived coupons can no longer
-    /// be redeemed, and will be hidden from lists of active coupons. Additionally,
-    /// once a coupon is archived, its redemption code can be reused for a different coupon.
-    /// </summary>
+    /// <inheritdoc cref="Archive(CouponArchiveParams, CancellationToken)"/>
     Task<Coupon> Archive(
         string couponID,
         CouponArchiveParams? parameters = null,
@@ -67,10 +68,7 @@ public interface ICouponService
     /// </summary>
     Task<Coupon> Fetch(CouponFetchParams parameters, CancellationToken cancellationToken = default);
 
-    /// <summary>
-    /// This endpoint retrieves a coupon by its ID. To fetch coupons by their redemption
-    /// code, use the [List coupons](list-coupons) endpoint with the redemption_code parameter.
-    /// </summary>
+    /// <inheritdoc cref="Fetch(CouponFetchParams, CancellationToken)"/>
     Task<Coupon> Fetch(
         string couponID,
         CouponFetchParams? parameters = null,

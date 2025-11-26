@@ -9,8 +9,10 @@ using Orb.Models.Prices.ExternalPriceID;
 
 namespace Orb.Services.Prices;
 
+/// <inheritdoc />
 public sealed class ExternalPriceIDService : IExternalPriceIDService
 {
+    /// <inheritdoc/>
     public IExternalPriceIDService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new ExternalPriceIDService(this._client.WithOptions(modifier));
@@ -23,6 +25,7 @@ public sealed class ExternalPriceIDService : IExternalPriceIDService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<Price> Update(
         ExternalPriceIDUpdateParams parameters,
         CancellationToken cancellationToken = default
@@ -49,6 +52,7 @@ public sealed class ExternalPriceIDService : IExternalPriceIDService
         return price;
     }
 
+    /// <inheritdoc/>
     public async Task<Price> Update(
         string externalPriceID,
         ExternalPriceIDUpdateParams? parameters = null,
@@ -66,6 +70,7 @@ public sealed class ExternalPriceIDService : IExternalPriceIDService
         );
     }
 
+    /// <inheritdoc/>
     public async Task<Price> Fetch(
         ExternalPriceIDFetchParams parameters,
         CancellationToken cancellationToken = default
@@ -92,6 +97,7 @@ public sealed class ExternalPriceIDService : IExternalPriceIDService
         return price;
     }
 
+    /// <inheritdoc/>
     public async Task<Price> Fetch(
         string externalPriceID,
         ExternalPriceIDFetchParams? parameters = null,

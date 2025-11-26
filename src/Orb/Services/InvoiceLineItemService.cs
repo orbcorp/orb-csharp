@@ -7,8 +7,10 @@ using Orb.Models.InvoiceLineItems;
 
 namespace Orb.Services;
 
+/// <inheritdoc />
 public sealed class InvoiceLineItemService : IInvoiceLineItemService
 {
+    /// <inheritdoc/>
     public IInvoiceLineItemService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new InvoiceLineItemService(this._client.WithOptions(modifier));
@@ -21,6 +23,7 @@ public sealed class InvoiceLineItemService : IInvoiceLineItemService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<InvoiceLineItemCreateResponse> Create(
         InvoiceLineItemCreateParams parameters,
         CancellationToken cancellationToken = default

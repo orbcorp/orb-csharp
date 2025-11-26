@@ -13,6 +13,11 @@ namespace Orb.Services;
 /// </summary>
 public interface ISubscriptionChangeService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     ISubscriptionChangeService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
@@ -30,16 +35,7 @@ public interface ISubscriptionChangeService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// This endpoint returns a subscription change given an identifier.
-    ///
-    /// <para>A subscription change is created by including `Create-Pending-Subscription-Change:
-    /// True` in the header of a subscription mutation API call (e.g. [create subscription
-    /// endpoint](/api-reference/subscription/create-subscription), [schedule plan
-    /// change endpoint](/api-reference/subscription/schedule-plan-change), ...).
-    /// The subscription change will be referenced by the `pending_subscription_change`
-    /// field in the response.</para>
-    /// </summary>
+    /// <inheritdoc cref="Retrieve(SubscriptionChangeRetrieveParams, CancellationToken)"/>
     Task<SubscriptionChangeRetrieveResponse> Retrieve(
         string subscriptionChangeID,
         SubscriptionChangeRetrieveParams? parameters = null,
@@ -56,11 +52,7 @@ public interface ISubscriptionChangeService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Apply a subscription change to perform the intended action. If a positive
-    /// amount is passed with a request to this endpoint, any eligible invoices that
-    /// were created will be issued immediately if they only contain in-advance fees.
-    /// </summary>
+    /// <inheritdoc cref="Apply(SubscriptionChangeApplyParams, CancellationToken)"/>
     Task<SubscriptionChangeApplyResponse> Apply(
         string subscriptionChangeID,
         SubscriptionChangeApplyParams? parameters = null,
@@ -77,11 +69,7 @@ public interface ISubscriptionChangeService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Cancel a subscription change. The change can no longer be applied. A subscription
-    /// can only have one "pending" change at a time - use this endpoint to cancel
-    /// an existing change before creating a new one.
-    /// </summary>
+    /// <inheritdoc cref="Cancel(SubscriptionChangeCancelParams, CancellationToken)"/>
     Task<SubscriptionChangeCancelResponse> Cancel(
         string subscriptionChangeID,
         SubscriptionChangeCancelParams? parameters = null,
