@@ -2298,7 +2298,7 @@ public sealed record class Unit : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter>? CompositePriceFilters
     {
         get
         {
@@ -2581,7 +2581,7 @@ public sealed record class Unit : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -3065,7 +3065,7 @@ public sealed record class CompositePriceFilter : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -3636,7 +3636,7 @@ public sealed record class Tiered : ModelBase
         }
     }
 
-    public required List<CompositePriceFilterModel>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilterModel>? CompositePriceFilters
     {
         get
         {
@@ -3919,7 +3919,7 @@ public sealed record class Tiered : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -4403,7 +4403,7 @@ public sealed record class CompositePriceFilterModel : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -5009,7 +5009,7 @@ public sealed record class Bulk : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter1>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter1>? CompositePriceFilters
     {
         get
         {
@@ -5292,7 +5292,7 @@ public sealed record class Bulk : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -5745,7 +5745,7 @@ public sealed record class CompositePriceFilter1 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -6350,7 +6350,7 @@ public sealed record class BulkWithFilters : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter2>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter2>? CompositePriceFilters
     {
         get
         {
@@ -6633,7 +6633,7 @@ public sealed record class BulkWithFilters : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -6982,7 +6982,7 @@ public sealed record class BulkWithFiltersConfig : ModelBase
     /// <summary>
     /// Property filters to apply (all must match)
     /// </summary>
-    public required List<Filter24> Filters
+    public required IReadOnlyList<Filter24> Filters
     {
         get
         {
@@ -7010,7 +7010,7 @@ public sealed record class BulkWithFiltersConfig : ModelBase
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required List<Tier16> Tiers
+    public required IReadOnlyList<Tier16> Tiers
     {
         get
         {
@@ -7392,7 +7392,7 @@ public sealed record class CompositePriceFilter2 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -7967,7 +7967,7 @@ public sealed record class Package : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter3>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter3>? CompositePriceFilters
     {
         get
         {
@@ -8250,7 +8250,7 @@ public sealed record class Package : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -8737,7 +8737,7 @@ public sealed record class CompositePriceFilter3 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -9311,7 +9311,7 @@ public sealed record class Matrix : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter4>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter4>? CompositePriceFilters
     {
         get
         {
@@ -9625,7 +9625,7 @@ public sealed record class Matrix : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -10078,7 +10078,7 @@ public sealed record class CompositePriceFilter4 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -10652,7 +10652,7 @@ public sealed record class ThresholdTotalAmount : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter5>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter5>? CompositePriceFilters
     {
         get
         {
@@ -10935,7 +10935,7 @@ public sealed record class ThresholdTotalAmount : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -11431,7 +11431,7 @@ public sealed record class CompositePriceFilter5 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -11892,7 +11892,7 @@ public sealed record class ThresholdTotalAmountThresholdTotalAmountConfig : Mode
     /// When the quantity consumed passes a provided threshold, the configured total
     /// will be charged
     /// </summary>
-    public required List<ConsumptionTable1> ConsumptionTable
+    public required IReadOnlyList<ConsumptionTable1> ConsumptionTable
     {
         get
         {
@@ -12227,7 +12227,7 @@ public sealed record class TieredPackage : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter6>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter6>? CompositePriceFilters
     {
         get
         {
@@ -12510,7 +12510,7 @@ public sealed record class TieredPackage : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -13000,7 +13000,7 @@ public sealed record class CompositePriceFilter6 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -13492,7 +13492,7 @@ public sealed record class TieredPackageTieredPackageConfig : ModelBase
     /// based on the total quantity rather than the number of packages, so they must
     /// be multiples of the package size.
     /// </summary>
-    public required List<Tier17> Tiers
+    public required IReadOnlyList<Tier17> Tiers
     {
         get
         {
@@ -13785,7 +13785,7 @@ public sealed record class TieredWithMinimum : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter7>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter7>? CompositePriceFilters
     {
         get
         {
@@ -14068,7 +14068,7 @@ public sealed record class TieredWithMinimum : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -14560,7 +14560,7 @@ public sealed record class CompositePriceFilter7 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -15021,7 +15021,7 @@ public sealed record class TieredWithMinimumTieredWithMinimumConfig : ModelBase
     /// Tiered pricing with a minimum amount dependent on the volume tier. Tiers
     /// are defined using exclusive lower bounds.
     /// </summary>
-    public required List<Tier18> Tiers
+    public required IReadOnlyList<Tier18> Tiers
     {
         get
         {
@@ -15412,7 +15412,7 @@ public sealed record class GroupedTiered : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter8>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter8>? CompositePriceFilters
     {
         get
         {
@@ -15729,7 +15729,7 @@ public sealed record class GroupedTiered : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -16185,7 +16185,7 @@ public sealed record class CompositePriceFilter8 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -16579,7 +16579,7 @@ public sealed record class GroupedTieredGroupedTieredConfig : ModelBase
     /// <summary>
     /// Apply tiered pricing to each segment generated after grouping with the provided key
     /// </summary>
-    public required List<Tier19> Tiers
+    public required IReadOnlyList<Tier19> Tiers
     {
         get
         {
@@ -16970,7 +16970,7 @@ public sealed record class TieredPackageWithMinimum : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter9>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter9>? CompositePriceFilters
     {
         get
         {
@@ -17253,7 +17253,7 @@ public sealed record class TieredPackageWithMinimum : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -17753,7 +17753,7 @@ public sealed record class CompositePriceFilter9 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -18242,7 +18242,7 @@ public sealed record class TieredPackageWithMinimumTieredPackageWithMinimumConfi
     /// Apply tiered pricing after rounding up the quantity to the package size.
     /// Tiers are defined using exclusive lower bounds.
     /// </summary>
-    public required List<Tier20> Tiers
+    public required IReadOnlyList<Tier20> Tiers
     {
         get
         {
@@ -18572,7 +18572,7 @@ public sealed record class PackageWithAllocation : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter10>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter10>? CompositePriceFilters
     {
         get
         {
@@ -18855,7 +18855,7 @@ public sealed record class PackageWithAllocation : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -19354,7 +19354,7 @@ public sealed record class CompositePriceFilter10 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -20075,7 +20075,7 @@ public sealed record class UnitWithPercent : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter11>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter11>? CompositePriceFilters
     {
         get
         {
@@ -20358,7 +20358,7 @@ public sealed record class UnitWithPercent : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -20848,7 +20848,7 @@ public sealed record class CompositePriceFilter11 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -21529,7 +21529,7 @@ public sealed record class MatrixWithAllocation : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter12>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter12>? CompositePriceFilters
     {
         get
         {
@@ -21848,7 +21848,7 @@ public sealed record class MatrixWithAllocation : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -22308,7 +22308,7 @@ public sealed record class CompositePriceFilter12 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -22885,7 +22885,7 @@ public sealed record class TieredWithProration : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter13>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter13>? CompositePriceFilters
     {
         get
         {
@@ -23168,7 +23168,7 @@ public sealed record class TieredWithProration : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -23660,7 +23660,7 @@ public sealed record class CompositePriceFilter13 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -24121,7 +24121,7 @@ public sealed record class TieredWithProrationTieredWithProrationConfig : ModelB
     /// Tiers for rating based on total usage quantities into the specified tier
     /// with proration
     /// </summary>
-    public required List<Tier21> Tiers
+    public required IReadOnlyList<Tier21> Tiers
     {
         get
         {
@@ -24426,7 +24426,7 @@ public sealed record class UnitWithProration : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter14>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter14>? CompositePriceFilters
     {
         get
         {
@@ -24709,7 +24709,7 @@ public sealed record class UnitWithProration : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -25201,7 +25201,7 @@ public sealed record class CompositePriceFilter14 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -25865,7 +25865,7 @@ public sealed record class GroupedAllocation : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter15>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter15>? CompositePriceFilters
     {
         get
         {
@@ -26182,7 +26182,7 @@ public sealed record class GroupedAllocation : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -26640,7 +26640,7 @@ public sealed record class CompositePriceFilter15 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -27395,7 +27395,7 @@ public sealed record class BulkWithProration : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter16>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter16>? CompositePriceFilters
     {
         get
         {
@@ -27678,7 +27678,7 @@ public sealed record class BulkWithProration : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -28034,7 +28034,7 @@ public sealed record class BulkWithProrationBulkWithProrationConfig : ModelBase
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required List<Tier22> Tiers
+    public required IReadOnlyList<Tier22> Tiers
     {
         get
         {
@@ -28321,7 +28321,7 @@ public sealed record class CompositePriceFilter16 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -28899,7 +28899,7 @@ public sealed record class GroupedWithProratedMinimum : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter17>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter17>? CompositePriceFilters
     {
         get
         {
@@ -29219,7 +29219,7 @@ public sealed record class GroupedWithProratedMinimum : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -29680,7 +29680,7 @@ public sealed record class CompositePriceFilter17 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -30400,7 +30400,7 @@ public sealed record class GroupedWithMeteredMinimum : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter18>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter18>? CompositePriceFilters
     {
         get
         {
@@ -30720,7 +30720,7 @@ public sealed record class GroupedWithMeteredMinimum : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -31181,7 +31181,7 @@ public sealed record class CompositePriceFilter18 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -31638,7 +31638,7 @@ public sealed record class GroupedWithMeteredMinimumGroupedWithMeteredMinimumCon
     /// <summary>
     /// Scale the unit rates by the scaling factor.
     /// </summary>
-    public required List<ScalingFactor1> ScalingFactors
+    public required IReadOnlyList<ScalingFactor1> ScalingFactors
     {
         get
         {
@@ -31704,7 +31704,7 @@ public sealed record class GroupedWithMeteredMinimumGroupedWithMeteredMinimumCon
     /// Apply per unit pricing to each pricing value. The minimum amount is applied
     /// any unmatched usage.
     /// </summary>
-    public required List<UnitAmount3> UnitAmounts
+    public required IReadOnlyList<UnitAmount3> UnitAmounts
     {
         get
         {
@@ -32218,7 +32218,7 @@ public sealed record class GroupedWithMinMaxThresholds : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter19>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter19>? CompositePriceFilters
     {
         get
         {
@@ -32538,7 +32538,7 @@ public sealed record class GroupedWithMinMaxThresholds : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -32998,7 +32998,7 @@ public sealed record class CompositePriceFilter19 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -33749,7 +33749,7 @@ public sealed record class MatrixWithDisplayName : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter20>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter20>? CompositePriceFilters
     {
         get
         {
@@ -34071,7 +34071,7 @@ public sealed record class MatrixWithDisplayName : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -34531,7 +34531,7 @@ public sealed record class CompositePriceFilter20 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -34925,7 +34925,7 @@ public sealed record class MatrixWithDisplayNameMatrixWithDisplayNameConfig : Mo
     /// <summary>
     /// Apply per unit pricing to each dimension value
     /// </summary>
-    public required List<UnitAmount4> UnitAmounts
+    public required IReadOnlyList<UnitAmount4> UnitAmounts
     {
         get
         {
@@ -35359,7 +35359,7 @@ public sealed record class GroupedTieredPackage : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter21>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter21>? CompositePriceFilters
     {
         get
         {
@@ -35678,7 +35678,7 @@ public sealed record class GroupedTieredPackage : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -36138,7 +36138,7 @@ public sealed record class CompositePriceFilter21 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -36564,7 +36564,7 @@ public sealed record class GroupedTieredPackageGroupedTieredPackageConfig : Mode
     /// Apply tiered pricing after rounding up the quantity to the package size.
     /// Tiers are defined using exclusive lower bounds.
     /// </summary>
-    public required List<Tier23> Tiers
+    public required IReadOnlyList<Tier23> Tiers
     {
         get
         {
@@ -36958,7 +36958,7 @@ public sealed record class MaxGroupTieredPackage : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter22>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter22>? CompositePriceFilters
     {
         get
         {
@@ -37280,7 +37280,7 @@ public sealed record class MaxGroupTieredPackage : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -37740,7 +37740,7 @@ public sealed record class CompositePriceFilter22 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -38165,7 +38165,7 @@ public sealed record class MaxGroupTieredPackageMaxGroupTieredPackageConfig : Mo
     /// <summary>
     /// Apply tiered pricing to the largest group after grouping with the provided key.
     /// </summary>
-    public required List<Tier24> Tiers
+    public required IReadOnlyList<Tier24> Tiers
     {
         get
         {
@@ -38562,7 +38562,7 @@ public sealed record class ScalableMatrixWithUnitPricing : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter23>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter23>? CompositePriceFilters
     {
         get
         {
@@ -38845,7 +38845,7 @@ public sealed record class ScalableMatrixWithUnitPricing : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -39342,7 +39342,7 @@ public sealed record class CompositePriceFilter23 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -39835,7 +39835,7 @@ public sealed record class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPr
     /// <summary>
     /// Apply a scaling factor to each dimension
     /// </summary>
-    public required List<MatrixScalingFactor3> MatrixScalingFactors
+    public required IReadOnlyList<MatrixScalingFactor3> MatrixScalingFactors
     {
         get
         {
@@ -40243,7 +40243,7 @@ public sealed record class ScalableMatrixWithTieredPricing : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter24>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter24>? CompositePriceFilters
     {
         get
         {
@@ -40526,7 +40526,7 @@ public sealed record class ScalableMatrixWithTieredPricing : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -41023,7 +41023,7 @@ public sealed record class CompositePriceFilter24 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -41516,7 +41516,7 @@ public sealed record class ScalableMatrixWithTieredPricingScalableMatrixWithTier
     /// <summary>
     /// Apply a scaling factor to each dimension
     /// </summary>
-    public required List<MatrixScalingFactor4> MatrixScalingFactors
+    public required IReadOnlyList<MatrixScalingFactor4> MatrixScalingFactors
     {
         get
         {
@@ -41550,7 +41550,7 @@ public sealed record class ScalableMatrixWithTieredPricingScalableMatrixWithTier
     /// <summary>
     /// Tier pricing structure
     /// </summary>
-    public required List<Tier25> Tiers
+    public required IReadOnlyList<Tier25> Tiers
     {
         get
         {
@@ -42006,7 +42006,7 @@ public sealed record class CumulativeGroupedBulk : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter25>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter25>? CompositePriceFilters
     {
         get
         {
@@ -42328,7 +42328,7 @@ public sealed record class CumulativeGroupedBulk : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -42788,7 +42788,7 @@ public sealed record class CompositePriceFilter25 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -43151,7 +43151,7 @@ public sealed record class CumulativeGroupedBulkCumulativeGroupedBulkConfig : Mo
     /// <summary>
     /// Each tier lower bound must have the same group of values.
     /// </summary>
-    public required List<DimensionValue1> DimensionValues
+    public required IReadOnlyList<DimensionValue1> DimensionValues
     {
         get
         {
@@ -43614,7 +43614,7 @@ public sealed record class CumulativeGroupedAllocation : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter26>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter26>? CompositePriceFilters
     {
         get
         {
@@ -43934,7 +43934,7 @@ public sealed record class CumulativeGroupedAllocation : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -44394,7 +44394,7 @@ public sealed record class CompositePriceFilter26 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -45145,7 +45145,7 @@ public sealed record class PriceMinimum : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter27>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter27>? CompositePriceFilters
     {
         get
         {
@@ -45428,7 +45428,7 @@ public sealed record class PriceMinimum : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -45918,7 +45918,7 @@ public sealed record class CompositePriceFilter27 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -46599,7 +46599,7 @@ public sealed record class Percent : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter28>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter28>? CompositePriceFilters
     {
         get
         {
@@ -46882,7 +46882,7 @@ public sealed record class Percent : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -47369,7 +47369,7 @@ public sealed record class CompositePriceFilter28 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -48012,7 +48012,7 @@ public sealed record class EventOutput : ModelBase
         }
     }
 
-    public required List<CompositePriceFilter29>? CompositePriceFilters
+    public required IReadOnlyList<CompositePriceFilter29>? CompositePriceFilters
     {
         get
         {
@@ -48329,7 +48329,7 @@ public sealed record class EventOutput : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -48785,7 +48785,7 @@ public sealed record class CompositePriceFilter29 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {

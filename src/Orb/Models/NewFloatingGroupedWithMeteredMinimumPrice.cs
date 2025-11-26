@@ -430,7 +430,7 @@ public sealed record class NewFloatingGroupedWithMeteredMinimumPrice : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -670,7 +670,7 @@ public sealed record class GroupedWithMeteredMinimumConfig : ModelBase
     /// <summary>
     /// Scale the unit rates by the scaling factor.
     /// </summary>
-    public required List<ScalingFactor> ScalingFactors
+    public required IReadOnlyList<ScalingFactor> ScalingFactors
     {
         get
         {
@@ -736,7 +736,7 @@ public sealed record class GroupedWithMeteredMinimumConfig : ModelBase
     /// Apply per unit pricing to each pricing value. The minimum amount is applied
     /// any unmatched usage.
     /// </summary>
-    public required List<UnitAmount> UnitAmounts
+    public required IReadOnlyList<UnitAmount> UnitAmounts
     {
         get
         {

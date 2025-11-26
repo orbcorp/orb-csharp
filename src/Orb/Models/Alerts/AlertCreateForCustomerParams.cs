@@ -87,7 +87,7 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
     /// <summary>
     /// The thresholds that define the values at which the alert will be triggered.
     /// </summary>
-    public List<Threshold>? Thresholds
+    public IReadOnlyList<Threshold>? Thresholds
     {
         get
         {

@@ -54,7 +54,7 @@ public sealed record class Customer : ModelBase
         }
     }
 
-    public required List<string> AdditionalEmails
+    public required IReadOnlyList<string> AdditionalEmails
     {
         get
         {
@@ -351,7 +351,7 @@ public sealed record class Customer : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -770,7 +770,7 @@ class CustomerFromRaw : IFromRaw<Customer>
 [JsonConverter(typeof(ModelConverter<Hierarchy, HierarchyFromRaw>))]
 public sealed record class Hierarchy : ModelBase
 {
-    public required List<CustomerMinified> Children
+    public required IReadOnlyList<CustomerMinified> Children
     {
         get
         {
@@ -917,7 +917,7 @@ sealed class CustomerPaymentProviderConverter : JsonConverter<CustomerPaymentPro
 )]
 public sealed record class AccountingSyncConfiguration : ModelBase
 {
-    public required List<AccountingProvider> AccountingProviders
+    public required IReadOnlyList<AccountingProvider> AccountingProviders
     {
         get
         {

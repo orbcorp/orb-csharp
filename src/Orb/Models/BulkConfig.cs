@@ -18,7 +18,7 @@ public sealed record class BulkConfig : ModelBase
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required List<BulkTier> Tiers
+    public required IReadOnlyList<BulkTier> Tiers
     {
         get
         {

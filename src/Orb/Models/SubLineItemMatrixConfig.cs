@@ -15,7 +15,7 @@ public sealed record class SubLineItemMatrixConfig : ModelBase
     /// <summary>
     /// The ordered dimension values for this line item.
     /// </summary>
-    public required List<string?> DimensionValues
+    public required IReadOnlyList<string?> DimensionValues
     {
         get
         {

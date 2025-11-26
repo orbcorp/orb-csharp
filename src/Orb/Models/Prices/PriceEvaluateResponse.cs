@@ -12,7 +12,7 @@ namespace Orb.Models.Prices;
 [JsonConverter(typeof(ModelConverter<PriceEvaluateResponse, PriceEvaluateResponseFromRaw>))]
 public sealed record class PriceEvaluateResponse : ModelBase
 {
-    public required List<EvaluatePriceGroup> Data
+    public required IReadOnlyList<EvaluatePriceGroup> Data
     {
         get
         {

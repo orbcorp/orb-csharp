@@ -424,7 +424,7 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -688,7 +688,7 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeter
     /// <summary>
     /// Scale the unit rates by the scaling factor.
     /// </summary>
-    public required List<ScalingFactorModel> ScalingFactors
+    public required IReadOnlyList<ScalingFactorModel> ScalingFactors
     {
         get
         {
@@ -754,7 +754,7 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeter
     /// Apply per unit pricing to each pricing value. The minimum amount is applied
     /// any unmatched usage.
     /// </summary>
-    public required List<UnitAmount1> UnitAmounts
+    public required IReadOnlyList<UnitAmount1> UnitAmounts
     {
         get
         {

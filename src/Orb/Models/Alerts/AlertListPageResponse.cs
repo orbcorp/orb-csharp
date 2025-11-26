@@ -12,7 +12,7 @@ namespace Orb.Models.Alerts;
 [JsonConverter(typeof(ModelConverter<AlertListPageResponse, AlertListPageResponseFromRaw>))]
 public sealed record class AlertListPageResponse : ModelBase
 {
-    public required List<Alert> Data
+    public required IReadOnlyList<Alert> Data
     {
         get
         {

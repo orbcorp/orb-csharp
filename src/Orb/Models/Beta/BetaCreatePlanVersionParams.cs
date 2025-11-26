@@ -51,7 +51,7 @@ public sealed record class BetaCreatePlanVersionParams : ParamsBase
     /// <summary>
     /// Additional adjustments to be added to the plan.
     /// </summary>
-    public List<AddAdjustment>? AddAdjustments
+    public IReadOnlyList<AddAdjustment>? AddAdjustments
     {
         get
         {
@@ -75,7 +75,7 @@ public sealed record class BetaCreatePlanVersionParams : ParamsBase
     /// <summary>
     /// Additional prices to be added to the plan.
     /// </summary>
-    public List<AddPrice>? AddPrices
+    public IReadOnlyList<AddPrice>? AddPrices
     {
         get
         {
@@ -99,7 +99,7 @@ public sealed record class BetaCreatePlanVersionParams : ParamsBase
     /// <summary>
     /// Adjustments to be removed from the plan.
     /// </summary>
-    public List<RemoveAdjustment>? RemoveAdjustments
+    public IReadOnlyList<RemoveAdjustment>? RemoveAdjustments
     {
         get
         {
@@ -123,7 +123,7 @@ public sealed record class BetaCreatePlanVersionParams : ParamsBase
     /// <summary>
     /// Prices to be removed from the plan.
     /// </summary>
-    public List<RemovePrice>? RemovePrices
+    public IReadOnlyList<RemovePrice>? RemovePrices
     {
         get
         {
@@ -147,7 +147,7 @@ public sealed record class BetaCreatePlanVersionParams : ParamsBase
     /// <summary>
     /// Adjustments to be replaced with additional adjustments on the plan.
     /// </summary>
-    public List<ReplaceAdjustment>? ReplaceAdjustments
+    public IReadOnlyList<ReplaceAdjustment>? ReplaceAdjustments
     {
         get
         {
@@ -171,7 +171,7 @@ public sealed record class BetaCreatePlanVersionParams : ParamsBase
     /// <summary>
     /// Prices to be replaced with additional prices on the plan.
     /// </summary>
-    public List<ReplacePrice>? ReplacePrices
+    public IReadOnlyList<ReplacePrice>? ReplacePrices
     {
         get
         {
@@ -3268,7 +3268,7 @@ public sealed record class BulkWithFilters : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -3382,7 +3382,7 @@ public sealed record class BulkWithFiltersConfig : ModelBase
     /// <summary>
     /// Property filters to apply (all must match)
     /// </summary>
-    public required List<global::Orb.Models.Beta.Filter> Filters
+    public required IReadOnlyList<global::Orb.Models.Beta.Filter> Filters
     {
         get
         {
@@ -3413,7 +3413,7 @@ public sealed record class BulkWithFiltersConfig : ModelBase
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required List<global::Orb.Models.Beta.Tier> Tiers
+    public required IReadOnlyList<global::Orb.Models.Beta.Tier> Tiers
     {
         get
         {
@@ -4394,7 +4394,7 @@ public sealed record class TieredWithProration : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -4624,7 +4624,7 @@ public sealed record class TieredWithProrationConfig : ModelBase
     /// Tiers for rating based on total usage quantities into the specified tier
     /// with proration
     /// </summary>
-    public required List<global::Orb.Models.Beta.TierModel> Tiers
+    public required IReadOnlyList<global::Orb.Models.Beta.TierModel> Tiers
     {
         get
         {
@@ -5413,7 +5413,7 @@ public sealed record class GroupedWithMinMaxThresholds : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -6415,7 +6415,7 @@ public sealed record class CumulativeGroupedAllocation : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -7408,7 +7408,7 @@ public sealed record class Percent : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -8293,7 +8293,7 @@ public sealed record class EventOutput : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -12043,7 +12043,7 @@ public sealed record class ReplacePricePriceBulkWithFilters : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -12157,7 +12157,7 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
     /// <summary>
     /// Property filters to apply (all must match)
     /// </summary>
-    public required List<global::Orb.Models.Beta.FilterModel> Filters
+    public required IReadOnlyList<global::Orb.Models.Beta.FilterModel> Filters
     {
         get
         {
@@ -12188,7 +12188,7 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required List<global::Orb.Models.Beta.Tier1> Tiers
+    public required IReadOnlyList<global::Orb.Models.Beta.Tier1> Tiers
     {
         get
         {
@@ -13186,7 +13186,7 @@ public sealed record class ReplacePricePriceTieredWithProration : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -13416,7 +13416,7 @@ public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrati
     /// Tiers for rating based on total usage quantities into the specified tier
     /// with proration
     /// </summary>
-    public required List<global::Orb.Models.Beta.Tier2> Tiers
+    public required IReadOnlyList<global::Orb.Models.Beta.Tier2> Tiers
     {
         get
         {
@@ -14206,7 +14206,7 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholds : ModelB
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -15210,7 +15210,7 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocation : ModelB
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -16207,7 +16207,7 @@ public sealed record class ReplacePricePricePercent : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -17093,7 +17093,7 @@ public sealed record class ReplacePricePriceEventOutput : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {

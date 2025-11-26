@@ -49,7 +49,7 @@ public sealed record class MatrixConfig : ModelBase
     /// <summary>
     /// One or two event property values to evaluate matrix groups by
     /// </summary>
-    public required List<string?> Dimensions
+    public required IReadOnlyList<string?> Dimensions
     {
         get
         {
@@ -77,7 +77,7 @@ public sealed record class MatrixConfig : ModelBase
     /// <summary>
     /// Matrix values configuration
     /// </summary>
-    public required List<SharedMatrixValue> MatrixValues
+    public required IReadOnlyList<SharedMatrixValue> MatrixValues
     {
         get
         {

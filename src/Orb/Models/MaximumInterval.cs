@@ -15,7 +15,7 @@ public sealed record class MaximumInterval : ModelBase
     /// <summary>
     /// The price interval ids that this maximum interval applies to.
     /// </summary>
-    public required List<string> AppliesToPriceIntervalIDs
+    public required IReadOnlyList<string> AppliesToPriceIntervalIDs
     {
         get
         {
@@ -72,7 +72,7 @@ public sealed record class MaximumInterval : ModelBase
     /// <summary>
     /// The filters that determine which prices this maximum interval applies to.
     /// </summary>
-    public required List<Filter3> Filters
+    public required IReadOnlyList<Filter3> Filters
     {
         get
         {
@@ -258,7 +258,7 @@ public sealed record class Filter3 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {

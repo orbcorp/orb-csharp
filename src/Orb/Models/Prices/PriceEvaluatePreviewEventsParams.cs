@@ -120,7 +120,7 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     /// <summary>
     /// List of preview events to use instead of actual usage data
     /// </summary>
-    public List<Event>? Events
+    public IReadOnlyList<Event>? Events
     {
         get
         {
@@ -167,7 +167,7 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     /// <summary>
     /// List of prices to evaluate (max 100)
     /// </summary>
-    public List<PriceEvaluationModel>? PriceEvaluations
+    public IReadOnlyList<PriceEvaluationModel>? PriceEvaluations
     {
         get
         {
@@ -296,7 +296,7 @@ public sealed record class Event : ModelBase
     /// A dictionary of custom properties. Values in this dictionary must be numeric,
     /// boolean, or strings. Nested dictionaries are disallowed.
     /// </summary>
-    public required Dictionary<string, JsonElement> Properties
+    public required IReadOnlyDictionary<string, JsonElement> Properties
     {
         get
         {
@@ -487,7 +487,7 @@ public sealed record class PriceEvaluationModel : ModelBase
     /// Properties (or [computed properties](/extensibility/advanced-metrics#computed-properties))
     /// used to group the underlying billable metric
     /// </summary>
-    public List<string>? GroupingKeys
+    public IReadOnlyList<string>? GroupingKeys
     {
         get
         {
@@ -3121,7 +3121,7 @@ public sealed record class PriceEvaluationModelPriceBulkWithFilters : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -3215,7 +3215,7 @@ public sealed record class PriceEvaluationModelPriceBulkWithFiltersBulkWithFilte
     /// <summary>
     /// Property filters to apply (all must match)
     /// </summary>
-    public required List<global::Orb.Models.Prices.Filter1> Filters
+    public required IReadOnlyList<global::Orb.Models.Prices.Filter1> Filters
     {
         get
         {
@@ -3246,7 +3246,7 @@ public sealed record class PriceEvaluationModelPriceBulkWithFiltersBulkWithFilte
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required List<global::Orb.Models.Prices.Tier1> Tiers
+    public required IReadOnlyList<global::Orb.Models.Prices.Tier1> Tiers
     {
         get
         {
@@ -4261,7 +4261,7 @@ public sealed record class PriceEvaluationModelPriceGroupedWithMinMaxThresholds 
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -5262,7 +5262,7 @@ public sealed record class PriceEvaluationModelPriceCumulativeGroupedAllocation 
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -6257,7 +6257,7 @@ public sealed record class PriceEvaluationModelPricePercent : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -7131,7 +7131,7 @@ public sealed record class PriceEvaluationModelPriceEventOutput : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {

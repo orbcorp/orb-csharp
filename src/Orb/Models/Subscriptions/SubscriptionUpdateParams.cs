@@ -96,7 +96,7 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {

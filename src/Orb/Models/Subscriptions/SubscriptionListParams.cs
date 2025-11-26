@@ -127,7 +127,7 @@ public sealed record class SubscriptionListParams : ParamsBase
         }
     }
 
-    public List<string>? CustomerID
+    public IReadOnlyList<string>? CustomerID
     {
         get
         {
@@ -145,7 +145,7 @@ public sealed record class SubscriptionListParams : ParamsBase
         }
     }
 
-    public List<string>? ExternalCustomerID
+    public IReadOnlyList<string>? ExternalCustomerID
     {
         get
         {

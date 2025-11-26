@@ -188,7 +188,7 @@ public sealed record class SharedCreditNote : ModelBase
     /// <summary>
     /// All of the line items associated with this credit note.
     /// </summary>
-    public required List<LineItemModel> LineItems
+    public required IReadOnlyList<LineItemModel> LineItems
     {
         get
         {
@@ -413,7 +413,7 @@ public sealed record class SharedCreditNote : ModelBase
     /// <summary>
     /// Any discounts applied on the original invoice.
     /// </summary>
-    public List<DiscountModel>? Discounts
+    public IReadOnlyList<DiscountModel>? Discounts
     {
         get
         {
@@ -661,7 +661,7 @@ public sealed record class LineItemModel : ModelBase
     /// <summary>
     /// Any tax amounts applied onto the line item.
     /// </summary>
-    public required List<TaxAmount> TaxAmounts
+    public required IReadOnlyList<TaxAmount> TaxAmounts
     {
         get
         {
@@ -692,7 +692,7 @@ public sealed record class LineItemModel : ModelBase
     /// <summary>
     /// Any line item discounts from the invoice's line item.
     /// </summary>
-    public List<Discount>? Discounts
+    public IReadOnlyList<Discount>? Discounts
     {
         get
         {
@@ -869,7 +869,7 @@ public sealed record class Discount : ModelBase
         }
     }
 
-    public required List<string> AppliesToPriceIDs
+    public required IReadOnlyList<string> AppliesToPriceIDs
     {
         get
         {
@@ -1151,7 +1151,7 @@ public sealed record class MaximumAmountAdjustment : ModelBase
         }
     }
 
-    public List<AppliesToPrice>? AppliesToPrices
+    public IReadOnlyList<AppliesToPrice>? AppliesToPrices
     {
         get
         {
@@ -1532,7 +1532,7 @@ public sealed record class DiscountModel : ModelBase
         }
     }
 
-    public List<AppliesToPriceModel>? AppliesToPrices
+    public IReadOnlyList<AppliesToPriceModel>? AppliesToPrices
     {
         get
         {

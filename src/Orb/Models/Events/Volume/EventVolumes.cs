@@ -12,7 +12,7 @@ namespace Orb.Models.Events.Volume;
 [JsonConverter(typeof(ModelConverter<EventVolumes, EventVolumesFromRaw>))]
 public sealed record class EventVolumes : ModelBase
 {
-    public required List<global::Orb.Models.Events.Volume.Data> Data
+    public required IReadOnlyList<global::Orb.Models.Events.Volume.Data> Data
     {
         get
         {

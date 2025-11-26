@@ -37,7 +37,7 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     /// <summary>
     /// The thresholds that define the values at which the alert will be triggered.
     /// </summary>
-    public required List<Threshold> Thresholds
+    public required IReadOnlyList<Threshold> Thresholds
     {
         get
         {

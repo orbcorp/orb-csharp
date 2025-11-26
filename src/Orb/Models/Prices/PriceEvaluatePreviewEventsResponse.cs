@@ -17,7 +17,7 @@ namespace Orb.Models.Prices;
 )]
 public sealed record class PriceEvaluatePreviewEventsResponse : ModelBase
 {
-    public required List<DataModel> Data
+    public required IReadOnlyList<DataModel> Data
     {
         get
         {
@@ -121,7 +121,7 @@ public sealed record class DataModel : ModelBase
     /// <summary>
     /// The computed price groups associated with input price.
     /// </summary>
-    public required List<EvaluatePriceGroup> PriceGroups
+    public required IReadOnlyList<EvaluatePriceGroup> PriceGroups
     {
         get
         {

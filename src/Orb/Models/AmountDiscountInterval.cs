@@ -46,7 +46,7 @@ public sealed record class AmountDiscountInterval : ModelBase
     /// <summary>
     /// The price interval ids that this discount interval applies to.
     /// </summary>
-    public required List<string> AppliesToPriceIntervalIDs
+    public required IReadOnlyList<string> AppliesToPriceIntervalIDs
     {
         get
         {
@@ -130,7 +130,7 @@ public sealed record class AmountDiscountInterval : ModelBase
     /// <summary>
     /// The filters that determine which prices this discount interval applies to.
     /// </summary>
-    public required List<Filter1> Filters
+    public required IReadOnlyList<Filter1> Filters
     {
         get
         {
@@ -330,7 +330,7 @@ public sealed record class Filter1 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {

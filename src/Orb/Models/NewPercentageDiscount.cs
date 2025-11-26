@@ -90,7 +90,7 @@ public sealed record class NewPercentageDiscount : ModelBase
     /// <summary>
     /// The set of item IDs to which this adjustment applies.
     /// </summary>
-    public List<string>? AppliesToItemIDs
+    public IReadOnlyList<string>? AppliesToItemIDs
     {
         get
         {
@@ -111,7 +111,7 @@ public sealed record class NewPercentageDiscount : ModelBase
     /// <summary>
     /// The set of price IDs to which this adjustment applies.
     /// </summary>
-    public List<string>? AppliesToPriceIDs
+    public IReadOnlyList<string>? AppliesToPriceIDs
     {
         get
         {
@@ -153,7 +153,7 @@ public sealed record class NewPercentageDiscount : ModelBase
     /// <summary>
     /// A list of filters that determine which prices this adjustment will apply to.
     /// </summary>
-    public List<Filter15>? Filters
+    public IReadOnlyList<Filter15>? Filters
     {
         get
         {
@@ -418,7 +418,7 @@ public sealed record class Filter15 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {

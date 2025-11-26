@@ -426,7 +426,7 @@ public sealed record class NewPlanMatrixWithDisplayNamePrice : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -626,7 +626,7 @@ public sealed record class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNam
     /// <summary>
     /// Apply per unit pricing to each dimension value
     /// </summary>
-    public required List<UnitAmount2> UnitAmounts
+    public required IReadOnlyList<UnitAmount2> UnitAmounts
     {
         get
         {

@@ -433,7 +433,7 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -660,7 +660,7 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : ModelBase
     /// <summary>
     /// Apply a scaling factor to each dimension
     /// </summary>
-    public required List<MatrixScalingFactorModel> MatrixScalingFactors
+    public required IReadOnlyList<MatrixScalingFactorModel> MatrixScalingFactors
     {
         get
         {

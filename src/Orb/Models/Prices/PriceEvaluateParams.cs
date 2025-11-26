@@ -161,7 +161,7 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// Properties (or [computed properties](/extensibility/advanced-metrics#computed-properties))
     /// used to group the underlying billable metric
     /// </summary>
-    public List<string>? GroupingKeys
+    public IReadOnlyList<string>? GroupingKeys
     {
         get
         {

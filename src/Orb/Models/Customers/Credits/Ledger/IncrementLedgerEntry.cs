@@ -292,7 +292,7 @@ public sealed record class IncrementLedgerEntry : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -347,7 +347,7 @@ public sealed record class IncrementLedgerEntry : ModelBase
     /// <summary>
     /// If the increment resulted in invoice creation, the list of created invoices
     /// </summary>
-    public List<Invoice>? CreatedInvoices
+    public IReadOnlyList<Invoice>? CreatedInvoices
     {
         get
         {

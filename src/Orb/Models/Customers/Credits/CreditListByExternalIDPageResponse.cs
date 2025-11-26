@@ -17,7 +17,7 @@ namespace Orb.Models.Customers.Credits;
 )]
 public sealed record class CreditListByExternalIDPageResponse : ModelBase
 {
-    public required List<DataModel> Data
+    public required IReadOnlyList<DataModel> Data
     {
         get
         {
@@ -203,7 +203,7 @@ public sealed record class DataModel : ModelBase
         }
     }
 
-    public required List<global::Orb.Models.Customers.Credits.FilterModel> Filters
+    public required IReadOnlyList<global::Orb.Models.Customers.Credits.FilterModel> Filters
     {
         get
         {
@@ -401,7 +401,7 @@ public sealed record class FilterModel : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {

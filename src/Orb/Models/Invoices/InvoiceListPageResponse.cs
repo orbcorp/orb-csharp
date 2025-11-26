@@ -12,7 +12,7 @@ namespace Orb.Models.Invoices;
 [JsonConverter(typeof(ModelConverter<InvoiceListPageResponse, InvoiceListPageResponseFromRaw>))]
 public sealed record class InvoiceListPageResponse : ModelBase
 {
-    public required List<Invoice> Data
+    public required IReadOnlyList<Invoice> Data
     {
         get
         {

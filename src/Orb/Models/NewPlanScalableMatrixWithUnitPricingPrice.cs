@@ -424,7 +424,7 @@ public sealed record class NewPlanScalableMatrixWithUnitPricingPrice : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -675,7 +675,7 @@ public sealed record class NewPlanScalableMatrixWithUnitPricingPriceScalableMatr
     /// <summary>
     /// Apply a scaling factor to each dimension
     /// </summary>
-    public required List<MatrixScalingFactor2> MatrixScalingFactors
+    public required IReadOnlyList<MatrixScalingFactor2> MatrixScalingFactors
     {
         get
         {

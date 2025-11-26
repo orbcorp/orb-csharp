@@ -12,7 +12,7 @@ namespace Orb.Models.Metrics;
 [JsonConverter(typeof(ModelConverter<MetricListPageResponse, MetricListPageResponseFromRaw>))]
 public sealed record class MetricListPageResponse : ModelBase
 {
-    public required List<BillableMetric> Data
+    public required IReadOnlyList<BillableMetric> Data
     {
         get
         {

@@ -59,7 +59,7 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
     /// <summary>
     /// The set of keys (in order) used to disambiguate prices in the group.
     /// </summary>
-    public required List<string> Dimensions
+    public required IReadOnlyList<string> Dimensions
     {
         get
         {
@@ -135,7 +135,7 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {

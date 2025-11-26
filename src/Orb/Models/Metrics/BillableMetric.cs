@@ -97,7 +97,7 @@ public sealed record class BillableMetric : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {

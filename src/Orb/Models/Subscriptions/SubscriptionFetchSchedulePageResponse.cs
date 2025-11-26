@@ -17,7 +17,7 @@ namespace Orb.Models.Subscriptions;
 )]
 public sealed record class SubscriptionFetchSchedulePageResponse : ModelBase
 {
-    public required List<Data1> Data
+    public required IReadOnlyList<Data1> Data
     {
         get
         {

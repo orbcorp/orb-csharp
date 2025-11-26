@@ -85,7 +85,7 @@ public sealed record class Subscription : ModelBase
     /// The adjustment intervals for this subscription sorted by the start_date of
     /// the adjustment interval.
     /// </summary>
-    public required List<AdjustmentInterval> AdjustmentIntervals
+    public required IReadOnlyList<AdjustmentInterval> AdjustmentIntervals
     {
         get
         {
@@ -363,7 +363,7 @@ public sealed record class Subscription : ModelBase
     /// field is deprecated in favor of `adjustment_intervals`.
     /// </summary>
     [System::Obsolete("deprecated")]
-    public required List<DiscountInterval> DiscountIntervals
+    public required IReadOnlyList<DiscountInterval> DiscountIntervals
     {
         get
         {
@@ -418,7 +418,7 @@ public sealed record class Subscription : ModelBase
         }
     }
 
-    public required List<FixedFeeQuantityScheduleEntry> FixedFeeQuantitySchedule
+    public required IReadOnlyList<FixedFeeQuantityScheduleEntry> FixedFeeQuantitySchedule
     {
         get
         {
@@ -472,7 +472,7 @@ public sealed record class Subscription : ModelBase
     /// field is deprecated in favor of `adjustment_intervals`.
     /// </summary>
     [System::Obsolete("deprecated")]
-    public required List<MaximumInterval> MaximumIntervals
+    public required IReadOnlyList<MaximumInterval> MaximumIntervals
     {
         get
         {
@@ -509,7 +509,7 @@ public sealed record class Subscription : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -542,7 +542,7 @@ public sealed record class Subscription : ModelBase
     /// field is deprecated in favor of `adjustment_intervals`.
     /// </summary>
     [System::Obsolete("deprecated")]
-    public required List<MinimumInterval> MinimumIntervals
+    public required IReadOnlyList<MinimumInterval> MinimumIntervals
     {
         get
         {
@@ -681,7 +681,7 @@ public sealed record class Subscription : ModelBase
     /// <summary>
     /// The price intervals for this subscription.
     /// </summary>
-    public required List<PriceInterval> PriceIntervals
+    public required IReadOnlyList<PriceInterval> PriceIntervals
     {
         get
         {

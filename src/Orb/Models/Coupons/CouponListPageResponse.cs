@@ -12,7 +12,7 @@ namespace Orb.Models.Coupons;
 [JsonConverter(typeof(ModelConverter<CouponListPageResponse, CouponListPageResponseFromRaw>))]
 public sealed record class CouponListPageResponse : ModelBase
 {
-    public required List<Coupon> Data
+    public required IReadOnlyList<Coupon> Data
     {
         get
         {

@@ -159,7 +159,7 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
 )]
 public sealed record class UngroupedSubscriptionUsage : ModelBase
 {
-    public required List<Data> Data
+    public required IReadOnlyList<Data> Data
     {
         get
         {
@@ -260,7 +260,7 @@ public sealed record class Data : ModelBase
         }
     }
 
-    public required List<Usage> Usage
+    public required IReadOnlyList<Usage> Usage
     {
         get
         {
@@ -594,7 +594,7 @@ sealed class DataViewModeConverter : JsonConverter<DataViewMode>
 [JsonConverter(typeof(ModelConverter<GroupedSubscriptionUsage, GroupedSubscriptionUsageFromRaw>))]
 public sealed record class GroupedSubscriptionUsage : ModelBase
 {
-    public required List<DataModel> Data
+    public required IReadOnlyList<DataModel> Data
     {
         get
         {
@@ -748,7 +748,7 @@ public sealed record class DataModel : ModelBase
         }
     }
 
-    public required List<UsageModel> Usage
+    public required IReadOnlyList<UsageModel> Usage
     {
         get
         {

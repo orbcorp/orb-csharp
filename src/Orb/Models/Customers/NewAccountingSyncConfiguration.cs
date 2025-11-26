@@ -12,7 +12,7 @@ namespace Orb.Models.Customers;
 )]
 public sealed record class NewAccountingSyncConfiguration : ModelBase
 {
-    public List<AccountingProviderConfig>? AccountingProviders
+    public IReadOnlyList<AccountingProviderConfig>? AccountingProviders
     {
         get
         {

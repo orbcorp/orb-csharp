@@ -214,7 +214,7 @@ public sealed record class Alert : ModelBase
     /// <summary>
     /// The thresholds that define the conditions under which the alert will be triggered.
     /// </summary>
-    public required List<Threshold>? Thresholds
+    public required IReadOnlyList<Threshold>? Thresholds
     {
         get
         {
@@ -265,7 +265,7 @@ public sealed record class Alert : ModelBase
     /// <summary>
     /// The current status of the alert. This field is only present for credit balance alerts.
     /// </summary>
-    public List<BalanceAlertStatus>? BalanceAlertStatus
+    public IReadOnlyList<BalanceAlertStatus>? BalanceAlertStatus
     {
         get
         {

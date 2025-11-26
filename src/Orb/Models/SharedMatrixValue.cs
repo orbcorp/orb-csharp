@@ -18,7 +18,7 @@ public sealed record class SharedMatrixValue : ModelBase
     /// <summary>
     /// One or two matrix keys to filter usage to this Matrix value by
     /// </summary>
-    public required List<string?> DimensionValues
+    public required IReadOnlyList<string?> DimensionValues
     {
         get
         {

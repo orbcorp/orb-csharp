@@ -79,7 +79,7 @@ public sealed record class PlanCreateParams : ParamsBase
     /// Prices for this plan. If the plan has phases, this includes prices across
     /// all phases of the plan.
     /// </summary>
-    public required List<global::Orb.Models.Plans.Price> Prices
+    public required IReadOnlyList<global::Orb.Models.Plans.Price> Prices
     {
         get
         {
@@ -111,7 +111,7 @@ public sealed record class PlanCreateParams : ParamsBase
     /// Adjustments for this plan. If the plan has phases, this includes adjustments
     /// across all phases of the plan.
     /// </summary>
-    public List<global::Orb.Models.Plans.Adjustment>? Adjustments
+    public IReadOnlyList<global::Orb.Models.Plans.Adjustment>? Adjustments
     {
         get
         {
@@ -176,7 +176,7 @@ public sealed record class PlanCreateParams : ParamsBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -224,7 +224,7 @@ public sealed record class PlanCreateParams : ParamsBase
     /// Configuration of pre-defined phases, each with their own prices and adjustments.
     /// Leave unspecified for plans with a single phase.
     /// </summary>
-    public List<PlanPhase>? PlanPhases
+    public IReadOnlyList<PlanPhase>? PlanPhases
     {
         get
         {
@@ -2874,7 +2874,7 @@ public sealed record class BulkWithFilters : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -2988,7 +2988,7 @@ public sealed record class BulkWithFiltersConfig : ModelBase
     /// <summary>
     /// Property filters to apply (all must match)
     /// </summary>
-    public required List<global::Orb.Models.Plans.Filter> Filters
+    public required IReadOnlyList<global::Orb.Models.Plans.Filter> Filters
     {
         get
         {
@@ -3019,7 +3019,7 @@ public sealed record class BulkWithFiltersConfig : ModelBase
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required List<global::Orb.Models.Plans.Tier> Tiers
+    public required IReadOnlyList<global::Orb.Models.Plans.Tier> Tiers
     {
         get
         {
@@ -4000,7 +4000,7 @@ public sealed record class TieredWithProration : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -4230,7 +4230,7 @@ public sealed record class TieredWithProrationConfig : ModelBase
     /// Tiers for rating based on total usage quantities into the specified tier
     /// with proration
     /// </summary>
-    public required List<global::Orb.Models.Plans.TierModel> Tiers
+    public required IReadOnlyList<global::Orb.Models.Plans.TierModel> Tiers
     {
         get
         {
@@ -5020,7 +5020,7 @@ public sealed record class GroupedWithMinMaxThresholds : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -6023,7 +6023,7 @@ public sealed record class CumulativeGroupedAllocation : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -7020,7 +7020,7 @@ public sealed record class Percent : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -7905,7 +7905,7 @@ public sealed record class EventOutput : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {

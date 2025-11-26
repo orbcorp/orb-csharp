@@ -426,7 +426,7 @@ public sealed record class NewSubscriptionMaxGroupTieredPackagePrice : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -660,7 +660,7 @@ public sealed record class MaxGroupTieredPackageConfig : ModelBase
     /// <summary>
     /// Apply tiered pricing to the largest group after grouping with the provided key.
     /// </summary>
-    public required List<global::Orb.Models.Subscriptions.Tier11> Tiers
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.Tier11> Tiers
     {
         get
         {
