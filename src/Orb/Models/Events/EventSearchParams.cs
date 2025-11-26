@@ -40,7 +40,7 @@ public sealed record class EventSearchParams : ParamsBase
     /// supports events that have not been amended. Values in this array will be
     /// treated case sensitively.
     /// </summary>
-    public required List<string> EventIDs
+    public required IReadOnlyList<string> EventIDs
     {
         get
         {

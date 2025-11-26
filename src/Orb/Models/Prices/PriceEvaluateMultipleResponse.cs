@@ -14,7 +14,7 @@ namespace Orb.Models.Prices;
 )]
 public sealed record class PriceEvaluateMultipleResponse : ModelBase
 {
-    public required List<Data> Data
+    public required IReadOnlyList<Data> Data
     {
         get
         {
@@ -118,7 +118,7 @@ public sealed record class Data : ModelBase
     /// <summary>
     /// The computed price groups associated with input price.
     /// </summary>
-    public required List<EvaluatePriceGroup> PriceGroups
+    public required IReadOnlyList<EvaluatePriceGroup> PriceGroups
     {
         get
         {

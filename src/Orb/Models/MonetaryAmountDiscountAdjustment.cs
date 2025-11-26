@@ -133,7 +133,7 @@ public sealed record class MonetaryAmountDiscountAdjustment : ModelBase
     /// The price IDs that this adjustment applies to.
     /// </summary>
     [System::Obsolete("deprecated")]
-    public required List<string> AppliesToPriceIDs
+    public required IReadOnlyList<string> AppliesToPriceIDs
     {
         get
         {
@@ -164,7 +164,7 @@ public sealed record class MonetaryAmountDiscountAdjustment : ModelBase
     /// <summary>
     /// The filters that determine which prices to apply this adjustment to.
     /// </summary>
-    public required List<Filter6> Filters
+    public required IReadOnlyList<Filter6> Filters
     {
         get
         {
@@ -412,7 +412,7 @@ public sealed record class Filter6 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {

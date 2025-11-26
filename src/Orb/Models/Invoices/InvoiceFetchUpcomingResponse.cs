@@ -153,7 +153,7 @@ public sealed record class InvoiceFetchUpcomingResponse : ModelBase
     /// <summary>
     /// A list of credit notes associated with the invoice
     /// </summary>
-    public required List<global::Orb.Models.Invoices.CreditNote> CreditNotes
+    public required IReadOnlyList<global::Orb.Models.Invoices.CreditNote> CreditNotes
     {
         get
         {
@@ -240,7 +240,7 @@ public sealed record class InvoiceFetchUpcomingResponse : ModelBase
         }
     }
 
-    public required List<global::Orb.Models.Invoices.CustomerBalanceTransaction> CustomerBalanceTransactions
+    public required IReadOnlyList<global::Orb.Models.Invoices.CustomerBalanceTransaction> CustomerBalanceTransactions
     {
         get
         {
@@ -422,7 +422,7 @@ public sealed record class InvoiceFetchUpcomingResponse : ModelBase
         }
     }
 
-    public required List<InvoiceLevelDiscount> Discounts
+    public required IReadOnlyList<InvoiceLevelDiscount> Discounts
     {
         get
         {
@@ -659,7 +659,7 @@ public sealed record class InvoiceFetchUpcomingResponse : ModelBase
     /// <summary>
     /// The breakdown of prices in this invoice.
     /// </summary>
-    public required List<global::Orb.Models.Invoices.LineItemModel> LineItems
+    public required IReadOnlyList<global::Orb.Models.Invoices.LineItemModel> LineItems
     {
         get
         {
@@ -753,7 +753,7 @@ public sealed record class InvoiceFetchUpcomingResponse : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -845,7 +845,7 @@ public sealed record class InvoiceFetchUpcomingResponse : ModelBase
     /// <summary>
     /// A list of payment attempts associated with the invoice
     /// </summary>
-    public required List<global::Orb.Models.Invoices.PaymentAttempt> PaymentAttempts
+    public required IReadOnlyList<global::Orb.Models.Invoices.PaymentAttempt> PaymentAttempts
     {
         get
         {
@@ -2181,7 +2181,7 @@ public sealed record class LineItemModel : ModelBase
     /// on invoice calculations (ie. usage discounts -> amount discounts -> percentage
     /// discounts -> minimums -> maximums).
     /// </summary>
-    public required List<global::Orb.Models.Invoices.Adjustment> Adjustments
+    public required IReadOnlyList<global::Orb.Models.Invoices.Adjustment> Adjustments
     {
         get
         {
@@ -2496,7 +2496,7 @@ public sealed record class LineItemModel : ModelBase
     /// For complex pricing structures, the line item can be broken down further
     /// in `sub_line_items`.
     /// </summary>
-    public required List<global::Orb.Models.Invoices.SubLineItem> SubLineItems
+    public required IReadOnlyList<global::Orb.Models.Invoices.SubLineItem> SubLineItems
     {
         get
         {
@@ -2559,7 +2559,7 @@ public sealed record class LineItemModel : ModelBase
     /// An array of tax rates and their incurred tax amounts. Empty if no tax integration
     /// is configured.
     /// </summary>
-    public required List<TaxAmount> TaxAmounts
+    public required IReadOnlyList<TaxAmount> TaxAmounts
     {
         get
         {
@@ -2590,7 +2590,7 @@ public sealed record class LineItemModel : ModelBase
     /// <summary>
     /// A list of customer ids that were used to calculate the usage for this line item.
     /// </summary>
-    public required List<string>? UsageCustomerIDs
+    public required IReadOnlyList<string>? UsageCustomerIDs
     {
         get
         {

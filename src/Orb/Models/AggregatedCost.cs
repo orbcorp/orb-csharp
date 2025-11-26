@@ -12,7 +12,7 @@ namespace Orb.Models;
 [JsonConverter(typeof(ModelConverter<AggregatedCost, AggregatedCostFromRaw>))]
 public sealed record class AggregatedCost : ModelBase
 {
-    public required List<PerPriceCost> PerPriceCosts
+    public required IReadOnlyList<PerPriceCost> PerPriceCosts
     {
         get
         {

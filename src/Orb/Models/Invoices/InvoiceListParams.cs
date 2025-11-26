@@ -401,7 +401,7 @@ public sealed record class InvoiceListParams : ParamsBase
         }
     }
 
-    public List<ApiEnum<string, global::Orb.Models.Invoices.Status>>? Status
+    public IReadOnlyList<ApiEnum<string, global::Orb.Models.Invoices.Status>>? Status
     {
         get
         {

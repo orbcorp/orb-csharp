@@ -432,7 +432,7 @@ public sealed record class NewFloatingTieredPackageWithMinimumPrice : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -653,7 +653,7 @@ public sealed record class TieredPackageWithMinimumConfig : ModelBase
     /// Apply tiered pricing after rounding up the quantity to the package size.
     /// Tiers are defined using exclusive lower bounds.
     /// </summary>
-    public required List<Tier5> Tiers
+    public required IReadOnlyList<Tier5> Tiers
     {
         get
         {

@@ -12,7 +12,7 @@ namespace Orb.Models.Customers.Credits.TopUps;
 [JsonConverter(typeof(ModelConverter<TopUpListPageResponse, TopUpListPageResponseFromRaw>))]
 public sealed record class TopUpListPageResponse : ModelBase
 {
-    public required List<global::Orb.Models.Customers.Credits.TopUps.Data> Data
+    public required IReadOnlyList<global::Orb.Models.Customers.Credits.TopUps.Data> Data
     {
         get
         {

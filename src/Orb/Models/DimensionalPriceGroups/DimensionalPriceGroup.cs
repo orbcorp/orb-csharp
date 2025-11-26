@@ -78,7 +78,7 @@ public sealed record class DimensionalPriceGroup : ModelBase
     /// <summary>
     /// The dimensions that this dimensional price group is defined over
     /// </summary>
-    public required List<string> Dimensions
+    public required IReadOnlyList<string> Dimensions
     {
         get
         {
@@ -133,7 +133,7 @@ public sealed record class DimensionalPriceGroup : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {

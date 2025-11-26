@@ -18,7 +18,7 @@ public sealed record class TieredConfig : ModelBase
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
     /// </summary>
-    public required List<SharedTier> Tiers
+    public required IReadOnlyList<SharedTier> Tiers
     {
         get
         {

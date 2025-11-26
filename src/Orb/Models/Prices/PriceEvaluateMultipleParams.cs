@@ -152,7 +152,7 @@ public sealed record class PriceEvaluateMultipleParams : ParamsBase
     /// <summary>
     /// List of prices to evaluate (max 100)
     /// </summary>
-    public List<PriceEvaluation>? PriceEvaluations
+    public IReadOnlyList<PriceEvaluation>? PriceEvaluations
     {
         get
         {
@@ -291,7 +291,7 @@ public sealed record class PriceEvaluation : ModelBase
     /// Properties (or [computed properties](/extensibility/advanced-metrics#computed-properties))
     /// used to group the underlying billable metric
     /// </summary>
-    public List<string>? GroupingKeys
+    public IReadOnlyList<string>? GroupingKeys
     {
         get
         {
@@ -2816,7 +2816,7 @@ public sealed record class PriceBulkWithFilters : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -2907,7 +2907,7 @@ public sealed record class PriceBulkWithFiltersBulkWithFiltersConfig : ModelBase
     /// <summary>
     /// Property filters to apply (all must match)
     /// </summary>
-    public required List<global::Orb.Models.Prices.FilterModel> Filters
+    public required IReadOnlyList<global::Orb.Models.Prices.FilterModel> Filters
     {
         get
         {
@@ -2938,7 +2938,7 @@ public sealed record class PriceBulkWithFiltersBulkWithFiltersConfig : ModelBase
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required List<global::Orb.Models.Prices.TierModel> Tiers
+    public required IReadOnlyList<global::Orb.Models.Prices.TierModel> Tiers
     {
         get
         {
@@ -3945,7 +3945,7 @@ public sealed record class PriceGroupedWithMinMaxThresholds : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -4922,7 +4922,7 @@ public sealed record class PriceCumulativeGroupedAllocation : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -5892,7 +5892,7 @@ public sealed record class PricePercent : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -6748,7 +6748,7 @@ public sealed record class PriceEventOutput : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {

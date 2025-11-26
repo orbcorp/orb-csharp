@@ -430,7 +430,7 @@ public sealed record class NewSubscriptionScalableMatrixWithUnitPricingPrice : M
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -681,7 +681,7 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : ModelBase
     /// <summary>
     /// Apply a scaling factor to each dimension
     /// </summary>
-    public required List<global::Orb.Models.Subscriptions.MatrixScalingFactorModel> MatrixScalingFactors
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.MatrixScalingFactorModel> MatrixScalingFactors
     {
         get
         {

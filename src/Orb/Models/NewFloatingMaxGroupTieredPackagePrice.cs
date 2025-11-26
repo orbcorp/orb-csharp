@@ -432,7 +432,7 @@ public sealed record class NewFloatingMaxGroupTieredPackagePrice : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -637,7 +637,7 @@ public sealed record class MaxGroupTieredPackageConfig : ModelBase
     /// <summary>
     /// Apply tiered pricing to the largest group after grouping with the provided key.
     /// </summary>
-    public required List<Tier2> Tiers
+    public required IReadOnlyList<Tier2> Tiers
     {
         get
         {

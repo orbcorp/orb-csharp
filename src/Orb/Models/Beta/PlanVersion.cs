@@ -21,7 +21,7 @@ public sealed record class PlanVersion : ModelBase
     /// Adjustments for this plan. If the plan has phases, this includes adjustments
     /// across all phases of the plan.
     /// </summary>
-    public required List<global::Orb.Models.Beta.Adjustment> Adjustments
+    public required IReadOnlyList<global::Orb.Models.Beta.Adjustment> Adjustments
     {
         get
         {
@@ -79,7 +79,7 @@ public sealed record class PlanVersion : ModelBase
         }
     }
 
-    public required List<PlanVersionPhase>? PlanPhases
+    public required IReadOnlyList<PlanVersionPhase>? PlanPhases
     {
         get
         {
@@ -104,7 +104,7 @@ public sealed record class PlanVersion : ModelBase
     /// Prices for this plan. If the plan has phases, this includes prices across
     /// all phases of the plan.
     /// </summary>
-    public required List<Models::Price> Prices
+    public required IReadOnlyList<Models::Price> Prices
     {
         get
         {

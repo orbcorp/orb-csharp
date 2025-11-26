@@ -215,7 +215,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
     /// Additional adjustments to be added to the subscription. (Only available for
     /// accounts that have migrated off of legacy subscription overrides)
     /// </summary>
-    public List<AddAdjustment>? AddAdjustments
+    public IReadOnlyList<AddAdjustment>? AddAdjustments
     {
         get
         {
@@ -240,7 +240,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
     /// Additional prices to be added to the subscription. (Only available for accounts
     /// that have migrated off of legacy subscription overrides)
     /// </summary>
-    public List<AddPrice>? AddPrices
+    public IReadOnlyList<AddPrice>? AddPrices
     {
         get
         {
@@ -634,7 +634,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -769,7 +769,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
     /// Optionally provide a list of overrides for prices on the plan
     /// </summary>
     [System::Obsolete("deprecated")]
-    public List<JsonElement>? PriceOverrides
+    public IReadOnlyList<JsonElement>? PriceOverrides
     {
         get
         {
@@ -794,7 +794,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
     /// Plan adjustments to be removed from the subscription. (Only available for
     /// accounts that have migrated off of legacy subscription overrides)
     /// </summary>
-    public List<RemoveAdjustment>? RemoveAdjustments
+    public IReadOnlyList<RemoveAdjustment>? RemoveAdjustments
     {
         get
         {
@@ -819,7 +819,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
     /// Plan prices to be removed from the subscription. (Only available for accounts
     /// that have migrated off of legacy subscription overrides)
     /// </summary>
-    public List<RemovePrice>? RemovePrices
+    public IReadOnlyList<RemovePrice>? RemovePrices
     {
         get
         {
@@ -844,7 +844,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
     /// Plan adjustments to be replaced with additional adjustments on the subscription.
     /// (Only available for accounts that have migrated off of legacy subscription overrides)
     /// </summary>
-    public List<ReplaceAdjustment>? ReplaceAdjustments
+    public IReadOnlyList<ReplaceAdjustment>? ReplaceAdjustments
     {
         get
         {
@@ -869,7 +869,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
     /// Plan prices to be replaced with additional prices on the subscription. (Only
     /// available for accounts that have migrated off of legacy subscription overrides)
     /// </summary>
-    public List<ReplacePrice>? ReplacePrices
+    public IReadOnlyList<ReplacePrice>? ReplacePrices
     {
         get
         {
@@ -942,7 +942,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
     /// only. Provided usage_customer_ids must be either the customer for this subscription
     /// itself, or any of that customer's children.
     /// </summary>
-    public List<string>? UsageCustomerIDs
+    public IReadOnlyList<string>? UsageCustomerIDs
     {
         get
         {
@@ -1526,7 +1526,7 @@ public sealed record class AddPrice : ModelBase
     /// this price.
     /// </summary>
     [System::Obsolete("deprecated")]
-    public List<DiscountOverride>? Discounts
+    public IReadOnlyList<DiscountOverride>? Discounts
     {
         get
         {
@@ -4326,7 +4326,7 @@ public sealed record class BulkWithFilters : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -4440,7 +4440,7 @@ public sealed record class BulkWithFiltersConfig : ModelBase
     /// <summary>
     /// Property filters to apply (all must match)
     /// </summary>
-    public required List<global::Orb.Models.Subscriptions.Filter> Filters
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.Filter> Filters
     {
         get
         {
@@ -4471,7 +4471,7 @@ public sealed record class BulkWithFiltersConfig : ModelBase
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required List<global::Orb.Models.Subscriptions.Tier> Tiers
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.Tier> Tiers
     {
         get
         {
@@ -5464,7 +5464,7 @@ public sealed record class TieredWithProration : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -5696,7 +5696,7 @@ public sealed record class TieredWithProrationConfig : ModelBase
     /// Tiers for rating based on total usage quantities into the specified tier
     /// with proration
     /// </summary>
-    public required List<global::Orb.Models.Subscriptions.TierModel> Tiers
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.TierModel> Tiers
     {
         get
         {
@@ -6490,7 +6490,7 @@ public sealed record class GroupedWithMinMaxThresholds : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -7519,7 +7519,7 @@ public sealed record class CumulativeGroupedAllocation : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -8542,7 +8542,7 @@ public sealed record class Percent : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -9433,7 +9433,7 @@ public sealed record class EventOutput : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -10648,7 +10648,7 @@ public sealed record class ReplacePrice : ModelBase
     /// the replacement price.
     /// </summary>
     [System::Obsolete("deprecated")]
-    public List<DiscountOverride>? Discounts
+    public IReadOnlyList<DiscountOverride>? Discounts
     {
         get
         {
@@ -13410,7 +13410,7 @@ public sealed record class ReplacePricePriceBulkWithFilters : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -13524,7 +13524,7 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
     /// <summary>
     /// Property filters to apply (all must match)
     /// </summary>
-    public required List<global::Orb.Models.Subscriptions.FilterModel> Filters
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.FilterModel> Filters
     {
         get
         {
@@ -13555,7 +13555,7 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required List<global::Orb.Models.Subscriptions.Tier1> Tiers
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.Tier1> Tiers
     {
         get
         {
@@ -14556,7 +14556,7 @@ public sealed record class ReplacePricePriceTieredWithProration : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -14786,7 +14786,7 @@ public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrati
     /// Tiers for rating based on total usage quantities into the specified tier
     /// with proration
     /// </summary>
-    public required List<global::Orb.Models.Subscriptions.Tier2> Tiers
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.Tier2> Tiers
     {
         get
         {
@@ -15579,7 +15579,7 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholds : ModelB
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -16583,7 +16583,7 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocation : ModelB
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -17580,7 +17580,7 @@ public sealed record class ReplacePricePricePercent : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -18466,7 +18466,7 @@ public sealed record class ReplacePricePriceEventOutput : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {

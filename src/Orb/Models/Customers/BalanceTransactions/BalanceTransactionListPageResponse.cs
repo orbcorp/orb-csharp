@@ -17,7 +17,7 @@ namespace Orb.Models.Customers.BalanceTransactions;
 )]
 public sealed record class BalanceTransactionListPageResponse : ModelBase
 {
-    public required List<Data> Data
+    public required IReadOnlyList<Data> Data
     {
         get
         {

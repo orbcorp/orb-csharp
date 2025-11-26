@@ -24,7 +24,7 @@ public sealed record class ItemUpdateParams : ParamsBase
 
     public string? ItemID { get; init; }
 
-    public List<ExternalConnection>? ExternalConnections
+    public IReadOnlyList<ExternalConnection>? ExternalConnections
     {
         get
         {
@@ -50,7 +50,7 @@ public sealed record class ItemUpdateParams : ParamsBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {

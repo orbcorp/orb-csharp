@@ -421,7 +421,7 @@ public sealed record class NewSubscriptionBulkWithProrationPrice : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -530,7 +530,7 @@ public sealed record class BulkWithProrationConfig : ModelBase
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required List<global::Orb.Models.Subscriptions.Tier8> Tiers
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.Tier8> Tiers
     {
         get
         {

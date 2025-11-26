@@ -14,7 +14,7 @@ namespace Orb.Models;
 )]
 public sealed record class DimensionalPriceConfiguration : ModelBase
 {
-    public required List<string> DimensionValues
+    public required IReadOnlyList<string> DimensionValues
     {
         get
         {

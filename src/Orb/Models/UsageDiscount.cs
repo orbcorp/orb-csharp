@@ -71,7 +71,7 @@ public sealed record class UsageDiscount : ModelBase
     /// List of price_ids that this discount applies to. For plan/plan phase discounts,
     /// this can be a subset of prices.
     /// </summary>
-    public List<string>? AppliesToPriceIDs
+    public IReadOnlyList<string>? AppliesToPriceIDs
     {
         get
         {
@@ -92,7 +92,7 @@ public sealed record class UsageDiscount : ModelBase
     /// <summary>
     /// The filters that determine which prices to apply this discount to.
     /// </summary>
-    public List<Filter26>? Filters
+    public IReadOnlyList<Filter26>? Filters
     {
         get
         {
@@ -271,7 +271,7 @@ public sealed record class Filter26 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {

@@ -715,7 +715,7 @@ public sealed record class BodyModelIncrement : ModelBase
     /// Optional filter to specify which items this credit block applies to. If not
     /// specified, the block will apply to all items for the pricing unit.
     /// </summary>
-    public List<global::Orb.Models.Customers.Credits.Ledger.FilterModel>? Filters
+    public IReadOnlyList<global::Orb.Models.Customers.Credits.Ledger.FilterModel>? Filters
     {
         get
         {
@@ -767,7 +767,7 @@ public sealed record class BodyModelIncrement : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -987,7 +987,7 @@ public sealed record class FilterModel : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {
@@ -1884,7 +1884,7 @@ public sealed record class BodyModelDecrement : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -2195,7 +2195,7 @@ public sealed record class BodyModelExpirationChange : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -2460,7 +2460,7 @@ public sealed record class BodyModelVoid : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -2774,7 +2774,7 @@ public sealed record class BodyModelAmendment : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {

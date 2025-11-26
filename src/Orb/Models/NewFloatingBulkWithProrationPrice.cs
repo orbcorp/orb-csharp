@@ -427,7 +427,7 @@ public sealed record class NewFloatingBulkWithProrationPrice : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -508,7 +508,7 @@ public sealed record class BulkWithProrationConfig : ModelBase
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required List<Tier> Tiers
+    public required IReadOnlyList<Tier> Tiers
     {
         get
         {

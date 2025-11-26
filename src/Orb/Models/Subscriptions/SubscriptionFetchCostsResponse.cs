@@ -14,7 +14,7 @@ namespace Orb.Models.Subscriptions;
 )]
 public sealed record class SubscriptionFetchCostsResponse : ModelBase
 {
-    public required List<AggregatedCost> Data
+    public required IReadOnlyList<AggregatedCost> Data
     {
         get
         {

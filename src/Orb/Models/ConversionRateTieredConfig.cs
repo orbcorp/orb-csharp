@@ -17,7 +17,7 @@ public sealed record class ConversionRateTieredConfig : ModelBase
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
     /// </summary>
-    public required List<ConversionRateTier> Tiers
+    public required IReadOnlyList<ConversionRateTier> Tiers
     {
         get
         {

@@ -184,7 +184,7 @@ public sealed record class EventIngestParams : ParamsBase
         get { return this._rawBodyData.Freeze(); }
     }
 
-    public required List<Event> Events
+    public required IReadOnlyList<Event> Events
     {
         get
         {
@@ -385,7 +385,7 @@ public sealed record class Event : ModelBase
     /// A dictionary of custom properties. Values in this dictionary must be numeric,
     /// boolean, or strings. Nested dictionaries are disallowed.
     /// </summary>
-    public required Dictionary<string, JsonElement> Properties
+    public required IReadOnlyDictionary<string, JsonElement> Properties
     {
         get
         {

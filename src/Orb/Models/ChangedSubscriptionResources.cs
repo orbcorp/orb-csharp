@@ -17,7 +17,7 @@ public sealed record class ChangedSubscriptionResources : ModelBase
     /// <summary>
     /// The credit notes that were created as part of this operation.
     /// </summary>
-    public required List<SharedCreditNote> CreatedCreditNotes
+    public required IReadOnlyList<SharedCreditNote> CreatedCreditNotes
     {
         get
         {
@@ -51,7 +51,7 @@ public sealed record class ChangedSubscriptionResources : ModelBase
     /// <summary>
     /// The invoices that were created as part of this operation.
     /// </summary>
-    public required List<CreatedInvoice> CreatedInvoices
+    public required IReadOnlyList<CreatedInvoice> CreatedInvoices
     {
         get
         {
@@ -85,7 +85,7 @@ public sealed record class ChangedSubscriptionResources : ModelBase
     /// <summary>
     /// The credit notes that were voided as part of this operation.
     /// </summary>
-    public required List<SharedCreditNote> VoidedCreditNotes
+    public required IReadOnlyList<SharedCreditNote> VoidedCreditNotes
     {
         get
         {
@@ -119,7 +119,7 @@ public sealed record class ChangedSubscriptionResources : ModelBase
     /// <summary>
     /// The invoices that were voided as part of this operation.
     /// </summary>
-    public required List<Invoice> VoidedInvoices
+    public required IReadOnlyList<Invoice> VoidedInvoices
     {
         get
         {
@@ -336,7 +336,7 @@ public sealed record class CreatedInvoice : ModelBase
     /// <summary>
     /// A list of credit notes associated with the invoice
     /// </summary>
-    public required List<CreditNote> CreditNotes
+    public required IReadOnlyList<CreditNote> CreditNotes
     {
         get
         {
@@ -423,7 +423,7 @@ public sealed record class CreatedInvoice : ModelBase
         }
     }
 
-    public required List<CustomerBalanceTransaction> CustomerBalanceTransactions
+    public required IReadOnlyList<CustomerBalanceTransaction> CustomerBalanceTransactions
     {
         get
         {
@@ -606,7 +606,7 @@ public sealed record class CreatedInvoice : ModelBase
         }
     }
 
-    public required List<InvoiceLevelDiscount> Discounts
+    public required IReadOnlyList<InvoiceLevelDiscount> Discounts
     {
         get
         {
@@ -901,7 +901,7 @@ public sealed record class CreatedInvoice : ModelBase
     /// <summary>
     /// The breakdown of prices in this invoice.
     /// </summary>
-    public required List<LineItem> LineItems
+    public required IReadOnlyList<LineItem> LineItems
     {
         get
         {
@@ -992,7 +992,7 @@ public sealed record class CreatedInvoice : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -1084,7 +1084,7 @@ public sealed record class CreatedInvoice : ModelBase
     /// <summary>
     /// A list of payment attempts associated with the invoice
     /// </summary>
-    public required List<PaymentAttempt> PaymentAttempts
+    public required IReadOnlyList<PaymentAttempt> PaymentAttempts
     {
         get
         {
@@ -2358,7 +2358,7 @@ public sealed record class LineItem : ModelBase
     /// on invoice calculations (ie. usage discounts -> amount discounts -> percentage
     /// discounts -> minimums -> maximums).
     /// </summary>
-    public required List<Adjustment> Adjustments
+    public required IReadOnlyList<Adjustment> Adjustments
     {
         get
         {
@@ -2673,7 +2673,7 @@ public sealed record class LineItem : ModelBase
     /// For complex pricing structures, the line item can be broken down further
     /// in `sub_line_items`.
     /// </summary>
-    public required List<SubLineItem> SubLineItems
+    public required IReadOnlyList<SubLineItem> SubLineItems
     {
         get
         {
@@ -2736,7 +2736,7 @@ public sealed record class LineItem : ModelBase
     /// An array of tax rates and their incurred tax amounts. Empty if no tax integration
     /// is configured.
     /// </summary>
-    public required List<TaxAmount> TaxAmounts
+    public required IReadOnlyList<TaxAmount> TaxAmounts
     {
         get
         {
@@ -2767,7 +2767,7 @@ public sealed record class LineItem : ModelBase
     /// <summary>
     /// A list of customer ids that were used to calculate the usage for this line item.
     /// </summary>
-    public required List<string>? UsageCustomerIDs
+    public required IReadOnlyList<string>? UsageCustomerIDs
     {
         get
         {

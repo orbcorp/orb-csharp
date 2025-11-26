@@ -424,7 +424,7 @@ public sealed record class NewFloatingGroupedTieredPrice : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -596,7 +596,7 @@ public sealed record class GroupedTieredConfig : ModelBase
     /// <summary>
     /// Apply tiered pricing to each segment generated after grouping with the provided key
     /// </summary>
-    public required List<Tier1> Tiers
+    public required IReadOnlyList<Tier1> Tiers
     {
         get
         {

@@ -12,7 +12,7 @@ namespace Orb.Models.Items;
 [JsonConverter(typeof(ModelConverter<ItemListPageResponse, ItemListPageResponseFromRaw>))]
 public sealed record class ItemListPageResponse : ModelBase
 {
-    public required List<Item> Data
+    public required IReadOnlyList<Item> Data
     {
         get
         {

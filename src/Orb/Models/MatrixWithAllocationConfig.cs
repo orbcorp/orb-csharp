@@ -79,7 +79,7 @@ public sealed record class MatrixWithAllocationConfig : ModelBase
     /// <summary>
     /// One or two event property values to evaluate matrix groups by
     /// </summary>
-    public required List<string?> Dimensions
+    public required IReadOnlyList<string?> Dimensions
     {
         get
         {
@@ -107,7 +107,7 @@ public sealed record class MatrixWithAllocationConfig : ModelBase
     /// <summary>
     /// Matrix values configuration
     /// </summary>
-    public required List<MatrixValue> MatrixValues
+    public required IReadOnlyList<MatrixValue> MatrixValues
     {
         get
         {
@@ -187,7 +187,7 @@ public sealed record class MatrixValue : ModelBase
     /// ["region", "tier"] could be used to filter cloud usage by a cloud region
     /// and an instance tier.
     /// </summary>
-    public required List<string?> DimensionValues
+    public required IReadOnlyList<string?> DimensionValues
     {
         get
         {

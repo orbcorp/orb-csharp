@@ -14,7 +14,7 @@ public sealed record class CustomerHierarchyConfig : ModelBase
     /// A list of child customer IDs to add to the hierarchy. The desired child customers
     /// must not already be part of another hierarchy.
     /// </summary>
-    public List<string>? ChildCustomerIDs
+    public IReadOnlyList<string>? ChildCustomerIDs
     {
         get
         {

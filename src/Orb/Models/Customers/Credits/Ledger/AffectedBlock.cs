@@ -58,7 +58,7 @@ public sealed record class AffectedBlock : ModelBase
         }
     }
 
-    public required List<global::Orb.Models.Customers.Credits.Ledger.Filter1> Filters
+    public required IReadOnlyList<global::Orb.Models.Customers.Credits.Ledger.Filter1> Filters
     {
         get
         {
@@ -207,7 +207,7 @@ public sealed record class Filter1 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {

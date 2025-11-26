@@ -209,7 +209,7 @@ public sealed record class PriceInterval : ModelBase
     /// The fixed fee quantity transitions for this price interval. This is only
     /// relevant for fixed fees.
     /// </summary>
-    public required List<FixedFeeQuantityTransition>? FixedFeeQuantityTransitions
+    public required IReadOnlyList<FixedFeeQuantityTransition>? FixedFeeQuantityTransitions
     {
         get
         {
@@ -300,7 +300,7 @@ public sealed record class PriceInterval : ModelBase
     /// A list of customer IDs whose usage events will be aggregated and billed under
     /// this price interval.
     /// </summary>
-    public required List<string>? UsageCustomerIDs
+    public required IReadOnlyList<string>? UsageCustomerIDs
     {
         get
         {

@@ -71,7 +71,7 @@ public sealed record class AdjustmentInterval : ModelBase
     /// <summary>
     /// The price interval IDs that this adjustment applies to.
     /// </summary>
-    public required List<string> AppliesToPriceIntervalIDs
+    public required IReadOnlyList<string> AppliesToPriceIntervalIDs
     {
         get
         {

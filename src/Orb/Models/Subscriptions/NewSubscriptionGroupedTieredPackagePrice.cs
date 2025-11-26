@@ -423,7 +423,7 @@ public sealed record class NewSubscriptionGroupedTieredPackagePrice : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -658,7 +658,7 @@ public sealed record class GroupedTieredPackageConfig : ModelBase
     /// Apply tiered pricing after rounding up the quantity to the package size.
     /// Tiers are defined using exclusive lower bounds.
     /// </summary>
-    public required List<global::Orb.Models.Subscriptions.Tier9> Tiers
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.Tier9> Tiers
     {
         get
         {

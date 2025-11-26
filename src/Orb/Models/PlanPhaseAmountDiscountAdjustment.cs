@@ -104,7 +104,7 @@ public sealed record class PlanPhaseAmountDiscountAdjustment : ModelBase
     /// The price IDs that this adjustment applies to.
     /// </summary>
     [System::Obsolete("deprecated")]
-    public required List<string> AppliesToPriceIDs
+    public required IReadOnlyList<string> AppliesToPriceIDs
     {
         get
         {
@@ -135,7 +135,7 @@ public sealed record class PlanPhaseAmountDiscountAdjustment : ModelBase
     /// <summary>
     /// The filters that determine which prices to apply this adjustment to.
     /// </summary>
-    public required List<Filter19> Filters
+    public required IReadOnlyList<Filter19> Filters
     {
         get
         {
@@ -405,7 +405,7 @@ public sealed record class Filter19 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {

@@ -17,7 +17,7 @@ namespace Orb.Models.Customers.Credits.TopUps;
 )]
 public sealed record class TopUpListByExternalIDPageResponse : ModelBase
 {
-    public required List<global::Orb.Models.Customers.Credits.TopUps.DataModel> Data
+    public required IReadOnlyList<global::Orb.Models.Customers.Credits.TopUps.DataModel> Data
     {
         get
         {

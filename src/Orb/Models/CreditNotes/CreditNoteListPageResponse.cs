@@ -14,7 +14,7 @@ namespace Orb.Models.CreditNotes;
 )]
 public sealed record class CreditNoteListPageResponse : ModelBase
 {
-    public required List<SharedCreditNote> Data
+    public required IReadOnlyList<SharedCreditNote> Data
     {
         get
         {

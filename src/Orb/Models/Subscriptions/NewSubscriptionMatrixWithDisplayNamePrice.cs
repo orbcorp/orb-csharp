@@ -426,7 +426,7 @@ public sealed record class NewSubscriptionMatrixWithDisplayNamePrice : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -629,7 +629,7 @@ public sealed record class MatrixWithDisplayNameConfig : ModelBase
     /// <summary>
     /// Apply per unit pricing to each dimension value
     /// </summary>
-    public required List<global::Orb.Models.Subscriptions.UnitAmountModel> UnitAmounts
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.UnitAmountModel> UnitAmounts
     {
         get
         {

@@ -79,7 +79,7 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     /// on invoice calculations (ie. usage discounts -> amount discounts -> percentage
     /// discounts -> minimums -> maximums).
     /// </summary>
-    public required List<global::Orb.Models.InvoiceLineItems.Adjustment> Adjustments
+    public required IReadOnlyList<global::Orb.Models.InvoiceLineItems.Adjustment> Adjustments
     {
         get
         {
@@ -394,7 +394,7 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     /// For complex pricing structures, the line item can be broken down further
     /// in `sub_line_items`.
     /// </summary>
-    public required List<global::Orb.Models.InvoiceLineItems.SubLineItem> SubLineItems
+    public required IReadOnlyList<global::Orb.Models.InvoiceLineItems.SubLineItem> SubLineItems
     {
         get
         {
@@ -456,7 +456,7 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     /// An array of tax rates and their incurred tax amounts. Empty if no tax integration
     /// is configured.
     /// </summary>
-    public required List<TaxAmount> TaxAmounts
+    public required IReadOnlyList<TaxAmount> TaxAmounts
     {
         get
         {
@@ -487,7 +487,7 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     /// <summary>
     /// A list of customer ids that were used to calculate the usage for this line item.
     /// </summary>
-    public required List<string>? UsageCustomerIDs
+    public required IReadOnlyList<string>? UsageCustomerIDs
     {
         get
         {

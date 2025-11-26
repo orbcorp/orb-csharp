@@ -46,7 +46,7 @@ public sealed record class CreditNoteCreateParams : ParamsBase
         get { return this._rawBodyData.Freeze(); }
     }
 
-    public required List<global::Orb.Models.CreditNotes.LineItem> LineItems
+    public required IReadOnlyList<global::Orb.Models.CreditNotes.LineItem> LineItems
     {
         get
         {

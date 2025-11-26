@@ -93,7 +93,7 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
     /// <summary>
     /// A list of price intervals to add to the subscription.
     /// </summary>
-    public List<Add>? Add
+    public IReadOnlyList<Add>? Add
     {
         get
         {
@@ -119,7 +119,7 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
     /// <summary>
     /// A list of adjustments to add to the subscription.
     /// </summary>
-    public List<AddAdjustmentModel>? AddAdjustments
+    public IReadOnlyList<AddAdjustmentModel>? AddAdjustments
     {
         get
         {
@@ -198,7 +198,7 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
     /// <summary>
     /// A list of price intervals to edit on the subscription.
     /// </summary>
-    public List<Edit>? Edit
+    public IReadOnlyList<Edit>? Edit
     {
         get
         {
@@ -224,7 +224,7 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
     /// <summary>
     /// A list of adjustments to edit on the subscription.
     /// </summary>
-    public List<EditAdjustment>? EditAdjustments
+    public IReadOnlyList<EditAdjustment>? EditAdjustments
     {
         get
         {
@@ -401,7 +401,7 @@ public sealed record class Add : ModelBase
     /// <summary>
     /// A list of discounts to initialize on the price interval.
     /// </summary>
-    public List<global::Orb.Models.Subscriptions.Discount>? Discounts
+    public IReadOnlyList<global::Orb.Models.Subscriptions.Discount>? Discounts
     {
         get
         {
@@ -491,7 +491,7 @@ public sealed record class Add : ModelBase
     /// <summary>
     /// A list of fixed fee quantity transitions to initialize on the price interval.
     /// </summary>
-    public List<global::Orb.Models.Subscriptions.FixedFeeQuantityTransition>? FixedFeeQuantityTransitions
+    public IReadOnlyList<global::Orb.Models.Subscriptions.FixedFeeQuantityTransition>? FixedFeeQuantityTransitions
     {
         get
         {
@@ -611,7 +611,7 @@ public sealed record class Add : ModelBase
     /// only. Provided usage_customer_ids must be either the customer for this subscription
     /// itself, or any of that customer's children.
     /// </summary>
-    public List<string>? UsageCustomerIDs
+    public IReadOnlyList<string>? UsageCustomerIDs
     {
         get
         {
@@ -4111,7 +4111,7 @@ public sealed record class PriceModelBulkWithFilters : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -4202,7 +4202,7 @@ public sealed record class PriceModelBulkWithFiltersBulkWithFiltersConfig : Mode
     /// <summary>
     /// Property filters to apply (all must match)
     /// </summary>
-    public required List<global::Orb.Models.Subscriptions.Filter1> Filters
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.Filter1> Filters
     {
         get
         {
@@ -4233,7 +4233,7 @@ public sealed record class PriceModelBulkWithFiltersBulkWithFiltersConfig : Mode
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required List<global::Orb.Models.Subscriptions.Tier3> Tiers
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.Tier3> Tiers
     {
         get
         {
@@ -5241,7 +5241,7 @@ public sealed record class PriceModelGroupedWithMinMaxThresholds : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -6225,7 +6225,7 @@ public sealed record class PriceModelCumulativeGroupedAllocation : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -7202,7 +7202,7 @@ public sealed record class PriceModelPercent : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -8064,7 +8064,7 @@ public sealed record class PriceModelEventOutput : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -9469,7 +9469,7 @@ public sealed record class Edit : ModelBase
     /// that this list will overwrite all existing fixed fee quantity transitions
     /// on the price interval.
     /// </summary>
-    public List<FixedFeeQuantityTransitionModel>? FixedFeeQuantityTransitions
+    public IReadOnlyList<FixedFeeQuantityTransitionModel>? FixedFeeQuantityTransitions
     {
         get
         {
@@ -9530,7 +9530,7 @@ public sealed record class Edit : ModelBase
     /// only. Provided usage_customer_ids must be either the customer for this subscription
     /// itself, or any of that customer's children.
     /// </summary>
-    public List<string>? UsageCustomerIDs
+    public IReadOnlyList<string>? UsageCustomerIDs
     {
         get
         {

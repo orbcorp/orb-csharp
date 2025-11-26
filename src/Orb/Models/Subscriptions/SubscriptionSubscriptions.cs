@@ -12,7 +12,7 @@ namespace Orb.Models.Subscriptions;
 [JsonConverter(typeof(ModelConverter<SubscriptionSubscriptions, SubscriptionSubscriptionsFromRaw>))]
 public sealed record class SubscriptionSubscriptions : ModelBase
 {
-    public required List<Subscription> Data
+    public required IReadOnlyList<Subscription> Data
     {
         get
         {

@@ -14,7 +14,7 @@ namespace Orb.Models.Customers.Costs;
 )]
 public sealed record class CostListByExternalIDResponse : ModelBase
 {
-    public required List<AggregatedCost> Data
+    public required IReadOnlyList<AggregatedCost> Data
     {
         get
         {

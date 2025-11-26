@@ -16,7 +16,7 @@ public sealed record class EventIngestResponse : ModelBase
     /// Contains all failing validation events. In the case of a 200, this array will
     /// always be empty. This field will always be present.
     /// </summary>
-    public required List<ValidationFailed> ValidationFailed
+    public required IReadOnlyList<ValidationFailed> ValidationFailed
     {
         get
         {
@@ -148,7 +148,7 @@ public sealed record class ValidationFailed : ModelBase
     /// <summary>
     /// An array of strings corresponding to validation failures for this idempotency_key.
     /// </summary>
-    public required List<string> ValidationErrors
+    public required IReadOnlyList<string> ValidationErrors
     {
         get
         {
@@ -218,7 +218,7 @@ class ValidationFailedFromRaw : IFromRaw<ValidationFailed>
 [JsonConverter(typeof(ModelConverter<Debug, DebugFromRaw>))]
 public sealed record class Debug : ModelBase
 {
-    public required List<string> Duplicate
+    public required IReadOnlyList<string> Duplicate
     {
         get
         {
@@ -243,7 +243,7 @@ public sealed record class Debug : ModelBase
         }
     }
 
-    public required List<string> Ingested
+    public required IReadOnlyList<string> Ingested
     {
         get
         {

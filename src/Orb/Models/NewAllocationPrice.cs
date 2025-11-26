@@ -145,7 +145,7 @@ public sealed record class NewAllocationPrice : ModelBase
     /// <summary>
     /// The filters that determine which items the allocation applies to.
     /// </summary>
-    public List<Filter11>? Filters
+    public IReadOnlyList<Filter11>? Filters
     {
         get
         {
@@ -376,7 +376,7 @@ public sealed record class Filter11 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {

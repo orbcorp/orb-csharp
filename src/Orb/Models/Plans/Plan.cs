@@ -47,7 +47,7 @@ public sealed record class Plan : ModelBase
     /// Adjustments for this plan. If the plan has phases, this includes adjustments
     /// across all phases of the plan.
     /// </summary>
-    public required List<global::Orb.Models.Plans.AdjustmentModel> Adjustments
+    public required IReadOnlyList<global::Orb.Models.Plans.AdjustmentModel> Adjustments
     {
         get
         {
@@ -351,7 +351,7 @@ public sealed record class Plan : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
@@ -467,7 +467,7 @@ public sealed record class Plan : ModelBase
         }
     }
 
-    public required List<PlanPhaseModel>? PlanPhases
+    public required IReadOnlyList<PlanPhaseModel>? PlanPhases
     {
         get
         {
@@ -492,7 +492,7 @@ public sealed record class Plan : ModelBase
     /// Prices for this plan. If the plan has phases, this includes prices across
     /// all phases of the plan.
     /// </summary>
-    public required List<Models::Price> Prices
+    public required IReadOnlyList<Models::Price> Prices
     {
         get
         {

@@ -424,7 +424,7 @@ public sealed record class NewPlanScalableMatrixWithTieredPricingPrice : ModelBa
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -675,7 +675,7 @@ public sealed record class NewPlanScalableMatrixWithTieredPricingPriceScalableMa
     /// <summary>
     /// Apply a scaling factor to each dimension
     /// </summary>
-    public required List<MatrixScalingFactor1> MatrixScalingFactors
+    public required IReadOnlyList<MatrixScalingFactor1> MatrixScalingFactors
     {
         get
         {
@@ -709,7 +709,7 @@ public sealed record class NewPlanScalableMatrixWithTieredPricingPriceScalableMa
     /// <summary>
     /// Tier pricing structure
     /// </summary>
-    public required List<Tier12> Tiers
+    public required IReadOnlyList<Tier12> Tiers
     {
         get
         {

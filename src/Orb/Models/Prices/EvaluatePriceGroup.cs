@@ -43,7 +43,7 @@ public sealed record class EvaluatePriceGroup : ModelBase
     /// <summary>
     /// The values for the group in the order specified by `grouping_keys`
     /// </summary>
-    public required List<GroupingValue> GroupingValues
+    public required IReadOnlyList<GroupingValue> GroupingValues
     {
         get
         {

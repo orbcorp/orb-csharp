@@ -17,7 +17,7 @@ namespace Orb.Models.Customers.Credits.Ledger;
 )]
 public sealed record class LedgerListByExternalIDPageResponse : ModelBase
 {
-    public required List<global::Orb.Models.Customers.Credits.Ledger.DataModel> Data
+    public required IReadOnlyList<global::Orb.Models.Customers.Credits.Ledger.DataModel> Data
     {
         get
         {

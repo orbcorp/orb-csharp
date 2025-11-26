@@ -82,7 +82,7 @@ public sealed record class Allocation : ModelBase
         }
     }
 
-    public List<Filter>? Filters
+    public IReadOnlyList<Filter>? Filters
     {
         get
         {
@@ -203,7 +203,7 @@ public sealed record class Filter : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {

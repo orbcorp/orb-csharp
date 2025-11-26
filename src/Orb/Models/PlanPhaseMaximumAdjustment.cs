@@ -69,7 +69,7 @@ public sealed record class PlanPhaseMaximumAdjustment : ModelBase
     /// The price IDs that this adjustment applies to.
     /// </summary>
     [System::Obsolete("deprecated")]
-    public required List<string> AppliesToPriceIDs
+    public required IReadOnlyList<string> AppliesToPriceIDs
     {
         get
         {
@@ -100,7 +100,7 @@ public sealed record class PlanPhaseMaximumAdjustment : ModelBase
     /// <summary>
     /// The filters that determine which prices to apply this adjustment to.
     /// </summary>
-    public required List<Filter20> Filters
+    public required IReadOnlyList<Filter20> Filters
     {
         get
         {
@@ -402,7 +402,7 @@ public sealed record class Filter20 : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {

@@ -20,7 +20,7 @@ public sealed record class NewDimensionalPriceConfiguration : ModelBase
     /// <summary>
     /// The list of dimension values matching (in order) the dimensions of the price group
     /// </summary>
-    public required List<string> DimensionValues
+    public required IReadOnlyList<string> DimensionValues
     {
         get
         {

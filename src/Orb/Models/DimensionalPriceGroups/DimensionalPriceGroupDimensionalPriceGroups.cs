@@ -17,7 +17,7 @@ namespace Orb.Models.DimensionalPriceGroups;
 )]
 public sealed record class DimensionalPriceGroupDimensionalPriceGroups : ModelBase
 {
-    public required List<DimensionalPriceGroup> Data
+    public required IReadOnlyList<DimensionalPriceGroup> Data
     {
         get
         {

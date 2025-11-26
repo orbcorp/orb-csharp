@@ -12,7 +12,7 @@ namespace Orb.Models.Events.Backfills;
 [JsonConverter(typeof(ModelConverter<BackfillListPageResponse, BackfillListPageResponseFromRaw>))]
 public sealed record class BackfillListPageResponse : ModelBase
 {
-    public required List<global::Orb.Models.Events.Backfills.Data> Data
+    public required IReadOnlyList<global::Orb.Models.Events.Backfills.Data> Data
     {
         get
         {

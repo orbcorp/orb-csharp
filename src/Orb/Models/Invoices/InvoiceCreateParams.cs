@@ -82,7 +82,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
         }
     }
 
-    public required List<global::Orb.Models.Invoices.LineItem> LineItems
+    public required IReadOnlyList<global::Orb.Models.Invoices.LineItem> LineItems
     {
         get
         {
@@ -230,7 +230,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {

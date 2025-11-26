@@ -79,7 +79,7 @@ public sealed record class Item : ModelBase
     /// A list of external connections for this item, used to sync with external invoicing
     /// and tax systems.
     /// </summary>
-    public required List<ExternalConnectionModel> ExternalConnections
+    public required IReadOnlyList<ExternalConnectionModel> ExternalConnections
     {
         get
         {
@@ -116,7 +116,7 @@ public sealed record class Item : ModelBase
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {

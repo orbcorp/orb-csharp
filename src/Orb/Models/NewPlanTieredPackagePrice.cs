@@ -418,7 +418,7 @@ public sealed record class NewPlanTieredPackagePrice : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -666,7 +666,7 @@ public sealed record class NewPlanTieredPackagePriceTieredPackageConfig : ModelB
     /// based on the total quantity rather than the number of packages, so they must
     /// be multiples of the package size.
     /// </summary>
-    public required List<Tier13> Tiers
+    public required IReadOnlyList<Tier13> Tiers
     {
         get
         {

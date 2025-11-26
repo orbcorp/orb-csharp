@@ -12,7 +12,7 @@ namespace Orb.Models.Customers.Credits;
 [JsonConverter(typeof(ModelConverter<CreditListPageResponse, CreditListPageResponseFromRaw>))]
 public sealed record class CreditListPageResponse : ModelBase
 {
-    public required List<Data> Data
+    public required IReadOnlyList<Data> Data
     {
         get
         {
@@ -198,7 +198,7 @@ public sealed record class Data : ModelBase
         }
     }
 
-    public required List<global::Orb.Models.Customers.Credits.Filter> Filters
+    public required IReadOnlyList<global::Orb.Models.Customers.Credits.Filter> Filters
     {
         get
         {
@@ -393,7 +393,7 @@ public sealed record class Filter : ModelBase
     /// <summary>
     /// The IDs or values that match this filter.
     /// </summary>
-    public required List<string> Values
+    public required IReadOnlyList<string> Values
     {
         get
         {

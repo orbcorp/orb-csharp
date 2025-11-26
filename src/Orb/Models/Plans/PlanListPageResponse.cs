@@ -12,7 +12,7 @@ namespace Orb.Models.Plans;
 [JsonConverter(typeof(ModelConverter<PlanListPageResponse, PlanListPageResponseFromRaw>))]
 public sealed record class PlanListPageResponse : ModelBase
 {
-    public required List<Plan> Data
+    public required IReadOnlyList<Plan> Data
     {
         get
         {

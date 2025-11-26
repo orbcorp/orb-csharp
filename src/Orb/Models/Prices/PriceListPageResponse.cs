@@ -13,7 +13,7 @@ namespace Orb.Models.Prices;
 [JsonConverter(typeof(ModelConverter<PriceListPageResponse, PriceListPageResponseFromRaw>))]
 public sealed record class PriceListPageResponse : ModelBase
 {
-    public required List<Models::Price> Data
+    public required IReadOnlyList<Models::Price> Data
     {
         get
         {

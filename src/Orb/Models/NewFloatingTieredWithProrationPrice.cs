@@ -427,7 +427,7 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
@@ -616,7 +616,7 @@ public sealed record class TieredWithProrationConfig : ModelBase
     /// Tiers for rating based on total usage quantities into the specified tier
     /// with proration
     /// </summary>
-    public required List<Tier7> Tiers
+    public required IReadOnlyList<Tier7> Tiers
     {
         get
         {

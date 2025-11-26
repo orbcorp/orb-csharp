@@ -118,7 +118,7 @@ public sealed record class CustomerCreateParams : ParamsBase
     /// will be CC'd for customer communications. The total number of email addresses
     /// (including the primary email) cannot exceed 50.
     /// </summary>
-    public List<string>? AdditionalEmails
+    public IReadOnlyList<string>? AdditionalEmails
     {
         get
         {
@@ -293,7 +293,7 @@ public sealed record class CustomerCreateParams : ParamsBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {

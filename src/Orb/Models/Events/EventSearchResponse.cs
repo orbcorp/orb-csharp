@@ -12,7 +12,7 @@ namespace Orb.Models.Events;
 [JsonConverter(typeof(ModelConverter<EventSearchResponse, EventSearchResponseFromRaw>))]
 public sealed record class EventSearchResponse : ModelBase
 {
-    public required List<Data> Data
+    public required IReadOnlyList<Data> Data
     {
         get
         {
@@ -217,7 +217,7 @@ public sealed record class Data : ModelBase
     /// A dictionary of custom properties. Values in this dictionary must be numeric,
     /// boolean, or strings. Nested dictionaries are disallowed.
     /// </summary>
-    public required Dictionary<string, JsonElement> Properties
+    public required IReadOnlyDictionary<string, JsonElement> Properties
     {
         get
         {
