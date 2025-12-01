@@ -855,6 +855,16 @@ public record class TaxConfiguration1
             );
         }
     }
+
+    public virtual bool Equals(TaxConfiguration1? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class TaxConfiguration1Converter : JsonConverter<TaxConfiguration1?>

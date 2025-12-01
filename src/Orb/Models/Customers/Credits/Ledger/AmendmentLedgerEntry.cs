@@ -222,9 +222,13 @@ public sealed record class AmendmentLedgerEntry : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, AmendmentLedgerEntryEntryStatus>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'entry_status' cannot be null",
+                    new System::ArgumentNullException("entry_status")
+                );
         }
         init
         {
@@ -249,9 +253,13 @@ public sealed record class AmendmentLedgerEntry : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, AmendmentLedgerEntryEntryType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentNullException("entry_type")
+                );
         }
         init
         {

@@ -99,6 +99,16 @@ public record class SubscriptionUsage
             );
         }
     }
+
+    public virtual bool Equals(SubscriptionUsage? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
@@ -299,9 +309,13 @@ public sealed record class Data : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, DataViewMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'view_mode' cannot be null",
+                    new System::ArgumentNullException("view_mode")
+                );
         }
         init
         {
@@ -790,9 +804,13 @@ public sealed record class DataModel : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, DataModelViewMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'view_mode' cannot be null",
+                    new System::ArgumentNullException("view_mode")
+                );
         }
         init
         {

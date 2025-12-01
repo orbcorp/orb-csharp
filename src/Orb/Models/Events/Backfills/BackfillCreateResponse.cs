@@ -209,8 +209,12 @@ public sealed record class BackfillCreateResponse : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Events.Backfills.Status>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, global::Orb.Models.Events.Backfills.Status>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'status' cannot be null",
+                    new System::ArgumentNullException("status")
+                );
         }
         init
         {

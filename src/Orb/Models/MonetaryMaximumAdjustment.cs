@@ -51,8 +51,12 @@ public sealed record class MonetaryMaximumAdjustment : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, MonetaryMaximumAdjustmentAdjustmentType>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, MonetaryMaximumAdjustmentAdjustmentType>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'adjustment_type' cannot be null",
+                    new System::ArgumentNullException("adjustment_type")
+                );
         }
         init
         {
@@ -364,9 +368,13 @@ public sealed record class Filter7 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Filter7Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -391,9 +399,13 @@ public sealed record class Filter7 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Filter7Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {

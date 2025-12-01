@@ -146,9 +146,13 @@ public sealed record class TierSubLineItem : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, TierSubLineItemType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'type' cannot be null",
+                    new System::ArgumentNullException("type")
+                );
         }
         init
         {

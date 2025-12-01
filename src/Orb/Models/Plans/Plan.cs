@@ -556,9 +556,13 @@ public sealed record class Plan : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, PlanStatus>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'status' cannot be null",
+                    new System::ArgumentNullException("status")
+                );
         }
         init
         {
@@ -925,6 +929,16 @@ public record class AdjustmentModel
         {
             throw new OrbInvalidDataException("Data did not match any variant of AdjustmentModel");
         }
+    }
+
+    public virtual bool Equals(global::Orb.Models.Plans.AdjustmentModel? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -1700,9 +1714,13 @@ public sealed record class TrialConfig : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, TrialPeriodUnit>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'trial_period_unit' cannot be null",
+                    new System::ArgumentNullException("trial_period_unit")
+                );
         }
         init
         {

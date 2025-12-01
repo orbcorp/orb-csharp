@@ -65,8 +65,12 @@ public sealed record class NewSubscriptionBulkWithProrationPrice : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, NewSubscriptionBulkWithProrationPriceCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, NewSubscriptionBulkWithProrationPriceCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -122,8 +126,12 @@ public sealed record class NewSubscriptionBulkWithProrationPrice : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, NewSubscriptionBulkWithProrationPriceModelType>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, NewSubscriptionBulkWithProrationPriceModelType>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'model_type' cannot be null",
+                    new System::ArgumentNullException("model_type")
+                );
         }
         init
         {
@@ -915,6 +923,16 @@ public record class NewSubscriptionBulkWithProrationPriceConversionRateConfig
                 "Data did not match any variant of NewSubscriptionBulkWithProrationPriceConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(NewSubscriptionBulkWithProrationPriceConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

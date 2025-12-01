@@ -193,9 +193,13 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, ChangeOptionModel>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'change_option' cannot be null",
+                    new System::ArgumentNullException("change_option")
+                );
         }
         init
         {
@@ -1239,6 +1243,16 @@ public record class AddAdjustment1Adjustment
                 "Data did not match any variant of AddAdjustment1Adjustment"
             );
         }
+    }
+
+    public virtual bool Equals(AddAdjustment1Adjustment? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -3060,6 +3074,16 @@ public record class AddPriceModelPrice
             );
         }
     }
+
+    public virtual bool Equals(AddPriceModelPrice? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class AddPriceModelPriceConverter : JsonConverter<AddPriceModelPrice?>
@@ -3862,8 +3886,12 @@ public sealed record class AddPriceModelPriceBulkWithFilters : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, AddPriceModelPriceBulkWithFiltersCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, AddPriceModelPriceBulkWithFiltersCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -4869,6 +4897,16 @@ public record class AddPriceModelPriceBulkWithFiltersConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(AddPriceModelPriceBulkWithFiltersConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class AddPriceModelPriceBulkWithFiltersConversionRateConfigConverter
@@ -4976,8 +5014,12 @@ public sealed record class AddPriceModelPriceTieredWithProration : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, AddPriceModelPriceTieredWithProrationCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, AddPriceModelPriceTieredWithProrationCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -5890,6 +5932,16 @@ public record class AddPriceModelPriceTieredWithProrationConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(AddPriceModelPriceTieredWithProrationConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class AddPriceModelPriceTieredWithProrationConversionRateConfigConverter
@@ -5997,8 +6049,12 @@ public sealed record class AddPriceModelPriceGroupedWithMinMaxThresholds : Model
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, AddPriceModelPriceGroupedWithMinMaxThresholdsCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, AddPriceModelPriceGroupedWithMinMaxThresholdsCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -6894,6 +6950,18 @@ public record class AddPriceModelPriceGroupedWithMinMaxThresholdsConversionRateC
             );
         }
     }
+
+    public virtual bool Equals(
+        AddPriceModelPriceGroupedWithMinMaxThresholdsConversionRateConfig? other
+    )
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class AddPriceModelPriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -7001,8 +7069,12 @@ public sealed record class AddPriceModelPriceCumulativeGroupedAllocation : Model
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, AddPriceModelPriceCumulativeGroupedAllocationCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, AddPriceModelPriceCumulativeGroupedAllocationCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -7898,6 +7970,18 @@ public record class AddPriceModelPriceCumulativeGroupedAllocationConversionRateC
             );
         }
     }
+
+    public virtual bool Equals(
+        AddPriceModelPriceCumulativeGroupedAllocationConversionRateConfig? other
+    )
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class AddPriceModelPriceCumulativeGroupedAllocationConversionRateConfigConverter
@@ -8000,9 +8084,13 @@ public sealed record class AddPriceModelPricePercent : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, AddPriceModelPricePercentCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -8783,6 +8871,16 @@ public record class AddPriceModelPricePercentConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(AddPriceModelPricePercentConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class AddPriceModelPricePercentConversionRateConfigConverter
@@ -8887,8 +8985,12 @@ public sealed record class AddPriceModelPriceEventOutput : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, AddPriceModelPriceEventOutputCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, AddPriceModelPriceEventOutputCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -9725,6 +9827,16 @@ public record class AddPriceModelPriceEventOutputConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(AddPriceModelPriceEventOutputConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class AddPriceModelPriceEventOutputConversionRateConfigConverter
@@ -10306,6 +10418,16 @@ public record class ReplaceAdjustmentModelAdjustment
                 "Data did not match any variant of ReplaceAdjustmentModelAdjustment"
             );
         }
+    }
+
+    public virtual bool Equals(ReplaceAdjustmentModelAdjustment? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -12151,6 +12273,16 @@ public record class ReplacePriceModelPrice
             );
         }
     }
+
+    public virtual bool Equals(ReplacePriceModelPrice? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class ReplacePriceModelPriceConverter : JsonConverter<ReplacePriceModelPrice?>
@@ -12954,8 +13086,12 @@ public sealed record class ReplacePriceModelPriceBulkWithFilters : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, ReplacePriceModelPriceBulkWithFiltersCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, ReplacePriceModelPriceBulkWithFiltersCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -13964,6 +14100,16 @@ public record class ReplacePriceModelPriceBulkWithFiltersConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(ReplacePriceModelPriceBulkWithFiltersConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class ReplacePriceModelPriceBulkWithFiltersConversionRateConfigConverter
@@ -14071,8 +14217,12 @@ public sealed record class ReplacePriceModelPriceTieredWithProration : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, ReplacePriceModelPriceTieredWithProrationCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, ReplacePriceModelPriceTieredWithProrationCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -14991,6 +15141,16 @@ public record class ReplacePriceModelPriceTieredWithProrationConversionRateConfi
             );
         }
     }
+
+    public virtual bool Equals(ReplacePriceModelPriceTieredWithProrationConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class ReplacePriceModelPriceTieredWithProrationConversionRateConfigConverter
@@ -15101,8 +15261,12 @@ public sealed record class ReplacePriceModelPriceGroupedWithMinMaxThresholds : M
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, ReplacePriceModelPriceGroupedWithMinMaxThresholdsCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, ReplacePriceModelPriceGroupedWithMinMaxThresholdsCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -16001,6 +16165,18 @@ public record class ReplacePriceModelPriceGroupedWithMinMaxThresholdsConversionR
             );
         }
     }
+
+    public virtual bool Equals(
+        ReplacePriceModelPriceGroupedWithMinMaxThresholdsConversionRateConfig? other
+    )
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class ReplacePriceModelPriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -16113,8 +16289,12 @@ public sealed record class ReplacePriceModelPriceCumulativeGroupedAllocation : M
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, ReplacePriceModelPriceCumulativeGroupedAllocationCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, ReplacePriceModelPriceCumulativeGroupedAllocationCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -17013,6 +17193,18 @@ public record class ReplacePriceModelPriceCumulativeGroupedAllocationConversionR
             );
         }
     }
+
+    public virtual bool Equals(
+        ReplacePriceModelPriceCumulativeGroupedAllocationConversionRateConfig? other
+    )
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class ReplacePriceModelPriceCumulativeGroupedAllocationConversionRateConfigConverter
@@ -17119,8 +17311,12 @@ public sealed record class ReplacePriceModelPricePercent : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, ReplacePriceModelPricePercentCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, ReplacePriceModelPricePercentCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -17903,6 +18099,16 @@ public record class ReplacePriceModelPricePercentConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(ReplacePriceModelPricePercentConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class ReplacePriceModelPricePercentConversionRateConfigConverter
@@ -18010,8 +18216,12 @@ public sealed record class ReplacePriceModelPriceEventOutput : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, ReplacePriceModelPriceEventOutputCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, ReplacePriceModelPriceEventOutputCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -18851,6 +19061,16 @@ public record class ReplacePriceModelPriceEventOutputConversionRateConfig
                 "Data did not match any variant of ReplacePriceModelPriceEventOutputConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(ReplacePriceModelPriceEventOutputConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

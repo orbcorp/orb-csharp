@@ -1,0 +1,91 @@
+using System;
+using System.Collections.Generic;
+using Orb.Core;
+using Orb.Models;
+
+namespace Orb.Tests.Models;
+
+public class UsageDiscountIntervalTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new UsageDiscountInterval
+        {
+            AppliesToPriceIntervalIDs = ["string"],
+            DiscountType = UsageDiscountIntervalDiscountType.Usage,
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = Filter27Field.PriceID,
+                    Operator = Filter27Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            UsageDiscount = 0,
+        };
+
+        List<string> expectedAppliesToPriceIntervalIDs = ["string"];
+        ApiEnum<string, UsageDiscountIntervalDiscountType> expectedDiscountType =
+            UsageDiscountIntervalDiscountType.Usage;
+        DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        List<Filter27> expectedFilters =
+        [
+            new()
+            {
+                Field = Filter27Field.PriceID,
+                Operator = Filter27Operator.Includes,
+                Values = ["string"],
+            },
+        ];
+        DateTimeOffset expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        double expectedUsageDiscount = 0;
+
+        Assert.Equal(
+            expectedAppliesToPriceIntervalIDs.Count,
+            model.AppliesToPriceIntervalIDs.Count
+        );
+        for (int i = 0; i < expectedAppliesToPriceIntervalIDs.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIntervalIDs[i], model.AppliesToPriceIntervalIDs[i]);
+        }
+        Assert.Equal(expectedDiscountType, model.DiscountType);
+        Assert.Equal(expectedEndDate, model.EndDate);
+        Assert.Equal(expectedFilters.Count, model.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], model.Filters[i]);
+        }
+        Assert.Equal(expectedStartDate, model.StartDate);
+        Assert.Equal(expectedUsageDiscount, model.UsageDiscount);
+    }
+}
+
+public class Filter27Test : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Filter27
+        {
+            Field = Filter27Field.PriceID,
+            Operator = Filter27Operator.Includes,
+            Values = ["string"],
+        };
+
+        ApiEnum<string, Filter27Field> expectedField = Filter27Field.PriceID;
+        ApiEnum<string, Filter27Operator> expectedOperator = Filter27Operator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, model.Field);
+        Assert.Equal(expectedOperator, model.Operator);
+        Assert.Equal(expectedValues.Count, model.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], model.Values[i]);
+        }
+    }
+}

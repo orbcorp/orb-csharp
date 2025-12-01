@@ -1,0 +1,796 @@
+using System;
+using System.Collections.Generic;
+using Orb.Core;
+using Orb.Models.Plans;
+using Models = Orb.Models;
+
+namespace Orb.Tests.Models.Plans;
+
+public class PlanTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Plan
+        {
+            ID = "id",
+            Adjustments =
+            [
+                new Models::PlanPhaseUsageDiscountAdjustment()
+                {
+                    ID = "id",
+                    AdjustmentType =
+                        Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+                    AppliesToPriceIDs = ["string"],
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = Models::Filter23Field.PriceID,
+                            Operator = Models::Filter23Operator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    IsInvoiceLevel = true,
+                    PlanPhaseOrder = 0,
+                    Reason = "reason",
+                    ReplacesAdjustmentID = "replaces_adjustment_id",
+                    UsageDiscount = 0,
+                },
+            ],
+            BasePlan = new()
+            {
+                ID = "m2t5akQeh2obwxeU",
+                ExternalPlanID = "m2t5akQeh2obwxeU",
+                Name = "Example plan",
+            },
+            BasePlanID = "base_plan_id",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Currency = "currency",
+            DefaultInvoiceMemo = "default_invoice_memo",
+            Description = "description",
+            Discount = new Models::PercentageDiscount()
+            {
+                DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+                PercentageDiscount1 = 0.15,
+                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::Filter17Field.PriceID,
+                        Operator = Models::Filter17Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPlanID = "external_plan_id",
+            InvoicingCurrency = "invoicing_currency",
+            Maximum = new()
+            {
+                AppliesToPriceIDs = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::Filter2Field.PriceID,
+                        Operator = Models::Filter2Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIDs = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::Filter4Field.PriceID,
+                        Operator = Models::Filter4Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            NetTerms = 0,
+            PlanPhases =
+            [
+                new()
+                {
+                    ID = "id",
+                    Description = "description",
+                    Discount = new Models::PercentageDiscount()
+                    {
+                        DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+                        PercentageDiscount1 = 0.15,
+                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = Models::Filter17Field.PriceID,
+                                Operator = Models::Filter17Operator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        Reason = "reason",
+                    },
+                    Duration = 0,
+                    DurationUnit = PlanPhaseModelDurationUnit.Daily,
+                    Maximum = new()
+                    {
+                        AppliesToPriceIDs = ["string"],
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = Models::Filter2Field.PriceID,
+                                Operator = Models::Filter2Operator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        MaximumAmount = "maximum_amount",
+                    },
+                    MaximumAmount = "maximum_amount",
+                    Minimum = new()
+                    {
+                        AppliesToPriceIDs = ["string"],
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = Models::Filter4Field.PriceID,
+                                Operator = Models::Filter4Operator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        MinimumAmount = "minimum_amount",
+                    },
+                    MinimumAmount = "minimum_amount",
+                    Name = "name",
+                    Order = 0,
+                },
+            ],
+            Prices =
+            [
+                new Models::Unit()
+                {
+                    ID = "id",
+                    BillableMetric = new("id"),
+                    BillingCycleConfiguration = new()
+                    {
+                        Duration = 0,
+                        DurationUnit = Models::DurationUnit.Day,
+                    },
+                    BillingMode = Models::BillingMode.InAdvance,
+                    Cadence = Models::UnitCadence.OneTime,
+                    CompositePriceFilters =
+                    [
+                        new()
+                        {
+                            Field = Models::CompositePriceFilterField.PriceID,
+                            Operator = Models::CompositePriceFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    ConversionRate = 0,
+                    ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                    {
+                        ConversionRateType =
+                            Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                        UnitConfig = new("unit_amount"),
+                    },
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CreditAllocation = new()
+                    {
+                        AllowsRollover = true,
+                        Currency = "currency",
+                        CustomExpiration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                        },
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = Models::Field.PriceID,
+                                Operator = Models::Operator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                    },
+                    Currency = "currency",
+                    Discount = new Models::PercentageDiscount()
+                    {
+                        DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+                        PercentageDiscount1 = 0.15,
+                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = Models::Filter17Field.PriceID,
+                                Operator = Models::Filter17Operator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        Reason = "reason",
+                    },
+                    ExternalPriceID = "external_price_id",
+                    FixedPriceQuantity = 0,
+                    InvoicingCycleConfiguration = new()
+                    {
+                        Duration = 0,
+                        DurationUnit = Models::DurationUnit.Day,
+                    },
+                    Item = new() { ID = "id", Name = "name" },
+                    Maximum = new()
+                    {
+                        AppliesToPriceIDs = ["string"],
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = Models::Filter2Field.PriceID,
+                                Operator = Models::Filter2Operator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        MaximumAmount = "maximum_amount",
+                    },
+                    MaximumAmount = "maximum_amount",
+                    Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                    Minimum = new()
+                    {
+                        AppliesToPriceIDs = ["string"],
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = Models::Filter4Field.PriceID,
+                                Operator = Models::Filter4Operator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        MinimumAmount = "minimum_amount",
+                    },
+                    MinimumAmount = "minimum_amount",
+                    Name = "name",
+                    PlanPhaseOrder = 0,
+                    PriceType = Models::UnitPriceType.UsagePrice,
+                    ReplacesPriceID = "replaces_price_id",
+                    UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                    DimensionalPriceConfiguration = new()
+                    {
+                        DimensionValues = ["string"],
+                        DimensionalPriceGroupID = "dimensional_price_group_id",
+                    },
+                },
+            ],
+            Product = new()
+            {
+                ID = "id",
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Name = "name",
+            },
+            Status = PlanStatus.Active,
+            TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
+            Version = 0,
+        };
+
+        string expectedID = "id";
+        List<AdjustmentModel> expectedAdjustments =
+        [
+            new Models::PlanPhaseUsageDiscountAdjustment()
+            {
+                ID = "id",
+                AdjustmentType =
+                    Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+                AppliesToPriceIDs = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::Filter23Field.PriceID,
+                        Operator = Models::Filter23Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PlanPhaseOrder = 0,
+                Reason = "reason",
+                ReplacesAdjustmentID = "replaces_adjustment_id",
+                UsageDiscount = 0,
+            },
+        ];
+        BasePlan expectedBasePlan = new()
+        {
+            ID = "m2t5akQeh2obwxeU",
+            ExternalPlanID = "m2t5akQeh2obwxeU",
+            Name = "Example plan",
+        };
+        string expectedBasePlanID = "base_plan_id";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedCurrency = "currency";
+        string expectedDefaultInvoiceMemo = "default_invoice_memo";
+        string expectedDescription = "description";
+        Models::SharedDiscount expectedDiscount = new Models::PercentageDiscount()
+        {
+            DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+            PercentageDiscount1 = 0.15,
+            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::Filter17Field.PriceID,
+                    Operator = Models::Filter17Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            Reason = "reason",
+        };
+        string expectedExternalPlanID = "external_plan_id";
+        string expectedInvoicingCurrency = "invoicing_currency";
+        Models::Maximum expectedMaximum = new()
+        {
+            AppliesToPriceIDs = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::Filter2Field.PriceID,
+                    Operator = Models::Filter2Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MaximumAmount = "maximum_amount",
+        };
+        string expectedMaximumAmount = "maximum_amount";
+        Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
+        Models::Minimum expectedMinimum = new()
+        {
+            AppliesToPriceIDs = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::Filter4Field.PriceID,
+                    Operator = Models::Filter4Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MinimumAmount = "minimum_amount",
+        };
+        string expectedMinimumAmount = "minimum_amount";
+        string expectedName = "name";
+        long expectedNetTerms = 0;
+        List<PlanPhaseModel> expectedPlanPhases =
+        [
+            new()
+            {
+                ID = "id",
+                Description = "description",
+                Discount = new Models::PercentageDiscount()
+                {
+                    DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+                    PercentageDiscount1 = 0.15,
+                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = Models::Filter17Field.PriceID,
+                            Operator = Models::Filter17Operator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    Reason = "reason",
+                },
+                Duration = 0,
+                DurationUnit = PlanPhaseModelDurationUnit.Daily,
+                Maximum = new()
+                {
+                    AppliesToPriceIDs = ["string"],
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = Models::Filter2Field.PriceID,
+                            Operator = Models::Filter2Operator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    MaximumAmount = "maximum_amount",
+                },
+                MaximumAmount = "maximum_amount",
+                Minimum = new()
+                {
+                    AppliesToPriceIDs = ["string"],
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = Models::Filter4Field.PriceID,
+                            Operator = Models::Filter4Operator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    MinimumAmount = "minimum_amount",
+                },
+                MinimumAmount = "minimum_amount",
+                Name = "name",
+                Order = 0,
+            },
+        ];
+        List<Models::Price> expectedPrices =
+        [
+            new Models::Unit()
+            {
+                ID = "id",
+                BillableMetric = new("id"),
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::DurationUnit.Day,
+                },
+                BillingMode = Models::BillingMode.InAdvance,
+                Cadence = Models::UnitCadence.OneTime,
+                CompositePriceFilters =
+                [
+                    new()
+                    {
+                        Field = Models::CompositePriceFilterField.PriceID,
+                        Operator = Models::CompositePriceFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CreditAllocation = new()
+                {
+                    AllowsRollover = true,
+                    Currency = "currency",
+                    CustomExpiration = new()
+                    {
+                        Duration = 0,
+                        DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                    },
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = Models::Field.PriceID,
+                            Operator = Models::Operator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                },
+                Currency = "currency",
+                Discount = new Models::PercentageDiscount()
+                {
+                    DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+                    PercentageDiscount1 = 0.15,
+                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = Models::Filter17Field.PriceID,
+                            Operator = Models::Filter17Operator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    Reason = "reason",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::DurationUnit.Day,
+                },
+                Item = new() { ID = "id", Name = "name" },
+                Maximum = new()
+                {
+                    AppliesToPriceIDs = ["string"],
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = Models::Filter2Field.PriceID,
+                            Operator = Models::Filter2Operator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    MaximumAmount = "maximum_amount",
+                },
+                MaximumAmount = "maximum_amount",
+                Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                Minimum = new()
+                {
+                    AppliesToPriceIDs = ["string"],
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = Models::Filter4Field.PriceID,
+                            Operator = Models::Filter4Operator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    MinimumAmount = "minimum_amount",
+                },
+                MinimumAmount = "minimum_amount",
+                Name = "name",
+                PlanPhaseOrder = 0,
+                PriceType = Models::UnitPriceType.UsagePrice,
+                ReplacesPriceID = "replaces_price_id",
+                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+            },
+        ];
+        Product expectedProduct = new()
+        {
+            ID = "id",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Name = "name",
+        };
+        ApiEnum<string, PlanStatus> expectedStatus = PlanStatus.Active;
+        TrialConfig expectedTrialConfig = new()
+        {
+            TrialPeriod = 0,
+            TrialPeriodUnit = TrialPeriodUnit.Days,
+        };
+        long expectedVersion = 0;
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedAdjustments.Count, model.Adjustments.Count);
+        for (int i = 0; i < expectedAdjustments.Count; i++)
+        {
+            Assert.Equal(expectedAdjustments[i], model.Adjustments[i]);
+        }
+        Assert.Equal(expectedBasePlan, model.BasePlan);
+        Assert.Equal(expectedBasePlanID, model.BasePlanID);
+        Assert.Equal(expectedCreatedAt, model.CreatedAt);
+        Assert.Equal(expectedCurrency, model.Currency);
+        Assert.Equal(expectedDefaultInvoiceMemo, model.DefaultInvoiceMemo);
+        Assert.Equal(expectedDescription, model.Description);
+        Assert.Equal(expectedDiscount, model.Discount);
+        Assert.Equal(expectedExternalPlanID, model.ExternalPlanID);
+        Assert.Equal(expectedInvoicingCurrency, model.InvoicingCurrency);
+        Assert.Equal(expectedMaximum, model.Maximum);
+        Assert.Equal(expectedMaximumAmount, model.MaximumAmount);
+        Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(model.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, model.Metadata[item.Key]);
+        }
+        Assert.Equal(expectedMinimum, model.Minimum);
+        Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
+        Assert.Equal(expectedName, model.Name);
+        Assert.Equal(expectedNetTerms, model.NetTerms);
+        Assert.Equal(expectedPlanPhases.Count, model.PlanPhases.Count);
+        for (int i = 0; i < expectedPlanPhases.Count; i++)
+        {
+            Assert.Equal(expectedPlanPhases[i], model.PlanPhases[i]);
+        }
+        Assert.Equal(expectedPrices.Count, model.Prices.Count);
+        for (int i = 0; i < expectedPrices.Count; i++)
+        {
+            Assert.Equal(expectedPrices[i], model.Prices[i]);
+        }
+        Assert.Equal(expectedProduct, model.Product);
+        Assert.Equal(expectedStatus, model.Status);
+        Assert.Equal(expectedTrialConfig, model.TrialConfig);
+        Assert.Equal(expectedVersion, model.Version);
+    }
+}
+
+public class BasePlanTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new BasePlan
+        {
+            ID = "m2t5akQeh2obwxeU",
+            ExternalPlanID = "m2t5akQeh2obwxeU",
+            Name = "Example plan",
+        };
+
+        string expectedID = "m2t5akQeh2obwxeU";
+        string expectedExternalPlanID = "m2t5akQeh2obwxeU";
+        string expectedName = "Example plan";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedExternalPlanID, model.ExternalPlanID);
+        Assert.Equal(expectedName, model.Name);
+    }
+}
+
+public class PlanPhaseModelTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new PlanPhaseModel
+        {
+            ID = "id",
+            Description = "description",
+            Discount = new Models::PercentageDiscount()
+            {
+                DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+                PercentageDiscount1 = 0.15,
+                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::Filter17Field.PriceID,
+                        Operator = Models::Filter17Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            Duration = 0,
+            DurationUnit = PlanPhaseModelDurationUnit.Daily,
+            Maximum = new()
+            {
+                AppliesToPriceIDs = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::Filter2Field.PriceID,
+                        Operator = Models::Filter2Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Minimum = new()
+            {
+                AppliesToPriceIDs = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::Filter4Field.PriceID,
+                        Operator = Models::Filter4Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            Order = 0,
+        };
+
+        string expectedID = "id";
+        string expectedDescription = "description";
+        Models::SharedDiscount expectedDiscount = new Models::PercentageDiscount()
+        {
+            DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+            PercentageDiscount1 = 0.15,
+            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::Filter17Field.PriceID,
+                    Operator = Models::Filter17Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            Reason = "reason",
+        };
+        long expectedDuration = 0;
+        ApiEnum<string, PlanPhaseModelDurationUnit> expectedDurationUnit =
+            PlanPhaseModelDurationUnit.Daily;
+        Models::Maximum expectedMaximum = new()
+        {
+            AppliesToPriceIDs = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::Filter2Field.PriceID,
+                    Operator = Models::Filter2Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MaximumAmount = "maximum_amount",
+        };
+        string expectedMaximumAmount = "maximum_amount";
+        Models::Minimum expectedMinimum = new()
+        {
+            AppliesToPriceIDs = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::Filter4Field.PriceID,
+                    Operator = Models::Filter4Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MinimumAmount = "minimum_amount",
+        };
+        string expectedMinimumAmount = "minimum_amount";
+        string expectedName = "name";
+        long expectedOrder = 0;
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedDescription, model.Description);
+        Assert.Equal(expectedDiscount, model.Discount);
+        Assert.Equal(expectedDuration, model.Duration);
+        Assert.Equal(expectedDurationUnit, model.DurationUnit);
+        Assert.Equal(expectedMaximum, model.Maximum);
+        Assert.Equal(expectedMaximumAmount, model.MaximumAmount);
+        Assert.Equal(expectedMinimum, model.Minimum);
+        Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
+        Assert.Equal(expectedName, model.Name);
+        Assert.Equal(expectedOrder, model.Order);
+    }
+}
+
+public class ProductTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Product
+        {
+            ID = "id",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedCreatedAt, model.CreatedAt);
+        Assert.Equal(expectedName, model.Name);
+    }
+}
+
+public class TrialConfigTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new TrialConfig { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days };
+
+        long expectedTrialPeriod = 0;
+        ApiEnum<string, TrialPeriodUnit> expectedTrialPeriodUnit = TrialPeriodUnit.Days;
+
+        Assert.Equal(expectedTrialPeriod, model.TrialPeriod);
+        Assert.Equal(expectedTrialPeriodUnit, model.TrialPeriodUnit);
+    }
+}

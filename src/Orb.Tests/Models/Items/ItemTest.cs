@@ -1,0 +1,83 @@
+using System;
+using System.Collections.Generic;
+using Orb.Core;
+using Orb.Models.Items;
+
+namespace Orb.Tests.Models.Items;
+
+public class ItemTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Item
+        {
+            ID = "id",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ExternalConnections =
+            [
+                new()
+                {
+                    ExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe,
+                    ExternalEntityID = "external_entity_id",
+                },
+            ],
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Name = "name",
+            ArchivedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        string expectedID = "id";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        List<ExternalConnectionModel> expectedExternalConnections =
+        [
+            new()
+            {
+                ExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe,
+                ExternalEntityID = "external_entity_id",
+            },
+        ];
+        Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
+        string expectedName = "name";
+        DateTimeOffset expectedArchivedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedCreatedAt, model.CreatedAt);
+        Assert.Equal(expectedExternalConnections.Count, model.ExternalConnections.Count);
+        for (int i = 0; i < expectedExternalConnections.Count; i++)
+        {
+            Assert.Equal(expectedExternalConnections[i], model.ExternalConnections[i]);
+        }
+        Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(model.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, model.Metadata[item.Key]);
+        }
+        Assert.Equal(expectedName, model.Name);
+        Assert.Equal(expectedArchivedAt, model.ArchivedAt);
+    }
+}
+
+public class ExternalConnectionModelTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new ExternalConnectionModel
+        {
+            ExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe,
+            ExternalEntityID = "external_entity_id",
+        };
+
+        ApiEnum<
+            string,
+            ExternalConnectionModelExternalConnectionName
+        > expectedExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe;
+        string expectedExternalEntityID = "external_entity_id";
+
+        Assert.Equal(expectedExternalConnectionName, model.ExternalConnectionName);
+        Assert.Equal(expectedExternalEntityID, model.ExternalEntityID);
+    }
+}

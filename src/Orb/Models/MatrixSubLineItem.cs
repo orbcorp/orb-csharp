@@ -149,9 +149,13 @@ public sealed record class MatrixSubLineItem : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, MatrixSubLineItemType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'type' cannot be null",
+                    new System::ArgumentNullException("type")
+                );
         }
         init
         {

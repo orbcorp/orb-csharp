@@ -373,9 +373,13 @@ public sealed record class SharedCreditNote : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, SharedCreditNoteType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'type' cannot be null",
+                    new System::ArgumentNullException("type")
+                );
         }
         init
         {
@@ -911,9 +915,13 @@ public sealed record class Discount : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, DiscountDiscountType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'discount_type' cannot be null",
+                    new System::ArgumentNullException("discount_type")
+                );
         }
         init
         {
@@ -1114,9 +1122,13 @@ public sealed record class MaximumAmountAdjustment : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, MaximumAmountAdjustmentDiscountType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'discount_type' cannot be null",
+                    new System::ArgumentNullException("discount_type")
+                );
         }
         init
         {
@@ -1495,9 +1507,13 @@ public sealed record class DiscountModel : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, DiscountModelDiscountType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'discount_type' cannot be null",
+                    new System::ArgumentNullException("discount_type")
+                );
         }
         init
         {

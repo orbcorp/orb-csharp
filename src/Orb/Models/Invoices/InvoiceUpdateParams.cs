@@ -326,6 +326,16 @@ public record class DueDateModel
             throw new OrbInvalidDataException("Data did not match any variant of DueDateModel");
         }
     }
+
+    public virtual bool Equals(DueDateModel? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class DueDateModelConverter : JsonConverter<DueDateModel?>
@@ -506,6 +516,16 @@ public record class InvoiceDate
         {
             throw new OrbInvalidDataException("Data did not match any variant of InvoiceDate");
         }
+    }
+
+    public virtual bool Equals(InvoiceDate? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

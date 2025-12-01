@@ -524,6 +524,16 @@ public record class Data
             throw new OrbInvalidDataException("Data did not match any variant of Data");
         }
     }
+
+    public virtual bool Equals(global::Orb.Models.Customers.Credits.Ledger.Data? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class DataConverter : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.Data>

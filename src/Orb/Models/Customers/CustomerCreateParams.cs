@@ -885,6 +885,16 @@ public record class TaxConfiguration
             throw new OrbInvalidDataException("Data did not match any variant of TaxConfiguration");
         }
     }
+
+    public virtual bool Equals(TaxConfiguration? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>

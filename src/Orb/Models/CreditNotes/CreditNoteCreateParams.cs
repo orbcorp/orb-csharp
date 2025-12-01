@@ -91,8 +91,12 @@ public sealed record class CreditNoteCreateParams : ParamsBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.CreditNotes.Reason>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, global::Orb.Models.CreditNotes.Reason>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'reason' cannot be null",
+                    new System::ArgumentNullException("reason")
+                );
         }
         init
         {

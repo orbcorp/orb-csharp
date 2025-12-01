@@ -267,6 +267,16 @@ public record class Discount
             throw new OrbInvalidDataException("Data did not match any variant of Discount");
         }
     }
+
+    public virtual bool Equals(global::Orb.Models.Coupons.Discount? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class DiscountConverter : JsonConverter<global::Orb.Models.Coupons.Discount>

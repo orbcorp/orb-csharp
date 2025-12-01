@@ -26,9 +26,13 @@ public sealed record class PercentageDiscount : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, PercentageDiscountDiscountType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'discount_type' cannot be null",
+                    new System::ArgumentNullException("discount_type")
+                );
         }
         init
         {
@@ -230,9 +234,13 @@ public sealed record class Filter17 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Filter17Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -257,9 +265,13 @@ public sealed record class Filter17 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Filter17Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {

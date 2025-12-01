@@ -437,6 +437,16 @@ public record class AdjustmentIntervalAdjustment
             );
         }
     }
+
+    public virtual bool Equals(AdjustmentIntervalAdjustment? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class AdjustmentIntervalAdjustmentConverter : JsonConverter<AdjustmentIntervalAdjustment>

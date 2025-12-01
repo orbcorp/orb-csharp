@@ -794,6 +794,16 @@ public record class Adjustment
             throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
         }
     }
+
+    public virtual bool Equals(global::Orb.Models.InvoiceLineItems.Adjustment? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.InvoiceLineItems.Adjustment>
@@ -1090,6 +1100,16 @@ public record class SubLineItem
         {
             throw new OrbInvalidDataException("Data did not match any variant of SubLineItem");
         }
+    }
+
+    public virtual bool Equals(global::Orb.Models.InvoiceLineItems.SubLineItem? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

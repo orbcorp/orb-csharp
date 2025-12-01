@@ -31,8 +31,12 @@ public sealed record class SharedUnitConversionRateConfig : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, SharedUnitConversionRateConfigConversionRateType>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, SharedUnitConversionRateConfigConversionRateType>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'conversion_rate_type' cannot be null",
+                    new System::ArgumentNullException("conversion_rate_type")
+                );
         }
         init
         {

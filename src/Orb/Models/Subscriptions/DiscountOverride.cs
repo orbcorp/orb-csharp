@@ -26,9 +26,13 @@ public sealed record class DiscountOverride : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, DiscountOverrideDiscountType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'discount_type' cannot be null",
+                    new System::ArgumentNullException("discount_type")
+                );
         }
         init
         {

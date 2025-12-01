@@ -224,8 +224,12 @@ public sealed record class CreditBlockExpiryLedgerEntry : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, CreditBlockExpiryLedgerEntryEntryStatus>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, CreditBlockExpiryLedgerEntryEntryStatus>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'entry_status' cannot be null",
+                    new System::ArgumentNullException("entry_status")
+                );
         }
         init
         {
@@ -250,8 +254,12 @@ public sealed record class CreditBlockExpiryLedgerEntry : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, CreditBlockExpiryLedgerEntryEntryType>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, CreditBlockExpiryLedgerEntryEntryType>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentNullException("entry_type")
+                );
         }
         init
         {

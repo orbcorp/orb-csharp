@@ -52,8 +52,12 @@ public sealed record class NewAvalaraTaxConfiguration : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, NewAvalaraTaxConfigurationTaxProvider>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, NewAvalaraTaxConfigurationTaxProvider>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'tax_provider' cannot be null",
+                    new System::ArgumentNullException("tax_provider")
+                );
         }
         init
         {

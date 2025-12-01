@@ -1043,9 +1043,13 @@ public sealed record class AccountingProvider : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, ProviderType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'provider_type' cannot be null",
+                    new System::ArgumentNullException("provider_type")
+                );
         }
         init
         {

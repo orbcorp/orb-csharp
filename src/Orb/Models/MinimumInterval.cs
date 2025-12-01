@@ -215,9 +215,13 @@ public sealed record class Filter5 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Filter5Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -242,9 +246,13 @@ public sealed record class Filter5 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Filter5Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {

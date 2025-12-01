@@ -1497,6 +1497,16 @@ public record class Price
             throw new OrbInvalidDataException("Data did not match any variant of Price");
         }
     }
+
+    public virtual bool Equals(Price? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class PriceConverter : JsonConverter<Price>
@@ -2261,9 +2271,13 @@ public sealed record class Unit : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, BillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -2285,9 +2299,13 @@ public sealed record class Unit : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, UnitCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -2735,9 +2753,13 @@ public sealed record class Unit : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, UnitPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -3022,9 +3044,13 @@ public sealed record class CompositePriceFilter : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilterField>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -3049,9 +3075,13 @@ public sealed record class CompositePriceFilter : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilterOperator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -3326,6 +3356,16 @@ public record class UnitConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(UnitConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class UnitConversionRateConfigConverter : JsonConverter<UnitConversionRateConfig>
@@ -3599,9 +3639,13 @@ public sealed record class Tiered : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, TieredBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -3623,9 +3667,13 @@ public sealed record class Tiered : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, TieredCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -4073,9 +4121,13 @@ public sealed record class Tiered : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, TieredPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -4360,9 +4412,13 @@ public sealed record class CompositePriceFilterModel : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilterModelField>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -4387,9 +4443,13 @@ public sealed record class CompositePriceFilterModel : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilterModelOperator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -4668,6 +4728,16 @@ public record class TieredConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(TieredConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class TieredConversionRateConfigConverter : JsonConverter<TieredConversionRateConfig>
@@ -4941,9 +5011,13 @@ public sealed record class Bulk : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, BulkBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -4996,9 +5070,13 @@ public sealed record class Bulk : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, BulkCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -5446,9 +5524,13 @@ public sealed record class Bulk : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, BulkPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -5702,9 +5784,13 @@ public sealed record class CompositePriceFilter1 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter1Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -5729,9 +5815,13 @@ public sealed record class CompositePriceFilter1 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter1Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -6006,6 +6096,16 @@ public record class BulkConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(BulkConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class BulkConversionRateConfigConverter : JsonConverter<BulkConversionRateConfig>
@@ -6279,9 +6379,13 @@ public sealed record class BulkWithFilters : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, BulkWithFiltersBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -6337,9 +6441,13 @@ public sealed record class BulkWithFilters : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, BulkWithFiltersCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -6790,9 +6898,13 @@ public sealed record class BulkWithFilters : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, BulkWithFiltersPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -7349,9 +7461,13 @@ public sealed record class CompositePriceFilter2 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter2Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -7376,9 +7492,13 @@ public sealed record class CompositePriceFilter2 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter2Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -7656,6 +7776,16 @@ public record class BulkWithFiltersConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(BulkWithFiltersConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class BulkWithFiltersConversionRateConfigConverter
@@ -7930,9 +8060,13 @@ public sealed record class Package : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, PackageBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -7954,9 +8088,13 @@ public sealed record class Package : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, PackageCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -8438,9 +8576,13 @@ public sealed record class Package : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, PackagePriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -8694,9 +8836,13 @@ public sealed record class CompositePriceFilter3 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter3Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -8721,9 +8867,13 @@ public sealed record class CompositePriceFilter3 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter3Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -9001,6 +9151,16 @@ public record class PackageConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(PackageConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class PackageConversionRateConfigConverter : JsonConverter<PackageConversionRateConfig>
@@ -9274,9 +9434,13 @@ public sealed record class Matrix : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, MatrixBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -9298,9 +9462,13 @@ public sealed record class Matrix : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, MatrixCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -9779,9 +9947,13 @@ public sealed record class Matrix : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, MatrixPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -10035,9 +10207,13 @@ public sealed record class CompositePriceFilter4 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter4Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -10062,9 +10238,13 @@ public sealed record class CompositePriceFilter4 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter4Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -10342,6 +10522,16 @@ public record class MatrixConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(MatrixConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class MatrixConversionRateConfigConverter : JsonConverter<MatrixConversionRateConfig>
@@ -10615,9 +10805,13 @@ public sealed record class ThresholdTotalAmount : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, ThresholdTotalAmountBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -10639,9 +10833,13 @@ public sealed record class ThresholdTotalAmount : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, ThresholdTotalAmountCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -11092,9 +11290,13 @@ public sealed record class ThresholdTotalAmount : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, ThresholdTotalAmountPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -11388,9 +11590,13 @@ public sealed record class CompositePriceFilter5 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter5Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -11415,9 +11621,13 @@ public sealed record class CompositePriceFilter5 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter5Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -11694,6 +11904,16 @@ public record class ThresholdTotalAmountConversionRateConfig
                 "Data did not match any variant of ThresholdTotalAmountConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(ThresholdTotalAmountConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -12190,9 +12410,13 @@ public sealed record class TieredPackage : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, TieredPackageBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -12214,9 +12438,13 @@ public sealed record class TieredPackage : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, TieredPackageCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -12667,9 +12895,13 @@ public sealed record class TieredPackage : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, TieredPackagePriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -12957,9 +13189,13 @@ public sealed record class CompositePriceFilter6 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter6Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -12984,9 +13220,13 @@ public sealed record class CompositePriceFilter6 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter6Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -13263,6 +13503,16 @@ public record class TieredPackageConversionRateConfig
                 "Data did not match any variant of TieredPackageConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(TieredPackageConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -13748,9 +13998,13 @@ public sealed record class TieredWithMinimum : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, TieredWithMinimumBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -13772,9 +14026,13 @@ public sealed record class TieredWithMinimum : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, TieredWithMinimumCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -14225,9 +14483,13 @@ public sealed record class TieredWithMinimum : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, TieredWithMinimumPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -14517,9 +14779,13 @@ public sealed record class CompositePriceFilter7 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter7Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -14544,9 +14810,13 @@ public sealed record class CompositePriceFilter7 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter7Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -14823,6 +15093,16 @@ public record class TieredWithMinimumConversionRateConfig
                 "Data did not match any variant of TieredWithMinimumConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(TieredWithMinimumConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -15375,9 +15655,13 @@ public sealed record class GroupedTiered : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, GroupedTieredBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -15399,9 +15683,13 @@ public sealed record class GroupedTiered : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, GroupedTieredCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -15886,9 +16174,13 @@ public sealed record class GroupedTiered : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, GroupedTieredPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -16142,9 +16434,13 @@ public sealed record class CompositePriceFilter8 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter8Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -16169,9 +16465,13 @@ public sealed record class CompositePriceFilter8 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter8Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -16448,6 +16748,16 @@ public record class GroupedTieredConversionRateConfig
                 "Data did not match any variant of GroupedTieredConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(GroupedTieredConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -16933,9 +17243,13 @@ public sealed record class TieredPackageWithMinimum : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, TieredPackageWithMinimumBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -16957,9 +17271,13 @@ public sealed record class TieredPackageWithMinimum : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, TieredPackageWithMinimumCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -17410,9 +17728,13 @@ public sealed record class TieredPackageWithMinimum : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, TieredPackageWithMinimumPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -17710,9 +18032,13 @@ public sealed record class CompositePriceFilter9 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter9Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -17737,9 +18063,13 @@ public sealed record class CompositePriceFilter9 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter9Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -18016,6 +18346,16 @@ public record class TieredPackageWithMinimumConversionRateConfig
                 "Data did not match any variant of TieredPackageWithMinimumConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(TieredPackageWithMinimumConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -18535,9 +18875,13 @@ public sealed record class PackageWithAllocation : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, PackageWithAllocationBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -18559,9 +18903,13 @@ public sealed record class PackageWithAllocation : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, PackageWithAllocationCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -19051,9 +19399,13 @@ public sealed record class PackageWithAllocation : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, PackageWithAllocationPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -19311,9 +19663,13 @@ public sealed record class CompositePriceFilter10 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter10Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -19338,9 +19694,13 @@ public sealed record class CompositePriceFilter10 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter10Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -19617,6 +19977,16 @@ public record class PackageWithAllocationConversionRateConfig
                 "Data did not match any variant of PackageWithAllocationConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(PackageWithAllocationConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -20038,9 +20408,13 @@ public sealed record class UnitWithPercent : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, UnitWithPercentBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -20062,9 +20436,13 @@ public sealed record class UnitWithPercent : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, UnitWithPercentCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -20515,9 +20893,13 @@ public sealed record class UnitWithPercent : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, UnitWithPercentPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -20805,9 +21187,13 @@ public sealed record class CompositePriceFilter11 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter11Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -20832,9 +21218,13 @@ public sealed record class CompositePriceFilter11 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter11Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -21111,6 +21501,16 @@ public record class UnitWithPercentConversionRateConfig
                 "Data did not match any variant of UnitWithPercentConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(UnitWithPercentConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -21492,9 +21892,13 @@ public sealed record class MatrixWithAllocation : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, MatrixWithAllocationBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -21516,9 +21920,13 @@ public sealed record class MatrixWithAllocation : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, MatrixWithAllocationCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -22005,9 +22413,13 @@ public sealed record class MatrixWithAllocation : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, MatrixWithAllocationPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -22265,9 +22677,13 @@ public sealed record class CompositePriceFilter12 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter12Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -22292,9 +22708,13 @@ public sealed record class CompositePriceFilter12 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter12Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -22572,6 +22992,16 @@ public record class MatrixWithAllocationConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(MatrixWithAllocationConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class MatrixWithAllocationConversionRateConfigConverter
@@ -22848,9 +23278,13 @@ public sealed record class TieredWithProration : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, TieredWithProrationBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -22872,9 +23306,13 @@ public sealed record class TieredWithProration : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, TieredWithProrationCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -23325,9 +23763,13 @@ public sealed record class TieredWithProration : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, TieredWithProrationPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -23617,9 +24059,13 @@ public sealed record class CompositePriceFilter13 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter13Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -23644,9 +24090,13 @@ public sealed record class CompositePriceFilter13 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter13Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -23923,6 +24373,16 @@ public record class TieredWithProrationConversionRateConfig
                 "Data did not match any variant of TieredWithProrationConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(TieredWithProrationConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -24389,9 +24849,13 @@ public sealed record class UnitWithProration : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, UnitWithProrationBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -24413,9 +24877,13 @@ public sealed record class UnitWithProration : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, UnitWithProrationCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -24866,9 +25334,13 @@ public sealed record class UnitWithProration : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, UnitWithProrationPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -25158,9 +25630,13 @@ public sealed record class CompositePriceFilter14 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter14Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -25185,9 +25661,13 @@ public sealed record class CompositePriceFilter14 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter14Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -25464,6 +25944,16 @@ public record class UnitWithProrationConversionRateConfig
                 "Data did not match any variant of UnitWithProrationConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(UnitWithProrationConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -25828,9 +26318,13 @@ public sealed record class GroupedAllocation : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, GroupedAllocationBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -25852,9 +26346,13 @@ public sealed record class GroupedAllocation : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, GroupedAllocationCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -26339,9 +26837,13 @@ public sealed record class GroupedAllocation : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, GroupedAllocationPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -26597,9 +27099,13 @@ public sealed record class CompositePriceFilter15 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter15Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -26624,9 +27130,13 @@ public sealed record class CompositePriceFilter15 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter15Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -26903,6 +27413,16 @@ public record class GroupedAllocationConversionRateConfig
                 "Data did not match any variant of GroupedAllocationConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(GroupedAllocationConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -27324,9 +27844,13 @@ public sealed record class BulkWithProration : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, BulkWithProrationBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -27382,9 +27906,13 @@ public sealed record class BulkWithProration : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, BulkWithProrationCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -27835,9 +28363,13 @@ public sealed record class BulkWithProration : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, BulkWithProrationPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -28278,9 +28810,13 @@ public sealed record class CompositePriceFilter16 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter16Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -28305,9 +28841,13 @@ public sealed record class CompositePriceFilter16 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter16Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -28584,6 +29124,16 @@ public record class BulkWithProrationConversionRateConfig
                 "Data did not match any variant of BulkWithProrationConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(BulkWithProrationConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -28863,8 +29413,12 @@ public sealed record class GroupedWithProratedMinimum : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, GroupedWithProratedMinimumBillingMode>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, GroupedWithProratedMinimumBillingMode>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -28886,9 +29440,13 @@ public sealed record class GroupedWithProratedMinimum : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, GroupedWithProratedMinimumCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -29376,9 +29934,13 @@ public sealed record class GroupedWithProratedMinimum : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, GroupedWithProratedMinimumPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -29637,9 +30199,13 @@ public sealed record class CompositePriceFilter17 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter17Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -29664,9 +30230,13 @@ public sealed record class CompositePriceFilter17 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter17Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -29943,6 +30513,16 @@ public record class GroupedWithProratedMinimumConversionRateConfig
                 "Data did not match any variant of GroupedWithProratedMinimumConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(GroupedWithProratedMinimumConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -30364,8 +30944,12 @@ public sealed record class GroupedWithMeteredMinimum : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, GroupedWithMeteredMinimumBillingMode>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, GroupedWithMeteredMinimumBillingMode>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -30387,9 +30971,13 @@ public sealed record class GroupedWithMeteredMinimum : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, GroupedWithMeteredMinimumCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -30877,9 +31465,13 @@ public sealed record class GroupedWithMeteredMinimum : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, GroupedWithMeteredMinimumPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -31138,9 +31730,13 @@ public sealed record class CompositePriceFilter18 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter18Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -31165,9 +31761,13 @@ public sealed record class CompositePriceFilter18 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter18Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -31444,6 +32044,16 @@ public record class GroupedWithMeteredMinimumConversionRateConfig
                 "Data did not match any variant of GroupedWithMeteredMinimumConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(GroupedWithMeteredMinimumConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -32182,8 +32792,12 @@ public sealed record class GroupedWithMinMaxThresholds : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, GroupedWithMinMaxThresholdsBillingMode>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, GroupedWithMinMaxThresholdsBillingMode>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -32205,9 +32819,13 @@ public sealed record class GroupedWithMinMaxThresholds : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, GroupedWithMinMaxThresholdsCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -32695,8 +33313,12 @@ public sealed record class GroupedWithMinMaxThresholds : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, GroupedWithMinMaxThresholdsPriceType>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, GroupedWithMinMaxThresholdsPriceType>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -32955,9 +33577,13 @@ public sealed record class CompositePriceFilter19 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter19Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -32982,9 +33608,13 @@ public sealed record class CompositePriceFilter19 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter19Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -33261,6 +33891,16 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig
                 "Data did not match any variant of GroupedWithMinMaxThresholdsConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(GroupedWithMinMaxThresholdsConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -33712,9 +34352,13 @@ public sealed record class MatrixWithDisplayName : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, MatrixWithDisplayNameBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -33736,9 +34380,13 @@ public sealed record class MatrixWithDisplayName : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, MatrixWithDisplayNameCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -34228,9 +34876,13 @@ public sealed record class MatrixWithDisplayName : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, MatrixWithDisplayNamePriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -34488,9 +35140,13 @@ public sealed record class CompositePriceFilter20 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter20Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -34515,9 +35171,13 @@ public sealed record class CompositePriceFilter20 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter20Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -34794,6 +35454,16 @@ public record class MatrixWithDisplayNameConversionRateConfig
                 "Data did not match any variant of MatrixWithDisplayNameConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(MatrixWithDisplayNameConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -35322,9 +35992,13 @@ public sealed record class GroupedTieredPackage : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, GroupedTieredPackageBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -35346,9 +36020,13 @@ public sealed record class GroupedTieredPackage : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, GroupedTieredPackageCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -35835,9 +36513,13 @@ public sealed record class GroupedTieredPackage : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, GroupedTieredPackagePriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -36095,9 +36777,13 @@ public sealed record class CompositePriceFilter21 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter21Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -36122,9 +36808,13 @@ public sealed record class CompositePriceFilter21 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter21Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -36401,6 +37091,16 @@ public record class GroupedTieredPackageConversionRateConfig
                 "Data did not match any variant of GroupedTieredPackageConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(GroupedTieredPackageConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -36921,9 +37621,13 @@ public sealed record class MaxGroupTieredPackage : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, MaxGroupTieredPackageBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -36945,9 +37649,13 @@ public sealed record class MaxGroupTieredPackage : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, MaxGroupTieredPackageCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -37437,9 +38145,13 @@ public sealed record class MaxGroupTieredPackage : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, MaxGroupTieredPackagePriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -37697,9 +38409,13 @@ public sealed record class CompositePriceFilter22 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter22Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -37724,9 +38440,13 @@ public sealed record class CompositePriceFilter22 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter22Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -38003,6 +38723,16 @@ public record class MaxGroupTieredPackageConversionRateConfig
                 "Data did not match any variant of MaxGroupTieredPackageConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(MaxGroupTieredPackageConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -38527,8 +39257,12 @@ public sealed record class ScalableMatrixWithUnitPricing : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, ScalableMatrixWithUnitPricingBillingMode>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, ScalableMatrixWithUnitPricingBillingMode>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -38550,8 +39284,12 @@ public sealed record class ScalableMatrixWithUnitPricing : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, ScalableMatrixWithUnitPricingCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, ScalableMatrixWithUnitPricingCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -39002,8 +39740,12 @@ public sealed record class ScalableMatrixWithUnitPricing : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, ScalableMatrixWithUnitPricingPriceType>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, ScalableMatrixWithUnitPricingPriceType>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -39299,9 +40041,13 @@ public sealed record class CompositePriceFilter23 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter23Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -39326,9 +40072,13 @@ public sealed record class CompositePriceFilter23 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter23Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -39605,6 +40355,16 @@ public record class ScalableMatrixWithUnitPricingConversionRateConfig
                 "Data did not match any variant of ScalableMatrixWithUnitPricingConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(ScalableMatrixWithUnitPricingConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -40208,8 +40968,12 @@ public sealed record class ScalableMatrixWithTieredPricing : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, ScalableMatrixWithTieredPricingBillingMode>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, ScalableMatrixWithTieredPricingBillingMode>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -40231,8 +40995,12 @@ public sealed record class ScalableMatrixWithTieredPricing : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, ScalableMatrixWithTieredPricingCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, ScalableMatrixWithTieredPricingCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -40683,8 +41451,12 @@ public sealed record class ScalableMatrixWithTieredPricing : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, ScalableMatrixWithTieredPricingPriceType>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, ScalableMatrixWithTieredPricingPriceType>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -40980,9 +41752,13 @@ public sealed record class CompositePriceFilter24 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter24Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -41007,9 +41783,13 @@ public sealed record class CompositePriceFilter24 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter24Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -41286,6 +42066,16 @@ public record class ScalableMatrixWithTieredPricingConversionRateConfig
                 "Data did not match any variant of ScalableMatrixWithTieredPricingConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(ScalableMatrixWithTieredPricingConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -41969,9 +42759,13 @@ public sealed record class CumulativeGroupedBulk : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CumulativeGroupedBulkBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -41993,9 +42787,13 @@ public sealed record class CumulativeGroupedBulk : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CumulativeGroupedBulkCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -42485,9 +43283,13 @@ public sealed record class CumulativeGroupedBulk : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CumulativeGroupedBulkPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -42745,9 +43547,13 @@ public sealed record class CompositePriceFilter25 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter25Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -42772,9 +43578,13 @@ public sealed record class CompositePriceFilter25 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter25Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -43051,6 +43861,16 @@ public record class CumulativeGroupedBulkConversionRateConfig
                 "Data did not match any variant of CumulativeGroupedBulkConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(CumulativeGroupedBulkConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -43578,8 +44398,12 @@ public sealed record class CumulativeGroupedAllocation : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, CumulativeGroupedAllocationBillingMode>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, CumulativeGroupedAllocationBillingMode>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -43601,9 +44425,13 @@ public sealed record class CumulativeGroupedAllocation : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CumulativeGroupedAllocationCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -44091,8 +44919,12 @@ public sealed record class CumulativeGroupedAllocation : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, CumulativeGroupedAllocationPriceType>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, CumulativeGroupedAllocationPriceType>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -44351,9 +45183,13 @@ public sealed record class CompositePriceFilter26 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter26Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -44378,9 +45214,13 @@ public sealed record class CompositePriceFilter26 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter26Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -44657,6 +45497,16 @@ public record class CumulativeGroupedAllocationConversionRateConfig
                 "Data did not match any variant of CumulativeGroupedAllocationConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(CumulativeGroupedAllocationConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -45108,9 +45958,13 @@ public sealed record class PriceMinimum : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -45132,9 +45986,13 @@ public sealed record class PriceMinimum : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -45619,9 +46477,13 @@ public sealed record class PriceMinimum : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -45875,9 +46737,13 @@ public sealed record class CompositePriceFilter27 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter27Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -45902,9 +46768,13 @@ public sealed record class CompositePriceFilter27 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter27Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -46181,6 +47051,16 @@ public record class PriceMinimumConversionRateConfig
                 "Data did not match any variant of PriceMinimumConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(PriceMinimumConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -46562,9 +47442,13 @@ public sealed record class Percent : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, PercentBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -46586,9 +47470,13 @@ public sealed record class Percent : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, PercentCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -47070,9 +47958,13 @@ public sealed record class Percent : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, PercentPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -47326,9 +48218,13 @@ public sealed record class CompositePriceFilter28 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter28Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -47353,9 +48249,13 @@ public sealed record class CompositePriceFilter28 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter28Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -47632,6 +48532,16 @@ public record class PercentConversionRateConfig
                 "Data did not match any variant of PercentConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(PercentConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -47975,9 +48885,13 @@ public sealed record class EventOutput : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, EventOutputBillingMode>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'billing_mode' cannot be null",
+                    new System::ArgumentNullException("billing_mode")
+                );
         }
         init
         {
@@ -47999,9 +48913,13 @@ public sealed record class EventOutput : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, EventOutputCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -48486,9 +49404,13 @@ public sealed record class EventOutput : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, EventOutputPriceType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'price_type' cannot be null",
+                    new System::ArgumentNullException("price_type")
+                );
         }
         init
         {
@@ -48742,9 +49664,13 @@ public sealed record class CompositePriceFilter29 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter29Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -48769,9 +49695,13 @@ public sealed record class CompositePriceFilter29 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilter29Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -49048,6 +49978,16 @@ public record class EventOutputConversionRateConfig
                 "Data did not match any variant of EventOutputConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(EventOutputConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

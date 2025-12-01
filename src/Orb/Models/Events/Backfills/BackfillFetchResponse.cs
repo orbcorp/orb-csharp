@@ -209,9 +209,13 @@ public sealed record class BackfillFetchResponse : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, BackfillFetchResponseStatus>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'status' cannot be null",
+                    new System::ArgumentNullException("status")
+                );
         }
         init
         {

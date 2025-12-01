@@ -61,8 +61,12 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Type>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Type>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'type' cannot be null",
+                    new System::ArgumentNullException("type")
+                );
         }
         init
         {

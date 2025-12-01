@@ -31,8 +31,12 @@ public sealed record class NewPlanThresholdTotalAmountPrice : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, NewPlanThresholdTotalAmountPriceCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, NewPlanThresholdTotalAmountPriceCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -88,8 +92,12 @@ public sealed record class NewPlanThresholdTotalAmountPrice : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, NewPlanThresholdTotalAmountPriceModelType>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, NewPlanThresholdTotalAmountPriceModelType>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'model_type' cannot be null",
+                    new System::ArgumentNullException("model_type")
+                );
         }
         init
         {
@@ -947,6 +955,16 @@ public record class NewPlanThresholdTotalAmountPriceConversionRateConfig
                 "Data did not match any variant of NewPlanThresholdTotalAmountPriceConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(NewPlanThresholdTotalAmountPriceConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

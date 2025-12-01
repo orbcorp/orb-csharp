@@ -753,8 +753,12 @@ public sealed record class MutatedSubscription : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.SubscriptionChanges.Status>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, global::Orb.Models.SubscriptionChanges.Status>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'status' cannot be null",
+                    new System::ArgumentNullException("status")
+                );
         }
         init
         {
@@ -1043,6 +1047,16 @@ public record class DiscountInterval
         {
             throw new OrbInvalidDataException("Data did not match any variant of DiscountInterval");
         }
+    }
+
+    public virtual bool Equals(DiscountInterval? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

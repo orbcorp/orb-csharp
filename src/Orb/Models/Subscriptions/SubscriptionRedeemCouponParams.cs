@@ -38,9 +38,13 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, ChangeOption>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'change_option' cannot be null",
+                    new System::ArgumentNullException("change_option")
+                );
         }
         init
         {

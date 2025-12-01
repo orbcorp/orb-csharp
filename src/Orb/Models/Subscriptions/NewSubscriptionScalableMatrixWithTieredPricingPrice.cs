@@ -34,8 +34,12 @@ public sealed record class NewSubscriptionScalableMatrixWithTieredPricingPrice :
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, NewSubscriptionScalableMatrixWithTieredPricingPriceCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, NewSubscriptionScalableMatrixWithTieredPricingPriceCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -94,8 +98,12 @@ public sealed record class NewSubscriptionScalableMatrixWithTieredPricingPrice :
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, NewSubscriptionScalableMatrixWithTieredPricingPriceModelType>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, NewSubscriptionScalableMatrixWithTieredPricingPriceModelType>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'model_type' cannot be null",
+                    new System::ArgumentNullException("model_type")
+                );
         }
         init
         {
@@ -1153,6 +1161,18 @@ public record class NewSubscriptionScalableMatrixWithTieredPricingPriceConversio
                 "Data did not match any variant of NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(
+        NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateConfig? other
+    )
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
