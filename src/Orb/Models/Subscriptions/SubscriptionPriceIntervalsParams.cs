@@ -550,6 +550,8 @@ public record class StartDate
     public static implicit operator StartDate(ApiEnum<string, BillingCycleRelativeDate> value) =>
         new(value);
 
+    public static implicit operator StartDate(BillingCycleRelativeDate value) => new(value);
+
     public void Validate()
     {
         if (this.Value == null)
@@ -1260,6 +1262,8 @@ public record class EndDate
 
     public static implicit operator EndDate(ApiEnum<string, BillingCycleRelativeDate> value) =>
         new(value);
+
+    public static implicit operator EndDate(BillingCycleRelativeDate value) => new(value);
 
     public void Validate()
     {
@@ -6995,6 +6999,9 @@ public record class AddAdjustmentModelStartDate
         ApiEnum<string, BillingCycleRelativeDate> value
     ) => new(value);
 
+    public static implicit operator AddAdjustmentModelStartDate(BillingCycleRelativeDate value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value == null)
@@ -7488,6 +7495,9 @@ public record class AddAdjustmentModelEndDate
         ApiEnum<string, BillingCycleRelativeDate> value
     ) => new(value);
 
+    public static implicit operator AddAdjustmentModelEndDate(BillingCycleRelativeDate value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value == null)
@@ -7792,6 +7802,8 @@ public record class EditEndDate
     public static implicit operator EditEndDate(ApiEnum<string, BillingCycleRelativeDate> value) =>
         new(value);
 
+    public static implicit operator EditEndDate(BillingCycleRelativeDate value) => new(value);
+
     public void Validate()
     {
         if (this.Value == null)
@@ -8010,6 +8022,8 @@ public record class EditStartDate
     public static implicit operator EditStartDate(
         ApiEnum<string, BillingCycleRelativeDate> value
     ) => new(value);
+
+    public static implicit operator EditStartDate(BillingCycleRelativeDate value) => new(value);
 
     public void Validate()
     {
@@ -8253,6 +8267,9 @@ public record class EditAdjustmentEndDate
         ApiEnum<string, BillingCycleRelativeDate> value
     ) => new(value);
 
+    public static implicit operator EditAdjustmentEndDate(BillingCycleRelativeDate value) =>
+        new(value);
+
     public void Validate()
     {
         if (this.Value == null)
@@ -8412,6 +8429,9 @@ public record class EditAdjustmentStartDate
     public static implicit operator EditAdjustmentStartDate(
         ApiEnum<string, BillingCycleRelativeDate> value
     ) => new(value);
+
+    public static implicit operator EditAdjustmentStartDate(BillingCycleRelativeDate value) =>
+        new(value);
 
     public void Validate()
     {
