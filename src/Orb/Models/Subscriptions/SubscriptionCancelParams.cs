@@ -90,9 +90,13 @@ public sealed record class SubscriptionCancelParams : ParamsBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CancelOption>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cancel_option' cannot be null",
+                    new System::ArgumentNullException("cancel_option")
+                );
         }
         init
         {

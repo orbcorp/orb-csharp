@@ -249,9 +249,13 @@ public sealed record class Alert : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, AlertType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'type' cannot be null",
+                    new System::ArgumentNullException("type")
+                );
         }
         init
         {

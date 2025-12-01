@@ -277,9 +277,13 @@ public sealed record class DataModel : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, DataModelStatus>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'status' cannot be null",
+                    new System::ArgumentNullException("status")
+                );
         }
         init
         {
@@ -357,8 +361,12 @@ public sealed record class FilterModel : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.FilterModelField>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, global::Orb.Models.Customers.Credits.FilterModelField>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -386,8 +394,12 @@ public sealed record class FilterModel : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.FilterModelOperator>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, global::Orb.Models.Customers.Credits.FilterModelOperator>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {

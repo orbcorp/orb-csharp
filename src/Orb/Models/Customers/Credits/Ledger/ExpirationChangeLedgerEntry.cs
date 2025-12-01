@@ -224,8 +224,12 @@ public sealed record class ExpirationChangeLedgerEntry : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, ExpirationChangeLedgerEntryEntryStatus>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, ExpirationChangeLedgerEntryEntryStatus>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'entry_status' cannot be null",
+                    new System::ArgumentNullException("entry_status")
+                );
         }
         init
         {
@@ -250,8 +254,12 @@ public sealed record class ExpirationChangeLedgerEntry : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, ExpirationChangeLedgerEntryEntryType>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, ExpirationChangeLedgerEntryEntryType>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentNullException("entry_type")
+                );
         }
         init
         {

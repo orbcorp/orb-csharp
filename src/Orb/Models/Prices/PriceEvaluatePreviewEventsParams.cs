@@ -1955,6 +1955,16 @@ public record class PriceEvaluationModelPrice
             );
         }
     }
+
+    public virtual bool Equals(PriceEvaluationModelPrice? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class PriceEvaluationModelPriceConverter : JsonConverter<PriceEvaluationModelPrice?>
@@ -2754,8 +2764,12 @@ public sealed record class PriceEvaluationModelPriceBulkWithFilters : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, PriceEvaluationModelPriceBulkWithFiltersCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, PriceEvaluationModelPriceBulkWithFiltersCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -3747,6 +3761,16 @@ public record class PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class PriceEvaluationModelPriceBulkWithFiltersConversionRateConfigConverter
@@ -3857,8 +3881,12 @@ public sealed record class PriceEvaluationModelPriceGroupedWithMinMaxThresholds 
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -4746,6 +4774,18 @@ public record class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversi
             );
         }
     }
+
+    public virtual bool Equals(
+        PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfig? other
+    )
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -4858,8 +4898,12 @@ public sealed record class PriceEvaluationModelPriceCumulativeGroupedAllocation 
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, PriceEvaluationModelPriceCumulativeGroupedAllocationCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, PriceEvaluationModelPriceCumulativeGroupedAllocationCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -5747,6 +5791,18 @@ public record class PriceEvaluationModelPriceCumulativeGroupedAllocationConversi
             );
         }
     }
+
+    public virtual bool Equals(
+        PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfig? other
+    )
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfigConverter
@@ -5856,8 +5912,12 @@ public sealed record class PriceEvaluationModelPricePercent : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, PriceEvaluationModelPricePercentCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, PriceEvaluationModelPricePercentCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -6623,6 +6683,16 @@ public record class PriceEvaluationModelPricePercentConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(PriceEvaluationModelPricePercentConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class PriceEvaluationModelPricePercentConversionRateConfigConverter
@@ -6730,8 +6800,12 @@ public sealed record class PriceEvaluationModelPriceEventOutput : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, PriceEvaluationModelPriceEventOutputCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, PriceEvaluationModelPriceEventOutputCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -7557,6 +7631,16 @@ public record class PriceEvaluationModelPriceEventOutputConversionRateConfig
                 "Data did not match any variant of PriceEvaluationModelPriceEventOutputConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(PriceEvaluationModelPriceEventOutputConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

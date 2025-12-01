@@ -529,6 +529,16 @@ public record class DataModel
             throw new OrbInvalidDataException("Data did not match any variant of DataModel");
         }
     }
+
+    public virtual bool Equals(global::Orb.Models.Customers.Credits.Ledger.DataModel? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class DataModelConverter

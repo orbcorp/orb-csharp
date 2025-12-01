@@ -54,9 +54,13 @@ public sealed record class NewAllocationPrice : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Cadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -333,9 +337,13 @@ public sealed record class Filter11 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Filter11Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -360,9 +368,13 @@ public sealed record class Filter11 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Filter11Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {

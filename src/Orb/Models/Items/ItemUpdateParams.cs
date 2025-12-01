@@ -178,9 +178,13 @@ public sealed record class ExternalConnection : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, ExternalConnectionName>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'external_connection_name' cannot be null",
+                    new System::ArgumentNullException("external_connection_name")
+                );
         }
         init
         {

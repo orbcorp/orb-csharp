@@ -31,8 +31,12 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, NewPlanGroupedWithMeteredMinimumPriceCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, NewPlanGroupedWithMeteredMinimumPriceCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -125,8 +129,12 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, NewPlanGroupedWithMeteredMinimumPriceModelType>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, NewPlanGroupedWithMeteredMinimumPriceModelType>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'model_type' cannot be null",
+                    new System::ArgumentNullException("model_type")
+                );
         }
         init
         {
@@ -1188,6 +1196,16 @@ public record class NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig
                 "Data did not match any variant of NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig"
             );
         }
+    }
+
+    public virtual bool Equals(NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

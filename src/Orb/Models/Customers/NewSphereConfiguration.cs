@@ -50,9 +50,13 @@ public sealed record class NewSphereConfiguration : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, NewSphereConfigurationTaxProvider>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'tax_provider' cannot be null",
+                    new System::ArgumentNullException("tax_provider")
+                );
         }
         init
         {

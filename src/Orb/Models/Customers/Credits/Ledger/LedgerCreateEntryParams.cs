@@ -408,6 +408,16 @@ public record class Body
             throw new OrbInvalidDataException("Data did not match any variant of Body");
         }
     }
+
+    public virtual bool Equals(Body? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class BodyConverter : JsonConverter<Body>
@@ -917,8 +927,12 @@ public sealed record class Filter : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Field>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Field>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -943,8 +957,12 @@ public sealed record class Filter : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Operator>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Operator>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -1471,6 +1489,16 @@ public record class CustomDueDate
             throw new OrbInvalidDataException("Data did not match any variant of CustomDueDate");
         }
     }
+
+    public virtual bool Equals(CustomDueDate? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class CustomDueDateConverter : JsonConverter<CustomDueDate?>
@@ -1653,6 +1681,16 @@ public record class InvoiceDate
         {
             throw new OrbInvalidDataException("Data did not match any variant of InvoiceDate");
         }
+    }
+
+    public virtual bool Equals(InvoiceDate? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

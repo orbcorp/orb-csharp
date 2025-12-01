@@ -451,8 +451,12 @@ public sealed record class LineItem : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Invoices.ModelType>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, global::Orb.Models.Invoices.ModelType>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'model_type' cannot be null",
+                    new System::ArgumentNullException("model_type")
+                );
         }
         init
         {
@@ -800,6 +804,16 @@ public record class DueDate
         {
             throw new OrbInvalidDataException("Data did not match any variant of DueDate");
         }
+    }
+
+    public virtual bool Equals(DueDate? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

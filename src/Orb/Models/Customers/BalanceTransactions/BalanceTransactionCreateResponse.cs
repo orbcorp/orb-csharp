@@ -56,8 +56,12 @@ public sealed record class BalanceTransactionCreateResponse : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Action>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Action>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'action' cannot be null",
+                    new System::ArgumentNullException("action")
+                );
         }
         init
         {
@@ -260,8 +264,12 @@ public sealed record class BalanceTransactionCreateResponse : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, BalanceTransactionCreateResponseType>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, BalanceTransactionCreateResponseType>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'type' cannot be null",
+                    new System::ArgumentNullException("type")
+                );
         }
         init
         {

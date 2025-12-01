@@ -123,9 +123,13 @@ public sealed record class CustomerTaxID : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Country>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'country' cannot be null",
+                    new System::ArgumentNullException("country")
+                );
         }
         init
         {
@@ -147,9 +151,13 @@ public sealed record class CustomerTaxID : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CustomerTaxIDType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'type' cannot be null",
+                    new System::ArgumentNullException("type")
+                );
         }
         init
         {

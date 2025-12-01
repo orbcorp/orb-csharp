@@ -808,9 +808,13 @@ public sealed record class CreatedInvoice : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, InvoiceSource>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'invoice_source' cannot be null",
+                    new System::ArgumentNullException("invoice_source")
+                );
         }
         init
         {
@@ -1220,9 +1224,13 @@ public sealed record class CreatedInvoice : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Status>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'status' cannot be null",
+                    new System::ArgumentNullException("status")
+                );
         }
         init
         {
@@ -1873,9 +1881,13 @@ public sealed record class CustomerBalanceTransaction : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Action>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'action' cannot be null",
+                    new System::ArgumentNullException("action")
+                );
         }
         init
         {
@@ -2078,9 +2090,13 @@ public sealed record class CustomerBalanceTransaction : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, global::Orb.Models.Type>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'type' cannot be null",
+                    new System::ArgumentNullException("type")
+                );
         }
         init
         {
@@ -3063,6 +3079,16 @@ public record class Adjustment
             throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
         }
     }
+
+    public virtual bool Equals(Adjustment? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class AdjustmentConverter : JsonConverter<Adjustment>
@@ -3353,6 +3379,16 @@ public record class SubLineItem
         {
             throw new OrbInvalidDataException("Data did not match any variant of SubLineItem");
         }
+    }
+
+    public virtual bool Equals(SubLineItem? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

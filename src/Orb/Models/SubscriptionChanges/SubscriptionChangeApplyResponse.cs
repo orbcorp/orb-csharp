@@ -85,8 +85,12 @@ public sealed record class SubscriptionChangeApplyResponse : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, SubscriptionChangeApplyResponseStatus>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, SubscriptionChangeApplyResponseStatus>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'status' cannot be null",
+                    new System::ArgumentNullException("status")
+                );
         }
         init
         {

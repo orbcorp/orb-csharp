@@ -207,7 +207,7 @@ public record class TrialEndDate
 
     public bool TryPickUnionMember1([NotNullWhen(true)] out ApiEnum<string, UnionMember1>? value)
     {
-        value = this.Value as ApiEnum<string, UnionMember1>?;
+        value = this.Value as ApiEnum<string, UnionMember1>;
         return value != null;
     }
 
@@ -255,6 +255,16 @@ public record class TrialEndDate
             throw new OrbInvalidDataException("Data did not match any variant of TrialEndDate");
         }
     }
+
+    public virtual bool Equals(TrialEndDate? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class TrialEndDateConverter : JsonConverter<TrialEndDate>
@@ -268,7 +278,15 @@ sealed class TrialEndDateConverter : JsonConverter<TrialEndDate>
         var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            return new(JsonSerializer.Deserialize<ApiEnum<string, UnionMember1>>(json, options));
+            var deserialized = JsonSerializer.Deserialize<ApiEnum<string, UnionMember1>>(
+                json,
+                options
+            );
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new(deserialized, json);
+            }
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {

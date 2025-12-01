@@ -47,9 +47,13 @@ public sealed record class BillingCycleConfiguration : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, DurationUnit>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'duration_unit' cannot be null",
+                    new System::ArgumentNullException("duration_unit")
+                );
         }
         init
         {

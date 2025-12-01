@@ -315,9 +315,13 @@ public sealed record class Data : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, DataStatus>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'status' cannot be null",
+                    new System::ArgumentNullException("status")
+                );
         }
         init
         {

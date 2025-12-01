@@ -154,9 +154,13 @@ public sealed record class Data : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, DataAction>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'action' cannot be null",
+                    new System::ArgumentNullException("action")
+                );
         }
         init
         {
@@ -359,9 +363,13 @@ public sealed record class Data : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, DataType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'type' cannot be null",
+                    new System::ArgumentNullException("type")
+                );
         }
         init
         {

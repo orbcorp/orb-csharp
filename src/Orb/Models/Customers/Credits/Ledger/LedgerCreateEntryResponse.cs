@@ -419,6 +419,16 @@ public record class LedgerCreateEntryResponse
             );
         }
     }
+
+    public virtual bool Equals(LedgerCreateEntryResponse? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntryResponse>

@@ -71,9 +71,13 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, global::Orb.Models.Alerts.Type>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'type' cannot be null",
+                    new System::ArgumentNullException("type")
+                );
         }
         init
         {

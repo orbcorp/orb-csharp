@@ -222,9 +222,13 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, VoidInitiatedLedgerEntryEntryStatus>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'entry_status' cannot be null",
+                    new System::ArgumentNullException("entry_status")
+                );
         }
         init
         {
@@ -249,9 +253,13 @@ public sealed record class VoidInitiatedLedgerEntry : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, VoidInitiatedLedgerEntryEntryType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'entry_type' cannot be null",
+                    new System::ArgumentNullException("entry_type")
+                );
         }
         init
         {

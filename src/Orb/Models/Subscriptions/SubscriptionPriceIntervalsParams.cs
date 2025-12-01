@@ -729,7 +729,7 @@ public record class StartDate
         [NotNullWhen(true)] out ApiEnum<string, BillingCycleRelativeDate>? value
     )
     {
-        value = this.Value as ApiEnum<string, BillingCycleRelativeDate>?;
+        value = this.Value as ApiEnum<string, BillingCycleRelativeDate>;
         return value != null;
     }
 
@@ -776,6 +776,16 @@ public record class StartDate
             throw new OrbInvalidDataException("Data did not match any variant of StartDate");
         }
     }
+
+    public virtual bool Equals(StartDate? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class StartDateConverter : JsonConverter<StartDate>
@@ -789,9 +799,14 @@ sealed class StartDateConverter : JsonConverter<StartDate>
         var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            return new(
-                JsonSerializer.Deserialize<ApiEnum<string, BillingCycleRelativeDate>>(json, options)
-            );
+            var deserialized = JsonSerializer.Deserialize<
+                ApiEnum<string, BillingCycleRelativeDate>
+            >(json, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new(deserialized, json);
+            }
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -926,6 +941,16 @@ public record class Discount
         {
             throw new OrbInvalidDataException("Data did not match any variant of Discount");
         }
+    }
+
+    public virtual bool Equals(global::Orb.Models.Subscriptions.Discount? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -1529,7 +1554,7 @@ public record class EndDate
         [NotNullWhen(true)] out ApiEnum<string, BillingCycleRelativeDate>? value
     )
     {
-        value = this.Value as ApiEnum<string, BillingCycleRelativeDate>?;
+        value = this.Value as ApiEnum<string, BillingCycleRelativeDate>;
         return value != null;
     }
 
@@ -1576,6 +1601,16 @@ public record class EndDate
             throw new OrbInvalidDataException("Data did not match any variant of EndDate");
         }
     }
+
+    public virtual bool Equals(EndDate? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class EndDateConverter : JsonConverter<EndDate?>
@@ -1589,9 +1624,14 @@ sealed class EndDateConverter : JsonConverter<EndDate?>
         var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            return new(
-                JsonSerializer.Deserialize<ApiEnum<string, BillingCycleRelativeDate>>(json, options)
-            );
+            var deserialized = JsonSerializer.Deserialize<
+                ApiEnum<string, BillingCycleRelativeDate>
+            >(json, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new(deserialized, json);
+            }
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -2954,6 +2994,16 @@ public record class PriceModel
             throw new OrbInvalidDataException("Data did not match any variant of PriceModel");
         }
     }
+
+    public virtual bool Equals(PriceModel? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class PriceModelConverter : JsonConverter<PriceModel?>
@@ -3743,9 +3793,13 @@ public sealed record class PriceModelBulkWithFilters : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, PriceModelBulkWithFiltersCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -4730,6 +4784,16 @@ public record class PriceModelBulkWithFiltersConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(PriceModelBulkWithFiltersConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class PriceModelBulkWithFiltersConversionRateConfigConverter
@@ -4837,8 +4901,12 @@ public sealed record class PriceModelGroupedWithMinMaxThresholds : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, PriceModelGroupedWithMinMaxThresholdsCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, PriceModelGroupedWithMinMaxThresholdsCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -5714,6 +5782,16 @@ public record class PriceModelGroupedWithMinMaxThresholdsConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(PriceModelGroupedWithMinMaxThresholdsConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class PriceModelGroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -5821,8 +5899,12 @@ public sealed record class PriceModelCumulativeGroupedAllocation : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, PriceModelCumulativeGroupedAllocationCadence>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, PriceModelCumulativeGroupedAllocationCadence>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -6698,6 +6780,16 @@ public record class PriceModelCumulativeGroupedAllocationConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(PriceModelCumulativeGroupedAllocationConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class PriceModelCumulativeGroupedAllocationConversionRateConfigConverter
@@ -6800,9 +6892,13 @@ public sealed record class PriceModelPercent : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, PriceModelPercentCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -7560,6 +7656,16 @@ public record class PriceModelPercentConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(PriceModelPercentConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class PriceModelPercentConversionRateConfigConverter
@@ -7662,9 +7768,13 @@ public sealed record class PriceModelEventOutput : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, PriceModelEventOutputCadence>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'cadence' cannot be null",
+                    new System::ArgumentNullException("cadence")
+                );
         }
         init
         {
@@ -8481,6 +8591,16 @@ public record class PriceModelEventOutputConversionRateConfig
             );
         }
     }
+
+    public virtual bool Equals(PriceModelEventOutputConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class PriceModelEventOutputConversionRateConfigConverter
@@ -8772,7 +8892,7 @@ public record class AddAdjustmentModelStartDate
         [NotNullWhen(true)] out ApiEnum<string, BillingCycleRelativeDate>? value
     )
     {
-        value = this.Value as ApiEnum<string, BillingCycleRelativeDate>?;
+        value = this.Value as ApiEnum<string, BillingCycleRelativeDate>;
         return value != null;
     }
 
@@ -8827,6 +8947,16 @@ public record class AddAdjustmentModelStartDate
             );
         }
     }
+
+    public virtual bool Equals(AddAdjustmentModelStartDate? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class AddAdjustmentModelStartDateConverter : JsonConverter<AddAdjustmentModelStartDate>
@@ -8840,9 +8970,14 @@ sealed class AddAdjustmentModelStartDateConverter : JsonConverter<AddAdjustmentM
         var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            return new(
-                JsonSerializer.Deserialize<ApiEnum<string, BillingCycleRelativeDate>>(json, options)
-            );
+            var deserialized = JsonSerializer.Deserialize<
+                ApiEnum<string, BillingCycleRelativeDate>
+            >(json, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new(deserialized, json);
+            }
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -9054,6 +9189,16 @@ public record class AddAdjustmentModelAdjustment
             );
         }
     }
+
+    public virtual bool Equals(AddAdjustmentModelAdjustment? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class AddAdjustmentModelAdjustmentConverter : JsonConverter<AddAdjustmentModelAdjustment?>
@@ -9240,7 +9385,7 @@ public record class AddAdjustmentModelEndDate
         [NotNullWhen(true)] out ApiEnum<string, BillingCycleRelativeDate>? value
     )
     {
-        value = this.Value as ApiEnum<string, BillingCycleRelativeDate>?;
+        value = this.Value as ApiEnum<string, BillingCycleRelativeDate>;
         return value != null;
     }
 
@@ -9295,6 +9440,16 @@ public record class AddAdjustmentModelEndDate
             );
         }
     }
+
+    public virtual bool Equals(AddAdjustmentModelEndDate? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class AddAdjustmentModelEndDateConverter : JsonConverter<AddAdjustmentModelEndDate?>
@@ -9308,9 +9463,14 @@ sealed class AddAdjustmentModelEndDateConverter : JsonConverter<AddAdjustmentMod
         var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            return new(
-                JsonSerializer.Deserialize<ApiEnum<string, BillingCycleRelativeDate>>(json, options)
-            );
+            var deserialized = JsonSerializer.Deserialize<
+                ApiEnum<string, BillingCycleRelativeDate>
+            >(json, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new(deserialized, json);
+            }
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -9640,7 +9800,7 @@ public record class EditEndDate
         [NotNullWhen(true)] out ApiEnum<string, BillingCycleRelativeDate>? value
     )
     {
-        value = this.Value as ApiEnum<string, BillingCycleRelativeDate>?;
+        value = this.Value as ApiEnum<string, BillingCycleRelativeDate>;
         return value != null;
     }
 
@@ -9687,6 +9847,16 @@ public record class EditEndDate
             throw new OrbInvalidDataException("Data did not match any variant of EditEndDate");
         }
     }
+
+    public virtual bool Equals(EditEndDate? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class EditEndDateConverter : JsonConverter<EditEndDate?>
@@ -9700,9 +9870,14 @@ sealed class EditEndDateConverter : JsonConverter<EditEndDate?>
         var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            return new(
-                JsonSerializer.Deserialize<ApiEnum<string, BillingCycleRelativeDate>>(json, options)
-            );
+            var deserialized = JsonSerializer.Deserialize<
+                ApiEnum<string, BillingCycleRelativeDate>
+            >(json, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new(deserialized, json);
+            }
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -9869,7 +10044,7 @@ public record class EditStartDate
         [NotNullWhen(true)] out ApiEnum<string, BillingCycleRelativeDate>? value
     )
     {
-        value = this.Value as ApiEnum<string, BillingCycleRelativeDate>?;
+        value = this.Value as ApiEnum<string, BillingCycleRelativeDate>;
         return value != null;
     }
 
@@ -9921,6 +10096,16 @@ public record class EditStartDate
             throw new OrbInvalidDataException("Data did not match any variant of EditStartDate");
         }
     }
+
+    public virtual bool Equals(EditStartDate? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class EditStartDateConverter : JsonConverter<EditStartDate>
@@ -9934,9 +10119,14 @@ sealed class EditStartDateConverter : JsonConverter<EditStartDate>
         var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            return new(
-                JsonSerializer.Deserialize<ApiEnum<string, BillingCycleRelativeDate>>(json, options)
-            );
+            var deserialized = JsonSerializer.Deserialize<
+                ApiEnum<string, BillingCycleRelativeDate>
+            >(json, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new(deserialized, json);
+            }
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -10141,7 +10331,7 @@ public record class EditAdjustmentEndDate
         [NotNullWhen(true)] out ApiEnum<string, BillingCycleRelativeDate>? value
     )
     {
-        value = this.Value as ApiEnum<string, BillingCycleRelativeDate>?;
+        value = this.Value as ApiEnum<string, BillingCycleRelativeDate>;
         return value != null;
     }
 
@@ -10196,6 +10386,16 @@ public record class EditAdjustmentEndDate
             );
         }
     }
+
+    public virtual bool Equals(EditAdjustmentEndDate? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class EditAdjustmentEndDateConverter : JsonConverter<EditAdjustmentEndDate?>
@@ -10209,9 +10409,14 @@ sealed class EditAdjustmentEndDateConverter : JsonConverter<EditAdjustmentEndDat
         var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            return new(
-                JsonSerializer.Deserialize<ApiEnum<string, BillingCycleRelativeDate>>(json, options)
-            );
+            var deserialized = JsonSerializer.Deserialize<
+                ApiEnum<string, BillingCycleRelativeDate>
+            >(json, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new(deserialized, json);
+            }
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -10286,7 +10491,7 @@ public record class EditAdjustmentStartDate
         [NotNullWhen(true)] out ApiEnum<string, BillingCycleRelativeDate>? value
     )
     {
-        value = this.Value as ApiEnum<string, BillingCycleRelativeDate>?;
+        value = this.Value as ApiEnum<string, BillingCycleRelativeDate>;
         return value != null;
     }
 
@@ -10341,6 +10546,16 @@ public record class EditAdjustmentStartDate
             );
         }
     }
+
+    public virtual bool Equals(EditAdjustmentStartDate? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class EditAdjustmentStartDateConverter : JsonConverter<EditAdjustmentStartDate>
@@ -10354,9 +10569,14 @@ sealed class EditAdjustmentStartDateConverter : JsonConverter<EditAdjustmentStar
         var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            return new(
-                JsonSerializer.Deserialize<ApiEnum<string, BillingCycleRelativeDate>>(json, options)
-            );
+            var deserialized = JsonSerializer.Deserialize<
+                ApiEnum<string, BillingCycleRelativeDate>
+            >(json, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new(deserialized, json);
+            }
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {

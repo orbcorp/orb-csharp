@@ -146,6 +146,16 @@ public record class SharedDiscount
             throw new OrbInvalidDataException("Data did not match any variant of SharedDiscount");
         }
     }
+
+    public virtual bool Equals(SharedDiscount? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class SharedDiscountConverter : JsonConverter<SharedDiscount>

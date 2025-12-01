@@ -26,9 +26,13 @@ public sealed record class NewMinimum : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, NewMinimumAdjustmentType>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'adjustment_type' cannot be null",
+                    new System::ArgumentNullException("adjustment_type")
+                );
         }
         init
         {
@@ -403,9 +407,13 @@ public sealed record class Filter14 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Filter14Field>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -430,9 +438,13 @@ public sealed record class Filter14 : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Filter14Operator>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {

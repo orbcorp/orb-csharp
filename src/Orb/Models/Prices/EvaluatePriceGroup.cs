@@ -244,6 +244,16 @@ public record class GroupingValue
             throw new OrbInvalidDataException("Data did not match any variant of GroupingValue");
         }
     }
+
+    public virtual bool Equals(GroupingValue? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class GroupingValueConverter : JsonConverter<GroupingValue>

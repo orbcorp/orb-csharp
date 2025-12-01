@@ -47,9 +47,13 @@ public sealed record class CustomExpiration : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, CustomExpirationDurationUnit>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'duration_unit' cannot be null",
+                    new System::ArgumentNullException("duration_unit")
+                );
         }
         init
         {

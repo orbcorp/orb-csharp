@@ -411,6 +411,16 @@ public record class BodyModel
             throw new OrbInvalidDataException("Data did not match any variant of BodyModel");
         }
     }
+
+    public virtual bool Equals(BodyModel? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class BodyModelConverter : JsonConverter<BodyModel>
@@ -943,8 +953,12 @@ public sealed record class FilterModel : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.FilterModelField>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.FilterModelField>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'field' cannot be null",
+                    new System::ArgumentNullException("field")
+                );
         }
         init
         {
@@ -972,8 +986,12 @@ public sealed record class FilterModel : ModelBase
                 );
 
             return JsonSerializer.Deserialize<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator>
-            >(element, ModelBase.SerializerOptions);
+                    ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator>
+                >(element, ModelBase.SerializerOptions)
+                ?? throw new OrbInvalidDataException(
+                    "'operator' cannot be null",
+                    new System::ArgumentNullException("operator")
+                );
         }
         init
         {
@@ -1528,6 +1546,16 @@ public record class BodyModelIncrementInvoiceSettingsCustomDueDate
             );
         }
     }
+
+    public virtual bool Equals(BodyModelIncrementInvoiceSettingsCustomDueDate? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 sealed class BodyModelIncrementInvoiceSettingsCustomDueDateConverter
@@ -1725,6 +1753,16 @@ public record class BodyModelIncrementInvoiceSettingsInvoiceDate
                 "Data did not match any variant of BodyModelIncrementInvoiceSettingsInvoiceDate"
             );
         }
+    }
+
+    public virtual bool Equals(BodyModelIncrementInvoiceSettingsInvoiceDate? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

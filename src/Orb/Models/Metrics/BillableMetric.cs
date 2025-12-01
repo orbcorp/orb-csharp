@@ -161,9 +161,13 @@ public sealed record class BillableMetric : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, global::Orb.Models.Metrics.Status>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new OrbInvalidDataException(
+                    "'status' cannot be null",
+                    new System::ArgumentNullException("status")
+                );
         }
         init
         {
