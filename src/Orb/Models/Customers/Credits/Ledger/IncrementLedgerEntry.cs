@@ -14,284 +14,83 @@ public sealed record class IncrementLedgerEntry : ModelBase
 {
     public required string ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentNullException("id")
-                );
-        }
-        init
-        {
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
+        init { ModelBase.Set(this._rawData, "id", value); }
     }
 
     public required double Amount
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("amount", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'amount' cannot be null",
-                    new System::ArgumentOutOfRangeException("amount", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["amount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "amount"); }
+        init { ModelBase.Set(this._rawData, "amount", value); }
     }
 
     public required System::DateTimeOffset CreatedAt
     {
         get
         {
-            if (!this._rawData.TryGetValue("created_at", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'created_at' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "created_at",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
         }
-        init
-        {
-            this._rawData["created_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "created_at", value); }
     }
 
     public required AffectedBlock CreditBlock
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("credit_block", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'credit_block' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "credit_block",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<AffectedBlock>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'credit_block' cannot be null",
-                    new System::ArgumentNullException("credit_block")
-                );
-        }
-        init
-        {
-            this._rawData["credit_block"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<AffectedBlock>(this.RawData, "credit_block"); }
+        init { ModelBase.Set(this._rawData, "credit_block", value); }
     }
 
     public required string Currency
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("currency", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'currency' cannot be null",
-                    new System::ArgumentOutOfRangeException("currency", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'currency' cannot be null",
-                    new System::ArgumentNullException("currency")
-                );
-        }
-        init
-        {
-            this._rawData["currency"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "currency"); }
+        init { ModelBase.Set(this._rawData, "currency", value); }
     }
 
     public required CustomerMinified Customer
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("customer", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'customer' cannot be null",
-                    new System::ArgumentOutOfRangeException("customer", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<CustomerMinified>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'customer' cannot be null",
-                    new System::ArgumentNullException("customer")
-                );
-        }
-        init
-        {
-            this._rawData["customer"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<CustomerMinified>(this.RawData, "customer"); }
+        init { ModelBase.Set(this._rawData, "customer", value); }
     }
 
     public required string? Description
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("description", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["description"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
+        init { ModelBase.Set(this._rawData, "description", value); }
     }
 
     public required double EndingBalance
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("ending_balance", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'ending_balance' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "ending_balance",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["ending_balance"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "ending_balance"); }
+        init { ModelBase.Set(this._rawData, "ending_balance", value); }
     }
 
     public required ApiEnum<string, IncrementLedgerEntryEntryStatus> EntryStatus
     {
         get
         {
-            if (!this._rawData.TryGetValue("entry_status", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'entry_status' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "entry_status",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, IncrementLedgerEntryEntryStatus>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'entry_status' cannot be null",
-                    new System::ArgumentNullException("entry_status")
-                );
-        }
-        init
-        {
-            this._rawData["entry_status"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<ApiEnum<string, IncrementLedgerEntryEntryStatus>>(
+                this.RawData,
+                "entry_status"
             );
         }
+        init { ModelBase.Set(this._rawData, "entry_status", value); }
     }
 
     public required ApiEnum<string, IncrementLedgerEntryEntryType> EntryType
     {
         get
         {
-            if (!this._rawData.TryGetValue("entry_type", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'entry_type' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "entry_type",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, IncrementLedgerEntryEntryType>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'entry_type' cannot be null",
-                    new System::ArgumentNullException("entry_type")
-                );
-        }
-        init
-        {
-            this._rawData["entry_type"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<ApiEnum<string, IncrementLedgerEntryEntryType>>(
+                this.RawData,
+                "entry_type"
             );
         }
+        init { ModelBase.Set(this._rawData, "entry_type", value); }
     }
 
     public required long LedgerSequenceNumber
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("ledger_sequence_number", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'ledger_sequence_number' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "ledger_sequence_number",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["ledger_sequence_number"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "ledger_sequence_number"); }
+        init { ModelBase.Set(this._rawData, "ledger_sequence_number", value); }
     }
 
     /// <summary>
@@ -304,52 +103,15 @@ public sealed record class IncrementLedgerEntry : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("metadata", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'metadata' cannot be null",
-                    new System::ArgumentOutOfRangeException("metadata", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<Dictionary<string, string>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'metadata' cannot be null",
-                    new System::ArgumentNullException("metadata")
-                );
+            return ModelBase.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
         }
-        init
-        {
-            this._rawData["metadata"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "metadata", value); }
     }
 
     public required double StartingBalance
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("starting_balance", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'starting_balance' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "starting_balance",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["starting_balance"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "starting_balance"); }
+        init { ModelBase.Set(this._rawData, "starting_balance", value); }
     }
 
     /// <summary>
@@ -357,20 +119,8 @@ public sealed record class IncrementLedgerEntry : ModelBase
     /// </summary>
     public IReadOnlyList<Invoice>? CreatedInvoices
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("created_invoices", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<Invoice>?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["created_invoices"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<List<Invoice>>(this.RawData, "created_invoices"); }
+        init { ModelBase.Set(this._rawData, "created_invoices", value); }
     }
 
     public override void Validate()

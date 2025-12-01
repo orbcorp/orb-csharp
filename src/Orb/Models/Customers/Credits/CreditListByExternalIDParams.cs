@@ -26,20 +26,8 @@ public sealed record class CreditListByExternalIDParams : ParamsBase
     /// </summary>
     public string? Currency
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("currency", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["currency"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "currency"); }
+        init { ModelBase.Set(this._rawQueryData, "currency", value); }
     }
 
     /// <summary>
@@ -48,20 +36,8 @@ public sealed record class CreditListByExternalIDParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("cursor", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["cursor"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "cursor"); }
+        init { ModelBase.Set(this._rawQueryData, "cursor", value); }
     }
 
     /// <summary>
@@ -70,13 +46,7 @@ public sealed record class CreditListByExternalIDParams : ParamsBase
     /// </summary>
     public bool? IncludeAllBlocks
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("include_all_blocks", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawQueryData, "include_all_blocks"); }
         init
         {
             if (value == null)
@@ -84,10 +54,7 @@ public sealed record class CreditListByExternalIDParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["include_all_blocks"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "include_all_blocks", value);
         }
     }
 
@@ -96,13 +63,7 @@ public sealed record class CreditListByExternalIDParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("limit", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "limit"); }
         init
         {
             if (value == null)
@@ -110,10 +71,7 @@ public sealed record class CreditListByExternalIDParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["limit"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "limit", value);
         }
     }
 

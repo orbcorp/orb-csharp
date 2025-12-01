@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models.Events;
 
@@ -20,31 +18,12 @@ public sealed record class EventIngestResponse : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("validation_failed", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'validation_failed' cannot be null",
-                    new ArgumentOutOfRangeException(
-                        "validation_failed",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<List<ValidationFailed>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'validation_failed' cannot be null",
-                    new ArgumentNullException("validation_failed")
-                );
-        }
-        init
-        {
-            this._rawData["validation_failed"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<List<ValidationFailed>>(
+                this.RawData,
+                "validation_failed"
             );
         }
+        init { ModelBase.Set(this._rawData, "validation_failed", value); }
     }
 
     /// <summary>
@@ -53,20 +32,8 @@ public sealed record class EventIngestResponse : ModelBase
     /// </summary>
     public Debug? Debug
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("debug", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Debug?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["debug"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<Debug>(this.RawData, "debug"); }
+        init { ModelBase.Set(this._rawData, "debug", value); }
     }
 
     public override void Validate()
@@ -122,27 +89,8 @@ public sealed record class ValidationFailed : ModelBase
     /// </summary>
     public required string IdempotencyKey
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("idempotency_key", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'idempotency_key' cannot be null",
-                    new ArgumentOutOfRangeException("idempotency_key", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'idempotency_key' cannot be null",
-                    new ArgumentNullException("idempotency_key")
-                );
-        }
-        init
-        {
-            this._rawData["idempotency_key"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "idempotency_key"); }
+        init { ModelBase.Set(this._rawData, "idempotency_key", value); }
     }
 
     /// <summary>
@@ -150,30 +98,8 @@ public sealed record class ValidationFailed : ModelBase
     /// </summary>
     public required IReadOnlyList<string> ValidationErrors
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("validation_errors", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'validation_errors' cannot be null",
-                    new ArgumentOutOfRangeException(
-                        "validation_errors",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'validation_errors' cannot be null",
-                    new ArgumentNullException("validation_errors")
-                );
-        }
-        init
-        {
-            this._rawData["validation_errors"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "validation_errors"); }
+        init { ModelBase.Set(this._rawData, "validation_errors", value); }
     }
 
     public override void Validate()
@@ -220,52 +146,14 @@ public sealed record class Debug : ModelBase
 {
     public required IReadOnlyList<string> Duplicate
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("duplicate", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'duplicate' cannot be null",
-                    new ArgumentOutOfRangeException("duplicate", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'duplicate' cannot be null",
-                    new ArgumentNullException("duplicate")
-                );
-        }
-        init
-        {
-            this._rawData["duplicate"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "duplicate"); }
+        init { ModelBase.Set(this._rawData, "duplicate", value); }
     }
 
     public required IReadOnlyList<string> Ingested
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("ingested", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'ingested' cannot be null",
-                    new ArgumentOutOfRangeException("ingested", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'ingested' cannot be null",
-                    new ArgumentNullException("ingested")
-                );
-        }
-        init
-        {
-            this._rawData["ingested"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "ingested"); }
+        init { ModelBase.Set(this._rawData, "ingested", value); }
     }
 
     public override void Validate()

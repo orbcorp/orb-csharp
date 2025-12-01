@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models.InvoiceLineItems;
 
@@ -36,27 +35,8 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public required string Amount
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("amount", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'amount' cannot be null",
-                    new ArgumentOutOfRangeException("amount", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'amount' cannot be null",
-                    new ArgumentNullException("amount")
-                );
-        }
-        init
-        {
-            this._rawBodyData["amount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "amount"); }
+        init { ModelBase.Set(this._rawBodyData, "amount", value); }
     }
 
     /// <summary>
@@ -70,29 +50,14 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
 #endif
     EndDate
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("end_date", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'end_date' cannot be null",
-                    new ArgumentOutOfRangeException("end_date", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<
+        get { return ModelBase.GetNotNullStruct<
 #if NET
             DateOnly
 #else
             DateTimeOffset
 #endif
-            >(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["end_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+            >(this.RawBodyData, "end_date"); }
+        init { ModelBase.Set(this._rawBodyData, "end_date", value); }
     }
 
     /// <summary>
@@ -100,27 +65,8 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public required string InvoiceID
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("invoice_id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'invoice_id' cannot be null",
-                    new ArgumentOutOfRangeException("invoice_id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'invoice_id' cannot be null",
-                    new ArgumentNullException("invoice_id")
-                );
-        }
-        init
-        {
-            this._rawBodyData["invoice_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "invoice_id"); }
+        init { ModelBase.Set(this._rawBodyData, "invoice_id", value); }
     }
 
     /// <summary>
@@ -128,23 +74,8 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public required double Quantity
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("quantity", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'quantity' cannot be null",
-                    new ArgumentOutOfRangeException("quantity", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["quantity"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<double>(this.RawBodyData, "quantity"); }
+        init { ModelBase.Set(this._rawBodyData, "quantity", value); }
     }
 
     /// <summary>
@@ -158,29 +89,14 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
 #endif
     StartDate
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("start_date", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'start_date' cannot be null",
-                    new ArgumentOutOfRangeException("start_date", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<
+        get { return ModelBase.GetNotNullStruct<
 #if NET
             DateOnly
 #else
             DateTimeOffset
 #endif
-            >(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["start_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+            >(this.RawBodyData, "start_date"); }
+        init { ModelBase.Set(this._rawBodyData, "start_date", value); }
     }
 
     /// <summary>
@@ -191,20 +107,8 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public string? ItemID
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("item_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["item_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "item_id"); }
+        init { ModelBase.Set(this._rawBodyData, "item_id", value); }
     }
 
     /// <summary>
@@ -217,20 +121,8 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public string? Name
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("name", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["name"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "name"); }
+        init { ModelBase.Set(this._rawBodyData, "name", value); }
     }
 
     public InvoiceLineItemCreateParams() { }

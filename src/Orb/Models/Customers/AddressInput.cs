@@ -12,110 +12,38 @@ public sealed record class AddressInput : ModelBase
 {
     public string? City
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("city", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["city"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "city"); }
+        init { ModelBase.Set(this._rawData, "city", value); }
     }
 
     public string? Country
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("country", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["country"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "country"); }
+        init { ModelBase.Set(this._rawData, "country", value); }
     }
 
     public string? Line1
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("line1", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["line1"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "line1"); }
+        init { ModelBase.Set(this._rawData, "line1", value); }
     }
 
     public string? Line2
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("line2", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["line2"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "line2"); }
+        init { ModelBase.Set(this._rawData, "line2", value); }
     }
 
     public string? PostalCode
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("postal_code", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["postal_code"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "postal_code"); }
+        init { ModelBase.Set(this._rawData, "postal_code", value); }
     }
 
     public string? State
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("state", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["state"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "state"); }
+        init { ModelBase.Set(this._rawData, "state", value); }
     }
 
     public override void Validate()

@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -17,27 +15,8 @@ public sealed record class ConversionRateUnitConfig : ModelBase
     /// </summary>
     public required string UnitAmount
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("unit_amount", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'unit_amount' cannot be null",
-                    new ArgumentOutOfRangeException("unit_amount", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'unit_amount' cannot be null",
-                    new ArgumentNullException("unit_amount")
-                );
-        }
-        init
-        {
-            this._rawData["unit_amount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_amount"); }
+        init { ModelBase.Set(this._rawData, "unit_amount", value); }
     }
 
     public override void Validate()

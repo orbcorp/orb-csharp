@@ -16,27 +16,8 @@ public sealed record class MutatedSubscription : ModelBase
 {
     public required string ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentNullException("id")
-                );
-        }
-        init
-        {
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
+        init { ModelBase.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -44,20 +25,8 @@ public sealed record class MutatedSubscription : ModelBase
     /// </summary>
     public required long? ActivePlanPhaseOrder
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("active_plan_phase_order", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["active_plan_phase_order"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawData, "active_plan_phase_order"); }
+        init { ModelBase.Set(this._rawData, "active_plan_phase_order", value); }
     }
 
     /// <summary>
@@ -68,31 +37,12 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("adjustment_intervals", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'adjustment_intervals' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "adjustment_intervals",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<List<AdjustmentInterval>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'adjustment_intervals' cannot be null",
-                    new System::ArgumentNullException("adjustment_intervals")
-                );
-        }
-        init
-        {
-            this._rawData["adjustment_intervals"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<List<AdjustmentInterval>>(
+                this.RawData,
+                "adjustment_intervals"
             );
         }
+        init { ModelBase.Set(this._rawData, "adjustment_intervals", value); }
     }
 
     /// <summary>
@@ -102,56 +52,20 @@ public sealed record class MutatedSubscription : ModelBase
     /// </summary>
     public required bool? AutoCollection
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("auto_collection", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["auto_collection"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "auto_collection"); }
+        init { ModelBase.Set(this._rawData, "auto_collection", value); }
     }
 
     public required BillingCycleAnchorConfiguration BillingCycleAnchorConfiguration
     {
         get
         {
-            if (
-                !this._rawData.TryGetValue(
-                    "billing_cycle_anchor_configuration",
-                    out JsonElement element
-                )
-            )
-                throw new OrbInvalidDataException(
-                    "'billing_cycle_anchor_configuration' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "billing_cycle_anchor_configuration",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<BillingCycleAnchorConfiguration>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'billing_cycle_anchor_configuration' cannot be null",
-                    new System::ArgumentNullException("billing_cycle_anchor_configuration")
-                );
-        }
-        init
-        {
-            this._rawData["billing_cycle_anchor_configuration"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<BillingCycleAnchorConfiguration>(
+                this.RawData,
+                "billing_cycle_anchor_configuration"
             );
         }
+        init { ModelBase.Set(this._rawData, "billing_cycle_anchor_configuration", value); }
     }
 
     /// <summary>
@@ -162,53 +76,17 @@ public sealed record class MutatedSubscription : ModelBase
     /// </summary>
     public required long BillingCycleDay
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("billing_cycle_day", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'billing_cycle_day' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "billing_cycle_day",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["billing_cycle_day"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "billing_cycle_day"); }
+        init { ModelBase.Set(this._rawData, "billing_cycle_day", value); }
     }
 
     public required System::DateTimeOffset CreatedAt
     {
         get
         {
-            if (!this._rawData.TryGetValue("created_at", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'created_at' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "created_at",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
         }
-        init
-        {
-            this._rawData["created_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "created_at", value); }
     }
 
     /// <summary>
@@ -220,26 +98,12 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            if (
-                !this._rawData.TryGetValue(
-                    "current_billing_period_end_date",
-                    out JsonElement element
-                )
-            )
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawData,
+                "current_billing_period_end_date"
             );
         }
-        init
-        {
-            this._rawData["current_billing_period_end_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "current_billing_period_end_date", value); }
     }
 
     /// <summary>
@@ -251,26 +115,12 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            if (
-                !this._rawData.TryGetValue(
-                    "current_billing_period_start_date",
-                    out JsonElement element
-                )
-            )
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawData,
+                "current_billing_period_start_date"
             );
         }
-        init
-        {
-            this._rawData["current_billing_period_start_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "current_billing_period_start_date", value); }
     }
 
     /// <summary>
@@ -292,27 +142,8 @@ public sealed record class MutatedSubscription : ModelBase
     /// </summary>
     public required Customer Customer
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("customer", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'customer' cannot be null",
-                    new System::ArgumentOutOfRangeException("customer", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<Customer>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'customer' cannot be null",
-                    new System::ArgumentNullException("customer")
-                );
-        }
-        init
-        {
-            this._rawData["customer"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<Customer>(this.RawData, "customer"); }
+        init { ModelBase.Set(this._rawData, "customer", value); }
     }
 
     /// <summary>
@@ -321,20 +152,8 @@ public sealed record class MutatedSubscription : ModelBase
     /// </summary>
     public required string? DefaultInvoiceMemo
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("default_invoice_memo", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["default_invoice_memo"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "default_invoice_memo"); }
+        init { ModelBase.Set(this._rawData, "default_invoice_memo", value); }
     }
 
     /// <summary>
@@ -346,31 +165,12 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("discount_intervals", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'discount_intervals' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "discount_intervals",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<List<DiscountInterval>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'discount_intervals' cannot be null",
-                    new System::ArgumentNullException("discount_intervals")
-                );
-        }
-        init
-        {
-            this._rawData["discount_intervals"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<List<DiscountInterval>>(
+                this.RawData,
+                "discount_intervals"
             );
         }
+        init { ModelBase.Set(this._rawData, "discount_intervals", value); }
     }
 
     /// <summary>
@@ -380,70 +180,27 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("end_date", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "end_date");
         }
-        init
-        {
-            this._rawData["end_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "end_date", value); }
     }
 
     public required IReadOnlyList<FixedFeeQuantityScheduleEntry> FixedFeeQuantitySchedule
     {
         get
         {
-            if (!this._rawData.TryGetValue("fixed_fee_quantity_schedule", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'fixed_fee_quantity_schedule' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "fixed_fee_quantity_schedule",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<List<FixedFeeQuantityScheduleEntry>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'fixed_fee_quantity_schedule' cannot be null",
-                    new System::ArgumentNullException("fixed_fee_quantity_schedule")
-                );
-        }
-        init
-        {
-            this._rawData["fixed_fee_quantity_schedule"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<List<FixedFeeQuantityScheduleEntry>>(
+                this.RawData,
+                "fixed_fee_quantity_schedule"
             );
         }
+        init { ModelBase.Set(this._rawData, "fixed_fee_quantity_schedule", value); }
     }
 
     public required string? InvoicingThreshold
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("invoicing_threshold", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["invoicing_threshold"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoicing_threshold"); }
+        init { ModelBase.Set(this._rawData, "invoicing_threshold", value); }
     }
 
     /// <summary>
@@ -455,31 +212,12 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("maximum_intervals", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'maximum_intervals' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "maximum_intervals",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<List<MaximumInterval>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'maximum_intervals' cannot be null",
-                    new System::ArgumentNullException("maximum_intervals")
-                );
-        }
-        init
-        {
-            this._rawData["maximum_intervals"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<List<MaximumInterval>>(
+                this.RawData,
+                "maximum_intervals"
             );
         }
+        init { ModelBase.Set(this._rawData, "maximum_intervals", value); }
     }
 
     /// <summary>
@@ -492,28 +230,9 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("metadata", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'metadata' cannot be null",
-                    new System::ArgumentOutOfRangeException("metadata", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<Dictionary<string, string>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'metadata' cannot be null",
-                    new System::ArgumentNullException("metadata")
-                );
+            return ModelBase.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
         }
-        init
-        {
-            this._rawData["metadata"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -525,31 +244,12 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("minimum_intervals", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'minimum_intervals' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "minimum_intervals",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<List<MinimumInterval>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'minimum_intervals' cannot be null",
-                    new System::ArgumentNullException("minimum_intervals")
-                );
-        }
-        init
-        {
-            this._rawData["minimum_intervals"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<List<MinimumInterval>>(
+                this.RawData,
+                "minimum_intervals"
             );
         }
+        init { ModelBase.Set(this._rawData, "minimum_intervals", value); }
     }
 
     /// <summary>
@@ -557,27 +257,8 @@ public sealed record class MutatedSubscription : ModelBase
     /// </summary>
     public required string Name
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("name", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'name' cannot be null",
-                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'name' cannot be null",
-                    new System::ArgumentNullException("name")
-                );
-        }
-        init
-        {
-            this._rawData["name"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
+        init { ModelBase.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -588,26 +269,8 @@ public sealed record class MutatedSubscription : ModelBase
     /// </summary>
     public required long NetTerms
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("net_terms", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'net_terms' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "net_terms",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["net_terms"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "net_terms"); }
+        init { ModelBase.Set(this._rawData, "net_terms", value); }
     }
 
     /// <summary>
@@ -617,21 +280,12 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("pending_subscription_change", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<SubscriptionChangeMinified?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<SubscriptionChangeMinified>(
+                this.RawData,
+                "pending_subscription_change"
             );
         }
-        init
-        {
-            this._rawData["pending_subscription_change"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "pending_subscription_change", value); }
     }
 
     /// <summary>
@@ -641,20 +295,8 @@ public sealed record class MutatedSubscription : ModelBase
     /// </summary>
     public required Plan? Plan
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("plan", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Plan?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["plan"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<Plan>(this.RawData, "plan"); }
+        init { ModelBase.Set(this._rawData, "plan", value); }
     }
 
     /// <summary>
@@ -664,52 +306,18 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("price_intervals", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'price_intervals' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "price_intervals",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<List<PriceInterval>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'price_intervals' cannot be null",
-                    new System::ArgumentNullException("price_intervals")
-                );
+            return ModelBase.GetNotNullClass<List<PriceInterval>>(this.RawData, "price_intervals");
         }
-        init
-        {
-            this._rawData["price_intervals"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "price_intervals", value); }
     }
 
     public required CouponRedemption? RedeemedCoupon
     {
         get
         {
-            if (!this._rawData.TryGetValue("redeemed_coupon", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<CouponRedemption?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableClass<CouponRedemption>(this.RawData, "redeemed_coupon");
         }
-        init
-        {
-            this._rawData["redeemed_coupon"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "redeemed_coupon", value); }
     }
 
     /// <summary>
@@ -719,85 +327,26 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("start_date", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'start_date' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "start_date",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "start_date");
         }
-        init
-        {
-            this._rawData["start_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "start_date", value); }
     }
 
     public required ApiEnum<string, global::Orb.Models.SubscriptionChanges.Status> Status
     {
         get
         {
-            if (!this._rawData.TryGetValue("status", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'status' cannot be null",
-                    new System::ArgumentOutOfRangeException("status", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<
-                    ApiEnum<string, global::Orb.Models.SubscriptionChanges.Status>
-                >(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'status' cannot be null",
-                    new System::ArgumentNullException("status")
-                );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, global::Orb.Models.SubscriptionChanges.Status>
+            >(this.RawData, "status");
         }
-        init
-        {
-            this._rawData["status"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "status", value); }
     }
 
     public required SubscriptionTrialInfo TrialInfo
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("trial_info", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'trial_info' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "trial_info",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<SubscriptionTrialInfo>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'trial_info' cannot be null",
-                    new System::ArgumentNullException("trial_info")
-                );
-        }
-        init
-        {
-            this._rawData["trial_info"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<SubscriptionTrialInfo>(this.RawData, "trial_info"); }
+        init { ModelBase.Set(this._rawData, "trial_info", value); }
     }
 
     /// <summary>
@@ -809,21 +358,12 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("changed_resources", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<ChangedSubscriptionResources?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<ChangedSubscriptionResources>(
+                this.RawData,
+                "changed_resources"
             );
         }
-        init
-        {
-            this._rawData["changed_resources"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "changed_resources", value); }
     }
 
     public override void Validate()

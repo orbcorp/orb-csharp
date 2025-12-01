@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models.Events.Backfills;
 
@@ -64,21 +63,9 @@ public sealed record class BackfillCreateParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("timeframe_end", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'timeframe_end' cannot be null",
-                    new ArgumentOutOfRangeException("timeframe_end", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawBodyData, "timeframe_end");
         }
-        init
-        {
-            this._rawBodyData["timeframe_end"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "timeframe_end", value); }
     }
 
     /// <summary>
@@ -90,21 +77,9 @@ public sealed record class BackfillCreateParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("timeframe_start", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'timeframe_start' cannot be null",
-                    new ArgumentOutOfRangeException("timeframe_start", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawBodyData, "timeframe_start");
         }
-        init
-        {
-            this._rawBodyData["timeframe_start"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "timeframe_start", value); }
     }
 
     /// <summary>
@@ -114,23 +89,8 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public DateTimeOffset? CloseTime
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("close_time", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
-        init
-        {
-            this._rawBodyData["close_time"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<DateTimeOffset>(this.RawBodyData, "close_time"); }
+        init { ModelBase.Set(this._rawBodyData, "close_time", value); }
     }
 
     /// <summary>
@@ -139,20 +99,8 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public string? CustomerID
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("customer_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["customer_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "customer_id"); }
+        init { ModelBase.Set(this._rawBodyData, "customer_id", value); }
     }
 
     /// <summary>
@@ -161,20 +109,8 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public string? DeprecationFilter
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("deprecation_filter", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["deprecation_filter"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "deprecation_filter"); }
+        init { ModelBase.Set(this._rawBodyData, "deprecation_filter", value); }
     }
 
     /// <summary>
@@ -183,20 +119,8 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("external_customer_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["external_customer_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "external_customer_id"); }
+        init { ModelBase.Set(this._rawBodyData, "external_customer_id", value); }
     }
 
     /// <summary>
@@ -207,10 +131,7 @@ public sealed record class BackfillCreateParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("replace_existing_events", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "replace_existing_events");
         }
         init
         {
@@ -219,10 +140,7 @@ public sealed record class BackfillCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["replace_existing_events"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "replace_existing_events", value);
         }
     }
 

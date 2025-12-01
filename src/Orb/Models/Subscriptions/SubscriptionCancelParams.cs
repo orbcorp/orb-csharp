@@ -80,31 +80,12 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("cancel_option", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'cancel_option' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "cancel_option",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, CancelOption>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'cancel_option' cannot be null",
-                    new System::ArgumentNullException("cancel_option")
-                );
-        }
-        init
-        {
-            this._rawBodyData["cancel_option"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<ApiEnum<string, CancelOption>>(
+                this.RawBodyData,
+                "cancel_option"
             );
         }
+        init { ModelBase.Set(this._rawBodyData, "cancel_option", value); }
     }
 
     /// <summary>
@@ -116,23 +97,12 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     {
         get
         {
-            if (
-                !this._rawBodyData.TryGetValue(
-                    "allow_invoice_credit_or_void",
-                    out JsonElement element
-                )
-            )
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["allow_invoice_credit_or_void"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<bool>(
+                this.RawBodyData,
+                "allow_invoice_credit_or_void"
             );
         }
+        init { ModelBase.Set(this._rawBodyData, "allow_invoice_credit_or_void", value); }
     }
 
     /// <summary>
@@ -143,21 +113,12 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("cancellation_date", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawBodyData,
+                "cancellation_date"
             );
         }
-        init
-        {
-            this._rawBodyData["cancellation_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "cancellation_date", value); }
     }
 
     public SubscriptionCancelParams() { }

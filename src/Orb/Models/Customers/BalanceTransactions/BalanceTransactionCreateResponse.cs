@@ -22,54 +22,19 @@ public sealed record class BalanceTransactionCreateResponse : ModelBase
     /// </summary>
     public required string ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentNullException("id")
-                );
-        }
-        init
-        {
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
+        init { ModelBase.Set(this._rawData, "id", value); }
     }
 
     public required ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Action> Action
     {
         get
         {
-            if (!this._rawData.TryGetValue("action", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'action' cannot be null",
-                    new System::ArgumentOutOfRangeException("action", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<
-                    ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Action>
-                >(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'action' cannot be null",
-                    new System::ArgumentNullException("action")
-                );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Action>
+            >(this.RawData, "action");
         }
-        init
-        {
-            this._rawData["action"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "action", value); }
     }
 
     /// <summary>
@@ -77,27 +42,8 @@ public sealed record class BalanceTransactionCreateResponse : ModelBase
     /// </summary>
     public required string Amount
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("amount", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'amount' cannot be null",
-                    new System::ArgumentOutOfRangeException("amount", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'amount' cannot be null",
-                    new System::ArgumentNullException("amount")
-                );
-        }
-        init
-        {
-            this._rawData["amount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount"); }
+        init { ModelBase.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -107,48 +53,15 @@ public sealed record class BalanceTransactionCreateResponse : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("created_at", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'created_at' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "created_at",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
         }
-        init
-        {
-            this._rawData["created_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "created_at", value); }
     }
 
     public required CreditNoteTiny? CreditNote
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("credit_note", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<CreditNoteTiny?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
-        init
-        {
-            this._rawData["credit_note"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<CreditNoteTiny>(this.RawData, "credit_note"); }
+        init { ModelBase.Set(this._rawData, "credit_note", value); }
     }
 
     /// <summary>
@@ -156,20 +69,8 @@ public sealed record class BalanceTransactionCreateResponse : ModelBase
     /// </summary>
     public required string? Description
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("description", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["description"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
+        init { ModelBase.Set(this._rawData, "description", value); }
     }
 
     /// <summary>
@@ -177,48 +78,14 @@ public sealed record class BalanceTransactionCreateResponse : ModelBase
     /// </summary>
     public required string EndingBalance
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("ending_balance", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'ending_balance' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "ending_balance",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'ending_balance' cannot be null",
-                    new System::ArgumentNullException("ending_balance")
-                );
-        }
-        init
-        {
-            this._rawData["ending_balance"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "ending_balance"); }
+        init { ModelBase.Set(this._rawData, "ending_balance", value); }
     }
 
     public required InvoiceTiny? Invoice
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("invoice", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<InvoiceTiny?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["invoice"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<InvoiceTiny>(this.RawData, "invoice"); }
+        init { ModelBase.Set(this._rawData, "invoice", value); }
     }
 
     /// <summary>
@@ -227,57 +94,20 @@ public sealed record class BalanceTransactionCreateResponse : ModelBase
     /// </summary>
     public required string StartingBalance
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("starting_balance", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'starting_balance' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "starting_balance",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'starting_balance' cannot be null",
-                    new System::ArgumentNullException("starting_balance")
-                );
-        }
-        init
-        {
-            this._rawData["starting_balance"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "starting_balance"); }
+        init { ModelBase.Set(this._rawData, "starting_balance", value); }
     }
 
     public required ApiEnum<string, BalanceTransactionCreateResponseType> Type
     {
         get
         {
-            if (!this._rawData.TryGetValue("type", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'type' cannot be null",
-                    new System::ArgumentOutOfRangeException("type", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<
-                    ApiEnum<string, BalanceTransactionCreateResponseType>
-                >(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'type' cannot be null",
-                    new System::ArgumentNullException("type")
-                );
-        }
-        init
-        {
-            this._rawData["type"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<ApiEnum<string, BalanceTransactionCreateResponseType>>(
+                this.RawData,
+                "type"
             );
         }
+        init { ModelBase.Set(this._rawData, "type", value); }
     }
 
     public override void Validate()

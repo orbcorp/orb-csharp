@@ -47,30 +47,8 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
     /// </summary>
     public required TrialEndDate TrialEndDate
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("trial_end_date", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'trial_end_date' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "trial_end_date",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<TrialEndDate>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'trial_end_date' cannot be null",
-                    new System::ArgumentNullException("trial_end_date")
-                );
-        }
-        init
-        {
-            this._rawBodyData["trial_end_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<TrialEndDate>(this.RawBodyData, "trial_end_date"); }
+        init { ModelBase.Set(this._rawBodyData, "trial_end_date", value); }
     }
 
     /// <summary>
@@ -79,13 +57,7 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
     /// </summary>
     public bool? Shift
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("shift", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "shift"); }
         init
         {
             if (value == null)
@@ -93,10 +65,7 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["shift"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "shift", value);
         }
     }
 

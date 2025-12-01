@@ -13,23 +13,8 @@ public sealed record class SubscriptionTrialInfo : ModelBase
 {
     public required DateTimeOffset? EndDate
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("end_date", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
-        init
-        {
-            this._rawData["end_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<DateTimeOffset>(this.RawData, "end_date"); }
+        init { ModelBase.Set(this._rawData, "end_date", value); }
     }
 
     public override void Validate()

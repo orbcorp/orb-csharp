@@ -5,7 +5,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -16,69 +15,20 @@ public sealed record class FixedFeeQuantityTransition : ModelBase
 {
     public required DateTimeOffset EffectiveDate
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("effective_date", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'effective_date' cannot be null",
-                    new ArgumentOutOfRangeException("effective_date", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["effective_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawData, "effective_date"); }
+        init { ModelBase.Set(this._rawData, "effective_date", value); }
     }
 
     public required string PriceID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("price_id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'price_id' cannot be null",
-                    new ArgumentOutOfRangeException("price_id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'price_id' cannot be null",
-                    new ArgumentNullException("price_id")
-                );
-        }
-        init
-        {
-            this._rawData["price_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "price_id"); }
+        init { ModelBase.Set(this._rawData, "price_id", value); }
     }
 
     public required long Quantity
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("quantity", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'quantity' cannot be null",
-                    new ArgumentOutOfRangeException("quantity", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["quantity"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "quantity"); }
+        init { ModelBase.Set(this._rawData, "quantity", value); }
     }
 
     public override void Validate()

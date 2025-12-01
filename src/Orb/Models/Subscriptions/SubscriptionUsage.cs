@@ -171,27 +171,8 @@ public sealed record class UngroupedSubscriptionUsage : ModelBase
 {
     public required IReadOnlyList<Data> Data
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("data", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'data' cannot be null",
-                    new System::ArgumentOutOfRangeException("data", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<Data>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'data' cannot be null",
-                    new System::ArgumentNullException("data")
-                );
-        }
-        init
-        {
-            this._rawData["data"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<Data>>(this.RawData, "data"); }
+        init { ModelBase.Set(this._rawData, "data", value); }
     }
 
     public override void Validate()
@@ -244,86 +225,26 @@ public sealed record class Data : ModelBase
 {
     public required BillableMetric BillableMetric
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("billable_metric", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'billable_metric' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "billable_metric",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<BillableMetric>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'billable_metric' cannot be null",
-                    new System::ArgumentNullException("billable_metric")
-                );
-        }
-        init
-        {
-            this._rawData["billable_metric"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<BillableMetric>(this.RawData, "billable_metric"); }
+        init { ModelBase.Set(this._rawData, "billable_metric", value); }
     }
 
     public required IReadOnlyList<Usage> Usage
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("usage", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'usage' cannot be null",
-                    new System::ArgumentOutOfRangeException("usage", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<Usage>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'usage' cannot be null",
-                    new System::ArgumentNullException("usage")
-                );
-        }
-        init
-        {
-            this._rawData["usage"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<Usage>>(this.RawData, "usage"); }
+        init { ModelBase.Set(this._rawData, "usage", value); }
     }
 
     public required ApiEnum<string, DataViewMode> ViewMode
     {
         get
         {
-            if (!this._rawData.TryGetValue("view_mode", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'view_mode' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "view_mode",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, DataViewMode>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'view_mode' cannot be null",
-                    new System::ArgumentNullException("view_mode")
-                );
-        }
-        init
-        {
-            this._rawData["view_mode"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<ApiEnum<string, DataViewMode>>(
+                this.RawData,
+                "view_mode"
             );
         }
+        init { ModelBase.Set(this._rawData, "view_mode", value); }
     }
 
     public override void Validate()
@@ -368,52 +289,14 @@ public sealed record class BillableMetric : ModelBase
 {
     public required string ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentNullException("id")
-                );
-        }
-        init
-        {
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
+        init { ModelBase.Set(this._rawData, "id", value); }
     }
 
     public required string Name
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("name", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'name' cannot be null",
-                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'name' cannot be null",
-                    new System::ArgumentNullException("name")
-                );
-        }
-        init
-        {
-            this._rawData["name"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
+        init { ModelBase.Set(this._rawData, "name", value); }
     }
 
     public override void Validate()
@@ -454,77 +337,32 @@ public sealed record class Usage : ModelBase
 {
     public required double Quantity
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("quantity", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'quantity' cannot be null",
-                    new System::ArgumentOutOfRangeException("quantity", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["quantity"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "quantity"); }
+        init { ModelBase.Set(this._rawData, "quantity", value); }
     }
 
     public required System::DateTimeOffset TimeframeEnd
     {
         get
         {
-            if (!this._rawData.TryGetValue("timeframe_end", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'timeframe_end' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "timeframe_end",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(
+                this.RawData,
+                "timeframe_end"
             );
         }
-        init
-        {
-            this._rawData["timeframe_end"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "timeframe_end", value); }
     }
 
     public required System::DateTimeOffset TimeframeStart
     {
         get
         {
-            if (!this._rawData.TryGetValue("timeframe_start", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'timeframe_start' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "timeframe_start",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(
+                this.RawData,
+                "timeframe_start"
             );
         }
-        init
-        {
-            this._rawData["timeframe_start"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "timeframe_start", value); }
     }
 
     public override void Validate()
@@ -610,48 +448,20 @@ public sealed record class GroupedSubscriptionUsage : ModelBase
 {
     public required IReadOnlyList<DataModel> Data
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("data", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'data' cannot be null",
-                    new System::ArgumentOutOfRangeException("data", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<DataModel>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'data' cannot be null",
-                    new System::ArgumentNullException("data")
-                );
-        }
-        init
-        {
-            this._rawData["data"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<DataModel>>(this.RawData, "data"); }
+        init { ModelBase.Set(this._rawData, "data", value); }
     }
 
     public PaginationMetadata? PaginationMetadata
     {
         get
         {
-            if (!this._rawData.TryGetValue("pagination_metadata", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<PaginationMetadata?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<PaginationMetadata>(
+                this.RawData,
+                "pagination_metadata"
             );
         }
-        init
-        {
-            this._rawData["pagination_metadata"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
     }
 
     public override void Validate()
@@ -707,118 +517,36 @@ public sealed record class DataModel : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("billable_metric", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'billable_metric' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "billable_metric",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<DataModelBillableMetric>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'billable_metric' cannot be null",
-                    new System::ArgumentNullException("billable_metric")
-                );
-        }
-        init
-        {
-            this._rawData["billable_metric"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<DataModelBillableMetric>(
+                this.RawData,
+                "billable_metric"
             );
         }
+        init { ModelBase.Set(this._rawData, "billable_metric", value); }
     }
 
     public required MetricGroup MetricGroup
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("metric_group", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'metric_group' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "metric_group",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<MetricGroup>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'metric_group' cannot be null",
-                    new System::ArgumentNullException("metric_group")
-                );
-        }
-        init
-        {
-            this._rawData["metric_group"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<MetricGroup>(this.RawData, "metric_group"); }
+        init { ModelBase.Set(this._rawData, "metric_group", value); }
     }
 
     public required IReadOnlyList<UsageModel> Usage
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("usage", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'usage' cannot be null",
-                    new System::ArgumentOutOfRangeException("usage", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<UsageModel>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'usage' cannot be null",
-                    new System::ArgumentNullException("usage")
-                );
-        }
-        init
-        {
-            this._rawData["usage"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<UsageModel>>(this.RawData, "usage"); }
+        init { ModelBase.Set(this._rawData, "usage", value); }
     }
 
     public required ApiEnum<string, DataModelViewMode> ViewMode
     {
         get
         {
-            if (!this._rawData.TryGetValue("view_mode", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'view_mode' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "view_mode",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, DataModelViewMode>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'view_mode' cannot be null",
-                    new System::ArgumentNullException("view_mode")
-                );
-        }
-        init
-        {
-            this._rawData["view_mode"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<ApiEnum<string, DataModelViewMode>>(
+                this.RawData,
+                "view_mode"
             );
         }
+        init { ModelBase.Set(this._rawData, "view_mode", value); }
     }
 
     public override void Validate()
@@ -864,52 +592,14 @@ public sealed record class DataModelBillableMetric : ModelBase
 {
     public required string ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentNullException("id")
-                );
-        }
-        init
-        {
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
+        init { ModelBase.Set(this._rawData, "id", value); }
     }
 
     public required string Name
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("name", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'name' cannot be null",
-                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'name' cannot be null",
-                    new System::ArgumentNullException("name")
-                );
-        }
-        init
-        {
-            this._rawData["name"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
+        init { ModelBase.Set(this._rawData, "name", value); }
     }
 
     public override void Validate()
@@ -953,58 +643,14 @@ public sealed record class MetricGroup : ModelBase
 {
     public required string PropertyKey
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("property_key", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'property_key' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "property_key",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'property_key' cannot be null",
-                    new System::ArgumentNullException("property_key")
-                );
-        }
-        init
-        {
-            this._rawData["property_key"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "property_key"); }
+        init { ModelBase.Set(this._rawData, "property_key", value); }
     }
 
     public required string PropertyValue
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("property_value", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'property_value' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "property_value",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'property_value' cannot be null",
-                    new System::ArgumentNullException("property_value")
-                );
-        }
-        init
-        {
-            this._rawData["property_value"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "property_value"); }
+        init { ModelBase.Set(this._rawData, "property_value", value); }
     }
 
     public override void Validate()
@@ -1045,77 +691,32 @@ public sealed record class UsageModel : ModelBase
 {
     public required double Quantity
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("quantity", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'quantity' cannot be null",
-                    new System::ArgumentOutOfRangeException("quantity", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["quantity"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "quantity"); }
+        init { ModelBase.Set(this._rawData, "quantity", value); }
     }
 
     public required System::DateTimeOffset TimeframeEnd
     {
         get
         {
-            if (!this._rawData.TryGetValue("timeframe_end", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'timeframe_end' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "timeframe_end",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(
+                this.RawData,
+                "timeframe_end"
             );
         }
-        init
-        {
-            this._rawData["timeframe_end"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "timeframe_end", value); }
     }
 
     public required System::DateTimeOffset TimeframeStart
     {
         get
         {
-            if (!this._rawData.TryGetValue("timeframe_start", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'timeframe_start' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "timeframe_start",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(
+                this.RawData,
+                "timeframe_start"
             );
         }
-        init
-        {
-            this._rawData["timeframe_start"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "timeframe_start", value); }
     }
 
     public override void Validate()

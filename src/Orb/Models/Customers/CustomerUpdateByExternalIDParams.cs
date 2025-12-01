@@ -30,26 +30,12 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (
-                !this._rawBodyData.TryGetValue(
-                    "accounting_sync_configuration",
-                    out JsonElement element
-                )
-            )
-                return null;
-
-            return JsonSerializer.Deserialize<NewAccountingSyncConfiguration?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<NewAccountingSyncConfiguration>(
+                this.RawBodyData,
+                "accounting_sync_configuration"
             );
         }
-        init
-        {
-            this._rawBodyData["accounting_sync_configuration"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "accounting_sync_configuration", value); }
     }
 
     /// <summary>
@@ -61,18 +47,9 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("additional_emails", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableClass<List<string>>(this.RawBodyData, "additional_emails");
         }
-        init
-        {
-            this._rawBodyData["additional_emails"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "additional_emails", value); }
     }
 
     /// <summary>
@@ -82,20 +59,8 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public bool? AutoCollection
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("auto_collection", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["auto_collection"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "auto_collection"); }
+        init { ModelBase.Set(this._rawBodyData, "auto_collection", value); }
     }
 
     /// <summary>
@@ -106,38 +71,17 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public bool? AutoIssuance
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("auto_issuance", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["auto_issuance"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "auto_issuance"); }
+        init { ModelBase.Set(this._rawBodyData, "auto_issuance", value); }
     }
 
     public AddressInput? BillingAddress
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("billing_address", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<AddressInput?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableClass<AddressInput>(this.RawBodyData, "billing_address");
         }
-        init
-        {
-            this._rawBodyData["billing_address"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "billing_address", value); }
     }
 
     /// <summary>
@@ -146,20 +90,8 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public string? Currency
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("currency", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["currency"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "currency"); }
+        init { ModelBase.Set(this._rawBodyData, "currency", value); }
     }
 
     /// <summary>
@@ -167,38 +99,14 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public string? Email
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("email", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["email"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "email"); }
+        init { ModelBase.Set(this._rawBodyData, "email", value); }
     }
 
     public bool? EmailDelivery
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("email_delivery", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["email_delivery"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "email_delivery"); }
+        init { ModelBase.Set(this._rawBodyData, "email_delivery", value); }
     }
 
     /// <summary>
@@ -209,20 +117,8 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("external_customer_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["external_customer_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "external_customer_id"); }
+        init { ModelBase.Set(this._rawBodyData, "external_customer_id", value); }
     }
 
     /// <summary>
@@ -232,21 +128,12 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("hierarchy", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<CustomerHierarchyConfig?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<CustomerHierarchyConfig>(
+                this.RawBodyData,
+                "hierarchy"
             );
         }
-        init
-        {
-            this._rawBodyData["hierarchy"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "hierarchy", value); }
     }
 
     /// <summary>
@@ -258,21 +145,12 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("metadata", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+                this.RawBodyData,
+                "metadata"
             );
         }
-        init
-        {
-            this._rawBodyData["metadata"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "metadata", value); }
     }
 
     /// <summary>
@@ -280,20 +158,8 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public string? Name
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("name", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["name"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "name"); }
+        init { ModelBase.Set(this._rawBodyData, "name", value); }
     }
 
     /// <summary>
@@ -307,21 +173,12 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("payment_provider", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<ApiEnum<string, PaymentProvider1>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<ApiEnum<string, PaymentProvider1>>(
+                this.RawBodyData,
+                "payment_provider"
             );
         }
-        init
-        {
-            this._rawBodyData["payment_provider"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "payment_provider", value); }
     }
 
     /// <summary>
@@ -330,80 +187,41 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public string? PaymentProviderID
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("payment_provider_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["payment_provider_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "payment_provider_id"); }
+        init { ModelBase.Set(this._rawBodyData, "payment_provider_id", value); }
     }
 
     public NewReportingConfiguration? ReportingConfiguration
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("reporting_configuration", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<NewReportingConfiguration?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<NewReportingConfiguration>(
+                this.RawBodyData,
+                "reporting_configuration"
             );
         }
-        init
-        {
-            this._rawBodyData["reporting_configuration"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "reporting_configuration", value); }
     }
 
     public AddressInput? ShippingAddress
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("shipping_address", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<AddressInput?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableClass<AddressInput>(this.RawBodyData, "shipping_address");
         }
-        init
-        {
-            this._rawBodyData["shipping_address"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "shipping_address", value); }
     }
 
     public TaxConfiguration1? TaxConfiguration
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("tax_configuration", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<TaxConfiguration1?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<TaxConfiguration1>(
+                this.RawBodyData,
+                "tax_configuration"
             );
         }
-        init
-        {
-            this._rawBodyData["tax_configuration"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "tax_configuration", value); }
     }
 
     /// <summary>
@@ -513,20 +331,8 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public CustomerTaxID? TaxID
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("tax_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<CustomerTaxID?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["tax_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<CustomerTaxID>(this.RawBodyData, "tax_id"); }
+        init { ModelBase.Set(this._rawBodyData, "tax_id", value); }
     }
 
     public CustomerUpdateByExternalIDParams() { }
@@ -1042,57 +848,20 @@ public sealed record class TaxConfiguration1Numeral : ModelBase
 {
     public required bool TaxExempt
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("tax_exempt", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'tax_exempt' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "tax_exempt",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["tax_exempt"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
+        init { ModelBase.Set(this._rawData, "tax_exempt", value); }
     }
 
     public TaxConfiguration1NumeralTaxProvider TaxProvider
     {
         get
         {
-            if (!this._rawData.TryGetValue("tax_provider", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'tax_provider' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "tax_provider",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<TaxConfiguration1NumeralTaxProvider>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'tax_provider' cannot be null",
-                    new System::ArgumentNullException("tax_provider")
-                );
-        }
-        init
-        {
-            this._rawData["tax_provider"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<TaxConfiguration1NumeralTaxProvider>(
+                this.RawData,
+                "tax_provider"
             );
         }
+        init { ModelBase.Set(this._rawData, "tax_provider", value); }
     }
 
     /// <summary>
@@ -1101,20 +870,8 @@ public sealed record class TaxConfiguration1Numeral : ModelBase
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("automatic_tax_enabled", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["automatic_tax_enabled"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
+        init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
     public override void Validate()
@@ -1218,57 +975,20 @@ public sealed record class TaxConfiguration1Anrok : ModelBase
 {
     public required bool TaxExempt
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("tax_exempt", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'tax_exempt' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "tax_exempt",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["tax_exempt"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
+        init { ModelBase.Set(this._rawData, "tax_exempt", value); }
     }
 
     public TaxConfiguration1AnrokTaxProvider TaxProvider
     {
         get
         {
-            if (!this._rawData.TryGetValue("tax_provider", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'tax_provider' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "tax_provider",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<TaxConfiguration1AnrokTaxProvider>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'tax_provider' cannot be null",
-                    new System::ArgumentNullException("tax_provider")
-                );
-        }
-        init
-        {
-            this._rawData["tax_provider"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<TaxConfiguration1AnrokTaxProvider>(
+                this.RawData,
+                "tax_provider"
             );
         }
+        init { ModelBase.Set(this._rawData, "tax_provider", value); }
     }
 
     /// <summary>
@@ -1277,20 +997,8 @@ public sealed record class TaxConfiguration1Anrok : ModelBase
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("automatic_tax_enabled", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["automatic_tax_enabled"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
+        init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
     public override void Validate()
@@ -1394,57 +1102,20 @@ public sealed record class TaxConfiguration1Stripe : ModelBase
 {
     public required bool TaxExempt
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("tax_exempt", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'tax_exempt' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "tax_exempt",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["tax_exempt"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
+        init { ModelBase.Set(this._rawData, "tax_exempt", value); }
     }
 
     public TaxConfiguration1StripeTaxProvider TaxProvider
     {
         get
         {
-            if (!this._rawData.TryGetValue("tax_provider", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'tax_provider' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "tax_provider",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<TaxConfiguration1StripeTaxProvider>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'tax_provider' cannot be null",
-                    new System::ArgumentNullException("tax_provider")
-                );
-        }
-        init
-        {
-            this._rawData["tax_provider"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<TaxConfiguration1StripeTaxProvider>(
+                this.RawData,
+                "tax_provider"
             );
         }
+        init { ModelBase.Set(this._rawData, "tax_provider", value); }
     }
 
     /// <summary>
@@ -1453,20 +1124,8 @@ public sealed record class TaxConfiguration1Stripe : ModelBase
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("automatic_tax_enabled", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["automatic_tax_enabled"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
+        init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
     public override void Validate()

@@ -16,39 +16,18 @@ public sealed record class NewAccountingSyncConfiguration : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("accounting_providers", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<AccountingProviderConfig>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<List<AccountingProviderConfig>>(
+                this.RawData,
+                "accounting_providers"
             );
         }
-        init
-        {
-            this._rawData["accounting_providers"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "accounting_providers", value); }
     }
 
     public bool? Excluded
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("excluded", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["excluded"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "excluded"); }
+        init { ModelBase.Set(this._rawData, "excluded", value); }
     }
 
     public override void Validate()

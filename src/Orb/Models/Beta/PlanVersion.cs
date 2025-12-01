@@ -25,79 +25,30 @@ public sealed record class PlanVersion : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("adjustments", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'adjustments' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "adjustments",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<List<global::Orb.Models.Beta.Adjustment>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'adjustments' cannot be null",
-                    new System::ArgumentNullException("adjustments")
-                );
-        }
-        init
-        {
-            this._rawData["adjustments"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<List<global::Orb.Models.Beta.Adjustment>>(
+                this.RawData,
+                "adjustments"
             );
         }
+        init { ModelBase.Set(this._rawData, "adjustments", value); }
     }
 
     public required System::DateTimeOffset CreatedAt
     {
         get
         {
-            if (!this._rawData.TryGetValue("created_at", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'created_at' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "created_at",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
         }
-        init
-        {
-            this._rawData["created_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "created_at", value); }
     }
 
     public required IReadOnlyList<PlanVersionPhase>? PlanPhases
     {
         get
         {
-            if (!this._rawData.TryGetValue("plan_phases", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<PlanVersionPhase>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableClass<List<PlanVersionPhase>>(this.RawData, "plan_phases");
         }
-        init
-        {
-            this._rawData["plan_phases"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "plan_phases", value); }
     }
 
     /// <summary>
@@ -106,51 +57,14 @@ public sealed record class PlanVersion : ModelBase
     /// </summary>
     public required IReadOnlyList<Models::Price> Prices
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("prices", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'prices' cannot be null",
-                    new System::ArgumentOutOfRangeException("prices", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<Models::Price>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'prices' cannot be null",
-                    new System::ArgumentNullException("prices")
-                );
-        }
-        init
-        {
-            this._rawData["prices"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<Models::Price>>(this.RawData, "prices"); }
+        init { ModelBase.Set(this._rawData, "prices", value); }
     }
 
     public required long Version
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("version", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'version' cannot be null",
-                    new System::ArgumentOutOfRangeException("version", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["version"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "version"); }
+        init { ModelBase.Set(this._rawData, "version", value); }
     }
 
     public override void Validate()

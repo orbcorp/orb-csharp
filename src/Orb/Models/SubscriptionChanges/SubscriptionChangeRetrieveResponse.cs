@@ -24,27 +24,8 @@ public sealed record class SubscriptionChangeRetrieveResponse : ModelBase
 {
     public required string ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentNullException("id")
-                );
-        }
-        init
-        {
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
+        init { ModelBase.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -54,75 +35,32 @@ public sealed record class SubscriptionChangeRetrieveResponse : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("expiration_time", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'expiration_time' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "expiration_time",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(
+                this.RawData,
+                "expiration_time"
             );
         }
-        init
-        {
-            this._rawData["expiration_time"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "expiration_time", value); }
     }
 
     public required ApiEnum<string, SubscriptionChangeRetrieveResponseStatus> Status
     {
         get
         {
-            if (!this._rawData.TryGetValue("status", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'status' cannot be null",
-                    new System::ArgumentOutOfRangeException("status", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<
-                    ApiEnum<string, SubscriptionChangeRetrieveResponseStatus>
-                >(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'status' cannot be null",
-                    new System::ArgumentNullException("status")
-                );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, SubscriptionChangeRetrieveResponseStatus>
+            >(this.RawData, "status");
         }
-        init
-        {
-            this._rawData["status"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "status", value); }
     }
 
     public required MutatedSubscription? Subscription
     {
         get
         {
-            if (!this._rawData.TryGetValue("subscription", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<MutatedSubscription?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableClass<MutatedSubscription>(this.RawData, "subscription");
         }
-        init
-        {
-            this._rawData["subscription"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "subscription", value); }
     }
 
     /// <summary>
@@ -132,21 +70,9 @@ public sealed record class SubscriptionChangeRetrieveResponse : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("applied_at", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "applied_at");
         }
-        init
-        {
-            this._rawData["applied_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "applied_at", value); }
     }
 
     /// <summary>
@@ -156,21 +82,12 @@ public sealed record class SubscriptionChangeRetrieveResponse : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("cancelled_at", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawData,
+                "cancelled_at"
             );
         }
-        init
-        {
-            this._rawData["cancelled_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "cancelled_at", value); }
     }
 
     public override void Validate()

@@ -30,20 +30,8 @@ public sealed record class SubscriptionFetchCostsParams : ParamsBase
     /// </summary>
     public string? Currency
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("currency", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["currency"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "currency"); }
+        init { ModelBase.Set(this._rawQueryData, "currency", value); }
     }
 
     /// <summary>
@@ -53,21 +41,12 @@ public sealed record class SubscriptionFetchCostsParams : ParamsBase
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("timeframe_end", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawQueryData,
+                "timeframe_end"
             );
         }
-        init
-        {
-            this._rawQueryData["timeframe_end"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "timeframe_end", value); }
     }
 
     /// <summary>
@@ -77,21 +56,12 @@ public sealed record class SubscriptionFetchCostsParams : ParamsBase
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("timeframe_start", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawQueryData,
+                "timeframe_start"
             );
         }
-        init
-        {
-            this._rawQueryData["timeframe_start"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "timeframe_start", value); }
     }
 
     /// <summary>
@@ -103,21 +73,12 @@ public sealed record class SubscriptionFetchCostsParams : ParamsBase
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("view_mode", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<ApiEnum<string, ViewMode>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<ApiEnum<string, ViewMode>>(
+                this.RawQueryData,
+                "view_mode"
             );
         }
-        init
-        {
-            this._rawQueryData["view_mode"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "view_mode", value); }
     }
 
     public SubscriptionFetchCostsParams() { }

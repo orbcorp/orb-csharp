@@ -16,31 +16,12 @@ public sealed record class DiscountOverride : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("discount_type", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'discount_type' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "discount_type",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, DiscountOverrideDiscountType>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'discount_type' cannot be null",
-                    new System::ArgumentNullException("discount_type")
-                );
-        }
-        init
-        {
-            this._rawData["discount_type"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<ApiEnum<string, DiscountOverrideDiscountType>>(
+                this.RawData,
+                "discount_type"
             );
         }
+        init { ModelBase.Set(this._rawData, "discount_type", value); }
     }
 
     /// <summary>
@@ -48,20 +29,8 @@ public sealed record class DiscountOverride : ModelBase
     /// </summary>
     public string? AmountDiscount
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("amount_discount", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["amount_discount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "amount_discount"); }
+        init { ModelBase.Set(this._rawData, "amount_discount", value); }
     }
 
     /// <summary>
@@ -70,20 +39,8 @@ public sealed record class DiscountOverride : ModelBase
     /// </summary>
     public double? PercentageDiscount
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("percentage_discount", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["percentage_discount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<double>(this.RawData, "percentage_discount"); }
+        init { ModelBase.Set(this._rawData, "percentage_discount", value); }
     }
 
     /// <summary>
@@ -92,20 +49,8 @@ public sealed record class DiscountOverride : ModelBase
     /// </summary>
     public double? UsageDiscount
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("usage_discount", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["usage_discount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<double>(this.RawData, "usage_discount"); }
+        init { ModelBase.Set(this._rawData, "usage_discount", value); }
     }
 
     public override void Validate()

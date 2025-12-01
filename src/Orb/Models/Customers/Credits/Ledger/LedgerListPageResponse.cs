@@ -16,58 +16,23 @@ public sealed record class LedgerListPageResponse : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("data", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'data' cannot be null",
-                    new System::ArgumentOutOfRangeException("data", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<
-                    List<global::Orb.Models.Customers.Credits.Ledger.Data>
-                >(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'data' cannot be null",
-                    new System::ArgumentNullException("data")
-                );
+            return ModelBase.GetNotNullClass<
+                List<global::Orb.Models.Customers.Credits.Ledger.Data>
+            >(this.RawData, "data");
         }
-        init
-        {
-            this._rawData["data"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "data", value); }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            if (!this._rawData.TryGetValue("pagination_metadata", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'pagination_metadata' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "pagination_metadata",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<PaginationMetadata>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'pagination_metadata' cannot be null",
-                    new System::ArgumentNullException("pagination_metadata")
-                );
-        }
-        init
-        {
-            this._rawData["pagination_metadata"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<PaginationMetadata>(
+                this.RawData,
+                "pagination_metadata"
             );
         }
+        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
     }
 
     public override void Validate()

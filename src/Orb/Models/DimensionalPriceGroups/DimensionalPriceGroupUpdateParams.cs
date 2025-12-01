@@ -34,21 +34,12 @@ public sealed record class DimensionalPriceGroupUpdateParams : ParamsBase
     {
         get
         {
-            if (
-                !this._rawBodyData.TryGetValue(
-                    "external_dimensional_price_group_id",
-                    out JsonElement element
-                )
-            )
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableClass<string>(
+                this.RawBodyData,
+                "external_dimensional_price_group_id"
+            );
         }
-        init
-        {
-            this._rawBodyData["external_dimensional_price_group_id"] =
-                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
-        }
+        init { ModelBase.Set(this._rawBodyData, "external_dimensional_price_group_id", value); }
     }
 
     /// <summary>
@@ -60,21 +51,12 @@ public sealed record class DimensionalPriceGroupUpdateParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("metadata", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+                this.RawBodyData,
+                "metadata"
             );
         }
-        init
-        {
-            this._rawBodyData["metadata"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "metadata", value); }
     }
 
     public DimensionalPriceGroupUpdateParams() { }

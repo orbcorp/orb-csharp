@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models.Alerts;
 
@@ -28,27 +27,8 @@ public sealed record class AlertUpdateParams : ParamsBase
     /// </summary>
     public required IReadOnlyList<Threshold> Thresholds
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("thresholds", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'thresholds' cannot be null",
-                    new ArgumentOutOfRangeException("thresholds", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<Threshold>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'thresholds' cannot be null",
-                    new ArgumentNullException("thresholds")
-                );
-        }
-        init
-        {
-            this._rawBodyData["thresholds"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<Threshold>>(this.RawBodyData, "thresholds"); }
+        init { ModelBase.Set(this._rawBodyData, "thresholds", value); }
     }
 
     public AlertUpdateParams() { }

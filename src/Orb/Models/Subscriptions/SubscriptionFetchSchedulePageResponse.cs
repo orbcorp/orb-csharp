@@ -5,7 +5,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models.Subscriptions;
 
@@ -19,58 +18,20 @@ public sealed record class SubscriptionFetchSchedulePageResponse : ModelBase
 {
     public required IReadOnlyList<Data1> Data
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("data", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'data' cannot be null",
-                    new ArgumentOutOfRangeException("data", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<Data1>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'data' cannot be null",
-                    new ArgumentNullException("data")
-                );
-        }
-        init
-        {
-            this._rawData["data"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<Data1>>(this.RawData, "data"); }
+        init { ModelBase.Set(this._rawData, "data", value); }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            if (!this._rawData.TryGetValue("pagination_metadata", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'pagination_metadata' cannot be null",
-                    new ArgumentOutOfRangeException(
-                        "pagination_metadata",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<PaginationMetadata>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'pagination_metadata' cannot be null",
-                    new ArgumentNullException("pagination_metadata")
-                );
-        }
-        init
-        {
-            this._rawData["pagination_metadata"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<PaginationMetadata>(
+                this.RawData,
+                "pagination_metadata"
             );
         }
+        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
     }
 
     public override void Validate()
@@ -117,83 +78,26 @@ public sealed record class Data1 : ModelBase
 {
     public required DateTimeOffset CreatedAt
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("created_at", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'created_at' cannot be null",
-                    new ArgumentOutOfRangeException("created_at", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["created_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawData, "created_at"); }
+        init { ModelBase.Set(this._rawData, "created_at", value); }
     }
 
     public required DateTimeOffset? EndDate
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("end_date", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
-        init
-        {
-            this._rawData["end_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<DateTimeOffset>(this.RawData, "end_date"); }
+        init { ModelBase.Set(this._rawData, "end_date", value); }
     }
 
     public required Plan? Plan
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("plan", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Plan?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["plan"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<Plan>(this.RawData, "plan"); }
+        init { ModelBase.Set(this._rawData, "plan", value); }
     }
 
     public required DateTimeOffset StartDate
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("start_date", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'start_date' cannot be null",
-                    new ArgumentOutOfRangeException("start_date", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["start_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawData, "start_date"); }
+        init { ModelBase.Set(this._rawData, "start_date", value); }
     }
 
     public override void Validate()
@@ -236,20 +140,8 @@ public sealed record class Plan : ModelBase
 {
     public required string? ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
+        init { ModelBase.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -259,38 +151,14 @@ public sealed record class Plan : ModelBase
     /// </summary>
     public required string? ExternalPlanID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("external_plan_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["external_plan_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_plan_id"); }
+        init { ModelBase.Set(this._rawData, "external_plan_id", value); }
     }
 
     public required string? Name
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("name", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["name"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "name"); }
+        init { ModelBase.Set(this._rawData, "name", value); }
     }
 
     public override void Validate()

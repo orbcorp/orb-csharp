@@ -16,31 +16,12 @@ public sealed record class UsageDiscount : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("discount_type", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'discount_type' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "discount_type",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, UsageDiscountDiscountType>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'discount_type' cannot be null",
-                    new System::ArgumentNullException("discount_type")
-                );
-        }
-        init
-        {
-            this._rawData["discount_type"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<ApiEnum<string, UsageDiscountDiscountType>>(
+                this.RawData,
+                "discount_type"
             );
         }
+        init { ModelBase.Set(this._rawData, "discount_type", value); }
     }
 
     /// <summary>
@@ -49,26 +30,8 @@ public sealed record class UsageDiscount : ModelBase
     /// </summary>
     public required double UsageDiscount1
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("usage_discount", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'usage_discount' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "usage_discount",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["usage_discount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "usage_discount"); }
+        init { ModelBase.Set(this._rawData, "usage_discount", value); }
     }
 
     /// <summary>
@@ -79,18 +42,9 @@ public sealed record class UsageDiscount : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("applies_to_price_ids", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableClass<List<string>>(this.RawData, "applies_to_price_ids");
         }
-        init
-        {
-            this._rawData["applies_to_price_ids"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "applies_to_price_ids", value); }
     }
 
     /// <summary>
@@ -98,41 +52,14 @@ public sealed record class UsageDiscount : ModelBase
     /// </summary>
     public IReadOnlyList<Filter26>? Filters
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("filters", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<Filter26>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
-        init
-        {
-            this._rawData["filters"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<List<Filter26>>(this.RawData, "filters"); }
+        init { ModelBase.Set(this._rawData, "filters", value); }
     }
 
     public string? Reason
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("reason", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["reason"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "reason"); }
+        init { ModelBase.Set(this._rawData, "reason", value); }
     }
 
     public override void Validate()
@@ -225,28 +152,9 @@ public sealed record class Filter26 : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("field", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'field' cannot be null",
-                    new System::ArgumentOutOfRangeException("field", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, Filter26Field>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'field' cannot be null",
-                    new System::ArgumentNullException("field")
-                );
+            return ModelBase.GetNotNullClass<ApiEnum<string, Filter26Field>>(this.RawData, "field");
         }
-        init
-        {
-            this._rawData["field"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -256,28 +164,12 @@ public sealed record class Filter26 : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("operator", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'operator' cannot be null",
-                    new System::ArgumentOutOfRangeException("operator", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, Filter26Operator>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'operator' cannot be null",
-                    new System::ArgumentNullException("operator")
-                );
-        }
-        init
-        {
-            this._rawData["operator"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<ApiEnum<string, Filter26Operator>>(
+                this.RawData,
+                "operator"
             );
         }
+        init { ModelBase.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -285,27 +177,8 @@ public sealed record class Filter26 : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("values", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'values' cannot be null",
-                    new System::ArgumentOutOfRangeException("values", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'values' cannot be null",
-                    new System::ArgumentNullException("values")
-                );
-        }
-        init
-        {
-            this._rawData["values"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { ModelBase.Set(this._rawData, "values", value); }
     }
 
     public override void Validate()

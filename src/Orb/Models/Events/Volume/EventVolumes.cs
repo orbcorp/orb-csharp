@@ -5,7 +5,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models.Events.Volume;
 
@@ -16,28 +15,12 @@ public sealed record class EventVolumes : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("data", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'data' cannot be null",
-                    new ArgumentOutOfRangeException("data", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<global::Orb.Models.Events.Volume.Data>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'data' cannot be null",
-                    new ArgumentNullException("data")
-                );
-        }
-        init
-        {
-            this._rawData["data"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<List<global::Orb.Models.Events.Volume.Data>>(
+                this.RawData,
+                "data"
             );
         }
+        init { ModelBase.Set(this._rawData, "data", value); }
     }
 
     public override void Validate()
@@ -99,65 +82,20 @@ public sealed record class Data : ModelBase
     /// </summary>
     public required long Count
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("count", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'count' cannot be null",
-                    new ArgumentOutOfRangeException("count", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["count"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "count"); }
+        init { ModelBase.Set(this._rawData, "count", value); }
     }
 
     public required DateTimeOffset TimeframeEnd
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("timeframe_end", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'timeframe_end' cannot be null",
-                    new ArgumentOutOfRangeException("timeframe_end", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["timeframe_end"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawData, "timeframe_end"); }
+        init { ModelBase.Set(this._rawData, "timeframe_end", value); }
     }
 
     public required DateTimeOffset TimeframeStart
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("timeframe_start", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'timeframe_start' cannot be null",
-                    new ArgumentOutOfRangeException("timeframe_start", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["timeframe_start"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawData, "timeframe_start"); }
+        init { ModelBase.Set(this._rawData, "timeframe_start", value); }
     }
 
     public override void Validate()

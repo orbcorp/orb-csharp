@@ -40,48 +40,14 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     /// </summary>
     public required string PriceID
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("price_id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'price_id' cannot be null",
-                    new System::ArgumentOutOfRangeException("price_id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'price_id' cannot be null",
-                    new System::ArgumentNullException("price_id")
-                );
-        }
-        init
-        {
-            this._rawBodyData["price_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "price_id"); }
+        init { ModelBase.Set(this._rawBodyData, "price_id", value); }
     }
 
     public required double Quantity
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("quantity", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'quantity' cannot be null",
-                    new System::ArgumentOutOfRangeException("quantity", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["quantity"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<double>(this.RawBodyData, "quantity"); }
+        init { ModelBase.Set(this._rawBodyData, "quantity", value); }
     }
 
     /// <summary>
@@ -93,23 +59,12 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     {
         get
         {
-            if (
-                !this._rawBodyData.TryGetValue(
-                    "allow_invoice_credit_or_void",
-                    out JsonElement element
-                )
-            )
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["allow_invoice_credit_or_void"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<bool>(
+                this.RawBodyData,
+                "allow_invoice_credit_or_void"
             );
         }
+        init { ModelBase.Set(this._rawBodyData, "allow_invoice_credit_or_void", value); }
     }
 
     /// <summary>
@@ -121,12 +76,9 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("change_option", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<ApiEnum<string, ChangeOption1>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<ApiEnum<string, ChangeOption1>>(
+                this.RawBodyData,
+                "change_option"
             );
         }
         init
@@ -136,10 +88,7 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["change_option"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "change_option", value);
         }
     }
 
@@ -158,24 +107,15 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("effective_date", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<
+            return ModelBase.GetNullableStruct<
 #if NET
             System::DateOnly
 #else
             System::DateTimeOffset
 #endif
-            ?>(element, ModelBase.SerializerOptions);
+            >(this.RawBodyData, "effective_date");
         }
-        init
-        {
-            this._rawBodyData["effective_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "effective_date", value); }
     }
 
     public SubscriptionUpdateFixedFeeQuantityParams() { }

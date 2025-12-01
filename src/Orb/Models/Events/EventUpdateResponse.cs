@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models.Events;
 
@@ -17,27 +15,8 @@ public sealed record class EventUpdateResponse : ModelBase
     /// </summary>
     public required string Amended
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("amended", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'amended' cannot be null",
-                    new ArgumentOutOfRangeException("amended", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'amended' cannot be null",
-                    new ArgumentNullException("amended")
-                );
-        }
-        init
-        {
-            this._rawData["amended"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amended"); }
+        init { ModelBase.Set(this._rawData, "amended", value); }
     }
 
     public override void Validate()

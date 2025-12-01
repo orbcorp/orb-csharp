@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models.Beta.ExternalPlanID;
 
@@ -28,23 +27,8 @@ public sealed record class ExternalPlanIDSetDefaultPlanVersionParams : ParamsBas
     /// </summary>
     public required long Version
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("version", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'version' cannot be null",
-                    new ArgumentOutOfRangeException("version", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["version"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<long>(this.RawBodyData, "version"); }
+        init { ModelBase.Set(this._rawBodyData, "version", value); }
     }
 
     public ExternalPlanIDSetDefaultPlanVersionParams() { }

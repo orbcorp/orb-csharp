@@ -28,31 +28,12 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("change_option", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'change_option' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "change_option",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, ChangeOption>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'change_option' cannot be null",
-                    new System::ArgumentNullException("change_option")
-                );
-        }
-        init
-        {
-            this._rawBodyData["change_option"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<ApiEnum<string, ChangeOption>>(
+                this.RawBodyData,
+                "change_option"
             );
         }
+        init { ModelBase.Set(this._rawBodyData, "change_option", value); }
     }
 
     /// <summary>
@@ -64,23 +45,12 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     {
         get
         {
-            if (
-                !this._rawBodyData.TryGetValue(
-                    "allow_invoice_credit_or_void",
-                    out JsonElement element
-                )
-            )
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["allow_invoice_credit_or_void"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<bool>(
+                this.RawBodyData,
+                "allow_invoice_credit_or_void"
             );
         }
+        init { ModelBase.Set(this._rawBodyData, "allow_invoice_credit_or_void", value); }
     }
 
     /// <summary>
@@ -91,21 +61,12 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("change_date", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawBodyData,
+                "change_date"
             );
         }
-        init
-        {
-            this._rawBodyData["change_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "change_date", value); }
     }
 
     /// <summary>
@@ -113,20 +74,8 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     /// </summary>
     public string? CouponID
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("coupon_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["coupon_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "coupon_id"); }
+        init { ModelBase.Set(this._rawBodyData, "coupon_id", value); }
     }
 
     /// <summary>
@@ -136,18 +85,9 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("coupon_redemption_code", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableClass<string>(this.RawBodyData, "coupon_redemption_code");
         }
-        init
-        {
-            this._rawBodyData["coupon_redemption_code"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "coupon_redemption_code", value); }
     }
 
     public SubscriptionRedeemCouponParams() { }

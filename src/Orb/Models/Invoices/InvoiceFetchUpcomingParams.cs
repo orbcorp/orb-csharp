@@ -5,7 +5,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models.Invoices;
 
@@ -17,27 +16,8 @@ public sealed record class InvoiceFetchUpcomingParams : ParamsBase
 {
     public required string SubscriptionID
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("subscription_id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'subscription_id' cannot be null",
-                    new ArgumentOutOfRangeException("subscription_id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'subscription_id' cannot be null",
-                    new ArgumentNullException("subscription_id")
-                );
-        }
-        init
-        {
-            this._rawQueryData["subscription_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawQueryData, "subscription_id"); }
+        init { ModelBase.Set(this._rawQueryData, "subscription_id", value); }
     }
 
     public InvoiceFetchUpcomingParams() { }

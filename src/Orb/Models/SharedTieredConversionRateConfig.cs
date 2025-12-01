@@ -21,62 +21,24 @@ public sealed record class SharedTieredConversionRateConfig : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("conversion_rate_type", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'conversion_rate_type' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "conversion_rate_type",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, ConversionRateType>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'conversion_rate_type' cannot be null",
-                    new System::ArgumentNullException("conversion_rate_type")
-                );
-        }
-        init
-        {
-            this._rawData["conversion_rate_type"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<ApiEnum<string, ConversionRateType>>(
+                this.RawData,
+                "conversion_rate_type"
             );
         }
+        init { ModelBase.Set(this._rawData, "conversion_rate_type", value); }
     }
 
     public required ConversionRateTieredConfig TieredConfig
     {
         get
         {
-            if (!this._rawData.TryGetValue("tiered_config", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'tiered_config' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "tiered_config",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<ConversionRateTieredConfig>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'tiered_config' cannot be null",
-                    new System::ArgumentNullException("tiered_config")
-                );
-        }
-        init
-        {
-            this._rawData["tiered_config"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<ConversionRateTieredConfig>(
+                this.RawData,
+                "tiered_config"
             );
         }
+        init { ModelBase.Set(this._rawData, "tiered_config", value); }
     }
 
     public override void Validate()

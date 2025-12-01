@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -22,27 +20,8 @@ public sealed record class NewDimensionalPriceConfiguration : ModelBase
     /// </summary>
     public required IReadOnlyList<string> DimensionValues
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("dimension_values", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'dimension_values' cannot be null",
-                    new ArgumentOutOfRangeException("dimension_values", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'dimension_values' cannot be null",
-                    new ArgumentNullException("dimension_values")
-                );
-        }
-        init
-        {
-            this._rawData["dimension_values"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "dimension_values"); }
+        init { ModelBase.Set(this._rawData, "dimension_values", value); }
     }
 
     /// <summary>
@@ -52,18 +31,9 @@ public sealed record class NewDimensionalPriceConfiguration : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("dimensional_price_group_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableClass<string>(this.RawData, "dimensional_price_group_id");
         }
-        init
-        {
-            this._rawData["dimensional_price_group_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "dimensional_price_group_id", value); }
     }
 
     /// <summary>
@@ -73,21 +43,12 @@ public sealed record class NewDimensionalPriceConfiguration : ModelBase
     {
         get
         {
-            if (
-                !this._rawData.TryGetValue(
-                    "external_dimensional_price_group_id",
-                    out JsonElement element
-                )
-            )
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableClass<string>(
+                this.RawData,
+                "external_dimensional_price_group_id"
+            );
         }
-        init
-        {
-            this._rawData["external_dimensional_price_group_id"] =
-                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
-        }
+        init { ModelBase.Set(this._rawData, "external_dimensional_price_group_id", value); }
     }
 
     public override void Validate()

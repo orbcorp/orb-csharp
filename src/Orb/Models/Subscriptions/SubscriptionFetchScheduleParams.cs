@@ -23,20 +23,8 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("cursor", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["cursor"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "cursor"); }
+        init { ModelBase.Set(this._rawQueryData, "cursor", value); }
     }
 
     /// <summary>
@@ -44,13 +32,7 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("limit", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "limit"); }
         init
         {
             if (value == null)
@@ -58,10 +40,7 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["limit"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "limit", value);
         }
     }
 
@@ -69,84 +48,42 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("start_date[gt]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableStruct<DateTimeOffset>(this.RawQueryData, "start_date[gt]");
         }
-        init
-        {
-            this._rawQueryData["start_date[gt]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "start_date[gt]", value); }
     }
 
     public DateTimeOffset? StartDateGte
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("start_date[gte]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<DateTimeOffset>(
+                this.RawQueryData,
+                "start_date[gte]"
             );
         }
-        init
-        {
-            this._rawQueryData["start_date[gte]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "start_date[gte]", value); }
     }
 
     public DateTimeOffset? StartDateLt
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("start_date[lt]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableStruct<DateTimeOffset>(this.RawQueryData, "start_date[lt]");
         }
-        init
-        {
-            this._rawQueryData["start_date[lt]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "start_date[lt]", value); }
     }
 
     public DateTimeOffset? StartDateLte
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("start_date[lte]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<DateTimeOffset>(
+                this.RawQueryData,
+                "start_date[lte]"
             );
         }
-        init
-        {
-            this._rawQueryData["start_date[lte]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "start_date[lte]", value); }
     }
 
     public SubscriptionFetchScheduleParams() { }

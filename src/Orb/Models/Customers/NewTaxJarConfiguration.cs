@@ -14,57 +14,20 @@ public sealed record class NewTaxJarConfiguration : ModelBase
 {
     public required bool TaxExempt
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("tax_exempt", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'tax_exempt' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "tax_exempt",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["tax_exempt"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
+        init { ModelBase.Set(this._rawData, "tax_exempt", value); }
     }
 
     public required ApiEnum<string, NewTaxJarConfigurationTaxProvider> TaxProvider
     {
         get
         {
-            if (!this._rawData.TryGetValue("tax_provider", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'tax_provider' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "tax_provider",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, NewTaxJarConfigurationTaxProvider>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'tax_provider' cannot be null",
-                    new System::ArgumentNullException("tax_provider")
-                );
-        }
-        init
-        {
-            this._rawData["tax_provider"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<ApiEnum<string, NewTaxJarConfigurationTaxProvider>>(
+                this.RawData,
+                "tax_provider"
             );
         }
+        init { ModelBase.Set(this._rawData, "tax_provider", value); }
     }
 
     /// <summary>
@@ -73,20 +36,8 @@ public sealed record class NewTaxJarConfiguration : ModelBase
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("automatic_tax_enabled", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["automatic_tax_enabled"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
+        init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
     public override void Validate()

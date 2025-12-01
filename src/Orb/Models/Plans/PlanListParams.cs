@@ -22,84 +22,48 @@ public sealed record class PlanListParams : ParamsBase
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("created_at[gt]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawQueryData,
+                "created_at[gt]"
             );
         }
-        init
-        {
-            this._rawQueryData["created_at[gt]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "created_at[gt]", value); }
     }
 
     public System::DateTimeOffset? CreatedAtGte
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("created_at[gte]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawQueryData,
+                "created_at[gte]"
             );
         }
-        init
-        {
-            this._rawQueryData["created_at[gte]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "created_at[gte]", value); }
     }
 
     public System::DateTimeOffset? CreatedAtLt
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("created_at[lt]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawQueryData,
+                "created_at[lt]"
             );
         }
-        init
-        {
-            this._rawQueryData["created_at[lt]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "created_at[lt]", value); }
     }
 
     public System::DateTimeOffset? CreatedAtLte
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("created_at[lte]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawQueryData,
+                "created_at[lte]"
             );
         }
-        init
-        {
-            this._rawQueryData["created_at[lte]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "created_at[lte]", value); }
     }
 
     /// <summary>
@@ -108,20 +72,8 @@ public sealed record class PlanListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("cursor", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["cursor"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "cursor"); }
+        init { ModelBase.Set(this._rawQueryData, "cursor", value); }
     }
 
     /// <summary>
@@ -129,13 +81,7 @@ public sealed record class PlanListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("limit", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "limit"); }
         init
         {
             if (value == null)
@@ -143,10 +89,7 @@ public sealed record class PlanListParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["limit"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "limit", value);
         }
     }
 
@@ -157,12 +100,9 @@ public sealed record class PlanListParams : ParamsBase
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("status", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<ApiEnum<string, StatusModel>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<ApiEnum<string, StatusModel>>(
+                this.RawQueryData,
+                "status"
             );
         }
         init
@@ -172,10 +112,7 @@ public sealed record class PlanListParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["status"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "status", value);
         }
     }
 

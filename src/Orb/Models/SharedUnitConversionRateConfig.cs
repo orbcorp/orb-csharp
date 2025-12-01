@@ -21,61 +21,20 @@ public sealed record class SharedUnitConversionRateConfig : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("conversion_rate_type", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'conversion_rate_type' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "conversion_rate_type",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<
-                    ApiEnum<string, SharedUnitConversionRateConfigConversionRateType>
-                >(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'conversion_rate_type' cannot be null",
-                    new System::ArgumentNullException("conversion_rate_type")
-                );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, SharedUnitConversionRateConfigConversionRateType>
+            >(this.RawData, "conversion_rate_type");
         }
-        init
-        {
-            this._rawData["conversion_rate_type"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "conversion_rate_type", value); }
     }
 
     public required ConversionRateUnitConfig UnitConfig
     {
         get
         {
-            if (!this._rawData.TryGetValue("unit_config", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'unit_config' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "unit_config",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<ConversionRateUnitConfig>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'unit_config' cannot be null",
-                    new System::ArgumentNullException("unit_config")
-                );
+            return ModelBase.GetNotNullClass<ConversionRateUnitConfig>(this.RawData, "unit_config");
         }
-        init
-        {
-            this._rawData["unit_config"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "unit_config", value); }
     }
 
     public override void Validate()

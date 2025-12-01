@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -20,27 +18,8 @@ public sealed record class PackageConfig : ModelBase
     /// </summary>
     public required string PackageAmount
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("package_amount", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'package_amount' cannot be null",
-                    new ArgumentOutOfRangeException("package_amount", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'package_amount' cannot be null",
-                    new ArgumentNullException("package_amount")
-                );
-        }
-        init
-        {
-            this._rawData["package_amount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "package_amount"); }
+        init { ModelBase.Set(this._rawData, "package_amount", value); }
     }
 
     /// <summary>
@@ -49,23 +28,8 @@ public sealed record class PackageConfig : ModelBase
     /// </summary>
     public required long PackageSize
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("package_size", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'package_size' cannot be null",
-                    new ArgumentOutOfRangeException("package_size", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["package_size"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "package_size"); }
+        init { ModelBase.Set(this._rawData, "package_size", value); }
     }
 
     public override void Validate()

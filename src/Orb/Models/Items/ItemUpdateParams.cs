@@ -28,21 +28,12 @@ public sealed record class ItemUpdateParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("external_connections", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<ExternalConnection>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<List<ExternalConnection>>(
+                this.RawBodyData,
+                "external_connections"
             );
         }
-        init
-        {
-            this._rawBodyData["external_connections"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "external_connections", value); }
     }
 
     /// <summary>
@@ -54,39 +45,18 @@ public sealed record class ItemUpdateParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("metadata", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+                this.RawBodyData,
+                "metadata"
             );
         }
-        init
-        {
-            this._rawBodyData["metadata"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "metadata", value); }
     }
 
     public string? Name
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("name", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["name"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "name"); }
+        init { ModelBase.Set(this._rawBodyData, "name", value); }
     }
 
     public ItemUpdateParams() { }
@@ -168,31 +138,12 @@ public sealed record class ExternalConnection : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("external_connection_name", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'external_connection_name' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "external_connection_name",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, ExternalConnectionName>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'external_connection_name' cannot be null",
-                    new System::ArgumentNullException("external_connection_name")
-                );
-        }
-        init
-        {
-            this._rawData["external_connection_name"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<ApiEnum<string, ExternalConnectionName>>(
+                this.RawData,
+                "external_connection_name"
             );
         }
+        init { ModelBase.Set(this._rawData, "external_connection_name", value); }
     }
 
     /// <summary>
@@ -200,30 +151,8 @@ public sealed record class ExternalConnection : ModelBase
     /// </summary>
     public required string ExternalEntityID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("external_entity_id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'external_entity_id' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "external_entity_id",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'external_entity_id' cannot be null",
-                    new System::ArgumentNullException("external_entity_id")
-                );
-        }
-        init
-        {
-            this._rawData["external_entity_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "external_entity_id"); }
+        init { ModelBase.Set(this._rawData, "external_entity_id", value); }
     }
 
     public override void Validate()

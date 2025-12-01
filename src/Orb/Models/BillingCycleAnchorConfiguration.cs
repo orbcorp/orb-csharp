@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -22,23 +20,8 @@ public sealed record class BillingCycleAnchorConfiguration : ModelBase
     /// </summary>
     public required long Day
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("day", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'day' cannot be null",
-                    new ArgumentOutOfRangeException("day", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["day"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "day"); }
+        init { ModelBase.Set(this._rawData, "day", value); }
     }
 
     /// <summary>
@@ -47,20 +30,8 @@ public sealed record class BillingCycleAnchorConfiguration : ModelBase
     /// </summary>
     public long? Month
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("month", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["month"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawData, "month"); }
+        init { ModelBase.Set(this._rawData, "month", value); }
     }
 
     /// <summary>
@@ -69,20 +40,8 @@ public sealed record class BillingCycleAnchorConfiguration : ModelBase
     /// </summary>
     public long? Year
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("year", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["year"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawData, "year"); }
+        init { ModelBase.Set(this._rawData, "year", value); }
     }
 
     public override void Validate()

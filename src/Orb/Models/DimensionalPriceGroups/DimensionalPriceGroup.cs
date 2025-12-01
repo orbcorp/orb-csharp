@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models.DimensionalPriceGroups;
 
@@ -19,27 +17,8 @@ public sealed record class DimensionalPriceGroup : ModelBase
 {
     public required string ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new ArgumentOutOfRangeException("id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new ArgumentNullException("id")
-                );
-        }
-        init
-        {
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
+        init { ModelBase.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -49,30 +28,8 @@ public sealed record class DimensionalPriceGroup : ModelBase
     /// </summary>
     public required string BillableMetricID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("billable_metric_id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'billable_metric_id' cannot be null",
-                    new ArgumentOutOfRangeException(
-                        "billable_metric_id",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'billable_metric_id' cannot be null",
-                    new ArgumentNullException("billable_metric_id")
-                );
-        }
-        init
-        {
-            this._rawData["billable_metric_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "billable_metric_id"); }
+        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -80,27 +37,8 @@ public sealed record class DimensionalPriceGroup : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Dimensions
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("dimensions", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'dimensions' cannot be null",
-                    new ArgumentOutOfRangeException("dimensions", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'dimensions' cannot be null",
-                    new ArgumentNullException("dimensions")
-                );
-        }
-        init
-        {
-            this._rawData["dimensions"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "dimensions"); }
+        init { ModelBase.Set(this._rawData, "dimensions", value); }
     }
 
     /// <summary>
@@ -110,21 +48,12 @@ public sealed record class DimensionalPriceGroup : ModelBase
     {
         get
         {
-            if (
-                !this._rawData.TryGetValue(
-                    "external_dimensional_price_group_id",
-                    out JsonElement element
-                )
-            )
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableClass<string>(
+                this.RawData,
+                "external_dimensional_price_group_id"
+            );
         }
-        init
-        {
-            this._rawData["external_dimensional_price_group_id"] =
-                JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions);
-        }
+        init { ModelBase.Set(this._rawData, "external_dimensional_price_group_id", value); }
     }
 
     /// <summary>
@@ -137,28 +66,9 @@ public sealed record class DimensionalPriceGroup : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("metadata", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'metadata' cannot be null",
-                    new ArgumentOutOfRangeException("metadata", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<Dictionary<string, string>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'metadata' cannot be null",
-                    new ArgumentNullException("metadata")
-                );
+            return ModelBase.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
         }
-        init
-        {
-            this._rawData["metadata"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -166,27 +76,8 @@ public sealed record class DimensionalPriceGroup : ModelBase
     /// </summary>
     public required string Name
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("name", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'name' cannot be null",
-                    new ArgumentOutOfRangeException("name", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'name' cannot be null",
-                    new ArgumentNullException("name")
-                );
-        }
-        init
-        {
-            this._rawData["name"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
+        init { ModelBase.Set(this._rawData, "name", value); }
     }
 
     public override void Validate()

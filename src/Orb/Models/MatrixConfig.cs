@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -20,30 +18,8 @@ public sealed record class MatrixConfig : ModelBase
     /// </summary>
     public required string DefaultUnitAmount
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("default_unit_amount", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'default_unit_amount' cannot be null",
-                    new ArgumentOutOfRangeException(
-                        "default_unit_amount",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'default_unit_amount' cannot be null",
-                    new ArgumentNullException("default_unit_amount")
-                );
-        }
-        init
-        {
-            this._rawData["default_unit_amount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "default_unit_amount"); }
+        init { ModelBase.Set(this._rawData, "default_unit_amount", value); }
     }
 
     /// <summary>
@@ -51,27 +27,8 @@ public sealed record class MatrixConfig : ModelBase
     /// </summary>
     public required IReadOnlyList<string?> Dimensions
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("dimensions", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'dimensions' cannot be null",
-                    new ArgumentOutOfRangeException("dimensions", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<string?>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'dimensions' cannot be null",
-                    new ArgumentNullException("dimensions")
-                );
-        }
-        init
-        {
-            this._rawData["dimensions"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<string?>>(this.RawData, "dimensions"); }
+        init { ModelBase.Set(this._rawData, "dimensions", value); }
     }
 
     /// <summary>
@@ -81,28 +38,12 @@ public sealed record class MatrixConfig : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("matrix_values", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'matrix_values' cannot be null",
-                    new ArgumentOutOfRangeException("matrix_values", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<SharedMatrixValue>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'matrix_values' cannot be null",
-                    new ArgumentNullException("matrix_values")
-                );
-        }
-        init
-        {
-            this._rawData["matrix_values"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<List<SharedMatrixValue>>(
+                this.RawData,
+                "matrix_values"
             );
         }
+        init { ModelBase.Set(this._rawData, "matrix_values", value); }
     }
 
     public override void Validate()

@@ -16,27 +16,8 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
 {
     public required string ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentNullException("id")
-                );
-        }
-        init
-        {
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
+        init { ModelBase.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -44,27 +25,8 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
     /// </summary>
     public required string Amount
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("amount", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'amount' cannot be null",
-                    new System::ArgumentOutOfRangeException("amount", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'amount' cannot be null",
-                    new System::ArgumentNullException("amount")
-                );
-        }
-        init
-        {
-            this._rawData["amount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount"); }
+        init { ModelBase.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -73,27 +35,8 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
     /// </summary>
     public required string Currency
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("currency", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'currency' cannot be null",
-                    new System::ArgumentOutOfRangeException("currency", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'currency' cannot be null",
-                    new System::ArgumentNullException("currency")
-                );
-        }
-        init
-        {
-            this._rawData["currency"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "currency"); }
+        init { ModelBase.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -103,31 +46,12 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("invoice_settings", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'invoice_settings' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "invoice_settings",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<TopUpInvoiceSettings>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'invoice_settings' cannot be null",
-                    new System::ArgumentNullException("invoice_settings")
-                );
-        }
-        init
-        {
-            this._rawData["invoice_settings"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<TopUpInvoiceSettings>(
+                this.RawData,
+                "invoice_settings"
             );
         }
+        init { ModelBase.Set(this._rawData, "invoice_settings", value); }
     }
 
     /// <summary>
@@ -135,30 +59,8 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
     /// </summary>
     public required string PerUnitCostBasis
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("per_unit_cost_basis", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'per_unit_cost_basis' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "per_unit_cost_basis",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'per_unit_cost_basis' cannot be null",
-                    new System::ArgumentNullException("per_unit_cost_basis")
-                );
-        }
-        init
-        {
-            this._rawData["per_unit_cost_basis"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "per_unit_cost_basis"); }
+        init { ModelBase.Set(this._rawData, "per_unit_cost_basis", value); }
     }
 
     /// <summary>
@@ -167,30 +69,8 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
     /// </summary>
     public required string Threshold
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("threshold", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'threshold' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "threshold",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'threshold' cannot be null",
-                    new System::ArgumentNullException("threshold")
-                );
-        }
-        init
-        {
-            this._rawData["threshold"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "threshold"); }
+        init { ModelBase.Set(this._rawData, "threshold", value); }
     }
 
     /// <summary>
@@ -199,20 +79,8 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
     /// </summary>
     public long? ExpiresAfter
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("expires_after", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["expires_after"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawData, "expires_after"); }
+        init { ModelBase.Set(this._rawData, "expires_after", value); }
     }
 
     /// <summary>
@@ -222,21 +90,11 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("expires_after_unit", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<ApiEnum<
-                string,
-                TopUpCreateByExternalIDResponseExpiresAfterUnit
-            >?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableClass<
+                ApiEnum<string, TopUpCreateByExternalIDResponseExpiresAfterUnit>
+            >(this.RawData, "expires_after_unit");
         }
-        init
-        {
-            this._rawData["expires_after_unit"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "expires_after_unit", value); }
     }
 
     public override void Validate()

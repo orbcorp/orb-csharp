@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models.Events;
 
@@ -42,27 +41,8 @@ public sealed record class EventSearchParams : ParamsBase
     /// </summary>
     public required IReadOnlyList<string> EventIDs
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("event_ids", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'event_ids' cannot be null",
-                    new ArgumentOutOfRangeException("event_ids", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'event_ids' cannot be null",
-                    new ArgumentNullException("event_ids")
-                );
-        }
-        init
-        {
-            this._rawBodyData["event_ids"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<string>>(this.RawBodyData, "event_ids"); }
+        init { ModelBase.Set(this._rawBodyData, "event_ids", value); }
     }
 
     /// <summary>
@@ -73,21 +53,9 @@ public sealed record class EventSearchParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("timeframe_end", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableStruct<DateTimeOffset>(this.RawBodyData, "timeframe_end");
         }
-        init
-        {
-            this._rawBodyData["timeframe_end"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "timeframe_end", value); }
     }
 
     /// <summary>
@@ -98,21 +66,9 @@ public sealed record class EventSearchParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("timeframe_start", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableStruct<DateTimeOffset>(this.RawBodyData, "timeframe_start");
         }
-        init
-        {
-            this._rawBodyData["timeframe_start"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "timeframe_start", value); }
     }
 
     public EventSearchParams() { }
