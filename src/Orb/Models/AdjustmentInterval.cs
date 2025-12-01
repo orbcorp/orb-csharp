@@ -14,58 +14,20 @@ public sealed record class AdjustmentInterval : ModelBase
 {
     public required string ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentNullException("id")
-                );
-        }
-        init
-        {
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
+        init { ModelBase.Set(this._rawData, "id", value); }
     }
 
     public required AdjustmentIntervalAdjustment Adjustment
     {
         get
         {
-            if (!this._rawData.TryGetValue("adjustment", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'adjustment' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "adjustment",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<AdjustmentIntervalAdjustment>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'adjustment' cannot be null",
-                    new System::ArgumentNullException("adjustment")
-                );
-        }
-        init
-        {
-            this._rawData["adjustment"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<AdjustmentIntervalAdjustment>(
+                this.RawData,
+                "adjustment"
             );
         }
+        init { ModelBase.Set(this._rawData, "adjustment", value); }
     }
 
     /// <summary>
@@ -75,30 +37,12 @@ public sealed record class AdjustmentInterval : ModelBase
     {
         get
         {
-            if (
-                !this._rawData.TryGetValue("applies_to_price_interval_ids", out JsonElement element)
-            )
-                throw new OrbInvalidDataException(
-                    "'applies_to_price_interval_ids' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "applies_to_price_interval_ids",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'applies_to_price_interval_ids' cannot be null",
-                    new System::ArgumentNullException("applies_to_price_interval_ids")
-                );
-        }
-        init
-        {
-            this._rawData["applies_to_price_interval_ids"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<List<string>>(
+                this.RawData,
+                "applies_to_price_interval_ids"
             );
         }
+        init { ModelBase.Set(this._rawData, "applies_to_price_interval_ids", value); }
     }
 
     /// <summary>
@@ -108,21 +52,9 @@ public sealed record class AdjustmentInterval : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("end_date", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "end_date");
         }
-        init
-        {
-            this._rawData["end_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "end_date", value); }
     }
 
     /// <summary>
@@ -132,27 +64,9 @@ public sealed record class AdjustmentInterval : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("start_date", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'start_date' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "start_date",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "start_date");
         }
-        init
-        {
-            this._rawData["start_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "start_date", value); }
     }
 
     public override void Validate()

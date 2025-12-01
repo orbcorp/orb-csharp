@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -20,27 +18,8 @@ public sealed record class BulkConfig : ModelBase
     /// </summary>
     public required IReadOnlyList<BulkTier> Tiers
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("tiers", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'tiers' cannot be null",
-                    new ArgumentOutOfRangeException("tiers", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<BulkTier>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'tiers' cannot be null",
-                    new ArgumentNullException("tiers")
-                );
-        }
-        init
-        {
-            this._rawData["tiers"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<BulkTier>>(this.RawData, "tiers"); }
+        init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
     public override void Validate()

@@ -14,93 +14,34 @@ public sealed record class AffectedBlock : ModelBase
 {
     public required string ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentNullException("id")
-                );
-        }
-        init
-        {
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
+        init { ModelBase.Set(this._rawData, "id", value); }
     }
 
     public required System::DateTimeOffset? ExpiryDate
     {
         get
         {
-            if (!this._rawData.TryGetValue("expiry_date", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "expiry_date");
         }
-        init
-        {
-            this._rawData["expiry_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "expiry_date", value); }
     }
 
     public required IReadOnlyList<global::Orb.Models.Customers.Credits.Ledger.Filter1> Filters
     {
         get
         {
-            if (!this._rawData.TryGetValue("filters", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'filters' cannot be null",
-                    new System::ArgumentOutOfRangeException("filters", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<
-                    List<global::Orb.Models.Customers.Credits.Ledger.Filter1>
-                >(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'filters' cannot be null",
-                    new System::ArgumentNullException("filters")
-                );
+            return ModelBase.GetNotNullClass<
+                List<global::Orb.Models.Customers.Credits.Ledger.Filter1>
+            >(this.RawData, "filters");
         }
-        init
-        {
-            this._rawData["filters"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "filters", value); }
     }
 
     public required string? PerUnitCostBasis
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("per_unit_cost_basis", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["per_unit_cost_basis"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "per_unit_cost_basis"); }
+        init { ModelBase.Set(this._rawData, "per_unit_cost_basis", value); }
     }
 
     public override void Validate()
@@ -156,27 +97,11 @@ public sealed record class Filter1 : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("field", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'field' cannot be null",
-                    new System::ArgumentOutOfRangeException("field", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<
-                    ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Filter1Field>
-                >(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'field' cannot be null",
-                    new System::ArgumentNullException("field")
-                );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Filter1Field>
+            >(this.RawData, "field");
         }
-        init
-        {
-            this._rawData["field"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -189,27 +114,11 @@ public sealed record class Filter1 : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("operator", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'operator' cannot be null",
-                    new System::ArgumentOutOfRangeException("operator", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<
-                    ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Filter1Operator>
-                >(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'operator' cannot be null",
-                    new System::ArgumentNullException("operator")
-                );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Filter1Operator>
+            >(this.RawData, "operator");
         }
-        init
-        {
-            this._rawData["operator"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -217,27 +126,8 @@ public sealed record class Filter1 : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("values", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'values' cannot be null",
-                    new System::ArgumentOutOfRangeException("values", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'values' cannot be null",
-                    new System::ArgumentNullException("values")
-                );
-        }
-        init
-        {
-            this._rawData["values"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { ModelBase.Set(this._rawData, "values", value); }
     }
 
     public override void Validate()

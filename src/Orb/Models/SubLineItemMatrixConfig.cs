@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -17,27 +15,8 @@ public sealed record class SubLineItemMatrixConfig : ModelBase
     /// </summary>
     public required IReadOnlyList<string?> DimensionValues
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("dimension_values", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'dimension_values' cannot be null",
-                    new ArgumentOutOfRangeException("dimension_values", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<string?>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'dimension_values' cannot be null",
-                    new ArgumentNullException("dimension_values")
-                );
-        }
-        init
-        {
-            this._rawData["dimension_values"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<string?>>(this.RawData, "dimension_values"); }
+        init { ModelBase.Set(this._rawData, "dimension_values", value); }
     }
 
     public override void Validate()

@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models.Invoices;
 
@@ -37,30 +36,15 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("payment_received_date", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'payment_received_date' cannot be null",
-                    new ArgumentOutOfRangeException(
-                        "payment_received_date",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<
+            return ModelBase.GetNotNullStruct<
 #if NET
             DateOnly
 #else
             DateTimeOffset
 #endif
-            >(element, ModelBase.SerializerOptions);
+            >(this.RawBodyData, "payment_received_date");
         }
-        init
-        {
-            this._rawBodyData["payment_received_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "payment_received_date", value); }
     }
 
     /// <summary>
@@ -68,20 +52,8 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     /// </summary>
     public string? ExternalID
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("external_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["external_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "external_id"); }
+        init { ModelBase.Set(this._rawBodyData, "external_id", value); }
     }
 
     /// <summary>
@@ -89,20 +61,8 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     /// </summary>
     public string? Notes
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("notes", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["notes"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "notes"); }
+        init { ModelBase.Set(this._rawBodyData, "notes", value); }
     }
 
     public InvoiceMarkPaidParams() { }

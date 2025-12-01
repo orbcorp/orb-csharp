@@ -30,20 +30,8 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     /// </summary>
     public bool? AutoCollection
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("auto_collection", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["auto_collection"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "auto_collection"); }
+        init { ModelBase.Set(this._rawBodyData, "auto_collection", value); }
     }
 
     /// <summary>
@@ -52,20 +40,8 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     /// </summary>
     public string? DefaultInvoiceMemo
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("default_invoice_memo", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["default_invoice_memo"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "default_invoice_memo"); }
+        init { ModelBase.Set(this._rawBodyData, "default_invoice_memo", value); }
     }
 
     /// <summary>
@@ -75,20 +51,8 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     /// </summary>
     public string? InvoicingThreshold
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("invoicing_threshold", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["invoicing_threshold"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "invoicing_threshold"); }
+        init { ModelBase.Set(this._rawBodyData, "invoicing_threshold", value); }
     }
 
     /// <summary>
@@ -100,21 +64,12 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("metadata", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+                this.RawBodyData,
+                "metadata"
             );
         }
-        init
-        {
-            this._rawBodyData["metadata"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "metadata", value); }
     }
 
     /// <summary>
@@ -125,20 +80,8 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     /// </summary>
     public long? NetTerms
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("net_terms", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["net_terms"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawBodyData, "net_terms"); }
+        init { ModelBase.Set(this._rawBodyData, "net_terms", value); }
     }
 
     public SubscriptionUpdateParams() { }

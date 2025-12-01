@@ -7,7 +7,6 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models.Events;
 
@@ -186,27 +185,8 @@ public sealed record class EventIngestParams : ParamsBase
 
     public required IReadOnlyList<Event> Events
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("events", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'events' cannot be null",
-                    new ArgumentOutOfRangeException("events", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<Event>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'events' cannot be null",
-                    new ArgumentNullException("events")
-                );
-        }
-        init
-        {
-            this._rawBodyData["events"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<Event>>(this.RawBodyData, "events"); }
+        init { ModelBase.Set(this._rawBodyData, "events", value); }
     }
 
     /// <summary>
@@ -215,20 +195,8 @@ public sealed record class EventIngestParams : ParamsBase
     /// </summary>
     public string? BackfillID
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("backfill_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["backfill_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "backfill_id"); }
+        init { ModelBase.Set(this._rawQueryData, "backfill_id", value); }
     }
 
     /// <summary>
@@ -236,13 +204,7 @@ public sealed record class EventIngestParams : ParamsBase
     /// </summary>
     public bool? Debug
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("debug", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawQueryData, "debug"); }
         init
         {
             if (value == null)
@@ -250,10 +212,7 @@ public sealed record class EventIngestParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["debug"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "debug", value);
         }
     }
 
@@ -328,27 +287,8 @@ public sealed record class Event : ModelBase
     /// </summary>
     public required string EventName
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("event_name", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'event_name' cannot be null",
-                    new ArgumentOutOfRangeException("event_name", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'event_name' cannot be null",
-                    new ArgumentNullException("event_name")
-                );
-        }
-        init
-        {
-            this._rawData["event_name"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "event_name"); }
+        init { ModelBase.Set(this._rawData, "event_name", value); }
     }
 
     /// <summary>
@@ -358,27 +298,8 @@ public sealed record class Event : ModelBase
     /// </summary>
     public required string IdempotencyKey
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("idempotency_key", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'idempotency_key' cannot be null",
-                    new ArgumentOutOfRangeException("idempotency_key", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'idempotency_key' cannot be null",
-                    new ArgumentNullException("idempotency_key")
-                );
-        }
-        init
-        {
-            this._rawData["idempotency_key"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "idempotency_key"); }
+        init { ModelBase.Set(this._rawData, "idempotency_key", value); }
     }
 
     /// <summary>
@@ -389,28 +310,12 @@ public sealed record class Event : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("properties", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'properties' cannot be null",
-                    new ArgumentOutOfRangeException("properties", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'properties' cannot be null",
-                    new ArgumentNullException("properties")
-                );
-        }
-        init
-        {
-            this._rawData["properties"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<Dictionary<string, JsonElement>>(
+                this.RawData,
+                "properties"
             );
         }
+        init { ModelBase.Set(this._rawData, "properties", value); }
     }
 
     /// <summary>
@@ -420,23 +325,8 @@ public sealed record class Event : ModelBase
     /// </summary>
     public required DateTimeOffset Timestamp
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("timestamp", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'timestamp' cannot be null",
-                    new ArgumentOutOfRangeException("timestamp", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["timestamp"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawData, "timestamp"); }
+        init { ModelBase.Set(this._rawData, "timestamp", value); }
     }
 
     /// <summary>
@@ -444,20 +334,8 @@ public sealed record class Event : ModelBase
     /// </summary>
     public string? CustomerID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("customer_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["customer_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "customer_id"); }
+        init { ModelBase.Set(this._rawData, "customer_id", value); }
     }
 
     /// <summary>
@@ -465,20 +343,8 @@ public sealed record class Event : ModelBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("external_customer_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["external_customer_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_customer_id"); }
+        init { ModelBase.Set(this._rawData, "external_customer_id", value); }
     }
 
     public override void Validate()

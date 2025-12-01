@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models.Customers.Credits.TopUps;
 
@@ -18,23 +16,8 @@ public sealed record class TopUpInvoiceSettings : ModelBase
     /// </summary>
     public required bool AutoCollection
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("auto_collection", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'auto_collection' cannot be null",
-                    new ArgumentOutOfRangeException("auto_collection", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["auto_collection"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "auto_collection"); }
+        init { ModelBase.Set(this._rawData, "auto_collection", value); }
     }
 
     /// <summary>
@@ -44,23 +27,8 @@ public sealed record class TopUpInvoiceSettings : ModelBase
     /// </summary>
     public required long NetTerms
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("net_terms", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'net_terms' cannot be null",
-                    new ArgumentOutOfRangeException("net_terms", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["net_terms"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "net_terms"); }
+        init { ModelBase.Set(this._rawData, "net_terms", value); }
     }
 
     /// <summary>
@@ -68,20 +36,8 @@ public sealed record class TopUpInvoiceSettings : ModelBase
     /// </summary>
     public string? Memo
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("memo", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["memo"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "memo"); }
+        init { ModelBase.Set(this._rawData, "memo", value); }
     }
 
     /// <summary>
@@ -94,10 +50,7 @@ public sealed record class TopUpInvoiceSettings : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("require_successful_payment", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableStruct<bool>(this.RawData, "require_successful_payment");
         }
         init
         {
@@ -106,10 +59,7 @@ public sealed record class TopUpInvoiceSettings : ModelBase
                 return;
             }
 
-            this._rawData["require_successful_payment"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "require_successful_payment", value);
         }
     }
 

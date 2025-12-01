@@ -34,27 +34,8 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     /// </summary>
     public required string Amount
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("amount", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'amount' cannot be null",
-                    new System::ArgumentOutOfRangeException("amount", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'amount' cannot be null",
-                    new System::ArgumentNullException("amount")
-                );
-        }
-        init
-        {
-            this._rawBodyData["amount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "amount"); }
+        init { ModelBase.Set(this._rawBodyData, "amount", value); }
     }
 
     /// <summary>
@@ -63,27 +44,8 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     /// </summary>
     public required string Currency
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("currency", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'currency' cannot be null",
-                    new System::ArgumentOutOfRangeException("currency", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'currency' cannot be null",
-                    new System::ArgumentNullException("currency")
-                );
-        }
-        init
-        {
-            this._rawBodyData["currency"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "currency"); }
+        init { ModelBase.Set(this._rawBodyData, "currency", value); }
     }
 
     /// <summary>
@@ -93,31 +55,12 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("invoice_settings", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'invoice_settings' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "invoice_settings",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<InvoiceSettingsModel>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'invoice_settings' cannot be null",
-                    new System::ArgumentNullException("invoice_settings")
-                );
-        }
-        init
-        {
-            this._rawBodyData["invoice_settings"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<InvoiceSettingsModel>(
+                this.RawBodyData,
+                "invoice_settings"
             );
         }
+        init { ModelBase.Set(this._rawBodyData, "invoice_settings", value); }
     }
 
     /// <summary>
@@ -125,30 +68,8 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     /// </summary>
     public required string PerUnitCostBasis
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("per_unit_cost_basis", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'per_unit_cost_basis' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "per_unit_cost_basis",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'per_unit_cost_basis' cannot be null",
-                    new System::ArgumentNullException("per_unit_cost_basis")
-                );
-        }
-        init
-        {
-            this._rawBodyData["per_unit_cost_basis"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "per_unit_cost_basis"); }
+        init { ModelBase.Set(this._rawBodyData, "per_unit_cost_basis", value); }
     }
 
     /// <summary>
@@ -157,30 +78,8 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     /// </summary>
     public required string Threshold
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("threshold", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'threshold' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "threshold",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'threshold' cannot be null",
-                    new System::ArgumentNullException("threshold")
-                );
-        }
-        init
-        {
-            this._rawBodyData["threshold"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "threshold"); }
+        init { ModelBase.Set(this._rawBodyData, "threshold", value); }
     }
 
     /// <summary>
@@ -191,21 +90,12 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("active_from", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawBodyData,
+                "active_from"
             );
         }
-        init
-        {
-            this._rawBodyData["active_from"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "active_from", value); }
     }
 
     /// <summary>
@@ -214,20 +104,8 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     /// </summary>
     public long? ExpiresAfter
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("expires_after", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["expires_after"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawBodyData, "expires_after"); }
+        init { ModelBase.Set(this._rawBodyData, "expires_after", value); }
     }
 
     /// <summary>
@@ -237,21 +115,12 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("expires_after_unit", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<ApiEnum<string, ExpiresAfterUnitModel>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<ApiEnum<string, ExpiresAfterUnitModel>>(
+                this.RawBodyData,
+                "expires_after_unit"
             );
         }
-        init
-        {
-            this._rawBodyData["expires_after_unit"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "expires_after_unit", value); }
     }
 
     public TopUpCreateByExternalIDParams() { }
@@ -335,26 +204,8 @@ public sealed record class InvoiceSettingsModel : ModelBase
     /// </summary>
     public required bool AutoCollection
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("auto_collection", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'auto_collection' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "auto_collection",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["auto_collection"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "auto_collection"); }
+        init { ModelBase.Set(this._rawData, "auto_collection", value); }
     }
 
     /// <summary>
@@ -364,26 +215,8 @@ public sealed record class InvoiceSettingsModel : ModelBase
     /// </summary>
     public required long NetTerms
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("net_terms", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'net_terms' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "net_terms",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["net_terms"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "net_terms"); }
+        init { ModelBase.Set(this._rawData, "net_terms", value); }
     }
 
     /// <summary>
@@ -391,20 +224,8 @@ public sealed record class InvoiceSettingsModel : ModelBase
     /// </summary>
     public string? Memo
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("memo", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["memo"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "memo"); }
+        init { ModelBase.Set(this._rawData, "memo", value); }
     }
 
     /// <summary>
@@ -417,10 +238,7 @@ public sealed record class InvoiceSettingsModel : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("require_successful_payment", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableStruct<bool>(this.RawData, "require_successful_payment");
         }
         init
         {
@@ -429,10 +247,7 @@ public sealed record class InvoiceSettingsModel : ModelBase
                 return;
             }
 
-            this._rawData["require_successful_payment"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "require_successful_payment", value);
         }
     }
 

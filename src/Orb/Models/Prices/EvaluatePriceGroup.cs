@@ -17,27 +17,8 @@ public sealed record class EvaluatePriceGroup : ModelBase
     /// </summary>
     public required string Amount
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("amount", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'amount' cannot be null",
-                    new System::ArgumentOutOfRangeException("amount", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'amount' cannot be null",
-                    new System::ArgumentNullException("amount")
-                );
-        }
-        init
-        {
-            this._rawData["amount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount"); }
+        init { ModelBase.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -47,31 +28,9 @@ public sealed record class EvaluatePriceGroup : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("grouping_values", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'grouping_values' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "grouping_values",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<List<GroupingValue>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'grouping_values' cannot be null",
-                    new System::ArgumentNullException("grouping_values")
-                );
+            return ModelBase.GetNotNullClass<List<GroupingValue>>(this.RawData, "grouping_values");
         }
-        init
-        {
-            this._rawData["grouping_values"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "grouping_values", value); }
     }
 
     /// <summary>
@@ -79,23 +38,8 @@ public sealed record class EvaluatePriceGroup : ModelBase
     /// </summary>
     public required double Quantity
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("quantity", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'quantity' cannot be null",
-                    new System::ArgumentOutOfRangeException("quantity", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["quantity"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "quantity"); }
+        init { ModelBase.Set(this._rawData, "quantity", value); }
     }
 
     public override void Validate()

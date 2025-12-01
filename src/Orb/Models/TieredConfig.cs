@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -20,30 +18,8 @@ public sealed record class TieredConfig : ModelBase
     /// </summary>
     public required IReadOnlyList<SharedTier> Tiers
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("tiers", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'tiers' cannot be null",
-                    new ArgumentOutOfRangeException("tiers", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<SharedTier>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'tiers' cannot be null",
-                    new ArgumentNullException("tiers")
-                );
-        }
-        init
-        {
-            this._rawData["tiers"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<SharedTier>>(this.RawData, "tiers"); }
+        init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
     /// <summary>
@@ -51,13 +27,7 @@ public sealed record class TieredConfig : ModelBase
     /// </summary>
     public bool? Prorated
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("prorated", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "prorated"); }
         init
         {
             if (value == null)
@@ -65,10 +35,7 @@ public sealed record class TieredConfig : ModelBase
                 return;
             }
 
-            this._rawData["prorated"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "prorated", value);
         }
     }
 

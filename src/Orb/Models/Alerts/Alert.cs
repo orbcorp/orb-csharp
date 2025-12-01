@@ -23,27 +23,8 @@ public sealed record class Alert : ModelBase
     /// </summary>
     public required string ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentNullException("id")
-                );
-        }
-        init
-        {
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
+        init { ModelBase.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -53,27 +34,9 @@ public sealed record class Alert : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("created_at", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'created_at' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "created_at",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
         }
-        init
-        {
-            this._rawData["created_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "created_at", value); }
     }
 
     /// <summary>
@@ -81,20 +44,8 @@ public sealed record class Alert : ModelBase
     /// </summary>
     public required string? Currency
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("currency", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["currency"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
+        init { ModelBase.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -102,23 +53,8 @@ public sealed record class Alert : ModelBase
     /// </summary>
     public required CustomerMinified? Customer
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("customer", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<CustomerMinified?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
-        init
-        {
-            this._rawData["customer"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<CustomerMinified>(this.RawData, "customer"); }
+        init { ModelBase.Set(this._rawData, "customer", value); }
     }
 
     /// <summary>
@@ -126,23 +62,8 @@ public sealed record class Alert : ModelBase
     /// </summary>
     public required bool Enabled
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("enabled", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'enabled' cannot be null",
-                    new System::ArgumentOutOfRangeException("enabled", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["enabled"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "enabled"); }
+        init { ModelBase.Set(this._rawData, "enabled", value); }
     }
 
     /// <summary>
@@ -150,20 +71,8 @@ public sealed record class Alert : ModelBase
     /// </summary>
     public required Metric? Metric
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("metric", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Metric?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["metric"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<Metric>(this.RawData, "metric"); }
+        init { ModelBase.Set(this._rawData, "metric", value); }
     }
 
     /// <summary>
@@ -171,20 +80,8 @@ public sealed record class Alert : ModelBase
     /// </summary>
     public required Plan? Plan
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("plan", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Plan?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["plan"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<Plan>(this.RawData, "plan"); }
+        init { ModelBase.Set(this._rawData, "plan", value); }
     }
 
     /// <summary>
@@ -194,21 +91,9 @@ public sealed record class Alert : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("subscription", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<SubscriptionMinified?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableClass<SubscriptionMinified>(this.RawData, "subscription");
         }
-        init
-        {
-            this._rawData["subscription"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "subscription", value); }
     }
 
     /// <summary>
@@ -216,23 +101,8 @@ public sealed record class Alert : ModelBase
     /// </summary>
     public required IReadOnlyList<Threshold>? Thresholds
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("thresholds", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<Threshold>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
-        init
-        {
-            this._rawData["thresholds"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<List<Threshold>>(this.RawData, "thresholds"); }
+        init { ModelBase.Set(this._rawData, "thresholds", value); }
     }
 
     /// <summary>
@@ -240,30 +110,8 @@ public sealed record class Alert : ModelBase
     /// </summary>
     public required ApiEnum<string, AlertType> Type
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("type", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'type' cannot be null",
-                    new System::ArgumentOutOfRangeException("type", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, AlertType>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'type' cannot be null",
-                    new System::ArgumentNullException("type")
-                );
-        }
-        init
-        {
-            this._rawData["type"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<ApiEnum<string, AlertType>>(this.RawData, "type"); }
+        init { ModelBase.Set(this._rawData, "type", value); }
     }
 
     /// <summary>
@@ -273,21 +121,12 @@ public sealed record class Alert : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("balance_alert_status", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<BalanceAlertStatus>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<List<BalanceAlertStatus>>(
+                this.RawData,
+                "balance_alert_status"
             );
         }
-        init
-        {
-            this._rawData["balance_alert_status"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "balance_alert_status", value); }
     }
 
     public override void Validate()
@@ -346,27 +185,8 @@ public sealed record class Metric : ModelBase
 {
     public required string ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentNullException("id")
-                );
-        }
-        init
-        {
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
+        init { ModelBase.Set(this._rawData, "id", value); }
     }
 
     public override void Validate()
@@ -416,20 +236,8 @@ public sealed record class Plan : ModelBase
 {
     public required string? ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
+        init { ModelBase.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -439,66 +247,20 @@ public sealed record class Plan : ModelBase
     /// </summary>
     public required string? ExternalPlanID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("external_plan_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["external_plan_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_plan_id"); }
+        init { ModelBase.Set(this._rawData, "external_plan_id", value); }
     }
 
     public required string? Name
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("name", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["name"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "name"); }
+        init { ModelBase.Set(this._rawData, "name", value); }
     }
 
     public required string PlanVersion
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("plan_version", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'plan_version' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "plan_version",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'plan_version' cannot be null",
-                    new System::ArgumentNullException("plan_version")
-                );
-        }
-        init
-        {
-            this._rawData["plan_version"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "plan_version"); }
+        init { ModelBase.Set(this._rawData, "plan_version", value); }
     }
 
     public override void Validate()
@@ -603,23 +365,8 @@ public sealed record class BalanceAlertStatus : ModelBase
     /// </summary>
     public required bool InAlert
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("in_alert", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'in_alert' cannot be null",
-                    new System::ArgumentOutOfRangeException("in_alert", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["in_alert"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "in_alert"); }
+        init { ModelBase.Set(this._rawData, "in_alert", value); }
     }
 
     /// <summary>
@@ -627,26 +374,8 @@ public sealed record class BalanceAlertStatus : ModelBase
     /// </summary>
     public required double ThresholdValue
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("threshold_value", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'threshold_value' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "threshold_value",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["threshold_value"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "threshold_value"); }
+        init { ModelBase.Set(this._rawData, "threshold_value", value); }
     }
 
     public override void Validate()

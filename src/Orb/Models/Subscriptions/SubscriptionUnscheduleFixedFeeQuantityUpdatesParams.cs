@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models.Subscriptions;
 
@@ -31,27 +30,8 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
     /// </summary>
     public required string PriceID
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("price_id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'price_id' cannot be null",
-                    new ArgumentOutOfRangeException("price_id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'price_id' cannot be null",
-                    new ArgumentNullException("price_id")
-                );
-        }
-        init
-        {
-            this._rawBodyData["price_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "price_id"); }
+        init { ModelBase.Set(this._rawBodyData, "price_id", value); }
     }
 
     public SubscriptionUnscheduleFixedFeeQuantityUpdatesParams() { }

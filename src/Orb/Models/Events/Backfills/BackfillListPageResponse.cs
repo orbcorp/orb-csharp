@@ -16,59 +16,24 @@ public sealed record class BackfillListPageResponse : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("data", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'data' cannot be null",
-                    new System::ArgumentOutOfRangeException("data", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<global::Orb.Models.Events.Backfills.Data>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'data' cannot be null",
-                    new System::ArgumentNullException("data")
-                );
-        }
-        init
-        {
-            this._rawData["data"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<List<global::Orb.Models.Events.Backfills.Data>>(
+                this.RawData,
+                "data"
             );
         }
+        init { ModelBase.Set(this._rawData, "data", value); }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            if (!this._rawData.TryGetValue("pagination_metadata", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'pagination_metadata' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "pagination_metadata",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<PaginationMetadata>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'pagination_metadata' cannot be null",
-                    new System::ArgumentNullException("pagination_metadata")
-                );
-        }
-        init
-        {
-            this._rawData["pagination_metadata"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<PaginationMetadata>(
+                this.RawData,
+                "pagination_metadata"
             );
         }
+        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
     }
 
     public override void Validate()
@@ -124,27 +89,8 @@ public sealed record class Data : ModelBase
 {
     public required string ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'id' cannot be null",
-                    new System::ArgumentNullException("id")
-                );
-        }
-        init
-        {
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
+        init { ModelBase.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -155,48 +101,18 @@ public sealed record class Data : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("close_time", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "close_time");
         }
-        init
-        {
-            this._rawData["close_time"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "close_time", value); }
     }
 
     public required System::DateTimeOffset CreatedAt
     {
         get
         {
-            if (!this._rawData.TryGetValue("created_at", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'created_at' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "created_at",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
         }
-        init
-        {
-            this._rawData["created_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "created_at", value); }
     }
 
     /// <summary>
@@ -205,20 +121,8 @@ public sealed record class Data : ModelBase
     /// </summary>
     public required string? CustomerID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("customer_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["customer_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "customer_id"); }
+        init { ModelBase.Set(this._rawData, "customer_id", value); }
     }
 
     /// <summary>
@@ -226,26 +130,8 @@ public sealed record class Data : ModelBase
     /// </summary>
     public required long EventsIngested
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("events_ingested", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'events_ingested' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "events_ingested",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["events_ingested"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "events_ingested"); }
+        init { ModelBase.Set(this._rawData, "events_ingested", value); }
     }
 
     /// <summary>
@@ -255,26 +141,8 @@ public sealed record class Data : ModelBase
     /// </summary>
     public required bool ReplaceExistingEvents
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("replace_existing_events", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'replace_existing_events' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "replace_existing_events",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["replace_existing_events"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "replace_existing_events"); }
+        init { ModelBase.Set(this._rawData, "replace_existing_events", value); }
     }
 
     /// <summary>
@@ -284,21 +152,9 @@ public sealed record class Data : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("reverted_at", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "reverted_at");
         }
-        init
-        {
-            this._rawData["reverted_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "reverted_at", value); }
     }
 
     /// <summary>
@@ -308,82 +164,33 @@ public sealed record class Data : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("status", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'status' cannot be null",
-                    new System::ArgumentOutOfRangeException("status", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, DataStatus>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'status' cannot be null",
-                    new System::ArgumentNullException("status")
-                );
+            return ModelBase.GetNotNullClass<ApiEnum<string, DataStatus>>(this.RawData, "status");
         }
-        init
-        {
-            this._rawData["status"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "status", value); }
     }
 
     public required System::DateTimeOffset TimeframeEnd
     {
         get
         {
-            if (!this._rawData.TryGetValue("timeframe_end", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'timeframe_end' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "timeframe_end",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(
+                this.RawData,
+                "timeframe_end"
             );
         }
-        init
-        {
-            this._rawData["timeframe_end"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "timeframe_end", value); }
     }
 
     public required System::DateTimeOffset TimeframeStart
     {
         get
         {
-            if (!this._rawData.TryGetValue("timeframe_start", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'timeframe_start' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "timeframe_start",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(
+                this.RawData,
+                "timeframe_start"
             );
         }
-        init
-        {
-            this._rawData["timeframe_start"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "timeframe_start", value); }
     }
 
     /// <summary>
@@ -392,20 +199,8 @@ public sealed record class Data : ModelBase
     /// </summary>
     public string? DeprecationFilter
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("deprecation_filter", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["deprecation_filter"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "deprecation_filter"); }
+        init { ModelBase.Set(this._rawData, "deprecation_filter", value); }
     }
 
     public override void Validate()

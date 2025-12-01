@@ -39,20 +39,8 @@ public sealed record class BalanceTransactionListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("cursor", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["cursor"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "cursor"); }
+        init { ModelBase.Set(this._rawQueryData, "cursor", value); }
     }
 
     /// <summary>
@@ -60,13 +48,7 @@ public sealed record class BalanceTransactionListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("limit", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "limit"); }
         init
         {
             if (value == null)
@@ -74,10 +56,7 @@ public sealed record class BalanceTransactionListParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["limit"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "limit", value);
         }
     }
 
@@ -85,84 +64,48 @@ public sealed record class BalanceTransactionListParams : ParamsBase
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("operation_time[gt]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<DateTimeOffset>(
+                this.RawQueryData,
+                "operation_time[gt]"
             );
         }
-        init
-        {
-            this._rawQueryData["operation_time[gt]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "operation_time[gt]", value); }
     }
 
     public DateTimeOffset? OperationTimeGte
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("operation_time[gte]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<DateTimeOffset>(
+                this.RawQueryData,
+                "operation_time[gte]"
             );
         }
-        init
-        {
-            this._rawQueryData["operation_time[gte]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "operation_time[gte]", value); }
     }
 
     public DateTimeOffset? OperationTimeLt
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("operation_time[lt]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<DateTimeOffset>(
+                this.RawQueryData,
+                "operation_time[lt]"
             );
         }
-        init
-        {
-            this._rawQueryData["operation_time[lt]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "operation_time[lt]", value); }
     }
 
     public DateTimeOffset? OperationTimeLte
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("operation_time[lte]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<DateTimeOffset>(
+                this.RawQueryData,
+                "operation_time[lte]"
             );
         }
-        init
-        {
-            this._rawQueryData["operation_time[lte]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "operation_time[lte]", value); }
     }
 
     public BalanceTransactionListParams() { }

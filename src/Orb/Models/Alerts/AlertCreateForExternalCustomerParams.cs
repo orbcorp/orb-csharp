@@ -34,27 +34,8 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
     /// </summary>
     public required string Currency
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("currency", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'currency' cannot be null",
-                    new System::ArgumentOutOfRangeException("currency", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'currency' cannot be null",
-                    new System::ArgumentNullException("currency")
-                );
-        }
-        init
-        {
-            this._rawBodyData["currency"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "currency"); }
+        init { ModelBase.Set(this._rawBodyData, "currency", value); }
     }
 
     /// <summary>
@@ -64,28 +45,9 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("type", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'type' cannot be null",
-                    new System::ArgumentOutOfRangeException("type", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, TypeModel>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'type' cannot be null",
-                    new System::ArgumentNullException("type")
-                );
+            return ModelBase.GetNotNullClass<ApiEnum<string, TypeModel>>(this.RawBodyData, "type");
         }
-        init
-        {
-            this._rawBodyData["type"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "type", value); }
     }
 
     /// <summary>
@@ -93,23 +55,8 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
     /// </summary>
     public IReadOnlyList<Threshold>? Thresholds
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("thresholds", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<Threshold>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
-        init
-        {
-            this._rawBodyData["thresholds"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<List<Threshold>>(this.RawBodyData, "thresholds"); }
+        init { ModelBase.Set(this._rawBodyData, "thresholds", value); }
     }
 
     public AlertCreateForExternalCustomerParams() { }

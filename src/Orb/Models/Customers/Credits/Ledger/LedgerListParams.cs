@@ -86,84 +86,48 @@ public sealed record class LedgerListParams : ParamsBase
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("created_at[gt]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawQueryData,
+                "created_at[gt]"
             );
         }
-        init
-        {
-            this._rawQueryData["created_at[gt]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "created_at[gt]", value); }
     }
 
     public System::DateTimeOffset? CreatedAtGte
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("created_at[gte]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawQueryData,
+                "created_at[gte]"
             );
         }
-        init
-        {
-            this._rawQueryData["created_at[gte]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "created_at[gte]", value); }
     }
 
     public System::DateTimeOffset? CreatedAtLt
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("created_at[lt]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawQueryData,
+                "created_at[lt]"
             );
         }
-        init
-        {
-            this._rawQueryData["created_at[lt]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "created_at[lt]", value); }
     }
 
     public System::DateTimeOffset? CreatedAtLte
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("created_at[lte]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawQueryData,
+                "created_at[lte]"
             );
         }
-        init
-        {
-            this._rawQueryData["created_at[lte]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "created_at[lte]", value); }
     }
 
     /// <summary>
@@ -171,20 +135,8 @@ public sealed record class LedgerListParams : ParamsBase
     /// </summary>
     public string? Currency
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("currency", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["currency"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "currency"); }
+        init { ModelBase.Set(this._rawQueryData, "currency", value); }
     }
 
     /// <summary>
@@ -193,62 +145,32 @@ public sealed record class LedgerListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("cursor", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["cursor"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "cursor"); }
+        init { ModelBase.Set(this._rawQueryData, "cursor", value); }
     }
 
     public ApiEnum<string, EntryStatus>? EntryStatus
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("entry_status", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<ApiEnum<string, EntryStatus>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<ApiEnum<string, EntryStatus>>(
+                this.RawQueryData,
+                "entry_status"
             );
         }
-        init
-        {
-            this._rawQueryData["entry_status"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "entry_status", value); }
     }
 
     public ApiEnum<string, EntryType>? EntryType
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("entry_type", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<ApiEnum<string, EntryType>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<ApiEnum<string, EntryType>>(
+                this.RawQueryData,
+                "entry_type"
             );
         }
-        init
-        {
-            this._rawQueryData["entry_type"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "entry_type", value); }
     }
 
     /// <summary>
@@ -256,13 +178,7 @@ public sealed record class LedgerListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("limit", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "limit"); }
         init
         {
             if (value == null)
@@ -270,29 +186,14 @@ public sealed record class LedgerListParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["limit"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "limit", value);
         }
     }
 
     public string? MinimumAmount
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("minimum_amount", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["minimum_amount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "minimum_amount"); }
+        init { ModelBase.Set(this._rawQueryData, "minimum_amount", value); }
     }
 
     public LedgerListParams() { }

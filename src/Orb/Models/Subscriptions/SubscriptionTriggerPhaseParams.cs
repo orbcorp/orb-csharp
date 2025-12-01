@@ -31,23 +31,12 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
     {
         get
         {
-            if (
-                !this._rawBodyData.TryGetValue(
-                    "allow_invoice_credit_or_void",
-                    out JsonElement element
-                )
-            )
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["allow_invoice_credit_or_void"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<bool>(
+                this.RawBodyData,
+                "allow_invoice_credit_or_void"
             );
         }
+        init { ModelBase.Set(this._rawBodyData, "allow_invoice_credit_or_void", value); }
     }
 
     /// <summary>
@@ -62,26 +51,14 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
 #endif
     ? EffectiveDate
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("effective_date", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<
+        get { return ModelBase.GetNullableStruct<
 #if NET
             DateOnly
 #else
             DateTimeOffset
 #endif
-            ?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["effective_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+            >(this.RawBodyData, "effective_date"); }
+        init { ModelBase.Set(this._rawBodyData, "effective_date", value); }
     }
 
     public SubscriptionTriggerPhaseParams() { }

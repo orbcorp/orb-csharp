@@ -16,13 +16,7 @@ public sealed record class CustomerHierarchyConfig : ModelBase
     /// </summary>
     public IReadOnlyList<string>? ChildCustomerIDs
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("child_customer_ids", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<List<string>>(this.RawData, "child_customer_ids"); }
         init
         {
             if (value == null)
@@ -30,10 +24,7 @@ public sealed record class CustomerHierarchyConfig : ModelBase
                 return;
             }
 
-            this._rawData["child_customer_ids"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "child_customer_ids", value);
         }
     }
 
@@ -43,20 +34,8 @@ public sealed record class CustomerHierarchyConfig : ModelBase
     /// </summary>
     public string? ParentCustomerID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("parent_customer_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["parent_customer_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "parent_customer_id"); }
+        init { ModelBase.Set(this._rawData, "parent_customer_id", value); }
     }
 
     public override void Validate()

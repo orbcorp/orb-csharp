@@ -21,28 +21,9 @@ public sealed record class Minimum : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("applies_to_price_ids", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'applies_to_price_ids' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "applies_to_price_ids",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'applies_to_price_ids' cannot be null",
-                    new System::ArgumentNullException("applies_to_price_ids")
-                );
+            return ModelBase.GetNotNullClass<List<string>>(this.RawData, "applies_to_price_ids");
         }
-        init
-        {
-            this._rawData["applies_to_price_ids"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "applies_to_price_ids", value); }
     }
 
     /// <summary>
@@ -50,27 +31,8 @@ public sealed record class Minimum : ModelBase
     /// </summary>
     public required IReadOnlyList<Filter4> Filters
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("filters", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'filters' cannot be null",
-                    new System::ArgumentOutOfRangeException("filters", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<Filter4>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'filters' cannot be null",
-                    new System::ArgumentNullException("filters")
-                );
-        }
-        init
-        {
-            this._rawData["filters"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<Filter4>>(this.RawData, "filters"); }
+        init { ModelBase.Set(this._rawData, "filters", value); }
     }
 
     /// <summary>
@@ -78,30 +40,8 @@ public sealed record class Minimum : ModelBase
     /// </summary>
     public required string MinimumAmount
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("minimum_amount", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'minimum_amount' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "minimum_amount",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'minimum_amount' cannot be null",
-                    new System::ArgumentNullException("minimum_amount")
-                );
-        }
-        init
-        {
-            this._rawData["minimum_amount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "minimum_amount"); }
+        init { ModelBase.Set(this._rawData, "minimum_amount", value); }
     }
 
     public override void Validate()
@@ -156,28 +96,9 @@ public sealed record class Filter4 : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("field", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'field' cannot be null",
-                    new System::ArgumentOutOfRangeException("field", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, Filter4Field>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'field' cannot be null",
-                    new System::ArgumentNullException("field")
-                );
+            return ModelBase.GetNotNullClass<ApiEnum<string, Filter4Field>>(this.RawData, "field");
         }
-        init
-        {
-            this._rawData["field"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -187,28 +108,12 @@ public sealed record class Filter4 : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("operator", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'operator' cannot be null",
-                    new System::ArgumentOutOfRangeException("operator", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, Filter4Operator>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'operator' cannot be null",
-                    new System::ArgumentNullException("operator")
-                );
-        }
-        init
-        {
-            this._rawData["operator"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<ApiEnum<string, Filter4Operator>>(
+                this.RawData,
+                "operator"
             );
         }
+        init { ModelBase.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -216,27 +121,8 @@ public sealed record class Filter4 : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("values", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'values' cannot be null",
-                    new System::ArgumentOutOfRangeException("values", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<string>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'values' cannot be null",
-                    new System::ArgumentNullException("values")
-                );
-        }
-        init
-        {
-            this._rawData["values"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { ModelBase.Set(this._rawData, "values", value); }
     }
 
     public override void Validate()

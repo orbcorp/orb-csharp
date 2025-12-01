@@ -32,20 +32,8 @@ public sealed record class ExternalPlanIDUpdateParams : ParamsBase
     /// </summary>
     public string? ExternalPlanID
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("external_plan_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["external_plan_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "external_plan_id"); }
+        init { ModelBase.Set(this._rawBodyData, "external_plan_id", value); }
     }
 
     /// <summary>
@@ -57,21 +45,12 @@ public sealed record class ExternalPlanIDUpdateParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("metadata", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+                this.RawBodyData,
+                "metadata"
             );
         }
-        init
-        {
-            this._rawBodyData["metadata"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "metadata", value); }
     }
 
     public ExternalPlanIDUpdateParams() { }

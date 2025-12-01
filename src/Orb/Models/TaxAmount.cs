@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -17,27 +15,8 @@ public sealed record class TaxAmount : ModelBase
     /// </summary>
     public required string Amount
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("amount", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'amount' cannot be null",
-                    new ArgumentOutOfRangeException("amount", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'amount' cannot be null",
-                    new ArgumentNullException("amount")
-                );
-        }
-        init
-        {
-            this._rawData["amount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount"); }
+        init { ModelBase.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -45,30 +24,8 @@ public sealed record class TaxAmount : ModelBase
     /// </summary>
     public required string TaxRateDescription
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("tax_rate_description", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'tax_rate_description' cannot be null",
-                    new ArgumentOutOfRangeException(
-                        "tax_rate_description",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'tax_rate_description' cannot be null",
-                    new ArgumentNullException("tax_rate_description")
-                );
-        }
-        init
-        {
-            this._rawData["tax_rate_description"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "tax_rate_description"); }
+        init { ModelBase.Set(this._rawData, "tax_rate_description", value); }
     }
 
     /// <summary>
@@ -76,20 +33,8 @@ public sealed record class TaxAmount : ModelBase
     /// </summary>
     public required string? TaxRatePercentage
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("tax_rate_percentage", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["tax_rate_percentage"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "tax_rate_percentage"); }
+        init { ModelBase.Set(this._rawData, "tax_rate_percentage", value); }
     }
 
     public override void Validate()

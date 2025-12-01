@@ -28,56 +28,20 @@ public sealed record class InvoiceListParams : ParamsBase
 {
     public string? Amount
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("amount", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["amount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "amount"); }
+        init { ModelBase.Set(this._rawQueryData, "amount", value); }
     }
 
     public string? AmountGt
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("amount[gt]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["amount[gt]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "amount[gt]"); }
+        init { ModelBase.Set(this._rawQueryData, "amount[gt]", value); }
     }
 
     public string? AmountLt
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("amount[lt]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["amount[lt]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "amount[lt]"); }
+        init { ModelBase.Set(this._rawQueryData, "amount[lt]", value); }
     }
 
     /// <summary>
@@ -86,59 +50,26 @@ public sealed record class InvoiceListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("cursor", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["cursor"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "cursor"); }
+        init { ModelBase.Set(this._rawQueryData, "cursor", value); }
     }
 
     public string? CustomerID
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("customer_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["customer_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "customer_id"); }
+        init { ModelBase.Set(this._rawQueryData, "customer_id", value); }
     }
 
     public ApiEnum<string, DateType>? DateType
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("date_type", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<ApiEnum<string, DateType>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<ApiEnum<string, DateType>>(
+                this.RawQueryData,
+                "date_type"
             );
         }
-        init
-        {
-            this._rawQueryData["date_type"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "date_type", value); }
     }
 
     public
@@ -149,26 +80,14 @@ public sealed record class InvoiceListParams : ParamsBase
 #endif
     ? DueDate
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("due_date", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<
+        get { return ModelBase.GetNullableStruct<
 #if NET
             System::DateOnly
 #else
             System::DateTimeOffset
 #endif
-            ?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["due_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+            >(this.RawQueryData, "due_date"); }
+        init { ModelBase.Set(this._rawQueryData, "due_date", value); }
     }
 
     /// <summary>
@@ -179,20 +98,8 @@ public sealed record class InvoiceListParams : ParamsBase
     /// </summary>
     public string? DueDateWindow
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("due_date_window", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["due_date_window"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "due_date_window"); }
+        init { ModelBase.Set(this._rawQueryData, "due_date_window", value); }
     }
 
     public
@@ -205,24 +112,15 @@ public sealed record class InvoiceListParams : ParamsBase
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("due_date[gt]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<
+            return ModelBase.GetNullableStruct<
 #if NET
             System::DateOnly
 #else
             System::DateTimeOffset
 #endif
-            ?>(element, ModelBase.SerializerOptions);
+            >(this.RawQueryData, "due_date[gt]");
         }
-        init
-        {
-            this._rawQueryData["due_date[gt]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "due_date[gt]", value); }
     }
 
     public
@@ -235,144 +133,78 @@ public sealed record class InvoiceListParams : ParamsBase
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("due_date[lt]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<
+            return ModelBase.GetNullableStruct<
 #if NET
             System::DateOnly
 #else
             System::DateTimeOffset
 #endif
-            ?>(element, ModelBase.SerializerOptions);
+            >(this.RawQueryData, "due_date[lt]");
         }
-        init
-        {
-            this._rawQueryData["due_date[lt]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "due_date[lt]", value); }
     }
 
     public string? ExternalCustomerID
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("external_customer_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableClass<string>(this.RawQueryData, "external_customer_id");
         }
-        init
-        {
-            this._rawQueryData["external_customer_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "external_customer_id", value); }
     }
 
     public System::DateTimeOffset? InvoiceDateGt
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("invoice_date[gt]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawQueryData,
+                "invoice_date[gt]"
             );
         }
-        init
-        {
-            this._rawQueryData["invoice_date[gt]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "invoice_date[gt]", value); }
     }
 
     public System::DateTimeOffset? InvoiceDateGte
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("invoice_date[gte]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawQueryData,
+                "invoice_date[gte]"
             );
         }
-        init
-        {
-            this._rawQueryData["invoice_date[gte]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "invoice_date[gte]", value); }
     }
 
     public System::DateTimeOffset? InvoiceDateLt
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("invoice_date[lt]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawQueryData,
+                "invoice_date[lt]"
             );
         }
-        init
-        {
-            this._rawQueryData["invoice_date[lt]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "invoice_date[lt]", value); }
     }
 
     public System::DateTimeOffset? InvoiceDateLte
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("invoice_date[lte]", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawQueryData,
+                "invoice_date[lte]"
             );
         }
-        init
-        {
-            this._rawQueryData["invoice_date[lte]"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "invoice_date[lte]", value); }
     }
 
     public bool? IsRecurring
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("is_recurring", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["is_recurring"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawQueryData, "is_recurring"); }
+        init { ModelBase.Set(this._rawQueryData, "is_recurring", value); }
     }
 
     /// <summary>
@@ -380,13 +212,7 @@ public sealed record class InvoiceListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("limit", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "limit"); }
         init
         {
             if (value == null)
@@ -394,10 +220,7 @@ public sealed record class InvoiceListParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["limit"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "limit", value);
         }
     }
 
@@ -405,38 +228,17 @@ public sealed record class InvoiceListParams : ParamsBase
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("status", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<
-                ApiEnum<string, global::Orb.Models.Invoices.Status>
-            >?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableClass<
+                List<ApiEnum<string, global::Orb.Models.Invoices.Status>>
+            >(this.RawQueryData, "status");
         }
-        init
-        {
-            this._rawQueryData["status"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "status", value); }
     }
 
     public string? SubscriptionID
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("subscription_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["subscription_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "subscription_id"); }
+        init { ModelBase.Set(this._rawQueryData, "subscription_id", value); }
     }
 
     public InvoiceListParams() { }

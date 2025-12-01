@@ -14,54 +14,20 @@ public sealed record class BillingCycleConfiguration : ModelBase
 {
     public required long Duration
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("duration", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'duration' cannot be null",
-                    new System::ArgumentOutOfRangeException("duration", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["duration"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "duration"); }
+        init { ModelBase.Set(this._rawData, "duration", value); }
     }
 
     public required ApiEnum<string, DurationUnit> DurationUnit
     {
         get
         {
-            if (!this._rawData.TryGetValue("duration_unit", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'duration_unit' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "duration_unit",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, DurationUnit>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'duration_unit' cannot be null",
-                    new System::ArgumentNullException("duration_unit")
-                );
-        }
-        init
-        {
-            this._rawData["duration_unit"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<ApiEnum<string, DurationUnit>>(
+                this.RawData,
+                "duration_unit"
             );
         }
+        init { ModelBase.Set(this._rawData, "duration_unit", value); }
     }
 
     public override void Validate()

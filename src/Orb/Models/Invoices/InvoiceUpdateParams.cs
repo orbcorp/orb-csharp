@@ -36,20 +36,8 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     /// </summary>
     public DueDateModel? DueDate
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("due_date", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<DueDateModel?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["due_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<DueDateModel>(this.RawBodyData, "due_date"); }
+        init { ModelBase.Set(this._rawBodyData, "due_date", value); }
     }
 
     /// <summary>
@@ -57,20 +45,8 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     /// </summary>
     public InvoiceDate? InvoiceDate
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("invoice_date", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<InvoiceDate?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["invoice_date"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<InvoiceDate>(this.RawBodyData, "invoice_date"); }
+        init { ModelBase.Set(this._rawBodyData, "invoice_date", value); }
     }
 
     /// <summary>
@@ -82,21 +58,12 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("metadata", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Dictionary<string, string?>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+                this.RawBodyData,
+                "metadata"
             );
         }
-        init
-        {
-            this._rawBodyData["metadata"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawBodyData, "metadata", value); }
     }
 
     /// <summary>
@@ -109,20 +76,8 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     /// </summary>
     public long? NetTerms
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("net_terms", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["net_terms"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawBodyData, "net_terms"); }
+        init { ModelBase.Set(this._rawBodyData, "net_terms", value); }
     }
 
     public InvoiceUpdateParams() { }

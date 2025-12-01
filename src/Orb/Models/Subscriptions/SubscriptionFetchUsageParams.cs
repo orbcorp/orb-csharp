@@ -149,56 +149,23 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     /// </summary>
     public string? BillableMetricID
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("billable_metric_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["billable_metric_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "billable_metric_id"); }
+        init { ModelBase.Set(this._rawQueryData, "billable_metric_id", value); }
     }
 
     public string? FirstDimensionKey
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("first_dimension_key", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["first_dimension_key"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "first_dimension_key"); }
+        init { ModelBase.Set(this._rawQueryData, "first_dimension_key", value); }
     }
 
     public string? FirstDimensionValue
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("first_dimension_value", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableClass<string>(this.RawQueryData, "first_dimension_value");
         }
-        init
-        {
-            this._rawQueryData["first_dimension_value"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "first_dimension_value", value); }
     }
 
     /// <summary>
@@ -208,21 +175,12 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("granularity", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<ApiEnum<string, Granularity>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<ApiEnum<string, Granularity>>(
+                this.RawQueryData,
+                "granularity"
             );
         }
-        init
-        {
-            this._rawQueryData["granularity"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "granularity", value); }
     }
 
     /// <summary>
@@ -230,56 +188,26 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     /// </summary>
     public string? GroupBy
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("group_by", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["group_by"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "group_by"); }
+        init { ModelBase.Set(this._rawQueryData, "group_by", value); }
     }
 
     public string? SecondDimensionKey
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("second_dimension_key", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableClass<string>(this.RawQueryData, "second_dimension_key");
         }
-        init
-        {
-            this._rawQueryData["second_dimension_key"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "second_dimension_key", value); }
     }
 
     public string? SecondDimensionValue
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("second_dimension_value", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableClass<string>(this.RawQueryData, "second_dimension_value");
         }
-        init
-        {
-            this._rawQueryData["second_dimension_value"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "second_dimension_value", value); }
     }
 
     /// <summary>
@@ -289,21 +217,12 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("timeframe_end", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawQueryData,
+                "timeframe_end"
             );
         }
-        init
-        {
-            this._rawQueryData["timeframe_end"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "timeframe_end", value); }
     }
 
     /// <summary>
@@ -313,21 +232,12 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("timeframe_start", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<System::DateTimeOffset?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawQueryData,
+                "timeframe_start"
             );
         }
-        init
-        {
-            this._rawQueryData["timeframe_start"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "timeframe_start", value); }
     }
 
     /// <summary>
@@ -339,21 +249,12 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("view_mode", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<ApiEnum<string, ViewModeModel>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<ApiEnum<string, ViewModeModel>>(
+                this.RawQueryData,
+                "view_mode"
             );
         }
-        init
-        {
-            this._rawQueryData["view_mode"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawQueryData, "view_mode", value); }
     }
 
     public SubscriptionFetchUsageParams() { }

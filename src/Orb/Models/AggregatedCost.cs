@@ -5,7 +5,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -16,28 +15,9 @@ public sealed record class AggregatedCost : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("per_price_costs", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'per_price_costs' cannot be null",
-                    new ArgumentOutOfRangeException("per_price_costs", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<List<PerPriceCost>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'per_price_costs' cannot be null",
-                    new ArgumentNullException("per_price_costs")
-                );
+            return ModelBase.GetNotNullClass<List<PerPriceCost>>(this.RawData, "per_price_costs");
         }
-        init
-        {
-            this._rawData["per_price_costs"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        init { ModelBase.Set(this._rawData, "per_price_costs", value); }
     }
 
     /// <summary>
@@ -45,69 +25,20 @@ public sealed record class AggregatedCost : ModelBase
     /// </summary>
     public required string Subtotal
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("subtotal", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'subtotal' cannot be null",
-                    new ArgumentOutOfRangeException("subtotal", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'subtotal' cannot be null",
-                    new ArgumentNullException("subtotal")
-                );
-        }
-        init
-        {
-            this._rawData["subtotal"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "subtotal"); }
+        init { ModelBase.Set(this._rawData, "subtotal", value); }
     }
 
     public required DateTimeOffset TimeframeEnd
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("timeframe_end", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'timeframe_end' cannot be null",
-                    new ArgumentOutOfRangeException("timeframe_end", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["timeframe_end"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawData, "timeframe_end"); }
+        init { ModelBase.Set(this._rawData, "timeframe_end", value); }
     }
 
     public required DateTimeOffset TimeframeStart
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("timeframe_start", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'timeframe_start' cannot be null",
-                    new ArgumentOutOfRangeException("timeframe_start", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<DateTimeOffset>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["timeframe_start"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawData, "timeframe_start"); }
+        init { ModelBase.Set(this._rawData, "timeframe_start", value); }
     }
 
     /// <summary>
@@ -115,27 +46,8 @@ public sealed record class AggregatedCost : ModelBase
     /// </summary>
     public required string Total
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("total", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'total' cannot be null",
-                    new ArgumentOutOfRangeException("total", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'total' cannot be null",
-                    new ArgumentNullException("total")
-                );
-        }
-        init
-        {
-            this._rawData["total"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "total"); }
+        init { ModelBase.Set(this._rawData, "total", value); }
     }
 
     public override void Validate()

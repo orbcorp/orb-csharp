@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models;
 
@@ -17,23 +15,8 @@ public sealed record class ConversionRateTier : ModelBase
     /// </summary>
     public required double FirstUnit
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("first_unit", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'first_unit' cannot be null",
-                    new ArgumentOutOfRangeException("first_unit", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<double>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["first_unit"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "first_unit"); }
+        init { ModelBase.Set(this._rawData, "first_unit", value); }
     }
 
     /// <summary>
@@ -41,27 +24,8 @@ public sealed record class ConversionRateTier : ModelBase
     /// </summary>
     public required string UnitAmount
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("unit_amount", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'unit_amount' cannot be null",
-                    new ArgumentOutOfRangeException("unit_amount", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'unit_amount' cannot be null",
-                    new ArgumentNullException("unit_amount")
-                );
-        }
-        init
-        {
-            this._rawData["unit_amount"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_amount"); }
+        init { ModelBase.Set(this._rawData, "unit_amount", value); }
     }
 
     /// <summary>
@@ -69,20 +33,8 @@ public sealed record class ConversionRateTier : ModelBase
     /// </summary>
     public double? LastUnit
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("last_unit", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["last_unit"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableStruct<double>(this.RawData, "last_unit"); }
+        init { ModelBase.Set(this._rawData, "last_unit", value); }
     }
 
     public override void Validate()

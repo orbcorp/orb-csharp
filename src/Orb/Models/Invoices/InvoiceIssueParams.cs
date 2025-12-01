@@ -35,13 +35,7 @@ public sealed record class InvoiceIssueParams : ParamsBase
     /// </summary>
     public bool? Synchronous
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("synchronous", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "synchronous"); }
         init
         {
             if (value == null)
@@ -49,10 +43,7 @@ public sealed record class InvoiceIssueParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["synchronous"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "synchronous", value);
         }
     }
 

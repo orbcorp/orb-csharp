@@ -39,30 +39,8 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     /// </summary>
     public required IReadOnlyList<Threshold> Thresholds
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("thresholds", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'thresholds' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "thresholds",
-                        "Missing required argument"
-                    )
-                );
-
-            return JsonSerializer.Deserialize<List<Threshold>>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'thresholds' cannot be null",
-                    new System::ArgumentNullException("thresholds")
-                );
-        }
-        init
-        {
-            this._rawBodyData["thresholds"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<Threshold>>(this.RawBodyData, "thresholds"); }
+        init { ModelBase.Set(this._rawBodyData, "thresholds", value); }
     }
 
     /// <summary>
@@ -70,30 +48,8 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     /// </summary>
     public required ApiEnum<string, Type1> Type
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("type", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'type' cannot be null",
-                    new System::ArgumentOutOfRangeException("type", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, Type1>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'type' cannot be null",
-                    new System::ArgumentNullException("type")
-                );
-        }
-        init
-        {
-            this._rawBodyData["type"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<ApiEnum<string, Type1>>(this.RawBodyData, "type"); }
+        init { ModelBase.Set(this._rawBodyData, "type", value); }
     }
 
     /// <summary>
@@ -101,20 +57,8 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     /// </summary>
     public string? MetricID
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("metric_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawBodyData["metric_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "metric_id"); }
+        init { ModelBase.Set(this._rawBodyData, "metric_id", value); }
     }
 
     public AlertCreateForSubscriptionParams() { }

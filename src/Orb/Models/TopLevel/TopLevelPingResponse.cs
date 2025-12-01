@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
-using Orb.Exceptions;
 
 namespace Orb.Models.TopLevel;
 
@@ -14,27 +12,8 @@ public sealed record class TopLevelPingResponse : ModelBase
 {
     public required string Response
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("response", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'response' cannot be null",
-                    new ArgumentOutOfRangeException("response", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'response' cannot be null",
-                    new ArgumentNullException("response")
-                );
-        }
-        init
-        {
-            this._rawData["response"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "response"); }
+        init { ModelBase.Set(this._rawData, "response", value); }
     }
 
     public override void Validate()

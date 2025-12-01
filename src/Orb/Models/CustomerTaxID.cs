@@ -114,83 +114,26 @@ public sealed record class CustomerTaxID : ModelBase
 {
     public required ApiEnum<string, Country> Country
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("country", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'country' cannot be null",
-                    new System::ArgumentOutOfRangeException("country", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, Country>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'country' cannot be null",
-                    new System::ArgumentNullException("country")
-                );
-        }
-        init
-        {
-            this._rawData["country"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<ApiEnum<string, Country>>(this.RawData, "country"); }
+        init { ModelBase.Set(this._rawData, "country", value); }
     }
 
     public required ApiEnum<string, CustomerTaxIDType> Type
     {
         get
         {
-            if (!this._rawData.TryGetValue("type", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'type' cannot be null",
-                    new System::ArgumentOutOfRangeException("type", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, CustomerTaxIDType>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new OrbInvalidDataException(
-                    "'type' cannot be null",
-                    new System::ArgumentNullException("type")
-                );
-        }
-        init
-        {
-            this._rawData["type"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<ApiEnum<string, CustomerTaxIDType>>(
+                this.RawData,
+                "type"
             );
         }
+        init { ModelBase.Set(this._rawData, "type", value); }
     }
 
     public required string Value
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("value", out JsonElement element))
-                throw new OrbInvalidDataException(
-                    "'value' cannot be null",
-                    new System::ArgumentOutOfRangeException("value", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException(
-                    "'value' cannot be null",
-                    new System::ArgumentNullException("value")
-                );
-        }
-        init
-        {
-            this._rawData["value"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "value"); }
+        init { ModelBase.Set(this._rawData, "value", value); }
     }
 
     public override void Validate()

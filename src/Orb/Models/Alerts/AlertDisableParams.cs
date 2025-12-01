@@ -22,20 +22,8 @@ public sealed record class AlertDisableParams : ParamsBase
     /// </summary>
     public string? SubscriptionID
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("subscription_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawQueryData["subscription_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "subscription_id"); }
+        init { ModelBase.Set(this._rawQueryData, "subscription_id", value); }
     }
 
     public AlertDisableParams() { }
