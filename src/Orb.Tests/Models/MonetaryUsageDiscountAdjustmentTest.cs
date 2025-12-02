@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.Json;
 using Orb.Core;
 using Orb.Models;
 
@@ -67,6 +68,129 @@ public class MonetaryUsageDiscountAdjustmentTest : TestBase
         Assert.Equal(expectedReplacesAdjustmentID, model.ReplacesAdjustmentID);
         Assert.Equal(expectedUsageDiscount, model.UsageDiscount);
     }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new MonetaryUsageDiscountAdjustment
+        {
+            ID = "id",
+            AdjustmentType = MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+            Amount = "amount",
+            AppliesToPriceIDs = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Filter10Field.PriceID,
+                    Operator = Filter10Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            UsageDiscount = 0,
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MonetaryUsageDiscountAdjustment>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new MonetaryUsageDiscountAdjustment
+        {
+            ID = "id",
+            AdjustmentType = MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+            Amount = "amount",
+            AppliesToPriceIDs = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Filter10Field.PriceID,
+                    Operator = Filter10Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            UsageDiscount = 0,
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MonetaryUsageDiscountAdjustment>(json);
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        ApiEnum<string, MonetaryUsageDiscountAdjustmentAdjustmentType> expectedAdjustmentType =
+            MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount;
+        string expectedAmount = "amount";
+        List<string> expectedAppliesToPriceIDs = ["string"];
+        List<Filter10> expectedFilters =
+        [
+            new()
+            {
+                Field = Filter10Field.PriceID,
+                Operator = Filter10Operator.Includes,
+                Values = ["string"],
+            },
+        ];
+        bool expectedIsInvoiceLevel = true;
+        string expectedReason = "reason";
+        string expectedReplacesAdjustmentID = "replaces_adjustment_id";
+        double expectedUsageDiscount = 0;
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedAdjustmentType, deserialized.AdjustmentType);
+        Assert.Equal(expectedAmount, deserialized.Amount);
+        Assert.Equal(expectedAppliesToPriceIDs.Count, deserialized.AppliesToPriceIDs.Count);
+        for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIDs[i], deserialized.AppliesToPriceIDs[i]);
+        }
+        Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], deserialized.Filters[i]);
+        }
+        Assert.Equal(expectedIsInvoiceLevel, deserialized.IsInvoiceLevel);
+        Assert.Equal(expectedReason, deserialized.Reason);
+        Assert.Equal(expectedReplacesAdjustmentID, deserialized.ReplacesAdjustmentID);
+        Assert.Equal(expectedUsageDiscount, deserialized.UsageDiscount);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new MonetaryUsageDiscountAdjustment
+        {
+            ID = "id",
+            AdjustmentType = MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+            Amount = "amount",
+            AppliesToPriceIDs = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Filter10Field.PriceID,
+                    Operator = Filter10Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            UsageDiscount = 0,
+        };
+
+        model.Validate();
+    }
 }
 
 public class Filter10Test : TestBase
@@ -92,5 +216,61 @@ public class Filter10Test : TestBase
         {
             Assert.Equal(expectedValues[i], model.Values[i]);
         }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Filter10
+        {
+            Field = Filter10Field.PriceID,
+            Operator = Filter10Operator.Includes,
+            Values = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Filter10>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Filter10
+        {
+            Field = Filter10Field.PriceID,
+            Operator = Filter10Operator.Includes,
+            Values = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Filter10>(json);
+        Assert.NotNull(deserialized);
+
+        ApiEnum<string, Filter10Field> expectedField = Filter10Field.PriceID;
+        ApiEnum<string, Filter10Operator> expectedOperator = Filter10Operator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, deserialized.Field);
+        Assert.Equal(expectedOperator, deserialized.Operator);
+        Assert.Equal(expectedValues.Count, deserialized.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], deserialized.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Filter10
+        {
+            Field = Filter10Field.PriceID,
+            Operator = Filter10Operator.Includes,
+            Values = ["string"],
+        };
+
+        model.Validate();
     }
 }
