@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using Orb.Core;
 using Orb.Models;
 using Orb.Models.Alerts;
@@ -77,6 +78,247 @@ public class AlertTest : TestBase
             Assert.Equal(expectedBalanceAlertStatus[i], model.BalanceAlertStatus[i]);
         }
     }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Alert
+        {
+            ID = "XuxCbt7x9L82yyeF",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Currency = "currency",
+            Customer = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+            Enabled = true,
+            Metric = new("id"),
+            Plan = new()
+            {
+                ID = "m2t5akQeh2obwxeU",
+                ExternalPlanID = "m2t5akQeh2obwxeU",
+                Name = "Example plan",
+                PlanVersion = "plan_version",
+            },
+            Subscription = new("VDGsT23osdLb84KD"),
+            Thresholds = [new(0)],
+            Type = AlertType.CreditBalanceDepleted,
+            BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Alert>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Alert
+        {
+            ID = "XuxCbt7x9L82yyeF",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Currency = "currency",
+            Customer = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+            Enabled = true,
+            Metric = new("id"),
+            Plan = new()
+            {
+                ID = "m2t5akQeh2obwxeU",
+                ExternalPlanID = "m2t5akQeh2obwxeU",
+                Name = "Example plan",
+                PlanVersion = "plan_version",
+            },
+            Subscription = new("VDGsT23osdLb84KD"),
+            Thresholds = [new(0)],
+            Type = AlertType.CreditBalanceDepleted,
+            BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Alert>(json);
+        Assert.NotNull(deserialized);
+
+        string expectedID = "XuxCbt7x9L82yyeF";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedCurrency = "currency";
+        CustomerMinified expectedCustomer = new()
+        {
+            ID = "id",
+            ExternalCustomerID = "external_customer_id",
+        };
+        bool expectedEnabled = true;
+        Metric expectedMetric = new("id");
+        Plan expectedPlan = new()
+        {
+            ID = "m2t5akQeh2obwxeU",
+            ExternalPlanID = "m2t5akQeh2obwxeU",
+            Name = "Example plan",
+            PlanVersion = "plan_version",
+        };
+        SubscriptionMinified expectedSubscription = new("VDGsT23osdLb84KD");
+        List<Threshold> expectedThresholds = [new(0)];
+        ApiEnum<string, AlertType> expectedType = AlertType.CreditBalanceDepleted;
+        List<BalanceAlertStatus> expectedBalanceAlertStatus =
+        [
+            new() { InAlert = true, ThresholdValue = 0 },
+        ];
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
+        Assert.Equal(expectedCurrency, deserialized.Currency);
+        Assert.Equal(expectedCustomer, deserialized.Customer);
+        Assert.Equal(expectedEnabled, deserialized.Enabled);
+        Assert.Equal(expectedMetric, deserialized.Metric);
+        Assert.Equal(expectedPlan, deserialized.Plan);
+        Assert.Equal(expectedSubscription, deserialized.Subscription);
+        Assert.Equal(expectedThresholds.Count, deserialized.Thresholds.Count);
+        for (int i = 0; i < expectedThresholds.Count; i++)
+        {
+            Assert.Equal(expectedThresholds[i], deserialized.Thresholds[i]);
+        }
+        Assert.Equal(expectedType, deserialized.Type);
+        Assert.Equal(expectedBalanceAlertStatus.Count, deserialized.BalanceAlertStatus.Count);
+        for (int i = 0; i < expectedBalanceAlertStatus.Count; i++)
+        {
+            Assert.Equal(expectedBalanceAlertStatus[i], deserialized.BalanceAlertStatus[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Alert
+        {
+            ID = "XuxCbt7x9L82yyeF",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Currency = "currency",
+            Customer = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+            Enabled = true,
+            Metric = new("id"),
+            Plan = new()
+            {
+                ID = "m2t5akQeh2obwxeU",
+                ExternalPlanID = "m2t5akQeh2obwxeU",
+                Name = "Example plan",
+                PlanVersion = "plan_version",
+            },
+            Subscription = new("VDGsT23osdLb84KD"),
+            Thresholds = [new(0)],
+            Type = AlertType.CreditBalanceDepleted,
+            BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Alert
+        {
+            ID = "XuxCbt7x9L82yyeF",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Currency = "currency",
+            Customer = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+            Enabled = true,
+            Metric = new("id"),
+            Plan = new()
+            {
+                ID = "m2t5akQeh2obwxeU",
+                ExternalPlanID = "m2t5akQeh2obwxeU",
+                Name = "Example plan",
+                PlanVersion = "plan_version",
+            },
+            Subscription = new("VDGsT23osdLb84KD"),
+            Thresholds = [new(0)],
+            Type = AlertType.CreditBalanceDepleted,
+        };
+
+        Assert.Null(model.BalanceAlertStatus);
+        Assert.False(model.RawData.ContainsKey("balance_alert_status"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new Alert
+        {
+            ID = "XuxCbt7x9L82yyeF",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Currency = "currency",
+            Customer = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+            Enabled = true,
+            Metric = new("id"),
+            Plan = new()
+            {
+                ID = "m2t5akQeh2obwxeU",
+                ExternalPlanID = "m2t5akQeh2obwxeU",
+                Name = "Example plan",
+                PlanVersion = "plan_version",
+            },
+            Subscription = new("VDGsT23osdLb84KD"),
+            Thresholds = [new(0)],
+            Type = AlertType.CreditBalanceDepleted,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new Alert
+        {
+            ID = "XuxCbt7x9L82yyeF",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Currency = "currency",
+            Customer = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+            Enabled = true,
+            Metric = new("id"),
+            Plan = new()
+            {
+                ID = "m2t5akQeh2obwxeU",
+                ExternalPlanID = "m2t5akQeh2obwxeU",
+                Name = "Example plan",
+                PlanVersion = "plan_version",
+            },
+            Subscription = new("VDGsT23osdLb84KD"),
+            Thresholds = [new(0)],
+            Type = AlertType.CreditBalanceDepleted,
+
+            BalanceAlertStatus = null,
+        };
+
+        Assert.Null(model.BalanceAlertStatus);
+        Assert.True(model.RawData.ContainsKey("balance_alert_status"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new Alert
+        {
+            ID = "XuxCbt7x9L82yyeF",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Currency = "currency",
+            Customer = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+            Enabled = true,
+            Metric = new("id"),
+            Plan = new()
+            {
+                ID = "m2t5akQeh2obwxeU",
+                ExternalPlanID = "m2t5akQeh2obwxeU",
+                Name = "Example plan",
+                PlanVersion = "plan_version",
+            },
+            Subscription = new("VDGsT23osdLb84KD"),
+            Thresholds = [new(0)],
+            Type = AlertType.CreditBalanceDepleted,
+
+            BalanceAlertStatus = null,
+        };
+
+        model.Validate();
+    }
 }
 
 public class MetricTest : TestBase
@@ -89,6 +331,39 @@ public class MetricTest : TestBase
         string expectedID = "id";
 
         Assert.Equal(expectedID, model.ID);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Metric { ID = "id" };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Metric>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Metric { ID = "id" };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Metric>(json);
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+
+        Assert.Equal(expectedID, deserialized.ID);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Metric { ID = "id" };
+
+        model.Validate();
     }
 }
 
@@ -115,6 +390,63 @@ public class PlanTest : TestBase
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanVersion, model.PlanVersion);
     }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Plan
+        {
+            ID = "m2t5akQeh2obwxeU",
+            ExternalPlanID = "m2t5akQeh2obwxeU",
+            Name = "Example plan",
+            PlanVersion = "plan_version",
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Plan>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Plan
+        {
+            ID = "m2t5akQeh2obwxeU",
+            ExternalPlanID = "m2t5akQeh2obwxeU",
+            Name = "Example plan",
+            PlanVersion = "plan_version",
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Plan>(json);
+        Assert.NotNull(deserialized);
+
+        string expectedID = "m2t5akQeh2obwxeU";
+        string expectedExternalPlanID = "m2t5akQeh2obwxeU";
+        string expectedName = "Example plan";
+        string expectedPlanVersion = "plan_version";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedExternalPlanID, deserialized.ExternalPlanID);
+        Assert.Equal(expectedName, deserialized.Name);
+        Assert.Equal(expectedPlanVersion, deserialized.PlanVersion);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Plan
+        {
+            ID = "m2t5akQeh2obwxeU",
+            ExternalPlanID = "m2t5akQeh2obwxeU",
+            Name = "Example plan",
+            PlanVersion = "plan_version",
+        };
+
+        model.Validate();
+    }
 }
 
 public class BalanceAlertStatusTest : TestBase
@@ -129,5 +461,40 @@ public class BalanceAlertStatusTest : TestBase
 
         Assert.Equal(expectedInAlert, model.InAlert);
         Assert.Equal(expectedThresholdValue, model.ThresholdValue);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new BalanceAlertStatus { InAlert = true, ThresholdValue = 0 };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BalanceAlertStatus>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new BalanceAlertStatus { InAlert = true, ThresholdValue = 0 };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BalanceAlertStatus>(json);
+        Assert.NotNull(deserialized);
+
+        bool expectedInAlert = true;
+        double expectedThresholdValue = 0;
+
+        Assert.Equal(expectedInAlert, deserialized.InAlert);
+        Assert.Equal(expectedThresholdValue, deserialized.ThresholdValue);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new BalanceAlertStatus { InAlert = true, ThresholdValue = 0 };
+
+        model.Validate();
     }
 }

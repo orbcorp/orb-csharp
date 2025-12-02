@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.Json;
 using Orb.Core;
 using Orb.Models;
 
@@ -70,6 +71,134 @@ public class MonetaryMinimumAdjustmentTest : TestBase
         Assert.Equal(expectedReason, model.Reason);
         Assert.Equal(expectedReplacesAdjustmentID, model.ReplacesAdjustmentID);
     }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new MonetaryMinimumAdjustment
+        {
+            ID = "id",
+            AdjustmentType = MonetaryMinimumAdjustmentAdjustmentType.Minimum,
+            Amount = "amount",
+            AppliesToPriceIDs = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Filter8Field.PriceID,
+                    Operator = Filter8Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            ItemID = "item_id",
+            MinimumAmount = "minimum_amount",
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MonetaryMinimumAdjustment>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new MonetaryMinimumAdjustment
+        {
+            ID = "id",
+            AdjustmentType = MonetaryMinimumAdjustmentAdjustmentType.Minimum,
+            Amount = "amount",
+            AppliesToPriceIDs = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Filter8Field.PriceID,
+                    Operator = Filter8Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            ItemID = "item_id",
+            MinimumAmount = "minimum_amount",
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MonetaryMinimumAdjustment>(json);
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        ApiEnum<string, MonetaryMinimumAdjustmentAdjustmentType> expectedAdjustmentType =
+            MonetaryMinimumAdjustmentAdjustmentType.Minimum;
+        string expectedAmount = "amount";
+        List<string> expectedAppliesToPriceIDs = ["string"];
+        List<Filter8> expectedFilters =
+        [
+            new()
+            {
+                Field = Filter8Field.PriceID,
+                Operator = Filter8Operator.Includes,
+                Values = ["string"],
+            },
+        ];
+        bool expectedIsInvoiceLevel = true;
+        string expectedItemID = "item_id";
+        string expectedMinimumAmount = "minimum_amount";
+        string expectedReason = "reason";
+        string expectedReplacesAdjustmentID = "replaces_adjustment_id";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedAdjustmentType, deserialized.AdjustmentType);
+        Assert.Equal(expectedAmount, deserialized.Amount);
+        Assert.Equal(expectedAppliesToPriceIDs.Count, deserialized.AppliesToPriceIDs.Count);
+        for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIDs[i], deserialized.AppliesToPriceIDs[i]);
+        }
+        Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], deserialized.Filters[i]);
+        }
+        Assert.Equal(expectedIsInvoiceLevel, deserialized.IsInvoiceLevel);
+        Assert.Equal(expectedItemID, deserialized.ItemID);
+        Assert.Equal(expectedMinimumAmount, deserialized.MinimumAmount);
+        Assert.Equal(expectedReason, deserialized.Reason);
+        Assert.Equal(expectedReplacesAdjustmentID, deserialized.ReplacesAdjustmentID);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new MonetaryMinimumAdjustment
+        {
+            ID = "id",
+            AdjustmentType = MonetaryMinimumAdjustmentAdjustmentType.Minimum,
+            Amount = "amount",
+            AppliesToPriceIDs = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Filter8Field.PriceID,
+                    Operator = Filter8Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            ItemID = "item_id",
+            MinimumAmount = "minimum_amount",
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
+
+        model.Validate();
+    }
 }
 
 public class Filter8Test : TestBase
@@ -95,5 +224,61 @@ public class Filter8Test : TestBase
         {
             Assert.Equal(expectedValues[i], model.Values[i]);
         }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Filter8
+        {
+            Field = Filter8Field.PriceID,
+            Operator = Filter8Operator.Includes,
+            Values = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Filter8>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Filter8
+        {
+            Field = Filter8Field.PriceID,
+            Operator = Filter8Operator.Includes,
+            Values = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Filter8>(json);
+        Assert.NotNull(deserialized);
+
+        ApiEnum<string, Filter8Field> expectedField = Filter8Field.PriceID;
+        ApiEnum<string, Filter8Operator> expectedOperator = Filter8Operator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, deserialized.Field);
+        Assert.Equal(expectedOperator, deserialized.Operator);
+        Assert.Equal(expectedValues.Count, deserialized.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], deserialized.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Filter8
+        {
+            Field = Filter8Field.PriceID,
+            Operator = Filter8Operator.Includes,
+            Values = ["string"],
+        };
+
+        model.Validate();
     }
 }

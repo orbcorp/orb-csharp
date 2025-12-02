@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.Json;
 using Orb.Core;
 using Orb.Models;
 
@@ -48,6 +49,98 @@ public class MinimumTest : TestBase
         }
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
     }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Minimum
+        {
+            AppliesToPriceIDs = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Filter4Field.PriceID,
+                    Operator = Filter4Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MinimumAmount = "minimum_amount",
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Minimum>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Minimum
+        {
+            AppliesToPriceIDs = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Filter4Field.PriceID,
+                    Operator = Filter4Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MinimumAmount = "minimum_amount",
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Minimum>(json);
+        Assert.NotNull(deserialized);
+
+        List<string> expectedAppliesToPriceIDs = ["string"];
+        List<Filter4> expectedFilters =
+        [
+            new()
+            {
+                Field = Filter4Field.PriceID,
+                Operator = Filter4Operator.Includes,
+                Values = ["string"],
+            },
+        ];
+        string expectedMinimumAmount = "minimum_amount";
+
+        Assert.Equal(expectedAppliesToPriceIDs.Count, deserialized.AppliesToPriceIDs.Count);
+        for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIDs[i], deserialized.AppliesToPriceIDs[i]);
+        }
+        Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], deserialized.Filters[i]);
+        }
+        Assert.Equal(expectedMinimumAmount, deserialized.MinimumAmount);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Minimum
+        {
+            AppliesToPriceIDs = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Filter4Field.PriceID,
+                    Operator = Filter4Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MinimumAmount = "minimum_amount",
+        };
+
+        model.Validate();
+    }
 }
 
 public class Filter4Test : TestBase
@@ -73,5 +166,61 @@ public class Filter4Test : TestBase
         {
             Assert.Equal(expectedValues[i], model.Values[i]);
         }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Filter4
+        {
+            Field = Filter4Field.PriceID,
+            Operator = Filter4Operator.Includes,
+            Values = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Filter4>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Filter4
+        {
+            Field = Filter4Field.PriceID,
+            Operator = Filter4Operator.Includes,
+            Values = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Filter4>(json);
+        Assert.NotNull(deserialized);
+
+        ApiEnum<string, Filter4Field> expectedField = Filter4Field.PriceID;
+        ApiEnum<string, Filter4Operator> expectedOperator = Filter4Operator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, deserialized.Field);
+        Assert.Equal(expectedOperator, deserialized.Operator);
+        Assert.Equal(expectedValues.Count, deserialized.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], deserialized.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Filter4
+        {
+            Field = Filter4Field.PriceID,
+            Operator = Filter4Operator.Includes,
+            Values = ["string"],
+        };
+
+        model.Validate();
     }
 }
