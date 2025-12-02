@@ -14,12 +14,12 @@ public class PercentageTest : TestBase
             PercentageDiscount = 0,
         };
 
-        DiscountType expectedDiscountType = JsonSerializer.Deserialize<JsonElement>(
+        JsonElement expectedDiscountType = JsonSerializer.Deserialize<JsonElement>(
             "\"percentage\""
         );
         double expectedPercentageDiscount = 0;
 
-        Assert.Equal(expectedDiscountType, model.DiscountType);
+        Assert.True(JsonElement.DeepEquals(expectedDiscountType, model.DiscountType));
         Assert.Equal(expectedPercentageDiscount, model.PercentageDiscount);
     }
 }
@@ -36,11 +36,9 @@ public class AmountTest : TestBase
         };
 
         string expectedAmountDiscount = "amount_discount";
-        AmountDiscountType expectedDiscountType = JsonSerializer.Deserialize<JsonElement>(
-            "\"amount\""
-        );
+        JsonElement expectedDiscountType = JsonSerializer.Deserialize<JsonElement>("\"amount\"");
 
         Assert.Equal(expectedAmountDiscount, model.AmountDiscount);
-        Assert.Equal(expectedDiscountType, model.DiscountType);
+        Assert.True(JsonElement.DeepEquals(expectedDiscountType, model.DiscountType));
     }
 }

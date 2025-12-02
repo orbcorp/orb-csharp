@@ -630,6 +630,18 @@ public record class Discount
         get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
+    public JsonElement DiscountType
+    {
+        get
+        {
+            return Match(
+                amount: (x) => x.DiscountType,
+                percentage: (x) => x.DiscountType,
+                usage: (x) => x.DiscountType
+            );
+        }
+    }
+
     public Discount(Amount value, JsonElement? json = null)
     {
         this.Value = value;
@@ -844,34 +856,36 @@ public sealed record class Amount : ModelBase
         init { ModelBase.Set(this._rawData, "amount_discount", value); }
     }
 
-    public global::Orb.Models.Subscriptions.DiscountType DiscountType
+    public JsonElement DiscountType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<global::Orb.Models.Subscriptions.DiscountType>(
-                this.RawData,
-                "discount_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "discount_type"); }
         init { ModelBase.Set(this._rawData, "discount_type", value); }
     }
 
     public override void Validate()
     {
         _ = this.AmountDiscount;
-        this.DiscountType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.DiscountType,
+                JsonSerializer.Deserialize<JsonElement>("\"amount\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
     }
 
     public Amount()
     {
-        this.DiscountType = new();
+        this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"amount\"");
     }
 
     public Amount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.DiscountType = new();
+        this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"amount\"");
     }
 
 #pragma warning disable CS8618
@@ -901,65 +915,12 @@ class AmountFromRaw : IFromRaw<Amount>
         Amount.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(Converter))]
-public class DiscountType
-{
-    public JsonElement Json { get; private init; }
-
-    public DiscountType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"amount\"");
-    }
-
-    DiscountType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new global::Orb.Models.Subscriptions.DiscountType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException("Invalid value given for 'DiscountType'");
-        }
-    }
-
-    class Converter : JsonConverter<global::Orb.Models.Subscriptions.DiscountType>
-    {
-        public override global::Orb.Models.Subscriptions.DiscountType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            global::Orb.Models.Subscriptions.DiscountType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
-}
-
 [JsonConverter(typeof(ModelConverter<Percentage, PercentageFromRaw>))]
 public sealed record class Percentage : ModelBase
 {
-    public PercentageDiscountType DiscountType
+    public JsonElement DiscountType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<PercentageDiscountType>(this.RawData, "discount_type");
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "discount_type"); }
         init { ModelBase.Set(this._rawData, "discount_type", value); }
     }
 
@@ -975,20 +936,28 @@ public sealed record class Percentage : ModelBase
 
     public override void Validate()
     {
-        this.DiscountType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.DiscountType,
+                JsonSerializer.Deserialize<JsonElement>("\"percentage\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.PercentageDiscount;
     }
 
     public Percentage()
     {
-        this.DiscountType = new();
+        this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"percentage\"");
     }
 
     public Percentage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.DiscountType = new();
+        this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"percentage\"");
     }
 
 #pragma warning disable CS8618
@@ -1018,63 +987,12 @@ class PercentageFromRaw : IFromRaw<Percentage>
         Percentage.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(Converter))]
-public class PercentageDiscountType
-{
-    public JsonElement Json { get; private init; }
-
-    public PercentageDiscountType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"percentage\"");
-    }
-
-    PercentageDiscountType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (JsonElement.DeepEquals(this.Json, new PercentageDiscountType().Json))
-        {
-            throw new OrbInvalidDataException("Invalid value given for 'PercentageDiscountType'");
-        }
-    }
-
-    class Converter : JsonConverter<PercentageDiscountType>
-    {
-        public override PercentageDiscountType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            PercentageDiscountType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
-}
-
 [JsonConverter(typeof(ModelConverter<DiscountUsage, DiscountUsageFromRaw>))]
 public sealed record class DiscountUsage : ModelBase
 {
-    public DiscountUsageDiscountType DiscountType
+    public JsonElement DiscountType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<DiscountUsageDiscountType>(
-                this.RawData,
-                "discount_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "discount_type"); }
         init { ModelBase.Set(this._rawData, "discount_type", value); }
     }
 
@@ -1090,20 +1008,28 @@ public sealed record class DiscountUsage : ModelBase
 
     public override void Validate()
     {
-        this.DiscountType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.DiscountType,
+                JsonSerializer.Deserialize<JsonElement>("\"usage\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.UsageDiscount;
     }
 
     public DiscountUsage()
     {
-        this.DiscountType = new();
+        this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"usage\"");
     }
 
     public DiscountUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.DiscountType = new();
+        this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"usage\"");
     }
 
 #pragma warning disable CS8618
@@ -1131,53 +1057,6 @@ class DiscountUsageFromRaw : IFromRaw<DiscountUsage>
 {
     public DiscountUsage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         DiscountUsage.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(typeof(Converter))]
-public class DiscountUsageDiscountType
-{
-    public JsonElement Json { get; private init; }
-
-    public DiscountUsageDiscountType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"usage\"");
-    }
-
-    DiscountUsageDiscountType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (JsonElement.DeepEquals(this.Json, new DiscountUsageDiscountType().Json))
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'DiscountUsageDiscountType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<DiscountUsageDiscountType>
-    {
-        public override DiscountUsageDiscountType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            DiscountUsageDiscountType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }
 
 /// <summary>
@@ -3437,15 +3316,9 @@ public sealed record class PriceModelBulkWithFilters : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public PriceModelBulkWithFiltersModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<PriceModelBulkWithFiltersModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -3598,7 +3471,15 @@ public sealed record class PriceModelBulkWithFilters : ModelBase
         this.Cadence.Validate();
         _ = this.Currency;
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -3615,14 +3496,14 @@ public sealed record class PriceModelBulkWithFilters : ModelBase
 
     public PriceModelBulkWithFilters()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
     }
 
     public PriceModelBulkWithFilters(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
     }
 
 #pragma warning disable CS8618
@@ -3931,56 +3812,6 @@ sealed class PriceModelBulkWithFiltersCadenceConverter
     }
 }
 
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class PriceModelBulkWithFiltersModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public PriceModelBulkWithFiltersModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
-    }
-
-    PriceModelBulkWithFiltersModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (JsonElement.DeepEquals(this.Json, new PriceModelBulkWithFiltersModelType().Json))
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'PriceModelBulkWithFiltersModelType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<PriceModelBulkWithFiltersModelType>
-    {
-        public override PriceModelBulkWithFiltersModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            PriceModelBulkWithFiltersModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
-}
-
 [JsonConverter(typeof(PriceModelBulkWithFiltersConversionRateConfigConverter))]
 public record class PriceModelBulkWithFiltersConversionRateConfig
 {
@@ -4233,15 +4064,9 @@ public sealed record class PriceModelGroupedWithMinMaxThresholds : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public PriceModelGroupedWithMinMaxThresholdsModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<PriceModelGroupedWithMinMaxThresholdsModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -4394,7 +4219,15 @@ public sealed record class PriceModelGroupedWithMinMaxThresholds : ModelBase
         _ = this.Currency;
         this.GroupedWithMinMaxThresholdsConfig.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"grouped_with_min_max_thresholds\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -4411,14 +4244,18 @@ public sealed record class PriceModelGroupedWithMinMaxThresholds : ModelBase
 
     public PriceModelGroupedWithMinMaxThresholds()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"grouped_with_min_max_thresholds\""
+        );
     }
 
     public PriceModelGroupedWithMinMaxThresholds(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"grouped_with_min_max_thresholds\""
+        );
     }
 
 #pragma warning disable CS8618
@@ -4596,61 +4433,6 @@ class PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFrom
         PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig.FromRawUnchecked(
             rawData
         );
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class PriceModelGroupedWithMinMaxThresholdsModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public PriceModelGroupedWithMinMaxThresholdsModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"grouped_with_min_max_thresholds\"");
-    }
-
-    PriceModelGroupedWithMinMaxThresholdsModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new PriceModelGroupedWithMinMaxThresholdsModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'PriceModelGroupedWithMinMaxThresholdsModelType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<PriceModelGroupedWithMinMaxThresholdsModelType>
-    {
-        public override PriceModelGroupedWithMinMaxThresholdsModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            PriceModelGroupedWithMinMaxThresholdsModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }
 
 [JsonConverter(typeof(PriceModelGroupedWithMinMaxThresholdsConversionRateConfigConverter))]
@@ -4905,15 +4687,9 @@ public sealed record class PriceModelCumulativeGroupedAllocation : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public PriceModelCumulativeGroupedAllocationModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<PriceModelCumulativeGroupedAllocationModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -5066,7 +4842,15 @@ public sealed record class PriceModelCumulativeGroupedAllocation : ModelBase
         this.CumulativeGroupedAllocationConfig.Validate();
         _ = this.Currency;
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_allocation\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -5083,14 +4867,18 @@ public sealed record class PriceModelCumulativeGroupedAllocation : ModelBase
 
     public PriceModelCumulativeGroupedAllocation()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"cumulative_grouped_allocation\""
+        );
     }
 
     public PriceModelCumulativeGroupedAllocation(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"cumulative_grouped_allocation\""
+        );
     }
 
 #pragma warning disable CS8618
@@ -5268,61 +5056,6 @@ class PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFrom
         PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig.FromRawUnchecked(
             rawData
         );
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class PriceModelCumulativeGroupedAllocationModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public PriceModelCumulativeGroupedAllocationModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_allocation\"");
-    }
-
-    PriceModelCumulativeGroupedAllocationModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new PriceModelCumulativeGroupedAllocationModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'PriceModelCumulativeGroupedAllocationModelType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<PriceModelCumulativeGroupedAllocationModelType>
-    {
-        public override PriceModelCumulativeGroupedAllocationModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            PriceModelCumulativeGroupedAllocationModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }
 
 [JsonConverter(typeof(PriceModelCumulativeGroupedAllocationConversionRateConfigConverter))]
@@ -5558,15 +5291,9 @@ public sealed record class PriceModelPercent : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public PriceModelPercentModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<PriceModelPercentModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -5733,7 +5460,15 @@ public sealed record class PriceModelPercent : ModelBase
         this.Cadence.Validate();
         _ = this.Currency;
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"percent\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         this.PercentConfig.Validate();
         _ = this.BillableMetricID;
@@ -5751,14 +5486,14 @@ public sealed record class PriceModelPercent : ModelBase
 
     public PriceModelPercent()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
     }
 
     public PriceModelPercent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
     }
 
 #pragma warning disable CS8618
@@ -5839,56 +5574,6 @@ sealed class PriceModelPercentCadenceConverter : JsonConverter<PriceModelPercent
             },
             options
         );
-    }
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class PriceModelPercentModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public PriceModelPercentModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
-    }
-
-    PriceModelPercentModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (JsonElement.DeepEquals(this.Json, new PriceModelPercentModelType().Json))
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'PriceModelPercentModelType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<PriceModelPercentModelType>
-    {
-        public override PriceModelPercentModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            PriceModelPercentModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
     }
 }
 
@@ -6199,15 +5884,9 @@ public sealed record class PriceModelEventOutput : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public PriceModelEventOutputModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<PriceModelEventOutputModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -6360,7 +6039,15 @@ public sealed record class PriceModelEventOutput : ModelBase
         _ = this.Currency;
         this.EventOutputConfig.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"event_output\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -6377,14 +6064,14 @@ public sealed record class PriceModelEventOutput : ModelBase
 
     public PriceModelEventOutput()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
     }
 
     public PriceModelEventOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
     }
 
 #pragma warning disable CS8618
@@ -6553,56 +6240,6 @@ class PriceModelEventOutputEventOutputConfigFromRaw
     public PriceModelEventOutputEventOutputConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => PriceModelEventOutputEventOutputConfig.FromRawUnchecked(rawData);
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class PriceModelEventOutputModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public PriceModelEventOutputModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
-    }
-
-    PriceModelEventOutputModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (JsonElement.DeepEquals(this.Json, new PriceModelEventOutputModelType().Json))
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'PriceModelEventOutputModelType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<PriceModelEventOutputModelType>
-    {
-        public override PriceModelEventOutputModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            PriceModelEventOutputModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }
 
 [JsonConverter(typeof(PriceModelEventOutputConversionRateConfigConverter))]

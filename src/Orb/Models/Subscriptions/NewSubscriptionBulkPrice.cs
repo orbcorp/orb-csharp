@@ -48,14 +48,13 @@ public sealed record class NewSubscriptionBulkPrice : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public required ApiEnum<string, NewSubscriptionBulkPriceModelType> ModelType
+    public required ApiEnum<string, global::Orb.Models.Subscriptions.ModelType> ModelType
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, NewSubscriptionBulkPriceModelType>>(
-                this.RawData,
-                "model_type"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, global::Orb.Models.Subscriptions.ModelType>
+            >(this.RawData, "model_type");
         }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
@@ -338,16 +337,15 @@ sealed class NewSubscriptionBulkPriceCadenceConverter
 /// <summary>
 /// The pricing model type
 /// </summary>
-[JsonConverter(typeof(NewSubscriptionBulkPriceModelTypeConverter))]
-public enum NewSubscriptionBulkPriceModelType
+[JsonConverter(typeof(global::Orb.Models.Subscriptions.ModelTypeConverter))]
+public enum ModelType
 {
     Bulk,
 }
 
-sealed class NewSubscriptionBulkPriceModelTypeConverter
-    : JsonConverter<NewSubscriptionBulkPriceModelType>
+sealed class ModelTypeConverter : JsonConverter<global::Orb.Models.Subscriptions.ModelType>
 {
-    public override NewSubscriptionBulkPriceModelType Read(
+    public override global::Orb.Models.Subscriptions.ModelType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -355,14 +353,14 @@ sealed class NewSubscriptionBulkPriceModelTypeConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "bulk" => NewSubscriptionBulkPriceModelType.Bulk,
-            _ => (NewSubscriptionBulkPriceModelType)(-1),
+            "bulk" => global::Orb.Models.Subscriptions.ModelType.Bulk,
+            _ => (global::Orb.Models.Subscriptions.ModelType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        NewSubscriptionBulkPriceModelType value,
+        global::Orb.Models.Subscriptions.ModelType value,
         JsonSerializerOptions options
     )
     {
@@ -370,7 +368,7 @@ sealed class NewSubscriptionBulkPriceModelTypeConverter
             writer,
             value switch
             {
-                NewSubscriptionBulkPriceModelType.Bulk => "bulk",
+                global::Orb.Models.Subscriptions.ModelType.Bulk => "bulk",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

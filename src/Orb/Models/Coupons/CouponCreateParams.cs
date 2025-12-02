@@ -139,6 +139,11 @@ public record class Discount
         get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
+    public JsonElement DiscountType
+    {
+        get { return Match(percentage: (x) => x.DiscountType, amount: (x) => x.DiscountType); }
+    }
+
     public Discount(Percentage value, JsonElement? json = null)
     {
         this.Value = value;
@@ -296,15 +301,9 @@ sealed class DiscountConverter : JsonConverter<global::Orb.Models.Coupons.Discou
 [JsonConverter(typeof(ModelConverter<Percentage, PercentageFromRaw>))]
 public sealed record class Percentage : ModelBase
 {
-    public global::Orb.Models.Coupons.DiscountType DiscountType
+    public JsonElement DiscountType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<global::Orb.Models.Coupons.DiscountType>(
-                this.RawData,
-                "discount_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "discount_type"); }
         init { ModelBase.Set(this._rawData, "discount_type", value); }
     }
 
@@ -316,20 +315,28 @@ public sealed record class Percentage : ModelBase
 
     public override void Validate()
     {
-        this.DiscountType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.DiscountType,
+                JsonSerializer.Deserialize<JsonElement>("\"percentage\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.PercentageDiscount;
     }
 
     public Percentage()
     {
-        this.DiscountType = new();
+        this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"percentage\"");
     }
 
     public Percentage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.DiscountType = new();
+        this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"percentage\"");
     }
 
 #pragma warning disable CS8618
@@ -359,51 +366,6 @@ class PercentageFromRaw : IFromRaw<Percentage>
         Percentage.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(Converter))]
-public class DiscountType
-{
-    public JsonElement Json { get; private init; }
-
-    public DiscountType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"percentage\"");
-    }
-
-    DiscountType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (JsonElement.DeepEquals(this.Json, new global::Orb.Models.Coupons.DiscountType().Json))
-        {
-            throw new OrbInvalidDataException("Invalid value given for 'DiscountType'");
-        }
-    }
-
-    class Converter : JsonConverter<global::Orb.Models.Coupons.DiscountType>
-    {
-        public override global::Orb.Models.Coupons.DiscountType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            global::Orb.Models.Coupons.DiscountType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
-}
-
 [JsonConverter(typeof(ModelConverter<Amount, AmountFromRaw>))]
 public sealed record class Amount : ModelBase
 {
@@ -413,28 +375,36 @@ public sealed record class Amount : ModelBase
         init { ModelBase.Set(this._rawData, "amount_discount", value); }
     }
 
-    public AmountDiscountType DiscountType
+    public JsonElement DiscountType
     {
-        get { return ModelBase.GetNotNullClass<AmountDiscountType>(this.RawData, "discount_type"); }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "discount_type"); }
         init { ModelBase.Set(this._rawData, "discount_type", value); }
     }
 
     public override void Validate()
     {
         _ = this.AmountDiscount;
-        this.DiscountType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.DiscountType,
+                JsonSerializer.Deserialize<JsonElement>("\"amount\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
     }
 
     public Amount()
     {
-        this.DiscountType = new();
+        this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"amount\"");
     }
 
     public Amount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.DiscountType = new();
+        this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"amount\"");
     }
 
 #pragma warning disable CS8618
@@ -462,49 +432,4 @@ class AmountFromRaw : IFromRaw<Amount>
 {
     public Amount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Amount.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(typeof(Converter))]
-public class AmountDiscountType
-{
-    public JsonElement Json { get; private init; }
-
-    public AmountDiscountType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"amount\"");
-    }
-
-    AmountDiscountType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (JsonElement.DeepEquals(this.Json, new AmountDiscountType().Json))
-        {
-            throw new OrbInvalidDataException("Invalid value given for 'AmountDiscountType'");
-        }
-    }
-
-    class Converter : JsonConverter<AmountDiscountType>
-    {
-        public override AmountDiscountType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            AmountDiscountType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }

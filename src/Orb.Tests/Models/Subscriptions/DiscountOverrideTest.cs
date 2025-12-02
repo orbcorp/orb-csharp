@@ -10,14 +10,13 @@ public class DiscountOverrideTest : TestBase
     {
         var model = new DiscountOverride
         {
-            DiscountType = DiscountOverrideDiscountType.Percentage,
+            DiscountType = DiscountType.Percentage,
             AmountDiscount = "amount_discount",
             PercentageDiscount = 0.15,
             UsageDiscount = 0,
         };
 
-        ApiEnum<string, DiscountOverrideDiscountType> expectedDiscountType =
-            DiscountOverrideDiscountType.Percentage;
+        ApiEnum<string, DiscountType> expectedDiscountType = DiscountType.Percentage;
         string expectedAmountDiscount = "amount_discount";
         double expectedPercentageDiscount = 0.15;
         double expectedUsageDiscount = 0;

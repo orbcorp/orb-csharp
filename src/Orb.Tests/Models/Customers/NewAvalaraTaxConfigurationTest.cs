@@ -11,14 +11,13 @@ public class NewAvalaraTaxConfigurationTest : TestBase
         var model = new NewAvalaraTaxConfiguration
         {
             TaxExempt = true,
-            TaxProvider = NewAvalaraTaxConfigurationTaxProvider.Avalara,
+            TaxProvider = TaxProvider.Avalara,
             AutomaticTaxEnabled = true,
             TaxExemptionCode = "tax_exemption_code",
         };
 
         bool expectedTaxExempt = true;
-        ApiEnum<string, NewAvalaraTaxConfigurationTaxProvider> expectedTaxProvider =
-            NewAvalaraTaxConfigurationTaxProvider.Avalara;
+        ApiEnum<string, TaxProvider> expectedTaxProvider = TaxProvider.Avalara;
         bool expectedAutomaticTaxEnabled = true;
         string expectedTaxExemptionCode = "tax_exemption_code";
 

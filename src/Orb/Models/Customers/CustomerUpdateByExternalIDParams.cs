@@ -852,15 +852,9 @@ public sealed record class TaxConfiguration1Numeral : ModelBase
         init { ModelBase.Set(this._rawData, "tax_exempt", value); }
     }
 
-    public TaxConfiguration1NumeralTaxProvider TaxProvider
+    public JsonElement TaxProvider
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<TaxConfiguration1NumeralTaxProvider>(
-                this.RawData,
-                "tax_provider"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "tax_provider"); }
         init { ModelBase.Set(this._rawData, "tax_provider", value); }
     }
 
@@ -877,20 +871,28 @@ public sealed record class TaxConfiguration1Numeral : ModelBase
     public override void Validate()
     {
         _ = this.TaxExempt;
-        this.TaxProvider.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.TaxProvider,
+                JsonSerializer.Deserialize<JsonElement>("\"numeral\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.AutomaticTaxEnabled;
     }
 
     public TaxConfiguration1Numeral()
     {
-        this.TaxProvider = new();
+        this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"numeral\"");
     }
 
     public TaxConfiguration1Numeral(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.TaxProvider = new();
+        this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"numeral\"");
     }
 
 #pragma warning disable CS8618
@@ -923,53 +925,6 @@ class TaxConfiguration1NumeralFromRaw : IFromRaw<TaxConfiguration1Numeral>
     ) => TaxConfiguration1Numeral.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(Converter))]
-public class TaxConfiguration1NumeralTaxProvider
-{
-    public JsonElement Json { get; private init; }
-
-    public TaxConfiguration1NumeralTaxProvider()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"numeral\"");
-    }
-
-    TaxConfiguration1NumeralTaxProvider(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (JsonElement.DeepEquals(this.Json, new TaxConfiguration1NumeralTaxProvider().Json))
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'TaxConfiguration1NumeralTaxProvider'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<TaxConfiguration1NumeralTaxProvider>
-    {
-        public override TaxConfiguration1NumeralTaxProvider? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            TaxConfiguration1NumeralTaxProvider value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
-}
-
 [JsonConverter(typeof(ModelConverter<TaxConfiguration1Anrok, TaxConfiguration1AnrokFromRaw>))]
 public sealed record class TaxConfiguration1Anrok : ModelBase
 {
@@ -979,15 +934,9 @@ public sealed record class TaxConfiguration1Anrok : ModelBase
         init { ModelBase.Set(this._rawData, "tax_exempt", value); }
     }
 
-    public TaxConfiguration1AnrokTaxProvider TaxProvider
+    public JsonElement TaxProvider
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<TaxConfiguration1AnrokTaxProvider>(
-                this.RawData,
-                "tax_provider"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "tax_provider"); }
         init { ModelBase.Set(this._rawData, "tax_provider", value); }
     }
 
@@ -1004,20 +953,28 @@ public sealed record class TaxConfiguration1Anrok : ModelBase
     public override void Validate()
     {
         _ = this.TaxExempt;
-        this.TaxProvider.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.TaxProvider,
+                JsonSerializer.Deserialize<JsonElement>("\"anrok\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.AutomaticTaxEnabled;
     }
 
     public TaxConfiguration1Anrok()
     {
-        this.TaxProvider = new();
+        this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"anrok\"");
     }
 
     public TaxConfiguration1Anrok(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.TaxProvider = new();
+        this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"anrok\"");
     }
 
 #pragma warning disable CS8618
@@ -1050,53 +1007,6 @@ class TaxConfiguration1AnrokFromRaw : IFromRaw<TaxConfiguration1Anrok>
     ) => TaxConfiguration1Anrok.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(Converter))]
-public class TaxConfiguration1AnrokTaxProvider
-{
-    public JsonElement Json { get; private init; }
-
-    public TaxConfiguration1AnrokTaxProvider()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"anrok\"");
-    }
-
-    TaxConfiguration1AnrokTaxProvider(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (JsonElement.DeepEquals(this.Json, new TaxConfiguration1AnrokTaxProvider().Json))
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'TaxConfiguration1AnrokTaxProvider'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<TaxConfiguration1AnrokTaxProvider>
-    {
-        public override TaxConfiguration1AnrokTaxProvider? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            TaxConfiguration1AnrokTaxProvider value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
-}
-
 [JsonConverter(typeof(ModelConverter<TaxConfiguration1Stripe, TaxConfiguration1StripeFromRaw>))]
 public sealed record class TaxConfiguration1Stripe : ModelBase
 {
@@ -1106,15 +1016,9 @@ public sealed record class TaxConfiguration1Stripe : ModelBase
         init { ModelBase.Set(this._rawData, "tax_exempt", value); }
     }
 
-    public TaxConfiguration1StripeTaxProvider TaxProvider
+    public JsonElement TaxProvider
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<TaxConfiguration1StripeTaxProvider>(
-                this.RawData,
-                "tax_provider"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "tax_provider"); }
         init { ModelBase.Set(this._rawData, "tax_provider", value); }
     }
 
@@ -1131,20 +1035,28 @@ public sealed record class TaxConfiguration1Stripe : ModelBase
     public override void Validate()
     {
         _ = this.TaxExempt;
-        this.TaxProvider.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.TaxProvider,
+                JsonSerializer.Deserialize<JsonElement>("\"stripe\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.AutomaticTaxEnabled;
     }
 
     public TaxConfiguration1Stripe()
     {
-        this.TaxProvider = new();
+        this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"stripe\"");
     }
 
     public TaxConfiguration1Stripe(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.TaxProvider = new();
+        this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"stripe\"");
     }
 
 #pragma warning disable CS8618
@@ -1175,51 +1087,4 @@ class TaxConfiguration1StripeFromRaw : IFromRaw<TaxConfiguration1Stripe>
     public TaxConfiguration1Stripe FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => TaxConfiguration1Stripe.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(typeof(Converter))]
-public class TaxConfiguration1StripeTaxProvider
-{
-    public JsonElement Json { get; private init; }
-
-    public TaxConfiguration1StripeTaxProvider()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"stripe\"");
-    }
-
-    TaxConfiguration1StripeTaxProvider(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (JsonElement.DeepEquals(this.Json, new TaxConfiguration1StripeTaxProvider().Json))
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'TaxConfiguration1StripeTaxProvider'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<TaxConfiguration1StripeTaxProvider>
-    {
-        public override TaxConfiguration1StripeTaxProvider? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            TaxConfiguration1StripeTaxProvider value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }

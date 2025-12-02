@@ -205,6 +205,20 @@ public record class BodyModel
         }
     }
 
+    public JsonElement EntryType
+    {
+        get
+        {
+            return Match(
+                increment: (x) => x.EntryType,
+                decrement: (x) => x.EntryType,
+                expirationChange: (x) => x.EntryType,
+                void1: (x) => x.EntryType,
+                amendment: (x) => x.EntryType
+            );
+        }
+    }
+
     public string? Currency
     {
         get
@@ -562,15 +576,9 @@ public sealed record class BodyModelIncrement : ModelBase
         init { ModelBase.Set(this._rawData, "amount", value); }
     }
 
-    public BodyModelIncrementEntryType EntryType
+    public JsonElement EntryType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<BodyModelIncrementEntryType>(
-                this.RawData,
-                "entry_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
         init { ModelBase.Set(this._rawData, "entry_type", value); }
     }
 
@@ -685,7 +693,15 @@ public sealed record class BodyModelIncrement : ModelBase
     public override void Validate()
     {
         _ = this.Amount;
-        this.EntryType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.EntryType,
+                JsonSerializer.Deserialize<JsonElement>("\"increment\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Currency;
         _ = this.Description;
         _ = this.EffectiveDate;
@@ -701,14 +717,14 @@ public sealed record class BodyModelIncrement : ModelBase
 
     public BodyModelIncrement()
     {
-        this.EntryType = new();
+        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"increment\"");
     }
 
     public BodyModelIncrement(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.EntryType = new();
+        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"increment\"");
     }
 
 #pragma warning disable CS8618
@@ -738,53 +754,6 @@ class BodyModelIncrementFromRaw : IFromRaw<BodyModelIncrement>
 {
     public BodyModelIncrement FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         BodyModelIncrement.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(typeof(Converter))]
-public class BodyModelIncrementEntryType
-{
-    public JsonElement Json { get; private init; }
-
-    public BodyModelIncrementEntryType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"increment\"");
-    }
-
-    BodyModelIncrementEntryType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (JsonElement.DeepEquals(this.Json, new BodyModelIncrementEntryType().Json))
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'BodyModelIncrementEntryType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<BodyModelIncrementEntryType>
-    {
-        public override BodyModelIncrementEntryType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            BodyModelIncrementEntryType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }
 
 /// <summary>
@@ -1559,15 +1528,9 @@ public sealed record class BodyModelDecrement : ModelBase
         init { ModelBase.Set(this._rawData, "amount", value); }
     }
 
-    public BodyModelDecrementEntryType EntryType
+    public JsonElement EntryType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<BodyModelDecrementEntryType>(
-                this.RawData,
-                "entry_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
         init { ModelBase.Set(this._rawData, "entry_type", value); }
     }
 
@@ -1612,7 +1575,15 @@ public sealed record class BodyModelDecrement : ModelBase
     public override void Validate()
     {
         _ = this.Amount;
-        this.EntryType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.EntryType,
+                JsonSerializer.Deserialize<JsonElement>("\"decrement\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Currency;
         _ = this.Description;
         _ = this.Metadata;
@@ -1620,14 +1591,14 @@ public sealed record class BodyModelDecrement : ModelBase
 
     public BodyModelDecrement()
     {
-        this.EntryType = new();
+        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"decrement\"");
     }
 
     public BodyModelDecrement(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.EntryType = new();
+        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"decrement\"");
     }
 
 #pragma warning disable CS8618
@@ -1659,65 +1630,12 @@ class BodyModelDecrementFromRaw : IFromRaw<BodyModelDecrement>
         BodyModelDecrement.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(Converter))]
-public class BodyModelDecrementEntryType
-{
-    public JsonElement Json { get; private init; }
-
-    public BodyModelDecrementEntryType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"decrement\"");
-    }
-
-    BodyModelDecrementEntryType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (JsonElement.DeepEquals(this.Json, new BodyModelDecrementEntryType().Json))
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'BodyModelDecrementEntryType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<BodyModelDecrementEntryType>
-    {
-        public override BodyModelDecrementEntryType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            BodyModelDecrementEntryType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
-}
-
 [JsonConverter(typeof(ModelConverter<BodyModelExpirationChange, BodyModelExpirationChangeFromRaw>))]
 public sealed record class BodyModelExpirationChange : ModelBase
 {
-    public BodyModelExpirationChangeEntryType EntryType
+    public JsonElement EntryType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<BodyModelExpirationChangeEntryType>(
-                this.RawData,
-                "entry_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
         init { ModelBase.Set(this._rawData, "entry_type", value); }
     }
 
@@ -1819,7 +1737,15 @@ public sealed record class BodyModelExpirationChange : ModelBase
 
     public override void Validate()
     {
-        this.EntryType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.EntryType,
+                JsonSerializer.Deserialize<JsonElement>("\"expiration_change\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.TargetExpiryDate;
         _ = this.Amount;
         _ = this.BlockID;
@@ -1831,14 +1757,14 @@ public sealed record class BodyModelExpirationChange : ModelBase
 
     public BodyModelExpirationChange()
     {
-        this.EntryType = new();
+        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"expiration_change\"");
     }
 
     public BodyModelExpirationChange(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.EntryType = new();
+        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"expiration_change\"");
     }
 
 #pragma warning disable CS8618
@@ -1877,53 +1803,6 @@ class BodyModelExpirationChangeFromRaw : IFromRaw<BodyModelExpirationChange>
     ) => BodyModelExpirationChange.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(Converter))]
-public class BodyModelExpirationChangeEntryType
-{
-    public JsonElement Json { get; private init; }
-
-    public BodyModelExpirationChangeEntryType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"expiration_change\"");
-    }
-
-    BodyModelExpirationChangeEntryType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (JsonElement.DeepEquals(this.Json, new BodyModelExpirationChangeEntryType().Json))
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'BodyModelExpirationChangeEntryType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<BodyModelExpirationChangeEntryType>
-    {
-        public override BodyModelExpirationChangeEntryType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            BodyModelExpirationChangeEntryType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
-}
-
 [JsonConverter(typeof(ModelConverter<BodyModelVoid, BodyModelVoidFromRaw>))]
 public sealed record class BodyModelVoid : ModelBase
 {
@@ -1946,12 +1825,9 @@ public sealed record class BodyModelVoid : ModelBase
         init { ModelBase.Set(this._rawData, "block_id", value); }
     }
 
-    public BodyModelVoidEntryType EntryType
+    public JsonElement EntryType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<BodyModelVoidEntryType>(this.RawData, "entry_type");
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
         init { ModelBase.Set(this._rawData, "entry_type", value); }
     }
 
@@ -2012,7 +1888,15 @@ public sealed record class BodyModelVoid : ModelBase
     {
         _ = this.Amount;
         _ = this.BlockID;
-        this.EntryType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.EntryType,
+                JsonSerializer.Deserialize<JsonElement>("\"void\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Currency;
         _ = this.Description;
         _ = this.Metadata;
@@ -2021,14 +1905,14 @@ public sealed record class BodyModelVoid : ModelBase
 
     public BodyModelVoid()
     {
-        this.EntryType = new();
+        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"void\"");
     }
 
     public BodyModelVoid(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.EntryType = new();
+        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"void\"");
     }
 
 #pragma warning disable CS8618
@@ -2049,51 +1933,6 @@ class BodyModelVoidFromRaw : IFromRaw<BodyModelVoid>
 {
     public BodyModelVoid FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         BodyModelVoid.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(typeof(Converter))]
-public class BodyModelVoidEntryType
-{
-    public JsonElement Json { get; private init; }
-
-    public BodyModelVoidEntryType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"void\"");
-    }
-
-    BodyModelVoidEntryType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (JsonElement.DeepEquals(this.Json, new BodyModelVoidEntryType().Json))
-        {
-            throw new OrbInvalidDataException("Invalid value given for 'BodyModelVoidEntryType'");
-        }
-    }
-
-    class Converter : JsonConverter<BodyModelVoidEntryType>
-    {
-        public override BodyModelVoidEntryType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            BodyModelVoidEntryType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }
 
 /// <summary>
@@ -2162,15 +2001,9 @@ public sealed record class BodyModelAmendment : ModelBase
         init { ModelBase.Set(this._rawData, "block_id", value); }
     }
 
-    public BodyModelAmendmentEntryType EntryType
+    public JsonElement EntryType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<BodyModelAmendmentEntryType>(
-                this.RawData,
-                "entry_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
         init { ModelBase.Set(this._rawData, "entry_type", value); }
     }
 
@@ -2216,7 +2049,15 @@ public sealed record class BodyModelAmendment : ModelBase
     {
         _ = this.Amount;
         _ = this.BlockID;
-        this.EntryType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.EntryType,
+                JsonSerializer.Deserialize<JsonElement>("\"amendment\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Currency;
         _ = this.Description;
         _ = this.Metadata;
@@ -2224,14 +2065,14 @@ public sealed record class BodyModelAmendment : ModelBase
 
     public BodyModelAmendment()
     {
-        this.EntryType = new();
+        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"amendment\"");
     }
 
     public BodyModelAmendment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.EntryType = new();
+        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"amendment\"");
     }
 
 #pragma warning disable CS8618
@@ -2254,51 +2095,4 @@ class BodyModelAmendmentFromRaw : IFromRaw<BodyModelAmendment>
 {
     public BodyModelAmendment FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         BodyModelAmendment.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(typeof(Converter))]
-public class BodyModelAmendmentEntryType
-{
-    public JsonElement Json { get; private init; }
-
-    public BodyModelAmendmentEntryType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"amendment\"");
-    }
-
-    BodyModelAmendmentEntryType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (JsonElement.DeepEquals(this.Json, new BodyModelAmendmentEntryType().Json))
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'BodyModelAmendmentEntryType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<BodyModelAmendmentEntryType>
-    {
-        public override BodyModelAmendmentEntryType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            BodyModelAmendmentEntryType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }

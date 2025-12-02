@@ -20,13 +20,14 @@ public sealed record class NewAvalaraTaxConfiguration : ModelBase
         init { ModelBase.Set(this._rawData, "tax_exempt", value); }
     }
 
-    public required ApiEnum<string, NewAvalaraTaxConfigurationTaxProvider> TaxProvider
+    public required ApiEnum<string, TaxProvider> TaxProvider
     {
         get
         {
-            return ModelBase.GetNotNullClass<
-                ApiEnum<string, NewAvalaraTaxConfigurationTaxProvider>
-            >(this.RawData, "tax_provider");
+            return ModelBase.GetNotNullClass<ApiEnum<string, TaxProvider>>(
+                this.RawData,
+                "tax_provider"
+            );
         }
         init { ModelBase.Set(this._rawData, "tax_provider", value); }
     }
@@ -85,16 +86,15 @@ class NewAvalaraTaxConfigurationFromRaw : IFromRaw<NewAvalaraTaxConfiguration>
     ) => NewAvalaraTaxConfiguration.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(NewAvalaraTaxConfigurationTaxProviderConverter))]
-public enum NewAvalaraTaxConfigurationTaxProvider
+[JsonConverter(typeof(TaxProviderConverter))]
+public enum TaxProvider
 {
     Avalara,
 }
 
-sealed class NewAvalaraTaxConfigurationTaxProviderConverter
-    : JsonConverter<NewAvalaraTaxConfigurationTaxProvider>
+sealed class TaxProviderConverter : JsonConverter<TaxProvider>
 {
-    public override NewAvalaraTaxConfigurationTaxProvider Read(
+    public override TaxProvider Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -102,14 +102,14 @@ sealed class NewAvalaraTaxConfigurationTaxProviderConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "avalara" => NewAvalaraTaxConfigurationTaxProvider.Avalara,
-            _ => (NewAvalaraTaxConfigurationTaxProvider)(-1),
+            "avalara" => TaxProvider.Avalara,
+            _ => (TaxProvider)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        NewAvalaraTaxConfigurationTaxProvider value,
+        TaxProvider value,
         JsonSerializerOptions options
     )
     {
@@ -117,7 +117,7 @@ sealed class NewAvalaraTaxConfigurationTaxProviderConverter
             writer,
             value switch
             {
-                NewAvalaraTaxConfigurationTaxProvider.Avalara => "avalara",
+                TaxProvider.Avalara => "avalara",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

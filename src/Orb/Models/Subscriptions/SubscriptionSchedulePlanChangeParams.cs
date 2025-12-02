@@ -3419,15 +3419,9 @@ public sealed record class AddPriceModelPriceBulkWithFilters : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public AddPriceModelPriceBulkWithFiltersModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<AddPriceModelPriceBulkWithFiltersModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -3599,7 +3593,15 @@ public sealed record class AddPriceModelPriceBulkWithFilters : ModelBase
         this.BulkWithFiltersConfig.Validate();
         this.Cadence.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -3618,14 +3620,14 @@ public sealed record class AddPriceModelPriceBulkWithFilters : ModelBase
 
     public AddPriceModelPriceBulkWithFilters()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
     }
 
     public AddPriceModelPriceBulkWithFilters(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
     }
 
 #pragma warning disable CS8618
@@ -3936,58 +3938,6 @@ sealed class AddPriceModelPriceBulkWithFiltersCadenceConverter
     }
 }
 
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class AddPriceModelPriceBulkWithFiltersModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public AddPriceModelPriceBulkWithFiltersModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
-    }
-
-    AddPriceModelPriceBulkWithFiltersModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(this.Json, new AddPriceModelPriceBulkWithFiltersModelType().Json)
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'AddPriceModelPriceBulkWithFiltersModelType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<AddPriceModelPriceBulkWithFiltersModelType>
-    {
-        public override AddPriceModelPriceBulkWithFiltersModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            AddPriceModelPriceBulkWithFiltersModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
-}
-
 [JsonConverter(typeof(AddPriceModelPriceBulkWithFiltersConversionRateConfigConverter))]
 public record class AddPriceModelPriceBulkWithFiltersConversionRateConfig
 {
@@ -4216,15 +4166,9 @@ public sealed record class AddPriceModelPriceTieredWithProration : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public AddPriceModelPriceTieredWithProrationModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<AddPriceModelPriceTieredWithProrationModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -4410,7 +4354,15 @@ public sealed record class AddPriceModelPriceTieredWithProration : ModelBase
     {
         this.Cadence.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         this.TieredWithProrationConfig.Validate();
         _ = this.BillableMetricID;
@@ -4430,14 +4382,14 @@ public sealed record class AddPriceModelPriceTieredWithProration : ModelBase
 
     public AddPriceModelPriceTieredWithProration()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
     }
 
     public AddPriceModelPriceTieredWithProration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
     }
 
 #pragma warning disable CS8618
@@ -4520,61 +4472,6 @@ sealed class AddPriceModelPriceTieredWithProrationCadenceConverter
             },
             options
         );
-    }
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class AddPriceModelPriceTieredWithProrationModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public AddPriceModelPriceTieredWithProrationModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
-    }
-
-    AddPriceModelPriceTieredWithProrationModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new AddPriceModelPriceTieredWithProrationModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'AddPriceModelPriceTieredWithProrationModelType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<AddPriceModelPriceTieredWithProrationModelType>
-    {
-        public override AddPriceModelPriceTieredWithProrationModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            AddPriceModelPriceTieredWithProrationModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
     }
 }
 
@@ -4966,15 +4863,9 @@ public sealed record class AddPriceModelPriceGroupedWithMinMaxThresholds : Model
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public AddPriceModelPriceGroupedWithMinMaxThresholdsModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<AddPriceModelPriceGroupedWithMinMaxThresholdsModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -5146,7 +5037,15 @@ public sealed record class AddPriceModelPriceGroupedWithMinMaxThresholds : Model
         this.Cadence.Validate();
         this.GroupedWithMinMaxThresholdsConfig.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"grouped_with_min_max_thresholds\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -5165,7 +5064,9 @@ public sealed record class AddPriceModelPriceGroupedWithMinMaxThresholds : Model
 
     public AddPriceModelPriceGroupedWithMinMaxThresholds()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"grouped_with_min_max_thresholds\""
+        );
     }
 
     public AddPriceModelPriceGroupedWithMinMaxThresholds(
@@ -5174,7 +5075,9 @@ public sealed record class AddPriceModelPriceGroupedWithMinMaxThresholds : Model
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"grouped_with_min_max_thresholds\""
+        );
     }
 
 #pragma warning disable CS8618
@@ -5353,61 +5256,6 @@ class AddPriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsCo
         AddPriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig.FromRawUnchecked(
             rawData
         );
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class AddPriceModelPriceGroupedWithMinMaxThresholdsModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public AddPriceModelPriceGroupedWithMinMaxThresholdsModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"grouped_with_min_max_thresholds\"");
-    }
-
-    AddPriceModelPriceGroupedWithMinMaxThresholdsModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new AddPriceModelPriceGroupedWithMinMaxThresholdsModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'AddPriceModelPriceGroupedWithMinMaxThresholdsModelType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<AddPriceModelPriceGroupedWithMinMaxThresholdsModelType>
-    {
-        public override AddPriceModelPriceGroupedWithMinMaxThresholdsModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            AddPriceModelPriceGroupedWithMinMaxThresholdsModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }
 
 [JsonConverter(typeof(AddPriceModelPriceGroupedWithMinMaxThresholdsConversionRateConfigConverter))]
@@ -5655,15 +5503,9 @@ public sealed record class AddPriceModelPriceCumulativeGroupedAllocation : Model
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public AddPriceModelPriceCumulativeGroupedAllocationModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<AddPriceModelPriceCumulativeGroupedAllocationModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -5835,7 +5677,15 @@ public sealed record class AddPriceModelPriceCumulativeGroupedAllocation : Model
         this.Cadence.Validate();
         this.CumulativeGroupedAllocationConfig.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_allocation\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -5854,7 +5704,9 @@ public sealed record class AddPriceModelPriceCumulativeGroupedAllocation : Model
 
     public AddPriceModelPriceCumulativeGroupedAllocation()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"cumulative_grouped_allocation\""
+        );
     }
 
     public AddPriceModelPriceCumulativeGroupedAllocation(
@@ -5863,7 +5715,9 @@ public sealed record class AddPriceModelPriceCumulativeGroupedAllocation : Model
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"cumulative_grouped_allocation\""
+        );
     }
 
 #pragma warning disable CS8618
@@ -6042,61 +5896,6 @@ class AddPriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationCo
         AddPriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig.FromRawUnchecked(
             rawData
         );
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class AddPriceModelPriceCumulativeGroupedAllocationModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public AddPriceModelPriceCumulativeGroupedAllocationModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_allocation\"");
-    }
-
-    AddPriceModelPriceCumulativeGroupedAllocationModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new AddPriceModelPriceCumulativeGroupedAllocationModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'AddPriceModelPriceCumulativeGroupedAllocationModelType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<AddPriceModelPriceCumulativeGroupedAllocationModelType>
-    {
-        public override AddPriceModelPriceCumulativeGroupedAllocationModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            AddPriceModelPriceCumulativeGroupedAllocationModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }
 
 [JsonConverter(typeof(AddPriceModelPriceCumulativeGroupedAllocationConversionRateConfigConverter))]
@@ -6325,15 +6124,9 @@ public sealed record class AddPriceModelPricePercent : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public AddPriceModelPricePercentModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<AddPriceModelPricePercentModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -6519,7 +6312,15 @@ public sealed record class AddPriceModelPricePercent : ModelBase
     {
         this.Cadence.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"percent\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         this.PercentConfig.Validate();
         _ = this.BillableMetricID;
@@ -6539,14 +6340,14 @@ public sealed record class AddPriceModelPricePercent : ModelBase
 
     public AddPriceModelPricePercent()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
     }
 
     public AddPriceModelPricePercent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
     }
 
 #pragma warning disable CS8618
@@ -6629,56 +6430,6 @@ sealed class AddPriceModelPricePercentCadenceConverter
             },
             options
         );
-    }
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class AddPriceModelPricePercentModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public AddPriceModelPricePercentModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
-    }
-
-    AddPriceModelPricePercentModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (JsonElement.DeepEquals(this.Json, new AddPriceModelPricePercentModelType().Json))
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'AddPriceModelPricePercentModelType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<AddPriceModelPricePercentModelType>
-    {
-        public override AddPriceModelPricePercentModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            AddPriceModelPricePercentModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
     }
 }
 
@@ -6986,15 +6737,9 @@ public sealed record class AddPriceModelPriceEventOutput : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public AddPriceModelPriceEventOutputModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<AddPriceModelPriceEventOutputModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -7166,7 +6911,15 @@ public sealed record class AddPriceModelPriceEventOutput : ModelBase
         this.Cadence.Validate();
         this.EventOutputConfig.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"event_output\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -7185,14 +6938,14 @@ public sealed record class AddPriceModelPriceEventOutput : ModelBase
 
     public AddPriceModelPriceEventOutput()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
     }
 
     public AddPriceModelPriceEventOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
     }
 
 #pragma warning disable CS8618
@@ -7364,56 +7117,6 @@ class AddPriceModelPriceEventOutputEventOutputConfigFromRaw
     public AddPriceModelPriceEventOutputEventOutputConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AddPriceModelPriceEventOutputEventOutputConfig.FromRawUnchecked(rawData);
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class AddPriceModelPriceEventOutputModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public AddPriceModelPriceEventOutputModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
-    }
-
-    AddPriceModelPriceEventOutputModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (JsonElement.DeepEquals(this.Json, new AddPriceModelPriceEventOutputModelType().Json))
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'AddPriceModelPriceEventOutputModelType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<AddPriceModelPriceEventOutputModelType>
-    {
-        public override AddPriceModelPriceEventOutputModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            AddPriceModelPriceEventOutputModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }
 
 [JsonConverter(typeof(AddPriceModelPriceEventOutputConversionRateConfigConverter))]
@@ -10559,15 +10262,9 @@ public sealed record class ReplacePriceModelPriceBulkWithFilters : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public ReplacePriceModelPriceBulkWithFiltersModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<ReplacePriceModelPriceBulkWithFiltersModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -10739,7 +10436,15 @@ public sealed record class ReplacePriceModelPriceBulkWithFilters : ModelBase
         this.BulkWithFiltersConfig.Validate();
         this.Cadence.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -10758,14 +10463,14 @@ public sealed record class ReplacePriceModelPriceBulkWithFilters : ModelBase
 
     public ReplacePriceModelPriceBulkWithFilters()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
     }
 
     public ReplacePriceModelPriceBulkWithFilters(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
     }
 
 #pragma warning disable CS8618
@@ -11076,61 +10781,6 @@ sealed class ReplacePriceModelPriceBulkWithFiltersCadenceConverter
     }
 }
 
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class ReplacePriceModelPriceBulkWithFiltersModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public ReplacePriceModelPriceBulkWithFiltersModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
-    }
-
-    ReplacePriceModelPriceBulkWithFiltersModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new ReplacePriceModelPriceBulkWithFiltersModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'ReplacePriceModelPriceBulkWithFiltersModelType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<ReplacePriceModelPriceBulkWithFiltersModelType>
-    {
-        public override ReplacePriceModelPriceBulkWithFiltersModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            ReplacePriceModelPriceBulkWithFiltersModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
-}
-
 [JsonConverter(typeof(ReplacePriceModelPriceBulkWithFiltersConversionRateConfigConverter))]
 public record class ReplacePriceModelPriceBulkWithFiltersConversionRateConfig
 {
@@ -11359,15 +11009,9 @@ public sealed record class ReplacePriceModelPriceTieredWithProration : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public ReplacePriceModelPriceTieredWithProrationModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<ReplacePriceModelPriceTieredWithProrationModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -11553,7 +11197,15 @@ public sealed record class ReplacePriceModelPriceTieredWithProration : ModelBase
     {
         this.Cadence.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         this.TieredWithProrationConfig.Validate();
         _ = this.BillableMetricID;
@@ -11573,7 +11225,7 @@ public sealed record class ReplacePriceModelPriceTieredWithProration : ModelBase
 
     public ReplacePriceModelPriceTieredWithProration()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
     }
 
     public ReplacePriceModelPriceTieredWithProration(
@@ -11582,7 +11234,7 @@ public sealed record class ReplacePriceModelPriceTieredWithProration : ModelBase
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
     }
 
 #pragma warning disable CS8618
@@ -11666,61 +11318,6 @@ sealed class ReplacePriceModelPriceTieredWithProrationCadenceConverter
             },
             options
         );
-    }
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class ReplacePriceModelPriceTieredWithProrationModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public ReplacePriceModelPriceTieredWithProrationModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
-    }
-
-    ReplacePriceModelPriceTieredWithProrationModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new ReplacePriceModelPriceTieredWithProrationModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'ReplacePriceModelPriceTieredWithProrationModelType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<ReplacePriceModelPriceTieredWithProrationModelType>
-    {
-        public override ReplacePriceModelPriceTieredWithProrationModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            ReplacePriceModelPriceTieredWithProrationModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
     }
 }
 
@@ -12118,15 +11715,9 @@ public sealed record class ReplacePriceModelPriceGroupedWithMinMaxThresholds : M
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public ReplacePriceModelPriceGroupedWithMinMaxThresholdsModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<ReplacePriceModelPriceGroupedWithMinMaxThresholdsModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -12298,7 +11889,15 @@ public sealed record class ReplacePriceModelPriceGroupedWithMinMaxThresholds : M
         this.Cadence.Validate();
         this.GroupedWithMinMaxThresholdsConfig.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"grouped_with_min_max_thresholds\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -12317,7 +11916,9 @@ public sealed record class ReplacePriceModelPriceGroupedWithMinMaxThresholds : M
 
     public ReplacePriceModelPriceGroupedWithMinMaxThresholds()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"grouped_with_min_max_thresholds\""
+        );
     }
 
     public ReplacePriceModelPriceGroupedWithMinMaxThresholds(
@@ -12326,7 +11927,9 @@ public sealed record class ReplacePriceModelPriceGroupedWithMinMaxThresholds : M
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"grouped_with_min_max_thresholds\""
+        );
     }
 
 #pragma warning disable CS8618
@@ -12506,61 +12109,6 @@ class ReplacePriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThreshol
         ReplacePriceModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig.FromRawUnchecked(
             rawData
         );
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class ReplacePriceModelPriceGroupedWithMinMaxThresholdsModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public ReplacePriceModelPriceGroupedWithMinMaxThresholdsModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"grouped_with_min_max_thresholds\"");
-    }
-
-    ReplacePriceModelPriceGroupedWithMinMaxThresholdsModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new ReplacePriceModelPriceGroupedWithMinMaxThresholdsModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'ReplacePriceModelPriceGroupedWithMinMaxThresholdsModelType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<ReplacePriceModelPriceGroupedWithMinMaxThresholdsModelType>
-    {
-        public override ReplacePriceModelPriceGroupedWithMinMaxThresholdsModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            ReplacePriceModelPriceGroupedWithMinMaxThresholdsModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }
 
 [JsonConverter(
@@ -12815,15 +12363,9 @@ public sealed record class ReplacePriceModelPriceCumulativeGroupedAllocation : M
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public ReplacePriceModelPriceCumulativeGroupedAllocationModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<ReplacePriceModelPriceCumulativeGroupedAllocationModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -12995,7 +12537,15 @@ public sealed record class ReplacePriceModelPriceCumulativeGroupedAllocation : M
         this.Cadence.Validate();
         this.CumulativeGroupedAllocationConfig.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_allocation\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -13014,7 +12564,9 @@ public sealed record class ReplacePriceModelPriceCumulativeGroupedAllocation : M
 
     public ReplacePriceModelPriceCumulativeGroupedAllocation()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"cumulative_grouped_allocation\""
+        );
     }
 
     public ReplacePriceModelPriceCumulativeGroupedAllocation(
@@ -13023,7 +12575,9 @@ public sealed record class ReplacePriceModelPriceCumulativeGroupedAllocation : M
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"cumulative_grouped_allocation\""
+        );
     }
 
 #pragma warning disable CS8618
@@ -13203,61 +12757,6 @@ class ReplacePriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocati
         ReplacePriceModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig.FromRawUnchecked(
             rawData
         );
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class ReplacePriceModelPriceCumulativeGroupedAllocationModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public ReplacePriceModelPriceCumulativeGroupedAllocationModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_allocation\"");
-    }
-
-    ReplacePriceModelPriceCumulativeGroupedAllocationModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new ReplacePriceModelPriceCumulativeGroupedAllocationModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'ReplacePriceModelPriceCumulativeGroupedAllocationModelType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<ReplacePriceModelPriceCumulativeGroupedAllocationModelType>
-    {
-        public override ReplacePriceModelPriceCumulativeGroupedAllocationModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            ReplacePriceModelPriceCumulativeGroupedAllocationModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }
 
 [JsonConverter(
@@ -13492,15 +12991,9 @@ public sealed record class ReplacePriceModelPricePercent : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public ReplacePriceModelPricePercentModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<ReplacePriceModelPricePercentModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -13686,7 +13179,15 @@ public sealed record class ReplacePriceModelPricePercent : ModelBase
     {
         this.Cadence.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"percent\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         this.PercentConfig.Validate();
         _ = this.BillableMetricID;
@@ -13706,14 +13207,14 @@ public sealed record class ReplacePriceModelPricePercent : ModelBase
 
     public ReplacePriceModelPricePercent()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
     }
 
     public ReplacePriceModelPricePercent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
     }
 
 #pragma warning disable CS8618
@@ -13796,56 +13297,6 @@ sealed class ReplacePriceModelPricePercentCadenceConverter
             },
             options
         );
-    }
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class ReplacePriceModelPricePercentModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public ReplacePriceModelPricePercentModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
-    }
-
-    ReplacePriceModelPricePercentModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (JsonElement.DeepEquals(this.Json, new ReplacePriceModelPricePercentModelType().Json))
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'ReplacePriceModelPricePercentModelType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<ReplacePriceModelPricePercentModelType>
-    {
-        public override ReplacePriceModelPricePercentModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            ReplacePriceModelPricePercentModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
     }
 }
 
@@ -14157,15 +13608,9 @@ public sealed record class ReplacePriceModelPriceEventOutput : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public ReplacePriceModelPriceEventOutputModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<ReplacePriceModelPriceEventOutputModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -14337,7 +13782,15 @@ public sealed record class ReplacePriceModelPriceEventOutput : ModelBase
         this.Cadence.Validate();
         this.EventOutputConfig.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"event_output\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -14356,14 +13809,14 @@ public sealed record class ReplacePriceModelPriceEventOutput : ModelBase
 
     public ReplacePriceModelPriceEventOutput()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
     }
 
     public ReplacePriceModelPriceEventOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
     }
 
 #pragma warning disable CS8618
@@ -14537,58 +13990,6 @@ class ReplacePriceModelPriceEventOutputEventOutputConfigFromRaw
     public ReplacePriceModelPriceEventOutputEventOutputConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => ReplacePriceModelPriceEventOutputEventOutputConfig.FromRawUnchecked(rawData);
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class ReplacePriceModelPriceEventOutputModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public ReplacePriceModelPriceEventOutputModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
-    }
-
-    ReplacePriceModelPriceEventOutputModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(this.Json, new ReplacePriceModelPriceEventOutputModelType().Json)
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'ReplacePriceModelPriceEventOutputModelType'"
-            );
-        }
-    }
-
-    class Converter : JsonConverter<ReplacePriceModelPriceEventOutputModelType>
-    {
-        public override ReplacePriceModelPriceEventOutputModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            ReplacePriceModelPriceEventOutputModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }
 
 [JsonConverter(typeof(ReplacePriceModelPriceEventOutputConversionRateConfigConverter))]
