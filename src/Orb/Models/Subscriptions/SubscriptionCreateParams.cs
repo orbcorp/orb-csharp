@@ -202,6 +202,9 @@ namespace Orb.Models.Subscriptions;
 /// is specified in the subscription's invoicing currency, when creating a subscription.
 /// E.g. pass in `10.00` to issue an invoice when usage amounts hit \$10.00 for a
 /// subscription that invoices in USD.</para>
+///
+/// <para>## Limits By default, Orb limits the number of subscriptions per customer
+/// to 100.</para>
 /// </summary>
 public sealed record class SubscriptionCreateParams : ParamsBase
 {
